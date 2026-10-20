@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff016cb9682640b8da40",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "paper d059 intro L33 fix",
+  "task_key": "worker_paper_d059_intro_L33_fix_20260518T041708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d059_intro_L33_fix_20260518T041708_result.json",
+    "occurrence": 1,
+    "bytes": 1796,
+    "sha256": "0d86b2ece6ed1e7fc19552c6b8295c2ba6dc56d0014efcfe83b1f2801f846e17"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，0 errors，26 页 PDF 输出正常。\n\n---\n\n## 产出汇总\n\n### 1. L33 修改前后对比\n\n**修改前** (introduction.tex:33):\n```\n...the full consensus pipeline confirms directional asymmetry with cross-correlation\n|r|>0.99, 24/24 forward-direction pairs significant, and 0/24 in the reverse direction.\n```\n\n**修改后**:\n```\n...the full consensus pipeline confirms directional asymmetry with cross-correlation\n|r|>0.99; token entropy maintains complete unidirectional precedence (0/12 reverse\nacross 4 seeds and 3 diversity metrics), while ECE shows marginal reverse significance\n($p\\approx 0.03$) consistent with a canary quality hierarchy (\\S\\ref{sec:discussion}).\n```\n\n### 2. 0/16→0/12 修改位置\n\n| 文件 | 行号 | 上下文 |\n|------|------|--------|\n| abstract.tex | 5 | \"0/16 reverse pairs significant across 4 seeds\" → 0/12 |\n| conclusion.tex | 16 | \"token entropy: 0/16 reverse pairs across 4 seeds\" → 0/12 |\n| experiments.tex | 147 | \"token entropy reverse 0/16 across four seeds\" → 0/12 |\n\n全文 grep 确认 0/16 无残留。\n\n### 3. 0/24 和 24/24 残留检查\n\n所有剩余出现均属正确语境，无需修改:\n- **FPR null control** (0/24, 3 seeds × 8 pairs): abstract:3, conclusion:9, experiments:234-235, introduction:32, method:128\n- **α=0.75 regime** (19/24 forward, 0/24 reverse, 3 seeds × 8 pairs): abstract:5, conclusion:15, introduction:34,48, limitations:39, experiments:205\n- **差分前后** (24/24→24/24): experiments:66,79, method:23\n- **regime shift** (24/24→0/8): conclusion:5, introduction:41\n- **regime onset** (0/24 at α≤0.25): introduction:26, method:29\n\n### 4. 编译结果\n\n`pdflatex` 编译通过，0 errors，输出 main.pdf (26 pages, 491 KB)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-d059-intro-l33-fix.md"
+}

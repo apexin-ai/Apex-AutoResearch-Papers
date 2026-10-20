@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "4566f5d4bc5b5e72e602",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "analysis d120 batch tasks",
+  "task_key": "worker_analysis_d120_batch_tasks_20260520T071242",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d120_batch_tasks_20260520T071242.log",
+    "occurrence": 1,
+    "bytes": 561255,
+    "sha256": "a8b67f697f52ed333d45a97f64b86cc1b61451f227f9902ae7c1e6ea645a98df"
+  },
+  "statistics": {
+    "messages": 214,
+    "user_turns": 0,
+    "tool_calls": 92,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 26,
+      "tool_call": 92,
+      "tool_result": 92,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 214,
+      "chunks": [
+        {
+          "path": "4566f5d4bc5b5e72e602-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4566f5d4bc5b5e72e602-part-0002.json",
+          "message_count": 34
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-d120-batch-tasks.md"
+}

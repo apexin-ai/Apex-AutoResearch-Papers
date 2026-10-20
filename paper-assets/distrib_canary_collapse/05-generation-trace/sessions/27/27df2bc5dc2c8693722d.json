@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27df2bc5dc2c8693722d",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis alpha sweep a025 s43 fp32 v2",
+  "task_key": "worker_analysis_alpha_sweep_a025_s43_fp32_v2_20260519T142213",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_alpha_sweep_a025_s43_fp32_v2_20260519T142213_result.json",
+    "occurrence": 1,
+    "bytes": 1781,
+    "sha256": "90ed600a2c60ef05f476c3e03989ecc31d935abd2700daf85a527112b9fa787b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 **正常完成**。完整结果如下：\n\n## 状态\n\n- **进程**: 123809 已退出，EXIT_CODE=0\n- **完成度**: gen 0→10 全部完成，all_metrics.json + analysis_results.json 均已写入\n\n## 核心指标\n\n| 指标 | gen 0 | gen 10 | drift_pct |\n|------|-------|--------|-----------|\n| distinct_1 | 0.0983 | 0.0595 | **-38.95%** |\n| distinct_2 | 0.5146 | 0.2330 | -53.35% |\n| distinct_3 | 0.8140 | 0.3511 | -54.80% |\n| token_entropy | 3.234 | 3.069 | -4.94% |\n| perplexity | 26.95 | 21.95 | -18.38% |\n| effective_rank | 46.61 | 44.91 | -1.99% |\n| mauve | 0.0315 | 0.0207 | -35.59% |\n| ece | 0.0108 | 0.0218 | +64.77% |\n\n## Lead-lag 分析\n\n| 方法 | forward sig / total |\n|------|-------------------|\n| PermG (fwd) | **0/8** |\n| PermG (rev) | 0/8 |\n| consensus_k≥4 | **0/8** |\n| MMCT detection_rate | **0.0** |\n| TY Granger | 6/8 (但 C003 约束：低α下 TY 不可信) |\n| naive_xcorr | 8/8 |\n| threshold_onset | 4/8 |\n\n最高 consensus vote = 3 (token_entropy→d1/d2/d3 各 3 票: naive+thresh+ty)，均未达 K≥4 阈值。\n\n## 与 bf16 s43 对比\n\n| | bf16 s43 | fp32 s43 |\n|--|----------|----------|\n| d1_drift_pct | -40.5% | -38.95% |\n| PermG | 0/8 | 0/8 |\n| consensus_k≥4 | 0/8 | 0/8 |\n\nfp32 和 bf16 结果高度一致：d1 drift 幅度相近（-39% vs -40.5%），PermG 和 consensus 均为 0/8。\n\n## 对 dose-response map 的影响\n\nα=0.25 fp32 s43 确认了 s42 的结论：\n- **drift 幅度跨 seed 稳定**（d1 ≈ -39~-40%），precision 格式（fp32 vs bf16）无显著影响\n- **PermG=0/8 跨 seed 稳定**——α=0.25 处于 lead-lag 信号不可检出区域\n- dose-response map 中 α=0.25 可标记为 \"drift present, no detectable lead-lag\"，与 α=0.50 形成对照"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-alpha-sweep-a025-s43-fp32-v2.md"
+}

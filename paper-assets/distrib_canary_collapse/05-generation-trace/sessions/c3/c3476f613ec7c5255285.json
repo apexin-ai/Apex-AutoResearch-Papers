@@ -1,0 +1,1177 @@
+{
+  "schema_version": "1.0",
+  "id": "c3476f613ec7c5255285",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "writing abstract",
+  "task_key": "worker_writing_abstract_20260515T202033",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_abstract_20260515T202033.log",
+    "occurrence": 1,
+    "bytes": 79807,
+    "sha256": "1d892142b785cef17a2144d1a4e50478dd6b8a29903deeb312a979c66ae4b3af"
+  },
+  "statistics": {
+    "messages": 27,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 5,
+      "record": 1,
+      "tool_call": 9,
+      "tool_result": 9,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+                "session_id": "9c1cd256-d6ad-41d2-86c8-f50087ea0a66",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "b66fe5eb-df74-4205-9421-218767461bab",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the registry to confirm key numbers, then write the abstract.",
+              "signature": "EpACClkIDRgCKkB6zI8Qfwh0F+BXA6U2974V4ZmFlih3QseRNMk8ygCR4cbGE9SeZjZ5foE4Iu/kqYyeJV5bHheDl/csIVf7v0GiMg9jbGF1ZGUtb3B1cy00LTY4ABIMTxcdb1iXL4kIUGo4Ggy5ZIMJ/fp6NtNVBGEiMDbRS2M5xaUB6IFOR2lI2Ldspe8Es7PoXH1/cclyc1A2xyYLD6s/75CxPj3UcS8r/Cpl82IPkpGZiIdkpQOll98L0VuT9IX2DRW7kaTqsVRTh8OLcNLATupcVc4XJ1pFOrZ9Q38aneqjt6Xm523ObRIN9xgXI7LwXCVVV5SMn8TtjFbhxWiXccWM9OEeeJ5QQ7/WqqhVi5IYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9c1cd256-d6ad-41d2-86c8-f50087ea0a66",
+            "uuid": "bd04ada3-3d16-45c0-94e3-bc37bb4c3c40",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012sKR2G57JYUBEhCMfhTdoX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12097,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12097
+                },
+                "output_tokens": 53,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778887800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "1186c5d4-a167-4479-bc4d-fa0d0b2f79f5",
+                "session_id": "9c1cd256-d6ad-41d2-86c8-f50087ea0a66"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QnS7Fvgw4HhqEK6noNSAd1",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__read_registry",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9c1cd256-d6ad-41d2-86c8-f50087ea0a66",
+            "uuid": "67eb0594-bc7c-4007-a2d5-3c6f53cee736",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012sKR2G57JYUBEhCMfhTdoX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12097,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12097
+                },
+                "output_tokens": 53,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T20:20:41.251Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01QnS7Fvgw4HhqEK6noNSAd1",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_registry"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9c1cd256-d6ad-41d2-86c8-f50087ea0a66",
+            "uuid": "7cff228a-c0eb-4df4-a2d6-266fe4cfc4a5",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__read_registry"
+              ],
+              "query": "select:mcp__agent-ml-research__read_registry",
+              "total_deferred_tools": 25
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011kZeiZLHZQxfLRq3y9G69u",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "distrib_canary_collapse",
+                "limit": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9c1cd256-d6ad-41d2-86c8-f50087ea0a66",
+            "uuid": "373ad02c-6f6d-4d7b-b657-a664348adb22",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ExbUu6TBTe7mzicQ8u9sgs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 480,
+                "cache_read_input_tokens": 23938,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 480
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T20:20:43.452Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011kZeiZLHZQxfLRq3y9G69u",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"alpha_sweep_a050_s43\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-15T06:58:45.880Z\\\", \\\"updated_at\\\": \\\"2026-05-15T17:40:27.311Z\\\"}, \\\"alpha_sweep_a025_s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T06:58:43.090Z\\\", \\\"updated_at\\\": \\\"2026-05-15T17:39:43.623Z\\\", \\\"metrics\\\": {\\\"gen0\\\": {\\\"token_entropy\\\": 3.2342, \\\"ece\\\": 0.0108, \\\"perplexity\\\": 26.949, \\\"distinct_1\\\": 0.09833, \\\"distinct_2\\\": 0.5132, \\\"distinct_3\\\": 0.8057, \\\"effective_rank\\\": 46.61, \\\"mauve\\\": 0.03351}, \\\"gen10\\\": {\\\"token_entropy\\\": 3.0723, \\\"ece\\\": 0.02146, \\\"perplexity\\\": 21.899, \\\"distinct_1\\\": 0.05849, \\\"distinct_2\\\": 0.2236, \\\"distinct_3\\\": 0.333, \\\"effective_rank\\\": 45.37, \\\"mauve\\\": 0.01871}, \\\"drift_pct\\\": {\\\"token_entropy\\\": -5, \\\"ece\\\": 98.6, \\\"perplexity\\\": -18.7, \\\"distinct_1\\\": -40.5, \\\"distinct_2\\\": -56.4, \\\"distinct_3\\\": -58.7, \\\"effective_rank\\\": -2.7, \\\"mauve\\\": -44.2}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"gen_wiki_gpt2m_a100_s42_v3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-15T12:07:20.050Z\\\", \\\"updated_at\\\": \\\"2026-05-15T15:30:24.087Z\\\", \\\"metrics\\\": {\\\"progress\\\": \\\"gen 4/10 (generating synthetic text), ~45%\\\"}}, \\\"alpha_sweep_a075_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T21:52:17.315Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:29:46.421Z\\\", \\\"metrics\\\": {\\\"progress\\\": \\\"11/11 gen (complete)\\\", \\\"gen0_token_entropy\\\": 3.234, \\\"gen10_token_entropy\\\": 2.337, \\\"gen0_ece\\\": 0.0108, \\\"gen10_ece\\\": 0.2063, \\\"gen0_perplexity\\\": 26.95, \\\"gen10_perplexity\\\": 76.03, \\\"gen0_distinct_1\\\": 0.0982, \\\"gen10_distinct_1\\\": 0.0661, \\\"gen0_distinct_2\\\": 0.5178, \\\"gen10_distinct_2\\\": 0.3037, \\\"gen0_distinct_3\\\": 0.8127, \\\"gen10_distinct_3\\\": 0.5011, \\\"token_entropy_drift_pct\\\": -27.7, \\\"ece_drift_pct\\\": 1809.5, \\\"perplexity_drift_pct\\\": 182.1, \\\"distinct_1_drift_pct\\\": -32.7, \\\"distinct_2_drift_pct\\\": -41.3, \\\"distinct_3_drift_pct\\\": -38.4, \\\"granger_ece_to_d1_p_fdr\\\": 0.046, \\\"granger_ece_to_d2_p_fdr\\\": 0.046, \\\"granger_entropy_to_d2_p_fdr\\\": 0.048, \\\"granger_entropy_to_d1_p_fdr\\\": 0.054, \\\"granger_fdr_sig_count\\\": \\\"3/8\\\", \\\"consensus_robust_pairs\\\": \\\"11/16\\\", \\\"xcorr_entropy_d1_lag\\\": 2, \\\"xcorr_entropy_d1_r\\\": 0.973}, \\\"conclusion\\\": \\\"success\\\"}, \\\"alpha_sweep_a050_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T21:52:15.427Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:17:48.134Z\\\", \\\"metrics\\\": {\\\"progress\\\": \\\"11/11 gen (complete)\\\", \\\"gen0_token_entropy\\\": 3.234, \\\"gen10_token_entropy\\\": 2.632, \\\"gen0_ece\\\": 0.011, \\\"gen10_ece\\\": 0.102, \\\"gen0_perplexity\\\": 26.95, \\\"gen10_perplexity\\\": 32.64, \\\"gen0_distinct_1\\\": 0.098, \\\"gen10_distinct_1\\\": 0.062, \\\"gen0_distinct_2\\\": 0.518, \\\"gen10_distinct_2\\\": 0.251, \\\"gen0_distinct_3\\\": 0.813, \\\"gen10_distinct_3\\\": 0.387, \\\"token_entropy_drift_pct\\\": -18.6, \\\"ece_drift_pct\\\": 842.8, \\\"perplexity_drift_pct\\\": 21.1, \\\"distinct_1_drift_pct\\\": -37.3, \\\"distinct_2_drift_pct\\\": -51.5, \\\"distinct_3_drift_pct\\\": -52.4, \\\"granger_entropy_to_d1_p_raw\\\": 0.095, \\\"granger_entropy_to_d2_p_raw\\\": 0.097, \\\"granger_ece_to_d1_p_raw\\\": 0.019, \\\"granger_ece_to_d2_p_raw\\\": 0.039, \\\"granger_fdr_note\\\": \\\"4 tests within alpha=0.50; BH FDR threshold rank1=0.0125, rank2=0.025 → 0/4 FDR-sig at q=0.05. Raw p pattern (ECE < entropy) is qualitative signal only.\\\", \\\"d024_non_monotonic\\\": true, \\\"d024_ece_vs_entropy_note\\\": \\\"ECE raw p < entropy raw p at α=0.50 (0.019 vs 0.095 at 5000 perms), 0/4 FDR-sig; regime switch hypothesis pending α=0.75 confirmation\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan_006_s43\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"created_at\\\": \\\"2026-05-14T23:31:37.257Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:21:51.003Z\\\"}, \\\"plan_006_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T23:31:35.454Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:17:14.093Z\\\", \\\"metrics\\\": {\\\"progress\\\": \\\"18/20 gen (gen_0-17 complete, gen_18-20 timeout)\\\", \\\"gen0_token_entropy\\\": 3.2342, \\\"gen17_token_entropy\\\": 1.1819, \\\"gen0_ece\\\": 0.0108, \\\"gen17_ece\\\": 0.4454, \\\"gen0_perplexity\\\": 26.95, \\\"gen17_perplexity\\\": 3367.66, \\\"gen0_distinct_1\\\": 0.0982, \\\"gen17_distinct_1\\\": 0.0756, \\\"gen0_distinct_2\\\": 0.5178, \\\"gen17_distinct_2\\\": 0.3617, \\\"gen0_distinct_3\\\": 0.8127, \\\"gen17_distinct_3\\\": 0.5865, \\\"token_entropy_drift_pct_gen0_17\\\": -63.4, \\\"distinct_1_drift_pct_gen0_17\\\": -23, \\\"distinct_2_drift_pct_gen0_17\\\": -30.1, \\\"distinct_3_drift_pct_gen0_17\\\": -27.8, \\\"ece_drift_pct_gen0_17\\\": 4024, \\\"ppl_drift_pct_gen0_17\\\": 12395, \\\"phase1_rapid_collapse\\\": \\\"gen0-5\\\", \\\"phase2_apparent_plateau\\\": \\\"gen5-12\\\", \\\"phase3_secondary_decline\\\": \\\"gen13-17\\\", \\\"phase3_d2_decline_pct\\\": -5.8, \\\"phase3_d3_decline_pct\\\": -6.9, \\\"diversity_saturated_at_gen\\\": 5, \\\"diversity_secondary_decline_at_gen\\\": 13, \\\"perplexity_saturated\\\": false}, \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"gen_0-17 complete (T=18). 三相 collapse: Phase1 急速崩塌 gen0-5 (d1 -20.6%, entropy -63.8%), Phase2 表观稳态 gen5-12 (diversity <0.3% 变化, perplexity 仍+167%), Phase3 二次衰退 gen13-17 (d2 -5.8%, d3 -6.9%). Perplexity 未饱和 (26.95→3367.66, +12395%). T=18 vs T=10: 新增 diversity 二次衰退在 T=10 window 不可见. TY power 预估 ~0.28-0.41 (vs T=10 的 0.05-0.21).\\\"}, \\\"plan_006_s42_resume\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T11:55:26.236Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:10:54.859Z\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"D034 决定不恢复。T=18 数据已足够（超出 T=15 目标）。原 plan_006_s42 gen_0-17 数据可用于 power analysis + supplementary。\\\"}, \\\"gen_wiki_gpt2m_a100_s42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T12:02:06.478Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:04:50.741Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"gen_wiki_gpt2m_a100_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T10:35:18.700Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:01:58.523Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"method_ablation_phase2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T08:58:35.270Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:07:42.688Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"n_panel_rows\\\": 56, \\\"n_alphas\\\": 4, \\\"alphas\\\": [0, 0.25, 0.5, 1], \\\"naive_sig_rate_overall\\\": 1, \\\"perm_granger_sig_rate_a000_raw\\\": 0, \\\"perm_granger_sig_rate_a000_fdr\\\": 0, \\\"perm_granger_sig_rate_a025_raw\\\": 0.25, \\\"perm_granger_sig_rate_a025_fdr\\\": 0, \\\"perm_granger_sig_rate_a050_raw\\\": 0.25, \\\"perm_granger_sig_rate_a050_fdr\\\": 0, \\\"perm_granger_sig_rate_a100_raw\\\": 0.75, \\\"perm_granger_sig_rate_a100_fdr\\\": 0.75, \\\"TY_sig_rate_a000_raw\\\": 0, \\\"TY_sig_rate_a000_fdr\\\": 0, \\\"TY_sig_rate_a025_raw\\\": 0.625, \\\"TY_sig_rate_a025_fdr\\\": 0.375, \\\"TY_sig_rate_a050_raw\\\": 0, \\\"TY_sig_rate_a050_fdr\\\": 0, \\\"TY_sig_rate_a100_raw\\\": 0.5938, \\\"TY_sig_rate_a100_fdr\\\": 0.5938, \\\"diff_sig_rate_a000_raw\\\": 0.5, \\\"diff_sig_rate_a000_fdr\\\": 0.375, \\\"mean_inter_method_kappa\\\": 0.185, \\\"naive_vs_perm_granger_flip_rate\\\": 0.5, \\\"naive_vs_TY_flip_rate\\\": 0.57, \\\"fdr_flips_perm_granger\\\": 4, \\\"pair_verdict_a100_perm_granger\\\": \\\"6/8\\\", \\\"pair_verdict_a100_TY\\\": \\\"6/8\\\", \\\"entropy_to_diversity_a100_all_5methods_sig\\\": true, \\\"fdr_correction\\\": \\\"BH q=0.05\\\"}}, \\\"gen_wiki_gpt2m_a025_s42\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"created_at\\\": \\\"2026-05-15T10:35:16.032Z\\\", \\\"updated_at\\\": \\\"2026-05-15T10:35:16.032Z\\\"}, \\\"alpha_sweep_a050_s44\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"created_at\\\": \\\"2026-05-15T06:58:50.550Z\\\", \\\"updated_at\\\": \\\"2026-05-15T06:58:50.550Z\\\"}, \\\"alpha_sweep_a025_s44\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"created_at\\\": \\\"2026-05-15T06:58:48.224Z\\\", \\\"updated_at\\\": \\\"2026-05-15T06:58:48.224Z\\\"}, \\\"alpha_sweep_a010_s42\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"created_at\\\": \\\"2026-05-14T21:52:19.712Z\\\", \\\"updated_at\\\": \\\"2026-05-15T05:19:49.211Z\\\"}, \\\"alpha_sweep_a025_s42_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T21:04:05.726Z\\\", \\\"updated_at\\\": \\\"2026-05-15T05:13:22.207Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"gen0_token_entropy\\\": 3.2342, \\\"gen10_token_entropy\\\": 3.1017, \\\"gen0_ece\\\": 0.0108, \\\"gen10_ece\\\": 0.01942, \\\"gen0_perplexity\\\": 26.95, \\\"gen10_perplexity\\\": 22.32, \\\"gen0_distinct_1\\\": 0.0982, \\\"gen10_distinct_1\\\": 0.0586, \\\"gen0_distinct_2\\\": 0.5178, \\\"gen10_distinct_2\\\": 0.2219, \\\"gen0_distinct_3\\\": 0.8127, \\\"gen10_distinct_3\\\": 0.3263, \\\"token_entropy_drift_pct\\\": -4.1, \\\"ece_drift_pct\\\": 79.7, \\\"perplexity_drift_pct\\\": -17.2, \\\"distinct_1_drift_pct\\\": -40.3, \\\"distinct_2_drift_pct\\\": -57.1, \\\"distinct_3_drift_pct\\\": -59.9}, \\\"notes\\\": \\\"实际磁盘路径为 results/alpha_sweep/a025_s42/（无 v3 后缀）。Registry ID 带 v3 是历史原因，数据已核实无误。\\\"}, \\\"method_ablation_phase1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T23:49:16.519Z\\\", \\\"updated_at\\\": \\\"2026-05-14T23:49:40.162Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"spurious_rate_5method\\\": 0.75, \\\"spurious_rate_4method\\\": 0.625, \\\"naive_sig\\\": \\\"16/16\\\", \\\"differenced_sig\\\": \\\"14/16\\\", \\\"threshold_sig\\\": \\\"9/16\\\", \\\"permutation_granger_sig\\\": \\\"6/16\\\", \\\"ty_sig\\\": \\\"4/16\\\", \\\"ty_power_T10\\\": \\\"0.05-0.20\\\", \\\"bh_fdr_flips\\\": 0}}, \\\"alpha_sweep_a000_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T19:01:37.470Z\\\", \\\"updated_at\\\": \\\"2026-05-14T23:42:18.748Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"gen0_token_entropy\\\": 3.2342, \\\"gen10_token_entropy\\\": 3.0693, \\\"gen0_ece\\\": 0.0108, \\\"gen10_ece\\\": 0.0164, \\\"gen0_perplexity\\\": 26.95, \\\"gen10_perplexity\\\": 21.11, \\\"gen0_distinct_1\\\": 0.0982, \\\"gen10_distinct_1\\\": 0.0847, \\\"token_entropy_drift_pct\\\": -5.1, \\\"ece_drift_pct\\\": 51.7, \\\"perplexity_drift_pct\\\": -21.7, \\\"distinct_1_drift_pct\\\": -13.8, \\\"distinct_2_drift_pct\\\": -9.8, \\\"distinct_3_drift_pct\\\": -4.5, \\\"gen1_10_perplexity_drift_pct\\\": 9.4, \\\"gen1_10_distinct_1_drift_pct\\\": -13.1, \\\"gen1_10_entropy_drift_pct\\\": 2.6}}, \\\"alpha_sweep_a060_s42\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T21:52:22.516Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:52:22.516Z\\\"}, \\\"plan_009_bootstrap_ty\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T21:33:04.665Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:33:27.106Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"T10_d0_type1\\\": 0.081, \\\"T10_d0_power\\\": 0.205, \\\"T10_d1_type1\\\": 0.047, \\\"T10_d1_power\\\": 0.09, \\\"T10_dadapt_type1\\\": 0.052, \\\"T10_dadapt_power\\\": 0.05, \\\"T20_d0_power\\\": 0.409, \\\"T20_d1_power\\\": 0.172, \\\"T30_d0_power\\\": 0.606, \\\"T30_d1_power\\\": 0.283}}, \\\"alpha_sweep_a025_s42_v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T19:25:52.094Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:04:20.474Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"alpha_sweep_a025_s42\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T19:01:39.527Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:25:38.905Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"mvp_v4_rep44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T07:48:52.613Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:03:57.571Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp_rep44\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T05:12:15.033Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:43:02.575Z\\\", \\\"metrics\\\": {\\\"gen10_token_entropy\\\": 1.2205, \\\"gen10_ece\\\": 0.4237, \\\"gen10_perplexity\\\": 1033.16, \\\"gen10_distinct_1\\\": 0.0731, \\\"gen10_distinct_2\\\": 0.3637, \\\"gen10_distinct_3\\\": 0.6075}}, \\\"mvp_v4_rep45\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T13:41:26.286Z\\\", \\\"updated_at\\\": \\\"2026-05-14T17:58:00.661Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"gen0_ppl\\\": 26.9, \\\"gen10_ppl\\\": 1016.2, \\\"gen0_entropy\\\": 3.234, \\\"gen10_entropy\\\": 1.315, \\\"gen0_ece\\\": 0.011, \\\"gen10_ece\\\": 0.417}}, \\\"mvp_v4_rep43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T07:48:50.161Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:44:15.786Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp_v4_rep42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T07:29:48.857Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:44:11.839Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp_v3_rep43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T06:25:42.195Z\\\", \\\"updated_at\\\": \\\"2026-05-14T06:48:01.316Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"mvp_v3_rep42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T06:25:39.728Z\\\", \\\"updated_at\\\": \\\"2026-05-14T06:47:59.908Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"mvp_v2_rep43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T05:38:10.434Z\\\", \\\"updated_at\\\": \\\"2026-05-14T06:25:28.345Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"mvp_v2_rep42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T05:38:05.054Z\\\", \\\"updated_at\\\": \\\"2026-05-14T06:25:27.286Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"mvp_v2_rep44\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T05:38:10.762Z\\\", \\\"updated_at\\\": \\\"2026-05-14T05:38:10.762Z\\\"}, \\\"mvp_rep43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T05:12:14.237Z\\\", \\\"updated_at\\\": \\\"2026-05-14T05:37:18.575Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"mvp_rep42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T05:12:13.930Z\\\", \\\"updated_at\\\": \\\"2026-05-14T05:37:17.438Z\\\", \\\"conclusion\\\": \\\"killed\\\"}}, \\\"count\\\": 34, \\\"total\\\": 34, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0827}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9c1cd256-d6ad-41d2-86c8-f50087ea0a66",
+            "uuid": "45f2f39c-a062-404c-83ef-c6631a0c321d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"alpha_sweep_a050_s43\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-15T06:58:45.880Z\\\", \\\"updated_at\\\": \\\"2026-05-15T17:40:27.311Z\\\"}, \\\"alpha_sweep_a025_s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T06:58:43.090Z\\\", \\\"updated_at\\\": \\\"2026-05-15T17:39:43.623Z\\\", \\\"metrics\\\": {\\\"gen0\\\": {\\\"token_entropy\\\": 3.2342, \\\"ece\\\": 0.0108, \\\"perplexity\\\": 26.949, \\\"distinct_1\\\": 0.09833, \\\"distinct_2\\\": 0.5132, \\\"distinct_3\\\": 0.8057, \\\"effective_rank\\\": 46.61, \\\"mauve\\\": 0.03351}, \\\"gen10\\\": {\\\"token_entropy\\\": 3.0723, \\\"ece\\\": 0.02146, \\\"perplexity\\\": 21.899, \\\"distinct_1\\\": 0.05849, \\\"distinct_2\\\": 0.2236, \\\"distinct_3\\\": 0.333, \\\"effective_rank\\\": 45.37, \\\"mauve\\\": 0.01871}, \\\"drift_pct\\\": {\\\"token_entropy\\\": -5, \\\"ece\\\": 98.6, \\\"perplexity\\\": -18.7, \\\"distinct_1\\\": -40.5, \\\"distinct_2\\\": -56.4, \\\"distinct_3\\\": -58.7, \\\"effective_rank\\\": -2.7, \\\"mauve\\\": -44.2}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"gen_wiki_gpt2m_a100_s42_v3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-15T12:07:20.050Z\\\", \\\"updated_at\\\": \\\"2026-05-15T15:30:24.087Z\\\", \\\"metrics\\\": {\\\"progress\\\": \\\"gen 4/10 (generating synthetic text), ~45%\\\"}}, \\\"alpha_sweep_a075_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T21:52:17.315Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:29:46.421Z\\\", \\\"metrics\\\": {\\\"progress\\\": \\\"11/11 gen (complete)\\\", \\\"gen0_token_entropy\\\": 3.234, \\\"gen10_token_entropy\\\": 2.337, \\\"gen0_ece\\\": 0.0108, \\\"gen10_ece\\\": 0.2063, \\\"gen0_perplexity\\\": 26.95, \\\"gen10_perplexity\\\": 76.03, \\\"gen0_distinct_1\\\": 0.0982, \\\"gen10_distinct_1\\\": 0.0661, \\\"gen0_distinct_2\\\": 0.5178, \\\"gen10_distinct_2\\\": 0.3037, \\\"gen0_distinct_3\\\": 0.8127, \\\"gen10_distinct_3\\\": 0.5011, \\\"token_entropy_drift_pct\\\": -27.7, \\\"ece_drift_pct\\\": 1809.5, \\\"perplexity_drift_pct\\\": 182.1, \\\"distinct_1_drift_pct\\\": -32.7, \\\"distinct_2_drift_pct\\\": -41.3, \\\"distinct_3_drift_pct\\\": -38.4, \\\"granger_ece_to_d1_p_fdr\\\": 0.046, \\\"granger_ece_to_d2_p_fdr\\\": 0.046, \\\"granger_entropy_to_d2_p_fdr\\\": 0.048, \\\"granger_entropy_to_d1_p_fdr\\\": 0.054, \\\"granger_fdr_sig_count\\\": \\\"3/8\\\", \\\"consensus_robust_pairs\\\": \\\"11/16\\\", \\\"xcorr_entropy_d1_lag\\\": 2, \\\"xcorr_entropy_d1_r\\\": 0.973}, \\\"conclusion\\\": \\\"success\\\"}, \\\"alpha_sweep_a050_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T21:52:15.427Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:17:48.134Z\\\", \\\"metrics\\\": {\\\"progress\\\": \\\"11/11 gen (complete)\\\", \\\"gen0_token_entropy\\\": 3.234, \\\"gen10_token_entropy\\\": 2.632, \\\"gen0_ece\\\": 0.011, \\\"gen10_ece\\\": 0.102, \\\"gen0_perplexity\\\": 26.95, \\\"gen10_perplexity\\\": 32.64, \\\"gen0_distinct_1\\\": 0.098, \\\"gen10_distinct_1\\\": 0.062, \\\"gen0_distinct_2\\\": 0.518, \\\"gen10_distinct_2\\\": 0.251, \\\"gen0_distinct_3\\\": 0.813, \\\"gen10_distinct_3\\\": 0.387, \\\"token_entropy_drift_pct\\\": -18.6, \\\"ece_drift_pct\\\": 842.8, \\\"perplexity_drift_pct\\\": 21.1, \\\"distinct_1_drift_pct\\\": -37.3, \\\"distinct_2_drift_pct\\\": -51.5, \\\"distinct_3_drift_pct\\\": -52.4, \\\"granger_entropy_to_d1_p_raw\\\": 0.095, \\\"granger_entropy_to_d2_p_raw\\\": 0.097, \\\"granger_ece_to_d1_p_raw\\\": 0.019, \\\"granger_ece_to_d2_p_raw\\\": 0.039, \\\"granger_fdr_note\\\": \\\"4 tests within alpha=0.50; BH FDR threshold rank1=0.0125, rank2=0.025 → 0/4 FDR-sig at q=0.05. Raw p pattern (ECE < entropy) is qualitative signal only.\\\", \\\"d024_non_monotonic\\\": true, \\\"d024_ece_vs_entropy_note\\\": \\\"ECE raw p < entropy raw p at α=0.50 (0.019 vs 0.095 at 5000 perms), 0/4 FDR-sig; regime switch hypothesis pending α=0.75 confirmation\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan_006_s43\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"created_at\\\": \\\"2026-05-14T23:31:37.257Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:21:51.003Z\\\"}, \\\"plan_006_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T23:31:35.454Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:17:14.093Z\\\", \\\"metrics\\\": {\\\"progress\\\": \\\"18/20 gen (gen_0-17 complete, gen_18-20 timeout)\\\", \\\"gen0_token_entropy\\\": 3.2342, \\\"gen17_token_entropy\\\": 1.1819, \\\"gen0_ece\\\": 0.0108, \\\"gen17_ece\\\": 0.4454, \\\"gen0_perplexity\\\": 26.95, \\\"gen17_perplexity\\\": 3367.66, \\\"gen0_distinct_1\\\": 0.0982, \\\"gen17_distinct_1\\\": 0.0756, \\\"gen0_distinct_2\\\": 0.5178, \\\"gen17_distinct_2\\\": 0.3617, \\\"gen0_distinct_3\\\": 0.8127, \\\"gen17_distinct_3\\\": 0.5865, \\\"token_entropy_drift_pct_gen0_17\\\": -63.4, \\\"distinct_1_drift_pct_gen0_17\\\": -23, \\\"distinct_2_drift_pct_gen0_17\\\": -30.1, \\\"distinct_3_drift_pct_gen0_17\\\": -27.8, \\\"ece_drift_pct_gen0_17\\\": 4024, \\\"ppl_drift_pct_gen0_17\\\": 12395, \\\"phase1_rapid_collapse\\\": \\\"gen0-5\\\", \\\"phase2_apparent_plateau\\\": \\\"gen5-12\\\", \\\"phase3_secondary_decline\\\": \\\"gen13-17\\\", \\\"phase3_d2_decline_pct\\\": -5.8, \\\"phase3_d3_decline_pct\\\": -6.9, \\\"diversity_saturated_at_gen\\\": 5, \\\"diversity_secondary_decline_at_gen\\\": 13, \\\"perplexity_saturated\\\": false}, \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"gen_0-17 complete (T=18). 三相 collapse: Phase1 急速崩塌 gen0-5 (d1 -20.6%, entropy -63.8%), Phase2 表观稳态 gen5-12 (diversity <0.3% 变化, perplexity 仍+167%), Phase3 二次衰退 gen13-17 (d2 -5.8%, d3 -6.9%). Perplexity 未饱和 (26.95→3367.66, +12395%). T=18 vs T=10: 新增 diversity 二次衰退在 T=10 window 不可见. TY power 预估 ~0.28-0.41 (vs T=10 的 0.05-0.21).\\\"}, \\\"plan_006_s42_resume\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T11:55:26.236Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:10:54.859Z\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"D034 决定不恢复。T=18 数据已足够（超出 T=15 目标）。原 plan_006_s42 gen_0-17 数据可用于 power analysis + supplementary。\\\"}, \\\"gen_wiki_gpt2m_a100_s42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T12:02:06.478Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:04:50.741Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"gen_wiki_gpt2m_a100_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T10:35:18.700Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:01:58.523Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"method_ablation_phase2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T08:58:35.270Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:07:42.688Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"n_panel_rows\\\": 56, \\\"n_alphas\\\": 4, \\\"alphas\\\": [0, 0.25, 0.5, 1], \\\"naive_sig_rate_overall\\\": 1, \\\"perm_granger_sig_rate_a000_raw\\\": 0, \\\"perm_granger_sig_rate_a000_fdr\\\": 0, \\\"perm_granger_sig_rate_a025_raw\\\": 0.25, \\\"perm_granger_sig_rate_a025_fdr\\\": 0, \\\"perm_granger_sig_rate_a050_raw\\\": 0.25, \\\"perm_granger_sig_rate_a050_fdr\\\": 0, \\\"perm_granger_sig_rate_a100_raw\\\": 0.75, \\\"perm_granger_sig_rate_a100_fdr\\\": 0.75, \\\"TY_sig_rate_a000_raw\\\": 0, \\\"TY_sig_rate_a000_fdr\\\": 0, \\\"TY_sig_rate_a025_raw\\\": 0.625, \\\"TY_sig_rate_a025_fdr\\\": 0.375, \\\"TY_sig_rate_a050_raw\\\": 0, \\\"TY_sig_rate_a050_fdr\\\": 0, \\\"TY_sig_rate_a100_raw\\\": 0.5938, \\\"TY_sig_rate_a100_fdr\\\": 0.5938, \\\"diff_sig_rate_a000_raw\\\": 0.5, \\\"diff_sig_rate_a000_fdr\\\": 0.375, \\\"mean_inter_method_kappa\\\": 0.185, \\\"naive_vs_perm_granger_flip_rate\\\": 0.5, \\\"naive_vs_TY_flip_rate\\\": 0.57, \\\"fdr_flips_perm_granger\\\": 4, \\\"pair_verdict_a100_perm_granger\\\": \\\"6/8\\\", \\\"pair_verdict_a100_TY\\\": \\\"6/8\\\", \\\"entropy_to_diversity_a100_all_5methods_sig\\\": true, \\\"fdr_correction\\\": \\\"BH q=0.05\\\"}}, \\\"gen_wiki_gpt2m_a025_s42\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"created_at\\\": \\\"2026-05-15T10:35:16.032Z\\\", \\\"updated_at\\\": \\\"2026-05-15T10:35:16.032Z\\\"}, \\\"alpha_sweep_a050_s44\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"created_at\\\": \\\"2026-05-15T06:58:50.550Z\\\", \\\"updated_at\\\": \\\"2026-05-15T06:58:50.550Z\\\"}, \\\"alpha_sweep_a025_s44\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"created_at\\\": \\\"2026-05-15T06:58:48.224Z\\\", \\\"updated_at\\\": \\\"2026-05-15T06:58:48.224Z\\\"}, \\\"alpha_sweep_a010_s42\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"created_at\\\": \\\"2026-05-14T21:52:19.712Z\\\", \\\"updated_at\\\": \\\"2026-05-15T05:19:49.211Z\\\"}, \\\"alpha_sweep_a025_s42_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T21:04:05.726Z\\\", \\\"updated_at\\\": \\\"2026-05-15T05:13:22.207Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"gen0_token_entropy\\\": 3.2342, \\\"gen10_token_entropy\\\": 3.1017, \\\"gen0_ece\\\": 0.0108, \\\"gen10_ece\\\": 0.01942, \\\"gen0_perplexity\\\": 26.95, \\\"gen10_perplexity\\\": 22.32, \\\"gen0_distinct_1\\\": 0.0982, \\\"gen10_distinct_1\\\": 0.0586, \\\"gen0_distinct_2\\\": 0.5178, \\\"gen10_distinct_2\\\": 0.2219, \\\"gen0_distinct_3\\\": 0.8127, \\\"gen10_distinct_3\\\": 0.3263, \\\"token_entropy_drift_pct\\\": -4.1, \\\"ece_drift_pct\\\": 79.7, \\\"perplexity_drift_pct\\\": -17.2, \\\"distinct_1_drift_pct\\\": -40.3, \\\"distinct_2_drift_pct\\\": -57.1, \\\"distinct_3_drift_pct\\\": -59.9}, \\\"notes\\\": \\\"实际磁盘路径为 results/alpha_sweep/a025_s42/（无 v3 后缀）。Registry ID 带 v3 是历史原因，数据已核实无误。\\\"}, \\\"method_ablation_phase1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T23:49:16.519Z\\\", \\\"updated_at\\\": \\\"2026-05-14T23:49:40.162Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"spurious_rate_5method\\\": 0.75, \\\"spurious_rate_4method\\\": 0.625, \\\"naive_sig\\\": \\\"16/16\\\", \\\"differenced_sig\\\": \\\"14/16\\\", \\\"threshold_sig\\\": \\\"9/16\\\", \\\"permutation_granger_sig\\\": \\\"6/16\\\", \\\"ty_sig\\\": \\\"4/16\\\", \\\"ty_power_T10\\\": \\\"0.05-0.20\\\", \\\"bh_fdr_flips\\\": 0}}, \\\"alpha_sweep_a000_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T19:01:37.470Z\\\", \\\"updated_at\\\": \\\"2026-05-14T23:42:18.748Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"gen0_token_entropy\\\": 3.2342, \\\"gen10_token_entropy\\\": 3.0693, \\\"gen0_ece\\\": 0.0108, \\\"gen10_ece\\\": 0.0164, \\\"gen0_perplexity\\\": 26.95, \\\"gen10_perplexity\\\": 21.11, \\\"gen0_distinct_1\\\": 0.0982, \\\"gen10_distinct_1\\\": 0.0847, \\\"token_entropy_drift_pct\\\": -5.1, \\\"ece_drift_pct\\\": 51.7, \\\"perplexity_drift_pct\\\": -21.7, \\\"distinct_1_drift_pct\\\": -13.8, \\\"distinct_2_drift_pct\\\": -9.8, \\\"distinct_3_drift_pct\\\": -4.5, \\\"gen1_10_perplexity_drift_pct\\\": 9.4, \\\"gen1_10_distinct_1_drift_pct\\\": -13.1, \\\"gen1_10_entropy_drift_pct\\\": 2.6}}, \\\"alpha_sweep_a060_s42\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T21:52:22.516Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:52:22.516Z\\\"}, \\\"plan_009_bootstrap_ty\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T21:33:04.665Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:33:27.106Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"T10_d0_type1\\\": 0.081, \\\"T10_d0_power\\\": 0.205, \\\"T10_d1_type1\\\": 0.047, \\\"T10_d1_power\\\": 0.09, \\\"T10_dadapt_type1\\\": 0.052, \\\"T10_dadapt_power\\\": 0.05, \\\"T20_d0_power\\\": 0.409, \\\"T20_d1_power\\\": 0.172, \\\"T30_d0_power\\\": 0.606, \\\"T30_d1_power\\\": 0.283}}, \\\"alpha_sweep_a025_s42_v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T19:25:52.094Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:04:20.474Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"alpha_sweep_a025_s42\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T19:01:39.527Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:25:38.905Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"mvp_v4_rep44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T07:48:52.613Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:03:57.571Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp_rep44\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T05:12:15.033Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:43:02.575Z\\\", \\\"metrics\\\": {\\\"gen10_token_entropy\\\": 1.2205, \\\"gen10_ece\\\": 0.4237, \\\"gen10_perplexity\\\": 1033.16, \\\"gen10_distinct_1\\\": 0.0731, \\\"gen10_distinct_2\\\": 0.3637, \\\"gen10_distinct_3\\\": 0.6075}}, \\\"mvp_v4_rep45\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T13:41:26.286Z\\\", \\\"updated_at\\\": \\\"2026-05-14T17:58:00.661Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"gen0_ppl\\\": 26.9, \\\"gen10_ppl\\\": 1016.2, \\\"gen0_entropy\\\": 3.234, \\\"gen10_entropy\\\": 1.315, \\\"gen0_ece\\\": 0.011, \\\"gen10_ece\\\": 0.417}}, \\\"mvp_v4_rep43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T07:48:50.161Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:44:15.786Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp_v4_rep42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T07:29:48.857Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:44:11.839Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp_v3_rep43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T06:25:42.195Z\\\", \\\"updated_at\\\": \\\"2026-05-14T06:48:01.316Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"mvp_v3_rep42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T06:25:39.728Z\\\", \\\"updated_at\\\": \\\"2026-05-14T06:47:59.908Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"mvp_v2_rep43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T05:38:10.434Z\\\", \\\"updated_at\\\": \\\"2026-05-14T06:25:28.345Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"mvp_v2_rep42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T05:38:05.054Z\\\", \\\"updated_at\\\": \\\"2026-05-14T06:25:27.286Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"mvp_v2_rep44\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T05:38:10.762Z\\\", \\\"updated_at\\\": \\\"2026-05-14T05:38:10.762Z\\\"}, \\\"mvp_rep43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T05:12:14.237Z\\\", \\\"updated_at\\\": \\\"2026-05-14T05:37:18.575Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"mvp_rep42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T05:12:13.930Z\\\", \\\"updated_at\\\": \\\"2026-05-14T05:37:17.438Z\\\", \\\"conclusion\\\": \\\"killed\\\"}}, \\\"count\\\": 34, \\\"total\\\": 34, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0827}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {\"alpha_sweep_a050_s43\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T06:58:45.880Z\", \"updated_at\": \"2026-05-15T17:40:27.311Z\"}, \"alpha_sweep_a025_s43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T06:58:43.090Z\", \"updated_at\": \"2026-05-15T17:39:43.623Z\", \"metrics\": {\"gen0\": {\"token_entropy\": 3.2342, \"ece\": 0.0108, \"perplexity\": 26.949, \"distinct_1\": 0.09833, \"distinct_2\": 0.5132, \"distinct_3\": 0.8057, \"effective_rank\": 46.61, \"mauve\": 0.03351}, \"gen10\": {\"token_entropy\": 3.0723, \"ece\": 0.02146, \"perplexity\": 21.899, \"distinct_1\": 0.05849, \"distinct_2\": 0.2236, \"distinct_3\": 0.333, \"effective_rank\": 45.37, \"mauve\": 0.01871}, \"drift_pct\": {\"token_entropy\": -5, \"ece\": 98.6, \"perplexity\": -18.7, \"distinct_1\": -40.5, \"distinct_2\": -56.4, \"distinct_3\": -58.7, \"effective_rank\": -2.7, \"mauve\": -44.2}}, \"conclusion\": \"success\"}, \"gen_wiki_gpt2m_a100_s42_v3\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T12:07:20.050Z\", \"updated_at\": \"2026-05-15T15:30:24.087Z\", \"metrics\": {\"progress\": \"gen 4/10 (generating synthetic text), ~45%\"}}, \"alpha_sweep_a075_s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T21:52:17.315Z\", \"updated_at\": \"2026-05-15T13:29:46.421Z\", \"metrics\": {\"progress\": \"11/11 gen (complete)\", \"gen0_token_entropy\": 3.234, \"gen10_token_entropy\": 2.337, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.2063, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 76.03, \"gen0_distinct_1\": 0.0982, \"gen10_distinct_1\": 0.0661, \"gen0_distinct_2\": 0.5178, \"gen10_distinct_2\": 0.3037, \"gen0_distinct_3\": 0.8127, \"gen10_distinct_3\": 0.5011, \"token_entropy_drift_pct\": -27.7, \"ece_drift_pct\": 1809.5, \"perplexity_drift_pct\": 182.1, \"distinct_1_drift_pct\": -32.7, \"distinct_2_drift_pct\": -41.3, \"distinct_3_drift_pct\": -38.4, \"granger_ece_to_d1_p_fdr\": 0.046, \"granger_ece_to_d2_p_fdr\": 0.046, \"granger_entropy_to_d2_p_fdr\": 0.048, \"granger_entropy_to_d1_p_fdr\": 0.054, \"granger_fdr_sig_count\": \"3/8\", \"consensus_robust_pairs\": \"11/16\", \"xcorr_entropy_d1_lag\": 2, \"xcorr_entropy_d1_r\": 0.973}, \"conclusion\": \"success\"}, \"alpha_sweep_a050_s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T21:52:15.427Z\", \"updated_at\": \"2026-05-15T13:17:48.134Z\", \"metrics\": {\"progress\": \"11/11 gen (complete)\", \"gen0_token_entropy\": 3.234, \"gen10_token_entropy\": 2.632, \"gen0_ece\": 0.011, \"gen10_ece\": 0.102, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 32.64, \"gen0_distinct_1\": 0.098, \"gen10_distinct_1\": 0.062, \"gen0_distinct_2\": 0.518, \"gen10_distinct_2\": 0.251, \"gen0_distinct_3\": 0.813, \"gen10_distinct_3\": 0.387, \"token_entropy_drift_pct\": -18.6, \"ece_drift_pct\": 842.8, \"perplexity_drift_pct\": 21.1, \"distinct_1_drift_pct\": -37.3, \"distinct_2_drift_pct\": -51.5, \"distinct_3_drift_pct\": -52.4, \"granger_entropy_to_d1_p_raw\": 0.095, \"granger_entropy_to_d2_p_raw\": 0.097, \"granger_ece_to_d1_p_raw\": 0.019, \"granger_ece_to_d2_p_raw\": 0.039, \"granger_fdr_note\": \"4 tests within alpha=0.50; BH FDR threshold rank1=0.0125, rank2=0.025 → 0/4 FDR-sig at q=0.05. Raw p pattern (ECE < entropy) is qualitative signal only.\", \"d024_non_monotonic\": true, \"d024_ece_vs_entropy_note\": \"ECE raw p < entropy raw p at α=0.50 (0.019 vs 0.095 at 5000 perms), 0/4 FDR-sig; regime switch hypothesis pending α=0.75 confirmation\"}, \"conclusion\": \"success\"}, \"plan_006_s43\": {\"status\": \"QUEUED\", \"created_at\": \"2026-05-14T23:31:37.257Z\", \"updated_at\": \"2026-05-15T12:21:51.003Z\"}, \"plan_006_s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T23:31:35.454Z\", \"updated_at\": \"2026-05-15T12:17:14.093Z\", \"metrics\": {\"progress\": \"18/20 gen (gen_0-17 complete, gen_18-20 timeout)\", \"gen0_token_entropy\": 3.2342, \"gen17_token_entropy\": 1.1819, \"gen0_ece\": 0.0108, \"gen17_ece\": 0.4454, \"gen0_perplexity\": 26.95, \"gen17_perplexity\": 3367.66, \"gen0_distinct_1\": 0.0982, \"gen17_distinct_1\": 0.0756, \"gen0_distinct_2\": 0.5178, \"gen17_distinct_2\": 0.3617, \"gen0_distinct_3\": 0.8127, \"gen17_distinct_3\": 0.5865, \"token_entropy_drift_pct_gen0_17\": -63.4, \"distinct_1_drift_pct_gen0_17\": -23, \"distinct_2_drift_pct_gen0_17\": -30.1, \"distinct_3_drift_pct_gen0_17\": -27.8, \"ece_drift_pct_gen0_17\": 4024, \"ppl_drift_pct_gen0_17\": 12395, \"phase1_rapid_collapse\": \"gen0-5\", \"phase2_apparent_plateau\": \"gen5-12\", \"phase3_secondary_decline\": \"gen13-17\", \"phase3_d2_decline_pct\": -5.8, \"phase3_d3_decline_pct\": -6.9, \"diversity_saturated_at_gen\": 5, \"diversity_secondary_decline_at_gen\": 13, \"perplexity_saturated\": false}, \"conclusion\": \"failed\", \"notes\": \"gen_0-17 complete (T=18). 三相 collapse: Phase1 急速崩塌 gen0-5 (d1 -20.6%, entropy -63.8%), Phase2 表观稳态 gen5-12 (diversity <0.3% 变化, perplexity 仍+167%), Phase3 二次衰退 gen13-17 (d2 -5.8%, d3 -6.9%). Perplexity 未饱和 (26.95→3367.66, +12395%). T=18 vs T=10: 新增 diversity 二次衰退在 T=10 window 不可见. TY power 预估 ~0.28-0.41 (vs T=10 的 0.05-0.21).\"}, \"plan_006_s42_resume\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T11:55:26.236Z\", \"updated_at\": \"2026-05-15T12:10:54.859Z\", \"conclusion\": \"killed\", \"notes\": \"D034 决定不恢复。T=18 数据已足够（超出 T=15 目标）。原 plan_006_s42 gen_0-17 数据可用于 power analysis + supplementary。\"}, \"gen_wiki_gpt2m_a100_s42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T12:02:06.478Z\", \"updated_at\": \"2026-05-15T12:04:50.741Z\", \"conclusion\": \"killed\"}, \"gen_wiki_gpt2m_a100_s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T10:35:18.700Z\", \"updated_at\": \"2026-05-15T12:01:58.523Z\", \"conclusion\": \"killed\"}, \"method_ablation_phase2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T08:58:35.270Z\", \"updated_at\": \"2026-05-15T11:07:42.688Z\", \"conclusion\": \"success\", \"metrics\": {\"n_panel_rows\": 56, \"n_alphas\": 4, \"alphas\": [0, 0.25, 0.5, 1], \"naive_sig_rate_overall\": 1, \"perm_granger_sig_rate_a000_raw\": 0, \"perm_granger_sig_rate_a000_fdr\": 0, \"perm_granger_sig_rate_a025_raw\": 0.25, \"perm_granger_sig_rate_a025_fdr\": 0, \"perm_granger_sig_rate_a050_raw\": 0.25, \"perm_granger_sig_rate_a050_fdr\": 0, \"perm_granger_sig_rate_a100_raw\": 0.75, \"perm_granger_sig_rate_a100_fdr\": 0.75, \"TY_sig_rate_a000_raw\": 0, \"TY_sig_rate_a000_fdr\": 0, \"TY_sig_rate_a025_raw\": 0.625, \"TY_sig_rate_a025_fdr\": 0.375, \"TY_sig_rate_a050_raw\": 0, \"TY_sig_rate_a050_fdr\": 0, \"TY_sig_rate_a100_raw\": 0.5938, \"TY_sig_rate_a100_fdr\": 0.5938, \"diff_sig_rate_a000_raw\": 0.5, \"diff_sig_rate_a000_fdr\": 0.375, \"mean_inter_method_kappa\": 0.185, \"naive_vs_perm_granger_flip_rate\": 0.5, \"naive_vs_TY_flip_rate\": 0.57, \"fdr_flips_perm_granger\": 4, \"pair_verdict_a100_perm_granger\": \"6/8\", \"pair_verdict_a100_TY\": \"6/8\", \"entropy_to_diversity_a100_all_5methods_sig\": true, \"fdr_correction\": \"BH q=0.05\"}}, \"gen_wiki_gpt2m_a025_s42\": {\"status\": \"QUEUED\", \"created_at\": \"2026-05-15T10:35:16.032Z\", \"updated_at\": \"2026-05-15T10:35:16.032Z\"}, \"alpha_sweep_a050_s44\": {\"status\": \"QUEUED\", \"created_at\": \"2026-05-15T06:58:50.550Z\", \"updated_at\": \"2026-05-15T06:58:50.550Z\"}, \"alpha_sweep_a025_s44\": {\"status\": \"QUEUED\", \"created_at\": \"2026-05-15T06:58:48.224Z\", \"updated_at\": \"2026-05-15T06:58:48.224Z\"}, \"alpha_sweep_a010_s42\": {\"status\": \"QUEUED\", \"created_at\": \"2026-05-14T21:52:19.712Z\", \"updated_at\": \"2026-05-15T05:19:49.211Z\"}, \"alpha_sweep_a025_s42_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T21:04:05.726Z\", \"updated_at\": \"2026-05-15T05:13:22.207Z\", \"conclusion\": \"success\", \"metrics\": {\"gen0_token_entropy\": 3.2342, \"gen10_token_entropy\": 3.1017, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.01942, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 22.32, \"gen0_distinct_1\": 0.0982, \"gen10_distinct_1\": 0.0586, \"gen0_distinct_2\": 0.5178, \"gen10_distinct_2\": 0.2219, \"gen0_distinct_3\": 0.8127, \"gen10_distinct_3\": 0.3263, \"token_entropy_drift_pct\": -4.1, \"ece_drift_pct\": 79.7, \"perplexity_drift_pct\": -17.2, \"distinct_1_drift_pct\": -40.3, \"distinct_2_drift_pct\": -57.1, \"distinct_3_drift_pct\": -59.9}, \"notes\": \"实际磁盘路径为 results/alpha_sweep/a025_s42/（无 v3 后缀）。Registry ID 带 v3 是历史原因，数据已核实无误。\"}, \"method_ablation_phase1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T23:49:16.519Z\", \"updated_at\": \"2026-05-14T23:49:40.162Z\", \"conclusion\": \"success\", \"metrics\": {\"spurious_rate_5method\": 0.75, \"spurious_rate_4method\": 0.625, \"naive_sig\": \"16/16\", \"differenced_sig\": \"14/16\", \"threshold_sig\": \"9/16\", \"permutation_granger_sig\": \"6/16\", \"ty_sig\": \"4/16\", \"ty_power_T10\": \"0.05-0.20\", \"bh_fdr_flips\": 0}}, \"alpha_sweep_a000_s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T19:01:37.470Z\", \"updated_at\": \"2026-05-14T23:42:18.748Z\", \"conclusion\": \"success\", \"metrics\": {\"gen0_token_entropy\": 3.2342, \"gen10_token_entropy\": 3.0693, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.0164, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 21.11, \"gen0_distinct_1\": 0.0982, \"gen10_distinct_1\": 0.0847, \"token_entropy_drift_pct\": -5.1, \"ece_drift_pct\": 51.7, \"perplexity_drift_pct\": -21.7, \"distinct_1_drift_pct\": -13.8, \"distinct_2_drift_pct\": -9.8, \"distinct_3_drift_pct\": -4.5, \"gen1_10_perplexity_drift_pct\": 9.4, \"gen1_10_distinct_1_drift_pct\": -13.1, \"gen1_10_entropy_drift_pct\": 2.6}}, \"alpha_sweep_a060_s42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T21:52:22.516Z\", \"updated_at\": \"2026-05-14T21:52:22.516Z\"}, \"plan_009_bootstrap_ty\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T21:33:04.665Z\", \"updated_at\": \"2026-05-14T21:33:27.106Z\", \"conclusion\": \"success\", \"metrics\": {\"T10_d0_type1\": 0.081, \"T10_d0_power\": 0.205, \"T10_d1_type1\": 0.047, \"T10_d1_power\": 0.09, \"T10_dadapt_type1\": 0.052, \"T10_dadapt_power\": 0.05, \"T20_d0_power\": 0.409, \"T20_d1_power\": 0.172, \"T30_d0_power\": 0.606, \"T30_d1_power\": 0.283}}, \"alpha_sweep_a025_s42_v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T19:25:52.094Z\", \"updated_at\": \"2026-05-14T21:04:20.474Z\", \"conclusion\": \"failed\"}, \"alpha_sweep_a025_s42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T19:01:39.527Z\", \"updated_at\": \"2026-05-14T19:25:38.905Z\", \"conclusion\": \"killed\"}, \"mvp_v4_rep44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T07:48:52.613Z\", \"updated_at\": \"2026-05-14T19:03:57.571Z\", \"conclusion\": \"success\"}, \"mvp_rep44\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T05:12:15.033Z\", \"updated_at\": \"2026-05-14T18:43:02.575Z\", \"metrics\": {\"gen10_token_entropy\": 1.2205, \"gen10_ece\": 0.4237, \"gen10_perplexity\": 1033.16, \"gen10_distinct_1\": 0.0731, \"gen10_distinct_2\": 0.3637, \"gen10_distinct_3\": 0.6075}}, \"mvp_v4_rep45\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T13:41:26.286Z\", \"updated_at\": \"2026-05-14T17:58:00.661Z\", \"conclusion\": \"success\", \"metrics\": {\"gen0_ppl\": 26.9, \"gen10_ppl\": 1016.2, \"gen0_entropy\": 3.234, \"gen10_entropy\": 1.315, \"gen0_ece\": 0.011, \"gen10_ece\": 0.417}}, \"mvp_v4_rep43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T07:48:50.161Z\", \"updated_at\": \"2026-05-14T13:44:15.786Z\", \"conclusion\": \"success\"}, \"mvp_v4_rep42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T07:29:48.857Z\", \"updated_at\": \"2026-05-14T13:44:11.839Z\", \"conclusion\": \"success\"}, \"mvp_v3_rep43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T06:25:42.195Z\", \"updated_at\": \"2026-05-14T06:48:01.316Z\", \"conclusion\": \"failed\"}, \"mvp_v3_rep42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T06:25:39.728Z\", \"updated_at\": \"2026-05-14T06:47:59.908Z\", \"conclusion\": \"failed\"}, \"mvp_v2_rep43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T05:38:10.434Z\", \"updated_at\": \"2026-05-14T06:25:28.345Z\", \"conclusion\": \"killed\"}, \"mvp_v2_rep42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T05:38:05.054Z\", \"updated_at\": \"2026-05-14T06:25:27.286Z\", \"conclusion\": \"killed\"}, \"mvp_v2_rep44\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T05:38:10.762Z\", \"updated_at\": \"2026-05-14T05:38:10.762Z\"}, \"mvp_rep43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T05:12:14.237Z\", \"updated_at\": \"2026-05-14T05:37:18.575Z\", \"conclusion\": \"killed\"}, \"mvp_rep42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T05:12:13.930Z\", \"updated_at\": \"2026-05-14T05:37:17.438Z\", \"conclusion\": \"killed\"}}, \"count\": 34, \"total\": 34, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0827}}"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I have the registry data. Let me confirm the key numbers:\n\nFrom method_ablation_phase1:\n- naive_sig: 16/16 (100%)\n- ty_sig: 4/16 (25%)\n- spurious_rate_5method: 0.75 (75%)\n- spurious_rate_4method: 0.625 (62.5%)\n\nFrom method_ablation_phase2:\n- mean_inter_method_kappa: 0.185\n- naive_sig_rate_overall: 1.0 (100%)\n- entropy_to_diversity_a100_all_5methods_sig: true\n\n\nThese numbers validate what I'm planning to write. Now I'm drafting the abstract using the standard structure—what we did, why it matters, our approach, the evidence, and the most striking finding—while keeping it between 150-200 words and avoiding AI-trace language and citations. I need to use \"diversity collapse\" rather than \"model collapse\" when describing the phenomenon, though the title already frames this as \"Training Collapse.\"\n\nI'm incorporating the key technical terms—model collapse, lead-lag analysis, Granger causality, consensus framework, and canary metrics—and formatting everything in LaTeX. The draft shows how different statistical methods produce wildly different results: naive cross-correlation flags everything as significant while Toda-Yamamoto Granger causality is much more conservative, revealing major disagreement across approaches. I'm identifying the core methodological problems—shared trends creating false signals, power loss with short time series, and arbitrary thresholds—that drive the high false positive rate. The solution is a multi-method consensus approach requiring agreement across at least four of five tests with FDR correction, which eliminates both false positives and false negatives on the reference data.\n\nNow I'm moving into the empirical validation: applying this framework to Pythia-410M trained on WikiText-103 across multiple seeds and data mixing ratios to map out where lead-lag relationships actually emerge. The key finding is that token entropy acts as a reliable early-warning signal for diversity collapse, showing strong Granger causality with a one-generation lead when the data mixing ratio exceeds the critical threshold. This establishes when we can actually trust lead-lag claims in model collapse research rather than treating them as artifacts of methodological choices. We demonstrate that lead-lag conclusions in iterative training collapse are determined more by method choice than by the data: naive cross-correlation yields 100% significance (16/16 pairs), while Toda-Yamamoto Granger causality yields 25% (4/16), with inter-method agreement of only $\\kappa = 0.185$. We identify three pitfalls—shared-trend confounding, short-series power loss, and threshold arbitrariness—that together inflate spurious-signal rates to 75%. To replace single-method reporting, we introduce a multi-method consensus framework requiring agreement across $\\geq$4 of 5 tests with FDR correction, achieving 0% false-positive and 0% false-negative rates on reference extremes. Applied to Pythia-410M across 4 seeds, 5 mixing ratios, and 10 iterative training generations on WikiText-103, the framework reveals a sharp regime boundary: token entropy Granger-causes diversity collapse with a one-generation lead only at high mixing ratios ($\\alpha \\geq 0.75$), with near-perfect correlation (24/24 significant pairs, 0/24 reverse), while differencing eliminates all perplexity leads but preserves all diversity leads, confirming token entropy as a robust early-warning signal. I'm continuing to verify the word count while also noting the key empirical findings—the comparison between methods shows stark differences in their conclusions, and I've identified three critical methodological issues that systematically bias results toward false positives.\n\nNow I'm introducing a solution: a multi-method consensus approach that requires agreement across at least four of five statistical tests with FDR correction, which eliminates both false positives and false negatives when tested against known reference cases.\n\nI'm then applying this framework to Pythia-410M across multiple experimental conditions—varying seeds, mixing ratios, and training iterations on WikiText-103—to identify where genuine lead-lag relationships actually emerge in the data. When I apply differencing to the data, it wipes out all the perplexity lead-lag relationships but leaves the diversity causality completely intact, which really solidifies token entropy as the key indicator I should be tracking.\n\nI'm also realizing I need to work \"model collapse\" into the text for searchability purposes, even though the actual phenomenon I'm describing is \"diversity collapse.\" Let me weave that in naturally—maybe something about how these findings apply to model collapse studies more broadly. I'm laying out the empirical results from the multi-method framework: naive cross-correlation inflates significance dramatically compared to Granger causality, with almost no agreement between methods. The three key failure modes—confounding trends, statistical power issues, and arbitrary thresholds—drive false positives up to 75%, so I'm proposing a stricter consensus approach requiring agreement across multiple tests with FDR correction, which eliminates both false positives and false negatives on the reference cases. Testing this on Pythia-410M reveals a sharp transition point where token entropy only Granger-causes diversity collapse at high mixing ratios, with extremely strong correlation and consistent significance across all seeds, while differencing removes the signal entirely. Finalizing the LaTeX and checking that the output directories are set up correctly.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9c1cd256-d6ad-41d2-86c8-f50087ea0a66",
+            "uuid": "2cfcdc2a-eb94-41d3-9f14-7f8bffe169d9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VWzgdLKtmDvhyx2YVa53TP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6438,
+                "cache_read_input_tokens": 24418,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6438
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry confirmed. Now I'll check the target directories and write the abstract."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9c1cd256-d6ad-41d2-86c8-f50087ea0a66",
+            "uuid": "ec9cf58c-fe0f-4da6-9ccc-0ed4e47038d0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VWzgdLKtmDvhyx2YVa53TP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6438,
+                "cache_read_input_tokens": 24418,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6438
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DafAZBLDAXiZK5FqMV9hdv",
+              "name": "Bash",
+              "input": {
+                "command": "ls -d /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/ /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/paper/ 2>&1",
+                "description": "Check target directories exist"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9c1cd256-d6ad-41d2-86c8-f50087ea0a66",
+            "uuid": "f618baba-ddce-47ad-81cc-cc7f5d7b4f16",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VWzgdLKtmDvhyx2YVa53TP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6438,
+                "cache_read_input_tokens": 24418,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6438
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T20:21:42.962Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DafAZBLDAXiZK5FqMV9hdv",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/paper/\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9c1cd256-d6ad-41d2-86c8-f50087ea0a66",
+            "uuid": "670d4063-5622-41a2-bfab-161a1550508c",
+            "tool_use_result": {
+              "stdout": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/paper/\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SLbjnmzopZRG8TiA23tWfM",
+              "name": "Glob",
+              "input": {
+                "pattern": "abstract.tex",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9c1cd256-d6ad-41d2-86c8-f50087ea0a66",
+            "uuid": "4a423ed7-d4c6-4ab5-87d4-80ce2b71f401",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DPtM6B6qqKz74kF4swV4W7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3495,
+                "cache_read_input_tokens": 30856,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3495
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T20:21:45.118Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SLbjnmzopZRG8TiA23tWfM",
+              "type": "tool_result",
+              "content": "No files found"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9c1cd256-d6ad-41d2-86c8-f50087ea0a66",
+            "uuid": "a09cfc27-9f52-4112-bbe3-8e5149341a19",
+            "tool_use_result": {
+              "filenames": [],
+              "durationMs": 8,
+              "numFiles": 0,
+              "truncated": false
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "No existing abstract.tex files. I'll create them fresh.\n\nLet me finalize the abstract text and write it.",
+              "signature": "EqMCClkIDRgCKkDGhd8WOiUNdYZbxJGbNJN8aCSoktYa51x77OatucyLvV6BCoeBazqsZqAtR7uSpatsRFRBuX5HadOGnqkoAG8MMg9jbGF1ZGUtb3B1cy00LTY4ABIMEit3fpssmSc7y4unGgwarunFjP9cBEtIFL0iMDCjM7ql52nVTUKH/FY5wNaIdjo5tfACabCEPHzrgzqz0gs3DYxNQsSxvTWBFyLpjCp4DaU1HcPZZl9yfkh5zTUKin4YfzlOf0rc6PvR0f1u8zFyJq3ABEHZnbeMvRAg1kPTVuykRIjCvE0CVv1OJ9h30DRIKkyXGpYG7waEOxuXx3QNkc5+IoA7GlaIzlO//k3JqSpYyKVAi9dcLxsCll6ENhYEroJi8ivLGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9c1cd256-d6ad-41d2-86c8-f50087ea0a66",
+            "uuid": "632f670c-91ff-4954-b86f-e6af162334f8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F2nsdTPBQ3nDifBc3k8hDC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 114,
+                "cache_read_input_tokens": 34351,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 114
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016p9U9Xh7fhPqgPfaXrhCDd",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/abstract.tex",
+                "content": "\\begin{abstract}\nWe demonstrate that lead-lag conclusions in iterative model collapse are determined more by method choice than by the data: naive cross-correlation yields 100\\% significance (16/16 metric pairs), while Toda--Yamamoto Granger causality retains only 25\\% (4/16), with inter-method agreement of $\\kappa = 0.185$. We identify three methodological pitfalls---shared-trend confounding, short-series power loss, and threshold arbitrariness---that together inflate spurious-signal rates to 75\\%. To replace single-method reporting, we introduce a multi-method consensus framework requiring agreement across ${\\geq}4$ of 5 statistical tests with FDR correction, achieving 0\\% false-positive and 0\\% false-negative rates on reference extreme regimes. Applied to Pythia-410M across 4 seeds, 5 synthetic-data mixing ratios ($\\alpha$), and 10 iterative training generations on WikiText-103, the framework reveals a sharp regime boundary: significant lead-lag relationships emerge only at $\\alpha \\geq 0.75$, where token entropy Granger-causes diversity collapse with a one-generation lead ($|r| > 0.99$, 24/24 pairs significant, 0/24 in the reverse direction). Differencing eliminates all perplexity leads ($8/8 \\to 0/8$) but preserves all diversity leads (24/24), confirming token entropy as a robust early-warning canary metric.\n\\end{abstract}\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9c1cd256-d6ad-41d2-86c8-f50087ea0a66",
+            "uuid": "9fcd8dd8-75c9-40ac-9269-c3b1e06fdb81",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F2nsdTPBQ3nDifBc3k8hDC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 114,
+                "cache_read_input_tokens": 34351,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 114
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T20:21:51.462Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016p9U9Xh7fhPqgPfaXrhCDd",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/abstract.tex"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9c1cd256-d6ad-41d2-86c8-f50087ea0a66",
+            "uuid": "214e72aa-83ce-41d8-b7b4-99c7b8af3049",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/abstract.tex",
+              "content": "\\begin{abstract}\nWe demonstrate that lead-lag conclusions in iterative model collapse are determined more by method choice than by the data: naive cross-correlation yields 100\\% significance (16/16 metric pairs), while Toda--Yamamoto Granger causality retains only 25\\% (4/16), with inter-method agreement of $\\kappa = 0.185$. We identify three methodological pitfalls---shared-trend confounding, short-series power loss, and threshold arbitrariness---that together inflate spurious-signal rates to 75\\%. To replace single-method reporting, we introduce a multi-method consensus framework requiring agreement across ${\\geq}4$ of 5 statistical tests with FDR correction, achieving 0\\% false-positive and 0\\% false-negative rates on reference extreme regimes. Applied to Pythia-410M across 4 seeds, 5 synthetic-data mixing ratios ($\\alpha$), and 10 iterative training generations on WikiText-103, the framework reveals a sharp regime boundary: significant lead-lag relationships emerge only at $\\alpha \\geq 0.75$, where token entropy Granger-causes diversity collapse with a one-generation lead ($|r| > 0.99$, 24/24 pairs significant, 0/24 in the reverse direction). Differencing eliminates all perplexity leads ($8/8 \\to 0/8$) but preserves all diversity leads (24/24), confirming token entropy as a robust early-warning canary metric.\n\\end{abstract}\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Dh2ZsMNb3rpYfiRsbyJHv7",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/paper/abstract.tex",
+                "content": "\\begin{abstract}\nWe demonstrate that lead-lag conclusions in iterative model collapse are determined more by method choice than by the data: naive cross-correlation yields 100\\% significance (16/16 metric pairs), while Toda--Yamamoto Granger causality retains only 25\\% (4/16), with inter-method agreement of $\\kappa = 0.185$. We identify three methodological pitfalls---shared-trend confounding, short-series power loss, and threshold arbitrariness---that together inflate spurious-signal rates to 75\\%. To replace single-method reporting, we introduce a multi-method consensus framework requiring agreement across ${\\geq}4$ of 5 statistical tests with FDR correction, achieving 0\\% false-positive and 0\\% false-negative rates on reference extreme regimes. Applied to Pythia-410M across 4 seeds, 5 synthetic-data mixing ratios ($\\alpha$), and 10 iterative training generations on WikiText-103, the framework reveals a sharp regime boundary: significant lead-lag relationships emerge only at $\\alpha \\geq 0.75$, where token entropy Granger-causes diversity collapse with a one-generation lead ($|r| > 0.99$, 24/24 pairs significant, 0/24 in the reverse direction). Differencing eliminates all perplexity leads ($8/8 \\to 0/8$) but preserves all diversity leads (24/24), confirming token entropy as a robust early-warning canary metric.\n\\end{abstract}\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9c1cd256-d6ad-41d2-86c8-f50087ea0a66",
+            "uuid": "9b8cb1ef-9e2a-43bf-890e-5306036ce183",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F2nsdTPBQ3nDifBc3k8hDC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 114,
+                "cache_read_input_tokens": 34351,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 114
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T20:21:54.612Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Dh2ZsMNb3rpYfiRsbyJHv7",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/paper/abstract.tex"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9c1cd256-d6ad-41d2-86c8-f50087ea0a66",
+            "uuid": "d5f87527-a2eb-4eb1-8a51-f6b87bcf8077",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/paper/abstract.tex",
+              "content": "\\begin{abstract}\nWe demonstrate that lead-lag conclusions in iterative model collapse are determined more by method choice than by the data: naive cross-correlation yields 100\\% significance (16/16 metric pairs), while Toda--Yamamoto Granger causality retains only 25\\% (4/16), with inter-method agreement of $\\kappa = 0.185$. We identify three methodological pitfalls---shared-trend confounding, short-series power loss, and threshold arbitrariness---that together inflate spurious-signal rates to 75\\%. To replace single-method reporting, we introduce a multi-method consensus framework requiring agreement across ${\\geq}4$ of 5 statistical tests with FDR correction, achieving 0\\% false-positive and 0\\% false-negative rates on reference extreme regimes. Applied to Pythia-410M across 4 seeds, 5 synthetic-data mixing ratios ($\\alpha$), and 10 iterative training generations on WikiText-103, the framework reveals a sharp regime boundary: significant lead-lag relationships emerge only at $\\alpha \\geq 0.75$, where token entropy Granger-causes diversity collapse with a one-generation lead ($|r| > 0.99$, 24/24 pairs significant, 0/24 in the reverse direction). Differencing eliminates all perplexity leads ($8/8 \\to 0/8$) but preserves all diversity leads (24/24), confirming token entropy as a robust early-warning canary metric.\n\\end{abstract}\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QAo9NnrxCyXphghNFeQ8Zc",
+              "name": "Bash",
+              "input": {
+                "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/abstract.tex | sed 's/\\\\begin{abstract}//' | sed 's/\\\\end{abstract}//' | sed 's/\\\\[a-zA-Z{}]*//g' | sed 's/[~${}|\\\\]//g' | wc -w",
+                "description": "Count words in abstract"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9c1cd256-d6ad-41d2-86c8-f50087ea0a66",
+            "uuid": "878144f2-e7c1-4fcd-bbc4-1d7530fc02ed",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RBj1qfd1RPsmsGTjUAv46X",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1098,
+                "cache_read_input_tokens": 34465,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1098
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T20:21:57.450Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QAo9NnrxCyXphghNFeQ8Zc",
+              "type": "tool_result",
+              "content": "166",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9c1cd256-d6ad-41d2-86c8-f50087ea0a66",
+            "uuid": "9e1b6e92-f179-49f0-8e97-d58cbf9e42e5",
+            "tool_use_result": {
+              "stdout": "166",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0157wDKhghbd5dJpboCzNwTF",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__register_artifact",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9c1cd256-d6ad-41d2-86c8-f50087ea0a66",
+            "uuid": "5b689522-e849-47e5-b34c-a121a44f5bc8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015JJuMErQouK3gjqrgE4VEa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 181,
+                "cache_read_input_tokens": 35563,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 181
+                },
+                "output_tokens": 50,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T20:21:59.431Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_0157wDKhghbd5dJpboCzNwTF",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9c1cd256-d6ad-41d2-86c8-f50087ea0a66",
+            "uuid": "66bbb765-d0d9-4db0-8f2f-d9c7c8ad735d",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__register_artifact"
+              ],
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 25
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SnBZJVtrkLM6KCY88s3xX2",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "abstract",
+                "type": "paper",
+                "description": "EMNLP 2026 abstract: method sensitivity in lead-lag analysis of model collapse, multi-method consensus framework, token entropy canary (166 words)",
+                "project": "distrib_canary_collapse",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/paper/abstract.tex",
+                "tags": [
+                  "paper",
+                  "abstract",
+                  "emnlp2026"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9c1cd256-d6ad-41d2-86c8-f50087ea0a66",
+            "uuid": "2ab9d87e-cdcf-4a93-a29e-cbd785d85ff2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DdUVCuZYPPyiYvDCFMdfck",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 712,
+                "cache_read_input_tokens": 35744,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 712
+                },
+                "output_tokens": 74,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T20:22:03.960Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SnBZJVtrkLM6KCY88s3xX2",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_8c6c62\\\", \\\"name\\\": \\\"abstract\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"EMNLP 2026 abstract: method sensitivity in lead-lag analysis of model collapse, multi-method consensus framework, token entropy canary (166 words)\\\", \\\"path\\\": \\\"projects/distrib_canary_collapse/artifacts/_project/paper/abstract_8c6c62.tex\\\", \\\"url\\\": null, \\\"project\\\": \\\"distrib_canary_collapse\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T20:22:03.874223+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"abstract\\\", \\\"emnlp2026\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9c1cd256-d6ad-41d2-86c8-f50087ea0a66",
+            "uuid": "4aad3627-9485-4045-9e95-7ed5812e4325",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_8c6c62\\\", \\\"name\\\": \\\"abstract\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"EMNLP 2026 abstract: method sensitivity in lead-lag analysis of model collapse, multi-method consensus framework, token entropy canary (166 words)\\\", \\\"path\\\": \\\"projects/distrib_canary_collapse/artifacts/_project/paper/abstract_8c6c62.tex\\\", \\\"url\\\": null, \\\"project\\\": \\\"distrib_canary_collapse\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T20:22:03.874223+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"abstract\\\", \\\"emnlp2026\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_8c6c62\", \"name\": \"abstract\", \"type\": \"paper\", \"description\": \"EMNLP 2026 abstract: method sensitivity in lead-lag analysis of model collapse, multi-method consensus framework, token entropy canary (166 words)\", \"path\": \"projects/distrib_canary_collapse/artifacts/_project/paper/abstract_8c6c62.tex\", \"url\": null, \"project\": \"distrib_canary_collapse\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T20:22:03.874223+00:00\", \"tags\": [\"paper\", \"abstract\", \"emnlp2026\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\n  \"section\": \"Abstract\",\n  \"word_count\": 166,\n  \"files\": [\n    \"docs/paper/abstract.tex\",\n    \"artifacts/_project/paper/abstract.tex\"\n  ],\n  \"artifact_id\": \"art_20260515_8c6c62\",\n  \"notes\": [\n    \"Sentence 1: method sensitivity claim (100% → 25%, κ=0.185)\",\n    \"Sentence 2: three pitfalls + 75% spurious rate\",\n    \"Sentence 3: consensus framework (K≥4/5, FPR=0%, FNR=0%)\",\n    \"Sentence 4: regime map (α≥0.75) + canary result (|r|>0.99, 24/24, lag=+1)\",\n    \"Sentence 5: differencing robustness (8/8→0/8 perplexity, 24/24 diversity preserved)\",\n    \"All key numbers verified against registry\",\n    \"Keywords covered: model collapse, lead-lag analysis, Granger causality, consensus framework, canary metric, diversity collapse\",\n    \"No TY cross-α trend cited (respects constraint C001)\"\n  ]\n}\n```"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9c1cd256-d6ad-41d2-86c8-f50087ea0a66",
+            "uuid": "9c60290b-983d-4396-998c-00fac3602cb6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01G3bDka9wfKck7Zu4wp6hoM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 629,
+                "cache_read_input_tokens": 36456,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 629
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\n  \"section\": \"Abstract\",\n  \"word_count\": 166,\n  \"files\": [\n    \"docs/paper/abstract.tex\",\n    \"artifacts/_project/paper/abstract.tex\"\n  ],\n  \"artifact_id\": \"art_20260515_8c6c62\",\n  \"notes\": [\n    \"Sentence 1: method sensitivity claim (100% → 25%, κ=0.185)\",\n    \"Sentence 2: three pitfalls + 75% spurious rate\",\n    \"Sentence 3: consensus framework (K≥4/5, FPR=0%, FNR=0%)\",\n    \"Sentence 4: regime map (α≥0.75) + canary result (|r|>0.99, 24/24, lag=+1)\",\n    \"Sentence 5: differencing robustness (8/8→0/8 perplexity, 24/24 diversity preserved)\",\n    \"All key numbers verified against registry\",\n    \"Keywords covered: model collapse, lead-lag analysis, Granger causality, consensus framework, canary metric, diversity collapse\",\n    \"No TY cross-α trend cited (respects constraint C001)\"\n  ]\n}\n```"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 93245,
+            "duration_api_ms": 95013,
+            "num_turns": 10,
+            "stop_reason": "end_turn",
+            "session_id": "9c1cd256-d6ad-41d2-86c8-f50087ea0a66",
+            "total_cost_usd": 0.430411,
+            "usage": {
+              "input_tokens": 15,
+              "cache_creation_input_tokens": 25244,
+              "cache_read_input_tokens": 267632,
+              "output_tokens": 5470,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 25244,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 301,
+                  "cache_read_input_tokens": 36456,
+                  "cache_creation_input_tokens": 629,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 629
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1920,
+                "outputTokens": 15,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0019950000000000002,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 15,
+                "outputTokens": 5470,
+                "cacheReadInputTokens": 267632,
+                "cacheCreationInputTokens": 25244,
+                "webSearchRequests": 0,
+                "costUSD": 0.428416,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "1bd9450e-adca-4e74-a612-40a55341c423"
+          },
+          "id": "event-000027"
+        }
+      ],
+      "message_count": 27
+    }
+  ],
+  "readable_path": "readable/worker-executions/writing-abstract.md"
+}

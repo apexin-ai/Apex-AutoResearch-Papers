@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4fd9d6673385ee892904",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diagnose scale 14b t15 a060 fail",
+  "task_key": "worker_diagnose_scale_14b_t15_a060_fail_20260522T093109",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_scale_14b_t15_a060_fail_20260522T093109_result.json",
+    "occurrence": 1,
+    "bytes": 1254,
+    "sha256": "4d65275cf094aaf39651d6c931d3bc2441130670879df429a685e6edf21dadc3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n## 诊断报告\n\n### 失败根因：外部 SIGTERM（人为 kill）\n\n- **不是 OOM**：`dmesg` 无 OOM 记录，系统内存 1TB 仅用 33GB\n- **不是系统重启**：uptime 223 天，无 reboot 记录\n- **不是磁盘满**：/root/autodl-tmp 84GB 可用（77%）\n- 两个进程（PID 643570/643878）在 Gen 2/15 开始生成合成数据时被同时 SIGTERM，最可能是**另一个 Agent session 或人工手动 kill 了它们**\n\n### 实验进度\n\n| 实验 | 完成 | 状态 |\n|------|------|------|\n| scale_14b_t15_a060_s42_fp32 | Gen 0 + Gen 1 完整（metrics.json 存在） | Gen 2 目录为空 |\n| scale_14b_t15_a050_s42_fp32 | Gen 0 + Gen 1 完整（metrics.json 存在） | Gen 2 目录为空 |\n\n两者均完成 **1/15 代**（~7%），被杀于 Gen 2 的合成数据生成阶段。\n\n### 已自动恢复\n\n有人已经重启了这两个实验的 v2 版本（`--start_gen 2`），当前正在运行：\n\n- `scale_14b_t15_a060_v2` — tmux session, GPU 0 (PID 656957), 创建于 17:08, 正在 Gen 2 生成合成数据\n- `scale_14b_t15_a050_v2` — tmux session, GPU 1 (PID 657037), 创建于 17:08, 正在 Gen 2 生成合成数据\n\n**无需额外操作，恢复运行已在进行中。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-scale-14b-t15-a060-fail.md"
+}

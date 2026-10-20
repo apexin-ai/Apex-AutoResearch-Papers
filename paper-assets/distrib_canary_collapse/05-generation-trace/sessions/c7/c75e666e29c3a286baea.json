@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c75e666e29c3a286baea",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diag full gpu audit 17855",
+  "task_key": "worker_diag_full_gpu_audit_17855_20260518T234928",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_full_gpu_audit_17855_20260518T234928_result.json",
+    "occurrence": 1,
+    "bytes": 1304,
+    "sha256": "a5f234486d1c2030dc533b4f2c56173899edc4a34744b0bbed0a7c8da2297351"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-17855 GPU 状态报告\n\n| GPU | 实验 | PID | 显存 | 利用率 | 进度 | 状态 |\n|-----|------|-----|------|--------|------|------|\n| 0 | scale_69b (pythia-6.9b, s42, bf16) | 29033 | 71010/97887 MiB | 86% | gen_5/10 (gen_5 目录已创建，内部空) | 运行中 |\n| 1 | qwen35_08b_fp32 (s42) | 55423 | 26820/97887 MiB | 47% | gen_2/10 (生成阶段，padding_side warnings) | 运行中 |\n| 2 | a060_s42_fp32_v2 | 63958 | 7074/97887 MiB | 48% | gen_1/10 (生成阶段，padding_side warnings) | 运行中 |\n| 3 | a005_s42_fp32_v2 | 63884 | 9144/97887 MiB | 88% | gen_1/10 训练中 (1840/5000, 37%) | **⚠️ loss=0, grad_norm=nan** |\n| 4 | interv_pred_a075_s42_fp32_v2 | 63323 | 9144/97887 MiB | 88% | gen_0/10 训练中 (1948/5000, 39%) | **⚠️ loss=0, grad_norm=nan** |\n| 5 | a010_s43_bf16 | 45289 | 9710/97887 MiB | 48% | gen_8/10 (gen_8 有 synthetic_data + trainer) | 运行中 |\n\n**已完成实验：无** — 6 个实验全部在运行中，尚无 all_metrics.json。\n\n**异常警告：** GPU 3 (a005_fp32_v2) 和 GPU 4 (interv_pred_fp32_v2) 均出现 `loss=0, grad_norm=nan`，这通常意味着训练不正常（可能 loss 计算未获得有效样本，或数值溢出）。这两个实验虽然 GPU 利用率 88%，但训练结果可能无效。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-full-gpu-audit-17855.md"
+}

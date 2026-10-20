@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "50e05686863c14efb391",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "validate d080 nan check immediate",
+  "task_key": "worker_validate_d080_nan_check_immediate_20260519T003751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_validate_d080_nan_check_immediate_20260519T003751_result.json",
+    "occurrence": 1,
+    "bytes": 1020,
+    "sha256": "321cdac6c37171b95aa1f5c40344993eee2a887048ff88e584d9fc7c9ccba9c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集。结果如下：\n\n| 实验 | GPU | Step | Gen | Loss | Grad Norm | 状态 |\n|------|-----|------|-----|------|-----------|------|\n| a005_v3 | 3 | - | 1/10 (generating) | - | - | 正常运行中 |\n| a060_v3 | 2 | - | 1/10 (generating) | - | - | 正常运行中 |\n| interv_v4 | 4 | - | 1/10 (generating) | - | - | 正常运行中 |\n\n**19828 md5**: `5b37837e7a6378f42bcb740f8f5e4773` ✓\n\n**详细状态**：\n- 3 个实验启动于 08:23，当前 08:38（运行 ~15 min）\n- 均已完成 Gen 0 baseline 计算（ppl=26.95, entropy=3.2342, eff_rank=46.6）\n- 当前处于 Gen 1/10 的 **\"Generating synthetic data\"** 阶段（文本生成），尚未进入训练步骤\n- **无 NaN/inf** 出现\n- 无 \"Casting model\" 日志（Pythia-410m 原生 fp32，无需显式转换）\n- GPU 显存：GPU 2/3/4 各 ~12706 MiB，利用率 65-79%\n\n需等训练步骤开始后才能观察 loss/grad_norm 是否正常。按当前进度，预计再 ~5-10 分钟进入训练阶段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/validate-d080-nan-check-immediate.md"
+}

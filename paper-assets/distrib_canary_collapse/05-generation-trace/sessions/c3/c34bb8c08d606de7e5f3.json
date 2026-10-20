@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c34bb8c08d606de7e5f3",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "bugfix cascade theory math fix",
+  "task_key": "worker_bugfix_cascade_theory_math_fix_20260520T191859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_bugfix_cascade_theory_math_fix_20260520T191859_result.json",
+    "occurrence": 1,
+    "bytes": 885,
+    "sha256": "44b7ce823cc3e7d80036f71b24832b39045e82061f09674a914093df94303287"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All fixes applied. Summary of changes:\n\n- **P0-1**: Prop 4 rewritten as qualitative \"Argument\" — removed Eq. (5) quantitative bound, replaced with directional reasoning through the $h(x) \\downarrow \\Rightarrow c(x) \\uparrow \\Rightarrow \\text{ECE} \\uparrow$ chain, added caveat on quantitative dependence.\n- **P0-2**: Part 2 entropy renamed to $\\bar{H}_t$, added bridging paragraph connecting marginal→conditional mode amplification, added Assumption A1'.\n- **P1-1**: Condition (6) now requires $\\alpha \\|\\mathcal{T}(p_s) - p_s\\|_\\infty < \\gamma(p_s, \\epsilon)$ for all $0 \\leq s \\leq t_H$; proof updated accordingly.\n- **P1-2**: Added explicit $\\epsilon \\leq \\bar{p}$ assumption to Prop 2 with justification.\n- **P1-3**: Prop 5 now cites \"Assumption A1\" only (removed A2).\n- Summary table updated: ECE row says \"Argued under A1', A2\"."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/bugfix-cascade-theory-math-fix.md"
+}

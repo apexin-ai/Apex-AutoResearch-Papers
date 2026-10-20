@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7834a1ccd9ad8657e78b",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis d102 t10 a050 s43",
+  "task_key": "worker_analysis_d102-t10-a050-s43_20260522T064304",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d102-t10-a050-s43_20260522T064304_result.json",
+    "occurrence": 1,
+    "bytes": 989,
+    "sha256": "8011fa7be70b0c1ec67d55a36024a1468831c34ba4960eccb18ad851e7cf2cc1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## T=10 α=0.50 s43 D102 分析结果\n\n| 指标 | s43 | s42 基准 |\n|------|-----|----------|\n| **perm_granger_fdr_forward_sig** | **0/8** | 6/8 |\n| diff_xcorr_fdr_forward_sig | 8/8 | — |\n| threshold_forward_sig | 0/8 | — |\n| ty_forward_sig | 0/8 | — |\n| **robust_pairs K≥3** | **0/8** | — |\n\n### 关键发现\n\n**s43 与 s42 严重不一致。** PermG 从 6/8 跌至 0/8。\n\n根因：PermG 原始 p 值多数在 0.05 附近（如 token_entropy→distinct_1 p=0.049），但 8-pair BH FDR 校正后全部升至 >0.05（FDR p≈0.098）。threshold onset 全部为 None（canary 或 downstream onset 缺失），TY 全部不显著。只有 diff_xcorr 8/8 通过 FDR，但仅靠单一方法，consensus 最高仅 2/5。\n\n**结论：T=10 α=0.50 cross-seed robustness 不成立。** s42 的 6/8 PermG 结果是 seed-specific 的，不可推广。\n\nJSON 已保存至服务器 `results/phase_diagram/t10_a050_s43_fp32/analysis/5method_leadlag.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d102-t10-a050-s43.md"
+}

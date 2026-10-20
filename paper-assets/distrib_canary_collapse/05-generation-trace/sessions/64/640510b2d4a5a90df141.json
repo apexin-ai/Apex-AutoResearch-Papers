@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "640510b2d4a5a90df141",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "paper writing experiments",
+  "task_key": "worker_paper_writing_experiments_20260515T183211",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_experiments_20260515T183211_result.json",
+    "occurrence": 1,
+    "bytes": 1194,
+    "sha256": "61ab3dcc8214c36182c224d2e0ff1b2d577e7ea00a7c6ea151db6f400aae7abd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All structure verified:\n- 5 subsections (5.1–5.5) with labels\n- 3 tables (drift_summary, method_comparison, fpr_fnr)\n- All 5 figure refs (differencing_dmax, consensus_heatmap, regime_map, metric_trajectory, consensus_workflow)\n- 6 citations (biderman2023pythia, merity2017pointer, shumailov2024curse, scheffer2009early, li2016diversity, shojaie2022granger, boettiger2012limits)\n\nConstraint compliance verified:\n- \"diversity collapse\" scoping (not \"model collapse\") [PC07] — line 129\n- effective_rank/Self-BLEU failure reported [PC08] — lines 151–153\n- distinct-3 to Appendix [PC09] — lines 20, 136, 155\n- No Cohen f² benchmarks [PC10]\n- No \"consistently outperforms\"/\"state-of-the-art\"/\"significantly\" without test [PC14]\n- Dual spurious rates 75%/62.5% [PC15] — lines 56–57\n- α=0.75 single-seed caveat [PC16] — lines 114, 143–144\n- Non-monotonicity \"observed at seed=42\" [PC17] — line 110\n- α=0.75 vs α=1.0 consensus not directly compared [PC01]\n- token_entropy→perplexity@α=0.75 not cited [PC02]\n\nTwo bib entries need to be added to `references.bib`: `biderman2023pythia` (Pythia) and `merity2017pointer` (WikiText-103)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-experiments.md"
+}

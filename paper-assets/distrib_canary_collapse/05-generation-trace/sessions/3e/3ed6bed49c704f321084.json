@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ed6bed49c704f321084",
+  "project": "distrib_canary_collapse",
+  "kind": "history",
+  "title": "reviewer / loop_8.md",
+  "task_key": "loop_8",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_8.md",
+    "occurrence": 1,
+    "bytes": 4210,
+    "sha256": "4d9fe9fbcd19a4ae59a5421c7936552c89ccb549601717678581181c0e9d5539"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: max_wall_time\nupdated: '2026-05-16T00:36:52+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 cuda:0, cuda:1（westd-19828）。越界即 critical。\n- Claim 措辞上限：\"consistent across two transformer decoder-only model families of similar scale\"——不可用 \"architecture-agnostic\" 或 \"scale-independent\"\n- α=0.75 vs α=1.0 consensus 数字禁止直接对比（D038 #27，标准不同）\n- FNR=0% 声明必须附 D017 独立证据（first-differencing 24/24）\n- TY 有两套实现：**Method A**（method_ablation.py, ADF d_max + fixed p=1 + F-test）是论文 canonical 版，**Method B**（window_sensitivity.py 旧版, hardcoded d=1 + AIC p + χ²）已修复但要警惕残留引用\n- T notation：T = generation cycles，数据点 = T+1。已在全项目统一，但审查时注意旧 artifact 可能用旧约定\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19828(root)，代码根目录 /root/autodl-tmp/distrib_canary_collapse\n- Python：/root/miniconda3/bin/python（conda base）\n- HF cache：/root/autodl-tmp/.hf_cache\n- 本地 workspace：/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/\n- 论文源：docs/paper/*.tex（主）；artifacts/_project/paper/*.tex（副本，需同步）\n- 活跃进程：gpt2m_a025_s42（cuda:0, PID 149202）、a025_s44（cuda:1, PID 147811）\n\n### 3. 📊 当前状态\n**刚完成的审查链**（全部已 post 给 Director）：\n1. κ 分析审查 → PASS\n2. Method subset ablation 审查 → PASS（发现 TY 跨报告矛盾）\n3. Window sensitivity T=11 扩展审查 → 发现 TY infeasible（触发深查）\n4. TY seed audit 审查 → 确认 Bug #1 (off-by-one) + Bug #2 (两套 TY 实现)，**论文 FNR=33.3% 正确**，我之前的 critical 已撤回\n5. Window sensitivity bugfix 审查 → PASS，consensus 稳定点从 T≥6 改为 T≥5\n6. artifacts FNR 25%→33.3% 修复 → PASS\n7. **Paper-Registry 一致性审计** → **Table 1 α=1.0 行 mean±std 错误**（ECE std 差 5×，ppl std 差 7×）+ discussion 称 GPT-2m \"not yet available\" 但实验已完成——两项均已 post，等 Director 安排修复\n\n**Registry RUNNING**：gpt2m_a025_s42（Claim 2 cross-arch）、a025_s44（D026 multi-seed #3）\n\n**等待中**：\n- gpt2m_a025 完成回调 → 需审查 regime-dependent 跨架构复现\n- Table 1 修复 worker → 需审查\n- GPT-2m 结果写入论文 → 需审查 discussion.tex 更新\n- Paper Agent Step 5 后续轮次 → 可能触发章节审查请求\n\n### 4. 📋 待办（条件触发式）\n- gpt2m_a025_s42 完成 → 审查 regime map 是否跨架构复现，核查 Claim 2 强度\n- Table 1 α=1.0 行修复 worker 完成 → 验算 mean±std 与 registry 一致\n- discussion.tex GPT-2m 更新 → 审查 claim 措辞是否超出 \"two decoder-only families\"\n- Paper Agent 提交章节审查 → 按 §5 模板走维度评分（先做合规检查：Agent 写前是否看过 red-section skill）\n- Director 转发 Framing 提案 → Read negative-framing-review skill，四维度审\n- 任何新训练实验提交 → 核查 CUDA_VISIBLE_DEVICES 在 {0,1} 白名单内\n\n### 5. 🎯 战略上下文\n- **核心框架**：5 方法 4/5 consensus + ≥3/4 seed = Tier 3，FPR=0%, FNR=0%。这是论文的 headline，已充分验证。\n- **D027 reframe**：方法论陷阱（Claim 3 领衔）> regime map（Claim 2）> case study（Claim 1）。Claim 3 证据最强（κ=0.185 跨架构一致、4/5 唯一最优、PermG linchpin）。\n- **最容易判断错的事**：TY 的两套实现。Method A（论文用的）和 Method B（window_sensitivity 旧版）结果天差地别。看到 TY 数字先确认来源是哪套实现。我因此错误发了 critical 又撤回，浪费了一轮。\n- **Table 1 是当前最紧急的修复**：α=1.0 聚合行 mean±std 全错，审稿人必查。单 seed 行全对，只是聚合计算有误。\n- **GPT-2m 是 low-hanging fruit**：实验已完成（6/6 Tier 3），但论文还写 \"not yet available\"。纳入后 Claim 强度直接提升。\n- **Registry 卫生**：3 个 D044 砍掉的实验仍为 QUEUED/PREPARING，alpha_sweep_a060_s42 为 PREPARING 孤儿——不影响结论但容易混淆。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-copy-3.md"
+}

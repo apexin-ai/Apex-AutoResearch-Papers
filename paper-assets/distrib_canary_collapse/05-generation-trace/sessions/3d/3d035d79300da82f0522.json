@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d035d79300da82f0522",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis alpha sweep a046 s42 fp32",
+  "task_key": "worker_analysis_alpha_sweep_a046_s42_fp32_20260521T065551",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_alpha_sweep_a046_s42_fp32_20260521T065551_result.json",
+    "occurrence": 1,
+    "bytes": 1289,
+    "sha256": "41f0e906988330191da58fab46f87beeb05f0337165bdaf1269ef2aa0cd7cc47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nalpha_sweep_a046_s42_fp32 | 5-Method Analysis Results\n========================================================\nalpha=0.46  seed=42  model=pythia-410m  dataset=wikitext103_5k\ngenerations=11  steps_per_gen=5000  wall_clock=16477s (~4h35m)\ncheckpoint: results/alpha_sweep/a046_s42_fp32/gen_10/checkpoint\n\nLEAD-LAG DETECTION:\n  PermG_fwd:              0/8\n  PermG_rev:              0/8\n  DiffXCorr_fwd:          0/8\n  DiffXCorr_rev:          0/8\n  threshold_onset_3sigma: 0/8\n  TY_fwd:                 0/8\n  K_ge3:                  0/8\n  K_ge4:                  0/8\n  robust_pairs:           []\n\nDRIFT (gen0 -> gen10):\n  token_entropy: -19.4%\n  ece:          +808.5%\n  perplexity:   +13.4%\n  distinct_1:   -34.7%\n  distinct_2:   -46.3%\n  distinct_3:   -45.8%\n  mauve:        -22.0%\n\nCONCLUSION: PermG 0/8 — complete blind zone at α=0.46. All 5 methods yield 0/8,\nconsistent with α=0.45 (0/8) and α=0.48 (0/8). Confirms α_c > 0.46.\nDespite moderate downstream drift (distinct_2 -46.3%, distinct_3 -45.8%),\nno lead-lag signal detectable. Phase transition boundary narrowed to [0.46, 0.50).\n```\n\nRegistry updated (DONE/success), artifact registered. Analysis JSON saved to `artifacts/alpha_sweep_a046_s42_fp32/data/5method_analysis.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-alpha-sweep-a046-s42-fp32.md"
+}

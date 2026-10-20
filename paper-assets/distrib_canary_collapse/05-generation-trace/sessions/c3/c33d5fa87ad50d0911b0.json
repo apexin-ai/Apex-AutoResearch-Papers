@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c33d5fa87ad50d0911b0",
+  "project": "distrib_canary_collapse",
+  "kind": "history",
+  "title": "agent / loop_8_1778899662.md",
+  "task_key": "loop_8_1778899662",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778899662.md",
+    "occurrence": 1,
+    "bytes": 4242,
+    "sha256": "54aecdda75d5078823f72644a24bebcddfba4852c765483a0caefd17b69f1acc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-16T01:22:55+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 **cuda:0, cuda:1** (westd-19828)，即使 Director 指令也不能用白名单外 GPU\n- α=0.75 vs α=1.0 consensus 数字**禁止直接对比**（标准不同，D038 #27）\n- Claim 措辞上限：**不可用 \"architecture-agnostic\" 或 \"scale-independent\"**，最多说 \"consistent across two transformer decoder-only model families of similar scale\"\n- FNR=0 声明必须附 D017 独立证据（D041）\n- T notation：T = generation cycles，数据点 = T+1\n- α=0.75 claim 必须标注 \"preliminary single-seed evidence\"（仅 s42）\n- 论文唯一真源：**docs/paper/**（D046），不是 artifacts\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-19828，工作目录 `/root/autodl-tmp/distrib_canary_collapse`\n- **Python**: `/root/miniconda3/bin/python`，环境激活 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型缓存**: `/root/autodl-tmp/.hf_cache`（HF_HOME），gpt2-medium 已下载\n- **数据**: `data/wikitext103_5k`（5000 样本，所有实验共用）\n- **活跃进程**:\n  - `gen_wiki_gpt2m_a025_s42` — PID 149202, tmux session, cuda:0, cron 监控中\n  - `alpha_sweep_a025_s44` — PID 147811, tmux session, cuda:1, cron 监控中\n- **活跃 Worker**:\n  - `worker_monitor_training_progress_check_20260516T012122` (running) — 训练进度检查\n  - `worker_analysis_prepare_gpt2m_a025_pipeline_20260516T012138` (running) — 准备 gpt2m_a025 分析 pipeline\n- **活跃 Cron**: 2 个，分别监控上述两个 RUNNING 实验\n\n### 3. 📊 当前状态\n我刚完成：零 GPU 分析全部三项（window sensitivity / method subset ablation / κ）+ T-notation patch + D047 Table 1 修正 + GPT-2m α=1.0 跨架构验证（gen_wiki_gpt2m_a100_s42_v3, success, Tier 3 confirmed）。\n\n**Registry 活跃实验**:\n- `gen_wiki_gpt2m_a025_s42` (RUNNING, cuda:0) — GPT-2m α=0.25 跨架构 regime map 确认，~3h 剩余（估计已跑 ~3h，总 ~6h for gpt2-medium）\n- `alpha_sweep_a025_s44` (RUNNING, cuda:1) — Pythia α=0.25 第三个 seed，D026 multi-seed replication\n\n**等待中**:\n- 上述两个 Worker 回调（进度检查 + 分析 pipeline 准备）\n- 两个实验的 cron 完成回调\n- Paper Agent Step 5 运行中（W1-W4 修复 + GPT-2m 结果整合）\n\n**统计**: 成功 14 / 负向 0 / 失败 3 / killed 17 / 共 34，累计 GPU ~23h\n\n### 4. 📋 待办（条件触发式）\n- `gen_wiki_gpt2m_a025_s42` cron 完成 → spawn Worker 跑 5-method lead-lag 分析 → regime map 跨架构确认 → 写入论文 Claim 2\n- `alpha_sweep_a025_s44` cron 完成 → 与 s42/s43 对比 cross-seed consistency → 更新 registry metrics → 这是最后一个 multi-seed 实验，完成即止\n- 两个实验都完成 → 所有 GPU 实验结束 → 全力推 Paper Agent Step 5 收敛\n- Paper Agent W1-W4 修复完成 → 整合 gpt2m_a025 结果 → 最终 proofread + compile → submit_paper_to_review\n- 若 gpt2m_a025 regime map 不复现 Pythia pattern → 触发 on-experiment-done negative 流程 → Framing 提案（但概率低，α=1.0 已复现）\n\n### 5. 🎯 战略上下文\n**项目处于收敛冲刺阶段**。核心叙事已确立（D027 reframe）：方法论陷阱 + 多方法共识框架，canary prediction 为 case study。Target EMNLP 2026 main track (ARR June cycle, deadline ~June 15)。\n\n**证据强度排序**: Claim 3 (方法敏感性，跨架构复现，Tier 3) > Claim 2 (regime map，待 gpt2m_a025 确认) > Claim 1 (case study，跨架构复现)。\n\n**易判断错的事**:\n- gpt2m_a025 是 Claim 2 的**最后一块拼图**——如果跨架构复现 regime-dependent pattern，Claim 2 升级为 Tier 3；如果不复现，需要降级措辞但不 panic（α=1.0 已跨架构确认）\n- 不要再追加 alpha_sweep 实验（D044 已砍低 ROI 线）\n- TY Granger 在 T≤10 下 underpowered 是已知统计限制，不是 bug——不要试图\"修复\"\n- window_sensitivity.py 有两个已知 bug（off-by-one + 两套 TY 实现），但**不影响论文数字**——论文数字来自 method_ablation.py\n- batch_size=32（gpt2-medium）vs 4（Pythia）差异已在 discussion.tex 注明，不需要重跑\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778899662.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "fc62a8c0c3eb79af5699",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "analysis c4 cross seed complete",
+  "task_key": "worker_analysis_c4_cross_seed_complete_20260520T041900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_c4_cross_seed_complete_20260520T041900.log",
+    "occurrence": 1,
+    "bytes": 652098,
+    "sha256": "e9f5d8cb8eb0c9e3f289b402ffbf7618a572ab079dee8044cbf91280a4ee16fa"
+  },
+  "statistics": {
+    "messages": 143,
+    "user_turns": 0,
+    "tool_calls": 51,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 37,
+      "tool_call": 51,
+      "tool_result": 51,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 143,
+      "chunks": [
+        {
+          "path": "fc62a8c0c3eb79af5699-part-0001.json",
+          "message_count": 129
+        },
+        {
+          "path": "fc62a8c0c3eb79af5699-part-0002.json",
+          "message_count": 14
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-c4-cross-seed-complete.md"
+}

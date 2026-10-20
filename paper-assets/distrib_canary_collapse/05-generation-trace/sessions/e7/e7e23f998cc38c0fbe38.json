@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e7e23f998cc38c0fbe38",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "paper gpt2m a025 cross arch writeup",
+  "task_key": "worker_paper_gpt2m_a025_cross_arch_writeup_20260516T123318",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_gpt2m_a025_cross_arch_writeup_20260516T123318_result.json",
+    "occurrence": 1,
+    "bytes": 1249,
+    "sha256": "d1f87606ca0b93251a20511f44039023c729cc34604dfaa47e688fd4ede5753e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits complete. Summary of changes:\n\n**`docs/paper/experiments.tex`** (3 locations):\n1. **Lines 130-149** — Added `Table~\\ref{tab:cross_arch_regime}`: cross-architecture regime map comparing Pythia-410M and GPT-2-medium at α=0.25 and α=1.0 (drift, Perm. Granger sig rate, Tier-3 count)\n2. **Line 131** — Added text noting GPT-2m yields 1/8 Tier 3, 7/8 Tier 2 at α=0.25\n3. **Lines 186-188** — Expanded \"Failed canary candidates\" paragraph with effective rank model-dependence: GPT-2m ER increases from 2.37→8.48 (+258%) vs Pythia decreasing\n\n**`docs/paper/discussion.tex`** (2 locations):\n1. **Lines 20-24** — Replaced old 3-line GPT-2m α=0.25 summary with expanded version: full drift profile (entropy -32.8%, ECE +422%, ppl -44.5%, d1 -23.5%, d2 -31.6%, d3 -30.2%, MAUVE -10.5%), Tier breakdown (1/8 T3, 7/8 T2), TY 1/8 sig\n2. **Lines 42-48** — New paragraph \"Effective rank direction is model-dependent\": describes opposite ER directions, starting-point dependence explanation, caveat on representational metrics as universal canaries\n\nAll numbers sourced from `gen_wiki_gpt2m_a025_s42`. Claim language capped at \"consistent across two transformer decoder-only model families of similar scale\"."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-gpt2m-a025-cross-arch-writeup.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef74cfedf1ccde8ab0e0",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diagnose phase diagram t25 a045 s42 fp32",
+  "task_key": "worker_diagnose_phase_diagram_t25_a045_s42_fp32_20260521T133130",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_phase_diagram_t25_a045_s42_fp32_20260521T133130_result.json",
+    "occurrence": 1,
+    "bytes": 1744,
+    "sha256": "c8aaf38a37da5c245924e9ff15e32104de0d139b50d4374c215f5154a7f5271d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 错误信息\n```\nOSError: Can't load the configuration of 'EleutherAI/pythia-410m'.\n```\n根源异常：\n```\nRuntimeError: Cannot send a request, as the client has been closed.\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/EleutherAI/pythia-410m/resolve/main/config.json\n```\n\n### 根因\n**网络不可达。** westd-17855 无法访问 HuggingFace Hub (`Errno 101: Network is unreachable`)，且本地没有 `EleutherAI/pythia-410m` 的缓存（`~/.cache/huggingface/hub` 和 `autodl-tmp` 下均无）。脚本在 `iterative_train.py:221` 调用 `AutoTokenizer.from_pretrained` 时立即失败。\n\n### GPU 状态\ncuda:5 正常，空闲（0 MiB 占用），无问题。\n\n### 输出目录\n仅生成了 `config.json` 和 `EXIT_CODE`，无任何训练产出。\n\n### 可重试性\n**可重试，但需先解决网络/缓存问题。** 两种方案：\n\n1. **修复网络**（如果是 AutoDL）：启动前加 `source /etc/network_turbo` 开启代理加速，并设置：\n   ```bash\n   export HF_HOME=/root/autodl-tmp/.hf_cache\n   export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\n   export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\n   ```\n\n2. **预下载模型到本地**（推荐，避免训练时依赖网络）：\n   ```bash\n   source /etc/network_turbo\n   export HF_HOME=/root/autodl-tmp/.hf_cache\n   python -c \"from transformers import AutoTokenizer, AutoModelForCausalLM; AutoTokenizer.from_pretrained('EleutherAI/pythia-410m'); AutoModelForCausalLM.from_pretrained('EleutherAI/pythia-410m')\"\n   ```\n   下载完成后重试原命令，加 `HF_HOME=/root/autodl-tmp/.hf_cache` 环境变量确保命中缓存。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-phase-diagram-t25-a045-s42-fp32.md"
+}

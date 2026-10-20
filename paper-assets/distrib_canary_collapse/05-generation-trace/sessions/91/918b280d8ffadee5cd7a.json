@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "918b280d8ffadee5cd7a",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis pythia410m 8pair breakdown",
+  "task_key": "worker_analysis_pythia410m_8pair_breakdown_20260517T123818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_pythia410m_8pair_breakdown_20260517T123818_result.json",
+    "occurrence": 1,
+    "bytes": 1738,
+    "sha256": "1b92949816335aa44927f5a99556e165b358c125d0ef4dc454de9bf8c1693b27"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总完成。Mauve pairs 未纳入 5-method 分析（分析只覆盖了 16 pairs: 4 canary × 4 downstream，downstream 不含 mauve）。\n\n```\nPythia-410M WikiText α=1.0 — 6 Available Canonical Pairs (entropy/ECE × d1/d2/d3)\n(mauve pairs 未包含在 5-method 分析中)\n\nMethod              | Sig Count | Pairs\n--------------------|-----------|------\nNaive XCorr         | 6/6       | entropy→d1/d2/d3, ece→d1/d2/d3\nDiff XCorr (FDR)    | 6/6       | entropy→d1/d2/d3, ece→d1/d2/d3\nThreshold Onset     | 6/6       | entropy→d1/d2/d3, ece→d1/d2/d3\nPermG fwd (FDR)     | 6/6       | entropy→d1/d2/d3, ece→d1/d2/d3\nPermG rev (FDR)     | 0/6       | (none)  [from reverse_permg_results.json]\nTY Granger          | 6/6       | entropy→d1/d2/d3, ece→d1/d2/d3\n\nConsensus ≥3/5      | 6/6\nConsensus ≥4/5      | 6/6\nConsensus  5/5      | 6/6  (all pairs unanimous)\n```\n\n**Per-pair detail:**\n\n| Pair | Naive | Diff XCorr | Threshold (lead) | TY (Wald F) | PermG fwd (F) |\n|---|---|---|---|---|---|\n| entropy→d1 | p≈0 | p≈0 | lead=2 | F=719.4 | F=2342.8 |\n| entropy→d2 | p=2e-6 | p=1.1e-5 | lead=2 | F=221.8 | F=1363.7 |\n| entropy→d3 | p=2.8e-5 | p=4.2e-5 | lead=3 | F=132.8 | F=852.9 |\n| ece→d1 | p≈0 | p=2.5e-5 | lead=1 | F=1861.5 | F=5798.1 |\n| ece→d2 | p≈0 | p=1e-6 | lead=1 | F=478.1 | F=1186.7 |\n| ece→d3 | p≈0 | p≈0 | lead=2 | F=144.2 | F=749.2 |\n\n**Mauve 状态:** `all_metrics.json` 中每代都有 mauve 值（从 0.034 → 0.031，漂移仅 ~10%），但 5-method 分析脚本未将 mauve 作为 downstream metric 纳入。若需要 mauve pairs 的 sig counts，需在分析脚本中补跑 `token_entropy->mauve` 和 `ece->mauve`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-pythia410m-8pair-breakdown.md"
+}

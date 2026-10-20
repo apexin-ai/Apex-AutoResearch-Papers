@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "96d142437df48e1ea277",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analyze alpha sweep a010 s42 v2",
+  "task_key": "worker_analyze_alpha_sweep_a010_s42_v2_20260518T193614",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_alpha_sweep_a010_s42_v2_20260518T193614_result.json",
+    "occurrence": 1,
+    "bytes": 921,
+    "sha256": "b7058ad3976c3de57a0269f9cf8486df80f1761f67478cf81042aedef6d53868"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。报告已写入并注册。核心发现：\n\n**α=0.10 揭示了 canary 与 collapse 的关键脱钩：**\n\n| 维度 | α=0.00 (null) | α=0.10 | α=0.25 | α=0.50+ |\n|------|-------------|--------|--------|---------|\n| token_entropy gen10 | 3.069 | 3.064 | 3.072 | 2.63↓ |\n| distinct_1 Δ% | -13.8% | **-39.7%** | -40.5% | - |\n| PermG (diff.) | 0 sig | 0 sig | 0 sig | boundary+ |\n\n1. **Diversity collapse 在 α=0.10 已饱和**：distinct_1 下降 39.7%，与 α=0.25 的 40% 几乎一致，远超 null 的 13.8%。\n2. **Entropy canary 完全无感**：gen10 entropy 与 null 仅差 0.17%，PermG 0/16 显著。\n3. **检测阈值在 α=0.25 到 α=0.50 之间**：canary 只在损害已经严重时才响应。\n\n结论定性为 **informative negative**：实验成功填补了 regime map 中 α=0.00 到 α=0.25 的空白，发现 diversity collapse 非线性饱和效应。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-alpha-sweep-a010-s42-v2.md"
+}

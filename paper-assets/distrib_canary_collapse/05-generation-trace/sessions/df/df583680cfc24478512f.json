@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df583680cfc24478512f",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis phase2 cross alpha fdr rerun",
+  "task_key": "worker_analysis_phase2_cross_alpha_fdr_rerun_20260515T105507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_phase2_cross_alpha_fdr_rerun_20260515T105507_result.json",
+    "occurrence": 1,
+    "bytes": 764,
+    "sha256": "9d38eb1611422e85f807d2be31a7396a90e1df9a50c29706152bc10c3f3123be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存。核心结果：\n\n**Granger**: 10/32 raw-sig → **1/32 FDR-sig**（仅 ECE→d1 at α=1.0 p_fdr=0.019 存活）。D024 的 \"canary regime switch\" 叙述在 FDR 下不成立。\n\n**Method × α sig rates delta (raw → FDR)**:\n- Toda-Yamamoto 受影响最大：α=0.25 从 25%→0%，α=0.50 从 38%→12%（与 C001 约束一致——TY df 太低）\n- diff_xcorr 在 α=0.00 和 α=1.00 分别下降 19% 和 13%\n- naive_pearson 和 threshold_onset 不受影响\n\n**Consensus robust pairs 不变**：0/16 → 1/16 → 0/16 → 6/16 的 α 递进模式在 FDR 下保持，因为 consensus 要求 ≥4/5 methods 一致，本身就是隐式多重检验保护。\n\n报告位于：`artifacts/analysis/cross_alpha_fdr_4point.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-phase2-cross-alpha-fdr-rerun.md"
+}

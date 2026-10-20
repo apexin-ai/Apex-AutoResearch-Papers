@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bfb57aa81b42121cb981",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "prep cross alpha v5 verify",
+  "task_key": "worker_prep_cross_alpha_v5_verify_20260515T113234",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_cross_alpha_v5_verify_20260515T113234_result.json",
+    "occurrence": 1,
+    "bytes": 559,
+    "sha256": "0f6e52165f0e6ccad5dd593f560ee49ea7434eaf2a41a1262437688968f87615"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。核心结论：\n\n**脚本无需任何修改即可支持 5 α 点。** 6 项检查中 5 项通过：\n- ✅ α 点自动发现（glob 匹配，非硬编码）\n- ✅ FDR 混合策略两条路径均正确（threshold_onset 用 `significant`，其余 4 方法用 FDR 修正）\n- ✅ permG/TY 列顺序三文件一致（TY=idx3, permG=idx4）\n- ✅ 已完成的 4 个 α 点数据齐备\n- ❌ **a075 实验仍在运行**（当前 gen_7/10，预计 ~22:30 完成）\n\n报告已写入 `artifacts/prep_cross_alpha_v5_verify.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-cross-alpha-v5-verify.md"
+}

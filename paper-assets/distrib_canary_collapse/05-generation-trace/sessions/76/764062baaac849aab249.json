@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "764062baaac849aab249",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code d029 fdr fix",
+  "task_key": "worker_code_d029_fdr_fix_20260515T091148",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d029_fdr_fix_20260515T091148_result.json",
+    "occurrence": 1,
+    "bytes": 1189,
+    "sha256": "5fc91936ebba21fee67630eb00f9fb270b1e5930e042bd260c8ffd3cca8f42ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。总结：\n\n### 修改内容\n\n**consensus_framework.py** (`load_sig_matrix()`):\n- 新增 `apply_fdr=True` 参数\n- `apply_fdr=True` 时读 `significant_fdr`（FDR-corrected），无该字段时 fallback 到 `significant`（覆盖 threshold_onset 无 p_raw 的情况）\n\n**cross_alpha_analysis_v4.py** (`run_consensus_per_alpha()`):\n- α=1.0 路径：显式传 `apply_fdr=True` 给 `load_sig_matrix()`\n- 单 seed α 路径：收集各 method 的 `p_value`，per-method per-seed 对 16 pairs 做 BH FDR 校正（`multipletests(method=\"fdr_bh\")`），threshold_onset 无 p-value 保留原始 `significant` flag\n\n### 验证结果\n- α=1.0 (4 seeds): 6 robust 不变（FDR 收紧 method-level 计数但不翻转 consensus）\n- α=0.00: 0→0 robust\n- α=0.25: 1→1 robust\n- α=0.50: 3→0 robust（`perm_granger` 7→0 sig 导致 3 个边缘 ece 对跌破 4/5 method 门槛）\n\n### 文件位置\n- 服务器：`/root/autodl-tmp/distrib_canary_collapse/consensus_framework.py` + `cross_alpha_analysis_v4.py`\n- 本地：`artifacts/analysis/consensus_framework/consensus_framework.py` + `artifacts/analysis/cross_alpha/cross_alpha_analysis_v4.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d029-fdr-fix.md"
+}

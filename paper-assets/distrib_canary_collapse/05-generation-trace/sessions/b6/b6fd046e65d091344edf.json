@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b6fd046e65d091344edf",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "check pythia14b status urgent",
+  "task_key": "worker_check_pythia14b_status_urgent_20260517T191454",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_pythia14b_status_urgent_20260517T191454_result.json",
+    "occurrence": 1,
+    "bytes": 730,
+    "sha256": "d7ffab5080991b66c90ae8dbf5a9ad705df451eea519770580b463910bb12135"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nStatus: DEAD\nCurrent gen: 7/10 (gen_7 training completed, crash on save)\nLast activity: 2026-05-18 03:05\nGPU utilization: 0% on both GPUs, no processes\nEXIT_CODE: 1\nError: \"No space left on device (os error 28)\"\n```\n\n**死因**: gen_7 的 fine-tuning 跑完了（5000/5000 steps, loss=0.019），但在 `model.save_pretrained()` 时磁盘满了。`/dev/md0` 250G 已 100% 占满（剩余 484K）。\n\n**gen_7 状态**: checkpoint 目录存在但不完整（save 失败），synthetic_data 和 trainer 目录已生成。\n\n**需要决策**: 清理磁盘空间后可以从 gen_7 重跑（模型权重没保存成功，需要用 gen_6 的 checkpoint 重新训练 gen_7），还是需要其他处理？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-pythia14b-status-urgent.md"
+}

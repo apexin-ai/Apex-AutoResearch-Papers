@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b184606f0eed6bac0e75",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "emergency 19828 disk cleanup",
+  "task_key": "worker_emergency_19828_disk_cleanup_20260519T232953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_emergency_19828_disk_cleanup_20260519T232953_result.json",
+    "occurrence": 1,
+    "bytes": 524,
+    "sha256": "1db3ef3e0b0addc7ab00b179b3a0a6b58fde043536d0fb493ed239d4c32fffa5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n| 删除项 | 释放空间 |\n|--------|---------|\n| `smollm3_3b_wiki_a100_s43/` (失败实验整目录) | ~17G |\n| `smollm3_3b_wiki_a100_s42/` (未完成，无 analysis) | ~12G |\n| `pythia14b_wiki_a100_s43/gen_0` ~ `gen_9` (中间 checkpoint) | ~48G |\n| `models/SmolLM3-3B-Base/` | ~5.8G |\n| HF cache SmolLM3 | 4K |\n\n**结果：250G 用量从 100% 降至 68%，可用 82G。** opt13b 进程 (PID 452614) 正常运行，pythia14b_s43 保留了 gen_10 + all_metrics.json + analysis。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/emergency-19828-disk-cleanup.md"
+}

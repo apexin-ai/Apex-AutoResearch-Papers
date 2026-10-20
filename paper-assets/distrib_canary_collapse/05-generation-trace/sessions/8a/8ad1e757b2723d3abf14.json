@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ad1e757b2723d3abf14",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diag qwen35 a005 exit127",
+  "task_key": "worker_diag_qwen35_a005_exit127_20260518T220930",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_qwen35_a005_exit127_20260518T220930_result.json",
+    "occurrence": 1,
+    "bytes": 1706,
+    "sha256": "3880a1f26069a3fc048db5226b0f959a3b58f429ed29417c6f85e513ad5d8b88"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n## 诊断结果\n\n### 实际错误信息\n\n两个实验 log 内容完全相同：\n```\nbash: line 1: python: command not found\nEXIT_CODE=127\n```\n\n### 根因\n\n`.bashrc` 中没有 `conda init` 块，miniconda3 未加入 PATH。裸 `python` 命令不存在，系统也没有 `/usr/bin/python*`。Python 3.12.3 只存在于 `/root/miniconda3/bin/python`，但该路径不在默认 shell 的 `$PATH` 中。\n\n此外 `.bashrc` 开头有 `[ -z \"$PS1\" ] && return`，非交互式 shell（如 ssh remote command）会直接跳过后续所有内容，即使加了 conda init 也不会生效。\n\n### 正确的环境激活命令前缀\n\n```bash\nexport PATH=\"/root/miniconda3/bin:$PATH\"\n```\n\n无 conda 虚拟环境（`/root/miniconda3/envs/` 为空），直接用 base 环境即可。\n\n### 项目代码位置\n\n`/root/autodl-tmp/distrib_canary_collapse/iterative_train.py`\n\n### 重提交命令\n\n**实验 1: qwen35_08b_wiki_a100_s42**\n```bash\nexport PATH=\"/root/miniconda3/bin:$PATH\" && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name /root/autodl-tmp/models/Qwen3.5-0.8B-Base/ --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/qwen35_08b_wiki_a100_s42_fp32\n```\n\n**实验 2: alpha_sweep_a005_s42**\n```bash\nexport PATH=\"/root/miniconda3/bin:$PATH\" && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.05 --output_dir results/alpha_sweep/a005_s42_fp32\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-qwen35-a005-exit127.md"
+}

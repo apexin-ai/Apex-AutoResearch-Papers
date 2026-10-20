@@ -1,0 +1,1782 @@
+{
+  "schema_version": "1.0",
+  "id": "3b960096aa30c9f4eedd",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "analysis mmct alpha100 fix",
+  "task_key": "worker_analysis_mmct_alpha100_fix_20260518T155251",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mmct_alpha100_fix_20260518T155251.log",
+    "occurrence": 1,
+    "bytes": 122561,
+    "sha256": "0afcf7aeb93abb718dd02716a32c7776b60bc91a424a7f3a4acc0a573e644f4e"
+  },
+  "statistics": {
+    "messages": 44,
+    "user_turns": 0,
+    "tool_calls": 16,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 16,
+      "tool_result": 16
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+                "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "1b305897-b0b8-4725-9c5b-3c02926f78be",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779123000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "3d665f76-6168-4f84-baa0-8fc51fe0ad23",
+                "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me break this task down:\n\n1. Find α=1.0 data paths on the remote server\n2. Run MMCT on α=1.0 data\n3. Run MMCT for all Table 7 conditions\n4. Generate output files\n\nLet me start by exploring the remote server to understand the data layout and the MMCT code.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "60779915-d1ff-4ae3-b22c-b6ca67f7babc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019kAkuBitYs49eTyStmECf5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14382,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14382
+                },
+                "output_tokens": 26,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "开始执行。先并行探索远程服务器上的数据路径和 MMCT 代码。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "ec25072d-df24-4378-9387-cf140e700cf5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019kAkuBitYs49eTyStmECf5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14382,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14382
+                },
+                "output_tokens": 26,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018uzg76veTsrXSLJXv1tpAH",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "49e8b74b-c829-46cb-939c-50757b1e6a47",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019kAkuBitYs49eTyStmECf5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14382,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14382
+                },
+                "output_tokens": 26,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T15:53:05.244Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_018uzg76veTsrXSLJXv1tpAH",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "c821a891-9db9-464c-b75a-605d0d0d0626",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0158cUEiWy3btV8dfDYqo5JD",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-19828",
+                "command": "find /root/autodl-tmp/distrib_canary_collapse/results/ -name \"5method_leadlag.json\" -type f",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "706871bb-4b32-43b7-a26e-721ea10cda8e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013miZYiovec4NoGfom4HGKw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 795,
+                "cache_read_input_tokens": 26223,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 795
+                },
+                "output_tokens": 47,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SYuQYB5sxoZbaoPAd6mNmX",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-19828",
+                "command": "find /root/autodl-tmp/distrib_canary_collapse/artifacts/ -name \"5method_leadlag.json\" -type f",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "cba74411-7ae1-4df6-a488-6031b2bec280",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013miZYiovec4NoGfom4HGKw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 795,
+                "cache_read_input_tokens": 26223,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 795
+                },
+                "output_tokens": 47,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T15:53:09.454Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0158cUEiWy3btV8dfDYqo5JD",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s42/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s44/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s43/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s44/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44/analysis/5method_leadlag.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "712aba67-3ef0-4f97-a89a-2a558d411593",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s42/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s44/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s43/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s44/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44/analysis/5method_leadlag.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s42/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s44/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s43/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s44/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44/analysis/5method_leadlag.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44/analysis/5method_leadlag.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T15:53:09.992Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SYuQYB5sxoZbaoPAd6mNmX",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "a0364ae5-567c-4495-a910-dfdfac6a665e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0194nbiTXzefjhDJavqciMwG",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-19828",
+                "command": "ls /root/autodl-tmp/distrib_canary_collapse/mmct/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "4877f552-6c2c-4d5d-9bee-3dd9aa3edc49",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013miZYiovec4NoGfom4HGKw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 795,
+                "cache_read_input_tokens": 26223,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 795
+                },
+                "output_tokens": 47,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T15:53:10.742Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0194nbiTXzefjhDJavqciMwG",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__init__.py\\\\n__pycache__\\\\nconsensus_test.py\\\\nmethods.py\\\\nnull_distribution.py\\\\nrun_mmct.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "eeca3464-2d81-42c8-bcea-de52898800e4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__init__.py\\\\n__pycache__\\\\nconsensus_test.py\\\\nmethods.py\\\\nnull_distribution.py\\\\nrun_mmct.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"__init__.py\\n__pycache__\\nconsensus_test.py\\nmethods.py\\nnull_distribution.py\\nrun_mmct.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QC4VGNmw2pkv3E3xAsQNUb",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-19828",
+                "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/generalize/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "08a96145-4614-40b1-89cd-b21a0cd95097",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013miZYiovec4NoGfom4HGKw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 795,
+                "cache_read_input_tokens": 26223,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 795
+                },
+                "output_tokens": 47,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T15:53:11.448Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QC4VGNmw2pkv3E3xAsQNUb",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"analysis\\\\ngpt2m_wiki_a100_s42\\\\nopt1b_wiki_a100_s42\\\\npythia14b_wiki_a100_s42\\\\npythia14b_wiki_a100_s43\\\\npythia1b_c4_a100_s42\\\\npythia1b_c4_a100_s43\\\\npythia410m_wiki_a100_s42\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "7fde03df-9850-413a-9139-3fe00fb52d75",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"analysis\\\\ngpt2m_wiki_a100_s42\\\\nopt1b_wiki_a100_s42\\\\npythia14b_wiki_a100_s42\\\\npythia14b_wiki_a100_s43\\\\npythia1b_c4_a100_s42\\\\npythia1b_c4_a100_s43\\\\npythia410m_wiki_a100_s42\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"analysis\\ngpt2m_wiki_a100_s42\\nopt1b_wiki_a100_s42\\npythia14b_wiki_a100_s42\\npythia14b_wiki_a100_s43\\npythia1b_c4_a100_s42\\npythia1b_c4_a100_s43\\npythia410m_wiki_a100_s42\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "α=1.0 数据确认在 `results/generalize/` 下（7个条件目录都在），但没有 `5method_leadlag.json`。查看这些目录的内容和 MMCT 代码。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "c2fcf7c2-2d2f-4cc3-944e-63c551aa3e6d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FUKB7GSxhF2EXiUcbsWqrY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1438,
+                "cache_read_input_tokens": 27018,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1438
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019T8piZzPnewGGPqXdt5s9a",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-19828",
+                "command": "find /root/autodl-tmp/distrib_canary_collapse/results/generalize/ -name \"5method_leadlag.json\" -type f",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "b5adf7b4-2a40-4385-8d13-550b38cf6e37",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FUKB7GSxhF2EXiUcbsWqrY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1438,
+                "cache_read_input_tokens": 27018,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1438
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-18T15:53:18.192Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019T8piZzPnewGGPqXdt5s9a",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "520d1a23-1862-4bf3-af81-3e3aad9a6d30",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018uFPz8oEmdS63gzKG2SkMT",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-19828",
+                "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "6db63e22-037b-4db6-9431-2399d5bfe9f0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FUKB7GSxhF2EXiUcbsWqrY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1438,
+                "cache_read_input_tokens": 27018,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1438
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VFPFXNV3EQ1S5DUQ2rxWyk",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-19828",
+                "command": "cat /root/autodl-tmp/distrib_canary_collapse/mmct/run_mmct.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "a4813355-9940-438d-a1d1-c94773e95b09",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FUKB7GSxhF2EXiUcbsWqrY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1438,
+                "cache_read_input_tokens": 27018,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1438
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-18T15:53:19.669Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018uFPz8oEmdS63gzKG2SkMT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"EXIT_CODE\\\\nall_metrics.json\\\\nanalysis\\\\nconfig.json\\\\ngen_0\\\\ngen_1\\\\ngen_10\\\\ngen_2\\\\ngen_3\\\\ngen_4\\\\ngen_5\\\\ngen_6\\\\ngen_7\\\\ngen_8\\\\ngen_9\\\\nreverse_permg_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "2447a7b7-ac3c-4069-b73f-d2a0906acd45",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"EXIT_CODE\\\\nall_metrics.json\\\\nanalysis\\\\nconfig.json\\\\ngen_0\\\\ngen_1\\\\ngen_10\\\\ngen_2\\\\ngen_3\\\\ngen_4\\\\ngen_5\\\\ngen_6\\\\ngen_7\\\\ngen_8\\\\ngen_9\\\\nreverse_permg_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"EXIT_CODE\\nall_metrics.json\\nanalysis\\nconfig.json\\ngen_0\\ngen_1\\ngen_10\\ngen_2\\ngen_3\\ngen_4\\ngen_5\\ngen_6\\ngen_7\\ngen_8\\ngen_9\\nreverse_permg_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-18T15:53:20.261Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VFPFXNV3EQ1S5DUQ2rxWyk",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Run MMCT across all available alpha-sweep conditions.\\\\n\\\\nScans results/alpha_sweep/ for conditions with 5method_leadlag.json,\\\\nruns MMCT in 4 modes (uniform/weighted x forward/bidirectional),\\\\noutputs JSON results and markdown reports.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nfrom datetime import datetime\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/autodl-tmp/distrib_canary_collapse\\\\\\\")\\\\n\\\\nfrom mmct.methods import METRIC_PAIRS, METHOD_NAMES\\\\nfrom mmct.null_distribution import NullDistribution\\\\nfrom mmct.consensus_test import MMCT\\\\n\\\\nBASE_DIR = \\\\\\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep\\\\\\\"\\\\nOUTPUT_DIR = \\\\\\\"/root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results\\\\\\\"\\\\n\\\\nNULL_DIRS = [\\\\n    os.path.join(BASE_DIR, \\\\\\\"a000_s42\\\\\\\"),\\\\n    os.path.join(BASE_DIR, \\\\\\\"a000_s43\\\\\\\"),\\\\n    os.path.join(BASE_DIR, \\\\\\\"a000_s44\\\\\\\"),\\\\n]\\\\n\\\\nMODES = [\\\\n    {\\\\\\\"weighted\\\\\\\": False, \\\\\\\"bidirectional\\\\\\\": False, \\\\\\\"name\\\\\\\": \\\\\\\"uniform_forward\\\\\\\"},\\\\n    {\\\\\\\"weighted\\\\\\\": False, \\\\\\\"bidirectional\\\\\\\": True,  \\\\\\\"name\\\\\\\": \\\\\\\"uniform_bidirectional\\\\\\\"},\\\\n    {\\\\\\\"weighted\\\\\\\": True,  \\\\\\\"bidirectional\\\\\\\": False, \\\\\\\"name\\\\\\\": \\\\\\\"weighted_forward\\\\\\\"},\\\\n    {\\\\\\\"weighted\\\\\\\": True,  \\\\\\\"bidirectional\\\\\\\": True,  \\\\\\\"name\\\\\\\": \\\\\\\"weighted_bidirectional\\\\\\\"},\\\\n]\\\\n\\\\n\\\\ndef discover_conditions():\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Scan alpha_sweep directory for conditions with 5method analysis.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    conditions = {}\\\\n    for entry in sorted(os.listdir(BASE_DIR)):\\\\n        if not entry.startswith(\\\\\\\"a\\\\\\\") or \\\\\\\"_s\\\\\\\" not in entry:\\\\n            continue\\\\n        analysis = os.path.join(BASE_DIR, entry, \\\\\\\"analysis\\\\\\\",\\\\n                                \\\\\\\"5method_leadlag.json\\\\\\\")\\\\n        if not os.path.exists(analysis):\\\\n            continue\\\\n        parts = entry.split(\\\\\\\"_\\\\\\\")\\\\n        alpha_str = parts[0]\\\\n        seed = int(parts[1][1:])\\\\n        alpha_val = int(alpha_str[1:]) / 100.0\\\\n        if alpha_val not in conditions:\\\\n            conditions[alpha_val] = []\\\\n        conditions[alpha_val].append({\\\\n            \\\\\\\"run_id\\\\\\\": entry, \\\\\\\"seed\\\\\\\": seed,\\\\n            \\\\\\\"dir\\\\\\\": os.path.join(BASE_DIR, entry)\\\\n        })\\\\n    return conditions\\\\n\\\\n\\\\ndef run_all():\\\\n    conditions = discover_conditions()\\\\n    print(f\\\\\\\"Discovered conditions: { {k: len(v) for k, v in conditions.items()} }\\\\\\\")\\\\n\\\\n    print(\\\\\\\"Building null distribution from alpha=0.00 data...\\\\\\\")\\\\n    null_dist = NullDistribution(NULL_DIRS, n_bootstrap=10000, seed=42)\\\\n    n_null = len(null_dist.null_uniform_fwd)\\\\n    print(f\\\\\\\"  {n_null} null observations ({n_null // 8} seeds x 8 pairs)\\\\\\\")\\\\n    print(f\\\\\\\"  Global FPR: {null_dist.global_fpr}\\\\\\\")\\\\n\\\\n    all_results = {\\\\n        \\\\\\\"meta\\\\\\\": {\\\\n            \\\\\\\"timestamp\\\\\\\": datetime.now().isoformat(),\\\\n            \\\\\\\"null_dirs\\\\\\\": NULL_DIRS,\\\\n            \\\\\\\"n_null\\\\\\\": n_null,\\\\n            \\\\\\\"methods\\\\\\\": METHOD_NAMES,\\\\n            \\\\\\\"modes\\\\\\\": [m[\\\\\\\"name\\\\\\\"] for m in MODES],\\\\n            \\\\\\\"conditions\\\\\\\": {str(k): [c[\\\\\\\"run_id\\\\\\\"] for c in v]\\\\n                           for k, v in sorted(conditions.items())},\\\\n        },\\\\n        \\\\\\\"results\\\\\\\": {},\\\\n    }\\\\n\\\\n    for mode in MODES:\\\\n        mode_name = mode[\\\\\\\"name\\\\\\\"]\\\\n        print(f\\\\\\\"\\\\\\\\n--- Mode: {mode_name} ---\\\\\\\")\\\\n        mmct = MMCT(null_dist, weighted=mode[\\\\\\\"weighted\\\\\\\"],\\\\n                     bidirectional=mode[\\\\\\\"bidirectional\\\\\\\"])\\\\n\\\\n        mode_results = {}\\\\n        for alpha_val in sorted(conditions.keys()):\\\\n            alpha_key = f\\\\\\\"a{int(alpha_val * 100):03d}\\\\\\\"\\\\n            alpha_results = []\\\\n\\\\n            for cond in conditions[alpha_val]:\\\\n                for canary, downstream in METRIC_PAIRS:\\\\n                    result = mmct.test_from_precomputed(\\\\n                        cond[\\\\\\\"dir\\\\\\\"], canary, downstream)\\\\n                    r = result.to_dict()\\\\n                    r[\\\\\\\"alpha_condition\\\\\\\"] = alpha_val\\\\n                    r[\\\\\\\"seed\\\\\\\"] = cond[\\\\\\\"seed\\\\\\\"]\\\\n                    r[\\\\\\\"run_id\\\\\\\"] = cond[\\\\\\\"run_id\\\\\\\"]\\\\n                    alpha_results.append(r)\\\\n\\\\n            n_sig = sum(1 for r in alpha_results if r[\\\\\\\"significant\\\\\\\"])\\\\n            n_tot = len(alpha_results)\\\\n            print(f\\\\\\\"  alpha={alpha_val:.2f}: {n_sig}/{n_tot} significant\\\\\\\")\\\\n            mode_results[alpha_key] = alpha_results\\\\n\\\\n        all_results[\\\\\\\"results\\\\\\\"][mode_name] = mode_results\\\\n\\\\n    fpr_fnr = compute_fpr_fnr(all_results)\\\\n    all_results[\\\\\\\"fpr_\\\\n\\\\n... [截断: 输出过长，省略 4474 字符] ...\\\\n\\\\n       f\\\\\\\"{r['seed']} | {cs} | {r['p_value']:.4f} | \\\\\\\"\\\\n                       f\\\\\\\"{ci} | {sig} |\\\\\\\")\\\\n                if bidir:\\\\n                    rp = r.get(\\\\\\\"reverse_p_value\\\\\\\")\\\\n                    row += f\\\\\\\" {rp:.4f} |\\\\\\\" if rp is not None else \\\\\\\" N/A |\\\\\\\"\\\\n                lines.append(row)\\\\n            lines.append(\\\\\\\"\\\\\\\")\\\\n\\\\n    fpr_fnr = all_results.get(\\\\\\\"fpr_fnr\\\\\\\", {})\\\\n    lines += [\\\\n        \\\\\\\"## Summary: FPR and Detection Rate by Mode\\\\\\\",\\\\n        \\\\\\\"\\\\\\\",\\\\n        \\\\\\\"| Mode | FPR (a=0.00) | Det. Rate a=0.25 | a=0.50 | a=0.75 |\\\\\\\",\\\\n        \\\\\\\"|------|-------------|------------------|--------|--------|\\\\\\\",\\\\n    ]\\\\n    for mn, st in fpr_fnr.items():\\\\n        fpr = f\\\\\\\"{st['fpr']:.4f}\\\\\\\" if st[\\\\\\\"fpr\\\\\\\"] is not None else \\\\\\\"N/A\\\\\\\"\\\\n        rates = []\\\\n        for ak in [\\\\\\\"a025\\\\\\\", \\\\\\\"a050\\\\\\\", \\\\\\\"a075\\\\\\\"]:\\\\n            pa = st[\\\\\\\"per_alpha\\\\\\\"].get(ak)\\\\n            if pa:\\\\n                rates.append(f\\\\\\\"{pa['detection_rate']:.4f}\\\\\\\")\\\\n            else:\\\\n                rates.append(\\\\\\\"N/A\\\\\\\")\\\\n        lines.append(f\\\\\\\"| {mn} | {fpr} | {' | '.join(rates)} |\\\\\\\")\\\\n\\\\n    return \\\\\\\"\\\\\\\\n\\\\\\\".join(lines) + \\\\\\\"\\\\\\\\n\\\\\\\"\\\\n\\\\n\\\\ndef generate_fpr_fnr_comparison(fpr_fnr):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"4-way FPR-FNR comparison markdown.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    lines = [\\\\n        \\\\\\\"# FPR-FNR 4-Way Comparison\\\\\\\",\\\\n        \\\\\\\"\\\\\\\",\\\\n        \\\\\\\"uniform vs weighted x forward vs bidirectional\\\\\\\",\\\\n        \\\\\\\"\\\\\\\",\\\\n        \\\\\\\"## Detection Rate by Alpha\\\\\\\",\\\\n        \\\\\\\"\\\\\\\",\\\\n        \\\\\\\"| Mode | FPR (a=0.00) |\\\\\\\",\\\\n    ]\\\\n\\\\n    alpha_keys = set()\\\\n    for st in fpr_fnr.values():\\\\n        alpha_keys.update(st[\\\\\\\"per_alpha\\\\\\\"].keys())\\\\n    alpha_keys = sorted(alpha_keys)\\\\n\\\\n    header = \\\\\\\"| Mode | FPR (a=0.00) |\\\\\\\"\\\\n    sep = \\\\\\\"|------|-------------|\\\\\\\"\\\\n    for ak in alpha_keys:\\\\n        header += f\\\\\\\" {ak} |\\\\\\\"\\\\n        sep += \\\\\\\"------|\\\\\\\"\\\\n    lines = [\\\\n        \\\\\\\"# FPR-FNR 4-Way Comparison\\\\\\\",\\\\n        \\\\\\\"\\\\\\\",\\\\n        \\\\\\\"uniform vs weighted x forward vs bidirectional\\\\\\\",\\\\n        \\\\\\\"\\\\\\\",\\\\n        \\\\\\\"## Detection Rate by Alpha Condition\\\\\\\",\\\\n        \\\\\\\"\\\\\\\",\\\\n        header, sep,\\\\n    ]\\\\n\\\\n    for mn, st in fpr_fnr.items():\\\\n        fpr = f\\\\\\\"{st['fpr']:.4f}\\\\\\\" if st[\\\\\\\"fpr\\\\\\\"] is not None else \\\\\\\"N/A\\\\\\\"\\\\n        row = f\\\\\\\"| {mn} | {fpr} |\\\\\\\"\\\\n        for ak in alpha_keys:\\\\n            pa = st[\\\\\\\"per_alpha\\\\\\\"].get(ak)\\\\n            if pa and pa[\\\\\\\"detection_rate\\\\\\\"] is not None:\\\\n                row += f\\\\\\\" {pa['detection_rate']:.4f} |\\\\\\\"\\\\n            else:\\\\n                row += \\\\\\\" N/A |\\\\\\\"\\\\n        lines.append(row)\\\\n\\\\n    lines += [\\\\n        \\\\\\\"\\\\\\\",\\\\n        \\\\\\\"## Tradeoff Analysis\\\\\\\",\\\\n        \\\\\\\"\\\\\\\",\\\\n        \\\\\\\"- **FPR**: fraction of alpha=0.00 tests incorrectly flagged\\\\\\\",\\\\n        \\\\\\\"- **Detection rate**: fraction flagged significant at each alpha\\\\\\\",\\\\n        \\\\\\\"- Weighted mode down-weights methods with high null FPR\\\\\\\",\\\\n        \\\\\\\"- Bidirectional requires forward sig. AND reverse non-sig.\\\\\\\",\\\\n        \\\\\\\"- Ideal: FPR=0 at alpha=0.00 with high detection at alpha>0\\\\\\\",\\\\n        \\\\\\\"\\\\\\\",\\\\n        \\\\\\\"## Effect of Each Enhancement\\\\\\\",\\\\n        \\\\\\\"\\\\\\\",\\\\n    ]\\\\n\\\\n    mode_keys = list(fpr_fnr.keys())\\\\n    if len(mode_keys) == 4:\\\\n        uf = fpr_fnr.get(\\\\\\\"uniform_forward\\\\\\\", {})\\\\n        ub = fpr_fnr.get(\\\\\\\"uniform_bidirectional\\\\\\\", {})\\\\n        wf = fpr_fnr.get(\\\\\\\"weighted_forward\\\\\\\", {})\\\\n        wb = fpr_fnr.get(\\\\\\\"weighted_bidirectional\\\\\\\", {})\\\\n\\\\n        lines.append(\\\\\\\"| Comparison | FPR Change | a075 Det. Change |\\\\\\\")\\\\n        lines.append(\\\\\\\"|------------|-----------|-----------------|\\\\\\\")\\\\n\\\\n        def _fmt(a, b):\\\\n            if a is None or b is None:\\\\n                return \\\\\\\"N/A\\\\\\\"\\\\n            return f\\\\\\\"{a:.4f} -> {b:.4f}\\\\\\\"\\\\n\\\\n        def _det(st, ak=\\\\\\\"a075\\\\\\\"):\\\\n            pa = st.get(\\\\\\\"per_alpha\\\\\\\", {}).get(ak, {})\\\\n            return pa.get(\\\\\\\"detection_rate\\\\\\\")\\\\n\\\\n        lines.append(\\\\n            f\\\\\\\"| +weighted (fwd) | \\\\\\\"\\\\n            f\\\\\\\"{_fmt(uf.get('fpr'), wf.get('fpr'))} | \\\\\\\"\\\\n            f\\\\\\\"{_fmt(_det(uf), _det(wf))} |\\\\\\\")\\\\n        lines.append(\\\\n            f\\\\\\\"| +bidirectional (uniform) | \\\\\\\"\\\\n            f\\\\\\\"{_fmt(uf.get('fpr'), ub.get('fpr'))} | \\\\\\\"\\\\n            f\\\\\\\"{_fmt(_det(uf), _det(ub))} |\\\\\\\")\\\\n        lines.append(\\\\n            f\\\\\\\"| +both (full enhanced) | \\\\\\\"\\\\n            f\\\\\\\"{_fmt(uf.get('fpr'), wb.get('fpr'))} | \\\\\\\"\\\\n            f\\\\\\\"{_fmt(_det(uf), _det(wb))} |\\\\\\\")\\\\n\\\\n    return \\\\\\\"\\\\\\\\n\\\\\\\".join(lines) + \\\\\\\"\\\\\\\\n\\\\\\\"\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    run_all()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "830e102c-9068-42dd-b67a-eff239ae86ed",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Run MMCT across all available alpha-sweep conditions.\\\\n\\\\nScans results/alpha_sweep/ for conditions with 5method_leadlag.json,\\\\nruns MMCT in 4 modes (uniform/weighted x forward/bidirectional),\\\\noutputs JSON results and markdown reports.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nfrom datetime import datetime\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/autodl-tmp/distrib_canary_collapse\\\\\\\")\\\\n\\\\nfrom mmct.methods import METRIC_PAIRS, METHOD_NAMES\\\\nfrom mmct.null_distribution import NullDistribution\\\\nfrom mmct.consensus_test import MMCT\\\\n\\\\nBASE_DIR = \\\\\\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep\\\\\\\"\\\\nOUTPUT_DIR = \\\\\\\"/root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results\\\\\\\"\\\\n\\\\nNULL_DIRS = [\\\\n    os.path.join(BASE_DIR, \\\\\\\"a000_s42\\\\\\\"),\\\\n    os.path.join(BASE_DIR, \\\\\\\"a000_s43\\\\\\\"),\\\\n    os.path.join(BASE_DIR, \\\\\\\"a000_s44\\\\\\\"),\\\\n]\\\\n\\\\nMODES = [\\\\n    {\\\\\\\"weighted\\\\\\\": False, \\\\\\\"bidirectional\\\\\\\": False, \\\\\\\"name\\\\\\\": \\\\\\\"uniform_forward\\\\\\\"},\\\\n    {\\\\\\\"weighted\\\\\\\": False, \\\\\\\"bidirectional\\\\\\\": True,  \\\\\\\"name\\\\\\\": \\\\\\\"uniform_bidirectional\\\\\\\"},\\\\n    {\\\\\\\"weighted\\\\\\\": True,  \\\\\\\"bidirectional\\\\\\\": False, \\\\\\\"name\\\\\\\": \\\\\\\"weighted_forward\\\\\\\"},\\\\n    {\\\\\\\"weighted\\\\\\\": True,  \\\\\\\"bidirectional\\\\\\\": True,  \\\\\\\"name\\\\\\\": \\\\\\\"weighted_bidirectional\\\\\\\"},\\\\n]\\\\n\\\\n\\\\ndef discover_conditions():\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Scan alpha_sweep directory for conditions with 5method analysis.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    conditions = {}\\\\n    for entry in sorted(os.listdir(BASE_DIR)):\\\\n        if not entry.startswith(\\\\\\\"a\\\\\\\") or \\\\\\\"_s\\\\\\\" not in entry:\\\\n            continue\\\\n        analysis = os.path.join(BASE_DIR, entry, \\\\\\\"analysis\\\\\\\",\\\\n                                \\\\\\\"5method_leadlag.json\\\\\\\")\\\\n        if not os.path.exists(analysis):\\\\n            continue\\\\n        parts = entry.split(\\\\\\\"_\\\\\\\")\\\\n        alpha_str = parts[0]\\\\n        seed = int(parts[1][1:])\\\\n        alpha_val = int(alpha_str[1:]) / 100.0\\\\n        if alpha_val not in conditions:\\\\n            conditions[alpha_val] = []\\\\n        conditions[alpha_val].append({\\\\n            \\\\\\\"run_id\\\\\\\": entry, \\\\\\\"seed\\\\\\\": seed,\\\\n            \\\\\\\"dir\\\\\\\": os.path.join(BASE_DIR, entry)\\\\n        })\\\\n    return conditions\\\\n\\\\n\\\\ndef run_all():\\\\n    conditions = discover_conditions()\\\\n    print(f\\\\\\\"Discovered conditions: { {k: len(v) for k, v in conditions.items()} }\\\\\\\")\\\\n\\\\n    print(\\\\\\\"Building null distribution from alpha=0.00 data...\\\\\\\")\\\\n    null_dist = NullDistribution(NULL_DIRS, n_bootstrap=10000, seed=42)\\\\n    n_null = len(null_dist.null_uniform_fwd)\\\\n    print(f\\\\\\\"  {n_null} null observations ({n_null // 8} seeds x 8 pairs)\\\\\\\")\\\\n    print(f\\\\\\\"  Global FPR: {null_dist.global_fpr}\\\\\\\")\\\\n\\\\n    all_results = {\\\\n        \\\\\\\"meta\\\\\\\": {\\\\n            \\\\\\\"timestamp\\\\\\\": datetime.now().isoformat(),\\\\n            \\\\\\\"null_dirs\\\\\\\": NULL_DIRS,\\\\n            \\\\\\\"n_null\\\\\\\": n_null,\\\\n            \\\\\\\"methods\\\\\\\": METHOD_NAMES,\\\\n            \\\\\\\"modes\\\\\\\": [m[\\\\\\\"name\\\\\\\"] for m in MODES],\\\\n            \\\\\\\"conditions\\\\\\\": {str(k): [c[\\\\\\\"run_id\\\\\\\"] for c in v]\\\\n                           for k, v in sorted(conditions.items())},\\\\n        },\\\\n        \\\\\\\"results\\\\\\\": {},\\\\n    }\\\\n\\\\n    for mode in MODES:\\\\n        mode_name = mode[\\\\\\\"name\\\\\\\"]\\\\n        print(f\\\\\\\"\\\\\\\\n--- Mode: {mode_name} ---\\\\\\\")\\\\n        mmct = MMCT(null_dist, weighted=mode[\\\\\\\"weighted\\\\\\\"],\\\\n                     bidirectional=mode[\\\\\\\"bidirectional\\\\\\\"])\\\\n\\\\n        mode_results = {}\\\\n        for alpha_val in sorted(conditions.keys()):\\\\n            alpha_key = f\\\\\\\"a{int(alpha_val * 100):03d}\\\\\\\"\\\\n            alpha_results = []\\\\n\\\\n            for cond in conditions[alpha_val]:\\\\n                for canary, downstream in METRIC_PAIRS:\\\\n                    result = mmct.test_from_precomputed(\\\\n                        cond[\\\\\\\"dir\\\\\\\"], canary, downstream)\\\\n                    r = result.to_dict()\\\\n                    r[\\\\\\\"alpha_condition\\\\\\\"] = alpha_val\\\\n                    r[\\\\\\\"seed\\\\\\\"] = cond[\\\\\\\"seed\\\\\\\"]\\\\n                    r[\\\\\\\"run_id\\\\\\\"] = cond[\\\\\\\"run_id\\\\\\\"]\\\\n                    alpha_results.append(r)\\\\n\\\\n            n_sig = sum(1 for r in alpha_results if r[\\\\\\\"significant\\\\\\\"])\\\\n            n_tot = len(alpha_results)\\\\n            print(f\\\\\\\"  alpha={alpha_val:.2f}: {n_sig}/{n_tot} significant\\\\\\\")\\\\n            mode_results[alpha_key] = alpha_results\\\\n\\\\n        all_results[\\\\\\\"results\\\\\\\"][mode_name] = mode_results\\\\n\\\\n    fpr_fnr = compute_fpr_fnr(all_results)\\\\n    all_results[\\\\\\\"fpr_\\\\n\\\\n... [截断: 输出过长，省略 4474 字符] ...\\\\n\\\\n       f\\\\\\\"{r['seed']} | {cs} | {r['p_value']:.4f} | \\\\\\\"\\\\n                       f\\\\\\\"{ci} | {sig} |\\\\\\\")\\\\n                if bidir:\\\\n                    rp = r.get(\\\\\\\"reverse_p_value\\\\\\\")\\\\n                    row += f\\\\\\\" {rp:.4f} |\\\\\\\" if rp is not None else \\\\\\\" N/A |\\\\\\\"\\\\n                lines.append(row)\\\\n            lines.append(\\\\\\\"\\\\\\\")\\\\n\\\\n    fpr_fnr = all_results.get(\\\\\\\"fpr_fnr\\\\\\\", {})\\\\n    lines += [\\\\n        \\\\\\\"## Summary: FPR and Detection Rate by Mode\\\\\\\",\\\\n        \\\\\\\"\\\\\\\",\\\\n        \\\\\\\"| Mode | FPR (a=0.00) | Det. Rate a=0.25 | a=0.50 | a=0.75 |\\\\\\\",\\\\n        \\\\\\\"|------|-------------|------------------|--------|--------|\\\\\\\",\\\\n    ]\\\\n    for mn, st in fpr_fnr.items():\\\\n        fpr = f\\\\\\\"{st['fpr']:.4f}\\\\\\\" if st[\\\\\\\"fpr\\\\\\\"] is not None else \\\\\\\"N/A\\\\\\\"\\\\n        rates = []\\\\n        for ak in [\\\\\\\"a025\\\\\\\", \\\\\\\"a050\\\\\\\", \\\\\\\"a075\\\\\\\"]:\\\\n            pa = st[\\\\\\\"per_alpha\\\\\\\"].get(ak)\\\\n            if pa:\\\\n                rates.append(f\\\\\\\"{pa['detection_rate']:.4f}\\\\\\\")\\\\n            else:\\\\n                rates.append(\\\\\\\"N/A\\\\\\\")\\\\n        lines.append(f\\\\\\\"| {mn} | {fpr} | {' | '.join(rates)} |\\\\\\\")\\\\n\\\\n    return \\\\\\\"\\\\\\\\n\\\\\\\".join(lines) + \\\\\\\"\\\\\\\\n\\\\\\\"\\\\n\\\\n\\\\ndef generate_fpr_fnr_comparison(fpr_fnr):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"4-way FPR-FNR comparison markdown.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    lines = [\\\\n        \\\\\\\"# FPR-FNR 4-Way Comparison\\\\\\\",\\\\n        \\\\\\\"\\\\\\\",\\\\n        \\\\\\\"uniform vs weighted x forward vs bidirectional\\\\\\\",\\\\n        \\\\\\\"\\\\\\\",\\\\n        \\\\\\\"## Detection Rate by Alpha\\\\\\\",\\\\n        \\\\\\\"\\\\\\\",\\\\n        \\\\\\\"| Mode | FPR (a=0.00) |\\\\\\\",\\\\n    ]\\\\n\\\\n    alpha_keys = set()\\\\n    for st in fpr_fnr.values():\\\\n        alpha_keys.update(st[\\\\\\\"per_alpha\\\\\\\"].keys())\\\\n    alpha_keys = sorted(alpha_keys)\\\\n\\\\n    header = \\\\\\\"| Mode | FPR (a=0.00) |\\\\\\\"\\\\n    sep = \\\\\\\"|------|-------------|\\\\\\\"\\\\n    for ak in alpha_keys:\\\\n        header += f\\\\\\\" {ak} |\\\\\\\"\\\\n        sep += \\\\\\\"------|\\\\\\\"\\\\n    lines = [\\\\n        \\\\\\\"# FPR-FNR 4-Way Comparison\\\\\\\",\\\\n        \\\\\\\"\\\\\\\",\\\\n        \\\\\\\"uniform vs weighted x forward vs bidirectional\\\\\\\",\\\\n        \\\\\\\"\\\\\\\",\\\\n        \\\\\\\"## Detection Rate by Alpha Condition\\\\\\\",\\\\n        \\\\\\\"\\\\\\\",\\\\n        header, sep,\\\\n    ]\\\\n\\\\n    for mn, st in fpr_fnr.items():\\\\n        fpr = f\\\\\\\"{st['fpr']:.4f}\\\\\\\" if st[\\\\\\\"fpr\\\\\\\"] is not None else \\\\\\\"N/A\\\\\\\"\\\\n        row = f\\\\\\\"| {mn} | {fpr} |\\\\\\\"\\\\n        for ak in alpha_keys:\\\\n            pa = st[\\\\\\\"per_alpha\\\\\\\"].get(ak)\\\\n            if pa and pa[\\\\\\\"detection_rate\\\\\\\"] is not None:\\\\n                row += f\\\\\\\" {pa['detection_rate']:.4f} |\\\\\\\"\\\\n            else:\\\\n                row += \\\\\\\" N/A |\\\\\\\"\\\\n        lines.append(row)\\\\n\\\\n    lines += [\\\\n        \\\\\\\"\\\\\\\",\\\\n        \\\\\\\"## Tradeoff Analysis\\\\\\\",\\\\n        \\\\\\\"\\\\\\\",\\\\n        \\\\\\\"- **FPR**: fraction of alpha=0.00 tests incorrectly flagged\\\\\\\",\\\\n        \\\\\\\"- **Detection rate**: fraction flagged significant at each alpha\\\\\\\",\\\\n        \\\\\\\"- Weighted mode down-weights methods with high null FPR\\\\\\\",\\\\n        \\\\\\\"- Bidirectional requires forward sig. AND reverse non-sig.\\\\\\\",\\\\n        \\\\\\\"- Ideal: FPR=0 at alpha=0.00 with high detection at alpha>0\\\\\\\",\\\\n        \\\\\\\"\\\\\\\",\\\\n        \\\\\\\"## Effect of Each Enhancement\\\\\\\",\\\\n        \\\\\\\"\\\\\\\",\\\\n    ]\\\\n\\\\n    mode_keys = list(fpr_fnr.keys())\\\\n    if len(mode_keys) == 4:\\\\n        uf = fpr_fnr.get(\\\\\\\"uniform_forward\\\\\\\", {})\\\\n        ub = fpr_fnr.get(\\\\\\\"uniform_bidirectional\\\\\\\", {})\\\\n        wf = fpr_fnr.get(\\\\\\\"weighted_forward\\\\\\\", {})\\\\n        wb = fpr_fnr.get(\\\\\\\"weighted_bidirectional\\\\\\\", {})\\\\n\\\\n        lines.append(\\\\\\\"| Comparison | FPR Change | a075 Det. Change |\\\\\\\")\\\\n        lines.append(\\\\\\\"|------------|-----------|-----------------|\\\\\\\")\\\\n\\\\n        def _fmt(a, b):\\\\n            if a is None or b is None:\\\\n                return \\\\\\\"N/A\\\\\\\"\\\\n            return f\\\\\\\"{a:.4f} -> {b:.4f}\\\\\\\"\\\\n\\\\n        def _det(st, ak=\\\\\\\"a075\\\\\\\"):\\\\n            pa = st.get(\\\\\\\"per_alpha\\\\\\\", {}).get(ak, {})\\\\n            return pa.get(\\\\\\\"detection_rate\\\\\\\")\\\\n\\\\n        lines.append(\\\\n            f\\\\\\\"| +weighted (fwd) | \\\\\\\"\\\\n            f\\\\\\\"{_fmt(uf.get('fpr'), wf.get('fpr'))} | \\\\\\\"\\\\n            f\\\\\\\"{_fmt(_det(uf), _det(wf))} |\\\\\\\")\\\\n        lines.append(\\\\n            f\\\\\\\"| +bidirectional (uniform) | \\\\\\\"\\\\n            f\\\\\\\"{_fmt(uf.get('fpr'), ub.get('fpr'))} | \\\\\\\"\\\\n            f\\\\\\\"{_fmt(_det(uf), _det(ub))} |\\\\\\\")\\\\n        lines.append(\\\\n            f\\\\\\\"| +both (full enhanced) | \\\\\\\"\\\\n            f\\\\\\\"{_fmt(uf.get('fpr'), wb.get('fpr'))} | \\\\\\\"\\\\n            f\\\\\\\"{_fmt(_det(uf), _det(wb))} |\\\\\\\")\\\\n\\\\n    return \\\\\\\"\\\\\\\\n\\\\\\\".join(lines) + \\\\\\\"\\\\\\\\n\\\\\\\"\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    run_all()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Run MMCT across all available alpha-sweep conditions.\\n\\nScans results/alpha_sweep/ for conditions with 5method_leadlag.json,\\nruns MMCT in 4 modes (uniform/weighted x forward/bidirectional),\\noutputs JSON results and markdown reports.\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport sys\\nfrom datetime import datetime\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/distrib_canary_collapse\\\")\\n\\nfrom mmct.methods import METRIC_PAIRS, METHOD_NAMES\\nfrom mmct.null_distribution import NullDistribution\\nfrom mmct.consensus_test import MMCT\\n\\nBASE_DIR = \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep\\\"\\nOUTPUT_DIR = \\\"/root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results\\\"\\n\\nNULL_DIRS = [\\n    os.path.join(BASE_DIR, \\\"a000_s42\\\"),\\n    os.path.join(BASE_DIR, \\\"a000_s43\\\"),\\n    os.path.join(BASE_DIR, \\\"a000_s44\\\"),\\n]\\n\\nMODES = [\\n    {\\\"weighted\\\": False, \\\"bidirectional\\\": False, \\\"name\\\": \\\"uniform_forward\\\"},\\n    {\\\"weighted\\\": False, \\\"bidirectional\\\": True,  \\\"name\\\": \\\"uniform_bidirectional\\\"},\\n    {\\\"weighted\\\": True,  \\\"bidirectional\\\": False, \\\"name\\\": \\\"weighted_forward\\\"},\\n    {\\\"weighted\\\": True,  \\\"bidirectional\\\": True,  \\\"name\\\": \\\"weighted_bidirectional\\\"},\\n]\\n\\n\\ndef discover_conditions():\\n    \\\"\\\"\\\"Scan alpha_sweep directory for conditions with 5method analysis.\\\"\\\"\\\"\\n    conditions = {}\\n    for entry in sorted(os.listdir(BASE_DIR)):\\n        if not entry.startswith(\\\"a\\\") or \\\"_s\\\" not in entry:\\n            continue\\n        analysis = os.path.join(BASE_DIR, entry, \\\"analysis\\\",\\n                                \\\"5method_leadlag.json\\\")\\n        if not os.path.exists(analysis):\\n            continue\\n        parts = entry.split(\\\"_\\\")\\n        alpha_str = parts[0]\\n        seed = int(parts[1][1:])\\n        alpha_val = int(alpha_str[1:]) / 100.0\\n        if alpha_val not in conditions:\\n            conditions[alpha_val] = []\\n        conditions[alpha_val].append({\\n            \\\"run_id\\\": entry, \\\"seed\\\": seed,\\n            \\\"dir\\\": os.path.join(BASE_DIR, entry)\\n        })\\n    return conditions\\n\\n\\ndef run_all():\\n    conditions = discover_conditions()\\n    print(f\\\"Discovered conditions: { {k: len(v) for k, v in conditions.items()} }\\\")\\n\\n    print(\\\"Building null distribution from alpha=0.00 data...\\\")\\n    null_dist = NullDistribution(NULL_DIRS, n_bootstrap=10000, seed=42)\\n    n_null = len(null_dist.null_uniform_fwd)\\n    print(f\\\"  {n_null} null observations ({n_null // 8} seeds x 8 pairs)\\\")\\n    print(f\\\"  Global FPR: {null_dist.global_fpr}\\\")\\n\\n    all_results = {\\n        \\\"meta\\\": {\\n            \\\"timestamp\\\": datetime.now().isoformat(),\\n            \\\"null_dirs\\\": NULL_DIRS,\\n            \\\"n_null\\\": n_null,\\n            \\\"methods\\\": METHOD_NAMES,\\n            \\\"modes\\\": [m[\\\"name\\\"] for m in MODES],\\n            \\\"conditions\\\": {str(k): [c[\\\"run_id\\\"] for c in v]\\n                           for k, v in sorted(conditions.items())},\\n        },\\n        \\\"results\\\": {},\\n    }\\n\\n    for mode in MODES:\\n        mode_name = mode[\\\"name\\\"]\\n        print(f\\\"\\\\n--- Mode: {mode_name} ---\\\")\\n        mmct = MMCT(null_dist, weighted=mode[\\\"weighted\\\"],\\n                     bidirectional=mode[\\\"bidirectional\\\"])\\n\\n        mode_results = {}\\n        for alpha_val in sorted(conditions.keys()):\\n            alpha_key = f\\\"a{int(alpha_val * 100):03d}\\\"\\n            alpha_results = []\\n\\n            for cond in conditions[alpha_val]:\\n                for canary, downstream in METRIC_PAIRS:\\n                    result = mmct.test_from_precomputed(\\n                        cond[\\\"dir\\\"], canary, downstream)\\n                    r = result.to_dict()\\n                    r[\\\"alpha_condition\\\"] = alpha_val\\n                    r[\\\"seed\\\"] = cond[\\\"seed\\\"]\\n                    r[\\\"run_id\\\"] = cond[\\\"run_id\\\"]\\n                    alpha_results.append(r)\\n\\n            n_sig = sum(1 for r in alpha_results if r[\\\"significant\\\"])\\n            n_tot = len(alpha_results)\\n            print(f\\\"  alpha={alpha_val:.2f}: {n_sig}/{n_tot} significant\\\")\\n            mode_results[alpha_key] = alpha_results\\n\\n        all_results[\\\"results\\\"][mode_name] = mode_results\\n\\n    fpr_fnr = compute_fpr_fnr(all_results)\\n    all_results[\\\"fpr_\\n\\n... [截断: 输出过长，省略 4474 字符] ...\\n\\n       f\\\"{r['seed']} | {cs} | {r['p_value']:.4f} | \\\"\\n                       f\\\"{ci} | {sig} |\\\")\\n                if bidir:\\n                    rp = r.get(\\\"reverse_p_value\\\")\\n                    row += f\\\" {rp:.4f} |\\\" if rp is not None else \\\" N/A |\\\"\\n                lines.append(row)\\n            lines.append(\\\"\\\")\\n\\n    fpr_fnr = all_results.get(\\\"fpr_fnr\\\", {})\\n    lines += [\\n        \\\"## Summary: FPR and Detection Rate by Mode\\\",\\n        \\\"\\\",\\n        \\\"| Mode | FPR (a=0.00) | Det. Rate a=0.25 | a=0.50 | a=0.75 |\\\",\\n        \\\"|------|-------------|------------------|--------|--------|\\\",\\n    ]\\n    for mn, st in fpr_fnr.items():\\n        fpr = f\\\"{st['fpr']:.4f}\\\" if st[\\\"fpr\\\"] is not None else \\\"N/A\\\"\\n        rates = []\\n        for ak in [\\\"a025\\\", \\\"a050\\\", \\\"a075\\\"]:\\n            pa = st[\\\"per_alpha\\\"].get(ak)\\n            if pa:\\n                rates.append(f\\\"{pa['detection_rate']:.4f}\\\")\\n            else:\\n                rates.append(\\\"N/A\\\")\\n        lines.append(f\\\"| {mn} | {fpr} | {' | '.join(rates)} |\\\")\\n\\n    return \\\"\\\\n\\\".join(lines) + \\\"\\\\n\\\"\\n\\n\\ndef generate_fpr_fnr_comparison(fpr_fnr):\\n    \\\"\\\"\\\"4-way FPR-FNR comparison markdown.\\\"\\\"\\\"\\n    lines = [\\n        \\\"# FPR-FNR 4-Way Comparison\\\",\\n        \\\"\\\",\\n        \\\"uniform vs weighted x forward vs bidirectional\\\",\\n        \\\"\\\",\\n        \\\"## Detection Rate by Alpha\\\",\\n        \\\"\\\",\\n        \\\"| Mode | FPR (a=0.00) |\\\",\\n    ]\\n\\n    alpha_keys = set()\\n    for st in fpr_fnr.values():\\n        alpha_keys.update(st[\\\"per_alpha\\\"].keys())\\n    alpha_keys = sorted(alpha_keys)\\n\\n    header = \\\"| Mode | FPR (a=0.00) |\\\"\\n    sep = \\\"|------|-------------|\\\"\\n    for ak in alpha_keys:\\n        header += f\\\" {ak} |\\\"\\n        sep += \\\"------|\\\"\\n    lines = [\\n        \\\"# FPR-FNR 4-Way Comparison\\\",\\n        \\\"\\\",\\n        \\\"uniform vs weighted x forward vs bidirectional\\\",\\n        \\\"\\\",\\n        \\\"## Detection Rate by Alpha Condition\\\",\\n        \\\"\\\",\\n        header, sep,\\n    ]\\n\\n    for mn, st in fpr_fnr.items():\\n        fpr = f\\\"{st['fpr']:.4f}\\\" if st[\\\"fpr\\\"] is not None else \\\"N/A\\\"\\n        row = f\\\"| {mn} | {fpr} |\\\"\\n        for ak in alpha_keys:\\n            pa = st[\\\"per_alpha\\\"].get(ak)\\n            if pa and pa[\\\"detection_rate\\\"] is not None:\\n                row += f\\\" {pa['detection_rate']:.4f} |\\\"\\n            else:\\n                row += \\\" N/A |\\\"\\n        lines.append(row)\\n\\n    lines += [\\n        \\\"\\\",\\n        \\\"## Tradeoff Analysis\\\",\\n        \\\"\\\",\\n        \\\"- **FPR**: fraction of alpha=0.00 tests incorrectly flagged\\\",\\n        \\\"- **Detection rate**: fraction flagged significant at each alpha\\\",\\n        \\\"- Weighted mode down-weights methods with high null FPR\\\",\\n        \\\"- Bidirectional requires forward sig. AND reverse non-sig.\\\",\\n        \\\"- Ideal: FPR=0 at alpha=0.00 with high detection at alpha>0\\\",\\n        \\\"\\\",\\n        \\\"## Effect of Each Enhancement\\\",\\n        \\\"\\\",\\n    ]\\n\\n    mode_keys = list(fpr_fnr.keys())\\n    if len(mode_keys) == 4:\\n        uf = fpr_fnr.get(\\\"uniform_forward\\\", {})\\n        ub = fpr_fnr.get(\\\"uniform_bidirectional\\\", {})\\n        wf = fpr_fnr.get(\\\"weighted_forward\\\", {})\\n        wb = fpr_fnr.get(\\\"weighted_bidirectional\\\", {})\\n\\n        lines.append(\\\"| Comparison | FPR Change | a075 Det. Change |\\\")\\n        lines.append(\\\"|------------|-----------|-----------------|\\\")\\n\\n        def _fmt(a, b):\\n            if a is None or b is None:\\n                return \\\"N/A\\\"\\n            return f\\\"{a:.4f} -> {b:.4f}\\\"\\n\\n        def _det(st, ak=\\\"a075\\\"):\\n            pa = st.get(\\\"per_alpha\\\", {}).get(ak, {})\\n            return pa.get(\\\"detection_rate\\\")\\n\\n        lines.append(\\n            f\\\"| +weighted (fwd) | \\\"\\n            f\\\"{_fmt(uf.get('fpr'), wf.get('fpr'))} | \\\"\\n            f\\\"{_fmt(_det(uf), _det(wf))} |\\\")\\n        lines.append(\\n            f\\\"| +bidirectional (uniform) | \\\"\\n            f\\\"{_fmt(uf.get('fpr'), ub.get('fpr'))} | \\\"\\n            f\\\"{_fmt(_det(uf), _det(ub))} |\\\")\\n        lines.append(\\n            f\\\"| +both (full enhanced) | \\\"\\n            f\\\"{_fmt(uf.get('fpr'), wb.get('fpr'))} | \\\"\\n            f\\\"{_fmt(_det(uf), _det(wb))} |\\\")\\n\\n    return \\\"\\\\n\\\".join(lines) + \\\"\\\\n\\\"\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    run_all()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me understand the situation:\n\n1. α=1.0 data is in `results/generalize/` - 7 directories exist but none have `5method_leadlag.json`\n2. The `run_mmct.py` only scans `results/alpha_sweep/` directory\n3. Each generalize dir has an `analysis/` subdirectory but no `5method_leadlag.json`\n\nI need to:\n1. Check what's in the analysis subdirectories of the generalize dirs\n2. Check if there's an analysis script that generates `5method_leadlag.json`\n\n\n3. Look at the MMCT code to understand what input format it expects, then examine the analysis directories and scripts to see how the data flows.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "4488b9f4-e5e3-4764-a3f6-8a8479912e60",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013S9pswYZhMtNQTFDZN4EVg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4439,
+                "cache_read_input_tokens": 28456,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4439
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认：α=1.0 数据在 `results/generalize/` 下（7个目录齐全），但都没有 `5method_leadlag.json`。需要先生成分析数据。继续探查。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "54742eae-ac0f-4e71-885c-1dab2acc5ffe",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013S9pswYZhMtNQTFDZN4EVg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4439,
+                "cache_read_input_tokens": 28456,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4439
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CtHUNN5uHxFtF7v18kQadN",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-19828",
+                "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/analysis/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "24a1f49c-9d2f-491d-b1d2-b30418abdd6c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013S9pswYZhMtNQTFDZN4EVg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4439,
+                "cache_read_input_tokens": 28456,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4439
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-18T15:53:31.501Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CtHUNN5uHxFtF7v18kQadN",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"mauve_supplement_4method.json\\\\npythia410m_8pair_5method_analysis.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "fe171428-39d6-4821-8ea0-9f87bc6de7a9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"mauve_supplement_4method.json\\\\npythia410m_8pair_5method_analysis.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"mauve_supplement_4method.json\\npythia410m_8pair_5method_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HoJ7ZNeeDTDjMJPaiX8Vgt",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-19828",
+                "command": "find /root/autodl-tmp/distrib_canary_collapse/analysis/ -name \"*.py\" -type f",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "0fe14542-5eff-45ef-ad73-66c67a326ca4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013S9pswYZhMtNQTFDZN4EVg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4439,
+                "cache_read_input_tokens": 28456,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4439
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-18T15:53:32.522Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HoJ7ZNeeDTDjMJPaiX8Vgt",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/analysis/detrending_utils.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "c9e9d4f3-519d-45d9-b2a9-6c932baedafd",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/analysis/detrending_utils.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/analysis/detrending_utils.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ARsFXTUCb9vKCnQ7JFjWvN",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-19828",
+                "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s42/analysis/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "f6088fc3-dab5-4a3d-ab67-762156dd3da3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013S9pswYZhMtNQTFDZN4EVg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4439,
+                "cache_read_input_tokens": 28456,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4439
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-18T15:53:33.188Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ARsFXTUCb9vKCnQ7JFjWvN",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5method_leadlag.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "4cf45f94-a41a-4531-9541-433cf7b8514a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5method_leadlag.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"5method_leadlag.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "So the α=1.0 generalize dirs have `pythia410m_8pair_5method_analysis.json` but not `5method_leadlag.json`. The alpha_sweep dirs have `5method_leadlag.json`. I need to understand:\n1. What's in `5method_leadlag.json` vs `pythia410m_8pair_5method_analysis.json`\n2. How to generate `5method_leadlag.json` for the generalize dirs\n\nLet me look at the structure of both files and the analysis script that generates them.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "e02bb699-a8e5-4bb1-b209-540086865f95",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MjvX4VeJRSD99wq8tyLJh2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 975,
+                "cache_read_input_tokens": 32895,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 975
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "generalize 目录有 `pythia410m_8pair_5method_analysis.json` 但没有 `5method_leadlag.json`。看看两者结构差异和生成脚本。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "3f0e9b0c-06bf-4e33-82b5-9fe2347a9a68",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MjvX4VeJRSD99wq8tyLJh2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 975,
+                "cache_read_input_tokens": 32895,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 975
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WRRcvdCNhRheuBDiD2RVyF",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-19828",
+                "command": "head -100 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s42/analysis/5method_leadlag.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "50a8831a-5752-418f-9e60-8079aeb013d6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MjvX4VeJRSD99wq8tyLJh2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 975,
+                "cache_read_input_tokens": 32895,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 975
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-18T15:53:44.381Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WRRcvdCNhRheuBDiD2RVyF",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"meta\\\\\\\": {\\\\n    \\\\\\\"alpha\\\\\\\": 0.75,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"T\\\\\\\": 11,\\\\n    \\\\\\\"n_perm\\\\\\\": 5000\\\\n  },\\\\n  \\\\\\\"pairs\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"forward\\\\\\\": {\\\\n        \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n        \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_1\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"forward\\\\\\\",\\\\n        \\\\\\\"naive_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"naive_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": 5,\\\\n          \\\\\\\"r\\\\\\\": -0.9716,\\\\n          \\\\\\\"p_value\\\\\\\": 0.001198,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"all_lags\\\\\\\": [\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -5,\\\\n              \\\\\\\"r\\\\\\\": 0.8178,\\\\n              \\\\\\\"p\\\\\\\": 0.046795\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -4,\\\\n              \\\\\\\"r\\\\\\\": 0.7991,\\\\n              \\\\\\\"p\\\\\\\": 0.03109\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -3,\\\\n              \\\\\\\"r\\\\\\\": 0.7715,\\\\n              \\\\\\\"p\\\\\\\": 0.024957\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -2,\\\\n              \\\\\\\"r\\\\\\\": 0.8124,\\\\n              \\\\\\\"p\\\\\\\": 0.007789\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -1,\\\\n              \\\\\\\"r\\\\\\\": 0.7844,\\\\n              \\\\\\\"p\\\\\\\": 0.007218\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 0,\\\\n              \\\\\\\"r\\\\\\\": 0.5018,\\\\n              \\\\\\\"p\\\\\\\": 0.115816\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 1,\\\\n              \\\\\\\"r\\\\\\\": -0.6688,\\\\n              \\\\\\\"p\\\\\\\": 0.034461\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 2,\\\\n              \\\\\\\"r\\\\\\\": -0.8746,\\\\n              \\\\\\\"p\\\\\\\": 0.002032\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 3,\\\\n              \\\\\\\"r\\\\\\\": -0.9286,\\\\n              \\\\\\\"p\\\\\\\": 0.000863\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 4,\\\\n              \\\\\\\"r\\\\\\\": -0.9357,\\\\n              \\\\\\\"p\\\\\\\": 0.001948\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 5,\\\\n              \\\\\\\"r\\\\\\\": -0.9716,\\\\n              \\\\\\\"p\\\\\\\": 0.001198\\\\n            }\\\\n          ]\\\\n        },\\\\n        \\\\\\\"diff_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"diff_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -2,\\\\n          \\\\\\\"r\\\\\\\": 0.973,\\\\n          \\\\\\\"p_value\\\\\\\": 4.8e-05,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"all_lags\\\\\\\": [\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -5,\\\\n              \\\\\\\"r\\\\\\\": 0.9567,\\\\n              \\\\\\\"p\\\\\\\": 0.010744\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -4,\\\\n              \\\\\\\"r\\\\\\\": 0.8853,\\\\n              \\\\\\\"p\\\\\\\": 0.018988\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -3,\\\\n              \\\\\\\"r\\\\\\\": 0.8672,\\\\n              \\\\\\\"p\\\\\\\": 0.011468\\\\n            },\\\\n            {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "6bc309f7-91ef-49e3-b03d-f35d75278a1e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"meta\\\\\\\": {\\\\n    \\\\\\\"alpha\\\\\\\": 0.75,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"T\\\\\\\": 11,\\\\n    \\\\\\\"n_perm\\\\\\\": 5000\\\\n  },\\\\n  \\\\\\\"pairs\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"forward\\\\\\\": {\\\\n        \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n        \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_1\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"forward\\\\\\\",\\\\n        \\\\\\\"naive_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"naive_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": 5,\\\\n          \\\\\\\"r\\\\\\\": -0.9716,\\\\n          \\\\\\\"p_value\\\\\\\": 0.001198,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"all_lags\\\\\\\": [\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -5,\\\\n              \\\\\\\"r\\\\\\\": 0.8178,\\\\n              \\\\\\\"p\\\\\\\": 0.046795\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -4,\\\\n              \\\\\\\"r\\\\\\\": 0.7991,\\\\n              \\\\\\\"p\\\\\\\": 0.03109\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -3,\\\\n              \\\\\\\"r\\\\\\\": 0.7715,\\\\n              \\\\\\\"p\\\\\\\": 0.024957\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -2,\\\\n              \\\\\\\"r\\\\\\\": 0.8124,\\\\n              \\\\\\\"p\\\\\\\": 0.007789\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -1,\\\\n              \\\\\\\"r\\\\\\\": 0.7844,\\\\n              \\\\\\\"p\\\\\\\": 0.007218\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 0,\\\\n              \\\\\\\"r\\\\\\\": 0.5018,\\\\n              \\\\\\\"p\\\\\\\": 0.115816\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 1,\\\\n              \\\\\\\"r\\\\\\\": -0.6688,\\\\n              \\\\\\\"p\\\\\\\": 0.034461\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 2,\\\\n              \\\\\\\"r\\\\\\\": -0.8746,\\\\n              \\\\\\\"p\\\\\\\": 0.002032\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 3,\\\\n              \\\\\\\"r\\\\\\\": -0.9286,\\\\n              \\\\\\\"p\\\\\\\": 0.000863\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 4,\\\\n              \\\\\\\"r\\\\\\\": -0.9357,\\\\n              \\\\\\\"p\\\\\\\": 0.001948\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 5,\\\\n              \\\\\\\"r\\\\\\\": -0.9716,\\\\n              \\\\\\\"p\\\\\\\": 0.001198\\\\n            }\\\\n          ]\\\\n        },\\\\n        \\\\\\\"diff_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"diff_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -2,\\\\n          \\\\\\\"r\\\\\\\": 0.973,\\\\n          \\\\\\\"p_value\\\\\\\": 4.8e-05,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"all_lags\\\\\\\": [\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -5,\\\\n              \\\\\\\"r\\\\\\\": 0.9567,\\\\n              \\\\\\\"p\\\\\\\": 0.010744\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -4,\\\\n              \\\\\\\"r\\\\\\\": 0.8853,\\\\n              \\\\\\\"p\\\\\\\": 0.018988\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -3,\\\\n              \\\\\\\"r\\\\\\\": 0.8672,\\\\n              \\\\\\\"p\\\\\\\": 0.011468\\\\n            },\\\\n            {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"meta\\\": {\\n    \\\"alpha\\\": 0.75,\\n    \\\"seed\\\": 42,\\n    \\\"T\\\": 11,\\n    \\\"n_perm\\\": 5000\\n  },\\n  \\\"pairs\\\": [\\n    {\\n      \\\"forward\\\": {\\n        \\\"canary\\\": \\\"token_entropy\\\",\\n        \\\"downstream\\\": \\\"distinct_1\\\",\\n        \\\"direction\\\": \\\"forward\\\",\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": 5,\\n          \\\"r\\\": -0.9716,\\n          \\\"p_value\\\": 0.001198,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": 0.8178,\\n              \\\"p\\\": 0.046795\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": 0.7991,\\n              \\\"p\\\": 0.03109\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": 0.7715,\\n              \\\"p\\\": 0.024957\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": 0.8124,\\n              \\\"p\\\": 0.007789\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": 0.7844,\\n              \\\"p\\\": 0.007218\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": 0.5018,\\n              \\\"p\\\": 0.115816\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": -0.6688,\\n              \\\"p\\\": 0.034461\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": -0.8746,\\n              \\\"p\\\": 0.002032\\n            },\\n            {\\n              \\\"lag\\\": 3,\\n              \\\"r\\\": -0.9286,\\n              \\\"p\\\": 0.000863\\n            },\\n            {\\n              \\\"lag\\\": 4,\\n              \\\"r\\\": -0.9357,\\n              \\\"p\\\": 0.001948\\n            },\\n            {\\n              \\\"lag\\\": 5,\\n              \\\"r\\\": -0.9716,\\n              \\\"p\\\": 0.001198\\n            }\\n          ]\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -2,\\n          \\\"r\\\": 0.973,\\n          \\\"p_value\\\": 4.8e-05,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": 0.9567,\\n              \\\"p\\\": 0.010744\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": 0.8853,\\n              \\\"p\\\": 0.018988\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": 0.8672,\\n              \\\"p\\\": 0.011468\\n            },\\n            {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EoorgHVmouQKK93fufynnf",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-19828",
+                "command": "head -100 /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/analysis/pythia410m_8pair_5method_analysis.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "0a8107f3-3636-46e5-b51c-8f4a5b760311",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MjvX4VeJRSD99wq8tyLJh2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 975,
+                "cache_read_input_tokens": 32895,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 975
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-18T15:53:45.316Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EoorgHVmouQKK93fufynnf",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"pythia410m_wiki_a100_s42\\\\\\\",\\\\n  \\\\\\\"unified_params\\\\\\\": {\\\\n    \\\\\\\"n_perm\\\\\\\": 5000,\\\\n    \\\\\\\"xcorr_max_lag\\\\\\\": 5,\\\\n    \\\\\\\"granger_max_lag\\\\\\\": 1,\\\\n    \\\\\\\"fdr\\\\\\\": \\\\\\\"none (raw p<0.05)\\\\\\\",\\\\n    \\\\\\\"canonical_pairs\\\\\\\": \\\\\\\"['token_entropy', 'ece'] x ['perplexity', 'distinct_1', 'distinct_2', 'distinct_3']\\\\\\\"\\\\n  },\\\\n  \\\\\\\"method_sig_counts\\\\\\\": {\\\\n    \\\\\\\"naive_xcorr\\\\\\\": 8,\\\\n    \\\\\\\"diff_xcorr\\\\\\\": 8,\\\\n    \\\\\\\"threshold_onset\\\\\\\": 8,\\\\n    \\\\\\\"permg_fwd\\\\\\\": 6,\\\\n    \\\\\\\"permg_rev\\\\\\\": 3,\\\\n    \\\\\\\"ty_granger\\\\\\\": 4\\\\n  },\\\\n  \\\\\\\"k3_count\\\\\\\": 8,\\\\n  \\\\\\\"k4_count\\\\\\\": 6,\\\\n  \\\\\\\"per_pair\\\\\\\": {\\\\n    \\\\\\\"token_entropy->perplexity\\\\\\\": {\\\\n      \\\\\\\"naive_xcorr\\\\\\\": {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"naive_pearson\\\\\\\",\\\\n        \\\\\\\"peak_lag\\\\\\\": -5,\\\\n        \\\\\\\"r\\\\\\\": 0.8204,\\\\n        \\\\\\\"p_value\\\\\\\": 0.045509,\\\\n        \\\\\\\"significant\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"diff_xcorr\\\\\\\": {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"differenced_xcorr\\\\\\\",\\\\n        \\\\\\\"peak_lag\\\\\\\": 5,\\\\n        \\\\\\\"r\\\\\\\": -0.9101,\\\\n        \\\\\\\"p_value\\\\\\\": 0.03191,\\\\n        \\\\\\\"significant\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"threshold_onset\\\\\\\": {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n        \\\\\\\"canary_onset\\\\\\\": 1,\\\\n        \\\\\\\"downstream_onset\\\\\\\": 7,\\\\n        \\\\\\\"lead_time\\\\\\\": 6,\\\\n        \\\\\\\"significant\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"permg_fwd\\\\\\\": {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"permg_fwd\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"token_entropy->perplexity\\\\\\\",\\\\n        \\\\\\\"f_stat\\\\\\\": 0.6865,\\\\n        \\\\\\\"p_value\\\\\\\": 0.584083,\\\\n        \\\\\\\"significant\\\\\\\": false,\\\\n        \\\\\\\"n_perm\\\\\\\": 5000\\\\n      },\\\\n      \\\\\\\"permg_rev\\\\\\\": {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"permg_rev\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"perplexity->token_entropy\\\\\\\",\\\\n        \\\\\\\"f_stat\\\\\\\": 0.0014,\\\\n        \\\\\\\"p_value\\\\\\\": 0.965807,\\\\n        \\\\\\\"significant\\\\\\\": false,\\\\n        \\\\\\\"n_perm\\\\\\\": 5000\\\\n      },\\\\n      \\\\\\\"ty_granger\\\\\\\": {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"toda_yamamoto\\\\\\\",\\\\n        \\\\\\\"p\\\\\\\": 1,\\\\n        \\\\\\\"d_max\\\\\\\": 1,\\\\n        \\\\\\\"k\\\\\\\": 2,\\\\n        \\\\\\\"wald_F\\\\\\\": 1.5854,\\\\n        \\\\\\\"p_value\\\\\\\": 0.276456,\\\\n        \\\\\\\"significant\\\\\\\": false,\\\\n        \\\\\\\"df_resid\\\\\\\": 4,\\\\n        \\\\\\\"d_canary\\\\\\\": 0,\\\\n        \\\\\\\"d_downstream\\\\\\\": 1\\\\n      },\\\\n      \\\\\\\"sig_flags\\\\\\\": {\\\\n        \\\\\\\"naive_xcorr\\\\\\\": true,\\\\n        \\\\\\\"diff_xcorr\\\\\\\": true,\\\\n        \\\\\\\"threshold_onset\\\\\\\": true,\\\\n        \\\\\\\"permg_fwd\\\\\\\": false,\\\\n        \\\\\\\"permg_rev\\\\\\\": false,\\\\n        \\\\\\\"ty_granger\\\\\\\": false\\\\n      },\\\\n      \\\\\\\"n_methods_sig\\\\\\\": 3\\\\n    },\\\\n    \\\\\\\"token_entropy->distinct_1\\\\\\\": {\\\\n      \\\\\\\"naive_xcorr\\\\\\\": {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"naive_pearson\\\\\\\",\\\\n        \\\\\\\"peak_lag\\\\\\\": -1,\\\\n        \\\\\\\"r\\\\\\\": 0.997,\\\\n        \\\\\\\"p_value\\\\\\\": 0.0,\\\\n        \\\\\\\"significant\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"diff_xcorr\\\\\\\": {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"differenced_xcorr\\\\\\\",\\\\n        \\\\\\\"peak_lag\\\\\\\": -1,\\\\n        \\\\\\\"r\\\\\\\": 0.9988,\\\\n        \\\\\\\"p_value\\\\\\\": 0.0,\\\\n        \\\\\\\"significant\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"threshold_onset\\\\\\\": {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n        \\\\\\\"canary_onset\\\\\\\": 1,\\\\n        \\\\\\\"downstream_onset\\\\\\\": 3,\\\\n        \\\\\\\"lead_time\\\\\\\": 2,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "2cd870d3-b95c-4160-8715-83bcdb12eb0f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"pythia410m_wiki_a100_s42\\\\\\\",\\\\n  \\\\\\\"unified_params\\\\\\\": {\\\\n    \\\\\\\"n_perm\\\\\\\": 5000,\\\\n    \\\\\\\"xcorr_max_lag\\\\\\\": 5,\\\\n    \\\\\\\"granger_max_lag\\\\\\\": 1,\\\\n    \\\\\\\"fdr\\\\\\\": \\\\\\\"none (raw p<0.05)\\\\\\\",\\\\n    \\\\\\\"canonical_pairs\\\\\\\": \\\\\\\"['token_entropy', 'ece'] x ['perplexity', 'distinct_1', 'distinct_2', 'distinct_3']\\\\\\\"\\\\n  },\\\\n  \\\\\\\"method_sig_counts\\\\\\\": {\\\\n    \\\\\\\"naive_xcorr\\\\\\\": 8,\\\\n    \\\\\\\"diff_xcorr\\\\\\\": 8,\\\\n    \\\\\\\"threshold_onset\\\\\\\": 8,\\\\n    \\\\\\\"permg_fwd\\\\\\\": 6,\\\\n    \\\\\\\"permg_rev\\\\\\\": 3,\\\\n    \\\\\\\"ty_granger\\\\\\\": 4\\\\n  },\\\\n  \\\\\\\"k3_count\\\\\\\": 8,\\\\n  \\\\\\\"k4_count\\\\\\\": 6,\\\\n  \\\\\\\"per_pair\\\\\\\": {\\\\n    \\\\\\\"token_entropy->perplexity\\\\\\\": {\\\\n      \\\\\\\"naive_xcorr\\\\\\\": {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"naive_pearson\\\\\\\",\\\\n        \\\\\\\"peak_lag\\\\\\\": -5,\\\\n        \\\\\\\"r\\\\\\\": 0.8204,\\\\n        \\\\\\\"p_value\\\\\\\": 0.045509,\\\\n        \\\\\\\"significant\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"diff_xcorr\\\\\\\": {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"differenced_xcorr\\\\\\\",\\\\n        \\\\\\\"peak_lag\\\\\\\": 5,\\\\n        \\\\\\\"r\\\\\\\": -0.9101,\\\\n        \\\\\\\"p_value\\\\\\\": 0.03191,\\\\n        \\\\\\\"significant\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"threshold_onset\\\\\\\": {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n        \\\\\\\"canary_onset\\\\\\\": 1,\\\\n        \\\\\\\"downstream_onset\\\\\\\": 7,\\\\n        \\\\\\\"lead_time\\\\\\\": 6,\\\\n        \\\\\\\"significant\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"permg_fwd\\\\\\\": {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"permg_fwd\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"token_entropy->perplexity\\\\\\\",\\\\n        \\\\\\\"f_stat\\\\\\\": 0.6865,\\\\n        \\\\\\\"p_value\\\\\\\": 0.584083,\\\\n        \\\\\\\"significant\\\\\\\": false,\\\\n        \\\\\\\"n_perm\\\\\\\": 5000\\\\n      },\\\\n      \\\\\\\"permg_rev\\\\\\\": {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"permg_rev\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"perplexity->token_entropy\\\\\\\",\\\\n        \\\\\\\"f_stat\\\\\\\": 0.0014,\\\\n        \\\\\\\"p_value\\\\\\\": 0.965807,\\\\n        \\\\\\\"significant\\\\\\\": false,\\\\n        \\\\\\\"n_perm\\\\\\\": 5000\\\\n      },\\\\n      \\\\\\\"ty_granger\\\\\\\": {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"toda_yamamoto\\\\\\\",\\\\n        \\\\\\\"p\\\\\\\": 1,\\\\n        \\\\\\\"d_max\\\\\\\": 1,\\\\n        \\\\\\\"k\\\\\\\": 2,\\\\n        \\\\\\\"wald_F\\\\\\\": 1.5854,\\\\n        \\\\\\\"p_value\\\\\\\": 0.276456,\\\\n        \\\\\\\"significant\\\\\\\": false,\\\\n        \\\\\\\"df_resid\\\\\\\": 4,\\\\n        \\\\\\\"d_canary\\\\\\\": 0,\\\\n        \\\\\\\"d_downstream\\\\\\\": 1\\\\n      },\\\\n      \\\\\\\"sig_flags\\\\\\\": {\\\\n        \\\\\\\"naive_xcorr\\\\\\\": true,\\\\n        \\\\\\\"diff_xcorr\\\\\\\": true,\\\\n        \\\\\\\"threshold_onset\\\\\\\": true,\\\\n        \\\\\\\"permg_fwd\\\\\\\": false,\\\\n        \\\\\\\"permg_rev\\\\\\\": false,\\\\n        \\\\\\\"ty_granger\\\\\\\": false\\\\n      },\\\\n      \\\\\\\"n_methods_sig\\\\\\\": 3\\\\n    },\\\\n    \\\\\\\"token_entropy->distinct_1\\\\\\\": {\\\\n      \\\\\\\"naive_xcorr\\\\\\\": {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"naive_pearson\\\\\\\",\\\\n        \\\\\\\"peak_lag\\\\\\\": -1,\\\\n        \\\\\\\"r\\\\\\\": 0.997,\\\\n        \\\\\\\"p_value\\\\\\\": 0.0,\\\\n        \\\\\\\"significant\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"diff_xcorr\\\\\\\": {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"differenced_xcorr\\\\\\\",\\\\n        \\\\\\\"peak_lag\\\\\\\": -1,\\\\n        \\\\\\\"r\\\\\\\": 0.9988,\\\\n        \\\\\\\"p_value\\\\\\\": 0.0,\\\\n        \\\\\\\"significant\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"threshold_onset\\\\\\\": {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n        \\\\\\\"canary_onset\\\\\\\": 1,\\\\n        \\\\\\\"downstream_onset\\\\\\\": 3,\\\\n        \\\\\\\"lead_time\\\\\\\": 2,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"pythia410m_wiki_a100_s42\\\",\\n  \\\"unified_params\\\": {\\n    \\\"n_perm\\\": 5000,\\n    \\\"xcorr_max_lag\\\": 5,\\n    \\\"granger_max_lag\\\": 1,\\n    \\\"fdr\\\": \\\"none (raw p<0.05)\\\",\\n    \\\"canonical_pairs\\\": \\\"['token_entropy', 'ece'] x ['perplexity', 'distinct_1', 'distinct_2', 'distinct_3']\\\"\\n  },\\n  \\\"method_sig_counts\\\": {\\n    \\\"naive_xcorr\\\": 8,\\n    \\\"diff_xcorr\\\": 8,\\n    \\\"threshold_onset\\\": 8,\\n    \\\"permg_fwd\\\": 6,\\n    \\\"permg_rev\\\": 3,\\n    \\\"ty_granger\\\": 4\\n  },\\n  \\\"k3_count\\\": 8,\\n  \\\"k4_count\\\": 6,\\n  \\\"per_pair\\\": {\\n    \\\"token_entropy->perplexity\\\": {\\n      \\\"naive_xcorr\\\": {\\n        \\\"method\\\": \\\"naive_pearson\\\",\\n        \\\"peak_lag\\\": -5,\\n        \\\"r\\\": 0.8204,\\n        \\\"p_value\\\": 0.045509,\\n        \\\"significant\\\": true\\n      },\\n      \\\"diff_xcorr\\\": {\\n        \\\"method\\\": \\\"differenced_xcorr\\\",\\n        \\\"peak_lag\\\": 5,\\n        \\\"r\\\": -0.9101,\\n        \\\"p_value\\\": 0.03191,\\n        \\\"significant\\\": true\\n      },\\n      \\\"threshold_onset\\\": {\\n        \\\"method\\\": \\\"threshold_onset\\\",\\n        \\\"canary_onset\\\": 1,\\n        \\\"downstream_onset\\\": 7,\\n        \\\"lead_time\\\": 6,\\n        \\\"significant\\\": true\\n      },\\n      \\\"permg_fwd\\\": {\\n        \\\"method\\\": \\\"permg_fwd\\\",\\n        \\\"direction\\\": \\\"token_entropy->perplexity\\\",\\n        \\\"f_stat\\\": 0.6865,\\n        \\\"p_value\\\": 0.584083,\\n        \\\"significant\\\": false,\\n        \\\"n_perm\\\": 5000\\n      },\\n      \\\"permg_rev\\\": {\\n        \\\"method\\\": \\\"permg_rev\\\",\\n        \\\"direction\\\": \\\"perplexity->token_entropy\\\",\\n        \\\"f_stat\\\": 0.0014,\\n        \\\"p_value\\\": 0.965807,\\n        \\\"significant\\\": false,\\n        \\\"n_perm\\\": 5000\\n      },\\n      \\\"ty_granger\\\": {\\n        \\\"method\\\": \\\"toda_yamamoto\\\",\\n        \\\"p\\\": 1,\\n        \\\"d_max\\\": 1,\\n        \\\"k\\\": 2,\\n        \\\"wald_F\\\": 1.5854,\\n        \\\"p_value\\\": 0.276456,\\n        \\\"significant\\\": false,\\n        \\\"df_resid\\\": 4,\\n        \\\"d_canary\\\": 0,\\n        \\\"d_downstream\\\": 1\\n      },\\n      \\\"sig_flags\\\": {\\n        \\\"naive_xcorr\\\": true,\\n        \\\"diff_xcorr\\\": true,\\n        \\\"threshold_onset\\\": true,\\n        \\\"permg_fwd\\\": false,\\n        \\\"permg_rev\\\": false,\\n        \\\"ty_granger\\\": false\\n      },\\n      \\\"n_methods_sig\\\": 3\\n    },\\n    \\\"token_entropy->distinct_1\\\": {\\n      \\\"naive_xcorr\\\": {\\n        \\\"method\\\": \\\"naive_pearson\\\",\\n        \\\"peak_lag\\\": -1,\\n        \\\"r\\\": 0.997,\\n        \\\"p_value\\\": 0.0,\\n        \\\"significant\\\": true\\n      },\\n      \\\"diff_xcorr\\\": {\\n        \\\"method\\\": \\\"differenced_xcorr\\\",\\n        \\\"peak_lag\\\": -1,\\n        \\\"r\\\": 0.9988,\\n        \\\"p_value\\\": 0.0,\\n        \\\"significant\\\": true\\n      },\\n      \\\"threshold_onset\\\": {\\n        \\\"method\\\": \\\"threshold_onset\\\",\\n        \\\"canary_onset\\\": 1,\\n        \\\"downstream_onset\\\": 3,\\n        \\\"lead_time\\\": 2,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017hCMZ57aYdsLfUcokbz4qP",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-19828",
+                "command": "cat /root/autodl-tmp/distrib_canary_collapse/mmct/consensus_test.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "029f6e53-75ba-432b-ae2c-b09f1cbe70fb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MjvX4VeJRSD99wq8tyLJh2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 975,
+                "cache_read_input_tokens": 32895,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 975
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-18T15:53:45.996Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017hCMZ57aYdsLfUcokbz4qP",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Multi-Method Consensus Test (MMCT) core implementation.\\\\n\\\\nSingle methods have uncontrolled FPR on short time series (T~11).\\\\nMMCT aggregates K=5 methods into a consensus score calibrated against\\\\nalpha=0.00 null data to control false positive rate.\\\\n\\\\nModes:\\\\n  - uniform: consensus = count of significant methods\\\\n  - weighted: consensus = inverse-FPR-weighted sum (down-weights noisy methods)\\\\n  - forward-only: test canary -> downstream direction only\\\\n  - bidirectional: require forward significant AND reverse non-significant\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom dataclasses import dataclass, field, asdict\\\\nfrom typing import Optional\\\\n\\\\nfrom .methods import METHOD_NAMES, extract_method_significance, load_5method_results\\\\nfrom .null_distribution import NullDistribution\\\\n\\\\n\\\\n@dataclass\\\\nclass MMCTResult:\\\\n    canary: str\\\\n    downstream: str\\\\n    consensus_score: float\\\\n    p_value: float\\\\n    ci_lower: float\\\\n    ci_upper: float\\\\n    method_results: dict\\\\n    significant: bool\\\\n    alpha: float = 0.05\\\\n    mode: str = \\\\\\\"uniform_forward\\\\\\\"\\\\n    weights: Optional[dict] = None\\\\n    reverse_p_value: Optional[float] = None\\\\n    reverse_consensus_score: Optional[float] = None\\\\n    reverse_method_results: Optional[dict] = None\\\\n\\\\n    def to_dict(self):\\\\n        d = asdict(self)\\\\n        if d[\\\\\\\"weights\\\\\\\"]:\\\\n            d[\\\\\\\"weights\\\\\\\"] = {k: round(v, 4) for k, v in d[\\\\\\\"weights\\\\\\\"].items()}\\\\n        return d\\\\n\\\\n\\\\nclass MMCT:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Multi-Method Consensus Test.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, null_distribution, weighted=False,\\\\n                 bidirectional=False, alpha=0.05):\\\\n        self.null = null_distribution\\\\n        self.weighted = weighted\\\\n        self.bidirectional = bidirectional\\\\n        self.alpha = alpha\\\\n\\\\n    @property\\\\n    def mode_name(self):\\\\n        w = \\\\\\\"weighted\\\\\\\" if self.weighted else \\\\\\\"uniform\\\\\\\"\\\\n        d = \\\\\\\"bidirectional\\\\\\\" if self.bidirectional else \\\\\\\"forward\\\\\\\"\\\\n        return f\\\\\\\"{w}_{d}\\\\\\\"\\\\n\\\\n    def test_from_precomputed(self, data_dir, canary, downstream):\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Run MMCT on one pair using pre-computed 5method results.\\\\n\\\\n        Args:\\\\n            data_dir: path to experiment directory containing\\\\n                      analysis/5method_leadlag.json\\\\n            canary: canary metric name\\\\n            downstream: downstream metric name\\\\n\\\\n        Returns:\\\\n            MMCTResult\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        results = load_5method_results(data_dir)\\\\n        fwd_sig = extract_method_significance(\\\\n            results, canary, downstream, \\\\\\\"forward\\\\\\\")\\\\n\\\\n        pair_key = (canary, downstream)\\\\n\\\\n        if self.weighted:\\\\n            weights = self.null.get_weights(pair_key)\\\\n            score = self.null.consensus_score_weighted(fwd_sig, weights)\\\\n        else:\\\\n            weights = None\\\\n            score = self.null.consensus_score_uniform(fwd_sig)\\\\n\\\\n        p, ci_lo, ci_hi = self.null.p_value(\\\\n            score, weighted=self.weighted, direction=\\\\\\\"forward\\\\\\\")\\\\n\\\\n        significant = p < self.alpha\\\\n\\\\n        reverse_p = None\\\\n        reverse_score = None\\\\n        reverse_sig_dict = None\\\\n\\\\n        if self.bidirectional:\\\\n            rev_sig = extract_method_significance(\\\\n                results, canary, downstream, \\\\\\\"reverse\\\\\\\")\\\\n            if self.weighted:\\\\n                reverse_score = self.null.consensus_score_weighted(\\\\n                    rev_sig, weights)\\\\n            else:\\\\n                reverse_score = self.null.consensus_score_uniform(rev_sig)\\\\n\\\\n            reverse_p, _, _ = self.null.p_value(\\\\n                reverse_score, weighted=self.weighted, direction=\\\\\\\"forward\\\\\\\")\\\\n            reverse_sig_dict = rev_sig\\\\n\\\\n            significant = (p < self.alpha) and (reverse_p >= self.alpha)\\\\n\\\\n        return MMCTResult(\\\\n            canary=canary,\\\\n            downstream=downstream,\\\\n            consensus_score=round(score, 6),\\\\n            p_value=round(p, 6),\\\\n            ci_lower=round(ci_lo, 6),\\\\n            ci_upper=round(ci_hi, 6),\\\\n            method_results=fwd_sig,\\\\n            significant=significant,\\\\n            alpha=self.alpha,\\\\n            mode=self.mode_name,\\\\n            weights=weights,\\\\n            reverse_p_value=round(reverse_p, 6) if reverse_p is not None else None,\\\\n            reverse_consensus_score=(round(reverse_score, 6)\\\\n                                     if reverse_score is not None else None),\\\\n            reverse_method_results=reverse_sig_dict,\\\\n        )\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "2cc029cc-17a6-4100-b317-399577ab5130",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Multi-Method Consensus Test (MMCT) core implementation.\\\\n\\\\nSingle methods have uncontrolled FPR on short time series (T~11).\\\\nMMCT aggregates K=5 methods into a consensus score calibrated against\\\\nalpha=0.00 null data to control false positive rate.\\\\n\\\\nModes:\\\\n  - uniform: consensus = count of significant methods\\\\n  - weighted: consensus = inverse-FPR-weighted sum (down-weights noisy methods)\\\\n  - forward-only: test canary -> downstream direction only\\\\n  - bidirectional: require forward significant AND reverse non-significant\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom dataclasses import dataclass, field, asdict\\\\nfrom typing import Optional\\\\n\\\\nfrom .methods import METHOD_NAMES, extract_method_significance, load_5method_results\\\\nfrom .null_distribution import NullDistribution\\\\n\\\\n\\\\n@dataclass\\\\nclass MMCTResult:\\\\n    canary: str\\\\n    downstream: str\\\\n    consensus_score: float\\\\n    p_value: float\\\\n    ci_lower: float\\\\n    ci_upper: float\\\\n    method_results: dict\\\\n    significant: bool\\\\n    alpha: float = 0.05\\\\n    mode: str = \\\\\\\"uniform_forward\\\\\\\"\\\\n    weights: Optional[dict] = None\\\\n    reverse_p_value: Optional[float] = None\\\\n    reverse_consensus_score: Optional[float] = None\\\\n    reverse_method_results: Optional[dict] = None\\\\n\\\\n    def to_dict(self):\\\\n        d = asdict(self)\\\\n        if d[\\\\\\\"weights\\\\\\\"]:\\\\n            d[\\\\\\\"weights\\\\\\\"] = {k: round(v, 4) for k, v in d[\\\\\\\"weights\\\\\\\"].items()}\\\\n        return d\\\\n\\\\n\\\\nclass MMCT:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Multi-Method Consensus Test.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, null_distribution, weighted=False,\\\\n                 bidirectional=False, alpha=0.05):\\\\n        self.null = null_distribution\\\\n        self.weighted = weighted\\\\n        self.bidirectional = bidirectional\\\\n        self.alpha = alpha\\\\n\\\\n    @property\\\\n    def mode_name(self):\\\\n        w = \\\\\\\"weighted\\\\\\\" if self.weighted else \\\\\\\"uniform\\\\\\\"\\\\n        d = \\\\\\\"bidirectional\\\\\\\" if self.bidirectional else \\\\\\\"forward\\\\\\\"\\\\n        return f\\\\\\\"{w}_{d}\\\\\\\"\\\\n\\\\n    def test_from_precomputed(self, data_dir, canary, downstream):\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Run MMCT on one pair using pre-computed 5method results.\\\\n\\\\n        Args:\\\\n            data_dir: path to experiment directory containing\\\\n                      analysis/5method_leadlag.json\\\\n            canary: canary metric name\\\\n            downstream: downstream metric name\\\\n\\\\n        Returns:\\\\n            MMCTResult\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        results = load_5method_results(data_dir)\\\\n        fwd_sig = extract_method_significance(\\\\n            results, canary, downstream, \\\\\\\"forward\\\\\\\")\\\\n\\\\n        pair_key = (canary, downstream)\\\\n\\\\n        if self.weighted:\\\\n            weights = self.null.get_weights(pair_key)\\\\n            score = self.null.consensus_score_weighted(fwd_sig, weights)\\\\n        else:\\\\n            weights = None\\\\n            score = self.null.consensus_score_uniform(fwd_sig)\\\\n\\\\n        p, ci_lo, ci_hi = self.null.p_value(\\\\n            score, weighted=self.weighted, direction=\\\\\\\"forward\\\\\\\")\\\\n\\\\n        significant = p < self.alpha\\\\n\\\\n        reverse_p = None\\\\n        reverse_score = None\\\\n        reverse_sig_dict = None\\\\n\\\\n        if self.bidirectional:\\\\n            rev_sig = extract_method_significance(\\\\n                results, canary, downstream, \\\\\\\"reverse\\\\\\\")\\\\n            if self.weighted:\\\\n                reverse_score = self.null.consensus_score_weighted(\\\\n                    rev_sig, weights)\\\\n            else:\\\\n                reverse_score = self.null.consensus_score_uniform(rev_sig)\\\\n\\\\n            reverse_p, _, _ = self.null.p_value(\\\\n                reverse_score, weighted=self.weighted, direction=\\\\\\\"forward\\\\\\\")\\\\n            reverse_sig_dict = rev_sig\\\\n\\\\n            significant = (p < self.alpha) and (reverse_p >= self.alpha)\\\\n\\\\n        return MMCTResult(\\\\n            canary=canary,\\\\n            downstream=downstream,\\\\n            consensus_score=round(score, 6),\\\\n            p_value=round(p, 6),\\\\n            ci_lower=round(ci_lo, 6),\\\\n            ci_upper=round(ci_hi, 6),\\\\n            method_results=fwd_sig,\\\\n            significant=significant,\\\\n            alpha=self.alpha,\\\\n            mode=self.mode_name,\\\\n            weights=weights,\\\\n            reverse_p_value=round(reverse_p, 6) if reverse_p is not None else None,\\\\n            reverse_consensus_score=(round(reverse_score, 6)\\\\n                                     if reverse_score is not None else None),\\\\n            reverse_method_results=reverse_sig_dict,\\\\n        )\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Multi-Method Consensus Test (MMCT) core implementation.\\n\\nSingle methods have uncontrolled FPR on short time series (T~11).\\nMMCT aggregates K=5 methods into a consensus score calibrated against\\nalpha=0.00 null data to control false positive rate.\\n\\nModes:\\n  - uniform: consensus = count of significant methods\\n  - weighted: consensus = inverse-FPR-weighted sum (down-weights noisy methods)\\n  - forward-only: test canary -> downstream direction only\\n  - bidirectional: require forward significant AND reverse non-significant\\n\\\"\\\"\\\"\\n\\nfrom dataclasses import dataclass, field, asdict\\nfrom typing import Optional\\n\\nfrom .methods import METHOD_NAMES, extract_method_significance, load_5method_results\\nfrom .null_distribution import NullDistribution\\n\\n\\n@dataclass\\nclass MMCTResult:\\n    canary: str\\n    downstream: str\\n    consensus_score: float\\n    p_value: float\\n    ci_lower: float\\n    ci_upper: float\\n    method_results: dict\\n    significant: bool\\n    alpha: float = 0.05\\n    mode: str = \\\"uniform_forward\\\"\\n    weights: Optional[dict] = None\\n    reverse_p_value: Optional[float] = None\\n    reverse_consensus_score: Optional[float] = None\\n    reverse_method_results: Optional[dict] = None\\n\\n    def to_dict(self):\\n        d = asdict(self)\\n        if d[\\\"weights\\\"]:\\n            d[\\\"weights\\\"] = {k: round(v, 4) for k, v in d[\\\"weights\\\"].items()}\\n        return d\\n\\n\\nclass MMCT:\\n    \\\"\\\"\\\"Multi-Method Consensus Test.\\\"\\\"\\\"\\n\\n    def __init__(self, null_distribution, weighted=False,\\n                 bidirectional=False, alpha=0.05):\\n        self.null = null_distribution\\n        self.weighted = weighted\\n        self.bidirectional = bidirectional\\n        self.alpha = alpha\\n\\n    @property\\n    def mode_name(self):\\n        w = \\\"weighted\\\" if self.weighted else \\\"uniform\\\"\\n        d = \\\"bidirectional\\\" if self.bidirectional else \\\"forward\\\"\\n        return f\\\"{w}_{d}\\\"\\n\\n    def test_from_precomputed(self, data_dir, canary, downstream):\\n        \\\"\\\"\\\"Run MMCT on one pair using pre-computed 5method results.\\n\\n        Args:\\n            data_dir: path to experiment directory containing\\n                      analysis/5method_leadlag.json\\n            canary: canary metric name\\n            downstream: downstream metric name\\n\\n        Returns:\\n            MMCTResult\\n        \\\"\\\"\\\"\\n        results = load_5method_results(data_dir)\\n        fwd_sig = extract_method_significance(\\n            results, canary, downstream, \\\"forward\\\")\\n\\n        pair_key = (canary, downstream)\\n\\n        if self.weighted:\\n            weights = self.null.get_weights(pair_key)\\n            score = self.null.consensus_score_weighted(fwd_sig, weights)\\n        else:\\n            weights = None\\n            score = self.null.consensus_score_uniform(fwd_sig)\\n\\n        p, ci_lo, ci_hi = self.null.p_value(\\n            score, weighted=self.weighted, direction=\\\"forward\\\")\\n\\n        significant = p < self.alpha\\n\\n        reverse_p = None\\n        reverse_score = None\\n        reverse_sig_dict = None\\n\\n        if self.bidirectional:\\n            rev_sig = extract_method_significance(\\n                results, canary, downstream, \\\"reverse\\\")\\n            if self.weighted:\\n                reverse_score = self.null.consensus_score_weighted(\\n                    rev_sig, weights)\\n            else:\\n                reverse_score = self.null.consensus_score_uniform(rev_sig)\\n\\n            reverse_p, _, _ = self.null.p_value(\\n                reverse_score, weighted=self.weighted, direction=\\\"forward\\\")\\n            reverse_sig_dict = rev_sig\\n\\n            significant = (p < self.alpha) and (reverse_p >= self.alpha)\\n\\n        return MMCTResult(\\n            canary=canary,\\n            downstream=downstream,\\n            consensus_score=round(score, 6),\\n            p_value=round(p, 6),\\n            ci_lower=round(ci_lo, 6),\\n            ci_upper=round(ci_hi, 6),\\n            method_results=fwd_sig,\\n            significant=significant,\\n            alpha=self.alpha,\\n            mode=self.mode_name,\\n            weights=weights,\\n            reverse_p_value=round(reverse_p, 6) if reverse_p is not None else None,\\n            reverse_consensus_score=(round(reverse_score, 6)\\n                                     if reverse_score is not None else None),\\n            reverse_method_results=reverse_sig_dict,\\n        )\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I see the issue clearly:\n\n1. `5method_leadlag.json` has a specific format with `pairs` containing `forward` and `reverse` directions with detailed lag information\n2. The generalize dirs have `pythia410m_8pair_5method_analysis.json` which has a different format (`per_pair` structure without `forward`/`reverse` pairing)\n\nI need to check `mmct/methods.py` to see what `load_5method_results` and `extract_method_significance` expect, and then figure out how to either:\n- Generate `5method_leadlag.json` for the generalize dirs, or\n\n\n- Adapt the MMCT code to also accept the existing format\n\nLet me look at methods.py to understand what the code is expecting.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "161b1dda-5076-453a-9e2b-a443654336c4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FdsM6JAH5kVHHp7G5q5tX7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4888,
+                "cache_read_input_tokens": 33870,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4888
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "格式不同。看 `methods.py` 中如何加载数据。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "4c82cff5-ace5-47c3-ab83-0f0d02d346e0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FdsM6JAH5kVHHp7G5q5tX7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4888,
+                "cache_read_input_tokens": 33870,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4888
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Drj2bBj2KNQG31WwtnQmxH",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-19828",
+                "command": "cat /root/autodl-tmp/distrib_canary_collapse/mmct/methods.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "a3594d3b-4128-4ff7-bdc5-45a4a2ec8e54",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FdsM6JAH5kVHHp7G5q5tX7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4888,
+                "cache_read_input_tokens": 33870,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4888
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-18T15:54:04.480Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Drj2bBj2KNQG31WwtnQmxH",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Unified wrapper for 5 lead-lag detection methods.\\\\n\\\\nReads pre-computed results from 5method_leadlag.json rather than\\\\nre-running statistical tests. Handles two JSON layouts:\\\\n  Format A (a000): pair has top-level canary/downstream + forward/reverse dicts\\\\n  Format B (a025+): pair has forward/reverse dicts with canary/downstream inside\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nfrom pathlib import Path\\\\n\\\\nMETHOD_NAMES = [\\\\\\\"naive_xcorr\\\\\\\", \\\\\\\"diff_xcorr\\\\\\\", \\\\\\\"threshold_onset\\\\\\\",\\\\n                \\\\\\\"perm_granger\\\\\\\", \\\\\\\"ty_granger\\\\\\\"]\\\\n\\\\nCANARY_METRICS = [\\\\\\\"token_entropy\\\\\\\", \\\\\\\"ece\\\\\\\"]\\\\nDOWNSTREAM_METRICS = [\\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\", \\\\\\\"perplexity\\\\\\\"]\\\\n\\\\nMETRIC_PAIRS = [(c, d) for c in CANARY_METRICS for d in DOWNSTREAM_METRICS]\\\\n\\\\n\\\\ndef load_5method_results(data_dir):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load pre-computed 5-method lead-lag results for one condition.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    path = Path(data_dir) / \\\\\\\"analysis\\\\\\\" / \\\\\\\"5method_leadlag.json\\\\\\\"\\\\n    with open(path) as f:\\\\n        return json.load(f)\\\\n\\\\n\\\\ndef _find_pair(results, canary, downstream):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Find the pair dict, handling both JSON formats.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    for pair in results[\\\\\\\"pairs\\\\\\\"]:\\\\n        # Format A: canary/downstream at pair level\\\\n        if pair.get(\\\\\\\"canary\\\\\\\") == canary and pair.get(\\\\\\\"downstream\\\\\\\") == downstream:\\\\n            return pair\\\\n        # Format B: canary/downstream inside forward\\\\n        fwd = pair.get(\\\\\\\"forward\\\\\\\", {})\\\\n        if fwd.get(\\\\\\\"canary\\\\\\\") == canary and fwd.get(\\\\\\\"downstream\\\\\\\") == downstream:\\\\n            return pair\\\\n    return None\\\\n\\\\n\\\\ndef extract_method_significance(results, canary, downstream,\\\\n                                 direction=\\\\\\\"forward\\\\\\\"):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract per-method significance for one pair.\\\\n\\\\n    Returns dict mapping method name to bool (significant or not).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    pair = _find_pair(results, canary, downstream)\\\\n    if pair is None:\\\\n        raise ValueError(f\\\\\\\"Pair ({canary}, {downstream}) not found\\\\\\\")\\\\n\\\\n    source = pair.get(direction, {})\\\\n\\\\n    sig = {}\\\\n    for method in METHOD_NAMES:\\\\n        if method in source:\\\\n            sig[method] = bool(source[method].get(\\\\\\\"significant\\\\\\\", False))\\\\n        else:\\\\n            sig[method] = False\\\\n    return sig\\\\n\\\\n\\\\ndef get_all_pair_significances(data_dir, direction=\\\\\\\"forward\\\\\\\"):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Get significance for all 8 pairs from one condition.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    results = load_5method_results(data_dir)\\\\n    out = {}\\\\n    for canary, downstream in METRIC_PAIRS:\\\\n        out[(canary, downstream)] = extract_method_significance(\\\\n            results, canary, downstream, direction)\\\\n    return out\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "43b1c600-140f-4f77-a0e0-91866ad7c51a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Unified wrapper for 5 lead-lag detection methods.\\\\n\\\\nReads pre-computed results from 5method_leadlag.json rather than\\\\nre-running statistical tests. Handles two JSON layouts:\\\\n  Format A (a000): pair has top-level canary/downstream + forward/reverse dicts\\\\n  Format B (a025+): pair has forward/reverse dicts with canary/downstream inside\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nfrom pathlib import Path\\\\n\\\\nMETHOD_NAMES = [\\\\\\\"naive_xcorr\\\\\\\", \\\\\\\"diff_xcorr\\\\\\\", \\\\\\\"threshold_onset\\\\\\\",\\\\n                \\\\\\\"perm_granger\\\\\\\", \\\\\\\"ty_granger\\\\\\\"]\\\\n\\\\nCANARY_METRICS = [\\\\\\\"token_entropy\\\\\\\", \\\\\\\"ece\\\\\\\"]\\\\nDOWNSTREAM_METRICS = [\\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\", \\\\\\\"perplexity\\\\\\\"]\\\\n\\\\nMETRIC_PAIRS = [(c, d) for c in CANARY_METRICS for d in DOWNSTREAM_METRICS]\\\\n\\\\n\\\\ndef load_5method_results(data_dir):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load pre-computed 5-method lead-lag results for one condition.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    path = Path(data_dir) / \\\\\\\"analysis\\\\\\\" / \\\\\\\"5method_leadlag.json\\\\\\\"\\\\n    with open(path) as f:\\\\n        return json.load(f)\\\\n\\\\n\\\\ndef _find_pair(results, canary, downstream):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Find the pair dict, handling both JSON formats.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    for pair in results[\\\\\\\"pairs\\\\\\\"]:\\\\n        # Format A: canary/downstream at pair level\\\\n        if pair.get(\\\\\\\"canary\\\\\\\") == canary and pair.get(\\\\\\\"downstream\\\\\\\") == downstream:\\\\n            return pair\\\\n        # Format B: canary/downstream inside forward\\\\n        fwd = pair.get(\\\\\\\"forward\\\\\\\", {})\\\\n        if fwd.get(\\\\\\\"canary\\\\\\\") == canary and fwd.get(\\\\\\\"downstream\\\\\\\") == downstream:\\\\n            return pair\\\\n    return None\\\\n\\\\n\\\\ndef extract_method_significance(results, canary, downstream,\\\\n                                 direction=\\\\\\\"forward\\\\\\\"):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract per-method significance for one pair.\\\\n\\\\n    Returns dict mapping method name to bool (significant or not).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    pair = _find_pair(results, canary, downstream)\\\\n    if pair is None:\\\\n        raise ValueError(f\\\\\\\"Pair ({canary}, {downstream}) not found\\\\\\\")\\\\n\\\\n    source = pair.get(direction, {})\\\\n\\\\n    sig = {}\\\\n    for method in METHOD_NAMES:\\\\n        if method in source:\\\\n            sig[method] = bool(source[method].get(\\\\\\\"significant\\\\\\\", False))\\\\n        else:\\\\n            sig[method] = False\\\\n    return sig\\\\n\\\\n\\\\ndef get_all_pair_significances(data_dir, direction=\\\\\\\"forward\\\\\\\"):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Get significance for all 8 pairs from one condition.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    results = load_5method_results(data_dir)\\\\n    out = {}\\\\n    for canary, downstream in METRIC_PAIRS:\\\\n        out[(canary, downstream)] = extract_method_significance(\\\\n            results, canary, downstream, direction)\\\\n    return out\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Unified wrapper for 5 lead-lag detection methods.\\n\\nReads pre-computed results from 5method_leadlag.json rather than\\nre-running statistical tests. Handles two JSON layouts:\\n  Format A (a000): pair has top-level canary/downstream + forward/reverse dicts\\n  Format B (a025+): pair has forward/reverse dicts with canary/downstream inside\\n\\\"\\\"\\\"\\n\\nimport json\\nfrom pathlib import Path\\n\\nMETHOD_NAMES = [\\\"naive_xcorr\\\", \\\"diff_xcorr\\\", \\\"threshold_onset\\\",\\n                \\\"perm_granger\\\", \\\"ty_granger\\\"]\\n\\nCANARY_METRICS = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAM_METRICS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"perplexity\\\"]\\n\\nMETRIC_PAIRS = [(c, d) for c in CANARY_METRICS for d in DOWNSTREAM_METRICS]\\n\\n\\ndef load_5method_results(data_dir):\\n    \\\"\\\"\\\"Load pre-computed 5-method lead-lag results for one condition.\\\"\\\"\\\"\\n    path = Path(data_dir) / \\\"analysis\\\" / \\\"5method_leadlag.json\\\"\\n    with open(path) as f:\\n        return json.load(f)\\n\\n\\ndef _find_pair(results, canary, downstream):\\n    \\\"\\\"\\\"Find the pair dict, handling both JSON formats.\\\"\\\"\\\"\\n    for pair in results[\\\"pairs\\\"]:\\n        # Format A: canary/downstream at pair level\\n        if pair.get(\\\"canary\\\") == canary and pair.get(\\\"downstream\\\") == downstream:\\n            return pair\\n        # Format B: canary/downstream inside forward\\n        fwd = pair.get(\\\"forward\\\", {})\\n        if fwd.get(\\\"canary\\\") == canary and fwd.get(\\\"downstream\\\") == downstream:\\n            return pair\\n    return None\\n\\n\\ndef extract_method_significance(results, canary, downstream,\\n                                 direction=\\\"forward\\\"):\\n    \\\"\\\"\\\"Extract per-method significance for one pair.\\n\\n    Returns dict mapping method name to bool (significant or not).\\n    \\\"\\\"\\\"\\n    pair = _find_pair(results, canary, downstream)\\n    if pair is None:\\n        raise ValueError(f\\\"Pair ({canary}, {downstream}) not found\\\")\\n\\n    source = pair.get(direction, {})\\n\\n    sig = {}\\n    for method in METHOD_NAMES:\\n        if method in source:\\n            sig[method] = bool(source[method].get(\\\"significant\\\", False))\\n        else:\\n            sig[method] = False\\n    return sig\\n\\n\\ndef get_all_pair_significances(data_dir, direction=\\\"forward\\\"):\\n    \\\"\\\"\\\"Get significance for all 8 pairs from one condition.\\\"\\\"\\\"\\n    results = load_5method_results(data_dir)\\n    out = {}\\n    for canary, downstream in METRIC_PAIRS:\\n        out[(canary, downstream)] = extract_method_significance(\\n            results, canary, downstream, direction)\\n    return out\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XnJUfurWtDAjLQpUpgKhcx",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-19828",
+                "command": "find /root/autodl-tmp/distrib_canary_collapse/ -name \"run_8pair_analysis.py\" -type f",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "a0b320f0-dbe5-409b-9558-989e24fdfce1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FdsM6JAH5kVHHp7G5q5tX7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4888,
+                "cache_read_input_tokens": 33870,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4888
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-18T15:54:05.111Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XnJUfurWtDAjLQpUpgKhcx",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2d9e0225-fd67-45dc-96d3-1ba9f928d851",
+            "uuid": "a841ac0e-7f6c-479d-bde1-59b7ef37bda2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000044"
+        }
+      ],
+      "message_count": 44
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-mmct-alpha100-fix.md"
+}

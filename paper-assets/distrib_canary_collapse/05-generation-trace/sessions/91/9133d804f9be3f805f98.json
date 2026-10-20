@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9133d804f9be3f805f98",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code d029 rerun verify",
+  "task_key": "worker_code_d029_rerun_verify_20260515T095455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d029_rerun_verify_20260515T095455_result.json",
+    "occurrence": 1,
+    "bytes": 624,
+    "sha256": "febdfa8bb9dc931ef0499596177726017caaa15d0f6683cb886a815d31129e45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D029 verification complete. Summary:\n\n- **Code fix confirmed**: `threshold_onset` reads `significant`, all other methods read `significant_fdr`\n- **sig_count_seed changes**:\n  - `permutation_granger`: 34 → **27** (-7)\n  - `toda_yamamoto`: 26 → **24** (-2)\n  - `threshold_onset`: 35 → 35 (unchanged, correct)\n- **6 robust pairs unchanged**: token_entropy→distinct_{1,2,3}, ece→distinct_{1,2,3}\n- **Consensus FPR = 0.0%**\n- All 3 JSON files regenerated (17:55) and synced to local artifacts\n- Verification report written to `artifacts/analysis/consensus_framework/d029_rerun_verification.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d029-rerun-verify.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c5e2cc1e32ab4b4af88b",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops check running status",
+  "task_key": "worker_ops_check-running-status_20260514T234526",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-running-status_20260514T234526_result.json",
+    "occurrence": 1,
+    "bytes": 1085,
+    "sha256": "bde3086c76f1a1a6cf81ca765d73609caf09c09b84ab62e052c7523c9f7c9a79"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n### GPU\n| GPU | 利用率 | 显存占用 | 进程 |\n|-----|--------|----------|------|\n| 0 | 62% | 7,453 / 97,887 MiB | plan_006_s42 (PID 68373) |\n| 1 | 50% | 14,391 / 97,887 MiB | alpha_sweep_a025_s42_v3 (PID 53074) |\n\n### tmux sessions (从 ps 输出推断)\n- `plan_006_s42` — 启动于 07:41\n- `alpha_sweep_a025_s42_v3` — 启动于 05:04\n- `alpha_sweep_a000_s42` — 启动于 03:01，无 GPU 进程，已结束\n\n### plan_006_s42（20 gen × 10000 steps, ratio=1.0, wikitext103）\n- **进度：0/20 gen**（刚启动 ~4 分钟，仍在 Generation 0 baseline 阶段）\n- 输出目录仅有 config.json，尚无 metrics.json\n- 日志 118 行，全部为 padding warning，**无 error**\n\n### alpha_sweep_a025_s42_v3（10 gen × 5000 steps, ratio=0.25, wikitext103_5k）\n- **进度：7/10 gen 完成**，正在训练 gen 7\n- 已完成各代 train_loss 趋势（递减）：3.044 → 2.766 → 2.622 → 2.499 → 2.383 → 2.341\n- 日志 2703 行，**无 error**\n- 已运行 ~2h41m，预计还需 ~15-20 分钟完成剩余 3 gen"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-running-status.md"
+}

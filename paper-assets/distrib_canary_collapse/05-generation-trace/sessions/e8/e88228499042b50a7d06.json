@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e88228499042b50a7d06",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "infra fix and launch",
+  "task_key": "worker_infra_fix-and-launch_20260514T072932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_fix-and-launch_20260514T072932_result.json",
+    "occurrence": 1,
+    "bytes": 654,
+    "sha256": "ce2f4851944bae478b0a00ac28dbe6644c7ae5718ab36567d5bbf875a4ef1e50"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "### 汇报\n\n| 项目 | 状态 |\n|------|------|\n| **Perplexity padding 修复** | 已应用。`labels = input_ids.clone()`, `labels[attention_mask == 0] = -100`, `labels=labels` 三处确认存在（行 233-238） |\n| **verify_gen01 清理** | 已删除。`results/mvp/` 下剩余：`rep_42_v1_partial`, `rep_43_v1_partial`（历史残留） |\n| **GPU** | 空闲，无计算进程 |\n| **残留进程** | 无 iterative_train 进程 |\n| **磁盘** | `/root/autodl-tmp/` 250G 可用 245G（使用 3%），充足 |\n\n服务器就绪，可启动全量实验。`results/mvp/` 下有两个 partial 目录，如需一并清理请告知。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-fix-and-launch.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b674c5ad96e5ef040c65",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "train generalize pythia14b wiki a100 s43",
+  "task_key": "worker_train_generalize_pythia14b_wiki_a100_s43_20260518T024437",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_generalize_pythia14b_wiki_a100_s43_20260518T024437_result.json",
+    "occurrence": 1,
+    "bytes": 726,
+    "sha256": "d68968b326f5b1b3713dee1d398f11f4d36a421f792a42dbb9b0c60e84871e6f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功启动：\n\n- **exp_id**: `generalize_pythia14b_wiki_a100_s43`\n- **PID**: 314396\n- **GPU**: cuda:1（已占用 24.8 GiB，利用率 79%）\n- **模型**: `/root/autodl-tmp/.hf_cache/pythia-1.4b-local`（因 HF 缓存不完整，改用本地路径）\n- **参数**: seed=43, α=1.0, 10 gen, 5000 steps/gen, batch_size=8\n- **日志**: `~/runs/distrib_canary_collapse/generalize_pythia14b_wiki_a100_s43.log`\n\n注意：命令中 `--model_name` 从 `EleutherAI/pythia-1.4b` 改为本地路径 `/root/autodl-tmp/.hf_cache/pythia-1.4b-local`，因为 HF cache 只有 ref 没有 snapshots，`TRANSFORMERS_OFFLINE=1` 模式下无法加载。参考 s42 和 pythia-1b 实验也使用了本地路径。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-generalize-pythia14b-wiki-a100-s43.md"
+}

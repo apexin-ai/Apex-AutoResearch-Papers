@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c1282fb5cef563cd7944",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analyze ssh check and d102 17855 v3",
+  "task_key": "worker_analyze_ssh-check-and-d102-17855-v3_20260522T010620",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_ssh-check-and-d102-17855-v3_20260522T010620_result.json",
+    "occurrence": 1,
+    "bytes": 1959,
+    "sha256": "22915e8c71191e52f08dbd91d9e493d5bac16a01ddd6e3b6e836095aad3a7567"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All artifacts already copied on 19828. Here's the complete summary:\n\n---\n\n## westd-17855 全部实验\n\n### 已完成 + d102 已分析\n| 实验 | Gens | 状态 |\n|---|---|---|\n| t05_a045_s42_fp32 | 6/6 | COMPLETED, d102 ✓ |\n| t05_a050_s42_fp32 | 6/6 | COMPLETED, d102 ✓ |\n| t05_a060_s42_fp32 | 6/6 | COMPLETED, d102 ✓ |\n| t05_a075_s42_fp32 | 6/6 | COMPLETED, d102 ✓ |\n| t15_a050_s42_fp32 | 16/16 | COMPLETED, d102 ✓ |\n| t15_a060_s42_fp32 | 16/16 | COMPLETED, d102 ✓ |\n| t15_a075_s42_fp32 | 16/16 | COMPLETED, d102 ✓ |\n| t15_a045_s43_fp32 | gen_14-15 only (earlier gens cleaned) | COMPLETED, d102 ✓ |\n| t15_a060_s43_fp32 | no gen dirs (cleaned), has analysis | COMPLETED, d102 ✓ |\n| t25_a045_s42_fp32 | no gen dirs (cleaned), has analysis | COMPLETED, d102 ✓ |\n\n### 运行中 (多个进程活跃)\n| 实验 | Gens | 进度 |\n|---|---|---|\n| **t25_a050_s42_fp32 ★** | **15/26** | **~58% RUNNING** |\n| **t25_a060_s42_fp32 ★** | **15/26** | **~58% RUNNING** |\n| t20_a060_s43_fp32 | 16/21 | ~76% RUNNING |\n| t25_a045_s43_fp32 | 4/26 | ~15% RUNNING |\n| t15_a075_s43_fp32 | 2/16 | ~13% RUNNING |\n\n---\n\n## westd-19828 全部实验\n\n### 已完成 + d102 已分析 + artifacts 已复制\n| 实验 | Gens | PermG fwd | Robust K≥3 |\n|---|---|---|---|\n| t25_a075_s42_fp32 | 26/26 | **6/8** | 6/8 |\n| t20_a045_s43_fp32 | 21/21 | **4/8** | 5/8 |\n| t15_a045_s42_fp32 | 16/16 | **6/8** | 5/8 |\n\n### 运行中\n| 实验 | Gens | 进度 |\n|---|---|---|\n| t25_a075_s43_fp32 | 4/26 | ~15% RUNNING |\n\n---\n\n## 关键发现\n\n**t25_a060★ 尚未完成** — 15/26 gens (~58%)，无法判定 Scenario A vs B。预计还需数小时完成，之后需跑 d102。\n\n**t25_a050★ 同样 15/26**，两个 Phase Diagram 最后两格都在约 58% 进度。\n\n19828 三个已完成实验的 d102 分析和 artifacts 均已就绪，无需额外操作。17855 的 5 个目标实验全部仍在运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-ssh-check-and-d102-17855-v3.md"
+}

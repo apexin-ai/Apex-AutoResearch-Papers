@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a40fcb3534084ed8ee60",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis phase diagram t15 a045 s42 fp32",
+  "task_key": "worker_analysis_phase_diagram_t15_a045_s42_fp32_20260521T171713",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_phase_diagram_t15_a045_s42_fp32_20260521T171713_result.json",
+    "occurrence": 1,
+    "bytes": 1226,
+    "sha256": "025c15d4bec9a7442a1c0e7c44165c430b5605b0279cfbeadfb776308981ea28"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。Registry 已更新为 DONE/success。\n\n## 结果总结\n\n### PermG: **8/8**（满分）\n- Forward (canary→downstream): 8/8 FDR 显著\n- Reverse (downstream→canary): **0/8** — 完美方向性，排除反向因果\n\n### 5-Method Consensus\n\n| Pair | Votes | Methods |\n|------|-------|---------|\n| token_entropy→distinct_1 | 2/5 | diff, perm |\n| token_entropy→distinct_2 | 2/5 | diff, perm |\n| token_entropy→distinct_3 | 2/5 | diff, perm |\n| token_entropy→perplexity | 2/5 | diff, perm |\n| ece→distinct_1 | 3/5 | diff, perm, ty |\n| ece→distinct_2 | 3/5 | diff, perm, ty |\n| ece→distinct_3 | 3/5 | diff, perm, ty |\n| **ece→perplexity** | **4/5** | naive, diff, perm, ty |\n\n- Robust pairs (≥3/5): **4/8**（全部来自 ece 通道）\n- TY Granger: 4/8（仅 ece pairs，C003 约束下 ece 的 dmax=0 合理）\n\n### Phase Diagram 影响\n\n**理论预测完美验证：**\n- T=10, α=0.45 → PermG=**0/8**（α < α_c(10)≈0.487，不可检测）\n- T=15, α=0.45 → PermG=**8/8**（α > α_c(15)≈0.304，满分检测）\n\n0→8 的跳变精确落在 α_c 理论预测的区间内，为 α_c(T) ∝ 1/√T 的幂律关系提供了第 3 个约束点。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-phase-diagram-t15-a045-s42-fp32.md"
+}

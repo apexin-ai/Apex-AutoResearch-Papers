@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de80633c8b175343d39e",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis fdr gradient a045",
+  "task_key": "worker_analysis_fdr_gradient_a045_20260520T110756",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_fdr_gradient_a045_20260520T110756_result.json",
+    "occurrence": 1,
+    "bytes": 517,
+    "sha256": "0d0ed466c26383473d3dd96bcc5dbd3e0f62cceac87f42195243bec1ef91a1ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "本地和远程均无 git 仓库，无法执行 git commit。两个文件已生成并注册：\n\n- `artifacts/fdr_gradient_a045.json` — 8 pairs × 2 seeds 完整 fdr_p 数据\n- `artifacts/fdr_gradient_interpretation.md` — 表格 + 解读 + cross-seed stability 评估\n\n关键数据摘要：\n- **s42**: 0/8 FDR-significant，min_fdr_p = 0.091\n- **s43**: 0/8 FDR-significant，min_fdr_p = 0.059\n- Cross-seed min_fdr_p 差异 1.55×（0.059 vs 0.091），mauve pairs 在两个 seed 中均最弱"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-fdr-gradient-a045.md"
+}

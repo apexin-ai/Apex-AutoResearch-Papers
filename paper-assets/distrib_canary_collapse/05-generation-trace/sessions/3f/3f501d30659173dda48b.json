@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f501d30659173dda48b",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code interv react s43 fp32 fix",
+  "task_key": "worker_code_interv_react_s43_fp32_fix_20260519T135457",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_interv_react_s43_fp32_fix_20260519T135457_result.json",
+    "occurrence": 1,
+    "bytes": 454,
+    "sha256": "ff9ecae2e3d38cad4231cc3cd09cc50186c158755ecd42822e02d0da00ec4d8e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**结论**：实验 `interv_react_s43_fp32` 正常运行中，无需重启。\n\n- PID 143075 (python) 活着，命令包含完整环境激活（初始判断\"缺少环境激活\"不成立）\n- Gen 0 完成：ppl=26.95, entropy=3.2342, eff_rank=46.6\n- Gen 1 进行中（合成数据生成 + featurization）\n- PID 74455 (Qwen3.5) 已死，cuda:1 无残留冲突\n- 已设置 12 分钟间隔 cron 监控 (job 81fc5d5b)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-interv-react-s43-fp32-fix.md"
+}

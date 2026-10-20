@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7bef7743b475530efc4d",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code d029 fdr fix complete",
+  "task_key": "worker_code_d029_fdr_fix_complete_20260515T093153",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d029_fdr_fix_complete_20260515T093153_result.json",
+    "occurrence": 1,
+    "bytes": 1565,
+    "sha256": "5b0e283e027dcba79dad0f3e2e34abdc6327565b159c773be68df21afaa17f88"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 完成汇报\n\n### P0: FDR 显式修复 + 重跑\n\n**a. 6 个 robust pairs 是否变化？**\n\n不变。同样 6 对：token_entropy→distinct_{1,2,3}、ece→distinct_{1,2,3}。但内部数字有移动：\n- ece→distinct_1: TY 从 5/5→4/5 methods（seeds 3→2），仍满足 ≥4/5\n- token_entropy→distinct_3: permG seeds 4→3，仍 5/5 methods\n\n**b. FPR/FNR 新旧对比**\n\n| Method | FPR old→new | FNR old→new | 原因 |\n|--------|:---:|:---:|------|\n| naive_pearson | 100%→100% | 0%→0% | 不变 |\n| differenced_xcorr | 0%→0% | 0%→0% | sig_seed 55→53 |\n| threshold_onset | 11.1%→**9.1%** | 0%→0% | N_neg 增大 9→11 |\n| toda_yamamoto | 0%→0% | 20.8%→**25.0%** | FDR 砍掉更多 borderline seeds |\n| permutation_granger | 11.1%→**0.0%** | 0%→**4.2%** | FDR 消除了唯一 FP，引入 1 FN |\n| consensus | 0%→0% | 0%→0% | 不变 |\n\nN_neg 从 9→11（differenced_xcorr 自身丢失 2 个 seed-level significance）。\n\n**c. Sensitivity: token_entropy→distinct 稳定性**\n\n- token_entropy→distinct_1: 仍 9/9 stable\n- token_entropy→distinct_2: 仍 9/9 stable\n- token_entropy→distinct_3: **9/9→8/9**（permG 在最严格配置 ≥5/5,≥4/4 下 3/4 seeds 不够）\n\n### P1: LOO FPR/FNR\n\n新增 `compute_fpr_fnr_loo()`，输出已保存到 `fpr_fnr_loo.json`。核心发现：permutation_granger 综合最优（FPR_loo=12.5%, FNR_loo=28.1%），naive_pearson 在任何 ground truth 下都是 FPR≈100%，LOO 消除了 differenced_xcorr 做裁判的循环性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d029-fdr-fix-complete.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d1fd973ae18e2e23c43",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "fix gpt2m report naming",
+  "task_key": "worker_fix_gpt2m_report_naming_20260516T085036",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_gpt2m_report_naming_20260516T085036_result.json",
+    "occurrence": 1,
+    "bytes": 498,
+    "sha256": "b963e48b2efbc3280750bb9bf6ca67e6861f60325ca0fc9785eabad594239626"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "唯一残留在 `manifest.yaml`（artifact registry），按要求不改。\n\n修改汇总：\n\n| 文件 | 替换数 |\n|------|--------|\n| `artifacts/gen_wiki_gpt2m_a025_s42/report/analysis_gen_wiki_gpt2m_a025_s42.md` | 8 处 \"GPT-2 small\" → \"Pythia-410M\" |\n| `artifacts/gen_wiki_gpt2m_a100_s42_v3/report/leadlag_analysis.md` | 1 处 \"GPT-2 Small (Pythia)\" → \"Pythia-410M\" |\n| `artifacts/gen_wiki_gpt2m_a100_s42_v3/report/leadlag_analysis_533dd2.md` | 1 处同上 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-gpt2m-report-naming.md"
+}

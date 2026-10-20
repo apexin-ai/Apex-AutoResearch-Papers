@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb7644d52b032e0c6a2f",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis data strategy ablation s43",
+  "task_key": "worker_analysis_data_strategy_ablation_s43_20260520T092916",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_data_strategy_ablation_s43_20260520T092916_result.json",
+    "occurrence": 1,
+    "bytes": 525,
+    "sha256": "96b2131863843840c50d8990971a37765466e9a3b9227e42ae7920a28debdb68"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结论：\n\n**s43 accumulate 完全复现 s42 结果**：\n- PermG FDR = **0/8**，K>=3 = **0/8**（replace 基线 6/8）\n- entropy drift 仅 -2.83%（replace: -15.81%），ece drift +67.8%（replace: +679.56%）\n- distinct_1 drift -28.4% 与 replace (-29%) 几乎一致 — 多样性退化仍发生，但 canary 信号被稀释导致 lead-lag 不可检测\n- 两个种子一致，accumulate 对 lead-lag 的抑制效应是 **seed-robust** 的\n\n报告已注册：`art_20260520_737e7d`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-data-strategy-ablation-s43.md"
+}

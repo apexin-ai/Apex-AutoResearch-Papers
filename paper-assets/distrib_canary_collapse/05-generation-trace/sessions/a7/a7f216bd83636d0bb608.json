@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a7f216bd83636d0bb608",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops cleanup a075 stale files",
+  "task_key": "worker_ops_cleanup_a075_stale_files_20260519T124250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup_a075_stale_files_20260519T124250_result.json",
+    "occurrence": 1,
+    "bytes": 606,
+    "sha256": "e0f04b8f0c10dffd2da1779858298f13d6803c95c3af9f6e24cd1d6a670bf3df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n清理结果:\n  a075_s42_fp32: all_metrics.json → .stale_4gen_bak, analysis_results.json → .stale_4gen_bak, EXIT_CODE 不存在\n  a025_s43_fp32: 无残留文件\n  a025_s44_fp32: 无残留文件\n\n训练进度:\n  a025_s43_fp32: gen 5/10 (metrics computing, featurizing)\n  a025_s44_fp32: gen 7/10 (generating synthetic data)\n  a075_s42_fp32: gen 7/10 (generating synthetic data)\n  a060_s43_fp32: gen 0/10 (baseline, 刚启动 ~3min)\n  padding_robustness_a100_s42: gen 7/10 (generating synthetic data)\n\na060_s43 确认: PID 137269 ALIVE, GPU 0 占用 7451MiB (63% util)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-a075-stale-files.md"
+}

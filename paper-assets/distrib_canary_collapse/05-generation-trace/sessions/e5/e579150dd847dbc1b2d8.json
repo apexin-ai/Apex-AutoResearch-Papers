@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e579150dd847dbc1b2d8",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "research bib author search",
+  "task_key": "worker_research_bib-author-search_20260515T183343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_bib-author-search_20260515T183343_result.json",
+    "occurrence": 1,
+    "bytes": 2430,
+    "sha256": "0dea17fd36c24b155341c71af1ba3aef1c37f890a50838bb7bf9d6e80417129c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results:\n\n### P0: Seddik et al. (2024)\n\n**Confirmed: `epstein2024howbad` IS the Seddik paper.** The existing entry (arXiv:2404.05090) is \"How Bad is Training on Synthetic Data?\" — the first author is **Mohamed El Amine Seddik**, not \"Epstein\". The bib key `epstein2024howbad` is a misnomer.\n\nFull authors: **Mohamed El Amine Seddik, Suei-Wen Chen, Soufiane Hayou, Pierre Youssef, Merouane Debbah**\n\nRecommended fix — update the author field and optionally rename the key to `seddik2024howbad`:\n```\nauthor = {Seddik, Mohamed El Amine and Chen, Suei-Wen and Hayou, Soufiane and Youssef, Pierre and Debbah, Merouane}\n```\n\nNo new bib entry needed — just correct the existing one.\n\n---\n\n### P1: Author field completions\n\n**1. gauthier2026alignment** (arXiv:2605.04266)\n```\nauthor = {Gauthier, Etienne and Bach, Francis and Jordan, Michael I.}\n```\n\n**2. shi2026pruning** (arXiv:2605.07271)\n```\nauthor = {Shi, Boyu and Liu, Chang and Gao, ChuanBao and Yang, Xu and Geng, Xin}\n```\n\n**3. tubingen2026diffusion** (arXiv:2605.06366)\n```\nauthor = {Conzelmann, Alexander and Catalan-Tatjer, Albert and Liu, Shiwei}\n```\n(The actual authors are individuals from Tübingen AI Center, not the institution itself.)\n\n**4. bergsma2026scaling** (arXiv:2509.25087)\n```\nauthor = {Bergsma, Shane and Zhang, Bin Claire and Dey, Nolan and Muhammad, Shaheer and Gosal, Gurpreet and Hestness, Joel}\n```\n\n**5. wang2025epistemic** (arXiv:2510.04226)\n```\nauthor = {Wright, Dustin and Masud, Sarah and Moore, Jared and Yadav, Srishti and Antoniak, Maria and Park, Chan Young and Augenstein, Isabelle}\n```\nNote: first author is actually **Dustin Wright**, not Wang. The bib key `wang2025epistemic` is also a misnomer — consider renaming to `wright2025epistemic`.\n\nSources:\n- [arXiv:2404.05090 - How Bad is Training on Synthetic Data?](https://arxiv.org/abs/2404.05090)\n- [arXiv:2605.04266 - Explaining and Preventing Alignment Collapse in Iterative RLHF](https://arxiv.org/abs/2605.04266)\n- [arXiv:2605.07271 - Understanding Performance Collapse in Layer-Pruned LLMs](https://arxiv.org/abs/2605.07271)\n- [arXiv:2605.06366 - Layer Collapse in Diffusion Language Models](https://arxiv.org/html/2605.06366v2)\n- [arXiv:2509.25087 - Scaling with Collapse](https://arxiv.org/abs/2509.25087)\n- [arXiv:2510.04226 - Epistemic Diversity and Knowledge Collapse](https://arxiv.org/abs/2510.04226)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-bib-author-search.md"
+}

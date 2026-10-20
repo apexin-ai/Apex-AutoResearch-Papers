@@ -1,0 +1,294 @@
+{
+  "schema_version": "1.0",
+  "id": "dff4a6fc17128ded97ef",
+  "project": "distrib_canary_collapse",
+  "kind": "conversation",
+  "title": "registry update mvp v4 metrics",
+  "task_key": "worker_registry_update_mvp_v4_metrics_20260515T212850",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_registry_update_mvp_v4_metrics_20260515T212850.jsonl",
+    "occurrence": 1,
+    "bytes": 19665,
+    "sha256": "7d08578661009c72f7d76101c82580c03bfd97bd21462101fbe07c77f4d3cbe8"
+  },
+  "statistics": {
+    "messages": 13,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "tool_call": 6,
+      "tool_result": 6,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T21:30:02.131599+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_update_mvp_v4_metrics_20260515T212850",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__update_registry",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T21:30:02.131859+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_update_mvp_v4_metrics_20260515T212850",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T21:30:02.132062+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_update_mvp_v4_metrics_20260515T212850",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\n\nseeds = {\n    'mvp_v4_rep42': {\n        'gen0': {'entropy': 3.234195, 'ece': 0.010805, 'ppl': 26.948959, 'd1': 0.098216, 'd2': 0.517803, 'd3': 0.812728},\n        'gen10': {'entropy': 1.27592, 'ece': 0.41734, 'ppl': 1003.73, 'd1': 0.070383, 'd2': 0.335471, 'd3': 0.555579},\n    },\n    'mvp_v4_rep43': {\n        'gen0': {'entropy': 3.234195, 'ece': 0.010805, 'ppl': 26.948959, 'd1': 0.098334, 'd2': 0.513178, 'd3': 0.805669},\n        'gen10': {'entropy': 1.25961, 'ece': 0.41951, 'ppl': 1014.66, 'd1': 0.070383, 'd2': 0.329651, 'd3': 0.539571},\n    },\n    'mvp_v4_rep44': {\n        'gen0': {'entropy': 3.234195, 'ece': 0.010805, 'ppl': 26.948959, 'd1': 0.098088, 'd2': 0.513235, 'd3': 0.805767},\n        'gen10': {'entropy': 1.22049, 'ece': 0.42369, 'ppl': 1033.16, 'd1': 0.073102, 'd2': 0.363737, 'd3': 0.607502},\n    },\n    'mvp_v4_rep45': {\n        'gen0': {'entropy': 3.234195, 'ece': 0.010805, 'ppl': 26.948959, 'd1': 0.098574, 'd2': 0.514630, 'd3': 0.808362},\n        'gen10': {'entropy': 1.31536, 'ece': 0.41654, 'ppl': 1016.22, 'd1': 0.069859, 'd2': 0.329549, 'd3': 0.543743},\n    },\n}\n\nfor exp_id, data in seeds.items():\n    g0 = data['gen0']\n    g10 = data['gen10']\n    metrics = {\n        'gen0_token_entropy': g0['entropy'],\n        'gen0_ece': g0['ece'],\n        'gen0_perplexity': g0['ppl'],\n        'gen0_distinct_1': g0['d1'],\n        'gen0_distinct_2': g0['d2'],\n        'gen0_distinct_3': g0['d3'],\n        'gen10_token_entropy': g10['entropy'],\n        'gen10_ece': g10['ece'],\n        'gen10_perplexity': g10['ppl'],\n        'gen10_distinct_1': g10['d1'],\n        'gen10_distinct_2': g10['d2'],\n        'gen10_distinct_3': g10['d3'],\n        'token_entropy_drift_pct': round((g10['entropy'] - g0['entropy']) / g0['entropy'] * 100, 4),\n        'ece_drift_pct': round((g10['ece'] - g0['ece']) / g0['ece'] * 100, 4),\n        'perplexity_drift_pct': round((g10['ppl'] - g0['ppl']) / g0['ppl'] * 100, 4),\n        'distinct_1_drift_pct': round((g10['d1'] - g0['d1']) / g0['d1'] * 100, 4),\n        'distinct_2_drift_pct': round((g10['d2'] - g0['d2']) / g0['d2'] * 100, 4),\n        'distinct_3_drift_pct': round((g10['d3'] - g0['d3']) / g0['d3'] * 100, 4),\n    }\n    print(f'{exp_id}:')\n    print(json.dumps(metrics, indent=2))\n    print()\n\"\n"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T21:30:02.132241+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "mvp_v4_rep42:\n{\n  \"gen0_token_entropy\": 3.234195,\n  \"gen0_ece\": 0.010805,\n  \"gen0_perplexity\": 26.948959,\n  \"gen0_distinct_1\": 0.098216,\n  \"gen0_distinct_2\": 0.517803,\n  \"gen0_distinct_3\": 0.812728,\n  \"gen10_token_entropy\": 1.27592,\n  \"gen10_ece\": 0.41734,\n  \"gen10_perplexity\": 1003.73,\n  \"gen10_distinct_1\": 0.070383,\n  \"gen10_distinct_2\": 0.335471,\n  \"gen10_distinct_3\": 0.555579,\n  \"token_entropy_drift_pct\": -60.5491,\n  \"ece_drift_pct\": 3762.4711,\n  \"perplexity_drift_pct\": 3624.5595,\n  \"distinct_1_drift_pct\": -28.3386,\n  \"distinct_2_drift_pct\": -35.2126,\n  \"distinct_3_drift_pct\": -31.6402\n}\n\nmvp_v4_rep43:\n{\n  \"gen0_token_entropy\": 3.234195,\n  \"gen0_ece\": 0.010805,\n  \"gen0_perplexity\": 26.948959,\n  \"gen0_distinct_1\": 0.098334,\n  \"gen0_distinct_2\": 0.513178,\n  \"gen0_distinct_3\": 0.805669,\n  \"gen10_token_entropy\": 1.25961,\n  \"gen10_ece\": 0.41951,\n  \"gen10_perplexity\": 1014.66,\n  \"gen10_distinct_1\": 0.070383,\n  \"gen10_distinct_2\": 0.329651,\n  \"gen10_distinct_3\": 0.539571,\n  \"token_entropy_drift_pct\": -61.0534,\n  \"ece_drift_pct\": 3782.5544,\n  \"perplexity_drift_pct\": 3665.1176,\n  \"distinct_1_drift_pct\": -28.4246,\n  \"distinct_2_drift_pct\": -35.7628,\n  \"distinct_3_drift_pct\": -33.0282\n}\n\nmvp_v4_rep44:\n{\n  \"gen0_token_entropy\": 3.234195,\n  \"gen0_ece\": 0.010805,\n  \"gen0_perplexity\": 26.948959,\n  \"gen0_distinct_1\": 0.098088,\n  \"gen0_distinct_2\": 0.513235,\n  \"gen0_distinct_3\": 0.805767,\n  \"gen10_token_entropy\": 1.22049,\n  \"gen10_ece\": 0.42369,\n  \"gen10_perplexity\": 1033.16,\n  \"gen10_distinct_1\": 0.073102,\n  \"gen10_distinct_2\": 0.363737,\n  \"gen10_distinct_3\": 0.607502,\n  \"token_entropy_drift_pct\": -62.2629,\n  \"ece_drift_pct\": 3821.2402,\n  \"perplexity_drift_pct\": 3733.7659,\n  \"distinct_1_drift_pct\": -25.473,\n  \"distinct_2_drift_pct\": -29.1286,\n  \"distinct_3_drift_pct\": -24.6057\n}\n\nmvp_v4_rep45:\n{\n  \"gen0_token_entropy\": 3.234195,\n  \"gen0_ece\": 0.010805,\n  \"gen0_perplexity\": 26.948959,\n  \"gen0_distinct_1\": 0.098574,\n  \"gen0_distinct_2\": 0.51463,\n  \"gen0_distinct_3\": 0.808362,\n  \"\n…[truncated 396 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_update_mvp_v4_metrics_20260515T212850",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T21:30:02.132462+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_update_mvp_v4_metrics_20260515T212850",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "mvp_v4_rep42",
+              "field": "metrics",
+              "value": "{'gen0_token_entropy': 3.234195, 'gen0_ece': 0.010805, 'gen0_perplexity': 26.948959, 'gen0_distinct_1': 0.098216, 'gen0_distinct_2': 0.517803, 'gen0_distinct_3': 0.812728, 'gen10_token_entropy': 1.27592, 'gen10_ece': 0.41734, 'gen10_perplexity': 1003.73, 'gen10_distinct_1': 0.070383, 'gen10_distinct_2': 0.335471, 'gen10_distinct_3': 0.555579, 'token_entropy_drift_pct': -60.5491, 'ece_drift_pct': 3762.4711, 'perplexity_drift_pct': 3624.5595, 'distinct_1_drift_pct': -28.3386, 'distinct_2_drift_pct': -35.2126, 'distinct_3_drift_pct': -31.6402}",
+              "project": "distrib_canary_collapse"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T21:30:02.132649+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp_v4_rep42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T07:29:48.857Z\\\", \\\"updated_at\\\": \\\"2026-05-15T21:29:47.171Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --output_dir results/mvp/rep_42\\\\\\\"\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"13678\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/mvp_v4_rep42.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T07:51:34.806Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_10/checkpoint\\\", \\\"metrics_summary\\\": {\\\"gen0_ppl\\\": 26.9, \\\"gen10_ppl\\\": 1003.7, \\\"gen0_entropy\\\": 3.234, \\\"gen10_entropy\\\": 1.276, \\\"gen0_ece\\\": 0.011, \\\"gen10_ece\\\": 0.417}, \\\"wall_clock_seconds\\\": 20898.3, \\\"gpu_hours\\\": 5.81}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T13:39:53.073Z\\\", \\\"metrics\\\": {\\\"gen0_token_entropy\\\": 3.234195, \\\"gen0_ece\\\": 0.010805, \\\"gen0_perplexity\\\": 26.948959, \\\"gen0_distinct_1\\\": 0.098216, \\\"gen0_distinct_2\\\": 0.517803, \\\"gen0_distinct_3\\\": 0.812728, \\\"gen10_token_entropy\\\": 1.27592, \\\"gen10_ece\\\": 0.41734, \\\"gen10_perplexity\\\": 1003.73, \\\"gen10_distinct_1\\\": 0.070383, \\\"gen10_distinct_2\\\": 0.335471, \\\"gen10_distinct_3\\\": 0.555579, \\\"token_entropy_drift_pct\\\": -60.5491, \\\"ece_drift_pct\\\": 3762.4711, \\\"perplexity_drift_pct\\\": 3624.5595, \\\"distinct_1_drift_pct\\\": -28.3386, \\\"distinc\n…[truncated 129 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_update_mvp_v4_metrics_20260515T212850",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T21:30:02.132804+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_update_mvp_v4_metrics_20260515T212850",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "mvp_v4_rep43",
+              "field": "metrics",
+              "value": "{'gen0_token_entropy': 3.234195, 'gen0_ece': 0.010805, 'gen0_perplexity': 26.948959, 'gen0_distinct_1': 0.098334, 'gen0_distinct_2': 0.513178, 'gen0_distinct_3': 0.805669, 'gen10_token_entropy': 1.25961, 'gen10_ece': 0.41951, 'gen10_perplexity': 1014.66, 'gen10_distinct_1': 0.070383, 'gen10_distinct_2': 0.329651, 'gen10_distinct_3': 0.539571, 'token_entropy_drift_pct': -61.0534, 'ece_drift_pct': 3782.5544, 'perplexity_drift_pct': 3665.1176, 'distinct_1_drift_pct': -28.4246, 'distinct_2_drift_pct': -35.7628, 'distinct_3_drift_pct': -33.0282}",
+              "project": "distrib_canary_collapse"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T21:30:02.132972+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp_v4_rep43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T07:48:50.161Z\\\", \\\"updated_at\\\": \\\"2026-05-15T21:29:49.565Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --output_dir results/mvp/rep_43\\\\\\\"\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"13758\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/mvp_v4_rep43.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T07:51:36.759Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_10/checkpoint\\\", \\\"metrics_summary\\\": {\\\"gen0_ppl\\\": 26.9, \\\"gen10_ppl\\\": 1014.7, \\\"gen0_entropy\\\": 3.234, \\\"gen10_entropy\\\": 1.26, \\\"gen0_ece\\\": 0.011, \\\"gen10_ece\\\": 0.42}, \\\"wall_clock_seconds\\\": 20897.7, \\\"gpu_hours\\\": 5.8}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T13:39:54.495Z\\\", \\\"metrics\\\": {\\\"gen0_token_entropy\\\": 3.234195, \\\"gen0_ece\\\": 0.010805, \\\"gen0_perplexity\\\": 26.948959, \\\"gen0_distinct_1\\\": 0.098334, \\\"gen0_distinct_2\\\": 0.513178, \\\"gen0_distinct_3\\\": 0.805669, \\\"gen10_token_entropy\\\": 1.25961, \\\"gen10_ece\\\": 0.41951, \\\"gen10_perplexity\\\": 1014.66, \\\"gen10_distinct_1\\\": 0.070383, \\\"gen10_distinct_2\\\": 0.329651, \\\"gen10_distinct_3\\\": 0.539571, \\\"token_entropy_drift_pct\\\": -61.0534, \\\"ece_drift_pct\\\": 3782.5544, \\\"perplexity_drift_pct\\\": 3665.1176, \\\"distinct_1_drift_pct\\\": -28.4246, \\\"distinct_2\n…[truncated 125 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_update_mvp_v4_metrics_20260515T212850",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T21:30:02.133118+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_update_mvp_v4_metrics_20260515T212850",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "mvp_v4_rep44",
+              "field": "metrics",
+              "value": "{'gen0_token_entropy': 3.234195, 'gen0_ece': 0.010805, 'gen0_perplexity': 26.948959, 'gen0_distinct_1': 0.098088, 'gen0_distinct_2': 0.513235, 'gen0_distinct_3': 0.805767, 'gen10_token_entropy': 1.22049, 'gen10_ece': 0.42369, 'gen10_perplexity': 1033.16, 'gen10_distinct_1': 0.073102, 'gen10_distinct_2': 0.363737, 'gen10_distinct_3': 0.607502, 'token_entropy_drift_pct': -62.2629, 'ece_drift_pct': 3821.2402, 'perplexity_drift_pct': 3733.7659, 'distinct_1_drift_pct': -25.473, 'distinct_2_drift_pct': -29.1286, 'distinct_3_drift_pct': -24.6057}",
+              "project": "distrib_canary_collapse"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T21:30:02.133317+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp_v4_rep44\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T07:48:52.613Z\\\", \\\"updated_at\\\": \\\"2026-05-15T21:29:52.398Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"至少一族canary指标在100% SC full replacement下对downstream指标有≥1 gen的时序领先性\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"seed\\\": 44, \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"synthetic_ratio\\\": 1, \\\"num_generations\\\": 10, \\\"steps_per_gen\\\": 5000, \\\"n_prompts\\\": 5000, \\\"command\\\": \\\"PYTHONUNBUFFERED=1 CUDA_VISIBLE_DEVICES=0 python -u iterative_train.py --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --output_dir results/mvp/rep_44\\\", \\\"pid\\\": \\\"30672\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/mvp_v4_rep44.log\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T17:56:00.578Z\\\"}, \\\"failure_reason\\\": \\\"\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T17:56:00.717Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T17:56:03.546926+00:00\\\"}]}, \\\"metrics_summary\\\": {\\\"gen0_ppl\\\": 26.9, \\\"gen10_ppl\\\": 1033.16, \\\"gen0_entropy\\\": 3.234, \\\"gen10_entropy\\\": 1.2205, \\\"gen0_ece\\\": 0.011, \\\"gen10_ece\\\": 0.424}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_10/checkpoint\\\", \\\"wall_clock_seconds\\\": 15134, \\\"gpu_hours\\\": 4.2, \\\"metrics\\\": {\\\"gen0_token_entropy\\\": 3.234195, \\\"gen0_ece\\\": 0.010805, \\\"gen0_perplexity\\\": 26.948959, \\\"gen0_distinct_1\\\": 0.098088, \\\"gen0_distinct_2\\\": 0.513235, \\\"gen0_distinct_3\\\": 0.805767, \\\"gen10_token_entropy\\\": 1.22049, \\\"gen10_ece\\\": 0.42369, \\\"gen10_perplexity\\\": 1033.16, \\\"gen10_distinct_1\\\": 0.073102, \\\"gen10_distinct_2\\\": 0.363737, \\\"gen10_distinct_3\\\": 0.607502, \\\"token_entropy_drift_pct\\\": -62.2629, \\\"ece_drift_pct\\\": 3821.2402, \\\"perplexity_drift\n…[truncated 192 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_update_mvp_v4_metrics_20260515T212850",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T21:30:02.133492+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_update_mvp_v4_metrics_20260515T212850",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "mvp_v4_rep45",
+              "field": "metrics",
+              "value": "{'gen0_token_entropy': 3.234195, 'gen0_ece': 0.010805, 'gen0_perplexity': 26.948959, 'gen0_distinct_1': 0.098574, 'gen0_distinct_2': 0.51463, 'gen0_distinct_3': 0.808362, 'gen10_token_entropy': 1.31536, 'gen10_ece': 0.41654, 'gen10_perplexity': 1016.22, 'gen10_distinct_1': 0.069859, 'gen10_distinct_2': 0.329549, 'gen10_distinct_3': 0.543743, 'token_entropy_drift_pct': -59.3296, 'ece_drift_pct': 3755.0671, 'perplexity_drift_pct': 3670.9063, 'distinct_1_drift_pct': -29.1304, 'distinct_2_drift_pct': -35.9639, 'distinct_3_drift_pct': -32.7352}",
+              "project": "distrib_canary_collapse"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T21:30:02.133669+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp_v4_rep45\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T13:41:26.286Z\\\", \\\"updated_at\\\": \\\"2026-05-15T21:29:54.928Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 45 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --output_dir results/mvp/rep_45\\\\\\\"\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"31425\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/mvp_v4_rep45.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T13:42:10.455Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"seed\\\": 45, \\\"wall_clock_seconds\\\": 15350.2, \\\"gpu_hours\\\": 4.26}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T17:55:42.230Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T17:55:42.934182+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_45/gen_10/checkpoint\\\", \\\"metrics_summary\\\": {\\\"gen0_ppl\\\": 26.9, \\\"gen10_ppl\\\": 1016.2, \\\"gen0_entropy\\\": 3.234, \\\"gen10_entropy\\\": 1.315, \\\"gen0_ece\\\": 0.011, \\\"gen10_ece\\\": 0.417}, \\\"wall_clock_seconds\\\": 15212, \\\"gpu_hours\\\": 4.23, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"gen0_token_entropy\\\": 3.234195, \\\"gen0_ece\\\": 0.010805, \\\"gen0_perplexity\\\": 26.948959, \\\"gen0_distinct_1\\\": 0.098574, \\\"gen0_distinct_2\\\": 0.51463, \\\"gen0_d\n…[truncated 536 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_update_mvp_v4_metrics_20260515T212850",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T21:30:02.133856+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部更新成功。每个 registry 条目现包含 12 个原始指标（gen0/gen10 × 6 metrics）和 6 个 drift_pct 字段：\n\n| exp_id | entropy_drift | ece_drift | ppl_drift | d1_drift | d2_drift | d3_drift |\n|--------|-------------|-----------|-----------|----------|----------|----------|\n| rep42 | -60.55% | +3762.5% | +3624.6% | -28.34% | -35.21% | -31.64% |\n| rep43 | -61.05% | +3782.6% | +3665.1% | -28.42% | -35.76% | -33.03% |\n| rep44 | -62.26% | +3821.2% | +3733.8% | -25.47% | -29.13% | -24.61% |\n| rep45 | -59.33% | +3755.1% | +3670.9% | -29.13% | -35.96% | -32.74% |"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_update_mvp_v4_metrics_20260515T212850"
+          },
+          "id": "event-000013"
+        }
+      ],
+      "message_count": 13
+    }
+  ],
+  "readable_path": "readable/conversations/registry-update-mvp-v4-metrics.md"
+}

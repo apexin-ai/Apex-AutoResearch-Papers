@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2f8ab48d16abb4b519a",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis a025 unified 5method",
+  "task_key": "worker_analysis_a025_unified_5method_20260516T185900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_a025_unified_5method_20260516T185900_result.json",
+    "occurrence": 1,
+    "bytes": 734,
+    "sha256": "db3c6461c1090ce83a73ac539ce6e8057d91f552f58c6b4cefbd657e2c39ef3a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果：\n\n| Metric | Seed 43 | Seed 44 | Total (/16) |\n|--------|---------|---------|-------------|\n| Perm Granger FDR sig | 0/8 | 0/8 | **0/16** |\n| TY sig (p<0.05) | 0/8 | 2/8 | 2/16 (cross-seed 不一致) |\n| Robust consensus ≥3/5 | 0/8 | 0/8 | **0/16** |\n\n**关键发现**: α=0.25 完全 sub-threshold，与预期一致。与 α=0.75 形成清晰对比。\n\n**注意**: `a025_s42` 目录不存在，只有 s43/s44 两个 seed，结果为 /16 而非 /24。若需完整 /24 需补跑 seed 42。\n\n产出文件:\n- `results/alpha_sweep/a025_s43/analysis/5method_leadlag.json`\n- `results/alpha_sweep/a025_s44/analysis/5method_leadlag.json`\n- `results/alpha_sweep/a025_3seed_unified_summary.txt`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-a025-unified-5method.md"
+}

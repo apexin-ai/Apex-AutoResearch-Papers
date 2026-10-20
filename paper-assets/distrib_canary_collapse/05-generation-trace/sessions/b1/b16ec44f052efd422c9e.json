@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b16ec44f052efd422c9e",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code bh fdr integration final",
+  "task_key": "worker_code_bh-fdr-integration-final_20260514T223912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bh-fdr-integration-final_20260514T223912_result.json",
+    "occurrence": 1,
+    "bytes": 2016,
+    "sha256": "1a1b57eb8d67648887b29bea391905869e53739adee5ce7c30becc16fc5ab026"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### Permutation Granger（BH FDR 校正后）\n\n**Differenced（推荐）:**\n\n| Pair | s42 p_raw→p_fdr | s43 p_raw→p_fdr | s44 p_raw→p_fdr | s45 p_raw→p_fdr | FDR sig |\n|------|----------------|----------------|----------------|----------------|---------|\n| token_entropy→distinct_1 | .011→.026* | .001→.001* | .002→.004* | .004→.006* | **4/4** |\n| token_entropy→distinct_2 | .016→.026* | .001→.001* | .003→.005* | .004→.006* | **4/4** |\n| token_entropy→distinct_3 | .027→.036* | .001→.001* | .013→.017* | .005→.007* | **4/4** |\n| token_entropy→perplexity | .716→.819 | .801→.801 | .470→.470 | .992→.992 | **0/4** |\n| ece→distinct_1 | .001→.008* | .001→.001* | .001→.003* | .002→.006* | **4/4** |\n| ece→distinct_2 | .009→.026* | .001→.001* | .001→.003* | .002→.006* | **4/4** |\n| ece→distinct_3 | .016→.026* | .001→.001* | .001→.003* | .004→.006* | **4/4** |\n| ece→perplexity | .960→.960 | .538→.614 | .346→.395 | .674→.771 | **0/4** |\n\n**FDR 校正影响:**\n- Differenced: 24 raw-sig → **24 FDR-sig**（0 翻转）\n- Undifferenced: 31 raw-sig → **31 FDR-sig**（0 翻转）\n\n### Method Ablation FDR 影响\n\n| 方法 | raw-sig | FDR-sig | 翻转数 |\n|------|---------|---------|--------|\n| naive_pearson | 63 | 63 | 0 |\n| differenced_xcorr | 55 | 53 | 2 |\n| toda_yamamoto | 26 | 24 | 2 |\n| permutation_granger | 34 | 27 | 7 |\n\n### 关键结论\n\n1. **零翻转**：differenced permutation Granger 中没有任何 pair 在 FDR 校正后从显著变为不显著\n2. **canary→diversity 全部 robust**：token_entropy/ece → distinct_1/2/3 全部 4/4 seed FDR-significant（6 pairs × 4 seeds = 24/24）\n3. **canary→perplexity 全部 n.s.**：0/8 差分结果显著，符合预期\n4. **对论文 claim 无影响**：所有核心 claim（canary 指标领先 diversity 退化）在多重比较校正后完全成立，p-value 在 FDR 校正后仍远低于 0.05"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-bh-fdr-integration-final.md"
+}

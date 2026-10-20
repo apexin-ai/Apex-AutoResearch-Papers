@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62cacef1db18fb3b8861",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops fix gpt2m cache path",
+  "task_key": "worker_ops_fix-gpt2m-cache-path_20260515T115544",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-gpt2m-cache-path_20260515T115544_result.json",
+    "occurrence": 1,
+    "bytes": 565,
+    "sha256": "3571d413b90d065b3ca77191b049dcfeea9e3ae8033f3bda89c25e0c817b68b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。\n\n**修复前**：\n- `hub/models--gpt2-medium/` → 2.8M（空壳）\n- `models--gpt2-medium/`（hub 外）→ 1.5G（完整模型）\n\n**修复后**：\n- `hub/models--gpt2-medium/` → 1.5G（完整模型已就位）\n- 旧位置已删除\n\n**验证结果**：\n- `params=354,823,168`\n- `n_embd=1024, n_head=16, n_layer=24, n_positions=1024, vocab_size=50257`\n- `GPT-2-medium LOAD OK`\n\n注：该服务器 HuggingFace 网络不通，实验代码加载模型时需设置 `TRANSFORMERS_OFFLINE=1` 或 `local_files_only=True`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-gpt2m-cache-path.md"
+}

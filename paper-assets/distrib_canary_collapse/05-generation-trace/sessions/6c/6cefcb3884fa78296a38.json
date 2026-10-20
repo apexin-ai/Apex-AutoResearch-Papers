@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6cefcb3884fa78296a38",
+  "project": "distrib_canary_collapse",
+  "kind": "history",
+  "title": "agent / loop_17_1779489812.md",
+  "task_key": "loop_17_1779489812",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_17_1779489812.md",
+    "occurrence": 1,
+    "bytes": 4900,
+    "sha256": "46542ef36a987027c0ad13bba306e2e19cd94d5498c833fc2a035f1e375199dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 17\nreason: idle_timeout\nupdated: '2026-05-22T19:59:05+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-19828:cuda:0/1, westd-17855:cuda:0/1/2/3/4/5。白名单外的 GPU 即使 Director 指令也必须 push back\n- 17855↔19828 SSH 不通，两台服务器之间无法互传文件\n- d102 分析唯一有效参数组合：`downstream=mauve, threshold=true_3sigma_d105`（M063/M064/M066 确认，其他组合给出无效结果）\n- ≤3B 模型必须 fp32，>3B 才用 bf16（D079）\n- HF_HOME 三件套必带：`HF_HOME=/root/autodl-tmp/.hf_cache && TRANSFORMERS_OFFLINE=1 && HF_HUB_OFFLINE=1`（M060）\n- T=25 α=0.60★ 是 Phase Diagram 最关键单格（sync-dip dissolution 终态测试），v3 正在跑，不能中断\n\n### 2. 🖥️ 基础设施快照\n- **westd-17855**: 6× RTX PRO 6000 Blackwell (98GB)\n  - 工作目录: `/root/autodl-tmp/distrib_canary_collapse`\n  - Python: `/root/miniconda3/bin/python`，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n  - 磁盘: 816G/879G 可用（3%）\n- **westd-19828**: 2× RTX PRO 6000 Blackwell (98GB)\n  - 同上路径结构\n  - 磁盘: 817G/879G 可用（2%）\n- 模型: `/root/autodl-tmp/.hf_cache` (EleutherAI/pythia-410m)\n- 数据: `/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k` (5000 条)\n- 活跃 cron: `phase_diagram_t25_a045_s43_fp32`（reconcile 确认 still running）\n\n### 3. 📊 当前状态\n**刚发生**: 收到 `phase_diagram_t25_a075_s43_fp32` 失败回调（westd-19828:cuda:0，进程死亡 5 次无有效指标，~3.6h 后 auto-resolved as failed）。已派诊断 Worker (`worker_diagnose_phase_diagram_t25_a075_s43_fp32_20260522T035645`) SSH 查日志/磁盘/checkpoint，**尚未返回**。\n\n**RUNNING 实验（6 个）**:\n| GPU | exp_id | 进度 |\n|-----|--------|------|\n| 17855:0 | t25_a050_s42_fp32_v3 | resume --start_gen 13，还需 12 gens |\n| 17855:1 | t15_a075_s43_fp32 | cross-seed，~2-3h |\n| 17855:2 | t10_a075_s43_fp32 | cross-seed |\n| 17855:3 | t25_a060_s42_fp32_v3★ | resume --start_gen 14，还需 11 gens，**最关键格** |\n| 17855:5 | t25_a045_s43_fp32 | cross-seed，~2/25 |\n| 19828:1 | t10_a050_s43_fp32 | cross-seed |\n\n**空闲 GPU**: 17855:cuda:4, 19828:cuda:0（后者刚因 t25_a075_s43 失败释放）\n\n**活跃 Worker（3 个）**:\n1. `ops:download-models-17855` — 运行中（03:27 启动）\n2. `ops:download-models-19828` — 运行中（03:27 启动）\n3. `diagnose:phase_diagram_t25_a075_s43_fp32` — 刚派出，等回调\n\n**PREPARING**: t15_a050_s42_fp32, qwen35_dryrun_launch\n\n### 4. 📋 待办（条件触发式）\n- 诊断 Worker 返回 → 根据根因决定：(a) 磁盘满则清理后 resume，(b) OOM 则调参重跑，(c) 代码 bug 则修复重跑。重跑用 19828:cuda:0\n- t25_a075_s43 如果有 checkpoint 可 resume → `--start_gen N` 从断点继续，不必从头\n- 任一 cross-seed 实验完成 → spawn Worker 跑 d102 分析（`downstream=mauve, threshold=true_3sigma_d105`）→ 更新 Phase Diagram\n- t25_a060_v3★ 完成 → **最关键**: 决定 sync-dip dissolution 场景 A/B（见 ROADMAP 预案），直接影响论文叙事\n- 17855:cuda:4 空闲 → 可分配 PREPARING 中的实验（t15_a050_s42_fp32 或其他 cross-seed）\n- 所有 20 格 Phase Diagram 填满 → heatmap 定稿 → D170 叙事定稿 → submit_paper_to_review\n- download-models Workers 完成 → 确认 Qwen 3.5 模型就位，为 qwen35_dryrun_launch 做准备\n\n### 5. 🎯 战略上下文\n- **核心方向**: 从方法论文转为现象发现论文——\"Mapping the Detectability Landscape of Iterative Model Collapse\"。核心贡献: α×T 2D 相图、非单调 dose-response、step-function transition、检测下界理论\n- **Phase Diagram 进度**: 约 16/20 格已完成（s42 种子），正在跑 cross-seed (s43) 验证。已确认: α_c left-shift 5 点验证完成，sync-dip (α=0.60 PermG=0/8) T-invariant confirmed at T=10/15/20\n- **PermG 6/8 ceiling**: 跨所有 T 一致（MAUVE bottleneck），这是 known limitation\n- **T=25 α=0.60★ 是悬念**: v3 正在跑（17855:cuda:3），结果决定场景 A（dissolution→最强叙事）还是场景 B（permanent→C3 升级）。预案已在 `artifacts/D170_narrative_drafts.md`\n- **D184**: T=20 α=0.60 s43 给出 PermG=3/8，打破了 sync-dip seed-invariance 假设——这是重要发现，cross-seed 验证不只是 confirmation，可能揭示边界行为的 seed sensitivity\n- **易错点**: (1) d102 分析必须用 `true_3sigma_d105` threshold，用其他 threshold 会给出错误的 PermG 值 (2) 不要把 v1/v2 crash 的实验结果当有效数据——磁盘满导致的中途死亡产生的 checkpoint 可能 corrupt (3) ROADMAP 里 GPU 分配表可能 stale，以 registry + reconcile_crons 为准\n- **目标**: EMNLP 2026 ARR June（DDL ~2026-06-15），用户批示\"大胆去想、深度思考，卡给你无限开\"\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-17-1779489812.md"
+}

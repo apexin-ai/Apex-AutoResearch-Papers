@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ecedcf94f11eda01172",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "figure d150 p11 dose response enhanced",
+  "task_key": "worker_figure_d150_p11_dose_response_enhanced_20260520T144253",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_d150_p11_dose_response_enhanced_20260520T144253_result.json",
+    "occurrence": 1,
+    "bytes": 878,
+    "sha256": "b289ee763a9a6653d42bc2a7f74b7b1f9c4027264acad6957ffb12f153f5aee2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure looks good — regime labels now above the plot, annotation arrow curves cleanly to the highlighted α=0.45 point, and the legend doesn't overlap with regime labels.\n\nOutput:\n- `docs/paper/figures/fig_dose_response.pdf`\n- `docs/paper/figures/fig_dose_response.png`\n\nGeneration script: `figures/paper/gen_fig_dose_response.py`\n\nElements added:\n- **Bootstrap 95% CI band**: 1000 sigmoid draws from log-normal k ∈ [73.6, 500], normal α_c ∈ [0.425, 0.558], normal y_max ∈ [0.691, 0.895]\n- **Sub-threshold annotation**: red open circle at α=0.45 with arrow and text box showing p_FDR = .059, .091\n- **4 regime bands**: Blind (α < 0.35), Onset (0.35–0.50), Sync Collapse (0.50–0.65), Detection (α > 0.65) with labels above the plot\n- Individual seed scatter (gray) + mean ± SD diamonds (black) + locked sigmoid fit (blue, α_c = 0.476)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-d150-p11-dose-response-enhanced.md"
+}

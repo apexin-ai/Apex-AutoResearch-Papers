@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d8815d90ea7eecd45fe",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops kill resume conflict",
+  "task_key": "worker_ops_kill-resume-conflict_20260515T115913",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-resume-conflict_20260515T115913_result.json",
+    "occurrence": 1,
+    "bytes": 577,
+    "sha256": "715a7d2aadfd11da901a95632a747b5792b0173a4e168e59ba7752c658f37b6c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**汇报：**\n\n| 项目 | 状态 |\n|------|------|\n| PID 114844 (plan_006_s42_resume) | 已 kill（force_killed），子进程 114849 也已清理 |\n| tmux session plan_006_s42_resume | 不存在（已被清理或未用该名称） |\n| cuda:0 | 已释放，plan_006 进程不再占用 GPU |\n| PID 115532 (gen_wiki_gpt2m_a100_s42) | 存活（运行 2 分 14 秒），尚未加载到 GPU——可能正在下载模型或准备数据 |\n\ncuda:0 现在空闲，gpt2m 进程可以正常使用。GPU 1 上仅有 PID 89758（14382 MiB），与本任务无关。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-resume-conflict.md"
+}

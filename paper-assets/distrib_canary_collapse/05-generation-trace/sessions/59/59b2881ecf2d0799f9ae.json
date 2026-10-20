@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "59b2881ecf2d0799f9ae",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "extract 16pair d111 direction",
+  "task_key": "worker_extract_16pair_d111_direction_20260520T022901",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_extract_16pair_d111_direction_20260520T022901_result.json",
+    "occurrence": 1,
+    "bytes": 680,
+    "sha256": "8708d45580ba0ef26690c1e1749d9bf8e7aa98fbb790dade6354a5451ed07d60"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "写入完成：`artifacts/pythia410m_s42_a100_16pair_d111.md`\n\n结果：\n- 10 个唯一 pair（2 canary × 5 downstream），来自 westd-19828 的三个分析文件\n- **naive_fwd: 2/10**（ece→perplexity, ece→mauve）\n- **diff_fwd: 2/10**（token_entropy→perplexity, ece→perplexity）\n- 6/10 distinct 类 pair 的 naive/diff 均为负 lag（canary 信号实际领先 downstream），但按 D111 strict rule (lag>0) 判定为非 forward\n- permG_fdr 在 6 个 distinct pair 上显著，mauve/perplexity pair 均不显著\n- TY 结果因 d_max 取值不同而分歧较大（leadlag 文件 d_max=2 导致 df_resid=1，8pair 文件 d_max=0/1 更可靠）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/extract-16pair-d111-direction.md"
+}

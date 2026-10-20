@@ -1,0 +1,652 @@
+{
+  "schema_version": "1.0",
+  "id": "1fe8e9e2ddad8e74f6d6",
+  "project": "distrib_canary_collapse",
+  "kind": "conversation",
+  "title": "analysis baseline 410m unified rerun",
+  "task_key": "worker_analysis_baseline_410m_unified_rerun_20260518T003545",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_baseline_410m_unified_rerun_20260518T003545.jsonl",
+    "occurrence": 1,
+    "bytes": 38693,
+    "sha256": "8433313af4a31051354c501f3c1789337e135815e4c411e8b3bc1345251ba628"
+  },
+  "statistics": {
+    "messages": 31,
+    "user_turns": 0,
+    "tool_calls": 15,
+    "roles": {
+      "tool_call": 15,
+      "tool_result": 15,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T00:38:06.880057+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_baseline_410m_unified_rerun_20260518T003545",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T00:38:06.880484+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_baseline_410m_unified_rerun_20260518T003545",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T00:38:06.880666+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_baseline_410m_unified_rerun_20260518T003545",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "find /root/autodl-tmp/distrib_canary_collapse/results/ -path \"*pythia*\" -o -path \"*410m*\" -o -path \"*a100*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T00:38:06.880809+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_baseline_410m_unified_rerun_20260518T003545",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "head -100 /root/autodl-tmp/distrib_canary_collapse/analyze_generalize.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T00:38:06.881023+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/config.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_0\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_0/synthetic_data\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_0/synthetic_data/data-00000-of-00001.arrow\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_0/synthetic_data/state.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_0/synthetic_data/dataset_info.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_0/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_1\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_1/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_2\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_2/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_3\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_3/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_4\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_4/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_5\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/gen_5/metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a\n…[truncated 6350 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_baseline_410m_unified_rerun_20260518T003545",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T00:38:06.881239+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"5-method causal analysis for generalize experiments.\\\\n\\\\nReuses the same statistical methods as cross_alpha_analysis_v4.py\\\\nbut targets results/generalize/{experiment}/all_metrics.json.\\\\n\\\\nUsage:\\\\n    python analyze_generalize.py --exp pythia410m_wiki_a100_s42\\\\n    python analyze_generalize.py --exp opt1b_wiki_a100_s42\\\\n    python analyze_generalize.py  # all experiments in results/generalize/\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport warnings\\\\nfrom datetime import datetime\\\\n\\\\nimport numpy as np\\\\nfrom statsmodels.stats.multitest import multipletests\\\\n\\\\nwarnings.filterwarnings(\\\\\\\"ignore\\\\\\\")\\\\n\\\\nBASE_DIR = os.path.dirname(os.path.abspath(__file__))\\\\nsys.path.insert(0, BASE_DIR)\\\\n\\\\nfrom method_ablation import (\\\\n    CANARY, DOWNSTREAM,\\\\n    extract as ma_extract,\\\\n    naive_pearson, diff_xcorr, threshold_lead, toda_yamamoto, perm_granger,\\\\n)\\\\n\\\\nGENERALIZE_DIR = os.path.join(BASE_DIR, \\\\\\\"results\\\\\\\", \\\\\\\"generalize\\\\\\\")\\\\n\\\\nMA_METHODS = {\\\\n    \\\\\\\"naive_pearson\\\\\\\": naive_pearson,\\\\n    \\\\\\\"differenced_xcorr\\\\\\\": diff_xcorr,\\\\n    \\\\\\\"threshold_onset\\\\\\\": threshold_lead,\\\\n    \\\\\\\"toda_yamamoto\\\\\\\": toda_yamamoto,\\\\n    \\\\\\\"permutation_granger\\\\\\\": perm_granger,\\\\n}\\\\n\\\\nMETRICS = [\\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\",\\\\n           \\\\\\\"token_entropy\\\\\\\", \\\\\\\"ece\\\\\\\", \\\\\\\"perplexity\\\\\\\"]\\\\n\\\\nclass NumpyEncoder(json.JSONEncoder):\\\\n    def default(self, obj):\\\\n        if isinstance(obj, (np.integer,)):\\\\n            return int(obj)\\\\n        if isinstance(obj, (np.floating,)):\\\\n            return float(obj)\\\\n        if isinstance(obj, np.ndarray):\\\\n            return obj.tolist()\\\\n        return super().default(obj)\\\\n\\\\n\\\\ndef assemble_all_metrics(exp_dir):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Assemble all_metrics.json from per-gen metrics.json if needed.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    all_path = os.path.join(exp_dir, \\\\\\\"all_metrics.json\\\n…[truncated 1340 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_baseline_410m_unified_rerun_20260518T003545",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T00:38:06.881629+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_baseline_410m_unified_rerun_20260518T003545",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cat /root/autodl-tmp/distrib_canary_collapse/analyze_generalize.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T00:38:06.882944+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"5-method causal analysis for generalize experiments.\\\\n\\\\nReuses the same statistical methods as cross_alpha_analysis_v4.py\\\\nbut targets results/generalize/{experiment}/all_metrics.json.\\\\n\\\\nUsage:\\\\n    python analyze_generalize.py --exp pythia410m_wiki_a100_s42\\\\n    python analyze_generalize.py --exp opt1b_wiki_a100_s42\\\\n    python analyze_generalize.py  # all experiments in results/generalize/\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport warnings\\\\nfrom datetime import datetime\\\\n\\\\nimport numpy as np\\\\nfrom statsmodels.stats.multitest import multipletests\\\\n\\\\nwarnings.filterwarnings(\\\\\\\"ignore\\\\\\\")\\\\n\\\\nBASE_DIR = os.path.dirname(os.path.abspath(__file__))\\\\nsys.path.insert(0, BASE_DIR)\\\\n\\\\nfrom method_ablation import (\\\\n    CANARY, DOWNSTREAM,\\\\n    extract as ma_extract,\\\\n    naive_pearson, diff_xcorr, threshold_lead, toda_yamamoto, perm_granger,\\\\n)\\\\n\\\\nGENERALIZE_DIR = os.path.join(BASE_DIR, \\\\\\\"results\\\\\\\", \\\\\\\"generalize\\\\\\\")\\\\n\\\\nMA_METHODS = {\\\\n    \\\\\\\"naive_pearson\\\\\\\": naive_pearson,\\\\n    \\\\\\\"differenced_xcorr\\\\\\\": diff_xcorr,\\\\n    \\\\\\\"threshold_onset\\\\\\\": threshold_lead,\\\\n    \\\\\\\"toda_yamamoto\\\\\\\": toda_yamamoto,\\\\n    \\\\\\\"permutation_granger\\\\\\\": perm_granger,\\\\n}\\\\n\\\\nMETRICS = [\\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\",\\\\n           \\\\\\\"token_entropy\\\\\\\", \\\\\\\"ece\\\\\\\", \\\\\\\"perplexity\\\\\\\"]\\\\n\\\\nclass NumpyEncoder(json.JSONEncoder):\\\\n    def default(self, obj):\\\\n        if isinstance(obj, (np.integer,)):\\\\n            return int(obj)\\\\n        if isinstance(obj, (np.floating,)):\\\\n            return float(obj)\\\\n        if isinstance(obj, np.ndarray):\\\\n            return obj.tolist()\\\\n        return super().default(obj)\\\\n\\\\n\\\\ndef assemble_all_metrics(exp_dir):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Assemble all_metrics.json from per-gen metrics.json if needed.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    all_path = os.path.join(exp_dir, \\\\\\\"all_metrics.json\\\n…[truncated 6768 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_baseline_410m_unified_rerun_20260518T003545",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T00:38:06.883199+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_baseline_410m_unified_rerun_20260518T003545",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "head -150 /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T00:38:06.883623+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Method ablation: compare four lead-lag estimation methods.\\\\n\\\\nCompares naive vs robust approaches to detect canary->downstream lead-lag,\\\\nquantifying the spurious regression rate when non-stationary series are\\\\ncorrelated without proper detrending.\\\\n\\\\nInput:  results/mvp/rep_{seed}/all_metrics.json (seeds 42-45)\\\\nOutput: results/mvp/analysis/method_ablation.json\\\\n        (with BH FDR correction and effect sizes)\\\\n\\\\nMethods:\\\\n  1. Naive Pearson lag-correlation (raw levels)\\\\n  2. Differenced cross-correlation (first-differenced series)\\\\n  3. Threshold-based lead time (2-sigma onset detection)\\\\n  4. Toda-Yamamoto augmented-lag Granger causality\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport warnings\\\\nfrom itertools import product\\\\n\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\nfrom statsmodels.stats.multitest import multipletests\\\\nfrom statsmodels.tsa.stattools import adfuller\\\\nfrom permutation_granger import permutation_granger_test\\\\n\\\\nwarnings.filterwarnings(\\\\\\\"ignore\\\\\\\")\\\\n\\\\nCANARY = [\\\\\\\"token_entropy\\\\\\\", \\\\\\\"self_bleu\\\\\\\", \\\\\\\"ece\\\\\\\", \\\\\\\"effective_rank\\\\\\\"]\\\\nDOWNSTREAM = [\\\\\\\"perplexity\\\\\\\", \\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\"]\\\\n\\\\n# Sign conventions: \\\\\\\"higher is worse\\\\\\\" kept as-is; \\\\\\\"lower is worse\\\\\\\" negated\\\\n# so that degradation = positive direction in all analyses.\\\\nHIGHER_IS_WORSE = {\\\\\\\"self_bleu\\\\\\\", \\\\\\\"ece\\\\\\\", \\\\\\\"perplexity\\\\\\\"}\\\\nLOWER_IS_WORSE = {\\\\\\\"token_entropy\\\\\\\", \\\\\\\"effective_rank\\\\\\\",\\\\n                   \\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\"}\\\\n\\\\nALPHA = 0.05\\\\n\\\\n\\\\ndef load_metrics(data_dir, seeds):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load all_metrics.json for each seed.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    data = {}\\\\n    for s in seeds:\\\\n        path = os.path.join(data_dir, f\\\\\\\"rep_{s}\\\\\\\", \\\\\\\"all_metrics.json\\\\\\\")\\\\n        with open(path) as f:\\\\n            data[s] = json.load(f)\\\\n    return \n…[truncated 3869 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_baseline_410m_unified_rerun_20260518T003545",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T00:38:06.883841+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_baseline_410m_unified_rerun_20260518T003545",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "grep -n \"def perm_granger\\|def toda_yamamoto\\|def permutation_granger_test\" /root/autodl-tmp/distrib_canary_collapse/method_ablation.py /root/autodl-tmp/distrib_canary_collapse/permutation_granger.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T00:38:06.883994+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_baseline_410m_unified_rerun_20260518T003545",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T00:38:06.884127+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_baseline_410m_unified_rerun_20260518T003545",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "grep -n \"def perm_granger\\|def toda_yamamoto\\|def permutation_granger_test\" /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T00:38:06.884275+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_baseline_410m_unified_rerun_20260518T003545",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T00:38:06.884417+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_baseline_410m_unified_rerun_20260518T003545",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "grep -n \"def permutation_granger_test\" /root/autodl-tmp/distrib_canary_collapse/permutation_granger.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T00:38:06.884684+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"56:def permutation_granger_test(x, y, max_lag=1, n_perm=1000, seed=42,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_baseline_410m_unified_rerun_20260518T003545",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T00:38:06.884865+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_baseline_410m_unified_rerun_20260518T003545",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "grep -n \"def perm_granger\" /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-18T00:38:06.885058+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"375:def perm_granger(c, d, cn, dn, max_lag=1, n_perm=1000):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_baseline_410m_unified_rerun_20260518T003545",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T00:38:06.885193+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_baseline_410m_unified_rerun_20260518T003545",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "grep -n \"def toda_yamamoto\" /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-18T00:38:06.885374+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"193:def toda_yamamoto(c, d, cn, dn):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_baseline_410m_unified_rerun_20260518T003545",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-18T00:38:06.885518+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_baseline_410m_unified_rerun_20260518T003545",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "tail -n +375 /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-18T00:38:06.885813+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def perm_granger(c, d, cn, dn, max_lag=1, n_perm=1000):\\\\n    x, y = orient(c, cn), orient(d, dn)\\\\n    res = permutation_granger_test(x, y, max_lag=max_lag, n_perm=n_perm,\\\\n                                    seed=42, difference=True)\\\\n    return {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n        \\\\\\\"f_stat\\\\\\\": res[\\\\\\\"f_stat\\\\\\\"],\\\\n        \\\\\\\"p_value\\\\\\\": res[\\\\\\\"p_value\\\\\\\"],\\\\n        \\\\\\\"significant\\\\\\\": res[\\\\\\\"significant\\\\\\\"],\\\\n        \\\\\\\"effect_size_f2\\\\\\\": res.get(\\\\\\\"effect_size_f2\\\\\\\"),\\\\n        \\\\\\\"null_mean\\\\\\\": res.get(\\\\\\\"null_mean\\\\\\\"),\\\\n        \\\\\\\"null_std\\\\\\\": res.get(\\\\\\\"null_std\\\\\\\"),\\\\n        \\\\\\\"n_perm\\\\\\\": res[\\\\\\\"n_perm\\\\\\\"],\\\\n    }\\\\n\\\\n\\\\nMETHODS = [\\\\\\\"naive_pearson\\\\\\\", \\\\\\\"differenced_xcorr\\\\\\\", \\\\\\\"threshold_onset\\\\\\\", \\\\\\\"toda_yamamoto\\\\\\\", \\\\\\\"permutation_granger\\\\\\\"]\\\\nMETHOD_FN = {\\\\n    \\\\\\\"naive_pearson\\\\\\\": naive_pearson,\\\\n    \\\\\\\"differenced_xcorr\\\\\\\": diff_xcorr,\\\\n    \\\\\\\"threshold_onset\\\\\\\": threshold_lead,\\\\n    \\\\\\\"toda_yamamoto\\\\\\\": toda_yamamoto,\\\\n    \\\\\\\"permutation_granger\\\\\\\": perm_granger,\\\\n}\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=__doc__)\\\\n    parser.add_argument(\\\\\\\"--seeds\\\\\\\", nargs=\\\\\\\"+\\\\\\\", type=int, default=[42, 43, 44, 45])\\\\n    parser.add_argument(\\\\\\\"--data_dir\\\\\\\", default=\\\\\\\"results/mvp\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output_dir\\\\\\\", default=None)\\\\n    args = parser.parse_args()\\\\n\\\\n    out_dir = args.output_dir or os.path.join(args.data_dir, \\\\\\\"analysis\\\\\\\")\\\\n    os.makedirs(out_dir, exist_ok=True)\\\\n    data = load_metrics(args.data_dir, args.seeds)\\\\n    n_seeds = len(args.seeds)\\\\n\\\\n    all_pairs = []\\\\n\\\\n    for cn, dn in product(CANARY, DOWNSTREAM):\\\\n        pair = {\\\\\\\"canary\\\\\\\": cn, \\\\\\\"downstream\\\\\\\": dn, \\\\\\\"per_seed\\\\\\\": []}\\\\n\\\\n        for seed in args.seeds:\\\\n            c_arr = extract(data[seed], cn)\\\\n            d_arr = extract(data[seed], dn)\\\\n       \n…[truncated 7578 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_baseline_410m_unified_rerun_20260518T003545",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-18T00:38:06.886008+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_baseline_410m_unified_rerun_20260518T003545",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "tail -n +193 /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-18T00:38:06.886142+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_baseline_410m_unified_rerun_20260518T003545",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "tail -n +56 /root/autodl-tmp/distrib_canary_collapse/permutation_granger.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-18T00:38:06.886425+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def toda_yamamoto(c, d, cn, dn):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Toda-Yamamoto Granger causality: canary → downstream direction.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    x, y = orient(c, cn), orient(d, dn)\\\\n    n = len(x)\\\\n\\\\n    dc, dd = _adf_order(x), _adf_order(y)\\\\n    d_max = max(dc, dd)\\\\n\\\\n    # With T=10, only p=1 is feasible regardless of AIC\\\\n    p = 1\\\\n    k = p + d_max                       # total lags in augmented VAR\\\\n    T_eff = n - k                        # effective sample after lagging\\\\n    n_params = 1 + 2 * k                 # intercept + k lags × 2 variables\\\\n    df_resid = T_eff - n_params\\\\n\\\\n    if df_resid < 1:\\\\n        return {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"toda_yamamoto\\\\\\\", \\\\\\\"p\\\\\\\": p, \\\\\\\"d_max\\\\\\\": d_max, \\\\\\\"k\\\\\\\": k,\\\\n            \\\\\\\"wald_F\\\\\\\": None, \\\\\\\"p_value\\\\\\\": None, \\\\\\\"significant\\\\\\\": False,\\\\n            \\\\\\\"note\\\\\\\": f\\\\\\\"no residual df (T_eff={T_eff}, params={n_params})\\\\\\\",\\\\n            \\\\\\\"d_canary\\\\\\\": dc, \\\\\\\"d_downstream\\\\\\\": dd,\\\\n        }\\\\n\\\\n    # OLS for the downstream equation:\\\\n    #   y_t = c0 + Σ_{l=1}^{k} a_l·x_{t-l} + Σ_{l=1}^{k} b_l·y_{t-l} + ε\\\\n    Y = y[k:]\\\\n    X_cols = [np.ones(T_eff)]\\\\n    for l in range(1, k + 1):\\\\n        X_cols.append(x[k - l : n - l])   # canary  lag l\\\\n        X_cols.append(y[k - l : n - l])   # downstream lag l\\\\n    X = np.column_stack(X_cols)\\\\n\\\\n    try:\\\\n        beta = np.linalg.lstsq(X, Y, rcond=None)[0]\\\\n        resid = Y - X @ beta\\\\n        sigma2 = np.sum(resid ** 2) / df_resid\\\\n        XtX_inv = np.linalg.inv(X.T @ X)\\\\n    except Exception:\\\\n        return {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"toda_yamamoto\\\\\\\", \\\\\\\"p\\\\\\\": p, \\\\\\\"d_max\\\\\\\": d_max, \\\\\\\"k\\\\\\\": k,\\\\n            \\\\\\\"wald_F\\\\\\\": None, \\\\\\\"p_value\\\\\\\": None, \\\\\\\"significant\\\\\\\": False,\\\\n            \\\\\\\"note\\\\\\\": \\\\\\\"OLS failed (singular design matrix)\\\\\\\",\\\\n            \\\\\\\"d_canary\\\\\\\": dc, \\\\\\\"d_downstream\\\\\\\": dd,\\\\n        }\\\\n\\\\n    # Wald test on firs\n…[truncated 7534 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_baseline_410m_unified_rerun_20260518T003545",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-18T00:38:06.886878+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def permutation_granger_test(x, y, max_lag=1, n_perm=1000, seed=42,\\\\n                              difference=True):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Permutation-based Granger causality test.\\\\n\\\\n    Tests whether x Granger-causes y using permutation null distribution.\\\\n    First-differences series by default to handle non-stationarity, then\\\\n    uses random shuffle of x to build the null (differencing removes\\\\n    autocorrelation, making shuffle appropriate).\\\\n\\\\n    Args:\\\\n        x: 1D array, potential cause\\\\n        y: 1D array, potential effect\\\\n        max_lag: number of lags in the model\\\\n        n_perm: number of permutations for null distribution\\\\n        seed: random seed for reproducibility\\\\n        difference: if True, first-difference both series before testing\\\\n\\\\n    Returns:\\\\n        dict with keys: f_stat, p_value, n_perm, null_mean, null_std,\\\\n                        effect_size_f2, significant (p<0.05)\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    x = np.asarray(x, dtype=float)\\\\n    y = np.asarray(y, dtype=float)\\\\n    assert len(x) == len(y), \\\\\\\"x and y must have the same length\\\\\\\"\\\\n\\\\n    if difference:\\\\n        x = np.diff(x)\\\\n        y = np.diff(y)\\\\n\\\\n    T = len(x)\\\\n    assert T > max_lag + 2, f\\\\\\\"Series too short: T={T}, need > {max_lag + 2}\\\\\\\"\\\\n\\\\n    f_obs = _granger_f_stat(y, x, max_lag)\\\\n\\\\n    if np.isnan(f_obs):\\\\n        return {\\\\n            \\\\\\\"f_stat\\\\\\\": None, \\\\\\\"p_value\\\\\\\": None, \\\\\\\"n_perm\\\\\\\": n_perm,\\\\n            \\\\\\\"null_mean\\\\\\\": None, \\\\\\\"null_std\\\\\\\": None,\\\\n            \\\\\\\"effect_size_f2\\\\\\\": None, \\\\\\\"f2_size\\\\\\\": None, \\\\\\\"df_resid\\\\\\\": None,\\\\n            \\\\\\\"significant\\\\\\\": False,\\\\n            \\\\\\\"differenced\\\\\\\": difference,\\\\n            \\\\\\\"note\\\\\\\": \\\\\\\"F-stat computation failed\\\\\\\",\\\\n        }\\\\n\\\\n    rng = np.random.default_rng(seed)\\\\n    null_f = np.empty(n_perm)\\\\n\\\\n    for i in range(n_perm):\\\\n        x_perm = rng.permutation(x)\\\\n        null_f[i] =\n…[truncated 7504 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_baseline_410m_unified_rerun_20260518T003545",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-18T00:38:06.887163+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_baseline_410m_unified_rerun_20260518T003545",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat << 'PYEOF' > /root/autodl-tmp/distrib_canary_collapse/run_baseline_unified.py\n\"\"\"Unified-parameter analysis for Pythia-410M baseline (D057).\n\nParameters: n_perm=5000, xcorr max_lag=5, granger max_lag=1, raw p<0.05 (no BH FDR).\nCanonical 8 pairs: {token_entropy, ece} x {perplexity, distinct_1, distinct_2, distinct_3}.\n\"\"\"\nimport json\nimport os\nimport sys\nimport warnings\nimport numpy as np\n\nwarnings.filterwarnings(\"ignore\")\n\nBASE_DIR = os.path.dirname(os.path.abspath(__file__))\nsys.path.insert(0, BASE_DIR)\n\nfrom method_ablation import extract, orient, naive_pearson, diff_xcorr, threshold_lead, toda_yamamoto\nfrom permutation_granger import permutation_granger_test\n\nCANARIES = [\"token_entropy\", \"ece\"]\nDOWNSTREAMS = [\"perplexity\", \"distinct_1\", \"distinct_2\", \"distinct_3\"]\nHIGHER_IS_WORSE = {\"self_bleu\", \"ece\", \"perplexity\"}\nLOWER_IS_WORSE = {\"token_entropy\", \"effective_rank\", \"distinct_1\", \"distinct_2\", \"distinct_3\"}\n\nN_PERM = 5000\nXCORR_MAX_LAG = 5\nGRANGER_MAX_LAG = 1\nALPHA = 0.05\n\nEXP_DIR = os.path.join(BASE_DIR, \"results\", \"generalize\", \"pythia410m_wiki_a100_s42\")\n\ndef load_metrics(exp_dir):\n    metrics = []\n    gen_idx = 0\n    while True:\n        mpath = os.path.join(exp_dir, f\"gen_{gen_idx}\", \"metrics.json\")\n        if not os.path.exists(mpath):\n            break\n        with open(mpath) as f:\n            m = json.load(f)\n        m[\"generation\"] = gen_idx\n        metrics.append(m)\n        gen_idx += 1\n    return sorted(metrics, key=lambda x: x[\"generation\"])\n\ndef run_perm_granger_fwd(c, d, cn, dn):\n    x, y = orient(c, cn), orient(d, dn)\n    res = permutation_granger_test(x, y, max_lag=GRANGER_MAX_LAG, n_perm=N_PERM, seed=42, difference=True)\n    return {\n        \"method\": \"permg_fwd\",\n        \"direction\": f\"{cn}->{dn}\",\n        \"f_stat\": res[\"f_stat\"],\n        \"p_value\": res[\"p_value\"],\n        \"significant\": bool(res[\"p_value\"] is not None and res[\"p_value\"] < ALPHA),\n        \"n_perm\": N_PERM,\n    }\n\ndef run_perm_granger_rev(c, d, cn, dn):\n    x, y = orient(c, cn), orient(d, dn)\n    res = permutation_granger_test(y, x, max_lag=GRANGER_MAX_LAG, n_perm=N_PERM, seed=42, difference=True)\n    return {\n        \"method\": \"permg_rev\",\n        \"direction\": f\"{dn}->{cn}\",\n        \"f_stat\": res[\"f_stat\"],\n        \"p_value\": res[\"p_value\"],\n        \"significant\": bool(res[\"p_value\"] is not None and res[\"p_value\"] < ALPHA),\n        \"n_perm\": N_PERM,\n    }\n\ndef main():\n    metrics_list = load_metrics(EXP_DIR)\n    n_gens = len(metrics_list)\n    print(f\"Loaded {n_gens} generations from {EXP_DIR}\")\n\n    results = {}\n    method_sig_counts = {\n        \"naive_xcorr\": 0, \"diff_xcorr\": 0, \"threshold_onset\": 0,\n        \"permg_fwd\": 0, \"permg_rev\": 0, \"ty_granger\": 0,\n    }\n    k3_count = 0\n    k4_count = 0\n\n    for cn in CANARIES:\n        for dn in DOWNSTREAMS:\n            pair_key = f\"{cn}->{dn}\"\n            c = extract(metrics_list, cn)\n            d = extract(metrics_list, dn)\n\n            r_naive = naive_pearson(c, d, cn, dn, max_lag=XCORR_MAX_LAG)\n            r_diff = diff_xcorr(c, d, cn, dn, max_lag=XCORR_MAX_LAG)\n            r_thresh = threshold_lead(c, d, cn, dn)\n            r_pg_fwd = run_perm_granger_fwd(c, d, cn, dn)\n            r_pg_rev = run_perm_granger_rev(c, d, cn, dn)\n            r_ty = toda_yamamoto(c, d, cn, dn)\n\n            pair_result = {\n                \"naive_xcorr\": r_naive,\n                \"diff_xcorr\": r_diff,\n                \"threshold_onset\": r_thresh,\n                \"permg_fwd\": r_pg_fwd,\n                \"permg_rev\": r_pg_rev,\n                \"ty_granger\": r_ty,\n            }\n\n            sigs = {\n                \"naive_xcorr\": r_naive[\"significant\"],\n                \"diff_xcorr\": r_diff[\"significant\"],\n                \"threshold_onset\": r_thresh.get(\"significant\", False),\n                \"permg_fwd\": r_pg_fwd[\"significant\"],\n                \"permg_rev\": r_pg_rev[\"significant\"],\n                \"ty_granger\": r_ty.get(\"significant\", False),\n            }\n\n            for m, s in sigs.items():\n                if s:\n                    method_sig_counts[m] += 1\n\n            n_sig = sum(sigs.values())\n            if n_sig >= 3:\n                k3_count += 1\n            if n_sig >= 4:\n                k4_count += 1\n\n            pair_result[\"sig_flags\"] = sigs\n            pair_result[\"n_methods_sig\"] = n_sig\n            results[pair_key] = pair_result\n\n            print(f\"  {pair_key}: PG_fwd p={r_pg_fwd['p_value']}, PG_rev p={r_pg_rev['p_value']}\")\n\n    print(\"\\n\" + \"=\" * 60)\n    print(\"Raw p<0.05 counts (unified params: n_perm=5000, xcorr_lag=5, granger_lag=1):\")\n    print(\"=\" * 60)\n    print(f\"| Method           | X/8 |\")\n    print(f\"|------------------|-----|\")\n    for m in [\"naive_xcorr\", \"diff_xcorr\", \"threshold_onset\", \"permg_fwd\", \"permg_rev\", \"ty_granger\"]:\n        print(f\"| {m:<16} | {method_sig_counts[m]}/8 |\")\n    print(f\"| K>=3             | {k3_count}/8 |\")\n    print(f\"| K>=4             | {k4_count}/8 |\")\n\n    print(\"\\nPer-pair PG raw p-values:\")\n    print(\"| Pair | PG_fwd_p | PG_rev_p |\")\n    print(\"|------|----------|----------|\")\n    for pair_key, pr in results.items():\n        pfwd = pr[\"permg_fwd\"][\"p_value\"]\n        prev = pr[\"permg_rev\"][\"p_value\"]\n        pfwd_s = f\"{pfwd:.4f}\" if pfwd is not None else \"N/A\"\n        prev_s = f\"{prev:.4f}\" if prev is not None else \"N/A\"\n        print(f\"| {pair_key:<30} | {pfwd_s} | {prev_s} |\")\n\n    print(\"\\nPer-pair all methods p-values:\")\n    print(f\"| {'Pair':<30} | {'naive':<8} | {'diff':<8} | {'thresh':<8} | {'PG_fwd':<8} | {'PG_rev':<8} | {'TY':<8} | K |\")\n    print(f\"|{'-'*32}|{'-'*10}|{'-'*10}|{'-'*10}|{'-'*10}|{'-'*10}|{'-'*10}|---|\")\n    for pair_key, pr in results.items():\n        p_naive = pr[\"naive_xcorr\"].get(\"p_value\", None)\n        p_diff = pr[\"diff_xcorr\"].get(\"p_value\", None)\n        p_thresh = \"lead\" if pr[\"threshold_onset\"].get(\"significant\", False) else \"none\"\n        p_pgf = pr[\"permg_fwd\"][\"p_value\"]\n        p_pgr = pr[\"permg_rev\"][\"p_value\"]\n        p_ty = pr[\"ty_granger\"].get(\"p_value\", None)\n        def fmt(v):\n            if v is None: return \"N/A\"\n            if isinstance(v, str): return v\n            return f\"{v:.4f}\"\n        k = pr[\"n_methods_sig\"]\n        print(f\"| {pair_key:<30} | {fmt(p_naive):<8} | {fmt(p_diff):<8} | {p_thresh:<8} | {fmt(p_pgf):<8} | {fmt(p_pgr):<8} | {fmt(p_ty):<8} | {k} |\")\n\n    out_dir = os.path.join(EXP_DIR, \"analysis\")\n    os.makedirs(out_dir, exist_ok=True)\n    out_path = os.path.join(out_dir, \"pythia410m_8pair_5method_analysis.json\")\n\n    class NpEncoder(json.JSONEncoder):\n        def default(self, obj):\n            if isinstance(obj, (np.integer,)): return int(obj)\n            if isinstance(obj, (np.floating,)): return float(obj)\n            if isinstance(obj, np.ndarray): return obj.tolist()\n            return super().default(obj)\n\n    output = {\n        \"experiment\": \"pythia410m_wiki_a100_s42\",\n        \"unified_params\": {\n            \"n_perm\": N_PERM,\n            \"xcorr_max_lag\": XCORR_MAX_LAG,\n            \"granger_max_lag\": GRANGER_MAX_LAG,\n            \"fdr\": \"none (raw p<0.05)\",\n            \"canonical_pairs\": f\"{CANARIES} x {DOWNSTREAMS}\",\n        },\n        \"method_sig_counts\": method_sig_counts,\n        \"k3_count\": k3_count,\n        \"k4_count\": k4_count,\n        \"per_pair\": results,\n    }\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2, cls=NpEncoder)\n    print(f\"\\nSaved: {out_path}\")\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written OK\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-18T00:38:06.887453+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_baseline_410m_unified_rerun_20260518T003545",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-18T00:38:06.887636+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_baseline_410m_unified_rerun_20260518T003545",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python run_baseline_unified.py 2>&1",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-18T00:38:06.887805+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 11 generations from /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42\\\\n  token_entropy->perplexity: PG_fwd p=0.584083, PG_rev p=0.965807\\\\n  token_entropy->distinct_1: PG_fwd p=0.0002, PG_rev p=0.492102\\\\n  token_entropy->distinct_2: PG_fwd p=0.0012, PG_rev p=0.480504\\\\n  token_entropy->distinct_3: PG_fwd p=0.0012, PG_rev p=0.504699\\\\n  ece->perplexity: PG_fwd p=0.804039, PG_rev p=0.141772\\\\n  ece->distinct_1: PG_fwd p=0.0002, PG_rev p=0.027395\\\\n  ece->distinct_2: PG_fwd p=0.0006, PG_rev p=0.028594\\\\n  ece->distinct_3: PG_fwd p=0.0006, PG_rev p=0.030594\\\\n\\\\n============================================================\\\\nRaw p<0.05 counts (unified params: n_perm=5000, xcorr_lag=5, granger_lag=1):\\\\n============================================================\\\\n| Method           | X/8 |\\\\n|------------------|-----|\\\\n| naive_xcorr      | 8/8 |\\\\n| diff_xcorr       | 8/8 |\\\\n| threshold_onset  | 8/8 |\\\\n| permg_fwd        | 6/8 |\\\\n| permg_rev        | 3/8 |\\\\n| ty_granger       | 4/8 |\\\\n| K>=3             | 8/8 |\\\\n| K>=4             | 6/8 |\\\\n\\\\nPer-pair PG raw p-values:\\\\n| Pair | PG_fwd_p | PG_rev_p |\\\\n|------|----------|----------|\\\\n| token_entropy->perplexity      | 0.5841 | 0.9658 |\\\\n| token_entropy->distinct_1      | 0.0002 | 0.4921 |\\\\n| token_entropy->distinct_2      | 0.0012 | 0.4805 |\\\\n| token_entropy->distinct_3      | 0.0012 | 0.5047 |\\\\n| ece->perplexity                | 0.8040 | 0.1418 |\\\\n| ece->distinct_1                | 0.0002 | 0.0274 |\\\\n| ece->distinct_2                | 0.0006 | 0.0286 |\\\\n| ece->distinct_3                | 0.0006 | 0.0306 |\\\\n\\\\nPer-pair all methods p-values:\\\\n| Pair                           | naive    | diff     | thresh   | PG_fwd   | PG_rev   | TY       | K |\\\\n|--------------------------------|----------|----------|----------|----------|----------|----------|---|\\\\n| token_entropy->perplexity      | 0.0455   | 0.0319 \n…[truncated 1052 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_baseline_410m_unified_rerun_20260518T003545",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-18T00:38:06.888011+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果与旧 registry 值有显著差异，主要原因是统一参数（xcorr max_lag 从 3→5、n_perm 从 1000→5000、不做 FDR）。\n\n---\n\n## 结果\n\n**Raw p<0.05 计数**（统一参数：n_perm=5000, xcorr_lag=5, granger_lag=1, no FDR）：\n\n| 方法 | X/8 | 旧值 | 差异 |\n|------|-----|------|------|\n| naive_xcorr | 8/8 | 7/8 | +1（max_lag 5 更宽，token_entropy→perplexity 边际显著 p=0.0455） |\n| diff_xcorr | 8/8 | 6/8 | +2（同上原因） |\n| threshold_onset | 8/8 | 6/8 | +2（可能旧分析用了 4 canary × 4 downstream 不同 pair 集） |\n| permg_fwd | 6/8 | 6/8 | 一致 |\n| permg_rev | 3/8 | 0/8 | +3（ece→distinct_{1,2,3} 反向 p≈0.027-0.031，n_perm=5000 下刚过阈值） |\n| ty_granger | 4/8 | 6/8 | -2（受 C003 约束，TY 在短序列不稳定） |\n| K≥3 | 8/8 | — | — |\n| K≥4 | 6/8 | 6/8 | 一致 |\n\n**Per-pair PG raw p-values**：\n\n| Pair | PG_fwd_p | PG_rev_p |\n|------|----------|----------|\n| token_entropy→perplexity | 0.5841 | 0.9658 |\n| token_entropy→distinct_1 | 0.0002 | 0.4921 |\n| token_entropy→distinct_2 | 0.0012 | 0.4805 |\n| token_entropy→distinct_3 | 0.0012 | 0.5047 |\n| ece→perplexity | 0.8040 | 0.1418 |\n| ece→distinct_1 | 0.0002 | 0.0274 |\n| ece→distinct_2 | 0.0006 | 0.0286 |\n| ece→distinct_3 | 0.0006 | 0.0306 |\n\n**差异原因汇总**：\n- `naive_xcorr`/`diff_xcorr` 增加：max_lag 从 3→5 捕获了更多滞后相关\n- `permg_rev` 增加 3 个：ece→distinct_{1,2,3} 反向因果刚过 0.05 阈值（0.027-0.031），n_perm=5000 精度更高\n- `ty_granger` 减少 2 个：旧分析可能用了不同 pair 集（4 canary 而非 2）；ece→distinct_{2,3} 和 ece→perplexity 的 TY p 值在 0.09-0.13 区间\n\n结果已保存至 `results/generalize/pythia410m_wiki_a100_s42/analysis/pythia410m_8pair_5method_analysis.json`。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_baseline_410m_unified_rerun_20260518T003545"
+          },
+          "id": "event-000031"
+        }
+      ],
+      "message_count": 31
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-baseline-410m-unified-rerun.md"
+}

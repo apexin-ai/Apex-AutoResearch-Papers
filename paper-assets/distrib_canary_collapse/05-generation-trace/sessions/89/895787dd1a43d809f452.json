@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "895787dd1a43d809f452",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "figure r3 dose response font fix",
+  "task_key": "worker_figure_r3_dose_response_font_fix_20260520T163339",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_r3_dose_response_font_fix_20260520T163339_result.json",
+    "occurrence": 1,
+    "bytes": 597,
+    "sha256": "7500b7196bd9accb14633b1aabfb43a1bf1bbe462650585cec81df89d87279d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both figures regenerated with updated font sizes.\n\n**dose-response (Figure 2):**\n- axis labels: 9pt → 14pt, tick labels: 8pt → 11pt, legend: 7pt → 11pt\n- regime labels: 5.5pt → 8pt, annotation: 6.5pt → 9pt\n- figure size: 3.25×2.5 → 4.0×3.2 inches\n\n**consensus heatmap (Figure 3):**\n- axis labels: 11pt → 14pt, tick labels: 9.5–10pt → 11pt\n- cell text: 7.5pt → 9pt, regime labels: 7pt → 8.5pt, title: 10pt → 12pt\n\n输出文件已覆盖:\n- `docs/paper/figures/fig_dose_response.pdf` / `.png`\n- `docs/paper/figures/consensus_heatmap.pdf` / `.png`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-r3-dose-response-font-fix-copy-2.md"
+}

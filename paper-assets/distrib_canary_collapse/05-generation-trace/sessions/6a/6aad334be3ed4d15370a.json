@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "6aad334be3ed4d15370a",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis d105 d111 full csv rebuild",
+  "task_key": "worker_analysis_d105_d111_full_csv_rebuild_20260520T004527",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d105_d111_full_csv_rebuild_20260520T004527_result.json",
+    "occurrence": 1,
+    "bytes": 2568038,
+    "sha256": "132e43c48d2c659d06d9d318723e4d16a35c78a618fad6271b82bc53f26fa406"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "6aad334be3ed4d15370a-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d105-d111-full-csv-rebuild.md"
+}

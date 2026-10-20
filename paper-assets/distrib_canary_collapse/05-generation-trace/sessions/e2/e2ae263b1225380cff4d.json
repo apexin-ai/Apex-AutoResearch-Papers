@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e2ae263b1225380cff4d",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "paper d058 table7 final",
+  "task_key": "worker_paper_d058_table7_final_20260518T012201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d058_table7_final_20260518T012201_result.json",
+    "occurrence": 1,
+    "bytes": 1118,
+    "sha256": "34dff4061046ad945ad46a3e1f4c19457c0397862f659617732b1fe426d56f2c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks pass:\n- **Compilation**: 0 errors\n- **No -ing issues** in new text\n- **No em-dashes** in any file\n\n### Summary of all 14 edits applied:\n\n**Table 7** (experiments.tex):\n- OPT PG_rev: 0/8 → **2/8**\n- C4 PG_rev: 3/8 → **4/8**\n- GPT-2m row: → **`--` / pending**\n- Footnote: ECE rev 3/4 → **4/4** (both footnotes fixed, orphaned one at L48 removed)\n- Architecture para: removed \"(or 6/6)\" GPT-2m reference\n\n**Paragraphs** (experiments.tex):\n- Domain consensus: 8/8 → **7/8**\n- Domain ECE narrative: rewritten with 3/4 verified conditions (C4 4/4, Baseline 3/4, OPT 2/4, Scale 0/4)\n- Scale: added ECE rev=0/4 as unique property of 1.4B\n\n**Discussion.tex**: \"2 of 5 conditions\" → **\"3 of 4 verified conditions\"** with Baseline 3/8, OPT 2/8, C4 4/8\n\n**Conclusion.tex**: ECE \"2/5\" → **\"3/4 verified\"**; C4 consensus 8/8 → **7/8**\n\n**Introduction.tex**: Contribution #4 rewritten as \"Cross-condition generalization\" covering architecture/scale/domain, reverse claim scoped to token entropy (0/4)\n\n**Appendix.tex**: FDR Baseline TBD → **6/8 / 6/8**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-d058-table7-final.md"
+}

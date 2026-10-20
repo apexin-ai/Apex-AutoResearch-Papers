@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4a55926a75c1c9273f7",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "paper fix fnr artifacts",
+  "task_key": "worker_paper_fix_fnr_artifacts_20260516T002749",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix_fnr_artifacts_20260516T002749_result.json",
+    "occurrence": 1,
+    "bytes": 633,
+    "sha256": "99d43e7e4841f9714d79473908303c050858ca0242e2f32532d023ccdb3bb0ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All remaining 25% instances are about TY significance rate (4/16 = 25.0%) or other method statistics — none are about TY FNR. No further fixes needed.\n\n**修改报告：**\n\n| 位置 | 修改 |\n|------|------|\n| `experiments.tex:173` | TY FNR 25% → 33.3%（正文描述） |\n| `experiments.tex:191` | TY FNR 25% → 33.3%（Table 1 数据） |\n\n**确认无需修改：**\n- `experiments.tex:55, 78` — 25% 指的是 TY 显著性率（4/16），不是 FNR\n- `method.tex:100` — 已经是 33.3%\n- `discussion.tex:27` — 已经是 33.3%\n- 其他文件中的 25% 均为方法显著性率，与 FNR 无关"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-fnr-artifacts.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5455ec2a2d1e94fe679",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code fix subsample bias",
+  "task_key": "worker_code_fix-subsample-bias_20260514T190438",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-subsample-bias_20260514T190438_result.json",
+    "occurrence": 1,
+    "bytes": 259,
+    "sha256": "4b4c75605aa85b40eb7ea86a9c9e7171ed906d09406db984f5f9e75934135007"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- 本地 `iterative_train.py` 和 `test_alpha_sweep.py` 均已修复，14/14 测试通过\n- 远程 `westd-19828` 已备份为 `iterative_train.py.bak.v2`，修复版已部署，`shuffle(seed=seed)` 出现在第 117、122、127 行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-subsample-bias.md"
+}

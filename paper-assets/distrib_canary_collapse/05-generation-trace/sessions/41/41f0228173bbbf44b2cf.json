@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41f0228173bbbf44b2cf",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "paper writing method",
+  "task_key": "worker_paper_writing_method_20260515T185754",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_method_20260515T185754_result.json",
+    "occurrence": 1,
+    "bytes": 1207,
+    "sha256": "306bf55cce714a09e0c3a12ebfea241fa40479db6717daa2eb376ac32a4589aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Verification checklist:\n\n1. **3 subsections with `\\label`**: `sec:pitfalls` (L9), `sec:consensus` (L35), `sec:calibration` (L85) — pass\n2. **`tab:practical_guidance` table**: L70 — pass\n3. **`\\cite{}` keys in references.bib**:\n   - `boettiger2012limits` — present\n   - `scheffer2009early` — present\n   - `granger1969investigating` — present\n   - `shojaie2022granger` — present\n   - `li2016diversity` — present\n   - All 5 keys verified — pass\n4. **Forbidden words**: no \"consistently outperforms\", no \"state-of-the-art\", no bare \"significantly\" — pass\n5. **FPR/FNR numbers**: FPR K=1→100%, K=2→75%, K=3→37.5%, K≥4→0%; FNR K≥4/5 S≥3/4→0%, K=5/5 S≥3/4→50%, K=5/5 S=4/4→66.7%; spurious rate 75%/62.5% — all match — pass\n\nAdditional constraints verified:\n- PC07: no \"model collapse\" prediction claim\n- PC10: no Cohen f² benchmarks\n- PC11: Granger ≠ true causality explicitly stated (L48)\n- PC15: dual spurious rate reported (L16)\n\nFile written to `/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex`. ~1300 words across 3 subsections with the practical guidance table."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-method.md"
+}

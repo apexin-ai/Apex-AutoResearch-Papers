@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "c47ae3842a838718205f",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "data dose response csv",
+  "task_key": "worker_data_dose_response_csv_20260519T025500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_dose_response_csv_20260519T025500.log",
+    "occurrence": 1,
+    "bytes": 779410,
+    "sha256": "83a71bf3ed3fcb451bcb7e991afc5e9ff931fbbd5819a3b81aab218b04dc4296"
+  },
+  "statistics": {
+    "messages": 290,
+    "user_turns": 2,
+    "tool_calls": 98,
+    "roles": {
+      "log": 1,
+      "system": 43,
+      "assistant": 46,
+      "tool_call": 98,
+      "tool_result": 98,
+      "record": 1,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 74,
+      "chunks": [
+        {
+          "path": "c47ae3842a838718205f-part-0001.json",
+          "message_count": 74
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 206,
+      "chunks": [
+        {
+          "path": "c47ae3842a838718205f-part-0001.json",
+          "message_count": 106
+        },
+        {
+          "path": "c47ae3842a838718205f-part-0002.json",
+          "message_count": 100
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 10,
+      "chunks": [
+        {
+          "path": "c47ae3842a838718205f-part-0002.json",
+          "message_count": 10
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/data-dose-response-csv.md"
+}

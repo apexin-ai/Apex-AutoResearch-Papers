@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f8a1e3138e2fbade877",
+  "project": "distrib_canary_collapse",
+  "kind": "history",
+  "title": "agent / loop_12_1779063882.md",
+  "task_key": "loop_12_1779063882",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1779063882.md",
+    "occurrence": 1,
+    "bytes": 3497,
+    "sha256": "ffe6d7f7335952de4b99f120dffb8e79dea8a42308e041293650365101f4511e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: max_wall_time\nupdated: '2026-05-17T23:48:36+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westd-19828 的 cuda:0 和 cuda:1（gpu_ids 白名单）\n- HF 下载必须走 `HF_ENDPOINT=https://hf-mirror.com`，服务器无法直连 huggingface.co\n- MAUVE 需要 gpt2-large，已缓存但命令中必须带 `HF_ENDPOINT` 环境变量\n- iterative_train.py 已添加 `--start_gen` 参数（resume 支持），metrics.py 已有 MAUVE try/except 安全网\n- Table 7 Scale 行已填（7/8, 6/8, 8/8, 5/8, 0/8, 0/8, 5/8），不要再改除非 Director 指示\n- 论文唯一真源：`/root/autodl-tmp/distrib_canary_collapse/docs/paper/`（D046 决策）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19828，工作目录 `/root/autodl-tmp/distrib_canary_collapse/`\n- Python：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- HF cache：`/root/autodl-tmp/.hf_cache/`\n- 模型本地路径：\n  - Pythia-1.4B: `/root/autodl-tmp/.hf_cache/pythia-1.4b-local/`\n  - Pythia-1B: `/root/autodl-tmp/.hf_cache/pythia-1b-local/`\n  - gpt2-large (MAUVE): cached in HF hub\n- 数据：`data/wikitext103_5k/`（WikiText），`data/c4_5k/`（C4）\n- 磁盘：250G, 24% 使用（191GB 已清理）\n- 活跃进程：C4 seed-43 (PID 291516, cuda:0, tmux=generalize_pythia1b_c4_a100_s43)\n- cuda:1 空闲（Pythia-1.4B 已完成）\n\n### 3. 📊 当前状态\n刚完成 Pythia-1.4B 分析（K≥4=5/8, rev=0/8），Table 7 Scale 行已填入，registry→DONE。\n\n等待回调的 Worker：\n- `worker_paper_round2_final_prep_20260517T234748`：扫描 CONDITIONAL 注释块 + latexmk 编译 + C4 seed-43 分析（如果已完成）\n\nRegistry RUNNING：\n- `generalize_pythia1b_c4_a100_s43`：C4 seed-43，gen_9 训练中（~25 min 前报告 30%），应已接近完成或已完成\n\n已完成的论文修改：\n- Discussion ECE bidirectionality 段落（line 82）\n- Conclusion 更新（三架构+域+scale 泛化叙事）\n- Table 7 全部 4 行完成（Baseline/Architecture/Domain/Scale）\n- experiments.tex 无 TBD 标记\n\n### 4. 📋 待办\n- `worker_paper_round2_final_prep` 回调 → 处理结果：确认编译通过 + C4 分析数字\n- C4 seed-43 完成 → analyze_generalize.py → 重点看 PermG rev 中 ECE pairs 是否复现 bidirectionality → 如果复现则 Discussion 加 \"confirmed across seeds\" → registry→DONE\n- C4 seed-43 ECE rev 复现 → 汇报 Director \"Round 2 ready\"\n- C4 seed-43 ECE rev 不复现 → 汇报 Director 差异，可能需要调整 Discussion 措辞\n- 全部完成 → 最终 latexmk 编译确认 → 向 Director 汇报 Round 2 提交就绪\n\n### 5. 🎯 战略上下文\n- 项目方向 (D027)：方法论陷阱 + 多方法共识框架为主线，canary prediction 为 case study\n- 目标：EMNLP 2026 main track (D043)\n- Round 2 提交最后阻塞项：C4 seed-43 分析结果 + 最终编译确认\n- Table 7 四维度泛化全部 success：Baseline 6/8, Architecture 6/8, Domain 8/8, Scale 5/8\n- 易错点：TY Granger 在大模型 (1.4B, GPT-2m) 全部 0/8，是 underpowered 不是方法失败，论文中已有 limitation 叙事（C003 约束：禁止引用 α≤0.50 TY 显著率）\n- ECE bidirectionality 是 C4 域特有发现（rev=3/8 来自 ECE→diversity），token_entropy 保持完美单向——这是 Discussion 核心段落，需要 seed-43 确认\n- 磁盘已清理但注意：中间 gen 的 model/ 已删，只剩 gen_0 和 gen_10，如果需要重新分析中间 gen 的 model weights 则不可能\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1779063882.md"
+}

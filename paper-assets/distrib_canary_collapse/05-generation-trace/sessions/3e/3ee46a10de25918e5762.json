@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ee46a10de25918e5762",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis a052 s42 fp32 5method",
+  "task_key": "worker_analysis_a052_s42_fp32_5method_20260521T070055",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_a052_s42_fp32_5method_20260521T070055_result.json",
+    "occurrence": 1,
+    "bytes": 713,
+    "sha256": "5294dd40f1ca6142ecbdcf5dcc178e5662c432fb4c50263ec522f0d4c9fc53b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**α=0.52 s42 fp32 — D102 5method 分析结果**\n\n| 指标 | 值 |\n|------|------|\n| PermG fwd (FDR) | **3/8** |\n| PermG rev (FDR) | 0/8 |\n| DiffXCorr fwd (FDR) | 5/8 |\n| ThresholdOnset 3sigma | **0/8** |\n| TY fwd | 1/8 |\n| K≥3 | **0/8** |\n| K≥4 | 0/8 |\n\n关键发现：PermG 存在方向性不对称（3 fwd / 0 rev），确认 α=0.52 已在 α_c 以上有因果信号。但 3sigma threshold onset 全部为 None（信号幅度不足 3σ），导致 K 投票无法积累到 ≥3。\n\n旧 registry 的 threshold_onset_3sigma=8/8、K≥3=6/8 来自 pre-D102 分析（使用非 3sigma 阈值），已修正。Conclusion 维持 **success**（PermG > 0/8）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-a052-s42-fp32-5method.md"
+}

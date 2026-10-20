@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba46f96ccd841a83b677",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops restart 14b t15 17855",
+  "task_key": "worker_ops_restart-14b-t15-17855_20260522T090739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_restart-14b-t15-17855_20260522T090739_result.json",
+    "occurrence": 1,
+    "bytes": 506,
+    "sha256": "f3c0d4bded4837d6db20d54cd288072190a4eaada04d5813f5269dbad0d7c048"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。验证结果：\n\n- **GPU 0**: 10293 MiB 占用, 89% utilization — `scale_14b_t15_a060_v2` (PID 656957) 运行中\n- **GPU 1**: 10293 MiB 占用, 89% utilization — `scale_14b_t15_a050_v2` (PID 657037) 运行中\n- 两个 tmux session (`scale_14b_t15_a060_v2`, `scale_14b_t15_a050_v2`) 均已创建\n- 两个 python 进程均从 `--start_gen 2` 启动，使用正确的 `HF_HOME=/root/autodl-tmp/.hf_cache`\n\n日志分别在 `/tmp/t15_a060_v2.log` 和 `/tmp/t15_a050_v2.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-restart-14b-t15-17855.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44c3aa7565c04e69b891",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analyze d102 t25 a075 19828",
+  "task_key": "worker_analyze_d102-t25-a075-19828_20260521T231642",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_d102-t25-a075-19828_20260521T231642_result.json",
+    "occurrence": 1,
+    "bytes": 1173,
+    "sha256": "1936094260a8c05c516e11a673cdd34cdf27e75f6e82d8fdf7556a8d559412d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "d102 分析完成。结果汇总：\n\n## t25_a075_s42_fp32 — d102 5method 分析\n\n**实验状态**: gen_0–gen_25 完整，EXIT_CODE=0\n\n### FORWARD (canary → downstream)\n\n| Pair | Consensus | Methods |\n|------|-----------|---------|\n| token_entropy→distinct_1 | **4/5** | diff, threshold, perm, ty |\n| token_entropy→distinct_2 | **4/5** | diff, threshold, perm, ty |\n| token_entropy→distinct_3 | **4/5** | diff, threshold, perm, ty |\n| token_entropy→mauve | 0/5 | none |\n| ece→distinct_1 | **5/5** | naive, diff, threshold, perm, ty |\n| ece→distinct_2 | **5/5** | naive, diff, threshold, perm, ty |\n| ece→distinct_3 | **5/5** | naive, diff, threshold, perm, ty |\n| ece→mauve | 1/5 | naive |\n\n### REVERSE — 全部 0/5 PermG 显著（方向性干净）\n\n### 汇总\n- **Robust pairs (≥3/5 methods): 6/8**\n- **PermG FDR sig (fwd): 6/8, rev: 0/8**\n- mauve 两个 pair 均无信号（token_entropy→mauve 0/5, ece→mauve 1/5）\n- ece 信号最强（3 个 distinct pair 全 5/5）\n\n输出已保存到服务器：`results/phase_diagram/t25_a075_s42_fp32/analysis/5method_leadlag.json` 和 `5method_summary.txt`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-d102-t25-a075-19828.md"
+}

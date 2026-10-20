@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e2c5568a63b5a800f88f",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analyze check all and d102 17855",
+  "task_key": "worker_analyze_check-all-and-d102-17855_20260522T004419",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_check-all-and-d102-17855_20260522T004419_result.json",
+    "occurrence": 1,
+    "bytes": 1635,
+    "sha256": "37fa5441b3e1a4a0972d391e95e0e2885ec64ee1ed4f5c1b26537263d0332112"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All D102 analyses complete. Here's the summary:\n\n## westd-17855 实验状态\n\n```\nExperiment              Gen Status     State       PermG fwd  PermG rev  Robust(≥3/5)\n─────────────────────────────────────────────────────────────────────────────────────\nt15_a045_s43_fp32       14/15 (gen14中) RUNNING     6/8*       0/8        2/8\nt15_a060_s43_fp32       15/15          COMPLETED   0/8        0/8        2/8\nt20_a060_s43_fp32       14/20          RUNNING     —          —          —\nt25_a045_s43_fp32        2/25          RUNNING     —          —          —\nt25_a050_s42_fp32       14/25          ❌ DISK FULL  6/8*       0/8        2/8\nt25_a060_s42_fp32 ★     14/25          ❌ DISK FULL  0/8        0/8        0/8\n```\n\n*D102 on partial data (13 gens loaded for t25 experiments, 14 for t15_a045)\n\n### ★ t25_a060 关键结果\n\n**PermG fwd = 0/8, Robust = 0/8 → Scenario B (permanence)**  — 即便只有 13 gens (partial)，forward Granger 全部不显著，没有任何 pair 达到 ≥3/5 consensus。\n\n### α 对比模式\n- **α=0.45/0.50**: PermG fwd = 6/8（T=15 和 T=25 partial 一致）\n- **α=0.60**: PermG fwd = 0/8（T=15 和 T=25 partial 一致）\n\n### 磁盘问题\nt25_a050 和 t25_a060 均因 `No space left on device` 在 gen_13→gen_14 checkpoint save 时崩溃。当前磁盘 231G/350G used (120G free)。需要清理空间后重启这两个实验才能拿到完整 25 gen 数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-check-all-and-d102-17855.md"
+}

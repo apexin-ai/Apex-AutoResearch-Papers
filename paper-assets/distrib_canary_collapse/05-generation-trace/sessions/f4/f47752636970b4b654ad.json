@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "f47752636970b4b654ad",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analyze generalize pythia1b c4 a100 s43 v2",
+  "task_key": "worker_analyze_generalize_pythia1b_c4_a100_s43_v2_20260521T051205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_generalize_pythia1b_c4_a100_s43_v2_20260521T051205_result.json",
+    "occurrence": 1,
+    "bytes": 2516,
+    "sha256": "d38edf7f9e4fa5d9a266dba72df491271f7f4e61879bf4bc98feb6147ee5d766"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。汇总结果：\n\n```json\n{\n  \"lead_lag\": {\n    \"perm_granger_fdr_fwd\": \"8/8\",\n    \"perm_granger_fdr_rev\": \"0/8\",\n    \"K_gte3\": \"8/8\",\n    \"K_gte4\": \"1/8\",\n    \"threshold_onset_3sigma\": \"0/8\",\n    \"diff_xcorr_fdr_fwd\": \"8/8\",\n    \"TY_fdr_fwd\": \"1/8\",\n    \"robust_pairs\": 8\n  },\n  \"trajectory_summary\": {\n    \"gen0_entropy\": 2.956, \"gen10_entropy\": 1.231,\n    \"gen0_ppl\": 20.60, \"gen10_ppl\": 1402.54,\n    \"gen0_distinct1\": 0.1137, \"gen10_distinct1\": 0.1032,\n    \"gen0_mauve\": 0.811, \"gen10_mauve\": 0.412\n  },\n  \"vs_v1\": \"PermG 一致 8/8；K≥3 从 6/8 提升至 8/8；threshold_onset 从 2/8 降至 0/8（均无 3sigma 突破点）；diff_xcorr 一致 8/8。v2 共识更强但 onset 信号消失。\",\n  \"conclusion\": \"success — PermG 8/8 (FPR=0) 完美正向因果，反向 0/8 确认方向性。α=1.0 全替换下 Pythia-1B/C4 domain 展现强 collapse 信号（ppl 68x 恶化，entropy 降 58%），lead-lag 因果关系稳健复现。\"\n}\n```\n\n关键发现：\n- **PermG 完美**：正向 8/8 全显著，反向 0/8，方向性无可置疑\n- **共识提升**：K≥3 从 v1 的 6/8 升至 8/8，ece→distinct_3 达到 K=4（含 TY）\n- **threshold_onset 0/8**：canary 在 gen1 就突变（entropy 从 2.96 骤降至 1.39），但 downstream 无 3sigma onset 检出——信号太强太快，onset 方法失效\n- **collapse 剧烈**：ppl 20.6→1402.5（68x），entropy 2.96→1.23，mauve 0.81→0.41"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "lead_lag": {
+                "perm_granger_fdr_fwd": "8/8",
+                "perm_granger_fdr_rev": "0/8",
+                "K_gte3": "8/8",
+                "K_gte4": "1/8",
+                "threshold_onset_3sigma": "0/8",
+                "diff_xcorr_fdr_fwd": "8/8",
+                "TY_fdr_fwd": "1/8",
+                "robust_pairs": 8
+              },
+              "trajectory_summary": {
+                "gen0_entropy": 2.956,
+                "gen10_entropy": 1.231,
+                "gen0_ppl": 20.6,
+                "gen10_ppl": 1402.54,
+                "gen0_distinct1": 0.1137,
+                "gen10_distinct1": 0.1032,
+                "gen0_mauve": 0.811,
+                "gen10_mauve": 0.412
+              },
+              "vs_v1": "PermG 一致 8/8；K≥3 从 6/8 提升至 8/8；threshold_onset 从 2/8 降至 0/8（均无 3sigma 突破点）；diff_xcorr 一致 8/8。v2 共识更强但 onset 信号消失。",
+              "conclusion": "success — PermG 8/8 (FPR=0) 完美正向因果，反向 0/8 确认方向性。α=1.0 全替换下 Pythia-1B/C4 domain 展现强 collapse 信号（ppl 68x 恶化，entropy 降 58%），lead-lag 因果关系稳健复现。"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-generalize-pythia1b-c4-a100-s43-v2.md"
+}

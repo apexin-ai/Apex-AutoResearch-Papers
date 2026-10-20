@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fca9b290f4e67e13d1e2",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "research panel analysis feasibility",
+  "task_key": "worker_research_panel_analysis_feasibility_20260515T085153",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_panel_analysis_feasibility_20260515T085153_result.json",
+    "occurrence": 1,
+    "bytes": 840,
+    "sha256": "496ea44d75ac3d759f675daebbde5dfee4f96b3f3307d3a4706fbec0e0dcd04e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已写入 `artifacts/panel_analysis_feasibility.md`。\n\n**核心结论：现在做 panel Granger 分析统计上不成立，不能作为发表级结论。**\n\n三个致命问题：\n1. **N=4–5, T=11 处于 DH 检验的 power floor 之下**——即使假设全部满足，检出中等效应的 power 仅 15–25%\n2. **单 seed/α 无法分离 regime effect 与 seed noise**——这是实验设计缺陷，不是样本量问题\n3. **不同 α 不是 exchangeable units**——违反 panel 模型的基本假设\n\n**现在可以做的**：descriptive cross-α comparison + Fisher's method pool per-α p-values，定位为 preliminary/suggestive evidence。\n\n**正式 panel 分析最低要求**：3 seeds × 5 α = N=15, T=11。推荐 4 seeds × 5 α = N=20。优先补跑 α=0.00 和 α=0.50 的额外 seeds。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-panel-analysis-feasibility.md"
+}

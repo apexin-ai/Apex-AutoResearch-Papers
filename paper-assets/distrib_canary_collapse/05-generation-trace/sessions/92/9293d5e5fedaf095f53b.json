@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9293d5e5fedaf095f53b",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analyze post restart progress check",
+  "task_key": "worker_analyze_post-restart-progress-check_20260522T021025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_post-restart-progress-check_20260522T021025_result.json",
+    "occurrence": 1,
+    "bytes": 1725,
+    "sha256": "c107833bbd496a7597800aaa25fe650efc1b75085285d7f2e343d1da7fad9731"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### westd-17855 (350G, 67% used, 119G avail)\n\n| 实验 | Gen/预期 | 状态 | 当前进度 |\n|------|---------|------|---------|\n| **t25_a060_s42_fp32★** | 16/26 | ⚠️ RUNNING (v2+v3 冲突) | GPU 3 双进程竞争 |\n| **t25_a050_s42_fp32** | 16/26 | ⚠️ RUNNING (v2+v3 冲突) | GPU 0 双进程竞争 |\n| t20_a060_s43_fp32 | 18/21 | RUNNING (v2) | Gen 17/20 生成合成数据，~1-1.5h 完成 |\n| t25_a045_s43_fp32 | 6/26 | RUNNING | Gen 5/25, GPU 5 |\n| t15_a075_s43_fp32 | 4/16 | RUNNING | Gen 3/15, GPU 1 |\n| t10_a075_s43_fp32 | 3/11 | RUNNING | Gen 2/10, GPU 2 |\n\n### westd-19828 (250G, 42% used, 147G avail)\n\n| 实验 | Gen/预期 | 状态 | 当前进度 |\n|------|---------|------|---------|\n| t25_a075_s43_fp32 | 6/26 | RUNNING | GPU 0 |\n| t10_a050_s43_fp32 | 3/11 | RUNNING | GPU 1 |\n\n### 无已完成实验，d102 暂无法执行\n\n---\n\n### ⚠️ 严重问题：t25_a060★ 和 t25_a050 有双进程冲突\n\nGPU 实占确认：\n\n- **GPU 0**: PID 552687 (t25_a050 v2) + PID 582623 (t25_a050 v3 --start_gen 13) → 28622 MiB / 24G\n- **GPU 3**: PID 552609 (t25_a060 v2) + PID 582545 (t25_a060 v3 --start_gen 14) → 28622 MiB / 24G\n\nv2 进程（03:32 启动，无 --start_gen）和 v3 进程（09:01 启动，带 --start_gen）同时写同一输出目录，同一 GPU。结果可能被覆盖/污染，GPU 内存双倍占用导致训练减速。\n\n**建议**：kill v2 进程（PID 552609 + 552687 及其父进程），保留 v3（正确的 resume 版本）。是否执行？\n\n### 另注\n- t20_a060_s43 v1 曾因磁盘满失败（已恢复，v2 在跑，当前磁盘充足）\n- t20_a060_s43 最接近完成（18/21），预计 ~1-1.5h 后可跑 d102"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-post-restart-progress-check.md"
+}

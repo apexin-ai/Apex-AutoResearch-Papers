@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "a037e2a2f21c757e6dfa",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis t20 a050 s42 fp32",
+  "task_key": "worker_analysis_t20_a050_s42_fp32_20260520T163556",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_t20_a050_s42_fp32_20260520T163556_result.json",
+    "occurrence": 1,
+    "bytes": 2487,
+    "sha256": "c8acd6426aeef81fa30d00601d136abb3460bb29cf85c4a51e49b4e6018c02ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## T=20 α=0.50 实验结果 — Power Theory 预测验证\n\n### 1. Verification JSON\n\n```json\n{\n  \"alpha\": 0.5,\n  \"seed\": 42,\n  \"T\": 20,\n  \"n_generations\": 21,\n  \"observed_permg_count\": 6,\n  \"observed_rate\": 0.75,\n  \"predicted_permg_count\": 7,\n  \"predicted_rate\": 0.8257,\n  \"predicted_rate_95ci\": [0.01502, 0.829926],\n  \"within_ci\": true,\n  \"robust_pairs_K3\": 6\n}\n```\n\n### 2. 5-Method Forward Significance Counts\n\n| Method | Sig Count (/8) |\n|--------|:---------:|\n| **Perm Granger FDR (fwd)** | **6** |\n| **Diff XCorr FDR (fwd)** | **6** |\n| **Threshold Onset (fwd)** | **6** |\n| **TY Granger (fwd)** | **4** |\n| Perm Granger FDR (rev) | 0 |\n\n### 3. Robust Pairs (K≥3)\n\n**6/8** robust pairs:\n\n| Pair | Votes | Methods |\n|------|:-----:|---------|\n| ece→distinct_1 | 5/5 | naive, diff, threshold, perm, ty |\n| ece→distinct_2 | 4/5 | diff, threshold, perm, ty |\n| ece→distinct_3 | 4/5 | diff, threshold, perm, ty |\n| token_entropy→distinct_1 | 3/5 | diff, threshold, perm |\n| token_entropy→distinct_2 | 3/5 | diff, threshold, perm |\n| token_entropy→distinct_3 | 3/5 | diff, threshold, perm |\n| token_entropy→mauve | 0/5 | — |\n| ece→mauve | 2/5 | naive, ty |\n\n### 4. 训练日志尾部\n\n训练正常完成：\n- 最终 metrics: `ppl=34.70, entropy=2.7257, eff_rank=61.5, mauve=0.0259`\n- `all_metrics.json` 已保存\n- **EXIT_CODE=0**\n\n### 5. Checkpoint 路径\n\n```\nresults/t20/a050_s42_fp32/gen_19/checkpoint\nresults/t20/a050_s42_fp32/gen_20/checkpoint\n```\n\n### 6. Conclusion: **SUCCESS — Power Theory 预测验证通过**\n\n- Observed PermG = **6/8** (rate=0.750)\n- Predicted PermG = 7/8 (rate=0.826)\n- T=10 baseline PermG = 6/8 (rate=0.746)\n- Observed rate 0.750 **在 95% CI [0.015, 0.830] 内** → **PASS**\n- PermG 从 T=10 的 6/8 到 T=20 的 6/8 保持稳定（未显著增长也未 regression）\n- Reverse PermG = 0/8，方向性完好——forward causation 清晰，无反向信号\n- ECE 通道 lead-lag 信号最强（3 个 downstream 均 4-5/5 consensus），TY 在 ECE pairs 上首次有效（dmax=0 适配 T=20 序列长度）"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "alpha": 0.5,
+              "seed": 42,
+              "T": 20,
+              "n_generations": 21,
+              "observed_permg_count": 6,
+              "observed_rate": 0.75,
+              "predicted_permg_count": 7,
+              "predicted_rate": 0.8257,
+              "predicted_rate_95ci": [
+                0.01502,
+                0.829926
+              ],
+              "within_ci": true,
+              "robust_pairs_K3": 6
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-t20-a050-s42-fp32.md"
+}

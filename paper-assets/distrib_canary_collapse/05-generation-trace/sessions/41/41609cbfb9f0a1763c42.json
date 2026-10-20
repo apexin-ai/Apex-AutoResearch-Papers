@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41609cbfb9f0a1763c42",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis data strategy ablation s42",
+  "task_key": "worker_analysis_data_strategy_ablation_s42_20260520T083847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_data_strategy_ablation_s42_20260520T083847_result.json",
+    "occurrence": 1,
+    "bytes": 860,
+    "sha256": "aa534d60c2fb0a366b515f4075331afbdee4db59614134234801f009856f815c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。总结：\n\n**data_strategy_ablation_s42 → DONE (success)**\n\n| Method | accumulate | replace (baseline) | Δ |\n|--------|-----------|-------------------|---|\n| PermG_fwd | **0/8** | **6/8** | **-6** |\n| PermG_rev | 0/8 | 0/8 | 0 |\n| TY | 4/8 | 4/8 | 0 |\n| K≥3 | **0/8** | **6/8** | **-6** |\n| MMCT | 0.0 | 6/8 | -6 |\n\n核心发现：accumulate 策略通过历代数据叠加将 canary drift 压平（entropy -2.4% vs -16.3%，ECE +89% vs +703%），但 downstream diversity 退化幅度不变（distinct_1 -27% vs -29%）。canary 信号被平滑→时序耦合断裂→lead-lag 检测全部失效。这证明 **数据策略是 canary early-warning 系统的关键设计选择**：replace 模式形成 Markov chain 信号放大使 canary 可检测，accumulate 模式虽减缓表观退化但掩盖了预警信号。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-data-strategy-ablation-s42.md"
+}

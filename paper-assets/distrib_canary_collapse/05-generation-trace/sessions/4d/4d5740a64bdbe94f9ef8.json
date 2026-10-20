@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d5740a64bdbe94f9ef8",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis alpha sweep a065 s42 fp32",
+  "task_key": "worker_analysis_alpha_sweep_a065_s42_fp32_20260521T005325",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_alpha_sweep_a065_s42_fp32_20260521T005325_result.json",
+    "occurrence": 1,
+    "bytes": 1590,
+    "sha256": "ff8d0b219c35fa5710733d7c2c50877342f2f18589a9f4f845f855142db4969b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。结果解读：\n\n---\n\n## α=0.65 s42 fp32 分析结果\n\n### 核心指标（D105+D111 校正后）\n\n| 指标 | α=0.50 | α=0.55 | α=0.60 | **α=0.65** | α=0.75 |\n|------|--------|--------|--------|------------|--------|\n| PermG_fwd | 6/8 | 0/8 | 0/8 | **0/8** | 6/8 |\n| K≥3(3σ) | 6 | 1 | 0 | **1** | 6 |\n| K≥4(3σ) | 3 | 0 | 0 | **0** | 0 |\n| threshold_onset_3σ | - | - | - | **0/8** | - |\n| diff_xcorr | - | - | - | **6/8** | - |\n\n### 结论\n\n1. **PermG_fwd = 0/8** — α=0.65 仍完全被压制，与 α=0.60 相同。Sync collapse dip 扩展至 **[0.55, 0.65]**，不限于 [0.55, 0.60]。\n\n2. **恢复是突变而非渐进** — 从 α=0.65 (0/8) 到 α=0.75 (6/8) 是跳变。PermG 在 dip 区间内没有中间恢复值（0/8→0/8→0/8→6/8）。转折点在 (0.65, 0.75) 区间内。\n\n3. **PermG 边缘效应** — ece→distinct 三对 p_raw=0.014–0.025（名义显著），但 FDR 校正后 p_fdr=0.067（不显著）。比 α=0.60 更接近恢复临界值，提示 α=0.70 可能是实际转折点。\n\n4. **Drift 对比** — perplexity drift +123.75%（介于 α=0.60 和 α=0.75 之间），distinct 退化约 -30%~-37%，mauve 仅 -5.23%（显著弱于其他 α）。Downstream 退化幅度不足以触发 3σ 阈值，这解释了 threshold_onset_3sigma=0/8。\n\n5. **D105 关键发现** — canary 在 gen1-2 就 onset，但 downstream 指标从未越过 3σ 门槛。退化存在但不够剧烈——canary-downstream 在 temporal scale 上同步（sync collapse），剥夺了 lead-lag 信号。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-alpha-sweep-a065-s42-fp32.md"
+}

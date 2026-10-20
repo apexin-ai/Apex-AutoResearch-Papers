@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5470781412c8a4f784e2",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops registry repair running 14b",
+  "task_key": "worker_ops_registry-repair-running-14b_20260522T232103",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_registry-repair-running-14b_20260522T232103_result.json",
+    "occurrence": 1,
+    "bytes": 950,
+    "sha256": "7d30f6212852946ee0e176261bddc99ddeae051e8fb1d2db6b650958a20a5b8e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "8/8 registry 条目全部创建成功，hypothesis 已更新。汇总：\n\n| exp_id | Server:GPU | PID | Progress | Status |\n|---|---|---|---|---|\n| scale_14b_t10_a045_s42_fp32 | 17855:cuda:4 | 679204 | **10/10 gen** (可能已完成) | RUNNING |\n| scale_14b_t15_a060_s42_fp32_v2 | 17855:cuda:0 | 679656 | 14/15 gen | RUNNING |\n| scale_14b_t15_a050_s42_fp32_v3 | 17855:cuda:1 | 680095 | 14/15 gen | RUNNING |\n| scale_14b_t15_a045_s42_fp32 | 17855:cuda:5 | 680608 | 12/15 gen | RUNNING |\n| scale_14b_t10_a075_s43_fp32 | 17855:cuda:2 | 719178 | 4/10 gen | RUNNING |\n| scale_14b_t10_a060_s43_fp32 | 17855:cuda:3 | 719252 | 4/10 gen | RUNNING |\n| scale_14b_t15_a075_s42_fp32 | 19828:cuda:0 | 793171 | 10/15 gen | RUNNING |\n| scale_14b_t10_a050_s43_fp32 | 19828:cuda:1 | 822048 | 4/10 gen | RUNNING |\n\n注意：`scale_14b_t10_a045_s42_fp32` 已有 gen_0-9 共 10 个 gen 目录（目标 10），可能已完成或正在收尾。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-registry-repair-running-14b.md"
+}

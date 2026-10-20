@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e5d66142a63e27c9596",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code multi seed prep",
+  "task_key": "worker_code_multi_seed_prep_20260515T065911",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_multi_seed_prep_20260515T065911_result.json",
+    "occurrence": 1,
+    "bytes": 2524,
+    "sha256": "0206b681c5d22527561a46ecb1334c6b9b0525e212978b48e2818776f0d137a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果\n\n| 检查项 | 状态 |\n|--------|------|\n| conda 环境 | ✅ 正常 |\n| `--seed` 参数 | ✅ 支持，config 正确记录 seed=43 |\n| 4 个目标目录不存在 | ✅ 无覆盖风险 |\n| Dry-run（脚本启动、参数解析、数据加载） | ✅ 模型加载、数据加载、输出目录创建均正常 |\n| 磁盘空间 | ✅ 111GB 可用，需 ~12GB |\n\n## 4 个提交命令\n\n**1. alpha_sweep_a025_s43** (α=0.25, seed=43)\n```\nbash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s43\"\n```\n\n**2. alpha_sweep_a050_s43** (α=0.50, seed=43)\n```\nbash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s43\"\n```\n\n**3. alpha_sweep_a025_s44** (α=0.25, seed=44)\n```\nbash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s44\"\n```\n\n**4. alpha_sweep_a050_s44** (α=0.50, seed=44)\n```\nbash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s44\"\n```\n\n全部验证通过，a075 完成后可零延迟顺序提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-multi-seed-prep.md"
+}

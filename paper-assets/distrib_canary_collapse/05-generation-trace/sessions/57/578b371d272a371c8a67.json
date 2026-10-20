@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "578b371d272a371c8a67",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops loop16 status check",
+  "task_key": "worker_ops_loop16_status_check_20260521T084406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_loop16_status_check_20260521T084406_result.json",
+    "occurrence": 1,
+    "bytes": 2152,
+    "sha256": "46409c2f081c86a11cb35ae7fafa899913f1c18cdc90f7f87e923e96f71e9bb8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 17855 GPU 状态\n\n| GPU | Util | VRAM Used | 实验 | 运行时间 | 状态 |\n|-----|------|-----------|------|----------|------|\n| 0 | 94% | 21.2/95.6 GB | interv_react_s43 + D37-G eval (a075) | 12h18m / 1h26m | 运行中 |\n| 1 | 70% | 15.2/95.6 GB | (truncated, 预期 gen_gpt2m_s43) | — | 运行中 |\n| 2 | 72% | 14.2/95.6 GB | (truncated, 预期 a000_s45) | — | 运行中 |\n| 3 | 99% | 69.1/95.6 GB | scale_69b_bf16 (pythia-6.9b s43) | 9h21m | 运行中 |\n| 4 | 96% | 20.3/95.6 GB | a052_s43_fp32 + phase_diagram dryrun | 1h47m / 1h11m | 运行中 |\n| 5 | 86% | 14.2/95.6 GB | a046_s43_fp32 | 1h47m | 运行中 |\n\n**注意**: GPU 0 上 interv_react_s43（非预期的 a000_s47_fp32）占据了 cuda:0，同时 D37-G eval 也在 cuda:0 上运行。a000_s47_fp32 进程确实存在（1h47m），但 GPU 分配可能与预期不同（部分进程信息被截断）。\n\n## 19828 GPU 状态\n\n| GPU | Util | VRAM Used | 实验 | 运行时间 | 状态 |\n|-----|------|-----------|------|----------|------|\n| 0 | 94% | 24.6/95.6 GB | a000_s48_fp32 | 38m + 34m | **⚠️ 双实例** |\n| 1 | 97% | 13.9/95.6 GB | a000_s46_fp32 | 2h29m | 运行中 |\n\n**⚠️ 问题**: GPU 0 上有**两个** a000_s48_fp32 进程（PID 655861 和 656193），都绑定 CUDA_VISIBLE_DEVICES=0。VRAM 比 GPU 1 高 ~11GB，确认双实例在争抢资源。应终止其中一个。\n\n## Phase Diagram 代码\n\n**存在** — `scripts/phase_diagram/` 目录包含 12 个脚本：\n\n| T | α 值 |\n|---|------|\n| T=5 | a045, a050, a060, a075 |\n| T=15 | a045, a050, a060, a075 |\n| T=25 | a045, a050, a060, a075 |\n\n所有脚本均为 s42，创建于 2026-05-21 16:39。项目根目录无 `run_phase_diagram*.sh`。17855 上有一个 phase_diagram dryrun 正在 cuda:4 运行（1h11m）。\n\n## 已完成实验\n\n**无** — 两台服务器所有 GPU 利用率均 ≥70%，全部实验仍在运行中。\n\n## 需关注\n\n1. **19828 GPU 0 双实例**: 两个 a000_s48_fp32 竞争同一 GPU，需 kill 其中一个\n2. **17855 GPU 0**: interv_react_s43 占用了预期给 a000_s47_fp32 的 GPU，两者可能共存但 VRAM 偏高"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-loop16-status-check.md"
+}

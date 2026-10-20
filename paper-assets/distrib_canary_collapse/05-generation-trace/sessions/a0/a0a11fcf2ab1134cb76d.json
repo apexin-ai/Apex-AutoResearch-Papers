@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0a11fcf2ab1134cb76d",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops 17855 cleanup deploy t15 a060 s43",
+  "task_key": "worker_ops_17855-cleanup-deploy-t15-a060-s43_20260523T024343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_17855-cleanup-deploy-t15-a060-s43_20260523T024343_result.json",
+    "occurrence": 1,
+    "bytes": 1135,
+    "sha256": "2e4a65998933e5ac28809a973acf128bf9cf9e7f829eb18633e88137489d9334"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署成功。\n\n## 产出汇总\n\n### 1. 磁盘清理\n| 指标 | 清理前 | 清理后 |\n|------|--------|--------|\n| Used | 335G | 319G |\n| Avail | 16G | 32G |\n| **释放** | **16G** | |\n\n清理了 5 个已完成实验的中间 gen arrow 文件和 checkpoint：t10_a045/a060/a075_s42, t15_a050/a060_s42。跳过了仍在运行的 t15_a045_s42。\n\n### 2. t15_a060_s43 部署状态\n- **tmux**: `14b_t15_a060_s43` ✓\n- **PID**: 749427（GPU 0, 运行中）\n- **状态**: 已启动训练，160% CPU\n\n### 3. 实际使用的命令参数\n与 t15_a060_s42 config.json 一致，仅改 seed 和 output_dir：\n```\nCUDA_VISIBLE_DEVICES=0 python -u iterative_train.py \\\n  --model_name /root/autodl-tmp/.ms_cache/EleutherAI/pythia-1.4b-deduped \\\n  --data_dir data/wikitext103_5k \\\n  --synthetic_ratio 0.60 \\\n  --num_generations 15 \\\n  --steps_per_gen 5000 \\\n  --output_dir results/phase_diagram/t15_a060_s43_fp32_14b \\\n  --seed 43 \\\n  --batch_size 4 --max_length 512 --lr 5e-5 \\\n  --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 \\\n  --optim adamw_torch --gradient_checkpointing\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-17855-cleanup-deploy-t15-a060-s43.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "ae89d529eb445f7c2a50",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "audit table7 fdr methodology",
+  "task_key": "worker_audit_table7_fdr_methodology_20260518T002359",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_table7_fdr_methodology_20260518T002359.log",
+    "occurrence": 1,
+    "bytes": 548689,
+    "sha256": "14af6635626d900353db7b0d6bf82e8917de5a9f8fb59c58d7f8c38ddb5ad610"
+  },
+  "statistics": {
+    "messages": 256,
+    "user_turns": 0,
+    "tool_calls": 106,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 40,
+      "tool_call": 106,
+      "tool_result": 106,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 256,
+      "chunks": [
+        {
+          "path": "ae89d529eb445f7c2a50-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ae89d529eb445f7c2a50-part-0002.json",
+          "message_count": 76
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-table7-fdr-methodology.md"
+}

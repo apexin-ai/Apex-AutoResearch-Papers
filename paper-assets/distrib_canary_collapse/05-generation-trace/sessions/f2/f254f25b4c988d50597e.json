@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f254f25b4c988d50597e",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis alpha sweep a045 s43 fp32",
+  "task_key": "worker_analysis_alpha_sweep_a045_s43_fp32_20260520T100117",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_alpha_sweep_a045_s43_fp32_20260520T100117_result.json",
+    "occurrence": 1,
+    "bytes": 727,
+    "sha256": "8f3ed944b30c90a21957f2afc2a7b08f6063b15d251fd32891294f42e37e1ca6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n## 结论: **SUCCESS** — α=0.45 blind zone 跨 seed 稳健\n\n| 指标 | s42 | s43 |\n|------|-----|-----|\n| PermG_fwd | 0/8 | **0/8** |\n| PermG_rev | 0/8 | 0/8 |\n| K≥3 | 3/8 | 2/8 |\n| K≥4 | 0/8 | 0/8 |\n| entropy drift | -18.73% | -19.61% |\n| ppl drift | +12.19% | +12.37% |\n\n两个 seed 在 α=0.45 均 PermG=0/8，退化幅度也高度一致（entropy ~-19%, ppl ~+12%）。onset boundary [0.45, 0.50] 现已有 2-seed 支撑。\n\n注意：个体方法 seed 敏感性很高（naive_xcorr 从 7/8 降到 1/8，ty_granger 从 1/8 升到 7/8），但 PermG（FDR 校正 + 置换检验）在两个 seed 上完全一致，进一步验证了 PermG 作为主要指标的稳健性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-alpha-sweep-a045-s43-fp32.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f562c28ffc8a6c93df95",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops launch 3 dose response",
+  "task_key": "worker_ops_launch_3_dose_response_20260521T022751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_launch_3_dose_response_20260521T022751_result.json",
+    "occurrence": 1,
+    "bytes": 359,
+    "sha256": "56aeb42d8deee8f8985aba7dc01b1110fcd8c201066752f31bf9fe65c9eaea7b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "提交结果：\n\n| 实验 | 服务器 | GPU | PID | 状态 |\n|------|--------|-----|-----|------|\n| a052_s42_fp32 | westd-17855 | cuda:4 | 421887 | 已启动 |\n| a046_s42_fp32 | westd-17855 | cuda:5 | 421967 | 已启动 |\n| a048_s43_fp32 | westd-19828 | cuda:0 | — | **跳过：19828 无 Pythia-410M 缓存，需等 17855 空闲 GPU** |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-launch-3-dose-response.md"
+}

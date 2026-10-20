@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b1b5e6c73c398055bd40",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis ty batch rerun 19828",
+  "task_key": "worker_analysis_ty_batch_rerun_19828_20260520T194748",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_ty_batch_rerun_19828_20260520T194748_result.json",
+    "occurrence": 1,
+    "bytes": 399,
+    "sha256": "cf12e298e66565f24e177eb7938ddca7af6288c375b532bab0d829e7ce1c38e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n- **代码修复**：`run_5method_analysis_d102.py` line 223，`causing=1,caused=0` → `causing=0,caused=1`\n- **批量重跑**：34/34 实验全部成功，0 失败\n- **验证**：PermG 和 DiffXcorr 在所有 spot check 中完全不变；TY forward sig 随方向修正变化（符合预期）\n- **汇总文件**：`results/ty_batch_rerun_19828_summary.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-ty-batch-rerun-19828.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2863bbc7caf0e840242a",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "research track a pmax optimization",
+  "task_key": "worker_research_track-a-pmax-optimization_20260522T073809",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_track-a-pmax-optimization_20260522T073809_result.json",
+    "occurrence": 1,
+    "bytes": 978,
+    "sha256": "0764b1a6fb8ab55f914a3977fd3d12fb5612552782301068b425963e695211c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果总结\n\n**P_max = 0.75 模型**：`P(det|α,T) = 0.75 · Φ(A · α^0.24 · √T − z₀)`\n\n核心发现：\n\n| 指标 | 旧模型 | P_max 模型 |\n|------|--------|-----------|\n| Train MAE | 0.163 | 0.009 |\n| Test MAE (T=5,15) | 0.106 | **0.000** |\n| T=25 MAE | 0.219 | **0.031** |\n| CI 95% coverage | 6/6 | 6/6 |\n| Free params | 4 | 2 |\n\n**β 不可辨识**：Profile likelihood 显示 β ∈ [0.05, 0.70] 均给出相同 NLL（ΔNLL < 2）。原因是 T=10 数据存在 quasi-complete separation（0/8 → 6/8 之间无中间值），导致 A 和 z₀ 趋向无穷，仅比值 z₀/A = 2.66 收敛。因此固定 β=0.24（沿用旧模型），γ=2.08 不变。\n\n**高 α 修正**：旧模型在高 α + 高 T 系统性过预测（如 T=25 α=0.75 预测 0.978 vs 实际 0.75），P_max 模型正确 cap 在 0.75。\n\n**Phase boundary**：α_c(T) = 59.01 · T^(−2.083)，与旧模型同 exponent，系数因 P_max 调整而变小。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-track-a-pmax-optimization.md"
+}

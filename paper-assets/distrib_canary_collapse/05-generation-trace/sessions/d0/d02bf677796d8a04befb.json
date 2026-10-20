@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d02bf677796d8a04befb",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "monitor actual progress 19828",
+  "task_key": "worker_monitor_actual-progress-19828_20260521T221143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_actual-progress-19828_20260521T221143_result.json",
+    "occurrence": 1,
+    "bytes": 445,
+    "sha256": "085e72b30364e27187786bdd6414b06928eb21d50629e850f433d247a3969c5c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nt25_a075_s42_fp32: gen 24/25 | RUNNING | 正在生成 gen_23 的合成数据，即将进入 gen_24 训练，预计 ~30min 完成\nt20_a045_s43_fp32: gen 13/20 | RUNNING | gen_12 训练中 4788/5000 steps (~28s 剩余)，之后还需 7 个 gen，预计 ~5-6h 完成\n```\n\n另外注意 cuda:0 上还有一个闲置的 tmux session `generalize_pythia410m_wiki_a100_s42`（进程未在跑训练，只有 bash shell 活着）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-actual-progress-19828.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d491b4864ef047ec9cd2",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "paper d064 te cp writeup",
+  "task_key": "worker_paper_d064_te_cp_writeup_20260518T141929",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d064_te_cp_writeup_20260518T141929_result.json",
+    "occurrence": 1,
+    "bytes": 915,
+    "sha256": "2a60c8c90f20536cdaf793588cdaf8ec9db0359eb800f49dbc61ec76b8b7ca16"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修改摘要：\n\n**discussion.tex**：在 `\\paragraph{Future work.}` (原 line 114) 前插入了 `\\paragraph{Method sensitivity extends beyond parametric tests.}` 段落（现 line 114-120），内容为 TE 0/192 FDR-significant 结果及其对 Claim 3 的扩展。\n\n**appendix.tex**：末尾追加了两个 section：\n- `\\section{Transfer Entropy Analysis}` (App. `\\ref{app:transfer_entropy}`)：TE 表格填入实际数据（12 runs 跨所有 α 的 mean TE 和 mean p-values），所有 pair 均无 BH 显著性。\n- `\\section{Change-Point Detection Analysis}` (App. `\\ref{app:change_point}`)：CP 表格使用 `cp_summary_a075.json` 实际数据，修正了模板中 distinct-3（3.3→3.7）和 perplexity（4.3→4.0）的错误值，同步修正了正文 prose 中 \"perplexity at generations~4--5\" → \"generation~4\" 和 ECE/distinct-1 共享 gen 的不准确描述。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-d064-te-cp-writeup.md"
+}

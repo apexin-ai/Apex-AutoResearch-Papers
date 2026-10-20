@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7121cceb8f50a9b83ebe",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "d102 scale 14b t10 a075 s43 fp32",
+  "task_key": "worker_d102_scale_14b_t10_a075_s43_fp32_20260523T082232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_d102_scale_14b_t10_a075_s43_fp32_20260523T082232_result.json",
+    "occurrence": 1,
+    "bytes": 1129,
+    "sha256": "9378570cfdaacb9d7d8d3afdfafbcca1952e603a3772777f663cadc3199836f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果摘要：\n\n**scale_14b_t10_a075_s43_fp32 — D102 5-method 结果**\n\n| 指标 | 值 |\n|------|-----|\n| **PermG forward FDR sig** | **6/8** |\n| PermG reverse FDR sig | 5/8 |\n| DiffXcorr FDR forward sig | 7/8 |\n| DiffXcorr FDR reverse sig | 7/8 |\n| Threshold onset forward sig | 0/8 |\n| TY forward sig | 1/8 |\n| **Robust pairs (K≥3)** | **5/8** |\n\n**Consensus 逐对**:\n| Pair | K | Methods |\n|------|---|---------|\n| token_entropy→distinct_1 | 3/5 | naive, diff, perm |\n| token_entropy→distinct_2 | 3/5 | naive, diff, perm |\n| token_entropy→distinct_3 | 2/5 | diff, perm |\n| token_entropy→mauve | 1/5 | ty |\n| ece→distinct_1 | 3/5 | naive, diff, perm |\n| ece→distinct_2 | 3/5 | naive, diff, perm |\n| ece→distinct_3 | 3/5 | naive, diff, perm |\n| ece→mauve | 0/5 | — |\n\ns43 的 PermG=6/8、K≥3=5/8，与 parent s42 的 PermG=5/8 一致（s43 略强）。MAUVE pairs 两个都不显著，threshold onset 全为 0（true_3sigma 标准下无 onset 检测到）。JSON 已保存在 `results/scale/14b_t10_a075_s43_fp32/analysis/5method_leadlag.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/d102-scale-14b-t10-a075-s43-fp32.md"
+}

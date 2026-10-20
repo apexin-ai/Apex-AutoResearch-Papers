@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "297cf35598ce25ee519c",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops extract s42v2 d102 correct values",
+  "task_key": "worker_ops_extract-s42v2-d102-correct-values_20260523T102904",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_extract-s42v2-d102-correct-values_20260523T102904_result.json",
+    "occurrence": 1,
+    "bytes": 1948,
+    "sha256": "ea9d63a8b3a4c0ff2b00a9e12b2b82b23724943dd4529f94cbbfae942e0b3a39"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the data. Here's the comparison:\n\n---\n\n## D102 源文件 vs Registry 对比\n\n### scale_14b_t10_a050_s42_fp32_v2\n\n源文件：`westd-19828:/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a050_s42_fp32_14b/analysis/5method_leadlag.json`\n\n| 指标 | Registry (L9925-9931) | D102 源文件 | 匹配? |\n|------|----------------------|-------------|-------|\n| PermG fwd (FDR) | 4/8 | 4/8 | ✓ |\n| PermG rev (FDR) | 2/8 | 2/8 | ✓ |\n| **DiffXCorr fwd (FDR)** | **8/8** | **4/8** | **✗ 错误** |\n| DiffXCorr rev (FDR) | (未记录) | 4/8 | - |\n| **Threshold (3sigma)** | **1/8** | **2/8** | **✗ 错误** |\n| TY | NaN | 0/8 | ~合理 |\n| K≥3 | 3/8 | 3/8 | ✓ |\n| K≥4 | (未记录) | 0/8 | - |\n\n### scale_14b_t10_a075_s42_fp32_v2\n\n源文件：`westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a075_s42_fp32_14b/analysis/5method_leadlag.json`\n\n| 指标 | Registry (L9760-9767) | D102 源文件 | 匹配? |\n|------|----------------------|-------------|-------|\n| PermG fwd (FDR) | 5/8 | 5/8 | ✓ |\n| PermG rev (FDR) | 0/8 | 0/8 | ✓ |\n| **DiffXCorr fwd (FDR)** | **8/8** | **6/8** | **✗ 错误** |\n| DiffXCorr rev (FDR) | (未记录) | 6/8 | - |\n| Threshold (3sigma) | 0/8 | 0/8 | ✓ |\n| **TY** | **NaN** | **3/8** | **✗ 错误** |\n| K≥3 | 5/8 | 5/8 | ✓ |\n| K≥4 | (未记录) | 2/8 | - |\n\n---\n\n## 结论\n\nReviewer #141 确认正确。两个实验的 **DiffXCorr fwd 都被错误记录为 8/8**：\n- a050_s42 v2: 实际 **4/8**（非 8/8）\n- a075_s42 v2: 实际 **6/8**（非 8/8）\n\n根因：Registry 录入时使用了未 FDR 校正的 `significant` 字段（或 raw count），而非 `significant_fdr` / `diff_xcorr_fdr_forward_sig`。\n\n额外发现：\n- a050 的 Threshold 也错（registry 1/8 → 实为 2/8）\n- a075 的 TY 不是 NaN，实际是 **3/8**（α=0.75 > 0.50，不受 C003 禁用限制）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-extract-s42v2-d102-correct-values.md"
+}

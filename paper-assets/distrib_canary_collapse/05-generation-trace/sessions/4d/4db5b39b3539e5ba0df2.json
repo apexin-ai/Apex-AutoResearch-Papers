@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4db5b39b3539e5ba0df2",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops launch null s47 and cross seed",
+  "task_key": "worker_ops_launch_null_s47_and_cross_seed_20260521T065703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_launch_null_s47_and_cross_seed_20260521T065703_result.json",
+    "occurrence": 1,
+    "bytes": 359,
+    "sha256": "e57dfcac649d52f1c82ceb0a88af88d7fc2b38f74b32e08cfcf38f009cc544ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个实验全部启动并注册完成。\n\n| 实验 | GPU | α | seed | 状态 |\n|------|-----|------|------|------|\n| `a000_s47_fp32` | cuda:0 (6.5GB) | 0.00 | 47 | Generation 0 训练中 |\n| `a052_s43_fp32` | cuda:4 (6.5GB) | 0.52 | 43 | Generation 0 训练中 |\n| `a046_s43_fp32` | cuda:5 (6.5GB) | 0.46 | 43 | Generation 0 训练中 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-launch-null-s47-and-cross-seed.md"
+}

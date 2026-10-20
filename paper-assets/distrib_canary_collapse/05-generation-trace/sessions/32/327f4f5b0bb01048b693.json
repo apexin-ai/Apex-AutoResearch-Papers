@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0",
+  "id": "327f4f5b0bb01048b693",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "ops registry old field cleanup r2",
+  "task_key": "worker_ops_registry_old_field_cleanup_r2_20260520T215155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_registry_old_field_cleanup_r2_20260520T215155.log",
+    "occurrence": 1,
+    "bytes": 717265,
+    "sha256": "9d0db8e0ec53cd373960c12322f1f4061578aeed0c4b58dff5df45d27891b885"
+  },
+  "statistics": {
+    "messages": 187,
+    "user_turns": 3,
+    "tool_calls": 59,
+    "roles": {
+      "log": 1,
+      "system": 45,
+      "record": 2,
+      "assistant": 17,
+      "tool_call": 59,
+      "tool_result": 59,
+      "user": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 53,
+      "chunks": [
+        {
+          "path": "327f4f5b0bb01048b693-part-0001.json",
+          "message_count": 53
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 17,
+      "chunks": [
+        {
+          "path": "327f4f5b0bb01048b693-part-0001.json",
+          "message_count": 17
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 18,
+      "chunks": [
+        {
+          "path": "327f4f5b0bb01048b693-part-0001.json",
+          "message_count": 18
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 99,
+      "chunks": [
+        {
+          "path": "327f4f5b0bb01048b693-part-0001.json",
+          "message_count": 72
+        },
+        {
+          "path": "327f4f5b0bb01048b693-part-0002.json",
+          "message_count": 27
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-registry-old-field-cleanup-r2-copy-2.md"
+}

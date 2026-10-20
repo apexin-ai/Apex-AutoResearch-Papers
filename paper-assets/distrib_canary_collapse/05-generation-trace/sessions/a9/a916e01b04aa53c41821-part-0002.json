@@ -1,0 +1,1059 @@
+{
+  "schema_version": "1.0",
+  "session_id": "a916e01b04aa53c41821",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 140,
+          "timestamp": "2026-05-15T11:06:09.322Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MFtbgaNi8LevzH2nKocx8g",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"hold\\\\\\\":\\\\n                result[str(alpha)][m] = {\\\\n                    \\\\\\\"sig_raw\\\\\\\": n_sig_raw, \\\\\\\"total\\\\\\\": n,\\\\n                    \\\\\\\"rate_p_raw\\\\\\\": round(n_sig_raw / n, 4),\\\\n                    \\\\\\\"rate_p_fdr\\\\\\\": round(n_sig_raw / n, 4),\\\\n                    \\\\\\\"note\\\\\\\": \\\\\\\"non-statistical\\\\\\\",\\\\n                }\\\\n            else:\\\\n                valid_p = [p for p in pvals if p is not None]\\\\n                if valid_p:\\\\n                    adj_p, sig_fdr = _bh_fdr(valid_p)\\\\n                    n_sig_fdr = int(sig_fdr.sum())\\\\n                else:\\\\n                    n_sig_fdr = 0\\\\n                result[str(alpha)][m] = {\\\\n                    \\\\\\\"sig_raw\\\\\\\": n_sig_raw, \\\\\\\"total\\\\\\\": n,\\\\n                    \\\\\\\"rate_p_raw\\\\\\\": round(n_sig_raw / n, 4),\\\\n                    \\\\\\\"sig_fdr\\\\\\\": n_sig_fdr,\\\\n                    \\\\\\\"rate_p_fdr\\\\\\\": round(n_sig_fdr / n, 4) if n > 0 else 0.0,\\\\n                }\\\\n\\\\n    return {\\\\\\\"alphas\\\\\\\": alphas, \\\\\\\"rates\\\\\\\": result}\\\\n\\\\n\\\\n\\\\ndef compute_fpr_fnr_loo(sig_matrix, pair_names, method_names, seed_threshold=3):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Leave-one-out FPR/FNR: ground truth = consensus of remaining K-1 methods (threshold K-2).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n_methods, n_pairs, n_seeds = sig_matrix.shape\\\\n    K = n_methods\\\\n\\\\n    results = {}\\\\n    for mi, mname in enumerate(method_names):\\\\n        other_sig = np.delete(sig_matrix, mi, axis=0)\\\\n        loo_consensus = classify_robust(other_sig, K - 2, seed_threshold)\\\\n\\\\n        gt_robust = np.array([c[\\\\\\\"is_robust\\\\\\\"] for c in loo_consensus[\\\\\\\"classifications\\\\\\\"]])\\\\n        gt_positive = np.broadcast_to(gt_robust[:, None], (n_pairs, n_seeds))\\\\n        gt_negative = ~gt_positive\\\\n\\\\n        n_pos = int(gt_positive.sum())\\\\n        n_neg = int(gt_negative.sum())\\\\n\\\\n        m_sig = sig_matrix[mi]\\\\n        fp = int((m_sig & gt_negative).sum())\\\\n        fpr = round(fp / n_neg, 4) if n_neg > 0 else 0.0\\\\n        fn = int((~m_sig & gt_positive).sum())\\\\n        fnr = round(fn / n_pos, 4) if n_pos > 0 else 0.0\\\\n\\\\n        results[mname] = {\\\\n            \\\\\\\"fpr_loo\\\\\\\": fpr,\\\\n            \\\\\\\"fnr_loo\\\\\\\": fnr,\\\\n            \\\\\\\"fp\\\\\\\": fp,\\\\n            \\\\\\\"fn\\\\\\\": fn,\\\\n            \\\\\\\"n_positives\\\\\\\": n_pos,\\\\n            \\\\\\\"n_negatives\\\\\\\": n_neg,\\\\n            \\\\\\\"loo_n_robust\\\\\\\": int(gt_robust.sum()),\\\\n            \\\\\\\"loo_robust_pairs\\\\\\\": [\\\\n                f\\\\\\\"{pair_names[i][0]}\\\\\\\\u2192{pair_names[i][1]}\\\\\\\"\\\\n                for i in range(n_pairs) if gt_robust[i]\\\\n            ],\\\\n        }\\\\n\\\\n    return results\\\\n\\\\n\\\\ndef main():\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run all three sub-tasks and save results.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    base = \\\\\\\"/root/autodl-tmp/distrib_canary_collapse\\\\\\\"\\\\n    ablation_path = os.path.join(base, \\\\\\\"results/mvp/analysis/method_ablation.json\\\\\\\")\\\\n    out_dir = os.path.join(base, \\\\\\\"results/mvp/analysis/consensus\\\\\\\")\\\\n    os.makedirs(out_dir, exist_ok=True)\\\\n\\\\n    sig_matrix, pair_names, method_names, seeds = load_sig_matrix(ablation_path)\\\\n    K = len(method_names)\\\\n    n_seeds = len(seeds)\\\\n    pair_labels = [f\\\\\\\"{c}→{d}\\\\\\\" for c, d in pair_names]\\\\n\\\\n    print(f\\\\\\\"Loaded: {sig_matrix.shape} (methods={K}, pairs={len(pair_names)}, seeds={n_seeds})\\\\\\\")\\\\n    print(f\\\\\\\"Methods: {method_names}\\\\\\\")\\\\n    print(f\\\\\\\"Seeds: {seeds}\\\\\\\")\\\\n    print()\\\\n\\\\n    # ── Sub-task 1: Default consensus ──\\\\n    default_mt = K - 1  # 4/5\\\\n    default_st = 3      # 3/4 seeds\\\\n    consensus = classify_robust(sig_matrix, default_mt, default_st)\\\\n\\\\n    for cl in consensus[\\\\\\\"classifications\\\\\\\"]:\\\\n        pi = cl[\\\\\\\"pair_index\\\\\\\"]\\\\n        cl[\\\\\\\"canary\\\\\\\"] = pair_names[pi][0]\\\\n        cl[\\\\\\\"downstream\\\\\\\"] = pair_names[pi][1]\\\\n        cl[\\\\\\\"pair_label\\\\\\\"] = pair_labels[pi]\\\\n\\\\n    print(f\\\\\\\"=== Sub-task 1: Consensus (≥{default_mt}/{K} methods, ≥{default_st}/{n_seeds} seeds) ===\\\\\\\")\\\\n    print(f\\\\\\\"Robust: {consensus['n_robust']}, Non-robust: {consensus['n_non_robust']}\\\\\\\")\\\\n    for cl in consensus[\\\\\\\"classifications\\\\\\\"]:\\\\n        tag = \\\\\\\"ROBUST\\\\\\\" if cl[\\\\\\\"is_robust\\\\\\\"] else \\\\\\\"non-robust\\\\\\\"\\\\n        methods_str = \\\\\\\"/\\\\\\\".join(\\\\n            method_names[i][:6] for i, v in enumerate(cl[\\\\\\\"method_verdicts\\\\\\\"]) if v\\\\n        )\\\\n        print(f\\\\\\\"  {cl['pair_label']:<35s} {tag:<12s} \\\\\\\"\\\\n              f\\\\\\\"{cl['n_sig_methods']}/{K} methods  seeds={cl['seed_counts']}  [{methods_str}]\\\\\\\")\\\\n    print()\\\\n\\\\n    # ── Sub-task 2: Sensitivity analysis ──\\\\n    sa = sensitivity_analysis(sig_matrix, pair_names, method_names,\\\\n                              method_thresholds=[K - 2, K - 1, K],\\\\n                              seed_thresholds=[2, 3, 4])\\\\n\\\\n    print(f\\\\\\\"=== Sub-task 2: Sensitivity ({sa['n_configs']} configs) ===\\\\\\\")\\\\n    for g in sa[\\\\\\\"grid\\\\\\\"]:\\\\n        rp_str = \\\\\\\", \\\\\\\".join(g[\\\\\\\"robust_pairs\\\\\\\"]) if g[\\\\\\\"robust_pairs\\\\\\\"] else \\\\\\\"(none)\\\\\\\"\\\\n        print(f\\\\\\\"  {g['label']:<35s}: {g['n_robust']:>2} robust  [{rp_str}]\\\\\\\")\\\\n    print()\\\\n    print(\\\\\\\"Pair stability (fraction of configs where robust):\\\\\\\")\\\\n    for lbl in pair_labels:\\\\n        ps = sa[\\\\\\\"pair_stability\\\\\\\"][lbl]\\\\n        bar = \\\\\\\"█\\\\\\\" * ps[\\\\\\\"robust_in_n_configs\\\\\\\"] + \\\\\\\"░\\\\\\\" * (ps[\\\\\\\"total_configs\\\\\\\"] - ps[\\\\\\\"robust_in_n_configs\\\\\\\"])\\\\n        print(f\\\\\\\"  {lbl:<35s} {bar} {ps['robust_in_n_configs']}/{ps['total_configs']} ({ps['stability']:.0%})\\\\\\\")\\\\n    print()\\\\n\\\\n    # ── Sub-task 3a: FPR — Null Control (primary) ──\\\\n    phase2_path = os.path.join(base, \\\\\\\"results/method_ablation_phase2_panel.json\\\\\\\")\\\\n    fpr_fnr = compute_fpr_null_control(phase2_path)\\\\n\\\\n    print(\\\\\\\"=== Sub-task 3a: FPR — Null Control (primary) ===\\\\\\\")\\\\n    print(f\\\\\\\"Ground truth: {fpr_fnr['ground_truth']}\\\\\\\")\\\\n    print(f\\\\\\\"N pairs: {fpr_fnr['n_pairs']}, seed: {fpr_fnr['seed']}\\\\\\\")\\\\n    print()\\\\n    hdr = f\\\\\\\"  {'Method':<24s} {'FPR_raw':>8s} {'FPR_fdr':>8s} {'Sig_raw':>8s} {'Sig_fdr':>8s}\\\\\\\"\\\\n    print(hdr)\\\\n    print(\\\\\\\"  \\\\\\\" + \\\\\\\"-\\\\\\\" * 56)\\\\n    for row in fpr_fnr[\\\\\\\"table\\\\\\\"]:\\\\n        print(f\\\\\\\"  {row['method']:<24s} {row['fpr_p_raw']:>7.1%} {row['fpr_p_fdr']:>7.1%} \\\\\\\"\\\\n              f\\\\\\\"{row['sig_raw']:>8d} {row['sig_fdr']:>8d}\\\\\\\")\\\\n    print()\\\\n\\\\n    # ── Sub-task 3b: FPR/FNR — Differenced (legacy) ──\\\\n    fpr_fnr_legacy = compute_fpr_fnr_diff(sig_matrix, pair_names, method_names,\\\\n                               consensus_method_thresh=default_mt,\\\\n                               consensus_seed_thresh=default_st)\\\\n\\\\n    print(\\\\\\\"=== Sub-task 3b: FPR/FNR — Differenced (legacy) ===\\\\\\\")\\\\n    gt = fpr_fnr_legacy[\\\\\\\"ground_truth\\\\\\\"]\\\\n    print(f\\\\\\\"FPR ground truth: {gt['fpr_ground_truth']} (N_neg={gt['n_negatives_seed']})\\\\\\\")\\\\n    print(f\\\\\\\"FNR ground truth: {gt['fnr_ground_truth']} (N_pos={gt['n_positives_seed']})\\\\\\\")\\\\n    print()\\\\n    hdr = f\\\\\\\"  {'Method':<24s} {'FPR':>8s} {'FNR':>8s} {'Sig(pair)':>10s} {'Sig(seed)':>10s}\\\\\\\"\\\\n    print(hdr)\\\\n    print(\\\\\\\"  \\\\\\\" + \\\\\\\"-\\\\\\\" * 62)\\\\n    for row in fpr_fnr_legacy[\\\\\\\"table\\\\\\\"]:\\\\n        fpr_s = f\\\\\\\"{row['fpr']:.1%}\\\\\\\"\\\\n        fnr_v = row.get(\\\\\\\"fnr\\\\\\\", 0)\\\\n        fnr_s = f\\\\\\\"{fnr_v:.1%}\\\\\\\" if isinstance(fnr_v, (int, float)) else str(fnr_v)\\\\n        sig_p = str(row.get(\\\\\\\"sig_count_pair\\\\\\\", row.get(\\\\\\\"n_robust\\\\\\\", \\\\\\\"\\\\\\\")))\\\\n        sig_s = str(row.get(\\\\\\\"sig_count_seed\\\\\\\", \\\\\\\"\\\\\\\"))\\\\n        print(f\\\\\\\"  {row['method']:<24s} {fpr_s:>8s} {fnr_s:>8s} {sig_p:>10s} {sig_s:>10s}\\\\\\\")\\\\n    print()\\\\n\\\\n    # ── Sub-task 4: LOO FPR/FNR ──\\\\n    loo = compute_fpr_fnr_loo(sig_matrix, pair_names, method_names,\\\\n                               seed_threshold=default_st)\\\\n\\\\n    print(f\\\\\\\"=== Sub-task 4: LOO FPR/FNR (K-2 consensus ground truth) ===\\\\\\\")\\\\n    hdr_loo = f\\\\\\\"  {'Method':<24s} {'FPR_loo':>8s} {'FNR_loo':>8s} {'FP':>5s} {'FN':>5s} {'N_pos':>6s} {'N_neg':>6s} {'LOO_robust':>10s}\\\\\\\"\\\\n    print(hdr_loo)\\\\n    print(\\\\\\\"  \\\\\\\" + \\\\\\\"-\\\\\\\" * 75)\\\\n    for mname in method_names:\\\\n        r = loo[mname]\\\\n        print(f\\\\\\\"  {mname:<24s} {r['fpr_loo']:>7.1%} {r['fnr_loo']:>7.1%} \\\\\\\"\\\\n              f\\\\\\\"{r['fp']:>5d} {r['fn']:>5d} {r['n_positives']:>6d} {r['n_negatives']:>6d} \\\\\\\"\\\\n              f\\\\\\\"{r['loo_n_robust']:>10d}\\\\\\\")\\\\n    print()\\\\n\\\\n    # ── Save ──\\\\n    with open(os.path.join(out_dir, \\\\\\\"consensus_classification.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(consensus, f, indent=2, cls=NumpyEncoder)\\\\n    with open(os.path.join(out_dir, \\\\\\\"sensitivity_analysis.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(sa, f, indent=2, cls=NumpyEncoder)\\\\n    with open(os.path.join(out_dir, \\\\\\\"fpr_fnr_table.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(fpr_fnr, f, indent=2, cls=NumpyEncoder)\\\\n    with open(os.path.join(out_dir, \\\\\\\"fpr_fnr_table_legacy.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(fpr_fnr_legacy, f, indent=2, cls=NumpyEncoder)\\\\n\\\\n    with open(os.path.join(\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "403c2d48-f0a4-4a4b-9424-77415659fe55",
+            "uuid": "1006cd60-a2ab-4b1e-b034-775d91e5fbce",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"hold\\\\\\\":\\\\n                result[str(alpha)][m] = {\\\\n                    \\\\\\\"sig_raw\\\\\\\": n_sig_raw, \\\\\\\"total\\\\\\\": n,\\\\n                    \\\\\\\"rate_p_raw\\\\\\\": round(n_sig_raw / n, 4),\\\\n                    \\\\\\\"rate_p_fdr\\\\\\\": round(n_sig_raw / n, 4),\\\\n                    \\\\\\\"note\\\\\\\": \\\\\\\"non-statistical\\\\\\\",\\\\n                }\\\\n            else:\\\\n                valid_p = [p for p in pvals if p is not None]\\\\n                if valid_p:\\\\n                    adj_p, sig_fdr = _bh_fdr(valid_p)\\\\n                    n_sig_fdr = int(sig_fdr.sum())\\\\n                else:\\\\n                    n_sig_fdr = 0\\\\n                result[str(alpha)][m] = {\\\\n                    \\\\\\\"sig_raw\\\\\\\": n_sig_raw, \\\\\\\"total\\\\\\\": n,\\\\n                    \\\\\\\"rate_p_raw\\\\\\\": round(n_sig_raw / n, 4),\\\\n                    \\\\\\\"sig_fdr\\\\\\\": n_sig_fdr,\\\\n                    \\\\\\\"rate_p_fdr\\\\\\\": round(n_sig_fdr / n, 4) if n > 0 else 0.0,\\\\n                }\\\\n\\\\n    return {\\\\\\\"alphas\\\\\\\": alphas, \\\\\\\"rates\\\\\\\": result}\\\\n\\\\n\\\\n\\\\ndef compute_fpr_fnr_loo(sig_matrix, pair_names, method_names, seed_threshold=3):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Leave-one-out FPR/FNR: ground truth = consensus of remaining K-1 methods (threshold K-2).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n_methods, n_pairs, n_seeds = sig_matrix.shape\\\\n    K = n_methods\\\\n\\\\n    results = {}\\\\n    for mi, mname in enumerate(method_names):\\\\n        other_sig = np.delete(sig_matrix, mi, axis=0)\\\\n        loo_consensus = classify_robust(other_sig, K - 2, seed_threshold)\\\\n\\\\n        gt_robust = np.array([c[\\\\\\\"is_robust\\\\\\\"] for c in loo_consensus[\\\\\\\"classifications\\\\\\\"]])\\\\n        gt_positive = np.broadcast_to(gt_robust[:, None], (n_pairs, n_seeds))\\\\n        gt_negative = ~gt_positive\\\\n\\\\n        n_pos = int(gt_positive.sum())\\\\n        n_neg = int(gt_negative.sum())\\\\n\\\\n        m_sig = sig_matrix[mi]\\\\n        fp = int((m_sig & gt_negative).sum())\\\\n        fpr = round(fp / n_neg, 4) if n_neg > 0 else 0.0\\\\n        fn = int((~m_sig & gt_positive).sum())\\\\n        fnr = round(fn / n_pos, 4) if n_pos > 0 else 0.0\\\\n\\\\n        results[mname] = {\\\\n            \\\\\\\"fpr_loo\\\\\\\": fpr,\\\\n            \\\\\\\"fnr_loo\\\\\\\": fnr,\\\\n            \\\\\\\"fp\\\\\\\": fp,\\\\n            \\\\\\\"fn\\\\\\\": fn,\\\\n            \\\\\\\"n_positives\\\\\\\": n_pos,\\\\n            \\\\\\\"n_negatives\\\\\\\": n_neg,\\\\n            \\\\\\\"loo_n_robust\\\\\\\": int(gt_robust.sum()),\\\\n            \\\\\\\"loo_robust_pairs\\\\\\\": [\\\\n                f\\\\\\\"{pair_names[i][0]}\\\\\\\\u2192{pair_names[i][1]}\\\\\\\"\\\\n                for i in range(n_pairs) if gt_robust[i]\\\\n            ],\\\\n        }\\\\n\\\\n    return results\\\\n\\\\n\\\\ndef main():\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run all three sub-tasks and save results.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    base = \\\\\\\"/root/autodl-tmp/distrib_canary_collapse\\\\\\\"\\\\n    ablation_path = os.path.join(base, \\\\\\\"results/mvp/analysis/method_ablation.json\\\\\\\")\\\\n    out_dir = os.path.join(base, \\\\\\\"results/mvp/analysis/consensus\\\\\\\")\\\\n    os.makedirs(out_dir, exist_ok=True)\\\\n\\\\n    sig_matrix, pair_names, method_names, seeds = load_sig_matrix(ablation_path)\\\\n    K = len(method_names)\\\\n    n_seeds = len(seeds)\\\\n    pair_labels = [f\\\\\\\"{c}→{d}\\\\\\\" for c, d in pair_names]\\\\n\\\\n    print(f\\\\\\\"Loaded: {sig_matrix.shape} (methods={K}, pairs={len(pair_names)}, seeds={n_seeds})\\\\\\\")\\\\n    print(f\\\\\\\"Methods: {method_names}\\\\\\\")\\\\n    print(f\\\\\\\"Seeds: {seeds}\\\\\\\")\\\\n    print()\\\\n\\\\n    # ── Sub-task 1: Default consensus ──\\\\n    default_mt = K - 1  # 4/5\\\\n    default_st = 3      # 3/4 seeds\\\\n    consensus = classify_robust(sig_matrix, default_mt, default_st)\\\\n\\\\n    for cl in consensus[\\\\\\\"classifications\\\\\\\"]:\\\\n        pi = cl[\\\\\\\"pair_index\\\\\\\"]\\\\n        cl[\\\\\\\"canary\\\\\\\"] = pair_names[pi][0]\\\\n        cl[\\\\\\\"downstream\\\\\\\"] = pair_names[pi][1]\\\\n        cl[\\\\\\\"pair_label\\\\\\\"] = pair_labels[pi]\\\\n\\\\n    print(f\\\\\\\"=== Sub-task 1: Consensus (≥{default_mt}/{K} methods, ≥{default_st}/{n_seeds} seeds) ===\\\\\\\")\\\\n    print(f\\\\\\\"Robust: {consensus['n_robust']}, Non-robust: {consensus['n_non_robust']}\\\\\\\")\\\\n    for cl in consensus[\\\\\\\"classifications\\\\\\\"]:\\\\n        tag = \\\\\\\"ROBUST\\\\\\\" if cl[\\\\\\\"is_robust\\\\\\\"] else \\\\\\\"non-robust\\\\\\\"\\\\n        methods_str = \\\\\\\"/\\\\\\\".join(\\\\n            method_names[i][:6] for i, v in enumerate(cl[\\\\\\\"method_verdicts\\\\\\\"]) if v\\\\n        )\\\\n        print(f\\\\\\\"  {cl['pair_label']:<35s} {tag:<12s} \\\\\\\"\\\\n              f\\\\\\\"{cl['n_sig_methods']}/{K} methods  seeds={cl['seed_counts']}  [{methods_str}]\\\\\\\")\\\\n    print()\\\\n\\\\n    # ── Sub-task 2: Sensitivity analysis ──\\\\n    sa = sensitivity_analysis(sig_matrix, pair_names, method_names,\\\\n                              method_thresholds=[K - 2, K - 1, K],\\\\n                              seed_thresholds=[2, 3, 4])\\\\n\\\\n    print(f\\\\\\\"=== Sub-task 2: Sensitivity ({sa['n_configs']} configs) ===\\\\\\\")\\\\n    for g in sa[\\\\\\\"grid\\\\\\\"]:\\\\n        rp_str = \\\\\\\", \\\\\\\".join(g[\\\\\\\"robust_pairs\\\\\\\"]) if g[\\\\\\\"robust_pairs\\\\\\\"] else \\\\\\\"(none)\\\\\\\"\\\\n        print(f\\\\\\\"  {g['label']:<35s}: {g['n_robust']:>2} robust  [{rp_str}]\\\\\\\")\\\\n    print()\\\\n    print(\\\\\\\"Pair stability (fraction of configs where robust):\\\\\\\")\\\\n    for lbl in pair_labels:\\\\n        ps = sa[\\\\\\\"pair_stability\\\\\\\"][lbl]\\\\n        bar = \\\\\\\"█\\\\\\\" * ps[\\\\\\\"robust_in_n_configs\\\\\\\"] + \\\\\\\"░\\\\\\\" * (ps[\\\\\\\"total_configs\\\\\\\"] - ps[\\\\\\\"robust_in_n_configs\\\\\\\"])\\\\n        print(f\\\\\\\"  {lbl:<35s} {bar} {ps['robust_in_n_configs']}/{ps['total_configs']} ({ps['stability']:.0%})\\\\\\\")\\\\n    print()\\\\n\\\\n    # ── Sub-task 3a: FPR — Null Control (primary) ──\\\\n    phase2_path = os.path.join(base, \\\\\\\"results/method_ablation_phase2_panel.json\\\\\\\")\\\\n    fpr_fnr = compute_fpr_null_control(phase2_path)\\\\n\\\\n    print(\\\\\\\"=== Sub-task 3a: FPR — Null Control (primary) ===\\\\\\\")\\\\n    print(f\\\\\\\"Ground truth: {fpr_fnr['ground_truth']}\\\\\\\")\\\\n    print(f\\\\\\\"N pairs: {fpr_fnr['n_pairs']}, seed: {fpr_fnr['seed']}\\\\\\\")\\\\n    print()\\\\n    hdr = f\\\\\\\"  {'Method':<24s} {'FPR_raw':>8s} {'FPR_fdr':>8s} {'Sig_raw':>8s} {'Sig_fdr':>8s}\\\\\\\"\\\\n    print(hdr)\\\\n    print(\\\\\\\"  \\\\\\\" + \\\\\\\"-\\\\\\\" * 56)\\\\n    for row in fpr_fnr[\\\\\\\"table\\\\\\\"]:\\\\n        print(f\\\\\\\"  {row['method']:<24s} {row['fpr_p_raw']:>7.1%} {row['fpr_p_fdr']:>7.1%} \\\\\\\"\\\\n              f\\\\\\\"{row['sig_raw']:>8d} {row['sig_fdr']:>8d}\\\\\\\")\\\\n    print()\\\\n\\\\n    # ── Sub-task 3b: FPR/FNR — Differenced (legacy) ──\\\\n    fpr_fnr_legacy = compute_fpr_fnr_diff(sig_matrix, pair_names, method_names,\\\\n                               consensus_method_thresh=default_mt,\\\\n                               consensus_seed_thresh=default_st)\\\\n\\\\n    print(\\\\\\\"=== Sub-task 3b: FPR/FNR — Differenced (legacy) ===\\\\\\\")\\\\n    gt = fpr_fnr_legacy[\\\\\\\"ground_truth\\\\\\\"]\\\\n    print(f\\\\\\\"FPR ground truth: {gt['fpr_ground_truth']} (N_neg={gt['n_negatives_seed']})\\\\\\\")\\\\n    print(f\\\\\\\"FNR ground truth: {gt['fnr_ground_truth']} (N_pos={gt['n_positives_seed']})\\\\\\\")\\\\n    print()\\\\n    hdr = f\\\\\\\"  {'Method':<24s} {'FPR':>8s} {'FNR':>8s} {'Sig(pair)':>10s} {'Sig(seed)':>10s}\\\\\\\"\\\\n    print(hdr)\\\\n    print(\\\\\\\"  \\\\\\\" + \\\\\\\"-\\\\\\\" * 62)\\\\n    for row in fpr_fnr_legacy[\\\\\\\"table\\\\\\\"]:\\\\n        fpr_s = f\\\\\\\"{row['fpr']:.1%}\\\\\\\"\\\\n        fnr_v = row.get(\\\\\\\"fnr\\\\\\\", 0)\\\\n        fnr_s = f\\\\\\\"{fnr_v:.1%}\\\\\\\" if isinstance(fnr_v, (int, float)) else str(fnr_v)\\\\n        sig_p = str(row.get(\\\\\\\"sig_count_pair\\\\\\\", row.get(\\\\\\\"n_robust\\\\\\\", \\\\\\\"\\\\\\\")))\\\\n        sig_s = str(row.get(\\\\\\\"sig_count_seed\\\\\\\", \\\\\\\"\\\\\\\"))\\\\n        print(f\\\\\\\"  {row['method']:<24s} {fpr_s:>8s} {fnr_s:>8s} {sig_p:>10s} {sig_s:>10s}\\\\\\\")\\\\n    print()\\\\n\\\\n    # ── Sub-task 4: LOO FPR/FNR ──\\\\n    loo = compute_fpr_fnr_loo(sig_matrix, pair_names, method_names,\\\\n                               seed_threshold=default_st)\\\\n\\\\n    print(f\\\\\\\"=== Sub-task 4: LOO FPR/FNR (K-2 consensus ground truth) ===\\\\\\\")\\\\n    hdr_loo = f\\\\\\\"  {'Method':<24s} {'FPR_loo':>8s} {'FNR_loo':>8s} {'FP':>5s} {'FN':>5s} {'N_pos':>6s} {'N_neg':>6s} {'LOO_robust':>10s}\\\\\\\"\\\\n    print(hdr_loo)\\\\n    print(\\\\\\\"  \\\\\\\" + \\\\\\\"-\\\\\\\" * 75)\\\\n    for mname in method_names:\\\\n        r = loo[mname]\\\\n        print(f\\\\\\\"  {mname:<24s} {r['fpr_loo']:>7.1%} {r['fnr_loo']:>7.1%} \\\\\\\"\\\\n              f\\\\\\\"{r['fp']:>5d} {r['fn']:>5d} {r['n_positives']:>6d} {r['n_negatives']:>6d} \\\\\\\"\\\\n              f\\\\\\\"{r['loo_n_robust']:>10d}\\\\\\\")\\\\n    print()\\\\n\\\\n    # ── Save ──\\\\n    with open(os.path.join(out_dir, \\\\\\\"consensus_classification.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(consensus, f, indent=2, cls=NumpyEncoder)\\\\n    with open(os.path.join(out_dir, \\\\\\\"sensitivity_analysis.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(sa, f, indent=2, cls=NumpyEncoder)\\\\n    with open(os.path.join(out_dir, \\\\\\\"fpr_fnr_table.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(fpr_fnr, f, indent=2, cls=NumpyEncoder)\\\\n    with open(os.path.join(out_dir, \\\\\\\"fpr_fnr_table_legacy.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(fpr_fnr_legacy, f, indent=2, cls=NumpyEncoder)\\\\n\\\\n    with open(os.path.join(\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"hold\\\":\\n                result[str(alpha)][m] = {\\n                    \\\"sig_raw\\\": n_sig_raw, \\\"total\\\": n,\\n                    \\\"rate_p_raw\\\": round(n_sig_raw / n, 4),\\n                    \\\"rate_p_fdr\\\": round(n_sig_raw / n, 4),\\n                    \\\"note\\\": \\\"non-statistical\\\",\\n                }\\n            else:\\n                valid_p = [p for p in pvals if p is not None]\\n                if valid_p:\\n                    adj_p, sig_fdr = _bh_fdr(valid_p)\\n                    n_sig_fdr = int(sig_fdr.sum())\\n                else:\\n                    n_sig_fdr = 0\\n                result[str(alpha)][m] = {\\n                    \\\"sig_raw\\\": n_sig_raw, \\\"total\\\": n,\\n                    \\\"rate_p_raw\\\": round(n_sig_raw / n, 4),\\n                    \\\"sig_fdr\\\": n_sig_fdr,\\n                    \\\"rate_p_fdr\\\": round(n_sig_fdr / n, 4) if n > 0 else 0.0,\\n                }\\n\\n    return {\\\"alphas\\\": alphas, \\\"rates\\\": result}\\n\\n\\n\\ndef compute_fpr_fnr_loo(sig_matrix, pair_names, method_names, seed_threshold=3):\\n    \\\"\\\"\\\"Leave-one-out FPR/FNR: ground truth = consensus of remaining K-1 methods (threshold K-2).\\\"\\\"\\\"\\n    n_methods, n_pairs, n_seeds = sig_matrix.shape\\n    K = n_methods\\n\\n    results = {}\\n    for mi, mname in enumerate(method_names):\\n        other_sig = np.delete(sig_matrix, mi, axis=0)\\n        loo_consensus = classify_robust(other_sig, K - 2, seed_threshold)\\n\\n        gt_robust = np.array([c[\\\"is_robust\\\"] for c in loo_consensus[\\\"classifications\\\"]])\\n        gt_positive = np.broadcast_to(gt_robust[:, None], (n_pairs, n_seeds))\\n        gt_negative = ~gt_positive\\n\\n        n_pos = int(gt_positive.sum())\\n        n_neg = int(gt_negative.sum())\\n\\n        m_sig = sig_matrix[mi]\\n        fp = int((m_sig & gt_negative).sum())\\n        fpr = round(fp / n_neg, 4) if n_neg > 0 else 0.0\\n        fn = int((~m_sig & gt_positive).sum())\\n        fnr = round(fn / n_pos, 4) if n_pos > 0 else 0.0\\n\\n        results[mname] = {\\n            \\\"fpr_loo\\\": fpr,\\n            \\\"fnr_loo\\\": fnr,\\n            \\\"fp\\\": fp,\\n            \\\"fn\\\": fn,\\n            \\\"n_positives\\\": n_pos,\\n            \\\"n_negatives\\\": n_neg,\\n            \\\"loo_n_robust\\\": int(gt_robust.sum()),\\n            \\\"loo_robust_pairs\\\": [\\n                f\\\"{pair_names[i][0]}\\\\u2192{pair_names[i][1]}\\\"\\n                for i in range(n_pairs) if gt_robust[i]\\n            ],\\n        }\\n\\n    return results\\n\\n\\ndef main():\\n    \\\"\\\"\\\"Run all three sub-tasks and save results.\\\"\\\"\\\"\\n    base = \\\"/root/autodl-tmp/distrib_canary_collapse\\\"\\n    ablation_path = os.path.join(base, \\\"results/mvp/analysis/method_ablation.json\\\")\\n    out_dir = os.path.join(base, \\\"results/mvp/analysis/consensus\\\")\\n    os.makedirs(out_dir, exist_ok=True)\\n\\n    sig_matrix, pair_names, method_names, seeds = load_sig_matrix(ablation_path)\\n    K = len(method_names)\\n    n_seeds = len(seeds)\\n    pair_labels = [f\\\"{c}→{d}\\\" for c, d in pair_names]\\n\\n    print(f\\\"Loaded: {sig_matrix.shape} (methods={K}, pairs={len(pair_names)}, seeds={n_seeds})\\\")\\n    print(f\\\"Methods: {method_names}\\\")\\n    print(f\\\"Seeds: {seeds}\\\")\\n    print()\\n\\n    # ── Sub-task 1: Default consensus ──\\n    default_mt = K - 1  # 4/5\\n    default_st = 3      # 3/4 seeds\\n    consensus = classify_robust(sig_matrix, default_mt, default_st)\\n\\n    for cl in consensus[\\\"classifications\\\"]:\\n        pi = cl[\\\"pair_index\\\"]\\n        cl[\\\"canary\\\"] = pair_names[pi][0]\\n        cl[\\\"downstream\\\"] = pair_names[pi][1]\\n        cl[\\\"pair_label\\\"] = pair_labels[pi]\\n\\n    print(f\\\"=== Sub-task 1: Consensus (≥{default_mt}/{K} methods, ≥{default_st}/{n_seeds} seeds) ===\\\")\\n    print(f\\\"Robust: {consensus['n_robust']}, Non-robust: {consensus['n_non_robust']}\\\")\\n    for cl in consensus[\\\"classifications\\\"]:\\n        tag = \\\"ROBUST\\\" if cl[\\\"is_robust\\\"] else \\\"non-robust\\\"\\n        methods_str = \\\"/\\\".join(\\n            method_names[i][:6] for i, v in enumerate(cl[\\\"method_verdicts\\\"]) if v\\n        )\\n        print(f\\\"  {cl['pair_label']:<35s} {tag:<12s} \\\"\\n              f\\\"{cl['n_sig_methods']}/{K} methods  seeds={cl['seed_counts']}  [{methods_str}]\\\")\\n    print()\\n\\n    # ── Sub-task 2: Sensitivity analysis ──\\n    sa = sensitivity_analysis(sig_matrix, pair_names, method_names,\\n                              method_thresholds=[K - 2, K - 1, K],\\n                              seed_thresholds=[2, 3, 4])\\n\\n    print(f\\\"=== Sub-task 2: Sensitivity ({sa['n_configs']} configs) ===\\\")\\n    for g in sa[\\\"grid\\\"]:\\n        rp_str = \\\", \\\".join(g[\\\"robust_pairs\\\"]) if g[\\\"robust_pairs\\\"] else \\\"(none)\\\"\\n        print(f\\\"  {g['label']:<35s}: {g['n_robust']:>2} robust  [{rp_str}]\\\")\\n    print()\\n    print(\\\"Pair stability (fraction of configs where robust):\\\")\\n    for lbl in pair_labels:\\n        ps = sa[\\\"pair_stability\\\"][lbl]\\n        bar = \\\"█\\\" * ps[\\\"robust_in_n_configs\\\"] + \\\"░\\\" * (ps[\\\"total_configs\\\"] - ps[\\\"robust_in_n_configs\\\"])\\n        print(f\\\"  {lbl:<35s} {bar} {ps['robust_in_n_configs']}/{ps['total_configs']} ({ps['stability']:.0%})\\\")\\n    print()\\n\\n    # ── Sub-task 3a: FPR — Null Control (primary) ──\\n    phase2_path = os.path.join(base, \\\"results/method_ablation_phase2_panel.json\\\")\\n    fpr_fnr = compute_fpr_null_control(phase2_path)\\n\\n    print(\\\"=== Sub-task 3a: FPR — Null Control (primary) ===\\\")\\n    print(f\\\"Ground truth: {fpr_fnr['ground_truth']}\\\")\\n    print(f\\\"N pairs: {fpr_fnr['n_pairs']}, seed: {fpr_fnr['seed']}\\\")\\n    print()\\n    hdr = f\\\"  {'Method':<24s} {'FPR_raw':>8s} {'FPR_fdr':>8s} {'Sig_raw':>8s} {'Sig_fdr':>8s}\\\"\\n    print(hdr)\\n    print(\\\"  \\\" + \\\"-\\\" * 56)\\n    for row in fpr_fnr[\\\"table\\\"]:\\n        print(f\\\"  {row['method']:<24s} {row['fpr_p_raw']:>7.1%} {row['fpr_p_fdr']:>7.1%} \\\"\\n              f\\\"{row['sig_raw']:>8d} {row['sig_fdr']:>8d}\\\")\\n    print()\\n\\n    # ── Sub-task 3b: FPR/FNR — Differenced (legacy) ──\\n    fpr_fnr_legacy = compute_fpr_fnr_diff(sig_matrix, pair_names, method_names,\\n                               consensus_method_thresh=default_mt,\\n                               consensus_seed_thresh=default_st)\\n\\n    print(\\\"=== Sub-task 3b: FPR/FNR — Differenced (legacy) ===\\\")\\n    gt = fpr_fnr_legacy[\\\"ground_truth\\\"]\\n    print(f\\\"FPR ground truth: {gt['fpr_ground_truth']} (N_neg={gt['n_negatives_seed']})\\\")\\n    print(f\\\"FNR ground truth: {gt['fnr_ground_truth']} (N_pos={gt['n_positives_seed']})\\\")\\n    print()\\n    hdr = f\\\"  {'Method':<24s} {'FPR':>8s} {'FNR':>8s} {'Sig(pair)':>10s} {'Sig(seed)':>10s}\\\"\\n    print(hdr)\\n    print(\\\"  \\\" + \\\"-\\\" * 62)\\n    for row in fpr_fnr_legacy[\\\"table\\\"]:\\n        fpr_s = f\\\"{row['fpr']:.1%}\\\"\\n        fnr_v = row.get(\\\"fnr\\\", 0)\\n        fnr_s = f\\\"{fnr_v:.1%}\\\" if isinstance(fnr_v, (int, float)) else str(fnr_v)\\n        sig_p = str(row.get(\\\"sig_count_pair\\\", row.get(\\\"n_robust\\\", \\\"\\\")))\\n        sig_s = str(row.get(\\\"sig_count_seed\\\", \\\"\\\"))\\n        print(f\\\"  {row['method']:<24s} {fpr_s:>8s} {fnr_s:>8s} {sig_p:>10s} {sig_s:>10s}\\\")\\n    print()\\n\\n    # ── Sub-task 4: LOO FPR/FNR ──\\n    loo = compute_fpr_fnr_loo(sig_matrix, pair_names, method_names,\\n                               seed_threshold=default_st)\\n\\n    print(f\\\"=== Sub-task 4: LOO FPR/FNR (K-2 consensus ground truth) ===\\\")\\n    hdr_loo = f\\\"  {'Method':<24s} {'FPR_loo':>8s} {'FNR_loo':>8s} {'FP':>5s} {'FN':>5s} {'N_pos':>6s} {'N_neg':>6s} {'LOO_robust':>10s}\\\"\\n    print(hdr_loo)\\n    print(\\\"  \\\" + \\\"-\\\" * 75)\\n    for mname in method_names:\\n        r = loo[mname]\\n        print(f\\\"  {mname:<24s} {r['fpr_loo']:>7.1%} {r['fnr_loo']:>7.1%} \\\"\\n              f\\\"{r['fp']:>5d} {r['fn']:>5d} {r['n_positives']:>6d} {r['n_negatives']:>6d} \\\"\\n              f\\\"{r['loo_n_robust']:>10d}\\\")\\n    print()\\n\\n    # ── Save ──\\n    with open(os.path.join(out_dir, \\\"consensus_classification.json\\\"), \\\"w\\\") as f:\\n        json.dump(consensus, f, indent=2, cls=NumpyEncoder)\\n    with open(os.path.join(out_dir, \\\"sensitivity_analysis.json\\\"), \\\"w\\\") as f:\\n        json.dump(sa, f, indent=2, cls=NumpyEncoder)\\n    with open(os.path.join(out_dir, \\\"fpr_fnr_table.json\\\"), \\\"w\\\") as f:\\n        json.dump(fpr_fnr, f, indent=2, cls=NumpyEncoder)\\n    with open(os.path.join(out_dir, \\\"fpr_fnr_table_legacy.json\\\"), \\\"w\\\") as f:\\n        json.dump(fpr_fnr_legacy, f, indent=2, cls=NumpyEncoder)\\n\\n    with open(os.path.join(\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+              }
+            }
+          },
+          "id": "event-000140"
+        },
+        {
+          "source_line": 141,
+          "timestamp": "2026-05-15T11:06:09.921Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BKUbrB9qN3qqmBnLSVwGj3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"out_dir, \\\\\\\"fpr_fnr_loo.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(loo, f, indent=2, cls=NumpyEncoder)\\\\n\\\\n    print(f\\\\\\\"Saved to {out_dir}/\\\\\\\")\\\\n    return consensus, sa, fpr_fnr\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "403c2d48-f0a4-4a4b-9424-77415659fe55",
+            "uuid": "bd4e664e-f25a-4392-ba84-2efcf9889457",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"out_dir, \\\\\\\"fpr_fnr_loo.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(loo, f, indent=2, cls=NumpyEncoder)\\\\n\\\\n    print(f\\\\\\\"Saved to {out_dir}/\\\\\\\")\\\\n    return consensus, sa, fpr_fnr\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"out_dir, \\\"fpr_fnr_loo.json\\\"), \\\"w\\\") as f:\\n        json.dump(loo, f, indent=2, cls=NumpyEncoder)\\n\\n    print(f\\\"Saved to {out_dir}/\\\")\\n    return consensus, sa, fpr_fnr\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"
+              }
+            }
+          },
+          "id": "event-000141"
+        },
+        {
+          "source_line": 142,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have all 4 chunks. Let me reconstruct the file content. But wait, the chunks were split at byte boundaries (8000 bytes each), not at line boundaries. So some content may have been cut in the middle of a line, and then the SSH read_only shows each chunk's content separately.\n\nLooking at the chunks:\n- Chunk aa (8000 bytes): Ends with `K = n_methods`\n- Chunk ab (8000 bytes): Starts with `\\n    if consensus_method_thresh is None:` ... ends with `if m == \"thres`\n\n\n- Chunk ac (8000 bytes): Starts with `hold\":` ... ends with `with open(os.path.join(`\n- Chunk ad (204 bytes): Starts with `out_dir, \"fpr_fnr_loo.json\"), \"w\") as f:` ... ends with `    main()\\n`\n\nSo the full file is: chunk_aa + chunk_ab + chunk_ac + chunk_ad. The boundaries between chunks show line breaks at some points (like between aa and ab), but others are mid-word splits (like between ab and ac where `\"thres` continues as `hold\":`).\n\nI need to reconstruct the full Python file from these chunks. The SSH output has JSON escaping applied, so I'll need to unescape the newlines and quotes to get the actual content. script locally to properly reconstruct the file.\n\nActually, a much simpler approach: I know the exact edits I made. The local file is an older version (432 lines). Instead of trying to transfer the full file, let me use register_artifact to register the content. But I need the content.\n\nWait, let me try yet another approach. Let me use register_artifact with the `content` parameter, passing the file content. But I don't have the unescaped content easily available.\n\nOK, the most practical approach at this point: I'll use a subagent to handle the file transfer. The subagent can read all four chunks, unescape them, and write the file locally.\n\nActually, that's overcomplicating it. Let me just write a small Python script locally that reads the SSH chunk outputs and writes the full file.\n\nHmm, but those chunk outputs are JSON-escaped strings in this conversation, not actual files. I could use register_artifact with the content parameter and pass the full Python file, but that's 24K bytes. Or I could have the server base64 encode the file, split it into chunks, and decode locally.\n\nActually, let me just try the simplest thing: register_artifact with the content parameter. The tool seems designed exactly for this use case—passing raw content directly. I just need to get the full file content together. I need to get the server version synced locally first. Let me try using SSH to directly copy the file from the server to my local machine with a simple bash command, assuming my SSH config is set up properly.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "403c2d48-f0a4-4a4b-9424-77415659fe55",
+            "uuid": "7aede59d-9123-4e17-bfc0-201304b517b8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AiE9XpZdegDGNthvfjr9Ve",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11211,
+                "cache_read_input_tokens": 114659,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11211
+                },
+                "output_tokens": 11,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000142"
+        },
+        {
+          "source_line": 143,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me copy the file directly via SSH to local."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "403c2d48-f0a4-4a4b-9424-77415659fe55",
+            "uuid": "6f3d53d6-43a0-4ac9-a4a4-9f57610f6a1d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AiE9XpZdegDGNthvfjr9Ve",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11211,
+                "cache_read_input_tokens": 114659,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11211
+                },
+                "output_tokens": 11,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000143"
+        },
+        {
+          "source_line": 144,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01P19N6vek1mQuS7qMEmBHt8",
+              "name": "Bash",
+              "input": {
+                "command": "ssh westd-19828 'cat /root/autodl-tmp/distrib_canary_collapse/consensus_framework.py' > /tmp/cf_consensus.py 2>/dev/null && wc -l /tmp/cf_consensus.py",
+                "description": "Copy consensus_framework.py from server to local via SSH",
+                "timeout": 15000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "403c2d48-f0a4-4a4b-9424-77415659fe55",
+            "uuid": "b0139664-dea7-4aa1-bf73-0c9ba4170790",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AiE9XpZdegDGNthvfjr9Ve",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11211,
+                "cache_read_input_tokens": 114659,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11211
+                },
+                "output_tokens": 11,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000144"
+        },
+        {
+          "source_line": 145,
+          "timestamp": "2026-05-15T11:06:50.484Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01P19N6vek1mQuS7qMEmBHt8",
+              "type": "tool_result",
+              "content": "662 /tmp/cf_consensus.py",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "403c2d48-f0a4-4a4b-9424-77415659fe55",
+            "uuid": "437f4b12-4f45-4952-941f-8cfb1abf240d",
+            "tool_use_result": {
+              "stdout": "662 /tmp/cf_consensus.py",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000145"
+        },
+        {
+          "source_line": 146,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "It worked! 662 lines (close to the 656 line count from the server wc -l — the difference might be trailing newlines). Now let me copy this to the artifacts directory and also copy the JSON files.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "403c2d48-f0a4-4a4b-9424-77415659fe55",
+            "uuid": "d4c3e0d8-ec4b-41ca-8538-64651550b71c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CzueB3C4D6CD7v848YBEmT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1551,
+                "cache_read_input_tokens": 125870,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1551
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000146"
+        },
+        {
+          "source_line": 147,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015MhJBmurg4a2cSB4riEic5",
+              "name": "Bash",
+              "input": {
+                "command": "cp /tmp/cf_consensus.py /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/consensus_framework/consensus_framework.py",
+                "description": "Copy consensus_framework.py to local artifacts"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "403c2d48-f0a4-4a4b-9424-77415659fe55",
+            "uuid": "3d64473c-60a4-45c2-ac68-4ecdc97df5c9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CzueB3C4D6CD7v848YBEmT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1551,
+                "cache_read_input_tokens": 125870,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1551
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000147"
+        },
+        {
+          "source_line": 148,
+          "timestamp": "2026-05-15T11:06:56.670Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015MhJBmurg4a2cSB4riEic5",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "403c2d48-f0a4-4a4b-9424-77415659fe55",
+            "uuid": "2f6d6211-9e9c-48e0-aaba-c6f3b5803d12",
+            "tool_use_result": {
+              "stdout": "",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": true
+            }
+          },
+          "id": "event-000148"
+        },
+        {
+          "source_line": 149,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017uiCV2zHAhcwVPmC7mqMGx",
+              "name": "Bash",
+              "input": {
+                "command": "ssh westd-19828 'cat /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/consensus/fpr_fnr_table.json' > /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/consensus_framework/fpr_fnr_table.json 2>/dev/null && echo OK",
+                "description": "Copy fpr_fnr_table.json from server",
+                "timeout": 10000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "403c2d48-f0a4-4a4b-9424-77415659fe55",
+            "uuid": "4da885c1-d632-4a24-84e0-72a57e039231",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CzueB3C4D6CD7v848YBEmT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1551,
+                "cache_read_input_tokens": 125870,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1551
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000149"
+        },
+        {
+          "source_line": 150,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FjSxPPacRdL1c5EwTzCjrs",
+              "name": "Bash",
+              "input": {
+                "command": "ssh westd-19828 'cat /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/consensus/fpr_fnr_table_legacy.json' > /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/consensus_framework/fpr_fnr_table_legacy.json 2>/dev/null && echo OK",
+                "description": "Copy fpr_fnr_table_legacy.json from server",
+                "timeout": 10000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "403c2d48-f0a4-4a4b-9424-77415659fe55",
+            "uuid": "9cd518dd-05b1-4796-86dc-e5ac9e73e3d4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CzueB3C4D6CD7v848YBEmT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1551,
+                "cache_read_input_tokens": 125870,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1551
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000150"
+        },
+        {
+          "source_line": 151,
+          "timestamp": "2026-05-15T11:06:59.909Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017uiCV2zHAhcwVPmC7mqMGx",
+              "type": "tool_result",
+              "content": "OK",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "403c2d48-f0a4-4a4b-9424-77415659fe55",
+            "uuid": "6a76ed5e-f077-48ff-ac52-0ec0bbe73343",
+            "tool_use_result": {
+              "stdout": "OK",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000151"
+        },
+        {
+          "source_line": 152,
+          "timestamp": "2026-05-15T11:07:01.011Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FjSxPPacRdL1c5EwTzCjrs",
+              "type": "tool_result",
+              "content": "OK",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "403c2d48-f0a4-4a4b-9424-77415659fe55",
+            "uuid": "9f97e9c1-a90a-4bea-b2de-fb4eff87fedf",
+            "tool_use_result": {
+              "stdout": "OK",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000152"
+        },
+        {
+          "source_line": 153,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Task 1 文件已同步到本地。现在开始 Task 2：FDR 化 Phase 2 报告。\n\n从之前读取的 `d028_fpr_null_control_full.json` 中提取 FDR 数据：\n\n| α | naive | diff | threshold | permG | TY |\n|---|-------|------|-----------|-------|-----|\n| 0.00 | 100% | 37.5% | 62.5% | 0% | 0% |\n| 0.25 | 100% | 25% | 37.5% | **0%** | **37.5%** |\n| 0.50 | 100% | 100% | 100% | **0%** | 0% |\n| 1.00 | 100% | 100% | 100% | 75% | 59.4% |\n\n对比 raw 值变化：\n- α=0.00 diff: 50% → 37.5% (FDR)\n- α=0.25 permG: 25% → **0%** (FDR)\n- α=0.50 permG: 25% → **0%** (FDR)\n- α=0.25 TY: 62% → **37.5%** (FDR)"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "403c2d48-f0a4-4a4b-9424-77415659fe55",
+            "uuid": "7581e539-5af1-442b-ba65-41644beca475",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018YeAXu55W8pRpxYN2NfPLy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 652,
+                "cache_read_input_tokens": 127421,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 652
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000153"
+        },
+        {
+          "source_line": 154,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AiiJqokHD3raNMksvsAiYe",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/method_ablation_phase2/report/method_ablation_phase2_summary.md",
+                "content": "Phase 2 结果摘要（详见服务器 results/method_ablation_phase2_report.md）\n\nMethod × Alpha Sig Rates (BH FDR-corrected):\n| α | naive | diff | threshold | permG | TY |\n|---|-------|------|-----------|-------|-----|\n| 0.00 | 100% | 37.5% | 62.5%† | 0% | 0% |\n| 0.25 | 100% | 25% | 37.5%† | 0% | 37.5% |\n| 0.50 | 100% | 100% | 100%† | 0% | 0% |\n| 1.00 | 100% | 100% | 100%† | 75% | 59.4% |\n\n†threshold_onset 为非统计检验（无 p-value），FDR 不适用，数字等同 raw。\n\n> Raw significance (uncorrected), shown for comparison:\n> | α | naive | diff | threshold | permG | TY |\n> |---|-------|------|-----------|-------|-----|\n> | 0.00 | 100% | 50% | 62.5% | 0% | 0% |\n> | 0.25 | 100% | 25% | 37.5% | 25% | 62.5% |\n> | 0.50 | 100% | 100% | 100% | 25% | 0% |\n> | 1.00 | 100% | 100% | 100% | 75% | 59.4% |\n>\n> 关键 FDR 翻转: α=0.25 permG 25%→0%, α=0.50 permG 25%→0%, α=0.25 TY 62.5%→37.5%, α=0.00 diff 50%→37.5%\n\nCohen κ = 0.185 (poor agreement)\nDecision flips: naive vs permG 50%, naive vs TY 57%, α=0.0 naive vs permG 100%\n\n数据来源: d028_fpr_null_control_full.json (phase2_fdr_sig_rates section), BH FDR α=0.05\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "403c2d48-f0a4-4a4b-9424-77415659fe55",
+            "uuid": "232e3f55-248a-4ed9-85d5-651ad216814b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018YeAXu55W8pRpxYN2NfPLy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 652,
+                "cache_read_input_tokens": 127421,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 652
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000154"
+        },
+        {
+          "source_line": 155,
+          "timestamp": "2026-05-15T11:07:30.850Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AiiJqokHD3raNMksvsAiYe",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/method_ablation_phase2/report/method_ablation_phase2_summary.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "403c2d48-f0a4-4a4b-9424-77415659fe55",
+            "uuid": "d2893810-84e8-4037-823a-e0d08b24ef49",
+            "tool_use_result": {
+              "type": "update",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/method_ablation_phase2/report/method_ablation_phase2_summary.md",
+              "content": "Phase 2 结果摘要（详见服务器 results/method_ablation_phase2_report.md）\n\nMethod × Alpha Sig Rates (BH FDR-corrected):\n| α | naive | diff | threshold | permG | TY |\n|---|-------|------|-----------|-------|-----|\n| 0.00 | 100% | 37.5% | 62.5%† | 0% | 0% |\n| 0.25 | 100% | 25% | 37.5%† | 0% | 37.5% |\n| 0.50 | 100% | 100% | 100%† | 0% | 0% |\n| 1.00 | 100% | 100% | 100%† | 75% | 59.4% |\n\n†threshold_onset 为非统计检验（无 p-value），FDR 不适用，数字等同 raw。\n\n> Raw significance (uncorrected), shown for comparison:\n> | α | naive | diff | threshold | permG | TY |\n> |---|-------|------|-----------|-------|-----|\n> | 0.00 | 100% | 50% | 62.5% | 0% | 0% |\n> | 0.25 | 100% | 25% | 37.5% | 25% | 62.5% |\n> | 0.50 | 100% | 100% | 100% | 25% | 0% |\n> | 1.00 | 100% | 100% | 100% | 75% | 59.4% |\n>\n> 关键 FDR 翻转: α=0.25 permG 25%→0%, α=0.50 permG 25%→0%, α=0.25 TY 62.5%→37.5%, α=0.00 diff 50%→37.5%\n\nCohen κ = 0.185 (poor agreement)\nDecision flips: naive vs permG 50%, naive vs TY 57%, α=0.0 naive vs permG 100%\n\n数据来源: d028_fpr_null_control_full.json (phase2_fdr_sig_rates section), BH FDR α=0.05\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 1,
+                  "oldLines": 14,
+                  "newStart": 1,
+                  "newLines": 26,
+                  "lines": [
+                    " Phase 2 结果摘要（详见服务器 results/method_ablation_phase2_report.md）",
+                    " ",
+                    "-Method × Alpha Sig Rates:",
+                    "+Method × Alpha Sig Rates (BH FDR-corrected):",
+                    " | α | naive | diff | threshold | permG | TY |",
+                    " |---|-------|------|-----------|-------|-----|",
+                    "-| 0.00 | 100% | 50% | 62% | 0% | 0% |",
+                    "-| 0.25 | 100% | 25% | 38% | 25% | 62% |",
+                    "-| 0.50 | 100% | 100% | 100% | 25% | 0% |",
+                    "-| 1.00 | 100% | 100% | 100% | 75% | 59% |",
+                    "+| 0.00 | 100% | 37.5% | 62.5%† | 0% | 0% |",
+                    "+| 0.25 | 100% | 25% | 37.5%† | 0% | 37.5% |",
+                    "+| 0.50 | 100% | 100% | 100%† | 0% | 0% |",
+                    "+| 1.00 | 100% | 100% | 100%† | 75% | 59.4% |",
+                    " ",
+                    "+†threshold_onset 为非统计检验（无 p-value），FDR 不适用，数字等同 raw。",
+                    "+",
+                    "+> Raw significance (uncorrected), shown for comparison:",
+                    "+> | α | naive | diff | threshold | permG | TY |",
+                    "+> |---|-------|------|-----------|-------|-----|",
+                    "+> | 0.00 | 100% | 50% | 62.5% | 0% | 0% |",
+                    "+> | 0.25 | 100% | 25% | 37.5% | 25% | 62.5% |",
+                    "+> | 0.50 | 100% | 100% | 100% | 25% | 0% |",
+                    "+> | 1.00 | 100% | 100% | 100% | 75% | 59.4% |",
+                    "+>",
+                    "+> 关键 FDR 翻转: α=0.25 permG 25%→0%, α=0.50 permG 25%→0%, α=0.25 TY 62.5%→37.5%, α=0.00 diff 50%→37.5%",
+                    "+",
+                    " Cohen κ = 0.185 (poor agreement)",
+                    " Decision flips: naive vs permG 50%, naive vs TY 57%, α=0.0 naive vs permG 100%",
+                    " ",
+                    "-注意：此分析使用 raw significance，D029 FDR 修复后数字可能微调。",
+                    "\\ No newline at end of file",
+                    "+数据来源: d028_fpr_null_control_full.json (phase2_fdr_sig_rates section), BH FDR α=0.05"
+                  ]
+                }
+              ],
+              "originalFile": "Phase 2 结果摘要（详见服务器 results/method_ablation_phase2_report.md）\n\nMethod × Alpha Sig Rates:\n| α | naive | diff | threshold | permG | TY |\n|---|-------|------|-----------|-------|-----|\n| 0.00 | 100% | 50% | 62% | 0% | 0% |\n| 0.25 | 100% | 25% | 38% | 25% | 62% |\n| 0.50 | 100% | 100% | 100% | 25% | 0% |\n| 1.00 | 100% | 100% | 100% | 75% | 59% |\n\nCohen κ = 0.185 (poor agreement)\nDecision flips: naive vs permG 50%, naive vs TY 57%, α=0.0 naive vs permG 100%\n\n注意：此分析使用 raw significance，D029 FDR 修复后数字可能微调。",
+              "userModified": false
+            }
+          },
+          "id": "event-000155"
+        },
+        {
+          "source_line": 156,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已 FDR 化。更新 registry metrics。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "403c2d48-f0a4-4a4b-9424-77415659fe55",
+            "uuid": "3d18820a-4250-4e7b-ac12-56efbfef4087",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KMBGVXLdMsDPE9HtFrd1Mz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1095,
+                "cache_read_input_tokens": 128073,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1095
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000156"
+        },
+        {
+          "source_line": 157,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DmXVgAKRqwStKvKpYquApP",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "method_ablation_phase2",
+                "field": "metrics",
+                "value": {
+                  "n_panel_rows": 56,
+                  "n_alphas": 4,
+                  "alphas": [
+                    0,
+                    0.25,
+                    0.5,
+                    1
+                  ],
+                  "naive_sig_rate_overall": 1,
+                  "perm_granger_sig_rate_a000_raw": 0,
+                  "perm_granger_sig_rate_a000_fdr": 0,
+                  "perm_granger_sig_rate_a025_raw": 0.25,
+                  "perm_granger_sig_rate_a025_fdr": 0,
+                  "perm_granger_sig_rate_a050_raw": 0.25,
+                  "perm_granger_sig_rate_a050_fdr": 0,
+                  "perm_granger_sig_rate_a100_raw": 0.75,
+                  "perm_granger_sig_rate_a100_fdr": 0.75,
+                  "TY_sig_rate_a000_raw": 0,
+                  "TY_sig_rate_a000_fdr": 0,
+                  "TY_sig_rate_a025_raw": 0.625,
+                  "TY_sig_rate_a025_fdr": 0.375,
+                  "TY_sig_rate_a050_raw": 0,
+                  "TY_sig_rate_a050_fdr": 0,
+                  "TY_sig_rate_a100_raw": 0.5938,
+                  "TY_sig_rate_a100_fdr": 0.5938,
+                  "diff_sig_rate_a000_raw": 0.5,
+                  "diff_sig_rate_a000_fdr": 0.375,
+                  "mean_inter_method_kappa": 0.185,
+                  "naive_vs_perm_granger_flip_rate": 0.5,
+                  "naive_vs_TY_flip_rate": 0.57,
+                  "fdr_flips_perm_granger": 4,
+                  "pair_verdict_a100_perm_granger": "6/8",
+                  "pair_verdict_a100_TY": "6/8",
+                  "entropy_to_diversity_a100_all_5methods_sig": true,
+                  "fdr_correction": "BH q=0.05"
+                },
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "403c2d48-f0a4-4a4b-9424-77415659fe55",
+            "uuid": "466a0c1f-18eb-4c5d-83a2-e7aa69bbf4d5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KMBGVXLdMsDPE9HtFrd1Mz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1095,
+                "cache_read_input_tokens": 128073,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1095
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000157"
+        },
+        {
+          "source_line": 158,
+          "timestamp": "2026-05-15T11:07:42.755Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DmXVgAKRqwStKvKpYquApP",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"method_ablation_phase2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T08:58:35.270Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:07:42.688Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Method sensitivity is compounded by regime dependence — method x alpha interaction is the headline Claim 3 evidence\\\", \\\"command\\\": \\\"python method_ablation_phase2.py\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"data_path\\\": \\\"results/alpha_sweep + results/mvp\\\", \\\"data_count\\\": 56, \\\"model_name\\\": \\\"N/A (analysis)\\\", \\\"seed\\\": \\\"42,43,44,45\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"results/method_ablation_phase2_panel.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"n_panel_rows\\\": 56, \\\"n_alphas\\\": 4, \\\"alphas\\\": [0, 0.25, 0.5, 1], \\\"naive_sig_rate_overall\\\": 1, \\\"perm_granger_sig_rate_a000_raw\\\": 0, \\\"perm_granger_sig_rate_a000_fdr\\\": 0, \\\"perm_granger_sig_rate_a025_raw\\\": 0.25, \\\"perm_granger_sig_rate_a025_fdr\\\": 0, \\\"perm_granger_sig_rate_a050_raw\\\": 0.25, \\\"perm_granger_sig_rate_a050_fdr\\\": 0, \\\"perm_granger_sig_rate_a100_raw\\\": 0.75, \\\"perm_granger_sig_rate_a100_fdr\\\": 0.75, \\\"TY_sig_rate_a000_raw\\\": 0, \\\"TY_sig_rate_a000_fdr\\\": 0, \\\"TY_sig_rate_a025_raw\\\": 0.625, \\\"TY_sig_rate_a025_fdr\\\": 0.375, \\\"TY_sig_rate_a050_raw\\\": 0, \\\"TY_sig_rate_a050_fdr\\\": 0, \\\"TY_sig_rate_a100_raw\\\": 0.5938, \\\"TY_sig_rate_a100_fdr\\\": 0.5938, \\\"diff_sig_rate_a000_raw\\\": 0.5, \\\"diff_sig_rate_a000_fdr\\\": 0.375, \\\"mean_inter_method_kappa\\\": 0.185, \\\"naive_vs_perm_granger_flip_rate\\\": 0.5, \\\"naive_vs_TY_flip_rate\\\": 0.57, \\\"fdr_flips_perm_granger\\\": 4, \\\"pair_verdict_a100_perm_granger\\\": \\\"6/8\\\", \\\"pair_verdict_a100_TY\\\": \\\"6/8\\\", \\\"entropy_to_diversity_a100_all_5methods_sig\\\": true, \\\"fdr_correction\\\": \\\"BH q=0.05\\\"}, \\\"completed_at\\\": \\\"2026-05-15T08:58:54.741Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1191}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "403c2d48-f0a4-4a4b-9424-77415659fe55",
+            "uuid": "ecc36c2b-546c-4cd3-b039-fae5e0e1d424",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"method_ablation_phase2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T08:58:35.270Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:07:42.688Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Method sensitivity is compounded by regime dependence — method x alpha interaction is the headline Claim 3 evidence\\\", \\\"command\\\": \\\"python method_ablation_phase2.py\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"data_path\\\": \\\"results/alpha_sweep + results/mvp\\\", \\\"data_count\\\": 56, \\\"model_name\\\": \\\"N/A (analysis)\\\", \\\"seed\\\": \\\"42,43,44,45\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"results/method_ablation_phase2_panel.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"n_panel_rows\\\": 56, \\\"n_alphas\\\": 4, \\\"alphas\\\": [0, 0.25, 0.5, 1], \\\"naive_sig_rate_overall\\\": 1, \\\"perm_granger_sig_rate_a000_raw\\\": 0, \\\"perm_granger_sig_rate_a000_fdr\\\": 0, \\\"perm_granger_sig_rate_a025_raw\\\": 0.25, \\\"perm_granger_sig_rate_a025_fdr\\\": 0, \\\"perm_granger_sig_rate_a050_raw\\\": 0.25, \\\"perm_granger_sig_rate_a050_fdr\\\": 0, \\\"perm_granger_sig_rate_a100_raw\\\": 0.75, \\\"perm_granger_sig_rate_a100_fdr\\\": 0.75, \\\"TY_sig_rate_a000_raw\\\": 0, \\\"TY_sig_rate_a000_fdr\\\": 0, \\\"TY_sig_rate_a025_raw\\\": 0.625, \\\"TY_sig_rate_a025_fdr\\\": 0.375, \\\"TY_sig_rate_a050_raw\\\": 0, \\\"TY_sig_rate_a050_fdr\\\": 0, \\\"TY_sig_rate_a100_raw\\\": 0.5938, \\\"TY_sig_rate_a100_fdr\\\": 0.5938, \\\"diff_sig_rate_a000_raw\\\": 0.5, \\\"diff_sig_rate_a000_fdr\\\": 0.375, \\\"mean_inter_method_kappa\\\": 0.185, \\\"naive_vs_perm_granger_flip_rate\\\": 0.5, \\\"naive_vs_TY_flip_rate\\\": 0.57, \\\"fdr_flips_perm_granger\\\": 4, \\\"pair_verdict_a100_perm_granger\\\": \\\"6/8\\\", \\\"pair_verdict_a100_TY\\\": \\\"6/8\\\", \\\"entropy_to_diversity_a100_all_5methods_sig\\\": true, \\\"fdr_correction\\\": \\\"BH q=0.05\\\"}, \\\"completed_at\\\": \\\"2026-05-15T08:58:54.741Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1191}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"method_ablation_phase2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:58:35.270Z\", \"updated_at\": \"2026-05-15T11:07:42.688Z\", \"spec\": {\"hypothesis\": \"Method sensitivity is compounded by regime dependence — method x alpha interaction is the headline Claim 3 evidence\", \"command\": \"python method_ablation_phase2.py\", \"server\": \"westd-19828\", \"data_path\": \"results/alpha_sweep + results/mvp\", \"data_count\": 56, \"model_name\": \"N/A (analysis)\", \"seed\": \"42,43,44,45\", \"checkpoint_path\": \"N/A\", \"log_path\": \"results/method_ablation_phase2_panel.json\"}, \"conclusion\": \"success\", \"metrics\": {\"n_panel_rows\": 56, \"n_alphas\": 4, \"alphas\": [0, 0.25, 0.5, 1], \"naive_sig_rate_overall\": 1, \"perm_granger_sig_rate_a000_raw\": 0, \"perm_granger_sig_rate_a000_fdr\": 0, \"perm_granger_sig_rate_a025_raw\": 0.25, \"perm_granger_sig_rate_a025_fdr\": 0, \"perm_granger_sig_rate_a050_raw\": 0.25, \"perm_granger_sig_rate_a050_fdr\": 0, \"perm_granger_sig_rate_a100_raw\": 0.75, \"perm_granger_sig_rate_a100_fdr\": 0.75, \"TY_sig_rate_a000_raw\": 0, \"TY_sig_rate_a000_fdr\": 0, \"TY_sig_rate_a025_raw\": 0.625, \"TY_sig_rate_a025_fdr\": 0.375, \"TY_sig_rate_a050_raw\": 0, \"TY_sig_rate_a050_fdr\": 0, \"TY_sig_rate_a100_raw\": 0.5938, \"TY_sig_rate_a100_fdr\": 0.5938, \"diff_sig_rate_a000_raw\": 0.5, \"diff_sig_rate_a000_fdr\": 0.375, \"mean_inter_method_kappa\": 0.185, \"naive_vs_perm_granger_flip_rate\": 0.5, \"naive_vs_TY_flip_rate\": 0.57, \"fdr_flips_perm_granger\": 4, \"pair_verdict_a100_perm_granger\": \"6/8\", \"pair_verdict_a100_TY\": \"6/8\", \"entropy_to_diversity_a100_all_5methods_sig\": true, \"fdr_correction\": \"BH q=0.05\"}, \"completed_at\": \"2026-05-15T08:58:54.741Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1191}}"
+              }
+            }
+          },
+          "id": "event-000158"
+        },
+        {
+          "source_line": 159,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "注册更新后的 artifacts。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "403c2d48-f0a4-4a4b-9424-77415659fe55",
+            "uuid": "74302a5a-1590-497d-aa98-67cc05cbd761",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014RG9K8Fn5eC5DreNqWLWEC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1564,
+                "cache_read_input_tokens": 129168,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1564
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000159"
+        },
+        {
+          "source_line": 160,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014BKNpL9z28c9QX6U1BfYqM",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "consensus_framework_d028_fpr_switch",
+                "type": "data",
+                "description": "D028: consensus_framework.py switched to null control FPR + legacy differenced output + FDR-corrected Phase 2 report",
+                "project": "distrib_canary_collapse",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/consensus_framework/fpr_fnr_table.json",
+                "tags": [
+                  "d028",
+                  "fpr",
+                  "null-control",
+                  "fdr"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "403c2d48-f0a4-4a4b-9424-77415659fe55",
+            "uuid": "d178aec6-f22f-4d55-a834-b7b8efe0b427",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014RG9K8Fn5eC5DreNqWLWEC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1564,
+                "cache_read_input_tokens": 129168,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1564
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000160"
+        },
+        {
+          "source_line": 161,
+          "timestamp": "2026-05-15T11:07:51.236Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014BKNpL9z28c9QX6U1BfYqM",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_ccabe6\\\", \\\"name\\\": \\\"consensus_framework_d028_fpr_switch\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"D028: consensus_framework.py switched to null control FPR + legacy differenced output + FDR-corrected Phase 2 report\\\", \\\"path\\\": \\\"projects/distrib_canary_collapse/artifacts/_project/data/fpr_fnr_table.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"distrib_canary_collapse\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T11:07:51.182764+00:00\\\", \\\"tags\\\": [\\\"d028\\\", \\\"fpr\\\", \\\"null-control\\\", \\\"fdr\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "403c2d48-f0a4-4a4b-9424-77415659fe55",
+            "uuid": "ca810ce4-8880-49f1-8259-1da24ae46ce0",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_ccabe6\\\", \\\"name\\\": \\\"consensus_framework_d028_fpr_switch\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"D028: consensus_framework.py switched to null control FPR + legacy differenced output + FDR-corrected Phase 2 report\\\", \\\"path\\\": \\\"projects/distrib_canary_collapse/artifacts/_project/data/fpr_fnr_table.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"distrib_canary_collapse\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T11:07:51.182764+00:00\\\", \\\"tags\\\": [\\\"d028\\\", \\\"fpr\\\", \\\"null-control\\\", \\\"fdr\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_ccabe6\", \"name\": \"consensus_framework_d028_fpr_switch\", \"type\": \"data\", \"description\": \"D028: consensus_framework.py switched to null control FPR + legacy differenced output + FDR-corrected Phase 2 report\", \"path\": \"projects/distrib_canary_collapse/artifacts/_project/data/fpr_fnr_table.json\", \"url\": null, \"project\": \"distrib_canary_collapse\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T11:07:51.182764+00:00\", \"tags\": [\"d028\", \"fpr\", \"null-control\", \"fdr\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000161"
+        },
+        {
+          "source_line": 162,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两项任务完成。总结：\n\n**Task 1 (P0): consensus_framework.py FPR ground truth 切换**\n- `main()` 现在先调 `compute_fpr_null_control`（α=0.0 null control）作为 primary FPR → `fpr_fnr_table.json`\n- `compute_fpr_fnr_diff`（differenced_xcorr）保留为 legacy → `fpr_fnr_table_legacy.json`\n- 顶部注释已更新，`DIFF_INDEX` 保留（legacy 路径仍用）\n- 验证通过：null control 下 permG FPR=0%, TY FPR=0%；legacy 下 consensus FPR=0%, FNR=0%\n- 3 个文件已同步到本地 `artifacts/analysis/consensus_framework/`\n\n**Task 2 (P1): Phase 2 报告 FDR 化**\n- 主表替换为 BH FDR-corrected 数字，raw 值移至引用块对比\n- 关键翻转：α=0.25 permG 25%→**0%**, α=0.50 permG 25%→**0%**, α=0.25 TY 62.5%→**37.5%**\n- Registry metrics 已更新：所有 sig rate 字段加 `_raw`/`_fdr` 后缀，新增 `fdr_correction: \"BH q=0.05\"`"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "403c2d48-f0a4-4a4b-9424-77415659fe55",
+            "uuid": "8131c26b-7096-4742-b90e-d4d68269e46b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LG6ZJJSZc6PYY4ma9uYvcv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 661,
+                "cache_read_input_tokens": 130732,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 661
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000162"
+        },
+        {
+          "source_line": 163,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两项任务完成。总结：\n\n**Task 1 (P0): consensus_framework.py FPR ground truth 切换**\n- `main()` 现在先调 `compute_fpr_null_control`（α=0.0 null control）作为 primary FPR → `fpr_fnr_table.json`\n- `compute_fpr_fnr_diff`（differenced_xcorr）保留为 legacy → `fpr_fnr_table_legacy.json`\n- 顶部注释已更新，`DIFF_INDEX` 保留（legacy 路径仍用）\n- 验证通过：null control 下 permG FPR=0%, TY FPR=0%；legacy 下 consensus FPR=0%, FNR=0%\n- 3 个文件已同步到本地 `artifacts/analysis/consensus_framework/`\n\n**Task 2 (P1): Phase 2 报告 FDR 化**\n- 主表替换为 BH FDR-corrected 数字，raw 值移至引用块对比\n- 关键翻转：α=0.25 permG 25%→**0%**, α=0.50 permG 25%→**0%**, α=0.25 TY 62.5%→**37.5%**\n- Registry metrics 已更新：所有 sig rate 字段加 `_raw`/`_fdr` 后缀，新增 `fdr_correction: \"BH q=0.05\"`"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 716449,
+            "duration_api_ms": 675080,
+            "num_turns": 58,
+            "stop_reason": "end_turn",
+            "session_id": "403c2d48-f0a4-4a4b-9424-77415659fe55",
+            "total_cost_usd": 2.965046500000001,
+            "usage": {
+              "input_tokens": 38,
+              "cache_creation_input_tokens": 119552,
+              "cache_read_input_tokens": 2553867,
+              "output_tokens": 37537,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 119552,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 397,
+                  "cache_read_input_tokens": 130732,
+                  "cache_creation_input_tokens": 661,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 661
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2163,
+                "outputTokens": 27,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002298,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 38,
+                "outputTokens": 37537,
+                "cacheReadInputTokens": 2553867,
+                "cacheCreationInputTokens": 119552,
+                "webSearchRequests": 0,
+                "costUSD": 2.9627485000000005,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "0035aa94-4027-42a2-9eea-3610240ad6d9"
+          },
+          "id": "event-000163"
+        }
+      ]
+    }
+  ]
+}

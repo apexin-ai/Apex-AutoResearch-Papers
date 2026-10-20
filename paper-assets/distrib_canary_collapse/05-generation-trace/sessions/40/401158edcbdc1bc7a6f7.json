@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "401158edcbdc1bc7a6f7",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "code analysis unify integrate",
+  "task_key": "worker_code_analysis-unify-integrate_20260514T214855",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_analysis-unify-integrate_20260514T214855.log",
+    "occurrence": 1,
+    "bytes": 658911,
+    "sha256": "3be5baa76b6123d0979ff8b581d66c2efb20b66ce8d51b23e1a983731760f8d1"
+  },
+  "statistics": {
+    "messages": 165,
+    "user_turns": 0,
+    "tool_calls": 59,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 43,
+      "tool_call": 59,
+      "tool_result": 59,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 165,
+      "chunks": [
+        {
+          "path": "401158edcbdc1bc7a6f7-part-0001.json",
+          "message_count": 145
+        },
+        {
+          "path": "401158edcbdc1bc7a6f7-part-0002.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-analysis-unify-integrate.md"
+}

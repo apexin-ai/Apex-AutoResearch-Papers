@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dcb998a5af1757c64621",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis filtering pipeline d040",
+  "task_key": "worker_analysis_filtering-pipeline-d040_20260515T153235",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_filtering-pipeline-d040_20260515T153235_result.json",
+    "occurrence": 1,
+    "bytes": 917,
+    "sha256": "695695ab665327260dd855c4489ef56a218fe4220a40c8f3e9f86d3316e2b03e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出完成。\n\n**文件**: `artifacts/D040/data/filtering_pipeline_data.json` (art_20260515_4ac8b4)\n\n**内容结构**:\n- **Stage 1 (Naive)**: α=0.0 null control 8/8 sig (100% FPR)，所有 α 均 100%\n- **Stage 2 (Differencing)**: α=0.0 降至 4/8 sig (50% FPR)；消除全部 ECE→downstream，保留 4 个 token_entropy→downstream 残余 FP\n- **Stage 3 (Granger+FDR)**: v6 40 tests: raw 14→FDR 6；v4 32 tests: raw 10→FDR 1；null control 0% FPR 验证；6 个 FDR 存活 pair 全在 α≥0.75 的 entropy/ECE→diversity 方向\n- **Stage 4 (Multi-seed)**: α=0.75 单 seed 11/16 robust → α=1.0 四 seed 6/16 robust，单 seed 高估 ~45%\n- **3 个 funnel**: A=null control 漏斗(8→4→0), B=cross-alpha Granger FDR 对比(v4 vs v6), C=α=1.0 全方法漏斗(16→14→6→6)\n- **最终 6 个 robust pairs**: token_entropy→d1/d2/d3 + ece→d1/d2/d3；C001 约束已标注"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-filtering-pipeline-d040.md"
+}

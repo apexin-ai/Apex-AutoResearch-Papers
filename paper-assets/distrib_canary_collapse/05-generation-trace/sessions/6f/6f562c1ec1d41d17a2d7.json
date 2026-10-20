@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6f562c1ec1d41d17a2d7",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diagnose scale 14b t10 a050 s42 fp32",
+  "task_key": "worker_diagnose_scale_14b_t10_a050_s42_fp32_20260522T065302",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_scale_14b_t10_a050_s42_fp32_20260522T065302_result.json",
+    "occurrence": 1,
+    "bytes": 486,
+    "sha256": "a819f43703dabde2280ab0cedef53516a2dead9ae54d74dba76a8a5fde24ba98"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。报告已写入 `artifacts/diag_scale_14b_t10_a050_s42_fp32.md`。\n\n**根因**：HF cache 中 `EleutherAI/pythia-1.4b-deduped` 的 safetensors shard 1/2 缺失（仅有 shard 2/2，643MB / 预期 ~2.8GB），模型加载阶段直接报 `OSError` 退出。Generation 0 未开始，无 GPU/磁盘/内存问题。\n\n**修复**：`source /etc/network_turbo` 后用 `hf_hub_download` 补下缺失的 `model-00001-of-00002.safetensors`，然后重跑实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-scale-14b-t10-a050-s42-fp32.md"
+}

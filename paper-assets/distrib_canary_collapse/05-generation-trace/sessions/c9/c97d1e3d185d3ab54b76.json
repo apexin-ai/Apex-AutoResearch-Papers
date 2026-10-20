@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "c97d1e3d185d3ab54b76",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diagnose scale 14b t10 a050 s43 fp32",
+  "task_key": "worker_diagnose_scale_14b_t10_a050_s43_fp32_20260522T202840",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_scale_14b_t10_a050_s43_fp32_20260522T202840_result.json",
+    "occurrence": 1,
+    "bytes": 1537,
+    "sha256": "629b332f56d5933b143231755f82aa2a93d1ef5c32031b43bfcda7f951fb96c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**诊断结论：实验没有失败，进程正在正常运行。**\n\n证据：\n- PID 822048 状态 `R (running)`，175 线程，运行 ~6 分钟\n- nvidia-smi: cuda:1 占用 11236MiB，GPU 利用率 89%\n- 工作目录正确：`/root/autodl-tmp/distrib_canary_collapse`\n- stdout/stderr 都指向同一 pipe（tmux 管道）\n\n日志只有 6 行的原因：进程刚进入 Generation 0 的训练阶段（5000 steps, Pythia-1.4B fp32 + gradient_checkpointing），训练循环尚未输出第一条进度日志。这不是\"无声死亡\"，而是训练刚刚开始。\n\n```json\n{\"root_cause\":\"误报——PID 822048 仍在运行（State=R, GPU util 89%, 11236MiB VRAM on cuda:1）。进入 Gen 0 后无日志输出是因为 HF Trainer 尚未到达第一个 logging_step，非进程死亡\",\"error_type\":\"none\",\"fix_steps\":[\"无需修复，等待训练自然推进即可\",\"若需实时观察进度可 tmux attach -t 14b_t10_a050_s43\"],\"can_auto_fix\":false,\"resubmit_command\":\"N/A - 实验正在正常运行\"}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "误报——PID 822048 仍在运行（State=R, GPU util 89%, 11236MiB VRAM on cuda:1）。进入 Gen 0 后无日志输出是因为 HF Trainer 尚未到达第一个 logging_step，非进程死亡",
+              "error_type": "none",
+              "fix_steps": [
+                "无需修复，等待训练自然推进即可",
+                "若需实时观察进度可 tmux attach -t 14b_t10_a050_s43"
+              ],
+              "can_auto_fix": false,
+              "resubmit_command": "N/A - 实验正在正常运行"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-scale-14b-t10-a050-s43-fp32.md"
+}

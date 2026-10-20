@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "43f45ab053da698bd599",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis d102 t15 a060 s43",
+  "task_key": "worker_analysis_d102-t15-a060-s43_20260523T200453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d102-t15-a060-s43_20260523T200453_result.json",
+    "occurrence": 1,
+    "bytes": 700,
+    "sha256": "e1b10c9d803171fe28d55d4da94ba69ab3769cb660af788f30f87e7aaf19b1ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D102 分析完成。\n\n**scale_14b_t15_a060_s43_fp32 结果：**\n\n| Method | Forward | Reverse |\n|--------|---------|---------|\n| PermG (FDR) | 6/8 | 3/8 |\n| DiffXCorr (FDR) | 6/8 | 6/8 |\n| Threshold Onset | 8/8 | — |\n| TY Granger | 3/8 | — |\n| **Robust pairs** | **6/8** | — |\n\nMauve 对两种 canary 都弱 (1/5 votes)，distinct 指标信号强。PermG reverse 3/8 来自 ece→distinct 的双向耦合。\n\n产出：\n- 远程: `results/phase_diagram/t15_a060_s43_fp32_14b/analysis/5method_leadlag.json`\n- 本地: `artifacts/D102_14b_t15_a060_s43_fp32.json`\n- Registry metrics 已更新\n- 分析总结: `artifacts/_project/d102_t15_a060_s43_result_20260523.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d102-t15-a060-s43.md"
+}

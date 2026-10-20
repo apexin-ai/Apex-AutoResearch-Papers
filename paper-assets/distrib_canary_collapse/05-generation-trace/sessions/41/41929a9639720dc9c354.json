@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41929a9639720dc9c354",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops cleanup exitcode verify gpu",
+  "task_key": "worker_ops_cleanup_exitcode_verify_gpu_20260519T120805",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup_exitcode_verify_gpu_20260519T120805_result.json",
+    "occurrence": 1,
+    "bytes": 1187,
+    "sha256": "8a5ae8eb56bbdaaf80756ab1134ae4cedf2fab65ba9dab183bc028399f974bd7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n```\nEXIT_CODE 清理: ✅ 全部成功\n  - a025_s43_fp32: 已删除\n  - a025_s44_fp32: 已删除\n  - a075_s42_fp32: 已删除\n\nGPU 状态:\n  GPU 0: 14237/97887 MiB, 利用率 97%\n  GPU 1: 34801/97887 MiB, 利用率 54%\n  GPU 2: 14237/97887 MiB, 利用率 96%\n  GPU 3: 14237/97887 MiB, 利用率 97%\n  GPU 4: 14237/97887 MiB, 利用率 96%\n  GPU 5: 14237/97887 MiB, 利用率 95%\n\n进程存活:\n  PID 123809 (a025_s43) — 运行 2h01m — ✅ ALIVE\n  PID 124519 (a025_s44) — 运行 2h01m — ✅ ALIVE\n  PID 121667 (a075_s42) — 运行 2h09m — ✅ ALIVE\n  PID 109870 (a025_s42) — 运行 4h10m — ✅ ALIVE\n\n训练进度:\n  a025_s43_fp32: gen 5/10, 6 gen_dirs, loss=2.251 (gen 5 训练早期)\n  a025_s44_fp32: gen 5/10, 6 gen_dirs, loss=2.597 (gen 5 训练中)\n  a075_s42_fp32: gen 5/10, 6 gen_dirs, loss=0.511 (gen 5 训练中)\n  a025_s42_fp32: gen 10/10, 11 gen_dirs, loss=2.157 (最后一个 gen，~66% 完成)\n\na025_s42 异常检查:\n  进程存活，已跑 4h10m，当前在 gen 10/10 step ~3300/5000。\n  不是卡住——正常训练中，只是 10 个 generation 本身耗时长。预计还需 ~15min 完成。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-exitcode-verify-gpu.md"
+}

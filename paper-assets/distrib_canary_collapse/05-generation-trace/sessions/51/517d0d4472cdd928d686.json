@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "517d0d4472cdd928d686",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis arr data audit",
+  "task_key": "worker_analysis_arr_data_audit_20260524T042855",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_arr_data_audit_20260524T042855_result.json",
+    "occurrence": 1,
+    "bytes": 1137,
+    "sha256": "52ced4044afeb696f10697abd2f7da9460c1b8ef5dbac2ed9c6db8c664f5a830"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。112 个数字已检查，结果保存至 `artifacts/_project/arr_final_audit_20260524.md`。\n\n**关键发现：**\n\n**❌ 2 个错误（必须修复）：**\n1. **conclusion.tex \"13 of 15\" vs discussion.tex \"Five of fifteen do not confirm\"** — 13/15 confirm 与 10/15 confirm 直接矛盾。conclusion 的 13/15（仅计 PermG ≥6/8）和 experiments 的 11/15（cascade+PermG 组合标准）各自合理，但 discussion 的 \"Five\" 与两者都不一致。\n2. **\"Five\" vs \"four\" non-confirming** — experiments.tex 列举了 4 个 failure modes，discussion 说 5 个，第 5 个无法追溯。\n\n**⚠️ 15 个需人工确认（非错误但无法端到端追溯）：**\n- introduction \"3/5 saturated predictions\" 无 artifact 来源\n- Fisher 18/32 的 α-level/seed 组成未完全记录\n- discussion \"s43 reverse 6/6 at α≥0.60\" 仅 T=10 成立，缺 T 限定\n- Table 1 非 PermG 行的处理管线不在 artifacts 中\n\n**✅ 核心数字全部一致：** α_c=0.483、MAE=0.037、15/15 CI、14/15 cascade、64% intervention、Fisher p=3.45e-11、Table 17 全部 16 格。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-arr-data-audit.md"
+}

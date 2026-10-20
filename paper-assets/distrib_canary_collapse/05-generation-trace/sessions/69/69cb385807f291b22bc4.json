@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "69cb385807f291b22bc4",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis d027 report alpha050 threshold",
+  "task_key": "worker_analysis_d027_report_alpha050_threshold_20260515T103855",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d027_report_alpha050_threshold_20260515T103855_result.json",
+    "occurrence": 1,
+    "bytes": 258,
+    "sha256": "c3bd8bde7c7d3ecb68885649c3dfec60a7fa592e6a6603d630fe5e3186974ebe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已在 `d027_report.md` 的\"产出文件\"之前插入 \"Cross-Alpha Consensus Extension\" section，包含：跨 α 汇总表格、binary threshold 发现、对 Claim 2 的支撑说明、single-seed 限制标注，以及 C001 约束提醒。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d027-report-alpha050-threshold.md"
+}

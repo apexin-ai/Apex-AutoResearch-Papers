@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c16a16a9faae5fc16756",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops check t25 a075 s43 19828",
+  "task_key": "worker_ops_check-t25-a075-s43-19828_20260522T111510",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-t25-a075-s43-19828_20260522T111510_result.json",
+    "occurrence": 1,
+    "bytes": 520,
+    "sha256": "7390b27701ea0a78afaa28effd2dc308abf98184d26892d45901e6bbc3b079d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在，无需清除。\n\n---\n\n**T=25 α=0.75 s43 完成，结果符合预期：**\n\n| 指标 | 值 |\n|---|---|\n| Robust pairs (≥3/5) | **6/8** (= s42, seed-robust ✓) |\n| PermG fwd FDR | 8/8 sig, rev 0/8 (完美不对称) |\n| Diff xcorr fwd FDR | 7/8 |\n| Threshold onset (D105 3σ) | 6/8 |\n| TY Granger fwd | 4/8 |\n| 非 robust pairs | token_entropy→mauve (2/5), ece→mauve (2/5) |\n\nmauve 两对一致未达标，与 s42 模式相同。Registry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-t25-a075-s43-19828.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "67e984b66310cd5551b8",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops registry old field cleanup r2",
+  "task_key": "worker_ops_registry_old_field_cleanup_r2_20260520T215155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_registry_old_field_cleanup_r2_20260520T215155_result.json",
+    "occurrence": 1,
+    "bytes": 1920,
+    "sha256": "1fddaab5260b71fdbd6c83e1ec841dfde5f1b4e3c49fe9bce4236ccf7c63fd5c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过，所有旧字段已清零。\n\n## 清理报告\n\n| 实验 | 删除字段 | 旧值 |\n|------|---------|------|\n| **alpha_sweep_a060_s43_fp32** (优先) | consensus_k3_3sigma | **7/8** (与 consensus_ge3=0 严重冲突) |\n| | ty_granger | 4/8 |\n| alpha_sweep_a030_s42_fp32 | k_ge3, k_ge4, ty_granger | 3/8, 3/8, 5/8 |\n| alpha_sweep_a035_s42_fp32 | TY_granger | 4/8 |\n| alpha_sweep_a040_s42_fp32_v2 | TY_granger | 4/8 |\n| alpha_sweep_a045_s42_fp32 | k_ge3, k_ge4, ty_granger | 3, 0, 1 |\n| alpha_sweep_a045_s43_fp32 | ty_granger | 7/8 |\n| alpha_sweep_a050_s43_fp32 | TY_granger | 5/8 |\n| alpha_sweep_a060_s42_fp32_v4 | TY_granger | 0/8 |\n| alpha_sweep_a075_s43 | TY_granger | 6/8 |\n| c4_a025_s42_fp32 | TY_granger | N/A (API error) |\n| c4_a050_s42_fp32 | TY_granger | N/A (API error) |\n| c4_a050_s43_fp32 | TY_granger | 0/8 |\n| c4_a075_s42_fp32 | TY_granger | N/A (API error) |\n| c4_a075_s43_fp32 | TY_granger | 1/8 |\n| padding_robustness_a100_s42_fp32 | TY_granger | N/A (API error) |\n| qwen35_08b_wiki_a100_s42_v2 | TY_granger, K_ge3, K_ge4 | 6/8, 6/8, 3/8 |\n| qwen35_08b_wiki_a100_s43_fp32 | TY_granger, K_ge3, K_ge4 | 6/8, 6/8, 6/8 |\n| scale_14b_a050_s42_fp32 | TY_Granger, K_ge3, K_ge4 | 0/8, 0/8, 0/8 |\n| scale_14b_c4_s42_fp32 | TY_granger, K_ge3, K_ge4 | 0/8, 8/8, 0/8 |\n| scale_69b_a100_s42 | TY_granger, K_ge3, K_ge4 | 1/8, 5/8, 0/8 |\n| scale_69b_a100_s43 | TY_granger, K_ge3, K_ge4 | 0/8, 6/8, 0/8 |\n| smollm3_3b_wiki_a100_s42_v3 | ty_granger | 0/8 |\n| smollm3_3b_wiki_a100_s43_fp32 | TY_Granger, K_ge3, K_ge4 | 6/8, 6/8, 3/8 |\n| t20_a060_s42_fp32 | K_ge3 | 4/8 |\n| t20_a075_s42_fp32 | TY_Granger, K_ge3 | 5/8, 6/8 |\n\n**总计：25 个实验、45 个旧字段已清理**（比预估多 — 大小写变体 `TY_granger`/`TY_Granger` 扩大了范围）。验证确认 registry 中不再有任何 `ty_granger`/`K_ge3`/`K_ge4`/`consensus_k3_3sigma` 残留。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-registry-old-field-cleanup-r2.md"
+}

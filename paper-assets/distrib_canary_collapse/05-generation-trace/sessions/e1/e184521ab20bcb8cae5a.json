@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "id": "e184521ab20bcb8cae5a",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "analysis d34 universal cascade signature",
+  "task_key": "worker_analysis_d34_universal_cascade_signature_20260520T182854",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d34_universal_cascade_signature_20260520T182854.log",
+    "occurrence": 1,
+    "bytes": 1676595,
+    "sha256": "b91a09f22c5d470616e460270ddd108316400919efea62d687c29701ba78c614"
+  },
+  "statistics": {
+    "messages": 1078,
+    "user_turns": 2,
+    "tool_calls": 449,
+    "roles": {
+      "log": 1,
+      "system": 24,
+      "record": 2,
+      "assistant": 150,
+      "tool_call": 449,
+      "user": 2,
+      "tool_result": 449,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "e184521ab20bcb8cae5a-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 532,
+      "chunks": [
+        {
+          "path": "e184521ab20bcb8cae5a-part-0001.json",
+          "message_count": 173
+        },
+        {
+          "path": "e184521ab20bcb8cae5a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e184521ab20bcb8cae5a-part-0003.json",
+          "message_count": 179
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 539,
+      "chunks": [
+        {
+          "path": "e184521ab20bcb8cae5a-part-0003.json",
+          "message_count": 1
+        },
+        {
+          "path": "e184521ab20bcb8cae5a-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "e184521ab20bcb8cae5a-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "e184521ab20bcb8cae5a-part-0006.json",
+          "message_count": 178
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-d34-universal-cascade-signature.md"
+}

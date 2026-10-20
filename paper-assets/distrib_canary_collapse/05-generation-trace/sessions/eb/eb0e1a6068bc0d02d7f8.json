@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb0e1a6068bc0d02d7f8",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops unify d102 scripts",
+  "task_key": "worker_ops_unify-d102-scripts_20260522T174341",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_unify-d102-scripts_20260522T174341_result.json",
+    "occurrence": 1,
+    "bytes": 1341,
+    "sha256": "7a032f1b538847fd62ae1bb0298938b1314bcdd661915bfdc02aba28e85c9f3b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两台服务器 MD5 完全一致：\n\n| 文件 | MD5 |\n|------|-----|\n| `permutation_granger.py` | `236811e1b16495247fd6b02a3c922eee` |\n| `run_5method_analysis_d102.py` | `318853fa69384ada42458177fdb80940` |\n\n---\n\n**汇报：**\n\n1. **run_5method_analysis_d102.py 差异**：仅第 223 行一个注释 `# col0=canary causes col1=downstream`（17855 有，19828 无），**无功能差异**。已删除 17855 的注释使两版一致。\n\n2. **permutation_granger.py 差异**：\n   - 17855 旧版（116行/3633B）：仅核心 `permutation_granger_test` 函数\n   - 19828 版（355行/12627B）：核心函数 + 扩展 docstring + 额外返回字段 (`f2_size`, `df_resid`, `f2_note`) + 独立 `__main__` 多 seed FDR 分析脚本\n   - 核心计算逻辑一致，`f_stat`/`p_value`/`significant` 数值完全相同\n\n3. **选择 19828 为准**：D102 Worker 已在 19828 运行；19828 是功能超集。已用 gzip+base64 传输覆盖 17855。\n\n4. **MD5 验证通过**：两台服务器两个文件 checksum 完全一致。\n\n5. **D102 import 确认**：`run_5method_analysis_d102.py` 第 17 行 `from permutation_granger import permutation_granger_test`，只使用返回 dict 的 `f_stat`、`p_value`、`significant` 字段——两版本在这些字段上行为一致，**D102 分析结果不受影响**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-unify-d102-scripts.md"
+}

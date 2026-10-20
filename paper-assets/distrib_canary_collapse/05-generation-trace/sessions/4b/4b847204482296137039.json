@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b847204482296137039",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis null fpr s51 granger",
+  "task_key": "worker_analysis_null_fpr_s51_granger_20260525T001345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_null_fpr_s51_granger_20260525T001345_result.json",
+    "occurrence": 1,
+    "bytes": 690,
+    "sha256": "06529edf10b317117596ad4423e91f6bb5ce93f3b02ee03a70f62cc3980058d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。关键数字：\n\n**s51 分析结果 (α=0.00, null seed)**\n| 方法 | Forward FDR | Reverse FDR |\n|------|-------------|-------------|\n| PermG | **0/8** | 0/8 |\n| DiffXCorr | 5/8 | 5/8 |\n| NaiveXCorr (D111) | 2/8 | — |\n| ThresholdOnset | 7/8 | — |\n| TY Granger | 1/8 | — |\n| K≥3 | **0/8** | — |\n\n**合并 FPR (PermG, Clopper-Pearson CI)**\n\n| | FP | Total | FPR | 95% CI |\n|---|---|---|---|---|\n| 9-seed (旧) | 4 | 54 | 7.4% | [2.1%, 17.9%] |\n| **10-seed (新)** | **4** | **60** | **6.7%** | **[1.8%, 16.2%]** |\n\n- FPR: 7.4% → 6.7%\n- CI 上界: 17.9% → 16.2% (收窄 1.7pp)\n- 0 FP seeds: 7/9 → 8/10\n- K≥3 FPR 仍然 0/60 = 0%"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-null-fpr-s51-granger.md"
+}

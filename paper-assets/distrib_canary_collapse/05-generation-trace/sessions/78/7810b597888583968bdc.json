@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7810b597888583968bdc",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ssh scp compile paper 20260517",
+  "task_key": "worker_ssh_scp_compile_paper_20260517_20260517T100450",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_scp_compile_paper_20260517_20260517T100450_result.json",
+    "occurrence": 1,
+    "bytes": 779,
+    "sha256": "6e0305b4ac7db448f8bc8b72cae687c007cbb7103885422d734e67434d21cc35"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 1. SCP 同步\n- **成功**。`figures/shapley_method_contribution.pdf` 已同步，大小 30,750 bytes。\n\n### 2. LaTeX 编译\n| 指标 | 结果 |\n|------|------|\n| Errors | **0** |\n| Undefined citations | **0** |\n| Undefined references | **0** |\n| Pages | **24** |\n| Warnings | **2**（均为 `'h' float specifier changed to 'ht'`，无害） |\n| Label(s) may have changed | **无** |\n\n编译干净通过。\n\n### 3. GPU 状态\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| cuda:0 | 46% | 14,391 / 97,887 MiB |\n| cuda:1 | 96% | 27,217 / 97,887 MiB |\n\n- **PID 247554**（Pythia-410M, cuda:0）：✅ 存活\n- **PID 249384**（OPT-1.3B, cuda:1）：✅ 存活\n\n两个泛化实验均正常运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-scp-compile-paper-20260517.md"
+}

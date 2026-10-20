@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e910db5d4b60b9d25957",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code fix alpha sweep f2 guard",
+  "task_key": "worker_code_fix-alpha-sweep-f2-guard_20260515T012837",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-alpha-sweep-f2-guard_20260515T012837_result.json",
+    "occurrence": 1,
+    "bytes": 1044,
+    "sha256": "5575fb4a4cd41abfbaf0ba1020c814921227c62e7e96281d6231ff70a7dbfcf4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成，验证通过。\n\n### 修改内容\n\n`analyze_alpha_sweep.py` 中 3 处修改：\n\n1. **`_f2_label()` (line 347)** — 添加 `df_resid` 参数，当 `df_resid < 20` 时返回 `\"df_too_low\"`\n2. **`toda_yamamoto()` (line 293)** — 传入 `df_resid=df_resid`，并在 `df_resid < 20` 时添加 `f2_note` 字段\n3. **`perm_granger()` (line 315-329)** — 使用 `permutation_granger_test` 已修复的 `f2_size` 字段替代重算，传递 `df_resid` 和 `f2_note`\n\n### 验证结果\n\nsummary.txt 确认 TY 在 α=0.25 下的 f² 标签已从 `\"large\"` 改为 `\"df_too_low\"`：\n\n```\nα=0.25 token_entropy → distinct_1  toda_yamamoto  f²=21.9383 (df_too_low)\nα=0.25 token_entropy → distinct_2  toda_yamamoto  f²=10.4321 (df_too_low)\nα=0.25 token_entropy → distinct_3  toda_yamamoto  f²=2.3739  (df_too_low)\n```\n\nJSON 输出中所有 TY 和 PG 的 f² 条目均带有 `\"effect_size_label\": \"df_too_low\"` 和 `\"f2_note\": \"df_resid=4 < 20, standard benchmarks not applicable\"`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-alpha-sweep-f2-guard.md"
+}

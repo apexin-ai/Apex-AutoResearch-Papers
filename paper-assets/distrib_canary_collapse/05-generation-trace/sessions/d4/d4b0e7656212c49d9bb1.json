@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "d4b0e7656212c49d9bb1",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analyze qwen35 08b wiki a100 s43 fp32",
+  "task_key": "worker_analyze_qwen35_08b_wiki_a100_s43_fp32_20260520T080029",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_qwen35_08b_wiki_a100_s43_fp32_20260520T080029_result.json",
+    "occurrence": 1,
+    "bytes": 2036,
+    "sha256": "3300cec6b7f9a71e44159b692ee75d36b47efef40b9e1bb1fe5f9b42559dfbb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\n  \"PermG_fwd\": \"6/8\",\n  \"PermG_rev\": \"0/8\",\n  \"diff_xcorr_fdr\": \"6/8\",\n  \"naive_xcorr\": \"6/8\",\n  \"threshold_onset\": \"8/8\",\n  \"TY_granger\": \"6/8\",\n  \"K_ge3\": \"6/8\",\n  \"K_ge4\": \"6/8\",\n  \"d120_canonical\": true,\n  \"notes\": \"mauve pairs weak: token_entropy->mauve K=1, ece->mauve K=1 (xcorr peak_lag=+1, direction filter correctly excluded). 6 distinct_* pairs all K=5/5. vs s42 (8/8 full sweep), s43 mauve non-monotonic (+6.42% drift) likely explains drop.\",\n  \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/qwen35_08b_wiki_a100_s43_fp32/gen_10/checkpoint\"\n}\n```\n\n**Consensus detail per pair:**\n\n| Pair | K | Methods |\n|------|---|---------|\n| token_entropy→distinct_1 | 5/5 | naive, diff, thresh, pg_fwd, ty |\n| token_entropy→distinct_2 | 5/5 | naive, diff, thresh, pg_fwd, ty |\n| token_entropy→distinct_3 | 5/5 | naive, diff, thresh, pg_fwd, ty |\n| token_entropy→mauve | 1/5 | thresh |\n| ece→distinct_1 | 5/5 | naive, diff, thresh, pg_fwd, ty |\n| ece→distinct_2 | 5/5 | naive, diff, thresh, pg_fwd, ty |\n| ece→distinct_3 | 5/5 | naive, diff, thresh, pg_fwd, ty |\n| ece→mauve | 1/5 | thresh |\n\ns43 vs s42 差异：mauve drift 仅 +6.42%（非单调），xcorr peak_lag=+1（反向），导致 mauve 两对被方向过滤器正确排除，K 从 s42 的 8/8 降至 6/8。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "PermG_fwd": "6/8",
+              "PermG_rev": "0/8",
+              "diff_xcorr_fdr": "6/8",
+              "naive_xcorr": "6/8",
+              "threshold_onset": "8/8",
+              "TY_granger": "6/8",
+              "K_ge3": "6/8",
+              "K_ge4": "6/8",
+              "d120_canonical": true,
+              "notes": "mauve pairs weak: token_entropy->mauve K=1, ece->mauve K=1 (xcorr peak_lag=+1, direction filter correctly excluded). 6 distinct_* pairs all K=5/5. vs s42 (8/8 full sweep), s43 mauve non-monotonic (+6.42% drift) likely explains drop.",
+              "checkpoint_path": "/root/autodl-tmp/distrib_canary_collapse/results/generalize/qwen35_08b_wiki_a100_s43_fp32/gen_10/checkpoint"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-qwen35-08b-wiki-a100-s43-fp32.md"
+}

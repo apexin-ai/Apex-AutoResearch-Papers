@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "680577c04a8e0c10878e",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "monitor persistent gpu watch",
+  "task_key": "worker_monitor_persistent-gpu-watch_20260515T152917",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_persistent-gpu-watch_20260515T152917_result.json",
+    "occurrence": 1,
+    "bytes": 88,
+    "sha256": "79b4caeaecdac23d24b739c3d3a345550d2df72f43bec3e57e6414b40e3c9213"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "轮询已启动。15 分钟后（~15:46 UTC）自动唤醒再次检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-persistent-gpu-watch.md"
+}

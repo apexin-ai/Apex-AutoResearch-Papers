@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be22c93c5006c06e3be7",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "fix d080 17855 qwen35 restart",
+  "task_key": "worker_fix_d080_17855_qwen35_restart_20260519T002604",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_d080_17855_qwen35_restart_20260519T002604_result.json",
+    "occurrence": 1,
+    "bytes": 1560,
+    "sha256": "e707171b64ce514f9145494c8368fe5cbf9321a7fc01dd186d3adfe0bd327f3d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两台服务器都已 patch。\n\n---\n\n## D080 汇报\n\n### 1. Qwen3.5 dtype 测试结果\n| 参数 | 实际加载 dtype |\n|---|---|\n| `torch_dtype=None` | **bfloat16** |\n| `torch_dtype=torch.float32` | **bfloat16**（已弃用，被忽略） |\n| `dtype=torch.float32` | **bfloat16**（transformers 5.8.1 对 Qwen3.5 无效） |\n| `.to(dtype=torch.float32)` | **float32**（有效） |\n\n**根因**：Qwen3.5 的 safetensors 以 bfloat16 存储权重，transformers 5.8.1 的 `from_pretrained` 对 `dtype`/`torch_dtype` 参数均不生效。必须显式 `.to(dtype=...)` 转换。\n\n### 2. Kill 验证\n- 旧 PID 55423 已 kill，`ps` 确认无进程\n- cuda:1 显存 26831 MiB → 0 MiB（已释放）\n- 旧 tmux session `qwen35_08b_fp32` 已销毁\n- 旧数据 `results/generalize/qwen35_08b_wiki_a100_s42_fp32/` 已清除\n\n### 3. 新实验\n- **exp_id**: `qwen35_08b_wiki_a100_s42_v2`\n- **PID**: 74455\n- **tmux session**: `qwen35_08b_wiki_a100_s42_v2`\n- **output_dir**: `results/generalize/qwen35_08b_wiki_a100_s42_fp32_v2`\n\n### 4. 训练状态\n- `Casting model from torch.bfloat16 to torch.float32` 已确认生效\n- 进入 Generation 0 synthetic 数据生成阶段，无 NaN/Error\n- cuda:1 占用 4435 MiB（fp32 0.8B 模型合理）\n- fp32 推理速度比 bfloat16 慢，generation 阶段耗时较长属正常\n\n### 5. 额外修复\n- `iterative_train.py` 已在 westd-17855 和 westd-19828 同步 patch（`model.to(dtype=target_dtype)` 强制转换）\n- 新 md5: `5b37837e7a6378f42bcb740f8f5e4773`（westd-17855）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-d080-17855-qwen35-restart.md"
+}

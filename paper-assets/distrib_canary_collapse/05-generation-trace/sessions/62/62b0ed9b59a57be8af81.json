@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62b0ed9b59a57be8af81",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "infra confirm launch",
+  "task_key": "worker_infra_confirm-launch_20260514T075157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_confirm-launch_20260514T075157_result.json",
+    "occurrence": 1,
+    "bytes": 799,
+    "sha256": "fc62c9e88b998b64ce749b2bed549fbaf4d42f20593b11fd71a7326fb3ac45fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "MVP 全量实验已成功启动，汇总如下：\n\n| 检查项 | 结果 |\n|--------|------|\n| **PID 13678** (rep42, cuda:0) | 存活，状态 `Ss+`，已运行 ~40s |\n| **PID 13758** (rep43, cuda:1) | 存活，状态 `Ss+`，已运行 ~38s |\n| **GPU 0** | 6527 / 97887 MiB，利用率 62% |\n| **GPU 1** | 6527 / 97887 MiB，利用率 70% |\n| **rep42 日志** | 模型 `pythia-410m` 已加载，数据已加载，进入 Generation 0 (baseline) 评估阶段 |\n| **rep43 日志** | 同上，Generation 0 baseline 评估中 |\n| **tmux** | `tmux list-sessions` 被 read-only 模式拦截，跳过 |\n\n两个实验刚启动约 40 秒，当前处于 Generation 0 baseline 评估（生成阶段的 padding 警告属正常现象）。训练 step 循环尚未开始，符合预期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-confirm-launch.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa0e7447214521d485d5",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis qwen35 v2 completion",
+  "task_key": "worker_analysis_qwen35_v2_completion_20260519T131813",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen35_v2_completion_20260519T131813_result.json",
+    "occurrence": 1,
+    "bytes": 2484,
+    "sha256": "7db45cd101ccb167243f4960c7087e017e817c1697a6b2e65bbe6b6f78413abe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部任务已由先前 session 完成。以下是完整状态报告：\n\n---\n\n## qwen35_08b_wiki_a100_s42_v2 — 完成报告\n\n### 状态\n| 项目 | 状态 |\n|------|------|\n| PID 74455 | 已终止 |\n| GPU cuda:1 | 已释放 (0 MiB) |\n| EXIT_CODE | 0 |\n| Registry | **DONE**, conclusion=**success** |\n| 结果目录 | `results/generalize/qwen35_08b_wiki_a100_s42_fp32_v2/` (gen_0 ~ gen_10 + all_metrics.json + analysis_results.json) |\n\n### 5-Method Lead-Lag 分析\n\n| 方法 | 结果 |\n|------|------|\n| **PermG fwd** | **8/8** (全部 FDR 显著) |\n| **PermG rev** | **0/8** (正确方向性) |\n| **K≥4 consensus** | **8/8** |\n| **MMCT detection** | **1.0** (100%) |\n| TY Granger | 6/8 |\n\n### Consensus Detail (8/8 pairs, 全部 ≥4 votes)\n\n| Pair | Votes | Methods |\n|------|-------|---------|\n| token_entropy → distinct_1 | 4 | naive, diff, thresh, pg_fwd |\n| token_entropy → distinct_2 | 5 | naive, diff, thresh, pg_fwd, ty |\n| token_entropy → distinct_3 | 4 | naive, diff, thresh, pg_fwd |\n| token_entropy → mauve | 5 | naive, diff, thresh, pg_fwd, ty |\n| ece → distinct_1 | 5 | naive, diff, thresh, pg_fwd, ty |\n| ece → distinct_2 | 5 | naive, diff, thresh, pg_fwd, ty |\n| ece → distinct_3 | 5 | naive, diff, thresh, pg_fwd, ty |\n| ece → mauve | 5 | naive, diff, thresh, pg_fwd, ty |\n\n### Drift (gen 0 → gen 10)\n\n| Metric | Gen 0 | Gen 10 | Drift % |\n|--------|-------|--------|---------|\n| token_entropy | 2.978 | 1.369 | **-54.03%** |\n| ece | 0.007 | 0.423 | **+5643.53%** |\n| perplexity | 20.55 | 1247.19 | **+5968.54%** |\n| distinct_1 | 0.094 | 0.063 | -32.50% |\n| distinct_2 | 0.459 | 0.248 | -45.99% |\n| distinct_3 | 0.741 | 0.391 | -47.21% |\n| effective_rank | 43.60 | 103.27 | +136.87% |\n| mauve | 0.029 | 0.022 | -22.89% |\n\n### Conclusion 判断\n\n**Success** — Qwen3.5-0.8B（第 7 个架构族）完美确认跨架构泛化：\n- K≥4 = 8/8（满分），所有 canary-downstream pair 均显示 lead-lag 因果结构\n- PermG 方向性完美：fwd 8/8, rev 0/8，排除反向因果\n- MMCT 检测率 100%\n- Collapse 信号极强：entropy 在 gen 1 即剧烈下降（2.978→1.505，-49.5%），downstream diversity 在 gen 2 开始追随下降，onset lead time = 1 gen（所有 8 pairs 一致）\n- fp32 精度下 collapse magnitude 极大（ppl +5969%），与其他 α=1.0 fp32 实验一致\n\n**无需进一步操作**——进程、GPU、registry 均已处理完毕。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen35-v2-completion.md"
+}

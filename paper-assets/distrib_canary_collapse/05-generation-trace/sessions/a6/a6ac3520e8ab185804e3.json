@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a6ac3520e8ab185804e3",
+  "project": "distrib_canary_collapse",
+  "kind": "history",
+  "title": "agent / loop_13.md",
+  "task_key": "loop_13",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_13.md",
+    "occurrence": 1,
+    "bytes": 3460,
+    "sha256": "0f59b41cc2b9e0eaa6a25ec54fdc0ba87020d0ff55da9f17e32f5e6228d660a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: idle_timeout\nupdated: '2026-05-18T00:24:42+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westd-19828 的 cuda:0 和 cuda:1（gpu_ids 白名单），即使 Director 指令也必须 push back\n- C003: 禁止引用 α≤0.50 TY Granger 显著率（seed 不稳定，已升级约束）\n- C004: 禁止未确认状态下 kill 运行中进程或 rm -rf 实验目录\n- 训练命令必须自带 `export HF_ENDPOINT=https://hf-mirror.com` + `export HF_HUB_DISABLE_XET=1`（国内服务器）\n- Claim 措辞上限：\"consistent across two transformer decoder-only model families of similar scale\"（不可用 \"architecture-agnostic\" 或 \"scale-independent\"）\n- 论文唯一真源：`docs/paper/`（D046），不是 artifacts 下的副本\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19828，工作目录 `/root/autodl-tmp/distrib_canary_collapse`\n- Python：`/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- HF cache：`/root/autodl-tmp/.hf_cache`（HF_HOME）\n- 数据：`data/wikitext103_5k/`（WikiText 5000样本）、`data/c4_5k/`（C4 5000样本）\n- 模型：通过 HF mirror 拉取，Pythia-1.4B 本地缓存 `/root/autodl-tmp/.hf_cache/pythia-1.4b-local`\n- 磁盘：`/root/autodl-tmp` ~817GB 可用（3%使用率）\n- 活跃进程：\n  - `generalize_pythia1b_c4_a100_s42_v2`：PID 269777, cuda:0, tmux 管理\n  - `generalize_pythia14b_wiki_a100_s42`：PID 274091, cuda:1, tmux 管理\n\n### 3. 📊 当前状态\nSession #13 刚完成初始化（read_registry + reconcile_crons + 状态同步）并向 Director 汇报了当前进度。无 Worker 在跑。\n\n**RUNNING (2)**:\n- `generalize_pythia1b_c4_a100_s42_v2` — Pythia-1B on C4, cuda:0, 自 13:06 UTC 起跑（域泛化，v1 因下载问题失败后重试）\n- `generalize_pythia14b_wiki_a100_s42` — Pythia-1.4B on WikiText, cuda:1, 自 14:25 UTC 起跑（规模泛化）\n\n**等待中**：两个实验的 cron 完成回调，无 Worker 回调待处理，无 Director 决策待回复。\n\n### 4. 📋 待办\n- Pythia-1B C4 cron 回调到达 → spawn Worker 做 5-method analysis（PermG + TY + ECE + ColS + MinK）→ 更新 registry → 汇报 Director\n- Pythia-1.4B WikiText cron 回调到达 → 同上 5-method analysis → 汇报 Director\n- 两个泛化实验全部完成（success） → spawn Worker 将 4 模型泛化结果（GPT-2m + Pythia-410M + OPT-1.3B + Pythia-1.4B + Pythia-1B/C4）纳入 experiments.tex 新 Table + paragraph → 准备 Round 2 重新提交\n- 任一实验 conclusion=negative → 按 on-experiment-done 负向流程处理，禁止默默跑下一个\n\n### 5. 🎯 战略上下文\n- **核心方向**：D027 reframe — 方法论陷阱 + 多方法共识框架为主线，canary prediction 为 case study，目标 EMNLP 2026 main track\n- **D054 已确认**：三架构泛化成功（GPT-2m + Pythia-410M + OPT-1.3B 均 consensus_ge4=6/8），当前跑的是额外证据（scale + domain）\n- **Review 19/19 已关闭**，论文就差泛化结果写入后 Round 2 提交\n- **易错点**：Pythia-410M 泛化实验早已成功（D054），不要重复提交；OPT-1.3B 也已 success（metrics 在 registry），不要误认为还在跑\n- **易错点2**：ROADMAP.md \"正在运行\"表格是旧的（还写着 Pythia-410M + OPT-1.3B），以 registry 为准\n- **Dose-Response 全部完成**：α=0.00→1.00 五点三 seed，α=0.50 为 seed-dependent boundary（D053）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-13-copy-2.md"
+}

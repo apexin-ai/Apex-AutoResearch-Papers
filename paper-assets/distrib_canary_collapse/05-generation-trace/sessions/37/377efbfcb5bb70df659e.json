@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "377efbfcb5bb70df659e",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "verify 410m s43 canonical",
+  "task_key": "worker_verify_410m_s43_canonical_20260523T000320",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_410m_s43_canonical_20260523T000320_result.json",
+    "occurrence": 1,
+    "bytes": 1704,
+    "sha256": "c822b76f856883123e4defd7d472769f509f9b5da92510fb926a39e054c6d85f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the report:\n\n---\n\n## 验证结果\n\n### 1. alpha_sweep/a050_s43_fp32 (canonical full run) — 17855\n\n**数据完整性：✅ 完整**\n- gen_0 到 gen_10 全部 11 个目录存在\n- 所有 metrics.json 非空（418–427 bytes，一致）\n\n### 2. D102 分析结果 (canonical)\n\n| 指标 | 值 |\n|------|-----|\n| PermG fwd (FDR) | **6/8** |\n| PermG rev (FDR) | **0/8** |\n| K≥3 robust_pairs | **6/8** |\n| threshold_criterion | `true_3sigma_d105` ✅ (符合 C008) |\n\nConsensus K≥3 的 6 对: token_entropy→{distinct_1,2,3}, ece→{distinct_1,2,3}。两个 mauve 对 K=1，低于阈值。\n\n### 3. phase_diagram/t10_a050_s43_fp32 (resume 实验) — 19828\n\n**config.json 确认 `start_gen: 6`**，即从第 6 代恢复，不是 full run。虽然目录有 gen_0–gen_10（11个），但 gen_0–5 的数据来源不明（可能是复制或之前中断的部分结果）。\n\nResume 实验的 D102 分析结果：\n\n| 指标 | 值 |\n|------|-----|\n| PermG fwd (FDR) | **0/8** |\n| PermG rev (FDR) | **0/8** |\n| K≥3 robust_pairs | **0/8** |\n\n### 4. 对比结论\n\n| | Canonical (full run) | Resume (start_gen=6) |\n|---|---|---|\n| 路径 | alpha_sweep/a050_s43_fp32 @17855 | phase_diagram/t10_a050_s43_fp32 @19828 |\n| PermG fwd | 6/8 | 0/8 |\n| PermG rev | 0/8 | 0/8 |\n| K≥3 | 6/8 | 0/8 |\n\n**Reviewer #114 的发现是正确的**：之前报告的 s43 PermG=0/8 来自 resume 实验（start_gen=6），该实验仅训练了 gen_6–10（5 代），时间序列太短导致 Granger 检验全部失效。Canonical full run（gen_0–10，完整 11 代）的 PermG 为 6/8 fwd、0/8 rev，方向性强且一致，K≥3=6/8。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-410m-s43-canonical.md"
+}

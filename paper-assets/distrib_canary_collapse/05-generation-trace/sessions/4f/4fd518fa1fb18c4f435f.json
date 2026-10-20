@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4fd518fa1fb18c4f435f",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code d32 moment cascade prep",
+  "task_key": "worker_code_d32_moment_cascade_prep_20260520T165415",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d32_moment_cascade_prep_20260520T165415_result.json",
+    "occurrence": 1,
+    "bytes": 1309,
+    "sha256": "fd94f87767f9388e6dae6eeac6328ca530a17bac8d16641961c486b9eca48d7b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果摘要：\n\n## Phase 1 Cascade 分析结果\n\n### 关键发现\n\n1. **`token_entropy` 几乎总是第一个偏离的 metric** — 18 个实验中 16 个以 `token_entropy` 作为 cascade 起点（onset gen=1），与假设一致\n\n2. **Kendall τ = 0.337（13/18 正）** — 整体上支持 cascade 假设方向，但排序不完美：\n   - `token_entropy` → 稳定排第 1\n   - `distinct_n` 和 `effective_rank` 之间的顺序不够清晰，常被 `mauve`/`ece`/`self_bleu` 插入\n   - `perplexity` 通常排最后（符合假设），但在高 α（0.75）时提前\n\n3. **α 依赖模式**：\n   - 低 α（0.00-0.10）：`token_entropy` → `mauve`/`ece` → `distinct_n`，cascade 较慢\n   - 中 α（0.50）：最佳 τ=0.80，cascade 排序最接近假设\n   - 高 α（0.75）：`perplexity` 提前 onset，cascade 更快更混乱\n   - C4 数据集：τ 为负，`ece`/`perplexity` 先于 `token_entropy` onset\n\n4. **数据缺口**：logit-level moments（var_log_p, kurtosis, tail_mass）缺失，中间代 checkpoint 未保存。建议在 T=20 实验中加入 moment 计算。\n\n### 产出\n- 脚本：`scripts/moment_cascade_analysis.py`（本地 + 服务器）\n- JSON 结果：`results/analysis/moment_cascade_phase1.json`（服务器上）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d32-moment-cascade-prep.md"
+}

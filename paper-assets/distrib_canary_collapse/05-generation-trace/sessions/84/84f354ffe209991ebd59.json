@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84f354ffe209991ebd59",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis maxlag7 reanalysis",
+  "task_key": "worker_analysis_maxlag7-reanalysis_20260514T185905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_maxlag7-reanalysis_20260514T185905_result.json",
+    "occurrence": 1,
+    "bytes": 717,
+    "sha256": "43fa2f20079e8e4b651d561dbc3283c91e8178d48d2f005a008d1fe584d5f243"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n**max_lag=7 重分析结论：无截断伪影。**\n\n- 所有 20 个 canary→downstream pair 的 lag 值在 max_lag=5 和 max_lag=7 下**完全一致**\n- **token_entropy→perplexity: lag=-5 是真实信号**，4/4 seed 一致（std=0），但 p-value borderline (0.058–0.12)，瓶颈是统计功效（仅 10 代数据），不是截断\n- 6 个 SIGNIFICANT LEAD pair 的 lag 均为 -1 或 -2，远小于 max_lag，不受影响\n- Verdict 不变：**STRONG PASS**\n\n报告已保存至：\n- 服务器：`results/mvp/analysis/ccf_maxlag7.json`\n- 本地 artifacts：`ccf_maxlag7_report.md`\n- memory.md 已更新（narrative 约束段落新增 max_lag=7 验证结论）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-maxlag7-reanalysis.md"
+}

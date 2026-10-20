@@ -1,0 +1,970 @@
+{
+  "schema_version": "1.0",
+  "session_id": "8b61a60dfa138dc5b333",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-15T08:58:19.589Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Pzscp5SxKtkJTa7aefChve",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_d2b441\\\", \\\"name\\\": \\\"method_ablation_phase2_panel\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Phase 2 pooled panel: 5 methods x 4 alpha levels x 8 pairs, 56 test-level rows with per-test significance, concordance, decision flips\\\", \\\"path\\\": \\\"projects/distrib_canary_collapse/artifacts/_project/data/method_ablation_phase2_panel.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"distrib_canary_collapse\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T08:58:19.552708+00:00\\\", \\\"tags\\\": [\\\"method_ablation\\\", \\\"phase2\\\", \\\"claim3\\\", \\\"panel\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "38a4c5a1-0f7d-468e-98af-1324cd393063",
+            "uuid": "1c9daa3a-60d1-4469-8757-fcfe36bca891",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_d2b441\\\", \\\"name\\\": \\\"method_ablation_phase2_panel\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Phase 2 pooled panel: 5 methods x 4 alpha levels x 8 pairs, 56 test-level rows with per-test significance, concordance, decision flips\\\", \\\"path\\\": \\\"projects/distrib_canary_collapse/artifacts/_project/data/method_ablation_phase2_panel.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"distrib_canary_collapse\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T08:58:19.552708+00:00\\\", \\\"tags\\\": [\\\"method_ablation\\\", \\\"phase2\\\", \\\"claim3\\\", \\\"panel\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_d2b441\", \"name\": \"method_ablation_phase2_panel\", \"type\": \"data\", \"description\": \"Phase 2 pooled panel: 5 methods x 4 alpha levels x 8 pairs, 56 test-level rows with per-test significance, concordance, decision flips\", \"path\": \"projects/distrib_canary_collapse/artifacts/_project/data/method_ablation_phase2_panel.json\", \"url\": null, \"project\": \"distrib_canary_collapse\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T08:58:19.552708+00:00\", \"tags\": [\"method_ablation\", \"phase2\", \"claim3\", \"panel\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UN6jtkX9r7xJdnSZn2GB9C",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "method_ablation_phase2_report",
+                "type": "report",
+                "description": "Phase 2 analysis report: method x alpha sig rates, concordance (kappa=0.185), decision flips (50% flip naive vs perm_granger), channel analysis",
+                "project": "distrib_canary_collapse",
+                "content_filename": "method_ablation_phase2_report.md",
+                "tags": [
+                  "method_ablation",
+                  "phase2",
+                  "claim3",
+                  "report"
+                ],
+                "content": "See server: /root/autodl-tmp/distrib_canary_collapse/results/method_ablation_phase2_report.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "38a4c5a1-0f7d-468e-98af-1324cd393063",
+            "uuid": "7e94599c-f19d-4c1c-8dc2-8cefd0906840",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019mQU1bbWGkAGuoZEy4s28K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 507,
+                "cache_read_input_tokens": 119091,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 507
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-15T08:58:22.436Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UN6jtkX9r7xJdnSZn2GB9C",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_70d3f9\\\", \\\"name\\\": \\\"method_ablation_phase2_report\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Phase 2 analysis report: method x alpha sig rates, concordance (kappa=0.185), decision flips (50% flip naive vs perm_granger), channel analysis\\\", \\\"path\\\": \\\"projects/distrib_canary_collapse/artifacts/_project/report/method_ablation_phase2_report.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"distrib_canary_collapse\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T08:58:22.396061+00:00\\\", \\\"tags\\\": [\\\"method_ablation\\\", \\\"phase2\\\", \\\"claim3\\\", \\\"report\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "38a4c5a1-0f7d-468e-98af-1324cd393063",
+            "uuid": "c59e1eca-8086-4472-b8ab-e5a5a1ba0179",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_70d3f9\\\", \\\"name\\\": \\\"method_ablation_phase2_report\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Phase 2 analysis report: method x alpha sig rates, concordance (kappa=0.185), decision flips (50% flip naive vs perm_granger), channel analysis\\\", \\\"path\\\": \\\"projects/distrib_canary_collapse/artifacts/_project/report/method_ablation_phase2_report.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"distrib_canary_collapse\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T08:58:22.396061+00:00\\\", \\\"tags\\\": [\\\"method_ablation\\\", \\\"phase2\\\", \\\"claim3\\\", \\\"report\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_70d3f9\", \"name\": \"method_ablation_phase2_report\", \"type\": \"report\", \"description\": \"Phase 2 analysis report: method x alpha sig rates, concordance (kappa=0.185), decision flips (50% flip naive vs perm_granger), channel analysis\", \"path\": \"projects/distrib_canary_collapse/artifacts/_project/report/method_ablation_phase2_report.md\", \"url\": null, \"project\": \"distrib_canary_collapse\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T08:58:22.396061+00:00\", \"tags\": [\"method_ablation\", \"phase2\", \"claim3\", \"report\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011HaxAzG2Zc2jQnRbJjUYYb",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "method_ablation_phase2",
+                "field": "status",
+                "value": "DONE",
+                "project": "distrib_canary_collapse",
+                "spec": {
+                  "hypothesis": "Method sensitivity is compounded by regime dependence — method x alpha interaction is the headline Claim 3 evidence",
+                  "command": "python method_ablation_phase2.py",
+                  "server": "westd-19828",
+                  "data_path": "results/alpha_sweep + results/mvp",
+                  "data_count": 56,
+                  "model_name": "N/A (analysis)",
+                  "seed": "42,43,44,45",
+                  "checkpoint_path": "N/A",
+                  "log_path": "results/method_ablation_phase2_panel.json"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "38a4c5a1-0f7d-468e-98af-1324cd393063",
+            "uuid": "626fcebf-6e79-4124-8b0f-8df3b641f7b6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019mQU1bbWGkAGuoZEy4s28K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 507,
+                "cache_read_input_tokens": 119091,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 507
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-15T08:58:25.943Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011HaxAzG2Zc2jQnRbJjUYYb",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0561}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "38a4c5a1-0f7d-468e-98af-1324cd393063",
+            "uuid": "4e8d500d-f01c-4d54-895a-e3495752df68",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0561}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.0561}}"
+              }
+            }
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0142crVw3dycbKZnDvrY8MZg",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "method_ablation_phase2",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "distrib_canary_collapse",
+                "spec": {
+                  "hypothesis": "Method sensitivity is compounded by regime dependence — method x alpha interaction is the headline Claim 3 evidence",
+                  "command": "python method_ablation_phase2.py",
+                  "server": "westd-19828",
+                  "data_path": "results/alpha_sweep + results/mvp",
+                  "data_count": 56,
+                  "model_name": "N/A (analysis)",
+                  "seed": "42,43,44,45",
+                  "checkpoint_path": "N/A",
+                  "log_path": "results/method_ablation_phase2_panel.json"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "38a4c5a1-0f7d-468e-98af-1324cd393063",
+            "uuid": "74217aea-92bd-46da-b4fa-a8a1214e22d8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YWWSQr1keCHdKxMZfqQWQF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1729,
+                "cache_read_input_tokens": 119598,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1729
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-15T08:58:31.147Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0142crVw3dycbKZnDvrY8MZg",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0542}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "38a4c5a1-0f7d-468e-98af-1324cd393063",
+            "uuid": "c6527ee5-0e60-4ab1-b94d-078707492a70",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0542}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.0542}}"
+              }
+            }
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013rAQskAvuM8Z1m9mt41TgT",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "method_ablation_phase2",
+                "field": "status",
+                "value": "QUEUED",
+                "project": "distrib_canary_collapse",
+                "spec": {
+                  "hypothesis": "Method sensitivity is compounded by regime dependence — method x alpha interaction is the headline Claim 3 evidence",
+                  "command": "python method_ablation_phase2.py",
+                  "server": "westd-19828",
+                  "data_path": "results/alpha_sweep + results/mvp",
+                  "data_count": 56,
+                  "model_name": "N/A (analysis)",
+                  "seed": "42,43,44,45",
+                  "checkpoint_path": "N/A",
+                  "log_path": "results/method_ablation_phase2_panel.json"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "38a4c5a1-0f7d-468e-98af-1324cd393063",
+            "uuid": "2e30e821-9ff3-4942-8a88-df134ed0fb4f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FiVdzXhsoFBJFm3oGZrFuC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 355,
+                "cache_read_input_tokens": 121327,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 355
+                },
+                "output_tokens": 71,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": "2026-05-15T08:58:35.456Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013rAQskAvuM8Z1m9mt41TgT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"method_ablation_phase2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T08:58:35.270Z\\\", \\\"updated_at\\\": \\\"2026-05-15T08:58:35.270Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Method sensitivity is compounded by regime dependence — method x alpha interaction is the headline Claim 3 evidence\\\", \\\"command\\\": \\\"python method_ablation_phase2.py\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"data_path\\\": \\\"results/alpha_sweep + results/mvp\\\", \\\"data_count\\\": 56, \\\"model_name\\\": \\\"N/A (analysis)\\\", \\\"seed\\\": \\\"42,43,44,45\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"results/method_ablation_phase2_panel.json\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2412}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "38a4c5a1-0f7d-468e-98af-1324cd393063",
+            "uuid": "7085bc97-4778-4165-8fee-30a011958f1b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"method_ablation_phase2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T08:58:35.270Z\\\", \\\"updated_at\\\": \\\"2026-05-15T08:58:35.270Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Method sensitivity is compounded by regime dependence — method x alpha interaction is the headline Claim 3 evidence\\\", \\\"command\\\": \\\"python method_ablation_phase2.py\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"data_path\\\": \\\"results/alpha_sweep + results/mvp\\\", \\\"data_count\\\": 56, \\\"model_name\\\": \\\"N/A (analysis)\\\", \\\"seed\\\": \\\"42,43,44,45\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"results/method_ablation_phase2_panel.json\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2412}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"method_ablation_phase2\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:58:35.270Z\", \"updated_at\": \"2026-05-15T08:58:35.270Z\", \"spec\": {\"hypothesis\": \"Method sensitivity is compounded by regime dependence — method x alpha interaction is the headline Claim 3 evidence\", \"command\": \"python method_ablation_phase2.py\", \"server\": \"westd-19828\", \"data_path\": \"results/alpha_sweep + results/mvp\", \"data_count\": 56, \"model_name\": \"N/A (analysis)\", \"seed\": \"42,43,44,45\", \"checkpoint_path\": \"N/A\", \"log_path\": \"results/method_ablation_phase2_panel.json\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2412}}"
+              }
+            }
+          },
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JqZQtxZppQVyuBXyf6Yx8f",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "method_ablation_phase2",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "distrib_canary_collapse",
+                "spec": {
+                  "hypothesis": "Method sensitivity is compounded by regime dependence — method x alpha interaction is the headline Claim 3 evidence",
+                  "command": "python method_ablation_phase2.py",
+                  "server": "westd-19828",
+                  "data_path": "results/alpha_sweep + results/mvp",
+                  "data_count": 56,
+                  "model_name": "N/A (analysis)",
+                  "seed": "42,43,44,45",
+                  "checkpoint_path": "N/A",
+                  "log_path": "results/method_ablation_phase2_panel.json"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "38a4c5a1-0f7d-468e-98af-1324cd393063",
+            "uuid": "9c3eba05-1dca-404b-ae4a-b974b1f63849",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NQNa1Mmeh152sjunrre1sv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 575,
+                "cache_read_input_tokens": 121682,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 575
+                },
+                "output_tokens": 71,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-15T08:58:40.003Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JqZQtxZppQVyuBXyf6Yx8f",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"method_ablation_phase2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T08:58:35.270Z\\\", \\\"updated_at\\\": \\\"2026-05-15T08:58:39.839Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Method sensitivity is compounded by regime dependence — method x alpha interaction is the headline Claim 3 evidence\\\", \\\"command\\\": \\\"python method_ablation_phase2.py\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"data_path\\\": \\\"results/alpha_sweep + results/mvp\\\", \\\"data_count\\\": 56, \\\"model_name\\\": \\\"N/A (analysis)\\\", \\\"seed\\\": \\\"42,43,44,45\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"results/method_ablation_phase2_panel.json\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2154}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "38a4c5a1-0f7d-468e-98af-1324cd393063",
+            "uuid": "d9a58ddf-c709-4396-bfc3-75c7d1831e09",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"method_ablation_phase2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T08:58:35.270Z\\\", \\\"updated_at\\\": \\\"2026-05-15T08:58:39.839Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Method sensitivity is compounded by regime dependence — method x alpha interaction is the headline Claim 3 evidence\\\", \\\"command\\\": \\\"python method_ablation_phase2.py\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"data_path\\\": \\\"results/alpha_sweep + results/mvp\\\", \\\"data_count\\\": 56, \\\"model_name\\\": \\\"N/A (analysis)\\\", \\\"seed\\\": \\\"42,43,44,45\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"results/method_ablation_phase2_panel.json\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2154}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"method_ablation_phase2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:58:35.270Z\", \"updated_at\": \"2026-05-15T08:58:39.839Z\", \"spec\": {\"hypothesis\": \"Method sensitivity is compounded by regime dependence — method x alpha interaction is the headline Claim 3 evidence\", \"command\": \"python method_ablation_phase2.py\", \"server\": \"westd-19828\", \"data_path\": \"results/alpha_sweep + results/mvp\", \"data_count\": 56, \"model_name\": \"N/A (analysis)\", \"seed\": \"42,43,44,45\", \"checkpoint_path\": \"N/A\", \"log_path\": \"results/method_ablation_phase2_panel.json\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2154}}"
+              }
+            }
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0122ERgiUnne6NEnQKTEEwRh",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "method_ablation_phase2",
+                "field": "conclusion",
+                "value": "success",
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "38a4c5a1-0f7d-468e-98af-1324cd393063",
+            "uuid": "694d44e9-79f5-41c6-adbb-b0e94a6c091b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Pkk8rNvgoKWLwktKFkNJrY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 573,
+                "cache_read_input_tokens": 122257,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 573
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": "2026-05-15T08:58:43.199Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0122ERgiUnne6NEnQKTEEwRh",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"method_ablation_phase2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T08:58:35.270Z\\\", \\\"updated_at\\\": \\\"2026-05-15T08:58:43.133Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Method sensitivity is compounded by regime dependence — method x alpha interaction is the headline Claim 3 evidence\\\", \\\"command\\\": \\\"python method_ablation_phase2.py\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"data_path\\\": \\\"results/alpha_sweep + results/mvp\\\", \\\"data_count\\\": 56, \\\"model_name\\\": \\\"N/A (analysis)\\\", \\\"seed\\\": \\\"42,43,44,45\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"results/method_ablation_phase2_panel.json\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1205}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "38a4c5a1-0f7d-468e-98af-1324cd393063",
+            "uuid": "7fb0a94e-ade0-4a25-a6ed-7a3e04a7d521",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"method_ablation_phase2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T08:58:35.270Z\\\", \\\"updated_at\\\": \\\"2026-05-15T08:58:43.133Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Method sensitivity is compounded by regime dependence — method x alpha interaction is the headline Claim 3 evidence\\\", \\\"command\\\": \\\"python method_ablation_phase2.py\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"data_path\\\": \\\"results/alpha_sweep + results/mvp\\\", \\\"data_count\\\": 56, \\\"model_name\\\": \\\"N/A (analysis)\\\", \\\"seed\\\": \\\"42,43,44,45\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"results/method_ablation_phase2_panel.json\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1205}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"method_ablation_phase2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:58:35.270Z\", \"updated_at\": \"2026-05-15T08:58:43.133Z\", \"spec\": {\"hypothesis\": \"Method sensitivity is compounded by regime dependence — method x alpha interaction is the headline Claim 3 evidence\", \"command\": \"python method_ablation_phase2.py\", \"server\": \"westd-19828\", \"data_path\": \"results/alpha_sweep + results/mvp\", \"data_count\": 56, \"model_name\": \"N/A (analysis)\", \"seed\": \"42,43,44,45\", \"checkpoint_path\": \"N/A\", \"log_path\": \"results/method_ablation_phase2_panel.json\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1205}}"
+              }
+            }
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MWb9oCcRyqDgsHHErYGLdD",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "method_ablation_phase2",
+                "field": "metrics",
+                "value": {
+                  "n_panel_rows": 56,
+                  "n_alphas": 4,
+                  "alphas": [
+                    0,
+                    0.25,
+                    0.5,
+                    1
+                  ],
+                  "naive_sig_rate_overall": 1,
+                  "perm_granger_sig_rate_a000": 0,
+                  "perm_granger_sig_rate_a025": 0.25,
+                  "perm_granger_sig_rate_a050": 0.25,
+                  "perm_granger_sig_rate_a100": 0.75,
+                  "TY_sig_rate_a000": 0,
+                  "TY_sig_rate_a100": 0.59,
+                  "mean_inter_method_kappa": 0.185,
+                  "naive_vs_perm_granger_flip_rate": 0.5,
+                  "naive_vs_TY_flip_rate": 0.57,
+                  "fdr_flips_perm_granger": 4,
+                  "pair_verdict_a100_perm_granger": "6/8",
+                  "pair_verdict_a100_TY": "6/8",
+                  "entropy_to_diversity_a100_all_5methods_sig": true
+                },
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "38a4c5a1-0f7d-468e-98af-1324cd393063",
+            "uuid": "0d4ec784-39f0-406d-8c13-fbb83bdf2937",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F1t2bnzDEbqHrMcz4P7idp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 428,
+                "cache_read_input_tokens": 122830,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 428
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": "2026-05-15T08:58:51.429Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MWb9oCcRyqDgsHHErYGLdD",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"method_ablation_phase2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T08:58:35.270Z\\\", \\\"updated_at\\\": \\\"2026-05-15T08:58:51.384Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Method sensitivity is compounded by regime dependence — method x alpha interaction is the headline Claim 3 evidence\\\", \\\"command\\\": \\\"python method_ablation_phase2.py\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"data_path\\\": \\\"results/alpha_sweep + results/mvp\\\", \\\"data_count\\\": 56, \\\"model_name\\\": \\\"N/A (analysis)\\\", \\\"seed\\\": \\\"42,43,44,45\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"results/method_ablation_phase2_panel.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"n_panel_rows\\\": 56, \\\"n_alphas\\\": 4, \\\"alphas\\\": [0, 0.25, 0.5, 1], \\\"naive_sig_rate_overall\\\": 1, \\\"perm_granger_sig_rate_a000\\\": 0, \\\"perm_granger_sig_rate_a025\\\": 0.25, \\\"perm_granger_sig_rate_a050\\\": 0.25, \\\"perm_granger_sig_rate_a100\\\": 0.75, \\\"TY_sig_rate_a000\\\": 0, \\\"TY_sig_rate_a100\\\": 0.59, \\\"mean_inter_method_kappa\\\": 0.185, \\\"naive_vs_perm_granger_flip_rate\\\": 0.5, \\\"naive_vs_TY_flip_rate\\\": 0.57, \\\"fdr_flips_perm_granger\\\": 4, \\\"pair_verdict_a100_perm_granger\\\": \\\"6/8\\\", \\\"pair_verdict_a100_TY\\\": \\\"6/8\\\", \\\"entropy_to_diversity_a100_all_5methods_sig\\\": true}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.131}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "38a4c5a1-0f7d-468e-98af-1324cd393063",
+            "uuid": "5c6763b2-531e-4710-a473-0713ff876c45",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"method_ablation_phase2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T08:58:35.270Z\\\", \\\"updated_at\\\": \\\"2026-05-15T08:58:51.384Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Method sensitivity is compounded by regime dependence — method x alpha interaction is the headline Claim 3 evidence\\\", \\\"command\\\": \\\"python method_ablation_phase2.py\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"data_path\\\": \\\"results/alpha_sweep + results/mvp\\\", \\\"data_count\\\": 56, \\\"model_name\\\": \\\"N/A (analysis)\\\", \\\"seed\\\": \\\"42,43,44,45\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"results/method_ablation_phase2_panel.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"n_panel_rows\\\": 56, \\\"n_alphas\\\": 4, \\\"alphas\\\": [0, 0.25, 0.5, 1], \\\"naive_sig_rate_overall\\\": 1, \\\"perm_granger_sig_rate_a000\\\": 0, \\\"perm_granger_sig_rate_a025\\\": 0.25, \\\"perm_granger_sig_rate_a050\\\": 0.25, \\\"perm_granger_sig_rate_a100\\\": 0.75, \\\"TY_sig_rate_a000\\\": 0, \\\"TY_sig_rate_a100\\\": 0.59, \\\"mean_inter_method_kappa\\\": 0.185, \\\"naive_vs_perm_granger_flip_rate\\\": 0.5, \\\"naive_vs_TY_flip_rate\\\": 0.57, \\\"fdr_flips_perm_granger\\\": 4, \\\"pair_verdict_a100_perm_granger\\\": \\\"6/8\\\", \\\"pair_verdict_a100_TY\\\": \\\"6/8\\\", \\\"entropy_to_diversity_a100_all_5methods_sig\\\": true}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.131}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"method_ablation_phase2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:58:35.270Z\", \"updated_at\": \"2026-05-15T08:58:51.384Z\", \"spec\": {\"hypothesis\": \"Method sensitivity is compounded by regime dependence — method x alpha interaction is the headline Claim 3 evidence\", \"command\": \"python method_ablation_phase2.py\", \"server\": \"westd-19828\", \"data_path\": \"results/alpha_sweep + results/mvp\", \"data_count\": 56, \"model_name\": \"N/A (analysis)\", \"seed\": \"42,43,44,45\", \"checkpoint_path\": \"N/A\", \"log_path\": \"results/method_ablation_phase2_panel.json\"}, \"conclusion\": \"success\", \"metrics\": {\"n_panel_rows\": 56, \"n_alphas\": 4, \"alphas\": [0, 0.25, 0.5, 1], \"naive_sig_rate_overall\": 1, \"perm_granger_sig_rate_a000\": 0, \"perm_granger_sig_rate_a025\": 0.25, \"perm_granger_sig_rate_a050\": 0.25, \"perm_granger_sig_rate_a100\": 0.75, \"TY_sig_rate_a000\": 0, \"TY_sig_rate_a100\": 0.59, \"mean_inter_method_kappa\": 0.185, \"naive_vs_perm_granger_flip_rate\": 0.5, \"naive_vs_TY_flip_rate\": 0.57, \"fdr_flips_perm_granger\": 4, \"pair_verdict_a100_perm_granger\": \"6/8\", \"pair_verdict_a100_TY\": \"6/8\", \"entropy_to_diversity_a100_all_5methods_sig\": true}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.131}}"
+              }
+            }
+          },
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014ojLmZrs6vrtw83oqrPMC7",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "method_ablation_phase2",
+                "field": "status",
+                "value": "DONE",
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "38a4c5a1-0f7d-468e-98af-1324cd393063",
+            "uuid": "74fb73e1-25b4-45e5-a441-85515b733a5e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KicvCcL42X9x15ScuMyyjk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1003,
+                "cache_read_input_tokens": 123258,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1003
+                },
+                "output_tokens": 71,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": "2026-05-15T08:58:54.904Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014ojLmZrs6vrtw83oqrPMC7",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"method_ablation_phase2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T08:58:35.270Z\\\", \\\"updated_at\\\": \\\"2026-05-15T08:58:54.741Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Method sensitivity is compounded by regime dependence — method x alpha interaction is the headline Claim 3 evidence\\\", \\\"command\\\": \\\"python method_ablation_phase2.py\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"data_path\\\": \\\"results/alpha_sweep + results/mvp\\\", \\\"data_count\\\": 56, \\\"model_name\\\": \\\"N/A (analysis)\\\", \\\"seed\\\": \\\"42,43,44,45\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"results/method_ablation_phase2_panel.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"n_panel_rows\\\": 56, \\\"n_alphas\\\": 4, \\\"alphas\\\": [0, 0.25, 0.5, 1], \\\"naive_sig_rate_overall\\\": 1, \\\"perm_granger_sig_rate_a000\\\": 0, \\\"perm_granger_sig_rate_a025\\\": 0.25, \\\"perm_granger_sig_rate_a050\\\": 0.25, \\\"perm_granger_sig_rate_a100\\\": 0.75, \\\"TY_sig_rate_a000\\\": 0, \\\"TY_sig_rate_a100\\\": 0.59, \\\"mean_inter_method_kappa\\\": 0.185, \\\"naive_vs_perm_granger_flip_rate\\\": 0.5, \\\"naive_vs_TY_flip_rate\\\": 0.57, \\\"fdr_flips_perm_granger\\\": 4, \\\"pair_verdict_a100_perm_granger\\\": \\\"6/8\\\", \\\"pair_verdict_a100_TY\\\": \\\"6/8\\\", \\\"entropy_to_diversity_a100_all_5methods_sig\\\": true}, \\\"completed_at\\\": \\\"2026-05-15T08:58:54.741Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2168}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "38a4c5a1-0f7d-468e-98af-1324cd393063",
+            "uuid": "60a8fe38-3e5c-4657-9925-01ea113be607",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"method_ablation_phase2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T08:58:35.270Z\\\", \\\"updated_at\\\": \\\"2026-05-15T08:58:54.741Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Method sensitivity is compounded by regime dependence — method x alpha interaction is the headline Claim 3 evidence\\\", \\\"command\\\": \\\"python method_ablation_phase2.py\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"data_path\\\": \\\"results/alpha_sweep + results/mvp\\\", \\\"data_count\\\": 56, \\\"model_name\\\": \\\"N/A (analysis)\\\", \\\"seed\\\": \\\"42,43,44,45\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"results/method_ablation_phase2_panel.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"n_panel_rows\\\": 56, \\\"n_alphas\\\": 4, \\\"alphas\\\": [0, 0.25, 0.5, 1], \\\"naive_sig_rate_overall\\\": 1, \\\"perm_granger_sig_rate_a000\\\": 0, \\\"perm_granger_sig_rate_a025\\\": 0.25, \\\"perm_granger_sig_rate_a050\\\": 0.25, \\\"perm_granger_sig_rate_a100\\\": 0.75, \\\"TY_sig_rate_a000\\\": 0, \\\"TY_sig_rate_a100\\\": 0.59, \\\"mean_inter_method_kappa\\\": 0.185, \\\"naive_vs_perm_granger_flip_rate\\\": 0.5, \\\"naive_vs_TY_flip_rate\\\": 0.57, \\\"fdr_flips_perm_granger\\\": 4, \\\"pair_verdict_a100_perm_granger\\\": \\\"6/8\\\", \\\"pair_verdict_a100_TY\\\": \\\"6/8\\\", \\\"entropy_to_diversity_a100_all_5methods_sig\\\": true}, \\\"completed_at\\\": \\\"2026-05-15T08:58:54.741Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2168}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"method_ablation_phase2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:58:35.270Z\", \"updated_at\": \"2026-05-15T08:58:54.741Z\", \"spec\": {\"hypothesis\": \"Method sensitivity is compounded by regime dependence — method x alpha interaction is the headline Claim 3 evidence\", \"command\": \"python method_ablation_phase2.py\", \"server\": \"westd-19828\", \"data_path\": \"results/alpha_sweep + results/mvp\", \"data_count\": 56, \"model_name\": \"N/A (analysis)\", \"seed\": \"42,43,44,45\", \"checkpoint_path\": \"N/A\", \"log_path\": \"results/method_ablation_phase2_panel.json\"}, \"conclusion\": \"success\", \"metrics\": {\"n_panel_rows\": 56, \"n_alphas\": 4, \"alphas\": [0, 0.25, 0.5, 1], \"naive_sig_rate_overall\": 1, \"perm_granger_sig_rate_a000\": 0, \"perm_granger_sig_rate_a025\": 0.25, \"perm_granger_sig_rate_a050\": 0.25, \"perm_granger_sig_rate_a100\": 0.75, \"TY_sig_rate_a000\": 0, \"TY_sig_rate_a100\": 0.59, \"mean_inter_method_kappa\": 0.185, \"naive_vs_perm_granger_flip_rate\": 0.5, \"naive_vs_TY_flip_rate\": 0.57, \"fdr_flips_perm_granger\": 4, \"pair_verdict_a100_perm_granger\": \"6/8\", \"pair_verdict_a100_TY\": \"6/8\", \"entropy_to_diversity_a100_all_5methods_sig\": true}, \"completed_at\": \"2026-05-15T08:58:54.741Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2168}}"
+              }
+            }
+          },
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Js1zc7woRtp2mv2fQYf5xc",
+              "name": "TodoWrite",
+              "input": {
+                "todos": [
+                  {
+                    "content": "Write method_ablation_phase2.py analysis script",
+                    "status": "completed",
+                    "activeForm": "Writing Phase 2 analysis script"
+                  },
+                  {
+                    "content": "Upload and run script on westd-19828",
+                    "status": "completed",
+                    "activeForm": "Running Phase 2 analysis on server"
+                  },
+                  {
+                    "content": "Register artifacts and generate report",
+                    "status": "completed",
+                    "activeForm": "Registering artifacts and generating report"
+                  }
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "38a4c5a1-0f7d-468e-98af-1324cd393063",
+            "uuid": "a09398b3-b253-4f23-9e4e-8265faedb89c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011SCCPp19gCyd3kv9F9X2ig",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 787,
+                "cache_read_input_tokens": 124261,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 787
+                },
+                "output_tokens": 60,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": "2026-05-15T08:59:00.089Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Js1zc7woRtp2mv2fQYf5xc",
+              "type": "tool_result",
+              "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "38a4c5a1-0f7d-468e-98af-1324cd393063",
+            "uuid": "cefe8634-7415-42ae-a500-1d543255ae15",
+            "tool_use_result": {
+              "oldTodos": [
+                {
+                  "content": "Write method_ablation_phase2.py analysis script",
+                  "status": "completed",
+                  "activeForm": "Writing Phase 2 analysis script"
+                },
+                {
+                  "content": "Upload and run script on westd-19828",
+                  "status": "in_progress",
+                  "activeForm": "Running Phase 2 analysis on server"
+                },
+                {
+                  "content": "Register artifacts and generate report",
+                  "status": "pending",
+                  "activeForm": "Registering artifacts and generating report"
+                }
+              ],
+              "newTodos": [
+                {
+                  "content": "Write method_ablation_phase2.py analysis script",
+                  "status": "completed",
+                  "activeForm": "Writing Phase 2 analysis script"
+                },
+                {
+                  "content": "Upload and run script on westd-19828",
+                  "status": "completed",
+                  "activeForm": "Running Phase 2 analysis on server"
+                },
+                {
+                  "content": "Register artifacts and generate report",
+                  "status": "completed",
+                  "activeForm": "Registering artifacts and generating report"
+                }
+              ],
+              "verificationNudgeNeeded": false
+            }
+          },
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Phase 2 完成。\n\n## 核心结果\n\n**Method × Alpha Sig Rates (test-level)**:\n\n| α | naive | differenced | threshold | perm_granger | TY |\n|---|-------|-------------|-----------|-------------|-----|\n| 0.00 | 8/8 (100%) | 4/8 (50%) | 5/8 (62%) | **0/8 (0%)** | **0/8 (0%)** |\n| 0.25 | 8/8 (100%) | 2/8 (25%) | 3/8 (38%) | 2/8 (25%) | 5/8 (62%) |\n| 0.50 | 8/8 (100%) | 8/8 (100%) | 8/8 (100%) | 2/8 (25%) | 0/8 (0%) |\n| 1.00 | 32/32 (100%) | 32/32 (100%) | 32/32 (100%) | 24/32 (75%) | 19/32 (59%) |\n\n**Claim 3 关键证据**:\n\n1. **Naive 全域 100%** — 即使 α=0.0（无污染 null control）也全部 significant，确认 raw-level 方法不可靠\n2. **Null control 验证** — perm_granger 和 TY 在 α=0.0 均为 0%，无 false positive\n3. **perm_granger dose-response** — 0% → 25% → 25% → 75%，随 α 单调增长\n4. **Mean Cohen's κ = 0.185**（poor agreement）— 方法间严重分歧\n5. **Decision flips** — naive vs perm_granger: **50%** 结论翻转；naive vs TY: **57%** 翻转\n6. **α=0.0 极端案例** — naive vs perm_granger 翻转率 **100%**（naive 全说 sig，perm_granger 全说 n.s.）\n7. **entropy→diversity 在 α=1.0 所有 5 种方法一致 SIG** — 唯一跨方法 robust 的通道\n\n**TY 注意事项**: α=0.25 出现 62% sig（高于 α=0.50 的 0%），单 seed 下 TY 非单调，需多 seed 确认后解读。\n\n**产出文件**:\n- `results/method_ablation_phase2_panel.json` (94KB) — 完整 panel 数据\n- `results/method_ablation_phase2_report.md` — 分析报告\n- Registry: `method_ablation_phase2` (DONE)"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "38a4c5a1-0f7d-468e-98af-1324cd393063",
+            "uuid": "2746e246-4e81-44f9-8a16-8278373fa470",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GdDMsiBs3vra1vF67Tgw3s",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 197,
+                "cache_read_input_tokens": 125048,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 197
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Phase 2 完成。\n\n## 核心结果\n\n**Method × Alpha Sig Rates (test-level)**:\n\n| α | naive | differenced | threshold | perm_granger | TY |\n|---|-------|-------------|-----------|-------------|-----|\n| 0.00 | 8/8 (100%) | 4/8 (50%) | 5/8 (62%) | **0/8 (0%)** | **0/8 (0%)** |\n| 0.25 | 8/8 (100%) | 2/8 (25%) | 3/8 (38%) | 2/8 (25%) | 5/8 (62%) |\n| 0.50 | 8/8 (100%) | 8/8 (100%) | 8/8 (100%) | 2/8 (25%) | 0/8 (0%) |\n| 1.00 | 32/32 (100%) | 32/32 (100%) | 32/32 (100%) | 24/32 (75%) | 19/32 (59%) |\n\n**Claim 3 关键证据**:\n\n1. **Naive 全域 100%** — 即使 α=0.0（无污染 null control）也全部 significant，确认 raw-level 方法不可靠\n2. **Null control 验证** — perm_granger 和 TY 在 α=0.0 均为 0%，无 false positive\n3. **perm_granger dose-response** — 0% → 25% → 25% → 75%，随 α 单调增长\n4. **Mean Cohen's κ = 0.185**（poor agreement）— 方法间严重分歧\n5. **Decision flips** — naive vs perm_granger: **50%** 结论翻转；naive vs TY: **57%** 翻转\n6. **α=0.0 极端案例** — naive vs perm_granger 翻转率 **100%**（naive 全说 sig，perm_granger 全说 n.s.）\n7. **entropy→diversity 在 α=1.0 所有 5 种方法一致 SIG** — 唯一跨方法 robust 的通道\n\n**TY 注意事项**: α=0.25 出现 62% sig（高于 α=0.50 的 0%），单 seed 下 TY 非单调，需多 seed 确认后解读。\n\n**产出文件**:\n- `results/method_ablation_phase2_panel.json` (94KB) — 完整 panel 数据\n- `results/method_ablation_phase2_report.md` — 分析报告\n- Registry: `method_ablation_phase2` (DONE)"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 508698,
+            "duration_api_ms": 494321,
+            "num_turns": 47,
+            "stop_reason": "end_turn",
+            "session_id": "38a4c5a1-0f7d-468e-98af-1324cd393063",
+            "total_cost_usd": 2.8453835,
+            "usage": {
+              "input_tokens": 38,
+              "cache_creation_input_tokens": 113404,
+              "cache_read_input_tokens": 2758665,
+              "output_tokens": 30206,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 113404,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 730,
+                  "cache_read_input_tokens": 125048,
+                  "cache_creation_input_tokens": 197,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 197
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1841,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001936,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 38,
+                "outputTokens": 30206,
+                "cacheReadInputTokens": 2758665,
+                "cacheCreationInputTokens": 113404,
+                "webSearchRequests": 0,
+                "costUSD": 2.8434475,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "c21dcb25-88ed-41ce-9395-50d69b1eac06"
+          },
+          "id": "event-000123"
+        }
+      ]
+    }
+  ]
+}

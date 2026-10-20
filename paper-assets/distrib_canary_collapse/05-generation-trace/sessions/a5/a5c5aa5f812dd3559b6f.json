@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a5c5aa5f812dd3559b6f",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "infra mvp setup",
+  "task_key": "worker_infra_mvp-setup_20260514T051327",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_mvp-setup_20260514T051327_result.json",
+    "occurrence": 1,
+    "bytes": 1348,
+    "sha256": "64bd9a674c3687a54c877df721311b393f15b4613988e1f8ff6cf75cae6931d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报结果：\n\n### 环境详情\n| 项目 | 值 |\n|------|-----|\n| Python | 3.12.3 (conda base) |\n| CUDA | cu128 (driver 580.119.02) |\n| PyTorch | 2.10.0+cu128 |\n| GPU | 2× NVIDIA RTX PRO 6000 Blackwell Server Edition (96GB) |\n| 镜像 | 非 aml-train 预置镜像，使用 conda base 环境 |\n\n### 依赖安装状态\n全部成功。已预装：torch, transformers (4.57.6), datasets (4.8.4), accelerate (1.13.0), einops, nltk, matplotlib, pandas, numpy。新装：mauve-text (0.4.0)。nltk punkt/punkt_tab 数据已下载。\n\n### 代码部署\n5 个文件均已部署到 `/root/autodl-tmp/distrib_canary_collapse/`：\n- `metrics.py` (12KB)\n- `iterative_train.py` (9.6KB)\n- `prepare_data.py` (2.2KB)\n- `run_mvp.sh` (1.4KB, +x)\n- `analyze_mvp.py` (9.8KB)\n\n### 数据准备\n| Split | 样本数 |\n|-------|--------|\n| Train | 716,506 |\n| Eval | 1,564 |\n| Prompts | 1,000 |\n\n数据保存在 `data/wikitext103/`（train 约 500MB）。\n\n### 注意事项\n- **network_turbo 代理会导致 HF 下载卡死**，改用 `HF_ENDPOINT=https://hf-mirror.com`（不启用代理）后正常下载。后续 pip install 如需代理仍可用 `source /etc/network_turbo`，但 HF 数据/模型下载建议走镜像直连。\n- SSH 密钥认证已配置（生成 ed25519 密钥并 copy 到服务器）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-mvp-setup.md"
+}

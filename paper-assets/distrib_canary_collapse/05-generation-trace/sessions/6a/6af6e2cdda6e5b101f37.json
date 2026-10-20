@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6af6e2cdda6e5b101f37",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops gpt2m submit readiness",
+  "task_key": "worker_ops_gpt2m-submit-readiness_20260515T115323",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpt2m-submit-readiness_20260515T115323_result.json",
+    "occurrence": 1,
+    "bytes": 1911,
+    "sha256": "4cc1d5660a19650825459fa3e3547473dc4859d78d17d23af3e4249730f92af1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部检查完毕。汇总如下：\n\n---\n\n## 检查结果\n\n| # | 检查项 | 状态 | 详情 |\n|---|--------|------|------|\n| 1 | 模型权重 | **通过** | `model.safetensors` 1.5GB，symlink 到 HF cache，config.json/tokenizer.json/vocab.json/merges.txt 均存在 |\n| 2 | 模型可加载 | **通过** | params=354,823,168（~355M，GPT-2-medium 正确） |\n| 3 | 训练数据 | **通过** | `data/wikitext103_5k/` 含 train/eval/prompts 三个 split，Arrow 格式 |\n| 4 | 训练脚本 | **通过** | `iterative_train.py` 存在，--help 正常输出 |\n| 5 | 环境 | **通过** | torch=2.10.0+cu128, cuda=True, gpus=2, transformers=4.57.6 |\n| 6 | GPU | **通过** | 2× NVIDIA RTX PRO 6000 Blackwell (96GB each) |\n\n**注意**：conda 环境需要先 source 激活，`python3` 不在默认 PATH 中。\n\n---\n\n## 提交命令\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/autodl-tmp/distrib_canary_collapse && \\\nnohup python3 iterative_train.py \\\n  --model_name /root/autodl-tmp/models/gpt2-medium \\\n  --data_dir /root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k \\\n  --dataset wikitext103_5k \\\n  --synthetic_ratio 1.0 \\\n  --num_generations 10 \\\n  --steps_per_gen 5000 \\\n  --batch_size 32 \\\n  --seed 42 \\\n  --output_dir results/gpt2m_wiki/a100_s42 \\\n  > results/gpt2m_wiki/a100_s42/train.log 2>&1 &\n```\n\n**风险点**：\n- 输出目录 `results/gpt2m_wiki/a100_s42` 需先创建，否则 nohup 重定向会失败（可在命令前加 `mkdir -p results/gpt2m_wiki/a100_s42`）\n- batch_size=32 对 GPT-2-medium (355M) + 96GB 显存绰绰有余，无需调整\n- 脚本默认只用单 GPU（无 `--gpu` 参数），如需指定 GPU 可用 `CUDA_VISIBLE_DEVICES=0` 前缀\n- `--accumulate` 未加，使用默认行为（仅用最新一代合成数据）——确认是否符合实验设计"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpt2m-submit-readiness.md"
+}

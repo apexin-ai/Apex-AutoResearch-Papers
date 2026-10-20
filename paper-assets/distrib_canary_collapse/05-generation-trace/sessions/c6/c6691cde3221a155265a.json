@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c6691cde3221a155265a",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops restart 14b t10 17855",
+  "task_key": "worker_ops_restart-14b-t10-17855_20260522T085555",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_restart-14b-t10-17855_20260522T085555_result.json",
+    "occurrence": 1,
+    "bytes": 99,
+    "sha256": "d27127979fd388022dab0056511c24c57bd78c038033d9ecb25515ce27a1e1c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都已完成 gen_2，正在进行 gen_3。运行正常，无需操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-restart-14b-t10-17855.md"
+}

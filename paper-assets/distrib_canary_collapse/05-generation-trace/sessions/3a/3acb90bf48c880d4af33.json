@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3acb90bf48c880d4af33",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops restart 14b t10a050 cuda0",
+  "task_key": "worker_ops_restart-14b-t10a050-cuda0_20260522T112359",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_restart-14b-t10a050-cuda0_20260522T112359_result.json",
+    "occurrence": 1,
+    "bytes": 648,
+    "sha256": "3b1daf96a0fbe38e1eb791b84e3ea5c74b94e24ad1d52e4c2757a7ecae1668d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:0 不可用** — 正在运行 `t15_a060_s42_fp32_14b`（pythia-1.4b-deduped, PID 664582, 29GB）。\n\nwestd-17855 全部 6 块 GPU 均被占用：\n\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 29 GB | 87% |\n| 1 | 29 GB | 99% |\n| 2 | 33 GB | 89% |\n| 3 | 33 GB | 88% |\n| 4 | 14 GB | 94% |\n| 5 | 17 GB | 91% |\n\ngpt2-large 缓存路径需注意：实际存储在 `models--gpt2-large`（非 `models--openai-community--gpt2-large`），snapshot 存在（`32b71b...`）。\n\n需要你决定：\n1. 等某个实验完成后复用该 GPU\n2. 换其他服务器（如 westd-19828）\n3. 其他安排"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-restart-14b-t10a050-cuda0.md"
+}

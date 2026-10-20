@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24f54d2d93156b2b72de",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops check t15 a045 s43 d102",
+  "task_key": "worker_ops_check-t15-a045-s43-d102_20260523T221809",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-t15-a045-s43-d102_20260523T221809_result.json",
+    "occurrence": 1,
+    "bytes": 672,
+    "sha256": "7a2bf3cd76e1c1a7d505f698d97079c9cccb0649feb00f33a098c8156b8d6aa4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### t15_a045_s43 — DONE\n- gen_0–gen_15 完整，EXIT_CODE=0\n- distinct_3: 0.817 → 0.464 (−43%)，perplexity: 19.8 → 34.2 (+72%)\n- D102: 2/2 robust pairs (K≥3)，方法 = diff + perm + ty（threshold_onset 未触发 — 低 α 下降解是渐进式的）\n- Registry 已更新 DONE，artifact 已注册\n\n### t10_a045_s44 — RUNNING\n- PID 796624，已运行 9h46m，gen_0–gen_9 就绪（差 gen_10）\n\n### t15_a075_s43 — RUNNING\n- PID 857058，已运行 15h37m，gen_0–gen_14 就绪（差 gen_15）\n\n两个仍在运行的实验预计 1-2h 内完成。总结已写入 `artifacts/_project/batch_check_4_20260523.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-t15-a045-s43-d102.md"
+}

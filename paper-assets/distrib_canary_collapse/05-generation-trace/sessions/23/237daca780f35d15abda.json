@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "id": "237daca780f35d15abda",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "ssh check permg reverse pythia410m",
+  "task_key": "worker_ssh_check_permg_reverse_pythia410m_20260517T115112",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_permg_reverse_pythia410m_20260517T115112.log",
+    "occurrence": 1,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "statistics": {
+    "messages": 0,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {},
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [],
+  "readable_path": "readable/worker-executions/ssh-check-permg-reverse-pythia410m.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "51d7566bb502e68aa239",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis gen wiki gpt2m a100 s42 v3",
+  "task_key": "worker_analysis_gen_wiki_gpt2m_a100_s42_v3_20260515T221636",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gen_wiki_gpt2m_a100_s42_v3_20260515T221636_result.json",
+    "occurrence": 1,
+    "bytes": 1328,
+    "sha256": "59cbd7a5415c16f7e0df90469a6ee65046d906eecfff087904a6c329d0047e66"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 分析完成\n\n### 结论：**SUCCESS** — collapse pattern 跨架构一致\n\n### Drift 对比 (GPT-2m vs Pythia-410m, α=1.0)\n\n| 指标 | GPT-2m | Pythia-410m | 方向 |\n|------|--------|-------------|------|\n| entropy | **-86.5%** | -60.5% | ✓ 更严重 |\n| ece | **+4544%** | +3762% | ✓ 更严重 |\n| perplexity | **+44693%** | +3624% | ✓ 12x 更严重 |\n| distinct_1 | -12.4% | **-28.3%** | ✓ 更温和 |\n| distinct_2 | -14.7% | **-35.2%** | ✓ 更温和 |\n| distinct_3 | -12.7% | **-31.6%** | ✓ 更温和 |\n\n### 方法论陷阱验证\n- **Cross-correlation lag-0 dominance**：14/16 pairs 峰值在 lag=0，与 Pythia 一致 — 朴素方法会高估因果性\n- **Granger 选择性**：entropy/ece → diversity 显著（p<0.003），但 → perplexity 全部不显著；self_bleu 完全无 Granger 信号（p>0.88）\n- 这与 Pythia 上观察到的 pattern 一致：方法选择（哪对 metric pair、是否做差分）决定性地影响因果推断结论\n\n### 额外发现\nGPT-2m 表现出\"更极端的校准崩溃 + 更温和的多样性损失\"模式 — 更大的模型在 collapse 过程中保留了更多词汇多样性，但 perplexity 爆炸更剧烈（447x vs 36x）。这可能因为 355M 参数模型在 iterative finetuning 中过拟合合成数据更彻底。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gen-wiki-gpt2m-a100-s42-v3.md"
+}

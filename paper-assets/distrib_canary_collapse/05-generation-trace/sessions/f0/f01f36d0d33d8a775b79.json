@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f01f36d0d33d8a775b79",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "check intervention progress",
+  "task_key": "worker_check_intervention_progress_20260518T131904",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_intervention_progress_20260518T131904_result.json",
+    "occurrence": 1,
+    "bytes": 1717,
+    "sha256": "59476b6e2adc355407c4f98938be4e9bb34cad3beda71f969bfcc94e338c8417"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验进度报告\n\n### 1. intervention_predictive_s42 (cuda:0)\n\n| 项目 | 状态 |\n|------|------|\n| **当前进度** | Gen 4/10，训练 step ~3300/5000 (66%) |\n| **已完成** | Gen 0 (baseline) + Gen 1-3 |\n| **Intervention** | **Gen 1 触发**，token_entropy 下降 -40.71%（从 3.234 → 1.918），α 从 1.0 切到 0.0 |\n| **恢复情况** | Gen 2-3 entropy 已恢复至 ~3.05（接近 baseline 3.23），ppl 从 57.0 降回 20.6 |\n| **速度** | ~24.2 min/gen，训练 ~13.45 it/s |\n| **ETA** | 剩余 ~6 gen，预计 **~2.5-3 小时**完成 |\n\n最新 metrics (Gen 3): `token_entropy=3.047, distinct_1=0.088, ppl=20.64, mauve=0.026`\n\n---\n\n### 2. intervention_reactive_s42 (cuda:1)\n\n| 项目 | 状态 |\n|------|------|\n| **当前进度** | Gen 7/10，正在生成合成数据（训练已完成） |\n| **已完成** | Gen 0 (baseline) + Gen 1-6 |\n| **Intervention** | **Gen 2 触发**，distinct_1 下降 -15.58%（从 0.098 → 0.082），α 从 1.0 切到 0.0 |\n| **恢复情况** | Gen 3-6 entropy 稳定在 3.05-3.11，ppl 从 157.1 降回 21.2，distinct_1 稳定 ~0.084 |\n| **速度** | ~24.6 min/gen |\n| **ETA** | 剩余 ~3 gen，预计 **~1.5 小时**完成 |\n\n最新 metrics (Gen 6): `token_entropy=3.053, distinct_1=0.085, ppl=21.19, mauve=0.031`\n\n---\n\n**关键观察**：\n- Predictive 在 Gen 1 就触发了 intervention（比 reactive 早 1 gen），说明 token_entropy 是更灵敏的早期信号\n- Reactive 在 Gen 1 未触发（distinct_1 下降不够），直到 Gen 2 collapse 加剧后才触发，此时 ppl 已飙到 157（vs predictive 触发时的 57）\n- 两者 intervention 后都成功恢复，entropy/ppl 回到接近正常水平"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-intervention-progress.md"
+}

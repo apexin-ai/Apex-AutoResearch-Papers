@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d4879de60c52763bcd20",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "exp launch gpt2m s43",
+  "task_key": "worker_exp_launch_gpt2m_s43_20260518T165746",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_launch_gpt2m_s43_20260518T165746_result.json",
+    "occurrence": 1,
+    "bytes": 410,
+    "sha256": "fd01e5485e846e19bb465d91f2ced0a8fc28149c6a3ed169d44a0bf7c5acfb56"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n| 项目 | 结果 |\n|---|---|\n| cuda:1 清理 | 无进程占用，100% util 为驱动残留状态，gpu-reset 不支持，不影响使用 |\n| 提交 | PID=12767，tmux session `gen_gpt2m_a100_s43`，log: `~/runs/distrib_canary_collapse/gen_gpt2m_a100_s43.log` |\n| GPU 确认 | cuda:1 已占用 6151 MiB，python PID=12772，utilization 85% |\n| Registry | hypothesis 已更新 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-launch-gpt2m-s43.md"
+}

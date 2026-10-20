@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0d22e098358eeb335fb",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis 410m s44 d102",
+  "task_key": "worker_analysis_410m_s44_d102_20260522T230052",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_410m_s44_d102_20260522T230052_result.json",
+    "occurrence": 1,
+    "bytes": 1751,
+    "sha256": "96978ea2b2f45cd80054408011ab8a5e0c2377f0fb34d7580ba9a9d524999acc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**D102 5-method 分析已存在**，无需重新运行。JSON 位于 17855 上 `results/alpha_sweep/a050_s44_fp32/analysis/5method_leadlag.json`，使用了正确参数（`threshold_criterion: true_3sigma_d105`，downstream 含 mauve，n_perm=5000）。\n\n## s44 D102 结果\n\n### Summary\n\n| Method | Forward sig (/8) | Reverse sig (/8) |\n|--------|-----------------|-----------------|\n| **Perm Granger (FDR)** | **6/8** | **0/8** |\n| Diff XCorr (FDR) | 8/8 | 8/8 |\n| Naive XCorr | varies | - |\n| Threshold Onset (D105) | 0/8 | - |\n| TY Granger | 3/8 | - |\n\n### K≥3 Consensus: **4/8 pairs**\n\n| Pair | Votes | Methods |\n|------|-------|---------|\n| token_entropy → distinct_1 | 3/5 | diff, perm, ty |\n| token_entropy → distinct_2 | 2/5 | diff, perm |\n| token_entropy → distinct_3 | 2/5 | diff, perm |\n| token_entropy → mauve | 2/5 | naive, diff |\n| ece → distinct_1 | **4/5** | naive, diff, perm, ty |\n| ece → distinct_2 | **4/5** | naive, diff, perm, ty |\n| ece → distinct_3 | **3/5** | naive, diff, perm |\n| ece → mauve | 2/5 | naive, diff |\n\n### 三 Seed 对比 (α=0.50, mauve downstream)\n\n| Metric | s42 | s43 | **s44** |\n|--------|-----|-----|---------|\n| PermG fwd | 6/8 | 0/8 | **6/8** |\n| PermG rev | 0/8 | 0/8 | **0/8** |\n| K≥3 robust | ? | ? | **4/8** |\n\n### Seed Variance 判断\n\n**s44 站 s42**。PermG forward 6/8 与 s42 完全一致，远离 s43 的 0/8。α=0.50 的 tie-breaker 结果：2/3 seed 支持 6/8 forward causation，s43 是 outlier。\n\n值得注意：ECE 是 s44 最强的 canary（4 个 ece pair 中 PermG 全部 FDR-significant，而 token_entropy 只有 2/4），与之前的 cross-seed 观察一致。方向性完美：3 seed 均为 0/8 reverse。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-410m-s44-d102.md"
+}

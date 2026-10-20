@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8bbce7fc1f8ad9d3591e",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "research literature scan",
+  "task_key": "worker_research_literature-scan_20260515T042525",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature-scan_20260515T042525_result.json",
+    "occurrence": 1,
+    "bytes": 1189,
+    "sha256": "e0ffb59cd76605caf3666379cfea4473a2ffcd58e773ec5f1b73c132f1b0634b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "memory.md 已更新。文献扫描结果：\n\n**目标窗口（2026-05-01 至 2026-05-15）内找到 4 篇新论文，均为 orthogonal 或 complementary，无直接竞争者。**\n\n| 论文 | arXiv ID | 关系 |\n|------|----------|------|\n| Du & Tanaka-Ishii — Geometric Mode Collapse | 2605.00435 | orthogonal（推理时 mode collapse，非迭代训练） |\n| Gauthier, Bach & Jordan — Alignment Collapse in RLHF | 2605.04266 | complementary（反馈环路结构类似） |\n| Shi et al. — Layer-Pruned LLM Collapse | 2605.07271 | orthogonal（架构剪枝 collapse） |\n| Tübingen — Layer Collapse in Diffusion LMs | 2605.06366 | orthogonal（diffusion LM activation collapse） |\n\n**核心结论**：过去 2 周无人发表 canary → collapse prediction 的 lead-lag/Granger causality 分析。我们的 novelty（多指标 canary panel + 因果分析框架）仍然安全。chen2025scales 仍是最接近的竞争者且无更新。\n\n`literature_map.yaml` 不可通过 save_project_file 直接写入——如果需要将 Du & Tanaka-Ishii (2605.00435) 和 Gauthier et al. (2605.04266) 加入 literature_map，需要用专用工具或手动更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-scan-copy-3.md"
+}

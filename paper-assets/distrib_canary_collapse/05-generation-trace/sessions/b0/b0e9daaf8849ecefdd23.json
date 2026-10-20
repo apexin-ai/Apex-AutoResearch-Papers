@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0e9daaf8849ecefdd23",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis alpha sweep a035 s42 fp32",
+  "task_key": "worker_analysis_alpha_sweep_a035_s42_fp32_20260519T190358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_alpha_sweep_a035_s42_fp32_20260519T190358_result.json",
+    "occurrence": 1,
+    "bytes": 1051,
+    "sha256": "875559dd2eeafd7e28fb472a719de94b3738aa088af0c2a2ec4dec7cea670cb1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n## 摘要：alpha_sweep_a035_s42_fp32\n\n**Conclusion: success** — Pythia-410M, WikiText-103, α=0.35, seed=42, fp32, 10 gen 正常完成。\n\n### MMCT 指标\n\n| 方法 | 结果 |\n|------|------|\n| PermG fwd | **0/8** |\n| PermG rev | **0/8** |\n| K≥3 | 6/8 |\n| K≥4 | **2/8** (token_entropy→d1, ece→d1) |\n| threshold_onset | 8/8 |\n| naive_xcorr fwd | 8/8 |\n| diff_xcorr fwd | 4/8 |\n| TY Granger | 4/8 (⚠️ C003: 低α下不可靠) |\n\n### Drift\n- token_entropy: -18.53%, ece: +651.26%, distinct_1: -36.38%, distinct_3: -50.04%, mauve: -17.78%\n\n### Onset boundary 含义\n\n**PermG=0/8 符合预期——α=0.35 仍在 blind zone。** Permutation Granger（最严格的因果检验）在双向均无显著对，与 α=0.30 行为一致。虽然 threshold_onset 8/8 和 K≥3 6/8 显示弱方法能检测到 lead-lag 模式，但这些弱信号不构成 causal evidence。onset boundary 下界确认 ≥ 0.35，需结合 a040_s42_fp32 结果判定 onset 是否在 [0.35, 0.40] 区间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-alpha-sweep-a035-s42-fp32.md"
+}

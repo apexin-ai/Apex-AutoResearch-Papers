@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "f72b989224caa921f7dd",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "analysis conditional granger fix",
+  "task_key": "worker_analysis_conditional_granger_fix_20260521T023044",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_conditional_granger_fix_20260521T023044.log",
+    "occurrence": 1,
+    "bytes": 656524,
+    "sha256": "dcf6e8574e57f990b188d481b8b7dfb1d3bea648515547e77b12d8cc898b79f3"
+  },
+  "statistics": {
+    "messages": 189,
+    "user_turns": 0,
+    "tool_calls": 67,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 51,
+      "tool_call": 67,
+      "tool_result": 67,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 189,
+      "chunks": [
+        {
+          "path": "f72b989224caa921f7dd-part-0001.json",
+          "message_count": 174
+        },
+        {
+          "path": "f72b989224caa921f7dd-part-0002.json",
+          "message_count": 15
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-conditional-granger-fix.md"
+}

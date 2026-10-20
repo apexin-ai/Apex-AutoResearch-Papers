@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "964e8d205dd262840315",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops kill predictive te 19828",
+  "task_key": "worker_ops_kill_predictive_te_19828_20260520T085314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_predictive_te_19828_20260520T085314_result.json",
+    "occurrence": 1,
+    "bytes": 546,
+    "sha256": "8770b5e4ff8e6a17e4bdd0916d2fa9f3d3514c5c60854583a6371dbd65dcf59e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n- **PID 532902**: 已成功 kill（`ps -p` 返回空，exit code 1 = 进程不存在）\n- **cuda:1**: 现在只有 PID 538779（python，32264MiB），即 scale_14b_a050，独占 ✓\n- **两卡状态**:\n  - **GPU 0**: PID 531132, 14230MiB / 97887MiB, 96% util, 71°C\n  - **GPU 1**: PID 538779, 32264MiB / 97887MiB, 100% util, 76°C\n\n注：nvidia-smi 显示的 PID 是 538779 而非任务预期的 538774，可能是子进程 PID 差异，但 cuda:1 上确认只有一个 python 进程在跑，532902 已清除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-predictive-te-19828.md"
+}

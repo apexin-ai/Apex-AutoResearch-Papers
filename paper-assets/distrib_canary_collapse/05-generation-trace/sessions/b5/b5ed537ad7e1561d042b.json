@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5ed537ad7e1561d042b",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops experiment progress check",
+  "task_key": "worker_ops_experiment_progress_check_20260521T041226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_experiment_progress_check_20260521T041226_result.json",
+    "occurrence": 1,
+    "bytes": 1411,
+    "sha256": "1d7bde7b7c3e3d6752e9d96d008881efc75d121201c85c38783898a82e697b0b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`save_project_file` 只支持写入 `memory.md`/`paper_framing.md`/`writing_plan.yaml`，报告已写入 `memory.md`。\n\n## 汇总\n\n### 8 个实验进度\n\n| # | 实验 | 服务器 | GPU | 进度 | 当前阶段 | ETA |\n|---|------|--------|-----|------|---------|-----|\n| 1 | a048_s42_fp32 | 17855 | cuda:0 (0%) | 6/10 | Data gen | ~64 min |\n| 2 | **t20_a025_s42_fp32** | 17855 | cuda:1 (67%) | **19/20** | Data gen | **~15 min** |\n| 3 | a070_s42_fp32 | 17855 | cuda:2 (82%) | 7/10 | Data gen | ~48 min |\n| 4 | scale_69b_a100_s43_bf16 | 17855 | cuda:3 (93%) | 4/10 | Data gen | ~6h |\n| 5 | a052_s42_fp32 | 17855 | cuda:4 (75%) | 4/10 | Training 42% | ~1.5h |\n| 6 | a046_s42_fp32 | 17855 | cuda:5 (66%) | 4/10 | Training 42% | ~1.5h |\n| 7 | a048_s43_fp32 | 19828 | cuda:0 (93%) | 3/10 | Training 42% | ~1.8h |\n| 8 | **pythia1b_c4_a100_s43_v2** | 19828 | cuda:1 (96%) | **9/10** | Training 11% | **~30 min** |\n\n### 即将完成 (<30min)\n- **t20_a025_s42_fp32** — 最后一代 (19/20)，~15 min\n- **pythia1b_c4_a100_s43_v2** — 最后一代 (9/10)，~30 min\n\n### C4 First-Diff MC — 已完成\n\nPID 421289 已结束。核心发现：\n- First-diff 有效控制 FPR（raw 在 φ=0.87 时膨胀到 10-12%，diff 控制在 ~5%）\n- Power 代价：T=11 损失 44-67%；T=21 + 强信号下 power 0.67-0.74，可接受\n- 完整结果在 `artifacts/c4_first_diff_montecarlo.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-experiment-progress-check.md"
+}

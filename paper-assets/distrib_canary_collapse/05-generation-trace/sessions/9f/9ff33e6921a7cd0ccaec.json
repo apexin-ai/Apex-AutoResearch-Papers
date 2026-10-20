@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ff33e6921a7cd0ccaec",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code exit code sentinel",
+  "task_key": "worker_code_exit-code-sentinel_20260514T185548",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exit-code-sentinel_20260514T185548_result.json",
+    "occurrence": 1,
+    "bytes": 308,
+    "sha256": "f399c99a6bfe52b33e72158cbde2d2b180b39c0cc7b1247b54efe106509b73d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "改动说明：\n\n- **L276-279**：`main()` 正常完成后，在 `args.output_dir/EXIT_CODE` 写入 `0`\n- **L282-291**：`if __name__` 块用 try-except 包装 `main()` 调用；异常时重新解析 args 获取 output_dir，写入 `1` + 错误信息，然后 re-raise 保留原始异常栈"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exit-code-sentinel.md"
+}

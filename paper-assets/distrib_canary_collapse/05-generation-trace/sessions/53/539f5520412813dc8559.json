@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "539f5520412813dc8559",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code intervention mode",
+  "task_key": "worker_code_intervention_mode_20260518T095757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_intervention_mode_20260518T095757_result.json",
+    "occurrence": 1,
+    "bytes": 1136,
+    "sha256": "722090deb48626bb24e0a5a309d8f35484fc986c377a4f6cb8e89bdd94c1b5af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。Diff 总结：\n\n**4 处修改，共增加 ~40 行：**\n\n1. **`parse_args()`** (L75-83): 添加 `--intervention_mode`, `--intervention_metric`, `--intervention_threshold`, `--intervention_alpha` 四个参数\n\n2. **`main()` 初始化** (L229-235): 在 gen 循环前初始化 `intervention_triggered=False`, `trigger_gen=None`，并从已有 metrics 恢复干预状态（支持 `--start_gen` 断点续跑）\n\n3. **Gen 0 metrics** (L249-251): 写入 `intervention_triggered`, `trigger_gen`, `effective_alpha` 字段\n\n4. **Gen 1..N 循环** (L269, L285, L288, L314-331):\n   - 每个 gen 开始时根据干预状态选择 `current_alpha`\n   - `mix_datasets` 和 print 使用 `current_alpha` 替代 `args.synthetic_ratio`\n   - metrics 计算后检查 gen-over-gen 相对下降是否超过 threshold，超过则触发干预\n   - 将干预状态写入 metrics.json\n\n**`--intervention_mode none` 不改变任何现有行为**——`current_alpha` 始终等于 `args.synthetic_ratio`，trigger check 被跳过。\n\n语法检查 + 参数解析验证均通过。备份已保存为 `iterative_train.py.bak`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-intervention-mode.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "569611f2f78e759681ab",
+  "project": "distrib_canary_collapse",
+  "kind": "history",
+  "title": "agent / loop_15_1779386553.md",
+  "task_key": "loop_15_1779386553",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_15_1779386553.md",
+    "occurrence": 1,
+    "bytes": 4384,
+    "sha256": "f624fca3d4e4c2a3c24118bef96630db17b82b520f95946499cc62eb2eb10dd9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 15\nreason: idle_timeout\nupdated: '2026-05-21T17:18:37+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- westd-17855 GPU 白名单: cuda:0-5（6卡）；westd-19828 白名单: cuda:0-1（2卡）。超出范围必须 push back Director\n- fp32 是主轴精度（D079）；bf16 仅用于 OOM fallback（如 scale_69b），结论需标注精度\n- PermG only, K≥3 frozen（M037）——分析时 PermG 是主指标，不要用其他方法替代\n- T-qualified language + \"consistent with\"（D141）——论文中所有 claim 必须标注 T 值\n- TY=7/8 已 retracted（D143）——不要引用这个数据点\n- CSD 只能出现在 Discussion（D142）——不能作为 main claim\n\n### 2. 🖥️ 基础设施快照\n- **westd-17855**: 6× RTX PRO 6000 Blackwell (98GB)，工作目录 `/root/distrib_canary_collapse/`，磁盘 816G/879G 可用\n- **westd-19828**: 2× RTX PRO 6000 Blackwell (98GB)，工作目录 `/root/distrib_canary_collapse/`，磁盘 817G/879G 可用\n- Python: `/root/miniconda3/bin/python`，环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 数据: `data/wikitext103_5k`（5000 samples）\n- 模型: EleutherAI/pythia-410m (主), pythia-1.4b, pythia-6.9b (scale), GPT-2 Medium (generalize)\n- 活跃 cron 监控: t20_a025_s42_fp32, gen_gpt2m_a100_s43, alpha_sweep_a010_s42_bf16, scale_14b_a050_s42_bf16, generalize_pythia1b_c4_a100_s43_v2, scale_69b_a100_s43_bf16\n\n### 3. 📊 当前状态\n**刚做完**: 收到 alpha_sweep_a065_s42_fp32 的 ANALYZING 回调，已派 Worker (`worker_analysis_alpha_sweep_a065_s42_fp32_20260521T005325`) 去 SSH 读日志 + 跑分析脚本 + 提取 PermG 指标。Worker 尚未回调。\n\n**RUNNING 实验 (6)**:\n| exp_id | server:gpu | 摘要 |\n|--------|-----------|------|\n| t20_a025_s42_fp32 | 17855:cuda:1 | T=20 blind zone null baseline（α=0.25 预期 0/8）|\n| gen_gpt2m_a100_s43 | 17855:cuda:4 | GPT-2 Medium α=1.0 cross-arch generalization s43 |\n| alpha_sweep_a010_s42_bf16 | 17855:cuda:5 | α=0.10 bf16 低 α 端补点 |\n| scale_14b_a050_s42_bf16 | 19828:cuda:0 | Pythia-1.4B α=0.50 scale 验证 |\n| generalize_pythia1b_c4_a100_s43_v2 | 19828:cuda:1 | Pythia-1B C4 domain generalization s43 |\n| scale_69b_a100_s43_bf16 | 17855:cuda:3 | Pythia-6.9B s43 cross-seed（fp32 OOM → bf16 fallback）|\n\n**ANALYZING**: alpha_sweep_a065_s42_fp32（Worker 正在分析）\n\n**等待中**: Worker 回调（analysis:alpha_sweep_a065_s42_fp32）\n\n### 4. 📋 待办（条件触发式）\n- Worker analysis:alpha_sweep_a065_s42_fp32 回调 → 读 metrics，判断 dip 范围（[0.55,0.60] vs [0.55,0.65]），update registry → DONE，汇报 Director（带资源行）\n- α=0.65 PermG>0 → dip 窄 [0.55,0.60]，recovery 在 0.65 就开始；PermG=0 → dip 宽至 0.65，sync collapse 区更大，需在汇报中标注对 α_c CI 的影响\n- t20_a025_s42_fp32 完成 → 分析 T=20 blind zone 的 null baseline，验证 Power Theory √T 预测\n- scale_69b_a100_s43_bf16 完成 → 与 s42 对比 PermG，验证 6.9B cross-seed 可复现性\n- gen_gpt2m_a100_s43 完成 → GPT-2 Medium cross-arch s43 验证\n- scale_14b_a050_s42_bf16 完成 → 1.4B scale 下 α=0.50 boundary regime 检验\n- 所有 T=20 实验完成 → Track G + Power Theory 3 predictions 验证，这是论文 C2 的核心证据\n\n### 5. 🎯 战略上下文\n- **论文方向**: \"A Detection Phase Transition in Iterative Model Collapse\"，目标 EMNLP 2026 ARR June（~24天）\n- **C1 Phase Transition**: α_c steep onset at T=10，CI=[0.43,0.56]（J4 指出过宽需更密采样——α=0.40/0.45/0.55/0.60/0.65 就是在收窄这个 CI）\n- **C2 S×R + Power Theory**: 4 regimes，T=20 predict-then-verify 已 git lock-in（bad72cc），等 T=20 数据验证\n- **sync collapse dip 是关键发现**: α=0.55-0.60 出现 PermG 非单调 dip（drift 大但 PermG=0），这是 Phase Transition 的微结构。α=0.65 的结果决定 dip 边界\n- **Paper Agent 正在做 8-page compression**（1216→335 lines），写作顺序 Results → Methods → Intro → RW → Discussion → Abstract\n- **易错点**: \n  - 不要把 bf16 实验和 fp32 实验的 metrics 直接对比（精度差异影响 PermG p-value）\n  - α_c CI 的计算依赖整条 alpha sweep 曲线，新增一个数据点可能需要重算\n  - D155 Round 4 Action Plan 已批准贡献重组 + Cascade Theory 升级，下一轮 paper edit 要对齐\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-15-1779386553.md"
+}

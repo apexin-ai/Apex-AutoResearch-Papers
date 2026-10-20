@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b6ef25b29e129581fcd6",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "validate d080 15min nan check",
+  "task_key": "worker_validate_d080_15min_nan_check_20260519T003548",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_validate_d080_15min_nan_check_20260519T003548_result.json",
+    "occurrence": 1,
+    "bytes": 163,
+    "sha256": "d05d3fa25a80c82fdb12a009fde22223702a5a3d907cae0625dfca910f0c1d6a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已设定 7 分钟后自动唤醒检查。届时会 SSH 到 westd-17855 检查三个实验的 loss/grad_norm/NaN 状态，并验证 19828 的 md5。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/validate-d080-15min-nan-check.md"
+}

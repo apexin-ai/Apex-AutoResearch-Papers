@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e13c2de9ef36d1defcd2",
+  "project": "distrib_canary_collapse",
+  "kind": "history",
+  "title": "agent / loop_11_1779035492.md",
+  "task_key": "loop_11_1779035492",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1779035492.md",
+    "occurrence": 1,
+    "bytes": 3848,
+    "sha256": "3735bf677d75b07a5826795c4a30419fb83c6d67e07dd031372da6c852bcb955"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: max_wall_time\nupdated: '2026-05-17T11:26:21+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单：westd-19828 的 cuda:0 和 cuda:1（仅这两张）\n- `run_5method_analysis.py` 是唯一权威分析脚本（family_size=8 hardcoded）。`analyze_alpha_sweep.py` 用 family_size=24，产出不用于论文\n- α=1.0 数据来源：`method_ablation_phase2_panel.json`（磁盘 `results/mvp/` 已被清理，不可恢复）\n- error table / Shapley 统一标准：family=8, n_perm=5000, q=0.05, K=ceil(0.8·|S|)\n- 论文数字只从 `5method_leadlag.json` 或 `method_ablation_phase2_panel.json` 取，禁止从 `alpha_sweep_analysis.json` 取\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19828，root 用户\n- 工作目录：`/root/autodl-tmp/distrib_canary_collapse`\n- Python：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- HF cache：`/root/autodl-tmp/.hf_cache`，HF_ENDPOINT=https://hf-mirror.com\n- 模型已下载：EleutherAI/pythia-410m, facebook/opt-1.3b, gpt2-medium\n- 数据：`data/wikitext103_5k/`（5000 samples），`data/c4_5k/`（train 4500, eval 500, prompts 4214）\n- 磁盘：250G total, 146G used, 105G available (59%)\n- 分析脚本：`run_5method_analysis.py`（单实验），`analyze_generalize.py`（泛化批量，新写的）\n- 活跃进程：Pythia-410M PID 247554 cuda:0（gen 9/10，即将完成），OPT-1.3B PID 249384 cuda:1（gen 6/10）\n\n### 3. 📊 当前状态\n刚完成：\n- SCP 论文文件 + 远程编译（0 errors, 0 undefined, 24 pages）\n- mvp_rep44 确认（数据在 panel JSON 中完好，磁盘目录已清理）\n- generalization_draft.tex 已生成（VERSION A/B 两版，等实验数据填充）\n- analyze_generalize.py 部署并 dry-run 通过\n\nRegistry RUNNING：\n- `generalize_pythia410m_wiki_a100_s42`：Pythia-410M WikiText α=1.0 s42，gen 9/10，~20min 完成\n- `generalize_opt1b_wiki_a100_s42`：OPT-1.3B WikiText α=1.0 s42，gen 6/10，~1.5h 完成\n\nRegistry QUEUED：\n- `generalize_pythia1b_c4_a100_s42`：等 GPU 释放\n\n等待中：\n- Worker `worker_ssh_check_pythia410m_status_20260517_20260517T112505`（Director 刚下令检查 Pythia-410M 是否完成 + 跑分析）\n\n### 4. 📋 待办\n- Pythia-410M cron/worker 回调到 → 运行 `analyze_generalize.py --experiment pythia410m_wiki_a100_s42` → 汇报 5-method per-method sig counts → update_registry(metrics + conclusion)\n- OPT-1.3B 完成 → 同上分析 → 汇报\n- 两实验结果到手 → 评估 VERSION A/B 决策规则（PermG fwd ≥ 4/8 + rev ≤ 1/8 + consensus ≥ 4/8 → A）\n- cuda:0 释放后 → 提交 `generalize_pythia1b_c4_a100_s42`（Pythia-1B on C4，代码和数据已就绪）\n- Director 批准 error table 修复方案 → 从 `method_ablation_phase2_panel.json` 重新生成包含 4 seeds 的 error table\n- 全部泛化实验完成 → 填充 `generalization_draft.tex` 占位符 → 插入 experiments.tex §5.5\n\n### 5. 🎯 战略上下文\n- 论文核心 claim：单一方法（如 Naive XCorr）会 inflate FPR，multi-method consensus (K≥4/5) 控制 FPR 且保持 power\n- 已完成：α sweep 全 5 levels × 3 seeds，α=1.0 baseline 4 seeds，GPT-2m 跨架构验证\n- 当前阶段：Phase 2 泛化实验（证明 framework 跨模型/跨数据域 generalize）\n- Shapley chart 已用正确参数重做（32 coalitions, K=ceil(0.8·|S|), 3 seeds FPR / 4 seeds FNR）\n- 易错点：`results/mvp/` 目录已不存在，但 panel JSON 保存了所有 α=1.0 分析结果。不要试图重跑 mvp 实验\n- 易错点：两个分析脚本输出到不同文件名（`5method_leadlag.json` vs `alpha_sweep_analysis.json`），不会互相覆盖，但数字不同（family 8 vs 24）\n- decision: error table 目前用 3 seeds (s42/s43/s45)，Director 已收到修复方案（改为从 panel JSON 读 4 seeds），等待批准\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1779035492.md"
+}

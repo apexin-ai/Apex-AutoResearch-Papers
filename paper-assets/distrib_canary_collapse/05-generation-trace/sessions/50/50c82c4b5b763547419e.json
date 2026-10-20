@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "50c82c4b5b763547419e",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops 14b global scan v2",
+  "task_key": "worker_ops_14b-global-scan-v2_20260522T200908",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_14b-global-scan-v2_20260522T200908_result.json",
+    "occurrence": 1,
+    "bytes": 1606,
+    "sha256": "7d5bbd28091d2945d8dd7bdbb3246e440faba84a20e899a26879fb0418fc0279"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 1.4B 实验状态汇总\n\n### 完成的实验\n\n| Cell | Server | gen_10 | Analysis | Status |\n|------|--------|--------|----------|--------|\n| scale/14b_c4_s42_fp32 | 17855 | Done | Yes | **Complete** |\n| scale/14b_a050_s42_fp32 | 19828 | Done | Yes | **Complete** |\n| t10_a050_s42_fp32_14b | 19828 | Done | Yes | **Complete** |\n| t10_a060_s42_fp32_14b | 17855 | Done | Yes | **Complete** |\n| t10_a075_s42_fp32_14b | 17855 | Done | Yes | **Complete** |\n\n### 运行中的实验\n\n| Cell | Server:GPU | 当前 gen | 目标 gen | Step | 预估 |\n|------|-----------|---------|---------|------|------|\n| t10_a045_s42_fp32_14b | 17855:GPU4 | gen 6 训练中 | 10 | 4457/5000 (89%) | ~4 gen 剩余 |\n| t15_a050_s42_fp32_14b | 17855:GPU0 | gen 10 训练中 | 15 | — | ~5 gen 剩余 |\n| t15_a060_s42_fp32_14b | 17855:GPU1 | gen 10 训练中 | 15 | — | ~5 gen 剩余 |\n| t15_a045_s42_fp32_14b | 17855:GPU5 | gen 8 训练中 | 15 | — | ~7 gen 剩余 |\n| t10_a075_s42 restart | 17855:GPU3 | gen 10 生成合成数据 | 10 | synth gen | 即将完成 |\n| t15_a075_s42_fp32 | 19828:GPU0 | gen 6 训练中 | 15 | 4646/5000 (93%) | ~9 gen 剩余 |\n\n### 异常\n\n| Cell | Server | 问题 |\n|------|--------|------|\n| t10_a050_s42_fp32_14b | 17855 | 目录存在但 **无任何 gen metrics**（已在 19828 完成，可能是废弃目录） |\n\n### 空闲 GPU\n\n| Server | GPU | 显存 | 状态 |\n|--------|-----|------|------|\n| **17855** | GPU 2 | 0 / 98 GB | **空闲** |\n| **19828** | GPU 1 | 0 / 98 GB | **空闲**（t10_a050 tmux 会话残留但进程已结束） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-14b-global-scan-v2.md"
+}

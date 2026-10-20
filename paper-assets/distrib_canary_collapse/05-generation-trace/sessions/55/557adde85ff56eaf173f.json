@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "557adde85ff56eaf173f",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "data effrank trajectories",
+  "task_key": "worker_data_effrank_trajectories_20260519T033526",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_effrank_trajectories_20260519T033526_result.json",
+    "occurrence": 1,
+    "bytes": 532,
+    "sha256": "bc910c562d14387c738ae68cff12e4f905ac30a82e951ddd835b81daea956ba5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "CSV 已写入 `artifacts/effrank_trajectories.csv`，包含 4 个实验配置（Pythia-410M/1.4B × α=0.50/1.00，均 s42）的 gen 0–10 effective_rank 轨迹。\n\n关键观察：\n- **gen 0 基线相同**：410M ≈ 46.6，1.4B ≈ 50.8（同架构同种子，符合预期）\n- **α=0.50 轨迹收敛到平台**：410M 约 59–65，1.4B 约 82–83\n- **α=1.00 轨迹更高且波动更大**：410M 约 89–101，1.4B 约 96–106\n- 1.4B 在两种 α 下 effective_rank 均高于 410M，跨架构趋势一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-effrank-trajectories-copy-2.md"
+}

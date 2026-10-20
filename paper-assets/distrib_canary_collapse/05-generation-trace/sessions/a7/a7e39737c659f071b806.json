@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a7e39737c659f071b806",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis d102 t25 a060 v3 star",
+  "task_key": "worker_analysis_d102-t25-a060-v3-star_20260522T070336",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d102-t25-a060-v3-star_20260522T070336_result.json",
+    "occurrence": 1,
+    "bytes": 663,
+    "sha256": "bf51ec43b0353edd762bdc0952630493d390a822d37964f62041344b702fc136"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果汇总：\n\n## t25_a060_s42_fp32_v3 — Scenario A Confirmed ✓\n\n| 指标 | 值 |\n|------|-----|\n| **perm_granger_fdr_forward** | **5/8** |\n| perm_granger_fdr_reverse | 0/8 |\n| diff_xcorr_fdr_forward | 8/8 |\n| threshold_forward | 6/8 |\n| ty_forward | 4/8 |\n| robust_pairs K≥3 | 6/8 |\n| robust_pairs K≥4 | 3/8 |\n\n**Sync-dip dissolution confirmed**：T=10/15/20 α=0.60 全部 PermG=0/8，但 T=25 α=0.60 跳升至 PermG=5/8（强前向不对称，reverse=0/8）。延长训练代数打破了 sync-dip，canary lead-lag 信号在 26 代后显现。\n\nRegistry 已更新为 DONE/success，artifact 已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d102-t25-a060-v3-star.md"
+}

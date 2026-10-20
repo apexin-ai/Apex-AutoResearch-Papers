@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "86efd3487dea637089cd",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "exp replace dup 69b interv",
+  "task_key": "worker_exp_replace_dup_69b_interv_20260518T175646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_replace_dup_69b_interv_20260518T175646_result.json",
+    "occurrence": 1,
+    "bytes": 1025,
+    "sha256": "a77d7771260b351ed9cb1674ec8262802c576f7090e85565385a8dcee3e5008b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验稳定运行约 4 分钟，日志持续增长（interv: 12.6K→19.4K, 6.9B: 5.4K→8K），无 OOM。\n\n## 产出汇总\n\n| 项目 | 结果 |\n|---|---|\n| **Kill** | cuda:0 (scale_14b_a050_s42_bf16 PID 15222) 和 cuda:2 (alpha_sweep_a010_s42_bf16 PID 16858) 已终止，GPU 释放 |\n| **6.9B dry-run** | 38695 MiB / 97887 MiB (40%)，batch_size=4 + gradient_checkpointing + bf16 无 OOM |\n| **batch_size** | 确认 `--batch_size 4`（参数名是 `--batch_size` 非 `--per_device_train_batch_size`） |\n| **scale_69b_a100_s42** | PID 29028, cuda:0, 38695 MiB, 87-93% util |\n| **interv_pred_s43_bf16** | PID 29174, cuda:2, 2503 MiB, 43-54% util |\n| **Gen 1 训练** | 两个实验仍在 Gen 0 生成阶段（6.9B 生成 5k 样本较慢，预计需 15-30 分钟）|\n\n其他实验（GPU 1/3/4/5）未受影响，正常运行。tmux server 在 kill 过程中崩溃，但所有进程已脱离 tmux 独立运行（新提交的两个实验通过 submit_training_job 重建了 tmux session）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-replace-dup-69b-interv.md"
+}

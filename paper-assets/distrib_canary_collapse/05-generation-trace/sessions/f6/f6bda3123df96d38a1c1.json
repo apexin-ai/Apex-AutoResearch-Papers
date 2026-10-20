@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f6bda3123df96d38a1c1",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "verify a000 threshold ty",
+  "task_key": "worker_verify_a000_threshold_ty_20260520T000205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_a000_threshold_ty_20260520T000205_result.json",
+    "occurrence": 1,
+    "bytes": 1336,
+    "sha256": "df137487bb197c36f2c8fd3cd846f7fbace1942826a3942d1b4345d2019d15e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n| 数据源 | threshold_fwd | TY_fwd | naive_fwd |\n|--------|-------------|--------|-----------|\n| `analysis/5method_leadlag.json` | **3/8** | **1/8** | 6/8 |\n| `analysis_mauve/5method_leadlag.json` | **4/8** | **3/8** | 6/8 |\n\n### 对比不一致来源\n\n- **CSV 旧值** (threshold=4/8, TY=2/8) — 与两个文件都不完全匹配。threshold=4/8 匹配 `analysis_mauve/`，但 TY=2/8 两边都不匹配（analysis=1/8, analysis_mauve=3/8）。\n- **D111 审计** (threshold=3/8, TY=1/8) — 完全匹配 `analysis/5method_leadlag.json`。\n\n### 两个分析目录的差异根因\n\n`analysis/` 和 `analysis_mauve/` 使用了不同的 threshold 判定逻辑（字段名不同：`canary_onset` vs `onset_canary`），且 threshold onset 检测结果完全相反——`analysis/` 中 token_entropy 作为 canary 全部 onset=None（不显著），ece 有 3 个显著；`analysis_mauve/` 中 token_entropy 有 4 个显著，ece 全部不显著。TY 结果也大幅不同（analysis_mauve 的 TY 对 token_entropy pairs 给出极低 p 值）。\n\n**结论：D111 读取的 `analysis/5method_leadlag.json` 是正确来源，值为 threshold=3/8, TY=1/8。CSV 旧值 (4/8, 2/8) 可能来自 `analysis_mauve/` 的某个旧版本或手工计算错误，与现有两个文件均不完全吻合。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-a000-threshold-ty.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3aa3ab24fe0ba2d6592c",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "repo anonymous push",
+  "task_key": "worker_repo_anonymous_push_20260525T084255",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_repo_anonymous_push_20260525T084255_result.json",
+    "occurrence": 1,
+    "bytes": 1097,
+    "sha256": "3f958d366ba83dcafee386e648ff03c2f7fb42fa0928e843d4f94f39f3d521b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n**(a) 密钥验证**: 有效，远程仓库可访问\n\n**(b) 匿名性检查**:\n- `\\author{Anonymous}` — 已正确\n- 无个人邮箱/机构名/真实姓名泄露\n- 已清理的泄露项：\n  - `/home/ubuntu/.agent-ml-research-idea_gen_0514_4/...` 路径 → 替换为 `./`\n  - `/root/autodl-tmp/distrib_canary_collapse/...` 路径 → 替换为 `./`\n  - `westd-17855`/`westd-19828` 服务器名 → 替换为通用名\n  - PaperBanana `run_*` 生成目录（含 metadata.json）→ 已删除\n- 无 wandb project name 泄露\n- `.bib` note 字段仅含 \"Spotlight\" 标注，无敏感信息\n\n**(c) 完整性检查**: 所有 `\\input{}` 和 `\\includegraphics{}` 引用的文件均存在，references.bib 完整\n\n**(d) 清洁度检查**: 无 `__pycache__`、`.DS_Store`、`.env`；已移除 LaTeX 编译产物（`.aux/.bbl/.blg/.fls/.fdb_latexmk/.out`）和未引用的草稿文件（`*_reframe.tex`、`background.tex`、`theory.tex`、`ethics.tex`）\n\n**(e) 推送结果**: commit `0ae6acd` → `main` (force push 成功)，167 files，18412 insertions"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/repo-anonymous-push.md"
+}

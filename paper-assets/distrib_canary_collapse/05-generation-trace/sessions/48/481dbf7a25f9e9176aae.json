@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "481dbf7a25f9e9176aae",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "research literature collapse",
+  "task_key": "worker_research_literature-collapse_20260514T053157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature-collapse_20260514T053157_result.json",
+    "occurrence": 1,
+    "bytes": 1256,
+    "sha256": "28cbf241b1f017a256a9e840e81dff52b8bcb02c1bdd75a39b7ab89b47560a2e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已就位，MCP 可正常读取。\n\n---\n\n## 调研完成，核心结论\n\n**收录 23 篇论文**，覆盖 4 个类别：core-collapse (8)、canary-metrics (8)、data-mixing (6)、methodology (2)。\n\n### 关键发现\n\n**最直接的竞争者**：`chen2025scales` (arXiv 2510.05133) 明确报告 **\"calibration degradation precedes accuracy loss\"**——ECE 在 iteration 1 + 30% synthetic 时就上升 75%，而 accuracy 还未显著变化。但他们**未做 lead-lag 因果分析**，也没有多指标 panel。\n\n**8 个文献空白**（详见 `gaps` 字段），最核心的三个：\n1. 无人做过 canary 指标的 Granger causality / lead-lag 量化分析\n2. ECE 在 collapse 场景下几乎未被系统研究（仅 1 篇）\n3. 多指标 panel 框架完全缺失\n\n**Novelty 评估**：我们的 panel Granger causality + 多指标 canary + α-dependent sensitivity 三个方向均有清晰的文献空白。主要风险是 chen2025scales 团队如果扩展他们的工作，会侵蚀我们在 ECE-as-canary 这个点上的 novelty——需要在方法论（Granger causality 框架）上尽快建立壁垒。\n\n文件路径：\n- 项目根：`literature_map.yaml`\n- artifacts：`artifacts/literature_map.yaml`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-collapse.md"
+}

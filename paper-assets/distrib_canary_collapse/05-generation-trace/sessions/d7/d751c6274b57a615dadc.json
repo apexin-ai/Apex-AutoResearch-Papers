@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "d751c6274b57a615dadc",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "figure r3 dose response font fix",
+  "task_key": "worker_figure_r3_dose_response_font_fix_20260520T165352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_r3_dose_response_font_fix_20260520T165352_result.json",
+    "occurrence": 1,
+    "bytes": 2112675,
+    "sha256": "80bfc79b8d3d3d15da6f78f8abcfd22b20366399284192477ee7c4952473d1ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "d751c6274b57a615dadc-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/figure-r3-dose-response-font-fix.md"
+}

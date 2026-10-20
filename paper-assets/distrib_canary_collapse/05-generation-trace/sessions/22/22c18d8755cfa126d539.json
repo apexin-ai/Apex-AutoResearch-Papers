@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22c18d8755cfa126d539",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diagnose disk and pythia14b status",
+  "task_key": "worker_diagnose_disk_and_pythia14b_status_20260517T191954",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_disk_and_pythia14b_status_20260517T191954_result.json",
+    "occurrence": 1,
+    "bytes": 2804,
+    "sha256": "f75655617eb29da0f6d031502c90675a3e0a35d2b6b4a6ae462e42aa225048ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 1. 进程状态\n\n| 实验 | tmux session | GPU 进程 | 状态 |\n|------|-------------|---------|------|\n| pythia14b_wiki_a100_s42 | 无 | 无 | **已崩溃** (os error 28) |\n| pythia410m_wiki_a100_s42 | 存活 | 无 | **已完成** (EXIT_CODE=0) |\n| opt1b_wiki_a100_s42 | 存活 | 无 | **已完成** (EXIT_CODE=0) |\n| pythia1b_c4_a100_s42 | — | — | **已完成** (EXIT_CODE=0) |\n\n**GPU**：两块 RTX PRO 6000 (98GB) 均空闲，0% 利用率，0 MiB 显存。\n\n### 2. 磁盘状态\n\n| 挂载点 | 容量 | 已用 | 可用 | 使用率 |\n|--------|------|------|------|--------|\n| `/root/autodl-tmp/` | 250G | 250G | **484K** | **100%** |\n| `/` | 30G | 8.5G | 22G | 29% |\n\n**根因确认**：数据盘 100% 满，导致 pythia14b 在 gen_7 写 checkpoint 时崩溃。\n\n### 3. Pythia-1.4B 实验进度\n\n- **gen_0 ~ gen_6**：完成（每个 ~5.3G）\n- **gen_7**：**不完整**（262M，正常应 ~5.3G），训练未完成，checkpoint 损坏\n- **gen_8 ~ gen_10**：未开始\n- 重启需要：清空 gen_7 → 从 gen_6 恢复继续\n\n### 4. 空间占用 Top\n\n| 目录 | 大小 |\n|------|------|\n| results/generalize/ | 135G |\n| results/alpha_sweep/ | 86G |\n| .hf_cache/ | 25G |\n| data/ | 6.2G |\n| **总计** | **~250G** |\n\n### 5. 可安全清理的目录（已完成实验的中间 generation）\n\n保留策略：每个已完成实验只保留 gen_0 + gen_10(final），删除 gen_1 ~ gen_9。\n\n**generalize/ 已完成实验：**\n\n| 实验 | 可删 gen | 单个大小 | 释放空间 |\n|------|---------|---------|---------|\n| opt1b_wiki_a100_s42 | gen_1~9 | 5.0G | **~45G** |\n| pythia1b_c4_a100_s42 | gen_1~9 | 3.8G | **~34G** |\n| pythia410m_wiki_a100_s42 | gen_1~9 | 1.6G | **~14G** |\n\n**alpha_sweep/ 已完成实验（有大 checkpoint 的）：**\n\n| 实验 | 可删 gen | 单个大小 | 释放空间 |\n|------|---------|---------|---------|\n| a000_s43 | gen_1~9 | 1.6G | ~14G |\n| a000_s44 | gen_1~9 | 1.6G | ~14G |\n| a050_s44 | gen_1~9 | 1.6G | ~14G |\n| a075_s43 | gen_1~9 | 1.6G | ~14G |\n| a075_s44 | gen_1~9 | 1.6G | ~14G |\n\n其余 alpha_sweep 实验（a000_s42, a025_s43/s44, a050_s42/s43, a075_s42）中间 gen 仅 ~6.5M，清理收益忽略不计。\n\n**pythia14b（未完成，特殊处理）**：\n- gen_7 损坏，可删（释放 262M）\n- gen_1~5 可删（5 × 5.3G = **~26.5G**），保留 gen_0 和 gen_6 用于恢复\n\n### 汇总\n\n| 类别 | 预估释放 |\n|------|---------|\n| generalize 已完成 3 个实验 gen_1~9 | **~93G** |\n| alpha_sweep 5 个大实验 gen_1~9 | **~70G** |\n| pythia14b gen_1~5 + gen_7 | **~27G** |\n| **总计可释放** | **~190G** |\n\n清理后磁盘使用率约 24%（~60G/250G），足够完成 pythia14b 剩余 gen_7~10（需 ~4 × 5.3G ≈ 21G）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-disk-and-pythia14b-status.md"
+}

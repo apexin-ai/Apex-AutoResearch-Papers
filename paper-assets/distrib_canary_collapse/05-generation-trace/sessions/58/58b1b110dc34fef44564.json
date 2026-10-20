@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "58b1b110dc34fef44564",
+  "project": "distrib_canary_collapse",
+  "kind": "history",
+  "title": "agent / loop_17_1779501972.md",
+  "task_key": "loop_17_1779501972",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_17_1779501972.md",
+    "occurrence": 1,
+    "bytes": 4360,
+    "sha256": "1ef2194d5cb5b02af6794e48ee098c8c0852fc3166b9738bb75bf0a5314851c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 17\nreason: idle_timeout\nupdated: '2026-05-23T00:56:45+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-17855:cuda:0-5, westd-19828:cuda:0-1，共 8 张。白名单外的 GPU 绝对不能用\n- 17855↔19828 SSH 不通，不能跨服务器操作\n- d102 分析脚本唯一有效参数组合：downstream=mauve, threshold=true_3sigma_d105（M063/M064/M066）\n- ≤3B 必须 fp32，>3B 才能 bf16（D079）\n- 1.4B 实验 launch command 必须带 `HF_HOME=/root/autodl-tmp/.hf_cache` + `TRANSFORMERS_OFFLINE=1` + `HF_HUB_OFFLINE=1`（刚踩过坑：漏设导致 MAUVE=None crash）\n- gen_batch_size=8（1.4B 模型 98GB 卡上的安全值）\n\n### 2. 🖥️ 基础设施快照\n- **westd-17855**: 6× RTX PRO 6000 Blackwell (98GB)\n  - 工作目录: `/root/autodl-tmp/distrib_canary_collapse`\n  - Python: `/root/miniconda3/bin/python`，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n  - HF cache: `/root/autodl-tmp/.hf_cache`（含 GPT-2-large featurizer for MAUVE）\n  - 模型: pythia-410m-deduped / pythia-1.4b-deduped 均已缓存\n  - 数据: `data/wikitext103_5k`\n  - 结果: `results/phase_diagram/`\n- **westd-19828**: 2× RTX PRO 6000 Blackwell (98GB)，同上结构\n- 活跃进程（reconcile_crons 确认）:\n  - 17855:0 → scale_14b_t15_a060 (PID 643570)\n  - 17855:1 → scale_14b_t15_a050 (PID 643878)\n  - 17855:2 → scale_14b_t10_a075_v2 (resume, Worker 刚提交)\n  - 17855:3 → scale_14b_t10_a060_v2 (resume, Worker 刚提交)\n  - 17855:4 → phase_diagram_t20_a075_s43 (PID 603933)\n  - 17855:5 → phase_diagram_t25_a045_s43 (running)\n  - 19828:0 → phase_diagram_t25_a075_s43_v3 (PID 731312)\n  - 19828:1 → scale_14b_t10_a050_19828 (PID 765029)\n\n### 3. 📊 当前状态\n收到 `scale_14b_t10_a060_s42_fp32` 失败 cron 回调。Root cause: launch command 漏设 HF_HOME → MAUVE 下载失败 → None.__format__ crash。代码修复已在之前 session 应用（metrics.py + iterative_train.py）。\n\n**我刚做了**:\n1. 创建 `scale_14b_t10_a060_s42_fp32_v2` 和 `scale_14b_t10_a075_s42_fp32_v2` registry 条目（QUEUED, parent 指向原实验）\n2. 派 Worker `worker_resume_scale_14b_t10_resume_20260522T085417` 在 cuda:2/cuda:3 上从 gen 2 resume 两个实验\n3. 已向 Director 汇报失败原因 + 自动恢复方案\n\n**等待中**:\n- Worker 回调：resume Worker 提交完成确认\n- 7 个 cron 监控活跃（reconcile_crons 已确认）\n- 8/8 GPU 在跑（假设 resume Worker 成功提交）\n\n### 4. 📋 待办（条件触发式）\n- resume Worker 回调 → 确认两个实验 RUNNING + PID，更新 ROADMAP GPU 表\n- scale_14b_t10_a060_v2 完成 → 补算 gen_0/gen_1 MAUVE（原始 crash 导致缺失）→ d102 5-method 分析 → 与 410M α=0.60 sync-dip(0/8) 对比\n- scale_14b_t10_a075_v2 完成 → 同上补算 + d102 分析 → 与 410M α=0.75 (6/8) 对比\n- 5 个 1.4B 全部完成 → 汇总 scale verification 结论（sync-dip 是否 scale-invariant, 6/8 ceiling 是否跨 scale 一致）\n- phase_diagram cross-seed 3 组完成 (t20_a075_s43, t25_a045_s43, t25_a075_s43) → seed robustness 汇总\n- 所有实验完成 → Heatmap 定稿 → D170 叙事升级（Scenario A 版本）→ submit_paper_to_review\n- scale_14b_t15_a045 仍等 GPU 释放（第 6 个 1.4B）\n\n### 5. 🎯 战略上下文\n- **项目核心**: \"Mapping the Detectability Landscape of Iterative Model Collapse\"——从方法论文转为现象发现论文\n- **Phase Diagram 20/20 已完成** (D188)：α×T 网格全部填充，Scenario A 确认（sync-dip 在 T=25 溶解 5/8）\n- **当前阶段**: 5×1.4B scale verification（验证 410M 发现是否 scale-invariant）+ 3 组 cross-seed robustness\n- **关键发现**: α=0.60 sync-dip 是 T-dependent transient（T=10/15/20 均 0/8, T=25 溶解为 5/8）；6/8 ceiling 跨全部 T/α 一致（MAUVE bottleneck, 2/8 系统性失败）\n- **易错点**:\n  - 1.4B 实验的 HF_HOME 必须显式设置，不能依赖默认路径（刚踩过）\n  - resume 实验的 gen_0/gen_1 MAUVE 是 null，d102 分析前必须先补算\n  - C2 sync-dip 叙事已从 \"PermG blind spot\" 修订为 \"T-dependent transient dip\"（D186/D188），写论文时注意用新叙事\n  - t20_a060_s43 PermG=3/8 打破了 sync-dip 的 seed robustness（D184），这个 nuance 在论文中需要处理\n- **目标 DDL**: EMNLP 2026 ARR June (~2026-06-15)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-17-1779501972.md"
+}

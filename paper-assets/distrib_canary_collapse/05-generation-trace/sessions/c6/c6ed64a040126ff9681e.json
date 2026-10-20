@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c6ed64a040126ff9681e",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops check t15 a060 s43 completion",
+  "task_key": "worker_ops_check-t15-a060-s43-completion_20260523T200140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-t15-a060-s43-completion_20260523T200140_result.json",
+    "occurrence": 1,
+    "bytes": 722,
+    "sha256": "960d4cee7d4bbb1944dc4c68d93684daf2ce51ef4aa6f74d1baf677deab3ea61"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 不在当前 session，无需删除。\n\n---\n\n**实验结果：`scale_14b_t15_a060_s43_fp32` — SUCCESS**\n\n- 进程 749427 已退出\n- 产出 16 个 generation（gen_0 ~ gen_15），超过预期的 15 个，全部有完整 metrics.json + all_metrics.json\n- 关键指标（gen_15）：perplexity 68.88, mauve 0.029, distinct_3 0.566, effective_rank 100.88\n- Perplexity 从 gen_0 的 19.83 涨至 68.88（ratio 3.47x），mauve 从 0.033 降至 0.029\n- Registry 已更新为 DONE/success\n\n**其他 5 个实验均在运行中：**\n\n| PID | 已运行时间 |\n|--------|------------|\n| 750075 | 17h 12m |\n| 781724 | 10h 55m |\n| 780907 | 11h 01m |\n| 796624 | 7h 29m |\n| 762806 | 15h 06m |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-t15-a060-s43-completion.md"
+}

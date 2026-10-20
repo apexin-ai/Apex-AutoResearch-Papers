@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d1c1c2192a51b9f0012",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops deploy t15 a075 s43 cuda0 19828",
+  "task_key": "worker_ops_deploy-t15-a075-s43-cuda0-19828_20260523T063939",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_deploy-t15-a075-s43-cuda0-19828_20260523T063939_result.json",
+    "occurrence": 1,
+    "bytes": 666,
+    "sha256": "f3799827ec00153dccbf8265ea3a1e261a0e278392e133b0c7be90470385f73f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "参数与 parent 完全一致，仅 seed=43 和 output_dir 不同。\n\n**部署完成：**\n\n| 项目 | 值 |\n|------|-----|\n| exp_id | scale_14b_t15_a075_s43_fp32 |\n| PID | 857058 |\n| GPU | cuda:0 (10,284 MiB / 97,887 MiB) |\n| tmux session | `t15_a075_s43` |\n| output_dir | `results/phase_diagram/t15_a075_s43_fp32_14b/` |\n| seed | 43 |\n| 其他参数 | T=15, α=0.75, fp32, steps=5000, gen_batch=8 |\n\n注意：`tee` 日志写入失败（输出目录创建晚于 tee 启动），但训练进程正常运行。可通过 `tmux attach -t t15_a075_s43` 查看实时输出。预计运行约 17-18h（参考 parent s42 从 20:37 到 14:15）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-deploy-t15-a075-s43-cuda0-19828.md"
+}

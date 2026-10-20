@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2b5a7a6247640c852c4c",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analyze check and d102 17855",
+  "task_key": "worker_analyze_check-and-d102-17855_20260521T224856",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_check-and-d102-17855_20260521T224856_result.json",
+    "occurrence": 1,
+    "bytes": 644,
+    "sha256": "9c8ed0ca1a4846ea51490b394c49b8026dbcbda58479716f634ae610de203ada"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 6 个实验仍在运行，无已完成的。\n\n```\nt25_a045_s42_fp32: gen 25/25 dirs (gen_24 空) | RUNNING GPU5 | 最后1gen，~20-30min完成\nt25_a060_s42_fp32: gen 10/25                  | RUNNING GPU3\nt25_a050_s42_fp32: gen 10/25                  | RUNNING GPU6\nt20_a060_s43_fp32: gen 10/20                  | RUNNING GPU4\nt15_a060_s43_fp32: gen 12/15                  | RUNNING GPU1\nt15_a045_s43_fp32: gen 11/15                  | RUNNING GPU2\n```\n\nt25_a045 最接近完成（gen_24 目录已建但内容为空，正在训练最后一个 gen）。其余都还需要数小时。暂无可跑 d102 的实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-check-and-d102-17855.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a85189ad6797fff5e24",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops clear stale conclusion",
+  "task_key": "worker_ops_clear_stale_conclusion_20260520T215850",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_clear_stale_conclusion_20260520T215850_result.json",
+    "occurrence": 1,
+    "bytes": 180,
+    "sha256": "d4a25cf25029093dbc667d933de5207bacb3b968d0580204cc5ded3767c3bc15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两个实验的 `conclusion: killed` 已删除，现在 `interv_react_s43` 和 `scale_69b_a100_s43_fp32` 只剩 `status: RUNNING`，无 conclusion 字段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-clear-stale-conclusion.md"
+}

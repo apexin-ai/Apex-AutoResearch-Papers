@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a66f73765c62730aa1dd",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis smollm3 3b s43 5method",
+  "task_key": "worker_analysis_smollm3_3b_s43_5method_20260520T185223",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_smollm3_3b_s43_5method_20260520T185223_result.json",
+    "occurrence": 1,
+    "bytes": 846,
+    "sha256": "b6b72aeebd0d6852636c52ff151b418b338a316563833953f2bbeba07f9cee58"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n## SmolLM3-3B s43 5-Method Results (11 gens, α=1.0)\n\n| | s43 | s42 |\n|---|---|---|\n| **PermG FDR forward** | 3/8 (ECE only) | 3/8 (ECE only) |\n| **K≥3 robust** | 6/8 | 3/8 |\n| TY Granger | 6/8 (d_max=0) | 0/8 (d_max=2) |\n| DiffXCorr FDR | 8/8 | 6/8 |\n\n**关键发现：**\n- **PermG 跨 seed 完美复制** — 两个 seed 均为 3/8，全部来自 ECE 通道\n- K≥3 差异由 TY d_max 不稳定驱动（s43 ADF 判定 I(0)，s42 判定 I(2)），符合 C003 警告\n- **token_entropy U-shape 两 seed 均确认** — s43 min at gen 3 (0.90), s42 min at gen 2 (0.94)；distinct_1 单调递减，解耦解释了 PermG 对 entropy 通道失效\n- ECE→distinct_{1,2,3} 是 3B 模型唯一 PermG-robust 的 canary-downstream 组合\n\n报告已保存：`artifacts/smollm3_3b_s43_analysis.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-smollm3-3b-s43-5method.md"
+}

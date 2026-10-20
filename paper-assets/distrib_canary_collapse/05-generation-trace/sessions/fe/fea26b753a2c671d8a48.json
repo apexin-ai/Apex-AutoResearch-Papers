@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fea26b753a2c671d8a48",
+  "project": "distrib_canary_collapse",
+  "kind": "history",
+  "title": "agent / loop_15_1779377201.md",
+  "task_key": "loop_15_1779377201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_15_1779377201.md",
+    "occurrence": 1,
+    "bytes": 4357,
+    "sha256": "fe348939aba78569257c32e03cc0cea11fdcc4ae87d19684157f79edb47d8ac1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 15\nreason: idle_timeout\nupdated: '2026-05-21T12:37:13+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-17855:cuda:0~5, westd-19828:cuda:0~1，共 8 张。白名单外的 GPU 禁止使用，即使 Director 指令也必须 push back\n- 17855 ↔ 19828 SSH 不互通，不能跨服务器操作\n- D079: ≤3B 模型必须 fp32，>3B 必须 bf16（scale_69b 用 bf16 就是这个原因）\n- submit_training_job 的 command 必须自带环境激活：`source /root/miniconda3/bin/activate && ...`\n- Phase Diagram 实验用 Pythia-410M (≤3B)，所以全部 fp32\n- FPR 累积 2/48=4.17%（D167: s45 出了 2/8），论文措辞是 \"near-zero\" 不是 \"zero\"\n\n### 2. 🖥️ 基础设施快照\n- **westd-17855** (6× RTX PRO 6000 Blackwell 98GB)\n  - 工作目录: `/root/autodl-tmp/distrib_canary_collapse/`\n  - Python: `/root/miniconda3/bin/python`, conda base\n  - HF_HOME: `/root/autodl-tmp/.hf_cache`, TRANSFORMERS_OFFLINE=1\n- **westd-19828** (2× RTX PRO 6000 Blackwell 98GB)\n  - 同路径、同 conda base\n- 活跃 crons（7 个，全部 still running）:\n  - `scale_69b_a100_s43_bf16` (17855:cuda:3)\n  - `alpha_sweep_a000_s48_fp32` (19828:cuda:0)\n  - `phase_diagram_t05_a075_s42_fp32` (17855:cuda:0)\n  - `phase_diagram_t05_a060_s42_fp32` (17855:cuda:5)\n  - `phase_diagram_t15_a045_s42_fp32` (19828:cuda:1)\n  - `phase_diagram_t15_a050_s42_fp32` (17855:cuda:4)\n  - `phase_diagram_t15_a060_s42_fp32` (17855:cuda:1)\n- 另外 `phase_diagram_t15_a075_s42_fp32` 也 RUNNING (17855:cuda:2)，有 cron\n- Worker 池：0 个活跃（全部已完成）\n\n### 3. 📊 当前状态\n8/8 GPU 满载跑 Phase Diagram + scale_69b + FPR s48。Session 启动时无待处理的 Worker 回调。\n\n**RUNNING (6)**:\n| exp_id | GPU | 预估剩余 |\n|--------|-----|---------|\n| t05_a075_s42 | 17855:0 | ~1-2h |\n| t05_a060_s42 | 17855:5 | ~1-2h |\n| t15_a060_s42 | 17855:1 | ~3-4h |\n| t15_a075_s42 | 17855:2 | ~1-2h (ROADMAP 写的是 t05_a050 但 registry 显示是 t15_a075) |\n| t15_a050_s42 | 17855:4 | ~3-4h |\n| scale_69b_s43_bf16 | 17855:3 | ~50min（gen 10/10 最后一代）|\n| a000_s48_fp32 | 19828:0 | ~1h |\n| t15_a045_s42 | 19828:1 | ~3-4h |\n\n**PREPARING (4)**: t25_a050, t25_a045, t25_a060, qwen35_dryrun_launch\n\n**等待**: 纯等 cron 回调，无 Director 决策 pending。\n\n### 4. 📋 待办（条件触发式）\n- scale_69b 完成 → spawn worker 跑 5method 分析 → Pythia-6.9B cross-scale 数据点 → 17855:3 释放给 T=25 α=0.60\n- a000_s48 完成 → 更新 FPR CI（目标 N=56）→ 19828:0 释放（待决）\n- t05_a050/t05_a060/t05_a075 完成 → 各自 5method → 验证 α_c(5)≥1.0（全暗）→ 释放 GPU 给 T=25 组\n- t15 四组完成 → 5method → 填充 Phase Diagram T=15 行\n- **GPU 释放接力**（ROADMAP 已规划）：\n  - 17855:3 (scale_69b) → T=25 α=0.60\n  - 17855:2 (t05_a050 或 t15_a075) → T=15 α=0.75（如果 t15_a075 已在跑则改为 T=25）\n  - 17855:5 (t05_a060) → T=25 α=0.45\n  - 17855:0 (t05_a075) → T=25 α=0.50\n- 全部 Phase Diagram 完成 → α×T 热力图 + D170 叙事升级 → Paper Agent patch → R8 提交\n\n### 5. 🎯 战略上下文\n- **项目定位**: \"Mapping the Detectability Landscape of Iterative Model Collapse\"——从方法论文转为现象发现论文。核心贡献：α×T 2D 相图、非单调 dose-response、step-function transition、检测下界理论\n- **目标**: EMNLP 2026 ARR June（DDL ~2026-06-15）\n- **R7 审稿 Overall=5/10**，8 项修复完成，R8 待 Phase Diagram 结果集成后提交\n- **α_c(T) 理论**: α_c(T) = 0.193 + 75.68·T^(-2.41), R²=0.883。α_c(10)=0.487, α_c(20)=0.248\n- **Sync-dip [0.55, 0.65]** 是结构性的（T=20 也 0/8），不是功效问题。T=25 α=0.60 是关键测试：如果仍 0/8 则 sync-dip 独立于 T\n- **D170 叙事升级三要点**: (1) α_c(T=5)≥1.0 可证伪预测, (2) step-function transition 本身是发现, (3) FPR 4.2% < 5% 比 degenerate 0% 更可信\n- **易错点**:\n  - 不要把 ROADMAP 里的 GPU 分配表当 truth——registry 和 cron 才是。ROADMAP 有时 GPU 编号和实际不完全对应\n  - T=5 行只有 6 数据点，TY Granger VAR 病态，热力图需标注此限制\n  - 1.4B 模型 seed variance 大（s42=2/8 vs s43=6/8），不要从单 seed 下结论\n  - GPT-2m s43 是 bidirectional（fwd=rev=6/8, D169），与 s42 单向不同，cascade ordering 14/15\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-15-1779377201.md"
+}

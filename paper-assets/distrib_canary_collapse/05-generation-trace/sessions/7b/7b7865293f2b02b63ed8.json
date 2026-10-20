@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b7865293f2b02b63ed8",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diagnose scale 14b t15 sigterm",
+  "task_key": "worker_diagnose_scale_14b_t15_sigterm_20260522T091110",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_scale_14b_t15_sigterm_20260522T091110_result.json",
+    "occurrence": 1,
+    "bytes": 1591,
+    "sha256": "6b0fcbaac5e91de84b5b21fc997eba6036e5242f2a95801a98597e140cd5c82a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n## 诊断结论\n\n### 根因：外部 SIGTERM（非 OOM）\n\nExit code 143 = SIGTERM (signal 15)。Linux OOM killer 发送的是 SIGKILL (signal 9, exit code 137)，不是 SIGTERM。两个进程在 17:07:58 CST 几乎同一秒被 kill，日志中无任何 OOM/error 信息，确认是**外部主动发送 SIGTERM**。\n\n同一时段 t10 实验组（scale_14b_t10_a060/a075）也被杀/重启过多次（有 _v2 日志），说明可能是另一个 agent session 在管理 GPU 分配时批量杀进程。与 C004 约束描述的模式一致。\n\n### 进度\n\n| 实验 | Gen 0 | Gen 1 | Gen 2+ |\n|------|-------|-------|--------|\n| a050 (α=0.50) | 完成 (ppl=19.83) | 完成 (ppl=20.89, mauve=0.033) | 被 kill |\n| a060 (α=0.60) | 完成 (ppl=19.83) | 完成 (ppl=30.40, mauve=0.033) | 被 kill |\n\n两个实验各完成 **2/15 代**（gen_0 baseline + gen_1），在 gen_2 \"Generating synthetic data\" 阶段被终止。\n\n### Checkpoint 状态\n\n两个实验的 gen_1 checkpoint 完整保存（~5.3GB model.safetensors）：\n- `results/phase_diagram/t15_a050_s42_fp32_14b/gen_1/checkpoint/`\n- `results/phase_diagram/t15_a060_s42_fp32_14b/gen_1/checkpoint/`\n\ngen_2 目录为空（kill 发生在数据生成阶段，未写入任何文件）。\n\n### 当前状态：已自动恢复\n\n两个实验**已经被重新启动**，正在运行：\n- PID 657037 → a050 (cuda:1, 11GB, 90% util) — `--start_gen 2`\n- PID 656957 → a060 (cuda:0, 11GB, 89% util) — `--start_gen 2`\n\n**无需额外操作。** 实验已从 gen_2 恢复运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-scale-14b-t15-sigterm.md"
+}

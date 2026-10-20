@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8148dc5be4a49982ff6",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops fix gpu allocation 17855",
+  "task_key": "worker_ops_fix-gpu-allocation-17855_20260522T100543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-gpu-allocation-17855_20260522T100543_result.json",
+    "occurrence": 1,
+    "bytes": 705,
+    "sha256": "4d9dd408ba61a00093e68b9f18787ba57d7073ff648ac2cb1ab65419ccec235c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。17855 GPU 分配最终状态：\n\n| GPU | Memory | Util | 实验 | PID |\n|-----|--------|------|------|-----|\n| cuda:0 | 10.3 GB | 90% | **t15_a060 1.4B v2** (新启动, gen_2起) | 664582 |\n| cuda:1 | 11.2 GB | 90% | t15_a050 1.4B v3 (gen_2起) | 662119 |\n| cuda:2 | 29.3 GB | 89% | t10_a075 1.4B v2 | 655764 |\n| cuda:3 | 29.3 GB | 89% | t10_a060 1.4B v2 | 655841 |\n| cuda:4 | 14.2 GB | 95% | t20_a075 410M s43 | 603938 |\n| cuda:5 | 14.5 GB | 67% | t25_a045 410M s43 | 577241 |\n\n- PID 661775 (重复 t10_a050) 已 kill，cuda:0 释放并成功分配给 t15_a060\n- t15_a050 (cuda:1) 运行正常\n- Registry 已更新：`scale_14b_t15_a060_s42_fp32_v2` → RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-gpu-allocation-17855.md"
+}

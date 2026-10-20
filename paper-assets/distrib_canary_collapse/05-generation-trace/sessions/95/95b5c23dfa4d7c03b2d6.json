@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95b5c23dfa4d7c03b2d6",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code alpha sweep prep",
+  "task_key": "worker_code_alpha-sweep-prep_20260514T173608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_alpha-sweep-prep_20260514T173608_result.json",
+    "occurrence": 1,
+    "bytes": 1054,
+    "sha256": "7b9cddaeaf5c95dbd365942f853bed50fd6b00ec86a49b1d7ac97d98bd4a71f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 代码状态\n`mix_datasets` 函数已有正确的 ratio < 1.0 混合逻辑（全量 synthetic + 按比例采样 real，边界值 0/1 退化正确）。缺少 `--accumulate` 累积历史 synthetic 的支持。\n\n### 修改内容（iterative_train.py）\n1. 新增 `--accumulate` CLI 参数（`store_true`，默认 False）\n2. 主循环中新增 `synthetic_pool` 列表，`--accumulate` 时将每代 synthetic 追加并 concatenate 后传入 `mix_datasets`；默认只用当前代\n3. 更新 docstring 和日志输出\n\n### 混合逻辑说明\n\n| synthetic_ratio | --accumulate OFF | --accumulate ON |\n|---|---|---|\n| 1.0 | 纯当代 synthetic | 纯累积 synthetic pool |\n| 0.5 | 50% 当代 syn + 50% real | 50% 累积 pool + 50% real |\n| 0.0 | 纯 real baseline | 纯 real baseline |\n\nratio=1.0 行为完全向后兼容（`--accumulate` 默认 OFF，`synthetic_pool` 不参与）。\n\n### 产出\n- `artifacts/iterative_train.py` — 已修改\n- `artifacts/test_alpha_sweep.py` — dry-run 测试，9/9 通过"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-alpha-sweep-prep.md"
+}

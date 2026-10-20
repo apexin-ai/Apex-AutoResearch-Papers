@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "3ca515fa096429b894bd",
+  "project": "distrib_canary_collapse",
+  "kind": "conversation",
+  "title": "analysis 410m s44 d102",
+  "task_key": "worker_analysis_410m_s44_d102_20260522T230052",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_410m_s44_d102_20260522T230052.jsonl",
+    "occurrence": 1,
+    "bytes": 170,
+    "sha256": "6d8cf17ede852e411bdefe131249180442af7edce153814671861d0aecac4cc3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T23:01:05.090439+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 7am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_410m_s44_d102_20260522T230052"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-410m-s44-d102.md"
+}

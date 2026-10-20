@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80f2c80874ca5d6daab6",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "research track bc syncdip mauve analysis",
+  "task_key": "worker_research_track-bc-syncdip-mauve-analysis_20260522T041939",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_track-bc-syncdip-mauve-analysis_20260522T041939_result.json",
+    "occurrence": 1,
+    "bytes": 1435,
+    "sha256": "2587d75e8a72a1c0efe7c393edd7e0c60da2da56a6f9256a7df11c44b4a14a79"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果总结\n\n### Part B: Sync-Dip 假说 — **被否决**\n\n- **所有实验**（无论 α 值）的 distinct_1/distinct_2 peak_lag 均为 -1，α=0.60 无任何特殊性\n- 根因：token_entropy（canary）是**阶跃函数**行为——从 gen 0→1 瞬间下降（τ≈0.1），之后保持平坦。不存在渐进同步化\n- Mann-Whitney p=1.0，零假设不可拒绝\n- **α=0.60 的 PermG=0/8 需要其他解释**，不是时间尺度同步化\n\n### Part C: MAUVE 方差分析 — **Floor Effect 确认**\n\n| 指标 | Mean CV | Mean SNR | Near-floor% |\n|------|---------|----------|-------------|\n| MAUVE | 0.089 | 4.68 | **100%** |\n| distinct_1 | 0.139 | 6.40 | 0% |\n| distinct_2 | 0.197 | 8.20 | 0% |\n\n- **高方差假说被反转**：MAUVE 的 CV 反而最低（p≈1.0 for MAUVE > diversity）\n- **真正原因是 floor effect**：MAUVE 均值仅 0.029，100% 观测值 < 0.05。分布一旦偏离参考（gen 1+），MAUVE 就饱和在 ~0.03，没有时间梯度可供 Granger 检出\n- SNR 显著低于 diversity metrics（p=0.0002）\n- ACF1 也更低（0.55 vs 0.68/0.71），时间持续性更差\n\n### 输出文件（westd-17855）\n\n- `artifacts/syncdip_mechanism_analysis.pdf` — lag vs α 图 + decay rate 对比\n- `artifacts/mauve_variance_analysis.pdf` — CV 对比 + SNR + floor effect\n- `artifacts/syncdip_mechanism_summary.json`\n- `artifacts/mauve_variance_summary.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-track-bc-syncdip-mauve-analysis.md"
+}

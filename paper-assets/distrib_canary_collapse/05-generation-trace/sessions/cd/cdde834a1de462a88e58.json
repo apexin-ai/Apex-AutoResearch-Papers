@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cdde834a1de462a88e58",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops fix gpt2m symlinks and resubmit",
+  "task_key": "worker_ops_fix-gpt2m-symlinks-and-resubmit_20260515T120441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-gpt2m-symlinks-and-resubmit_20260515T120441_result.json",
+    "occurrence": 1,
+    "bytes": 508,
+    "sha256": "73a350a9e8aa37266b619aeaeafd077d1ac1770a302d8bd86d1fb3d5975d49d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型加载验证通过。符号链接实际上并未断裂——完整链路正常工作。\n\n**结果：**\n\n1. **方案**：无需修复，symlink 链路完好（`models/` → `snapshots/` → `blobs/`，blobs 为真实文件）\n2. **模型路径**：`/root/autodl-tmp/models/gpt2-medium`\n3. **验证**：params=354,823,168，vocab=50257，GPT-2-medium VERIFIED\n4. 目录内容为指向 HF cache snapshot 的符号链接，snapshot 文件再指向 blobs 真实文件，全链路可达"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-gpt2m-symlinks-and-resubmit.md"
+}

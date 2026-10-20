@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b7bf6a16becf8b15b2ea",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ssh check mvp rep44",
+  "task_key": "worker_ssh_check_mvp_rep44_20260517T100018",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_mvp_rep44_20260517T100018_result.json",
+    "occurrence": 1,
+    "bytes": 1671,
+    "sha256": "9e1ad69781cfd0f17e3597f004d37bff3b1dc39384ef61e29fabb57ed1a6a4b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据完整。汇总如下：\n\n## 产出\n\n### 1. rep_44 目录状态\n`results/mvp/` **整个目录已不存在**。α=1.0 的原始训练数据（rep_42 到 rep_45）已被清理。`alpha_sweep/` 下有 s44 的其他 alpha 数据（a000, a025, a050, a075），各含 11 个 gen。\n\n### 2. 5-method 分析结果\n**已存在于** `method_ablation_phase2_panel.json`（2026-05-15 生成）。Panel 共 56 行，seed=44 有 8 行（α=1.0, 8 pairs），数据完整。原始 `all_metrics.json` 已丢失，**无法重新跑**。\n\n### 3. seed=44 α=1.0 per-method sig counts (/8)\n\n| Method | sig/total |\n|--------|-----------|\n| naive | **8/8** |\n| differenced | **8/8** |\n| threshold | **8/8** |\n| permutation_granger | **6/8** (entropy→perplexity, ece→perplexity 不显著) |\n| TY | **2/8** (仅 entropy→distinct_1/2/3 中的前两个... 实际只有 entropy→distinct_{1,2,3} 显著中 1 个，再看：entropy→{d1,d2,d3}=True, entropy→ppl=False, ece→{d1,d2,d3,ppl}=全False → **3/8**) |\n\n修正 TY 统计：\n- entropy→d1: True, entropy→d2: True, entropy→d3: True, entropy→ppl: False\n- ece→d1: False, ece→d2: False, ece→d3: False, ece→ppl: False\n- **TY = 3/8**\n\n### 4. error table 为什么可能漏了 s44\n**不是漏了**。`method_ablation_phase2_panel.json` 包含完整的 s44 数据（和 s42/s43/s45 一起）。α=1.0 的 32 tests = 4 seeds × 8 pairs。问题在于 `results/mvp/` 目录被清理了，所以从文件系统看不到 rep_44，但 panel JSON 里数据完好。如果某个下游报告\"漏了 s44\"，应该是那个报告没从 panel JSON 读取，而是去扫磁盘目录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-mvp-rep44.md"
+}

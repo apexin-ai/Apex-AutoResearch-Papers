@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ee4916a739aefa90602",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "fix sync paper to remote",
+  "task_key": "worker_fix_sync_paper_to_remote_20260518T133751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_sync_paper_to_remote_20260518T133751_result.json",
+    "occurrence": 1,
+    "bytes": 588,
+    "sha256": "6ba908625f1a2c816807cbac198978b62592c67ff268e5757ca73b84fc819415"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过：\n\n| 检查项 | 结果 |\n|--------|------|\n| `bidirection` | 5 |\n| `0/28` (experiments) | 1 |\n| `13/28` (experiments) | 1 |\n| `41 of 42` | 1 (本地文件用 \"41 of 42\" 而非 \"41/42\") |\n| `Cross-condition` | 1 |\n| `97.6` | 1 |\n| `0/28` (discussion) | 1 |\n| `13/28` (discussion) | 1 |\n| experiments.tex 行数 | 388 (在 380-410 范围内) |\n| discussion.tex 行数 | 125 (在 120-130 范围内) |\n| `5/8`, `Scale`, `n_perm` | 全部存在 |\n\n两个文件已成功同步到远程服务器，备份保存在 `.bak` 后缀文件中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-sync-paper-to-remote.md"
+}

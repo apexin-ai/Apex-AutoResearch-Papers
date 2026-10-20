@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "641eba5dfc77d07f9ecc",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops restart 14b t10a075v2 17855c2",
+  "task_key": "worker_ops_restart-14b-t10a075v2-17855c2_20260522T130709",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_restart-14b-t10a075v2-17855c2_20260522T130709_result.json",
+    "occurrence": 1,
+    "bytes": 369,
+    "sha256": "3f055e821d87577983ff8ac6c5e5aa249df84483b32acb8f16ad07ad373bb15c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **实验**: scale_14b_t10_a075_s42_fp32_v2\n- **服务器**: westd-17855, cuda:2\n- **PID**: 679944, tmux session: `scale_14b_s42`\n- **状态**: 已从 gen_5 开始运行（Generation 5/10），正在生成 synthetic data\n- **日志**: `results/phase_diagram/t10_a075_s42_fp32_14b/train_restart_gen5.log`\n- Registry 已更新为 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-restart-14b-t10a075v2-17855c2.md"
+}

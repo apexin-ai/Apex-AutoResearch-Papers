@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af1cc23db3975ed8b415",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis transfer entropy",
+  "task_key": "worker_analysis_transfer_entropy_20260518T140339",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_transfer_entropy_20260518T140339_result.json",
+    "occurrence": 1,
+    "bytes": 1150,
+    "sha256": "167af999f21bee95b6f1dd7ce95a7d4eb42878c56e2a5290029490db5b02efb3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析全部完成。结果总结：\n\n## 结果\n\n**12 个 run × 8 pairs × 双向 = 192 个 TE 测试，BH FDR 校正后 0 个显著。**\n\n关键发现：\n\n| 现象 | 解读 |\n|------|------|\n| 所有 TE p-values > 0.05（多数 > 0.5） | T=11 下 binning TE 根本没有足够的统计功效 |\n| ECE 在 a100_s42 上 TE=0.0 | 单调序列 → 分 bin 后转移完全确定性，无法检测额外信息流 |\n| token_entropy pairs 方向性反转（reverse > forward） | 估计噪声主导，无法可靠判断因果方向 |\n| 与 Permutation Granger 一致率 46/88 = 52.3% | 接近随机水平，TE 和 Granger 在此处结论无关联 |\n\n**这本身是有价值的方法敏感性证据**：非参数 TE 在 T=11 的极短时间序列上不具备检测因果方向的能力，支持了项目选择参数化 Granger 方法的合理性。\n\n### 产出文件\n\n`/root/autodl-tmp/distrib_canary_collapse/artifacts/transfer_entropy_analysis/`:\n- 12 个 `te_results_*.json`（每个 run 的详细结果）\n- `te_summary.json`（跨 run 汇总）\n- `te_vs_granger_comparison.md`（与 Permutation Granger 对比表）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-transfer-entropy.md"
+}

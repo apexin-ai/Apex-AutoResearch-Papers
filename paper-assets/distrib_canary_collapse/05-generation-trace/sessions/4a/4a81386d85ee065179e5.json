@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a81386d85ee065179e5",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops latex compile check",
+  "task_key": "worker_ops_latex_compile_check_20260524T051305",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_latex_compile_check_20260524T051305_result.json",
+    "occurrence": 1,
+    "bytes": 447,
+    "sha256": "54c2e6d528869e40a9f4c2da050c52b841a76b478f9ae18bb5811c10d9d1983f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n编译结果：✅ 成功\nUndefined references: 无\nLaTeX Errors: 无\n其他 Warnings:\n- `h` float specifier changed to `ht`: 11 处（无害）\n- Overfull \\hbox: 9 处（lines 7-10 溢出 104pt, lines 1139-1151 溢出 187pt 较严重）\n- Underfull \\hbox: 63 处\n- BibTeX: 无警告，正常完成\n```\n\n所有指定的 appendix label（app:mmct, app:shapley 等）均无 undefined reference。编译干净通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-latex-compile-check.md"
+}

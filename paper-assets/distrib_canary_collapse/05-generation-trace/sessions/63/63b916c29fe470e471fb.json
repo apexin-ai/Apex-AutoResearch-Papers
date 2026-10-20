@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63b916c29fe470e471fb",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code moment cascade methodology unify",
+  "task_key": "worker_code_moment_cascade_methodology_unify_20260520T182337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_moment_cascade_methodology_unify_20260520T182337_result.json",
+    "occurrence": 1,
+    "bytes": 515,
+    "sha256": "ea428ce1ba54facc5aa081bb8352dfa5f79dd43acf9cb1841607886172b86c30"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**总结**：\n- 两套脚本都已定位：`scripts/moment_cascade_analysis.py`（within-experiment，有问题）和 `artifacts/moment_cascade/moment_cascade_analysis.py`（baseline-comparison，正确）\n- 服务器和本地的 within-experiment 脚本均已添加 DEPRECATED 标记\n- 已有结果 `artifacts/moment_cascade/moment_cascade_analysis.json` 由 baseline-comparison 方法生成，**无需重跑**\n- 审计报告已写入 `artifacts/moment_cascade_methodology_audit.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-moment-cascade-methodology-unify.md"
+}

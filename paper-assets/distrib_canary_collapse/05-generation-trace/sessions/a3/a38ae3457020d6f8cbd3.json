@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "a38ae3457020d6f8cbd3",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "paper d219 final framing fix",
+  "task_key": "worker_paper_d219_final_framing_fix_20260524T080020",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d219_final_framing_fix_20260524T080020.log",
+    "occurrence": 1,
+    "bytes": 1353604,
+    "sha256": "9cfb41413a3142947bd473c1600f36a024805c707e34c93fd52cdbe4d6435cd5"
+  },
+  "statistics": {
+    "messages": 137,
+    "user_turns": 0,
+    "tool_calls": 50,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 33,
+      "tool_call": 50,
+      "tool_result": 50,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 137,
+      "chunks": [
+        {
+          "path": "a38ae3457020d6f8cbd3-part-0001.json",
+          "message_count": 84
+        },
+        {
+          "path": "a38ae3457020d6f8cbd3-part-0002.json",
+          "message_count": 29
+        },
+        {
+          "path": "a38ae3457020d6f8cbd3-part-0003.json",
+          "message_count": 24
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-d219-final-framing-fix.md"
+}

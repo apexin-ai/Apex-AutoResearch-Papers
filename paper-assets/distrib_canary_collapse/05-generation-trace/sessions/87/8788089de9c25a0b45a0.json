@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8788089de9c25a0b45a0",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "investigate ty diff cross script",
+  "task_key": "worker_investigate_ty_diff_cross_script_20260520T044639",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_investigate_ty_diff_cross_script_20260520T044639_result.json",
+    "occurrence": 1,
+    "bytes": 1765,
+    "sha256": "421318bcd46bde3fe4ba7bd46332fcb43e997e12920c486051652fb0aab387b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`register_artifact` 工具不可用。报告已写入 artifacts 目录。\n\n调查完成。以下是核心发现：\n\n---\n\n## Root Cause 总结\n\n**3 个关键 root cause 导致 TY/diff 跨脚本不一致：**\n\n### RC-1: DOWNSTREAMS 列表不同\n- `run_5method_s43.py` 用 `perplexity`，`batch_analysis.py` 用 `mauve`\n- 8 pair 中 2 pair 在完全不同的数据上计算\n\n### RC-2: Direction check 符号反转（最大影响）\n- `run_5method_s43.py`: `peak_lag > 0` — **错误**，违反 C009/M035\n- `batch_analysis.py`: `peak_lag < 0` — 正确\n- 实测: peak_lag>0 → 0/8，peak_lag<0 → 6/8。diff_xcorr 核心计算完全一致，计数差异 100% 来自方向判定\n\n### RC-3: TY Granger 实现完全不同（4 处分歧）\n1. **ADF regression**: `\"c\"` vs `\"ct\"` → d_max 判定不同\n2. **`_determine_d_max` bug (batch_analysis)**: T=10 时 ADF 在差分后序列上因 maxlag 违反 `regression=\"ct\"` 约束而 crash，异常被静默捕获返回 d_max=1 — 不是真正的平稳性判定\n3. **Lag 选择**: AIC 搜索 {1,2} vs 固定 1\n4. **检验统计量**: F-test vs Wald χ²（T≤11 时差异巨大）\n\n实测 TY 计数：a060_s43 上 run_5method=2/8 vs batch_analysis=4/8，6/8 pair 结论相反\n\n### PermG 一致的原因\n代码路径完全相同、参数相同、不依赖 ADF/direction filter\n\n## 影响与建议\n- **run_5method_s43.py 应废弃**（方向错误、downstreams 错误、硬编码路径）\n- **batch_analysis.py 的 `_determine_d_max` 需修 bug**（maxlag 未考虑 ct 约束）\n- **K≥3 投票**：TY 不可信，短期建议仅基于 PermG + threshold_onset + diff_xcorr (batch_analysis)\n\n报告位于: `artifacts/ty_diff_investigation/cross_script_comparison.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-ty-diff-cross-script.md"
+}

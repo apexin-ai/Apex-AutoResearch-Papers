@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "30e93894914a121f6fa2",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "research verify 3 citations calabrese deshpande titus",
+  "task_key": "worker_research_verify_3_citations_calabrese_deshpande_titus_20260520T095859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_verify_3_citations_calabrese_deshpande_titus_20260520T095859_result.json",
+    "occurrence": 1,
+    "bytes": 1564,
+    "sha256": "150da86cee85910a3ffeea5b15486a6cb0d47b480b53f45a09ce9d4909bd0305"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三篇论文**已全部存在**于 `references.bib` 中，且信息经 web 交叉验证均准确。无需追加。\n\n---\n\n**验证结果：**\n\n1. **Calabrese & Baldwin (2003): VERIFIED** — 已存在（行 384-393）\n   - 标题: \"Toxicology Rethinks Its Central Belief\"\n   - Venue: Nature, 421(6924), 691–692\n   - DOI: `10.1038/421691a`\n   - BibTeX key: `calabrese2003hormesis`\n\n2. **Deshpande, Santhanam & Hu (2011): VERIFIED** — 已存在（行 396-404）\n   - 标题: \"Instantaneous and Causal Connectivity in Resting State Brain Networks Derived from Functional MRI Data\"\n   - Venue: NeuroImage, 54(2), 1043–1052\n   - DOI: `10.1016/j.neuroimage.2010.09.024`\n   - BibTeX key: `deshpande2010instantaneous`\n   - 注意: 用户线索说 2010，实际出版年为 2011（2010年9月接收）。bib key 写 2010、year 字段写 2011，均可接受。另外搜索结果显示更直接关于 zero-lag Granger failure 的是同一作者的 IEEE TBME 2010 论文（\"Assessing and compensating for zero-lag correlation effects...\"），当前 bib 中的这篇也涉及 instantaneous connectivity 与 Granger causality 的关系，用途吻合。\n\n3. **Titus & Watson (2020): VERIFIED** — 已存在（行 406-414）\n   - 标题: \"Critical Speeding Up as an Early Warning Signal of Stochastic Regime Shifts\"\n   - Venue: Theoretical Ecology, 13, 449–457\n   - DOI: `10.1007/s12080-020-00451-0`\n   - BibTeX key: `titus2020speeding`\n\n**结论：** 三篇均已在 `references.bib` 中，信息准确，无需修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-verify-3-citations-calabrese-deshpande-titus.md"
+}

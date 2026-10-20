@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d06495162345cbb68edf",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops check all running status",
+  "task_key": "worker_ops_check_all_running_status_20260521T014054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_all_running_status_20260521T014054_result.json",
+    "occurrence": 1,
+    "bytes": 1418,
+    "sha256": "0872421e3f711192db7ac55465b71fa1dc35901ed8fd823e5d767016d68892d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇总\n\n### westd-17855 (6x RTX PRO 6000 Blackwell 96GB)\n\n| 实验 | 状态 | 进度 |\n|------|------|------|\n| `alpha_sweep_a048_s42_fp32` | STILL_RUNNING | Gen 0/10 (baseline training) |\n| `t20_a025_s42_fp32` | STILL_RUNNING | Gen 13/20 (generating synthetic data) |\n| `alpha_sweep_a070_s42_fp32` | STILL_RUNNING | Gen 0/10 (baseline, saving dataset) |\n| `scale_69b_a100_s43_bf16` | STILL_RUNNING | Gen 2/10 (generating synthetic data) |\n| `gen_gpt2m_a100_s43` | STILL_RUNNING | Gen 6/10 (training 20%, 1035/5000 steps) |\n| `alpha_sweep_a010_s42_bf16` | STILL_RUNNING | Gen 7/10 (generating synthetic data) |\n\nGPU 占用：6 GPU 全部在用（22/15/12/71/15/10 GB），利用率 93/66/0/92/96/45%。GPU2 暂时 0% 可能在生成/评估阶段。\n\n### westd-19828 (2x RTX PRO 6000 Blackwell 96GB)\n\n| 实验 | 状态 | 进度 |\n|------|------|------|\n| `scale_14b_a050_s42_bf16` | STILL_RUNNING | Gen 5/10 (training 88%, 4381/5000 steps) |\n| `generalize_pythia1b_c4_a100_s43_v2` | STILL_RUNNING | Gen 4/10 (training 20%, 983/5000 steps) |\n\nGPU 占用：2 GPU 全部在用（19/24 GB），利用率 95/97%。\n\n### 总结\n\n- **STILL_RUNNING**: 8\n- **COMPLETED**: 0\n- **FAILED**: 0\n\n所有 8 个实验均在正常运行中。进度最快的是 `t20_a025_s42_fp32`（13/20）和 `alpha_sweep_a010_s42_bf16`（7/10）。两台服务器共 8 GPU，全部满载。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-all-running-status.md"
+}

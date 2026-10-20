@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a5943e31af83363f6010",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops urgent restart t15a050 cuda1",
+  "task_key": "worker_ops_urgent-restart-t15a050-cuda1_20260522T103438",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent-restart-t15a050-cuda1_20260522T103438_result.json",
+    "occurrence": 1,
+    "bytes": 305,
+    "sha256": "484428de623d0521190417cb9b0f92003dd38e1c2d810ce6c8bbb65be55cfc3c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **旧实验** `scale_14b_t15_a050_s42_fp32`: 标记 failed，备注 Broken pipe at gen 2\n- **新实验** `scale_14b_t15_a050_s42_fp32_v3`: RUNNING，PID 667924，westd-17855 cuda:1，从 gen 2 恢复（gen 0-1 完整复用）\n- GPU 1 已确认占用 10.3 GB / 89% 利用率"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-restart-t15a050-cuda1.md"
+}

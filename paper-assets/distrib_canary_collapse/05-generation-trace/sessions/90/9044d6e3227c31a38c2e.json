@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9044d6e3227c31a38c2e",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code d027 alpha050 method desc fix",
+  "task_key": "worker_code_d027_alpha050_method_desc_fix_20260515T111714",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d027_alpha050_method_desc_fix_20260515T111714_result.json",
+    "occurrence": 1,
+    "bytes": 1468,
+    "sha256": "d658910b30e58f1810947d755a9751bbc0d258e11e902dbe82ba3ab1e2f50e0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。总结：\n\n### 修改内容\n\n**d027_report.md** — 2 处修正：\n1. **Line 157 表格行**：`仅 naive_xcorr 通过` → 明确列出 3/5 方法通过（naive, differenced, threshold），2/5 归零（permG, TY），未达 ≥4/5 共识\n2. **Line 164 发现描述**：`唯一在 α=0.50 通过的方法是 naive_pearson，严格方法（differenced_xcorr, TY, permG）全部归零` → 修正为 3/5 correlation/rule-based 方法通过 vs 2/5 因果检验方法归零\n\n**paper_framing.md** — 2 处修正：\n1. **Constraint #21**：删除了将 differenced_xcorr 归入\"严格方法\"的错误分类（原文 `differenced 0/8` 与事实 `differenced 8/8` 矛盾），修正术语为\"因果检验方法\"（仅 TY, permG）\n2. **Constraint #22**：`naive_xcorr 100% sig vs strict 0% sig` → `correlation/rule-based 方法 100% sig vs 因果检验方法 0% sig`\n\n**consensus_framework.md** — 无需修改。两个副本（`artifacts/consensus_framework/` 和 `artifacts/_project/report/`）内容一致，术语使用正确（§6.1 line 225 \"the two strict methods (permG, TY)\" 仅指因果方法）。\n\n### 术语统一结果\n所有修改后的文件统一使用：\n- **correlation/rule-based 方法**：naive_pearson, differenced_xcorr, threshold_onset\n- **因果检验方法（causal methods）**：permutation_granger, toda_yamamoto\n- \"严格方法\"/\"strict methods\" 不再用于指代 differenced_xcorr"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d027-alpha050-method-desc-fix.md"
+}

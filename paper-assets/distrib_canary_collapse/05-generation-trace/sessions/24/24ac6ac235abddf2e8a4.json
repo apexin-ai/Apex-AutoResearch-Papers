@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24ac6ac235abddf2e8a4",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "figure regime map v1",
+  "task_key": "worker_figure_regime-map-v1_20260515T133952",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_regime-map-v1_20260515T133952_result.json",
+    "occurrence": 1,
+    "bytes": 526,
+    "sha256": "d1541fbe2a075f22f669aba92ba01a44234d3d6b0aa189c841d4689b2848d2a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两张 figure 已生成并注册：\n\n- **`regime_map_fdr.pdf`** — 4 条 Granger 方向的 -log10(p_FDR) vs α 曲线，灰带标出 α=0.75 detectability boundary，entropy→d1 的 p=0.054 边界点有空心 marker 标注\n- **`consensus_heatmap.pdf`** — 5×5 α×method 显著率热图，α=0.75 TY 缺失以灰色 NA 标注，清晰展示 naïve/differenced/threshold 全 sig vs perm_granger/TY 保守的对比模式\n\n脚本：`scripts/plot_regime_map.py`，纯 matplotlib+seaborn，无 GPU 依赖。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-regime-map-v1.md"
+}

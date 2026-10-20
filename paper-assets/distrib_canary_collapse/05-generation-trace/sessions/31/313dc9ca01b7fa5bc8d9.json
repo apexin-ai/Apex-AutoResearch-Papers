@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "313dc9ca01b7fa5bc8d9",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ssh a050 table1 metrics",
+  "task_key": "worker_ssh_a050_table1_metrics_20260517T065312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_a050_table1_metrics_20260517T065312_result.json",
+    "occurrence": 1,
+    "bytes": 1003,
+    "sha256": "d68d7f8a307069f1eb1b5f4b64a2247ce0d6891ffb2bdb659fa906e40ed7d7d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果如下：\n\n## α=0.50 (3 seeds) drift mean±std\n\n| Metric | Drift |\n|--------|-------|\n| Token entropy | −18.0 ± 0.5% |\n| ECE | +822.6 ± 18.3% |\n| Distinct-1 | −37.1 ± 0.4% |\n| Distinct-2 | −50.4 ± 1.0% |\n| Perplexity | +21.0 ± 0.1% |\n\n## 原始值（验证用）\n\n**gen_0 值三 seed 一致**（同一 base model）：\n- token_entropy: 3.234195\n- ece: 0.010805\n- distinct_1: ~0.0982\n- distinct_2: ~0.5148\n- perplexity: 26.948959\n\n**gen_10 值（per seed）：**\n\n| Metric | s42 | s43 | s44 |\n|--------|-----|-----|-----|\n| token_entropy | 2.6318 | 2.6707 | 2.6491 |\n| ece | 0.1019 | 0.0971 | 0.1001 |\n| distinct_1 | 0.0616 | 0.0624 | 0.0614 |\n| distinct_2 | 0.2513 | 0.2617 | 0.2525 |\n| perplexity | 32.644 | 32.633 | 32.578 |\n\n注：gen_0 的 token_entropy/ece/perplexity 三 seed 完全相同（共享初始模型），distinct_1/distinct_2 有微小差异（来自生成采样的 seed 不同）。跨 seed 方差很小，结果稳定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-a050-table1-metrics.md"
+}

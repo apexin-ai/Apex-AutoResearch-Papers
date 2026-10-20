@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "710b7fe803842bcac3d7",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code fix mix datasets bug",
+  "task_key": "worker_code_fix-mix-datasets-bug_20260514T175608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-mix-datasets-bug_20260514T175608_result.json",
+    "occurrence": 1,
+    "bytes": 939,
+    "sha256": "9f2a36adae359796eab2235026946f7ae3b8d5eacf492815bd4f65bf82d252c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "12/12 全部通过。\n\n**修改内容：**\n\n1. **`iterative_train.py` — `mix_datasets` 逻辑反转**（第103-125行）\n   - 旧：保留全部 synthetic，subsample real → 低 α 下 real 不足时比例静默偏移\n   - 新：保留全部 real，subsample synthetic → ratio 精确，synthetic 不足时截断（安全退化）\n   - 添加了实际比例的日志打印\n   - ratio=1.0/0.0 边界处理不变\n\n2. **`test_alpha_sweep.py` — 更新内联副本 + 新增 3 个测试**\n   - 内联 `mix_datasets` 同步为新逻辑\n   - 调整现有测试的数据量以匹配新语义（real 全量保留）\n   - 新增 `test_ratio_025_precise`：real=50, syn=50, ratio=0.25 → syn=16, actual≈0.242\n   - 新增 `test_ratio_075_truncated`：real=50, syn=50, ratio=0.75 → syn 不够截断到 50, actual=0.50\n   - 新增 `test_accumulate_ratio_stable`：3 代累积, ratio=0.50, 每代比例稳定=0.50"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-mix-datasets-bug.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "db77194abe88313d1d30",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ssh final sync compile v2",
+  "task_key": "worker_ssh_final_sync_compile_v2_20260517T065732",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_final_sync_compile_v2_20260517T065732_result.json",
+    "occurrence": 1,
+    "bytes": 184,
+    "sha256": "0997620ad741e4d0be6a62a1973423d6a360616eece80de147cd3cfd004f5614"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| 项目 | 结果 |\n|---|---|\n| 同步文件数 | 13 (12 .tex + 1 .bib) |\n| Errors | 0 |\n| Undefined citations | 0 |\n| 总页数 | 22 |\n| 编译状态 | **pass** |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-final-sync-compile-v2.md"
+}

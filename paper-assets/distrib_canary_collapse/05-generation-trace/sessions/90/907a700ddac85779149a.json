@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "907a700ddac85779149a",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "knowledge literature map update",
+  "task_key": "worker_knowledge_literature-map-update_20260515T044254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_literature-map-update_20260515T044254_result.json",
+    "occurrence": 1,
+    "bytes": 620,
+    "sha256": "289b9ca667bc0f38b68ed44cb9555ff20d9de7a04066bfad5f7b7bd25072c9c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两篇论文都已经存在于 `literature_map.yaml` 中：\n\n1. **gambetta2024surplexity** — 在 `canary-metrics` 分类下，role 为 `direct-competitor`，包含 surplexity 定义、semantic network 方法、过滤策略等 key findings。\n2. **schaeffer2025position** — 在 `core-collapse` 分类下（POSITION / SURVEY / EPISTEMICS 区段），role 为 `background`，包含 8 种 collapse 定义、假设与现实不符等 key findings。\n\n无需重复添加。如果需要更新现有条目的内容（比如修改 role、补充 relevance_to_us 中关于伪回归的论点），请告知。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-literature-map-update.md"
+}

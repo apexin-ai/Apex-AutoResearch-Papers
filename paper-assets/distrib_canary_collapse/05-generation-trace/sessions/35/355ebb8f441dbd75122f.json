@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "355ebb8f441dbd75122f",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "resubmit alpha sweep a005 s42 v3",
+  "task_key": "worker_resubmit_alpha_sweep_a005_s42_v3_20260519T000138",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_resubmit_alpha_sweep_a005_s42_v3_20260519T000138_result.json",
+    "occurrence": 1,
+    "bytes": 361,
+    "sha256": "abed93be8da0bc589e445b50bc8e05cb131f841b423e3c4d617354110b658cd3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **实验**: `alpha_sweep_a005_s42` (v3, retry_count=2)\n- **服务器**: westd-17855 cuda:3\n- **tmux session**: `alpha_sweep_a005_s42_v3`\n- **日志**: `~/runs/distrib_canary_collapse/alpha_sweep_a005_s42_v3.log`\n- **状态**: RUNNING，已进入 Generation 0，命令包含完整 conda 激活\n- **Registry**: spec 已更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/resubmit-alpha-sweep-a005-s42-v3.md"
+}

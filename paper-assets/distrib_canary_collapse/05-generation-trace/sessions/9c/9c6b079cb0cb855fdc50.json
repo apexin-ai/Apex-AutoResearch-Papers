@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c6b079cb0cb855fdc50",
+  "project": "distrib_canary_collapse",
+  "kind": "history",
+  "title": "agent / loop_3_1778834841.md",
+  "task_key": "loop_3_1778834841",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778834841.md",
+    "occurrence": 1,
+    "bytes": 3768,
+    "sha256": "ada1ef9f08cef797c647c88f1af3a769f87bbdfa53c97cc834887c874dea71fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-15T05:17:45+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 cuda:0, cuda:1 on westd-19828。其他 GPU/服务器一律 push back Director\n- α-sweep 各实验 output_dir 严格隔离：`results/alpha_sweep/a{NNN}_s{seed}`，之前 a025 因旧进程未 kill 导致目录冲突数据腐败（v2 failed），必须确认旧进程死透再起新实验\n- submit_training_job 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不能假设 .venv 存在\n- 脚本内 GPU 编号始终从 0 开始（框架自动注入 CUDA_VISIBLE_DEVICES）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19828，工作目录 `/root/autodl-tmp/distrib_canary_collapse`\n- Python：`/root/miniconda3/bin/python`（conda base env）\n- 模型：EleutherAI/pythia-410m（HF cache `/root/autodl-tmp/.hf_cache`）\n- 数据：`/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k`（5000 条）\n- HF 环境变量：`HF_HOME=/root/autodl-tmp/.hf_cache`, `HF_HUB_DISABLE_XET=1`, `HF_ENDPOINT=https://hf-mirror.com`\n- 活跃进程：alpha_sweep_a025_s42_v3 (PID 53069, cuda:1, tmux session)\n- cuda:0 空闲（alpha_sweep_a000_s42 刚跑完）\n\n### 3. 📊 当前状态\n**刚做完**：收到 alpha_sweep_a000_s42 (α=0.0 null control) 的 CRON 完成回调，已派 Worker `worker_analysis_alpha_sweep_a000_s42_20260514T233755` 去 SSH 分析结果，Worker 正在运行，**尚未回调**。\n\n**Registry 状态**：\n- `alpha_sweep_a000_s42` — ANALYZING，等 Worker 分析完更新到 DONE\n- `alpha_sweep_a025_s42_v3` — RUNNING on cuda:1（α=0.25，v3 修复版）\n- PREPARING（6 个）：a050_s42, a075_s42, a010_s42, a060_s42, plan_006_s42, plan_006_s43\n\n**等待中**：\n- Worker 回调：`worker_analysis_alpha_sweep_a000_s42_20260514T233755`\n- alpha_sweep_a025_s42_v3 的 cron 完成回调\n- Director 未对 α-sweep 剩余实验做显式分配（但 cuda:0 已空闲，应提请分配）\n\n### 4. 📋 待办\n- Worker 分析回调到达 → 读 conclusion：success 则更新 registry+report.md+汇报 Director（null control 验证通过，α-sweep 基线确立）；negative 则走 red-section Framing 提案\n- cuda:0 空闲 → 向 Director 汇报时请求批准在 cuda:0 提交下一个 α-sweep 实验（优先 a050_s42 或 a010_s42）\n- alpha_sweep_a025_s42_v3 完成回调 → 同样派 Worker 分析，与 a000 结果对比（a025 有 canary signal 吗？）\n- α-sweep 首批 (a000+a025) 两点完成 → 可以开始画 regime map 趋势草图，plan_002 Phase 2 前置准备\n- plan_006 (extended 20-gen) — 代码 analyze_extended.py 已就绪，等 GPU 窗口提交\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- D013-D019：TY 降级为辅助（T=10 power 仅 5-20%），差分 Granger 成为主力分析方法\n- D017/D018：canary→perplexity 确认为伪回归（差分后 F→0），perplexity channel 从 primary claim 中移除\n- D019/D020：ECE 升级为 co-primary canary；Claim 1 = token_entropy + ECE → diversity collapse 的 Granger-causal precedence\n- 当前 Claim 1 证据：cross-corr lag=-1 (|r|>0.99, 4 seed) + 差分 Granger (F=71-7643, FDR q<0.05, 24/24)\n\n**易错点**：\n- α=0.0 null control 预期：perplexity 应稳定（无 collapse），canary 无趋势。如果出现意外 collapse，说明 collapse 不完全源于合成污染，需要 Framing 调整——但这个可能性很低\n- α-sweep 实验之间共享同一服务器两张卡，**必须确认前一个实验进程完全退出后再起新实验**（a025 v1→v2 的教训）\n- plan_002 Phase 2 依赖 α-sweep 数据，不要在 α-sweep 只有 1-2 个点时就跑 pooled panel\n- 目标 venue AAAI 2027 (~Aug 2026)，GPU 预算 P0 约 57h，已用 ~8.4h\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778834841.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61cbd3c9a8886d66498d",
+  "project": "distrib_canary_collapse",
+  "kind": "history",
+  "title": "agent / loop_16_1779479943.md",
+  "task_key": "loop_16_1779479943",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1779479943.md",
+    "occurrence": 1,
+    "bytes": 5691,
+    "sha256": "fd650aa7b4c3905c51de59cff99c7ac46f3faa6b75ad330f36f53cab8260805e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-22T01:05:22+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-17855 cuda:0-5, westd-19828 cuda:0-1。其他 GPU 不可用\n- fp32 主轴：≤3B 模型一律 fp32（不传 --bf16），Table 7 和 dose-response map 只用 fp32 数据\n- 权威分析脚本：`run_5method_analysis_d102.py`（D120 修复版）。`run_5method_s43.py` 已废弃（方向 bug + downstreams 错误）\n- PermG 方向约定：canary leads = peak_lag < 0 = forward（C009/M035）\n- MMCT 权重模式：uniform_fwd（D097 决策，不用 wpair）\n- T=20 predict-then-verify：预测已 git lock-in（commit bad72cc），观测结果已全部验证完毕，不能事后修改预测\n- D143: TY=7/8 \"smoking gun\" 已撤回（d_max artifact）\n- `read_registry` 工具有 bug：只返回 11/143 个实验且 RUNNING 列表错误。**必须用 python3 直接解析 registry.yaml 获取真实状态**\n\n### 2. 🖥️ 基础设施快照\n- **westd-17855**: 6× RTX PRO 6000 Blackwell (98GB)\n  - 工作目录: `/root/autodl-tmp/distrib_canary_collapse/`\n  - Python: `/root/miniconda3/bin/python`（conda base）\n  - 激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n  - 模型: `/root/autodl-tmp/models/` + `/root/autodl-tmp/.hf_cache/`\n  - 数据: `data/wikitext103_5k`\n  - HF_HOME: `/root/autodl-tmp/.hf_cache`, TRANSFORMERS_OFFLINE=1\n- **westd-19828**: 2× RTX PRO 6000 Blackwell (98GB)，同样目录结构和环境\n- 活跃 cron: 仅 `scale_69b_a100_s43_bf16`（reconcile 确认）。其余 7 个 RUNNING 实验**无 cron 监控**\n- iterative_train.py md5: `5b37837e7a6378f42bcb740f8f5e4773`\n\n### 3. 📊 当前状态\n**刚做完**：Session #16 初始化。发现交接严重过时（描述的 T=20 实验全部已 DONE）。直接从 registry.yaml 原文件重建真实状态。已向 Director 发送初始化报告。已 spawn ops worker (`worker_ops_verify_running_experiments_20260521T090138`) 去两台服务器 SSH 验证 8 个实验的实际进程状态。\n\n**8 个 RUNNING 实验（registry 状态，进程是否存活待 ops worker 确认）：**\n| exp_id | 服务器 | GPU | 用途 |\n|--------|--------|-----|------|\n| alpha_sweep_a000_s47_fp32 | 17855 | cuda:0 | FPR null seed #6 |\n| gen_gpt2m_s43_fp32 | 17855 | cuda:1 | GPT-2m cross-seed fp32 |\n| alpha_sweep_a000_s45_fp32 | 17855 | cuda:2 | FPR null seed #4 |\n| scale_69b_a100_s43_bf16 | 17855 | cuda:3 | Pythia-6.9B cross-seed (唯一有 cron) |\n| alpha_sweep_a052_s43_fp32 | 17855 | cuda:4 | α_c 以上 cross-seed |\n| alpha_sweep_a046_s43_fp32 | 17855 | cuda:5 | α_c 以下 cross-seed |\n| alpha_sweep_a000_s48_fp32 | 19828 | cuda:0 | FPR null seed #7, pid=656188 |\n| alpha_sweep_a000_s46_fp32 | 19828 | cuda:1 | FPR null seed #5 |\n\n**1 个 PREPARING**: qwen35_dryrun_launch（无 hypothesis）\n\n**活跃 CPU Worker（2 个）：**\n- `worker_analysis_specification_curve` — Specification Curve Analysis（方向 2），started 08:58\n- `worker_analysis_detection_lower_bound` — Theoretical Detection Lower Bound（方向 4），started 08:38\n\n**等待中**：\n- ops worker 回调（验证 8 个实验实际进程状态）\n- Director 对初始化报告的回复（问了 Phase Diagram 优先级 + registry 工具 bug）\n\n### 4. 📋 待办（条件触发式）\n- **ops worker 回调到达** → 读 `artifacts/server_status_check_20260521.md`，对每个已完成但 registry 仍 RUNNING 的实验：spawn 分析 worker 跑 `run_5method_analysis_d102.py` → update_registry(conclusion) → 汇报 Director。对仍在跑的实验注册 cron\n- **null seed 实验 (s45/s46/s47/s48) 全部完成** → 汇总 FPR：目标 0/N_eff（N_eff 受 ICC 影响，D160 结论 ICC=1.0 → N_eff=3），更新 C1 claim 强度\n- **a046_s43 + a052_s43 完成** → 与 s42 对比验证 phase boundary cross-seed 稳定性。a046(below α_c) 应=0/8, a052(above) 应>0/8\n- **gen_gpt2m_s43_fp32 完成** → 跑 5-method 分析，与 s42 fp32 (PermG=6/8) 对比，确认 GPT-2m cross-seed 一致性\n- **scale_69b_a100_s43_bf16 完成** → 与 s42 (PermG=7/8, K≥3=8/8) 对比，确认最强 Wiki 模型可复现\n- **GPU 释放** → Phase Diagram (方向 1) 是 ROADMAP 最高价值方向，需 T=5/15/25 × 多个 α 点\n- **spec_curve / lower_bound worker 回调** → 整合结果到论文 narrative\n- **Director 回复** → 按指示行动\n\n### 5. 🎯 战略上下文\n- **项目阶段**: \"Mapping the Detectability Landscape of Iterative Model Collapse\"，target EMNLP 2026 ARR June (~24 days)\n- **Reframe 已批准** (D159): 从\"方法论文\"转为\"现象发现论文\"。4 个突破方向全部用户批准并行\n- **T=20 全部完成**: 6/6 success。关键发现——α=0.45 predicted 0/8 observed 5/8（blind zone 是 power issue 不是 fundamental）；α=0.60 predicted 3/8 observed 0/8（sync-dip structural, 不随 T 改善）\n- **4 方向进展**: (1) Phase Diagram 等 GPU (2) Spec Curve worker 运行中 (3) TE/MI 已结论 D162 弱，不作通用机制 (4) Lower Bound worker 运行中\n- **143 实验，134 DONE**（93 success / 4 negative / 7 failed / 30 killed）\n- **易错点**:\n  1. `read_registry` 工具返回错误数据——必须用 python3 解析 registry.yaml 原文件\n  2. 大多数 RUNNING 实验 pid=?，7/8 无 cron——ops worker 回调是第一优先级\n  3. bf16 vs fp32 差异巨大（bf16 完全消除 PermG 信号），scale_69b 是 bf16 不是 fp32\n  4. 1.4B seed variance 大（s42=2/8 vs s43=6/8），不从单 seed 下结论\n  5. sync-dip [0.55,0.65] 是结构性的，T=20 也打不穿——不要期望更多 generation 能解决\n  6. 废弃的 `run_5method_s43.py` 有方向 bug，只用 `run_5method_analysis_d102.py`\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1779479943.md"
+}

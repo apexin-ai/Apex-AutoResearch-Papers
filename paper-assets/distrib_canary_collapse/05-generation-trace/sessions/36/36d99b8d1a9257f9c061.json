@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "36d99b8d1a9257f9c061",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops submit interv pred a075 fp32 v5",
+  "task_key": "worker_ops_submit_interv_pred_a075_fp32_v5_20260519T114857",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit_interv_pred_a075_fp32_v5_20260519T114857_result.json",
+    "occurrence": 1,
+    "bytes": 510,
+    "sha256": "a2182460f6211dffbcbd59169fbc179f0e30b4e4abda2bc822b88d00b4ed7ce0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:3 正在跑 `a025_s43_fp32`（α=0.25 seed 43 alpha sweep），已运行约 232 分钟。\n\n**无法提交**：cuda:3 被占用，按 C004 约束不能 kill 正在运行的实验。\n\n选项：\n1. **等 a025_s43_fp32 跑完后再提交**（看进度判断剩余时间）\n2. **换一张空闲 GPU**（但目前 6 张卡全被占用）\n3. **提交到其他服务器**（如 westd-19828）\n\n需要我检查 a025_s43_fp32 的进度（跑到第几个 generation），还是换服务器？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-interv-pred-a075-fp32-v5.md"
+}

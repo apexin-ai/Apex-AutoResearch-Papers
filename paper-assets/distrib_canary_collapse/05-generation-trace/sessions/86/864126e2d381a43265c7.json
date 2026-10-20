@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "864126e2d381a43265c7",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis per seed fpr m4",
+  "task_key": "worker_analysis_per_seed_fpr_m4_20260521T022147",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_per_seed_fpr_m4_20260521T022147_result.json",
+    "occurrence": 1,
+    "bytes": 834,
+    "sha256": "cb0c09d70e8b11a76fecea492d64ffe7a4941a82a1a1f771ff965eac69983365"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 已生成并注册。结果摘要：\n\n| Method | s42 | s43 | s44 | Pooled | 95% Cluster-Bootstrap CI |\n|--------|-----|-----|-----|--------|--------------------------|\n| **PermG** | 0/8 | 0/8 | 0/8 | 0.000 | [0.000, 0.000] |\n| DiffXCorr | 4/8 | 2/8 | 3/8 | 0.375 | [0.250, 0.500] |\n| NaiveXCorr | 8/8 | 7/8 | 7/8 | 0.917 | [0.875, 1.000] |\n| ThresholdOnset | 3/8 | 1/8 | 2/8 | 0.250 | [0.167, 0.375] |\n| TY | 2/8 | 2/8 | 0/8 | 0.167 | [0.000, 0.250] |\n\nPermG 在 3 个 seed 全部 0 false positives，bootstrap CI 退化为 [0, 0]（因为所有 cluster 的 FPR 均为 0）。其余 4 个方法的 FPR 在 seed 间有变异但 bootstrap CI 仍远高于 nominal α=0.05，进一步确认 PermG 作为 primary indicator 的选择合理性。\n\n输出保存在 `artifacts/m4_per_seed_fpr_breakdown.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-per-seed-fpr-m4.md"
+}

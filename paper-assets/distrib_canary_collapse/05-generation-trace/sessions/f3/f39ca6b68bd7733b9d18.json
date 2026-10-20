@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f39ca6b68bd7733b9d18",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis d170 narrative",
+  "task_key": "worker_analysis_d170_narrative_20260521T180401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d170_narrative_20260521T180401_result.json",
+    "occurrence": 1,
+    "bytes": 705,
+    "sha256": "c8984c5aa659da18d43baf18a6a7c31071fc49c868eaffe8985940991b6f0c0e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估报告已写入 `artifacts/d170_narrative_assessment.md`。\n\n核心结论：\n\n**需修正 2 处**：\n- Results 段落 \"6--8/8\" 应改为 \"5--6/8\"（无 cell 达到 8/8）\n- Intro 的 \"p=0.064 at T=20\" 是过期数据，α=0.60 T=20 已确认 0/8 完全 blackout，比 p-value 更强\n\n**可加强**：\n- T=15 数据（α=0.45=6/8, α=0.50=6/8）完全缺失，应补入作为 α_c(T) 左移的直接验证\n- Sync dip 从 1-T 证据升级为 2-T 证据（T=10 和 T=20 均 0/8）\n- 6/8 结构性天花板在 5 个 cell 一致复现，可作为新叙事元素\n\n**应等待**：T=15 α=0.60/0.75 和 T=25 全行完成后再锁定 sync dip 措辞和 α_c 公式系数。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d170-narrative.md"
+}

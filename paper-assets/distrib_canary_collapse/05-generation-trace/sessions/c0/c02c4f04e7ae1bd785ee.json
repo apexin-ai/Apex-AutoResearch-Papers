@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c02c4f04e7ae1bd785ee",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis d34 cascade ordering theory",
+  "task_key": "worker_analysis_d34_cascade_ordering_theory_20260520T184858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d34_cascade_ordering_theory_20260520T184858_result.json",
+    "occurrence": 1,
+    "bytes": 1161,
+    "sha256": "ea53a964906475cf912993a43121b036ea01c63238dfb9e50513631f941556ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出写入 `artifacts/theory/cascade_ordering_derivation.md`。\n\n核心结果：\n\n1. **Part 1 (Entropy → Diversity)**: 在 mode amplification 假设下严格证明——entropy 对分布扰动是一阶敏感的（任何概率质量重分配都改变 entropy），diversity 是阈值型指标（需要 token 概率跌破生成阈值 $\\epsilon$）。Theorem 1 证明 $|\\Delta H| > 0$ 时 $\\Delta S_\\epsilon = 0$ 可行，反之不可行。\n\n2. **Part 2 (ECE ↔ Entropy)**: 通过 Rényi 熵不等式 $\\max q_i \\geq e^{-H(q)}$ 和 Jensen 不等式建立 confidence-entropy 的函数耦合。在 accuracy stationarity 假设下，$\\Delta\\text{ECE} \\geq e^{-H_t} \\cdot |\\Delta H_t|$——两者同时响应，零 lag。\n\n3. **Part 3 (Timing bounds)**: 当单代扰动幅度 $\\alpha \\|\\mathcal{T}(p)-p\\|_\\infty$ 小于 margin $\\gamma(p, \\epsilon)$ 时，diversity onset 滞后 entropy onset $\\geq 1$ 代。MAUVE 进一步滞后是 heuristic argument（标注为 conjecture）。\n\n与实测数据完全一致：4 个 $\\alpha \\geq 0.50$ 实验中，entropy/ECE 均在 gen 1 onset，distinct-n 均在 gen 2，lag = 1。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d34-cascade-ordering-theory.md"
+}

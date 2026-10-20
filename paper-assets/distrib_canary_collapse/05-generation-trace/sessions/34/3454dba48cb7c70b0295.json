@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3454dba48cb7c70b0295",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analyze cron check t25 a075 s43 19828",
+  "task_key": "worker_analyze_cron-check-t25-a075-s43-19828_20260522T034808",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_cron-check-t25-a075-s43-19828_20260522T034808_result.json",
+    "occurrence": 1,
+    "bytes": 768,
+    "sha256": "ef22cb441b24e412398f8c8d843c0f840b18477409e52210052e7aa408ef0d7b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "检查完毕。结果：\n\n**退出原因：失败 — 进程在 Generation 9/25 生成合成数据时被终止**\n- 日志无 error/traceback/OOM 信息\n- dmesg 无 OOM killer 记录\n- 磁盘空间正常（141G 可用）\n- 最可能原因：SSH 连接断开导致 SIGHUP（进程未以 nohup 保护，或 nohup 会话异常中断）\n\n**状态：**\n\n| 项目 | 值 |\n|---|---|\n| gen 目录数 | 10/26（gen_0 ~ gen_9，其中 gen_9 为空） |\n| 完整 gen | 9（gen_0 ~ gen_8） |\n| all_metrics.json | 不存在（未跑完不会生成） |\n| 日志最后输出 | `Generation 9/25 — Generating synthetic data …` |\n\n实验未完成，无法执行 d102 分析。需要重启实验。是否需要我清理空的 gen_9 并重新提交？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-cron-check-t25-a075-s43-19828.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a7000acf74ac1a9ae0d7",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis r3 channel effect size",
+  "task_key": "worker_analysis_r3_channel_effect_size_20260520T155324",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r3_channel_effect_size_20260520T155324_result.json",
+    "occurrence": 1,
+    "bytes": 1304,
+    "sha256": "17f9a9b2460acadf64d135f8d9850d7ec50e87eb9d81406d053fd00a45f54bc9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心发现：\n\n**Finding 1 — 差分不是 blanket power loss**\n- Diversity retention: 95.2% (n=243)\n- Perplexity retention: 100.2% (n=8)\n- 两类 channel 差分后 |r| 保持率相当，甚至 perplexity 更高。Power loss 假说要求差分成比例地削弱所有 channel，数据不支持。\n\n**Finding 2 — Granger F-stat 的不对称不来自差分，来自时序结构**\n- 同实验内（a060_s42_bf16）: diversity median F=229, perplexity F=8.25 → **28x差距**\n- 但两者的 naive |r| 几乎相同（0.97 vs 0.96）\n- 这说明 F-stat 差距不是差分造成的——raw correlation 就一样高\n\n**Finding 3 — Peak lag 揭示根因**\n- Diversity: 81% 的 peak lag < 0（canary 领先 downstream）\n- Perplexity: 50% 的 peak lag = 0（同步），median = 0\n- Canary→perplexity 是同步共变（同一 training step 驱动），不是滞后因果\n- Granger 测的是滞后预测力，所以 lag≈0 的关系天然产生低 F-stat，跟差分无关\n\n**给 Reviewer 的论证**：差分对两类 channel 保持率一致（95-100%），排除了 blanket power loss。Granger F 的 20-28x 差距源于时序结构差异——perplexity 是同步共变（lag=0），diversity 是滞后因果（lag<0）——而非差分操作本身。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r3-channel-effect-size.md"
+}

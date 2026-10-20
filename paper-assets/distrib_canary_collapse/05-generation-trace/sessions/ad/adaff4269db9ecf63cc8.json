@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "adaff4269db9ecf63cc8",
+  "project": "distrib_canary_collapse",
+  "kind": "history",
+  "title": "agent / loop_17_1779497805.md",
+  "task_key": "loop_17_1779497805",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_17_1779497805.md",
+    "occurrence": 1,
+    "bytes": 4047,
+    "sha256": "fceba5ee36cc17a9108679796475cf082d796b38d612ddbd7dd62d6068beed13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 17\nreason: idle_timeout\nupdated: '2026-05-23T00:54:52+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-17855 cuda:0-5, westd-19828 cuda:0-1（共 8 张）\n- 17855 ↔ 19828 SSH 不互通，必须分别连接\n- ≤3B 模型必须 fp32，>3B 才用 bf16（D079）\n- HF_HOME 三件套必带：`HF_HUB_CACHE=/root/autodl-tmp/.hf_cache && TRANSFORMERS_OFFLINE=1 && HF_HUB_OFFLINE=1`（M060）\n- d102 分析脚本唯一有效参数组合：`downstream=mauve, threshold=true_3sigma_d105`（M063/M064/M066）\n- T=20 α=0.60 PermG=0/8 是锁定事实（D176），不可被新数据覆盖\n\n### 2. 🖥️ 基础设施快照\n- **westd-17855**（6× RTX PRO 6000 Blackwell 98GB）\n  - 工作目录：`/root/autodl-tmp/distrib_canary_collapse/`\n  - Python：`/root/miniconda3/bin/python`（conda base）\n  - 模型缓存：`/root/autodl-tmp/.hf_cache/`\n  - 磁盘：97% 可用（~816GB free）\n- **westd-19828**（2× RTX PRO 6000 Blackwell 98GB）\n  - 同上路径结构\n  - 磁盘：97% 可用（~817GB free）\n- 活跃进程（reconcile 确认）：\n  | GPU | exp_id | PID | tmux |\n  |-----|--------|-----|------|\n  | 17855:0 | scale_14b_t15_a060_s42_fp32 | 643570 | — |\n  | 17855:1 | scale_14b_t15_a050_s42_fp32 | 643878 | — |\n  | 17855:4 | phase_diagram_t20_a075_s43_fp32 | 603933 | — |\n  | 17855:5 | phase_diagram_t25_a045_s43_fp32 | 577236 | — |\n  | 19828:0 | phase_diagram_t25_a075_s43_fp32_v3 | 731312 | — |\n  | 19828:1 | scale_14b_t10_a050_s42_fp32_19828 | 765029 | — |\n- **17855:2 和 17855:3 空闲**（两个 1.4B 实验刚失败）\n\n### 3. 📊 当前状态\n**刚发生**：scale_14b_t10_a075_s42_fp32（cuda:2）和 scale_14b_t10_a060_s42_fp32（cuda:3）同时失败，同一个 bug：`metrics['mauve']` 返回 None 导致 `:.4f` 格式化 TypeError（iterative_train.py line 358）。410M 实验无此问题，1.4B 特有。\n\n**已做**：\n- 派 Worker `worker_debug_scale_14b_mauve_none_20260522T083259` 诊断根因 + 修复代码\n- 已向 Director 汇报失败 + 2 GPU 空闲\n\n**等待中**：\n- Worker 回调（诊断+修复结果）\n- 6 个 RUNNING 实验的 cron 监控正常\n- 3 个 PREPARING：scale_14b_t15_a045_s42_fp32, t15_a050_s42_fp32, qwen35_dryrun_launch\n\n**Phase Diagram 20/20 已完成**（全部 410M），不受此 bug 影响。\n\n### 4. 📋 待办\n- Worker debug 回调到达 → 审查修复 diff → 在 cuda:2/cuda:3 重跑 scale_14b_t10_a075 和 scale_14b_t10_a060\n- 如修复涉及 MAUVE 计算逻辑 → 评估是否需要同步修复 19828 上的代码（scale_14b_t10_a050 正在跑）\n- 正在跑的 1.4B（t15_a050, t15_a060, t10_a050_19828）如果也 fail → 同样原因，修复后统一重跑\n- cross-seed 3 组（t20_a075_s43, t25_a045_s43, t25_a075_s43_v3）完成 → D102 分析 + seed robustness 汇总\n- 5× 1.4B scale verification 全部完成 → D102 分析 → scale-invariance claim\n- 全部实验完成 → Heatmap 定稿 → D170 叙事升级（Scenario A 版本）→ submit_paper_to_review\n\n### 5. 🎯 战略上下文\n- **核心发现**：α×T 2D 相图完成，三大现象确认——(1) step-function onset (2) α=0.60 sync-dip (T≤20 时 0/8, T=25 溶解为 5/8 = transient) (3) 6/8 ceiling（MAUVE bottleneck）\n- **当前阶段**：Phase Diagram 410M 完成，正在做两件事并行：1.4B scale verification（证 scale-invariance）+ cross-seed validation（证 seed-robustness）\n- **MAUVE None bug 是代码问题不是科学问题**：1.4B 生成的文本可能触发 MAUVE 库的 edge case（空文本/极短文本/数值溢出），修复后重跑即可。不影响任何已有结论\n- **易错点**：\n  - sync-dip 叙事已从 \"PermG blind spot\" 改为 \"T-dependent transient dip\"（D186/D188），不要用旧叙事\n  - α_c 理论用 γ=2.08 的 Power Theory √T 模型（Track A），MAE=0.106, CI=6/6\n  - scale_14b_t10_a050_s42_fp32 之前在 19828 上也失败过一次（不同原因：EXIT_CODE=1），当前 retry 版本 exp_id 为 scale_14b_t10_a050_s42_fp32_19828\n- **目标**：EMNLP 2026 ARR June（DDL ~2026-06-15）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-17-1779497805.md"
+}

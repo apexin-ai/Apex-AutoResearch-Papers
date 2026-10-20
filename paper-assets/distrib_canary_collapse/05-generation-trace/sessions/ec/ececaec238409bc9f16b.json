@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ececaec238409bc9f16b",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "monitor verify running health",
+  "task_key": "worker_monitor_verify-running-health_20260514T210900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_verify-running-health_20260514T210900_result.json",
+    "occurrence": 1,
+    "bytes": 1177,
+    "sha256": "0ab7f1da1c5faeb65f0d1fd89f4a87404932dc87691b34948e7693a7e5185319"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 健康度报告\n\n### 实验 1: alpha_sweep_a000_s42 (PID 46721, cuda:0)\n- **进度**: Gen 5/10 训练中（gen_0-4 已完成，gen_5 目录已创建但内容为空 = 正在训练）\n- **运行时间**: 自 03:01 起，约 2h8m\n- **训练速度**: ~15.85 it/s，每 gen 5000 步约 5m20s\n- **最近 loss**: 3.1357（正常范围）\n- **GPU**: 14.4 GB / 97.9 GB，46% 利用率，40°C\n- **状态**: ✓ 健康\n\n### 实验 2: alpha_sweep_a025_s42_v3 (PID 53074, cuda:1)\n- **进度**: Gen 0 (baseline) 评估阶段，尚未开始训练\n- **运行时间**: 自 05:04 起，仅 ~5 分钟\n- **日志**: 139 行 / 20KB，全是 padding warning（正常——baseline 阶段做 generation 评估）\n- **输出目录**: 仅有 config.json，无 gen_* 目录\n- **GPU**: 7.4 GB / 97.9 GB，57% 利用率，45°C\n- **状态**: ✓ 健康，刚启动不久\n\n### 系统状态\n- **进程**: 仅两个 python 训练进程，无 orphan\n- **磁盘**: 75G / 250G (30%)，充裕\n- **异常**: 无 Error/Traceback\n\n两个实验均正常运行，无需干预。a025_s42_v3 启动较晚（05:04 vs 03:01），预计需要额外 ~2h 才能到达类似进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-verify-running-health.md"
+}

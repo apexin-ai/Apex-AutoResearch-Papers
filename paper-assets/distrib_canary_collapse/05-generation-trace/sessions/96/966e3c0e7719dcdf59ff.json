@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "966e3c0e7719dcdf59ff",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "exp null seeds fpr",
+  "task_key": "worker_exp_null_seeds_fpr_20260524T015443",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_null_seeds_fpr_20260524T015443_result.json",
+    "occurrence": 1,
+    "bytes": 1301,
+    "sha256": "8d9804b7b67a1b1b9d6bc064bb296ffc9f1976a18435ce221853b3cefec2558d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部正常运行，GPU 0-3 占用 ~6.5GB，已进入 Generation 0 训练。\n\n## 汇报\n\n| exp_id | Seed | GPU | tmux session | 状态 |\n|--------|------|-----|-------------|------|\n| null_fpr_s46_fp32 | 46 | 0 | null_s46 | 运行中 (Gen 0) |\n| null_fpr_s48_fp32 | 48 | 1 | null_s48 | 运行中 (Gen 0) |\n| null_fpr_s49_fp32 | 49 | 2 | null_s49 | 运行中 (Gen 0) |\n| null_fpr_s50_fp32 | 50 | 3 | null_s50 | 运行中 (Gen 0) |\n\n**已存在（跳过）**：s45, s47（gen_0-10 完整，EXIT_CODE=0）\n\n实际只需跑 4 个新 seed（46, 48, 49, 50），加上已有的 s45, s47，共 6 个 null seeds。\n\n**预估时间**：基于 README 的 ~27.5 min/gen × 10 gen ≈ **4.6h**\n\n**训练命令**（所有 seed 相同参数）：\n```\npython -u iterative_train.py \\\n  --model_name EleutherAI/pythia-410m \\\n  --data_dir data/wikitext103_5k \\\n  --synthetic_ratio 0.00 \\\n  --num_generations 10 \\\n  --steps_per_gen 5000 \\\n  --output_dir results/alpha_sweep/a000_s{seed}_fp32 \\\n  --seed {seed} --batch_size 4 --max_length 512 \\\n  --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 \\\n  --top_p 0.95 --optim adamw_torch\n```\n\n**日志**：`/tmp/null_fpr_s{seed}.log`\n**服务器**：westd-17855，GPU 4-5 空闲可用于其他任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-null-seeds-fpr.md"
+}

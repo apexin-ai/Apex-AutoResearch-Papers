@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74b9f1fe9aa47edc1b6b",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code fix method ablation spurious",
+  "task_key": "worker_code_fix-method-ablation-spurious_20260514T224631",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-method-ablation-spurious_20260514T224631_result.json",
+    "occurrence": 1,
+    "bytes": 1200,
+    "sha256": "bc3d148278070d9b4337ba07ac768803b8cd6e147a022268b30505d92c058b51"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成，运行成功。\n\n## 结果\n\n### 含 TY vs 排除 TY 对比\n\n| | 5-method (含 TY) | 4-method (排除 TY) |\n|---|---|---|\n| Spurious | 12/16 (75%) | 10/16 (62%) |\n| Robust | 4/16 | 6/16 |\n\n### 翻转 pairs（2 个）\n\n| Pair | 5-method | 4-method | 原因 |\n|---|---|---|---|\n| **ece → distinct_2** | spurious (4/5) | **robust** (4/4) | toda_yamamoto n.s. |\n| **ece → distinct_3** | spurious (4/5) | **robust** (4/4) | toda_yamamoto n.s. |\n\n两个翻转 pair 都是 ECE→diversity，4 个非 TY 方法全部一致 SIG（4/4），唯独 TY 判 n.s.。与差分 Granger 验证结果一致（F=71-7643, 全部 4/4 sig）。\n\n### 对 Claim 3 的影响\n\nTY 的纳入/排除翻转了 2/16 pairs（12.5%），恰好是 ECE→distinct_2/3。这提供了两层证据：\n1. **方法选择敏感性**：单一低 power 方法（TY at T=10）即可改变 12.5% 的结论\n2. **ECE co-primary canary 地位加固**：排除已知 underpowered 的 TY 后，ECE→diversity 全部升级为 robust，与 Granger 因果检验吻合\n\n产出已写入 `results/mvp/analysis/method_ablation.json`，`dual_classification` 段包含完整对比和 flipped_pairs。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-method-ablation-spurious.md"
+}

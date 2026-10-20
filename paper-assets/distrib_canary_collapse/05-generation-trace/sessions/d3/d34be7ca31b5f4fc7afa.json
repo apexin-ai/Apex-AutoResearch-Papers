@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d34be7ca31b5f4fc7afa",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diagnose phase diagram t25 a075 s43 fp32",
+  "task_key": "worker_diagnose_phase_diagram_t25_a075_s43_fp32_20260522T035645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_phase_diagram_t25_a075_s43_fp32_20260522T035645_result.json",
+    "occurrence": 1,
+    "bytes": 1247,
+    "sha256": "7dc0121ae23ab945d1865fdc7a0c47a5efe98c3f89f135d98bfbdbd64fed90d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 失败根因: 进程被外部信号静默杀死（SIGHUP / OOM killer）\n\n**依据:**\n- 日志中**无任何 Traceback、Error、Killed** 记录\n- 日志最后一行是 `Generating synthetic data …`（Gen 9），之后突然截断\n- 进程在 GPU 密集型操作（文本生成）期间死亡，无机会写错误输出\n- 符合 SIGHUP（SSH/tmux 断连）或 Linux OOM killer 的特征\n\n**不是磁盘满** — 排除该项目的常见原因。\n\n### 关键数据\n\n| 项目 | 状态 |\n|------|------|\n| **训练进度** | **8/25 代完成**，gen_9 开始生成时死亡 |\n| **最后完整代** | gen_8: ppl=73.31, entropy=2.2452, eff_rank=79.3, mauve=0.0311 |\n| **磁盘** | 140G 可用 (45%)，实验目录 3.1G |\n| **GPU** | 2× RTX PRO 6000 (98GB) 均空闲，状态正常 |\n| **gen_9 状态** | 目录已创建但为空 |\n\n### 可恢复性\n\n- gen_8 checkpoint 存在且完整（model.safetensors 1.6GB + tokenizer + config）\n- 无 `all_metrics.json`（仅在全部 25 代完成后生成）\n- **可以 resume**，前提是 `iterative_train.py` 支持 `--resume_from_gen` 或类似参数；否则需要修改脚本从 gen_8 checkpoint 继续\n- 重启前应清空 gen_9 空目录"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-phase-diagram-t25-a075-s43-fp32.md"
+}

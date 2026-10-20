@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6827a714335db8df4681",
+  "project": "distrib_canary_collapse",
+  "kind": "history",
+  "title": "agent / loop_15_1779383917.md",
+  "task_key": "loop_15_1779383917",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_15_1779383917.md",
+    "occurrence": 1,
+    "bytes": 4071,
+    "sha256": "a873920da6ca0f5e5d1be3940d97e7f79dc5995508de33ee8b1bbe48210a8a26"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 15\nreason: idle_timeout\nupdated: '2026-05-21T16:37:01+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-17855 cuda:0-5, westd-19828 cuda:0-1（共 8 张，当前 8/8 占满）\n- fp32 是主轴精度（D079），bf16 仅在 fp32 OOM 时降级使用\n- PermG 是唯一主指标，K≥3 已冻结（M037）\n- TY=7/8 已被撤回（D143，d_max artifact），不得在论文中引用\n- CSD 只能出现在 Discussion，不能在 Results 中作为 claim 支撑（D142）\n- 术语约束（D131）、T-qualified + \"consistent with\" 措辞（D141）\n\n### 2. 🖥️ 基础设施快照\n- **westd-17855**: 6× RTX PRO 6000 Blackwell (98GB), 工作目录 /root/autodl-tmp/distrib_canary_collapse, Python: /root/miniconda3/bin/python, conda base 环境, 磁盘 816G/879G 可用\n- **westd-19828**: 2× RTX PRO 6000 Blackwell (98GB), 同上目录结构, 磁盘 817G/879G 可用\n- 活跃 cron 7 个（reconcile 确认全部 still running）：\n  - t20_a025_s42_fp32 (17855:cuda:1), alpha_sweep_a065_s42_fp32 (17855:cuda:2), scale_69b_a100_s43_bf16 (17855:cuda:3, PID 400545), gen_gpt2m_a100_s43 (17855:cuda:4, PID 397750), alpha_sweep_a010_s42_bf16 (17855:cuda:5, PID 397830)\n  - scale_14b_a050_s42_bf16 (19828:cuda:0, PID 619318), generalize_pythia1b_c4_a100_s43_v2 (19828:cuda:1, PID 620796)\n\n### 3. 📊 当前状态\n- **刚做的**：收到 interv_react_s43 CRON 完成回调，已 spawn Worker (`worker_analysis_interv_react_s43_20260521T003501`) SSH 到 westd-17855 分析日志和 metrics。Worker 尚未返回。\n- **RUNNING (7)**：t20_a025_s42_fp32, alpha_sweep_a065_s42_fp32, scale_69b_a100_s43_bf16, gen_gpt2m_a100_s43, alpha_sweep_a010_s42_bf16, scale_14b_a050_s42_bf16, generalize_pythia1b_c4_a100_s43_v2\n- **ANALYZING (1)**：interv_react_s43（Worker 在分析中）\n- **PREPARING (1)**：qwen35_dryrun_launch\n- **等待中**：Worker `worker_analysis_interv_react_s43_20260521T003501` 回调；7 个 RUNNING 实验的 cron 完成回调\n- 总计：129 实验，83 success / 4 negative / 10 failed / 23 killed\n\n### 4. 📋 待办\n- Worker analysis 回调到达 → 根据 metrics 判断 conclusion，update_registry(conclusion=success/negative)，对比 parent intervention_reactive_s42（trigger_gen=2, recovery_gen=4），汇报 Director\n- t20_a025/a065/a010 完成 → 这些是 T=20 predict-then-verify 的关键数据点，完成后立即分析并与 Power Theory √T 预测对比，填充 Track G\n- scale_69b_a100_s43_bf16 完成 → Pythia-6.9B cross-seed 验证（s42 PermG=7/8），成功则 6.9B 数据点有多 seed 覆盖\n- scale_14b_a050_s42_bf16 完成 → 1.4B α=0.50 boundary regime 验证\n- gen_gpt2m_a100_s43 完成 → GPT-2-medium cross-architecture 验证（注意 registry 已标 conclusion=killed，但 cron 仍在跑——需核实是否被重启）\n- generalize_pythia1b_c4_a100_s43_v2 完成 → Pythia-1B C4 domain generalization\n\n### 5. 🎯 战略上下文\n- **核心论文**：\"A Detection Phase Transition in Iterative Model Collapse\"，目标 EMNLP 2026 ARR June，~24 天\n- **4 个 Claims**：C1 Phase Transition (steep onset α_c∈[0.45,0.50])，C2 S×R + Power Theory (4 regimes, T=20 predictions 0/3 validated)，C3 Multi-Method Toolkit (PermG FPR=0/24)，C4 Practical (taxonomy + cessation + intervention)\n- **当前关键瓶颈**：T=20 实验（t20_a025/a050/a065/a075/a100）是 Power Theory predict-then-verify 的核心——预测已 git lock-in（bad72cc），T=20 结果到达后与预测对比决定 C2 claim 的强度\n- **Paper Agent 正在做 8-page compression**（1216→335 行），写作顺序 Results→Methods→Intro→RW→Discussion→Abstract\n- **易错点**：\n  - gen_gpt2m_a100_s43 的 registry 已有 conclusion=killed 但 cron 还在跑——可能是被 kill 后重新提交的，需要确认\n  - interv_react_s43 和 interv_react_s43_fp32 共享 output_dir `results/intervention/reactive_d1_s43_fp32`——分析时必须以日志文件区分是哪次运行的结果\n  - D155 Round 4 Action Plan 涉及贡献重组 + Cascade Theory 升级，这是 Director 最新战略方向\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-15-1779383917.md"
+}

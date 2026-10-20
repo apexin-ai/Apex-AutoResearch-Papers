@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ff86e860c64db8753ba",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code analysis pipeline verify",
+  "task_key": "worker_code_analysis-pipeline-verify_20260515T042537",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_analysis-pipeline-verify_20260515T042537_result.json",
+    "occurrence": 1,
+    "bytes": 1023,
+    "sha256": "ffcb5669a24debfaba90636379fcdf5afa458240c7306062732e13c3d5c44b28"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。结果：\n\n| 组件 | 状态 | 说明 |\n|------|------|------|\n| `analyze_alpha_sweep.py` | ✅ 就绪 | BH FDR ✅, Cohen's f² ✅, 4 方法 ✅, 多 α 自动发现+一致性矩阵 ✅。不含 pooled panel regression（逐 α 独立分析） |\n| `detrending_utils.py` | ✅ 就绪 | first_diff / hp_filter / linear 三法全实现，numpy array 接口，与 metrics JSON 兼容 |\n| `panel_regression.py` | ❌ 缺失 | 服务器上零相关代码。需用 `linearmodels.PanelOLS` 新建，entity=run_id, time=generation, α 作协变量，F-test canary lag 系数 |\n| `permutation_granger.py` | ✅ 就绪 | 差分版正确，Cohen's f² ✅，已被 analyze_alpha_sweep.py 按 α 逐点调用。独立的 cross-α pooled 模式缺失，可并入 panel_regression.py |\n\n**唯一 blocker**: `panel_regression.py` 需在 α-sweep 全部完成前编写。建议实现方案已记入 memory.md（`PanelOLS` fixed effects, unrestricted vs restricted F-test, 依赖 `linearmodels`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-analysis-pipeline-verify.md"
+}

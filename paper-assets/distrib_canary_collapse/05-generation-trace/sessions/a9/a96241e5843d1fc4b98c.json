@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a96241e5843d1fc4b98c",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis alpha sweep a025 s42 fp32",
+  "task_key": "worker_analysis_alpha_sweep_a025_s42_fp32_20260519T121714",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_alpha_sweep_a025_s42_fp32_20260519T121714_result.json",
+    "occurrence": 1,
+    "bytes": 1437,
+    "sha256": "7a6cf08c3c5f8404731f44270d6e266e6db85df7b3ce47431028cf9374497921"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。结果汇总：\n\n## alpha_sweep_a025_s42_fp32 结果\n\n| 指标 | 值 |\n|------|-----|\n| **PermG fwd** | **0/8** |\n| **PermG rev** | **0/8** |\n| **K≥4** | **0/8** |\n| **MMCT** | **0/8** (detection_rate=0.0) |\n| d1 drift | **-39.15%** |\n| d2 drift | -54.75% |\n| d3 drift | -56.98% |\n| mauve drift | -41.86% |\n| entropy drift | -4.79% |\n| ppl drift | -18.09% |\n| eff_rank drift | -3.78% |\n\n**Hypothesis validated = true**: PermG=0/8，α=0.25 确实低于 phase transition 阈值。\n\n**值得注意的发现**：\n- d1_drift = -39.15%，远超 α=0.50 的 -28.7%。多样性坍缩在 α=0.25 已经显著发生，但缺乏 Granger-detectable 的 lead-lag 因果结构。\n- token_entropy→distinct_1 的 raw PermG p=0.007，但 FDR 校正后 p=0.053（borderline miss）。这暗示过渡点可能就在 α=0.25 附近。\n- 所有 pair 最高 consensus votes = 3（差一票到 K≥4 threshold）。\n\n**更新后的 dose-response map**：\n\n| α | PermG | K≥4 | MMCT | d1 drift |\n|---|-------|-----|------|----------|\n| 0.05 | 0/8 | 0/8 | 0/8 | -24.9% |\n| 0.10 | 0/8 | 0/8 | 0/8 | -23.0% |\n| **0.25** | **0/8** | **0/8** | **0/8** | **-39.2%** |\n| 0.50 | 6/8 | 6/8 | 0.75 | -28.7% |\n| 0.60 | 3/8 | 7/8 | 7/8 | -28.2% |\n| 1.00 | ~75% | ~6.5/8 | ~6.5/8 | -28.3% |\n\nPhase transition 区间从 [0.10, 0.50] 收窄至 **[0.25, 0.50]**（PermG 角度）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-alpha-sweep-a025-s42-fp32.md"
+}

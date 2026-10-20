@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "7a817a64d9b02defd709",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diagnose scale 14b t15 a050 s42 fp32",
+  "task_key": "worker_diagnose_scale_14b_t15_a050_s42_fp32_20260522T093206",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_scale_14b_t15_a050_s42_fp32_20260522T093206_result.json",
+    "occurrence": 1,
+    "bytes": 3087,
+    "sha256": "b2d603b54fee5b4c516f19c2b5daddf63cad63dd74f6bd57458ac509365f71bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n## 诊断结果\n\n**时间线（本地 UTC+8 / UTC）：**\n\n| 时间 (本地) | 事件 |\n|---|---|\n| 16:29 | t10_a060 和 t10_a075 在 gen 2 metrics 打印时崩溃: `TypeError: unsupported format string passed to NoneType.__format__`（`iterative_train.py:358`，mauve 返回 None 时用 `:.4f` 格式化） |\n| 16:55 | t10 首次重启尝试（_s42_fp32_v2.log, 458 bytes）—— 同样崩溃或被立即杀掉 |\n| 17:02 | t10 再次重启为 v2，`--start_gen 2` |\n| **17:07** | **t15_a050 和 t15_a060 被 SIGTERM 杀掉**（它们运行正常，gen 1 mauve=0.0330 成功） |\n| 17:08 | t15 重启为 v2，`--start_gen 2` |\n| 17:12 | `iterative_train.py` 被修改——mauve None 格式化 bug 修复为 `if metrics.get('mauve') is not None else 'N/A'` |\n\n**根因**：另一个 Agent session 在处理 t10 的 TypeError 崩溃时，顺带 SIGTERM 杀掉了仍在正常运行的 t15 实验。这是 C004 的典型违规模式。\n\n**关键风险**：当前 4 个 v2 进程（PID 655758/655834/656957/657037）在 17:02-17:08 启动，**早于代码修复（17:12）**。它们加载的是旧代码。如果 gen 2+ 的 mauve 再次返回 None，会撞同一个 TypeError。\n\n```json\n{\"root_cause\":\"Another Agent session SIGTERM-killed both t15 experiments at 17:07 while fixing t10 TypeError crash (iterative_train.py:358, mauve=None formatted with :.4f). t15 experiments were healthy (gen1 mauve=0.0330 succeeded). Log evidence: both logs end with 'Terminated\\\\nEXIT_CODE=143' at Gen 2 start. No OOM in dmesg, no system-level kill in journalctl.\",\"error_type\":\"external_kill\",\"fix_steps\":[\"Kill all 4 v2 processes (PID 655758/655834/656957/657037) — they loaded pre-fix code and will crash on None mauve\",\"Verify iterative_train.py line 359 has the None-safe format (already patched at 17:12)\",\"Restart all 4 experiments with --start_gen 2, which will load the fixed code\",\"Add mauve offline fallback: set MAUVE_DEVICE_BATCH_SIZE or cache GPT-2 tokenizer locally to avoid HF connectivity dependency\"],\"can_auto_fix\":true,\"affects_other_experiments\":true}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "Another Agent session SIGTERM-killed both t15 experiments at 17:07 while fixing t10 TypeError crash (iterative_train.py:358, mauve=None formatted with :.4f). t15 experiments were healthy (gen1 mauve=0.0330 succeeded). Log evidence: both logs end with 'Terminated\\nEXIT_CODE=143' at Gen 2 start. No OOM in dmesg, no system-level kill in journalctl.",
+              "error_type": "external_kill",
+              "fix_steps": [
+                "Kill all 4 v2 processes (PID 655758/655834/656957/657037) — they loaded pre-fix code and will crash on None mauve",
+                "Verify iterative_train.py line 359 has the None-safe format (already patched at 17:12)",
+                "Restart all 4 experiments with --start_gen 2, which will load the fixed code",
+                "Add mauve offline fallback: set MAUVE_DEVICE_BATCH_SIZE or cache GPT-2 tokenizer locally to avoid HF connectivity dependency"
+              ],
+              "can_auto_fix": true,
+              "affects_other_experiments": true
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-scale-14b-t15-a050-s42-fp32.md"
+}

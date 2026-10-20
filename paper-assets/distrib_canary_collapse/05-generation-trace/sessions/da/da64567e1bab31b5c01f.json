@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da64567e1bab31b5c01f",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops fix 14b mauve none 17855",
+  "task_key": "worker_ops_fix-14b-mauve-none-17855_20260522T083509",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-14b-mauve-none-17855_20260522T083509_result.json",
+    "occurrence": 1,
+    "bytes": 1900,
+    "sha256": "067a0247e68ba652ec2dc7417977daa584d0d51170b26c4c42f584050eeab3a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Clean — only my new session exists on 19828. Here's the complete summary:\n\n---\n\n## 诊断结果\n\n**根因**: MAUVE 计算内部加载 `gpt2-large` 模型，但实验命令设置 `HF_HUB_CACHE=/root/autodl-tmp/.hf_cache`（错误），实际模型缓存在 `.hf_cache/hub/` 子目录下。应使用 `HF_HOME=/root/autodl-tmp/.hf_cache`（transformers 自动追加 `hub/`）。次要原因：format string `metrics['mauve']:.4f` 遇到 None 时崩溃。\n\n## 修复\n\n| 文件 | 服务器 | 修改 |\n|------|--------|------|\n| `iterative_train.py` | 17855 | `.get('mauve', float('nan')):.4f` → `_mauve_s` None 检查 |\n| `metrics.py` | 17855 | MAUVE fallback: `float(\"nan\")` → `None` |\n| `metrics.py` | 19828 | 同上 |\n| `iterative_train.py` | 19828 | 已有 `_mauve_s` 修复（无需改动） |\n\n## 重启实验\n\n| 实验 | 服务器 | GPU | tmux session | --start_gen | 状态 |\n|------|--------|-----|-------------|-------------|------|\n| t10_a075_s42_fp32_14b | 17855 | cuda:2 | `scale_14b_t10_a075_v2` | 2 | gen_2 synth data |\n| t10_a060_s42_fp32_14b | 17855 | cuda:3 | `scale_14b_t10_a060_v2` | 2 | gen_2 synth data |\n| t10_a050_s42_fp32_14b | 19828 | cuda:1 | `scale_14b_t10_a050_v2` | 2 | gen_2 synth data |\n\n重启命令使用 `HF_HOME`（而非 `HF_HUB_CACHE`），MAUVE 应能正常计算。\n\n## 在跑实验状态\n\n| 实验 | 服务器 | GPU | PID | 进度 | MAUVE |\n|------|--------|-----|-----|------|-------|\n| t15_a060_s42_fp32_14b | 17855 | cuda:0 | 643575 | gen_2/15 synth | null（旧 env var，全程无法计算） |\n| t15_a050_s42_fp32_14b | 17855 | cuda:1 | 643883 | gen_2/15 synth | null（同上） |\n\n这两个在跑实验因进程内存中的旧 env var 无法修复 MAUVE，将全程 null。其他指标（ppl/entropy/eff_rank/distinct_n/self_bleu/ece）均正常。如需完整 MAUVE，需要重启这两个实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-14b-mauve-none-17855.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "590023c9df61b5310443",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "infra download 69b westd17855",
+  "task_key": "worker_infra_download_69b_westd17855_20260518T173736",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_download_69b_westd17855_20260518T173736_result.json",
+    "occurrence": 1,
+    "bytes": 661,
+    "sha256": "e6e1f830a35a3f9c4336d25cb1cff50d58b2d3ec106191600bc128e8db209313"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载完成。结果汇总：\n\n**westd-17855 上 Pythia-6.9B 缓存状态：**\n\n| 项目 | 状态 |\n|------|------|\n| 缓存路径 | `/root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-6.9b/` |\n| 总大小 | **13G**（safetensors 格式，不含冗余 .bin） |\n| model-00001-of-00002.safetensors | 9.3G ✓ |\n| model-00002-of-00002.safetensors | 3.7G ✓ |\n| config.json / tokenizer / index | ✓ |\n| Config 验证 | hidden_size=4096, num_layers=32 ✓ |\n| pytorch .bin 文件 | 未下载（冗余，safetensors 优先） |\n\n模型已缓存就绪，后续实验可直接通过 `HF_HOME=/root/autodl-tmp/.hf_cache` 加载。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-download-69b-westd17855.md"
+}

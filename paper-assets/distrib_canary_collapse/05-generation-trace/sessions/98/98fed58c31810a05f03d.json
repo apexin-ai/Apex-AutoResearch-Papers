@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "98fed58c31810a05f03d",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis consensus framework formalization",
+  "task_key": "worker_analysis_consensus_framework_formalization_20260515T085017",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_consensus_framework_formalization_20260515T085017_result.json",
+    "occurrence": 1,
+    "bytes": 1310,
+    "sha256": "2eceb9244cec728d38f07d3f5f16ec153d189c13b2d780863a8432e3b9d6993c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出完成。两个 artifact 已注册：\n\n**`art_20260515_1e9698`** — `consensus_framework.md`\n- 数学定义：$R(X,Y;\\tau_m,\\tau_s) = \\mathbb{1}[C(X,Y;\\tau_s) \\geq \\lceil\\tau_m \\cdot K\\rceil]$\n- 阈值理由：K-1/K 因 TY 在 T=10 下 power 仅 5-20%；3/4 seed 因 binomial FPR ≈ 4.8×10⁻⁴\n- 9 配置 sensitivity grid：从 (3/5,2/4) 的 12 robust 到 (5/5,4/4) 的 3 robust\n- Stability：**entropy→d1/d2/d3 和 ece→d1 在全部 9/9 配置下 stable**\n- FPR/FNR 表：consensus FPR=0%, FNR=0%（FNR circular 已标注）\n- Scheffer et al. 联系：EWS 文献的多指标共识原则，我们从多*指标*扩展到多*方法*\n- 6 条 limitations 诚实声明\n\n**`art_20260515_c4694f`** — `consensus_sensitivity_table.json`\n- 完整 sig_seeds 矩阵（16 pairs × 5 methods）\n- 9 配置 × robust pair 列表 + methods_sig_per_pair\n- pair_stability（每对在多少配置下 robust + 原因）\n- error_rates + TY power reference\n\n关键数字确认：\n- 默认 (4/5, 3/4)：6 robust pairs（entropy→d1/d2/d3, ece→d1/d2/d3）\n- token_entropy→distinct 稳定性：**9/9**（预期命中）\n- ece→d2/d3：7/9（TY dissenter）\n- canary→perplexity：3/9（符合伪回归预期）\n- self_bleu/effective_rank：0-2/9（伪回归确认）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-consensus-framework-formalization.md"
+}

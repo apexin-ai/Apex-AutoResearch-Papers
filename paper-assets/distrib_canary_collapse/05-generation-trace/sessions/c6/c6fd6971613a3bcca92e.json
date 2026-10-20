@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c6fd6971613a3bcca92e",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis phase transition theory",
+  "task_key": "worker_analysis_phase_transition_theory_20260520T091349",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_phase_transition_theory_20260520T091349_result.json",
+    "occurrence": 1,
+    "bytes": 1347,
+    "sha256": "405070d4314a869589ccee9b6998d086f772f9ab758172eafeea8d60d286c669"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有产出已注册。核心结论：\n\n### D127 Phase Transition Analysis 完成\n\n**1. Phase Transition Type: Steep Crossover (approaching first-order)**\n- α=0.45→0.50 跳变：PermG 从 0/8 到 6/8，3 seed 全部一致\n- Sigmoid fit: **α_c=0.476**, steepness k≥200, transition width Δα≈0.02\n- 近乎开关式，但严格来说需更密采样才能 claim true discontinuity\n- 论文建议用 \"**sharp onset of causal detectability**\" 或 \"near-discontinuous onset\"\n\n**2. Sigmoid >> Power Law**\n- Sigmoid R²=0.969, AIC=-8.90\n- Power law R²=0.808, AIC=9.30\n- ΔAIC=18.2，sigmoid 压倒性优势\n\n**3. Model Scale: 无单调关系**\n- Qwen-0.8B (7.0) ≈ Pythia-6.9B (7.0) > Pythia-410M (6.0) > 1.4B (4.0) > SmolLM3-3B (3.0)\n- 弱化根因是 entropy trajectory shape（U 型/饱和），不是 model size\n- ECE canary 在所有模型上比 entropy 更鲁棒\n\n**4. vs Gu et al.**: α_c≈0.48 是 detection threshold 不是 collapse threshold；iterative compounding 下 effective contamination 在 α=0.45 和 0.50 几乎相同（99.88% vs 99.95%），但 PermG 从 0 跳到 6。两者互补但不可直接比较。\n\n**5. 缺口**: α=0.60 无 canonical 数据，等 M046 canonical sweep。\n\n图表位于 `westd-17855:/root/autodl-tmp/distrib_canary_collapse/artifacts_phase_transition/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-phase-transition-theory.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "914e8541c8db2038e3fd",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ssh a075 gen4 cleanup",
+  "task_key": "worker_ssh_a075-gen4-cleanup_20260519T131703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_a075-gen4-cleanup_20260519T131703_result.json",
+    "occurrence": 1,
+    "bytes": 130,
+    "sha256": "7e82f8043778793309b6e671781c6dfcae8390a6e96bcb9602a6c3298ba77686"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`metrics.json` 已重命名为 `metrics.json.stale_bak`，`synthetic_data/` 和 `trainer/` 未受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-a075-gen4-cleanup.md"
+}

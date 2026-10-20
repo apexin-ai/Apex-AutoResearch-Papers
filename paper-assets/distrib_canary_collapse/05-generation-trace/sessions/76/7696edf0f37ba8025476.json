@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7696edf0f37ba8025476",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "fix c4 analysis correction",
+  "task_key": "worker_fix_c4_analysis_correction_20260518T211617",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_c4_analysis_correction_20260518T211617_result.json",
+    "occurrence": 1,
+    "bytes": 605,
+    "sha256": "6fb93f038989f7b61b67f507a8b9eb5d664127cf5b4e13345cfb0cb537aa2400"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修正完成。变更摘要：\n\n1. **移除\"仅 4,500 样本\"的缺陷暗示** — 改为明确说明 4,500 是 C4 的原始数据量，不是退化结果\n2. **新增 Baseline 说明块** — 开头声明 gen0 = baseline，所有 drift 相对 gen0 计算\n3. **bf16 Confound 标注（D078）** — 在分析开头和结论中均标注 ppl 绝对值不可跨实验直接比较，drift 百分比和排序不受影响\n4. **结论重写** — 根因从\"数据量不足\"改为\"数据集规模差异导致每代过拟合程度不同\"，去除\"需扩充 C4 数据量\"的误导性建议"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-c4-analysis-correction.md"
+}

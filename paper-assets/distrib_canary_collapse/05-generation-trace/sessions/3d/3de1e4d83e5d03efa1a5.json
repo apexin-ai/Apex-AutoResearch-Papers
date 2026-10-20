@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3de1e4d83e5d03efa1a5",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis d32 moment cascade gpu",
+  "task_key": "worker_analysis_d32_moment_cascade_gpu_20260520T165922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d32_moment_cascade_gpu_20260520T165922_result.json",
+    "occurrence": 1,
+    "bytes": 1860,
+    "sha256": "4cc6430d0fa31a099a39705e18d184eb382f75d64941de69a134f61f90d045d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。所有产出已保存到 `artifacts/moment_cascade/`。\n\n## 核心发现\n\n### Cascade 时序确认（α≥0.50, 两个 seed 一致）\n\n| 阶段 | Onset | 指标 |\n|------|-------|------|\n| Phase 1 | Gen 1 | Token Entropy↓, ECE↑, Effective Rank↑ |\n| Phase 2 | Gen 2 | Distinct-1/2/3↓, Perplexity↑ |\n| Phase 3 | Gen 3-5 | MAUVE↓ (lagging indicator) |\n\n**Entropy→Diversity→Calibration cascade**: 在 α=0.50 和 α=0.75 的 s42/s43 全部 4 个实验中 CONFIRMED。\n\n### 两个 collapse 机制域\n\n- **低 α (≤0.10)**: 只有 diversity 崩塌（gen 2 onset），entropy/ECE 维持在 baseline 2σ 内。纯 model collapse 效应。\n- **高 α (≥0.50)**: Entropy 先崩（gen 1），一个 generation 后 diversity 跟进（gen 2）。额外叠加 calibration 爆炸（ECE +800-1800%）。\n\n### PermG 方向性解释（FLAG）\n\nα=0.50 两个 seed 均确认 Entropy(gen 1) → Diversity(gen 2) 单向因果链：\n- **PermG fwd=6/8 rev=0/8** — directed test 正确检测到 forward causation\n- **DiffXCorr fwd=6/8 rev=6/8** — undirected test 无法区分方向，因此双向显著\n\nMoment cascade 提供了 mechanistic explanation：entropy loss 驱动 diversity collapse，而非反向。\n\n### S(α) 反直觉发现\n\nDiversity 降幅在低 α 反而更大（α=0.10: Distinct-2 −56% vs α=0.75: −41%），因为高 α 的 entropy collapse 改变了退化机制——从纯多样性丧失转为分布集中+校准崩溃。\n\n### 输出文件\n\n- `artifacts/moment_cascade/moment_cascade_analysis.json` — 完整数值结果\n- `artifacts/moment_cascade/fig_moment_cascade.pdf/png` — 4-metric trajectory 图\n- `artifacts/moment_cascade/fig_cascade_onset_heatmap.pdf/png` — onset 热力图\n- `artifacts/moment_cascade/fig_decomposition.pdf/png` — S(α)×R(α) 分解"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d32-moment-cascade-gpu.md"
+}

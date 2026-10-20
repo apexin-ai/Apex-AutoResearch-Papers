@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "243270be2ae10903e880",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops full gpu audit results 20260519",
+  "task_key": "worker_ops_full_gpu_audit_results_20260519_20260519T121643",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_full_gpu_audit_results_20260519_20260519T121643_result.json",
+    "occurrence": 1,
+    "bytes": 2135,
+    "sha256": "7f54353c1405e4d747cc66c8005378fb5824bcf53ac5aba2c91e61ac4b726c56"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态（nvidia-smi 实际）\n\n| GPU | 内存 | 利用率 | 进程 | 状态 |\n|-----|------|--------|------|------|\n| cuda:0 | 0 / 97887 MiB | 0% | PID 109870 DEAD | **空闲** |\n| cuda:1 | 34801 / 97887 MiB | 59% | PID 74455 ALIVE (11h47m) | qwen35_v2 运行中 |\n| cuda:2 | 14503 / 97887 MiB | 66% | PID 122877 ALIVE (2h12m) | padding_robustness 7/10 gens |\n| cuda:3 | 14237 / 97887 MiB | 94% | PID 123809 ALIVE (2h10m) | a025_s43_fp32 6/10 gens |\n| cuda:4 | 14487 / 97887 MiB | 89% | PID 124519 ALIVE (2h09m) | a025_s44_fp32 6/10 gens |\n| cuda:5 | 14503 / 97887 MiB | 62% | PID 121667 ALIVE (2h18m) | a075_s42_fp32 7 gen dirs |\n\n## 完成实验结果\n\n**a025_s42_fp32** — 已完成 (11 gens, EXIT_CODE=0)\n\n| 指标 | gen0 | gen10 | drift |\n|------|------|-------|-------|\n| token_entropy | 3.2342 | 3.0794 | **-4.8%** |\n| distinct_1 | 0.0980 | 0.0596 | **-39.1%** |\n| perplexity | 26.95 | 22.07 | -18.1% |\n| ece | 0.0108 | 0.0194 | +79.2% |\n| mauve | 0.0311 | 0.0181 | -41.9% |\n| effective_rank | 46.61 | 44.85 | -3.8% |\n| analysis_results | — | — | **NOT FOUND (lead-lag 未跑)** |\n\n**a075_s42_fp32** — 仍在运行，interim 数据 (4/10+ gens in all_metrics)\n\n| 指标 | gen0 | gen3 | drift |\n|------|------|------|-------|\n| token_entropy | 3.2342 | 2.0913 | **-35.3%** |\n| distinct_1 | 0.0980 | 0.0779 | -20.5% |\n| perplexity | 26.95 | 50.53 | **+87.5%** |\n| ece | 0.0108 | 0.1883 | **+1642.5%** |\n| mauve | 0.0311 | 0.0315 | +1.3% |\n| effective_rank | 46.61 | 81.14 | +74.1% |\n| analysis_results | EXISTS 但 n=4 | 所有 lead-lag \"T=3 too short\" | 无效，需完成后重跑 |\n\n其余 3 个实验（a025_s43, a025_s44, padding_robustness）均在训练中，无 all_metrics.json。qwen35_v2 已跑 ~12h。\n\n## 空闲 GPU\n\n**cuda:0** — 可立即填充（a025_s42_fp32 已完成释放）\n\n## 待办\n\n1. a025_s42_fp32 需要跑 lead-lag analysis（analysis_results.json 缺失）\n2. a075_s42_fp32 的 analysis_results 基于仅 4 gens 无统计效力，完成后需重跑\n3. 其余实验预计 ~2-4h 内陆续完成（当前进度 6-7/10 gens）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-full-gpu-audit-results-20260519.md"
+}

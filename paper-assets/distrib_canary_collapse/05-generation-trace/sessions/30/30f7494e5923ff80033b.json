@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "30f7494e5923ff80033b",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops urgent status and execute",
+  "task_key": "worker_ops_urgent_status_and_execute_20260518T103003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent_status_and_execute_20260518T103003_result.json",
+    "occurrence": 1,
+    "bytes": 2408,
+    "sha256": "bdeb1042eeee3bf949f01c588738009a752b28131361632b5631f56003468e7f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 完整状态报告\n\n### 1. nvidia-smi\n\n| GPU | 进程 | 显存 | 利用率 |\n|-----|------|------|--------|\n| cuda:0 | GPT-2m v4 (PID 310465) | 55705MiB / 97887MiB | 44% |\n| cuda:1 | intervention_reactive_s42 (PID 340969) | 7453MiB / 97887MiB | 56% |\n\n### 2. cuda:1 — intervention_reactive_s42 已在跑\n\n- PID 340964 (bash wrapper) → PID 340969 (python)，tmux session `intervention_reactive_s42` 存在\n- 当前在 Generation 0 (baseline)，刚启动 ~4 分钟\n- **无需重复提交**\n\n### 3. cuda:0 — GPT-2m v4 仍在跑\n\n- 刚完成 gen_9 训练（5000/5000 steps），进入 **Generation 10/10**（最后一代）\n- gen_10 目录已创建但为空（刚开始合成数据）\n- 预计还需 **~40-50 分钟**完成（合成数据 + 5000 steps @ 2.05 it/s）\n- **GPT-2m 分析和 intervention_predictive_s42 提交需等完成后执行**\n\n### 4. 1.4B s43 n_perm=5000 重分析（CPU，已完成）\n\n**Bug 修复**：`analyze_generalize.py` 的 `--n_perm` 参数未传递到 `perm_granger()`，实际始终用 1000。已修复 3 处传参链。\n\n**n_perm=5000 结果**：**46/80** sig rate（与 n_perm=1000 一致，permutation test 稳定）\n\n| Pair | Naive | Diff | Thresh | TY | PG | K |\n|------|:-----:|:----:|:------:|:--:|:--:|:---:|\n| token_entropy→ppl | S | . | S | . | . | 2/5 |\n| token_entropy→d1 | S | S | S | S | S | **5/5** |\n| token_entropy→d2 | S | S | S | . | S | **4/5** |\n| token_entropy→d3 | S | S | S | . | S | **4/5** |\n| self_bleu→ppl | S | S | . | . | . | 2/5 |\n| self_bleu→d1 | S | . | . | . | . | 1/5 |\n| self_bleu→d2 | S | . | . | . | . | 1/5 |\n| self_bleu→d3 | S | . | . | . | . | 1/5 |\n| ece→ppl | S | . | S | . | . | 2/5 |\n| ece→d1 | S | S | S | S | S | **5/5** |\n| ece→d2 | S | S | S | S | S | **5/5** |\n| ece→d3 | S | S | S | S | S | **5/5** |\n| eff_rank→ppl | . | . | . | . | . | 0/5 |\n| eff_rank→d1 | S | S | . | . | S | 3/5 |\n| eff_rank→d2 | S | S | . | . | S | 3/5 |\n| eff_rank→d3 | S | S | . | . | S | 3/5 |\n\nPer-method: naive 15/16, diff 10/16, thresh 8/16, TY 4/16, PG 9/16\n\n### 5. 待执行（GPT-2m 完成后）\n\n1. 运行 `analyze_generalize.py --exp gpt2m_wiki_a100_s42 --n_perm 5000` 提取 Table 7 GPT-2m 行\n2. 提交 `intervention_predictive_s42` 到 cuda:0\n\n### 新提交实验\n\n无新提交（cuda:1 已被占用，cuda:0 还在跑）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-status-and-execute.md"
+}

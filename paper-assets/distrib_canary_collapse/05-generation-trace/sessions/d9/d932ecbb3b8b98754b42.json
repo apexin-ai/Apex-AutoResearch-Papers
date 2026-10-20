@@ -1,0 +1,247 @@
+{
+  "schema_version": "1.0",
+  "id": "d932ecbb3b8b98754b42",
+  "project": "distrib_canary_collapse",
+  "kind": "conversation",
+  "title": "analysis r3 t20 predictions fdr fix",
+  "task_key": "worker_analysis_r3_t20_predictions_fdr_fix_20260520T163325",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_r3_t20_predictions_fdr_fix_20260520T163325.jsonl",
+    "occurrence": 1,
+    "bytes": 13723,
+    "sha256": "f886ef12e986387e6e5f7a4d255776f509256b0e153388760889255c403637eb"
+  },
+  "statistics": {
+    "messages": 11,
+    "user_turns": 0,
+    "tool_calls": 5,
+    "roles": {
+      "tool_call": 5,
+      "tool_result": 5,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T16:34:48.206837+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_t20_predictions_fdr_fix_20260520T163325",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/t20_predictions_locked.json"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T16:34:48.207229+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"generated_at\": \"2026-05-20T10:50:57Z\",\n3\t  \"bootstrap_added_at\": \"2026-05-20T11:15:00Z\",\n4\t  \"method\": \"Power Theory √T scaling from T=10 sigmoid fit\",\n5\t  \"t10_data\": {\n6\t    \"alpha_values\": [\n7\t      0.0,\n8\t      0.05,\n9\t      0.1,\n10\t      0.25,\n11\t      0.3,\n12\t      0.35,\n13\t      0.4,\n14\t      0.45,\n15\t      0.5,\n16\t      0.6,\n17\t      0.75,\n18\t      1.0\n19\t    ],\n20\t    \"permg_counts\": [\n21\t      0,\n22\t      0,\n23\t      0,\n24\t      0,\n25\t      0,\n26\t      0,\n27\t      0,\n28\t      0,\n29\t      6,\n30\t      3,\n31\t      6,\n32\t      6\n33\t    ],\n34\t    \"n_pairs\": 8,\n35\t    \"excluded\": [\n36\t      \"alpha=0.60 (sync dip, S×R non-monotonic regime)\"\n37\t    ]\n38\t  },\n39\t  \"t10_sigmoid_params\": {\n40\t    \"k\": 200.0,\n41\t    \"alpha_c\": 0.4755,\n42\t    \"y_max\": 0.7518,\n43\t    \"formula\": \"rate = y_max / (1 + exp(-k * (alpha - alpha_c)))\",\n44\t    \"fit_std_errors\": {\n45\t      \"k\": 14.2031,\n46\t      \"alpha_c\": 0.0018,\n47\t      \"y_max\": 0.0016\n48\t    },\n49\t    \"bootstrap_95ci\": {\n50\t      \"k\": [73.6101, 499.9488],\n51\t      \"alpha_c\": [0.425265, 0.557708],\n52\t      \"y_max\": [0.69124, 0.894626],\n53\t      \"n_boot\": 10000,\n54\t      \"n_successful\": 10000,\n55\t      \"seed\": 42\n56\t    }\n57\t  },\n58\t  \"power_theory\": {\n59\t    \"assumption\": \"S(α)×R(α) invariant to T at first order; effect size scales as √T\",\n60\t    \"formula\": \"z_T20 = z_T10 × √(T20/T10); rate_T20 = Φ(z_T20)\",\n61\t    \"scaling_factor\": 1.4142,\n62\t    \"continuity_correction\": \"rate=0 mapped to 0.0625 for probit transform\"\n63\t  },\n64\t  \"predictions\": {\n65\t    \"t20_a045\": {\n66\t      \"predicted_permg_count\": 0,\n67\t      \"predicted_rate\": 0.0001,\n68\t      \"predicted_range\": [0, 7],\n69\t      \"rate_95ci\": [0.01502, 0.827715],\n70\t      \"rate_median\": 0.01502,\n71\t      \"confidence\": \"medium — near phase transition, key falsifiable test\",\n72\t      \"t10_rate_used\": 0.0046,\n73\t      \"t10_source\": \"sigmoid fit\",\n74\t      \"z_t10\": -2.6082,\n75\t      \"z_t20\": -3.6886\n76\t    },\n77\t    \"t20_a050\": {\n78\t      \"predicted_permg_count\": 7,\n79\n…[truncated 2078 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_t20_predictions_fdr_fix_20260520T163325",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T16:34:48.207497+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_t20_predictions_fdr_fix_20260520T163325",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/dose_response_d120_compiled.csv"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T16:34:48.207681+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tcategory,experiment,alpha,seed,dataset,precision,model,naive_rate,diff_rate,threshold_rate,permg_rate,ty_rate,naive_count,diff_count,threshold_count,permg_count,ty_count,K_ge3,K_ge4,K_ge5,server\n2\talpha_sweep,a000_s42_fp32,0.0,42,wikitext,fp32,gpt2,1.0,0.5,0.375,0.0,0.125,8,4,3,0,1,2,1,0,17855\n3\talpha_sweep,a000_s43,0.0,43,wikitext,fp32,gpt2,0.875,0.25,0.125,0.0,0.125,7,2,1,0,1,0,0,0,19828\n4\talpha_sweep,a000_s44,0.0,44,wikitext,fp32,gpt2,0.875,0.375,0.25,0.0,0.0,7,3,2,0,0,1,0,0,19828\n5\talpha_sweep,a010_s42_fp32,0.1,42,wikitext,fp32,gpt2,0.875,0.75,0.0,0.0,0.0,7,6,0,0,0,0,0,0,17855\n6\talpha_sweep,a010_s43_fp32,0.1,43,wikitext,fp32,gpt2,1.0,0.875,0.25,0.375,0.375,8,7,2,3,3,6,2,0,17855\n7\talpha_sweep,c4_a025_s42_fp32,0.25,42,c4,fp32,gpt2,1.0,1.0,0.25,0.0,0.5,8,8,2,0,4,5,1,0,17855\n8\talpha_sweep,a025_s42_fp32,0.25,42,wikitext,fp32,gpt2,1.0,0.375,0.0,0.0,0.25,8,3,0,0,2,2,0,0,17855\n9\talpha_sweep,a025_s43_fp32,0.25,43,wikitext,fp32,gpt2,1.0,0.0,0.0,0.0,0.125,8,0,0,0,1,0,0,0,17855\n10\talpha_sweep,a025_s44_fp32,0.25,44,wikitext,fp32,gpt2,1.0,0.0,0.0,0.0,0.0,8,0,0,0,0,0,0,0,17855\n11\talpha_sweep,a030_s42_fp32,0.3,42,wikitext,fp32,gpt2,1.0,0.5,0.0,0.0,0.375,8,4,0,0,3,2,0,0,17855\n12\talpha_sweep,a035_s42_fp32,0.35,42,wikitext,fp32,gpt2,1.0,0.5,0.0,0.0,0.125,8,4,0,0,1,1,0,0,17855\n13\talpha_sweep,a040_s42_fp32,0.4,42,wikitext,fp32,gpt2,1.0,0.375,0.0,0.0,0.5,8,3,0,0,4,3,0,0,17855\n14\talpha_sweep,a045_s42_fp32,0.45,42,wikitext,fp32,gpt2,1.0,0.75,0.0,0.0,0.125,8,6,0,0,1,1,0,0,17855\n15\talpha_sweep,c4_a050_s42_fp32,0.5,42,c4,fp32,gpt2,1.0,1.0,0.0,1.0,0.25,8,8,0,8,2,8,2,0,17855\n16\talpha_sweep,a050_s42_fp32,0.5,42,wikitext,fp32,gpt2,1.0,0.875,0.5,0.75,0.375,8,7,4,6,3,6,5,2,17855\n17\talpha_sweep,c4_a050_s43_fp32,0.5,43,c4,fp32,gpt2,1.0,1.0,0.0,1.0,0.0,8,8,0,8,0,8,0,0,19828\n18\talpha_sweep,a050_s43_fp32,0.5,43,wikitext,fp32,gpt2,1.0,0.75,0.75,0.75,0.0,8,6,6,6,0,6,4,0,17855\n19\talpha_sweep,a050_s44_fp32,0.5,44,wikitext,fp32,gpt2,1.0,1.0,0.0,0.75,0.0,8,8,0,6,0,6,0,0,17855\n20\talpha_sweep,a055_s42_fp3\n…[truncated 3329 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_t20_predictions_fdr_fix_20260520T163325",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T16:34:48.207954+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_t20_predictions_fdr_fix_20260520T163325",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nimport numpy as np\nfrom scipy import stats\n\n# Load original\nwith open('artifacts/t20_predictions_locked.json') as f:\n    data = json.load(f)\n\n# Corrected α=0.60 computation\nn = 8\nfdr_rate = 0.0  # 0/8 from CSV (both seeds show permg_count=0)\nrate_corrected = 1.0 / (2 * n)  # continuity correction for rate=0\nz_t10 = stats.norm.ppf(rate_corrected)\nz_t20 = z_t10 * np.sqrt(20.0 / 10.0)\npredicted_rate = float(stats.norm.cdf(z_t20))\npredicted_count = int(round(predicted_rate * n))\n\nprint(f'rate_corrected (input to probit): {rate_corrected}')\nprint(f'z_t10: {z_t10:.4f}')\nprint(f'z_t20: {z_t20:.4f}')\nprint(f'predicted_rate: {predicted_rate:.4f}')\nprint(f'predicted_count: {predicted_count}')\n\n# Update α=0.60 entry\na060 = data['predictions']['t20_a060']\na060['t10_rate_used'] = fdr_rate\na060['z_t10'] = round(z_t10, 4)\na060['z_t20'] = round(z_t20, 4)\na060['predicted_rate'] = round(predicted_rate, 4)\na060['predicted_count'] = predicted_count\na060['confidence'] = 'low — sync dip regime, S×R non-monotonic; FDR-corrected T=10 rate=0/8'\na060['t10_source'] = 'actual (sync dip), FDR-corrected'\n\n# CI: original was fixed-rate based (rate_95ci = [0.32613, 0.32613]), so recalc with new rate\n# Since rate=0 -> continuity correction -> single point estimate (no sigmoid bootstrap applies)\na060['rate_95ci'] = [round(predicted_rate, 5), round(predicted_rate, 5)]\na060['rate_median'] = round(predicted_rate, 5)\na060['predicted_range'] = [0, 0]\n\n# Fix t10_data permg_counts: α=0.60 is at index 9 (matching alpha_values order)\n# Actually the t10_data.permg_counts correspond to the alpha_values listed, \n# but α=0.60 was 'excluded' from sigmoid fit. The permg_counts list has 12 entries\n# matching 12 alpha values. Index 9 is α=0.60, currently shows 3, should be 0.\ndata['t10_data']['permg_counts'][9] = 0\n\n# Add version metadata\ndata['version'] = 'v2_fdr_corrected'\ndata['changes'] = ['α=0.60 t10_rate corrected from 0.375 (pre-FDR) to 0.0 (FDR-corrected)']\n\nwith open('artifacts/t20_predictions_locked_v2.json', 'w') as f:\n    json.dump(data, f, indent=2)\n\nprint('\\\\nv2 written successfully')\nprint(f'\\\\nα=0.60 diff:')\nprint(f'  t10_rate: 0.375 -> {fdr_rate}')\nprint(f'  z_t10: -0.3186 -> {round(z_t10, 4)}')\nprint(f'  z_t20: -0.4506 -> {round(z_t20, 4)}')\nprint(f'  predicted_rate: 0.3261 -> {round(predicted_rate, 4)}')\nprint(f'  predicted_count: 3 -> {predicted_count}')\n\"\n",
+              "description": "Compute FDR-corrected α=0.60 prediction and write v2 JSON"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T16:34:48.208134+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "rate_corrected (input to probit): 0.0625\nz_t10: -1.5341\nz_t20: -2.1696\npredicted_rate: 0.0150\npredicted_count: 0\n\nv2 written successfully\n\nα=0.60 diff:\n  t10_rate: 0.375 -> 0.0\n  z_t10: -0.3186 -> -1.5341\n  z_t20: -0.4506 -> -2.1696\n  predicted_rate: 0.3261 -> 0.015\n  predicted_count: 3 -> 0"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_t20_predictions_fdr_fix_20260520T163325",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T16:34:48.208319+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_t20_predictions_fdr_fix_20260520T163325",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/t20_predictions_locked_v2.json"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T16:34:48.208521+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"generated_at\": \"2026-05-20T10:50:57Z\",\n3\t  \"bootstrap_added_at\": \"2026-05-20T11:15:00Z\",\n4\t  \"method\": \"Power Theory \\u221aT scaling from T=10 sigmoid fit\",\n5\t  \"t10_data\": {\n6\t    \"alpha_values\": [\n7\t      0.0,\n8\t      0.05,\n9\t      0.1,\n10\t      0.25,\n11\t      0.3,\n12\t      0.35,\n13\t      0.4,\n14\t      0.45,\n15\t      0.5,\n16\t      0.6,\n17\t      0.75,\n18\t      1.0\n19\t    ],\n20\t    \"permg_counts\": [\n21\t      0,\n22\t      0,\n23\t      0,\n24\t      0,\n25\t      0,\n26\t      0,\n27\t      0,\n28\t      0,\n29\t      6,\n30\t      0,\n31\t      6,\n32\t      6\n33\t    ],\n34\t    \"n_pairs\": 8,\n35\t    \"excluded\": [\n36\t      \"alpha=0.60 (sync dip, S\\u00d7R non-monotonic regime)\"\n37\t    ]\n38\t  },\n39\t  \"t10_sigmoid_params\": {\n40\t    \"k\": 200.0,\n41\t    \"alpha_c\": 0.4755,\n42\t    \"y_max\": 0.7518,\n43\t    \"formula\": \"rate = y_max / (1 + exp(-k * (alpha - alpha_c)))\",\n44\t    \"fit_std_errors\": {\n45\t      \"k\": 14.2031,\n46\t      \"alpha_c\": 0.0018,\n47\t      \"y_max\": 0.0016\n48\t    },\n49\t    \"bootstrap_95ci\": {\n50\t      \"k\": [\n51\t        73.6101,\n52\t        499.9488\n53\t      ],\n54\t      \"alpha_c\": [\n55\t        0.425265,\n56\t        0.557708\n57\t      ],\n58\t      \"y_max\": [\n59\t        0.69124,\n60\t        0.894626\n61\t      ],\n62\t      \"n_boot\": 10000,\n63\t      \"n_successful\": 10000,\n64\t      \"seed\": 42\n65\t    }\n66\t  },\n67\t  \"power_theory\": {\n68\t    \"assumption\": \"S(\\u03b1)\\u00d7R(\\u03b1) invariant to T at first order; effect size scales as \\u221aT\",\n69\t    \"formula\": \"z_T20 = z_T10 \\u00d7 \\u221a(T20/T10); rate_T20 = \\u03a6(z_T20)\",\n70\t    \"scaling_factor\": 1.4142,\n71\t    \"continuity_correction\": \"rate=0 mapped to 0.0625 for probit transform\"\n72\t  },\n73\t  \"predictions\": {\n74\t    \"t20_a045\": {\n75\t      \"predicted_permg_count\": 0,\n76\t      \"predicted_rate\": 0.0001,\n77\t      \"predicted_range\": [\n78\t        0,\n79\t        7\n80\t      ],\n81\t      \"rate_95ci\": [\n82\t        0.01502,\n83\t        0.827715\n84\t      ],\n85\t      \"rate_median\": 0.01502,\n86\t      \"confidence\": \"medium \\u2014 near phase transition, key\n…[truncated 2815 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_t20_predictions_fdr_fix_20260520T163325",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T16:34:48.208729+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_t20_predictions_fdr_fix_20260520T163325",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/t20_predictions_locked_v2.json",
+              "old_string": "    \"t20_a060\": {\n      \"predicted_permg_count\": 3,\n      \"predicted_rate\": 0.015,\n      \"predicted_range\": [\n        0,\n        0\n      ],\n      \"rate_95ci\": [\n        0.01502,\n        0.01502\n      ],\n      \"rate_median\": 0.01502,\n      \"confidence\": \"low — sync dip regime, S×R non-monotonic; FDR-corrected T=10 rate=0/8\",\n      \"t10_rate_used\": 0.0,\n      \"t10_source\": \"actual (sync dip), FDR-corrected\",\n      \"z_t10\": -1.5341,\n      \"z_t20\": -2.1696,\n      \"predicted_count\": 0\n    }",
+              "new_string": "    \"t20_a060\": {\n      \"predicted_permg_count\": 0,\n      \"predicted_rate\": 0.015,\n      \"predicted_range\": [\n        0,\n        0\n      ],\n      \"rate_95ci\": [\n        0.01502,\n        0.01502\n      ],\n      \"rate_median\": 0.01502,\n      \"confidence\": \"low — sync dip regime, S×R non-monotonic; FDR-corrected T=10 rate=0/8\",\n      \"t10_rate_used\": 0.0,\n      \"t10_source\": \"actual (sync dip), FDR-corrected\",\n      \"z_t10\": -1.5341,\n      \"z_t20\": -2.1696\n    }"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T16:34:48.208938+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/t20_predictions_locked_v2.json has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_t20_predictions_fdr_fix_20260520T163325",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T16:34:48.209108+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`t20_predictions_locked_v2.json` 已生成，α=0.60 修正摘要：\n\n| 字段 | v1 (pre-FDR) | v2 (FDR-corrected) |\n|------|-------------|-------------------|\n| t10_rate_used | 0.375 | 0.0 |\n| z_t10 | -0.3186 | -1.5341 |\n| z_t20 | -0.4506 | -2.1696 |\n| predicted_rate | 0.3261 | 0.0150 |\n| predicted_permg_count | 3 | 0 |\n\n其他 α 值（0.45/0.50/0.75/1.00）均基于 sigmoid fit，不受 FDR 修正影响，未变动。`t10_data.permg_counts[9]` 也从 3 → 0 同步修正。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_t20_predictions_fdr_fix_20260520T163325"
+          },
+          "id": "event-000011"
+        }
+      ],
+      "message_count": 11
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-r3-t20-predictions-fdr-fix.md"
+}

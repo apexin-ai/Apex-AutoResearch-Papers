@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ea0be2371fa8a33da71",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops urgent 17855 status check",
+  "task_key": "worker_ops_urgent-17855-status-check_20260523T123720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent-17855-status-check_20260523T123720_result.json",
+    "occurrence": 1,
+    "bytes": 616,
+    "sha256": "a96df2d5e73e20654c10ee53343cd4f42c2321fbdd995ee1557cf87ceabc4924"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**westd-17855 在线，6 个实验全部存活。**\n\n| GPU | 实验 | PID | 运行时间 | 显存占用 | GPU利用率 |\n|-----|------|-----|---------|---------|----------|\n| cuda:0 | t15_a060_s43 | 749427 | 9h51m | 31135 MiB | 88% |\n| cuda:1 | t15_a050_s43 | 750075 | 9h48m | 27725 MiB | 88% |\n| cuda:2 | t10_a050_s44 | 781724 | 3h31m | 27725 MiB | 100% |\n| cuda:3 | t10_a060_s44 | 780907 | 3h36m | 27725 MiB | 99% |\n| cuda:4 | t10_a045_s44 | 796624 | 5m08s | 11245 MiB | 89% |\n| cuda:5 | t15_a045_s43 | 762806 | 7h41m | 27725 MiB | 98% |\n\n所有 GPU 满负荷运行，无需标记 kill。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-17855-status-check.md"
+}

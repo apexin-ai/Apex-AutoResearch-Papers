@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e594961373a9e687f89",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code analysis unify integrate",
+  "task_key": "worker_code_analysis-unify-integrate_20260514T214855",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_analysis-unify-integrate_20260514T214855_result.json",
+    "occurrence": 1,
+    "bytes": 1866,
+    "sha256": "eaf6822ae550abc363404ad9ea8b2c53b3eb87f8621dbc315a1f0fee7dcd608b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Header now includes PermGr column. All changes are complete and verified.\n\n---\n\n## Summary\n\n### P0: FDR / Effect Size 统一\n\n**发现的不一致：**\n1. **FDR 实现**：`analyze_mvp.py` 和 `method_ablation.py` 使用 `scipy.stats.false_discovery_control`，`analyze_alpha_sweep.py` 使用 `statsmodels.stats.multitest.multipletests`\n2. **TY Effect Size**：`analyze_alpha_sweep.py` 使用 Cohen's f²（`F*p/df_resid`），`method_ablation.py` 使用 partial η²（`F/(F+df_resid)`）\n3. **字段名**：`method_ablation.py` 的 TY 用 `effect_size`，`analyze_alpha_sweep.py` 用 `effect_size_f2`\n\n**修改：**\n- `analyze_mvp.py`、`method_ablation.py`：FDR 统一为 `multipletests(method='fdr_bh')`\n- `analyze_alpha_sweep.py`：TY effect size 改为 partial η²（`F*p/(F*p+df_resid)`）\n- 三个脚本 TY 字段名统一为 `effect_size_eta2`，分类阈值用 0.14/0.06/0.01\n\n### P1: Permutation Granger 集成\n\n- 在 `analyze_alpha_sweep.py` 中新增 `perm_granger()` 包装函数，调用 `permutation_granger_test`\n- 将 f² 转换为 η²（`η² = f²/(1+f²)`）\n- METHODS 字典扩展为 4 方法\n- FDR 校正自动覆盖 permutation_granger\n- Consensus 更新：≥3 methods = strong_consensus，≥2 = consensus\n- 输出表格和 summary.txt 均包含 PermGr 列\n\n**Dry-run 结果：**\n- `analyze_mvp.py` (seed_42)：STRONG PASS，BH FDR 11/20 sig，输出格式正确\n- `analyze_alpha_sweep.py` (a000_s42, 7 gen)：4 方法均产出结果，FDR 校正正常，JSON/summary.txt 格式正确\n- `method_ablation.py` (seed_42)：5 方法均运行，TY details 显示 `eta2=` 值\n\n### P2: 代码去重\n\n未执行。三个脚本逻辑差异较大（analyze_mvp 有 verdict 系统、method_ablation 有 spurious 检测、alpha_sweep 有多 α 聚合），重构风险高，建议单独任务处理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-analysis-unify-integrate.md"
+}

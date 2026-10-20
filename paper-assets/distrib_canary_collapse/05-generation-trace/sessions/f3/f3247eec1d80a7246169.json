@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f3247eec1d80a7246169",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis gpt2m v4 table7",
+  "task_key": "worker_analysis_gpt2m_v4_table7_20260518T113128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gpt2m_v4_table7_20260518T113128_result.json",
+    "occurrence": 1,
+    "bytes": 1707,
+    "sha256": "64e6cc0dab436f968240794728ad7ce9b5061d15f6e2d81772839d5feedd44ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPT-2m v4 Table 7 (n_perm=5000, 8 canonical pairs)\n\n| Pair | Naive_p | Diff_p | Thresh | TY_p | PG_fwd_p | PG_rev_p | K(fwd) |\n|------|---------|--------|--------|------|----------|----------|--------|\n| ent→d1 | 0.0000 | 0.0000 | 2 (Y) | 0.1160 | 0.0006 | 0.0964 | 4/5 |\n| ent→d2 | 0.0000 | 0.0000 | 2 (Y) | 0.0017 | 0.0020 | 0.1052 | 5/5 |\n| ent→d3 | 0.0000 | 0.0000 | 2 (Y) | 0.0000 | 0.0024 | 0.1062 | 5/5 |\n| ent→ppl | 0.0114 | 0.0022 | 7 (Y) | 0.9998 | 0.4989 | 0.1820 | 3/5 |\n| ece→d1 | 0.0000 | 0.0005 | 1 (Y) | 0.0000 | 0.0006 | 0.0032 | 5/5 |\n| ece→d2 | 0.0000 | 0.0000 | 1 (Y) | 0.0000 | 0.0010 | 0.0160 | 5/5 |\n| ece→d3 | 0.0000 | 0.0000 | 1 (Y) | 0.0000 | 0.0010 | 0.0084 | 5/5 |\n| ece→ppl | 0.0034 | 0.0029 | 6 (Y) | 0.2254 | 0.8796 | 0.6107 | 3/5 |\n\n**Summary:** Naive=8/8, Diff=8/8, Thresh=8/8, TY=5/8, PG_fwd=6/8, PG_rev=3/8, K≥4=6/8\n\n**Final gen_10 metrics:**\n- ppl=16520.55, entropy=0.4794, ece=0.5216\n- eff_rank=25.00, mauve=0.033925\n- d1=0.0918, d2=0.4717, d3=0.7394, self_bleu=0.011851\n\n**Key observations:**\n- Entropy/ECE→distinct pairs show very strong signals (6/8 with K≥4)\n- Both canary→ppl pairs are weaker (K=3/5, TY and PG_fwd both fail)\n- PG_rev is significant only for ECE→distinct pairs (3/8), confirming directional asymmetry for entropy pairs but bidirectional coupling for ECE→distinct\n- ECE is a slightly stronger canary than entropy on GPT-2m (5/5 K≥4 on distinct pairs vs 4-5/5)\n\n**Intervention training:** `intervention_predictive_s42` was **already running** on cuda:0 (PID 351362, started ~19:50). `intervention_reactive_s42` running on cuda:1 (PID 340969, started ~18:26). No action needed."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gpt2m-v4-table7.md"
+}

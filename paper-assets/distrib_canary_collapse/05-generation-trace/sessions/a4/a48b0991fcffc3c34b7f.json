@@ -1,0 +1,605 @@
+{
+  "schema_version": "1.0",
+  "id": "a48b0991fcffc3c34b7f",
+  "project": "distrib_canary_collapse",
+  "kind": "conversation",
+  "title": "fix sync paper to remote",
+  "task_key": "worker_fix_sync_paper_to_remote_20260518T133751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_fix_sync_paper_to_remote_20260518T133751.jsonl",
+    "occurrence": 1,
+    "bytes": 19131,
+    "sha256": "88a44baa65508278ce122e5a29684eccc41932e4b73e1c4402a137dbce34a2cd"
+  },
+  "statistics": {
+    "messages": 29,
+    "user_turns": 0,
+    "tool_calls": 14,
+    "roles": {
+      "tool_call": 14,
+      "tool_result": 14,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T13:40:49.852786+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_sync_paper_to_remote_20260518T133751",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T13:40:49.853153+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_sync_paper_to_remote_20260518T133751",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T13:40:49.853484+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\\label{sec:discussion}\n2\t\n3\t\\paragraph{Granger precedence is not causation.}\n4\tGranger causality tests whether past values of one series improve prediction of another beyond its own history; it does not establish true causation~\\cite{granger1969investigating,shojaie2022granger}.\n5\tBivariate Granger tests cannot exclude confounders: an unobserved process (such as a latent distributional shift in the training data) could independently drive both token entropy and diversity metrics, producing spurious lead-lag associations even when no direct relationship exists.\n6\tOur multi-method consensus framework inherits this limitation in full.\n7\tThroughout this paper, ``Granger precedence'' denotes predictive improvement in a time-series forecasting sense, not a causal mechanism.\n8\tThis distinction is why we scope our central claim to ``token entropy Granger-precedes diversity collapse'' rather than asserting that token entropy \\emph{causes} diversity collapse.\n9\t\n10\t\\paragraph{Calibration scope and generalization.}\n11\tAll FPR and FNR calibration results reported in this work are specific to our experimental setup: Pythia-410M~\\cite{biderman2023pythia}, a WikiText-103 subset, $T{=}10$ generation cycles, and five contamination levels ($\\alpha \\in \\{0.0, 0.25, 0.50, 0.75, 1.0\\}$).\n12\tGeneralization to other model architectures, datasets, or training protocols requires independent validation.\n13\tThe consensus framework's structure (multi-method agreement combined with multi-seed replication) is intended to be applicable beyond this specific setting, but the operating thresholds ($K{\\geq}4/5$ methods, $S{\\geq}3/4$ seeds) are empirically calibrated and may require re-tuning under different conditions.\n14\tFor instance, architectures with different tokenizer granularity or training dynamics could shift the balance between false positive and false negative rates at these thresholds.\n15\tCross-architecture validation on GPT-2-medium and OPT-1.3B (single seed each, $\n…[truncated 16146 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_sync_paper_to_remote_20260518T133751",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T13:40:49.853841+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\\label{sec:setup}\n6\t\n7\tWe study lead-lag analysis pitfalls in iterative training collapse using Pythia-410M \\cite{biderman2023pythia}, a 410M-parameter decoder-only language model.\n8\tPythia provides a controlled setting: small enough for multi-seed experiments across five contamination levels, yet large enough to exhibit meaningful generation-over-generation degradation.\n9\tCross-architecture validation uses GPT-2-medium (345M parameters, also decoder-only), a second transformer family of similar scale; results are reported in \\S\\ref{sec:method_sensitivity}, \\S\\ref{sec:regime}, and \\S\\ref{sec:discussion}.\n10\tTraining data is drawn from WikiText-103 \\cite{merity2017pointer}, using 5{,}000-sample subsets per generation.\n11\t\n12\tOur protocol follows the replace paradigm of \\citet{shumailov2024curse}, adapted for mixed synthetic-real training at $\\alpha{<}1.0$.\n13\tEach generation $t$ proceeds in three steps: (1)~fine-tune the generation-$(t{-}1)$ model for 5{,}000 steps on a mixture of $\\alpha$ fraction synthetic data and $(1{-}\\alpha)$ fraction real data (AdamW optimizer, learning rate $5 \\times 10^{-5}$, 500 warmup steps, weight decay $0.01$, batch size 4 for Pythia-410M, 32 for GPT-2-medium); (2)~generate 5{,}000 synthetic samples from the fine-tuned model (temperature $1.0$, top-$k{=}50$, max length 512 tokens); (3)~fully replace the synthetic pool.\n14\tWe run $T{=}10$ generations (11 time points including the generation-0 baseline) across contamination levels $\\alpha \\in \\{0.00, 0.25, 0.50, 0.75, 1.00\\}$.\n15\tThe $\\alpha{=}1.0$ condition uses four random seeds $\\{42, 43, 44, 45\\}$; $\\alpha{=}0.00$, $\\alpha{=}0.25$, and $\\alpha{=}0.75$ each use three seeds $\\{42, 43, 44\\}$; $\\alpha{=}0.50$ uses three seeds $\\{42, 43, 44\\}$.\n16\t\n17\tWe track two \\emph{canary metrics} (cheap-to-compute statistics hypothesized to precede downstream degradation, inspired by early-warning signals in dynam\n…[truncated 37944 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_sync_paper_to_remote_20260518T133751",
+            "tool": "Read",
+            "elapsed_ms": 1
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T13:40:49.854037+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_sync_paper_to_remote_20260518T133751",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T13:40:49.854168+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_sync_paper_to_remote_20260518T133751",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T13:40:49.854326+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_sync_paper_to_remote_20260518T133751",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cp /root/autodl-tmp/distrib_canary_collapse/docs/paper/experiments.tex /root/autodl-tmp/distrib_canary_collapse/docs/paper/experiments.tex.bak && cp /root/autodl-tmp/distrib_canary_collapse/docs/paper/discussion.tex /root/autodl-tmp/distrib_canary_collapse/docs/paper/discussion.tex.bak && echo \"backup done\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T13:40:49.854461+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"backup done\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.96}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_sync_paper_to_remote_20260518T133751",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T13:40:49.854609+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_sync_paper_to_remote_20260518T133751",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "base64 /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments.tex | wc -c",
+              "description": "Check base64 encoded size of experiments.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T13:40:49.854726+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "52004"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_sync_paper_to_remote_20260518T133751",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T13:40:49.854840+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_sync_paper_to_remote_20260518T133751",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "base64 /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion.tex | wc -c",
+              "description": "Check base64 encoded size of discussion.tex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T13:40:49.854950+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "23988"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_sync_paper_to_remote_20260518T133751",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T13:40:49.855086+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_sync_paper_to_remote_20260518T133751",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "base64 /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion.tex",
+              "description": "Base64 encode discussion.tex"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T13:40:49.855305+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "XHNlY3Rpb257RGlzY3Vzc2lvbn1cbGFiZWx7c2VjOmRpc2N1c3Npb259CgpccGFyYWdyYXBoe0dy\nYW5nZXIgcHJlY2VkZW5jZSBpcyBub3QgY2F1c2F0aW9uLn0KR3JhbmdlciBjYXVzYWxpdHkgdGVz\ndHMgd2hldGhlciBwYXN0IHZhbHVlcyBvZiBvbmUgc2VyaWVzIGltcHJvdmUgcHJlZGljdGlvbiBv\nZiBhbm90aGVyIGJleW9uZCBpdHMgb3duIGhpc3Rvcnk7IGl0IGRvZXMgbm90IGVzdGFibGlzaCB0\ncnVlIGNhdXNhdGlvbn5cY2l0ZXtncmFuZ2VyMTk2OWludmVzdGlnYXRpbmcsc2hvamFpZTIwMjJn\ncmFuZ2VyfS4KQml2YXJpYXRlIEdyYW5nZXIgdGVzdHMgY2Fubm90IGV4Y2x1ZGUgY29uZm91bmRl\ncnM6IGFuIHVub2JzZXJ2ZWQgcHJvY2VzcyAoc3VjaCBhcyBhIGxhdGVudCBkaXN0cmlidXRpb25h\nbCBzaGlmdCBpbiB0aGUgdHJhaW5pbmcgZGF0YSkgY291bGQgaW5kZXBlbmRlbnRseSBkcml2ZSBi\nb3RoIHRva2VuIGVudHJvcHkgYW5kIGRpdmVyc2l0eSBtZXRyaWNzLCBwcm9kdWNpbmcgc3B1cmlv\ndXMgbGVhZC1sYWcgYXNzb2NpYXRpb25zIGV2ZW4gd2hlbiBubyBkaXJlY3QgcmVsYXRpb25zaGlw\nIGV4aXN0cy4KT3VyIG11bHRpLW1ldGhvZCBjb25zZW5zdXMgZnJhbWV3b3JrIGluaGVyaXRzIHRo\naXMgbGltaXRhdGlvbiBpbiBmdWxsLgpUaHJvdWdob3V0IHRoaXMgcGFwZXIsIGBgR3JhbmdlciBw\ncmVjZWRlbmNlJycgZGVub3RlcyBwcmVkaWN0aXZlIGltcHJvdmVtZW50IGluIGEgdGltZS1zZXJp\nZXMgZm9yZWNhc3Rpbmcgc2Vuc2UsIG5vdCBhIGNhdXNhbCBtZWNoYW5pc20uClRoaXMgZGlzdGlu\nY3Rpb24gaXMgd2h5IHdlIHNjb3BlIG91ciBjZW50cmFsIGNsYWltIHRvIGBgdG9rZW4gZW50cm9w\neSBHcmFuZ2VyLXByZWNlZGVzIGRpdmVyc2l0eSBjb2xsYXBzZScnIHJhdGhlciB0aGFuIGFzc2Vy\ndGluZyB0aGF0IHRva2VuIGVudHJvcHkgXGVtcGh7Y2F1c2VzfSBkaXZlcnNpdHkgY29sbGFwc2Uu\nCgpccGFyYWdyYXBoe0NhbGlicmF0aW9uIHNjb3BlIGFuZCBnZW5lcmFsaXphdGlvbi59CkFsbCBG\nUFIgYW5kIEZOUiBjYWxpYnJhdGlvbiByZXN1bHRzIHJlcG9ydGVkIGluIHRoaXMgd29yayBhcmUg\nc3BlY2lmaWMgdG8gb3VyIGV4cGVyaW1lbnRhbCBzZXR1cDogUHl0aGlhLTQxME1+XGNpdGV7Ymlk\nZXJtYW4yMDIzcHl0aGlhfSwgYSBXaWtpVGV4dC0xMDMgc3Vic2V0LCAkVHs9fTEwJCBnZW5lcmF0\naW9uIGN5Y2xlcywgYW5kIGZpdmUgY29udGFtaW5hdGlvbiBsZXZlbHMgKCRcYWxwaGEgXGluIFx7\nMC4wLCAwLjI1LCAwLjUwLCAwLjc1LCAxLjBcfSQpLgpHZW5lcmFsaXphdGlvbiB0byBvdGhlciBt\nb2RlbCBhcmNoaXRlY3R1cmVzLCBkYXRhc2V0cywgb3IgdHJhaW5pbmcgcHJvdG9jb2xzIHJlcXVp\ncmVzIGluZGVwZW5kZW50IHZhbGlkYXRpb24uClRoZSBjb25zZW5zdXMgZnJhbWV3b3JrJ3Mgc3Ry\ndWN0dXJlIChtdWx0aS1tZXRob2QgYWdyZWVtZW50IGNvbWJpbmVkIHdpdGggbXVsdGktc2VlZCB\n…[truncated 21987 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_sync_paper_to_remote_20260518T133751",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T13:40:49.855516+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_sync_paper_to_remote_20260518T133751",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "scp /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments.tex westd-19828:/root/autodl-tmp/distrib_canary_collapse/docs/paper/experiments.tex 2>&1",
+              "description": "SCP experiments.tex to remote server",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T13:40:49.855649+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_sync_paper_to_remote_20260518T133751",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "scp /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion.tex westd-19828:/root/autodl-tmp/distrib_canary_collapse/docs/paper/discussion.tex 2>&1",
+              "description": "SCP discussion.tex to remote server",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T13:40:49.855770+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.westd.seetacloud.com]:19828' (ED25519) to the list of known hosts."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_sync_paper_to_remote_20260518T133751",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-18T13:40:49.855890+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.westd.seetacloud.com]:19828' (ED25519) to the list of known hosts."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_sync_paper_to_remote_20260518T133751",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T13:40:49.856037+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_sync_paper_to_remote_20260518T133751",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "grep -c \"bidirection\" /root/autodl-tmp/distrib_canary_collapse/docs/paper/experiments.tex && grep -c \"0/28\" /root/autodl-tmp/distrib_canary_collapse/docs/paper/experiments.tex && grep -c \"13/28\" /root/autodl-tmp/distrib_canary_collapse/docs/paper/experiments.tex && grep -c \"41/42\" /root/autodl-tmp/distrib_canary_collapse/docs/paper/experiments.tex && grep -c \"Cross-condition\" /root/autodl-tmp/distrib_canary_collapse/docs/paper/experiments.tex && grep -c \"97.6\" /root/autodl-tmp/distrib_canary_collapse/docs/paper/experiments.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-18T13:40:49.856178+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'grep -c \\\\\\\"bidirection\\\\\\\" /root/autodl-tmp/distrib_canary_collapse/docs/paper/experiments.tex && grep -c \\\\\\\"0/28\\\\\\\" /root/autodl-tmp/distrib_canary_collapse/docs/paper/experiments.tex && grep -c \\\\\\\"13/28\\\\\\\" /root/autodl-tmp/distrib_canary_collapse/docs/paper/experiments.tex && grep -c \\\\\\\"41/42\\\\\\\" /root/autodl-tmp/distrib_canary_collapse/docs/paper/experiments.tex && grep -c \\\\\\\"Cross-condition\\\\\\\" /root/autodl-tmp/distrib_canary_collapse/docs/paper/experiments.tex && grep -c \\\\\\\"97.6\\\\\\\" /root/autodl-tmp/distrib_canary_collapse/docs/paper/experiments.tex'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n5\\\\n1\\\\n1\\\\n0\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_sync_paper_to_remote_20260518T133751",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-18T13:40:49.856320+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_sync_paper_to_remote_20260518T133751",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "grep -c \"0/28\" /root/autodl-tmp/distrib_canary_collapse/docs/paper/discussion.tex && grep -c \"13/28\" /root/autodl-tmp/distrib_canary_collapse/docs/paper/discussion.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-18T13:40:49.856443+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1\\\\n1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_sync_paper_to_remote_20260518T133751",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-18T13:40:49.856601+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_sync_paper_to_remote_20260518T133751",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "grep -c \"Cross-condition\" /root/autodl-tmp/distrib_canary_collapse/docs/paper/experiments.tex; grep -c \"97.6\" /root/autodl-tmp/distrib_canary_collapse/docs/paper/experiments.tex; grep -c \"41 of 42\" /root/autodl-tmp/distrib_canary_collapse/docs/paper/experiments.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-18T13:40:49.856726+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1\\\\n1\\\\n1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_sync_paper_to_remote_20260518T133751",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-18T13:40:49.856840+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_sync_paper_to_remote_20260518T133751",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "wc -l /root/autodl-tmp/distrib_canary_collapse/docs/paper/experiments.tex; wc -l /root/autodl-tmp/distrib_canary_collapse/docs/paper/discussion.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-18T13:40:49.856958+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"388 /root/autodl-tmp/distrib_canary_collapse/docs/paper/experiments.tex\\\\n125 /root/autodl-tmp/distrib_canary_collapse/docs/paper/discussion.tex\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_sync_paper_to_remote_20260518T133751",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-18T13:40:49.857079+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_sync_paper_to_remote_20260518T133751",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "grep \"5/8\" /root/autodl-tmp/distrib_canary_collapse/docs/paper/experiments.tex | head -3; echo \"---\"; grep \"Scale\" /root/autodl-tmp/distrib_canary_collapse/docs/paper/experiments.tex | head -3; echo \"---\"; grep \"n_perm\\|n_{\\\\\\\\text{perm}}\\|n_{perm}\" /root/autodl-tmp/distrib_canary_collapse/docs/paper/experiments.tex | head -3",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-18T13:40:49.857210+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Architecture & GPT-2-medium / Wiki & 8/8 & 8/8 & 8/8 & 6/8 & 3/8 & 5/8 & 6/8 \\\\\\\\\\\\\\\\\\\\nScale ($3.4\\\\\\\\times$) & Pythia-1.4B / Wiki (s42) & 7/8 & 6/8 & 8/8 & 5/8 & 0/8 & 0/8 & 5/8 \\\\\\\\\\\\\\\\\\\\nToda--Yamamoto ranges from 4/8 (Pythia-410M) to 6/8 (OPT-1.3B), with GPT-2-medium at 5/8, consistent with its known sensitivity to residual degrees of freedom at short series lengths (\\\\\\\\S\\\\\\\\ref{sec:consensus_validation}).\\\\n---\\\\n\\\\\\\\subsection{Cross-Architecture, Cross-Scale, and Cross-Domain Generalization}\\\\nScale ($3.4\\\\\\\\times$) & Pythia-1.4B / Wiki (s42) & 7/8 & 6/8 & 8/8 & 5/8 & 0/8 & 0/8 & 5/8 \\\\\\\\\\\\\\\\\\\\nScale ($3.4\\\\\\\\times$) & Pythia-1.4B / Wiki (s43) & 8/8 & 6/8 & 8/8 & 6/8 & 2/8 & 4/8 & 6/8 \\\\\\\\\\\\\\\\\\\\n---\\\\n\\\\\\\\caption{Generalization of lead-lag detectability across architecture, scale, and domain ($\\\\\\\\alpha{=}1.0$, $n_{\\\\\\\\text{perm}}{=}5{,}000$). Each cell reports the fraction of 8~canary$\\\\\\\\to$downstream pairs per condition reaching BH-corrected FDR significance ($q{=}0.05$), with two seeds (s42, s43) to assess replicability for scale and domain conditions.}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_sync_paper_to_remote_20260518T133751",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-18T13:40:49.857390+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过：\n\n| 检查项 | 结果 |\n|--------|------|\n| `bidirection` | 5 |\n| `0/28` (experiments) | 1 |\n| `13/28` (experiments) | 1 |\n| `41 of 42` | 1 (本地文件用 \"41 of 42\" 而非 \"41/42\") |\n| `Cross-condition` | 1 |\n| `97.6` | 1 |\n| `0/28` (discussion) | 1 |\n| `13/28` (discussion) | 1 |\n| experiments.tex 行数 | 388 (在 380-410 范围内) |\n| discussion.tex 行数 | 125 (在 120-130 范围内) |\n| `5/8`, `Scale`, `n_perm` | 全部存在 |\n\n两个文件已成功同步到远程服务器，备份保存在 `.bak` 后缀文件中。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_sync_paper_to_remote_20260518T133751"
+          },
+          "id": "event-000029"
+        }
+      ],
+      "message_count": 29
+    }
+  ],
+  "readable_path": "readable/conversations/fix-sync-paper-to-remote.md"
+}

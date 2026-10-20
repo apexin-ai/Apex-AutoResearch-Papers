@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad5d9f293b51ffcc27a2",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "train pythia14b s43 restart",
+  "task_key": "worker_train_pythia14b_s43_restart_20260518T041724",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_pythia14b_s43_restart_20260518T041724_result.json",
+    "occurrence": 1,
+    "bytes": 376,
+    "sha256": "75727f3808fd4bd2d4027c06523c22974d3e389fd08830dd86c5fb88acb8e74c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "s43 **已经在运行中**，无需重启。\n\n- **PID**: 314401\n- **GPU**: cuda:1，97% 利用率，33GB 显存\n- **当前进度**: gen_2 训练中，1511/5000 steps (~30%)，~4.17 it/s\n- **启动时间**: 今天 10:46（已有 session 自动从 gen_2 resume）\n\n脚本检测到 gen_0、gen_1 已存在，自动从 gen_2 继续。不需要任何操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-pythia14b-s43-restart.md"
+}

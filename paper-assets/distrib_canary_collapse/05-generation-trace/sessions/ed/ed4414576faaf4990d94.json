@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ed4414576faaf4990d94",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "submit a030 s42 fp32",
+  "task_key": "worker_submit_a030_s42_fp32_20260519T141247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_a030_s42_fp32_20260519T141247_result.json",
+    "occurrence": 1,
+    "bytes": 713,
+    "sha256": "20c526bae41bd4bb8cf77b36e9f79842436464384031f2169eb89bb14b80c869"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:4 未空闲。** PID 147488 是原始 a040 实验（`synthetic_ratio 0.40`），不是 v2。它在 cuda:4 上运行，使用 7442MiB。\n\n任务描述中说\"原始 a040 (PID 146540) 在 cuda:0 上\"，但实际情况是：\n- cuda:0 上是 PID 137279（不是 a040）\n- cuda:4 上是 PID 147488 — 原始 a040（`--synthetic_ratio 0.40`）\n\n根据 **C004 约束**，不能在未确认实验状态的情况下 kill 正在运行的进程。\n\n**需要 Director 决策：**\n1. Kill cuda:4 上的原始 a040（PID 147488）来腾出 cuda:4 给 a030？\n2. 还是把 a030 提交到其他空闲 GPU？（当前所有 GPU 都有进程在跑）\n3. 或者确认 a040 已跑完可以清理？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-a030-s42-fp32.md"
+}

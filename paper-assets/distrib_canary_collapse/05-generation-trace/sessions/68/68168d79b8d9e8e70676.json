@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68168d79b8d9e8e70676",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analyze d102 t15 a045 s43 and t20 a045 s43",
+  "task_key": "worker_analyze_d102-t15-a045-s43-and-t20-a045-s43_20260522T010002",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_d102-t15-a045-s43-and-t20-a045-s43_20260522T010002_result.json",
+    "occurrence": 1,
+    "bytes": 1335,
+    "sha256": "127e1c32442a1c20218c2460f5cce4b0c0bd7d39c9976ed79b0bf2935f0995a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### t15_a045_s43 (T=15, α=0.45, seed=43) — 14 generations\n\n| 指标 | 值 |\n|------|-----|\n| **PermG fwd (FDR)** | **6/8** |\n| Diff XCorr fwd (FDR) | 6/8 |\n| Threshold Onset | 0/8 |\n| TY Granger | 3/8 |\n| **Robust pairs (K≥3)** | **2/8** |\n\nRobust pairs 细节:\n- `token_entropy→distinct_2`: 3/5 [diff, perm, ty]\n- `ece→distinct_3`: 3/5 [diff, perm, ty]\n\n---\n\n### t20_a045_s43 (T=20, α=0.45, seed=43) — 20 generations ✓ 完成\n\n| 指标 | 值 |\n|------|-----|\n| **PermG fwd (FDR)** | **4/8** |\n| Diff XCorr fwd (FDR) | 8/8 |\n| Threshold Onset | 4/8 |\n| TY Granger | 3/8 |\n| **Robust pairs (K≥3)** | **5/8** |\n\nRobust pairs 细节:\n- `token_entropy→distinct_1`: 3/5 [diff, threshold, ty]\n- `token_entropy→mauve`: 3/5 [diff, perm, ty]\n- `ece→distinct_1`: 4/5 [naive, diff, threshold, perm]\n- `ece→distinct_2`: 3/5 [diff, threshold, perm]\n- `ece→mauve`: 3/5 [naive, diff, ty]\n\n---\n\n**关键对比**: T=15→T=20 时 K≥3 从 2/8 跳至 5/8，Threshold Onset 从 0/8 升到 4/8，说明更长序列显著改善了 causal signal 的可检测性。PermG FDR 反而从 6/8 降到 4/8，可能是 FDR 校正阈值在更多显著 pair 场景下更保守。Artifacts 已复制到两台服务器的 `artifacts/phase_diagram_t{15,20}_a045_s43_fp32/data/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-d102-t15-a045-s43-and-t20-a045-s43.md"
+}

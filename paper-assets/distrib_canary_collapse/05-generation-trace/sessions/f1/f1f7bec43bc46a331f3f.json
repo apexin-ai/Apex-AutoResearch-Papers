@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1f7bec43bc46a331f3f",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis cross alpha comparison v2",
+  "task_key": "worker_analysis_cross_alpha_comparison_v2_20260515T052844",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cross_alpha_comparison_v2_20260515T052844_result.json",
+    "occurrence": 1,
+    "bytes": 1407,
+    "sha256": "e6efc226020b27c492da533eb42cfa6b94a084df0517c9f575449aa9c8bcfb3b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。总结关键发现：\n\n### D024 回答\n\n**1. 非单调 dose-response 确认**\nα=0.50 的 diversity collapse 在所有 distinct_N 指标上弱于 α=0.25（d1: -36.6% vs -39.9%，d3: -51.0% vs -57.7%），即使匹配相同代数 (gen0-9)。\n\n**2. 机制：不是\"前期快后期饱和\"，而是\"完全不同的 collapse regime\"**\n- α=0.50 在 gen1 触发 entropy 崩塌（-22%）+ ECE 爆炸（6x），模型立即进入低熵/高miscalibration 状态\n- 这个 regime shift 产生\"地板效应\"——模型从一开始就生成较同质的文本，diversity 进一步下降的空间有限\n- α=0.50 全程 collapse 速率都低于 α=0.25，不是前快后慢\n\n**3. Canary regime switch（核心发现）**\n\n| α | entropy→d1 | ECE→d1 |\n|---|---|---|\n| 0.00 | p=0.048* | p=0.958 |\n| 0.25 | p=0.012* | p=0.238 |\n| 0.50 | p=0.105 | p=0.021* |\n\n低 α 用 entropy 预警，高 α 用 ECE 预警。Cross-correlation 也确认 ECE 在 α=0.50 从\"跟随者\"变为\"领先者\"（lag=+1, r=-1.013）。\n\n**4. 对论文的启示**：实用的 canary 系统应同时监控 entropy 和 ECE，并根据估计的污染强度调整权重。α=0.10/0.60/0.75 的数据将帮助精确定位 regime 切换边界（预计 α~0.3-0.4）。\n\n产出已保存至 `results/analysis/` 和 artifact registry。Registry 已更新 a050_s42 的完整分析指标。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cross-alpha-comparison-v2.md"
+}

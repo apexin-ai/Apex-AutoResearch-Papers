@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "384ed74931066e9ccdfc",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis r5 equal weight mmct",
+  "task_key": "worker_analysis_r5_equal_weight_mmct_20260520T204829",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r5_equal_weight_mmct_20260520T204829_result.json",
+    "occurrence": 1,
+    "bytes": 1640,
+    "sha256": "1d541cbe308f14ce22e2dc4d0c3e998042a34710278a42eb855bec9c9b848a6c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心发现：\n\n**当前 consensus 系统已经是 equal-weight（每方法 1 票），不存在 FPR-inverse weighting。** 实际差异来自 D111 方向过滤（xcorr 方法要求 `peak_lag < 0`）。\n\n### K≥3 对比汇总\n\n| 实验 | α | T | Equal-weight K3 | Current K3 | Diff |\n|------|-----|-----|-----------------|------------|------|\n| a000_s42 | 0.00 | 10 | **2** | 0 | **+2** |\n| a010_s42 | 0.10 | 10 | **2** | 0 | **+2** |\n| a025_s42 | 0.25 | 10 | 0 | 0 | 0 |\n| a025_s43 | 0.25 | 10 | 0 | 0 | 0 |\n| a045_s42 | 0.45 | 10 | 0 | 0 | 0 |\n| a045_s43 | 0.45 | 10 | 0 | 0 | 0 |\n| a050_s42 | 0.50 | 10 | 6 | 6 | 0 |\n| a060_s42_v4 | 0.60 | 10 | 0 | 0 | 0 |\n| a075_s42 | 0.75 | 10 | 6 | 6 | 0 |\n| t20/a100 | 1.00 | 20 | 6 | 6 | 0 |\n| t20/a045 | 0.45 | 20 | **7** | 3 | **+4** |\n\n### 关键结论\n\n1. **3/11 实验有 K3 差异**，全部方向为 equal-weight 更高（去掉方向过滤 = 更多 false positives）\n2. **NaiveXCorr 是主要驱动因素**：59 个 pair-level vote 差异中，57 个来自 NaiveXCorr 被方向过滤掉（它在大量 pair 上 significant 但 peak_lag > 0，即反向因果）\n3. **null 实验 FPR 失控**：α=0.00 从 0→2 K≥3 pairs — 去掉方向过滤直接破坏 type-I error control\n4. **强信号实验完全一致**：α≥0.50 T=10 的 K3 count 在两种方案下完全相同\n5. **t20/a045 差异最大**（+4）：T=20 给 NaiveXCorr 更多 lag 组合空间，方向错误的显著性更多\n\n**结论：不应采用去掉方向过滤的 equal-weight。当前系统（equal-weight + D111 方向过滤）已是最合理方案。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r5-equal-weight-mmct.md"
+}

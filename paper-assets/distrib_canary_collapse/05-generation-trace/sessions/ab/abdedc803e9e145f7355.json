@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0",
+  "id": "abdedc803e9e145f7355",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "analysis detection lower bound",
+  "task_key": "worker_analysis_detection_lower_bound_20260521T083840",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_detection_lower_bound_20260521T083840.log",
+    "occurrence": 1,
+    "bytes": 1640021,
+    "sha256": "c7c49017074963f66630b32d7b019424cdd2e1451fc63593def98b386a1b88c1"
+  },
+  "statistics": {
+    "messages": 465,
+    "user_turns": 3,
+    "tool_calls": 159,
+    "roles": {
+      "log": 1,
+      "system": 60,
+      "record": 3,
+      "assistant": 79,
+      "tool_call": 159,
+      "user": 3,
+      "tool_result": 159,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "abdedc803e9e145f7355-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 224,
+      "chunks": [
+        {
+          "path": "abdedc803e9e145f7355-part-0001.json",
+          "message_count": 164
+        },
+        {
+          "path": "abdedc803e9e145f7355-part-0002.json",
+          "message_count": 60
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 188,
+      "chunks": [
+        {
+          "path": "abdedc803e9e145f7355-part-0002.json",
+          "message_count": 120
+        },
+        {
+          "path": "abdedc803e9e145f7355-part-0003.json",
+          "message_count": 68
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 46,
+      "chunks": [
+        {
+          "path": "abdedc803e9e145f7355-part-0003.json",
+          "message_count": 41
+        },
+        {
+          "path": "abdedc803e9e145f7355-part-0004.json",
+          "message_count": 5
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-detection-lower-bound.md"
+}

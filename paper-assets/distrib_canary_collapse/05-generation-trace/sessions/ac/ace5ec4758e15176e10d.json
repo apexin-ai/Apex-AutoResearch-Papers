@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ace5ec4758e15176e10d",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code analyze dryrun",
+  "task_key": "worker_code_analyze-dryrun_20260514T062009",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_analyze-dryrun_20260514T062009_result.json",
+    "occurrence": 1,
+    "bytes": 1478,
+    "sha256": "57e055a4a458eec392c3bf89ff84b6dfe601bc3b5db76b976cb5a65c193e02c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Dry-run 结果\n\n**analyze_mvp.py 正常运行，无报错。**\n\n### PASS/FAIL 判定\n- `pass_fail = \"PASS\"` — 正确。15/20 canary-downstream 对在所有 3 个 rep 中一致地表现为 canary 领先。\n\n### Peak lag 值\n| Canary | Peak lag | 备注 |\n|--------|----------|------|\n| token_entropy | **-2.0** (std=0) | 完美检出 2-gen lead |\n| effective_rank | **-2.0** (std=0) | 完美检出 2-gen lead |\n| self_bleu | **-1.67** (std=0.47) | 2/3 rep 检出 -2，1 个 rep 检出 -1，平均偏小但方向正确 |\n| ece | **不一致** (lag_std ~1.2-2.6) | 5 个 downstream 全部 consistent=False |\n\n### 分析\n\n`token_entropy` 和 `effective_rank` 是最可靠的 canary，lag 检测完全准确。`self_bleu` 略有波动但方向正确。\n\n**ece 是唯一有问题的 canary**：lag 方向在不同 rep 间不稳定，甚至出现正值（+1.33 for perplexity, +1.67 for distinct_3）。原因是 mock 数据中 ece 的 onset 幅度较小（0.03→0.18，仅 0.15 变化量），加上噪声（std=0.02）导致信号被淹没，cross-correlation 在不同 rep 中选择了不同方向的 lag。这是数据信噪比问题，不是代码 bug。\n\n### 结论\n- 代码逻辑正确，无 bug\n- Cross-correlation + lead time 检测在信噪比充足时（token_entropy, effective_rank）准确检出 2-gen lead\n- ece 因信号弱导致不一致，但 `consistent` 字段正确标记为 False，PASS/FAIL 判定逻辑工作正常"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-analyze-dryrun.md"
+}

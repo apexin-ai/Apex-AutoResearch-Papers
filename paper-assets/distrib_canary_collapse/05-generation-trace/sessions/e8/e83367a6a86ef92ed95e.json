@@ -1,0 +1,1309 @@
+{
+  "schema_version": "1.0",
+  "id": "e83367a6a86ef92ed95e",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "data effrank trajectories",
+  "task_key": "worker_data_effrank_trajectories_20260519T033526",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_effrank_trajectories_20260519T033526.log",
+    "occurrence": 1,
+    "bytes": 48113,
+    "sha256": "162c320b79a4980d22d643862267fe74e8b994e50a78e5594a868fc231e4c5c8"
+  },
+  "statistics": {
+    "messages": 30,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 8,
+      "tool_call": 9,
+      "tool_result": 9,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+                "session_id": "6900ffbd-65da-475a-9d0b-4f5526a31abd",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "78b25a57-e93e-4a69-8558-8524398ad043",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779177000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "47672038-7744-4029-9294-ffc420c7844c",
+                "session_id": "6900ffbd-65da-475a-9d0b-4f5526a31abd"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by finding the all_metrics.json files on the remote server and extracting the effective_rank data.",
+              "signature": "EqoCClkIDRgCKkCqo3ESbvqv0limFEyb15tGvy5b41zTCbrx4a6HROfAz27Ok09FWK5FbjXi3pQXIqC61XUanVwIF2mlI3yOr1xMMg9jbGF1ZGUtb3B1cy00LTY4ABIMubsHQBIwEY5O5gbbGgzrjbVOPX7NQphZysEiMFnkDbX/e/MiBGsmMmcfk1PVQfCBKS4xMUxxYFCBNR2i+FG7pmWXUKa5M0+1hgpr9yp/k12ijMiIPg/41GX8dIpRBWtf22xyIfnU53R75G/oZHxQLJmOEDAF6P2b2KZapHnftpm/DZd9Why2DOchPGcOkHoYRW9Jk6EXfETVB4PqPNywEyt3xoVbbn6ZVl5s7+6EWZkPo2M9LjngO5+NU3JA7JsIF8HmIuu9zZiHJpXfBhgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6900ffbd-65da-475a-9d0b-4f5526a31abd",
+            "uuid": "b6e0dae1-6379-4e6f-8b9f-c14c9511873d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EX8B2w2Je3kHVL7cm6Ck4k",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13675,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13675
+                },
+                "output_tokens": 40,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "先在远程服务器上定位所有 all_metrics.json 文件并提取 effective_rank 数据。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6900ffbd-65da-475a-9d0b-4f5526a31abd",
+            "uuid": "9b1b83b6-f182-4967-b466-c0a7344c0b10",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EX8B2w2Je3kHVL7cm6Ck4k",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13675,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13675
+                },
+                "output_tokens": 40,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BC4buZ9BSw165vGhipNk6k",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6900ffbd-65da-475a-9d0b-4f5526a31abd",
+            "uuid": "8c12ceb8-3686-4f25-9a1a-161487694da5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EX8B2w2Je3kHVL7cm6Ck4k",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13675,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13675
+                },
+                "output_tokens": 40,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T03:35:36.552Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01BC4buZ9BSw165vGhipNk6k",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6900ffbd-65da-475a-9d0b-4f5526a31abd",
+            "uuid": "b729e59a-9e39-4758-a775-ae2c4f9a8ebb",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HzWKHPA1jY7VHmrtYkhYtK",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-19828",
+                "command": "find /root/autodl-tmp/distrib_canary_collapse/results/ -name \"all_metrics.json\" | sort",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6900ffbd-65da-475a-9d0b-4f5526a31abd",
+            "uuid": "f120791c-146e-4c89-be64-a8f31a0f7a45",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017R4FwjXqu7GvgDQDK59CSt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 419,
+                "cache_read_input_tokens": 25516,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 419
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T03:35:40.484Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HzWKHPA1jY7VHmrtYkhYtK",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s42/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s44/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_bf16/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s42/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s43/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s44/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s43/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/intervention/predictive_te_s42/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/intervention/reactive_d1_s42/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/scale_check/pythia14b_a050_s42/all_metrics.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.97}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6900ffbd-65da-475a-9d0b-4f5526a31abd",
+            "uuid": "d4088e48-bc42-4eb0-8b71-555aa1dff15a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s42/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s44/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_bf16/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s42/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s43/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s44/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s43/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/intervention/predictive_te_s42/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/intervention/reactive_d1_s42/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/scale_check/pythia14b_a050_s42/all_metrics.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.97}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s44/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_bf16/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s44/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/intervention/predictive_te_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/intervention/reactive_d1_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/scale_check/pythia14b_a050_s42/all_metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到了所有文件。现在提取目标实验的 effective_rank 数据。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6900ffbd-65da-475a-9d0b-4f5526a31abd",
+            "uuid": "8915fddd-05fb-44ee-87d5-d8c06580fabc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F2Ty52u6MHRyCjcLpA8dZ1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1061,
+                "cache_read_input_tokens": 25935,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1061
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01De96NZyLxjW9hfzm7YHp4u",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-19828",
+                "command": "python3 -c \"\nimport json, sys\n\ntargets = {\n    'pythia410m_a050_s42': '/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/all_metrics.json',\n    'pythia14b_a050_s42': '/root/autodl-tmp/distrib_canary_collapse/results/scale_check/pythia14b_a050_s42/all_metrics.json',\n    'pythia410m_a100_s42': '/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/all_metrics.json',\n    'pythia14b_a100_s42': '/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/all_metrics.json',\n}\n\nfor name, path in targets.items():\n    print(f'=== {name} ===')\n    try:\n        with open(path) as f:\n            data = json.load(f)\n        # Check structure: could be dict with gen keys or list\n        if isinstance(data, dict):\n            for key in sorted(data.keys(), key=lambda x: int(x.replace('gen_','').replace('gen','')) if any(c.isdigit() for c in x) else 0):\n                metrics = data[key]\n                if isinstance(metrics, dict):\n                    er = metrics.get('effective_rank', metrics.get('eff_rank', 'N/A'))\n                    print(f'  {key}: effective_rank={er}')\n                else:\n                    print(f'  {key}: value={metrics}')\n        elif isinstance(data, list):\n            for i, item in enumerate(data):\n                if isinstance(item, dict):\n                    er = item.get('effective_rank', item.get('eff_rank', 'N/A'))\n                    print(f'  gen_{i}: effective_rank={er}')\n    except Exception as e:\n        print(f'  ERROR: {e}')\n    print()\n\"\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6900ffbd-65da-475a-9d0b-4f5526a31abd",
+            "uuid": "ca69150e-8e54-4108-8501-6e656d09b681",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F2Ty52u6MHRyCjcLpA8dZ1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1061,
+                "cache_read_input_tokens": 25935,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1061
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T03:35:49.755Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01De96NZyLxjW9hfzm7YHp4u",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== pythia410m_a050_s42 ===\\\\n  gen_0: effective_rank=46.612774691899155\\\\n  gen_1: effective_rank=58.56433721113924\\\\n  gen_2: effective_rank=63.590245251860246\\\\n  gen_3: effective_rank=64.59108964475801\\\\n  gen_4: effective_rank=65.11372176667764\\\\n  gen_5: effective_rank=63.85699340279352\\\\n  gen_6: effective_rank=62.23144622907433\\\\n  gen_7: effective_rank=62.21846307489319\\\\n  gen_8: effective_rank=60.84873169111718\\\\n  gen_9: effective_rank=59.52587698526846\\\\n  gen_10: effective_rank=59.333082005900366\\\\n\\\\n=== pythia14b_a050_s42 ===\\\\n  gen_0: effective_rank=50.76320796339814\\\\n  gen_1: effective_rank=75.5548063480742\\\\n  gen_2: effective_rank=82.63082656681367\\\\n  gen_3: effective_rank=81.94008114894145\\\\n  gen_4: effective_rank=82.24253288865171\\\\n  gen_5: effective_rank=82.38531367850943\\\\n  gen_6: effective_rank=83.29831040789655\\\\n  gen_7: effective_rank=83.35021544756057\\\\n  gen_8: effective_rank=82.14783823969934\\\\n  gen_9: effective_rank=82.22937798351141\\\\n  gen_10: effective_rank=82.21437306291143\\\\n\\\\n=== pythia410m_a100_s42 ===\\\\n  gen_0: effective_rank=46.612774691899155\\\\n  gen_1: effective_rank=79.07801965874336\\\\n  gen_2: effective_rank=94.26403978105184\\\\n  gen_3: effective_rank=98.3263913412653\\\\n  gen_4: effective_rank=101.53948371914004\\\\n  gen_5: effective_rank=96.75099178857892\\\\n  gen_6: effective_rank=89.50950675181325\\\\n  gen_7: effective_rank=92.42205749523755\\\\n  gen_8: effective_rank=99.56802018499252\\\\n  gen_9: effective_rank=100.22322187553306\\\\n  gen_10: effective_rank=89.65149189092871\\\\n\\\\n=== pythia14b_a100_s42 ===\\\\n  gen_0: effective_rank=50.76320796339814\\\\n  gen_1: effective_rank=86.64758098829786\\\\n  gen_2: effective_rank=103.58956135032051\\\\n  gen_3: effective_rank=98.5840046846175\\\\n  gen_4: effective_rank=104.9798680613065\\\\n  gen_5: effective_rank=106.41221584693888\\\\n  gen_6: effective_rank=104.38050824158586\\\\n  gen_7: effective_rank=102.87445594352883\\\\n  gen_8: effective_rank=101.07173684523376\\\\n  gen_9: effective_rank=100.43418208659047\\\\n  gen_10: effective_rank=96.56102046294072\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6900ffbd-65da-475a-9d0b-4f5526a31abd",
+            "uuid": "fdd4103f-9e27-43cd-a514-33e71c82157b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== pythia410m_a050_s42 ===\\\\n  gen_0: effective_rank=46.612774691899155\\\\n  gen_1: effective_rank=58.56433721113924\\\\n  gen_2: effective_rank=63.590245251860246\\\\n  gen_3: effective_rank=64.59108964475801\\\\n  gen_4: effective_rank=65.11372176667764\\\\n  gen_5: effective_rank=63.85699340279352\\\\n  gen_6: effective_rank=62.23144622907433\\\\n  gen_7: effective_rank=62.21846307489319\\\\n  gen_8: effective_rank=60.84873169111718\\\\n  gen_9: effective_rank=59.52587698526846\\\\n  gen_10: effective_rank=59.333082005900366\\\\n\\\\n=== pythia14b_a050_s42 ===\\\\n  gen_0: effective_rank=50.76320796339814\\\\n  gen_1: effective_rank=75.5548063480742\\\\n  gen_2: effective_rank=82.63082656681367\\\\n  gen_3: effective_rank=81.94008114894145\\\\n  gen_4: effective_rank=82.24253288865171\\\\n  gen_5: effective_rank=82.38531367850943\\\\n  gen_6: effective_rank=83.29831040789655\\\\n  gen_7: effective_rank=83.35021544756057\\\\n  gen_8: effective_rank=82.14783823969934\\\\n  gen_9: effective_rank=82.22937798351141\\\\n  gen_10: effective_rank=82.21437306291143\\\\n\\\\n=== pythia410m_a100_s42 ===\\\\n  gen_0: effective_rank=46.612774691899155\\\\n  gen_1: effective_rank=79.07801965874336\\\\n  gen_2: effective_rank=94.26403978105184\\\\n  gen_3: effective_rank=98.3263913412653\\\\n  gen_4: effective_rank=101.53948371914004\\\\n  gen_5: effective_rank=96.75099178857892\\\\n  gen_6: effective_rank=89.50950675181325\\\\n  gen_7: effective_rank=92.42205749523755\\\\n  gen_8: effective_rank=99.56802018499252\\\\n  gen_9: effective_rank=100.22322187553306\\\\n  gen_10: effective_rank=89.65149189092871\\\\n\\\\n=== pythia14b_a100_s42 ===\\\\n  gen_0: effective_rank=50.76320796339814\\\\n  gen_1: effective_rank=86.64758098829786\\\\n  gen_2: effective_rank=103.58956135032051\\\\n  gen_3: effective_rank=98.5840046846175\\\\n  gen_4: effective_rank=104.9798680613065\\\\n  gen_5: effective_rank=106.41221584693888\\\\n  gen_6: effective_rank=104.38050824158586\\\\n  gen_7: effective_rank=102.87445594352883\\\\n  gen_8: effective_rank=101.07173684523376\\\\n  gen_9: effective_rank=100.43418208659047\\\\n  gen_10: effective_rank=96.56102046294072\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"=== pythia410m_a050_s42 ===\\n  gen_0: effective_rank=46.612774691899155\\n  gen_1: effective_rank=58.56433721113924\\n  gen_2: effective_rank=63.590245251860246\\n  gen_3: effective_rank=64.59108964475801\\n  gen_4: effective_rank=65.11372176667764\\n  gen_5: effective_rank=63.85699340279352\\n  gen_6: effective_rank=62.23144622907433\\n  gen_7: effective_rank=62.21846307489319\\n  gen_8: effective_rank=60.84873169111718\\n  gen_9: effective_rank=59.52587698526846\\n  gen_10: effective_rank=59.333082005900366\\n\\n=== pythia14b_a050_s42 ===\\n  gen_0: effective_rank=50.76320796339814\\n  gen_1: effective_rank=75.5548063480742\\n  gen_2: effective_rank=82.63082656681367\\n  gen_3: effective_rank=81.94008114894145\\n  gen_4: effective_rank=82.24253288865171\\n  gen_5: effective_rank=82.38531367850943\\n  gen_6: effective_rank=83.29831040789655\\n  gen_7: effective_rank=83.35021544756057\\n  gen_8: effective_rank=82.14783823969934\\n  gen_9: effective_rank=82.22937798351141\\n  gen_10: effective_rank=82.21437306291143\\n\\n=== pythia410m_a100_s42 ===\\n  gen_0: effective_rank=46.612774691899155\\n  gen_1: effective_rank=79.07801965874336\\n  gen_2: effective_rank=94.26403978105184\\n  gen_3: effective_rank=98.3263913412653\\n  gen_4: effective_rank=101.53948371914004\\n  gen_5: effective_rank=96.75099178857892\\n  gen_6: effective_rank=89.50950675181325\\n  gen_7: effective_rank=92.42205749523755\\n  gen_8: effective_rank=99.56802018499252\\n  gen_9: effective_rank=100.22322187553306\\n  gen_10: effective_rank=89.65149189092871\\n\\n=== pythia14b_a100_s42 ===\\n  gen_0: effective_rank=50.76320796339814\\n  gen_1: effective_rank=86.64758098829786\\n  gen_2: effective_rank=103.58956135032051\\n  gen_3: effective_rank=98.5840046846175\\n  gen_4: effective_rank=104.9798680613065\\n  gen_5: effective_rank=106.41221584693888\\n  gen_6: effective_rank=104.38050824158586\\n  gen_7: effective_rank=102.87445594352883\\n  gen_8: effective_rank=101.07173684523376\\n  gen_9: effective_rank=100.43418208659047\\n  gen_10: effective_rank=96.56102046294072\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据全部提取成功。写入 CSV。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6900ffbd-65da-475a-9d0b-4f5526a31abd",
+            "uuid": "cb00b18e-b347-4149-beeb-8571c1c2588c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UJj7AXk4aWPaapUc28Bf55",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1598,
+                "cache_read_input_tokens": 26996,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1598
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01R64dv3YyyWRXSVCKEUKaiw",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/effrank_trajectories.csv",
+                "content": "gen,pythia410m_a050_s42,pythia14b_a050_s42,pythia410m_a100_s42,pythia14b_a100_s42\n0,46.6128,50.7632,46.6128,50.7632\n1,58.5643,75.5548,79.0780,86.6476\n2,63.5902,82.6308,94.2640,103.5896\n3,64.5911,81.9401,98.3264,98.5840\n4,65.1137,82.2425,101.5395,104.9799\n5,63.8570,82.3853,96.7510,106.4122\n6,62.2314,83.2983,89.5095,104.3805\n7,62.2185,83.3502,92.4221,102.8745\n8,60.8487,82.1478,99.5680,101.0717\n9,59.5259,82.2294,100.2232,100.4342\n10,59.3331,82.2144,89.6515,96.5610\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6900ffbd-65da-475a-9d0b-4f5526a31abd",
+            "uuid": "3487d53e-8cb1-4e56-9772-361dcf7e1278",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UJj7AXk4aWPaapUc28Bf55",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1598,
+                "cache_read_input_tokens": 26996,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1598
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T03:35:56.136Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "<tool_use_error>File has not been read yet. Read it first before writing to it.</tool_use_error>",
+              "is_error": true,
+              "tool_use_id": "toolu_01R64dv3YyyWRXSVCKEUKaiw"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6900ffbd-65da-475a-9d0b-4f5526a31abd",
+            "uuid": "c66b6384-2289-4385-97e0-b15d089dd938",
+            "tool_use_result": "Error: File has not been read yet. Read it first before writing to it."
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SBbvdAF45eZfzncidqo2PE",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/",
+                "description": "List artifacts directory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6900ffbd-65da-475a-9d0b-4f5526a31abd",
+            "uuid": "7393d39a-3e29-4048-ae5c-098c07a291b2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0198SiQ8U5nudoXWhNPwCYgM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 456,
+                "cache_read_input_tokens": 28594,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 456
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T03:35:59.005Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SBbvdAF45eZfzncidqo2PE",
+              "type": "tool_result",
+              "content": "D040\n_project\na050_s44_draft_versions.tex\na075_analysis_prep.md\nalpha_sweep\nalpha_sweep_a000_s43\nalpha_sweep_a000_s44\nalpha_sweep_a005_s42\nalpha_sweep_a010_s42_v2\nalpha_sweep_a010_s43\nalpha_sweep_a050_s42\nalpha_sweep_a050_s43\nalpha_sweep_a050_s44\nalpha_sweep_a060_s42_bf16\nalpha_sweep_a075_s42\nalpha_sweep_a075_s43\nalpha_sweep_a075_s44\nalpha_sweep_c4_a050_s42_bf16\nanalysis\nanalysis_alpha_sweep_a010_s42_v2.md\nanalyze_extended.py\nanalyze_mvp.py\nc4_vs_wikitext_a050_collapse.md\nccf_maxlag7_report.md\ncheck_progress.sh\nconsensus_framework\ncross_alpha_aggregation\ncross_alpha_analysis_v4.py\ncross_alpha_v4_ready.md\nd024_literature_notes.md\nd026_optimized_commands.md\nd059_mvp_reverse_reanalysis.md\nd060_pythia69b_prep.md\nd061_conditional_granger_analysis.md\ndetrending_utils.py\ndiag_gen_gpt2m_a100_s43_bf16.md\ndose_response_fp32.csv\ndose_response_fp32_detail.csv\ndream_reports\ndrift_discrepancy_audit\neffrank_trajectories.csv\nfigures\nframing_alignment_check.md\ngen_gpt2m_a100_s43_bf16\ngen_wiki_gpt2m_a025_s42\ngen_wiki_gpt2m_a100_s42_v3\ngen_wiki_gpt2m_a100_s42_v4\ngeneralization_draft.tex\ngeneralization_prep.md\ngeneralize_pythia14b_wiki_a100_s43\ngeneralize_pythia1b_c4_a100_s42\ngeneralize_pythia1b_c4_a100_s43\ngeneralize_pythia410m\ngeneralize_pythia410m_wiki_a100_s42\ngpt2m_a025_analysis_plan.md\ngpt2m_kappa\nintervention_reactive_s42\niterative_train.py\nliterature_map.yaml\nliterature_scan_20260514.md\nliterature_scan_20260515\nmanifest.yaml\nmethod_ablation\nmethod_ablation_phase2\nmethod_ablation_phase3\nmetrics.py\nmmct_full_results.md\nmvp_evaluation_criteria.md\npanel_analysis_feasibility.md\npaper_consistency_audit.md\npermutation_granger.py\npipeline_analysis\nplan_006_s42\nprep_c4_gpt2m_readiness.md\nprep_cross_alpha_v5_verify.md\nprepare_data.py\nreport_gen_wiki_gpt2m_failure.md\nreview_issues.yaml\nreview_reports\nrun_mvp.sh\nscale_14b_a050_s42\nscale_14b_effrank_analysis\nscale_s42_failure_analysis.md\nshapley_method_contribution.pdf\nshapley_method_contribution.png\nshapley_values.json\ntable7_draft.md\ntables\ntest_alpha_sweep.py\nty_seed_audit\nwindow_sensitivity\nwindow_sensitivity_t11",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6900ffbd-65da-475a-9d0b-4f5526a31abd",
+            "uuid": "140837bd-9946-4ce5-8978-f3271bf2cbb6",
+            "tool_use_result": {
+              "stdout": "D040\n_project\na050_s44_draft_versions.tex\na075_analysis_prep.md\nalpha_sweep\nalpha_sweep_a000_s43\nalpha_sweep_a000_s44\nalpha_sweep_a005_s42\nalpha_sweep_a010_s42_v2\nalpha_sweep_a010_s43\nalpha_sweep_a050_s42\nalpha_sweep_a050_s43\nalpha_sweep_a050_s44\nalpha_sweep_a060_s42_bf16\nalpha_sweep_a075_s42\nalpha_sweep_a075_s43\nalpha_sweep_a075_s44\nalpha_sweep_c4_a050_s42_bf16\nanalysis\nanalysis_alpha_sweep_a010_s42_v2.md\nanalyze_extended.py\nanalyze_mvp.py\nc4_vs_wikitext_a050_collapse.md\nccf_maxlag7_report.md\ncheck_progress.sh\nconsensus_framework\ncross_alpha_aggregation\ncross_alpha_analysis_v4.py\ncross_alpha_v4_ready.md\nd024_literature_notes.md\nd026_optimized_commands.md\nd059_mvp_reverse_reanalysis.md\nd060_pythia69b_prep.md\nd061_conditional_granger_analysis.md\ndetrending_utils.py\ndiag_gen_gpt2m_a100_s43_bf16.md\ndose_response_fp32.csv\ndose_response_fp32_detail.csv\ndream_reports\ndrift_discrepancy_audit\neffrank_trajectories.csv\nfigures\nframing_alignment_check.md\ngen_gpt2m_a100_s43_bf16\ngen_wiki_gpt2m_a025_s42\ngen_wiki_gpt2m_a100_s42_v3\ngen_wiki_gpt2m_a100_s42_v4\ngeneralization_draft.tex\ngeneralization_prep.md\ngeneralize_pythia14b_wiki_a100_s43\ngeneralize_pythia1b_c4_a100_s42\ngeneralize_pythia1b_c4_a100_s43\ngeneralize_pythia410m\ngeneralize_pythia410m_wiki_a100_s42\ngpt2m_a025_analysis_plan.md\ngpt2m_kappa\nintervention_reactive_s42\niterative_train.py\nliterature_map.yaml\nliterature_scan_20260514.md\nliterature_scan_20260515\nmanifest.yaml\nmethod_ablation\nmethod_ablation_phase2\nmethod_ablation_phase3\nmetrics.py\nmmct_full_results.md\nmvp_evaluation_criteria.md\npanel_analysis_feasibility.md\npaper_consistency_audit.md\npermutation_granger.py\npipeline_analysis\nplan_006_s42\nprep_c4_gpt2m_readiness.md\nprep_cross_alpha_v5_verify.md\nprepare_data.py\nreport_gen_wiki_gpt2m_failure.md\nreview_issues.yaml\nreview_reports\nrun_mvp.sh\nscale_14b_a050_s42\nscale_14b_effrank_analysis\nscale_s42_failure_analysis.md\nshapley_method_contribution.pdf\nshapley_method_contribution.png\nshapley_values.json\ntable7_draft.md\ntables\ntest_alpha_sweep.py\nty_seed_audit\nwindow_sensitivity\nwindow_sensitivity_t11",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file already exists. Let me read it first."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6900ffbd-65da-475a-9d0b-4f5526a31abd",
+            "uuid": "d12894e2-c411-4783-b791-ba88e543bdbc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V22wr7SW51pX5MpjkSZ4sf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 977,
+                "cache_read_input_tokens": 29050,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 977
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XFyX5siUsDrtxgY6UH18cA",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/effrank_trajectories.csv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6900ffbd-65da-475a-9d0b-4f5526a31abd",
+            "uuid": "9aef128b-926d-4bbe-8455-db82dfa9d029",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V22wr7SW51pX5MpjkSZ4sf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 977,
+                "cache_read_input_tokens": 29050,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 977
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T03:36:01.809Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XFyX5siUsDrtxgY6UH18cA",
+              "type": "tool_result",
+              "content": "1\tgen,pythia410m_a050_s42,pythia14b_a050_s42,pythia410m_a100_s42\n2\t0,46.6128,50.7632,46.6128\n3\t1,58.5643,75.5548,79.0780\n4\t2,63.5902,82.6308,94.2640\n5\t3,64.5911,81.9401,98.3264\n6\t4,65.1137,82.2425,101.5395\n7\t5,63.8570,82.3853,96.7510\n8\t6,62.2314,83.2983,89.5095\n9\t7,62.2185,83.3502,92.4221\n10\t8,60.8487,82.1478,99.5680\n11\t9,59.5259,82.2294,100.2232\n12\t10,59.3331,82.2144,89.6515\n13\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6900ffbd-65da-475a-9d0b-4f5526a31abd",
+            "uuid": "205ca969-4e63-49c3-ba34-4c467c4575a7",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/effrank_trajectories.csv",
+                "content": "gen,pythia410m_a050_s42,pythia14b_a050_s42,pythia410m_a100_s42\n0,46.6128,50.7632,46.6128\n1,58.5643,75.5548,79.0780\n2,63.5902,82.6308,94.2640\n3,64.5911,81.9401,98.3264\n4,65.1137,82.2425,101.5395\n5,63.8570,82.3853,96.7510\n6,62.2314,83.2983,89.5095\n7,62.2185,83.3502,92.4221\n8,60.8487,82.1478,99.5680\n9,59.5259,82.2294,100.2232\n10,59.3331,82.2144,89.6515\n",
+                "numLines": 13,
+                "startLine": 1,
+                "totalLines": 13
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已有旧版缺少 pythia14b_a100_s42 列。覆盖写入完整版。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6900ffbd-65da-475a-9d0b-4f5526a31abd",
+            "uuid": "920998df-53db-47f2-8d6a-b0e882e3dd69",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013ECJd1AvAVo5Q7vyY2kh7R",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 465,
+                "cache_read_input_tokens": 30027,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 465
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QDGAr19qqGYJhVRGyEXGzP",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/effrank_trajectories.csv",
+                "content": "gen,pythia410m_a050_s42,pythia14b_a050_s42,pythia410m_a100_s42,pythia14b_a100_s42\n0,46.6128,50.7632,46.6128,50.7632\n1,58.5643,75.5548,79.0780,86.6476\n2,63.5902,82.6308,94.2640,103.5896\n3,64.5911,81.9401,98.3264,98.5840\n4,65.1137,82.2425,101.5395,104.9799\n5,63.8570,82.3853,96.7510,106.4122\n6,62.2314,83.2983,89.5095,104.3805\n7,62.2185,83.3502,92.4221,102.8745\n8,60.8487,82.1478,99.5680,101.0717\n9,59.5259,82.2294,100.2232,100.4342\n10,59.3331,82.2144,89.6515,96.5610\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6900ffbd-65da-475a-9d0b-4f5526a31abd",
+            "uuid": "6c95ef3e-be37-431c-9ca5-52667da44c9f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013ECJd1AvAVo5Q7vyY2kh7R",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 465,
+                "cache_read_input_tokens": 30027,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 465
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T03:36:07.795Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "<tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.</tool_use_error>",
+              "is_error": true,
+              "tool_use_id": "toolu_01QDGAr19qqGYJhVRGyEXGzP"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6900ffbd-65da-475a-9d0b-4f5526a31abd",
+            "uuid": "62489cf1-f6c3-47e2-b5b3-03ce1034973b",
+            "tool_use_result": "Error: File has been modified since read, either by the user or by a linter. Read it again before attempting to write it."
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AmZ1GpNXQtzAPQmDcgmGdL",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/effrank_trajectories.csv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6900ffbd-65da-475a-9d0b-4f5526a31abd",
+            "uuid": "26008dd8-947d-44c1-9e56-25dde9cbc705",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SN9KsGwasVHZDzzC9YQsyK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 485,
+                "cache_read_input_tokens": 30492,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 485
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T03:36:10.340Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AmZ1GpNXQtzAPQmDcgmGdL",
+              "type": "tool_result",
+              "content": "1\tgen,pythia410m_a050_s42,pythia14b_a050_s42,pythia410m_a100_s42,pythia14b_a100_s42\n2\t0,46.6128,50.7632,46.6128,50.7632\n3\t1,58.5643,75.5548,79.0780,86.6500\n4\t2,63.5902,82.6308,94.2640,103.5900\n5\t3,64.5911,81.9401,98.3264,98.5800\n6\t4,65.1137,82.2425,101.5395,104.9800\n7\t5,63.8570,82.3853,96.7510,106.4100\n8\t6,62.2314,83.2983,89.5095,104.3800\n9\t7,62.2185,83.3502,92.4221,102.8700\n10\t8,60.8487,82.1478,99.5680,101.0700\n11\t9,59.5259,82.2294,100.2232,100.4300\n12\t10,59.3331,82.2144,89.6515,96.5600\n13\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6900ffbd-65da-475a-9d0b-4f5526a31abd",
+            "uuid": "5377d32b-19c5-4ee2-a694-70eb043f42fa",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/effrank_trajectories.csv",
+                "content": "gen,pythia410m_a050_s42,pythia14b_a050_s42,pythia410m_a100_s42,pythia14b_a100_s42\n0,46.6128,50.7632,46.6128,50.7632\n1,58.5643,75.5548,79.0780,86.6500\n2,63.5902,82.6308,94.2640,103.5900\n3,64.5911,81.9401,98.3264,98.5800\n4,65.1137,82.2425,101.5395,104.9800\n5,63.8570,82.3853,96.7510,106.4100\n6,62.2314,83.2983,89.5095,104.3800\n7,62.2185,83.3502,92.4221,102.8700\n8,60.8487,82.1478,99.5680,101.0700\n9,59.5259,82.2294,100.2232,100.4300\n10,59.3331,82.2144,89.6515,96.5600\n",
+                "numLines": 13,
+                "startLine": 1,
+                "totalLines": 13
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已被另一个进程更新了，但精度略有不同。我用原始精度覆盖。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6900ffbd-65da-475a-9d0b-4f5526a31abd",
+            "uuid": "b473ffbc-3515-478b-b39e-4c4a0b27697e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016bkWcb7cw4B4GCzCCS6RMC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 417,
+                "cache_read_input_tokens": 30977,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 417
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HggX44XJ2wGQCFAnEuMtbp",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/effrank_trajectories.csv",
+                "content": "gen,pythia410m_a050_s42,pythia14b_a050_s42,pythia410m_a100_s42,pythia14b_a100_s42\n0,46.6128,50.7632,46.6128,50.7632\n1,58.5643,75.5548,79.0780,86.6476\n2,63.5902,82.6308,94.2640,103.5896\n3,64.5911,81.9401,98.3264,98.5840\n4,65.1137,82.2425,101.5395,104.9799\n5,63.8570,82.3853,96.7510,106.4122\n6,62.2314,83.2983,89.5095,104.3805\n7,62.2185,83.3502,92.4221,102.8745\n8,60.8487,82.1478,99.5680,101.0717\n9,59.5259,82.2294,100.2232,100.4342\n10,59.3331,82.2144,89.6515,96.5610\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6900ffbd-65da-475a-9d0b-4f5526a31abd",
+            "uuid": "d714b69c-6467-467c-9903-33a2a0bd06fd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016bkWcb7cw4B4GCzCCS6RMC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 417,
+                "cache_read_input_tokens": 30977,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 417
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T03:36:15.986Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HggX44XJ2wGQCFAnEuMtbp",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/effrank_trajectories.csv has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6900ffbd-65da-475a-9d0b-4f5526a31abd",
+            "uuid": "aea4ba84-0397-4dd8-aa51-c787246fe084",
+            "tool_use_result": {
+              "type": "update",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/effrank_trajectories.csv",
+              "content": "gen,pythia410m_a050_s42,pythia14b_a050_s42,pythia410m_a100_s42,pythia14b_a100_s42\n0,46.6128,50.7632,46.6128,50.7632\n1,58.5643,75.5548,79.0780,86.6476\n2,63.5902,82.6308,94.2640,103.5896\n3,64.5911,81.9401,98.3264,98.5840\n4,65.1137,82.2425,101.5395,104.9799\n5,63.8570,82.3853,96.7510,106.4122\n6,62.2314,83.2983,89.5095,104.3805\n7,62.2185,83.3502,92.4221,102.8745\n8,60.8487,82.1478,99.5680,101.0717\n9,59.5259,82.2294,100.2232,100.4342\n10,59.3331,82.2144,89.6515,96.5610\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 1,
+                  "oldLines": 12,
+                  "newStart": 1,
+                  "newLines": 12,
+                  "lines": [
+                    " gen,pythia410m_a050_s42,pythia14b_a050_s42,pythia410m_a100_s42,pythia14b_a100_s42",
+                    " 0,46.6128,50.7632,46.6128,50.7632",
+                    "-1,58.5643,75.5548,79.0780,86.6500",
+                    "-2,63.5902,82.6308,94.2640,103.5900",
+                    "-3,64.5911,81.9401,98.3264,98.5800",
+                    "-4,65.1137,82.2425,101.5395,104.9800",
+                    "-5,63.8570,82.3853,96.7510,106.4100",
+                    "-6,62.2314,83.2983,89.5095,104.3800",
+                    "-7,62.2185,83.3502,92.4221,102.8700",
+                    "-8,60.8487,82.1478,99.5680,101.0700",
+                    "-9,59.5259,82.2294,100.2232,100.4300",
+                    "-10,59.3331,82.2144,89.6515,96.5600",
+                    "+1,58.5643,75.5548,79.0780,86.6476",
+                    "+2,63.5902,82.6308,94.2640,103.5896",
+                    "+3,64.5911,81.9401,98.3264,98.5840",
+                    "+4,65.1137,82.2425,101.5395,104.9799",
+                    "+5,63.8570,82.3853,96.7510,106.4122",
+                    "+6,62.2314,83.2983,89.5095,104.3805",
+                    "+7,62.2185,83.3502,92.4221,102.8745",
+                    "+8,60.8487,82.1478,99.5680,101.0717",
+                    "+9,59.5259,82.2294,100.2232,100.4342",
+                    "+10,59.3331,82.2144,89.6515,96.5610"
+                  ]
+                }
+              ],
+              "originalFile": "gen,pythia410m_a050_s42,pythia14b_a050_s42,pythia410m_a100_s42,pythia14b_a100_s42\n0,46.6128,50.7632,46.6128,50.7632\n1,58.5643,75.5548,79.0780,86.6500\n2,63.5902,82.6308,94.2640,103.5900\n3,64.5911,81.9401,98.3264,98.5800\n4,65.1137,82.2425,101.5395,104.9800\n5,63.8570,82.3853,96.7510,106.4100\n6,62.2314,83.2983,89.5095,104.3800\n7,62.2185,83.3502,92.4221,102.8700\n8,60.8487,82.1478,99.5680,101.0700\n9,59.5259,82.2294,100.2232,100.4300\n10,59.3331,82.2144,89.6515,96.5600\n",
+              "userModified": false
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "CSV 已写入 `artifacts/effrank_trajectories.csv`，包含 4 个实验配置（Pythia-410M/1.4B × α=0.50/1.00，均 s42）的 gen 0–10 effective_rank 轨迹。\n\n关键观察：\n- **gen 0 基线相同**：410M ≈ 46.6，1.4B ≈ 50.8（同架构同种子，符合预期）\n- **α=0.50 轨迹收敛到平台**：410M 约 59–65，1.4B 约 82–83\n- **α=1.00 轨迹更高且波动更大**：410M 约 89–101，1.4B 约 96–106\n- 1.4B 在两种 α 下 effective_rank 均高于 410M，跨架构趋势一致"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6900ffbd-65da-475a-9d0b-4f5526a31abd",
+            "uuid": "d8527b6f-5e84-4fba-b9ef-d15fa834a400",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011DPAq9mPJyxbWPWAdnYDBi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 485,
+                "cache_read_input_tokens": 31394,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 485
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "CSV 已写入 `artifacts/effrank_trajectories.csv`，包含 4 个实验配置（Pythia-410M/1.4B × α=0.50/1.00，均 s42）的 gen 0–10 effective_rank 轨迹。\n\n关键观察：\n- **gen 0 基线相同**：410M ≈ 46.6，1.4B ≈ 50.8（同架构同种子，符合预期）\n- **α=0.50 轨迹收敛到平台**：410M 约 59–65，1.4B 约 82–83\n- **α=1.00 轨迹更高且波动更大**：410M 约 89–101，1.4B 约 96–106\n- 1.4B 在两种 α 下 effective_rank 均高于 410M，跨架构趋势一致"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 51353,
+            "duration_api_ms": 51137,
+            "num_turns": 10,
+            "stop_reason": "end_turn",
+            "session_id": "6900ffbd-65da-475a-9d0b-4f5526a31abd",
+            "total_cost_usd": 0.3317015,
+            "usage": {
+              "input_tokens": 14,
+              "cache_creation_input_tokens": 20038,
+              "cache_read_input_tokens": 270822,
+              "output_tokens": 2757,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 20038,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 248,
+                  "cache_read_input_tokens": 31394,
+                  "cache_creation_input_tokens": 485,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 485
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1978,
+                "outputTokens": 16,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002058,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 14,
+                "outputTokens": 2757,
+                "cacheReadInputTokens": 270822,
+                "cacheCreationInputTokens": 20038,
+                "webSearchRequests": 0,
+                "costUSD": 0.3296435,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "f1d4f159-ec46-4603-ab3f-2d3d05afab1d"
+          },
+          "id": "event-000030"
+        }
+      ],
+      "message_count": 30
+    }
+  ],
+  "readable_path": "readable/worker-executions/data-effrank-trajectories-copy-2.md"
+}

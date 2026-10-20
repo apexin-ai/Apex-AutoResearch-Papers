@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f19cbe1d7e721fd6d5df",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code check progress",
+  "task_key": "worker_code_check-progress_20260514T082641",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_check-progress_20260514T082641_result.json",
+    "occurrence": 1,
+    "bytes": 411,
+    "sha256": "45998d0182ab7ffd85c39997cf3ad93824a042acad91e82f5063df69f80a01a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已写入 `artifacts/check_progress.sh` 并设为可执行。`register_artifact` 工具不在当前可用工具列表中，无法自动注册——需要你手动注册或通过其他方式处理。\n\n脚本包含 5 个检查模块：rep 进度（含进度条）、GPU 状态、日志尾部、ETA 估算、进程存活检查。在服务器上直接 `bash check_progress.sh` 运行即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-check-progress.md"
+}

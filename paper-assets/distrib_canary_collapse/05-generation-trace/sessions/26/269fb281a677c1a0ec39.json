@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "269fb281a677c1a0ec39",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis null fpr s43 s44",
+  "task_key": "worker_analysis_null_fpr_s43_s44_20260520T080200",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_null_fpr_s43_s44_20260520T080200_result.json",
+    "occurrence": 1,
+    "bytes": 957,
+    "sha256": "1098e1c7ae9af38165c14cf19ed956dd7149eb8c99d48a6e8842649c41f2be31"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。从 JSON summary 中提取各 method 的 forward significant pair 数：\n\n## α=0.0 Null FPR 三 seed 汇总\n\n| Method | s42 | s43 | s44 | Total | 平均 FPR |\n|--------|-----|-----|-----|-------|---------|\n| PermG (FDR) | 0/8 | 0/8 | 0/8 | 0/24 | **0.000** |\n| diff_xcorr (FDR) | 4/8 | 2/8 | 3/8 | 9/24 | **0.375** |\n| threshold (3σ) | 3/8 | 1/8 | 2/8 | 6/24 | **0.250** |\n| TY Granger | 1/8 | 1/8 | 0/8 | 2/24 | **0.083** |\n| K≥3 consensus | 1/8 | 0/8 | 1/8 | 2/24 | **0.083** |\n\n关键发现：\n- **PermG** 是唯一 null FPR = 0 的方法，三 seed 无一假阳性\n- **diff_xcorr** FPR 最高（37.5%），作为独立方法不可靠\n- **threshold** FPR = 25%，同样偏高\n- **TY** 和 **K≥3** FPR ≈ 8.3%，接近名义 α=0.05 水平，尚可接受\n- s44 的 K≥3 假阳性来自 token_entropy→mauve（naive+diff+threshold 3/5 投票），说明 consensus 机制对 null 的抑制并非完美"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-null-fpr-s43-s44.md"
+}

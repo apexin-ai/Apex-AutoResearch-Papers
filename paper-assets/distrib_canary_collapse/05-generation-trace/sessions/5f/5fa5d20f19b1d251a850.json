@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5fa5d20f19b1d251a850",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "monitor gpt2m a025 progress",
+  "task_key": "worker_monitor_gpt2m_a025_progress_20260516T031250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_gpt2m_a025_progress_20260516T031250_result.json",
+    "occurrence": 1,
+    "bytes": 742,
+    "sha256": "1eae2f91d0eff6c21dc762e42f8f22930e03fda283fa2fe158c754cda24781f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练进度报告：gen_wiki_gpt2m_a025_s42\n\n| 指标 | 值 |\n|------|-----|\n| **当前位置** | Generation 5/10, step 3300/5000 (66%) |\n| **总进度** | ~28,300 / 50,000 steps (56.6%) |\n| **训练速度** | 2.06 it/s（稳定） |\n| **最新 loss** | 1.7369 (step 3300, epoch 5.28) |\n| **进程状态** | PID 149202 存活，已运行 4h 50m |\n| **GPU 利用率** | 90%, 显存 55.5 / 97.9 GB (57%) |\n\n**预估剩余时间**：~4 小时\n- 当前 gen 剩余：~14 分钟\n- 剩余 4 个 generation（gen 6-9）：每个约 52 分钟（40 分钟训练 + 12 分钟 generation 间 overhead）\n\n**异常检查**：无异常。Loss 正常下降（step 3200: 1.7897 → step 3300: 1.7369），无 NaN/OOM/spike。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-gpt2m-a025-progress.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63417babb6c31d5289e6",
+  "project": "distrib_canary_collapse",
+  "kind": "history",
+  "title": "agent / loop_5_1778846969.md",
+  "task_key": "loop_5_1778846969",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778846969.md",
+    "occurrence": 1,
+    "bytes": 4185,
+    "sha256": "e5651f3e0a5bdbdf20c08495b834592ba40a010a5c5c45328bb5070c78f505c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: max_wall_time\nupdated: '2026-05-15T11:30:21+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-19828 cuda:0 + cuda:1，不得用其他设备\n- D026 multi-seed（a025_s43/a050_s43/a025_s44/a050_s44）必须 bs=4（与 seed=42 基线可比），generalization 实验用 bs=32\n- α=0.25 TY 非单调性标记为约束 C001，multi-seed 确认前不得引入论文正文\n- Claim 强度不得擅自升级/降级，必须 Director 审批（D019 教训）\n- consensus_framework.py 的 FDR 混合策略：threshold_onset 读 `significant`，其余 4 方法读 `significant_fdr`，不得统一为单一字段\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19828（2× RTX PRO 6000 Blackwell 96GB）\n- 工作目录：`/root/autodl-tmp/distrib_canary_collapse/`\n- Python：`/root/miniconda3/bin/python`，conda base 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- HF cache：`/root/autodl-tmp/.hf_cache/`（含 GPT-2-medium 355M 已缓存）\n- 数据：`data/wikitext103_5k/`（train ~1.8M）、`data/c4_5k/`（train 4500）\n- 活跃进程：plan_006_s42 (PID 68368, cuda:0, ~gen16/20)、alpha_sweep_a075_s42 (PID 89753, cuda:1, ~gen4/10)\n- Cron 监控这两个实验，完成后自动回调\n- AutoDL 环境变量：`HF_HUB_DISABLE_XET=1`, `HF_ENDPOINT=https://hf-mirror.com`, `REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt`\n\n### 3. 📊 当前状态\n刚完成全部零 GPU 文档一致性修复（6 个 Worker 批次）：\n- D027 consensus_framework.md v1.1 FDR-corrected：§5.2 sig_seeds 矩阵、§5.3/5.4 sensitivity/stability、§6 FPR/FNR 全部一致\n- D028 FPR ground truth 切换至 α=0.0 null control（primary），diff-based 降级 legacy\n- D029 FDR 修复全链路验证通过（permG 34→27, TY 26→24, 6 robust 不变）\n- Phase 2 报告 FDR 化完成，registry metrics 加 `_raw`/`_fdr` 后缀\n- α=0.50 方法描述修正 + 术语统一（causal methods = permG+TY only）\n- cross-alpha 4-point FDR：Granger raw 10/32 → FDR 1/32，α pattern 0→1→0→6\n- α=0.25 矛盾已解决：1 robust pair（token_entropy→d1, 依赖 TY, C001 caveat）\n\nRegistry RUNNING：plan_006_s42 (cuda:0), alpha_sweep_a075_s42 (cuda:1)\nWorker 池：0（全部清空，等 cron 回调）\n\n### 4. 📋 待办\n- **a075_s42 cron 回调** → (1) update_registry 记录 metrics (2) spawn Worker 跑 `cross_alpha_analysis_v4.py --n-perms 5000 --consensus-n-perms 1000 --update-registry`（5-α-point 含 a075）(3) submit a025_s43 到 cuda:1（D026-1, bs=4, seed=43, α=0.25）(4) 报告 Director a075 结果 + Claim 1 scope 判定（FDR-sig → \"α≥0.75\", null → \"α=1.0 only\"）\n- **plan_006_s42 cron 回调** → (1) update_registry (2) submit gen_wiki_gpt2m_a100_s42 到 cuda:0（GPT-2-medium α=1.0, bs=32）(3) 报告 Director\n- **a025_s43 完成后** → submit a050_s43 到 cuda:1（D026 串行队列：a025_s43 → a050_s43 → a025_s44 → a050_s44）\n- **gen_wiki_gpt2m_a100_s42 完成后** → submit gen_wiki_gpt2m_a025_s42 到 cuda:0\n- **Director 若下发新零 GPU 任务** → 立即派 Worker，维持池 ≥2\n\n### 5. 🎯 战略上下文\n- **D027 reframe**：论文以方法论陷阱 + 多方法共识框架为主线（Claim 3 领衔），canary prediction 为 case study（Claim 1），regime map（Claim 2）。证据强度 Claim 3 > 2 > 1。\n- **WA→Accept 路径**：(1) ✅ 共识框架 formalization (2) multi-seed ~16h GPU (3) C4+GPT-2 ~10h (4) ⏳ a075 结果 (5) ⏳ plan_006 完成\n- **a075 是关键分叉点**：FDR-sig → Claim 1 扩展为 \"α≥0.75\"；null → 收缩为 \"α=1.0 only\"，reviewer \"so what\" 攻击面增大\n- **易错点**：(1) d027_report 和 cross_alpha_fdr_4point 刚被多个 Worker 并行编辑过，下次修改前先 Read 确认当前版本 (2) cross_alpha_analysis_v4.py 的 α=0.25 单 seed consensus 用 ≥1/1 seed threshold（非 ≥3/4），与 d027 的 4-seed consensus 定义不同——报告中必须标注 (3) permG/TY 列曾互换过一次，任何新表格都要 double-check 列顺序\n- **10/32→1/32 Granger FDR 是 Claim 3 核武器素材**——\"Individual Granger tests fragile to MTC, consensus maintains 6 robust pairs\"\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778846969.md"
+}

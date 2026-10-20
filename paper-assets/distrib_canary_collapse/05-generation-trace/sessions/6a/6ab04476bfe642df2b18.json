@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6ab04476bfe642df2b18",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis qwen35 s43 completed",
+  "task_key": "worker_analysis_qwen35_s43_completed_20260520T080145",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen35_s43_completed_20260520T080145_result.json",
+    "occurrence": 1,
+    "bytes": 1394,
+    "sha256": "4c64c4ccce13974d75a63f783a07aad99c6c5565d743425047fb6ff99a182af3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## qwen35_08b_wiki_a100_s43_fp32 — 5-Method 分析结果\n\n| 指标 | s43 | s42 (parent) |\n|------|-----|-------------|\n| PermG_fwd (FDR) | **6/8** | 8/8 |\n| PermG_rev (FDR) | **0/8** | 0/8 |\n| diff_xcorr (FDR) | **8/8** | 8/8 |\n| naive_xcorr | **6/8** | 8/8 |\n| threshold_onset | **0/8** | 0/8 |\n| TY Granger | **0/8** | 6/8 |\n| K≥3 (robust pairs) | **6/8** | 6/8 |\n| K≥4 | **0/8** | — |\n\n### 逐 pair 共识\n\n| Pair | s43 votes | s43 methods |\n|------|-----------|-------------|\n| token_entropy→distinct_1 | 3/5 | naive, diff, perm |\n| token_entropy→distinct_2 | 3/5 | naive, diff, perm |\n| token_entropy→distinct_3 | 3/5 | naive, diff, perm |\n| token_entropy→mauve | 0/5 | — |\n| ece→distinct_1 | 3/5 | naive, diff, perm |\n| ece→distinct_2 | 3/5 | naive, diff, perm |\n| ece→distinct_3 | 3/5 | naive, diff, perm |\n| ece→mauve | 0/5 | — |\n\n### 对比总结\n\n- **K≥3 一致**：s42 和 s43 均为 6/8，seed 间稳定\n- **PermG_fwd**：s43 = 6/8 vs s42 = 8/8，略低但仍强。s43 两个 mauve pair 未过 PermG\n- **TY Granger**：s43 = 0/8（全部 PermFDR=0.923，dmax 波动 0/1），符合 C003 预期——T=11 下 TY 不稳定，不作为支撑证据\n- **mauve pairs** 在两个 seed 下都是最弱的，这是一致的模式\n- **方向性清晰**：PermG reverse = 0/8，确认因果方向 canary→downstream"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen35-s43-completed.md"
+}

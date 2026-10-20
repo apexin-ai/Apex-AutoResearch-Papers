@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "3995f11534d411f7773e",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "ops d102 t10 a050 s43",
+  "task_key": "worker_ops_d102-t10-a050-s43_20260523T081320",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d102-t10-a050-s43_20260523T081320.log",
+    "occurrence": 1,
+    "bytes": 1165968,
+    "sha256": "b770c69275206d95542fd5bcdebca7edc773e5fd0edc98a0e222ae8e4a38b5ea"
+  },
+  "statistics": {
+    "messages": 843,
+    "user_turns": 1,
+    "tool_calls": 391,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 53,
+      "tool_call": 391,
+      "tool_result": 391,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 823,
+      "chunks": [
+        {
+          "path": "3995f11534d411f7773e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "3995f11534d411f7773e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "3995f11534d411f7773e-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "3995f11534d411f7773e-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "3995f11534d411f7773e-part-0005.json",
+          "message_count": 103
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 20,
+      "chunks": [
+        {
+          "path": "3995f11534d411f7773e-part-0005.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-d102-t10-a050-s43.md"
+}

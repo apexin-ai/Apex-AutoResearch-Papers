@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32cee1f6df5bac64881c",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "paper d219 final framing fix",
+  "task_key": "worker_paper_d219_final_framing_fix_20260524T080020",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d219_final_framing_fix_20260524T080020_result.json",
+    "occurrence": 1,
+    "bytes": 1368,
+    "sha256": "32cba09ccd4ed436aa5b6309402a0964baafc82104b6c150357777f7869c3bad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All remaining matches are expected:\n- **appendix.tex L731, L758, L780**: Shapley TODO areas — preserved per task instructions (等 Shapley 重算)\n- **method.tex L7**: \"forward significance rates spanning 0\\% to 92\\%\" — treatment detection rates, not null FPR; correct to keep\n\nSummary of changes across 8 files:\n\n| File | Changes |\n|------|---------|\n| **abstract.tex** | \"0% to 92%\" → \"3% to 92%\" |\n| **introduction.tex** | \"0% to 92%\" → \"3% to 92%\" |\n| **method.tex** | DiffXCorr 16.7%→2.8%; reframed as bidirectional/unsuitable standalone; PermG \"lowest\" → \"lowest among directional methods\" (3 locations) |\n| **method_reframe.tex** | Added directional qualifier + DiffXCorr 2.8% note (2 locations) |\n| **conclusion.tex** | \"lowest among all five\" → \"lowest among directionally-specific\" + DiffXCorr note |\n| **discussion_reframe.tex** | Same reframing; DiffXCorr 16.7%→2.8% |\n| **limitations.tex** | \"lowest among all five\" → \"lowest among directionally-specific\" |\n| **experiments_reframe.tex** | Same reframing (caught by verification grep) |\n| **appendix.tex** | DiffXCorr table data 6/16.7→1/2.8, reordered table, updated caption, updated L804 text, updated L843-846 sensitivity paragraph with correct DiffXCorr weight (35.7), 4 directional qualifier fixes. Shapley TODOs preserved. |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-d219-final-framing-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e5be55a6271a0905e49",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis alpha sweep a010 s43 fp32",
+  "task_key": "worker_analysis_alpha_sweep_a010_s43_fp32_20260519T050246",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_alpha_sweep_a010_s43_fp32_20260519T050246_result.json",
+    "occurrence": 1,
+    "bytes": 1347,
+    "sha256": "c3e8fe60a018af1b608e3360f3f7ccceef4fd90b481488d9a6d67f0233280090"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 分析结果\n\n### Drift (fp32 vs bf16)\n\n| Metric | fp32 s43 | bf16 s43 | 变化 |\n|--------|----------|----------|------|\n| token_entropy | **-4.49%** | -13.1% | 幅度缩小 ~3x |\n| distinct_1 | **-22.08%** | -29.1% | 幅度缩小 |\n| distinct_2 | **-23.47%** | -40.3% | 幅度缩小 ~1.7x |\n| distinct_3 | **-16.39%** | -31.9% | 幅度缩小 ~2x |\n| perplexity | **-18.04%** | -38.9% | 幅度缩小 ~2x |\n\nfp32 将所有 drift 幅度大致减半。\n\n### Lead-lag 检测\n\n| Method | fp32 s43 | bf16 s43 |\n|--------|----------|----------|\n| perm_granger_fwd | **0/8** | 0/8 |\n| perm_granger_rev | **0/8** | 0/8 |\n| ty_granger | 6/8 | 0/8 |\n| threshold_onset | 4/8 | 3/8 |\n| consensus_k4 | 4/8 (名义) | 0/8 |\n| **k4 after C003** | **0/8** | 0/8 |\n\nTY 的 6/8 表面上是改善，但 C003 约束指出 alpha<=0.50 时 TY 不可靠（部分 pair 的 df_resid=1）。排除 TY 后，所有 4 个 k=4 的 pair 都降回 k=3，k_gte4 归零。\n\n### 结论\n\n**Canary 盲区在 fp32 精度下仍成立（precision-invariant）：**\n- PermG 硬零（0/8），与 bf16 一致\n- k_gte4 经 C003 修正后为 0/8，与 bf16 一致\n- fp32 减轻了 collapse 的严重程度（drift 约减半），但不改变检测失败的本质\n\n报告和 JSON 已写入 `artifacts/alpha_sweep_a010_s43_fp32/report/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-alpha-sweep-a010-s43-fp32.md"
+}

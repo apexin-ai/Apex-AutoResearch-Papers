@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34a4031d59fcc025302c",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code fix dose response sort bug",
+  "task_key": "worker_code_fix-dose-response-sort-bug_20260515T045013",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-dose-response-sort-bug_20260515T045013_result.json",
+    "occurrence": 1,
+    "bytes": 1171,
+    "sha256": "d75a41d34ec442ac7a6c2c714f81aac9560a47010f00fcb5b4fd7366722d0404"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过。现在输出对比表。\n\n**gen_last_idx 修复确认：**\n\n| α | 旧 gen_last_idx | 新 gen_last_idx | 旧 n_gens | 新 n_gens |\n|---|---|---|---|---|\n| 0.00 | 9 | **10** | 11 | 11 |\n| 0.25 | 9 | **10** | 11 | 11 |\n| 0.50 | 7 | **8** | 8 | **9** |\n| 1.00 | 9 | **10** | 11 | 11 |\n\n**distinct_1 drift 对比（旧 vs 新）：**\n\n| α | 旧 drift | 新 drift | 差异 |\n|---|---|---|---|\n| 0.00 | -13.81% | **-13.78%** | +0.03pp |\n| 0.25 | -39.90% | **-40.34%** | -0.44pp |\n| 0.50 | -34.90% | **-36.16%** | -1.26pp |\n| 1.00 | -28.14% | **-28.34%** | -0.20pp |\n\n**总结：**\n1. **根因**：`extract_drift.py` 硬编码了 `gen_last` 值，不是排序 bug。gen_10 的数据完全被忽略。\n2. **新脚本** `gen_dose_response.py` 动态发现所有 gen 目录，用数值排序，已覆盖旧 CSV。\n3. **`analyze_alpha_sweep.py`、`analyze_extended.py`、`pooled_panel_analysis.py`** 排查完毕，排序逻辑均正确（用整数排序），无需修复。\n4. α=0.50 多了 gen_8（旧脚本写死 gen_last=7），drift 幅度系统性增大，符合预期——真正的末代比上一代退化更严重。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-dose-response-sort-bug.md"
+}

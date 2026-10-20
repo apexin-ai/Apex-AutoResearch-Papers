@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bbfcf88680f8eec00a01",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis a060 s43 fp32 mmct",
+  "task_key": "worker_analysis_a060_s43_fp32_mmct_20260519T184441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_a060_s43_fp32_mmct_20260519T184441_result.json",
+    "occurrence": 1,
+    "bytes": 2083,
+    "sha256": "359686d1b8f89727d04abf88ce6df3ab96f598fdb0dc15d21e5ed07bcadbd78e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。以下是完整分析结果。\n\n---\n\n## D105 MMCT 5-method 分析: `alpha_sweep_a060_s43_fp32`\n\n**T=10 (gen_0-9), gen_10 timeout (EXIT_CODE=124)**\n\n### 方法级汇总\n\n| 方法 | s42 (α=0.60, T=11) | **s43 (α=0.60, T=10)** | α=0.50 s42 (T=11) |\n|---|---|---|---|\n| Naive xcorr | 7/8 | **7/8** | 8/8 |\n| Diff xcorr (FDR) | 8/8 | **6/8** | 7/8 |\n| Threshold (3σ) | 0/8 | **0/8** | 4/8 |\n| PermG fwd (FDR) | 3/8 | **0/8** | 6/8 |\n| PermG rev (FDR) | 0/8 | **0/8** | 0/8 |\n| TY Granger | 8/8 | **4/8** | 4/8 |\n| **K≥4 (3σ)** | **3/8** | **0/8** | **4/8** |\n| **K≥3 (3σ)** | **7/8** | **3/8** | **6/8** |\n\n### Pair-level (s43)\n\n| Pair | K(3σ) | Naive | DiffX | Thr3σ | PermG | TY |\n|---|---|---|---|---|---|---|\n| te→d1 | 2 | Y | Y | n | n | n |\n| te→d2 | 3 | Y | Y | n | n | Y |\n| te→d3 | 3 | Y | Y | n | n | Y |\n| te→mauve | 0 | n | n | n | n | n |\n| ece→d1 | 3 | Y | Y | n | n | Y |\n| ece→d2 | 2 | Y | Y | n | n | n |\n| ece→d3 | 2 | Y | Y | n | n | n |\n| ece→mauve | 2 | Y | n | n | n | Y |\n\nCanary onset (3σ): token_entropy=gen1, ece=gen3. Downstream onset: **全部未达 3σ**。\n\n### Drift (gen0→gen9)\n\n| Metric | Drift |\n|---|---|\n| token_entropy | -28.61% |\n| ece | +1530.81% |\n| perplexity | +85.11% |\n| distinct_1 | -31.02% |\n| distinct_2 | -39.02% |\n| distinct_3 | -37.30% |\n| effective_rank | +61.00% |\n| mauve | -10.96% |\n\n### 非单调性判定\n\n**CONFIRMED — 系统性现象，非 seed 噪声。**\n\n- α=0.50 s42: PermG=6/8, K≥4=4/8, K≥3=6/8\n- α=0.60 s42: PermG=3/8, K≥4=3/8, K≥3=7/8 (↓)\n- α=0.60 s43: PermG=0/8, K≥4=0/8, K≥3=3/8 (↓↓)\n\ns43 不仅未能恢复 s42 的信号，反而进一步下降。PermG 和 K≥4 均为 0/8。两个 seed 一致表明 α=0.60 的 lead-lag 信号弱于 α=0.50，非单调下降是 α=0.60 的固有特征。\n\n注意：s43 比 s42 少 1 个时间点 (T=10 vs T=11)，对 Granger 类方法有功率损失，但 PermG 从 3/8 → 0/8、K≥3 从 7/8 → 3/8 的幅度无法仅由此解释。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-a060-s43-fp32-mmct.md"
+}

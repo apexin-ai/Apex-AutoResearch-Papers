@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e563d59f4c17f8d1094f",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops deploy t10 a045 s44 cuda4 17855",
+  "task_key": "worker_ops_deploy-t10-a045-s44-cuda4-17855_20260523T123155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_deploy-t10-a045-s44-cuda4-17855_20260523T123155_result.json",
+    "occurrence": 1,
+    "bytes": 233,
+    "sha256": "af60fc853661e4761e29f9450d2ef115f425046b71ee03e6ec9e0d2a0b98a1ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已部署完成。\n\n- **实验**: `scale_14b_t10_a045_s44_fp32`\n- **服务器**: westd-17855, GPU 4\n- **PID**: 796624\n- **状态**: RUNNING，GPU 显存 10293 MiB，利用率 90%\n- **Registry**: 已注册 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-deploy-t10-a045-s44-cuda4-17855.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4900e04a4c5285f794dc",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis j2 nonstationary sim",
+  "task_key": "worker_analysis_j2_nonstationary_sim_20260520T213210",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_j2_nonstationary_sim_20260520T213210_result.json",
+    "occurrence": 1,
+    "bytes": 1513,
+    "sha256": "874330aa668ccb88dbcc214696da0571f87daf9a96a9dcb15aa89ca44c7c92c0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 已确认写入正确 (n_reps=1000)。汇总结果：\n\n---\n\n### Size (FPR at α=0.05, H0: β=0)\n\n| φ | Raw Granger | First-Diff | Perm Granger |\n|---|---|---|---|\n| 0.50 | **6.4%** | 6.6% | 6.8% |\n| 0.95 | **10.0%** | 5.9% | 9.5% |\n| 0.99 | **11.2%** | 4.2% | 10.7% |\n\n### Power (rejection rate at α=0.05, H1: β>0)\n\n| φ | β | Raw Granger | First-Diff | Perm Granger |\n|---|---|---|---|---|\n| 0.50 | 0.1 | 6.1% | 5.1% | 5.9% |\n| 0.50 | 0.3 | 15.6% | 8.4% | 15.4% |\n| 0.50 | 0.6 | 37.7% | 17.7% | 36.8% |\n| 0.95 | 0.1 | 11.5% | 6.7% | 11.9% |\n| 0.95 | 0.3 | 17.6% | 11.5% | 17.5% |\n| 0.95 | 0.6 | 44.3% | 28.7% | 41.5% |\n| 0.99 | 0.1 | 12.4% | 5.9% | 12.2% |\n| 0.99 | 0.3 | 19.7% | 10.7% | 16.7% |\n| 0.99 | 0.6 | 46.4% | 24.6% | 41.7% |\n\n### 关键发现\n\n1. **Raw Granger FPR 膨胀**：φ=0.99 下 FPR 达 11.2%（是名义 5% 的 2.2 倍），但膨胀幅度不如经典文献中 T→∞ 场景那么极端——T=11 的短序列本身就削弱了检测能力\n2. **First-Diff 保持 size control**：所有 φ 下 FPR 在 4.2%-6.6%，与名义 5% 一致\n3. **Perm Granger 也有 size 膨胀**：φ=0.99 下 FPR=10.7%，因为 permutation 破坏了 x 的自相关结构导致 null distribution 偏移\n4. **Power 很低**：T=11 下即使 β=0.6（大效应），校正后的方法 (first-diff) power 也只有 18-29%\n5. **Size-adjusted 比较**：Raw/Perm 的高 \"power\" 部分来自 size inflation。First-diff 是唯一有 proper size control 的方法"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-j2-nonstationary-sim.md"
+}

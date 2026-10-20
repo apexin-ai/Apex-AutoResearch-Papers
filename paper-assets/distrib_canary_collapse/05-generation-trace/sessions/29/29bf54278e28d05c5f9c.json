@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "29bf54278e28d05c5f9c",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "submit smollm3 3b wiki a100 s43 fp32 retry",
+  "task_key": "worker_submit_smollm3_3b_wiki_a100_s43_fp32_retry_20260519T235055",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_smollm3_3b_wiki_a100_s43_fp32_retry_20260519T235055_result.json",
+    "occurrence": 1,
+    "bytes": 395,
+    "sha256": "572fcbb4d33fc117636514c530e6024d906e728123e8a0c73f1ee6b6d3af47fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**SmolLM3-3B s43 已在 westd-17855:cuda:3 启动：**\n- PID: 211078\n- GPU 3 占用 13.8GB / 98GB，利用率 95%\n- 已进入 Generation 0（模型加载完成）\n- output_dir: `results/generalize/smollm3_3b_wiki_a100_s43_17855`\n- log: `results/generalize/smollm3_3b_wiki_a100_s43_17855.log`\n- Registry 已更新为 RUNNING，retry_count=1\n- 预估 ~18h 完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-smollm3-3b-wiki-a100-s43-fp32-retry.md"
+}

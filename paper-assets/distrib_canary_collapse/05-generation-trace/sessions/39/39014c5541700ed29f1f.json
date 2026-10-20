@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "39014c5541700ed29f1f",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis alpha sweep a052 s42 fp32",
+  "task_key": "worker_analysis_alpha_sweep_a052_s42_fp32_20260521T065539",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_alpha_sweep_a052_s42_fp32_20260521T065539_result.json",
+    "occurrence": 1,
+    "bytes": 1252,
+    "sha256": "34c76d76e07f77ab42210625dd0509940d6dc38cdbd39f2fdebf1ac77d91eb79"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。Registry 已更新为 DONE/success。\n\n```\nalpha_sweep_a052_s42_fp32 | 5-Method Analysis Results\n========================================================\nalpha=0.52  seed=42  model=pythia-410m  dataset=wikitext103_5k\ngenerations=11  steps_per_gen=5000  wall_clock=16278s (~4h31m)\ncheckpoint: results/alpha_sweep/a052_s42_fp32/gen_10/checkpoint\n\nLEAD-LAG DETECTION:\n  PermG_fwd:              3/8\n  PermG_rev:              0/8\n  DiffXCorr_fwd:          4/8\n  DiffXCorr_rev:          1/8\n  threshold_onset_3sigma: 8/8\n  TY_fwd:                 5/8\n  K_ge3:                  6/8\n  K_ge4:                  0/8\n  robust_pairs:           [te→d1, te→d2, te→d3, ece→d1, ece→d2, ece→mauve]\n\nDRIFT (gen0 -> gen10):\n  token_entropy: -26.28%\n  ece:          +1273.35%\n  perplexity:   +47.55%\n  distinct_1:   -32.20%\n  distinct_2:   -42.26%\n  distinct_3:   -41.48%\n  mauve:        -16.80%\n\nCONCLUSION: PermG 3/8 confirms detection above α_c boundary.\n  α=0.48→0/8, α=0.50→6/8, α=0.52→3/8 (FDR).\n  Drop from 6/8→3/8 is FDR stringency on marginal p-values\n  (raw: 5/8 at p<0.10). K_ge3=6/8 with strong multi-method\n  consensus confirms hypothesis: α=0.52 is above blind zone.\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-alpha-sweep-a052-s42-fp32.md"
+}

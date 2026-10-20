@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "380ef6cd91263c1723ba",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "figure d150 p12 sr framework",
+  "task_key": "worker_figure_d150_p12_sr_framework_20260520T144231",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_d150_p12_sr_framework_20260520T144231_result.json",
+    "occurrence": 1,
+    "bytes": 2107426,
+    "sha256": "90961d6da3934d370f421e07988e8bf7546d2459515dbedcd1359bc8acbe4c43"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "380ef6cd91263c1723ba-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/figure-d150-p12-sr-framework.md"
+}

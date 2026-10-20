@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a89bbe276250af452f7",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analyze cron check t25 a075 s43 19828 v2",
+  "task_key": "worker_analyze_cron-check-t25-a075-s43-19828-v2_20260522T041126",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_cron-check-t25-a075-s43-19828-v2_20260522T041126_result.json",
+    "occurrence": 1,
+    "bytes": 687,
+    "sha256": "502b60a1a78d971e9249a5f6a4b817535aedd5dcab202b678371acf424bd5ac1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验状态汇总：\n\n**状态：部分完成（失败）**\n\n| 项目 | 详情 |\n|------|------|\n| 进度 | 9/25 完成（gen_0 ~ gen_8） |\n| gen_9 | 目录已创建但为空，死在文本生成阶段 |\n| 退出原因 | 日志无 error/OOM/traceback/killed，突然中断 → **大概率 SIGHUP（SSH/tmux 断连）** |\n| 磁盘 | 145GB 可用（43%），不是磁盘问题 |\n| GPU | 空闲，无计算进程 |\n| 最后完成的 gen_8 指标 | ppl=73.31, mauve=0.031, eff_rank=79.3, entropy=2.245 |\n\n实验需要重启。gen_9 空目录需要清理后从 gen 9 恢复（如果脚本支持 `--resume`），否则需从头跑。是否需要我重启实验？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-cron-check-t25-a075-s43-19828-v2.md"
+}

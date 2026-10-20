@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "afac7ad0c5f77db67d3c",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis r3 mmct weight robustness",
+  "task_key": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r3_mmct_weight_robustness_20260520T153326_result.json",
+    "occurrence": 1,
+    "bytes": 1031,
+    "sha256": "d3ebcb301d8035c3fa27a254c78379caef18694e3ad09dc4a5898a3ab758e92b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results:\n\n| Scheme | PermG Rank | PermG Combined | 2nd Place | Gap |\n|--------|-----------|----------------|-----------|-----|\n| **Equal (w=1)** | **#1** | -0.1516 | NaiveXCorr (-0.1373) | 0.014 |\n| **Cap-5** | **#1** | -0.1653 | NaiveXCorr (-0.1227) | 0.043 |\n| **Cap-10** | **#1** | -0.4257 | TYGranger (-0.0667) | 0.359 |\n| **Cap-100 (original)** | **#1** | -0.4257 | TYGranger (-0.0667) | 0.359 |\n\n**PermG ranks #1 under ALL 4 weighting schemes**, including equal-weighting where every method has w=1 (no FPR-based advantage at all). The circularity concern is fully resolved.\n\nKey points:\n- **Equal-weight** is the strongest test: PermG's advantage comes purely from zero FPR + strong FNR reduction, not from weight design\n- Cap-10 and Cap-100 are degenerate (identical results) because the 3-smallest-weight threshold is the same (7.76) and both PermG/TY individually exceed it\n- FPR/FNR rates verified against Shapley v3 reference (exact match)\n\nOutput: `artifacts/mmct_weight_robustness.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r3-mmct-weight-robustness.md"
+}

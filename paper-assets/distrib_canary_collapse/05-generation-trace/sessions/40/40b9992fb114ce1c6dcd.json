@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "40b9992fb114ce1c6dcd",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops urgent restart 19828",
+  "task_key": "worker_ops_urgent-restart-19828_20260522T041549",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent-restart-19828_20260522T041549_result.json",
+    "occurrence": 1,
+    "bytes": 928,
+    "sha256": "8f454895d158c42479d25e93ba7ccc1eb9c1bc9131006f4e3b9341141f709adf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇报如下：\n\n---\n\n## 结果\n\n| GPU | 实验 | PID | 显存 | 利用率 | 状态 |\n|-----|------|-----|------|--------|------|\n| cuda:0 | t25_a075_s43_fp32 (gen_9续跑) | 731312 | 7444 MiB | 81% | **已在运行中，未触碰** |\n| cuda:1 | t10_a050_s43_fp32_v2 (gen_6续跑) | 731717 | 6518 MiB | 77% | **新启动，已确认** |\n\n**GPU 0 说明**：PID 731312 活跃（81% 利用率），正是你要求重启的 t25_a075_s43_fp32 实验（start_gen 9）。gen_9 目录存在但为空 = 正在训练中。根据 **C004**（禁止在未确认实验状态下 kill 运行中的进程），我没有杀它。它实际上并没有挂，不需要重启。\n\n**GPU 1**：t10_a050_s43_fp32_v2 已成功启动，tmux session: `phase_diagram_t10_a050_s43_fp32_v2`，registry 状态: RUNNING。\n\n如果你确认 GPU 0 的实验确实需要杀掉重启（尽管当前活跃），我再执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-restart-19828.md"
+}

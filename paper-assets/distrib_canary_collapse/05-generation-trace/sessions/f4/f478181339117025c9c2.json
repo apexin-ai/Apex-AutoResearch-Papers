@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f478181339117025c9c2",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis a075 s44 5method leadlag",
+  "task_key": "worker_analysis_a075_s44_5method_leadlag_20260516T141651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_a075_s44_5method_leadlag_20260516T141651_result.json",
+    "occurrence": 1,
+    "bytes": 926,
+    "sha256": "e70a063e7232fa5043c979a2ac6d400c70bb33ffe4e10dea4f7baf0aff20a924"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果摘要：\n\n## α=0.75 seed=44 — 5-Method Lead-Lag Results\n\n| Method | Forward sig | Reverse sig |\n|--------|-------------|-------------|\n| Naive XCorr | 4/8 | — |\n| Diff XCorr (FDR) | 8/8 | 8/8 |\n| Threshold Onset | 4/8 | 0/8 |\n| **Perm Granger (FDR)** | **6/8** | **0/8** |\n| TY Granger | 1/8 | 0/8 |\n\n**Consensus robust pairs (≥3/5): 5/8**\n\n关键发现：\n- Perm Granger 方向不对称性极强：6/8 forward vs 0/8 reverse\n- 比 s42 参考结果（3/8 FDR fwd）更强，cross-seed drift 偏高但方向一致\n- TY 仅 ece→distinct_2 显著（d_max=1, df_resid=5, F=23.56）���token_entropy pairs 因 d_max=2 导致 df_resid=1 无检验力\n- 最强 pair: ece→distinct_2（4/5 methods 一致）\n\nArtifacts 已注册。完整 JSON 在 `westd-19828:/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s44/analysis/5method_leadlag.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-a075-s44-5method-leadlag.md"
+}

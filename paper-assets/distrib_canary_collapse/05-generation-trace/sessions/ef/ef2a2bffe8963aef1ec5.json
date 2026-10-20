@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef2a2bffe8963aef1ec5",
+  "project": "distrib_canary_collapse",
+  "kind": "history",
+  "title": "agent / loop_17_1779497692.md",
+  "task_key": "loop_17_1779497692",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_17_1779497692.md",
+    "occurrence": 1,
+    "bytes": 4867,
+    "sha256": "47cb2564d75305ed55ecbf955d1179a336b2b4d32ef7c1f716aa5c5a918435ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 17\nreason: idle_timeout\nupdated: '2026-05-22T23:19:09+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：17855 cuda:0-5, 19828 cuda:0-1。不在白名单的 GPU 即使 Director 指令也必须 push back\n- D102 分析唯一有效参数：`downstream=mauve, threshold=true_3sigma_d105`（M063/M064/M066）。用其他参数出的 PermG 全部无效\n- PermG 6/8 是 ceiling（MAUVE bottleneck），报告中出现 8/8 说明用了旧脚本，必须用 d102 脚本重跑\n- fp32 是 ≤3B 模型的强制精度（D079），1.4B 实验也用 fp32\n- 17855 和 19828 SSH 不互通，不能从一台跳另一台\n- HF_HOME 三件套必带：`HF_HOME=/root/autodl-tmp/.hf_cache && TRANSFORMERS_OFFLINE=1 && HF_HUB_OFFLINE=1`（M060）\n- scale_14b_t10_a050_s42_fp32 刚失败（EXIT_CODE=1），提交 1.4B 实验前确认失败原因已修复\n\n### 2. 🖥️ 基础设施快照\n- **westd-17855**: 6× RTX PRO 6000 Blackwell 98GB\n  - 工作目录: `/root/autodl-tmp/distrib_canary_collapse/`\n  - Python: `/root/miniconda3/bin/python`, conda base（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n  - HF_HOME: `/root/autodl-tmp/.hf_cache`\n  - 1.4B 模型已下载可用（scale_14b_t10 实验正在跑）\n  - 磁盘: 3% used, 816GB 可用\n- **westd-19828**: 2× RTX PRO 6000 Blackwell 98GB\n  - 同样路径/conda 配置\n  - 磁盘: 2% used, 817GB 可用\n  - Worker `ops:fix-19828-14b-model` 正在修复 1.4B 模型可用性\n- 活跃进程:\n  - 17855:cuda:2 PID 635893 scale_14b_t10_a075_s42_fp32\n  - 17855:cuda:3 PID 635574 scale_14b_t10_a060_s42_fp32\n  - 17855:cuda:4 PID 603933 phase_diagram_t20_a075_s43_fp32\n  - 17855:cuda:5 PID 577236 phase_diagram_t25_a045_s43_fp32\n  - 19828:cuda:0 PID 731312 phase_diagram_t25_a075_s43_fp32_v3\n\n### 3. 📊 当前状态\n收到 `phase_diagram_t15_a075_s43_fp32` 完成回调（T=15 α=0.75 cross-seed s43），已派 Worker `analysis:d102_t15_a075_s43` 执行 D102 分析。预期 PermG ~6/8（s42=6/8）。\n\n- **RUNNING** (5): scale_14b_t10_a075(cuda:2), scale_14b_t10_a060(cuda:3), t20_a075_s43(cuda:4), t25_a045_s43(cuda:5), t25_a075_s43_v3(19828:0)\n- **ANALYZING** (2): t15_a075_s43(Worker 刚派发), t25_a050_v3(Worker `analysis:d102_t25_a050_v3` 分析中)\n- **PREPARING** (5): scale_14b_t15_a060/a050/a045, t15_a050_s42_fp32, qwen35_dryrun_launch(killed)\n- **空闲 GPU**: 17855:cuda:0, 17855:cuda:1, 19828:cuda:1\n\n**等待中**:\n- Worker 回调: `analysis:d102_t15_a075_s43` + `analysis:d102_t25_a050_v3` + `ops:fix-19828-14b-model`\n- Director 决策: 是否批准 3 个 scale_14b_t15 实验填空闲 GPU（已汇报）\n\n### 4. 📋 待办\n- `analysis:d102_t15_a075_s43` Worker 回调 → 按 on-experiment-done 处理：PermG ~6/8 则 conclusion=success，更新 registry/report.md，汇报 Director 确认 T=15 cross-seed 覆盖完成\n- `analysis:d102_t25_a050_v3` Worker 回调 → PermG 结果填 Phase Diagram T=25 α=0.50 格，预期 ≥6/8。这是 T=25 行关键格之一\n- `ops:fix-19828-14b-model` Worker 回调 → 如果修复成功，19828:cuda:1 可提交 scale_14b 实验\n- Director 批准 scale_14b_t15 提交 → 在 17855:cuda:0/1 提交 scale_14b_t15_a060 和 a050，19828:cuda:1 提交 a045（需 ops worker 完成）\n- 任一 RUNNING 实验完成 → 立即派 D102 分析 Worker + 填下一个实验\n- Phase Diagram 20/20 填满 → heatmap 定稿 → D170 叙事定稿 → submit_paper_to_review\n\n### 5. 🎯 战略上下文\n- **核心叙事**: \"Mapping the Detectability Landscape\" — 从方法论文转为现象发现论文。α×T 2D 相图 + 非单调 dose-response + sync-dip + α_c power-law\n- **Phase Diagram 进度**: ~18/20 格已填（T=25 α=0.50 和 α=0.60 是最后两个关键格，都在 ANALYZING/RUNNING）\n- **T=25 α=0.60★ 是最关键格**: sync-dip dissolution 终态测试。场景 A (>0/8) = dissolution confirmed, 最强叙事; 场景 B (=0/8) = sync-dip permanent, C3 升级。v3 在 17855:cuda:3...不对，看 ROADMAP 说 t25_a060_v3 PID 582540 在 17855:cuda:3。但 registry RUNNING 里没看到它——可能已经完成了？D188 记录 \"Scenario A 确认：sync-dip 在 T=25 溶解 (5/8)\"。**所以 sync-dip dissolution 已确认，场景 A 成立**\n- **α_c power-law**: α_c(T) = 0.193 + 75.68·T^(-2.41), R²=0.883。已有 5 点验证\n- **D184**: t20_a060_s43 PermG=3/8 打破了 sync-dip seed-invariance（s42=0/8 vs s43=3/8）。sync-dip 叙事已降级为 \"PermG linearization\"（D186）\n- **1.4B scale 验证**: 刚启动，scale_14b_t10 两个实验在跑。已知 1.4B seed variance 大（s42=2/8 vs s43=6/8 at α=1.0），不能从单 seed 下结论\n- **易踩的坑**: (1) 旧脚本报 8/8 PermG 是错的，必须用 d102 脚本; (2) t15_a050_s42_fp32 PREPARING 但已有 metrics，可能是历史残留，不要当成已完成; (3) qwen35_dryrun_launch 已 killed，不要尝试重启除非 Director 指示\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-17-1779497692.md"
+}

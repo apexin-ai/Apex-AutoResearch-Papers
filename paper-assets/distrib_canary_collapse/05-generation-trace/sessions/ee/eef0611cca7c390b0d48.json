@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eef0611cca7c390b0d48",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis method ablation mvp",
+  "task_key": "worker_analysis_method-ablation-mvp_20260514T195856",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_method-ablation-mvp_20260514T195856_result.json",
+    "occurrence": 1,
+    "bytes": 2422,
+    "sha256": "39cd3b152a0cc745a198de5597ee1e8e90573d9e9f5c524894f43e6f6ea3a0b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 已保存（2933 行）。\n\n---\n\n## 方法论 Ablation 结果\n\n### 四方法对比表\n\n| Canary | Downstream | Naive | Diff(Δ) | Thresh(2σ) | Toda-Yamamoto | Spurious? |\n|---|---|---|---|---|---|---|\n| token_entropy | perplexity | SIG | SIG | SIG | n.s. | **YES** |\n| token_entropy | distinct_1 | SIG | SIG | SIG | **SIG** | |\n| token_entropy | distinct_2 | SIG | SIG | SIG | **SIG** | |\n| token_entropy | distinct_3 | SIG | SIG | SIG | **SIG** | |\n| self_bleu | perplexity | SIG | n.s. | SIG | n.s. | **YES** |\n| self_bleu | distinct_1 | SIG | n.s. | n.s. | n.s. | **YES** |\n| self_bleu | distinct_2 | SIG | SIG | n.s. | n.s. | **YES** |\n| self_bleu | distinct_3 | SIG | SIG | n.s. | n.s. | **YES** |\n| ece | perplexity | SIG | SIG | SIG | n.s. | **YES** |\n| ece | distinct_1 | SIG | SIG | SIG | **SIG** | |\n| ece | distinct_2 | SIG | SIG | SIG | n.s. | **YES** |\n| ece | distinct_3 | SIG | SIG | SIG | n.s. | **YES** |\n| effective_rank | perplexity | SIG | SIG | n.s. | n.s. | **YES** |\n| effective_rank | distinct_1 | SIG | SIG | n.s. | n.s. | **YES** |\n| effective_rank | distinct_2 | SIG | SIG | n.s. | n.s. | **YES** |\n| effective_rank | distinct_3 | SIG | SIG | n.s. | n.s. | **YES** |\n\n### 汇总\n\n| 方法 | 显著 pair 数 |\n|---|---|\n| Naive Pearson (raw levels) | **16/16** (100%) |\n| Differenced xcorr (Δ) | 14/16 (87.5%) |\n| Threshold onset (2σ) | 9/16 (56.3%) |\n| Toda-Yamamoto Granger | **4/16** (25%) |\n\n### 核心发现\n\n**伪回归率 = 75%**（12/16 naive 显著但 TY 不显著），远超 30% 阈值 → **Claim 3 强成立**。\n\n**仅 4 个 pair 通过最严格检验（Robust）：**\n1. **token_entropy → distinct_1/2/3** — 全 4 seed 均 p<0.001，F 值 100-550，因果关系确凿\n2. **ece → distinct_1** — 3/4 seed 显著（seed 44 是唯一例外，F=2.74）\n\n**关键结论：**\n- **token_entropy 是唯一 gold-standard canary** — 对三个 diversity 指标都有真实的 Granger 因果预测力\n- **perplexity 作为 downstream 全军覆没** — 与所有 canary 的相关性都是非平稳驱动的伪回归\n- **self_bleu 和 effective_rank 作为 canary 完全失效** — 无真实预测力\n- **ece 部分有效** — 仅对 distinct_1 有因果预测力\n\n产出文件：\n- 脚本：`/root/autodl-tmp/distrib_canary_collapse/method_ablation.py`\n- 数据：`results/mvp/analysis/method_ablation.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-method-ablation-mvp.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a4e8119deaa47dcc8d33",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops blocking poll t10a050 d102",
+  "task_key": "worker_ops_blocking-poll-t10a050-d102_20260522T181729",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_blocking-poll-t10a050-d102_20260522T181729_result.json",
+    "occurrence": 1,
+    "bytes": 1497,
+    "sha256": "c71c7b09647909a8f5922ef31105c246abb331fd5fca429ea999772d6616523f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D102 分析完成，结果如下：\n\n---\n\n```\n数据点数: 11 generations (gen_0 to gen_10)\nD102 脚本 md5: 318853fa69384ada42458177fdb80940\nn_perm: 5000, threshold: true_3sigma_d105\n\nPermG fwd (FDR): 4/8 (vs 截断版 3/8) ← 增加 1 pair\nPermG rev (FDR): 2/8 (mauve→te, mauve→ece)\nK≥3 consensus:   3/8 (ece→d1, ece→d2, ece→d3)\n```\n\n**每个 pair 的 PermG FDR p-value (forward):**\n| Pair | p_raw | p_fdr | sig |\n|------|-------|-------|-----|\n| te→d1 | 0.0236 | **0.0472** | **True** |\n| te→d2 | 0.0428 | 0.0683 | False |\n| te→d3 | 0.0512 | 0.0683 | False |\n| te→mauve | 0.2817 | 0.3220 | False |\n| ece→d1 | 0.0042 | **0.0112** | **True** |\n| ece→d2 | 0.0026 | **0.0112** | **True** |\n| ece→d3 | 0.0042 | **0.0112** | **True** |\n| ece→mauve | 0.4581 | 0.4581 | False |\n\n**5 methods forward rate:**\n| Method | Forward sig |\n|--------|------------|\n| PermG (FDR) | 4/8 |\n| DiffXCorr (FDR) | 4/8 |\n| Threshold 3σ | 2/8 |\n| TY Granger | 0/8 |\n| NaiveXCorr | (see consensus) |\n\n**与截断版 (gen_0–9) 对比:**\n- PermG fwd: 3/8 → **4/8** (加了 gen_10 后 te→d1 从 borderline 翻过 FDR 阈值)\n- K≥3: 3/8 → 3/8 (不变)\n- gen_10 MAUVE 暴跌至 0.028（vs gen_0 的 0.035），确认 collapse 加剧\n\n**注意:** gen_0/gen_1 的 MAUVE 原为 null，已通过补算脚本 (`fix_mauve_gen01.py`, HF_HOME 指向本地缓存) 填补。all_metrics.json 已 mv 为 .bak 以避免脚本读取旧缓存。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-blocking-poll-t10a050-d102.md"
+}

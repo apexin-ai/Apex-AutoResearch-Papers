@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0cc99cb27423b9f9672",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "infra redownload models w19",
+  "task_key": "worker_infra_redownload_models_w19_20260518T180110",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_redownload_models_w19_20260518T180110_result.json",
+    "occurrence": 1,
+    "bytes": 646,
+    "sha256": "d5e94111370d5e8e2fa9177ea179416b658f08e4edff9d969dca16e2d21bffd3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：两个模型之前已完整下载，无需重新下载。**\n\n| 模型 | 目录大小 | 权重文件 | 验证结果 |\n|---|---|---|---|\n| Gemma 4 E2B | 9.6G | `model.safetensors` (9.5GB) | Config 加载成功：text hidden=1536, 35 layers, vocab=262144。多模态模型 (Gemma4ForConditionalGeneration) |\n| Qwen3.5-0.8B-Base | 1.7G | `model.safetensors-00001-of-00001.safetensors` (1.6GB) | 模型加载+forward pass 成功：0.75B params, vocab=248044 |\n\n磁盘剩余：76G 可用 (250G 总, 175G 已用)。\n\nsafetensors 文件头包含真实张量 metadata，确认是完整权重而非 LFS 指针或空壳。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-redownload-models-w19.md"
+}

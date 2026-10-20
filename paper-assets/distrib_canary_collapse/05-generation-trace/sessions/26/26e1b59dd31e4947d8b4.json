@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "26e1b59dd31e4947d8b4",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis phase diagram t15 a060 s42 fp32",
+  "task_key": "worker_analysis_phase_diagram_t15_a060_s42_fp32_20260521T183727",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_phase_diagram_t15_a060_s42_fp32_20260521T183727_result.json",
+    "occurrence": 1,
+    "bytes": 813,
+    "sha256": "428120ac47f846d615436f9ef41e3c22302a9d9b77728517facccefca466cafb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果汇总：\n\n## T=15 α=0.60 s42 fp32 — Sync-Dip 持续确认\n\n| 指标 | 值 |\n|------|-----|\n| **PermG_fwd** | **0/8** |\n| PermG_rev | 0/8 |\n| diff_xcorr_fdr_fwd | 6/8 |\n| threshold_onset_3sigma | 4/8 |\n| TY_granger | 4/8 |\n| robust_pairs (≥3/5) | 3/8 |\n\n**漂移**：token_entropy -25.5%, ece +1582%, distinct_2 -39.8%, mauve -12.5%\n\n**关键结论**：α=0.60 的 sync-dip 从 T=10 贯穿到 T=15 再到 T=20，是连续现象而非边界效应。尽管 α=0.60 远超 α_c(15)≈0.304，collapse 确实在发生（distinct_2 跌了 40%），但指标同步移动导致 PermG 无法建立时间先后关系。其他方法（diff_xcorr 6/8, threshold 4/8, TY 4/8）仍能检测到退化信号。\n\nArtifact 已注册，registry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-phase-diagram-t15-a060-s42-fp32.md"
+}

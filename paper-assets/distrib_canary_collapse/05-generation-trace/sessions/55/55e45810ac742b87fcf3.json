@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "55e45810ac742b87fcf3",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "analysis dose response cross seed m035",
+  "task_key": "worker_analysis_dose_response_cross_seed_m035_20260520T041622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_dose_response_cross_seed_m035_20260520T041622.log",
+    "occurrence": 1,
+    "bytes": 681662,
+    "sha256": "2c27e2c96d450cc4556978b82957afdaff812b5118038b5b1c9b2c828d49d686"
+  },
+  "statistics": {
+    "messages": 153,
+    "user_turns": 0,
+    "tool_calls": 55,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 39,
+      "tool_call": 55,
+      "tool_result": 55,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 153,
+      "chunks": [
+        {
+          "path": "55e45810ac742b87fcf3-part-0001.json",
+          "message_count": 112
+        },
+        {
+          "path": "55e45810ac742b87fcf3-part-0002.json",
+          "message_count": 41
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-dose-response-cross-seed-m035.md"
+}

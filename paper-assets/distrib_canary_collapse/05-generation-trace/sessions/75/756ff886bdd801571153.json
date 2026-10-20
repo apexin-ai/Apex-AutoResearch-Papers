@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "756ff886bdd801571153",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ssh a050 s44 5method",
+  "task_key": "worker_ssh_a050_s44_5method_20260517T063654",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_a050_s44_5method_20260517T063654_result.json",
+    "occurrence": 1,
+    "bytes": 1409,
+    "sha256": "cf3aeb0858218370fd629b9261a2e135c28c5a2149d9f35551694f1147a051dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## a050_s44 5-Method Lead-Lag 结果\n\n**Per-method forward detection counts (/8 pairs)**:\n- Naive XCorr: 4/8\n- Differenced XCorr (FDR): 6/8\n- Threshold Onset: 0/8\n- Permutation Granger (FDR): 3/8\n- Toda-Yamamoto: 0/8 (excluded per C003)\n\n**Directionality**: Perm Granger reverse sig: 0/8\n\n**Consensus ≥3/5**: 0/8 pairs\n**Consensus ≥4/5**: 0/8 pairs\n\n**Per-pair Perm Granger detail**:\n\n| Pair | F-stat | fdr_p | Sig |\n|------|--------|-------|-----|\n| token_entropy→distinct_1 | 115.204 | 0.0862 | |\n| token_entropy→distinct_2 | 98.398 | 0.0862 | |\n| token_entropy→distinct_3 | 70.627 | 0.0862 | |\n| token_entropy→perplexity | 14.747 | 0.0862 | |\n| ece→distinct_1 | 216.476 | 0.0160 | * |\n| ece→distinct_2 | 95.914 | 0.0408 | * |\n| ece→distinct_3 | 50.072 | 0.0536 | |\n| ece→perplexity | 19.893 | 0.0475 | * |\n\n**Cross-seed comparison (α=0.50)**:\n\n| Metric | s42 | s43 | s44 |\n|--------|-----|-----|-----|\n| Perm Granger FDR fwd | 0/8 | 6/8 | 3/8 |\n| Perm Granger FDR rev | 0/8 | 0/8 | 0/8 |\n| Robust pairs (≥3/5) | 0/8 | 1/8 | 0/8 |\n\n0/8 pairs consistently Perm Granger significant across all 3 seeds. Directionality (0/8 reverse) is perfectly stable. ECE is the only canary with any Granger significance at α=0.50. This confirms α=0.50 is at the detection boundary with high seed variance.\n\nReport registered: `art_20260517_daeb38`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-a050-s44-5method.md"
+}

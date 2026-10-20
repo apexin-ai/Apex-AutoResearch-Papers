@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7bcf6b39cf80e3a8f618",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code cross alpha 5point script",
+  "task_key": "worker_code_cross_alpha_5point_script_20260515T085132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cross_alpha_5point_script_20260515T085132_result.json",
+    "occurrence": 1,
+    "bytes": 777,
+    "sha256": "aa61a9f45b2525814a51fe176fe0423379126482d4f9a0be79da28e5fa8505ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**产出：**\n- 服务器脚本：`/root/autodl-tmp/distrib_canary_collapse/cross_alpha_analysis_v4.py` — 已部署、语法验证通过\n- 本地执行文档：`artifacts/cross_alpha_v4_ready.md`\n\n**v4 相比 v3 的新增：**\n- α=1.0 自动从 `results/mvp/rep_{42..45}` 加载（4 seeds，full consensus via method_ablation.json）\n- 对每个 α 点运行 5 方法×16 对的 consensus classification；单 seed 点标注 \"method agreement only\"（seed_threshold=1）\n- 跨 α regime comparison 矩阵，直接显示哪些 pair 在不同 α 下分类变化\n- 同时输出 JSON + Markdown 报告\n\na075_s42 完成后执行：\n```bash\npython3 cross_alpha_analysis_v4.py --n-perms 5000 --consensus-n-perms 1000 --update-registry\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cross-alpha-5point-script.md"
+}

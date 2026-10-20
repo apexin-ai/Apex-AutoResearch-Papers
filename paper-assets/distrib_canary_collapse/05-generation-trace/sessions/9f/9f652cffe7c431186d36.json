@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f652cffe7c431186d36",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code sprint day1 configs",
+  "task_key": "worker_code_sprint_day1_configs_20260518T161655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sprint_day1_configs_20260518T161655_result.json",
+    "occurrence": 1,
+    "bytes": 1013,
+    "sha256": "097860b8598d652d601f23089a02f0e02c15e38cfd3530ec22cff3a27949727e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n## 产出\n\n### 三个位置均已部署\n| 位置 | 路径 |\n|------|------|\n| 本地 | `configs/sprint_day1/` |\n| westd-19828 | `/root/autodl-tmp/distrib_canary_collapse/configs/sprint_day1/` |\n| westd-17855 | `/root/autodl-tmp/distrib_canary_collapse/configs/sprint_day1/` |\n\n### 17 个实验脚本 + README.md\n- 17 个 `.sh` 文件，每个包含完整 `bash -c \"...\"` 命令，可直接传给 `submit_training_job`\n- `README.md` 含实验列表、4-wave GPU 调度方案、依赖关系\n\n### 参数映射\n| 用户指定 | 实际使用 |\n|---------|---------|\n| `data_strategy=accumulate` | `--accumulate` flag |\n| `--bf16` | **不存在**，未使用 |\n| `--optimizer` | **不存在**，有 `--optim` 但未使用 |\n| `--gradient_checkpointing` | 已为 OPT-1.3b、Pythia-1.4b 自动添加 |\n| `TRANSFORMERS_OFFLINE=1` | 未添加（新服务器无缓存需在线下载） |\n\n### 所有参数均经 `--help` 验证存在，无不存在参数。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sprint-day1-configs.md"
+}

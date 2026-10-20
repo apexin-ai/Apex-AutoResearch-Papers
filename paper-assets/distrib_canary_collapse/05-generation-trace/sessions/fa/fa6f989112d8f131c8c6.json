@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa6f989112d8f131c8c6",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "submit scale 14b c4 s42 fp32",
+  "task_key": "worker_submit_scale_14b_c4_s42_fp32_20260519T222500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_scale_14b_c4_s42_fp32_20260519T222500_result.json",
+    "occurrence": 1,
+    "bytes": 406,
+    "sha256": "ad03e87bb1c02b09b8ec65186df49889175b53f4ba47ea04c93c1eac9948e010"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。\n\n**实验 `scale_14b_c4_s42_fp32` 已提交并运行：**\n- Server: westd-17855, GPU: cuda:5 (34.3 GB VRAM)\n- PID: 201974, tmux session: `scale_14b_c4_s42_fp32`\n- 模型已加载，Generation 0 baseline 评估中\n- Registry: RUNNING，hypothesis / parent / plan_id / spec 均已设置\n- 日志通过 `tmux pipe-pane` 补建到 `results/scale/14b_c4_s42_fp32/train.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-scale-14b-c4-s42-fp32.md"
+}

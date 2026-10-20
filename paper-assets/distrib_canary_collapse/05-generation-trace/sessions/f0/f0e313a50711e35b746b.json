@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f0e313a50711e35b746b",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis opt1b full 8pair",
+  "task_key": "worker_analysis_opt1b_full_8pair_20260517T124735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_opt1b_full_8pair_20260517T124735_result.json",
+    "occurrence": 1,
+    "bytes": 2194,
+    "sha256": "8fdfcc902ca9d6cf88912700eb1730af1730f6e6f128e2ff0368dff6ad9865d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果已保存到 `results/generalize/opt1b_wiki_a100_s42/analysis/opt1b_6method_full.json`。\n\n---\n\n## OPT-1.3B WikiText α=1.0 — 8 Canonical Pairs\n\n### Collapse trajectory:\n| metric | gen0 | gen10 | drift% |\n|--------|------|-------|--------|\n| token_entropy | 3.048329 | 1.158671 | -62.0% |\n| ece | 0.019933 | 0.422201 | +2018.1% |\n| perplexity | 24.876836 | 647.419815 | +2502.5% |\n| distinct_1 | 0.104029 | 0.071164 | -31.6% |\n| distinct_2 | 0.526711 | 0.324831 | -38.3% |\n| distinct_3 | 0.816691 | 0.522071 | -36.1% |\n| mauve | 0.031181 | 0.029360 | -5.8% |\n\n### Table 5 Row:\n| Method | Sig Count | Sig Pairs |\n|--------|-----------|-----------|\n| Naive XCorr | 6/8 | entropy→d1, entropy→d2, entropy→d3, ece→d1, ece→d2, ece→d3 |\n| Diff XCorr (FDR) | 6/8 | same 6 |\n| Threshold Onset | 0/8 | (none) |\n| PermG forward (FDR) | 6/8 | same 6 |\n| PermG reverse (FDR) | 0/8 | (none) |\n| TY Granger | 2/8 | entropy→d1, ece→d1 |\n| Consensus ≥3/5 | 6/8 | all 6 distinct pairs |\n| Consensus ≥4/5 | 2/8 | entropy→d1, ece→d1 |\n\n### Per-pair detail:\n| Pair | Naive | Diff | Thresh | PG_fwd | PG_rev | TY | votes |\n|------|-------|------|--------|--------|--------|-----|-------|\n| entropy→d1 | Y | Y | N | Y | N | Y | 4/5 |\n| entropy→d2 | Y | Y | N | Y | N | N | 3/5 |\n| entropy→d3 | Y | Y | N | Y | N | N | 3/5 |\n| entropy→mauve | N | N | N | N | N | N | 0/5 |\n| ece→d1 | Y | Y | N | Y | N | Y | 4/5 |\n| ece→d2 | Y | Y | N | Y | N | N | 3/5 |\n| ece→d3 | Y | Y | N | Y | N | N | 3/5 |\n| ece→mauve | N | N | N | N | N | N | 0/5 |\n\n### Key observations:\n- **Strong directionality**: PermG forward 6/8 sig vs PermG reverse 0/8 — confirms canary→downstream direction, not reverse\n- **mauve is non-responsive**: 0/8 across all methods (drift only -5.8%, essentially flat)\n- **Threshold Onset = 0/8**: likely because both canary and downstream degrade from gen0→gen1 simultaneously (no detectable lead)\n- **TY underpowered** as expected at T=11 (only 2/8 sig, but those 2 are the strongest pairs d1)\n- **6/8 consensus ≥3/5**: all distinct_N pairs pass, mauve pairs fail universally"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-opt1b-full-8pair.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3bcfc06136848044891",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis t20 predictions locked",
+  "task_key": "worker_analysis_t20_predictions_locked_20260520T104710",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_t20_predictions_locked_20260520T104710_result.json",
+    "occurrence": 1,
+    "bytes": 935,
+    "sha256": "593a130b82a1a9c59272ae5f6df35975850ea9e5d45d43bcea3da9d38d0f9990"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact registered: `art_20260520_aa9d51`.\n\n## T=20 Locked Predictions Summary\n\n**Sigmoid fit** (T=10, excl. α=0.60 sync dip): step-function at α_c = 0.4755, y_max = 0.752 (k=200, essentially binary transition).\n\n| α | T=10 actual | T=20 predicted | Confidence |\n|------|-------------|----------------|------------|\n| 0.45 | 0/8 | **0/8** | medium — key falsifiable test |\n| 0.50 | 6/8 | **7/8** | high |\n| 0.60 | 3/8 | **3/8** | low — sync dip |\n| 0.75 | 6/8 | **7/8** | high |\n| 1.00 | 6/8 | **7/8** | high |\n\n**Interpretation**: The T=10 transition is so sharp (0/8 → 6/8 between α=0.45 and α=0.50) that the sigmoid is effectively a step function. Power theory predicts α≥0.50 should gain ~1 pair (6→7/8) at T=20, while α=0.45 stays at 0/8. If T=20 observation shows α=0.45 > 0/8, that falsifies the step-function model and confirms left-shift of the phase boundary with increasing T."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-t20-predictions-locked.md"
+}

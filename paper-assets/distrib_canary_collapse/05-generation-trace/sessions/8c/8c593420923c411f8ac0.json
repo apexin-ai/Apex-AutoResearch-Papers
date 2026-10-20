@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "8c593420923c411f8ac0",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "diagnose qwen35 08b wiki a100 s43 fp32",
+  "task_key": "worker_diagnose_qwen35_08b_wiki_a100_s43_fp32_20260520T061050",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_qwen35_08b_wiki_a100_s43_fp32_20260520T061050.log",
+    "occurrence": 1,
+    "bytes": 583384,
+    "sha256": "cee95d5c682161639a2129e4b8e57447794236774b20264504f586313a8218d2"
+  },
+  "statistics": {
+    "messages": 284,
+    "user_turns": 1,
+    "tool_calls": 100,
+    "roles": {
+      "log": 1,
+      "system": 54,
+      "record": 1,
+      "assistant": 26,
+      "tool_call": 100,
+      "tool_result": 100,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 99,
+      "chunks": [
+        {
+          "path": "8c593420923c411f8ac0-part-0001.json",
+          "message_count": 99
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 185,
+      "chunks": [
+        {
+          "path": "8c593420923c411f8ac0-part-0001.json",
+          "message_count": 81
+        },
+        {
+          "path": "8c593420923c411f8ac0-part-0002.json",
+          "message_count": 104
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/diagnose-qwen35-08b-wiki-a100-s43-fp32.md"
+}

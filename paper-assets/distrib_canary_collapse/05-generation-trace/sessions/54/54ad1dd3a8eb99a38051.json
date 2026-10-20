@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "54ad1dd3a8eb99a38051",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "check verify 4gpu and resubmit",
+  "task_key": "worker_check_verify_4gpu_and_resubmit_20260519T184652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_verify_4gpu_and_resubmit_20260519T184652_result.json",
+    "occurrence": 1,
+    "bytes": 671,
+    "sha256": "9bd05023880959062180c752832f104335898cbd79ceb6ef37832e6b759364c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部正在运行，不需要重提交。\n\n| 实验 | GPU | PID | 运行时间 | GPU 显存 | GPU 利用率 |\n|------|-----|-----|---------|---------|-----------|\n| qwen35_08b_wiki_a100_s43_fp32 | cuda:1 | 174453→174458 | 40:12 | 22864 MiB | 62% |\n| scale_69b_a100_s43 | cuda:2 | 177510→177515 | 19:33 | 41204 MiB | 92% |\n| alpha_sweep_a045_s42_fp32 | cuda:4 | 178540→178545 | 15:19 | 12706 MiB | 68% |\n| c4_a025_s42_fp32 | cuda:5 | 178620→178625 | 15:17 | 12908 MiB | 72% |\n\n4 个 PID 全部存活，GPU 均有显存占用且利用率正常。Pythia-6.9B 占用最大（41GB，92% 利用率），符合 bf16 大模型预期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-verify-4gpu-and-resubmit.md"
+}

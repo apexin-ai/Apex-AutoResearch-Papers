@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d1414cb30e5fbc640c92",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "paper writing related work reframe",
+  "task_key": "worker_paper_writing_related_work_reframe_20260520T121501",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_related_work_reframe_20260520T121501_result.json",
+    "occurrence": 1,
+    "bytes": 863,
+    "sha256": "2f9a1a35ed2b9bdb95e8fb9af695167c6a847d66ce8245bb92b20648d25b70c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Written to `docs/paper/related_work_reframe.tex`. Summary of changes:\n\n- **102 lines → 22 content lines** (3 paragraphs + section header)\n- **Table 3 removed** entirely\n- **Citations kept**: 15 essential refs (shumailov, alemohammad, dohmatob, du×2, gambetta, sigma, kalinowski, dces, scheffer, boettiger, granger×2, toda, shojaie, bell, coretta, kapoor)\n- **Citations dropped**: 13 tangential refs (hataya, seddik, dey, kazdan, fu, he, guo, schaeffer-position, dohmatob2025strong, truong, gu×2, marcinkevics, ruiz, yi, sahoo, falahati, scheffer2012)\n- **\"Training dynamics monitoring\" paragraph** dropped entirely\n- **Positioning** preserved in final paragraph: 4 explicit differences (multi-metric family, multi-method cross-validation, FDR correction, regime-dependent mapping)\n- No em-dashes, no -ing phrase endings, no AI filler"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-related-work-reframe.md"
+}

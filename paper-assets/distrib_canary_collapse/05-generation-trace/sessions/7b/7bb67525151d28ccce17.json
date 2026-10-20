@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "7bb67525151d28ccce17",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "ops blocking poll t10a050 d102",
+  "task_key": "worker_ops_blocking-poll-t10a050-d102_20260522T181729",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_blocking-poll-t10a050-d102_20260522T181729.log",
+    "occurrence": 1,
+    "bytes": 631874,
+    "sha256": "61a1870ec3683f51e384bb2020caf4ba9f93aeb75800d3a9dd8e5e3fadcd743b"
+  },
+  "statistics": {
+    "messages": 408,
+    "user_turns": 0,
+    "tool_calls": 115,
+    "roles": {
+      "log": 1,
+      "system": 65,
+      "record": 1,
+      "assistant": 94,
+      "tool_call": 115,
+      "tool_result": 115,
+      "result": 17
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 408,
+      "chunks": [
+        {
+          "path": "7bb67525151d28ccce17-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7bb67525151d28ccce17-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "7bb67525151d28ccce17-part-0003.json",
+          "message_count": 48
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-blocking-poll-t10a050-d102.md"
+}

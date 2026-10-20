@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23daf2d0697638c0e48b",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "submit data strategy ablation s42",
+  "task_key": "worker_submit_data_strategy_ablation_s42_20260520T042735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_data_strategy_ablation_s42_20260520T042735_result.json",
+    "occurrence": 1,
+    "bytes": 381,
+    "sha256": "27442479e02d9b1f94ef3a1b0efca230e796cafa554fb7a1e1b4e823c5ecc103"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已启动并正常运行。日志显示模型加载完成，正在执行 Generation 0 (baseline)。\n\n**汇总：**\n- 实验 `data_strategy_ablation_s42` 已提交到 westd-17855:cuda:4\n- PID 266485，tmux session `data_strategy_ablation_s42`\n- Registry 状态 RUNNING，spec 完整（fp32, accumulate, seed=42, α=0.50）\n- 超时 12h，预计 ~4h 完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-data-strategy-ablation-s42.md"
+}

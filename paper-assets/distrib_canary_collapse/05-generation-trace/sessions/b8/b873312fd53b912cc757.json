@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b873312fd53b912cc757",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "monitor check progress",
+  "task_key": "worker_monitor_check-progress_20260514T145420",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_check-progress_20260514T145420_result.json",
+    "occurrence": 1,
+    "bytes": 1230,
+    "sha256": "0b5846ce8dcfc247a18ace733d1e0aad64e70c678422e6a5fed01c043ac90e50"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验进度汇总\n\n### rep44 (PID 30672, cuda:0)\n| 项目 | 状态 |\n|------|------|\n| 进程 | **ALIVE**, 运行 1h19m |\n| 当前进度 | **Gen 3/10**, 训练中 step **2246/5000** (45%) |\n| 已完成 gen | gen_0 (21:50), gen_1 (22:10), gen_2 (22:35) — 共 3 个 |\n| 最新 loss | 0.4297 @ step 2200 |\n\n### rep45 (PID 31425, cuda:1)\n| 项目 | 状态 |\n|------|------|\n| 进程 | **ALIVE**, 运行 1h12m |\n| 当前进度 | **Gen 3/10**, 数据生成阶段（尚未开始训练） |\n| 已完成 gen | gen_0 (21:57), gen_1 (22:17), gen_2 (22:41) — 共 3 个 |\n| 最新 loss | gen_2 完成时 train_loss=0.6236 |\n\n### GPU 利用率\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| cuda:0 (rep44) | 85% | 12.5 / 95.6 GB |\n| cuda:1 (rep45) | 50% | 14.1 / 95.6 GB |\n\nrep45 GPU 利用率较低因为当前在做推理生成而非训练。\n\n### 剩余时间估算\n从目录时间戳看，每个 gen 耗时 20-25 分钟（逐渐增长）。按 ~25 min/gen 稳态估算：\n- **rep44**: 还剩 ~6.5 gen → **~2.7h**\n- **rep45**: 还剩 ~7 gen → **~2.9h**\n\n对照 rep42/43 的 5.8h 基准，当前两个实验均已运行约 1.3h，预计总耗时 4-5h，**剩余约 3-3.5h**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-check-progress.md"
+}

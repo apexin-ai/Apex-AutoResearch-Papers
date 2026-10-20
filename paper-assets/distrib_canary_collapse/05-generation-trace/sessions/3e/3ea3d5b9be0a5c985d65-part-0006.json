@@ -1,0 +1,2430 @@
+{
+  "schema_version": "1.0",
+  "session_id": "3ea3d5b9be0a5c985d65",
+  "rounds": [
+    {
+      "number": 50,
+      "messages": [
+        {
+          "source_line": 901,
+          "timestamp": "2026-05-15T09:05:38.891688+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s42/gen_5/"
+            }
+          },
+          "id": "event-000901"
+        },
+        {
+          "source_line": 902,
+          "timestamp": "2026-05-15T09:05:39.042324+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 501
+          },
+          "id": "event-000902"
+        },
+        {
+          "source_line": 903,
+          "timestamp": "2026-05-15T09:05:39.643890+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 752
+          },
+          "id": "event-000903"
+        },
+        {
+          "source_line": 904,
+          "timestamp": "2026-05-15T09:05:44.464389+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "find /root/autodl-tmp/distrib_canary_collapse -maxdepth 4 -name \"plan_006*\" -type d"
+            }
+          },
+          "id": "event-000904"
+        },
+        {
+          "source_line": 905,
+          "timestamp": "2026-05-15T09:05:44.865447+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/"
+            }
+          },
+          "id": "event-000905"
+        },
+        {
+          "source_line": 906,
+          "timestamp": "2026-05-15T09:05:44.966050+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 501
+          },
+          "id": "event-000906"
+        },
+        {
+          "source_line": 907,
+          "timestamp": "2026-05-15T09:05:45.519404+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"alpha_sweep\\\\nalpha_sweep_analysis\\\\nanalysis\\\\nbootstrap_ty_dryrun.json\\\\nbootstrap_ty_results.json\\\\ndetrending\\\\ndose_response_drift.csv\\\\nextended_20gen\\\\nmethod_ablation_phase2_panel.json\\\\nmethod_ablation_phase2_report.md\\\\nmvp\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 653
+          },
+          "id": "event-000907"
+        },
+        {
+          "source_line": 908,
+          "timestamp": "2026-05-15T09:05:48.531221+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/"
+            }
+          },
+          "id": "event-000908"
+        },
+        {
+          "source_line": 909,
+          "timestamp": "2026-05-15T09:05:49.033077+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"s42\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 501
+          },
+          "id": "event-000909"
+        },
+        {
+          "source_line": 910,
+          "timestamp": "2026-05-15T09:05:51.997618+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/"
+            }
+          },
+          "id": "event-000910"
+        },
+        {
+          "source_line": 911,
+          "timestamp": "2026-05-15T09:05:52.549962+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"config.json\\\\ngen_0\\\\ngen_1\\\\ngen_10\\\\ngen_11\\\\ngen_12\\\\ngen_13\\\\ngen_14\\\\ngen_15\\\\ngen_16\\\\ngen_2\\\\ngen_3\\\\ngen_4\\\\ngen_5\\\\ngen_6\\\\ngen_7\\\\ngen_8\\\\ngen_9\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-000911"
+        },
+        {
+          "source_line": 912,
+          "timestamp": "2026-05-15T09:05:57.371038+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_16/metrics.json"
+            }
+          },
+          "id": "event-000912"
+        },
+        {
+          "source_line": 913,
+          "timestamp": "2026-05-15T09:05:57.772308+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_15/metrics.json"
+            }
+          },
+          "id": "event-000913"
+        },
+        {
+          "source_line": 914,
+          "timestamp": "2026-05-15T09:05:57.872880+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_16/metrics.json: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 501
+          },
+          "id": "event-000914"
+        },
+        {
+          "source_line": 915,
+          "timestamp": "2026-05-15T09:05:58.424681+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"token_entropy\\\\\\\": 1.1505637440850602,\\\\n  \\\\\\\"self_bleu\\\\\\\": 0.013049260738293846,\\\\n  \\\\\\\"distinct_1\\\\\\\": 0.07696875,\\\\n  \\\\\\\"distinct_2\\\\\\\": 0.3753388698349206,\\\\n  \\\\\\\"distinct_3\\\\\\\": 0.6150799231237988,\\\\n  \\\\\\\"ece\\\\\\\": 0.4549664372923137,\\\\n  \\\\\\\"effective_rank\\\\\\\": 104.75913496264128,\\\\n  \\\\\\\"perplexity\\\\\\\": 2923.239071678584,\\\\n  \\\\\\\"mauve\\\\\\\": 0.03286614306047033,\\\\n  \\\\\\\"generation\\\\\\\": 15\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 652
+          },
+          "id": "event-000915"
+        },
+        {
+          "source_line": 916,
+          "timestamp": "2026-05-15T09:06:08.050628+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/extended_20gen/s42/gen_16/"
+            }
+          },
+          "id": "event-000916"
+        },
+        {
+          "source_line": 917,
+          "timestamp": "2026-05-15T09:06:08.612411+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"synthetic_data\\\\ntrainer\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 561
+          },
+          "id": "event-000917"
+        },
+        {
+          "source_line": 918,
+          "timestamp": "2026-05-15T09:06:08.612722+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "grep -n \"significant\" /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/consensus/consensus_framework.py"
+            }
+          },
+          "id": "event-000918"
+        },
+        {
+          "source_line": 919,
+          "timestamp": "2026-05-15T09:06:09.114769+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"grep: /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/consensus/consensus_framework.py: No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000919"
+        },
+        {
+          "source_line": 920,
+          "timestamp": "2026-05-15T09:06:11.977648+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"consensus_framework.py\" -type f"
+            }
+          },
+          "id": "event-000920"
+        },
+        {
+          "source_line": 921,
+          "timestamp": "2026-05-15T09:06:12.430169+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/consensus_framework.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000921"
+        },
+        {
+          "source_line": 922,
+          "timestamp": "2026-05-15T09:06:15.143762+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "grep -n \"significant\" /root/autodl-tmp/distrib_canary_collapse/consensus_framework.py"
+            }
+          },
+          "id": "event-000922"
+        },
+        {
+          "source_line": 923,
+          "timestamp": "2026-05-15T09:06:15.546863+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"6:significant). Two-stage aggregation: seed→method verdict, then method→consensus.\\\\n84:                    sig[mi, pi, si] = seed_rec[method].get(\\\\\\\"significant\\\\\\\", False)\\\\n93:    Stage 1 (seed aggregation): method M calls pair P \\\\\\\"significant\\\\\\\" if\\\\n96:        methods call it significant.\\\\n211:      A (pair, seed) is \\\\\\\"truly negative\\\\\\\" when differenced is not significant.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 403
+          },
+          "id": "event-000923"
+        },
+        {
+          "source_line": 924,
+          "timestamp": "2026-05-15T09:06:21.522823+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "significant",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/consensus_framework/consensus_framework.py",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000924"
+        },
+        {
+          "source_line": 925,
+          "timestamp": "2026-05-15T09:06:21.523135+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6:significant). Two-stage aggregation: seed→method verdict, then method→consensus.\n84:                    sig[mi, pi, si] = seed_rec[method].get(\"significant\", False)\n93:    Stage 1 (seed aggregation): method M calls pair P \"significant\" if\n96:        methods call it significant.\n211:      A (pair, seed) is \"truly negative\" when differenced is not significant."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000925"
+        },
+        {
+          "source_line": 926,
+          "timestamp": "2026-05-15T09:06:26.690970+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "ece.*d1.*9/9|ece.*d1.*stable|Perfectly stable",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/consensus_framework",
+              "output_mode": "content",
+              "-i": "True"
+            }
+          },
+          "id": "event-000926"
+        },
+        {
+          "source_line": 927,
+          "timestamp": "2026-05-15T09:06:26.791710+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/consensus_framework/consensus_sensitivity_table.json:197:      \"ece→d1\":      {\"stable_configs\": 9, \"total_configs\": 9, \"stability\": \"perfectly_stable\"},\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/consensus_framework/consensus_framework.md:182:| **Perfectly stable** | entropy→d1, entropy→d2, entropy→d3, ece→d1 | 9/9 |"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-000927"
+        },
+        {
+          "source_line": 928,
+          "timestamp": "2026-05-15T09:06:33.671977+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/consensus_framework/sensitivity_analysis.json",
+              "offset": "103",
+              "limit": "5"
+            }
+          },
+          "id": "event-000928"
+        },
+        {
+          "source_line": 929,
+          "timestamp": "2026-05-15T09:06:33.672468+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "103\t    \"ece→distinct_1\": {\"robust_in_n_configs\": 8, \"total_configs\": 9, \"stability\": 0.889},\n104\t    \"ece→distinct_2\": {\"robust_in_n_configs\": 7, \"total_configs\": 9, \"stability\": 0.778},\n105\t    \"ece→distinct_3\": {\"robust_in_n_configs\": 7, \"total_configs\": 9, \"stability\": 0.778},\n106\t    \"effective_rank→perplexity\": {\"robust_in_n_configs\": 0, \"total_configs\": 9, \"stability\": 0.0},\n107\t    \"effective_rank→distinct_1\": {\"robust_in_n_configs\": 1, \"total_configs\": 9, \"stability\": 0.111},"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000929"
+        },
+        {
+          "source_line": 930,
+          "timestamp": "2026-05-15T09:06:37.993239+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'QUEUED'}",
+              "project": "distrib_canary_collapse"
+            }
+          },
+          "id": "event-000930"
+        },
+        {
+          "source_line": 931,
+          "timestamp": "2026-05-15T09:06:38.094038+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"alpha_sweep_a050_s44\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"created_at\\\": \\\"2026-05-15T06:58:50.550Z\\\", \\\"updated_at\\\": \\\"2026-05-15T06:58:50.550Z\\\"}, \\\"alpha_sweep_a025_s44\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"created_at\\\": \\\"2026-05-15T06:58:48.224Z\\\", \\\"updated_at\\\": \\\"2026-05-15T06:58:48.224Z\\\"}, \\\"alpha_sweep_a050_s43\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"created_at\\\": \\\"2026-05-15T06:58:45.880Z\\\", \\\"updated_at\\\": \\\"2026-05-15T06:58:45.880Z\\\"}, \\\"alpha_sweep_a025_s43\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"created_at\\\": \\\"2026-05-15T06:58:43.090Z\\\", \\\"updated_at\\\": \\\"2026-05-15T06:58:43.090Z\\\"}, \\\"alpha_sweep_a010_s42\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"created_at\\\": \\\"2026-05-14T21:52:19.712Z\\\", \\\"updated_at\\\": \\\"2026-05-15T05:19:49.211Z\\\"}}, \\\"count\\\": 5, \\\"total\\\": 5, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0582}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 100
+          },
+          "id": "event-000931"
+        },
+        {
+          "source_line": 932,
+          "timestamp": "2026-05-15T09:06:50.043488+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_roadmap",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000932"
+        },
+        {
+          "source_line": 933,
+          "timestamp": "2026-05-15T09:06:50.144123+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000933"
+        },
+        {
+          "source_line": 934,
+          "timestamp": "2026-05-15T09:06:52.755672+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "distrib_canary_collapse"
+            }
+          },
+          "id": "event-000934"
+        },
+        {
+          "source_line": 935,
+          "timestamp": "2026-05-15T09:06:52.806279+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/ROADMAP.md\\\", \\\"content\\\": \\\"# distrib_canary_collapse — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 08:52 UTC | 更新原因: 共识框架 formalization 完成，标记任务状态更新\\\\n\\\\n> 最后更新: 2026-05-15 | 更新原因: 共识框架 formalization 完成\\\\n\\\\n## 核心方向\\\\n**D027 reframe**: 以方法论陷阱 + 多方法共识框架为主线，canary prediction 为系统性 case study。暴露 lead-lag 分析中的方法选择敏感性（Claim 3 领衔）、伪回归陷阱（Claim 1 case study）、regime-dependent validity（Claim 2）。详见 paper_framing.md。\\\\n\\\\n**Title direction**: \\\\\\\"Method Matters: Pitfalls and a Multi-Method Consensus Framework for Lead-Lag Analysis in Iterative Training Collapse\\\\\\\"\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research + 审稿进行中\\\\n- **Reviewer 评估**: Weak Accept (4-5/10)，→ Accept 需 multi-seed + generalization + 共识框架 formalization\\\\n- **证据强度**: Claim 3 (方法敏感性) > Claim 2 (regime map) > Claim 1 (case study)\\\\n- **Target**: AAAI 2027 (~Aug 2026)\\\\n- **累计 GPU**: ~13h\\\\n- **共识框架 formalization**: ✅ 完成（classify_robust + sensitivity 9配置 + FPR/FNR 表），Reviewer 核实中\\\\n\\\\n## 正在运行\\\\n| 实验 | GPU | 状态 | D027 叙事角色 |\\\\n|------|-----|------|-------------|\\\\n| plan_006_s42 (α=1.0, 20gen) | cuda:0 | ~15/20 gen, ETA ~3h | supplementary (T=21 power) |\\\\n| alpha_sweep_a075_s42 | cuda:1 | ~3/10 gen, ETA ~2-3h | method × regime 第 5 个 α 点（**关键边界**） |\\\\n\\\\n## 近期任务\\\\n- [x] **共识框架 formalization** — classify_robust + sensitivity + FPR/FNR（零 GPU）\\\\n- [ ] **[RUNNING] a075** → 完成后：(1) cross-alpha 5点分析（FDR Granger）(2) 提交 a025_s43 (multi-seed D026-1)\\\\n- [ ] **[RUNNING] plan_006** → 完成后 cuda:0 启动 C4 cross-domain\\\\n- [ ] **[准备中] cross-alpha 分析脚本** — Agent 正在编写，等 a075 数据到位即跑\\\\n- [ ] **[准备中] C4/GPT-2 下载+脚本适配** — Agent 检查进度中\\\\n- [ ] **[D026] multi-seed**: a025_s43 → a050_s43 → a025_s44 → a050_s44（cuda:1 串行，~16h）\\\\n- [ ] **[D027] C4 cross-domain**: α=0.25+1.0 × 1 seed（cuda:0, ~5h）\\\\n- [ ] **[D027] GPT-2 cross-arch**: α=0.25+1.0 × 1 seed（cuda:0, ~5h）\\\\n- [ ] **method_ablation Phase 2**: pooled panel analysis — Ag\n…[truncated 2140 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 50
+          },
+          "id": "event-000935"
+        },
+        {
+          "source_line": 936,
+          "timestamp": "2026-05-15T09:07:11.920216+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态汇总：\n\n**运行中的实验**：\n- `plan_006_s42`: gen 16/20（gen_16 正在生成合成数据），cuda:0 38% util ✓\n- `a075_s42`: gen 5/10（gen_5 训练中），cuda:1 14% util ✓ — 低 util 可能因为处于 data generation 阶段\n\n**GPU 合规**：两块 GPU 均在项目白名单内，无越界。\n\n**5 个 QUEUED 实验**等待 GPU 释放（D026 multi-seed + a010_s42）。\n\n**三个 critical/warning 问题仍 open**：\n1. **[CRITICAL] D029** — consensus_framework.py FDR 修复：决策已记录，代码未修改（第 84 行仍读 `significant`）\n2. **[WARNING] D028** — FPR ground truth 从 differenced_xcorr 改为 α=0.0 null control：决策已记录，未实施\n3. **[WARNING]** — ece→d1 在 `consensus_framework.md` 和 `consensus_sensitivity_table.json` 中仍错标为 9/9（实际 8/9）\n\n所有问题均已通过 `reviewer_post_to_director` 提交，等待 Agent 实施修复。实验进度正常，无需干预。等待下一个系统通知。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer"
+          },
+          "id": "event-000936"
+        }
+      ]
+    },
+    {
+      "number": 51,
+      "messages": [
+        {
+          "source_line": 937,
+          "timestamp": "2026-05-15T09:07:12.440604+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_code_cross_alpha_5point_script_20260515T085132]:\nWorker worker_code_cross_alpha_5point_script_20260515T085132 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "source": "worker_done:worker_code_cross_alpha_5point_script_20260515t085132"
+          },
+          "id": "event-000937"
+        },
+        {
+          "source_line": 938,
+          "timestamp": "2026-05-15T09:07:21.742167+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'DONE'}",
+              "project": "distrib_canary_collapse",
+              "limit": "3",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000938"
+        },
+        {
+          "source_line": 939,
+          "timestamp": "2026-05-15T09:07:21.793054+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"method_ablation_phase2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T08:58:35.270Z\\\", \\\"updated_at\\\": \\\"2026-05-15T08:58:54.741Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Method sensitivity is compounded by regime dependence — method x alpha interaction is the headline Claim 3 evidence\\\", \\\"command\\\": \\\"python method_ablation_phase2.py\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"data_path\\\": \\\"results/alpha_sweep + results/mvp\\\", \\\"data_count\\\": 56, \\\"model_name\\\": \\\"N/A (analysis)\\\", \\\"seed\\\": \\\"42,43,44,45\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"results/method_ablation_phase2_panel.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"n_panel_rows\\\": 56, \\\"n_alphas\\\": 4, \\\"alphas\\\": [0, 0.25, 0.5, 1], \\\"naive_sig_rate_overall\\\": 1, \\\"perm_granger_sig_rate_a000\\\": 0, \\\"perm_granger_sig_rate_a025\\\": 0.25, \\\"perm_granger_sig_rate_a050\\\": 0.25, \\\"perm_granger_sig_rate_a100\\\": 0.75, \\\"TY_sig_rate_a000\\\": 0, \\\"TY_sig_rate_a100\\\": 0.59, \\\"mean_inter_method_kappa\\\": 0.185, \\\"naive_vs_perm_granger_flip_rate\\\": 0.5, \\\"naive_vs_TY_flip_rate\\\": 0.57, \\\"fdr_flips_perm_granger\\\": 4, \\\"pair_verdict_a100_perm_granger\\\": \\\"6/8\\\", \\\"pair_verdict_a100_TY\\\": \\\"6/8\\\", \\\"entropy_to_diversity_a100_all_5methods_sig\\\": true}, \\\"completed_at\\\": \\\"2026-05-15T08:58:54.741Z\\\"}, \\\"alpha_sweep_a050_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T21:52:15.427Z\\\", \\\"updated_at\\\": \\\"2026-05-15T06:05:28.905Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s42\\\\\\\"\\\", \\\"serv\n…[truncated 4920 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 50
+          },
+          "id": "event-000939"
+        },
+        {
+          "source_line": 940,
+          "timestamp": "2026-05-15T09:07:27.661222+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/cross_alpha*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse"
+            }
+          },
+          "id": "event-000940"
+        },
+        {
+          "source_line": 941,
+          "timestamp": "2026-05-15T09:07:28.113287+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/report/cross_alpha_analysis.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/alpha_sweep/report/cross_alpha_v3_full_report.txt\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/cross_alpha_analysis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/data/cross_alpha_analysis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/cross_alpha_analysis_v4.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/cross_alpha_v4_ready.md"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 452
+          },
+          "id": "event-000941"
+        },
+        {
+          "source_line": 942,
+          "timestamp": "2026-05-15T09:07:28.214100+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"cross_alpha*\" -type f"
+            }
+          },
+          "id": "event-000942"
+        },
+        {
+          "source_line": 943,
+          "timestamp": "2026-05-15T09:07:29.218417+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/__pycache__/cross_alpha_analysis_v4.cpython-312.pyc\\\\n/root/autodl-tmp/distrib_canary_collapse/results/analysis/cross_alpha_analysis.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/analysis/cross_alpha_analysis.md\\\\n/root/autodl-tmp/distrib_canary_collapse/results/analysis/cross_alpha_v3_full.json\\\\n/root/autodl-tmp/distrib_canary_collapse/cross_alpha_analysis.py\\\\n/root/autodl-tmp/distrib_canary_collapse/cross_alpha_v3_analysis.py\\\\n/root/autodl-tmp/distrib_canary_collapse/cross_alpha_analysis_v4.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.01}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1004
+          },
+          "id": "event-000943"
+        },
+        {
+          "source_line": 944,
+          "timestamp": "2026-05-15T09:07:35.489204+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/cross_alpha_analysis_v4.py /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/cross_alpha_v4_ready.md",
+              "description": "Check timestamps of cross_alpha v4 files"
+            }
+          },
+          "id": "event-000944"
+        },
+        {
+          "source_line": 945,
+          "timestamp": "2026-05-15T09:07:35.641208+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "-rw-r--r-- 1 ubuntu ubuntu 34169 May 15 08:58 /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/cross_alpha_analysis_v4.py\n-rw-r--r-- 1 ubuntu ubuntu  2405 May 15 09:01 /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/cross_alpha_v4_ready.md"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 152
+          },
+          "id": "event-000945"
+        },
+        {
+          "source_line": 946,
+          "timestamp": "2026-05-15T09:07:38.550965+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/cross_alpha_v4_ready.md"
+            }
+          },
+          "id": "event-000946"
+        },
+        {
+          "source_line": 947,
+          "timestamp": "2026-05-15T09:07:38.551525+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Cross-Alpha Analysis v4 — Execution Ready\n2\t\n3\t## Script\n4\t- **Server:** westd-19828\n5\t- **Path:** `/root/autodl-tmp/distrib_canary_collapse/cross_alpha_analysis_v4.py`\n6\t- **Status:** Deployed, syntax verified, imports OK\n7\t\n8\t## Alpha Directories (5 points)\n9\t\n10\t| Alpha | Key  | Path | Seeds | Mode |\n11\t|-------|------|------|-------|------|\n12\t| 0.00  | a000 | `results/alpha_sweep/a000_s42/` | [42] | single-seed, method agreement only |\n13\t| 0.25  | a025 | `results/alpha_sweep/a025_s42/` | [42] | single-seed, method agreement only |\n14\t| 0.50  | a050 | `results/alpha_sweep/a050_s42/` | [42] | single-seed, method agreement only |\n15\t| 0.75  | a075 | `results/alpha_sweep/a075_s42/` | [42] | single-seed, method agreement only |\n16\t| 1.00  | a100 | `results/mvp/rep_42/` (+rep_43/44/45) | [42,43,44,45] | full consensus via method_ablation.json |\n17\t\n18\t## Execution Command\n19\t\n20\t```bash\n21\tssh westd-19828\n22\tsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n23\tcd /root/autodl-tmp/distrib_canary_collapse\n24\t\n25\t# Full run (all 5 alphas, consensus + Granger, ~15-20 min)\n26\tpython3 cross_alpha_analysis_v4.py --n-perms 5000 --consensus-n-perms 1000 --update-registry\n27\t\n28\t# Quick test without consensus (skip 5-method classification)\n29\tpython3 cross_alpha_analysis_v4.py --no-consensus --n-perms 5000\n30\t```\n31\t\n32\t## Expected Output\n33\t\n34\t- **JSON:** `results/analysis/cross_alpha_v{N}.json`\n35\t- **Markdown:** `results/analysis/cross_alpha_v{N}_report.md`\n36\t\n37\t## v4 New Features (vs v3)\n38\t\n39\t1. **α=1.0 integration:** Auto-discovers MVP rep_42..45 as α=1.0; loads seed=42 for Granger/xcorr, all 4 seeds for consensus\n40\t2. **Per-α consensus classification:** Runs 5 methods (naive_pearson, differenced_xcorr, threshold_onset, toda_yamamoto, permutation_granger) on all 16 canary→downstream pairs at each α. Single-seed α points use seed_threshold=1 (method agreement only). α=1.0 loads existing method_ablation.json (4 seeds, full consensus with seed_\n…[truncated 530 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000947"
+        },
+        {
+          "source_line": 948,
+          "timestamp": "2026-05-15T09:07:41.462267+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/cross_alpha_analysis_v4.py",
+              "limit": "80"
+            }
+          },
+          "id": "event-000948"
+        },
+        {
+          "source_line": 949,
+          "timestamp": "2026-05-15T09:07:41.563115+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Cross-alpha analysis v4 with per-alpha consensus classification.\n2\t\n3\tExtends v3 with:\n4\t  5. Per-alpha multi-method consensus classification (regime-dependent validity)\n5\t  6. Markdown report output\n6\t\n7\tHandles mixed data paths:\n8\t  - alpha-sweep: results/alpha_sweep/a{NNN}_s42/all_metrics.json (single seed)\n9\t  - alpha=1.0:   results/mvp/rep_{42..45}/all_metrics.json (4 seeds)\n10\t  - alpha=1.0 consensus loads existing method_ablation.json\n11\t  - Single-seed alpha points: seed_threshold=1, method agreement only\n12\t\n13\tDependencies: numpy, scipy, statsmodels\n14\t\"\"\"\n15\t\n16\timport argparse\n17\timport glob\n18\timport json\n19\timport os\n20\timport re\n21\timport sys\n22\timport warnings\n23\tfrom datetime import datetime\n24\t\n25\timport numpy as np\n26\tfrom statsmodels.stats.multitest import multipletests\n27\t\n28\twarnings.filterwarnings(\"ignore\")\n29\t\n30\tBASE_DIR = os.path.dirname(os.path.abspath(__file__))\n31\tsys.path.insert(0, BASE_DIR)\n32\t\n33\tfrom method_ablation import (\n34\t    CANARY, DOWNSTREAM,\n35\t    extract as ma_extract,\n36\t    naive_pearson, diff_xcorr, threshold_lead, toda_yamamoto, perm_granger,\n37\t)\n38\tfrom consensus_framework import classify_robust, load_sig_matrix, NumpyEncoder\n39\t\n40\tSWEEP_DIR = os.path.join(BASE_DIR, \"results\", \"alpha_sweep\")\n41\tMVP_DIR = os.path.join(BASE_DIR, \"results\", \"mvp\")\n42\tANALYSIS_DIR = os.path.join(BASE_DIR, \"results\", \"analysis\")\n43\t\n44\tMETRICS = [\"distinct_1\", \"distinct_2\", \"distinct_3\", \"token_entropy\", \"ece\", \"perplexity\"]\n45\t\n46\tGRANGER_PAIRS = [\n47\t    (\"token_entropy\", \"distinct_1\", \"entropy->d1\"),\n48\t    (\"ece\",           \"distinct_1\", \"ECE->d1\"),\n49\t    (\"token_entropy\", \"distinct_2\", \"entropy->d2\"),\n50\t    (\"ece\",           \"distinct_2\", \"ECE->d2\"),\n51\t    (\"distinct_1\", \"token_entropy\", \"d1->entropy\"),\n52\t    (\"distinct_1\", \"ece\",           \"d1->ECE\"),\n53\t    (\"distinct_2\", \"token_entropy\", \"d2->entropy\"),\n54\t    (\"distinct_2\", \"ece\",           \"d2->ECE\"),\n55\t]\n56\t\n57\tXCORR_PAIRS = [\n58\t    (\"token_entropy\", \"distinct_1\", \n…[truncated 766 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-000949"
+        },
+        {
+          "source_line": 950,
+          "timestamp": "2026-05-15T09:07:44.875851+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/cross_alpha_analysis_v4.py",
+              "offset": "80",
+              "limit": "120"
+            }
+          },
+          "id": "event-000950"
+        },
+        {
+          "source_line": 951,
+          "timestamp": "2026-05-15T09:07:44.926394+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "80\t        return seeds\n81\t    for d in sorted(os.listdir(MVP_DIR)):\n82\t        m = re.match(r\"rep_(\\d+)$\", d)\n83\t        if m and os.path.isfile(os.path.join(MVP_DIR, d, \"all_metrics.json\")):\n84\t            seeds.append(int(m.group(1)))\n85\t    return sorted(seeds)\n86\t\n87\t\n88\tdef discover_alpha_dirs(explicit=None, include_mvp=True):\n89\t    \"\"\"Find alpha directories.\n90\t\n91\t    Returns sorted list of (alpha_key, alpha_float, path, seeds).\n92\t    \"\"\"\n93\t    dirs = []\n94\t\n95\t    if explicit:\n96\t        for name in explicit:\n97\t            if name in (\"mvp\", \"a100_mvp\"):\n98\t                rep42 = os.path.join(MVP_DIR, \"rep_42\")\n99\t                if os.path.isdir(rep42):\n100\t                    dirs.append((\"a100\", 1.0, rep42, _find_mvp_seeds()))\n101\t                continue\n102\t            path = os.path.join(SWEEP_DIR, name)\n103\t            if not os.path.isdir(path):\n104\t                print(f\"WARNING: {path} not found, skipping\", file=sys.stderr)\n105\t                continue\n106\t            m = re.match(r\"a(\\d{3})_s(\\d+)\", name)\n107\t            if m:\n108\t                alpha_val = int(m.group(1)) / 100.0\n109\t                dirs.append((f\"a{m.group(1)}\", alpha_val, path, [int(m.group(2))]))\n110\t    else:\n111\t        pattern = os.path.join(SWEEP_DIR, \"a*_s42\")\n112\t        for path in sorted(glob.glob(pattern)):\n113\t            name = os.path.basename(path)\n114\t            m = re.match(r\"a(\\d{3})_s42\", name)\n115\t            if m:\n116\t                alpha_val = int(m.group(1)) / 100.0\n117\t                dirs.append((f\"a{m.group(1)}\", alpha_val, path, [42]))\n118\t\n119\t        if include_mvp and not any(d[1] == 1.0 for d in dirs):\n120\t            rep42 = os.path.join(MVP_DIR, \"rep_42\")\n121\t            if os.path.isdir(rep42):\n122\t                dirs.append((\"a100\", 1.0, rep42, _find_mvp_seeds()))\n123\t\n124\t    return sorted(dirs, key=lambda x: x[1])\n125\t\n126\t\n127\tdef load_metrics(alpha_dir):\n128\t    path = os.path.join(alpha_dir, \"all_metrics.json\")\n129\t    with open\n…[truncated 2661 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000951"
+        },
+        {
+          "source_line": 952,
+          "timestamp": "2026-05-15T09:07:48.991228+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/cross_alpha_analysis_v4.py",
+              "offset": "200",
+              "limit": "120"
+            }
+          },
+          "id": "event-000952"
+        },
+        {
+          "source_line": 953,
+          "timestamp": "2026-05-15T09:07:48.991755+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "200\t    rss_u = np.sum((Y - X_u @ beta_u) ** 2)\n201\t    k_u = X_u.shape[1]\n202\t    df_resid = n - k_u\n203\t    if df_resid <= 0 or rss_u < 1e-15:\n204\t        return np.nan\n205\t    return ((rss_r - rss_u) / q) / (rss_u / df_resid)\n206\t\n207\t\n208\tdef permutation_granger_test(x, y, max_lag=1, n_perm=5000, seed=42, difference=True):\n209\t    x = np.asarray(x, dtype=float)\n210\t    y = np.asarray(y, dtype=float)\n211\t    if difference:\n212\t        x, y = np.diff(x), np.diff(y)\n213\t    T = len(x)\n214\t    if T <= max_lag + 2:\n215\t        return {\"f_stat\": None, \"p_raw\": None, \"note\": f\"Series too short: T={T}\"}\n216\t\n217\t    f_obs = _granger_f_stat(y, x, max_lag)\n218\t    if np.isnan(f_obs):\n219\t        return {\"f_stat\": None, \"p_raw\": None, \"note\": \"F-stat computation failed\"}\n220\t\n221\t    Y, X_r, X_u = _build_lag_matrix(y, x, max_lag)\n222\t    rss_r = np.sum((Y - X_r @ np.linalg.lstsq(X_r, Y, rcond=None)[0]) ** 2)\n223\t    rss_u = np.sum((Y - X_u @ np.linalg.lstsq(X_u, Y, rcond=None)[0]) ** 2)\n224\t    f2 = (rss_r - rss_u) / rss_u if rss_u > 1e-15 else None\n225\t\n226\t    rng = np.random.default_rng(seed)\n227\t    null_f = np.empty(n_perm)\n228\t    for i in range(n_perm):\n229\t        null_f[i] = _granger_f_stat(y, rng.permutation(x), max_lag)\n230\t    valid = null_f[~np.isnan(null_f)]\n231\t    if len(valid) == 0:\n232\t        return {\"f_stat\": round(float(f_obs), 4), \"p_raw\": None, \"note\": \"All permutations failed\"}\n233\t\n234\t    p_value = (np.sum(valid >= f_obs) + 1) / (len(valid) + 1)\n235\t    return {\n236\t        \"f_stat\": round(float(f_obs), 4),\n237\t        \"p_raw\": round(float(p_value), 6),\n238\t        \"n_perm\": n_perm,\n239\t        \"effect_size_f2\": round(float(f2), 4) if f2 is not None else None,\n240\t    }\n241\t\n242\t\n243\tdef run_granger_all(all_data, max_lag=1, n_perms=5000):\n244\t    results = []\n245\t    for alpha_key, alpha_val, metrics_list in all_data:\n246\t        for cause_key, effect_key, label in GRANGER_PAIRS:\n247\t            x = extract_series(metrics_list, cause_key)\n248\t    \n…[truncated 2977 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000953"
+        },
+        {
+          "source_line": 954,
+          "timestamp": "2026-05-15T09:07:52.555527+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/cross_alpha_analysis_v4.py",
+              "offset": "318",
+              "limit": "150"
+            }
+          },
+          "id": "event-000954"
+        },
+        {
+          "source_line": 955,
+          "timestamp": "2026-05-15T09:07:52.606183+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "318\t# ---------------------------------------------------------------------------\n319\t# 4. Per-gen velocity\n320\t# ---------------------------------------------------------------------------\n321\t\n322\tdef per_gen_velocity(all_data):\n323\t    result = {}\n324\t    for alpha_key, alpha_val, metrics_list in all_data:\n325\t        vals = extract_series(metrics_list, \"distinct_1\")\n326\t        deltas = np.diff(vals)\n327\t        n = len(deltas)\n328\t        mid = n // 2\n329\t        early_mean = float(np.mean(deltas[:mid])) if mid > 0 else None\n330\t        late_mean = float(np.mean(deltas[mid:])) if mid < n else None\n331\t        max_drop_idx = int(np.argmin(deltas))\n332\t        result[alpha_key] = {\n333\t            \"alpha\": alpha_val,\n334\t            \"d1_values\": [round(float(v), 6) for v in vals],\n335\t            \"d1_deltas\": [round(float(d), 6) for d in deltas],\n336\t            \"cumulative_drift_pct\": round((vals[-1] - vals[0]) / abs(vals[0]) * 100, 2),\n337\t            \"mean_velocity\": round(float(np.mean(deltas)), 6),\n338\t            \"max_drop_gen\": max_drop_idx,\n339\t            \"max_drop_value\": round(float(deltas[max_drop_idx]), 6),\n340\t            \"early_mean_velocity\": round(early_mean, 6) if early_mean is not None else None,\n341\t            \"late_mean_velocity\": round(late_mean, 6) if late_mean is not None else None,\n342\t            \"deceleration_ratio\": round(late_mean / early_mean, 4) if early_mean and abs(early_mean) > 1e-12 else None,\n343\t        }\n344\t    return result\n345\t\n346\t\n347\t# ---------------------------------------------------------------------------\n348\t# 5. Per-alpha consensus classification\n349\t# ---------------------------------------------------------------------------\n350\t\n351\tdef run_consensus_per_alpha(alpha_dirs, mvp_ablation_path=None, consensus_n_perm=1000):\n352\t    \"\"\"Run 5-method consensus classification at each alpha point.\n353\t\n354\t    alpha=1.0 with existing method_ablation.json: load directly (4 seeds).\n355\t    Other alpha points: run 5 metho\n…[truncated 4984 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000955"
+        },
+        {
+          "source_line": 956,
+          "timestamp": "2026-05-15T09:07:56.119015+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/cross_alpha_analysis_v4.py",
+              "offset": "467",
+              "limit": "200"
+            }
+          },
+          "id": "event-000956"
+        },
+        {
+          "source_line": 957,
+          "timestamp": "2026-05-15T09:07:56.169661+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "467\t                    \"alpha\": cr[\"alpha\"],\n468\t                    \"is_robust\": cl[\"is_robust\"],\n469\t                    \"n_sig_methods\": cl[\"n_sig_methods\"],\n470\t                    \"mode\": cr[\"mode\"],\n471\t                }\n472\t        verdicts = [v[\"is_robust\"] for v in row[\"per_alpha\"].values()]\n473\t        row[\"stable\"] = len(set(verdicts)) <= 1\n474\t        row[\"all_robust\"] = all(verdicts) if verdicts else False\n475\t        row[\"all_non_robust\"] = not any(verdicts) if verdicts else True\n476\t        pairs_comp[label] = row\n477\t\n478\t    n_stable = sum(1 for r in pairs_comp.values() if r[\"stable\"])\n479\t    return {\n480\t        \"alpha_keys\": alpha_keys,\n481\t        \"alpha_values\": [consensus_results[ak][\"alpha\"] for ak in alpha_keys],\n482\t        \"n_pairs\": len(pair_labels),\n483\t        \"n_stable\": n_stable,\n484\t        \"n_regime_dependent\": len(pair_labels) - n_stable,\n485\t        \"pairs\": pairs_comp,\n486\t    }\n487\t\n488\t\n489\t# ---------------------------------------------------------------------------\n490\t# 6. Markdown report\n491\t# ---------------------------------------------------------------------------\n492\t\n493\tdef generate_markdown_report(output, out_path):\n494\t    lines = []\n495\t    lines.append(f\"# Cross-Alpha Analysis Report ({output['version']})\")\n496\t    lines.append(\"\")\n497\t    lines.append(f\"**Date:** {output['date']}\")\n498\t    lines.append(f\"**Alpha points:** {output['alpha_points']}\")\n499\t    lines.append(f\"**Generations:** {output['gen_range']}\")\n500\t    lines.append(\"\")\n501\t\n502\t    # 1. Dose-response\n503\t    lines.append(\"## 1. Dose-Response (gen0 to genN drift %)\")\n504\t    lines.append(\"\")\n505\t    dr = output[\"dose_response\"]\n506\t    alphas = sorted(dr.keys())\n507\t    header = \"| Metric |\"\n508\t    sep = \"|--------|\"\n509\t    for ak in alphas:\n510\t        header += f\" α={dr[ak]['alpha']:.2f} |\"\n511\t        sep += \"--------:|\"\n512\t    lines.append(header)\n513\t    lines.append(sep)\n514\t    for metric in METRICS:\n515\t        row = f\"| {metric} |\"\n5\n…[truncated 6584 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000957"
+        },
+        {
+          "source_line": 958,
+          "timestamp": "2026-05-15T09:07:59.030931+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/cross_alpha_analysis_v4.py",
+              "offset": "666",
+              "limit": "200"
+            }
+          },
+          "id": "event-000958"
+        },
+        {
+          "source_line": 959,
+          "timestamp": "2026-05-15T09:07:59.081631+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "666\t    print(\"-\" * 80)\n667\t\n668\t    directions = list(dict.fromkeys(r[\"direction\"] for r in gc))\n669\t    for d in directions:\n670\t        line = f\"{d:<20}\"\n671\t        for ak in alpha_keys:\n672\t            match = [r for r in gc if r[\"alpha_key\"] == ak and r[\"direction\"] == d]\n673\t            if match:\n674\t                r = match[0]\n675\t                p_raw = f\"{r['p_raw']:.4f}\" if r.get(\"p_raw\") is not None else \"  N/A \"\n676\t                p_fdr = f\"{r.get('p_fdr', 'N/A')}\" if r.get(\"p_fdr\") is not None else \"  N/A \"\n677\t                if isinstance(p_fdr, float):\n678\t                    p_fdr = f\"{p_fdr:.4f}\"\n679\t                sig = \"*\" if r.get(\"p_fdr\") is not None and r[\"p_fdr\"] < 0.05 else \" \"\n680\t                fp = \"FP?\" if r.get(\"note\", \"\").startswith(\"consistent\") else \"   \"\n681\t                line += f\" | {p_raw} {p_fdr:>7} {sig}{fp}\"\n682\t            else:\n683\t                line += f\" |    --       --     \"\n684\t        print(line)\n685\t\n686\t    valid = [r for r in gc if r.get(\"p_raw\") is not None]\n687\t    n_total = len(valid)\n688\t    n_raw_sig = sum(1 for r in valid if r[\"p_raw\"] < 0.05)\n689\t    n_fdr_sig = sum(1 for r in valid if r.get(\"p_fdr\") is not None and r[\"p_fdr\"] < 0.05)\n690\t    print(f\"\\nFDR: {n_raw_sig}/{n_total} raw-sig -> {n_fdr_sig}/{n_total} FDR-sig \"\n691\t          f\"(BH correction across all {n_total} tests)\")\n692\t\n693\t    # Consensus per alpha\n694\t    if \"consensus_per_alpha\" in output:\n695\t        cpa = output[\"consensus_per_alpha\"]\n696\t        print(f\"\\nCONSENSUS CLASSIFICATION PER ALPHA\")\n697\t        print(\"-\" * 80)\n698\t        for ak in sorted(cpa.keys(), key=lambda k: cpa[k][\"alpha\"]):\n699\t            entry = cpa[ak]\n700\t            print(f\"\\n  a={entry['alpha']:.2f} [{entry['note']}]\")\n701\t            print(f\"    Robust: {entry['consensus']['n_robust']}/{entry['n_pairs']}, \"\n702\t                  f\"Non-robust: {entry['consensus']['n_non_robust']}/{entry['n_pairs']}\")\n703\t            for cl in entry[\"consensus\"][\"classifica\n…[truncated 7728 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000959"
+        },
+        {
+          "source_line": 960,
+          "timestamp": "2026-05-15T09:08:43.026310+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "wc -l /root/autodl-tmp/distrib_canary_collapse/cross_alpha_analysis_v4.py"
+            }
+          },
+          "id": "event-000960"
+        },
+        {
+          "source_line": 961,
+          "timestamp": "2026-05-15T09:08:43.026593+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "grep -n \"significant\" /root/autodl-tmp/distrib_canary_collapse/cross_alpha_analysis_v4.py"
+            }
+          },
+          "id": "event-000961"
+        },
+        {
+          "source_line": 962,
+          "timestamp": "2026-05-15T09:08:43.528686+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"858 /root/autodl-tmp/distrib_canary_collapse/cross_alpha_analysis_v4.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000962"
+        },
+        {
+          "source_line": 963,
+          "timestamp": "2026-05-15T09:08:44.131132+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"413:                            sig_matrix[mi, pi, si] = res.get(\\\\\\\"significant\\\\\\\", False)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1104
+          },
+          "id": "event-000963"
+        },
+        {
+          "source_line": 964,
+          "timestamp": "2026-05-15T09:08:55.573845+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__reviewer_post_to_director",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000964"
+        },
+        {
+          "source_line": 965,
+          "timestamp": "2026-05-15T09:08:55.624371+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000965"
+        },
+        {
+          "source_line": 966,
+          "timestamp": "2026-05-15T09:09:18.093122+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — worker_code_cross_alpha_5point_script\n\n**产出**: `cross_alpha_analysis_v4.py` (本地 865 行, 远程 858 行)\n\n**结论**: WARNING（2 个 warning + 1 个 inherited critical）\n\n### 发现\n\n1. [severity: critical] **继承 D029 FDR bug**: α=1.0 路径通过 `load_sig_matrix()` (从 consensus_framework.py 导入) 读取 `significant` 而非 `significant_fdr`。这与 consensus_framework.py 的同一 bug 相同。当 D029 修复 consensus_framework.py 时需同步确认此脚本的行为变化。\n   - 证据: 远程 `cross_alpha_analysis_v4.py` 第 413 行 `res.get(\"significant\", False)`; α=1.0 路径第 362 行调用 `load_sig_matrix()`\n\n2. [severity: warning] **单 seed α 点无 FDR 校正**: α=0.00-0.75 各运行 5 methods × 16 pairs = 80 次检验，每个方法直接用 per-pair `significant` (p<0.05) 进入共识分类，无 BH 校正。16 pairs 在 5% 水平下期望约 0.8 个假阳性/method——对于 seed_threshold=1 + method_threshold=4/5 的严格组合来说影响可能有限，但会系统性地膨胀 non-stringent 方法（尤其 naive_pearson）的 \"significant\" 计数，间接抬高 robust pair 数量。\n   - 建议: 要么在 per-method 16 pairs 上做 BH 校正后再进 consensus，要么在报告中明确标注 \"raw significance, no per-method FDR\"\n\n3. [severity: warning] **FDR 修复后将产生非对称性**: D029 修复落地后，α=1.0 将使用 FDR-corrected significance（通过修正后的 `load_sig_matrix`），而 α=0.00-0.75 仍用 raw significance（直接调用 method functions）。这导致 regime comparison 表中的 robust/non-robust 判定基于不同标准——苹果与橘子的比较。\n   - 建议: 对单 seed α 点也在 per-method 层面做 FDR，保证全部 α 点用同一 significance 定义\n\n4. [severity: info] **版本不一致**: 本地 865 行 vs 远程 858 行。可能是部署后本地又有微调，或反之。执行前需同步。\n\n5. [severity: info] **正面确认**: \n   - Granger 实现正确（differenced + permutation, conservative p-value）\n   - α=0.0 Granger 显著结果被标记为 \"consistent with FPR, likely false positive\"——与 Phase 2 发现一致\n   - 单 seed 模式正确标记为 \"method_agreement_only\"\n   - BH FDR 在 Granger 部分正确应用（跨全部 alpha × direction 的 40 tests）\n\n### 建议\n\n**P0**: 等 D029 FDR 修复落地后，同步在此脚本中对单 seed α 点也加 per-method FDR 校正，确保全部 α 点使用一致的 significance 定义。这应在脚本执行前完成。\n\n**P1**: 同步本地与远程版本。",
+              "project": "distrib_canary_collapse"
+            }
+          },
+          "id": "event-000966"
+        },
+        {
+          "source_line": 967,
+          "timestamp": "2026-05-15T09:09:21.753227+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3660
+          },
+          "id": "event-000967"
+        },
+        {
+          "source_line": 968,
+          "timestamp": "2026-05-15T09:09:28.027474+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审查已提交。核心发现：\n\n- **CRITICAL (继承)**: α=1.0 路径继承了 consensus_framework.py 的 FDR bug（D029 待修复）\n- **WARNING**: 单 seed α 点（0.00-0.75）在 16 pairs/method 上无 FDR 校正\n- **WARNING**: D029 修复后将造成 α=1.0 (FDR) vs 其他 α (raw) 的非对称 significance 定义，regime comparison 表不可靠\n\n建议在脚本执行前先完成 D029 FDR 修复并同步加 per-method FDR。当前两个训练实验继续正常运行（plan_006 ~gen 16/20, a075 ~gen 5/10）。三个 open critical/warning 问题均仍待修复。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer"
+          },
+          "id": "event-000968"
+        }
+      ]
+    },
+    {
+      "number": 52,
+      "messages": [
+        {
+          "source_line": 969,
+          "timestamp": "2026-05-15T09:17:48.811000+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_code_d029_fdr_fix_20260515T091148]:\nWorker worker_code_d029_fdr_fix_20260515T091148 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "source": "worker_done:worker_code_d029_fdr_fix_20260515t091148"
+          },
+          "id": "event-000969"
+        },
+        {
+          "source_line": 970,
+          "timestamp": "2026-05-15T09:17:58.570645+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "grep -n \"significant\" /root/autodl-tmp/distrib_canary_collapse/consensus_framework.py"
+            }
+          },
+          "id": "event-000970"
+        },
+        {
+          "source_line": 971,
+          "timestamp": "2026-05-15T09:17:59.825453+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"6:significant). Two-stage aggregation: seed→method verdict, then method→consensus.\\\\n86:                            \\\\\\\"significant_fdr\\\\\\\", seed_rec[method].get(\\\\\\\"significant\\\\\\\", False))\\\\n88:                        sig[mi, pi, si] = seed_rec[method].get(\\\\\\\"significant\\\\\\\", False)\\\\n97:    Stage 1 (seed aggregation): method M calls pair P \\\\\\\"significant\\\\\\\" if\\\\n100:        methods call it significant.\\\\n215:      A (pair, seed) is \\\\\\\"truly negative\\\\\\\" when differenced is not significant.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.01}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1254
+          },
+          "id": "event-000971"
+        },
+        {
+          "source_line": 972,
+          "timestamp": "2026-05-15T09:17:59.927877+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "significant",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/consensus_framework",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000972"
+        },
+        {
+          "source_line": 973,
+          "timestamp": "2026-05-15T09:17:59.978519+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/consensus_framework/consensus_framework.py:6:significant). Two-stage aggregation: seed→method verdict, then method→consensus.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/consensus_framework/consensus_framework.py:86:                            \"significant_fdr\", seed_rec[method].get(\"significant\", False))\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/consensus_framework/consensus_framework.py:88:                        sig[mi, pi, si] = seed_rec[method].get(\"significant\", False)\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/consensus_framework/consensus_framework.py:97:    Stage 1 (seed aggregation): method M calls pair P \"significant\" if\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/consensus_framework/consensus_framework.py:100:        methods call it significant.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/consensus_framework/consensus_framework.py:215:      A (pair, seed) is \"truly negative\" when differenced is not significant."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-000973"
+        },
+        {
+          "source_line": 974,
+          "timestamp": "2026-05-15T09:18:05.701423+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "head -100 /root/autodl-tmp/distrib_canary_collapse/consensus_framework.py"
+            }
+          },
+          "id": "event-000974"
+        },
+        {
+          "source_line": 975,
+          "timestamp": "2026-05-15T09:18:06.203649+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nMulti-method consensus framework for canary→downstream association robustness.\\\\n\\\\nFormalizes \\\\\\\"robust association\\\\\\\": a pair is robust only when ≥method_threshold\\\\nindependent statistical methods agree (each requiring ≥seed_threshold seeds\\\\nsignificant). Two-stage aggregation: seed→method verdict, then method→consensus.\\\\n\\\\nInput:  results/mvp/analysis/method_ablation.json\\\\nOutput: consensus classification, sensitivity heatmap, FPR/FNR table (JSON)\\\\n\\\\nDependencies: numpy, json (stdlib)\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport os\\\\n\\\\nimport numpy as np\\\\n\\\\nMETHOD_NAMES = [\\\\n    \\\\\\\"naive_pearson\\\\\\\",\\\\n    \\\\\\\"differenced_xcorr\\\\\\\",\\\\n    \\\\\\\"threshold_onset\\\\\\\",\\\\n    \\\\\\\"toda_yamamoto\\\\\\\",\\\\n    \\\\\\\"permutation_granger\\\\\\\",\\\\n]\\\\n\\\\n# differenced_xcorr is the FP ground truth (index 1)\\\\nDIFF_INDEX = 1\\\\n\\\\n\\\\ndef _to_native(obj):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Convert numpy types to Python native for JSON serialization.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if isinstance(obj, (np.integer,)):\\\\n        return int(obj)\\\\n    if isinstance(obj, (np.floating,)):\\\\n        return float(obj)\\\\n    if isinstance(obj, (np.bool_,)):\\\\n        return bool(obj)\\\\n    if isinstance(obj, np.ndarray):\\\\n        return obj.tolist()\\\\n    return obj\\\\n\\\\n\\\\nclass NumpyEncoder(json.JSONEncoder):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"JSON encoder that handles numpy types.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    def default(self, obj):\\\\n        native = _to_native(obj)\\\\n        if native is not obj:\\\\n            return native\\\\n        return super().default(obj)\\\\n\\\\n\\\\ndef load_sig_matrix(ablation_path, apply_fdr=True):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Load method_ablation.json into a boolean significance tensor.\\\\n\\\\n    Args:\\\\n        ablation_path: path to method_ablation.json\\\\n\\\\n    Returns:\\\\n        sig_matrix: np.ndarray, shape (5, 16, 4), dtype bool\\\\n                    axes = (method, pair, seed)\\\\n        pair_names: list of (canary, downstream) tuples, len 16\\\\n\n…[truncated 1596 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000975"
+        },
+        {
+          "source_line": 976,
+          "timestamp": "2026-05-15T09:18:18.951320+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "ls -la /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/consensus/"
+            }
+          },
+          "id": "event-000976"
+        },
+        {
+          "source_line": 977,
+          "timestamp": "2026-05-15T09:18:19.554311+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 32\\\\ndrwxr-xr-x 2 root root   118 May 15 16:43 .\\\\ndrwxr-xr-x 3 root root  4096 May 15 16:43 ..\\\\n-rw-r--r-- 1 root root  6471 May 15 16:43 consensus_classification.json\\\\n-rw-r--r-- 1 root root  3690 May 15 16:43 fpr_fnr_table.json\\\\n-rw-r--r-- 1 root root 13161 May 15 16:43 sensitivity_analysis.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 602
+          },
+          "id": "event-000977"
+        },
+        {
+          "source_line": 978,
+          "timestamp": "2026-05-15T09:18:19.554727+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/consensus_framework/consensus_classification*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts"
+            }
+          },
+          "id": "event-000978"
+        },
+        {
+          "source_line": 979,
+          "timestamp": "2026-05-15T09:18:19.655385+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 100
+          },
+          "id": "event-000979"
+        },
+        {
+          "source_line": 980,
+          "timestamp": "2026-05-15T09:18:24.098564+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/consensus/consensus_classification.json"
+            }
+          },
+          "id": "event-000980"
+        },
+        {
+          "source_line": 981,
+          "timestamp": "2026-05-15T09:18:24.600806+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"classifications\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"pair_index\\\\\\\": 0,\\\\n      \\\\\\\"n_sig_methods\\\\\\\": 3,\\\\n      \\\\\\\"is_robust\\\\\\\": false,\\\\n      \\\\\\\"method_verdicts\\\\\\\": [\\\\n        true,\\\\n        true,\\\\n        true,\\\\n        false,\\\\n        false\\\\n      ],\\\\n      \\\\\\\"seed_counts\\\\\\\": [\\\\n        4,\\\\n        4,\\\\n        4,\\\\n        0,\\\\n        0\\\\n      ],\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"perplexity\\\\\\\",\\\\n      \\\\\\\"pair_label\\\\\\\": \\\\\\\"token_entropy\\\\\\\\u2192perplexity\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair_index\\\\\\\": 1,\\\\n      \\\\\\\"n_sig_methods\\\\\\\": 5,\\\\n      \\\\\\\"is_robust\\\\\\\": true,\\\\n      \\\\\\\"method_verdicts\\\\\\\": [\\\\n        true,\\\\n        true,\\\\n        true,\\\\n        true,\\\\n        true\\\\n      ],\\\\n      \\\\\\\"seed_counts\\\\\\\": [\\\\n        4,\\\\n        4,\\\\n        4,\\\\n        4,\\\\n        4\\\\n      ],\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_1\\\\\\\",\\\\n      \\\\\\\"pair_label\\\\\\\": \\\\\\\"token_entropy\\\\\\\\u2192distinct_1\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair_index\\\\\\\": 2,\\\\n      \\\\\\\"n_sig_methods\\\\\\\": 5,\\\\n      \\\\\\\"is_robust\\\\\\\": true,\\\\n      \\\\\\\"method_verdicts\\\\\\\": [\\\\n        true,\\\\n        true,\\\\n        true,\\\\n        true,\\\\n        true\\\\n      ],\\\\n      \\\\\\\"seed_counts\\\\\\\": [\\\\n        4,\\\\n        4,\\\\n        4,\\\\n        4,\\\\n        4\\\\n      ],\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_2\\\\\\\",\\\\n      \\\\\\\"pair_label\\\\\\\": \\\\\\\"token_entropy\\\\\\\\u2192distinct_2\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair_index\\\\\\\": 3,\\\\n      \\\\\\\"n_sig_methods\\\\\\\": 5,\\\\n      \\\\\\\"is_robust\\\\\\\": true,\\\\n      \\\\\\\"method_verdicts\\\\\\\": [\\\\n        true,\\\\n        true,\\\\n        true,\\\\n        true,\\\\n        true\\\\n      ],\\\\n      \\\\\\\"seed_counts\\\\\\\": [\\\\n        4,\\\\n        4,\\\\n        4,\\\\n        4,\\\\n        4\\\\n      ],\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\n…[truncated 6508 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000981"
+        },
+        {
+          "source_line": 982,
+          "timestamp": "2026-05-15T09:18:24.601163+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/consensus/sensitivity_analysis.json"
+            }
+          },
+          "id": "event-000982"
+        },
+        {
+          "source_line": 983,
+          "timestamp": "2026-05-15T09:18:25.204809+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"method_thresholds\\\\\\\": [\\\\n    3,\\\\n    4,\\\\n    5\\\\n  ],\\\\n  \\\\\\\"seed_thresholds\\\\\\\": [\\\\n    2,\\\\n    3,\\\\n    4\\\\n  ],\\\\n  \\\\\\\"n_configs\\\\\\\": 9,\\\\n  \\\\\\\"grid\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"method_threshold\\\\\\\": 3,\\\\n      \\\\\\\"seed_threshold\\\\\\\": 2,\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"\\\\\\\\u22653/5 methods, \\\\\\\\u22652/4 seeds\\\\\\\",\\\\n      \\\\\\\"n_robust\\\\\\\": 12,\\\\n      \\\\\\\"robust_pairs\\\\\\\": [\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192perplexity\\\\\\\",\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192distinct_1\\\\\\\",\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192distinct_2\\\\\\\",\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192distinct_3\\\\\\\",\\\\n        \\\\\\\"self_bleu\\\\\\\\u2192perplexity\\\\\\\",\\\\n        \\\\\\\"ece\\\\\\\\u2192perplexity\\\\\\\",\\\\n        \\\\\\\"ece\\\\\\\\u2192distinct_1\\\\\\\",\\\\n        \\\\\\\"ece\\\\\\\\u2192distinct_2\\\\\\\",\\\\n        \\\\\\\"ece\\\\\\\\u2192distinct_3\\\\\\\",\\\\n        \\\\\\\"effective_rank\\\\\\\\u2192distinct_1\\\\\\\",\\\\n        \\\\\\\"effective_rank\\\\\\\\u2192distinct_2\\\\\\\",\\\\n        \\\\\\\"effective_rank\\\\\\\\u2192distinct_3\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"pair_status\\\\\\\": {\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192perplexity\\\\\\\": true,\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192distinct_1\\\\\\\": true,\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192distinct_2\\\\\\\": true,\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192distinct_3\\\\\\\": true,\\\\n        \\\\\\\"self_bleu\\\\\\\\u2192perplexity\\\\\\\": true,\\\\n        \\\\\\\"self_bleu\\\\\\\\u2192distinct_1\\\\\\\": false,\\\\n        \\\\\\\"self_bleu\\\\\\\\u2192distinct_2\\\\\\\": false,\\\\n        \\\\\\\"self_bleu\\\\\\\\u2192distinct_3\\\\\\\": false,\\\\n        \\\\\\\"ece\\\\\\\\u2192perplexity\\\\\\\": true,\\\\n        \\\\\\\"ece\\\\\\\\u2192distinct_1\\\\\\\": true,\\\\n        \\\\\\\"ece\\\\\\\\u2192distinct_2\\\\\\\": true,\\\\n        \\\\\\\"ece\\\\\\\\u2192distinct_3\\\\\\\": true,\\\\n        \\\\\\\"effective_rank\\\\\\\\u2192perplexity\\\\\\\": false,\\\\n        \\\\\\\"effective_rank\\\\\\\\u2192distinct_1\\\\\\\": true,\\\\n        \\\\\\\"effective_rank\\\\\\\\u2192distinct_2\\\\\\\": true,\\\\n        \\\\\\\"effective_rank\\\\\\\\u2192distinct_3\\\\\\\": true\\\\n      }\\\\n    },\\\\n    {\\\\n      \\\\\\\"method_th\n…[truncated 8484 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 603
+          },
+          "id": "event-000983"
+        },
+        {
+          "source_line": 984,
+          "timestamp": "2026-05-15T09:18:58.987977+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/consensus/fpr_fnr_table.json"
+            }
+          },
+          "id": "event-000984"
+        },
+        {
+          "source_line": 985,
+          "timestamp": "2026-05-15T09:18:59.439862+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"ground_truth\\\\\\\": {\\\\n    \\\\\\\"fpr_ground_truth\\\\\\\": \\\\\\\"differenced_xcorr (seed level)\\\\\\\",\\\\n    \\\\\\\"fnr_ground_truth\\\\\\\": \\\\\\\"consensus (\\\\\\\\u22654/5 methods, \\\\\\\\u22653/4 seeds)\\\\\\\",\\\\n    \\\\\\\"n_negatives_seed\\\\\\\": 9,\\\\n    \\\\\\\"n_positives_seed\\\\\\\": 24\\\\n  },\\\\n  \\\\\\\"per_method_fpr\\\\\\\": {\\\\n    \\\\\\\"naive_pearson\\\\\\\": {\\\\n      \\\\\\\"fp\\\\\\\": 9,\\\\n      \\\\\\\"total_negatives\\\\\\\": 9,\\\\n      \\\\\\\"fpr\\\\\\\": 1.0\\\\n    },\\\\n    \\\\\\\"differenced_xcorr\\\\\\\": {\\\\n      \\\\\\\"fp\\\\\\\": 0,\\\\n      \\\\\\\"total_negatives\\\\\\\": 9,\\\\n      \\\\\\\"fpr\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"threshold_onset\\\\\\\": {\\\\n      \\\\\\\"fp\\\\\\\": 1,\\\\n      \\\\\\\"total_negatives\\\\\\\": 9,\\\\n      \\\\\\\"fpr\\\\\\\": 0.1111\\\\n    },\\\\n    \\\\\\\"toda_yamamoto\\\\\\\": {\\\\n      \\\\\\\"fp\\\\\\\": 0,\\\\n      \\\\\\\"total_negatives\\\\\\\": 9,\\\\n      \\\\\\\"fpr\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"permutation_granger\\\\\\\": {\\\\n      \\\\\\\"fp\\\\\\\": 1,\\\\n      \\\\\\\"total_negatives\\\\\\\": 9,\\\\n      \\\\\\\"fpr\\\\\\\": 0.1111\\\\n    }\\\\n  },\\\\n  \\\\\\\"per_method_fnr\\\\\\\": {\\\\n    \\\\\\\"naive_pearson\\\\\\\": {\\\\n      \\\\\\\"fn\\\\\\\": 0,\\\\n      \\\\\\\"total_positives\\\\\\\": 24,\\\\n      \\\\\\\"fnr\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"differenced_xcorr\\\\\\\": {\\\\n      \\\\\\\"fn\\\\\\\": 0,\\\\n      \\\\\\\"total_positives\\\\\\\": 24,\\\\n      \\\\\\\"fnr\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"threshold_onset\\\\\\\": {\\\\n      \\\\\\\"fn\\\\\\\": 0,\\\\n      \\\\\\\"total_positives\\\\\\\": 24,\\\\n      \\\\\\\"fnr\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"toda_yamamoto\\\\\\\": {\\\\n      \\\\\\\"fn\\\\\\\": 5,\\\\n      \\\\\\\"total_positives\\\\\\\": 24,\\\\n      \\\\\\\"fnr\\\\\\\": 0.2083\\\\n    },\\\\n    \\\\\\\"permutation_granger\\\\\\\": {\\\\n      \\\\\\\"fn\\\\\\\": 0,\\\\n      \\\\\\\"total_positives\\\\\\\": 24,\\\\n      \\\\\\\"fnr\\\\\\\": 0.0\\\\n    }\\\\n  },\\\\n  \\\\\\\"consensus\\\\\\\": {\\\\n    \\\\\\\"fpr_pair_level\\\\\\\": {\\\\n      \\\\\\\"fp\\\\\\\": 0,\\\\n      \\\\\\\"total_negatives\\\\\\\": 2,\\\\n      \\\\\\\"fpr\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"fpr_seed_level\\\\\\\": {\\\\n      \\\\\\\"fp\\\\\\\": 0,\\\\n      \\\\\\\"total_negatives\\\\\\\": 9,\\\\n      \\\\\\\"fpr\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"fnr\\\\\\\": 0.0,\\\\n    \\\\\\\"fnr_note\\\\\\\"\n…[truncated 3146 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-000985"
+        },
+        {
+          "source_line": 986,
+          "timestamp": "2026-05-15T09:19:20.574126+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "head -230 /root/autodl-tmp/distrib_canary_collapse/consensus_framework.py"
+            }
+          },
+          "id": "event-000986"
+        },
+        {
+          "source_line": 987,
+          "timestamp": "2026-05-15T09:19:21.127060+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nMulti-method consensus framework for canary→downstream association robustness.\\\\n\\\\nFormalizes \\\\\\\"robust association\\\\\\\": a pair is robust only when ≥method_threshold\\\\nindependent statistical methods agree (each requiring ≥seed_threshold seeds\\\\nsignificant). Two-stage aggregation: seed→method verdict, then method→consensus.\\\\n\\\\nInput:  results/mvp/analysis/method_ablation.json\\\\nOutput: consensus classification, sensitivity heatmap, FPR/FNR table (JSON)\\\\n\\\\nDependencies: numpy, json (stdlib)\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport os\\\\n\\\\nimport numpy as np\\\\n\\\\nMETHOD_NAMES = [\\\\n    \\\\\\\"naive_pearson\\\\\\\",\\\\n    \\\\\\\"differenced_xcorr\\\\\\\",\\\\n    \\\\\\\"threshold_onset\\\\\\\",\\\\n    \\\\\\\"toda_yamamoto\\\\\\\",\\\\n    \\\\\\\"permutation_granger\\\\\\\",\\\\n]\\\\n\\\\n# differenced_xcorr is the FP ground truth (index 1)\\\\nDIFF_INDEX = 1\\\\n\\\\n\\\\ndef _to_native(obj):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Convert numpy types to Python native for JSON serialization.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if isinstance(obj, (np.integer,)):\\\\n        return int(obj)\\\\n    if isinstance(obj, (np.floating,)):\\\\n        return float(obj)\\\\n    if isinstance(obj, (np.bool_,)):\\\\n        return bool(obj)\\\\n    if isinstance(obj, np.ndarray):\\\\n        return obj.tolist()\\\\n    return obj\\\\n\\\\n\\\\nclass NumpyEncoder(json.JSONEncoder):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"JSON encoder that handles numpy types.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    def default(self, obj):\\\\n        native = _to_native(obj)\\\\n        if native is not obj:\\\\n            return native\\\\n        return super().default(obj)\\\\n\\\\n\\\\ndef load_sig_matrix(ablation_path, apply_fdr=True):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Load method_ablation.json into a boolean significance tensor.\\\\n\\\\n    Args:\\\\n        ablation_path: path to method_ablation.json\\\\n\\\\n    Returns:\\\\n        sig_matrix: np.ndarray, shape (5, 16, 4), dtype bool\\\\n                    axes = (method, pair, seed)\\\\n        pair_names: list of (canary, downstream) tuples, len 16\\\\n\n…[truncated 6661 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-000987"
+        },
+        {
+          "source_line": 988,
+          "timestamp": "2026-05-15T09:19:24.442052+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "tail -200 /root/autodl-tmp/distrib_canary_collapse/consensus_framework.py"
+            }
+          },
+          "id": "event-000988"
+        },
+        {
+          "source_line": 989,
+          "timestamp": "2026-05-15T09:19:24.893776+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        dict with per_method_fpr, per_method_fnr, consensus row, summary table\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n_methods, n_pairs, n_seeds = sig_matrix.shape\\\\n    K = n_methods\\\\n    if consensus_method_thresh is None:\\\\n        consensus_method_thresh = K - 1\\\\n\\\\n    # --- FPR ground truth: differenced ---\\\\n    diff_sig = sig_matrix[DIFF_INDEX]        # (n_pairs, n_seeds)\\\\n    diff_neg = ~diff_sig                     # true negatives at seed level\\\\n    n_neg = int(diff_neg.sum())\\\\n\\\\n    fpr_results = {}\\\\n    for mi, mname in enumerate(method_names):\\\\n        msig = sig_matrix[mi]                # (n_pairs, n_seeds)\\\\n        fp = int((msig & diff_neg).sum())\\\\n        fpr_results[mname] = {\\\\n            \\\\\\\"fp\\\\\\\": fp,\\\\n            \\\\\\\"total_negatives\\\\\\\": n_neg,\\\\n            \\\\\\\"fpr\\\\\\\": round(fp / n_neg, 4) if n_neg > 0 else 0.0,\\\\n        }\\\\n\\\\n    # --- FNR ground truth: consensus ---\\\\n    consensus = classify_robust(sig_matrix, consensus_method_thresh, consensus_seed_thresh)\\\\n    robust_mask = np.array([c[\\\\\\\"is_robust\\\\\\\"] for c in consensus[\\\\\\\"classifications\\\\\\\"]])\\\\n    # Broadcast pair-level mask to seed level\\\\n    robust_seed = np.broadcast_to(robust_mask[:, None], (n_pairs, n_seeds))\\\\n    n_pos = int(robust_seed.sum())\\\\n\\\\n    fnr_results = {}\\\\n    for mi, mname in enumerate(method_names):\\\\n        msig = sig_matrix[mi]\\\\n        fn = int((robust_seed & ~msig).sum())\\\\n        fnr_results[mname] = {\\\\n            \\\\\\\"fn\\\\\\\": fn,\\\\n            \\\\\\\"total_positives\\\\\\\": n_pos,\\\\n            \\\\\\\"fnr\\\\\\\": round(fn / n_pos, 4) if n_pos > 0 else 0.0,\\\\n        }\\\\n\\\\n    # --- Consensus own metrics ---\\\\n    # Pair-level FPR: consensus-robust vs differenced verdict\\\\n    diff_pair_sig = diff_sig.sum(axis=1) >= consensus_seed_thresh  # (n_pairs,)\\\\n    diff_pair_neg = ~diff_pair_sig\\\\n    n_pair_neg = int(diff_pair_neg.sum())\\\\n    cons_fp_pair = int((robust_mask & diff_pair_neg).sum())\\\\n\\\\n\n…[truncated 7303 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-000989"
+        },
+        {
+          "source_line": 990,
+          "timestamp": "2026-05-15T09:19:41.261313+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "python3 -c \"\nimport json\nwith open('/root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/method_ablation.json') as f:\n    data = json.load(f)\np0 = data['pairs'][0]['per_seed'][0]\npg = p0.get('permutation_granger', {})\nprint('perm_granger keys:', list(pg.keys()))\nprint('significant:', pg.get('significant'))\nprint('significant_fdr:', pg.get('significant_fdr'))\n\""
+            }
+          },
+          "id": "event-000990"
+        },
+        {
+          "source_line": 991,
+          "timestamp": "2026-05-15T09:19:41.311882+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 50
+          },
+          "id": "event-000991"
+        },
+        {
+          "source_line": 992,
+          "timestamp": "2026-05-15T09:19:44.776521+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "head -80 /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/method_ablation.json"
+            }
+          },
+          "id": "event-000992"
+        },
+        {
+          "source_line": 993,
+          "timestamp": "2026-05-15T09:19:45.328617+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"meta\\\\\\\": {\\\\n    \\\\\\\"seeds\\\\\\\": [\\\\n      42,\\\\n      43,\\\\n      44,\\\\n      45\\\\n    ],\\\\n    \\\\\\\"alpha\\\\\\\": 0.05,\\\\n    \\\\\\\"canary_metrics\\\\\\\": [\\\\n      \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"self_bleu\\\\\\\",\\\\n      \\\\\\\"ece\\\\\\\",\\\\n      \\\\\\\"effective_rank\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"downstream_metrics\\\\\\\": [\\\\n      \\\\\\\"perplexity\\\\\\\",\\\\n      \\\\\\\"distinct_1\\\\\\\",\\\\n      \\\\\\\"distinct_2\\\\\\\",\\\\n      \\\\\\\"distinct_3\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"methods\\\\\\\": [\\\\n      \\\\\\\"naive_pearson: raw-level Pearson lag-correlation\\\\\\\",\\\\n      \\\\\\\"differenced_xcorr: first-differenced cross-correlation\\\\\\\",\\\\n      \\\\\\\"threshold_onset: 2-sigma signal-onset lead time\\\\\\\",\\\\n      \\\\\\\"toda_yamamoto: augmented-lag Granger causality (Wald F-test)\\\\\\\",\\\\n      \\\\\\\"permutation_granger: differenced + shuffle permutation Granger (F-test)\\\\\\\"\\\\n    ]\\\\n  },\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"total_pairs\\\\\\\": 16,\\\\n    \\\\\\\"naive_significant\\\\\\\": 16,\\\\n    \\\\\\\"differenced_significant\\\\\\\": 14,\\\\n    \\\\\\\"threshold_significant\\\\\\\": 9,\\\\n    \\\\\\\"ty_significant\\\\\\\": 4,\\\\n    \\\\\\\"perm_granger_significant\\\\\\\": 6,\\\\n    \\\\\\\"spurious_count\\\\\\\": 12,\\\\n    \\\\\\\"spurious_rate\\\\\\\": 0.75,\\\\n    \\\\\\\"spurious_pairs\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n        \\\\\\\"downstream\\\\\\\": \\\\\\\"perplexity\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"canary\\\\\\\": \\\\\\\"self_bleu\\\\\\\",\\\\n        \\\\\\\"downstream\\\\\\\": \\\\\\\"perplexity\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"canary\\\\\\\": \\\\\\\"self_bleu\\\\\\\",\\\\n        \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_1\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"canary\\\\\\\": \\\\\\\"self_bleu\\\\\\\",\\\\n        \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_2\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"canary\\\\\\\": \\\\\\\"self_bleu\\\\\\\",\\\\n        \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_3\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"canary\\\\\\\": \\\\\\\"ece\\\\\\\",\\\\n        \\\\\\\"downstream\\\\\\\": \\\\\\\"perplexity\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"canary\\\\\\\": \\\\\\\"ece\\\\\\\",\\\\n        \\\\\n…[truncated 513 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-000993"
+        },
+        {
+          "source_line": 994,
+          "timestamp": "2026-05-15T09:19:48.290945+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "grep -c \"significant_fdr\" /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/method_ablation.json"
+            }
+          },
+          "id": "event-000994"
+        },
+        {
+          "source_line": 995,
+          "timestamp": "2026-05-15T09:19:48.793404+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"256\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000995"
+        },
+        {
+          "source_line": 996,
+          "timestamp": "2026-05-15T09:19:57.728661+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "grep -c \"\\\"significant\\\":\" /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/method_ablation.json"
+            }
+          },
+          "id": "event-000996"
+        },
+        {
+          "source_line": 997,
+          "timestamp": "2026-05-15T09:19:58.230531+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"320\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 501
+          },
+          "id": "event-000997"
+        },
+        {
+          "source_line": 998,
+          "timestamp": "2026-05-15T09:20:07.863933+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "grep -B5 \"significant_fdr\" /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/method_ablation.json"
+            }
+          },
+          "id": "event-000998"
+        },
+        {
+          "source_line": 999,
+          "timestamp": "2026-05-15T09:20:08.416533+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"            \\\\\\\"effect_size_r\\\\\\\": 0.8027,\\\\n            \\\\\\\"effect_size_type\\\\\\\": \\\\\\\"pearson_r\\\\\\\",\\\\n            \\\\\\\"effect_size_label\\\\\\\": \\\\\\\"large\\\\\\\",\\\\n            \\\\\\\"p_raw\\\\\\\": 0.01648,\\\\n            \\\\\\\"p_fdr\\\\\\\": 0.0182,\\\\n            \\\\\\\"significant_fdr\\\\\\\": true\\\\n--\\\\n            \\\\\\\"effect_size_r\\\\\\\": 0.8894,\\\\n            \\\\\\\"effect_size_type\\\\\\\": \\\\\\\"pearson_r\\\\\\\",\\\\n            \\\\\\\"effect_size_label\\\\\\\": \\\\\\\"large\\\\\\\",\\\\n            \\\\\\\"p_raw\\\\\\\": 0.001329,\\\\n            \\\\\\\"p_fdr\\\\\\\": 0.003,\\\\n            \\\\\\\"significant_fdr\\\\\\\": true\\\\n--\\\\n            \\\\\\\"effect_size_f2\\\\\\\": 0.3291,\\\\n            \\\\\\\"effect_size_type\\\\\\\": \\\\\\\"cohens_f2\\\\\\\",\\\\n            \\\\\\\"effect_size_label\\\\\\\": \\\\\\\"medium\\\\\\\",\\\\n            \\\\\\\"p_raw\\\\\\\": 0.315231,\\\\n            \\\\\\\"p_fdr\\\\\\\": 0.4921,\\\\n            \\\\\\\"significant_fdr\\\\\\\": false\\\\n--\\\\n            \\\\\\\"effect_size\\\\\\\": 0.0451,\\\\n            \\\\\\\"effect_size_type\\\\\\\": \\\\\\\"cohens_f2\\\\\\\",\\\\n            \\\\\\\"effect_size_label\\\\\\\": \\\\\\\"small\\\\\\\",\\\\n            \\\\\\\"p_raw\\\\\\\": 0.716284,\\\\n            \\\\\\\"p_fdr\\\\\\\": 0.8649,\\\\n            \\\\\\\"significant_fdr\\\\\\\": false\\\\n--\\\\n            \\\\\\\"effect_size_r\\\\\\\": 0.7649,\\\\n            \\\\\\\"effect_size_type\\\\\\\": \\\\\\\"pearson_r\\\\\\\",\\\\n            \\\\\\\"effect_size_label\\\\\\\": \\\\\\\"large\\\\\\\",\\\\n            \\\\\\\"p_raw\\\\\\\": 0.027029,\\\\n            \\\\\\\"p_fdr\\\\\\\": 0.0288,\\\\n            \\\\\\\"significant_fdr\\\\\\\": true\\\\n--\\\\n            \\\\\\\"effect_size_r\\\\\\\": 0.8999,\\\\n            \\\\\\\"effect_size_type\\\\\\\": \\\\\\\"pearson_r\\\\\\\",\\\\n            \\\\\\\"effect_size_label\\\\\\\": \\\\\\\"large\\\\\\\",\\\\n            \\\\\\\"p_raw\\\\\\\": 0.002323,\\\\n            \\\\\\\"p_fdr\\\\\\\": 0.0045,\\\\n            \\\\\\\"significant_fdr\\\\\\\": true\\\\n--\\\\n            \\\\\\\"effect_size_f2\\\\\\\": 0.0198,\\\\n            \\\\\\\"effect_size_type\\\\\\\": \\\\\\\"cohens_f2\\\\\\\",\\\\n            \\\\\\\"effect_size_label\\\\\\\": \\\\\\\"negligible\\\\\\\",\\\\n            \\\\\\\"p_raw\\\\\\\": 0.792566,\\\\n            \\\\\\\"p_fdr\\\\\\\": 0.\n…[truncated 8422 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-000999"
+        },
+        {
+          "source_line": 1000,
+          "timestamp": "2026-05-15T09:20:27.672393+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "stat /root/autodl-tmp/distrib_canary_collapse/consensus_framework.py"
+            }
+          },
+          "id": "event-001000"
+        },
+        {
+          "source_line": 1001,
+          "timestamp": "2026-05-15T09:20:28.224884+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/autodl-tmp/distrib_canary_collapse/consensus_framework.py\\\\n  Size: 15748     \\\\tBlocks: 32         IO Block: 4096   regular file\\\\nDevice: 900h/2304d\\\\tInode: 8626858950  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-15 17:15:00.248985676 +0800\\\\nModify: 2026-05-15 17:14:51.560777265 +0800\\\\nChange: 2026-05-15 17:14:51.560777265 +0800\\\\n Birth: 2026-05-15 16:43:07.649750879 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-001001"
+        },
+        {
+          "source_line": 1002,
+          "timestamp": "2026-05-15T09:20:47.593364+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "grep -A1 \"permutation_granger\" /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/method_ablation.json"
+            }
+          },
+          "id": "event-001002"
+        },
+        {
+          "source_line": 1003,
+          "timestamp": "2026-05-15T09:20:48.196188+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"permutation_granger: differenced + shuffle permutation Granger (F-test)\\\\\\\"\\\\n    ]\\\\n--\\\\n          \\\\\\\"permutation_granger\\\\\\\": {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n            \\\\\\\"f_stat\\\\\\\": 0.2707,\\\\n--\\\\n          \\\\\\\"permutation_granger\\\\\\\": {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n            \\\\\\\"f_stat\\\\\\\": 0.0532,\\\\n--\\\\n          \\\\\\\"permutation_granger\\\\\\\": {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n            \\\\\\\"f_stat\\\\\\\": 0.1919,\\\\n--\\\\n          \\\\\\\"permutation_granger\\\\\\\": {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n            \\\\\\\"f_stat\\\\\\\": 0.0001,\\\\n--\\\\n        \\\\\\\"permutation_granger\\\\\\\": {\\\\n          \\\\\\\"sig_seeds\\\\\\\": 0,\\\\n--\\\\n      \\\\\\\"spurious_reason_5method\\\\\\\": \\\\\\\"toda_yamamoto n.s., permutation_granger n.s.\\\\\\\",\\\\n      \\\\\\\"methods_agree_5\\\\\\\": 3,\\\\n--\\\\n          \\\\\\\"permutation_granger\\\\\\\": {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n            \\\\\\\"f_stat\\\\\\\": 612.1209,\\\\n--\\\\n          \\\\\\\"permutation_granger\\\\\\\": {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n            \\\\\\\"f_stat\\\\\\\": 2614.7812,\\\\n--\\\\n          \\\\\\\"permutation_granger\\\\\\\": {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n            \\\\\\\"f_stat\\\\\\\": 1369.7604,\\\\n--\\\\n          \\\\\\\"permutation_granger\\\\\\\": {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n            \\\\\\\"f_stat\\\\\\\": 752.8218,\\\\n--\\\\n        \\\\\\\"permutation_granger\\\\\\\": {\\\\n          \\\\\\\"sig_seeds\\\\\\\": 4,\\\\n--\\\\n          \\\\\\\"permutation_granger\\\\\\\": {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n            \\\\\\\"f_stat\\\\\\\": 226.0871,\\\\n--\\\\n          \\\\\\\"permutation_granger\\\\\\\": {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n            \\\\\\\"f_stat\\\\\\\": 1798.1008,\\\\n--\\\\n          \\\\\\\"permutation_granger\\\\\\\": {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"permuta\n…[truncated 8348 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 602
+          },
+          "id": "event-001003"
+        },
+        {
+          "source_line": 1004,
+          "timestamp": "2026-05-15T09:21:25.690126+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — worker_code_d029_fdr_fix\n\n**结论**: WARNING — 代码修复正确，但输出未重新生成\n\n### 发现\n\n1. [severity: info] **代码修复正确**: `load_sig_matrix()` 新增 `apply_fdr=True` 参数（默认启用），优先读 `significant_fdr`，fallback 到 `significant`。逻辑无误。`threshold_onset` 无 FDR 字段（启发式方法），fallback 行为合理。\n\n2. [severity: warning] **输出未用 FDR 修复后的代码重新生成**: \n   - 代码修改时间: 17:14\n   - 共识输出文件时间: 16:43（早于代码最终修改）\n   - 证据: fpr_fnr_table.json 中 `permutation_granger` 的 `sig_count_seed=34`，与 raw 计数一致。若 FDR 生效，应为 ~27（method_ablation.json 中 perm_granger 有 7 个 `significant=true` 但 `significant_fdr=false` 的条目）\n   - `toda_yamamoto` 的 `sig_count_seed=26`，FDR 后应为 ~24\n   - **需要重新运行 `python consensus_framework.py`** 以生成 FDR 修正后的输出\n\n3. [severity: info] **FDR 对最终结论影响预判**: 6 个 robust pairs 几乎确定不会改变——这些 pair 在所有 4 seeds 上信号极强（entropy→d{1,2,3} 全部 5/5 methods × 4/4 seeds）。sensitivity grid 数字可能在边缘配置有微调。但 sig_count 统计表必须更正以保持数据一致性。\n\n4. [severity: info] **`significant_fdr` 覆盖率**: method_ablation.json 中 320 个 `\"significant\":` 中有 256 个 `significant_fdr`（80%）。缺失的 64 个全部来自 `threshold_onset`（启发式方法无 p-value，FDR 不适用），fallback 到 raw `significant` 合理。\n\n### 行动要求\n\n**P0**: 在远程服务器重新运行 `python consensus_framework.py`，生成 FDR 修正后的 consensus_classification.json / sensitivity_analysis.json / fpr_fnr_table.json。验证 perm_granger sig_count_seed 从 34 降至 ~27。",
+              "project": "distrib_canary_collapse"
+            }
+          },
+          "id": "event-001004"
+        },
+        {
+          "source_line": 1005,
+          "timestamp": "2026-05-15T09:21:29.206195+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3516
+          },
+          "id": "event-001005"
+        },
+        {
+          "source_line": 1006,
+          "timestamp": "2026-05-15T09:21:36.223715+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审查已提交。D029 FDR 修复代码逻辑正确，但存在关键遗漏：输出文件在代码修改前生成，需要重新运行脚本。同时追踪 ece→d1 factual error（formalization 文档仍标为 9/9）和 FPR ground truth 问题（仍用 differenced_xcorr），这两个 pending 项在此次 worker 中均未处理。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer"
+          },
+          "id": "event-001006"
+        }
+      ]
+    },
+    {
+      "number": 53,
+      "messages": [
+        {
+          "source_line": 1007,
+          "timestamp": "2026-05-15T09:38:50.543989+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_code_d029_fdr_fix_complete_20260515T093153]:\nWorker worker_code_d029_fdr_fix_complete_20260515T093153 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "source": "worker_done:worker_code_d029_fdr_fix_complete_20260515t093153"
+          },
+          "id": "event-001007"
+        },
+        {
+          "source_line": 1008,
+          "timestamp": "2026-05-15T09:38:57.998408+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "ls -la /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/consensus/"
+            }
+          },
+          "id": "event-001008"
+        },
+        {
+          "source_line": 1009,
+          "timestamp": "2026-05-15T09:38:58.450221+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "stat /root/autodl-tmp/distrib_canary_collapse/consensus_framework.py"
+            }
+          },
+          "id": "event-001009"
+        },
+        {
+          "source_line": 1010,
+          "timestamp": "2026-05-15T09:38:59.102556+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 36\\\\ndrwxr-xr-x 2 root root   146 May 15 17:34 .\\\\ndrwxr-xr-x 3 root root  4096 May 15 16:43 ..\\\\n-rw-r--r-- 1 root root  6474 May 15 17:34 consensus_classification.json\\\\n-rw-r--r-- 1 root root  2151 May 15 17:34 fpr_fnr_loo.json\\\\n-rw-r--r-- 1 root root  3699 May 15 17:34 fpr_fnr_table.json\\\\n-rw-r--r-- 1 root root 12922 May 15 17:34 sensitivity_analysis.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1104
+          },
+          "id": "event-001010"
+        },
+        {
+          "source_line": 1011,
+          "timestamp": "2026-05-15T09:38:59.704896+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/autodl-tmp/distrib_canary_collapse/consensus_framework.py\\\\n  Size: 18174     \\\\tBlocks: 40         IO Block: 4096   regular file\\\\nDevice: 900h/2304d\\\\tInode: 8626858950  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-15 17:34:40.273551903 +0800\\\\nModify: 2026-05-15 17:34:31.753387190 +0800\\\\nChange: 2026-05-15 17:34:31.753387190 +0800\\\\n Birth: 2026-05-15 16:43:07.649750879 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1254
+          },
+          "id": "event-001011"
+        },
+        {
+          "source_line": 1012,
+          "timestamp": "2026-05-15T09:39:06.428978+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/consensus/fpr_fnr_table.json"
+            }
+          },
+          "id": "event-001012"
+        },
+        {
+          "source_line": 1013,
+          "timestamp": "2026-05-15T09:39:06.880951+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"ground_truth\\\\\\\": {\\\\n    \\\\\\\"fpr_ground_truth\\\\\\\": \\\\\\\"differenced_xcorr (seed level)\\\\\\\",\\\\n    \\\\\\\"fnr_ground_truth\\\\\\\": \\\\\\\"consensus (\\\\\\\\u22654/5 methods, \\\\\\\\u22653/4 seeds)\\\\\\\",\\\\n    \\\\\\\"n_negatives_seed\\\\\\\": 11,\\\\n    \\\\\\\"n_positives_seed\\\\\\\": 24\\\\n  },\\\\n  \\\\\\\"per_method_fpr\\\\\\\": {\\\\n    \\\\\\\"naive_pearson\\\\\\\": {\\\\n      \\\\\\\"fp\\\\\\\": 11,\\\\n      \\\\\\\"total_negatives\\\\\\\": 11,\\\\n      \\\\\\\"fpr\\\\\\\": 1.0\\\\n    },\\\\n    \\\\\\\"differenced_xcorr\\\\\\\": {\\\\n      \\\\\\\"fp\\\\\\\": 0,\\\\n      \\\\\\\"total_negatives\\\\\\\": 11,\\\\n      \\\\\\\"fpr\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"threshold_onset\\\\\\\": {\\\\n      \\\\\\\"fp\\\\\\\": 1,\\\\n      \\\\\\\"total_negatives\\\\\\\": 11,\\\\n      \\\\\\\"fpr\\\\\\\": 0.0909\\\\n    },\\\\n    \\\\\\\"toda_yamamoto\\\\\\\": {\\\\n      \\\\\\\"fp\\\\\\\": 0,\\\\n      \\\\\\\"total_negatives\\\\\\\": 11,\\\\n      \\\\\\\"fpr\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"permutation_granger\\\\\\\": {\\\\n      \\\\\\\"fp\\\\\\\": 0,\\\\n      \\\\\\\"total_negatives\\\\\\\": 11,\\\\n      \\\\\\\"fpr\\\\\\\": 0.0\\\\n    }\\\\n  },\\\\n  \\\\\\\"per_method_fnr\\\\\\\": {\\\\n    \\\\\\\"naive_pearson\\\\\\\": {\\\\n      \\\\\\\"fn\\\\\\\": 0,\\\\n      \\\\\\\"total_positives\\\\\\\": 24,\\\\n      \\\\\\\"fnr\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"differenced_xcorr\\\\\\\": {\\\\n      \\\\\\\"fn\\\\\\\": 0,\\\\n      \\\\\\\"total_positives\\\\\\\": 24,\\\\n      \\\\\\\"fnr\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"threshold_onset\\\\\\\": {\\\\n      \\\\\\\"fn\\\\\\\": 0,\\\\n      \\\\\\\"total_positives\\\\\\\": 24,\\\\n      \\\\\\\"fnr\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"toda_yamamoto\\\\\\\": {\\\\n      \\\\\\\"fn\\\\\\\": 6,\\\\n      \\\\\\\"total_positives\\\\\\\": 24,\\\\n      \\\\\\\"fnr\\\\\\\": 0.25\\\\n    },\\\\n    \\\\\\\"permutation_granger\\\\\\\": {\\\\n      \\\\\\\"fn\\\\\\\": 1,\\\\n      \\\\\\\"total_positives\\\\\\\": 24,\\\\n      \\\\\\\"fnr\\\\\\\": 0.0417\\\\n    }\\\\n  },\\\\n  \\\\\\\"consensus\\\\\\\": {\\\\n    \\\\\\\"fpr_pair_level\\\\\\\": {\\\\n      \\\\\\\"fp\\\\\\\": 0,\\\\n      \\\\\\\"total_negatives\\\\\\\": 4,\\\\n      \\\\\\\"fpr\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"fpr_seed_level\\\\\\\": {\\\\n      \\\\\\\"fp\\\\\\\": 0,\\\\n      \\\\\\\"total_negatives\\\\\\\": 11,\\\\n      \\\\\\\"fpr\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"fnr\\\\\\\": 0.0,\\\\n    \\\\\\\"fnr_no\n…[truncated 3155 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-001013"
+        },
+        {
+          "source_line": 1014,
+          "timestamp": "2026-05-15T09:39:26.455420+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/consensus/consensus_classification.json"
+            }
+          },
+          "id": "event-001014"
+        },
+        {
+          "source_line": 1015,
+          "timestamp": "2026-05-15T09:39:27.007823+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"classifications\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"pair_index\\\\\\\": 0,\\\\n      \\\\\\\"n_sig_methods\\\\\\\": 3,\\\\n      \\\\\\\"is_robust\\\\\\\": false,\\\\n      \\\\\\\"method_verdicts\\\\\\\": [\\\\n        true,\\\\n        true,\\\\n        true,\\\\n        false,\\\\n        false\\\\n      ],\\\\n      \\\\\\\"seed_counts\\\\\\\": [\\\\n        4,\\\\n        4,\\\\n        4,\\\\n        0,\\\\n        0\\\\n      ],\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"perplexity\\\\\\\",\\\\n      \\\\\\\"pair_label\\\\\\\": \\\\\\\"token_entropy\\\\\\\\u2192perplexity\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair_index\\\\\\\": 1,\\\\n      \\\\\\\"n_sig_methods\\\\\\\": 5,\\\\n      \\\\\\\"is_robust\\\\\\\": true,\\\\n      \\\\\\\"method_verdicts\\\\\\\": [\\\\n        true,\\\\n        true,\\\\n        true,\\\\n        true,\\\\n        true\\\\n      ],\\\\n      \\\\\\\"seed_counts\\\\\\\": [\\\\n        4,\\\\n        4,\\\\n        4,\\\\n        4,\\\\n        4\\\\n      ],\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_1\\\\\\\",\\\\n      \\\\\\\"pair_label\\\\\\\": \\\\\\\"token_entropy\\\\\\\\u2192distinct_1\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair_index\\\\\\\": 2,\\\\n      \\\\\\\"n_sig_methods\\\\\\\": 5,\\\\n      \\\\\\\"is_robust\\\\\\\": true,\\\\n      \\\\\\\"method_verdicts\\\\\\\": [\\\\n        true,\\\\n        true,\\\\n        true,\\\\n        true,\\\\n        true\\\\n      ],\\\\n      \\\\\\\"seed_counts\\\\\\\": [\\\\n        4,\\\\n        4,\\\\n        4,\\\\n        4,\\\\n        4\\\\n      ],\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_2\\\\\\\",\\\\n      \\\\\\\"pair_label\\\\\\\": \\\\\\\"token_entropy\\\\\\\\u2192distinct_2\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair_index\\\\\\\": 3,\\\\n      \\\\\\\"n_sig_methods\\\\\\\": 5,\\\\n      \\\\\\\"is_robust\\\\\\\": true,\\\\n      \\\\\\\"method_verdicts\\\\\\\": [\\\\n        true,\\\\n        true,\\\\n        true,\\\\n        true,\\\\n        true\\\\n      ],\\\\n      \\\\\\\"seed_counts\\\\\\\": [\\\\n        4,\\\\n        4,\\\\n        4,\\\\n        4,\\\\n        3\\\\n      ],\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\n…[truncated 6512 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-001015"
+        },
+        {
+          "source_line": 1016,
+          "timestamp": "2026-05-15T09:39:42.872849+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/consensus/sensitivity_analysis.json"
+            }
+          },
+          "id": "event-001016"
+        },
+        {
+          "source_line": 1017,
+          "timestamp": "2026-05-15T09:39:43.475680+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"method_thresholds\\\\\\\": [\\\\n    3,\\\\n    4,\\\\n    5\\\\n  ],\\\\n  \\\\\\\"seed_thresholds\\\\\\\": [\\\\n    2,\\\\n    3,\\\\n    4\\\\n  ],\\\\n  \\\\\\\"n_configs\\\\\\\": 9,\\\\n  \\\\\\\"grid\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"method_threshold\\\\\\\": 3,\\\\n      \\\\\\\"seed_threshold\\\\\\\": 2,\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"\\\\\\\\u22653/5 methods, \\\\\\\\u22652/4 seeds\\\\\\\",\\\\n      \\\\\\\"n_robust\\\\\\\": 9,\\\\n      \\\\\\\"robust_pairs\\\\\\\": [\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192perplexity\\\\\\\",\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192distinct_1\\\\\\\",\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192distinct_2\\\\\\\",\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192distinct_3\\\\\\\",\\\\n        \\\\\\\"self_bleu\\\\\\\\u2192perplexity\\\\\\\",\\\\n        \\\\\\\"ece\\\\\\\\u2192perplexity\\\\\\\",\\\\n        \\\\\\\"ece\\\\\\\\u2192distinct_1\\\\\\\",\\\\n        \\\\\\\"ece\\\\\\\\u2192distinct_2\\\\\\\",\\\\n        \\\\\\\"ece\\\\\\\\u2192distinct_3\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"pair_status\\\\\\\": {\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192perplexity\\\\\\\": true,\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192distinct_1\\\\\\\": true,\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192distinct_2\\\\\\\": true,\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192distinct_3\\\\\\\": true,\\\\n        \\\\\\\"self_bleu\\\\\\\\u2192perplexity\\\\\\\": true,\\\\n        \\\\\\\"self_bleu\\\\\\\\u2192distinct_1\\\\\\\": false,\\\\n        \\\\\\\"self_bleu\\\\\\\\u2192distinct_2\\\\\\\": false,\\\\n        \\\\\\\"self_bleu\\\\\\\\u2192distinct_3\\\\\\\": false,\\\\n        \\\\\\\"ece\\\\\\\\u2192perplexity\\\\\\\": true,\\\\n        \\\\\\\"ece\\\\\\\\u2192distinct_1\\\\\\\": true,\\\\n        \\\\\\\"ece\\\\\\\\u2192distinct_2\\\\\\\": true,\\\\n        \\\\\\\"ece\\\\\\\\u2192distinct_3\\\\\\\": true,\\\\n        \\\\\\\"effective_rank\\\\\\\\u2192perplexity\\\\\\\": false,\\\\n        \\\\\\\"effective_rank\\\\\\\\u2192distinct_1\\\\\\\": false,\\\\n        \\\\\\\"effective_rank\\\\\\\\u2192distinct_2\\\\\\\": false,\\\\n        \\\\\\\"effective_rank\\\\\\\\u2192distinct_3\\\\\\\": false\\\\n      }\\\\n    },\\\\n    {\\\\n      \\\\\\\"method_threshold\\\\\\\": 3,\\\\n      \\\\\\\"seed_threshold\\\\\\\": 3,\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"\\\\\\\\u22653/5 methods, \\\\\\\\u22653/4 seeds\\\\\\\",\\\\n      \\\\\\\"n_robust\\\\\\\": 8,\\\\n  \n…[truncated 8490 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 602
+          },
+          "id": "event-001017"
+        },
+        {
+          "source_line": 1018,
+          "timestamp": "2026-05-15T09:40:07.420549+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/consensus/fpr_fnr_loo.json"
+            }
+          },
+          "id": "event-001018"
+        },
+        {
+          "source_line": 1019,
+          "timestamp": "2026-05-15T09:40:07.873526+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"naive_pearson\\\\\\\": {\\\\n    \\\\\\\"fpr_loo\\\\\\\": 0.975,\\\\n    \\\\\\\"fnr_loo\\\\\\\": 0.0,\\\\n    \\\\\\\"fp\\\\\\\": 39,\\\\n    \\\\\\\"fn\\\\\\\": 0,\\\\n    \\\\\\\"n_positives\\\\\\\": 24,\\\\n    \\\\\\\"n_negatives\\\\\\\": 40,\\\\n    \\\\\\\"loo_n_robust\\\\\\\": 6,\\\\n    \\\\\\\"loo_robust_pairs\\\\\\\": [\\\\n      \\\\\\\"token_entropy\\\\\\\\u2192distinct_1\\\\\\\",\\\\n      \\\\\\\"token_entropy\\\\\\\\u2192distinct_2\\\\\\\",\\\\n      \\\\\\\"token_entropy\\\\\\\\u2192distinct_3\\\\\\\",\\\\n      \\\\\\\"ece\\\\\\\\u2192distinct_1\\\\\\\",\\\\n      \\\\\\\"ece\\\\\\\\u2192distinct_2\\\\\\\",\\\\n      \\\\\\\"ece\\\\\\\\u2192distinct_3\\\\\\\"\\\\n    ]\\\\n  },\\\\n  \\\\\\\"differenced_xcorr\\\\\\\": {\\\\n    \\\\\\\"fpr_loo\\\\\\\": 0.725,\\\\n    \\\\\\\"fnr_loo\\\\\\\": 0.0,\\\\n    \\\\\\\"fp\\\\\\\": 29,\\\\n    \\\\\\\"fn\\\\\\\": 0,\\\\n    \\\\\\\"n_positives\\\\\\\": 24,\\\\n    \\\\\\\"n_negatives\\\\\\\": 40,\\\\n    \\\\\\\"loo_n_robust\\\\\\\": 6,\\\\n    \\\\\\\"loo_robust_pairs\\\\\\\": [\\\\n      \\\\\\\"token_entropy\\\\\\\\u2192distinct_1\\\\\\\",\\\\n      \\\\\\\"token_entropy\\\\\\\\u2192distinct_2\\\\\\\",\\\\n      \\\\\\\"token_entropy\\\\\\\\u2192distinct_3\\\\\\\",\\\\n      \\\\\\\"ece\\\\\\\\u2192distinct_1\\\\\\\",\\\\n      \\\\\\\"ece\\\\\\\\u2192distinct_2\\\\\\\",\\\\n      \\\\\\\"ece\\\\\\\\u2192distinct_3\\\\\\\"\\\\n    ]\\\\n  },\\\\n  \\\\\\\"threshold_onset\\\\\\\": {\\\\n    \\\\\\\"fpr_loo\\\\\\\": 0.275,\\\\n    \\\\\\\"fnr_loo\\\\\\\": 0.0,\\\\n    \\\\\\\"fp\\\\\\\": 11,\\\\n    \\\\\\\"fn\\\\\\\": 0,\\\\n    \\\\\\\"n_positives\\\\\\\": 24,\\\\n    \\\\\\\"n_negatives\\\\\\\": 40,\\\\n    \\\\\\\"loo_n_robust\\\\\\\": 6,\\\\n    \\\\\\\"loo_robust_pairs\\\\\\\": [\\\\n      \\\\\\\"token_entropy\\\\\\\\u2192distinct_1\\\\\\\",\\\\n      \\\\\\\"token_entropy\\\\\\\\u2192distinct_2\\\\\\\",\\\\n      \\\\\\\"token_entropy\\\\\\\\u2192distinct_3\\\\\\\",\\\\n      \\\\\\\"ece\\\\\\\\u2192distinct_1\\\\\\\",\\\\n      \\\\\\\"ece\\\\\\\\u2192distinct_2\\\\\\\",\\\\n      \\\\\\\"ece\\\\\\\\u2192distinct_3\\\\\\\"\\\\n    ]\\\\n  },\\\\n  \\\\\\\"toda_yamamoto\\\\\\\": {\\\\n    \\\\\\\"fpr_loo\\\\\\\": 0.1875,\\\\n    \\\\\\\"fnr_loo\\\\\\\": 0.4375,\\\\n    \\\\\\\"fp\\\\\\\": 6,\\\\n    \\\\\\\"fn\\\\\\\": 14,\\\\n    \\\\\\\"n_positives\\\\\\\": 32,\\\\n    \\\\\\\"n_negatives\\\\\\\": 32,\\\\n    \\\\\\\"loo_n_robust\\\\\\\": 8,\\\\n    \\\\\\\"loo_robust_pairs\\\\\\\": [\\\\n      \\\\\\\"token_entropy\\\\\\\\u2192perplexity\\\\\\\",\\\\n\n…[truncated 1067 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001019"
+        },
+        {
+          "source_line": 1020,
+          "timestamp": "2026-05-15T09:40:52.446576+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — worker_code_d029_fdr_fix_complete\n\n**结论**: PASS（代码修复和重新生成均已验证）\n\n### 验证通过\n\n1. [severity: info] **FDR 修复已生效**: `load_sig_matrix(apply_fdr=True)` 正确读取 `significant_fdr`。关键验证点：\n   - perm_granger sig_count_seed: 34→**27** ✓（-7 flipped）\n   - TY sig_count_seed: 26→**24** ✓（-2 flipped）\n   - diff sig_count_seed: 55→**53** ✓（-2 flipped）\n   - threshold_onset: 35→35（无 FDR 字段，启发式方法 fallback 正确）\n   - naive: 63→63（FDR 未改变任何判定）\n\n2. [severity: info] **6 robust pairs 不变**: token_entropy→d{1,2,3} + ece→d{1,2,3} 在默认配置 (4/5, 3/4) 下维持稳健。框架对 raw/FDR 切换具备鲁棒性。\n\n3. [severity: info] **新增 LOO 分析**: fpr_fnr_loo.json 展示移除单个方法对共识的影响。关键发现：移除 TY/perm_granger 后共识扩大到 8 pairs（加入 perplexity pairs），FNR 分别升至 0.44/0.28——说明严格方法是有效守门人。\n\n### FDR 带来的 Sensitivity 变化（需更新文档）\n\n4. [severity: warning] **Sensitivity grid 发生实质性变化，formalization 文档需全面修订**:\n\n   | 配对 | 稳定性 (旧/raw) | 稳定性 (新/FDR) |\n   |------|-----------------|-----------------|\n   | entropy→d1/d2 | 9/9 (1.0) | 9/9 (1.0) — 不变 |\n   | **entropy→d3** | **9/9 (1.0)** | **8/9 (0.889)** — 降级！不再\"完美稳定\" |\n   | **ece→d1** | **8/9 (0.889)** | **7/9 (0.778)** — 再降一级 |\n   | ece→d2/d3 | 7/9 (0.778) | 7/9 (0.778) — 不变 |\n   | **effective_rank→d1/d2/d3** | **1-2/9** | **0/9** — 全部清零 |\n   | **(5/5,4/4) 最严格** | **3 robust** | **2 robust** — entropy→d3 掉出 |\n   | **(3/5,2/4) 最宽松** | **12 robust** | **9 robust** — effective_rank 3 对全灭 |\n\n   **直接影响**:\n   - `consensus_framework.md` §5.4 \"Perfectly stable\" 层需修改：只有 entropy→d1/d2 是 9/9，entropy→d3 降至 8/9\n   - `consensus_sensitivity_table.json` 需完全重新生成\n   - \"最严格配置下 3 对存活\" 这一叙事需改为 \"2 对存活\"\n   - effective_rank 作为 canary 在 FDR 校正后完全不再有任何 robust association——如果论文中提到过 effective_rank，需明确标注 FDR 后归零\n\n5. [severity: warning] **FPR/FNR 表变化需更新叙事**:\n   - perm_granger FPR: 0.11→**0.0**（FDR 消除了唯一的假阳性——支持框架有效性！）\n   - perm_granger FNR: 0.0→**0.04**（新增 1 个假阴性——代价可接受）\n   - TY FNR: 0.21→**0.25**（保守性加深）\n   - n_negatives: 9→11（differenced 的 FDR 校正增加了 2 个 true negatives）\n\n### 行动要求\n\n**P0**: 更新 `consensus_framework.md`（formalization 文档）和 `consensus_sensitivity_table.json` 中的所有数字，使其与 FDR 修正后的远程数据一致。特别是 §5.4 的稳定性分层和 §6 的 FPR/FNR 叙事。\n\n**P1**: 同步本地 artifacts 与远程最新输出（consensus_classification.json, sensitivity_analysis.json, fpr_fnr_table.json, fpr_fnr_loo.json）。",
+              "project": "distrib_canary_collapse"
+            }
+          },
+          "id": "event-001020"
+        },
+        {
+          "source_line": 1021,
+          "timestamp": "2026-05-15T09:40:55.956319+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3509
+          },
+          "id": "event-001021"
+        },
+        {
+          "source_line": 1022,
+          "timestamp": "2026-05-15T09:40:59.762285+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "D029 FDR 修复验证完成。核心结论：6 robust pairs 不变，但 sensitivity grid 有实质性变化（entropy→d3 降级、effective_rank 全清零、最严格配置从 3→2）。formalization 文档需同步修订。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer"
+          },
+          "id": "event-001022"
+        }
+      ]
+    },
+    {
+      "number": 54,
+      "messages": [
+        {
+          "source_line": 1023,
+          "timestamp": "2026-05-15T09:41:11.899414+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-001023"
+        },
+        {
+          "source_line": 1024,
+          "timestamp": "2026-05-15T09:41:58.733531+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0 和 cuda:1（westd-19828 只有 2 张 RTX PRO 6000 Blackwell 96GB）\n- consensus_framework.py 必须用 `apply_fdr=True`（D029 决策），任何调用 `load_sig_matrix` 不带参数即可（默认 True），显式传 `apply_fdr=False` 需要 Director 批准\n- cross_alpha_analysis_v4.py 对单 seed α 点无 FDR 校正（我已报 WARNING），执行前需确认 D029 的 FDR 一致性修复是否落地到该脚本\n- formalization 文档 `consensus_framework.md` 和 `consensus_sensitivity_table.json` 中的数字目前是 **过时的**（raw significance），必须用 FDR 修正后的远程数据更新后才能引用\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19828(root)，工作目录 `/root/autodl-tmp/distrib_canary_collapse`\n- Python：`/root/miniconda3/bin/python`，conda base 环境\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/`\n- 关键远程产出：`results/mvp/analysis/consensus/`（consensus_classification.json, sensitivity_analysis.json, fpr_fnr_table.json, fpr_fnr_loo.json — 均已 FDR 修正，时间戳 17:34）\n- 关键远程产出：`results/mvp/analysis/method_ablation.json`（158K，含 `significant` 和 `significant_fdr` 双字段）\n- 活跃进程：plan_006_s42 (cuda:0, ~gen 16/20)，alpha_sweep_a075_s42 (cuda:1, ~gen 5/10)\n- 无 wandb（`report_to=\"none\"`）\n\n### 3. 📊 当前状态\n刚完成 D029 FDR fix 第二轮审查（PASS）。FDR 修复已生效并重新生成共识输出。\n\n**RUNNING**：\n- plan_006_s42：cuda:0，20gen 扩展实验（α=1.0），~gen 16/20，supplementary（T=21 power）\n- alpha_sweep_a075_s42：cuda:1，α=0.75 第 5 个 alpha 点，~gen 5/10，**关键边界实验**（决定 Claim 1 scope）\n\n**QUEUED**（等 GPU 释放）：\n- alpha_sweep_a025_s43, a025_s44, a050_s43, a050_s44（D026 multi-seed）\n- alpha_sweep_a010_s42\n\n**等待中**：\n- cross_alpha_analysis_v4.py 部署就绪但需等 a075 完成才能执行\n- formalization 文档更新（P0，数字已过时）\n\n### 4. 📋 待办（条件触发式）\n- a075_s42 完成 → 验证 gen 10 metrics；检查 Granger FDR-sig：如 sig → Claim 1 scope \"α≥0.75\"；如 null → Claim 1 确定为 \"α=1.0 only\"\n- a075 完成 → cross_alpha_analysis_v4.py 可执行，审查输出时重点关注：单 seed α 点的 FDR 一致性问题（我已报 WARNING，见下方§5）\n- plan_006_s42 完成 → 验证 gen 20 metrics（ppl 应极高 >3000），T=21 Granger power 是否优于 T=11\n- formalization 文档更新 worker 完成 → 核对所有数字与 FDR 修正后的 JSON 一致，特别是 entropy→d3 (8/9 不是 9/9)、ece→d1 (7/9 不是 8/9 不是 9/9)、最严格配置 (2 不是 3)\n- multi-seed 实验开始 → 核对 GPU 分配在 cuda:0/1 白名单内\n- 任何 consensus 相关论文章节提交审查 → 必须基于 FDR 修正后数据，拒绝引用旧数字\n\n### 5. 🎯 战略上下文\n**核心叙事**（D027 Option B）：方法论陷阱 + 多方法共识框架。三个 Claims 按强度排序：Claim 3（方法敏感性）> Claim 2（regime map）> Claim 1（Granger-causal case study）。\n\n**FDR 修正后关键数字变化**（易错）：\n- entropy→d3 稳定性从 1.0 降至 0.889——\"perfectly stable\" 层只剩 entropy→d1/d2\n- ece→d1 从 0.889 降至 0.778——旧文档写 9/9 是错的（我第一轮审查就发现了，当时以为是 8/9，FDR 后实际是 7/9）\n- effective_rank 在 FDR 后完全归零（0/9 稳定性）——不再有任何 robust association\n- perm_granger FPR 从 0.11 降至 0.0（FDR 消除假阳性——正面结果！）\n- 最严格配置 (5/5,4/4) 从 3 对降至 2 对\n\n**最容易判断错的事**：\n1. 不要信本地 artifacts 里的 consensus 数字——它们是旧的（raw significance）。真源在远程 `results/mvp/analysis/consensus/` 下的 4 个 JSON 文件\n2. cross_alpha_analysis_v4.py 有 FDR 非对称性问题：α=1.0 用 FDR（通过 load_sig_matrix），α=0.00-0.75 用 raw（直接调用 method functions）。我已报 WARNING 但尚未修复\n3. Phase 2 证据显示 differenced_xcorr 在 α=0.0 null control 下有 50% sig rate——FPR ground truth 已决定从 differenced 切换到 α=0.0 null（D028），但代码中的 `DIFF_INDEX = 1` 注释仍说 \"differenced_xcorr is the FP ground truth\"\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer"
+          },
+          "id": "event-001024"
+        }
+      ]
+    }
+  ]
+}

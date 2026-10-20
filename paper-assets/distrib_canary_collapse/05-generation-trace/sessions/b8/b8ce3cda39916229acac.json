@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b8ce3cda39916229acac",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops verify a025 s42 fp32 gpu",
+  "task_key": "worker_ops_verify_a025_s42_fp32_gpu_20260519T073726",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_a025_s42_fp32_gpu_20260519T073726_result.json",
+    "occurrence": 1,
+    "bytes": 662,
+    "sha256": "34f29da870035c3f8c857a7ecee42cd6828c1948a4276d1ba65a957a200751a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验**未在 westd-17855 cuda:0 上运行**。具体情况：\n\n| 检查项 | 结果 |\n|--------|------|\n| cuda:0 进程 | **无** — 0MiB 显存，0% 利用率 |\n| tmux session `a025` | **不存在** — `tmux ls | grep a025` 无匹配 |\n| 日志文件 | 内容仅 `bash: line 1: python: command not found` + `EXIT_CODE=0`，非正常训练日志 |\n\nGPU 1-5 有其他 python 进程在跑（PID 74460/96518/96598/96739/95318），但 cuda:0 空闲。\n\n日志显示启动脚本找不到 `python` 命令，实验根本没跑起来。需要检查该服务器的 Python 环境配置（可能需要用 `python3` 或激活 conda 环境）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-a025-s42-fp32-gpu.md"
+}

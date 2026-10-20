@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b6a157caafc0ebe44c12",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis phase diagram t10 a075 s43 fp32",
+  "task_key": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055_result.json",
+    "occurrence": 1,
+    "bytes": 627,
+    "sha256": "44f3b35f00db44d95ba3f8650ae7ecab177b840a5612179da974808e26d8922e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**PermG=6/8，与 s42 完全一致。**\n\n| | s42 | s43 |\n|---|---|---|\n| **PermG (FDR) fwd** | **6/8** | **6/8** |\n| DiffXCorr fwd | 6/8 | 7/8 |\n| Threshold 3σ | 0/8 | 0/8 |\n| TY Granger | 2/8 | 0/8 |\n| K≥3 robust | 6/8 | 4/8 |\n\n- 训练正常完成，EXIT_CODE=0，gen_0–gen_10 完整\n- Final loss=0.1734，gen_10 ppl=77.82\n- K≥3 从 6/8 降至 4/8，原因是 te→d2/d3 各丢一个 naive_xcorr vote（边界效应），核心 PermG 信号不受影响\n- **结论：T=10 α=0.75 的 6/8 ceiling 是 seed-robust 的**\n\n分析已写入 `artifacts/D102_t10_a075_s43_analysis.md` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-phase-diagram-t10-a075-s43-fp32.md"
+}

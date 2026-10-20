@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b35e31332e9589f5cb7",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis phase diagram t25 a045 s42 fp32 v2",
+  "task_key": "worker_analysis_phase_diagram_t25_a045_s42_fp32_v2_20260521T235931",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_phase_diagram_t25_a045_s42_fp32_v2_20260521T235931_result.json",
+    "occurrence": 1,
+    "bytes": 546,
+    "sha256": "4d25023609c597679ac51d216f60491e8a871661064894fc8c318fbea809dcfc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n```\nPermG:           6/8\nDiff XCorr:      6/8\nThreshold Onset: 6/8\nTY Granger:      1/8\nK≥3 (robust):   6/8\n\n结论: success\n```\n\nPermG reverse = 0/8，forward = 6/8，方向性清晰。6 个 pair 中除 mauve 相关的 2 对外全部检出。\n\n与假设对比：\n| T | α=0.45 PermG |\n|---|-------------|\n| 10 | 0/8 |\n| 15 | 6/8 |\n| 20 | 5/8 |\n| **25** | **6/8** |\n\nT=25 α=0.45 ≥6/8，确认 detection scaling — 随 T 增大（超过 α_c(T) 阈值后），检测率稳定在 5-6/8。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-phase-diagram-t25-a045-s42-fp32-v2.md"
+}

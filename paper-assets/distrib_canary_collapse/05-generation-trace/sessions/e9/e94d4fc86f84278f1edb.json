@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e94d4fc86f84278f1edb",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis intervention reactive s42",
+  "task_key": "worker_analysis_intervention_reactive_s42_20260518T145214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_intervention_reactive_s42_20260518T145214_result.json",
+    "occurrence": 1,
+    "bytes": 1121,
+    "sha256": "afe22b18d7fd4a74954a24c08e56b679fc9b3ce0c58f24ae4e968c62641fd72b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果总结：\n\n**Reactive intervention 成功阻止了 model collapse。**\n\n| 关键事件 | 数值 |\n|---------|------|\n| 触发时机 | Gen 2（distinct_1 下降 15.58%） |\n| 峰值损伤 | ppl=157.09（基线 5.8x），entropy 从 3.23→1.48 |\n| 恢复时间 | 2 代（gen 4 完全恢复） |\n| 最终 distinct_1 | 0.0844（-14.1% drift），vs 无干预 0.0704（-28.3%） |\n| 最终 ppl | 21.24（-21.2% drift），vs 无干预 1003.73（+3624.6%） |\n\n**关键发现**：干预后模型收敛到 α=0.0（纯真实数据）baseline，两者差异 <1%。说明 2 代 α=1.0 污染未造成永久性损伤，但 reactive 方式的局限在于：\n1. distinct_1 是**滞后指标**（gen 1 entropy 已跌 41%，但 distinct_1 仅跌 0.7%）\n2. 模型在触发前已经历严重瞬时损伤（ppl 飙到 157）\n3. 最终等价于完全不用合成数据\n\n这为 predictive（canary-based）干预提供了对比基线：如果 canary 能在 gen 1 甚至更早触发，就可以避免 ppl=157 的瞬时损伤。\n\n报告已注册，registry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-intervention-reactive-s42.md"
+}

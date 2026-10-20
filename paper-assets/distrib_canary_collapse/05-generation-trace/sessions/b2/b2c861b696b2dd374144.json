@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "b2c861b696b2dd374144",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "code generalization c4 gpt2 prep",
+  "task_key": "worker_code_generalization_c4_gpt2_prep_20260515T083604",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_generalization_c4_gpt2_prep_20260515T083604.log",
+    "occurrence": 1,
+    "bytes": 708437,
+    "sha256": "6504dd430d7b28faa8225593391d211343aa97800697753ab483585578be4bcc"
+  },
+  "statistics": {
+    "messages": 456,
+    "user_turns": 0,
+    "tool_calls": 167,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 118,
+      "tool_call": 167,
+      "tool_result": 167,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 456,
+      "chunks": [
+        {
+          "path": "b2c861b696b2dd374144-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b2c861b696b2dd374144-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "b2c861b696b2dd374144-part-0003.json",
+          "message_count": 96
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-generalization-c4-gpt2-prep.md"
+}

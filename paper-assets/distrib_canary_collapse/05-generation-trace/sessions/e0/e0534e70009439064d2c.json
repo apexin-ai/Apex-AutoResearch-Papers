@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0534e70009439064d2c",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops disk cleanup restart a075",
+  "task_key": "worker_ops_disk_cleanup_restart_a075_20260516T095645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk_cleanup_restart_a075_20260516T095645_result.json",
+    "occurrence": 1,
+    "bytes": 395,
+    "sha256": "27e6ac91e662a11988fe117f8787d4c9e12e4d534e87f1aabc3d4f7301db4805"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n| 步骤 | 结果 |\n|------|------|\n| Kill a075_s44 (PID 178907) | 已终止 |\n| 磁盘清理 | 250G → 28G used，**223GB 可用** |\n| a075_s43 重启 | PID 184026，cuda:1，GPU 55%，6.5GB |\n| a075_s44 重启 | PID 184342，cuda:0，GPU 67%，6.5GB |\n\n两个实验都在正常运行，日志在 `/tmp/a075_s43.log` 和 `/tmp/a075_s44.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-restart-a075.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "208094dc741aada4925e",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops null seed check",
+  "task_key": "worker_ops_null_seed_check_20260524T021631",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_null_seed_check_20260524T021631_result.json",
+    "occurrence": 1,
+    "bytes": 1223,
+    "sha256": "07bfb05f4280af89fd91192f2db62bdd9a49f500027f6fe2fabbd15bf1f9e40f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Null seed 实验状态\n\n| Seed | 状态 | Gen 进度 | PermG_fwd (FPR) |\n|------|------|----------|-----------------|\n| s45  | done (EXIT=0) | 11/11 | **2/6** |\n| s47  | done (EXIT=0) | 11/11 | **0/6** |\n| s46  | running | 2/11 (gen_1 数据生成中) | — |\n| s48  | running | 2/11 (gen_1 数据生成中) | — |\n| s49  | running | 2/11 (gen_1 数据生成中) | — |\n| s50  | running | 2/11 (gen_1 数据生成中) | — |\n\n**注意：** 服务器上只有 `batch_d102_6pair.py`（6-pair，排除 mauve），没有 `run_5method_analysis_d102.py`。已用 6-pair 版本分析。\n\n### 时间估算\n\n- s45 历史数据：gen_0→gen_10 约 3h34m（~21 min/gen）\n- s46-s50 gen_1 开始于 ~02:11 UTC，还有 9 gens \n- **预计完成：~05:30-06:00 UTC**（约 3-3.5 小时后）\n\n### s45 FPR 详情\n\ns45 的 2/6 PermG FPR 来自：\n- `token_entropy<distinct_2`: perm_granger sig\n- `token_entropy<distinct_3`: perm_granger sig\n\ns47 完全干净（0/6 PermG fwd, 0/6 rev）。\n\n### 下一步\n\n等 s46/48/49/50 完成后运行 D102，汇总 6-seed null FPR。如果 s45 的 2/6 是孤例（其余 5 seed 都是 0/6），则 pooled FPR = 2/36 ≈ 5.6%，接近名义 α=0.05。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-null-seed-check.md"
+}

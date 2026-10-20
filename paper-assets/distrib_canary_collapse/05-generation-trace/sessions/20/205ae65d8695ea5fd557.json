@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "205ae65d8695ea5fd557",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code rerun perm granger diff",
+  "task_key": "worker_code_rerun-perm-granger-diff_20260514T215438",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_rerun-perm-granger-diff_20260514T215438_result.json",
+    "occurrence": 1,
+    "bytes": 1811,
+    "sha256": "d8fee90ed92f71f3b749110db27a4b922904abecd9c8dd4ea18c38a6a1acfc80"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## Summary\n\n### T1: Permutation Granger 差分版对比\n\n| Pair | Old (circular_shift) | Undiff (shuffle) | **Diff (shuffle)** |\n|------|-----|------|------|\n| token_entropy→distinct_1 | 4/4 SIG, F=200-500 | 4/4 SIG | **4/4 SIG, F=612-2615** |\n| token_entropy→distinct_2 | 4/4 SIG | 4/4 SIG | **4/4 SIG, F=226-1798** |\n| token_entropy→distinct_3 | 4/4 SIG | 4/4 SIG | **4/4 SIG, F=95-738** |\n| token_entropy→perplexity | 3/4 SIG | 3/4 SIG | **0/4 n.s., F=0.0-0.3** |\n| ece→distinct_1 | 4/4 SIG | 4/4 SIG | **4/4 SIG, F=567-6124** |\n| ece→distinct_2 | 4/4 SIG | 4/4 SIG | **4/4 SIG, F=171-7643** |\n| ece→distinct_3 | 4/4 SIG | 4/4 SIG | **4/4 SIG, F=71-921** |\n| ece→perplexity | 4/4 SIG | 4/4 SIG | **0/4 n.s., F=0.0-0.6** |\n\n**关键判断**：\n- **canary→diversity 指标**（distinct_1/2/3）：差分后全部保持 4/4 显著，F 值甚至上升（非伪回归）。论文核心 claim **成立**。\n- **canary→perplexity**：差分后全部 **不显著**（F 降至 ~0），旧结果完全由共享非平稳趋势驱动。论文中不应 claim canary 预测 perplexity。\n- 结果已保存至 `results/mvp/analysis/permutation_granger.json`，包含 `differenced` 和 `undifferenced` 两组结果。\n\n### T2: Effect Size 统一为 Cohen's f²\n\n| 脚本 | 改动 |\n|------|------|\n| `method_ablation.py` | TY: `η² = F/(F+df)` → `f² = F/df`；分类阈值 (0.14/0.06/0.01) → (0.35/0.15/0.02)；字段 `effect_size_eta2` → `effect_size_f2` |\n| `analyze_alpha_sweep.py` | TY: `η² = F*p/(F*p+df)` → `f² = F*p/df`；PermG: 去掉 f²→η² 转换，直接用 f²；同样改字段名和分类阈值 |\n| `permutation_granger.py` | 已经用 `effect_size_f2`，无需修改 |\n\n`method_ablation.json` 已用新 f² 重新生成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-rerun-perm-granger-diff.md"
+}

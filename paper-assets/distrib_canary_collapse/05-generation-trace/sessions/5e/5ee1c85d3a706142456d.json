@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ee1c85d3a706142456d",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code compile and push anon",
+  "task_key": "worker_code_compile_and_push_anon_20260524T023631",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_compile_and_push_anon_20260524T023631_result.json",
+    "occurrence": 1,
+    "bytes": 231,
+    "sha256": "a6e392e152b77bccce480c61e19ab1724577a2172043507ea463f10584dc5544"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 编译结果\n- Errors: 0\n- Warnings: 10\n- 页数: 27\n\n## 匿名仓库推送\n- Commit hash: `1e08a84`\n- 变更文件数: 3 (appendix.tex, discussion.tex, experiments.tex)\n- 匿名化: 通过\n- Push: 成功"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-compile-and-push-anon.md"
+}

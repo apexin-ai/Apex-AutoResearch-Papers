@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dba3805464cd15ea29b7",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis partial correlation",
+  "task_key": "worker_analysis_partial_correlation_20260524T160927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_partial_correlation_20260524T160927_result.json",
+    "occurrence": 1,
+    "bytes": 1358,
+    "sha256": "9c9c75f7b85c92665e9b037d5c5e2afc70d8f3b2614c38e12bd4cbe2ab4bf118"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Here are the results:\n\n**W11 Partial Correlation Analysis — Summary**\n\n| Metric | Mean |r| | Significant (p<0.05) |\n|---|---|---|\n| **Contemporaneous zero-order** | 0.613 | 18/36 (50%) |\n| **Contemporaneous partial (∥gen)** | 0.451 | 5/36 (14%) |\n| **Lagged zero-order** | 0.795 | 29/36 (81%) |\n| **Lagged partial (∥gen)** | **0.877** | **35/36 (97%)** |\n\n**Key findings:**\n\n1. **Contemporaneous**: ~25% of zero-order correlation is attributable to shared generational trend, but 75% persists after controlling for generation.\n\n2. **Lagged (the one that matters for Granger)**: Partial correlations are *stronger* than zero-order by 13% on average. Removing the shared monotonic trend actually makes the canary[t]→downstream[t+1] relationship clearer. 35/36 pairs remain significant.\n\n3. **Null control (α=0.0)**: Mean |r|=0.41 zero-order, 0.32 partial, 0/18 significant after partialing — confirming the effect is specific to detection conditions.\n\n**Deliverables:**\n- `artifacts/partial_correlation_results.json` — full per-condition results (registered)\n- `docs/paper/figures/fig_partial_correlation.pdf/.png` — detailed per-pair figure\n- `docs/paper/figures/fig_partial_correlation_agg.pdf/.png` — aggregated by α (cleaner for paper)\n- `scripts/w11_partial_correlation.py` — analysis script"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-partial-correlation.md"
+}

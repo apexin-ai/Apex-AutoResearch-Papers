@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2fd00d350757d4bd45d4",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "check round2 paper status",
+  "task_key": "worker_check_round2_paper_status_20260517T171044",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_round2_paper_status_20260517T171044_result.json",
+    "occurrence": 1,
+    "bytes": 3860,
+    "sha256": "d3e33993d52b922871ee4a84eba9e4f778adbbc81238079892d82f3927220843"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the data. Here's the full report:\n\n---\n\n## Table 7 状态 (`tab:generalization`, experiments.tex:336-351)\n\n**注意：用户所说的\"Table 5\"在编译 PDF 中实际是 Table 7。**\n\n| Row | Variation | 状态 | 详情 |\n|-----|-----------|------|------|\n| 1 | Baseline (Pythia-410M / Wiki) | **已填但数据不一致** | 见下方 |\n| 2 | Scale (Pythia-1B / Wiki) | **[TBD]** | 无数据 |\n| 3 | Architecture (OPT-1.3B / Wiki) | **[TBD]** | registry 数据已有，可立即填充 |\n| 4 | Domain (Pythia-1B / C4) | **[TBD]** | 无数据（实验进行中？） |\n\n**Line 353** 还有一个文字 placeholder：`[Results paragraph placeholder: interpretation of generalization findings will be added once experiments complete.]`\n\n### Table 7 Baseline 行 vs Registry 数据不一致\n\n| 列 | 论文当前值 | Registry 最新值 |\n|----|-----------|----------------|\n| Naive | 8/8 | **7/8** |\n| Diff XCorr | 8/8 | **6/8** |\n| Threshold | 8/8 | **6/8** |\n| PermG (fwd) | 6/8 | 6/8 |\n| PermG (rev) | 0/8 | 0/8 |\n| TY | 4/8 | **6/8** |\n| K≥4/5 | 6/8 | 6/8 |\n\n4 个值不一致。\n\n---\n\n## 数据不一致：Table 3 Threshold 行 vs Table 5（修复后数据）\n\nTable 3 (`tab:method_comparison`, experiments.tex:103) 的 Threshold 行与 Table 5 (`tab:single-method-errors`, experiments.tex:243) 的 Threshold 行存在严重矛盾，疑似 Table 3 未更新修复后的 Threshold 数字：\n\n| α | Table 3 (Threshold %) | Table 5 per-seed subscripts | Table 5 隐含总比 |\n|---|-----------------------|----------------------------|-----------------|\n| 0.00 | 62.5% | 3, 1, 1 | 5/24 = 20.8% |\n| 0.50 | **100%** | **0, 0, 0** | **0/24 = 0%** |\n| 0.75 | 50% | 4, 0, 4 | 8/24 = 33.3% |\n\nα=0.50 的差异最严重：Table 3 说 100%，Table 5 说 0/24。\n\n### Table 6 FPR for Threshold 也可能过时\n- Table 6 (`tab:fpr_fnr`, experiments.tex:308): Threshold FPR = 29.2% (12.5--62.5)\n- Table 5 α=0.00 subscripts: 3, 1, 1 → per-seed FPR: 37.5%, 12.5%, 12.5%，mean = 20.8%，range = 12.5--37.5\n- 29.2% 和 62.5 上界与 Table 5 数据不吻合\n\n---\n\n## TBD / Placeholder 全文扫描\n\n**仅 experiments.tex 有 placeholder，其他所有 tex 文件干净。**\n\n| 文件:行号 | 内容 |\n|-----------|------|\n| experiments.tex:339 | caption 中 `\\textbf{[TBD]}` |\n| experiments.tex:346 | `Scale & Pythia-1B / Wiki & \\multicolumn{7}{c}{\\textbf{[TBD]}}` |\n| experiments.tex:347 | `Architecture & OPT-1.3B / Wiki & \\multicolumn{7}{c}{\\textbf{[TBD]}}` |\n| experiments.tex:348 | `Domain & Pythia-1B / C4 & \\multicolumn{7}{c}{\\textbf{[TBD]}}` |\n| experiments.tex:353 | `[Results paragraph placeholder: ...]` |\n\n---\n\n## Round 2 提交 Checklist\n\n### (a) 数据已有，可立即修复\n\n1. **Table 7 OPT-1.3B 行** (experiments.tex:347)：填入 `6/8 & 6/8 & 8/8 & 6/8 & 0/8 & 2/8 & 6/8`\n2. **Table 7 Baseline 行** (experiments.tex:345)：更新 4 个值（Naive→7/8, Diff→6/8, Thresh→6/8, TY→6/8），或确认 baseline 使用的是不同 seed/条件\n3. **Table 7 caption** (experiments.tex:339)：OPT-1.3B 填入后移除 `\\textbf{[TBD]}`（若仍有其他 TBD 行则保留）\n4. **Table 3 Threshold 行** (experiments.tex:117-ish)：用修复后数据更新全部 5 个 α 值\n5. **Table 6 Threshold FPR** (experiments.tex:324)：同步更新 29.2% (12.5--62.5) 为修复后数值\n6. **Table 7 results paragraph** (experiments.tex:353)：用已有 Pythia-410M + OPT-1.3B 数据写初步解读段落\n\n### (b) 等实验完成\n\n1. **Table 7 Pythia-1B / Wiki 行** (experiments.tex:346)：Scale 实验数据\n2. **Table 7 Pythia-1B / C4 行** (experiments.tex:348)：Domain 实验数据\n3. **Table 7 caption** 中的 `[TBD]`：所有行填完后删除\n4. **experiments.tex:353 placeholder**：所有泛化实验完成后写完整解读"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-round2-paper-status.md"
+}

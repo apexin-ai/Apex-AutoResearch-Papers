@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bcdab1562292d8576586",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "exp null t15 and gpt2m",
+  "task_key": "worker_exp_null_t15_and_gpt2m_20260524T032404",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_null_t15_and_gpt2m_20260524T032404_result.json",
+    "occurrence": 1,
+    "bytes": 945,
+    "sha256": "7eb07adad48605c78d52872ef0678204850d4c16009983963e94d5cd5a4edd99"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部成功启动，正在训练 Generation 0。\n\n## 启动状态\n| exp_id | Server | GPU | 状态 | PID |\n|--------|--------|-----|------|-----|\n| null_t15_s42_fp32 | westd-19828 | 0 | 运行中 (Gen 0, 7453 MiB, 83%) | 919940 |\n| null_t15_s43_fp32 | westd-19828 | 1 | 运行中 (Gen 0, 7453 MiB, 80%) | 920577 |\n| null_gpt2m_s42_fp32 | westd-17855 | 4 | 运行中 (Gen 0, 6151 MiB, 89%) | 861043 |\n| null_gpt2m_s43_fp32 | westd-17855 | 5 | 运行中 (Gen 0, 6151 MiB, 78%) | 861354 |\n\n**关键参数差异 vs 模板：**\n- 模型名用 `openai-community/gpt2-medium`（非 `gpt2-medium`），与已有 GPT-2m 实验一致\n- 添加 `HF_HUB_OFFLINE=1` 解决 AutoDL 网络不可达问题\n- 日志：`/tmp/null_t15_s4{2,3}.log`（19828）、`/tmp/null_gpt2m_s4{2,3}.log`（17855）\n\n**注意：** westd-17855 磁盘 95% (18G 剩余)，null 实验占用小（~100MB/实验），但需关注整体空间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-null-t15-and-gpt2m.md"
+}

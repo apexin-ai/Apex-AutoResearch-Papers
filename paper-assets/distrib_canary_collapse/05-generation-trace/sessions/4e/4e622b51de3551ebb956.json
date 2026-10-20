@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e622b51de3551ebb956",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis d120 c4 s42 and padding audit",
+  "task_key": "worker_analysis_d120_c4_s42_and_padding_audit_20260520T060208",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d120_c4_s42_and_padding_audit_20260520T060208_result.json",
+    "occurrence": 1,
+    "bytes": 923,
+    "sha256": "70df4b0050c4cb5a4e445f347a7ceb14d32fa8db55b546a2a95c94ffe0a3f36e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。4 个实验全部 D120 重算，registry 已更新，报告已注册。\n\n### 结果摘要\n\n| Experiment | α | PermG_fwd | PermG_rev | K≥3 | K≥4 |\n|---|---|---|---|---|---|\n| c4_a025_s42 | 0.25 | 0/8 | 0/8 | 0/8 | 0/8 |\n| c4_a050_s42 | 0.50 | 8/8 | **7/8** | 4/8 | 0/8 |\n| c4_a075_s42 | 0.75 | 8/8 | 0/8 | 8/8 | 0/8 |\n| padding_a100_s42 | 1.0 | 6/8 | 0/8 | 6/8 | 0/8 |\n\n### 关键发现\n\n1. **C4 dose-response 确认**: K3 从 0→4→8 随 α 递增，与 wiki domain 一致\n2. **C4 α=0.50 双向 PermG**: rev=7/8，wiki 域从未出现。可能反映 C4 跨域环境下更强的双向反馈\n3. **Padding 审计通过**: K3=6/8 与 wiki baseline (`generalize_pythia410m_wiki_a100_s42`) 完全一致。Padding side 对 lead-lag 无影响。2 个失败 pair 均为 mauve\n4. **TY Granger 在 17855 上不可用**: `signonly` API error，导致所有 K≥4=0/8。K≥3 不受影响"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d120-c4-s42-and-padding-audit.md"
+}

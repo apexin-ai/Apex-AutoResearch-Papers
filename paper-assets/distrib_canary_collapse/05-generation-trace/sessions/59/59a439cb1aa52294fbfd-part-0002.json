@@ -1,0 +1,293 @@
+{
+  "schema_version": "1.0",
+  "session_id": "59a439cb1aa52294fbfd",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 112,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ha1WadZcJYfaLMEwmP7RtN",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/D102_null_s42_s44_fpr.json",
+                "content": "{\n  \"description\": \"FPR transparency: per-seed per-pair raw p-values for 3 null experiments (s42-s44, alpha=0.00, Pythia-410M, T=10). Extracted from run_5method_analysis_d102.py output, BH-FDR recomputed across 6 pairs.\",\n  \"model\": \"pythia-410m\",\n  \"alpha\": 0.0,\n  \"T\": 10,\n  \"n_perm\": 5000,\n  \"threshold_criterion\": \"true_3sigma_d105\",\n  \"pair_basis\": \"6-pair (distinct_1/2/3 only, mauve excluded)\",\n  \"methods\": [\n    \"perm_granger (BH-FDR across 6 pairs)\",\n    \"diff_xcorr (BH-FDR across 6 pairs)\",\n    \"threshold_onset (true_3sigma_d105)\",\n    \"ty_granger (uncorrected)\",\n    \"naive_xcorr (|r|>0.5, sig requires lag!=0, consensus vote requires lag<0)\"\n  ],\n  \"consensus_rule\": \"K = number of methods voting forward causation. xcorr methods (naive, diff) vote only if peak_lag < 0 (canary leads downstream). PermG and TY vote if significant (after FDR for PermG). Threshold votes if canary_onset < downstream_onset.\",\n  \"summary\": {\n    \"total_seed_pairs\": 18,\n    \"K_ge_3_count\": 0,\n    \"K_ge_3_fpr\": 0.0,\n    \"per_seed_K_ge_3\": {\n      \"s42\": 0,\n      \"s43\": 0,\n      \"s44\": 0\n    },\n    \"K_ge_3_permg_breakdown\": {\n      \"with_permg\": 0,\n      \"without_permg\": 0,\n      \"detail\": \"none\"\n    },\n    \"per_seed_permg_fwd_fdr\": {\n      \"s42\": 0,\n      \"s43\": 0,\n      \"s44\": 0\n    }\n  },\n  \"seeds\": [\n    {\n      \"seed\": 42,\n      \"exp_dir\": \"results/alpha_sweep/a000_s42\",\n      \"T\": 10,\n      \"n_gens\": 11,\n      \"n_perm\": 5000,\n      \"pairs\": [\n        {\n          \"canary\": \"token_entropy\",\n          \"downstream\": \"distinct_1\",\n          \"perm_granger_fwd_p\": 0.05139,\n          \"perm_granger_fwd_sig_fdr\": false,\n          \"perm_granger_rev_p\": 0.795641,\n          \"diff_xcorr_fwd_p\": 0.000157,\n          \"diff_xcorr_fwd_r\": 0.9408,\n          \"diff_xcorr_fwd_lag\": -1,\n          \"diff_xcorr_fwd_sig_fdr\": true,\n          \"threshold_onset_lead\": null,\n          \"threshold_onset_sig\": false,\n          \"ty_granger_p\": 0.7587,\n          \"ty_granger_sig\": false,\n          \"naive_xcorr_r\": 0.9023,\n          \"naive_xcorr_lag\": -5,\n          \"naive_xcorr_sig\": true,\n          \"consensus_votes\": 2,\n          \"consensus_methods\": [\"naive\", \"diff\"]\n        },\n        {\n          \"canary\": \"token_entropy\",\n          \"downstream\": \"distinct_2\",\n          \"perm_granger_fwd_p\": 0.080384,\n          \"perm_granger_fwd_sig_fdr\": false,\n          \"perm_granger_rev_p\": 0.978204,\n          \"diff_xcorr_fwd_p\": 0.009707,\n          \"diff_xcorr_fwd_r\": 0.9184,\n          \"diff_xcorr_fwd_lag\": -4,\n          \"diff_xcorr_fwd_sig_fdr\": true,\n          \"threshold_onset_lead\": 4,\n          \"threshold_onset_sig\": true,\n          \"ty_granger_p\": 0.4974,\n          \"ty_granger_sig\": false,\n          \"naive_xcorr_r\": -0.8262,\n          \"naive_xcorr_lag\": 2,\n          \"naive_xcorr_sig\": true,\n          \"consensus_votes\": 2,\n          \"consensus_methods\": [\"diff\", \"threshold\"]\n        },\n        {\n          \"canary\": \"token_entropy\",\n          \"downstream\": \"distinct_3\",\n          \"perm_granger_fwd_p\": 0.075585,\n          \"perm_granger_fwd_sig_fdr\": false,\n          \"perm_granger_rev_p\": 0.985403,\n          \"diff_xcorr_fwd_p\": 0.01191,\n          \"diff_xcorr_fwd_r\": 0.9095,\n          \"diff_xcorr_fwd_lag\": -4,\n          \"diff_xcorr_fwd_sig_fdr\": true,\n          \"threshold_onset_lead\": 4,\n          \"threshold_onset_sig\": true,\n          \"ty_granger_p\": 0.9989,\n          \"ty_granger_sig\": false,\n          \"naive_xcorr_r\": -0.8161,\n          \"naive_xcorr_lag\": 2,\n          \"naive_xcorr_sig\": true,\n          \"consensus_votes\": 2,\n          \"consensus_methods\": [\"diff\", \"threshold\"]\n        },\n        {\n          \"canary\": \"ece\",\n          \"downstream\": \"distinct_1\",\n          \"perm_granger_fwd_p\": 0.94981,\n          \"perm_granger_fwd_sig_fdr\": false,\n          \"perm_granger_rev_p\": 0.343131,\n          \"diff_xcorr_fwd_p\": 0.051439,\n          \"diff_xcorr_fwd_r\": -0.7037,\n          \"diff_xcorr_fwd_lag\": 2,\n          \"diff_xcorr_fwd_sig_fdr\": false,\n          \"threshold_onset_lead\": null,\n          \"threshold_onset_sig\": false,\n          \"ty_granger_p\": 0.017,\n          \"ty_granger_sig\": true,\n          \"naive_xcorr_r\": 0.8166,\n          \"naive_xcorr_lag\": -4,\n          \"naive_xcorr_sig\": true,\n          \"consensus_votes\": 2,\n          \"consensus_methods\": [\"naive\", \"ty\"]\n        },\n        {\n          \"canary\": \"ece\",\n          \"downstream\": \"distinct_2\",\n          \"perm_granger_fwd_p\": 0.544291,\n          \"perm_granger_fwd_sig_fdr\": false,\n          \"perm_granger_rev_p\": 0.353929,\n          \"diff_xcorr_fwd_p\": 0.192837,\n          \"diff_xcorr_fwd_r\": -0.5137,\n          \"diff_xcorr_fwd_lag\": 2,\n          \"diff_xcorr_fwd_sig_fdr\": false,\n          \"threshold_onset_lead\": -4,\n          \"threshold_onset_sig\": false,\n          \"ty_granger_p\": 0.565,\n          \"ty_granger_sig\": false,\n          \"naive_xcorr_r\": 0.7783,\n          \"naive_xcorr_lag\": 4,\n          \"naive_xcorr_sig\": true,\n          \"consensus_votes\": 0,\n          \"consensus_methods\": []\n        },\n        {\n          \"canary\": \"ece\",\n          \"downstream\": \"distinct_3\",\n          \"perm_granger_fwd_p\": 0.371526,\n          \"perm_granger_fwd_sig_fdr\": false,\n          \"perm_granger_rev_p\": 0.211758,\n          \"diff_xcorr_fwd_p\": 0.202654,\n          \"diff_xcorr_fwd_r\": 0.5482,\n          \"diff_xcorr_fwd_lag\": -3,\n          \"diff_xcorr_fwd_sig_fdr\": false,\n          \"threshold_onset_lead\": -4,\n          \"threshold_onset_sig\": false,\n          \"ty_granger_p\": 0.0003,\n          \"ty_granger_sig\": true,\n          \"naive_xcorr_r\": 0.8257,\n          \"naive_xcorr_lag\": 4,\n          \"naive_xcorr_sig\": true,\n          \"consensus_votes\": 1,\n          \"consensus_methods\": [\"ty\"]\n        }\n      ]\n    },\n    {\n      \"seed\": 43,\n      \"exp_dir\": \"results/alpha_sweep/a000_s43\",\n      \"T\": 10,\n      \"n_gens\": 11,\n      \"n_perm\": 5000,\n      \"pairs\": [\n        {\n          \"canary\": \"token_entropy\",\n          \"downstream\": \"distinct_1\",\n          \"perm_granger_fwd_p\": 0.079584,\n          \"perm_granger_fwd_sig_fdr\": false,\n          \"perm_granger_rev_p\": 0.059788,\n          \"diff_xcorr_fwd_p\": 0.085352,\n          \"diff_xcorr_fwd_r\": -0.7509,\n          \"diff_xcorr_fwd_lag\": 4,\n          \"diff_xcorr_fwd_sig_fdr\": false,\n          \"threshold_onset_lead\": null,\n          \"threshold_onset_sig\": false,\n          \"ty_granger_p\": 0.0076,\n          \"ty_granger_sig\": true,\n          \"naive_xcorr_r\": -0.9029,\n          \"naive_xcorr_lag\": 1,\n          \"naive_xcorr_sig\": true,\n          \"consensus_votes\": 1,\n          \"consensus_methods\": [\"ty\"]\n        },\n        {\n          \"canary\": \"token_entropy\",\n          \"downstream\": \"distinct_2\",\n          \"perm_granger_fwd_p\": 0.070186,\n          \"perm_granger_fwd_sig_fdr\": false,\n          \"perm_granger_rev_p\": 0.030394,\n          \"diff_xcorr_fwd_p\": 0.000594,\n          \"diff_xcorr_fwd_r\": 0.9127,\n          \"diff_xcorr_fwd_lag\": -1,\n          \"diff_xcorr_fwd_sig_fdr\": true,\n          \"threshold_onset_lead\": null,\n          \"threshold_onset_sig\": false,\n          \"ty_granger_p\": 0.4004,\n          \"ty_granger_sig\": false,\n          \"naive_xcorr_r\": -0.9162,\n          \"naive_xcorr_lag\": 1,\n          \"naive_xcorr_sig\": true,\n          \"consensus_votes\": 1,\n          \"consensus_methods\": [\"diff\"]\n        },\n        {\n          \"canary\": \"token_entropy\",\n          \"downstream\": \"distinct_3\",\n          \"perm_granger_fwd_p\": 0.034393,\n          \"perm_granger_fwd_sig_fdr\": false,\n          \"perm_granger_rev_p\": 0.088782,\n          \"diff_xcorr_fwd_p\": 0.000713,\n          \"diff_xcorr_fwd_r\": 0.9079,\n          \"diff_xcorr_fwd_lag\": -1,\n          \"diff_xcorr_fwd_sig_fdr\": true,\n          \"threshold_onset_lead\": null,\n          \"threshold_onset_sig\": false,\n          \"ty_granger_p\": 0.8147,\n          \"ty_granger_sig\": false,\n          \"naive_xcorr_r\": -0.8943,\n          \"naive_xcorr_lag\": 1,\n          \"naive_xcorr_sig\": true,\n          \"consensus_votes\": 1,\n          \"consensus_methods\": [\"diff\"]\n        },\n        {\n          \"canary\": \"ece\",\n          \"downstream\": \"distinct_1\",\n          \"perm_granger_fwd_p\": 0.516297,\n          \"perm_granger_fwd_sig_fdr\": false,\n          \"perm_granger_rev_p\": 0.472905,\n          \"diff_xcorr_fwd_p\": 0.163821,\n          \"diff_xcorr_fwd_r\": 0.5435,\n          \"diff_xcorr_fwd_lag\": -2,\n          \"diff_xcorr_fwd_sig_fdr\": false,\n          \"threshold_onset_lead\": null,\n          \"threshold_onset_sig\": false,\n          \"ty_granger_p\": 0.026,\n          \"ty_granger_sig\": true,\n          \"naive_xcorr_r\": 0.8517,\n          \"naive_xcorr_lag\": 3,\n          \"naive_xcorr_sig\": true,\n          \"consensus_votes\": 1,\n          \"consensus_methods\": [\"ty\"]\n        },\n        {\n          \"canary\": \"ece\",\n          \"downstream\": \"distinct_2\",\n          \"perm_granger_fwd_p\": 0.878024,\n          \"perm_granger_fwd_sig_fdr\": false,\n          \"perm_granger_rev_p\": 0.282344,\n          \"diff_xcorr_fwd_p\": 0.260901,\n          \"diff_xcorr_fwd_r\": 0.6237,\n          \"diff_xcorr_fwd_lag\": -5,\n          \"diff_xcorr_fwd_sig_fdr\": false,\n          \"threshold_onset_lead\": null,\n          \"threshold_onset_sig\": false,\n          \"ty_granger_p\": 0.3364,\n          \"ty_granger_sig\": false,\n          \"naive_xcorr_r\": 0.8123,\n          \"naive_xcorr_lag\": 3,\n          \"naive_xcorr_sig\": true,\n          \"consensus_votes\": 0,\n          \"consensus_methods\": []\n        },\n        {\n          \"canary\": \"ece\",\n          \"downstream\": \"distinct_3\",\n          \"perm_granger_fwd_p\": 0.575485,\n          \"perm_granger_fwd_sig_fdr\": false,\n          \"perm_granger_rev_p\": 0.214557,\n          \"diff_xcorr_fwd_p\": 0.167261,\n          \"diff_xcorr_fwd_r\": 0.7233,\n          \"diff_xcorr_fwd_lag\": -5,\n          \"diff_xcorr_fwd_sig_fdr\": false,\n          \"threshold_onset_lead\": null,\n          \"threshold_onset_sig\": false,\n          \"ty_granger_p\": 0.6744,\n          \"ty_granger_sig\": false,\n          \"naive_xcorr_r\": 0.7685,\n          \"naive_xcorr_lag\": 3,\n          \"naive_xcorr_sig\": true,\n          \"consensus_votes\": 0,\n          \"consensus_methods\": []\n        }\n      ]\n    },\n    {\n      \"seed\": 44,\n      \"exp_dir\": \"results/alpha_sweep/a000_s44\",\n      \"T\": 10,\n      \"n_gens\": 11,\n      \"n_perm\": 5000,\n      \"pairs\": [\n        {\n          \"canary\": \"token_entropy\",\n          \"downstream\": \"distinct_1\",\n          \"perm_granger_fwd_p\": 0.069186,\n          \"perm_granger_fwd_sig_fdr\": false,\n          \"perm_granger_rev_p\": 0.184496,\n          \"diff_xcorr_fwd_p\": 0.005749,\n          \"diff_xcorr_fwd_r\": 0.9715,\n          \"diff_xcorr_fwd_lag\": -5,\n          \"diff_xcorr_fwd_sig_fdr\": true,\n          \"threshold_onset_lead\": null,\n          \"threshold_onset_sig\": false,\n          \"ty_granger_p\": 0.1862,\n          \"ty_granger_sig\": false,\n          \"naive_xcorr_r\": 0.9144,\n          \"naive_xcorr_lag\": -5,\n          \"naive_xcorr_sig\": true,\n          \"consensus_votes\": 2,\n          \"consensus_methods\": [\"naive\", \"diff\"]\n        },\n        {\n          \"canary\": \"token_entropy\",\n          \"downstream\": \"distinct_2\",\n          \"perm_granger_fwd_p\": 0.029994,\n          \"perm_granger_fwd_sig_fdr\": false,\n          \"perm_granger_rev_p\": 0.086983,\n          \"diff_xcorr_fwd_p\": 0.000244,\n          \"diff_xcorr_fwd_r\": 0.9327,\n          \"diff_xcorr_fwd_lag\": -1,\n          \"diff_xcorr_fwd_sig_fdr\": true,\n          \"threshold_onset_lead\": null,\n          \"threshold_onset_sig\": false,\n          \"ty_granger_p\": 0.2306,\n          \"ty_granger_sig\": false,\n          \"naive_xcorr_r\": 0.8517,\n          \"naive_xcorr_lag\": -1,\n          \"naive_xcorr_sig\": true,\n          \"consensus_votes\": 2,\n          \"consensus_methods\": [\"naive\", \"diff\"]\n        },\n        {\n          \"canary\": \"token_entropy\",\n          \"downstream\": \"distinct_3\",\n          \"perm_granger_fwd_p\": 0.031594,\n          \"perm_granger_fwd_sig_fdr\": false,\n          \"perm_granger_rev_p\": 0.260948,\n          \"diff_xcorr_fwd_p\": 0.044792,\n          \"diff_xcorr_fwd_r\": 0.6779,\n          \"diff_xcorr_fwd_lag\": -1,\n          \"diff_xcorr_fwd_sig_fdr\": false,\n          \"threshold_onset_lead\": 4,\n          \"threshold_onset_sig\": true,\n          \"ty_granger_p\": 0.8199,\n          \"ty_granger_sig\": false,\n          \"naive_xcorr_r\": 0.8241,\n          \"naive_xcorr_lag\": -1,\n          \"naive_xcorr_sig\": true,\n          \"consensus_votes\": 2,\n          \"consensus_methods\": [\"naive\", \"threshold\"]\n        },\n        {\n          \"canary\": \"ece\",\n          \"downstream\": \"distinct_1\",\n          \"perm_granger_fwd_p\": 0.374325,\n          \"perm_granger_fwd_sig_fdr\": false,\n          \"perm_granger_rev_p\": 0.14997,\n          \"diff_xcorr_fwd_p\": 0.042819,\n          \"diff_xcorr_fwd_r\": 0.8904,\n          \"diff_xcorr_fwd_lag\": 5,\n          \"diff_xcorr_fwd_sig_fdr\": false,\n          \"threshold_onset_lead\": null,\n          \"threshold_onset_sig\": false,\n          \"ty_granger_p\": 0.6129,\n          \"ty_granger_sig\": false,\n          \"naive_xcorr_r\": 0.8186,\n          \"naive_xcorr_lag\": 5,\n          \"naive_xcorr_sig\": true,\n          \"consensus_votes\": 0,\n          \"consensus_methods\": []\n        },\n        {\n          \"canary\": \"ece\",\n          \"downstream\": \"distinct_2\",\n          \"perm_granger_fwd_p\": 0.886623,\n          \"perm_granger_fwd_sig_fdr\": false,\n          \"perm_granger_rev_p\": 0.443711,\n          \"diff_xcorr_fwd_p\": 0.060923,\n          \"diff_xcorr_fwd_r\": 0.861,\n          \"diff_xcorr_fwd_lag\": 5,\n          \"diff_xcorr_fwd_sig_fdr\": false,\n          \"threshold_onset_lead\": null,\n          \"threshold_onset_sig\": false,\n          \"ty_granger_p\": 0.1696,\n          \"ty_granger_sig\": false,\n          \"naive_xcorr_r\": 0.7374,\n          \"naive_xcorr_lag\": 1,\n          \"naive_xcorr_sig\": true,\n          \"consensus_votes\": 0,\n          \"consensus_methods\": []\n        },\n        {\n          \"canary\": \"ece\",\n          \"downstream\": \"distinct_3\",\n          \"perm_granger_fwd_p\": 0.259748,\n          \"perm_granger_fwd_sig_fdr\": false,\n          \"perm_granger_rev_p\": 0.778444,\n          \"diff_xcorr_fwd_p\": 0.324673,\n          \"diff_xcorr_fwd_r\": 0.5615,\n          \"diff_xcorr_fwd_lag\": 5,\n          \"diff_xcorr_fwd_sig_fdr\": false,\n          \"threshold_onset_lead\": null,\n          \"threshold_onset_sig\": false,\n          \"ty_granger_p\": 0.6238,\n          \"ty_granger_sig\": false,\n          \"naive_xcorr_r\": 0.6898,\n          \"naive_xcorr_lag\": 2,\n          \"naive_xcorr_sig\": true,\n          \"consensus_votes\": 0,\n          \"consensus_methods\": []\n        }\n      ]\n    }\n  ]\n}\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "27bb4652-8470-4f4a-bde7-32d3ef62a83d",
+            "uuid": "ce40354a-e803-4815-8246-0b3f12741b0a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014gVpTjTij739S1aXYZXBK7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4669,
+                "cache_read_input_tokens": 116761,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4669
+                },
+                "output_tokens": 35,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-24T16:52:11.920Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ha1WadZcJYfaLMEwmP7RtN",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/D102_null_s42_s44_fpr.json"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "27bb4652-8470-4f4a-bde7-32d3ef62a83d",
+            "uuid": "eba1e3a9-081e-4f87-8518-35488932a4c4",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/D102_null_s42_s44_fpr.json",
+              "content": "{\n  \"description\": \"FPR transparency: per-seed per-pair raw p-values for 3 null experiments (s42-s44, alpha=0.00, Pythia-410M, T=10). Extracted from run_5method_analysis_d102.py output, BH-FDR recomputed across 6 pairs.\",\n  \"model\": \"pythia-410m\",\n  \"alpha\": 0.0,\n  \"T\": 10,\n  \"n_perm\": 5000,\n  \"threshold_criterion\": \"true_3sigma_d105\",\n  \"pair_basis\": \"6-pair (distinct_1/2/3 only, mauve excluded)\",\n  \"methods\": [\n    \"perm_granger (BH-FDR across 6 pairs)\",\n    \"diff_xcorr (BH-FDR across 6 pairs)\",\n    \"threshold_onset (true_3sigma_d105)\",\n    \"ty_granger (uncorrected)\",\n    \"naive_xcorr (|r|>0.5, sig requires lag!=0, consensus vote requires lag<0)\"\n  ],\n  \"consensus_rule\": \"K = number of methods voting forward causation. xcorr methods (naive, diff) vote only if peak_lag < 0 (canary leads downstream). PermG and TY vote if significant (after FDR for PermG). Threshold votes if canary_onset < downstream_onset.\",\n  \"summary\": {\n    \"total_seed_pairs\": 18,\n    \"K_ge_3_count\": 0,\n    \"K_ge_3_fpr\": 0.0,\n    \"per_seed_K_ge_3\": {\n      \"s42\": 0,\n      \"s43\": 0,\n      \"s44\": 0\n    },\n    \"K_ge_3_permg_breakdown\": {\n      \"with_permg\": 0,\n      \"without_permg\": 0,\n      \"detail\": \"none\"\n    },\n    \"per_seed_permg_fwd_fdr\": {\n      \"s42\": 0,\n      \"s43\": 0,\n      \"s44\": 0\n    }\n  },\n  \"seeds\": [\n    {\n      \"seed\": 42,\n      \"exp_dir\": \"results/alpha_sweep/a000_s42\",\n      \"T\": 10,\n      \"n_gens\": 11,\n      \"n_perm\": 5000,\n      \"pairs\": [\n        {\n          \"canary\": \"token_entropy\",\n          \"downstream\": \"distinct_1\",\n          \"perm_granger_fwd_p\": 0.05139,\n          \"perm_granger_fwd_sig_fdr\": false,\n          \"perm_granger_rev_p\": 0.795641,\n          \"diff_xcorr_fwd_p\": 0.000157,\n          \"diff_xcorr_fwd_r\": 0.9408,\n          \"diff_xcorr_fwd_lag\": -1,\n          \"diff_xcorr_fwd_sig_fdr\": true,\n          \"threshold_onset_lead\": null,\n          \"threshold_onset_sig\": false,\n          \"ty_granger_p\": 0.7587,\n          \"ty_granger_sig\": false,\n          \"naive_xcorr_r\": 0.9023,\n          \"naive_xcorr_lag\": -5,\n          \"naive_xcorr_sig\": true,\n          \"consensus_votes\": 2,\n          \"consensus_methods\": [\"naive\", \"diff\"]\n        },\n        {\n          \"canary\": \"token_entropy\",\n          \"downstream\": \"distinct_2\",\n          \"perm_granger_fwd_p\": 0.080384,\n          \"perm_granger_fwd_sig_fdr\": false,\n          \"perm_granger_rev_p\": 0.978204,\n          \"diff_xcorr_fwd_p\": 0.009707,\n          \"diff_xcorr_fwd_r\": 0.9184,\n          \"diff_xcorr_fwd_lag\": -4,\n          \"diff_xcorr_fwd_sig_fdr\": true,\n          \"threshold_onset_lead\": 4,\n          \"threshold_onset_sig\": true,\n          \"ty_granger_p\": 0.4974,\n          \"ty_granger_sig\": false,\n          \"naive_xcorr_r\": -0.8262,\n          \"naive_xcorr_lag\": 2,\n          \"naive_xcorr_sig\": true,\n          \"consensus_votes\": 2,\n          \"consensus_methods\": [\"diff\", \"threshold\"]\n        },\n        {\n          \"canary\": \"token_entropy\",\n          \"downstream\": \"distinct_3\",\n          \"perm_granger_fwd_p\": 0.075585,\n          \"perm_granger_fwd_sig_fdr\": false,\n          \"perm_granger_rev_p\": 0.985403,\n          \"diff_xcorr_fwd_p\": 0.01191,\n          \"diff_xcorr_fwd_r\": 0.9095,\n          \"diff_xcorr_fwd_lag\": -4,\n          \"diff_xcorr_fwd_sig_fdr\": true,\n          \"threshold_onset_lead\": 4,\n          \"threshold_onset_sig\": true,\n          \"ty_granger_p\": 0.9989,\n          \"ty_granger_sig\": false,\n          \"naive_xcorr_r\": -0.8161,\n          \"naive_xcorr_lag\": 2,\n          \"naive_xcorr_sig\": true,\n          \"consensus_votes\": 2,\n          \"consensus_methods\": [\"diff\", \"threshold\"]\n        },\n        {\n          \"canary\": \"ece\",\n          \"downstream\": \"distinct_1\",\n          \"perm_granger_fwd_p\": 0.94981,\n          \"perm_granger_fwd_sig_fdr\": false,\n          \"perm_granger_rev_p\": 0.343131,\n          \"diff_xcorr_fwd_p\": 0.051439,\n          \"diff_xcorr_fwd_r\": -0.7037,\n          \"diff_xcorr_fwd_lag\": 2,\n          \"diff_xcorr_fwd_sig_fdr\": false,\n          \"threshold_onset_lead\": null,\n          \"threshold_onset_sig\": false,\n          \"ty_granger_p\": 0.017,\n          \"ty_granger_sig\": true,\n          \"naive_xcorr_r\": 0.8166,\n          \"naive_xcorr_lag\": -4,\n          \"naive_xcorr_sig\": true,\n          \"consensus_votes\": 2,\n          \"consensus_methods\": [\"naive\", \"ty\"]\n        },\n        {\n          \"canary\": \"ece\",\n          \"downstream\": \"distinct_2\",\n          \"perm_granger_fwd_p\": 0.544291,\n          \"perm_granger_fwd_sig_fdr\": false,\n          \"perm_granger_rev_p\": 0.353929,\n          \"diff_xcorr_fwd_p\": 0.192837,\n          \"diff_xcorr_fwd_r\": -0.5137,\n          \"diff_xcorr_fwd_lag\": 2,\n          \"diff_xcorr_fwd_sig_fdr\": false,\n          \"threshold_onset_lead\": -4,\n          \"threshold_onset_sig\": false,\n          \"ty_granger_p\": 0.565,\n          \"ty_granger_sig\": false,\n          \"naive_xcorr_r\": 0.7783,\n          \"naive_xcorr_lag\": 4,\n          \"naive_xcorr_sig\": true,\n          \"consensus_votes\": 0,\n          \"consensus_methods\": []\n        },\n        {\n          \"canary\": \"ece\",\n          \"downstream\": \"distinct_3\",\n          \"perm_granger_fwd_p\": 0.371526,\n          \"perm_granger_fwd_sig_fdr\": false,\n          \"perm_granger_rev_p\": 0.211758,\n          \"diff_xcorr_fwd_p\": 0.202654,\n          \"diff_xcorr_fwd_r\": 0.5482,\n          \"diff_xcorr_fwd_lag\": -3,\n          \"diff_xcorr_fwd_sig_fdr\": false,\n          \"threshold_onset_lead\": -4,\n          \"threshold_onset_sig\": false,\n          \"ty_granger_p\": 0.0003,\n          \"ty_granger_sig\": true,\n          \"naive_xcorr_r\": 0.8257,\n          \"naive_xcorr_lag\": 4,\n          \"naive_xcorr_sig\": true,\n          \"consensus_votes\": 1,\n          \"consensus_methods\": [\"ty\"]\n        }\n      ]\n    },\n    {\n      \"seed\": 43,\n      \"exp_dir\": \"results/alpha_sweep/a000_s43\",\n      \"T\": 10,\n      \"n_gens\": 11,\n      \"n_perm\": 5000,\n      \"pairs\": [\n        {\n          \"canary\": \"token_entropy\",\n          \"downstream\": \"distinct_1\",\n          \"perm_granger_fwd_p\": 0.079584,\n          \"perm_granger_fwd_sig_fdr\": false,\n          \"perm_granger_rev_p\": 0.059788,\n          \"diff_xcorr_fwd_p\": 0.085352,\n          \"diff_xcorr_fwd_r\": -0.7509,\n          \"diff_xcorr_fwd_lag\": 4,\n          \"diff_xcorr_fwd_sig_fdr\": false,\n          \"threshold_onset_lead\": null,\n          \"threshold_onset_sig\": false,\n          \"ty_granger_p\": 0.0076,\n          \"ty_granger_sig\": true,\n          \"naive_xcorr_r\": -0.9029,\n          \"naive_xcorr_lag\": 1,\n          \"naive_xcorr_sig\": true,\n          \"consensus_votes\": 1,\n          \"consensus_methods\": [\"ty\"]\n        },\n        {\n          \"canary\": \"token_entropy\",\n          \"downstream\": \"distinct_2\",\n          \"perm_granger_fwd_p\": 0.070186,\n          \"perm_granger_fwd_sig_fdr\": false,\n          \"perm_granger_rev_p\": 0.030394,\n          \"diff_xcorr_fwd_p\": 0.000594,\n          \"diff_xcorr_fwd_r\": 0.9127,\n          \"diff_xcorr_fwd_lag\": -1,\n          \"diff_xcorr_fwd_sig_fdr\": true,\n          \"threshold_onset_lead\": null,\n          \"threshold_onset_sig\": false,\n          \"ty_granger_p\": 0.4004,\n          \"ty_granger_sig\": false,\n          \"naive_xcorr_r\": -0.9162,\n          \"naive_xcorr_lag\": 1,\n          \"naive_xcorr_sig\": true,\n          \"consensus_votes\": 1,\n          \"consensus_methods\": [\"diff\"]\n        },\n        {\n          \"canary\": \"token_entropy\",\n          \"downstream\": \"distinct_3\",\n          \"perm_granger_fwd_p\": 0.034393,\n          \"perm_granger_fwd_sig_fdr\": false,\n          \"perm_granger_rev_p\": 0.088782,\n          \"diff_xcorr_fwd_p\": 0.000713,\n          \"diff_xcorr_fwd_r\": 0.9079,\n          \"diff_xcorr_fwd_lag\": -1,\n          \"diff_xcorr_fwd_sig_fdr\": true,\n          \"threshold_onset_lead\": null,\n          \"threshold_onset_sig\": false,\n          \"ty_granger_p\": 0.8147,\n          \"ty_granger_sig\": false,\n          \"naive_xcorr_r\": -0.8943,\n          \"naive_xcorr_lag\": 1,\n          \"naive_xcorr_sig\": true,\n          \"consensus_votes\": 1,\n          \"consensus_methods\": [\"diff\"]\n        },\n        {\n          \"canary\": \"ece\",\n          \"downstream\": \"distinct_1\",\n          \"perm_granger_fwd_p\": 0.516297,\n          \"perm_granger_fwd_sig_fdr\": false,\n          \"perm_granger_rev_p\": 0.472905,\n          \"diff_xcorr_fwd_p\": 0.163821,\n          \"diff_xcorr_fwd_r\": 0.5435,\n          \"diff_xcorr_fwd_lag\": -2,\n          \"diff_xcorr_fwd_sig_fdr\": false,\n          \"threshold_onset_lead\": null,\n          \"threshold_onset_sig\": false,\n          \"ty_granger_p\": 0.026,\n          \"ty_granger_sig\": true,\n          \"naive_xcorr_r\": 0.8517,\n          \"naive_xcorr_lag\": 3,\n          \"naive_xcorr_sig\": true,\n          \"consensus_votes\": 1,\n          \"consensus_methods\": [\"ty\"]\n        },\n        {\n          \"canary\": \"ece\",\n          \"downstream\": \"distinct_2\",\n          \"perm_granger_fwd_p\": 0.878024,\n          \"perm_granger_fwd_sig_fdr\": false,\n          \"perm_granger_rev_p\": 0.282344,\n          \"diff_xcorr_fwd_p\": 0.260901,\n          \"diff_xcorr_fwd_r\": 0.6237,\n          \"diff_xcorr_fwd_lag\": -5,\n          \"diff_xcorr_fwd_sig_fdr\": false,\n          \"threshold_onset_lead\": null,\n          \"threshold_onset_sig\": false,\n          \"ty_granger_p\": 0.3364,\n          \"ty_granger_sig\": false,\n          \"naive_xcorr_r\": 0.8123,\n          \"naive_xcorr_lag\": 3,\n          \"naive_xcorr_sig\": true,\n          \"consensus_votes\": 0,\n          \"consensus_methods\": []\n        },\n        {\n          \"canary\": \"ece\",\n          \"downstream\": \"distinct_3\",\n          \"perm_granger_fwd_p\": 0.575485,\n          \"perm_granger_fwd_sig_fdr\": false,\n          \"perm_granger_rev_p\": 0.214557,\n          \"diff_xcorr_fwd_p\": 0.167261,\n          \"diff_xcorr_fwd_r\": 0.7233,\n          \"diff_xcorr_fwd_lag\": -5,\n          \"diff_xcorr_fwd_sig_fdr\": false,\n          \"threshold_onset_lead\": null,\n          \"threshold_onset_sig\": false,\n          \"ty_granger_p\": 0.6744,\n          \"ty_granger_sig\": false,\n          \"naive_xcorr_r\": 0.7685,\n          \"naive_xcorr_lag\": 3,\n          \"naive_xcorr_sig\": true,\n          \"consensus_votes\": 0,\n          \"consensus_methods\": []\n        }\n      ]\n    },\n    {\n      \"seed\": 44,\n      \"exp_dir\": \"results/alpha_sweep/a000_s44\",\n      \"T\": 10,\n      \"n_gens\": 11,\n      \"n_perm\": 5000,\n      \"pairs\": [\n        {\n          \"canary\": \"token_entropy\",\n          \"downstream\": \"distinct_1\",\n          \"perm_granger_fwd_p\": 0.069186,\n          \"perm_granger_fwd_sig_fdr\": false,\n          \"perm_granger_rev_p\": 0.184496,\n          \"diff_xcorr_fwd_p\": 0.005749,\n          \"diff_xcorr_fwd_r\": 0.9715,\n          \"diff_xcorr_fwd_lag\": -5,\n          \"diff_xcorr_fwd_sig_fdr\": true,\n          \"threshold_onset_lead\": null,\n          \"threshold_onset_sig\": false,\n          \"ty_granger_p\": 0.1862,\n          \"ty_granger_sig\": false,\n          \"naive_xcorr_r\": 0.9144,\n          \"naive_xcorr_lag\": -5,\n          \"naive_xcorr_sig\": true,\n          \"consensus_votes\": 2,\n          \"consensus_methods\": [\"naive\", \"diff\"]\n        },\n        {\n          \"canary\": \"token_entropy\",\n          \"downstream\": \"distinct_2\",\n          \"perm_granger_fwd_p\": 0.029994,\n          \"perm_granger_fwd_sig_fdr\": false,\n          \"perm_granger_rev_p\": 0.086983,\n          \"diff_xcorr_fwd_p\": 0.000244,\n          \"diff_xcorr_fwd_r\": 0.9327,\n          \"diff_xcorr_fwd_lag\": -1,\n          \"diff_xcorr_fwd_sig_fdr\": true,\n          \"threshold_onset_lead\": null,\n          \"threshold_onset_sig\": false,\n          \"ty_granger_p\": 0.2306,\n          \"ty_granger_sig\": false,\n          \"naive_xcorr_r\": 0.8517,\n          \"naive_xcorr_lag\": -1,\n          \"naive_xcorr_sig\": true,\n          \"consensus_votes\": 2,\n          \"consensus_methods\": [\"naive\", \"diff\"]\n        },\n        {\n          \"canary\": \"token_entropy\",\n          \"downstream\": \"distinct_3\",\n          \"perm_granger_fwd_p\": 0.031594,\n          \"perm_granger_fwd_sig_fdr\": false,\n          \"perm_granger_rev_p\": 0.260948,\n          \"diff_xcorr_fwd_p\": 0.044792,\n          \"diff_xcorr_fwd_r\": 0.6779,\n          \"diff_xcorr_fwd_lag\": -1,\n          \"diff_xcorr_fwd_sig_fdr\": false,\n          \"threshold_onset_lead\": 4,\n          \"threshold_onset_sig\": true,\n          \"ty_granger_p\": 0.8199,\n          \"ty_granger_sig\": false,\n          \"naive_xcorr_r\": 0.8241,\n          \"naive_xcorr_lag\": -1,\n          \"naive_xcorr_sig\": true,\n          \"consensus_votes\": 2,\n          \"consensus_methods\": [\"naive\", \"threshold\"]\n        },\n        {\n          \"canary\": \"ece\",\n          \"downstream\": \"distinct_1\",\n          \"perm_granger_fwd_p\": 0.374325,\n          \"perm_granger_fwd_sig_fdr\": false,\n          \"perm_granger_rev_p\": 0.14997,\n          \"diff_xcorr_fwd_p\": 0.042819,\n          \"diff_xcorr_fwd_r\": 0.8904,\n          \"diff_xcorr_fwd_lag\": 5,\n          \"diff_xcorr_fwd_sig_fdr\": false,\n          \"threshold_onset_lead\": null,\n          \"threshold_onset_sig\": false,\n          \"ty_granger_p\": 0.6129,\n          \"ty_granger_sig\": false,\n          \"naive_xcorr_r\": 0.8186,\n          \"naive_xcorr_lag\": 5,\n          \"naive_xcorr_sig\": true,\n          \"consensus_votes\": 0,\n          \"consensus_methods\": []\n        },\n        {\n          \"canary\": \"ece\",\n          \"downstream\": \"distinct_2\",\n          \"perm_granger_fwd_p\": 0.886623,\n          \"perm_granger_fwd_sig_fdr\": false,\n          \"perm_granger_rev_p\": 0.443711,\n          \"diff_xcorr_fwd_p\": 0.060923,\n          \"diff_xcorr_fwd_r\": 0.861,\n          \"diff_xcorr_fwd_lag\": 5,\n          \"diff_xcorr_fwd_sig_fdr\": false,\n          \"threshold_onset_lead\": null,\n          \"threshold_onset_sig\": false,\n          \"ty_granger_p\": 0.1696,\n          \"ty_granger_sig\": false,\n          \"naive_xcorr_r\": 0.7374,\n          \"naive_xcorr_lag\": 1,\n          \"naive_xcorr_sig\": true,\n          \"consensus_votes\": 0,\n          \"consensus_methods\": []\n        },\n        {\n          \"canary\": \"ece\",\n          \"downstream\": \"distinct_3\",\n          \"perm_granger_fwd_p\": 0.259748,\n          \"perm_granger_fwd_sig_fdr\": false,\n          \"perm_granger_rev_p\": 0.778444,\n          \"diff_xcorr_fwd_p\": 0.324673,\n          \"diff_xcorr_fwd_r\": 0.5615,\n          \"diff_xcorr_fwd_lag\": 5,\n          \"diff_xcorr_fwd_sig_fdr\": false,\n          \"threshold_onset_lead\": null,\n          \"threshold_onset_sig\": false,\n          \"ty_granger_p\": 0.6238,\n          \"ty_granger_sig\": false,\n          \"naive_xcorr_r\": 0.6898,\n          \"naive_xcorr_lag\": 2,\n          \"naive_xcorr_sig\": true,\n          \"consensus_votes\": 0,\n          \"consensus_methods\": []\n        }\n      ]\n    }\n  ]\n}\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ApPvv21Yf59dhDWbFjAwa1",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "D102_null_s42_s44_fpr",
+                "type": "data",
+                "description": "FPR transparency: 3 null seeds (s42-s44) 6-pair D102 analysis. BH-FDR recomputed across 6 pairs. K>=3 FPR = 0/18, PermG FPR = 0/18.",
+                "project": "distrib_canary_collapse",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/D102_null_s42_s44_fpr.json",
+                "tags": [
+                  "fpr",
+                  "null",
+                  "d102",
+                  "6pair"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "27bb4652-8470-4f4a-bde7-32d3ef62a83d",
+            "uuid": "838c45c5-30c9-4876-a1ba-6492490a9446",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0134hZhf3zBRzwaR6TaVo1CG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5903,
+                "cache_read_input_tokens": 121430,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5903
+                },
+                "output_tokens": 84,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": "2026-05-24T16:52:18.757Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ApPvv21Yf59dhDWbFjAwa1",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260524_4514c1\\\", \\\"name\\\": \\\"D102_null_s42_s44_fpr\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"FPR transparency: 3 null seeds (s42-s44) 6-pair D102 analysis. BH-FDR recomputed across 6 pairs. K>=3 FPR = 0/18, PermG FPR = 0/18.\\\", \\\"path\\\": \\\"projects/distrib_canary_collapse/artifacts/_project/data/D102_null_s42_s44_fpr.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"distrib_canary_collapse\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-24T16:52:18.126114+00:00\\\", \\\"tags\\\": [\\\"fpr\\\", \\\"null\\\", \\\"d102\\\", \\\"6pair\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "27bb4652-8470-4f4a-bde7-32d3ef62a83d",
+            "uuid": "99ff2283-78a6-4e20-a4a6-fb14c2ed7905",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260524_4514c1\\\", \\\"name\\\": \\\"D102_null_s42_s44_fpr\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"FPR transparency: 3 null seeds (s42-s44) 6-pair D102 analysis. BH-FDR recomputed across 6 pairs. K>=3 FPR = 0/18, PermG FPR = 0/18.\\\", \\\"path\\\": \\\"projects/distrib_canary_collapse/artifacts/_project/data/D102_null_s42_s44_fpr.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"distrib_canary_collapse\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-24T16:52:18.126114+00:00\\\", \\\"tags\\\": [\\\"fpr\\\", \\\"null\\\", \\\"d102\\\", \\\"6pair\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260524_4514c1\", \"name\": \"D102_null_s42_s44_fpr\", \"type\": \"data\", \"description\": \"FPR transparency: 3 null seeds (s42-s44) 6-pair D102 analysis. BH-FDR recomputed across 6 pairs. K>=3 FPR = 0/18, PermG FPR = 0/18.\", \"path\": \"projects/distrib_canary_collapse/artifacts/_project/data/D102_null_s42_s44_fpr.json\", \"url\": null, \"project\": \"distrib_canary_collapse\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-24T16:52:18.126114+00:00\", \"tags\": [\"fpr\", \"null\", \"d102\", \"6pair\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n## 配置一致性验证\n\n| 参数 | s42 | s43 | s44 | s45-s50 标准 |\n|------|-----|-----|-----|-------------|\n| model | pythia-410m | pythia-410m | pythia-410m | pythia-410m |\n| data_dir | wikitext103_5k | wikitext103_5k | wikitext103_5k | wikitext103_5k |\n| steps_per_gen | 5000 | 5000 | 5000 | 5000 |\n| num_generations | 10 | 10 | 10 | 10 |\n| synthetic_ratio | 0.0 | 0.0 | 0.0 | 0.0 |\n| precision | fp32 (默认, bf16=false) | fp32 | fp32 | fp32 |\n\n配置完全一致。s42-s44 目录名无 `_fp32` 后缀但参数等价。\n\n## 6-pair FPR 结果\n\n| Seed | PermG FP (FDR) | K≥3 FP | Max K |\n|------|---------------|--------|-------|\n| s42 | 0/6 | 0/6 | 2 |\n| s43 | 0/6 | 0/6 | 1 |\n| s44 | 0/6 | 0/6 | 2 |\n| **合计** | **0/18** | **0/18** | - |\n\n**PermG FPR = 0.00, K≥3 FPR = 0.00**\n\n与 8-pair 结果一致（s42-s44 均为 permg=0/8），6-pair ≤ 8-pair 验证通过。\n\nBH-FDR 已按 6 pairs 重新计算（非原 8-pair FDR），consensus voting 遵循 D102 规则（xcorr 需 peak_lag < 0，C009 方向修正）。\n\nArtifact 已注册：`D102_null_s42_s44_fpr.json` (art_20260524_4514c1)"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "27bb4652-8470-4f4a-bde7-32d3ef62a83d",
+            "uuid": "5aa2bee0-9bf1-4da8-a753-82bd5f417787",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HQ6GxJvvTHgLQUGB68vGAP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 620,
+                "cache_read_input_tokens": 127333,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 620
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n## 配置一致性验证\n\n| 参数 | s42 | s43 | s44 | s45-s50 标准 |\n|------|-----|-----|-----|-------------|\n| model | pythia-410m | pythia-410m | pythia-410m | pythia-410m |\n| data_dir | wikitext103_5k | wikitext103_5k | wikitext103_5k | wikitext103_5k |\n| steps_per_gen | 5000 | 5000 | 5000 | 5000 |\n| num_generations | 10 | 10 | 10 | 10 |\n| synthetic_ratio | 0.0 | 0.0 | 0.0 | 0.0 |\n| precision | fp32 (默认, bf16=false) | fp32 | fp32 | fp32 |\n\n配置完全一致。s42-s44 目录名无 `_fp32` 后缀但参数等价。\n\n## 6-pair FPR 结果\n\n| Seed | PermG FP (FDR) | K≥3 FP | Max K |\n|------|---------------|--------|-------|\n| s42 | 0/6 | 0/6 | 2 |\n| s43 | 0/6 | 0/6 | 1 |\n| s44 | 0/6 | 0/6 | 2 |\n| **合计** | **0/18** | **0/18** | - |\n\n**PermG FPR = 0.00, K≥3 FPR = 0.00**\n\n与 8-pair 结果一致（s42-s44 均为 permg=0/8），6-pair ≤ 8-pair 验证通过。\n\nBH-FDR 已按 6 pairs 重新计算（非原 8-pair FDR），consensus voting 遵循 D102 规则（xcorr 需 peak_lag < 0，C009 方向修正）。\n\nArtifact 已注册：`D102_null_s42_s44_fpr.json` (art_20260524_4514c1)"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 572433,
+            "duration_api_ms": 562963,
+            "num_turns": 40,
+            "stop_reason": "end_turn",
+            "session_id": "27bb4652-8470-4f4a-bde7-32d3ef62a83d",
+            "total_cost_usd": 2.4326460000000005,
+            "usage": {
+              "input_tokens": 31,
+              "cache_creation_input_tokens": 116112,
+              "cache_read_input_tokens": 1753304,
+              "output_tokens": 33082,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 116112,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 581,
+                  "cache_read_input_tokens": 127333,
+                  "cache_creation_input_tokens": 620,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 620
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2969,
+                "outputTokens": 24,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0030889999999999997,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 31,
+                "outputTokens": 33082,
+                "cacheReadInputTokens": 1753304,
+                "cacheCreationInputTokens": 116112,
+                "webSearchRequests": 0,
+                "costUSD": 2.4295570000000004,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "680d1fb2-dd93-404e-80fc-c0755f0c192a"
+          },
+          "id": "event-000117"
+        }
+      ]
+    }
+  ]
+}

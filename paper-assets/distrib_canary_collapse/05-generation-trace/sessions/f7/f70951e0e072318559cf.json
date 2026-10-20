@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f70951e0e072318559cf",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis csv full recompilation",
+  "task_key": "worker_analysis_csv_full_recompilation_20260520T200723",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_csv_full_recompilation_20260520T200723_result.json",
+    "occurrence": 1,
+    "bytes": 1405,
+    "sha256": "7457f8096d0b8b7e2751a7f61e0465028fff28b9875c4cc0fd4718201fcbce8d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证报告：\n\n```\n=== dose_response_d120_recompiled.csv 验证报告 ===\n\ntotal_experiments: 71\ntotal_from_17855: 40\ntotal_from_19828: 31\ncategories: ablation(1), alpha_sweep(44), generalize(15), intervention(4), padding_robustness(1), scale(2), scale_check(2), t20(5)\n\nthreshold_criterion: 全部 true_3sigma_d105（0 pre-D105 跳过）\nsignificance_fields: diff_xcorr→significant_fdr, perm_granger→significant_fdr, naive/threshold/ty→significant\n\nspot_check_passed: 5/5\n  - a010_s43_fp32 (17855): pg_fwd=3 diff_fwd=7 thr=2 ty=1 K≥3=4 ✓\n  - a040_s42_fp32 (17855): pg_fwd=0 diff_fwd=3 thr=0 ty=2 K≥3=1 ✓\n  - a050_s42_fp32 (17855): pg_fwd=6 diff_fwd=7 thr=4 ty=3 K≥3=6 ✓\n  - a075_s43 (19828):       pg_fwd=5 diff_fwd=6 thr=2 ty=2 K≥3=6 ✓\n  - t20_a100_s42_fp32 (17855): pg_fwd=6 diff_fwd=6 thr=6 ty=2 K≥3=6 ✓\n\ndiscrepancies: []\n\nvs old CSV (49 rows):\n  - +22 experiments (new: t20×5, a045_s43, a050_postd093, bf16 variants, 19828 duplicates, v3_d080 experiments)\n  - TY values changed for many experiments (D111 direction fix: peak_lag>0 → peak_lag<0)\n  - Column schema updated: added T, domain, n_pairs, fwd/rev separation, FDR-specific names\n\ncsv_path: /root/autodl-tmp/distrib_canary_collapse/dose_response_d120_recompiled.csv\nlocal_path: artifacts/dose_response_d120_recompiled.csv\ncompile_script: compile_dose_response.py\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-csv-full-recompilation.md"
+}

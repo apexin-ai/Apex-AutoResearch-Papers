@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c9da1077c622801e5557",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis check smollm3 westd19828",
+  "task_key": "worker_analysis_check_smollm3_westd19828_20260519T051711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_check_smollm3_westd19828_20260519T051711_result.json",
+    "occurrence": 1,
+    "bytes": 546,
+    "sha256": "c6e6a7464c420ed7c55c12e3440274dbec2fa84e046c5cdad036b3ad7dae45a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**smollm3_3b_wiki_a100_s42_v3 正在正常运行。**\n\n| 项目 | 详情 |\n|------|------|\n| 进程 | PID 408261→408266, GPU cuda:1 99% 利用率 |\n| 当前进度 | Gen 3/10 训练中, step ~421/5000 @ 1.18 it/s |\n| 已完成 | gen_0 (baseline), gen_1, gen_2 均含完整 synthetic_data + trainer + checkpoint |\n| all_metrics.json | 尚未生成（实验未跑完） |\n| 错误 | 无 |\n| 预估完成 | ~14小时后, 约 2026-05-20 03:30 UTC |\n\n状态报告已写入 `artifacts/smollm3_status_check.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-check-smollm3-westd19828.md"
+}

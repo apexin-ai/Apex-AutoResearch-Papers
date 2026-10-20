@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea5baa8d30801c2cb3ce",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis alpha sweep a050 s42 fp32",
+  "task_key": "worker_analysis_alpha_sweep_a050_s42_fp32_20260519T100331",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_alpha_sweep_a050_s42_fp32_20260519T100331_result.json",
+    "occurrence": 1,
+    "bytes": 1408,
+    "sha256": "dab65d9bad1c17939995b21e6464c8c29cc147ea7a4d15cf79e12f37866469f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。\n\n## 汇总：α=0.50 fp32 三种子对比\n\n| Metric | s42 | s43 | s44 |\n|---|---|---|---|\n| token_entropy_gen0 | 3.2342 | 3.2342 | 3.2342 |\n| token_entropy_gen10 | 2.7075 | 2.7227 | 2.7252 |\n| token_entropy_drift | -16.3% | -15.8% | -15.7% |\n| distinct_1_gen0 | 0.0916 | 0.0929 | 0.0929 |\n| distinct_1_gen10 | 0.0649 | 0.0660 | 0.0669 |\n| distinct_1_drift | -29.2% | -29.0% | -28.0% |\n| perplexity_gen0 | 26.95 | 26.95 | 26.95 |\n| perplexity_gen10 | 31.46 | 31.58 | 31.10 |\n| perplexity_drift | +16.8% | +17.2% | +15.4% |\n| ece_gen0 | 0.0108 | 0.0108 | 0.0108 |\n| ece_gen10 | 0.0868 | 0.0842 | 0.0890 |\n| ece_drift | +703.4% | +679.6% | +724.1% |\n| **perm_granger_fwd** | **6/8** | **6/8** | **6/8** |\n| perm_granger_rev | 0/8 | 0/8 | 0/8 |\n| ty_granger_fwd | 4/8 | 5/8 | — |\n| **consensus_k4** | **6/8** | **6/8** | **6/8** |\n| mmct_wpair_fwd | 6/8 | 6/8 | 6/8 |\n\n**结论**：3-seed 完全一致。PermG fwd=6/8、consensus_k4=6/8、MMCT=6/8 跨种子稳定复现，rev=0/8 确认方向性。α=0.50 boundary regime 的 canary lead-lag 信号在 fp32 下稳健成立。\n\n**注意事项**：\n- TY Granger 跨种子不稳定（4/8 vs 5/8），符合 C003 约束（α≤0.50 下 TY 不可靠）\n- D093 padding_side fix 未应用（3443 次 right-padding 警告），三个种子条件一致\n- Wall clock: 4.58 GPU-hours，EXIT_CODE=0"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-alpha-sweep-a050-s42-fp32.md"
+}

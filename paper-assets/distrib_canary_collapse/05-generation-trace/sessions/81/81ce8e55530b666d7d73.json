@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "81ce8e55530b666d7d73",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis a046 s42 fp32 5method",
+  "task_key": "worker_analysis_a046_s42_fp32_5method_20260521T070101",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_a046_s42_fp32_5method_20260521T070101_result.json",
+    "occurrence": 1,
+    "bytes": 710,
+    "sha256": "476e0e6843aa5d5cbe3db97139b0a0e7ccc6b9a739a5724fc2303e75cc9d280f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果摘要：\n\n**alpha_sweep_a046_s42_fp32 — 5method leadlag 结果**\n\n| 方法 | Forward | Reverse |\n|------|---------|---------|\n| PermG (FDR) | **0/8** | 0/8 |\n| DiffXCorr (FDR) | 2/8 | 2/8 |\n| ThresholdOnset 3σ | 0/8 | — |\n| TY Granger | 1/8 | — |\n| K≥3 | **0/8** | — |\n| Robust pairs | **0/8** | — |\n\nPermG = 0/8，所有 5 method 均无 robust forward causation 信号。确认 α_c > 0.46，与 [0.48, 0.50] 估计一致。\n\n注：PermG raw p 值在 0.03 附近但 FDR 校正后均为 0.0525（刚过 0.05 阈值），说明 α=0.46 确实处于临界区边缘——有弱信号但未达统计显著。\n\nRegistry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-a046-s42-fp32-5method.md"
+}

@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "c169ee0fc3706216e362",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "infra model prep gemma qwen w19",
+  "task_key": "worker_infra_model_prep_gemma_qwen_w19_20260518T173646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_model_prep_gemma_qwen_w19_20260518T173646.log",
+    "occurrence": 1,
+    "bytes": 761081,
+    "sha256": "fae073e1f38f7c5a17eb8a438c62a150d5f5641e534ac4855dd2440853be5287"
+  },
+  "statistics": {
+    "messages": 607,
+    "user_turns": 0,
+    "tool_calls": 250,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 103,
+      "tool_call": 250,
+      "tool_result": 250,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 607,
+      "chunks": [
+        {
+          "path": "c169ee0fc3706216e362-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c169ee0fc3706216e362-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c169ee0fc3706216e362-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "c169ee0fc3706216e362-part-0004.json",
+          "message_count": 67
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-model-prep-gemma-qwen-w19.md"
+}

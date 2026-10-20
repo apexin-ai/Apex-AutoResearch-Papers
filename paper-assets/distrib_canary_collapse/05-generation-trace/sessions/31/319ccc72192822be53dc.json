@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "319ccc72192822be53dc",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "data dose response csv",
+  "task_key": "worker_data_dose_response_csv_20260519T025500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_dose_response_csv_20260519T025500_result.json",
+    "occurrence": 1,
+    "bytes": 248,
+    "sha256": "a9a89f2de011a638e73d63b9aef59e3f60ca9cdbf362ad9e52c76b697e44b7a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 CSV 已注册完成：\n\n- `dose_response_fp32_detail.csv` → `art_20260519_6101de`\n- `dose_response_fp32.csv` → `art_20260519_eaa804`\n\n任务完成。α=0.05 和 α=0.60 两个 pending 点完成后需要回填数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-dose-response-csv.md"
+}

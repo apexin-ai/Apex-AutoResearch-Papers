@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9973e18e67a95732b952",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "evidence 14b appendix table",
+  "task_key": "worker_evidence_14b_appendix_table_20260525T080724",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_evidence_14b_appendix_table_20260525T080724_result.json",
+    "occurrence": 1,
+    "bytes": 2561,
+    "sha256": "6be8832e5e113ddf9b390df22893757dd2b95f36cf930488e30c506b456605d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON artifact 已生成并注册。以下是 LaTeX 表格预览：\n\n```latex\n\\begin{table}[h]\n\\centering\n\\caption{Pythia-1.4B phase diagram: PermG forward detection across contamination levels ($\\alpha$) and observation windows ($T$). Fwd/Rev: FDR-significant forward/reverse pairs; $K{\\geq}3$: multi-method consensus pairs. $\\dagger$ marks bidirectional confounding (reverse $>0$). Denominator is 8 (canonical pairs) unless marked $^{*}$ (6-pair basis, MAUVE unavailable).}\n\\label{tab:14b_phase_diagram}\n\\begin{tabular}{@{}llcccl@{}}\n\\toprule\n$T$ & $\\alpha$ & Seed & Fwd & Rev & $K{\\geq}3$ \\\\\n\\midrule\n\\multirow{12}{*}{10}\n & \\multirow{3}{*}{0.45} & 42 & 0/8 & 0/8 & 0/8 \\\\\n &                       & 43 & 1/8 & 0/8 & 2/8 \\\\\n &                       & 44 & 0/6$^{*}$ & 0/6$^{*}$ & 0/6$^{*}$ \\\\\n\\cmidrule(l){2-6}\n & \\multirow{3}{*}{0.50} & 42 & 4/8 & 2/8$^{\\dagger}$ & 3/8 \\\\\n &                       & 43 & 6/6$^{*}$ & 0/6$^{*}$ & 1/6$^{*}$ \\\\\n &                       & 44 & 6/6$^{*}$ & 0/6$^{*}$ & 0/6$^{*}$ \\\\\n\\cmidrule(l){2-6}\n & \\multirow{3}{*}{0.60} & 42 & 4/8 & 0/8 & 3/8 \\\\\n &                       & 43 & 4/8 & 6/8$^{\\dagger}$ & 3/8 \\\\\n &                       & 44 & 6/6$^{*}$ & 0/6$^{*}$ & 5/6$^{*}$ \\\\\n\\cmidrule(l){2-6}\n & \\multirow{3}{*}{0.75} & 42 & 5/8 & 0/8 & 5/8 \\\\\n &                       & 43 & 6/8 & 5/8$^{\\dagger}$ & 5/8 \\\\\n &                       & 44 & 6/6$^{*}$ & 0/6$^{*}$ & 6/6$^{*}$ \\\\\n\\midrule\n\\multirow{8}{*}{15}\n & \\multirow{2}{*}{0.45} & 42 & 3/8 & 0/8 & 4/8 \\\\\n &                       & 43 & 5/6$^{*}$ & 3/6$^{*\\dagger}$ & 3/6$^{*}$ \\\\\n\\cmidrule(l){2-6}\n & \\multirow{2}{*}{0.50} & 42 & 3/8 & 0/8 & 2/8 \\\\\n &                       & 43 & 3/6$^{*}$ & 0/6$^{*}$ & 3/6$^{*}$ \\\\\n\\cmidrule(l){2-6}\n & \\multirow{2}{*}{0.60} & 42 & 6/8 & 0/8 & 6/8 \\\\\n &                       & 43 & 6/6$^{*}$ & 3/6$^{*\\dagger}$ & 6/6$^{*}$ \\\\\n\\cmidrule(l){2-6}\n & \\multirow{2}{*}{0.75} & 42 & 6/8 & 0/8 & 6/8 \\\\\n &                       & 43 & 6/6$^{*}$ & 0/6$^{*}$ & 6/6$^{*}$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n```\n\n关键发现：\n- **T=10 α=0.45** 是盲区：3 seed 的 PermG fwd 均 ≤1，K≥3=0\n- **T=10 α≥0.50** 开始出现信号，但 s43 的 α=0.60/0.75 有双向混杂（rev=5-6/8）\n- **T=15** 整体灵敏度提高：α=0.45 已有 3-5 fwd；α≥0.60 达到 6/6-6/8 饱和\n- 4 个实验出现 bidirectional confounding（†标注），均在 s43，提示 seed-specific artifact"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/evidence-14b-appendix-table.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84651b7aea1a51f13521",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "resume scale 14b t10 resume",
+  "task_key": "worker_resume_scale_14b_t10_resume_20260522T085417",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_resume_scale_14b_t10_resume_20260522T085417_result.json",
+    "occurrence": 1,
+    "bytes": 524,
+    "sha256": "f46375d0b93db8318951b12bcbaf289555eb0098da269bcb1c040635123aaedd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两个 1.4B 实验已从 gen 2 resume 并注册为 RUNNING：\n\n| 实验 | GPU | tmux session | Registry |\n|------|-----|-------------|----------|\n| scale_14b_t10_a060_s42_fp32_v2 | westd-17855 cuda:3 | `scale_14b_a060_v2` | RUNNING |\n| scale_14b_t10_a075_s42_fp32_v2 | westd-17855 cuda:2 | `scale_14b_a075_v2` | RUNNING |\n\n两个都已进入 Generation 2/10 的 synthetic data generation 阶段。剩余 8 个 gen（gen 2-9），1.4B 模型每 gen 约 40-50 min，预计总运行 5-7 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/resume-scale-14b-t10-resume.md"
+}

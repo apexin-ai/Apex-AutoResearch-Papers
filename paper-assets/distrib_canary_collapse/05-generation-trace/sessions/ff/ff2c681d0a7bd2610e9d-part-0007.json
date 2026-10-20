@@ -1,0 +1,1098 @@
+{
+  "schema_version": "1.0",
+  "session_id": "ff2c681d0a7bd2610e9d",
+  "rounds": [
+    {
+      "number": 55,
+      "messages": [
+        {
+          "source_line": 1081,
+          "timestamp": "2026-05-15T17:35:15.416118+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\timport matplotlib\n2\tmatplotlib.use('Agg')\n3\timport matplotlib.pyplot as plt\n4\timport matplotlib.colors as mcolors\n5\timport numpy as np\n6\t\n7\tplt.rcParams.update({\n8\t    'font.family': 'serif',\n9\t    'font.size': 9,\n10\t    'axes.titlesize': 10,\n11\t    'axes.labelsize': 9,\n12\t    'xtick.labelsize': 8,\n13\t    'ytick.labelsize': 8,\n14\t    'legend.fontsize': 8,\n15\t    'figure.dpi': 300,\n16\t    'savefig.dpi': 300,\n17\t    'savefig.bbox': 'tight',\n18\t    'savefig.pad_inches': 0.05,\n19\t    'axes.spines.top': False,\n20\t    'axes.spines.right': False,\n21\t    'text.usetex': False,\n22\t})\n23\t\n24\t# Okabe-Ito colors\n25\tOI_GREEN = '#009E73'\n26\tOI_RED = '#D55E00'\n27\tOI_BLUE = '#0072B2'\n28\tOI_ORANGE = '#E69F00'\n29\tOI_GREY = '#999999'\n30\t\n31\tfig, (ax_a, ax_b) = plt.subplots(1, 2, figsize=(6.5, 3.5),\n32\t                                  gridspec_kw={'width_ratios': [1, 1], 'wspace': 0.35})\n33\t\n34\t# ============================================================\n35\t# Panel (a): 2x2 Annotated Heatmap — Effect of First-Differencing\n36\t# ============================================================\n37\t\n38\tchannels = ['canary→diversity', 'canary→perplexity']\n39\tconditions = ['Undifferenced', 'First-Differenced']\n40\t\n41\tsig_rates = np.array([\n42\t    [24/24, 24/24],   # canary→diversity\n43\t    [6/8,   0/8],     # canary→perplexity\n44\t])\n45\t\n46\tsig_labels = [\n47\t    ['24/24\\nF = 612–2615', '24/24\\nF increases'],\n48\t    ['6/8\\nF = 16–36',      '0/8\\nF ≈ 0, p = 0.99'],\n49\t]\n50\t\n51\tgreen_cmap = mcolors.LinearSegmentedColormap.from_list(\n52\t    'green_red', ['#FDEDEC', '#F5B7B1', '#ABEBC6', '#27AE60'], N=256)\n53\t\n54\tcustom_cmap = mcolors.LinearSegmentedColormap.from_list(\n55\t    'sig_cmap', [OI_RED, '#F5CBA7', '#A9DFBF', OI_GREEN], N=256)\n56\t\n57\tim = ax_a.imshow(sig_rates, cmap=custom_cmap, vmin=0, vmax=1, aspect='auto')\n58\t\n59\tfor i in range(2):\n60\t    for j in range(2):\n61\t        rate = sig_rates[i, j]\n62\t        text_color = 'white' if rate > 0.7 or rate < 0.15 else 'black'\n63\t        fontweight =\n…[truncated 2802 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001081"
+        },
+        {
+          "source_line": 1082,
+          "timestamp": "2026-05-15T17:36:11.364944+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "grep -A3 \"perplexity.*undiff\\|perplexity.*raw\\|ppl.*F_stat\\|perplexity.*f_stat\" /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/method_ablation.json"
+            }
+          },
+          "id": "event-001082"
+        },
+        {
+          "source_line": 1083,
+          "timestamp": "2026-05-15T17:36:11.816578+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-001083"
+        },
+        {
+          "source_line": 1084,
+          "timestamp": "2026-05-15T17:36:12.068360+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "head -5 /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/method_ablation_dmax_sensitivity.json"
+            }
+          },
+          "id": "event-001084"
+        },
+        {
+          "source_line": 1085,
+          "timestamp": "2026-05-15T17:36:12.970413+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"d_max_0\\\\\\\": {\\\\n    \\\\\\\"token_entropy_to_perplexity\\\\\\\": {\\\\n      \\\\\\\"seed_42\\\\\\\": {\\\\n        \\\\\\\"F\\\\\\\": 15.9803,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.88}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 902
+          },
+          "id": "event-001085"
+        },
+        {
+          "source_line": 1086,
+          "timestamp": "2026-05-15T17:36:18.392104+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "grep \"sig_rate\" /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/method_ablation_dmax_sensitivity.json"
+            }
+          },
+          "id": "event-001086"
+        },
+        {
+          "source_line": 1087,
+          "timestamp": "2026-05-15T17:36:18.843471+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-001087"
+        },
+        {
+          "source_line": 1088,
+          "timestamp": "2026-05-15T17:36:18.994159+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "grep \"permutation_granger\" /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/method_ablation.json"
+            }
+          },
+          "id": "event-001088"
+        },
+        {
+          "source_line": 1089,
+          "timestamp": "2026-05-15T17:36:19.460823+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"permutation_granger: differenced + shuffle permutation Granger (F-test)\\\\\\\"\\\\n          \\\\\\\"permutation_granger\\\\\\\": {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n          \\\\\\\"permutation_granger\\\\\\\": {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n          \\\\\\\"permutation_granger\\\\\\\": {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n          \\\\\\\"permutation_granger\\\\\\\": {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n        \\\\\\\"permutation_granger\\\\\\\": {\\\\n      \\\\\\\"spurious_reason_5method\\\\\\\": \\\\\\\"toda_yamamoto n.s., permutation_granger n.s.\\\\\\\",\\\\n          \\\\\\\"permutation_granger\\\\\\\": {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n          \\\\\\\"permutation_granger\\\\\\\": {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n          \\\\\\\"permutation_granger\\\\\\\": {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n          \\\\\\\"permutation_granger\\\\\\\": {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n        \\\\\\\"permutation_granger\\\\\\\": {\\\\n          \\\\\\\"permutation_granger\\\\\\\": {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n          \\\\\\\"permutation_granger\\\\\\\": {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n          \\\\\\\"permutation_granger\\\\\\\": {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n          \\\\\\\"permutation_granger\\\\\\\": {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n        \\\\\\\"permutation_granger\\\\\\\": {\\\\n          \\\\\\\"permutation_granger\\\\\\\": {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n          \\\\\\\"permutation_granger\\\\\\\": {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n          \\\\\\\"permutation_granger\\\\\\\": {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n          \\\\\\\"permutation_granger\\\\\\\": {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"permutation_granger\\\\\\\",\\\\n      \n…[truncated 6623 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 466
+          },
+          "id": "event-001089"
+        },
+        {
+          "source_line": 1090,
+          "timestamp": "2026-05-15T17:36:26.422029+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "grep -c \"\\\"significant\\\": true\" /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/method_ablation_dmax_sensitivity.json"
+            }
+          },
+          "id": "event-001090"
+        },
+        {
+          "source_line": 1091,
+          "timestamp": "2026-05-15T17:36:27.275001+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 852
+          },
+          "id": "event-001091"
+        },
+        {
+          "source_line": 1092,
+          "timestamp": "2026-05-15T17:36:27.275306+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "grep \"overall_sig_rate\\|rejection_rate\\|spurious_rate\\|summary\" /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/method_ablation_dmax_sensitivity.json"
+            }
+          },
+          "id": "event-001092"
+        },
+        {
+          "source_line": 1093,
+          "timestamp": "2026-05-15T17:36:27.325670+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 50
+          },
+          "id": "event-001093"
+        },
+        {
+          "source_line": 1094,
+          "timestamp": "2026-05-15T17:36:31.139608+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "grep \"sig_rate\" /root/autodl-tmp/distrib_canary_collapse/results/method_ablation_phase2_report.md"
+            }
+          },
+          "id": "event-001094"
+        },
+        {
+          "source_line": 1095,
+          "timestamp": "2026-05-15T17:36:31.691825+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-001095"
+        },
+        {
+          "source_line": 1096,
+          "timestamp": "2026-05-15T17:36:31.692168+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "grep -c \"\\\"sig\\\": true\" /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/method_ablation_dmax_sensitivity.json"
+            }
+          },
+          "id": "event-001096"
+        },
+        {
+          "source_line": 1097,
+          "timestamp": "2026-05-15T17:36:32.194361+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-001097"
+        },
+        {
+          "source_line": 1098,
+          "timestamp": "2026-05-15T17:36:47.653392+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "grep \"d_max_0\\|d_max_1\\|d_max_adapt\\|reject\\|spuri\" /root/autodl-tmp/distrib_canary_collapse/results/method_ablation_phase2_report.md"
+            }
+          },
+          "id": "event-001098"
+        },
+        {
+          "source_line": 1099,
+          "timestamp": "2026-05-15T17:36:47.653811+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-001099"
+        },
+        {
+          "source_line": 1100,
+          "timestamp": "2026-05-15T17:36:57.447361+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "head -100 /root/autodl-tmp/distrib_canary_collapse/results/method_ablation_phase2_report.md"
+            }
+          },
+          "id": "event-001100"
+        },
+        {
+          "source_line": 1101,
+          "timestamp": "2026-05-15T17:36:57.898899+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Method Ablation Phase 2: Pooled Panel Analysis\\\\n\\\\nGenerated: 2026-05-15T16:57:34.478890\\\\nAlpha levels: [0.0, 0.25, 0.5, 1.0]\\\\nRuns: 7  |  Panel rows: 56\\\\nMethods: naive, differenced, threshold, permutation_granger, TY\\\\nPermutations: 1000\\\\n\\\\n> alpha=0.75 RUNNING, alpha=0.10/0.60 QUEUED. Panel covers alpha={0.0, 0.25, 0.50, 1.0}. Update when alpha=0.75 completes.\\\\n\\\\n## 1. Method x Alpha Significance Rates (test-level)\\\\n\\\\nEach cell = sig_tests / total_tests at that (method, alpha).\\\\nalpha=1.0 has 4 seeds x 8 pairs = 32 tests; others have 1 seed x 8 pairs = 8 tests.\\\\n\\\\n| alpha |naive | differenced | threshold | permutation_granger | TY |\\\\n|-------|-------|-------|-------|-------|-------|\\\\n| 0.0 | 8/8 (100%) | 4/8 (50%) | 5/8 (62%) | 0/8 (0%) | 0/8 (0%) |\\\\n| 0.25 | 8/8 (100%) | 2/8 (25%) | 3/8 (38%) | 2/8 (25%) | 5/8 (62%) |\\\\n| 0.5 | 8/8 (100%) | 8/8 (100%) | 8/8 (100%) | 2/8 (25%) | 0/8 (0%) |\\\\n| 1.0 | 32/32 (100%) | 32/32 (100%) | 32/32 (100%) | 24/32 (75%) | 19/32 (59%) |\\\\n\\\\n## 2. Method x Alpha Verdict Table (pair-level)\\\\n\\\\nVerdict: SIG if majority of seeds significant (>=2/4 at alpha=1.0, or 1/1 at single-seed).\\\\n\\\\n| alpha |naive | differenced | threshold | permutation_granger | TY |\\\\n|-------|-------|-------|-------|-------|-------|\\\\n| 0.0 | 8/8 | 4/8 | 5/8 | 0/8 | 0/8 |\\\\n| 0.25 | 8/8 | 2/8 | 3/8 | 2/8 | 5/8 |\\\\n| 0.5 | 8/8 | 8/8 | 8/8 | 2/8 | 0/8 |\\\\n| 1.0 | 8/8 | 8/8 | 8/8 | 6/8 | 6/8 |\\\\n\\\\n## 3. Channel-Specific Analysis\\\\n\\\\n### entropy_to_diversity\\\\n\\\\n| alpha |naive | differenced | threshold | permutation_granger | TY |\\\\n|-------|-------|-------|-------|-------|-------|\\\\n| 0.0 | 3/3 | 3/3 | 3/3 | 0/3 | 0/3 |\\\\n| 0.25 | 3/3 | 1/3 | 3/3 | 1/3 | 3/3 |\\\\n| 0.5 | 3/3 | 3/3 | 3/3 | 0/3 | 0/3 |\\\\n| 1.0 | 12/12 | 12/12 | 12/12 | 12/12 | 12/12 |\\\\n\\\\n### entropy_to_perplexity\\\\n\\\\n| alpha |naive | differenced | threshold | permutation_granger | TY |\\\\n|-------|-------|-------|--\n…[truncated 1918 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-001101"
+        },
+        {
+          "source_line": 1102,
+          "timestamp": "2026-05-15T17:38:12.848556+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — worker_paper_figure_fig_differencing_dmax\n\n**结论**: WARNING（1 个 warning + 2 个 info）\n\n### 数据核对\n\n**Panel (a) 2×2 差分对比：**\n\n从 `method_ablation_phase2_report.md` Section 3 (α=1.0, permutation_granger 列) 独立核对：\n\n| 通道 | Phase2 报告 | 图中值 | 一致 |\n|------|-----------|--------|------|\n| canary→diversity **差分后** | entropy_to_div 12/12 + ece_to_div 12/12 = **24/24** | 24/24 | ✓ |\n| canary→perplexity **差分后** | entropy_to_ppl 0/4 + ece_to_ppl 0/4 = **0/8** | 0/8, F≈0, p=0.99 | ✓ |\n\n差分后数据完全一致。\n\n**未差分列**无法从 phase2_report 直接验证——该报告的 permutation_granger 列是差分版本。图中 \"Undifferenced\" 列的 6/8 和 F=612-2615 来源于 D017 分析，与 paper_framing.md #16 的 \"perplexity: 6-8/8→0/8\" 一致。\n\n- [severity: warning] **F=612-2615 的列归属需确认**。paper_framing.md #1 说 \"permutation Granger（差分後仍 4/4 seed 顯著，F=612-2615）\"——\"差分後\" 意味着 F=612-2615 是**差分后**的 F 范围。但图中将此范围标注在 \"Undifferenced\" 列，\"First-Differenced\" 列标注 \"F increases\"。如果 612-2615 确实是差分后 F 值，则标注在未差分列是错误的。需要从原始 D017 分析结果确认：(a) 未差分 F 范围是多少，(b) 差分后 F 范围是多少，(c) 哪个更大。\n\n**Panel (b) d_max sensitivity：**\n\n| d_max | 图中 rejection rate | paper_framing 参考 | 一致 |\n|-------|-------------------|--------------------|------|\n| d_max=0 | 6.2% (1/16) | \"#8: ~0%\" | ✓ |\n| d_max=adaptive | 75.0% (12/16) | \"#19: 75%\" | ✓ |\n| d_max=1 | 93.8% (15/16) | \"#8: ~94%\" | ✓ |\n\n数值与 paper_framing 多处引用一致。但未从 `method_ablation_dmax_sensitivity.json` 原始数据直接核算（该 JSON 结构复杂，grep 无法提取汇总数字）。\n\n### 硬编码问题\n\n- [severity: info] **脚本使用硬编码数据**（lines 41-44, 95），未从分析 JSON 程序化读取。与 v1 regime map 是同类结构性问题。但风险低于 v1——这些数据来自 α=1.0 multi-seed 分析（已完成且稳定），不像 regime map 那样随 cross-alpha 分析版本更新。建议在脚本注释中标注数据来源（\"from method_ablation_phase2_report.md, D017 analysis\"）。\n\n### 视觉质量\n\n- [severity: info] Panel (a) 颜色映射直观（绿=显著，红=不显著），底部右侧单元格（0/8）有红色边框强调，有效传达\"差分翻转整条通道\"的信息。Panel (b) 三柱对比清晰，naive baseline 虚线 (100%) 提供参照。整体适合论文 Fig 2 使用。\n\n### 建议\n\n1. **优先确认 F=612-2615 的列归属**：从 D017 原始输出核对未差分 vs 差分 F 范围\n2. 在脚本添加数据来源注释",
+              "project": "distrib_canary_collapse"
+            }
+          },
+          "id": "event-001102"
+        },
+        {
+          "source_line": 1103,
+          "timestamp": "2026-05-15T17:38:16.109442+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3260
+          },
+          "id": "event-001103"
+        },
+        {
+          "source_line": 1104,
+          "timestamp": "2026-05-15T17:40:39.614138+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry",
+              "max_results": "1"
+            }
+          },
+          "id": "event-001104"
+        },
+        {
+          "source_line": 1105,
+          "timestamp": "2026-05-15T17:40:39.614445+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-001105"
+        },
+        {
+          "source_line": 1106,
+          "timestamp": "2026-05-15T17:40:40.015280+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-001106"
+        },
+        {
+          "source_line": 1107,
+          "timestamp": "2026-05-15T17:40:40.066623+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-001107"
+        },
+        {
+          "source_line": 1108,
+          "timestamp": "2026-05-15T17:40:43.980800+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "project": "distrib_canary_collapse"
+            }
+          },
+          "id": "event-001108"
+        },
+        {
+          "source_line": 1109,
+          "timestamp": "2026-05-15T17:40:44.432510+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"alpha_sweep_a050_s43\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-15T06:58:45.880Z\\\", \\\"updated_at\\\": \\\"2026-05-15T17:40:27.311Z\\\"}, \\\"gen_wiki_gpt2m_a100_s42_v3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-15T12:07:20.050Z\\\", \\\"updated_at\\\": \\\"2026-05-15T15:30:24.087Z\\\", \\\"metrics\\\": {\\\"progress\\\": \\\"gen 4/10 (generating synthetic text), ~45%\\\"}}}, \\\"count\\\": 2, \\\"total\\\": 2, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0727}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 451
+          },
+          "id": "event-001109"
+        },
+        {
+          "source_line": 1110,
+          "timestamp": "2026-05-15T17:40:44.783591+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "nvidia-smi --query-gpu=index,name,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-001110"
+        },
+        {
+          "source_line": 1111,
+          "timestamp": "2026-05-15T17:40:45.286412+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 100 %, 55461 MiB, 97887 MiB\\\\n1, NVIDIA RTX PRO 6000 Blackwell Server Edition, 57 %, 6527 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-001111"
+        },
+        {
+          "source_line": 1112,
+          "timestamp": "2026-05-15T17:40:56.579392+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'DONE'}",
+              "project": "distrib_canary_collapse",
+              "limit": "5"
+            }
+          },
+          "id": "event-001112"
+        },
+        {
+          "source_line": 1113,
+          "timestamp": "2026-05-15T17:40:57.131788+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"alpha_sweep_a025_s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T06:58:43.090Z\\\", \\\"updated_at\\\": \\\"2026-05-15T17:39:43.623Z\\\", \\\"metrics\\\": {\\\"gen0\\\": {\\\"token_entropy\\\": 3.2342, \\\"ece\\\": 0.0108, \\\"perplexity\\\": 26.949, \\\"distinct_1\\\": 0.09833, \\\"distinct_2\\\": 0.5132, \\\"distinct_3\\\": 0.8057, \\\"effective_rank\\\": 46.61, \\\"mauve\\\": 0.03351}, \\\"gen10\\\": {\\\"token_entropy\\\": 3.0723, \\\"ece\\\": 0.02146, \\\"perplexity\\\": 21.899, \\\"distinct_1\\\": 0.05849, \\\"distinct_2\\\": 0.2236, \\\"distinct_3\\\": 0.333, \\\"effective_rank\\\": 45.37, \\\"mauve\\\": 0.01871}, \\\"drift_pct\\\": {\\\"token_entropy\\\": -5, \\\"ece\\\": 98.6, \\\"perplexity\\\": -18.7, \\\"distinct_1\\\": -40.5, \\\"distinct_2\\\": -56.4, \\\"distinct_3\\\": -58.7, \\\"effective_rank\\\": -2.7, \\\"mauve\\\": -44.2}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"alpha_sweep_a075_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T21:52:17.315Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:29:46.421Z\\\", \\\"metrics\\\": {\\\"progress\\\": \\\"11/11 gen (complete)\\\", \\\"gen0_token_entropy\\\": 3.234, \\\"gen10_token_entropy\\\": 2.337, \\\"gen0_ece\\\": 0.0108, \\\"gen10_ece\\\": 0.2063, \\\"gen0_perplexity\\\": 26.95, \\\"gen10_perplexity\\\": 76.03, \\\"gen0_distinct_1\\\": 0.0982, \\\"gen10_distinct_1\\\": 0.0661, \\\"gen0_distinct_2\\\": 0.5178, \\\"gen10_distinct_2\\\": 0.3037, \\\"gen0_distinct_3\\\": 0.8127, \\\"gen10_distinct_3\\\": 0.5011, \\\"token_entropy_drift_pct\\\": -27.7, \\\"ece_drift_pct\\\": 1809.5, \\\"perplexity_drift_pct\\\": 182.1, \\\"distinct_1_drift_pct\\\": -32.7, \\\"distinct_2_drift_pct\\\": -41.3, \\\"distinct_3_drift_pct\\\": -38.4, \\\"granger_ece_to_d1_p_fdr\\\": 0.046, \\\"granger_ece_to_d2_p_fdr\\\": 0.046, \\\"granger_entropy_to_d2_p_fdr\\\": 0.048, \\\"granger_entropy_to_d1_p_fdr\\\": 0.054, \\\"granger_fdr_sig_count\\\": \\\"3/8\\\", \\\"consensus_robust_pairs\\\": \\\"11/16\\\", \\\"xcorr_entropy_d1_lag\\\": 2, \\\"xcorr_entropy_d1_r\\\": 0.973}, \\\"conclusion\\\": \\\"success\\\"}, \\\"alpha_sweep_a050_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T21:52:15.427Z\\\", \\\"updated_at\\\": \\\n…[truncated 3037 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 552
+          },
+          "id": "event-001113"
+        },
+        {
+          "source_line": 1114,
+          "timestamp": "2026-05-15T17:40:57.182399+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "ls -lt /root/autodl-tmp/distrib_canary_collapse/results/ --time=ctime"
+            }
+          },
+          "id": "event-001114"
+        },
+        {
+          "source_line": 1115,
+          "timestamp": "2026-05-15T17:40:57.583509+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 128\\\\ndrwxr-xr-x  9 root root  4096 May 16 01:40 alpha_sweep\\\\ndrwxr-xr-x  9 root root   152 May 16 01:19 gen_wiki_gpt2m_a100_s42\\\\ndrwxr-xr-x  2 root root  4096 May 15 21:17 analysis\\\\n-rw-r--r--  1 root root  7189 May 15 16:57 method_ablation_phase2_report.md\\\\n-rw-r--r--  1 root root 94844 May 15 16:57 method_ablation_phase2_panel.json\\\\n-rw-r--r--  1 root root  1246 May 15 13:17 dose_response_drift.csv\\\\ndrwxr-xr-x  3 root root    25 May 15 07:41 extended_20gen\\\\ndrwxr-xr-x 11 root root  4096 May 15 05:58 mvp\\\\ndrwxr-xr-x  2 root root    82 May 15 05:33 detrending\\\\n-rw-r--r--  1 root root  3919 May 15 05:31 bootstrap_ty_results.json\\\\n-rw-r--r--  1 root root  3756 May 15 05:30 bootstrap_ty_dryrun.json\\\\ndrwxr-xr-x  2 root root    69 May 15 05:22 alpha_sweep_analysis\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-001115"
+        },
+        {
+          "source_line": 1116,
+          "timestamp": "2026-05-15T17:41:15.439531+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "ls -la /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/"
+            }
+          },
+          "id": "event-001116"
+        },
+        {
+          "source_line": 1117,
+          "timestamp": "2026-05-15T17:41:15.890844+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 236\\\\ndrwxr-xr-x  9 root root   4096 May 16 01:40 .\\\\ndrwxr-xr-x  9 root root   4096 May 15 19:57 ..\\\\ndrwxr-xr-x 13 root root   4096 May 15 07:36 a000_s42\\\\ndrwxr-xr-x 13 root root   4096 May 15 09:17 a025_s42\\\\ndrwxr-xr-x 13 root root   4096 May 16 01:36 a025_s43\\\\ndrwxr-xr-x 13 root root   4096 May 15 13:40 a050_s42\\\\ndrwxr-xr-x  2 root root     33 May 16 01:40 a050_s43\\\\ndrwxr-xr-x 13 root root   4096 May 15 21:12 a075_s42\\\\n-rw-r--r--  1 root root 178312 May 15 12:34 alpha_monotonicity.png\\\\ndrwxr-xr-x  2 root root     70 May 15 05:33 analysis\\\\n-rw-r--r--  1 root root   3410 May 15 05:11 analysis_summary.json\\\\n-rw-r--r--  1 root root  19644 May 15 12:34 pooled_panel_results.json\\\\n-rw-r--r--  1 root root   6816 May 15 12:34 pooled_panel_summary.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-001117"
+        },
+        {
+          "source_line": 1118,
+          "timestamp": "2026-05-15T17:41:15.891195+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'DONE'}",
+              "project": "distrib_canary_collapse",
+              "limit": "10",
+              "fields": "['exp_id', 'status', 'conclusion', 'metrics', 'spec']"
+            }
+          },
+          "id": "event-001118"
+        },
+        {
+          "source_line": 1119,
+          "timestamp": "2026-05-15T17:41:16.042309+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"alpha_sweep_a025_s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s43\\\\\\\"\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"121635\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a025_s43.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T13:16:31.189Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 15792.4, \\\"gpu_hours\\\": 4.39}, \\\"metrics\\\": {\\\"gen0\\\": {\\\"token_entropy\\\": 3.2342, \\\"ece\\\": 0.0108, \\\"perplexity\\\": 26.949, \\\"distinct_1\\\": 0.09833, \\\"distinct_2\\\": 0.5132, \\\"distinct_3\\\": 0.8057, \\\"effective_rank\\\": 46.61, \\\"mauve\\\": 0.03351}, \\\"gen10\\\": {\\\"token_entropy\\\": 3.0723, \\\"ece\\\": 0.02146, \\\"perplexity\\\": 21.899, \\\"distinct_1\\\": 0.05849, \\\"distinct_2\\\": 0.2236, \\\"distinct_3\\\": 0.333, \\\"effective_rank\\\": 45.37, \\\"mauve\\\": 0.01871}, \\\"drift_pct\\\": {\\\"token_entropy\\\": -5, \\\"ece\\\": 98.6, \\\"perplexity\\\": -18.7, \\\"distinct_1\\\": -40.5, \\\"distinct_2\\\": -56.4, \\\"distinct_3\\\": -58.7, \\\"effective_rank\\\": -2.7, \\\"mauve\\\": -44.2}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"alpha_sweep_a075_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"α=0.75 high contamination: critical boundary point for Granger-causal detectability — determines Claim 1 scope (α≥0.75 vs α=1.0 only)\\\", \\\"seed\\\": 42, \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"data_path\\\": \\\"data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"synthetic_ratio\\\": 0.75, \\\"num_generations\\\": 10, \\\"steps_per_gen\\\": 5000}, \\\"metrics\\\": {\\\"pro\n…[truncated 11122 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 151
+          },
+          "id": "event-001119"
+        },
+        {
+          "source_line": 1120,
+          "timestamp": "2026-05-15T17:41:50.522953+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "project": "distrib_canary_collapse",
+              "fields": "['exp_id', 'status', 'spec']"
+            }
+          },
+          "id": "event-001120"
+        },
+        {
+          "source_line": 1121,
+          "timestamp": "2026-05-15T17:41:50.623492+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"alpha_sweep_a050_s43\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s43\\\\\\\"\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"134860\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a050_s43.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T17:40:27.060Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"gen_wiki_gpt2m_a100_s42_v3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Method sensitivity patterns (Granger FDR collapse, cross-correlation dominance) generalize from GPT-2-small to GPT-2-medium, validating cross-architecture universality of methodological pitfalls\\\", \\\"seed\\\": 42, \\\"model_name\\\": \\\"gpt2-medium\\\", \\\"data_path\\\": \\\"data/wikitext103_5k\\\", \\\"data_count\\\": 5000}}}, \\\"count\\\": 2, \\\"total\\\": 2, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0774}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 100
+          },
+          "id": "event-001121"
+        },
+        {
+          "source_line": 1122,
+          "timestamp": "2026-05-15T17:42:10.089935+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__reviewer_post_to_director",
+              "max_results": "1"
+            }
+          },
+          "id": "event-001122"
+        },
+        {
+          "source_line": 1123,
+          "timestamp": "2026-05-15T17:42:10.141371+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-001123"
+        },
+        {
+          "source_line": 1124,
+          "timestamp": "2026-05-15T17:42:23.791016+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — alpha_sweep_a025_s43\n\n**结论**: PASS\n\n### 发现\n\n1. [severity: info] **GPU 合规**: cuda:1，项目白名单内 ✓。Wall clock 15792s / 4.39 GPU-hours，合理。\n\n2. [severity: info] **Cross-seed 一致性极强**，α=0.25 non-monotonic dose-response claim 获得独立复现支撑：\n\n| 指标 | s42 drift% | s43 drift% | 差异 |\n|------|-----------|-----------|------|\n| distinct_1 | -40.3 | -40.5 | 0.2pp |\n| distinct_2 | -57.1 | -56.4 | 0.7pp |\n| distinct_3 | -59.9 | -58.7 | 1.2pp |\n| token_entropy | -4.1 | -5.0 | 0.9pp |\n| perplexity | -17.2 | -18.7 | 1.5pp |\n| ece | +79.7 | +98.6 | 18.9pp |\n\ndiversity 三指标 seed 间差异均 <1.3pp，复现性优秀。ECE 差异较大（~19pp），但两个 seed 方向一致。\n\n3. [severity: info] **Perplexity 方向一致性**: 两个 seed 均为负向 drift（-17.2%, -18.7%），即 α=0.25 下 perplexity 下降。这与高 α（0.75: +182.1%, 1.0: +12395%）形成鲜明对比，支撑 \"perplexity 方向是 α 依赖的\" 论述。\n\n4. [severity: info] **新增指标**: s43 比 s42 多记录了 effective_rank（drift -2.7%）和 mauve（drift -44.2%）。若论文引用这两个指标，需确保所有 seed 和 α 条件都有——目前 s42 缺这两个字段。\n\n### 资源状态\n- `alpha_sweep_a050_s43` 已接力启动 cuda:1（PID 134860, 17:40 UTC）✓\n- `gen_wiki_gpt2m_a100_s42_v3` 继续在 cuda:0（~45%，55.5GB/97.9GB VRAM）✓\n- 双卡均合规，利用率正常（GPU0 100%, GPU1 57%——刚启动尚在 ramp-up）",
+              "project": "distrib_canary_collapse"
+            }
+          },
+          "id": "event-001124"
+        },
+        {
+          "source_line": 1125,
+          "timestamp": "2026-05-15T17:42:24.895763+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 1104
+          },
+          "id": "event-001125"
+        },
+        {
+          "source_line": 1126,
+          "timestamp": "2026-05-15T17:42:28.448845+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审查报告已发送。`alpha_sweep_a025_s43` PASS——cross-seed 复现性极强（distinct_1 drift 仅差 0.2pp），有力支撑 non-monotonic dose-response claim。两个 RUNNING 实验 GPU 分配均合规。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer"
+          },
+          "id": "event-001126"
+        }
+      ]
+    },
+    {
+      "number": 56,
+      "messages": [
+        {
+          "source_line": 1127,
+          "timestamp": "2026-05-15T17:42:28.906140+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — cron:on_complete:alpha_sweep_a025_s43]:\n实验 alpha_sweep_a025_s43 complete，请审查。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "source": "system"
+          },
+          "id": "event-001127"
+        },
+        {
+          "source_line": 1128,
+          "timestamp": "2026-05-15T17:42:35.752341+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已在上一轮完成 `alpha_sweep_a025_s43` 的审查并提交（PASS）。该实验 cross-seed 一致性极强，non-monotonic claim 获得独立复现支撑。报告已发送给 Director。\n\n当前状态：两个实验继续运行中（`alpha_sweep_a050_s43` cuda:1, `gen_wiki_gpt2m_a100_s42_v3` cuda:0），等待下一个完成通知。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer"
+          },
+          "id": "event-001128"
+        }
+      ]
+    },
+    {
+      "number": 57,
+      "messages": [
+        {
+          "source_line": 1129,
+          "timestamp": "2026-05-15T17:42:36.186775+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_analysis_alpha_sweep_a025_s43_20260515T173716]:\nWorker worker_analysis_alpha_sweep_a025_s43_20260515T173716 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "source": "worker_done:worker_analysis_alpha_sweep_a025_s43_20260515t173716"
+          },
+          "id": "event-001129"
+        },
+        {
+          "source_line": 1130,
+          "timestamp": "2026-05-15T17:42:44.498374+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/worker_analysis_alpha_sweep_a025_s43*result*.json",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse"
+            }
+          },
+          "id": "event-001130"
+        },
+        {
+          "source_line": 1131,
+          "timestamp": "2026-05-15T17:42:44.498784+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_analysis_alpha_sweep_a025_s43_20260515T173716_result.json"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-001131"
+        },
+        {
+          "source_line": 1132,
+          "timestamp": "2026-05-15T17:42:47.205490+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_analysis_alpha_sweep_a025_s43_20260515T173716_result.json"
+            }
+          },
+          "id": "event-001132"
+        },
+        {
+          "source_line": 1133,
+          "timestamp": "2026-05-15T17:42:47.256094+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"Registry 已更新。\\n\\n---\\n\\n## 1. Gen 0–10 完整指标表\\n\\n| Gen | token_entropy | ECE | perplexity | distinct_1 | distinct_2 | distinct_3 | eff_rank | mauve |\\n|-----|-------------|-------|-----------|-----------|-----------|-----------|---------|-------|\\n| 0 | 3.2342 | 0.0108 | 26.949 | 0.0983 | 0.5132 | 0.8057 | 46.61 | 0.0335 |\\n| 1 | 2.9953 | 0.0077 | 19.455 | 0.0996 | 0.5177 | 0.8097 | 49.63 | 0.0299 |\\n| 2 | 3.0369 | 0.0101 | 20.217 | 0.0807 | 0.4267 | 0.7109 | 49.98 | 0.0330 |\\n| 3 | 3.0516 | 0.0094 | 20.710 | 0.0725 | 0.3701 | 0.6219 | 50.41 | 0.0315 |\\n| 4 | 3.0337 | 0.0144 | 20.920 | 0.0664 | 0.3131 | 0.5166 | 50.44 | 0.0272 |\\n| 5 | 3.0467 | 0.0155 | 21.116 | 0.0640 | 0.2858 | 0.4653 | 49.59 | 0.0242 |\\n| 6 | 3.0428 | 0.0188 | 21.478 | 0.0621 | 0.2636 | 0.4179 | 49.67 | 0.0219 |\\n| 7 | 3.0554 | 0.0184 | 21.671 | 0.0611 | 0.2540 | 0.3976 | 47.47 | 0.0226 |\\n| 8 | 3.0878 | 0.0185 | 21.923 | 0.0597 | 0.2389 | 0.3647 | 47.07 | 0.0194 |\\n| 9 | 3.0691 | 0.0203 | 21.845 | 0.0593 | 0.2317 | 0.3476 | 45.61 | 0.0193 |\\n| 10 | 3.0723 | 0.0215 | 21.899 | 0.0585 | 0.2236 | 0.3330 | 45.37 | 0.0187 |\\n\\n## 2. Seed=42 vs Seed=43 对比\\n\\n| Metric | seed=42 drift | seed=43 drift | 比值 (43/42) |\\n|--------|-------------|-------------|------------|\\n| token_entropy | **-4.1%** | **-5.0%** | 1.22x |\\n| ECE | **+79.7%** | **+98.6%** | 1.24x |\\n| perplexity | **-17.2%** | **-18.7%** | 1.09x |\\n| distinct_1 | **-40.3%** | **-40.5%** | 1.00x |\\n| distinct_2 | **-57.1%** | **-56.4%** | 0.99x |\\n| distinct_3 | **-59.9%** | **-58.7%** | 0.98x |\\n\\n## 3. Conclusion: **success**\\n\\n所有 6 项指标 drift 方向完全一致（entropy↓、ECE↑、perplexity↓、diversity 三指标↓）。diversity 三指标幅度几乎完全复现（偏差 <2%）。entropy 和 ECE 的幅度 seed=43 略大（~22-24%），但均在 ±50% 判定阈值以内。perplexity drift 也高度吻合（偏差 9%）。\\n\\nα=0.25 低污染设置下的温和 collapse 模式在 seed=43 上完全复现。无 lead-lag 分析结果（本次 run 未包含 Granger/TY 检验）。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001133"
+        },
+        {
+          "source_line": 1134,
+          "timestamp": "2026-05-15T17:43:06.596434+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 分析结果与我之前独立核实的数据完全一致。核心发现：\n\n- Gen-by-gen 轨迹表的 gen0/gen10 数值与 registry 记录吻合\n- Seed 间对比表与我审查中的数字一致\n- Worker 正确标注\"未包含 Granger/TY 检验\"（因果分析在 pooled method_ablation 中进行，非单 seed 运行的一部分）\n- 结论 \"success\" 恰当\n\n我已在之前的审查报告中覆盖了这个实验（PASS），Worker 分析未引入新的可疑 claim，无需追加审查。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer"
+          },
+          "id": "event-001134"
+        }
+      ]
+    },
+    {
+      "number": 58,
+      "messages": [
+        {
+          "source_line": 1135,
+          "timestamp": "2026-05-15T17:43:07.042143+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-001135"
+        },
+        {
+          "source_line": 1136,
+          "timestamp": "2026-05-15T17:43:50.004854+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0 和 cuda:1（westd-19828 双卡）。越界立即 critical。\n- D019：df_resid<20 时 cohen_f2_label 必须返回 \"df_too_low\"，不得分类效应量。\n- D038：α=0.75 consensus（11/16 ROBUST, 单 seed）与 α=1.00（6/16, 4-seed K=4 S=3）不可直接比较。禁止引用 overestimation_rate。\n- D041 循环 ground truth：6 个 \"ground truth ROBUST\" pair 由 K=4 S=3 定义——与被评估的配置相同。FNR=0 声明必须标注此循环性。\n- paper_framing.md #28：token_entropy→perplexity 在 α=0.75 下不可引用（falsely ROBUST）。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19828(root)，远程目录 `/root/autodl-tmp/distrib_canary_collapse`\n- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/`\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- HF cache：`/root/autodl-tmp/.hf_cache`，HF_ENDPOINT=hf-mirror.com\n- 模型：EleutherAI/pythia-410m（主）+ gpt2-medium（cross-arch 验证）\n- 数据：`data/wikitext103_5k`（5000 条）+ `data/wikitext103`（完整，20gen 用）\n- 无 W&B 配置，不检查 W&B\n- 截至 handoff 时活跃进程：\n  - `gen_wiki_gpt2m_a100_s42_v3`：cuda:0，gpt2-medium cross-arch 实验，~45% 进度\n  - `alpha_sweep_a050_s43`：cuda:1，PID 134860，刚启动（17:40 UTC）\n\n### 3. 📊 当前状态\n刚完成 `alpha_sweep_a025_s43` 审查（PASS）并发布报告。Worker 分析也已完成——cross-seed 一致性极强（distinct_1 drift s42=-40.3% vs s43=-40.5%），non-monotonic claim 获独立复现。\n\nRegistry RUNNING：\n- `alpha_sweep_a050_s43`：seed 43 的 α=0.50 复现，cuda:1\n- `gen_wiki_gpt2m_a100_s42_v3`：gpt2-medium cross-architecture 验证，cuda:0，ETA ~22:20 UTC\n\n等待中：\n- Director 对 fig_differencing_dmax F=612-2615 列归属 warning 的回复（可能在 Undifferenced 还是 First-Differenced 列标错）\n- fpr_fnr_calibration.json methods_order 字段 TY/permG 顺序反了（WARNING 已发，未修）\n\n### 4. 📋 待办\n- `alpha_sweep_a050_s43` 完成 → 审查 cross-seed 一致性（对比 a050_s42: d1 drift -37.3%），检验 non-monotonic 中间点是否复现\n- `gen_wiki_gpt2m_a100_s42_v3` 完成 → **重点审查**：cross-arch 是否复现 method sensitivity pattern（naive 100% sig vs permG/TY 低 sig），这是 Claim 3 的关键外推证据\n- 后续可能出现 `alpha_sweep_a075_s43` → 审查 Granger FDR 是否复现 3/8 sig（s42 结果）\n- Director 若转发章节审查 → 启用 paper_framing.md 28 条约束逐条核对\n- 收到 Framing 提案 → 立即 Read `negative-framing-review.skill.md` 按四维度审\n\n### 5. 🎯 战略上下文\n- **Option B framing**：Method pitfalls + multi-method consensus → Claim 3（method sensitivity）领跑 → Claim 1（case study）→ Claim 2（regime map）\n- **核心发现链**：naive Pearson 100% sig → differencing 翻转 perplexity 通道（24/24→0/8）→ TY d_max 敏感（6.25%→93.75%）→ K=4 S=3 共识达 FPR=0/FNR=0\n- **最易判断错的事**：\n  1. FNR=0 \"完美分离\"看起来太好——别忘了 D041 循环 ground truth，6 个 pair 是同一个 K=4 S=3 标准定义的\n  2. consensus_framework.py METHOD_NAMES 顺序是 [naive, differenced, threshold, **TY**, **permG**]（index 3=TY, 4=permG），但 fpr_fnr_calibration.json 写反了\n  3. 远程和本地可能存在同名文件的历史残留——断言\"未修改\"前必须两边都读（L1 #5）\n  4. α=0.25 的 distinct_1 drift（~-40%）比 α=0.50（-37%）和 α=0.75（-33%）都大——这是 non-monotonic 的核心证据，不是 noise\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer"
+          },
+          "id": "event-001136"
+        }
+      ]
+    }
+  ]
+}

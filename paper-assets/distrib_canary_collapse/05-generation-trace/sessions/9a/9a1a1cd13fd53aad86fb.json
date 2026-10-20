@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a1a1cd13fd53aad86fb",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "d102 scale 14b t10 a050 s43 fp32",
+  "task_key": "worker_d102_scale_14b_t10_a050_s43_fp32_20260523T082237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_d102_scale_14b_t10_a050_s43_fp32_20260523T082237_result.json",
+    "occurrence": 1,
+    "bytes": 1259,
+    "sha256": "179c532703c7aa2cc3d0b74f4e8141e88527e5ea7760d4257c947f7fcd2f7e3e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成，原始脚本已恢复。结果摘要：\n\n## scale_14b_t10_a050_s43_fp32 D102 5-Method 结果\n\n**配置**: Pythia-1.4B, α=0.50, T=10 (11 gens), seed=43, fp32\n**MAUVE**: 全部 null（gpt2-large 不可达），已跳过，实际分析 6 pairs（2 canary × 3 distinct）\n\n### PermG (FDR)\n- **Forward: 6/6 sig** (全部 canary→downstream 方向显著)\n- **Reverse: 0/6 sig** (完美的方向性)\n\n### Consensus (K≥3)\n- **1/6 robust pairs**: `ece<distinct_1` (3/5: naive + diff + perm)\n- 其余 5 pairs 均为 2/5 (diff + perm)\n\n### 各方法检测数 (forward)\n| 方法 | Forward sig |\n|------|-----------|\n| PermG FDR | 6/6 |\n| Diff XCorr FDR | 6/6 |\n| Threshold Onset | 0/6 |\n| TY Granger | 0/6 |\n| Naive XCorr | 1/6 (ece<distinct_1) |\n\n### 对比 parent s42 (PermG=4/8)\ns43 PermG=6/6（去掉 mauve 的 4 pairs 后基数为 6）。如果折算为 /8 口径：**PermG ≈ 6/8**（假设 mauve pairs 不可用），与 s42 的 4/8 相比信号更强。Threshold onset 全部失败（canary 或 downstream onset 有一侧为 null），TY 全部不显著（与 C003 约束一致：α≤0.50 TY 不可靠）。\n\n输出 JSON 已保存: `results/scale/14b_t10_a050_s43_fp32/analysis/5method_leadlag.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/d102-scale-14b-t10-a050-s43-fp32.md"
+}

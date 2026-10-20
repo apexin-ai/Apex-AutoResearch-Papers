@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e7fd9414bbe7ce74a8c8",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "bugfix cascade empirical 20 20 fix",
+  "task_key": "worker_bugfix_cascade_empirical_20_20_fix_20260520T194026",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_bugfix_cascade_empirical_20_20_fix_20260520T194026_result.json",
+    "occurrence": 1,
+    "bytes": 948,
+    "sha256": "e117ce479994c7e2e254af30d5f557865a71310fd1cfce9acce2dea8fca93cc7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Two remaining matches — both are legitimate uses (\"across 20 experiments\" describing the total dataset size, and \"all 20 experiments\" in the metric asymmetry argument). Neither is a \"20/20 success\" claim. These are correct and should stay.\n\nAll edits complete:\n\n1. **`cascade_ordering_derivation.md`**: Replaced the 4-experiment comparison with 15/15 (α ≥ 0.30) claim, added low-α theoretical consistency, threshold sensitivity, and C4 MAUVE caveat. Also updated the MAUVE remark in Part 3 to note corpus-dependence.\n\n2. **`cascade_empirical_validation.md`**: Summary point 1 now states 15/15 for α ≥ 0.30, explicitly notes 5 sub-threshold experiments as \"neither confirmed nor refuted,\" and includes threshold sensitivity and C4 MAUVE caveats.\n\n3. **`cascade_empirical_data.json`**: Updated `cascade_ordering_universal` (15/15 with qualification) and `t_D_invariant` (17 WikiText + C4 domain confound note)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/bugfix-cascade-empirical-20-20-fix.md"
+}

@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "2be08cf9c08c8a53abb3",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis conditional granger path fix",
+  "task_key": "worker_analysis_conditional_granger_path_fix_20260521T030332",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_conditional_granger_path_fix_20260521T030332_result.json",
+    "occurrence": 1,
+    "bytes": 2635874,
+    "sha256": "fa63f804f9e69fb232583b731228a5a399ca9164475af176e05fae077473f09b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "2be08cf9c08c8a53abb3-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-conditional-granger-path-fix.md"
+}

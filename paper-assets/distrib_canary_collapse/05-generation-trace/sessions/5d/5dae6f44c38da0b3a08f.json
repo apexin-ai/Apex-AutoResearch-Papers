@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5dae6f44c38da0b3a08f",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "research literature supplement",
+  "task_key": "worker_research_literature-supplement_20260514T054346",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature-supplement_20260514T054346_result.json",
+    "occurrence": 1,
+    "bytes": 2027,
+    "sha256": "855349f55fa7a851a54c9ac881063a15962be1ab80ee6d1b2535fdb6e30ee222"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。literature_map.yaml 从 26 篇扩充到 31 篇（5 新增 + 1 充实），YAML 验证通过。\n\n## 补全结果\n\n| # | key | title | category | role | 与本项目核心关系 |\n|---|-----|-------|----------|------|----------------|\n| 1 | `sigma2026spectral` | SIGMA: Scalable Spectral Insights for LLM Model Collapse | canary-metrics | direct-competitor | 最直接的 spectral canary 竞争者；Track I/II 双轨 Gram matrix 谱界 vs 我们的单标量 effective rank——我们用更低计算开销换取多指标 panel 集成 |\n| 2 | `truong2025entropy` | Entropy Collapse: A Universal Failure Mode of Intelligent Systems | core-collapse | theoretical-foundation | 证明 Class 1 凸反馈系统 entropy collapse 是一阶相变，autocorrelation/variance 无预警。定义了 canary 失效的 regime boundary，我们需证明 canary 在 Class 2+ 中有效 |\n| 3 | `fu2025selfconsuming` | A Theoretical Perspective: How to Prevent Model Collapse in Self-consuming Training Loops | data-mixing | theoretical-foundation | 恒定 real data 比例保证 STL 收敛，为 α-sweep 50% accumulation 条件提供理论基础 |\n| 4 | `kalinowski2026topology` | Monitoring Neural Training with Topology: A Footprint-Predictable Collapse Index | canary-metrics | background | topology-based monitoring 正交路线，related work 需对比说明我们选择 spectral/calibration panel 的理由 |\n| 5 | `wang2026contaminated` | Can Generative AI Survive Data Contamination? Theoretical Guarantees under Contaminated Recursive Training | core-collapse | theoretical-foundation | 首个 universal approximator 下的正面收敛结果：收敛速率 = min(baseline rate, real data fraction)，为 α-sweep 提供理论上界 |\n| 6 | `bakshi2026improvement` (充实) | From Collapse to Improvement | data-mixing | theoretical-foundation (升级自 background) | 补充 αt trajectory + nt scaling 决定 collapse/improvement/consistency 三 regime 的条件；新增 gaps 和 TV distance 指标 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-supplement.md"
+}

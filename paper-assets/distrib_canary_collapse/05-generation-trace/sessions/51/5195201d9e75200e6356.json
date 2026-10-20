@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5195201d9e75200e6356",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ssh triple pass latex",
+  "task_key": "worker_ssh_triple_pass_latex_20260517T071229",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_triple_pass_latex_20260517T071229_result.json",
+    "occurrence": 1,
+    "bytes": 185,
+    "sha256": "e8dec2f99e13a6bb66070fb01bc69898fbf740f99780a03f7b13affca31338e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n- **Errors**: 0\n- **Label(s) may have changed**: 不存在（已收敛）\n- **Undefined references/citations**: 无\n- **页数**: 22 pages (423,669 bytes)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-triple-pass-latex.md"
+}

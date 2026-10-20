@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "225db018074f68f589f9",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis verify all 5rows",
+  "task_key": "worker_analysis_verify_all_5rows_20260518T010707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_verify_all_5rows_20260518T010707_result.json",
+    "occurrence": 1,
+    "bytes": 3765,
+    "sha256": "51caa1fceeb293d6999b500f50acc0c99525763ce86aaad39f0e3f764d8683cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the complete Table 7 (raw p<0.05, unified params: n_perm=5000, xcorr_max_lag=5, granger_max_lag=1).\n\n---\n\n## Table 7 (raw p<0.05)\n\n| Row | Naive | Diff | Thresh | PG fwd | PG rev | TY | K≥4 |\n|-----|-------|------|--------|--------|--------|-----|-----|\n| Baseline (Pythia-410M) | 8/8 | 8/8 | 8/8 | 6/8 | 3/8 | 4/8 | 6/8 |\n| Arch: GPT-2m | **数据不存在** | - | - | - | - | - | - |\n| Arch: OPT-1.3B | 8/8 | 8/8 | 8/8 | 6/8 | **2/8** | 6/8 | 6/8 |\n| Scale: Pythia-1.4B | 7/8 | 6/8 | 8/8 | 5/8 | 0/8 | 0/8 | 5/8 |\n| Domain: C4 (s42) | 8/8 | 8/8 | 6/8 | 8/8 | **4/8** | 4/8 | 7/8 |\n\n---\n\n## 与预期对比\n\n- **Baseline**: 完全匹配 ✓\n- **GPT-2m**: 服务器上不存在实验数据目录（`results/gen_wiki_gpt2m_a100_s42/` 不存在，`results/generalize/` 下也没有）。`leadlag_gpt2m_s42.py` 脚本存在但引用的数据路径为空。\n- **OPT-1.3B**: PG_rev = 2/8（预期 0/8）。distinct_1→ece p=0.028, distinct_2→ece p=0.045 都处于 0.05 边界，permutation test 随 seed 可翻转。其余列全部匹配。\n- **Pythia-1.4B**: 完全匹配 ✓\n- **C4 (s42)**: PG_rev = 4/8（预期 3/8）。mauve→ece p=0.043 是翻转的那个 pair。其余列全部匹配。\n\n---\n\n## Per-pair PG raw p-values\n\n### Pythia-410M Baseline\n| Pair | PG_fwd p | PG_rev p |\n|------|---------|---------|\n| token_entropy→perplexity | 0.5841 | 0.9658 |\n| token_entropy→distinct_1 | **0.0002** | 0.4921 |\n| token_entropy→distinct_2 | **0.0012** | 0.4805 |\n| token_entropy→distinct_3 | **0.0012** | 0.5047 |\n| ece→perplexity | 0.8040 | 0.1418 |\n| ece→distinct_1 | **0.0002** | **0.0274** |\n| ece→distinct_2 | **0.0006** | **0.0286** |\n| ece→distinct_3 | **0.0006** | **0.0306** |\n\n### OPT-1.3B\n| Pair | PG_fwd p | PG_rev p |\n|------|---------|---------|\n| token_entropy→perplexity | 0.8540 | 0.8982 |\n| token_entropy→distinct_1 | **0.0012** | 0.8778 |\n| token_entropy→distinct_2 | **0.0034** | 0.9622 |\n| token_entropy→distinct_3 | **0.0128** | 0.9880 |\n| ece→perplexity | 0.6275 | 0.1886 |\n| ece→distinct_1 | **0.0012** | **0.0276** |\n| ece→distinct_2 | **0.0046** | **0.0448** |\n| ece→distinct_3 | **0.0126** | 0.0728 |\n\n### Pythia-1.4B\n| Pair | PG_fwd p | PG_rev p |\n|------|---------|---------|\n| token_entropy→perplexity | 0.7163 | 0.9670 |\n| token_entropy→distinct_1 | **0.0274** | 0.8826 |\n| token_entropy→distinct_2 | **0.0346** | 0.7942 |\n| token_entropy→distinct_3 | 0.0532 | 0.7359 |\n| ece→perplexity | 0.5739 | 0.3177 |\n| ece→distinct_1 | **0.0042** | 0.5153 |\n| ece→distinct_2 | **0.0086** | 0.5123 |\n| ece→distinct_3 | **0.0216** | 0.5165 |\n\n### C4 s42\n| Pair | PG_fwd p | PG_rev p |\n|------|---------|---------|\n| token_entropy→mauve | **0.0212** | 0.4701 |\n| token_entropy→distinct_1 | **0.0082** | 0.4983 |\n| token_entropy→distinct_2 | **0.0126** | 0.3661 |\n| token_entropy→distinct_3 | **0.0262** | 0.2889 |\n| ece→mauve | **0.0178** | **0.0432** |\n| ece→distinct_1 | **0.0012** | **0.0046** |\n| ece→distinct_2 | **0.0036** | **0.0022** |\n| ece→distinct_3 | **0.0078** | **0.0024** |\n\n---\n\n## 数据来源\n\n| 实验 | 文件 | 参数验证 |\n|------|------|----------|\n| Pythia-410M | `pythia410m_8pair_5method_analysis.json` | n_perm=5000, xcorr=5, granger=1 ✓ |\n| OPT-1.3B | `unified_5method.json` + PG_rev 现场计算 | n_perm=5000, xcorr=5, granger=1 ✓ |\n| Pythia-1.4B | `unified_5method.json` + `pythia14b_8pair_6method_analysis.json` (PG_rev) | n_perm=5000, xcorr=5, granger=1 ✓ |\n| C4 s42 | `unified_5method.json` + PG_rev 现场计算 | n_perm=5000, xcorr=5, granger=1 ✓ |\n| GPT-2m | **缺失** | 实验未运行或数据被删除 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-verify-all-5rows.md"
+}

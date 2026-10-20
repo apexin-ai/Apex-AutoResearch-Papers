@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9719cc9eb6a4129fbb58",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops restart 14b t15a045 17855c5",
+  "task_key": "worker_ops_restart-14b-t15a045-17855c5_20260522T130723",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_restart-14b-t15a045-17855c5_20260522T130723_result.json",
+    "occurrence": 1,
+    "bytes": 226,
+    "sha256": "e823477681a3666f43a637c6ebf2b707a7f86a979157450c62185ec70efa6ab4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **tmux session**: `scale_14b_t15_a045_s42_fp32` on westd-17855\n- **PID**: 680608, GPU cuda:5\n- **--start_gen 2**, 从 gen_1 继续\n- **Registry** 已更新（新 PID、log_path、start_gen=2）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-restart-14b-t15a045-17855c5.md"
+}

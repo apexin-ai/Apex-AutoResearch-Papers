@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6adaa92eec1b25fb4156",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis mmct v2 a010 fp32 batch",
+  "task_key": "worker_analysis_mmct_v2_a010_fp32_batch_20260519T093436",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mmct_v2_a010_fp32_batch_20260519T093436_result.json",
+    "occurrence": 1,
+    "bytes": 813,
+    "sha256": "f9302a48ce2cc64b0cbf0de52b2cf4891b4159f3e7f3bc8b50d88d21163a7a62"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n**MMCT v2 α=0.10 fp32 双 seed 结果：**\n\n| Mode | s42_fp32 | s43_fp32 | 跨 seed 一致 |\n|------|----------|----------|-------------|\n| uniform_forward | 0/8 | 0/8 | YES |\n| weighted_global_forward | 0/8 | 0/8 | YES |\n| weighted_pair_forward | 2/8 | 4/8 | NO |\n\n**权威值：0/8**（uniform/wglobal 模式，双 seed 一致）\n\nwpair 的 2-4/8 跨 seed 不稳定，根因是 3 个 null seed 导致 per-pair FPR 权重方差大。与 pre-D080 旧 a010_s42 的 wpair 1/8 比，uniform/wglobal 结果无变化。\n\n产出：\n- Artifact: `artifacts/mmct_v2_a010_fp32_results.md`\n- JSON: `westd-19828:artifacts/mmct_results/mmct_v2_a010_fp32.json`\n- Unified data: `westd-19828:artifacts/mmct_results/unified_data/a010_s42_fp32.json` / `a010_s43_fp32.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mmct-v2-a010-fp32-batch.md"
+}

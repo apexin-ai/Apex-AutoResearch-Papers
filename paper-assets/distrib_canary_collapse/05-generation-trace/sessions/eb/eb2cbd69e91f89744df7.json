@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb2cbd69e91f89744df7",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis per alpha bh fdr",
+  "task_key": "worker_analysis_per_alpha_bh_fdr_20260519T033513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_per_alpha_bh_fdr_20260519T033513_result.json",
+    "occurrence": 1,
+    "bytes": 820,
+    "sha256": "92bcedb999ca8a2e2526fd5a22942dcdb890b4693d97b3761c2cd9f81830184f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。核心结果：\n\n**Per-alpha BH FDR vs per-experiment BH FDR 主要差异**：\n\n| 方法 | 变化 |\n|------|------|\n| naive_xcorr, diff_xcorr, threshold_onset | 无变化 |\n| **perm_granger @ α=0.50** | **大幅下降: 3.00→0.67/8** (borderline p-values 在更大 pool 下失去显著性) |\n| perm_granger @ α=0.75 | 微增: 6.33→6.67/8 |\n| perm_granger @ α=1.00 | 微增: 4.62→4.88/8 |\n| **ty_granger** | 各 α 普遍下降 1-2 个 sig count |\n\n**对 dose-response 叙事的影响**：反而**加强**了。perm_granger 在 α=0.50 从 3.0/8 降至 0.67/8，α=0.75 维持 6.67/8，使 0.50→0.75 的跳跃更剧烈（0.67→6.67 vs 之前 3.0→6.33）。\n\nn_perm=5000 已确认，无需升级。脚本在 westd-19828，报告在 `artifacts/per_alpha_fdr_results.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-per-alpha-bh-fdr.md"
+}

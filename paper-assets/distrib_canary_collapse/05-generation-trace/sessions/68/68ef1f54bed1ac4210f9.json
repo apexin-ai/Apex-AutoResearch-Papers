@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68ef1f54bed1ac4210f9",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis alpha sweep a050 final",
+  "task_key": "worker_analysis_alpha_sweep_a050_final_20260515T054443",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_alpha_sweep_a050_final_20260515T054443_result.json",
+    "occurrence": 1,
+    "bytes": 1463,
+    "sha256": "01214436ee6c072b827e2ba294114e4a7027c1245fcfa233bd8500560176beb4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结果：\n\n## Gen10 最终指标\n| 指标 | Gen0 | Gen10 | Drift |\n|------|------|-------|-------|\n| token_entropy | 3.234 | 2.632 | **-18.6%** |\n| ece | 0.011 | 0.102 | **+842.8%** |\n| perplexity | 26.95 | 32.64 | +21.1% |\n| distinct_1 | 0.098 | 0.062 | **-37.3%** |\n| distinct_2 | 0.518 | 0.251 | **-51.5%** |\n| distinct_3 | 0.813 | 0.387 | **-52.4%** |\n\n## Granger 因果 (diff-permutation, 5000 perms)\n| Pair | p_diff | sig? |\n|------|--------|------|\n| entropy→d1 | 0.095 | **No** |\n| entropy→d2 | 0.097 | **No** |\n| ece→d1 | 0.019 | **Yes** |\n| ece→d2 | 0.039 | **Yes** |\n\n**2/4 diff-sig** — ece 通道显著，entropy 通道不显著（p≈0.095，刚好在边界之上）。\n\n## 关键发现\nα=0.50 **不是统一的可检测性边界**，而是 **token_entropy 作为 canary 的特异性边界**。ECE 在 α=0.50 仍然是有效 canary（p=0.019-0.039），这修正了 D025 的判断：可检测性阈值因 canary 类型而异，不存在单一 α 截断点。\n\n## Cross-alpha 规律\n- 多样性崩塌 (d1/d2 drift) 在 α 上**非单调**，α=0.25 最严重\n- 校准退化 (ece drift) **超线性增长**：+52% → +80% → +843% → +3700%\n- Granger 可检测性跟随 ece_drift 而非 d1_drift\n\n## α=0.75 预测\nentropy 应跨过显著性门槛，预期 3/4 或 4/4 diff-sig。\n\n**Conclusion: success** | checkpoint: `results/alpha_sweep/a050_s42/gen_10/checkpoint`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-alpha-sweep-a050-final.md"
+}

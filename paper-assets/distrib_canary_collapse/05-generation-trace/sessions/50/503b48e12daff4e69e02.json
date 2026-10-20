@@ -1,0 +1,1559 @@
+{
+  "schema_version": "1.0",
+  "id": "503b48e12daff4e69e02",
+  "project": "distrib_canary_collapse",
+  "kind": "conversation",
+  "title": "writing literature integration",
+  "task_key": "worker_writing_literature-integration_20260515T210855",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_writing_literature-integration_20260515T210855.jsonl",
+    "occurrence": 1,
+    "bytes": 74213,
+    "sha256": "34ddbd207b1290e59ac16202663b763c01547d25044aa74e6afb2bed4c95a3e6"
+  },
+  "statistics": {
+    "messages": 77,
+    "user_turns": 0,
+    "tool_calls": 38,
+    "roles": {
+      "tool_call": 38,
+      "tool_result": 38,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T21:13:32.294237+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/literature_scan_20260515/scan_report.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T21:13:32.294631+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Literature Scan Report — 2026-05-15\n2\t\n3\t**Scope**: Papers published or posted as arXiv preprints during March–May 2026, relevant to our EMNLP 2026 submission on multi-method consensus for lead-lag analysis in iterative training collapse.\n4\t\n5\t**Baseline**: 30+ papers already tracked in `literature_map.yaml`.\n6\t\n7\t---\n8\t\n9\t## New Papers Found\n10\t\n11\t### 1. [HIGH RELEVANCE] Causal-Audit: A Framework for Risk Assessment of Assumption Violations in Time-Series Causal Discovery\n12\t\n13\t- **Authors**: Marco Ruiz, Miguel Arana-Catania, David R. Ardila, Rodrigo Ventura\n14\t- **Date**: April 2, 2026\n15\t- **URL**: https://arxiv.org/abs/2604.02488\n16\t- **Key Findings**:\n17\t  - Proposes pre-screening framework that validates assumptions (stationarity, regularity, persistence, nonlinearity, confounding) before applying causal methods\n18\t  - Computes calibrated risk scores (AUROC > 0.95) across five assumption families\n19\t  - Abstention-aware decision policy: recommends methods (PCMCI+, VAR-based Granger) only when evidence supports reliable inference\n20\t  - **62% false positive reduction** among recommended datasets; 78% abstention on severe violations\n21\t- **Relation**: **Complementary (important to cite)**\n22\t  - Directly relevant to **Claim 3** (Granger causality pitfalls). They do **pre-screening** of assumptions before method selection; we do **post-hoc consensus** across multiple methods to filter spurious results. Approaches are complementary, not competing.\n23\t  - Strengthens our narrative that naive Granger causality is unreliable — their 62% FP reduction validates that standard practice yields high false positive rates.\n24\t  - **Action**: Must cite in methodology section. Frame as: \"Causal-Audit validates assumptions before method selection; our consensus framework validates conclusions after applying multiple methods. Both address the same fundamental problem — unchecked causal methods produce misleading results.\"\n25\t\n26\t### 2. [HIGH RELEVANCE] On the Entropy Calib\n…[truncated 12442 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T21:13:32.294841+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/references.bib"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T21:13:32.295043+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% ============================================================\n2\t% CORE MODEL COLLAPSE\n3\t% ============================================================\n4\t\n5\t@article{shumailov2024curse,\n6\t  title     = {The Curse of Recursion: Training on Generated Data Makes Models Forget},\n7\t  author    = {Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Gal, Yarin and Papernot, Nicolas and Anderson, Ross},\n8\t  journal   = {Nature},\n9\t  year      = {2024},\n10\t  url       = {https://arxiv.org/abs/2305.17493},\n11\t}\n12\t\n13\t@inproceedings{alemohammad2024mad,\n14\t  title     = {Self-Consuming Generative Models Go {MAD}},\n15\t  author    = {Alemohammad, Sina and Casco-Rodriguez, Josue and Luzi, Lorenzo and Humayun, Ahmed Imtiaz and Babaei, Hossein and LeJeune, Daniel and Siahkoohi, Ali and Baraniuk, Richard},\n16\t  booktitle = {International Conference on Learning Representations},\n17\t  year      = {2024},\n18\t  url       = {https://arxiv.org/abs/2307.01850},\n19\t}\n20\t\n21\t@inproceedings{dohmatob2024tale,\n22\t  title     = {A Tale of Tails: Model Collapse as a Change of Scaling Laws},\n23\t  author    = {Dohmatob, Elvis and Feng, Yunzhen and others},\n24\t  booktitle = {International Conference on Machine Learning},\n25\t  year      = {2024},\n26\t  url       = {https://arxiv.org/abs/2402.07043},\n27\t}\n28\t\n29\t@inproceedings{dohmatob2025strong,\n30\t  title     = {Strong Model Collapse},\n31\t  author    = {Dohmatob, Elvis and Feng, Yunzhen and Subramonian, Arjun and Kempe, Julia},\n32\t  booktitle = {International Conference on Learning Representations},\n33\t  year      = {2025},\n34\t  url       = {https://arxiv.org/abs/2410.04840},\n35\t}\n36\t\n37\t@inproceedings{guo2024linguistic,\n38\t  title     = {The Curious Decline of Linguistic Diversity: Training Language Models on Synthetic Text},\n39\t  author    = {Guo, Yanzhu and Shang, Guokan and others},\n40\t  booktitle = {Findings of the Association for Computational Linguistics: {NAACL}},\n41\t  year      = {2024},\n42\t  url       = {https://arxiv.org/abs/2311.0\n…[truncated 9812 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T21:13:32.295204+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T21:13:32.295389+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related_work}\n3\t\n4\t\\paragraph{Model collapse in iterative training.}\n5\t\n6\tThe phenomenon of iterative training collapse was formalized by \\citet{shumailov2024curse}, who showed that recursively replacing real data with model-generated text causes progressive tail erosion across VAEs, GMMs, and language models, and by \\citet{alemohammad2024mad}, who demonstrated quality--diversity tradeoffs in self-consuming generative loops for image models.\n7\tTheoretical analyses have since sharpened these results: \\citet{dohmatob2024tale} recast collapse as a change in scaling-law exponents, showing that even small fractions of synthetic data alter effective scaling behavior, while \\citet{dohmatob2025strong} proved that collapse can occur even when synthetic data constitutes a vanishingly small fraction of the training set.\n8\tThe role of data accumulation has been a central theme.\n9\t\\citet{dey2024breaking} proved that accumulating data across generations---rather than replacing it---prevents divergence of population risk in GMMs, HMMs, and language models.\n10\t\\citet{kazdan2025collapse} systematically compared replace and accumulate regimes, finding that synthetic data value depends on the absolute quantity of co-present real data.\n11\t\\citet{fu2025selfconsuming} provided generalization bounds for self-consuming loops, establishing that a constant fraction of real data suffices for convergence under accumulation.\n12\tOn the calibration side, \\citet{he2025golden} showed that optimal real-data weighting converges to the golden-ratio inverse ($1/\\varphi \\approx 0.618$) in Gaussian and GLM settings, and that the risk landscape is non-monotone in mixing ratio---a theoretical prediction with implications for regime-dependent canary behavior.\n13\tBeyond distributional statistics, \\citet{guo2024linguistic} documented progressive decline in lexical, syntactic, and semantic diversity across iterative fine-tuning generations, providing the multi-level divers\n…[truncated 5943 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T21:13:32.295533+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T21:13:32.295682+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\\label{sec:discussion}\n2\t\n3\t\\paragraph{Granger precedence is not causation.}\n4\tGranger causality tests whether past values of one series improve prediction of another beyond its own history; it does not establish true causation~\\cite{granger1969investigating,shojaie2022granger}.\n5\tBivariate Granger tests cannot exclude confounders: an unobserved process---such as a latent distributional shift in the training data---could independently drive both token entropy and diversity metrics, producing spurious lead-lag associations even when no direct relationship exists.\n6\tOur multi-method consensus framework inherits this limitation in full.\n7\tThroughout this paper, ``Granger precedence'' denotes predictive improvement in a time-series forecasting sense, not a causal mechanism.\n8\tThis distinction is why we scope our central claim to ``token entropy Granger-precedes diversity collapse'' rather than asserting that token entropy \\emph{causes} diversity collapse.\n9\t\n10\t\\paragraph{Calibration scope and generalization.}\n11\tAll FPR and FNR calibration results reported in this work are specific to our experimental setup: Pythia-410M~\\cite{biderman2023pythia}, a WikiText-103 subset, $T{=}10$ generation cycles, and five contamination levels ($\\alpha \\in \\{0.0, 0.25, 0.50, 0.75, 1.0\\}$).\n12\tGeneralization to other model architectures, datasets, or training protocols requires independent validation.\n13\tThe consensus framework's structure---multi-method agreement combined with multi-seed replication---is intended to be applicable beyond this specific setting, but the operating thresholds ($K{\\geq}4/5$ methods, $S{\\geq}3/4$ seeds) are empirically calibrated and may require re-tuning under different conditions.\n14\tFor instance, architectures with different tokenizer granularity or training dynamics could shift the balance between false positive and false negative rates at these thresholds.\n15\tOur ongoing GPT-2-medium experiments represent a first step toward cross-ar\n…[truncated 3978 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T21:13:32.295854+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/paper"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T21:13:32.295985+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/paper/experiments.tex\nartifacts/_project/paper/background.tex\nartifacts/_project/paper/related_work.tex\nartifacts/_project/paper/method.tex\nartifacts/_project/paper/introduction.tex\nartifacts/_project/paper/conclusion.tex\nartifacts/_project/paper/discussion.tex\nartifacts/_project/paper/abstract.tex\nartifacts/_project/paper/conclusion_365dc4.tex\nartifacts/_project/paper/abstract_8c6c62.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T21:13:32.296106+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "*.bib",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/paper"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T21:13:32.296218+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T21:13:32.296361+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "references.bib",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T21:13:32.296470+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T21:13:32.296597+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/paper/related_work.tex"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T21:13:32.296745+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related_work}\n3\t\n4\t\\paragraph{Model collapse in iterative training.}\n5\t\n6\tThe phenomenon of iterative training collapse was formalized by \\citet{shumailov2024curse}, who showed that recursively replacing real data with model-generated text causes progressive tail erosion across VAEs, GMMs, and language models, and by \\citet{alemohammad2024mad}, who demonstrated quality--diversity tradeoffs in self-consuming generative loops for image models.\n7\tTheoretical analyses have since sharpened these results: \\citet{dohmatob2024tale} recast collapse as a change in scaling-law exponents, showing that even small fractions of synthetic data alter effective scaling behavior, while \\citet{dohmatob2025strong} proved that collapse can occur even when synthetic data constitutes a vanishingly small fraction of the training set.\n8\tThe role of data accumulation has been a central theme.\n9\t\\citet{dey2024breaking} proved that accumulating data across generations---rather than replacing it---prevents divergence of population risk in GMMs, HMMs, and language models.\n10\t\\citet{kazdan2025collapse} systematically compared replace and accumulate regimes, finding that synthetic data value depends on the absolute quantity of co-present real data.\n11\t\\citet{fu2025selfconsuming} provided generalization bounds for self-consuming loops, establishing that a constant fraction of real data suffices for convergence under accumulation.\n12\tOn the calibration side, \\citet{he2025golden} showed that optimal real-data weighting converges to the golden-ratio inverse ($1/\\varphi \\approx 0.618$) in Gaussian and GLM settings, and that the risk landscape is non-monotone in mixing ratio---a theoretical prediction with implications for regime-dependent canary behavior.\n13\tBeyond distributional statistics, \\citet{guo2024linguistic} documented progressive decline in lexical, syntactic, and semantic diversity across iterative fine-tuning generations, providing the multi-level divers\n…[truncated 5833 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T21:13:32.296885+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/paper/discussion.tex"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T21:13:32.297026+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\\label{sec:discussion}\n2\t\n3\t\\paragraph{Granger precedence is not causation.}\n4\tGranger causality tests whether past values of one series improve prediction of another beyond its own history; it does not establish true causation~\\cite{granger1969investigating,shojaie2022granger}.\n5\tBivariate Granger tests cannot exclude confounders: an unobserved process---such as a latent distributional shift in the training data---could independently drive both token entropy and diversity metrics, producing spurious lead-lag associations even when no direct relationship exists.\n6\tOur multi-method consensus framework inherits this limitation in full.\n7\tThroughout this paper, ``Granger precedence'' denotes predictive improvement in a time-series forecasting sense, not a causal mechanism.\n8\tThis distinction is why we scope our central claim to ``token entropy Granger-precedes diversity collapse'' rather than asserting that token entropy \\emph{causes} diversity collapse.\n9\t\n10\t\\paragraph{Calibration scope and generalization.}\n11\tAll FPR and FNR calibration results reported in this work are specific to our experimental setup: Pythia-410M~\\cite{biderman2023pythia}, a WikiText-103 subset, $T{=}10$ generation cycles, and five contamination levels ($\\alpha \\in \\{0.0, 0.25, 0.50, 0.75, 1.0\\}$).\n12\tGeneralization to other model architectures, datasets, or training protocols requires independent validation.\n13\tThe consensus framework's structure---multi-method agreement combined with multi-seed replication---is intended to be applicable beyond this specific setting, but the operating thresholds ($K{\\geq}4/5$ methods, $S{\\geq}3/4$ seeds) are empirically calibrated and may require re-tuning under different conditions.\n14\tFor instance, architectures with different tokenizer granularity or training dynamics could shift the balance between false positive and false negative rates at these thresholds.\n15\tOur ongoing GPT-2-medium experiments represent a first step toward cross-ar\n…[truncated 3982 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T21:13:32.297163+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T21:13:32.297293+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T21:13:32.297432+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arxiv 2604.02488 Causal-Audit Ruiz assumption violations time-series causal discovery",
+              "allowed_domains": "['arxiv.org']"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T21:13:32.297548+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arxiv 2511.11966 \"On the Entropy Calibration of Language Models\" Cao Valiant Liang",
+              "allowed_domains": "['arxiv.org']"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T21:13:32.297661+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arxiv 2604.10585 Sahoo \"Calibration Collapse Under Sycophancy Fine-Tuning\"",
+              "allowed_domains": "['arxiv.org']"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T21:13:32.297771+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arxiv 2602.07915 CausalCompass Yi robustness time-series causal discovery",
+              "allowed_domains": "['arxiv.org']"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T21:13:32.297892+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arxiv 2605.07724 Falahati \"Curated Synthetic Data Doesn't Have to Collapse\" pluralistic ICML 2026",
+              "allowed_domains": "['arxiv.org']"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T21:13:32.298019+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arxiv 2511.11966 \"On the Entropy Calibration of Language Models\" Cao Valiant Liang\"\n\nLinks: [{\"title\":\"[2511.11966] On the Entropy Calibration of Language Models\",\"url\":\"https://arxiv.org/abs/2511.11966\"},{\"title\":\"On the Entropy Calibration of Language Models\",\"url\":\"https://arxiv.org/html/2511.11966\"},{\"title\":\"Computation and Language 2025\",\"url\":\"https://arxiv.org/list/cs.CL/2025?skip=15650&show=1000\"},{\"title\":\"EDIS: Diagnosing LLM Reasoning via Entropy Dynamics\",\"url\":\"https://arxiv.org/html/2602.01288\"},{\"title\":\"EntroPIC: Towards Stable Long-Term Training of LLMs via Entropy Stabilization with Proportional-Integral Control\",\"url\":\"https://arxiv.org/html/2511.15248v1\"},{\"title\":\"Revisiting Entropy in Reinforcement Learning for Large Reasoning Models\",\"url\":\"https://arxiv.org/html/2511.05993\"},{\"title\":\"[2511.10618] Know Your Limits: Entropy Estimation Modeling for Compression and Generalization\",\"url\":\"https://arxiv.org/abs/2511.10618\"},{\"title\":\"Calibrating Large Language Models with Sample Consistency\",\"url\":\"https://arxiv.org/html/2402.13904v1\"},{\"title\":\"Entropy-Based Decoding for Retrieval-Augmented Large Language Models\",\"url\":\"https://arxiv.org/html/2406.17519\"},{\"title\":\"SLMEval: Entropy-Based Calibration for Human-Aligned Evaluation of Large Language Models\",\"url\":\"https://arxiv.org/html/2505.16003\"}]\n\nI found the paper you're looking for. Here's a summary of the search results:\n\n## Paper Information\n\nThe paper \"On the Entropy Calibration of Language Models\" was authored by Steven Cao, Gregory Valiant, and Percy Liang and was submitted on November 15, 2025. The paper was presented at NeurIPS 2025.\n\n## Paper Summary\n\nThe paper studies entropy calibration, which asks whether a language model's entropy over generations matches its log loss on human text. \n\nPast work found that models are miscalibrated, with entropy per step increasing as generations grow longer due to error accumulation, and to calibrate the model and impr\n…[truncated 748 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T21:13:32.298197+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arxiv 2605.07724 Falahati \"Curated Synthetic Data Doesn't Have to Collapse\" pluralistic ICML 2026\"\n\nLinks: [{\"title\":\"[2605.07724] Curated Synthetic Data Doesn't Have to Collapse: A Theoretical Study of Generative Retraining with Pluralistic Preferences\",\"url\":\"https://arxiv.org/abs/2605.07724\"}]\n\nI found the paper! Here are the details:\n\n**Paper Title:** Curated Synthetic Data Doesn't Have to Collapse: A Theoretical Study of Generative Retraining with Pluralistic Preferences\n\n**Authors:** Ali Falahati, Mohammad Mohammadi Amiri, Kate Larson, Lukasz Golab\n\n**arXiv ID:** 2605.07724\n\n**Submission Date:** May 8, 2026\n\n**Main Contribution:** The paper addresses the challenge of model collapse during recursive retraining of generative models by showing that collapse can be mitigated through curation based on multiple reward functions. The authors formalize the dynamics of recursive training under heterogeneous preferences and prove that the model converges to a stable distribution that allocates probability mass across competing high-reward regions, preserving diversity and satisfying a weighted Nash bargaining solution.\n\nThe paper is available on arXiv at: https://arxiv.org/abs/2605.07724\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T21:13:32.298367+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arxiv 2604.10585 Sahoo \"Calibration Collapse Under Sycophancy Fine-Tuning\"\"\n\nLinks: [{\"title\":\"[2604.10585] Calibration Collapse Under Sycophancy Fine-Tuning: How Reward Hacking Breaks Uncertainty Quantification in LLMs\",\"url\":\"https://arxiv.org/abs/2604.10585\"},{\"title\":\"1 Introduction\",\"url\":\"https://arxiv.org/html/2604.10585\"},{\"title\":\"[2603.01297] I Can't Believe It's Not Robust: Catastrophic Collapse of Safety Classifiers under Embedding Drift\",\"url\":\"https://arxiv.org/abs/2603.01297\"},{\"title\":\"Fine-Tuning is Fine, if Calibrated\",\"url\":\"https://arxiv.org/html/2409.16223v1\"},{\"title\":\"From Yes-Men to Truth-Tellers: Addressing Sycophancy in Large Language Models with Pinpoint Tuning\",\"url\":\"https://arxiv.org/html/2409.01658v2\"},{\"title\":\"Pressure, What Pressure? Sycophancy Disentanglement in Language Models via Reward Decomposition\",\"url\":\"https://arxiv.org/html/2604.05279\"},{\"title\":\"Towards Understanding Sycophancy in Language Models\",\"url\":\"https://arxiv.org/html/2310.13548v4\"},{\"title\":\"Model Collapse in the Self-Consuming Chain of Diffusion Finetuning: A Novel Perspective from Quantitative Trait Modeling\",\"url\":\"https://arxiv.org/html/2407.17493v2\"},{\"title\":\"Contents\",\"url\":\"https://arxiv.org/html/2603.01239\"},{\"title\":\"Why LLM Safety Guardrails Collapse After Fine-tuning: A Similarity Analysis Between Alignment and Fine-tuning Datasets\",\"url\":\"https://arxiv.org/html/2506.05346v1\"}]\n\nI found the paper arxiv 2604.10585! Here are the key details:\n\n**Title:** \"Calibration Collapse Under Sycophancy Fine-Tuning: How Reward Hacking Breaks Uncertainty Quantification in LLMs\"\n\n**Author:** Subramanyam Sahoo from Cambridge AI Safety Hub (CAISH)\n\n**Publication Date:** April 12, 2026\n\n**Overview:** The paper investigates modern large language models fine-tuned via reinforcement learning from human feedback (RLHF) or related reward optimization schemes, examining whether sycophantic reward signals degrade calibration—a property essential\n…[truncated 859 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T21:13:32.298544+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arxiv 2604.02488 Causal-Audit Ruiz assumption violations time-series causal discovery\"\n\nLinks: [{\"title\":\"[2604.02488] Causal-Audit: A Framework for Risk Assessment of Assumption Violations in Time-Series Causal Discovery\",\"url\":\"https://arxiv.org/abs/2604.02488\"},{\"title\":\"Causal-Audit: A Framework for Risk Assessment of Assumption Violations in Time-Series Causal Discovery\",\"url\":\"https://arxiv.org/html/2604.02488\"},{\"title\":\"Causal-Audit: A Framework for Risk Assessment of ...\",\"url\":\"https://arxiv.org/pdf/2604.02488\"},{\"title\":\"Assumption violations in causal discovery and the robustness of score matching\",\"url\":\"https://arxiv.org/html/2310.13387v2\"},{\"title\":\"CausalCompass: Evaluating the Robustness of Time-Series Causal Discovery in Misspecified Scenarios\",\"url\":\"https://arxiv.org/html/2602.07915\"},{\"title\":\"[2310.13387] Assumption violations in causal discovery and the robustness of score matching\",\"url\":\"https://arxiv.org/abs/2310.13387\"},{\"title\":\"A Closer Look at the Application of Causal Inference in Graph Representation Learning\",\"url\":\"https://arxiv.org/html/2604.08890v1\"},{\"title\":\"A Dozen Challenges in Causality and Causal Inference\",\"url\":\"https://arxiv.org/pdf/2508.17099\"},{\"title\":\"111 Causal Discovery from Temporal Data: An Overview and New Perspectives\",\"url\":\"https://arxiv.org/pdf/2303.10112\"},{\"title\":\"Mathematical Reasoning via Intervention-Based Time-Series Causal Discovery Using LLMs as Concept Mastery Simulators\",\"url\":\"https://arxiv.org/html/2605.07600\"}]\n\nBased on the search results, I found the paper you're looking for:\n\n## Causal-Audit: A Framework for Risk Assessment of Assumption Violations in Time-Series Causal Discovery\n\nThe paper arxiv:2604.02488, authored by Marco Ruiz, Miguel Arana-Catania, David R. Ardila, and Rodrigo Ventura, addresses how time-series causal discovery methods rely on assumptions such as stationarity, regular sampling, and bounded temporal dependence.\n\n### Key Problem\nWhen these as\n…[truncated 1201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T21:13:32.298714+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arxiv 2602.07915 CausalCompass Yi robustness time-series causal discovery\"\n\nLinks: [{\"title\":\"CausalCompass: Evaluating the Robustness of Time-Series Causal Discovery in Misspecified Scenarios\",\"url\":\"https://arxiv.org/html/2602.07915v1\"},{\"title\":\"[2602.07915] CausalCompass: Evaluating the Robustness of Time-Series Causal Discovery in Misspecified Scenarios\",\"url\":\"https://arxiv.org/abs/2602.07915\"},{\"title\":\"Methodology May 2023\",\"url\":\"https://web3.arxiv.org/list/stat.ME/2023-05?skip=250&show=2000\"},{\"title\":\"111 Causal Discovery from Temporal Data: An Overview and New Perspectives\",\"url\":\"https://arxiv.org/pdf/2303.10112\"},{\"title\":\"[2507.12257] Robust Causal Discovery in Real-World Time Series with Power-Laws\",\"url\":\"https://arxiv.org/abs/2507.12257\"},{\"title\":\"Causal Discovery from Conditionally Stationary Time Series\",\"url\":\"https://arxiv.org/html/2110.06257\"},{\"title\":\"Sample Complexity of Causal Identification with Temporal Heterogeneity\",\"url\":\"https://arxiv.org/html/2602.06899\"},{\"title\":\"[2410.19412] Robust Time Series Causal Discovery for Agent-Based Model Validation\",\"url\":\"https://arxiv.org/abs/2410.19412\"},{\"title\":\"A Survey on Causal Discovery Methods for I.I.D. and Time Series Data\",\"url\":\"https://arxiv.org/html/2303.15027v4\"},{\"title\":\"TimeGraph: Synthetic Benchmark Datasets for Robust Time-Series Causal Discovery\",\"url\":\"https://arxiv.org/html/2506.01361v1\"}]\n\nBased on the search results, I found the paper you're looking for. Here's what the research is about:\n\nCausalCompass: Evaluating the Robustness of Time-Series Causal Discovery in Misspecified Scenarios is a paper by Huiyang Yi and colleagues that proposes a flexible and extensible benchmark suite designed to assess the robustness of time-series causal discovery (TSCD) methods under violations of modeling assumptions.\n\nThe paper addresses challenges that hinder the widespread adoption of causal discovery from time series, namely a reliance on untestable causal \n…[truncated 984 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T21:13:32.298936+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/references.bib",
+              "old_string": "@article{marcinkevics2022neural,\n  title     = {{Granger} Causality Using Neural Networks},\n  author    = {Marcinkevics, Raphael and Vogt, Julia},\n  journal   = {arXiv preprint arXiv:2208.03703},\n  year      = {2022},\n  url       = {https://arxiv.org/abs/2208.03703},\n}",
+              "new_string": "@article{marcinkevics2022neural,\n  title     = {{Granger} Causality Using Neural Networks},\n  author    = {Marcinkevics, Raphael and Vogt, Julia},\n  journal   = {arXiv preprint arXiv:2208.03703},\n  year      = {2022},\n  url       = {https://arxiv.org/abs/2208.03703},\n}\n\n@article{ruiz2026causalaudit,\n  title     = {Causal-Audit: A Framework for Risk Assessment of Assumption Violations in Time-Series Causal Discovery},\n  author    = {Ruiz, Marco and Arana-Catania, Miguel and Ardila, David R. and Ventura, Rodrigo},\n  journal   = {arXiv preprint arXiv:2604.02488},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2604.02488},\n}\n\n@article{yi2026causalcompass,\n  title     = {{CausalCompass}: Evaluating the Robustness of Time-Series Causal Discovery in Misspecified Scenarios},\n  author    = {Yi, Huiyang and Shen, Xiaojian and Wu, Yonggang and Chen, Duxin and Wang, He and Yu, Wenwu},\n  journal   = {arXiv preprint arXiv:2602.07915},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2602.07915},\n}"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T21:13:32.299111+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/references.bib has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T21:13:32.299238+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/references.bib",
+              "old_string": "@article{kalinowski2026topology,\n  title     = {Monitoring Neural Training with Topology: A Footprint-Predictable Collapse Index},\n  author    = {Kalinowski, Alexander},\n  journal   = {arXiv preprint arXiv:2604.26984},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2604.26984},\n}",
+              "new_string": "@article{kalinowski2026topology,\n  title     = {Monitoring Neural Training with Topology: A Footprint-Predictable Collapse Index},\n  author    = {Kalinowski, Alexander},\n  journal   = {arXiv preprint arXiv:2604.26984},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2604.26984},\n}\n\n@inproceedings{cao2025entropycal,\n  title     = {On the Entropy Calibration of Language Models},\n  author    = {Cao, Steven and Valiant, Gregory and Liang, Percy},\n  booktitle = {Advances in Neural Information Processing Systems},\n  year      = {2025},\n  url       = {https://arxiv.org/abs/2511.11966},\n}\n\n@article{sahoo2026calibration,\n  title     = {Calibration Collapse Under Sycophancy Fine-Tuning: How Reward Hacking Breaks Uncertainty Quantification in {LLMs}},\n  author    = {Sahoo, Subramanyam},\n  journal   = {arXiv preprint arXiv:2604.10585},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2604.10585},\n}"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T21:13:32.299425+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/references.bib has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T21:13:32.299550+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/references.bib",
+              "old_string": "@article{dces2026counter,\n  title     = {Countering Model Collapse in Iterative Self-Training via Dynamic Center-Edge Sampling},\n  author    = {Zhu, Bingze and Xie, Yubo},\n  journal   = {Electronics},\n  year      = {2026},\n  url       = {https://www.mdpi.com/2079-9292/15/4/869},\n}",
+              "new_string": "@article{dces2026counter,\n  title     = {Countering Model Collapse in Iterative Self-Training via Dynamic Center-Edge Sampling},\n  author    = {Zhu, Bingze and Xie, Yubo},\n  journal   = {Electronics},\n  year      = {2026},\n  url       = {https://www.mdpi.com/2079-9292/15/4/869},\n}\n\n@inproceedings{falahati2026curated,\n  title     = {Curated Synthetic Data Doesn't Have to Collapse: A Theoretical Study of Generative Retraining with Pluralistic Preferences},\n  author    = {Falahati, Ali and Mohammadi Amiri, Mohammad and Larson, Kate and Golab, Lukasz},\n  booktitle = {International Conference on Machine Learning},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2605.07724},\n}"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T21:13:32.299706+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/references.bib has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T21:13:32.299852+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/related_work.tex",
+              "old_string": "Our framework applies five complementary methods---naive cross-correlation, differenced cross-correlation, threshold onset detection, permutation Granger causality, and Toda--Yamamoto Granger causality---and requires multi-method consensus before classifying a lead-lag relationship as robust, directly addressing the method-sensitivity problem that arises when any single test is taken in isolation.",
+              "new_string": "Our framework applies five complementary methods---naive cross-correlation, differenced cross-correlation, threshold onset detection, permutation Granger causality, and Toda--Yamamoto Granger causality---and requires multi-method consensus before classifying a lead-lag relationship as robust, directly addressing the method-sensitivity problem that arises when any single test is taken in isolation.\nRecent work on causal method reliability reinforces this multi-method rationale.\n\\citet{ruiz2026causalaudit} propose Causal-Audit, a pre-screening framework that validates causal assumptions before method selection and achieves 62\\% false positive reduction; whereas their approach filters methods \\emph{ex ante}, our consensus framework validates conclusions \\emph{ex post} across methods already applied.\n\\citet{yi2026causalcompass} benchmark causal discovery robustness under eight misspecification scenarios and confirm that no single method dominates universally---a finding consistent with independent evidence that calibration metrics are sensitive to training-distribution perturbation~\\cite{sahoo2026calibration} and that pluralistic curation can prevent iterative collapse~\\cite{falahati2026curated}, motivating the early-warning detection problem our framework targets."
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T21:13:32.300015+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T21:13:32.300136+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion.tex",
+              "old_string": "Finally, our canary claims are scoped to distinct-$n$ diversity metrics~\\cite{li2016diversity}---not to model collapse broadly~\\cite{schaeffer2025position}---as the perplexity channel proved spurious ($F{\\approx}0$, $p{=}0.99$ after differencing).",
+              "new_string": "Finally, our canary claims are scoped to distinct-$n$ diversity metrics~\\cite{li2016diversity}---not to model collapse broadly~\\cite{schaeffer2025position}---as the perplexity channel proved spurious ($F{\\approx}0$, $p{=}0.99$ after differencing).\nThis scoping is theoretically motivated: \\citet{cao2025entropycal} prove a fundamental calibration-diversity tradeoff in language models---all current calibration methods reduce entropy at the cost of diversity---suggesting that calibration and diversity are coupled but not identical, which may explain why token entropy can Granger-precede diversity collapse without leading perplexity."
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T21:13:32.300268+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T21:13:32.300389+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/paper/related_work.tex",
+              "old_string": "Our framework applies five complementary methods---naive cross-correlation, differenced cross-correlation, threshold onset detection, permutation Granger causality, and Toda--Yamamoto Granger causality---and requires multi-method consensus before classifying a lead-lag relationship as robust, directly addressing the method-sensitivity problem that arises when any single test is taken in isolation.",
+              "new_string": "Our framework applies five complementary methods---naive cross-correlation, differenced cross-correlation, threshold onset detection, permutation Granger causality, and Toda--Yamamoto Granger causality---and requires multi-method consensus before classifying a lead-lag relationship as robust, directly addressing the method-sensitivity problem that arises when any single test is taken in isolation.\nRecent work on causal method reliability reinforces this multi-method rationale.\n\\citet{ruiz2026causalaudit} propose Causal-Audit, a pre-screening framework that validates causal assumptions before method selection and achieves 62\\% false positive reduction; whereas their approach filters methods \\emph{ex ante}, our consensus framework validates conclusions \\emph{ex post} across methods already applied.\n\\citet{yi2026causalcompass} benchmark causal discovery robustness under eight misspecification scenarios and confirm that no single method dominates universally---a finding consistent with independent evidence that calibration metrics are sensitive to training-distribution perturbation~\\cite{sahoo2026calibration} and that pluralistic curation can prevent iterative collapse~\\cite{falahati2026curated}, motivating the early-warning detection problem our framework targets."
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T21:13:32.300543+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T21:13:32.300661+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/paper/discussion.tex",
+              "old_string": "Finally, our canary claims are scoped to distinct-$n$ diversity metrics~\\cite{li2016diversity}---not to model collapse broadly~\\cite{schaeffer2025position}---as the perplexity channel proved spurious ($F{\\approx}0$, $p{=}0.99$ after differencing).",
+              "new_string": "Finally, our canary claims are scoped to distinct-$n$ diversity metrics~\\cite{li2016diversity}---not to model collapse broadly~\\cite{schaeffer2025position}---as the perplexity channel proved spurious ($F{\\approx}0$, $p{=}0.99$ after differencing).\nThis scoping is theoretically motivated: \\citet{cao2025entropycal} prove a fundamental calibration-diversity tradeoff in language models---all current calibration methods reduce entropy at the cost of diversity---suggesting that calibration and diversity are coupled but not identical, which may explain why token entropy can Granger-precede diversity collapse without leading perplexity."
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T21:13:32.300800+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T21:13:32.300935+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion.tex",
+              "offset": "30",
+              "limit": "15"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T21:13:32.301063+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "30\t\n31\t\\paragraph{Diversity--calibration dissociation.}\n32\tDiversity metrics and calibration metrics respond to synthetic contamination in qualitatively opposite directions across the $\\alpha$ spectrum.\n33\tDiversity collapse (distinct-$n$ decline) is most severe at low contamination ($\\alpha{=}0.25$: distinct-3 declines by 59.9\\%) and attenuates at higher levels ($\\alpha{=}1.0$: $-31.6\\%$), while calibration degradation (ECE) increases monotonically with $\\alpha$ ($+51.7\\%$ at $\\alpha{=}0.0$ to $+3763\\%$ at $\\alpha{=}1.0$).\n34\tThis dissociation underscores the need for multi-method consensus: the regime in which a metric degrades most severely ($\\alpha{=}0.25$ for diversity) does not coincide with the regime in which its temporal lead is most detectable ($\\alpha{\\geq}0.75$), and a single metric family cannot capture the full picture of iterative training degradation.\n35\t\n36\t\\paragraph{Limitations.}\n37\tSeveral limitations constrain the generalizability of our findings.\n38\tFirst, we evaluate a single architecture family (Pythia-410M); canary dynamics may differ across architectures with different tokenization strategies, attention patterns, or model scales.\n39\tSecond, training data is drawn from a single domain (a WikiText-103 subset), and domain-specific distributional properties may influence the coupling between canary and downstream metrics.\n40\tThird, we lack an intervention experiment: we observe that token entropy Granger-precedes diversity collapse at $\\alpha{=}1.0$ (with preliminary single-seed evidence at $\\alpha{=}0.75$) but do not test whether acting on canary signals can prevent or delay collapse onset.\n41\tFourth, our experiments use replace-only data accumulation; accumulate-mode training~\\cite{dey2024breaking,kazdan2025collapse} may exhibit qualitatively different canary dynamics.\n42\tFinally, our canary claims are scoped to distinct-$n$ diversity metrics~\\cite{li2016diversity}---not to model collapse broadly~\\cite{schaeffer2025position}---as the perplexi\n…[truncated 106 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T21:13:32.301217+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion.tex",
+              "old_string": "Finally, our canary claims are scoped to distinct-$n$ diversity metrics~\\cite{li2016diversity}---not to model collapse broadly~\\cite{schaeffer2025position}---as the perplexity channel proved spurious ($F{\\approx}0$, $p{=}0.99$ after differencing).",
+              "new_string": "Finally, our canary claims are scoped to distinct-$n$ diversity metrics~\\cite{li2016diversity}---not to model collapse broadly~\\cite{schaeffer2025position}---as the perplexity channel proved spurious ($F{\\approx}0$, $p{=}0.99$ after differencing).\nThis scoping is theoretically motivated: \\citet{cao2025entropycal} prove a fundamental calibration-diversity tradeoff in language models---all current calibration methods reduce entropy at the cost of diversity---suggesting that calibration and diversity are coupled but not identical, which may explain why token entropy can Granger-precede diversity collapse without leading perplexity."
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T21:13:32.301384+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T21:13:32.301522+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/related_work.tex",
+              "offset": "49",
+              "limit": "10"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-15T21:13:32.301657+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "49\tDespite wide use in economics and neuroscience, these methods are largely absent from the machine learning literature on iterative training.\n50\tExisting canary studies rely on visual inspection or naive cross-correlation, which cannot distinguish genuine temporal precedence from shared non-stationary trends.\n51\tOur framework applies five complementary methods---naive cross-correlation, differenced cross-correlation, threshold onset detection, permutation Granger causality, and Toda--Yamamoto Granger causality---and requires multi-method consensus before classifying a lead-lag relationship as robust, directly addressing the method-sensitivity problem that arises when any single test is taken in isolation.\n52\tRecent work on causal method reliability reinforces this multi-method rationale.\n53\t\\citet{ruiz2026causalaudit} propose Causal-Audit, a pre-screening framework that validates causal assumptions before method selection and achieves 62\\% false positive reduction; whereas their approach filters methods \\emph{ex ante}, our consensus framework validates conclusions \\emph{ex post} across methods already applied.\n54\t\\citet{yi2026causalcompass} benchmark causal discovery robustness under eight misspecification scenarios and confirm that no single method dominates universally---a finding consistent with independent evidence that calibration metrics are sensitive to training-distribution perturbation~\\cite{sahoo2026calibration} and that pluralistic curation can prevent iterative collapse~\\cite{falahati2026curated}, motivating the early-warning detection problem our framework targets."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-15T21:13:32.301784+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion.tex",
+              "offset": "40",
+              "limit": "8"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-15T21:13:32.301905+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "40\tThird, we lack an intervention experiment: we observe that token entropy Granger-precedes diversity collapse at $\\alpha{=}1.0$ (with preliminary single-seed evidence at $\\alpha{=}0.75$) but do not test whether acting on canary signals can prevent or delay collapse onset.\n41\tFourth, our experiments use replace-only data accumulation; accumulate-mode training~\\cite{dey2024breaking,kazdan2025collapse} may exhibit qualitatively different canary dynamics.\n42\tFinally, our canary claims are scoped to distinct-$n$ diversity metrics~\\cite{li2016diversity}---not to model collapse broadly~\\cite{schaeffer2025position}---as the perplexity channel proved spurious ($F{\\approx}0$, $p{=}0.99$ after differencing).\n43\tThis scoping is theoretically motivated: \\citet{cao2025entropycal} prove a fundamental calibration-diversity tradeoff in language models---all current calibration methods reduce entropy at the cost of diversity---suggesting that calibration and diversity are coupled but not identical, which may explain why token entropy can Granger-precede diversity collapse without leading perplexity.\n44\t\n45\t\\paragraph{Future work.}\n46\tSeveral directions extend this work.\n47\tMultivariate VAR models would enable testing for confounders and multi-directional Granger relationships beyond our current bivariate framework."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-15T21:13:32.302023+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "ruiz2026|yi2026|cao2025|sahoo2026|falahati2026",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/references.bib",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-15T21:13:32.302131+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "212:@article{ruiz2026causalaudit,\n220:@article{yi2026causalcompass,"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-15T21:13:32.302268+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "cao2025entropycal|sahoo2026calibration|falahati2026curated",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/references.bib",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-15T21:13:32.302388+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-15T21:13:32.302506+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/references.bib",
+              "offset": "93",
+              "limit": "30"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-15T21:13:32.302628+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "93\t@article{kalinowski2026topology,\n94\t  title     = {Monitoring Neural Training with Topology: A Footprint-Predictable Collapse Index},\n95\t  author    = {Kalinowski, Alexander},\n96\t  journal   = {arXiv preprint arXiv:2604.26984},\n97\t  year      = {2026},\n98\t  url       = {https://arxiv.org/abs/2604.26984},\n99\t}\n100\t\n101\t\n102\t% ============================================================\n103\t% DIVERSITY METRICS (BACKGROUND)\n104\t% ============================================================\n105\t\n106\t\n107\t@inproceedings{li2016diversity,\n108\t  title     = {A Diversity-Promoting Objective Function for Neural Conversation Models},\n109\t  author    = {Li, Jiwei and others},\n110\t  booktitle = {North American Chapter of the Association for Computational Linguistics},\n111\t  year      = {2016},\n112\t  url       = {https://arxiv.org/abs/1510.03055},\n113\t}\n114\t\n115\t% ============================================================\n116\t% REPRESENTATION / SPECTRAL COLLAPSE\n117\t% ============================================================\n118\t\n119\t\n120\t% ============================================================\n121\t% DATA MIXING & ACCUMULATION\n122\t% ============================================================"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-15T21:13:32.302774+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/references.bib",
+              "offset": "155",
+              "limit": "40"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-15T21:13:32.302895+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "155\t}\n156\t\n157\t% ============================================================\n158\t% MITIGATION & VERIFICATION\n159\t% ============================================================\n160\t\n161\t@article{dces2026counter,\n162\t  title     = {Countering Model Collapse in Iterative Self-Training via Dynamic Center-Edge Sampling},\n163\t  author    = {Zhu, Bingze and Xie, Yubo},\n164\t  journal   = {Electronics},\n165\t  year      = {2026},\n166\t  url       = {https://www.mdpi.com/2079-9292/15/4/869},\n167\t}\n168\t\n169\t% ============================================================\n170\t% POSITION / SURVEY / EPISTEMICS\n171\t% ============================================================\n172\t\n173\t@article{schaeffer2025position,\n174\t  title     = {Position: Model Collapse Does Not Mean What You Think},\n175\t  author    = {Schaeffer, Rylan and Kazdan, Joshua and Arulandu, Alvan Caleb and Koyejo, Sanmi},\n176\t  journal   = {arXiv preprint arXiv:2503.03150},\n177\t  year      = {2025},\n178\t  url       = {https://arxiv.org/abs/2503.03150},\n179\t}\n180\t\n181\t% ============================================================\n182\t% METHODOLOGY (GRANGER / LEAD-LAG)\n183\t% ============================================================\n184\t\n185\t@article{granger1969investigating,\n186\t  author    = {Granger, Clive W. J.},\n187\t  title     = {Investigating Causal Relations by Econometric Models and Cross-spectral Methods},\n188\t  journal   = {Econometrica},\n189\t  volume    = {37},\n190\t  number    = {3},\n191\t  pages     = {424--438},\n192\t  year      = {1969},\n193\t  publisher = {Wiley},\n194\t}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-15T21:13:32.303027+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/references.bib",
+              "offset": "200",
+              "limit": "40"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-15T21:13:32.303152+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "200\t  year      = {2022},\n201\t  url       = {https://arxiv.org/abs/2105.02675},\n202\t}\n203\t\n204\t@article{marcinkevics2022neural,\n205\t  title     = {{Granger} Causality Using Neural Networks},\n206\t  author    = {Marcinkevics, Raphael and Vogt, Julia},\n207\t  journal   = {arXiv preprint arXiv:2208.03703},\n208\t  year      = {2022},\n209\t  url       = {https://arxiv.org/abs/2208.03703},\n210\t}\n211\t\n212\t% ============================================================\n213\t% EARLY WARNING SIGNALS / TIPPING POINTS (ECOLOGICAL THEORY)\n214\t% ============================================================\n215\t\n216\t@article{scheffer2009early,\n217\t  title     = {Early-warning signals for critical transitions},\n218\t  author    = {Scheffer, Marten and Bascompte, Jordi and Brock, William A. and Brovkin, Victor and Carpenter, Stephen R. and Dakos, Vasilis and Held, Hermann and van Nes, Egbert H. and Rietkerk, Max and Sugihara, George},\n219\t  journal   = {Nature},\n220\t  year      = {2009},\n221\t  doi       = {10.1038/nature08227},\n222\t}\n223\t\n224\t@article{scheffer2012anticipating,\n225\t  title     = {Anticipating Critical Transitions},\n226\t  author    = {Scheffer, Marten and Carpenter, Stephen R. and Lenton, Timothy M. and Bascompte, Jordi and Brock, William and Dakos, Vasilis and van de Koppel, Johan and van de Leemput, Ingrid A. and Levin, Simon A. and van Nes, Egbert H. and Pascual, Mercedes and Vandermeer, John},\n227\t  journal   = {Science},\n228\t  year      = {2012},\n229\t  doi       = {10.1126/science.1225244},\n230\t}\n231\t\n232\t@article{boettiger2012limits,\n233\t  title     = {Quantifying Limits to Detection of Early Warning for Critical Transitions},\n234\t  author    = {Boettiger, Carl and Hastings, Alan},\n235\t  journal   = {Journal of the Royal Society Interface},\n236\t  year      = {2012},\n237\t  doi       = {10.1098/rsif.2012.0125},\n238\t}\n239\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-15T21:13:32.303313+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/references.bib"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-15T21:13:32.303487+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% ============================================================\n2\t% CORE MODEL COLLAPSE\n3\t% ============================================================\n4\t\n5\t@article{shumailov2024curse,\n6\t  title     = {The Curse of Recursion: Training on Generated Data Makes Models Forget},\n7\t  author    = {Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Gal, Yarin and Papernot, Nicolas and Anderson, Ross},\n8\t  journal   = {Nature},\n9\t  year      = {2024},\n10\t  url       = {https://arxiv.org/abs/2305.17493},\n11\t}\n12\t\n13\t@inproceedings{alemohammad2024mad,\n14\t  title     = {Self-Consuming Generative Models Go {MAD}},\n15\t  author    = {Alemohammad, Sina and Casco-Rodriguez, Josue and Luzi, Lorenzo and Humayun, Ahmed Imtiaz and Babaei, Hossein and LeJeune, Daniel and Siahkoohi, Ali and Baraniuk, Richard},\n16\t  booktitle = {International Conference on Learning Representations},\n17\t  year      = {2024},\n18\t  url       = {https://arxiv.org/abs/2307.01850},\n19\t}\n20\t\n21\t@inproceedings{dohmatob2024tale,\n22\t  title     = {A Tale of Tails: Model Collapse as a Change of Scaling Laws},\n23\t  author    = {Dohmatob, Elvis and Feng, Yunzhen and others},\n24\t  booktitle = {International Conference on Machine Learning},\n25\t  year      = {2024},\n26\t  url       = {https://arxiv.org/abs/2402.07043},\n27\t}\n28\t\n29\t@inproceedings{dohmatob2025strong,\n30\t  title     = {Strong Model Collapse},\n31\t  author    = {Dohmatob, Elvis and Feng, Yunzhen and Subramonian, Arjun and Kempe, Julia},\n32\t  booktitle = {International Conference on Learning Representations},\n33\t  year      = {2025},\n34\t  url       = {https://arxiv.org/abs/2410.04840},\n35\t}\n36\t\n37\t@inproceedings{guo2024linguistic,\n38\t  title     = {The Curious Decline of Linguistic Diversity: Training Language Models on Synthetic Text},\n39\t  author    = {Guo, Yanzhu and Shang, Guokan and others},\n40\t  booktitle = {Findings of the Association for Computational Linguistics: {NAACL}},\n41\t  year      = {2024},\n42\t  url       = {https://arxiv.org/abs/2311.0\n…[truncated 9812 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-15T21:13:32.303652+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/references.bib",
+              "old_string": "@article{kalinowski2026topology,\n  title     = {Monitoring Neural Training with Topology: A Footprint-Predictable Collapse Index},\n  author    = {Kalinowski, Alexander},\n  journal   = {arXiv preprint arXiv:2604.26984},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2604.26984},\n}\n\n\n% ============================================================\n% DIVERSITY METRICS (BACKGROUND)\n% ============================================================",
+              "new_string": "@article{kalinowski2026topology,\n  title     = {Monitoring Neural Training with Topology: A Footprint-Predictable Collapse Index},\n  author    = {Kalinowski, Alexander},\n  journal   = {arXiv preprint arXiv:2604.26984},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2604.26984},\n}\n\n@inproceedings{cao2025entropycal,\n  title     = {On the Entropy Calibration of Language Models},\n  author    = {Cao, Steven and Valiant, Gregory and Liang, Percy},\n  booktitle = {Advances in Neural Information Processing Systems},\n  year      = {2025},\n  url       = {https://arxiv.org/abs/2511.11966},\n}\n\n@article{sahoo2026calibration,\n  title     = {Calibration Collapse Under Sycophancy Fine-Tuning: How Reward Hacking Breaks Uncertainty Quantification in {LLMs}},\n  author    = {Sahoo, Subramanyam},\n  journal   = {arXiv preprint arXiv:2604.10585},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2604.10585},\n}\n\n\n% ============================================================\n% DIVERSITY METRICS (BACKGROUND)\n% ============================================================"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-15T21:13:32.303784+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-15T21:13:32.303900+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/references.bib",
+              "old_string": "@article{dces2026counter,\n  title     = {Countering Model Collapse in Iterative Self-Training via Dynamic Center-Edge Sampling},\n  author    = {Zhu, Bingze and Xie, Yubo},\n  journal   = {Electronics},\n  year      = {2026},\n  url       = {https://www.mdpi.com/2079-9292/15/4/869},\n}\n\n% ============================================================\n% POSITION / SURVEY / EPISTEMICS\n% ============================================================",
+              "new_string": "@article{dces2026counter,\n  title     = {Countering Model Collapse in Iterative Self-Training via Dynamic Center-Edge Sampling},\n  author    = {Zhu, Bingze and Xie, Yubo},\n  journal   = {Electronics},\n  year      = {2026},\n  url       = {https://www.mdpi.com/2079-9292/15/4/869},\n}\n\n@inproceedings{falahati2026curated,\n  title     = {Curated Synthetic Data Doesn't Have to Collapse: A Theoretical Study of Generative Retraining with Pluralistic Preferences},\n  author    = {Falahati, Ali and Mohammadi Amiri, Mohammad and Larson, Kate and Golab, Lukasz},\n  booktitle = {International Conference on Machine Learning},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2605.07724},\n}\n\n% ============================================================\n% POSITION / SURVEY / EPISTEMICS\n% ============================================================"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-15T21:13:32.304023+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-15T21:13:32.304137+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/references.bib",
+              "old_string": "@article{marcinkevics2022neural,\n  title     = {{Granger} Causality Using Neural Networks},\n  author    = {Marcinkevics, Raphael and Vogt, Julia},\n  journal   = {arXiv preprint arXiv:2208.03703},\n  year      = {2022},\n  url       = {https://arxiv.org/abs/2208.03703},\n}\n\n% ============================================================\n% EARLY WARNING SIGNALS / TIPPING POINTS (ECOLOGICAL THEORY)\n% ============================================================",
+              "new_string": "@article{marcinkevics2022neural,\n  title     = {{Granger} Causality Using Neural Networks},\n  author    = {Marcinkevics, Raphael and Vogt, Julia},\n  journal   = {arXiv preprint arXiv:2208.03703},\n  year      = {2022},\n  url       = {https://arxiv.org/abs/2208.03703},\n}\n\n@article{ruiz2026causalaudit,\n  title     = {Causal-Audit: A Framework for Risk Assessment of Assumption Violations in Time-Series Causal Discovery},\n  author    = {Ruiz, Marco and Arana-Catania, Miguel and Ardila, David R. and Ventura, Rodrigo},\n  journal   = {arXiv preprint arXiv:2604.02488},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2604.02488},\n}\n\n@article{yi2026causalcompass,\n  title     = {{CausalCompass}: Evaluating the Robustness of Time-Series Causal Discovery in Misspecified Scenarios},\n  author    = {Yi, Huiyang and Shen, Xiaojian and Wu, Yonggang and Chen, Duxin and Wang, He and Yu, Wenwu},\n  journal   = {arXiv preprint arXiv:2602.07915},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2602.07915},\n}\n\n% ============================================================\n% EARLY WARNING SIGNALS / TIPPING POINTS (ECOLOGICAL THEORY)\n% ============================================================"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-15T21:13:32.304269+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-15T21:13:32.304404+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/references.bib"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-15T21:13:32.304580+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% ============================================================\n2\t% CORE MODEL COLLAPSE\n3\t% ============================================================\n4\t\n5\t@article{shumailov2024curse,\n6\t  title     = {The Curse of Recursion: Training on Generated Data Makes Models Forget},\n7\t  author    = {Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Gal, Yarin and Papernot, Nicolas and Anderson, Ross},\n8\t  journal   = {Nature},\n9\t  year      = {2024},\n10\t  url       = {https://arxiv.org/abs/2305.17493},\n11\t}\n12\t\n13\t@inproceedings{alemohammad2024mad,\n14\t  title     = {Self-Consuming Generative Models Go {MAD}},\n15\t  author    = {Alemohammad, Sina and Casco-Rodriguez, Josue and Luzi, Lorenzo and Humayun, Ahmed Imtiaz and Babaei, Hossein and LeJeune, Daniel and Siahkoohi, Ali and Baraniuk, Richard},\n16\t  booktitle = {International Conference on Learning Representations},\n17\t  year      = {2024},\n18\t  url       = {https://arxiv.org/abs/2307.01850},\n19\t}\n20\t\n21\t@inproceedings{dohmatob2024tale,\n22\t  title     = {A Tale of Tails: Model Collapse as a Change of Scaling Laws},\n23\t  author    = {Dohmatob, Elvis and Feng, Yunzhen and others},\n24\t  booktitle = {International Conference on Machine Learning},\n25\t  year      = {2024},\n26\t  url       = {https://arxiv.org/abs/2402.07043},\n27\t}\n28\t\n29\t@inproceedings{dohmatob2025strong,\n30\t  title     = {Strong Model Collapse},\n31\t  author    = {Dohmatob, Elvis and Feng, Yunzhen and Subramonian, Arjun and Kempe, Julia},\n32\t  booktitle = {International Conference on Learning Representations},\n33\t  year      = {2025},\n34\t  url       = {https://arxiv.org/abs/2410.04840},\n35\t}\n36\t\n37\t@inproceedings{guo2024linguistic,\n38\t  title     = {The Curious Decline of Linguistic Diversity: Training Language Models on Synthetic Text},\n39\t  author    = {Guo, Yanzhu and Shang, Guokan and others},\n40\t  booktitle = {Findings of the Association for Computational Linguistics: {NAACL}},\n41\t  year      = {2024},\n42\t  url       = {https://arxiv.org/abs/2311.0\n…[truncated 11755 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-15T21:13:32.304753+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "ruiz2026causalaudit|cao2025entropycal",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-15T21:13:32.304876+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/related_work.tex:53:\\citet{ruiz2026causalaudit} propose Causal-Audit, a pre-screening framework that validates causal assumptions before method selection and achieves 62\\% false positive reduction; whereas their approach filters methods \\emph{ex ante}, our consensus framework validates conclusions \\emph{ex post} across methods already applied.\ndocs/paper/discussion.tex:43:This scoping is theoretically motivated: \\citet{cao2025entropycal} prove a fundamental calibration-diversity tradeoff in language models---all current calibration methods reduce entropy at the cost of diversity---suggesting that calibration and diversity are coupled but not identical, which may explain why token entropy can Granger-precede diversity collapse without leading perplexity.\ndocs/paper/references.bib:101:@inproceedings{cao2025entropycal,\ndocs/paper/references.bib:235:@article{ruiz2026causalaudit,"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-15T21:13:32.304994+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "ruiz2026causalaudit|cao2025entropycal",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/paper",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-15T21:13:32.305106+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/paper/related_work.tex:53:\\citet{ruiz2026causalaudit} propose Causal-Audit, a pre-screening framework that validates causal assumptions before method selection and achieves 62\\% false positive reduction; whereas their approach filters methods \\emph{ex ante}, our consensus framework validates conclusions \\emph{ex post} across methods already applied.\nartifacts/_project/paper/discussion.tex:38:This scoping is theoretically motivated: \\citet{cao2025entropycal} prove a fundamental calibration-diversity tradeoff in language models---all current calibration methods reduce entropy at the cost of diversity---suggesting that calibration and diversity are coupled but not identical, which may explain why token entropy can Granger-precede diversity collapse without leading perplexity."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-15T21:13:32.305269+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits confirmed across all files:\n\n**references.bib** — 5 entries added:\n- `cao2025entropycal` (NeurIPS 2025) — CANARY section\n- `sahoo2026calibration` — CANARY section\n- `falahati2026curated` (ICML 2026) — DATA MIXING section\n- `ruiz2026causalaudit` — METHODOLOGY section\n- `yi2026causalcompass` — METHODOLOGY section\n\n**related_work.tex** (docs + artifacts) — 3 sentences added after Lead-lag methodology paragraph:\n- Causal-Audit ex ante pre-screening vs our ex post consensus\n- CausalCompass confirms no single method dominates → multi-method necessity\n- Sahoo (ECE sensitivity) and Falahati (pluralistic curation) cited inline\n\n**discussion.tex** (docs + artifacts) — 1 sentence added after \"scoped to distinct-$n$\" limitation:\n- Cao et al. calibration-diversity tradeoff explains why token entropy leads diversity but not perplexity"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_literature-integration_20260515T210855"
+          },
+          "id": "event-000077"
+        }
+      ],
+      "message_count": 77
+    }
+  ],
+  "readable_path": "readable/conversations/writing-literature-integration.md"
+}

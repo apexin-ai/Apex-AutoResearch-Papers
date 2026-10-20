@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c19dad985c03d2d9ffe1",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "fix c4 s43 mauve tokenizer",
+  "task_key": "worker_fix_c4_s43_mauve_tokenizer_20260517T200623",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_c4_s43_mauve_tokenizer_20260517T200623_result.json",
+    "occurrence": 1,
+    "bytes": 547,
+    "sha256": "1ddc38d8381443b2ca52be0e4a3d7a237fa64637ba1b958b8f26aec3c0800180"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**修复完全成功。**\n\n- Gen 0 metrics 已计算完成：`ppl=20.60, entropy=2.9559, eff_rank=72.5`\n- `metrics.json` 已写入 gen_0 目录\n- 实验已自动进入 Generation 1/10 的合成数据生成阶段\n\n## 总结\n\n- **修复方式**：方式 A（`TRANSFORMERS_OFFLINE=1`）\n- GPT-2 tokenizer 已通过 hf-mirror.com 预下载到 `/root/autodl-tmp/.hf_cache`\n- MAUVE 评估在离线模式下成功加载 GPT-2 tokenizer 并完成特征提取\n- C4 seed-43 实验已正常运行，Gen 0 完成，正在进行 Gen 1"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-c4-s43-mauve-tokenizer.md"
+}

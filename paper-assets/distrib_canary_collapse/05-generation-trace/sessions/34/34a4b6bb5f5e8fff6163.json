@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34a4b6bb5f5e8fff6163",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops cuda2 cleanup a050 aggregate",
+  "task_key": "worker_ops_cuda2_cleanup_a050_aggregate_20260519T095405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cuda2_cleanup_a050_aggregate_20260519T095405_result.json",
+    "occurrence": 1,
+    "bytes": 604,
+    "sha256": "92769f04c25fced492c11e81a48b6b83ebaf645fb0e346dc5256e0caca95ac94"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact registration tool not available. Report written.\n\n**Summary:**\n\n**cuda:2 清理**: GPU 2 已经是 0 MiB，无孤儿进程。GPU 0/1 有活跃训练进程。\n\n**all_metrics.json**: 三个 seed (s42/s43/s44) 的 `all_metrics.json` 均已存在，各含 11 generations (gen_0 to gen_10)，无需重新聚合。\n\n**Drift 一致性**: alpha=0.50 在 3 seed 间高度一致:\n- token_entropy: -16.2% (std 0.3%)\n- distinct_1/2/3: -28.7% / -36.1% / -32.0%\n- ECE: +697% (校准退化显著)\n- perplexity: +16.8%\n\n报告写入 `artifacts/a050_fp32_3seed_metrics_summary.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cuda2-cleanup-a050-aggregate.md"
+}

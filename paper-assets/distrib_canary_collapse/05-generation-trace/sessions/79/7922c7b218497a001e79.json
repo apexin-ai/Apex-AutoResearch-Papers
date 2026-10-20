@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7922c7b218497a001e79",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops d102 t10 a045 s43",
+  "task_key": "worker_ops_d102-t10-a045-s43_20260523T122645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d102-t10-a045-s43_20260523T122645_result.json",
+    "occurrence": 1,
+    "bytes": 1323,
+    "sha256": "df1c02bed4f66d0c52a7e2940b2c9782fbaa90d33c8ee175662e3cec957fe7a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated, artifact registered. Here's the report:\n\n---\n\n## D102 Analysis: scale_14b_t10_a045_s43_fp32\n\n### 5-Method Lead-Lag Results\n\n| Method | Forward sig | Reverse sig |\n|--------|------------|------------|\n| PermG (FDR) | **1/8** | 0/8 |\n| DiffXCorr (FDR) | 7/8 | 7/8 |\n| Threshold onset | 0/8 | — |\n| TY Granger | 1/8 | — |\n| K≥3 pairs | **2/8** | — |\n| K≥4 pairs | 0/8 | — |\n\nK≥3 pairs: `ece→distinct_1` [naive, diff, perm], `ece→distinct_3` [naive, diff, ty]\n\n### Drift (gen 0 → gen 10)\n\n| Metric | Gen 0 | Gen 10 | Drift |\n|--------|-------|--------|-------|\n| perplexity | 19.83 | 31.37 | +58.2% |\n| token_entropy | 2.973 | 2.234 | -24.9% |\n| ece | 0.0081 | 0.1432 | +1668% |\n| mauve | 0.0329 | 0.0293 | -11.0% |\n| distinct_1 | 0.0981 | 0.0687 | -30.0% |\n\n### s42 vs s43 对比\n\n| | s42 (parent) | s43 |\n|--|-------------|-----|\n| PermG fwd | 0/8 | 1/8 |\n| K≥3 | — | 2/8 |\n| Conclusion | blind zone | blind zone |\n\n**s43 基本一致确认 blind zone**。PermG=1/8 为边际信号（仅 ece→distinct_1），未通过 FDR 后其余 7 对均不显著。K≥3=2/8 也偏弱。α=0.45 < α_c ≈ 0.483，符合预期。ece 通道有轻微噪声但无 robust detection。\n\nRegistry: `scale_14b_t10_a045_s43_fp32` → DONE (success)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d102-t10-a045-s43.md"
+}

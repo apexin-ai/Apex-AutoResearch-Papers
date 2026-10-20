@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a4bf48039c7de27d27c",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "exp launch interv react s43",
+  "task_key": "worker_exp_launch_interv_react_s43_20260518T165736",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_launch_interv_react_s43_20260518T165736_result.json",
+    "occurrence": 1,
+    "bytes": 269,
+    "sha256": "5000a8f8c22cc01845f12f8500bfd18fb00547be121d347e9d7508107acd6da7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **PID**: 12279（westd-17855, tmux session `interv_react_s43`）\n- **GPU**: cuda:4 已确认占用（2307 MiB / 97887 MiB, 50% util）\n- **Registry**: hypothesis 已更新\n- **Log**: `~/runs/distrib_canary_collapse/interv_react_s43.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-launch-interv-react-s43.md"
+}

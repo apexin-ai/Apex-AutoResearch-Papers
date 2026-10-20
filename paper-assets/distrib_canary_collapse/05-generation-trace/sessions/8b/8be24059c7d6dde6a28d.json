@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8be24059c7d6dde6a28d",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis alpha sweep a045 s42 fp32",
+  "task_key": "worker_analysis_alpha_sweep_a045_s42_fp32_20260519T224707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_alpha_sweep_a045_s42_fp32_20260519T224707_result.json",
+    "occurrence": 1,
+    "bytes": 848,
+    "sha256": "fb1d8e69042417362b6b1c8ac276166db3e9f178c5872b34127cae99d1c933bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n**结果**: α=0.45 PermG fwd (FDR) = **0/8**，onset boundary 从 [0.40, 0.50] 缩窄至 **[0.45, 0.50]**。\n\n关键数据：\n| 指标 | 值 |\n|------|-----|\n| PermG fwd/rev | 0/8, 0/8 |\n| K≥3 consensus | 3/8 |\n| K≥4 consensus | 0/8 |\n| naive_xcorr (fwd) | 7/8 |\n| diff_xcorr (fwd) | 3/8 |\n| threshold_onset | 8/8 |\n| TY granger | 1/8 (ece→mauve, df_resid=1 不可靠) |\n| Δ entropy | −18.7% |\n| Δ d1/d2/d3 | −35.4% / −47.9% / −47.8% |\n\n值得注意：4/8 pairs 的 PermG raw p < 0.07（FDR 后 > 0.09），说明 α=0.45 处于 onset 近侧但未跨过阈值。K≥3 从邻近 α 的 6/8 降到 3/8，可能与 α=0.45 下 entropy 的剧烈 gen0→gen1 跌落（−22.9%）然后回升的非单调轨迹有关。\n\n报告已写入 artifacts，registry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-alpha-sweep-a045-s42-fp32.md"
+}

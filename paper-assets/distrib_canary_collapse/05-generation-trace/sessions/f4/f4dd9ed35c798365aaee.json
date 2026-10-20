@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f4dd9ed35c798365aaee",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "audit d102 historical",
+  "task_key": "worker_audit_d102_historical_20260521T180349",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_d102_historical_20260521T180349_result.json",
+    "occurrence": 1,
+    "bytes": 600,
+    "sha256": "94dca7bc1f5401459cbd4db58114250a1013ea68df3b41e123e43667fbadf02f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。93 个 JSON 文件中：\n\n- **1 个 FAIL**: `generalize/gpt2m_wiki_a100_s43_fp32`（westd-17855）— 使用了旧脚本（`3x_sigma_drift` + `perplexity` 作为 downstream），需要用 d102 重新分析\n- **3 个 LEGACY**: westd-19828 上 `analysis_mauve/` 目录中的旧版本，缺少 config 段，但已被正确的 `analysis/` 版本取代，不影响当前结果\n- **89 个 PASS**: 包括所有 Phase Diagram（T=5/T=15）、T=20、Alpha Sweep 实验，均使用 `true_3sigma_d105` + 正确 downstreams\n\n报告已写入 `artifacts/d102_audit_report.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-d102-historical.md"
+}

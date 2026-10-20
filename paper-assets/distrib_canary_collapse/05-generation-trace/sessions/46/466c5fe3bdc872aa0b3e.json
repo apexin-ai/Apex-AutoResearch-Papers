@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "466c5fe3bdc872aa0b3e",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops check gpt2m null logs",
+  "task_key": "worker_ops_check_gpt2m_null_logs_20260524T082139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_gpt2m_null_logs_20260524T082139_result.json",
+    "occurrence": 1,
+    "bytes": 1143,
+    "sha256": "08bf3721d16fed959c7ba205eb9ba94dc22d53eb3c58b803350c930abf333291"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已完整完成。结论如下：\n\n---\n\n## 结果\n\n| 实验 | Generation 数 | EXIT_CODE | 状态 |\n|------|--------------|-----------|------|\n| `a000_gpt2m_s42_fp32` | 11 (gen_0→gen_10) | 0 | **SUCCESS** |\n| `a000_gpt2m_s43_fp32` | 11 (gen_0→gen_10) | 0 | **SUCCESS** |\n\n### 最终 metrics (gen_10)\n\n| 指标 | s42 | s43 |\n|------|-----|-----|\n| token_entropy | 2.839 | 2.839 |\n| perplexity | 17.27 | 17.26 |\n| self_bleu | 0.022 | 0.026 |\n| distinct_1 | 0.079 | 0.078 |\n| distinct_2 | 0.359 | 0.350 |\n| distinct_3 | 0.550 | 0.531 |\n| mauve | 0.014 | 0.013 |\n| effective_rank | 24.0 | 25.2 |\n| ece | 0.011 | 0.011 |\n| effective_alpha | 0.0 | 0.0 |\n\n### 结论\n\n两个实验都**真正完成**（10 个 training generation + gen_0 baseline，EXIT_CODE=0，all_metrics.json 完整）。Cron 监控误判——进程正常退出但缺少 sentinel 文件导致被标记为 \"process dead\"。\n\n完整路径：\n- `/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_gpt2m_s42_fp32/`\n- `/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_gpt2m_s43_fp32/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-gpt2m-null-logs.md"
+}

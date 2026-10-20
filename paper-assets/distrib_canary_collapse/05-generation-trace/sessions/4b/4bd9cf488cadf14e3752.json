@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "id": "4bd9cf488cadf14e3752",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "analysis qwen35 08b wiki a100 s42 v2",
+  "task_key": "worker_analysis_qwen35_08b_wiki_a100_s42_v2_20260519T130637",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen35_08b_wiki_a100_s42_v2_20260519T130637.log",
+    "occurrence": 1,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "statistics": {
+    "messages": 0,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {},
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [],
+  "readable_path": "readable/worker-executions/analysis-qwen35-08b-wiki-a100-s42-v2-copy-2.md"
+}

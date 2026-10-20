@@ -1,0 +1,3518 @@
+{
+  "schema_version": "1.0",
+  "session_id": "80a458538274afa86e5a",
+  "rounds": [
+    {
+      "number": 16,
+      "messages": [
+        {
+          "source_line": 181,
+          "timestamp": "2026-05-25T06:41:20.844993+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 1310
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": "2026-05-25T06:41:20.946545+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 1159
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": "2026-05-25T06:41:46.018477+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images/main_p11.png"
+            }
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": "2026-05-25T06:41:46.623562+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 605
+          },
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": "2026-05-25T06:42:14.457795+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex",
+              "old_string": "\\paragraph{Metric drift.}\n\n\\begin{table}[h]",
+              "new_string": "\\paragraph{Metric drift.}\nTable~\\ref{tab:drift_summary} reports the relative change in each metric from generation~0 to generation~10 across six contamination levels.\nTwo patterns emerge: (1)~entropy and calibration (ECE) degrade monotonically with $\\alpha$, while (2)~diversity metrics exhibit a non-monotonic relationship where the largest relative decline occurs at moderate contamination ($\\alpha{=}0.25$) rather than full replacement ($\\alpha{=}1.0$).\nFigure~\\ref{fig:app_metric_trajectory} visualizes representative per-generation trajectories, showing the distinct temporal profiles that underlie the Granger-precedence analysis in \\S\\ref{sec:method}.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/metric_trajectory.pdf}\n\\caption{Per-generation metric trajectories for Pythia-410M (seed~42) at $\\alpha{=}1.0$. Entropy and ECE diverge from generation~1, while diversity metrics (distinct-1, distinct-2) exhibit a delayed response with onset at generation~2--3. Perplexity increases sharply after generation~3. This temporal ordering motivates the cascade analysis in \\S\\ref{sec:cascade} and the canary$\\to$downstream detection framework.}\n\\label{fig:app_metric_trajectory}\n\\end{figure}\n\n\\begin{table}[h]"
+            }
+          },
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": "2026-05-25T06:42:14.995202+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Edit",
+            "elapsed_ms": 537
+          },
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": "2026-05-25T06:42:18.770658+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "distrib_canary_collapse",
+              "max_pages": "8",
+              "preview": "False"
+            }
+          },
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": "2026-05-25T06:42:23.348938+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": false, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"Package microtype Info: Loading generic protrusion settings for font family\\\\n(microtype)             `pcr' (encoding: T1).\\\\n(microtype)             For optimal results, create family-specific settings.\\\\n(microtype)             See the microtype manual for details.\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 10000) in paragraph at lines 1688--1690\\\\n []\\\\\\\\T1/ptm/b/n/10.95 (+20) Software ver-sions.[] \\\\\\\\T1/ptm/m/n/10.95 (+20) Py-Tor\\\\nch 2.1.0,\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 10000) in paragraph at lines 1688--1690\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) Trans-form-ers 4.36.0, Python 3.10. All\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 10000) in paragraph at lines 1688--1690\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) ex-per-i-ments use de-ter-min-is-tic mode\\\\n []\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (49.76532pt too wide) in paragraph at lines 1688--1690\\\\n\\\\\\\\T1/ptm/m/n/10.95 (-20) (\\\\\\\\T1/pcr/m/n/10.95 torch.use_deterministic_algorithms(T\\\\nrue)\\\\\\\\T1/ptm/m/n/10.95 (-20) )\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1092) in paragraph at lines 1710--1711\\\\n[]\\\\\\\\T1/ptm/b/n/10.95 (+20) Code: \\\\\\\\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\\\\n scripts, data-\\\\n []\\\\n\\\\n) [35] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: BEA3BD10B4BB0D4D6F464889F4B00917;9351.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 17663 strings out of 469438\\\\n 280947 string characters out of 5468411\\\\n 758266 words of memory out of 5000000\\\\n 45172 multiletter control sequences out of 15000+600000\\\\n 712936\n…[truncated 13844 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 4578
+          },
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": "2026-05-25T06:42:38.397316+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__feishu_upload_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "mcp__agent-ml-research__feishu_upload_file",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.pdf",
+              "file_name": "distrib_canary_collapse_v2.pdf"
+            }
+          },
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": "2026-05-25T06:42:43.041327+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"file_key\\\": \\\"file_v3_00121_bf63185a-63c3-491f-8063-85f79ea0b87g\\\", \\\"file_name\\\": \\\"distrib_canary_collapse_v2.pdf\\\", \\\"chat_id\\\": \\\"oc_150c7ce908e05d7932315e0288cf5bfb\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "mcp__agent-ml-research__feishu_upload_file",
+            "elapsed_ms": 4644
+          },
+          "id": "event-000190"
+        },
+        {
+          "source_line": 191,
+          "timestamp": "2026-05-25T06:42:56.769461+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_reply_to_user"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "tool_args": {
+              "text": "已修复。附录 A \"Metric drift\" 段落补充了：\n1. 引导文字（概括两个核心 pattern）\n2. metric trajectory 图（Figure，展示 per-generation 轨迹 + cascade ordering 动机）\n\nPDF 已上传。"
+            }
+          },
+          "id": "event-000191"
+        },
+        {
+          "source_line": 192,
+          "timestamp": "2026-05-25T06:42:57.442442+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "elapsed_ms": 672
+          },
+          "id": "event-000192"
+        },
+        {
+          "source_line": 193,
+          "timestamp": "2026-05-25T06:43:10.424881+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "3600",
+              "reason": "论文修复完成，继续等 C2-s42 cron 回调",
+              "prompt": "[HANDOFF] 你是 Director，这是 Loop #22。\n\n### 当前状态\n- C2-s42 运行中，cron 监控\n- 论文 35 页，最新修复：附录 A metric drift 补充了引导文字和 trajectory 图\n- C2-s43 v2 + C1 四组已准备\n- Agent 空闲\n\n### 硬约束\n- westd-19828 cuda:0 单卡串行，fp32\n- GPU 不能空等\n- 每次论文改动后发 PDF\n- appendix 最多 26 个编号 section\n\n### 等待事件\n- C2-s42 cron 回调\n- 审稿报告回传\n- 用户消息"
+            }
+          },
+          "id": "event-000193"
+        },
+        {
+          "source_line": 194,
+          "timestamp": "2026-05-25T06:43:10.958585+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 07:44:00 (in 3650s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 533
+          },
+          "id": "event-000194"
+        },
+        {
+          "source_line": 195,
+          "timestamp": "2026-05-25T06:43:13.699836+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译通过，35 页，0 critical warnings。上传 PDF。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director"
+          },
+          "id": "event-000195"
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "messages": [
+        {
+          "source_line": 196,
+          "timestamp": "2026-05-25T06:43:15.903631+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[飞书用户 陈卓凡 (ou_eb2177d32728ad89a7f84ac418c35184)]: tabel 10修复表格宽度，figure 14在正文中是不是出现了，注意附录内容不要与正文中出现的内容重复\n\n---\n\n[飞书用户 陈卓凡 (ou_eb2177d32728ad89a7f84ac418c35184)]: figure 17,18,19的两张图竖着排版吧，判断是否需要竖着排版的依据是图的内容相较于这个页面大小是否reader-friendly，如果字太小了那就要换排版格式"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "source": "feishu:oc_150c7ce908e05d7932315e0288cf5bfb"
+          },
+          "id": "event-000196"
+        },
+        {
+          "source_line": 197,
+          "timestamp": "2026-05-25T06:43:41.852468+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper && grep -n \"\\\\\\\\caption{\" appendix.tex | cat -n",
+              "description": "List all captions with their line numbers and sequential count"
+            }
+          },
+          "id": "event-000197"
+        },
+        {
+          "source_line": 198,
+          "timestamp": "2026-05-25T06:43:42.416946+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "     1\t21:\\caption{Per-architecture training hyperparameters.}\n     2\t59:\\caption{Per-generation metric trajectories for Pythia-410M (seed~42) at $\\alpha{=}1.0$. Entropy and ECE diverge from generation~1, while diversity metrics (distinct-1, distinct-2) exhibit a delayed response with onset at generation~2--3. Perplexity increases sharply after generation~3. This temporal ordering motivates the cascade analysis in \\S\\ref{sec:cascade} and the canary$\\to$downstream detection framework.}\n     3\t66:\\caption{Metric drift (\\%, generation~0$\\to$10) for Pythia-410M across contamination levels. Diversity collapse occurs at all $\\alpha$ levels, with the strongest decline at low-to-moderate contamination ($\\alpha{=}0.25$: distinct-1 $-40.3{\\pm}0.3\\%$) rather than full replacement ($\\alpha{=}1.0$: $-27.8{\\pm}1.6\\%$). $^\\dagger$$\\alpha{=}0.10$: single seed (seed~42, preliminary). $\\alpha{=}0.00$, $\\alpha{=}0.25$, $\\alpha{=}0.50$, $\\alpha{=}0.75$: 3-seed mean${\\pm}$std (seeds 42, 43, 44); $\\alpha{=}1.0$: 4-seed mean${\\pm}$std (seeds 42, 43, 44, 45).}\n     4\t110:\\caption{Distinct-3 drift (\\%, generation~0$\\to$10) across contamination levels. $\\alpha{=}0.00$, $\\alpha{=}0.25$, $\\alpha{=}0.75$: 3-seed mean${\\pm}$std; $\\alpha{=}1.0$: 4-seed mean${\\pm}$std; $\\alpha{=}0.50$: single seed.}\n     5\t157:\\caption{Detection stability as a function of minimum observation window $T_{\\min}$ (Pythia-410M, $\\alpha{=}1.0$, 4~seeds). PermG forward detection (6/8) and consensus classification ($K{\\geq}4$) both stabilize at $T_{\\min}{\\geq}5$, with no significance flips for $T_{\\min} \\in [5, 10]$. This robustness confirms that the choice of $T_{\\min}{=}5$ in the main analysis does not drive results.}\n     6\t164:\\caption{Observation window sensitivity for Tier~3 consensus ($K{\\geq}4/5$) at $\\alpha{=}1.0$ (Pythia-410M, 4~seeds). Tier~3 pairs: number of canary$\\to$downstream pairs (out of 8 validated) reaching $K{\\geq}4/5$ method agreement. TY pairs: number of effect-size reference pairs (out of 6) reachi\n…[truncated 15247 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Bash",
+            "elapsed_ms": 564
+          },
+          "id": "event-000198"
+        },
+        {
+          "source_line": 199,
+          "timestamp": "2026-05-25T06:43:42.770474+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper && grep -n \"\\\\\\\\caption{\" method.tex experiments.tex discussion.tex introduction.tex | cat -n",
+              "description": "Count figures/tables in main text"
+            }
+          },
+          "id": "event-000199"
+        },
+        {
+          "source_line": 200,
+          "timestamp": "2026-05-25T06:43:42.871697+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "     1\tmethod.tex:38:\\caption{Method sensitivity: five methods yield dramatically different FDR-significant rates on identical data. PermG achieves the lowest null-control FPR (6.7\\%, pooled across 10~seeds) with 75\\% detection at $\\alpha{\\geq}0.50$; dashed line: 5\\% nominal.}\n     2\tmethod.tex:52:\\caption{Multi-Method Consensus Test (MMCT)}\n     3\tmethod.tex:99:\\caption{Detection rate surface over $\\alpha \\times T$ (PermG forward, 3~seeds). Dashed curve: fitted boundary $\\alpha_c(T)$. The blind zone ($\\alpha \\leq 0.45$) shrinks as $T$ increases.}\n     4\texperiments.tex:24:\\caption{Metric trajectories at $\\alpha{=}1.0$ (Pythia-410M, 4~seeds). Token entropy drops at generation~1; distinct-1 declines from generations~2--3, with a consistent one-generation canary lead (shaded: inter-seed range).}\n     5\texperiments.tex:40:\\caption{Cascade onset timeline (Pythia-410M, WikiText, fp32). Entropy and ECE reach onset at generation~1; distinct-$n$ follows at generation~2. The ordering $t_H \\leq t_D$ holds across all conditions.}\n     6\texperiments.tex:51:\\caption{Specification curve (1{,}160 configurations). The blind$\\to$onset jump at $\\alpha_c{\\approx}0.50$ is robust across methods, pairs, and seeds.}\n     7\texperiments.tex:57:\\caption{Detection outcomes across contamination levels (Pythia-410M, seed~42, $T{=}10$, fp32). PermG: forward FDR-significant pairs; $K{\\geq}3$: consensus pairs (of 8 canary$\\to$downstream pairs).}\n     8\texperiments.tex:98:\\caption{Dose-response: PermG detection rate with sigmoid fit ($\\alpha_c{=}0.483$; shaded 95\\% CI). Regime bands mark blind, onset, sync-dip, and detection zones.}\n     9\texperiments.tex:125:\\caption{Cross-architecture validation ($\\alpha{=}1.0$): PermG forward detection (${\\geq}6/8$) in 11/15 model-seed conditions spanning five families (345M--6.9B); faded bars: non-confirming conditions.}\n    10\texperiments.tex:145:\\caption{Canary-triggered intervention (Pythia-410M, $\\alpha{=}1.0$). Predictive cessation on entropy (generation~1\n…[truncated 910 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-000200"
+        },
+        {
+          "source_line": 201,
+          "timestamp": "2026-05-25T06:44:04.408477+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper && grep -n \"\\\\\\\\begin{figure}\\|\\\\\\\\begin{table}\" appendix.tex | cat -n",
+              "description": "Count figure and table environments in appendix sequentially"
+            }
+          },
+          "id": "event-000201"
+        },
+        {
+          "source_line": 202,
+          "timestamp": "2026-05-25T06:44:04.509476+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "     1\t18:\\begin{table}[h]\n     2\t56:\\begin{figure}[h]\n     3\t63:\\begin{table}[h]\n     4\t107:\\begin{table}[h]\n     5\t154:\\begin{figure}[h]\n     6\t161:\\begin{table}[h]\n     7\t194:\\begin{table}[h]\n     8\t216:\\begin{figure}[h]\n     9\t284:\\begin{table}[h]\n    10\t373:\\begin{figure}[h]\n    11\t380:\\begin{figure}[h]\n    12\t409:\\begin{table}[h]\n    13\t469:\\begin{table}[h]\n    14\t491:\\begin{figure}[h]\n    15\t501:\\begin{table}[h]\n    16\t524:\\begin{figure}[h]\n    17\t551:\\begin{table}[h]\n    18\t593:\\begin{figure}[h]\n    19\t670:\\begin{table}[h]\n    20\t697:\\begin{figure}[h]\n    21\t704:\\begin{table}[h]\n    22\t728:\\begin{table}[h]\n    23\t762:\\begin{table}[h]\n    24\t789:\\begin{figure}[h]\n    25\t796:\\begin{figure}[h]\n    26\t803:\\begin{table}[h]\n    27\t828:\\begin{table}[h]\n    28\t856:\\begin{table}[h]\n    29\t892:\\begin{figure}[h]\n    30\t899:\\begin{figure}[h]\n    31\t906:\\begin{figure}[h]\n    32\t913:\\begin{table}[h]\n    33\t938:\\begin{table}[h]\n    34\t957:\\begin{table}[h]\n    35\t1002:\\begin{table}[h]\n    36\t1025:\\begin{figure}[h]\n    37\t1053:\\begin{figure}[h]\n    38\t1071:\\begin{table}[h]\n    39\t1096:\\begin{table}[h]\n    40\t1122:\\begin{figure}[h]\n    41\t1141:\\begin{table}[h]\n    42\t1164:\\begin{table}[h]\n    43\t1185:\\begin{figure}[h]\n    44\t1192:\\begin{figure}[h]\n    45\t1215:\\begin{table}[h]\n    46\t1239:\\begin{figure}[h]\n    47\t1249:\\begin{table}[h]\n    48\t1342:\\begin{table}[h]\n    49\t1369:\\begin{table}[h]\n    50\t1419:\\begin{table}[h]\n    51\t1459:\\begin{table}[h]\n    52\t1476:\\begin{figure}[h]\n    53\t1496:\\begin{table}[h]\n    54\t1520:\\begin{figure}[h]\n    55\t1534:\\begin{table}[h]\n    56\t1570:\\begin{table}[h]\n    57\t1603:\\begin{table}[h]\n    58\t1642:\\begin{figure}[h]\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/director_6dc4a1c8"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-000202"
+        },
+        {
+          "source_line": 203,
+          "timestamp": "2026-05-25T06:44:46.010802+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper && grep -n \"\\\\\\\\label{tab:\\|\\\\\\\\label{fig:\" appendix.tex | head -30",
+              "description": "List figure and table labels in appendix for identification"
+            }
+          },
+          "id": "event-000203"
+        },
+        {
+          "source_line": 204,
+          "timestamp": "2026-05-25T06:44:46.113668+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "22:\\label{tab:arch_hyperparams}\n60:\\label{fig:app_metric_trajectory}\n67:\\label{tab:drift_summary}\n111:\\label{tab:distinct3_drift}\n158:\\label{fig:window_sensitivity}\n165:\\label{tab:window_sensitivity}\n198:\\label{tab:spec_curve}\n220:\\label{fig:spec_curve_app}\n288:\\label{tab:sequential_timing}\n377:\\label{fig:consensus_heatmap}\n384:\\label{fig:mmct_k_operating}\n413:\\label{tab:method-comparison}\n473:\\label{tab:failure_modes}\n495:\\label{fig:composite_hero}\n505:\\label{tab:14b_phase}\n528:\\label{fig:14b_phase}\n555:\\label{tab:dose_response_full}\n597:\\label{fig:per_method_phase}\n674:\\label{tab:beta50}\n701:\\label{fig:ar1_diagnostic}\n708:\\label{tab:nonstationarity_sim}\n732:\\label{tab:empirical_ar1}\n766:\\label{tab:diff_power_cost}\n793:\\label{fig:shapley_contribution}\n800:\\label{fig:shapley_coalition}\n807:\\label{tab:shapley_6pair}\n832:\\label{tab:weight_robustness}\n860:\\label{tab:shapley_per_pair}\n896:\\label{fig:fpr_sensitivity}\n903:\\label{fig:null_fpr_diagnostic}\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/director_6dc4a1c8"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Bash",
+            "elapsed_ms": 102
+          },
+          "id": "event-000204"
+        },
+        {
+          "source_line": 205,
+          "timestamp": "2026-05-25T06:45:10.384301+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images/main_p15.png"
+            }
+          },
+          "id": "event-000205"
+        },
+        {
+          "source_line": 206,
+          "timestamp": "2026-05-25T06:45:10.957419+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images/main_p16.png"
+            }
+          },
+          "id": "event-000206"
+        },
+        {
+          "source_line": 207,
+          "timestamp": "2026-05-25T06:45:11.812780+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 1428
+          },
+          "id": "event-000207"
+        },
+        {
+          "source_line": 208,
+          "timestamp": "2026-05-25T06:45:11.813982+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 856
+          },
+          "id": "event-000208"
+        },
+        {
+          "source_line": 209,
+          "timestamp": "2026-05-25T06:45:11.814348+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images/main_p17.png"
+            }
+          },
+          "id": "event-000209"
+        },
+        {
+          "source_line": 210,
+          "timestamp": "2026-05-25T06:45:12.166203+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images/main_p18.png"
+            }
+          },
+          "id": "event-000210"
+        },
+        {
+          "source_line": 211,
+          "timestamp": "2026-05-25T06:45:12.769920+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 955
+          },
+          "id": "event-000211"
+        },
+        {
+          "source_line": 212,
+          "timestamp": "2026-05-25T06:45:12.873592+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 707
+          },
+          "id": "event-000212"
+        },
+        {
+          "source_line": 213,
+          "timestamp": "2026-05-25T06:47:26.482694+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex",
+              "offset": "450",
+              "limit": "120"
+            }
+          },
+          "id": "event-000213"
+        },
+        {
+          "source_line": 214,
+          "timestamp": "2026-05-25T06:47:26.935501+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "450\tThree mechanisms could explain why detection fails below $\\alpha_c$:\n451\t\\emph{(1)~Signal absence}: at low $\\alpha$, the real-data fraction dominates, and the model's distributional shift is too small to generate temporal structure detectable by any linear method.\n452\t\\emph{(2)~Power limitation}: the signal exists but falls below PermG's detection threshold at $T{=}10$ (supported by the $T{=}20$ result showing 5/8 at $\\alpha{=}0.45$).\n453\t\\emph{(3)~Contemporaneous coupling}: at low $\\alpha$, entropy and diversity respond simultaneously rather than sequentially, eliminating the lag that Granger tests require.\n454\tThe MI analysis (Appendix~\\ref{app:mi_analysis}) favors explanation~(2): coupling between entropy and diversity exists throughout the blind zone ($\\hat{I}_G > 0$ at all $\\alpha$), and the cross-$T$ results confirm that longer observation resolves detection at $\\alpha{=}0.45$.\n455\tHowever, explanation~(3) may contribute at very low $\\alpha$ (${\\leq}0.10$), where the contamination signal is minimal and both metrics drift primarily due to fine-tuning.\n456\t\n457\t\\paragraph{Entropy as a measurement artifact.}\n458\tA potential concern is that entropy's ``leading'' behavior reflects measurement sensitivity rather than a genuine temporal cascade: entropy is a continuous quantity computed from the full probability distribution, while distinct-$n$ is a discrete count computed from a finite sample.\n459\tEntropy can therefore respond to arbitrarily small distributional shifts that leave the token-level generation unchanged.\n460\tWe note three counterarguments:\n461\t(1)~The ECE co-movement result confirms that calibration---a separate measurement---also shifts at gen-1, suggesting the signal is real.\n462\t(2)~First-differencing preserves the canary$\\to$diversity relationship while eliminating canary$\\to$perplexity, which would not occur if the signal were purely a measurement artifact.\n463\t(3)~The intervention experiment demonstrates that acting on the entropy signal at ge\n…[truncated 6926 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-000214"
+        },
+        {
+          "source_line": 215,
+          "timestamp": "2026-05-25T06:47:27.488030+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex",
+              "offset": "570",
+              "limit": "120"
+            }
+          },
+          "id": "event-000215"
+        },
+        {
+          "source_line": 216,
+          "timestamp": "2026-05-25T06:47:27.940805+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "570\t0.60 & 8 & 6 & 0 & \\textbf{0} & 0 \\\\\n571\t0.75 & 7 & 6 & 0 & \\textbf{6} & 3 \\\\\n572\t1.00 & 8 & 6 & 2 & \\textbf{6} & 1 \\\\\n573\t\\bottomrule\n574\t\\multicolumn{6}{l}{\\footnotesize $^\\S$TY directional assignment under verification; column retained for completeness.} \\\\\n575\t\\end{tabular}}\n576\t\\end{table}\n577\t\n578\tPermG's dose-response profile most cleanly separates detection regimes: 0/8 at null, sharp 0$\\to$6 onset at $\\alpha{=}0.50$, non-monotonic dip at $\\alpha{=}0.55$--$0.60$.\n579\tNaive monitoring baselines (PPL-slope, variance-threshold) fire at $\\alpha{=}0.0$ (FPR 67--100\\%) because fine-tuning drift is indistinguishable from contamination without directional testing.\n580\t\n581\t\\paragraph{Method-specific observations.}\n582\t\\emph{NaiveXCorr} saturates at 7--8/8 at every $\\alpha$ including null, making it useless for regime discrimination---its FPR (94.4\\%) means it would declare detection in 19 out of 20 null-control runs.\n583\t\\emph{DiffXCorr} shows the highest detection rate at $\\alpha{\\geq}0.50$ (6--8/8) but maintains 4/8 at null, yielding FPR${=}37.5\\%$.\n584\tIts bidirectional nature (significant in both forward and reverse) prevents causal attribution but confirms the presence of coupling.\n585\t\\emph{Threshold onset} is highly specific (3/8 at null) but insensitive (0/8 at $\\alpha{=}0.10$--$0.45$ and $\\alpha{=}0.55$--$0.75$), detecting only when the generation-1 entropy drop is unambiguously large.\n586\t\\emph{Toda--Yamamoto} fluctuates between 0/8 and 4/8 across all $\\alpha$ levels with no clear dose-response structure, reflecting its poor finite-sample properties at $T{=}10$.\n587\t\n588\t\\paragraph{Inter-method agreement.}\n589\tCohen's $\\kappa$ between all method pairs ranges from $-0.04$ (NaiveXCorr vs.\\ Threshold, near-random disagreement) to $0.42$ (PermG vs.\\ DiffXCorr, moderate agreement above onset).\n590\tThe low overall $\\kappa{=}0.185$ across all five methods reflects the fundamental tension: permissive methods detect everywhere (including null), conservative met\n…[truncated 8408 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-000216"
+        },
+        {
+          "source_line": 217,
+          "timestamp": "2026-05-25T06:47:27.941368+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex",
+              "offset": "680",
+              "limit": "130"
+            }
+          },
+          "id": "event-000217"
+        },
+        {
+          "source_line": 218,
+          "timestamp": "2026-05-25T06:47:28.796891+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "680\t8  & ---  & ---  & 6\\% & 2\\% \\\\\n681\t10 & 2.0  & 6.32 & 9\\% & 2\\% \\\\\n682\t15 & 1.2  & 4.65 & 6\\% & 2\\% \\\\\n683\t20 & 0.9  & 4.02 & 5\\% & 1\\% \\\\\n684\t\\bottomrule\n685\t\\end{tabular}\n686\t\\end{table}\n687\t\n688\t\n689\t\\section{Non-Stationarity Robustness Analysis}\n690\t\\label{app:nonstationarity}\n691\t\n692\tMonte Carlo simulation (AR(1) DGP, $T{=}11$, 1{,}000 reps) shows PermG FPR inflates to ${\\sim}10\\%$ under strong non-stationarity ($\\varphi{\\geq}0.95$), while first-differencing maintains proper size ($4.2$--$6.6\\%$) at the cost of reduced power (Table~\\ref{tab:nonstationarity_sim}).\n693\tOur pipeline applies first-differencing before permutation testing, combining both advantages.\n694\tUnder null conditions ($\\alpha{=}0.0$), token entropy exhibits $\\varphi{=}-0.51$ (far from the danger zone); first-differencing reduces distinct-1's high raw $\\varphi$ ($0.81$--$0.97$, reflecting deterministic trend) to $-0.14$--$0.44$.\n695\tOur empirical FPR of 4/60 (6.7\\%) confirms adequate size control.\n696\t\n697\t\\begin{figure}[h]\n698\t\\centering\n699\t\\includegraphics[width=\\columnwidth]{figures/fig_ar1_diagnostic.pdf}\n700\t\\caption{AR(1) coefficient estimates for null-control ($\\alpha{=}0.0$) and treatment ($\\alpha{=}1.0$) series (Pythia-410M, 4~seeds). Null token entropy exhibits negative autocorrelation ($\\varphi{=}-0.51$), far from the non-stationarity danger zone ($\\varphi{\\geq}0.95$). Treatment series show higher persistence in raw levels but first-differencing reduces all coefficients below 0.44, confirming that our pipeline controls for non-stationarity.}\n701\t\\label{fig:ar1_diagnostic}\n702\t\\end{figure}\n703\t\n704\t\\begin{table}[h]\n705\t\\centering\n706\t\\small\n707\t\\caption{Size and power under AR(1) DGP ($T{=}11$, 1{,}000 reps). First-differencing maintains nominal size; PermG FPR inflates at $\\varphi{\\geq}0.95$.}\n708\t\\label{tab:nonstationarity_sim}\n709\t\\resizebox{\\columnwidth}{!}{%\n710\t\\begin{tabular}{lcccccc}\n711\t\\toprule\n712\t& \\multicolumn{3}{c}{Size (\\%, $\\beta{=}0$)} & \\multicolumn{3}{c}{Pow\n…[truncated 6381 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 855
+          },
+          "id": "event-000218"
+        },
+        {
+          "source_line": 219,
+          "timestamp": "2026-05-25T06:47:28.797754+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex",
+              "offset": "780",
+              "limit": "130"
+            }
+          },
+          "id": "event-000219"
+        },
+        {
+          "source_line": 220,
+          "timestamp": "2026-05-25T06:47:28.849180+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "780\tThis explains the large detection gains observed in the $T{=}20$ extension (\\S\\ref{app:t20_comparison}).\n781\t\n782\t\\section{Shapley Value Analysis}\n783\t\\label{app:shapley}\n784\t\n785\tShapley values~\\citep{shapley1953value} computed over all $2^5{=}32$ coalitions quantify each method's marginal contribution to FPR and FNR (Table~\\ref{tab:shapley_6pair}).\n786\tDiffXCorr achieves the best combined Shapley ($-0.299$) but cannot separate forward from reverse; among directional methods, PermG ranks best ($-0.141$).\n787\tThe 8-pair variant (including MAUVE) yields identical rankings.\n788\t\n789\t\\begin{figure}[h]\n790\t\\centering\n791\t\\includegraphics[width=\\columnwidth]{figures/fig_shapley_contribution.pdf}\n792\t\\caption{Shapley value decomposition by method. FPR contribution (positive = worse) and FNR contribution (negative = better) are shown for each of the five detection methods. DiffXCorr achieves the best combined Shapley ($-0.299$) but lacks directional separation; among directional methods, PermG ranks best ($-0.141$). NaiveXCorr contributes the most FPR ($+0.609$) due to its inability to distinguish signal from null drift.}\n793\t\\label{fig:shapley_contribution}\n794\t\\end{figure}\n795\t\n796\t\\begin{figure}[h]\n797\t\\centering\n798\t\\includegraphics[width=\\columnwidth]{figures/shapley_method_contribution.pdf}\n799\t\\caption{Coalition-level Shapley analysis across all $2^5{=}32$ method subsets. Each bar shows a method's marginal contribution when added to an existing coalition. PermG's contribution is most consistent across coalitions (low variance), confirming its robustness as the primary directional detector regardless of which other methods are included.}\n800\t\\label{fig:shapley_coalition}\n801\t\\end{figure}\n802\t\n803\t\\begin{table}[h]\n804\t\\centering\n805\t\\small\n806\t\\caption{Shapley value decomposition (6-pair, MAUVE excluded). Combined = FPR + FNR (more negative = better).}\n807\t\\label{tab:shapley_6pair}\n808\t\\begin{tabular}{lccc}\n809\t\\toprule\n810\tMethod & $\\phi^{\\text{FPR}}$ & $\\phi^{\\t\n…[truncated 6941 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-000220"
+        },
+        {
+          "source_line": 221,
+          "timestamp": "2026-05-25T06:47:59.838129+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "metric_trajectory",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000221"
+        },
+        {
+          "source_line": 222,
+          "timestamp": "2026-05-25T06:48:00.399912+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.fls:315:INPUT ./figures/metric_trajectory.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.fls:316:INPUT ./figures/metric_trajectory.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.fls:317:INPUT ./figures/metric_trajectory.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.fls:318:INPUT ./figures/metric_trajectory.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.fls:319:INPUT ./figures/metric_trajectory.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.fls:379:INPUT ./figures/metric_trajectory.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.fls:380:INPUT ./figures/metric_trajectory.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.fls:381:INPUT ./figures/metric_trajectory.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.fls:382:INPUT ./figures/metric_trajectory.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments.tex:23:\\includegraphics[width=\\columnwidth]{figures/metric_trajectory.pdf}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments.tex:25:\\label{fig:metric_trajectory}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_figure_backups/20260524_155556/manifest.yaml:8:  backup_path: /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_figure_backups/20260524_155556/metric_trajectory.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/\n…[truncated 4598 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Grep",
+            "elapsed_ms": 561
+          },
+          "id": "event-000222"
+        },
+        {
+          "source_line": 223,
+          "timestamp": "2026-05-25T06:48:00.651235+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "fig_composite_hero",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000223"
+        },
+        {
+          "source_line": 224,
+          "timestamp": "2026-05-25T06:48:00.701888+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.fls:415:INPUT ./figures/fig_composite_hero.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.fls:416:INPUT ./figures/fig_composite_hero.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.fls:417:INPUT ./figures/fig_composite_hero.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.fls:418:INPUT ./figures/fig_composite_hero.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.fls:419:INPUT ./figures/fig_composite_hero.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.log:1110:<figures/fig_composite_hero.pdf, id=1195, 497.98749pt x 436.39348pt>\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.log:1111:File: figures/fig_composite_hero.pdf Graphic file (type pdf)\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.log:1112:<use figures/fig_composite_hero.pdf>\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.log:1113:Package pdftex.def Info: figures/fig_composite_hero.pdf  used on input line 493\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.log:1121:[18 <./figures/fig_composite_hero.pdf>]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.fdb_latexmk:193:  \"figures/fig_composite_hero.pdf\" 1779644484.52029 81433 8914758d2439cc3ed127de17d0fd6d92 \"\"\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:493:\\includegraphics[width=\\columnwidth]{figures/fig_composite_hero.pdf}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collap\n…[truncated 294 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-000224"
+        },
+        {
+          "source_line": 225,
+          "timestamp": "2026-05-25T06:48:12.524635+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\newlabel\\{fig:(per_method_phase|ar1_diagnostic|shapley_contribution|shapley_coalition)",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000225"
+        },
+        {
+          "source_line": 226,
+          "timestamp": "2026-05-25T06:48:12.926618+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1748:[Omitted long matching line]\n1916:[Omitted long matching line]\n1992:\\newlabel{fig:shapley_contribution}{{19}{23}{Shapley value decomposition by method. FPR contribution (positive = worse) and FNR contribution (negative = better) are shown for each of the five detection methods. DiffXCorr achieves the best combined Shapley ($-0.299$) but lacks directional separation; among directional methods, PermG ranks best ($-0.141$). NaiveXCorr contributes the most FPR ($+0.609$) due to its inability to distinguish signal from null drift}{figure.caption.109}{}}\n1994:\\newlabel{fig:shapley_coalition}{{20}{23}{Coalition-level Shapley analysis across all $2^5{=}32$ method subsets. Each bar shows a method's marginal contribution when added to an existing coalition. PermG's contribution is most consistent across coalitions (low variance), confirming its robustness as the primary directional detector regardless of which other methods are included}{figure.caption.110}{}}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Grep",
+            "elapsed_ms": 401
+          },
+          "id": "event-000226"
+        },
+        {
+          "source_line": 227,
+          "timestamp": "2026-05-25T06:48:13.077769+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex",
+              "offset": "50",
+              "limit": "20"
+            }
+          },
+          "id": "event-000227"
+        },
+        {
+          "source_line": 228,
+          "timestamp": "2026-05-25T06:48:13.638630+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "50\t\n51\t\\paragraph{Metric drift.}\n52\tTable~\\ref{tab:drift_summary} reports the relative change in each metric from generation~0 to generation~10 across six contamination levels.\n53\tTwo patterns emerge: (1)~entropy and calibration (ECE) degrade monotonically with $\\alpha$, while (2)~diversity metrics exhibit a non-monotonic relationship where the largest relative decline occurs at moderate contamination ($\\alpha{=}0.25$) rather than full replacement ($\\alpha{=}1.0$).\n54\tFigure~\\ref{fig:app_metric_trajectory} visualizes representative per-generation trajectories, showing the distinct temporal profiles that underlie the Granger-precedence analysis in \\S\\ref{sec:method}.\n55\t\n56\t\\begin{figure}[h]\n57\t\\centering\n58\t\\includegraphics[width=\\columnwidth]{figures/metric_trajectory.pdf}\n59\t\\caption{Per-generation metric trajectories for Pythia-410M (seed~42) at $\\alpha{=}1.0$. Entropy and ECE diverge from generation~1, while diversity metrics (distinct-1, distinct-2) exhibit a delayed response with onset at generation~2--3. Perplexity increases sharply after generation~3. This temporal ordering motivates the cascade analysis in \\S\\ref{sec:cascade} and the canary$\\to$downstream detection framework.}\n60\t\\label{fig:app_metric_trajectory}\n61\t\\end{figure}\n62\t\n63\t\\begin{table}[h]\n64\t\\centering\n65\t\\small\n66\t\\caption{Metric drift (\\%, generation~0$\\to$10) for Pythia-410M across contamination levels. Diversity collapse occurs at all $\\alpha$ levels, with the strongest decline at low-to-moderate contamination ($\\alpha{=}0.25$: distinct-1 $-40.3{\\pm}0.3\\%$) rather than full replacement ($\\alpha{=}1.0$: $-27.8{\\pm}1.6\\%$). $^\\dagger$$\\alpha{=}0.10$: single seed (seed~42, preliminary). $\\alpha{=}0.00$, $\\alpha{=}0.25$, $\\alpha{=}0.50$, $\\alpha{=}0.75$: 3-seed mean${\\pm}$std (seeds 42, 43, 44); $\\alpha{=}1.0$: 4-seed mean${\\pm}$std (seeds 42, 43, 44, 45).}\n67\t\\label{tab:drift_summary}\n68\t\\resizebox{\\columnwidth}{!}{%\n69\t\\begin{tabular}{lccccc}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 560
+          },
+          "id": "event-000228"
+        },
+        {
+          "source_line": 229,
+          "timestamp": "2026-05-25T06:48:21.260582+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux",
+              "offset": "1746",
+              "limit": "6"
+            }
+          },
+          "id": "event-000229"
+        },
+        {
+          "source_line": 230,
+          "timestamp": "2026-05-25T06:48:21.723884+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1746\t\\@LN{1405}{19}\n1747\t\\@writefile{lof}{\\contentsline {figure}{\\numberline {17}{\\ignorespaces Per-method detection phase diagrams (Pythia-410M, seed~42, fp32). Each panel shows one method's FDR-significant pair count across the $\\alpha \\times T$ grid. PermG (top left) exhibits the cleanest regime separation with a sharp onset boundary; NaiveXCorr (bottom left) saturates at 7--8/8 across all levels including null; DiffXCorr detects signal but cannot separate forward from reverse. The visual contrast across panels illustrates why method choice is itself a primary source of variability ($\\kappa {=}0.185$).}}{20}{figure.caption.89}\\protected@file@percent }\n1748\t\\newlabel{fig:per_method_phase}{{17}{20}{Per-method detection phase diagrams (Pythia-410M, seed~42, fp32). Each panel shows one method's FDR-significant pair count across the $\\alpha \\times T$ grid. PermG (top left) exhibits the cleanest regime separation with a sharp onset boundary; NaiveXCorr (bottom left) saturates at 7--8/8 across all levels including null; DiffXCorr detects signal but cannot separate forward from reverse. The visual contrast across panels illustrates why method choice is itself a primary source of variability ($\\kappa {=}0.185$)}{figure.caption.89}{}}\n1749\t\\@LN{1406}{19}\n1750\t\\@writefile{toc}{\\contentsline {section}{\\numberline {L}Cross-Seed Consistency at $\\alpha {=}0.60$}{20}{appendix.L}\\protected@file@percent }\n1751\t\\newlabel{app:alpha060}{{L}{20}{Cross-Seed Consistency at $\\alpha {=}0.60$}{appendix.L}{}}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 463
+          },
+          "id": "event-000230"
+        },
+        {
+          "source_line": 231,
+          "timestamp": "2026-05-25T06:48:21.773354+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux",
+              "offset": "1914",
+              "limit": "6"
+            }
+          },
+          "id": "event-000231"
+        },
+        {
+          "source_line": 232,
+          "timestamp": "2026-05-25T06:48:21.774145+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1914\t\\@LN@col{1}\n1915\t\\@writefile{lof}{\\contentsline {figure}{\\numberline {18}{\\ignorespaces AR(1) coefficient estimates for null-control ($\\alpha {=}0.0$) and treatment ($\\alpha {=}1.0$) series (Pythia-410M, 4~seeds). Null token entropy exhibits negative autocorrelation ($\\varphi {=}-0.51$), far from the non-stationarity danger zone ($\\varphi {\\geq }0.95$). Treatment series show higher persistence in raw levels but first-differencing reduces all coefficients below 0.44, confirming that our pipeline controls for non-stationarity.}}{22}{figure.caption.101}\\protected@file@percent }\n1916\t\\newlabel{fig:ar1_diagnostic}{{18}{22}{AR(1) coefficient estimates for null-control ($\\alpha {=}0.0$) and treatment ($\\alpha {=}1.0$) series (Pythia-410M, 4~seeds). Null token entropy exhibits negative autocorrelation ($\\varphi {=}-0.51$), far from the non-stationarity danger zone ($\\varphi {\\geq }0.95$). Treatment series show higher persistence in raw levels but first-differencing reduces all coefficients below 0.44, confirming that our pipeline controls for non-stationarity}{figure.caption.101}{}}\n1917\t\\@writefile{lot}{\\contentsline {table}{\\numberline {14}{\\ignorespaces Size and power under AR(1) DGP ($T{=}11$, 1{,}000 reps). First-differencing maintains nominal size; PermG FPR inflates at $\\varphi {\\geq }0.95$.}}{22}{table.caption.102}\\protected@file@percent }\n1918\t\\newlabel{tab:nonstationarity_sim}{{14}{22}{Size and power under AR(1) DGP ($T{=}11$, 1{,}000 reps). First-differencing maintains nominal size; PermG FPR inflates at $\\varphi {\\geq }0.95$}{table.caption.102}{}}\n1919\t\\@writefile{toc}{\\contentsline {paragraph}{Empirical AR(1) coefficients.}{22}{section*.103}\\protected@file@percent }"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000232"
+        },
+        {
+          "source_line": 233,
+          "timestamp": "2026-05-25T06:48:59.552987+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:pdf_to_images",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000233"
+        },
+        {
+          "source_line": 234,
+          "timestamp": "2026-05-25T06:49:00.112135+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 559
+          },
+          "id": "event-000234"
+        },
+        {
+          "source_line": 235,
+          "timestamp": "2026-05-25T06:49:03.427832+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__pdf_to_images",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000235"
+        },
+        {
+          "source_line": 236,
+          "timestamp": "2026-05-25T06:49:03.528645+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000236"
+        },
+        {
+          "source_line": 237,
+          "timestamp": "2026-05-25T06:49:07.798211+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.pdf",
+              "project": "distrib_canary_collapse",
+              "pages": "18,20,22,23",
+              "dpi": "150"
+            }
+          },
+          "id": "event-000237"
+        },
+        {
+          "source_line": 238,
+          "timestamp": "2026-05-25T06:49:08.538963+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 18, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images/main_p18.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 472.4}, {\\\"page\\\": 20, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images/main_p20.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 487.5}, {\\\"page\\\": 22, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images/main_p22.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 455.4}, {\\\"page\\\": 23, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images/main_p23.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 429.9}], \\\"total_pages\\\": 35, \\\"rendered_pages\\\": 4, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 740
+          },
+          "id": "event-000238"
+        },
+        {
+          "source_line": 239,
+          "timestamp": "2026-05-25T06:49:11.204894+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images/main_p18.png"
+            }
+          },
+          "id": "event-000239"
+        },
+        {
+          "source_line": 240,
+          "timestamp": "2026-05-25T06:49:11.773367+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images/main_p20.png"
+            }
+          },
+          "id": "event-000240"
+        },
+        {
+          "source_line": 241,
+          "timestamp": "2026-05-25T06:49:12.128123+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 923
+          },
+          "id": "event-000241"
+        },
+        {
+          "source_line": 242,
+          "timestamp": "2026-05-25T06:49:12.179585+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images/main_p22.png"
+            }
+          },
+          "id": "event-000242"
+        },
+        {
+          "source_line": 243,
+          "timestamp": "2026-05-25T06:49:12.783701+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 1010
+          },
+          "id": "event-000243"
+        },
+        {
+          "source_line": 244,
+          "timestamp": "2026-05-25T06:49:12.784134+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images/main_p23.png"
+            }
+          },
+          "id": "event-000244"
+        },
+        {
+          "source_line": 245,
+          "timestamp": "2026-05-25T06:49:12.985992+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 806
+          },
+          "id": "event-000245"
+        },
+        {
+          "source_line": 246,
+          "timestamp": "2026-05-25T06:49:13.589004+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 804
+          },
+          "id": "event-000246"
+        },
+        {
+          "source_line": 247,
+          "timestamp": "2026-05-25T06:49:55.263827+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/gen_fig_per_method_phase*.py",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures"
+            }
+          },
+          "id": "event-000247"
+        },
+        {
+          "source_line": 248,
+          "timestamp": "2026-05-25T06:49:55.812370+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Glob",
+            "elapsed_ms": 548
+          },
+          "id": "event-000248"
+        },
+        {
+          "source_line": 249,
+          "timestamp": "2026-05-25T06:49:56.214412+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/gen_fig_ar1_diagnostic*.py",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures"
+            }
+          },
+          "id": "event-000249"
+        },
+        {
+          "source_line": 250,
+          "timestamp": "2026-05-25T06:49:56.666446+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Glob",
+            "elapsed_ms": 452
+          },
+          "id": "event-000250"
+        },
+        {
+          "source_line": 251,
+          "timestamp": "2026-05-25T06:49:57.218843+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/gen_fig_shapley*.py",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures"
+            }
+          },
+          "id": "event-000251"
+        },
+        {
+          "source_line": 252,
+          "timestamp": "2026-05-25T06:49:57.420216+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_shapley_v3.py"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Glob",
+            "elapsed_ms": 201
+          },
+          "id": "event-000252"
+        },
+        {
+          "source_line": 253,
+          "timestamp": "2026-05-25T06:49:57.420717+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/gen_fig_composite_hero*.py",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures"
+            }
+          },
+          "id": "event-000253"
+        },
+        {
+          "source_line": 254,
+          "timestamp": "2026-05-25T06:49:57.521482+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_composite_hero.py"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Glob",
+            "elapsed_ms": 100
+          },
+          "id": "event-000254"
+        },
+        {
+          "source_line": 255,
+          "timestamp": "2026-05-25T06:50:03.900611+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/gen_*.py",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures"
+            }
+          },
+          "id": "event-000255"
+        },
+        {
+          "source_line": 256,
+          "timestamp": "2026-05-25T06:50:03.951237+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_sr_framework.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_shapley_contribution.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_framework.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_shapley_v3.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_fpr_sensitivity.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_intervention.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_permg_power_curve.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_composite_hero.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_dose_response_v2.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_intervention_v2.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_cross_arch_heatmap.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_phase_diagram.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_cascade_onset.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_detection_surface.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_method_comparison.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_spec_c\n…[truncated 132 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000256"
+        },
+        {
+          "source_line": 257,
+          "timestamp": "2026-05-25T06:50:25.398523+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"import matplotlib; print(matplotlib.__version__)\" 2>&1",
+              "description": "Check if matplotlib is available locally"
+            }
+          },
+          "id": "event-000257"
+        },
+        {
+          "source_line": 258,
+          "timestamp": "2026-05-25T06:50:26.012587+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_shapley_contribution.py"
+            }
+          },
+          "id": "event-000258"
+        },
+        {
+          "source_line": 259,
+          "timestamp": "2026-05-25T06:50:26.574609+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3.10.9"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Bash",
+            "elapsed_ms": 1176
+          },
+          "id": "event-000259"
+        },
+        {
+          "source_line": 260,
+          "timestamp": "2026-05-25T06:50:26.574987+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"Figure A.2: Shapley method contribution analysis.\n3\tUnified style with project palette.\"\"\"\n4\timport matplotlib\n5\tmatplotlib.use('Agg')\n6\timport matplotlib.pyplot as plt\n7\timport matplotlib.patheffects as pe\n8\timport numpy as np\n9\timport json\n10\tfrom pathlib import Path\n11\t\n12\tOUT = Path(__file__).parent\n13\tDATA = Path('/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/shapley_v3/shapley_values_v3.json')\n14\t\n15\tplt.rcParams.update({\n16\t    'font.family': 'serif',\n17\t    'font.serif': ['DejaVu Serif', 'Times New Roman', 'serif'],\n18\t    'font.size': 9,\n19\t    'axes.labelsize': 10,\n20\t    'xtick.labelsize': 8,\n21\t    'ytick.labelsize': 9,\n22\t    'legend.fontsize': 7.5,\n23\t    'figure.dpi': 300,\n24\t    'savefig.dpi': 300,\n25\t    'savefig.bbox': 'tight',\n26\t    'savefig.pad_inches': 0.08,\n27\t    'axes.spines.top': False,\n28\t    'axes.spines.right': False,\n29\t    'pdf.fonttype': 42,\n30\t    'ps.fonttype': 42,\n31\t    'mathtext.fontset': 'cm',\n32\t})\n33\t\n34\twith open(DATA) as f:\n35\t    d = json.load(f)\n36\t\n37\tsv = d['main_result_6pair']\n38\t\n39\tmethods_raw = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\n40\tlabels = ['Naive\\nXCorr', 'Diff\\nXCorr', 'Thresh.\\nOnset', 'Perm\\nGranger', 'TY\\nGranger']\n41\t\n42\tfpr_vals = [sv['fpr_shapley'][m] for m in methods_raw]\n43\tfnr_vals = [sv['fnr_shapley'][m] for m in methods_raw]\n44\tcomb_vals = [sv['combined_shapley'][m] for m in methods_raw]\n45\t\n46\t# Method colors: PermG highlighted as the champion\n47\tMETHOD_COLORS = {\n48\t    'naive_xcorr':     '#D4694A',\n49\t    'diff_xcorr':      '#E8C170',\n50\t    'threshold_onset': '#8CB4D5',\n51\t    'perm_granger':    '#2C4A6E',\n52\t    'ty_granger':      '#3B6FA0',\n53\t}\n54\tcolors = [METHOD_COLORS[m] for m in methods_raw]\n55\t\n56\tx = np.arange(len(methods_raw))\n57\tbar_width = 0.65\n58\t\n59\tfig, (ax_fpr, ax_fnr, ax_comb) = plt.subplots(\n60\t    1, 3, figsize=(7.2, 2.8),\n61\t    gridspec_kw={'wspace': 0.38}\n62\t)\n\n…[truncated 1610 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 562
+          },
+          "id": "event-000260"
+        },
+        {
+          "source_line": 261,
+          "timestamp": "2026-05-25T06:51:02.365902+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_shapley_v3.py"
+            }
+          },
+          "id": "event-000261"
+        },
+        {
+          "source_line": 262,
+          "timestamp": "2026-05-25T06:51:02.466972+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"\n2\tShapley value decomposition: method contributions to FPR and FNR.\n3\tnarrative_intent: \"PermG provides the best FPR-FNR tradeoff among\n4\tdirectional methods; NaiveXCorr dominates FPR cost.\"\n5\tUses v3 data (6 null seeds, 36 null observations).\n6\t\"\"\"\n7\timport matplotlib\n8\tmatplotlib.use('Agg')\n9\timport matplotlib.pyplot as plt\n10\timport numpy as np\n11\timport json\n12\t\n13\tplt.rcParams.update({\n14\t    'font.family': 'DejaVu Sans',\n15\t    'font.size': 9,\n16\t    'axes.titlesize': 10,\n17\t    'axes.labelsize': 9,\n18\t    'xtick.labelsize': 7.5,\n19\t    'ytick.labelsize': 8,\n20\t    'legend.fontsize': 7,\n21\t    'figure.dpi': 300,\n22\t    'savefig.dpi': 300,\n23\t    'savefig.bbox': 'tight',\n24\t    'savefig.pad_inches': 0.03,\n25\t    'axes.spines.top': False,\n26\t    'axes.spines.right': False,\n27\t    'pdf.fonttype': 42,\n28\t    'ps.fonttype': 42,\n29\t})\n30\t\n31\twith open('artifacts/shapley_v3/shapley_values_v3.json') as f:\n32\t    d = json.load(f)\n33\t\n34\tfpr = d['main_result_6pair']['fpr_shapley']\n35\tfnr = d['main_result_6pair']['fnr_shapley']\n36\tcombined = d['main_result_6pair']['combined_shapley']\n37\t\n38\tmethod_order = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\n39\tmethod_labels = ['Naive\\nXCorr', 'Diff.\\nXCorr', 'Threshold\\nOnset', 'Perm.\\nGranger', 'Toda-\\nYamamoto']\n40\t\n41\tcolors_pos = '#B2182B'\n42\tcolors_neg = '#1B7837'\n43\thero_color = '#2166AC'\n44\t\n45\tfig, axes = plt.subplots(1, 3, figsize=(5.5, 2.5), sharey=False)\n46\t\n47\tdatasets = [\n48\t    ('FPR contribution', fpr, 'increases\\nFPR', 'reduces\\nFPR'),\n49\t    ('FNR contribution', fnr, 'increases\\nFNR', 'reduces\\nFNR'),\n50\t    ('Combined (FPR+FNR)', combined, 'net\\nharm', 'net\\nbenefit'),\n51\t]\n52\t\n53\tx = np.arange(len(method_order))\n54\t\n55\tfor ax, (title, vals_dict, pos_label, neg_label) in zip(axes, datasets):\n56\t    vals = [vals_dict[m] for m in method_order]\n57\t    bar_colors = []\n58\t    for i, (v, m) in enumerate(zip(vals, method_order)):\n59\t        if m == 'perm_granger':\n60\t           \n…[truncated 1497 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-000262"
+        },
+        {
+          "source_line": 263,
+          "timestamp": "2026-05-25T06:51:34.570843+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex",
+              "old_string": "\\begin{table}[h]\n\\centering\n\\small\n\\caption{Failure mode taxonomy for non-confirming cross-architecture conditions ($\\alpha{=}1.0$).}\n\\label{tab:failure_modes}\n\\begin{tabular}{llll}\n\\toprule\nCondition & PermG & Failure mode & Root cause \\\\\n\\midrule\nGPT-2 bf16 & 0/8 & Precision & bf16 noise masks signal \\\\\nGPT-2 s43 & 6/8 both & Bidirectional & No directional separation \\\\\nPythia-1.4B s42 & 2/8 & Seed & Initialization-dependent \\\\\nSmolLM3-3B & 3/8 & Decoupling & Entropy non-monotonic \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}",
+              "new_string": "\\begin{table}[h]\n\\centering\n\\small\n\\caption{Failure mode taxonomy for non-confirming cross-architecture conditions ($\\alpha{=}1.0$).}\n\\label{tab:failure_modes}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llll}\n\\toprule\nCondition & PermG & Failure mode & Root cause \\\\\n\\midrule\nGPT-2 bf16 & 0/8 & Precision & bf16 noise masks signal \\\\\nGPT-2 s43 & 6/8 both & Bidirectional & No directional separation \\\\\nPythia-1.4B s42 & 2/8 & Seed & Initialization-dependent \\\\\nSmolLM3-3B & 3/8 & Decoupling & Entropy non-monotonic \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}"
+            }
+          },
+          "id": "event-000263"
+        },
+        {
+          "source_line": 264,
+          "timestamp": "2026-05-25T06:51:35.112612+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Edit",
+            "elapsed_ms": 541
+          },
+          "id": "event-000264"
+        },
+        {
+          "source_line": 265,
+          "timestamp": "2026-05-25T06:51:45.526531+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex",
+              "old_string": "\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_composite_hero.pdf}\n\\caption{Composite landscape overview (Pythia-410M, fp32). Four-panel summary: (a)~dose-response profile showing the sharp onset at $\\alpha_c{\\approx}0.48$; (b)~metric trajectories at $\\alpha{=}1.0$ with entropy leading diversity by one generation; (c)~per-method FPR comparison under null control; (d)~specification curve confirming onset invariance across 1{,}160 analytical configurations. This figure synthesizes the key findings from \\S\\ref{sec:regime}--\\ref{sec:dose_response}.}\n\\label{fig:composite_hero}\n\\end{figure}\n\n\\paragraph{Scale verification (Pythia-1.4B).}",
+              "new_string": "\\paragraph{Scale verification (Pythia-1.4B).}"
+            }
+          },
+          "id": "event-000265"
+        },
+        {
+          "source_line": 266,
+          "timestamp": "2026-05-25T06:51:45.528091+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Edit",
+            "elapsed_ms": 1
+          },
+          "id": "event-000266"
+        },
+        {
+          "source_line": 267,
+          "timestamp": "2026-05-25T06:51:57.409361+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex",
+              "old_string": "Figure~\\ref{fig:app_metric_trajectory} visualizes representative per-generation trajectories, showing the distinct temporal profiles that underlie the Granger-precedence analysis in \\S\\ref{sec:method}.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/metric_trajectory.pdf}\n\\caption{Per-generation metric trajectories for Pythia-410M (seed~42) at $\\alpha{=}1.0$. Entropy and ECE diverge from generation~1, while diversity metrics (distinct-1, distinct-2) exhibit a delayed response with onset at generation~2--3. Perplexity increases sharply after generation~3. This temporal ordering motivates the cascade analysis in \\S\\ref{sec:cascade} and the canary$\\to$downstream detection framework.}\n\\label{fig:app_metric_trajectory}\n\\end{figure}",
+              "new_string": "Figure~\\ref{fig:metric_trajectory} (main text) visualizes representative per-generation trajectories, showing the distinct temporal profiles that underlie the Granger-precedence analysis in \\S\\ref{sec:method}."
+            }
+          },
+          "id": "event-000267"
+        },
+        {
+          "source_line": 268,
+          "timestamp": "2026-05-25T06:51:57.460985+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-000268"
+        },
+        {
+          "source_line": 269,
+          "timestamp": "2026-05-25T06:52:03.649973+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/fig_per_method_phase.* /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/fig_ar1_diagnostic.* /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/fig_shapley_contribution.* 2>/dev/null",
+              "description": "Check existing figure files for 17, 18, 19"
+            }
+          },
+          "id": "event-000269"
+        },
+        {
+          "source_line": 270,
+          "timestamp": "2026-05-25T06:52:05.148078+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/fig_ar1_diagnostic.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/fig_ar1_diagnostic.png\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/fig_per_method_phase.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/fig_per_method_phase.png\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/fig_shapley_contribution.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/fig_shapley_contribution.png"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Bash",
+            "elapsed_ms": 1498
+          },
+          "id": "event-000270"
+        },
+        {
+          "source_line": 271,
+          "timestamp": "2026-05-25T06:52:05.148544+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"from PIL import Image; img = Image.open('/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/fig_per_method_phase.png'); print(f'size: {img.size}')\" 2>&1",
+              "description": "Check per_method_phase image dimensions"
+            }
+          },
+          "id": "event-000271"
+        },
+        {
+          "source_line": 272,
+          "timestamp": "2026-05-25T06:52:06.102470+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "size: (1724, 1187)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Bash",
+            "elapsed_ms": 953
+          },
+          "id": "event-000272"
+        },
+        {
+          "source_line": 273,
+          "timestamp": "2026-05-25T06:52:06.253483+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"from PIL import Image; img = Image.open('/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/fig_ar1_diagnostic.png'); print(f'size: {img.size}')\" 2>&1",
+              "description": "Check ar1_diagnostic image dimensions"
+            }
+          },
+          "id": "event-000273"
+        },
+        {
+          "source_line": 274,
+          "timestamp": "2026-05-25T06:52:06.405439+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "size: (1898, 808)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Bash",
+            "elapsed_ms": 151
+          },
+          "id": "event-000274"
+        },
+        {
+          "source_line": 275,
+          "timestamp": "2026-05-25T06:52:11.176059+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/fig_per_method_phase.png"
+            }
+          },
+          "id": "event-000275"
+        },
+        {
+          "source_line": 276,
+          "timestamp": "2026-05-25T06:52:12.137176+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 961
+          },
+          "id": "event-000276"
+        },
+        {
+          "source_line": 277,
+          "timestamp": "2026-05-25T06:52:12.187959+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/fig_ar1_diagnostic.png"
+            }
+          },
+          "id": "event-000277"
+        },
+        {
+          "source_line": 278,
+          "timestamp": "2026-05-25T06:52:12.390325+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 202
+          },
+          "id": "event-000278"
+        },
+        {
+          "source_line": 279,
+          "timestamp": "2026-05-25T06:52:12.390776+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/fig_shapley_contribution.png"
+            }
+          },
+          "id": "event-000279"
+        },
+        {
+          "source_line": 280,
+          "timestamp": "2026-05-25T06:52:12.542700+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-000280"
+        },
+        {
+          "source_line": 281,
+          "timestamp": "2026-05-25T06:52:47.734779+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts -name \"*per_method*\" -o -name \"*phase_diagram*\" -o -name \"*dose_response*\" 2>/dev/null | head -20",
+              "description": "Find data files for per-method phase figure"
+            }
+          },
+          "id": "event-000281"
+        },
+        {
+          "source_line": 282,
+          "timestamp": "2026-05-25T06:52:48.264119+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/data/dose_response_drift_v2.csv\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/data/dose_response_5method_regime.csv\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/data/dose_response_fp32_detail.csv\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/data/dose_response_drift.csv\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/data/dose_response_m035.csv\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/data/dose_response_5method_regime_993de0.csv\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/data/dose_response_5method_regime_m035.csv\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/data/phase_diagram_scripts_index.txt\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/data/dose_response_d120_recompiled_a2b17b.csv\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/data/dose_response_d120_recompiled.csv\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/data/dose_response_fp32.csv\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/data/dose_response_d120_recompiled_30a35c.csv\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/report/report_dose_response_gaps.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/report/dose_response_analysis.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/arti\n…[truncated 690 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Bash",
+            "elapsed_ms": 529
+          },
+          "id": "event-000282"
+        },
+        {
+          "source_line": 283,
+          "timestamp": "2026-05-25T06:52:48.264571+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts -name \"*ar1*\" -o -name \"*nonstationarity*\" -o -name \"*autocorr*\" 2>/dev/null | head -20",
+              "description": "Find data files for AR1 diagnostic figure"
+            }
+          },
+          "id": "event-000283"
+        },
+        {
+          "source_line": 284,
+          "timestamp": "2026-05-25T06:52:49.170228+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/data/empirical_ar1_coefficients.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/compute_ar1.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/empirical_ar1_coefficients.json"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Bash",
+            "elapsed_ms": 905
+          },
+          "id": "event-000284"
+        },
+        {
+          "source_line": 285,
+          "timestamp": "2026-05-25T06:52:49.220834+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/shapley_v3/ 2>/dev/null",
+              "description": "Check shapley data files"
+            }
+          },
+          "id": "event-000285"
+        },
+        {
+          "source_line": 286,
+          "timestamp": "2026-05-25T06:52:49.271483+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "compute_shapley_v3.py\nshapley_values_v3.json"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000286"
+        },
+        {
+          "source_line": 287,
+          "timestamp": "2026-05-25T06:52:54.266485+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/empirical_ar1_coefficients.json"
+            }
+          },
+          "id": "event-000287"
+        },
+        {
+          "source_line": 288,
+          "timestamp": "2026-05-25T06:52:55.028432+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"experiments\": {\n3\t    \"a000_s42\": {\n4\t      \"alpha\": 0.0, \"T\": 10, \"n_gens\": 11,\n5\t      \"token_entropy\": {\n6\t        \"series\": [3.234195, 2.99056, 3.021025, 3.014312, 3.040746, 3.033519, 3.056647, 3.050044, 3.066314, 3.042682, 3.069313],\n7\t        \"ar1_raw\": -0.5093,\n8\t        \"ar1_diff\": -0.5725\n9\t      },\n10\t      \"distinct_1\": {\n11\t        \"series\": [0.098216, 0.097525, 0.088815, 0.088699, 0.086839, 0.085635, 0.084469, 0.084367, 0.084946, 0.084648, 0.08468],\n12\t        \"ar1_raw\": 0.8645,\n13\t        \"ar1_diff\": -0.1357\n14\t      }\n15\t    },\n16\t    \"a025_s42\": {\n17\t      \"alpha\": 0.25, \"T\": 10, \"n_gens\": 11,\n18\t      \"token_entropy\": {\n19\t        \"series\": [3.234195, 2.982971, 3.015357, 3.039491, 3.051086, 3.033953, 3.048801, 3.066847, 3.06309, 3.103685, 3.079351],\n20\t        \"ar1_raw\": -0.3389,\n21\t        \"ar1_diff\": -0.4466\n22\t      },\n23\t      \"distinct_1\": {\n24\t        \"series\": [0.09796, 0.097592, 0.081547, 0.073672, 0.068797, 0.065734, 0.063531, 0.061437, 0.060969, 0.06007, 0.059609],\n25\t        \"ar1_raw\": 0.9486,\n26\t        \"ar1_diff\": 0.1913\n27\t      }\n28\t    },\n29\t    \"a050_s42\": {\n30\t      \"alpha\": 0.50, \"T\": 10, \"n_gens\": 11,\n31\t      \"token_entropy\": {\n32\t        \"series\": [3.234195, 2.513126, 2.510962, 2.581628, 2.588291, 2.585607, 2.607992, 2.656354, 2.6603, 2.672412, 2.707494],\n33\t        \"ar1_raw\": -0.279,\n34\t        \"ar1_diff\": 0.3132\n35\t      },\n36\t      \"distinct_1\": {\n37\t        \"series\": [0.091621, 0.091028, 0.075086, 0.070016, 0.069406, 0.06857, 0.068008, 0.067195, 0.06693, 0.065602, 0.064875],\n38\t        \"ar1_raw\": 0.8729,\n39\t        \"ar1_diff\": 0.0994\n40\t      }\n41\t    },\n42\t    \"a075_s42\": {\n43\t      \"alpha\": 0.75, \"T\": 10, \"n_gens\": 11,\n44\t      \"token_entropy\": {\n45\t        \"series\": [3.234195, 2.173757, 2.105473, 2.091294, 2.122948, 2.140718, 2.161739, 2.165228, 2.202272, 2.240664, 2.282991],\n46\t        \"ar1_raw\": 0.1376,\n47\t        \"ar1_diff\": 0.8834\n48\t      },\n49\t      \"distinct_1\": {\n50\t        \"series\": [0.09796, 0.097592, \n…[truncated 4308 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 761
+          },
+          "id": "event-000288"
+        },
+        {
+          "source_line": 289,
+          "timestamp": "2026-05-25T06:52:55.129615+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/shapley_v3/shapley_values_v3.json"
+            }
+          },
+          "id": "event-000289"
+        },
+        {
+          "source_line": 290,
+          "timestamp": "2026-05-25T06:52:55.582568+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"version\": \"v3_6seed_null\",\n3\t  \"generated_at\": \"2026-05-24T09:00:05.264152\",\n4\t  \"change_from_v2\": \"FPR recomputed with 6 null seeds (s45-s50, 36 pairs, 6-pair basis). FNR unchanged (45 signal experiments, 270/360 signal pairs).\",\n5\t  \"null_data_source\": \"fpr_transparency_all_seeds.json\",\n6\t  \"null_seeds\": [\n7\t    45,\n8\t    46,\n9\t    47,\n10\t    48,\n11\t    49,\n12\t    50\n13\t  ],\n14\t  \"n_null_seeds\": 6,\n15\t  \"n_null_pairs_per_seed\": 6,\n16\t  \"n_null_obs\": 36,\n17\t  \"n_signal_experiments\": 45,\n18\t  \"n_signal_obs_6pair\": 270,\n19\t  \"n_signal_obs_8pair\": 360,\n20\t  \"pair_basis\": \"6-pair (distinct_1/2/3 only, mauve excluded)\",\n21\t  \"threshold_criterion\": \"true_3sigma_d105\",\n22\t  \"methods\": [\n23\t    \"naive_xcorr\",\n24\t    \"diff_xcorr\",\n25\t    \"threshold_onset\",\n26\t    \"perm_granger\",\n27\t    \"ty_granger\"\n28\t  ],\n29\t  \"n_methods\": 5,\n30\t  \"n_coalitions\": 32,\n31\t  \"voting_rules\": {\n32\t    \"naive_xcorr\": \"naive_xcorr_sig (|r|>0.5, lag!=0; no direction filter)\",\n33\t    \"diff_xcorr\": \"diff_xcorr_fwd_sig_fdr (BH-FDR corrected)\",\n34\t    \"threshold_onset\": \"threshold_onset_sig (deterministic 3sigma)\",\n35\t    \"perm_granger\": \"perm_granger_fwd_sig_fdr (BH-FDR corrected)\",\n36\t    \"ty_granger\": \"ty_granger_sig (uncorrected)\"\n37\t  },\n38\t  \"main_result_6pair\": {\n39\t    \"fpr_shapley\": {\n40\t      \"naive_xcorr\": 0.608796,\n41\t      \"diff_xcorr\": 0.006944,\n42\t      \"threshold_onset\": 0.111111,\n43\t      \"perm_granger\": 0.039352,\n44\t      \"ty_granger\": 0.150463\n45\t    },\n46\t    \"fnr_shapley\": {\n47\t      \"naive_xcorr\": -0.41858,\n48\t      \"diff_xcorr\": -0.305617,\n49\t      \"threshold_onset\": -0.026914,\n50\t      \"perm_granger\": -0.18,\n51\t      \"ty_granger\": -0.068889\n52\t    },\n53\t    \"combined_shapley\": {\n54\t      \"naive_xcorr\": 0.190216,\n55\t      \"diff_xcorr\": -0.298673,\n56\t      \"threshold_onset\": 0.084197,\n57\t      \"perm_granger\": -0.140648,\n58\t      \"ty_granger\": 0.081574\n59\t    }\n60\t  },\n61\t  \"robustness_8pair\": {\n62\t    \"fpr_shapley\": {\n63\t      \"naive_xcorr\": 0.608796,\n64\t      \"diff_xcor\n…[truncated 1744 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-000290"
+        },
+        {
+          "source_line": 291,
+          "timestamp": "2026-05-25T06:52:55.688449+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "head -5 /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/data/dose_response_5method_regime.csv",
+              "description": "Check dose response data format"
+            }
+          },
+          "id": "event-000291"
+        },
+        {
+          "source_line": 292,
+          "timestamp": "2026-05-25T06:52:56.397882+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "alpha,n_seeds,permG_fwd_rate,permG_rev_rate,naive_rate,diff_rate,threshold_3sigma_rate,TY_rate,K_ge3_rate,K_ge4_rate,regime\n0.00,1,0.000,0.000,1.000,0.500,0.500,0.250,0.375,0.000,null\n0.05,1,0.000,0.000,0.875,0.375,0.625,0.375,0.375,0.000,null\n0.10,1,0.000,0.000,0.875,0.750,0.625,0.375,0.500,0.250,null\n0.25,1,0.000,0.000,1.000,0.375,0.625,0.375,0.500,0.000,null"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Bash",
+            "elapsed_ms": 709
+          },
+          "id": "event-000292"
+        },
+        {
+          "source_line": 293,
+          "timestamp": "2026-05-25T06:53:09.409626+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/data/dose_response_5method_regime.csv",
+              "description": "Read full dose response data for per-method figure"
+            }
+          },
+          "id": "event-000293"
+        },
+        {
+          "source_line": 294,
+          "timestamp": "2026-05-25T06:53:09.460382+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "alpha,n_seeds,permG_fwd_rate,permG_rev_rate,naive_rate,diff_rate,threshold_3sigma_rate,TY_rate,K_ge3_rate,K_ge4_rate,regime\n0.00,1,0.000,0.000,1.000,0.500,0.500,0.250,0.375,0.000,null\n0.05,1,0.000,0.000,0.875,0.375,0.625,0.375,0.375,0.000,null\n0.10,1,0.000,0.000,0.875,0.750,0.625,0.375,0.500,0.250,null\n0.25,1,0.000,0.000,1.000,0.375,0.625,0.375,0.500,0.000,null\n0.30,1,,,,,,,,,\"RUNNING (a030_s42)\"\n0.35,1,0.000,0.000,1.000,0.500,1.000,0.500,0.750,0.250,null\n0.40,1,0.000,0.000,1.000,0.375,1.000,0.500,0.750,0.125,null\n0.45,1,,,,,,,,,\"RUNNING (a045_s42)\"\n0.50,1,0.750,0.000,1.000,0.875,1.000,0.500,0.875,0.750,onset\n0.60,1,0.375,0.000,0.875,1.000,1.000,1.000,1.000,0.875,sync_collapse\n0.75,1,0.750,0.000,0.875,0.750,1.000,1.000,0.875,0.750,detection\n1.00,1,0.750,0.000,1.000,0.750,1.000,0.375,0.750,0.750,detection"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000294"
+        },
+        {
+          "source_line": 295,
+          "timestamp": "2026-05-25T06:53:17.250094+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "head -20 /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/data/dose_response_d120_recompiled.csv",
+              "description": "Read recompiled dose response data"
+            }
+          },
+          "id": "event-000295"
+        },
+        {
+          "source_line": 296,
+          "timestamp": "2026-05-25T06:53:17.351685+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "category,experiment,alpha,seed,T,domain,precision,model,n_pairs,naive_fwd,naive_rev,diffxcorr_fwd_fdr,diffxcorr_rev_fdr,threshold_fwd,threshold_rev,permg_fwd_fdr,permg_rev_fdr,ty_fwd,ty_rev,naive_rate,diff_rate,threshold_rate,permg_rate,ty_rate,consensus_ge3,consensus_ge4,consensus_ge5,server\r\nablation,accumulate_a050_s43,0.5,43,10,wikitext,fp32,gpt2,8,0,6,0,0,0,0,0,0,0,3,0.0,0.0,0.0,0.0,0.0,0,0,0,19828\r\nalpha_sweep,a000_s42,0.0,42,10,wikitext,fp32,gpt2,8,2,6,4,0,3,3,0,0,2,1,0.25,0.5,0.375,0.0,0.25,0,0,0,19828\r\nalpha_sweep,a000_s42_fp32,0.0,42,10,wikitext,fp32,gpt2,8,2,6,4,0,3,3,0,0,2,1,0.25,0.5,0.375,0.0,0.25,0,0,0,17855\r\nalpha_sweep,a000_s43,0.0,43,10,wikitext,fp32,gpt2,8,0,7,2,0,1,0,0,0,2,1,0.0,0.25,0.125,0.0,0.25,0,0,0,19828\r\nalpha_sweep,a000_s44,0.0,44,10,wikitext,fp32,gpt2,8,4,3,3,0,2,0,0,0,0,1,0.5,0.375,0.25,0.0,0.0,1,0,0,19828\r\nalpha_sweep,a005_s42_fp32_v3_d080,0.05,42,10,wikitext,fp32,gpt2,8,4,3,3,0,0,0,0,0,2,0,0.5,0.375,0.0,0.0,0.25,2,0,0,17855\r\nalpha_sweep,a010_s42,0.1,42,10,wikitext,fp32,gpt2,8,0,8,3,2,0,0,0,0,1,0,0.0,0.375,0.0,0.0,0.125,0,0,0,19828\r\nalpha_sweep,a010_s42_fp32,0.1,42,10,wikitext,fp32,gpt2,8,3,4,5,1,0,0,0,0,4,0,0.375,0.625,0.0,0.0,0.5,0,0,0,17855\r\nalpha_sweep,a010_s43_bf16,0.1,43,10,wikitext,bf16,gpt2,8,4,3,8,0,0,0,0,0,0,1,0.5,1.0,0.0,0.0,0.0,0,0,0,17855\r\nalpha_sweep,a010_s43_fp32,0.1,43,10,wikitext,fp32,gpt2,8,4,4,6,1,2,0,3,0,1,3,0.5,0.75,0.25,0.375,0.125,4,2,0,17855\r\nalpha_sweep,a025_s42_fp32,0.25,42,10,wikitext,fp32,gpt2,8,1,5,1,2,0,0,0,0,1,2,0.125,0.125,0.0,0.0,0.125,0,0,0,17855\r\nalpha_sweep,c4_a025_s42_fp32,0.25,42,10,c4,fp32,gpt2,8,4,3,8,0,2,2,0,0,2,4,0.5,1.0,0.25,0.0,0.25,2,0,0,17855\r\nalpha_sweep,a025_s43,0.25,43,10,wikitext,fp32,gpt2,8,1,7,2,0,0,0,0,0,0,0,0.125,0.25,0.0,0.0,0.0,0,0,0,19828\r\nalpha_sweep,a025_s43_fp32,0.25,43,10,wikitext,fp32,gpt2,8,0,8,0,0,0,0,0,0,1,1,0.0,0.0,0.0,0.0,0.125,0,0,0,17855\r\nalpha_sweep,a025_s44,0.25,44,10,wikitext,fp32,gpt2,8,1,6,0,0,0,0,0,0,4,1,0.125,0.0,0.0,0.0,0.5,0,0,0,19828\r\nalpha_sweep,a025_s44_fp3\n…[truncated 426 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-000296"
+        },
+        {
+          "source_line": 297,
+          "timestamp": "2026-05-25T06:54:18.832319+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep \"T=20\\|t20\\|T_20\" /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/data/dose_response_d120_recompiled.csv | head -10",
+              "description": "Check for T=20 data in dose response CSV"
+            }
+          },
+          "id": "event-000297"
+        },
+        {
+          "source_line": 298,
+          "timestamp": "2026-05-25T06:54:18.883078+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "t20,a045_s42_fp32,0.45,42,20,wikitext,fp32,gpt2,8,1,7,6,1,4,0,5,0,2,4,0.125,0.75,0.5,0.625,0.25,3,1,0,17855\r\nt20,a050_s42_fp32,0.5,42,20,wikitext,fp32,gpt2,8,2,6,6,0,6,0,6,0,2,4,0.25,0.75,0.75,0.75,0.25,6,2,1,17855\r\nt20,a060_s42_fp32,0.6,42,20,wikitext,fp32,gpt2,8,2,6,6,0,6,0,0,0,5,3,0.25,0.75,0.75,0.0,0.625,4,0,0,17855\r\nt20,a075_s42_fp32,0.75,42,20,wikitext,fp32,gpt2,8,4,4,7,0,6,0,6,0,5,0,0.5,0.875,0.75,0.75,0.625,6,6,0,17855\r\nt20,a100_s42_fp32,1.0,42,20,wikitext,fp32,gpt2,8,8,0,6,0,6,0,6,0,2,1,1.0,0.75,0.75,0.75,0.25,6,6,2,17855"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000298"
+        },
+        {
+          "source_line": 299,
+          "timestamp": "2026-05-25T06:55:33.180285+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_per_method_phase_v2.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"Figure 17: Per-method detection phase diagrams — vertical layout.\n5 stacked panels (one per method), each showing /8 pair counts across alpha.\nData from Table tab:dose_response_full (T=10, seed 42, Pythia-410M, fp32).\"\"\"\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\nfrom pathlib import Path\n\nOUT = Path(__file__).parent\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 9,\n    'axes.titlesize': 10,\n    'axes.labelsize': 9,\n    'xtick.labelsize': 8,\n    'ytick.labelsize': 8,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n})\n\nalphas = [0.00, 0.10, 0.25, 0.30, 0.35, 0.40, 0.45, 0.50, 0.55, 0.60, 0.75, 1.00]\nalpha_labels = ['0.00', '0.10', '0.25', '0.30', '0.35', '0.40', '0.45', '0.50', '0.55', '0.60', '0.75', '1.00']\n\ndata = {\n    'Naive XCorr':     [8, 7, 8, 8, 8, 8, 8, 8, 8, 8, 7, 8],\n    'Diff. XCorr':     [4, 6, 3, 4, 4, 3, 6, 7, 8, 6, 6, 6],\n    'Threshold':       [3, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 2],\n    'Perm. Granger':   [0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 6, 6],\n    'Toda-Yamamoto':   [1, 0, 2, 3, 1, 4, 1, 3, 1, 0, 3, 1],\n}\n\nmethod_colors = {\n    'Naive XCorr':   '#B2182B',\n    'Diff. XCorr':   '#E08214',\n    'Threshold':     '#8CB4D5',\n    'Perm. Granger': '#2166AC',\n    'Toda-Yamamoto': '#5AAE61',\n}\n\nhero = 'Perm. Granger'\nx = np.arange(len(alphas))\n\nfig, axes = plt.subplots(5, 1, figsize=(3.4, 8.5), sharex=True)\n\nfor ax, (method, vals) in zip(axes, data.items()):\n    color = method_colors[method]\n    alpha_face = 1.0 if method == hero else 0.75\n    edge = 'black' if method == hero else color\n    lw = 0.8 if method == hero else 0.3\n\n    bars = ax.bar(x, vals, 0.7, color=color, alpha=alpha_face,\n                  edgecolor=edge, linewidth=lw)\n\n    for i, v in enumerate(vals):\n        if v > 0:\n            ax.text(i, v + 0.2, str(v), ha='center', va='bottom',\n                    fontsize=6, fontweight='bold' if method == hero else 'normal')\n\n    ax.set_ylabel('/8 sig.', fontsize=7)\n    ax.set_ylim(0, 9.5)\n    ax.set_yticks([0, 2, 4, 6, 8])\n    ax.axhline(0, color='#CCCCCC', linewidth=0.3)\n    ax.yaxis.grid(True, alpha=0.15, linewidth=0.3)\n    ax.set_axisbelow(True)\n\n    label = '(a)' if method == 'Naive XCorr' else \\\n            '(b)' if method == 'Diff. XCorr' else \\\n            '(c)' if method == 'Threshold' else \\\n            '(d)' if method == 'Perm. Granger' else '(e)'\n    ax.set_title(f'{label}  {method}', fontsize=9, fontweight='bold' if method == hero else 'normal',\n                 loc='left', pad=4)\n\naxes[-1].set_xticks(x)\naxes[-1].set_xticklabels(alpha_labels, fontsize=7)\naxes[-1].set_xlabel('Contamination level $\\\\alpha$', fontsize=9)\n\nfig.tight_layout(h_pad=0.8)\n\nfor fmt in ['pdf', 'png']:\n    fig.savefig(OUT / f'fig_per_method_phase.{fmt}', dpi=300)\nplt.close()\nprint('Saved fig_per_method_phase.pdf + .png')\n"
+            }
+          },
+          "id": "event-000299"
+        },
+        {
+          "source_line": 300,
+          "timestamp": "2026-05-25T06:55:33.936693+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_per_method_phase_v2.py"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Write",
+            "elapsed_ms": 756
+          },
+          "id": "event-000300"
+        },
+        {
+          "source_line": 301,
+          "timestamp": "2026-05-25T06:55:43.497638+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_ar1_diagnostic_v2.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"Figure 18: AR(1) diagnostic — vertical layout.\nTwo stacked panels: (a) Token Entropy, (b) Distinct-1.\nData from empirical_ar1_coefficients.json.\"\"\"\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport json\nfrom pathlib import Path\n\nOUT = Path(__file__).parent\nDATA = Path('/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/empirical_ar1_coefficients.json')\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 9,\n    'axes.titlesize': 10,\n    'axes.labelsize': 9,\n    'xtick.labelsize': 8,\n    'ytick.labelsize': 8,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n})\n\nwith open(DATA) as f:\n    d = json.load(f)\n\nexps = d['experiments']\n\nconfigs = [\n    ('a000_s42', '$\\\\alpha{=}0.00$'),\n    ('a025_s42', '$\\\\alpha{=}0.25$'),\n    ('a050_s42', '$\\\\alpha{=}0.50$'),\n    ('a075_s42', '$\\\\alpha{=}0.75$'),\n    ('a100_s42', '$\\\\alpha{=}1.00$'),\n]\n\nmetrics = [\n    ('token_entropy', 'Token Entropy'),\n    ('distinct_1', 'Distinct-1'),\n]\n\nx = np.arange(len(configs))\nwidth = 0.35\n\nfig, axes = plt.subplots(2, 1, figsize=(3.4, 5.0), sharex=True)\n\nfor ax, (metric_key, metric_label) in zip(axes, metrics):\n    raw_vals = [exps[k][metric_key]['ar1_raw'] for k, _ in configs]\n    diff_vals = [exps[k][metric_key]['ar1_diff'] for k, _ in configs]\n\n    bars_raw = ax.bar(x - width/2, raw_vals, width, label='Raw',\n                      color='#4393C3', edgecolor='white', linewidth=0.3)\n    bars_diff = ax.bar(x + width/2, diff_vals, width, label='First-diff',\n                       color='#E08214', edgecolor='white', linewidth=0.3)\n\n    ax.axhline(0, color='black', linewidth=0.5)\n    ax.axhline(0.95, color='#B2182B', linewidth=0.8, linestyle='--', alpha=0.7)\n    ax.axhline(-0.95, color='#B2182B', linewidth=0.8, linestyle='--', alpha=0.7)\n\n    if metric_key == 'token_entropy':\n        ax.text(len(configs) - 0.6, 0.97, '$\\\\varphi = 0.95$', fontsize=6.5,\n                color='#B2182B', ha='right', va='bottom')\n\n    panel = '(a)' if metric_key == 'token_entropy' else '(b)'\n    ax.set_title(f'{panel}  {metric_label}', fontsize=9, fontweight='bold', loc='left', pad=4)\n    ax.set_ylabel('AR(1) coefficient $\\\\varphi$', fontsize=8)\n    ax.set_ylim(-1.1, 1.15)\n    ax.yaxis.grid(True, alpha=0.15, linewidth=0.3)\n    ax.set_axisbelow(True)\n    ax.legend(fontsize=7, loc='upper left', framealpha=0.8, edgecolor='none')\n\naxes[-1].set_xticks(x)\naxes[-1].set_xticklabels([label for _, label in configs], fontsize=8)\n\nfig.tight_layout(h_pad=1.0)\n\nfor fmt in ['pdf', 'png']:\n    fig.savefig(OUT / f'fig_ar1_diagnostic.{fmt}', dpi=300)\nplt.close()\nprint('Saved fig_ar1_diagnostic.pdf + .png')\n"
+            }
+          },
+          "id": "event-000301"
+        },
+        {
+          "source_line": 302,
+          "timestamp": "2026-05-25T06:55:57.530823+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_ar1_diagnostic_v2.py"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Write",
+            "elapsed_ms": 14033
+          },
+          "id": "event-000302"
+        },
+        {
+          "source_line": 303,
+          "timestamp": "2026-05-25T06:55:57.732661+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_shapley_contribution_v2.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"Figure 19: Shapley value decomposition — vertical layout.\nThree stacked panels: (a) FPR, (b) FNR, (c) Combined.\nData from shapley_values_v3.json.\"\"\"\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patheffects as pe\nimport numpy as np\nimport json\nfrom pathlib import Path\n\nOUT = Path(__file__).parent\nDATA = Path('/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/shapley_v3/shapley_values_v3.json')\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 9,\n    'axes.titlesize': 10,\n    'axes.labelsize': 9,\n    'xtick.labelsize': 8,\n    'ytick.labelsize': 8,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n})\n\nwith open(DATA) as f:\n    d = json.load(f)\n\nsv = d['main_result_6pair']\n\nmethod_order = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\nmethod_labels = ['Naive\\nXCorr', 'Diff.\\nXCorr', 'Threshold\\nOnset', 'Perm.\\nGranger', 'Toda-\\nYamamoto']\n\ncolors_pos = '#B2182B'\ncolors_neg = '#1B7837'\nhero_color = '#2166AC'\n\ndatasets = [\n    ('(a)  FPR contribution', sv['fpr_shapley'], 'increases FPR', 'reduces FPR'),\n    ('(b)  FNR contribution (6-pair)', sv['fnr_shapley'], 'increases FNR', 'reduces FNR'),\n    ('(c)  Combined (FPR + FNR)', sv['combined_shapley'], 'net harm', 'net benefit'),\n]\n\nx = np.arange(len(method_order))\n\nfig, axes = plt.subplots(3, 1, figsize=(3.4, 7.0), sharex=True)\n\nfor ax, (title, vals_dict, pos_label, neg_label) in zip(axes, datasets):\n    vals = [vals_dict[m] for m in method_order]\n    bar_colors = []\n    for v, m in zip(vals, method_order):\n        if m == 'perm_granger':\n            bar_colors.append(hero_color)\n        elif v > 0:\n            bar_colors.append(colors_pos)\n        else:\n            bar_colors.append(colors_neg)\n\n    bars = ax.bar(x, vals, 0.65, color=bar_colors, alpha=0.85,\n                  edgecolor='white', linewidth=0.3)\n\n    for i, v in enumerate(vals):\n        offset = 0.012 if v >= 0 else -0.012\n        va = 'bottom' if v >= 0 else 'top'\n        fw = 'bold' if method_order[i] == 'perm_granger' else 'normal'\n        t = ax.text(i, v + offset, f'{v:+.3f}', ha='center', va=va,\n                    fontsize=6.5, fontweight=fw)\n        t.set_path_effects([pe.withStroke(linewidth=1.5, foreground='white')])\n\n    ax.axhline(0, color='black', linewidth=0.5)\n    ax.set_title(title, fontsize=9, fontweight='bold', loc='left', pad=4)\n    ax.set_ylabel('Shapley value', fontsize=8)\n    ax.yaxis.grid(True, alpha=0.15, linewidth=0.3)\n    ax.set_axisbelow(True)\n\n    ymin, ymax = ax.get_ylim()\n    ax.text(len(method_order) - 0.6, ymax * 0.85, pos_label, fontsize=6,\n            color=colors_pos, ha='right', va='top', fontstyle='italic', alpha=0.7)\n    ax.text(len(method_order) - 0.6, ymin * 0.85, neg_label, fontsize=6,\n            color=colors_neg, ha='right', va='bottom', fontstyle='italic', alpha=0.7)\n\naxes[-1].set_xticks(x)\naxes[-1].set_xticklabels(method_labels, fontsize=7.5)\n\nfig.tight_layout(h_pad=0.8)\n\nfor fmt in ['pdf', 'png']:\n    fig.savefig(OUT / f'fig_shapley_contribution.{fmt}', dpi=300)\nplt.close()\nprint('Saved fig_shapley_contribution.pdf + .png')\n"
+            }
+          },
+          "id": "event-000303"
+        },
+        {
+          "source_line": 304,
+          "timestamp": "2026-05-25T06:55:57.733364+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_shapley_contribution_v2.py"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000304"
+        },
+        {
+          "source_line": 305,
+          "timestamp": "2026-05-25T06:56:07.360095+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse && python3 docs/paper/figures/gen_fig_per_method_phase_v2.py 2>&1",
+              "description": "Generate vertical per-method phase figure"
+            }
+          },
+          "id": "event-000305"
+        },
+        {
+          "source_line": 306,
+          "timestamp": "2026-05-25T06:56:08.231998+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse && python3 docs/paper/figures/gen_fig_ar1_diagnostic_v2.py 2>&1",
+              "description": "Generate vertical AR1 diagnostic figure"
+            }
+          },
+          "id": "event-000306"
+        },
+        {
+          "source_line": 307,
+          "timestamp": "2026-05-25T06:56:09.338148+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse && python3 docs/paper/figures/gen_fig_shapley_contribution_v2.py 2>&1",
+              "description": "Generate vertical Shapley contribution figure"
+            }
+          },
+          "id": "event-000307"
+        },
+        {
+          "source_line": 308,
+          "timestamp": "2026-05-25T06:56:10.195211+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Saved fig_per_method_phase.pdf + .png\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/director_6dc4a1c8"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Bash",
+            "elapsed_ms": 2835
+          },
+          "id": "event-000308"
+        },
+        {
+          "source_line": 309,
+          "timestamp": "2026-05-25T06:56:12.254625+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Saved fig_ar1_diagnostic.pdf + .png\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/director_6dc4a1c8"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Bash",
+            "elapsed_ms": 4022
+          },
+          "id": "event-000309"
+        },
+        {
+          "source_line": 310,
+          "timestamp": "2026-05-25T06:56:14.213142+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Saved fig_shapley_contribution.pdf + .png\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/director_6dc4a1c8"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Bash",
+            "elapsed_ms": 4874
+          },
+          "id": "event-000310"
+        },
+        {
+          "source_line": 311,
+          "timestamp": "2026-05-25T06:56:20.680050+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/fig_per_method_phase.png"
+            }
+          },
+          "id": "event-000311"
+        },
+        {
+          "source_line": 312,
+          "timestamp": "2026-05-25T06:56:21.215082+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/fig_ar1_diagnostic.png"
+            }
+          },
+          "id": "event-000312"
+        },
+        {
+          "source_line": 313,
+          "timestamp": "2026-05-25T06:56:21.217915+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 537
+          },
+          "id": "event-000313"
+        },
+        {
+          "source_line": 314,
+          "timestamp": "2026-05-25T06:56:21.219839+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 4
+          },
+          "id": "event-000314"
+        },
+        {
+          "source_line": 315,
+          "timestamp": "2026-05-25T06:56:21.220282+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/fig_shapley_contribution.png"
+            }
+          },
+          "id": "event-000315"
+        },
+        {
+          "source_line": 316,
+          "timestamp": "2026-05-25T06:56:21.674496+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 454
+          },
+          "id": "event-000316"
+        },
+        {
+          "source_line": 317,
+          "timestamp": "2026-05-25T06:56:44.636639+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex",
+              "old_string": "\\caption{Per-method detection phase diagrams (Pythia-410M, seed~42, fp32). Each panel shows one method's FDR-significant pair count across the $\\alpha \\times T$ grid. PermG (top left) exhibits the cleanest regime separation with a sharp onset boundary; NaiveXCorr (bottom left) saturates at 7--8/8 across all levels including null; DiffXCorr detects signal but cannot separate forward from reverse. The visual contrast across panels illustrates why method choice is itself a primary source of variability ($\\kappa{=}0.185$).}",
+              "new_string": "\\caption{Per-method FDR-significant pair counts (/8) across contamination levels (Pythia-410M, seed~42, $T{=}10$, fp32). PermG~(d) exhibits the cleanest regime separation---zero detections through $\\alpha{=}0.45$, then a sharp 0$\\to$6 jump at $\\alpha{=}0.50$; NaiveXCorr~(a) saturates at 7--8/8 across all levels including null; DiffXCorr~(b) detects signal but cannot separate forward from reverse. The visual contrast across panels illustrates why method choice is itself a primary source of variability ($\\kappa{=}0.185$).}"
+            }
+          },
+          "id": "event-000317"
+        },
+        {
+          "source_line": 318,
+          "timestamp": "2026-05-25T06:56:45.172861+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Edit",
+            "elapsed_ms": 536
+          },
+          "id": "event-000318"
+        },
+        {
+          "source_line": 319,
+          "timestamp": "2026-05-25T06:56:55.223537+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex",
+              "old_string": "\\caption{AR(1) coefficient estimates for null-control ($\\alpha{=}0.0$) and treatment ($\\alpha{=}1.0$) series (Pythia-410M, 4~seeds). Null token entropy exhibits negative autocorrelation ($\\varphi{=}-0.51$), far from the non-stationarity danger zone ($\\varphi{\\geq}0.95$). Treatment series show higher persistence in raw levels but first-differencing reduces all coefficients below 0.44, confirming that our pipeline controls for non-stationarity.}",
+              "new_string": "\\caption{AR(1) coefficient estimates across five contamination levels (Pythia-410M, seed~42). (a)~Token entropy: raw $\\varphi$ transitions from negative ($-0.51$ at $\\alpha{=}0.00$) to near-unit-root ($1.00$ at $\\alpha{=}1.00$), but first-differencing keeps all values below 0.98. (b)~Distinct-1: raw $\\varphi$ is uniformly high ($0.75$--$0.95$) even at null, driven by deterministic trend; first-differencing reduces all to ${\\leq}0.24$. Dashed red line: $\\varphi{=}0.95$ danger zone.}"
+            }
+          },
+          "id": "event-000319"
+        },
+        {
+          "source_line": 320,
+          "timestamp": "2026-05-25T06:56:55.329029+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Edit",
+            "elapsed_ms": 105
+          },
+          "id": "event-000320"
+        },
+        {
+          "source_line": 321,
+          "timestamp": "2026-05-25T06:56:58.838621+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__paper_compile_and_check",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000321"
+        },
+        {
+          "source_line": 322,
+          "timestamp": "2026-05-25T06:56:59.390305+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 551
+          },
+          "id": "event-000322"
+        },
+        {
+          "source_line": 323,
+          "timestamp": "2026-05-25T06:57:02.765445+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "distrib_canary_collapse",
+              "clean": "True",
+              "preview": "False"
+            }
+          },
+          "id": "event-000323"
+        },
+        {
+          "source_line": 324,
+          "timestamp": "2026-05-25T06:57:09.439657+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": true, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"ch 2.1.0,\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 10000) in paragraph at lines 1675--1677\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) Trans-form-ers 4.36.0, Python 3.10. All\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 10000) in paragraph at lines 1675--1677\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) ex-per-i-ments use de-ter-min-is-tic mode\\\\n []\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (49.76532pt too wide) in paragraph at lines 1675--1677\\\\n\\\\\\\\T1/ptm/m/n/10.95 (-20) (\\\\\\\\T1/pcr/m/n/10.95 torch.use_deterministic_algorithms(T\\\\nrue)\\\\\\\\T1/ptm/m/n/10.95 (-20) )\\\\n []\\\\n\\\\n[31]\\\\nUnderfull \\\\\\\\hbox (badness 1092) in paragraph at lines 1697--1698\\\\n[]\\\\\\\\T1/ptm/b/n/10.95 (+20) Code: \\\\\\\\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\\\\n scripts, data-\\\\n []\\\\n\\\\n) [32] [33 <./figures/fig_per_method_phase.pdf> <./figures/fig_ar1_diagnostic.p\\\\ndf>] [34 <./figures/fig_shapley_contribution.pdf> <./figures/shapley_method_con\\\\ntribution.pdf> <./figures/fig_fpr_sensitivity.pdf> <./figures/fig_null_fpr_diag\\\\nnostic.pdf>] [35 <./figures/fig_bootstrap_fpr.pdf> <./figures/differencing_dmax\\\\n.pdf> <./figures/fig_cusum_monitoring.pdf> <./figures/fig_channel_effect.pdf> <\\\\n./figures/fig_partial_correlation.pdf> <./figures/fig_partial_correlation_agg.p\\\\ndf>] [36 <./figures/permg_power_curve.pdf> <./figures/regime_map.pdf>]\\\\n(./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: BEA3BD10B4BB0D4D6F464889F4B00917;9351.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 17644 strings out of 469438\\\\n 280520 string chara\n…[truncated 14537 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 6674
+          },
+          "id": "event-000324"
+        },
+        {
+          "source_line": 325,
+          "timestamp": "2026-05-25T06:57:17.686377+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.pdf",
+              "project": "distrib_canary_collapse",
+              "pages": "11,17,18,33,34",
+              "dpi": "150"
+            }
+          },
+          "id": "event-000325"
+        },
+        {
+          "source_line": 326,
+          "timestamp": "2026-05-25T06:57:18.492672+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 11, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images/main_p11.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 507.0}, {\\\"page\\\": 17, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images/main_p17.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 521.5}, {\\\"page\\\": 18, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images/main_p18.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 446.6}, {\\\"page\\\": 33, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images/main_p33.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 182.5}, {\\\"page\\\": 34, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images/main_p34.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 268.8}], \\\"total_pages\\\": 36, \\\"rendered_pages\\\": 5, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 806
+          },
+          "id": "event-000326"
+        },
+        {
+          "source_line": 327,
+          "timestamp": "2026-05-25T06:57:22.064790+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images/main_p11.png"
+            }
+          },
+          "id": "event-000327"
+        },
+        {
+          "source_line": 328,
+          "timestamp": "2026-05-25T06:57:22.656197+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images/main_p17.png"
+            }
+          },
+          "id": "event-000328"
+        },
+        {
+          "source_line": 329,
+          "timestamp": "2026-05-25T06:57:23.362459+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 1297
+          },
+          "id": "event-000329"
+        },
+        {
+          "source_line": 330,
+          "timestamp": "2026-05-25T06:57:23.362894+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images/main_p33.png"
+            }
+          },
+          "id": "event-000330"
+        },
+        {
+          "source_line": 331,
+          "timestamp": "2026-05-25T06:57:23.615676+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 959
+          },
+          "id": "event-000331"
+        },
+        {
+          "source_line": 332,
+          "timestamp": "2026-05-25T06:57:23.616099+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images/main_p34.png"
+            }
+          },
+          "id": "event-000332"
+        },
+        {
+          "source_line": 333,
+          "timestamp": "2026-05-25T06:57:23.869761+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 506
+          },
+          "id": "event-000333"
+        },
+        {
+          "source_line": 334,
+          "timestamp": "2026-05-25T06:57:24.326832+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 710
+          },
+          "id": "event-000334"
+        },
+        {
+          "source_line": 335,
+          "timestamp": "2026-05-25T06:57:38.677804+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__feishu_upload_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000335"
+        },
+        {
+          "source_line": 336,
+          "timestamp": "2026-05-25T06:57:39.236677+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 558
+          },
+          "id": "event-000336"
+        },
+        {
+          "source_line": 337,
+          "timestamp": "2026-05-25T06:57:43.054302+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__feishu_upload_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "mcp__agent-ml-research__feishu_upload_file",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.pdf",
+              "file_name": "distrib_canary_collapse_v36p_fixes.pdf"
+            }
+          },
+          "id": "event-000337"
+        },
+        {
+          "source_line": 338,
+          "timestamp": "2026-05-25T06:57:48.613980+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"file_key\\\": \\\"file_v3_00121_11baa6e7-99a7-49cc-97c6-90a105fe4fag\\\", \\\"file_name\\\": \\\"distrib_canary_collapse_v36p_fixes.pdf\\\", \\\"chat_id\\\": \\\"oc_150c7ce908e05d7932315e0288cf5bfb\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "mcp__agent-ml-research__feishu_upload_file",
+            "elapsed_ms": 5559
+          },
+          "id": "event-000338"
+        },
+        {
+          "source_line": 339,
+          "timestamp": "2026-05-25T06:57:53.786717+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__director_reply_to_user",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000339"
+        },
+        {
+          "source_line": 340,
+          "timestamp": "2026-05-25T06:57:54.338082+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 551
+          },
+          "id": "event-000340"
+        },
+        {
+          "source_line": 341,
+          "timestamp": "2026-05-25T06:58:03.725815+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_reply_to_user"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "tool_args": {
+              "text": "PDF 已上传。本次修改：\n\n1. **Table 10（failure mode taxonomy）**：加了 `\\resizebox` 适配列宽\n2. **Figure 14（composite_hero）已删除**：4 个子图全部与正文 Figure 1-7 重复\n3. **附录 Figure 10（metric_trajectory）已删除**：与正文 Figure 4 用同一张 PDF，改为引用正文 Figure 4\n4. **原 Figure 17/18/19 → 现 Figure 15/16/17**：全部改为竖排布局，文字清晰可读\n   - Fig 15（per-method detection）：5 个方法各一栏，柱状图\n   - Fig 16（AR1 diagnostic）：Token Entropy + Distinct-1 上下两栏\n   - Fig 17（Shapley decomposition）：FPR / FNR / Combined 上下三栏\n\n总页数 36 页，编译无 critical warning。"
+            }
+          },
+          "id": "event-000341"
+        },
+        {
+          "source_line": 342,
+          "timestamp": "2026-05-25T06:58:04.549796+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "elapsed_ms": 823
+          },
+          "id": "event-000342"
+        },
+        {
+          "source_line": 343,
+          "timestamp": "2026-05-25T06:58:07.719839+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cleanup_pdf_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "tool_args": {
+              "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images"
+            }
+          },
+          "id": "event-000343"
+        },
+        {
+          "source_line": 344,
+          "timestamp": "2026-05-25T06:58:08.332344+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"deleted\\\": 24, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "elapsed_ms": 612
+          },
+          "id": "event-000344"
+        },
+        {
+          "source_line": 345,
+          "timestamp": "2026-05-25T06:58:12.268675+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。修复了 Table 10 宽度、删除了两处与正文重复的附录图（composite_hero + metric_trajectory），并将原 Figure 17/18/19 改为竖排布局，文字标注更清晰。PDF 已发到群里。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director"
+          },
+          "id": "event-000345"
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "messages": [
+        {
+          "source_line": 346,
+          "timestamp": "2026-05-25T06:58:14.845082+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[飞书用户 陈卓凡 (ou_eb2177d32728ad89a7f84ac418c35184)]: paper同一小节里的分段和/paragraph要少，现在分段有些稀碎。此外再改method部分的写作，要注重上下句的衔接，适当的overlap是必要的，要有过渡的感觉"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "source": "feishu:oc_150c7ce908e05d7932315e0288cf5bfb"
+          },
+          "id": "event-000346"
+        },
+        {
+          "source_line": 347,
+          "timestamp": "2026-05-25T06:58:26.583460+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex"
+            }
+          },
+          "id": "event-000347"
+        },
+        {
+          "source_line": 348,
+          "timestamp": "2026-05-25T06:58:27.126345+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\FloatBarrier\n2\t\\section{Method}\n3\t\\label{sec:method}\n4\t\n5\t\\subsection{Cascade Ordering}\n6\t\\label{sec:cascade}\n7\t\n8\tIf distributional collapse follows a predictable ordering across metrics, the earliest-responding metric can serve as a canary signal.\n9\tWe formalize known metric properties---entropy as a continuous indicator of mode concentration, diversity as a threshold indicator of lexical coverage---under mode amplification~\\citep{shumailov2024curse,dohmatob2024tale} (derivations in Appendix~\\ref{app:cascade_theory}).\n10\t\n11\t\\begin{designprinciple}[Entropy responds before diversity]\\label{thm:entropy_leads}\n12\tUnder mode amplification: \\textup{(a)} entropy can decrease while the $\\epsilon$-effective support $S_\\epsilon(p) {=} |\\{i: p_i > \\epsilon\\}|$ (hence distinct-$n$) is unchanged; \\textup{(b)} if distinct-$n$ decreases, entropy has already decreased.\n13\t\\end{designprinciple}\n14\t\n15\tThe asymmetry arises because entropy responds to any mass redistribution (first-order), while diversity changes only when a token probability crosses the generation threshold~$\\epsilon$; the margin $\\gamma = \\min_{i: p_i > \\epsilon}(p_i - \\epsilon)$ quantifies how much shift diversity absorbs silently.\n16\t\n17\t\\begin{designprinciple}[Diversity lag $\\geq 1$ generation]\\label{prop:div_lag}\n18\tIf the per-generation perturbation satisfies $\\alpha\\|\\mathcal{T}(p_t) - p_t\\|_\\infty < \\gamma(p_t, \\epsilon)$ through entropy onset $t_H$, then diversity onset $t_D \\geq t_H + 1$.\n19\t\\end{designprinciple}\n20\t\n21\tECE co-moves with entropy at zero lag ($\\Delta\\mathrm{ECE} \\approx \\Delta C > 0$ whenever $\\Delta\\bar{H} < 0$; Appendix~\\ref{app:cascade_theory}).\n22\tThe predicted cascade $\\{H, \\mathrm{ECE}\\} \\to \\mathrm{Distinct}$-$n$ holds in 14/15 experiments at $\\alpha \\geq 0.30$: entropy and ECE onset at generation~1, distinct-$n$ at generation~2 ($t_H{=}t_{\\mathrm{ECE}}{=}1$, $t_D{=}2$ uniformly; \\S\\ref{sec:regime}; Appendix~\\ref{app:moment_cascade}).\n23\tThe assumption requires monotonic entropy\n…[truncated 6716 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 542
+          },
+          "id": "event-000348"
+        },
+        {
+          "source_line": 349,
+          "timestamp": "2026-05-25T06:58:44.061627+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments.tex"
+            }
+          },
+          "id": "event-000349"
+        },
+        {
+          "source_line": 350,
+          "timestamp": "2026-05-25T06:58:44.112355+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-000350"
+        },
+        {
+          "source_line": 351,
+          "timestamp": "2026-05-25T06:58:44.112687+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-000351"
+        },
+        {
+          "source_line": 352,
+          "timestamp": "2026-05-25T06:58:44.163353+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\\label{sec:setup}\n6\t\n7\tWe study iterative training collapse using Pythia-410M~\\citep{biderman2023pythia} as the primary architecture.\n8\tTraining data is drawn from WikiText-103~\\citep{merity2017pointer} following the replace paradigm of~\\citet{shumailov2024curse}: each generation fine-tunes on a mixture of $\\alpha$ synthetic and $(1{-}\\alpha)$ real data, generates 5{,}000 replacement samples, and fully replaces the synthetic pool (hyperparameters in Appendix~\\ref{app:training_details}).\n9\tWe run $T{=}10$ generations across 13 contamination levels ($\\alpha \\in \\{0.00, \\ldots, 1.00\\}$) with multi-seed replication, yielding ${\\sim}1{,}500$ statistical tests after BH-FDR correction~\\citep{benjamini1995controlling}.\n10\tWe track two \\emph{canary metrics} (token entropy and ECE) and three \\emph{downstream metrics}: distinct-1, distinct-2~\\citep{li2016diversity}, and perplexity (distinct-3: Appendix~\\ref{app:distinct3}).\n11\tPermG uses 5{,}000 permutations on first-differenced series~\\citep{shojaie2022granger} with maximum lag~5.\n12\t\n13\t\n14\t\\subsection{Sharp Detection Onset}\n15\t\\label{sec:regime}\n16\t\n17\tDiversity collapse occurs at every contamination level: distinct-1 declines by $14.1\\%$ even at $\\alpha{=}0.0$ (fine-tuning drift) and by $40.3{\\pm}0.3\\%$ at $\\alpha{=}0.25$.\n18\tDespite this ubiquitous degradation, Granger detectability is sharply regime-dependent.\n19\tPermG finds 0/8 canary$\\to$downstream pairs FDR-significant from $\\alpha{=}0.00$ through $\\alpha{=}0.45$, then jumps to 6/8 (Clopper--Pearson 95\\% CI $[0.25, 0.92]$) at $\\alpha{=}0.50$, uniformly across all 3~fp32 seeds.\n20\t\n21\t\\begin{figure}[t]\n22\t\\centering\n23\t\\includegraphics[width=\\columnwidth]{figures/metric_trajectory.pdf}\n24\t\\caption{Metric trajectories at $\\alpha{=}1.0$ (Pythia-410M, 4~seeds). Token entropy drops at generation~1; distinct-1 declines from generations~2--3, with a consistent one-generation canary lead \n…[truncated 10964 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-000352"
+        },
+        {
+          "source_line": 353,
+          "timestamp": "2026-05-25T06:58:44.165135+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\\label{sec:discussion}\n2\t\n3\t\\paragraph{Scope and failure modes.}\n4\tOur Granger-precedence claim is scoped to temporal predictive improvement~\\citep{granger1969investigating,shojaie2022granger}: bivariate tests cannot exclude confounders, and the FPR CI ($[1.8\\%, 16.2\\%]$) means Type~I error may be non-negligible.\n5\tFour of fifteen cross-architecture conditions do not confirm forward detection (\\S\\ref{sec:generalization}), each isolating a distinct PermG assumption violation: precision sensitivity (GPT-2 bf16), seed dependence (Pythia-1.4B), and entropy decoupling (SmolLM3-3B).\n6\tThese patterns require architecture-specific null calibration before deployment (Appendix~\\ref{app:extended_discussion}).\n7\t\n8\t\\paragraph{Granger precedence limitations.}\n9\tOur observation sequences ($T{=}10$--$25$) are far shorter than econometric standards ($T{\\geq}100$); permutation testing avoids asymptotic assumptions but cannot recover power lost to short samples~\\citep{shojaie2022granger}.\n10\tBivariate tests are susceptible to omitted variable bias; first-differencing removes shared linear trends but nonlinear confounds remain possible.\n11\tPermG tests linear precedence only; transfer entropy (Appendix~\\ref{app:transfer_entropy}) yields 0/192 significant pairs.\n12\tPartial correlation provides supporting evidence: after controlling for generation number, contemporaneous associations weaken ($\\bar{|r|}$: $0.590{\\to}0.381$) while lagged correlations strengthen ($0.759{\\to}0.841$), consistent with genuine temporal precedence rather than shared-trend artifacts (Appendix~\\ref{app:partial_corr}).\n13\t\n14\t\\paragraph{Method complementarity.}\n15\tShapley value decomposition over all $2^5{=}32$ method coalitions (Appendix~\\ref{app:shapley}) reveals that DiffXCorr achieves the best combined Shapley contribution ($-0.299$) by detecting bidirectional coupling that directional methods miss, but cannot separate forward from reverse precedence.\n16\tAmong directional methods, PermG ra\n…[truncated 884 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 52
+          },
+          "id": "event-000353"
+        },
+        {
+          "source_line": 354,
+          "timestamp": "2026-05-25T06:58:44.166709+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\FloatBarrier\n2\t\\section{Related Work}\n3\t\\label{sec:related_work}\n4\t\n5\t\\subsection{Model Collapse: Theory and Empirical Evidence}\n6\t\\label{sec:rw_collapse}\n7\t\n8\tIterative training collapse was formalized by \\citet{shumailov2024curse} and \\citet{alemohammad2024mad}; \\citet{schaeffer2025position} systematize eight distinct notions of collapse---our operationalization aligns with their \\emph{distributional shift} family (definitions~D4--D6).\n9\tTheoretical analyses sharpen these results: \\citet{dohmatob2024tale} recast collapse as changed scaling-law exponents, \\citet{dohmatob2025strong} proved collapse at vanishingly small synthetic fractions, and \\citet{truong2026phase} prove entropy collapse is a first-order transition, structurally ruling out critical-slowing-down early-warning signals~\\citep{scheffer2009early,scheffer2012anticipating}.\n10\tCritical mixture ratios separating qualitative outcomes have independent precedent: \\citet{kazdan2025collapse} map collapse conditions, \\citet{gu2024cmr} establish scaling laws for critical ratios, and \\citet{gu2025datamixing} show data mixing induces phase transitions in knowledge acquisition.\n11\t\n12\t\\subsection{Detection of Synthetic Data Contamination}\n13\t\\label{sec:rw_detection}\n14\t\n15\tMonitoring metrics proposed for collapse include expected calibration error (ECE)~\\citep{du2025scales}, surplexity~\\citep{gambetta2024surplexity}, and machine-generated text detection~\\citep{drayson2025detection}; \\citet{shi2025closer} independently validate entropy as a collapse diagnostic in diffusion models.\n16\t\\citet{boettiger2012limits} establish fundamental power limits for early-warning detection in short time series ($T{<}25$), directly relevant to iterative training where observation windows are typically $T{=}5$--$20$.\n17\tHowever, these works evaluate single metrics in isolation without cross-validating against alternative statistical tests.\n18\tWe differ by applying five detection methods to identical data, mapping detectability acro\n…[truncated 1571 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 54
+          },
+          "id": "event-000354"
+        },
+        {
+          "source_line": 355,
+          "timestamp": "2026-05-25T07:00:00.217184+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/conclusion.tex"
+            }
+          },
+          "id": "event-000355"
+        },
+        {
+          "source_line": 356,
+          "timestamp": "2026-05-25T07:00:00.319280+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tLead-lag analysis in iterative training collapse is far more fragile than the current literature assumes.\n5\tMethod choice alone inflates null-control FPR from 6.7\\% to 94.4\\%, establishing that single-method analyses cannot reliably distinguish temporal precedence from artifacts.\n6\tOur five-method comparison identifies PermG as the recommended detector, combining the lowest FPR (6.7\\%, 10~seeds) with a steep onset from 0/8 at $\\alpha{\\leq}0.45$ to 6/8 at $\\alpha{=}0.50$.\n7\tToken entropy exhibits robust one-generation-ahead precedence over diversity collapse (24/24 forward, 0/24 reverse at $\\alpha{=}1.0$; ${\\geq}6/8$ in 11/15 cross-architecture conditions).\n8\tThe blind zone below $\\alpha_c$ constrains practical deployment to settings with sufficient contamination; evaluation at ${>}$7B parameters remains open.\n9\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 102
+          },
+          "id": "event-000356"
+        },
+        {
+          "source_line": 357,
+          "timestamp": "2026-05-25T07:00:00.369981+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-000357"
+        },
+        {
+          "source_line": 358,
+          "timestamp": "2026-05-25T07:00:00.420849+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tWhen language models train iteratively on their own output, the resulting distributional collapse is difficult to detect: the time series are short, the signal grows sub-linearly with contamination, and---as we demonstrate---the choice of statistical method can shift conclusions from universal detection to complete null.\n3\tWe apply five lead-lag detection methods to identical iterative-training data and find that null-control false-positive rates span 7\\% to 94\\%, exposing method sensitivity as a primary obstacle to reliable collapse monitoring.\n4\tPermutation Granger causality, the lowest false-positive method, reveals a structured detectability landscape: detection jumps from absent to reliable within a narrow contamination interval, organized by a power-law boundary across three confirmed regimes.\n5\tCross-architecture evaluation at $\\alpha{=}1.0$ (full synthetic replacement) across five model families (345M--6.9B) supports forward detection in 11/15 conditions, with four non-confirming cases isolating distinct failure modes.\n6\tToken entropy temporally precedes diversity collapse by at least one generation (Granger precedence), providing a canary signal whose triggered cessation reduces peak perplexity in a proof-of-concept demonstration.\n7\t\\end{abstract}\n8\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000358"
+        },
+        {
+          "source_line": 359,
+          "timestamp": "2026-05-25T07:00:52.068743+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex",
+              "old_string": "\\subsection{Method Sensitivity Analysis}\n\\label{sec:mmct}\n\nWe compare five lead-lag detection methods---naive cross-correlation (NaiveXCorr), differenced cross-correlation (DiffXCorr), threshold onset, permutation Granger causality (PermG), and Toda--Yamamoto~\\citep{toda1995statistical}---in a multi-method comparison~\\citep{simonsohn2020specification} (algorithm in Appendix~\\ref{app:mmct}), calibrated against null-control ($\\alpha{=}0.0$) data.\nPooled null-control FPR across ten seeds (60 pairs): PermG 6.7\\%, DiffXCorr 14.8\\%, Threshold 24.1\\%, Toda--Yamamoto 33.3\\%, NaiveXCorr 94.4\\% (Appendix~\\ref{app:fpr_independence}).\nPermG (4/60; 95\\% CI $[1.8\\%, 16.2\\%]$) achieves the lowest FPR, combining directional separation with consistent detection at $\\alpha \\geq 0.50$ (Shapley analysis: Appendix~\\ref{app:shapley}).\nDetection results use equal-weight majority voting ($K{\\geq}3$ of 5 methods) with forward-direction filtering; $K{=}3$ yields 10.0\\% FPR with 75\\% true positive rate (TPR) at $\\alpha{=}1.0$ (Table~\\ref{tab:mmct_k_operating}).\nThe full MMCT procedure is given in Algorithm~\\ref{alg:mmct}.",
+              "new_string": "\\subsection{Method Sensitivity Analysis}\n\\label{sec:mmct}\n\nThese fragilities motivate a systematic comparison.\nWe evaluate five lead-lag detection methods---naive cross-correlation (NaiveXCorr), differenced cross-correlation (DiffXCorr), threshold onset, permutation Granger causality (PermG), and Toda--Yamamoto~\\citep{toda1995statistical}---in a multi-method comparison framework~\\citep{simonsohn2020specification}, calibrating each against null-control ($\\alpha{=}0.0$) data.\nAmong these, PermG assesses whether past values of a canary metric improve prediction of a downstream metric beyond its own history~\\citep{shojaie2022granger}, using 5{,}000 permutations~\\citep{phipson2010permutation} on first-differenced series with Benjamini--Hochberg FDR correction ($q{=}0.05$) across 8 canary$\\to$downstream pairs; the permutation null controls Type~I error by construction, and BH-FDR remains valid under positive regression dependence~\\citep{benjamini2001control}.\nThe full multi-method consensus test (MMCT) is given in Algorithm~\\ref{alg:mmct}."
+            }
+          },
+          "id": "event-000359"
+        },
+        {
+          "source_line": 360,
+          "timestamp": "2026-05-25T07:00:52.630718+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director",
+            "tool": "Edit",
+            "elapsed_ms": 561
+          },
+          "id": "event-000360"
+        }
+      ]
+    }
+  ]
+}

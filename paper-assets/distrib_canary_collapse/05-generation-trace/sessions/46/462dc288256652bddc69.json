@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "462dc288256652bddc69",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops d102 t10 a060 s43",
+  "task_key": "worker_ops_d102-t10-a060-s43_20260523T081120",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d102-t10-a060-s43_20260523T081120_result.json",
+    "occurrence": 1,
+    "bytes": 1474,
+    "sha256": "4ad7af2dbb4c809642a0e43b7d850c38faad5ba2f8a5ba5ae76bb526ee6c62fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## D102 结果：scale_14b_t10_a060_s43_fp32\n\n### 指标表\n\n| Method | Forward (/8) | Reverse (/8) |\n|--------|:---:|:---:|\n| PermG FDR | **4** | 6 |\n| DiffXCorr FDR | **6** | 6 |\n| Threshold | 0 | — |\n| TY Granger | 2 | — |\n| **K≥3** | **3/8** | |\n| **K≥4** | **2/8** | |\n\n**Consensus detail (forward):**\n- ece→distinct_2: **4/5** [naive, diff, perm, ty]\n- ece→distinct_3: **4/5** [naive, diff, perm, ty]\n- ece→distinct_1: **3/5** [naive, diff, perm]\n- token_entropy→distinct_1: 2/5 [diff, perm]\n- token_entropy→distinct_2/3: 1/5\n- *mauve pairs: 0/5 (mauve=null all gens)*\n\n**Drift (gen 0→10):** ppl +216%, entropy -34%, ece +2842%, distinct_1 -24%, mauve N/A\n\n### 与 s42 + 410M 对比\n\n| Config | PermG fwd | K≥3 | Sync-dip? |\n|--------|:---------:|:---:|:---------:|\n| **410M T=10 α=0.60** | 0/8 | — | Yes (sync-dip blocks signal) |\n| **1.4B s42 T=10 α=0.60** | 4/8 | — | No (dissolved at 1.4B) |\n| **1.4B s43 T=10 α=0.60** | 4/8 | 3/8 | No (dissolved at 1.4B) |\n\n**结论：sync-dip dissolution cross-seed robust。** s43 PermG 4/8 与 s42 完全一致（虽然 s43 缺 mauve 导致有效对只有 6 个，实际 4/6 比 s42 的 4/8 可能更强）。ECE 作为 canary 是主要驱动力（3 对 K≥3），token_entropy 次之。\n\n**注意事项：** mauve 全部为 null（westd-17855 上 gpt2-large 离线加载失败）。如需完整 8-pair 对比，需修复 HF_HOME 后重算 mauve。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d102-t10-a060-s43.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6d4827234275996d4120",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops fix 19828 env resubmit",
+  "task_key": "worker_ops_fix_19828_env_resubmit_20260520T231427",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_19828_env_resubmit_20260520T231427_result.json",
+    "occurrence": 1,
+    "bytes": 671,
+    "sha256": "9ded11fca06abc2b02e2f0ee625cdd9064ff86c3afe3183844694fd537c8b1ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都在正常运行。\n\n**结果：**\n\n| 实验 | 状态 | GPU | PID | 说明 |\n|------|------|-----|-----|------|\n| `scale_14b_a050_s42_bf16` | 无需修复，正常运行 | cuda:0 | 619323 | Gen 0 训练中，网络警告非致命 |\n| `generalize_pythia1b_c4_a100_s43_v2` | 已修复并重新提交 | cuda:1 | 620796 | 模型加载成功，进入 Gen 0 |\n\n**修复内容：** pythia-1b 的 HF hub 缓存 snapshots 目录为空（下载不完整），改用本地模型路径 `/root/autodl-tmp/.hf_cache/pythia-1b-local` 替代 `EleutherAI/pythia-1b`，同时保留 `TRANSFORMERS_OFFLINE=1` 和 `HF_HUB_OFFLINE=1` 防止网络请求。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-19828-env-resubmit.md"
+}

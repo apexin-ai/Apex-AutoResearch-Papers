@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b4c7ef2addd7856ad38",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "check c2 s42 status",
+  "task_key": "worker_check_c2_s42_status_20260525T031959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_c2_s42_status_20260525T031959_result.json",
+    "occurrence": 1,
+    "bytes": 538,
+    "sha256": "aea2703af4a0627595e9b7fb69f3b8ce09f336489658cd22d0bf3b0d69141914"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验状态汇报：c2_opt13b_a050_s42_fp32**\n\n| 项目 | 状态 |\n|------|------|\n| 进程 | **存活** (PID 32378, 已运行 3h10m) |\n| GPU | RTX PRO 6000 Black, **94% 利用率**, 29.1G / 97.9G 显存 |\n| 进度 | **Generation 3/10**, training step 1962/5000 (39%) |\n| 训练速度 | ~2.05 it/s |\n\n**预估剩余时间**：已跑 3h10m 完成约 2.39/10 generations。每 generation 约 80 分钟（含生成+训练+评估）。剩余 7.61 generations ≈ **10 小时**，预计完成时间约今晚 21:30。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-c2-s42-status.md"
+}

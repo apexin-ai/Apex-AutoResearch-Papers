@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a14bcff2819fe27617d",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis phase diagram t20 a075 s43 fp32",
+  "task_key": "worker_analysis_phase_diagram_t20_a075_s43_fp32_20260522T122202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_phase_diagram_t20_a075_s43_fp32_20260522T122202_result.json",
+    "occurrence": 1,
+    "bytes": 948,
+    "sha256": "fffe5b0521561cad31bd2884991763f018d61152a292edaad442221c389a5e7f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结论：\n\n**s43 与 s42 完全一致，cross-seed validation SUCCESS。**\n\n| 指标 | s43 | s42 | 匹配 |\n|------|-----|-----|------|\n| PermG_fwd_fdr | **6/8** | 6/8 | Exact |\n| PermG_rev_fdr | **0/8** | 0/8 | Exact |\n| DiffXCorr_fdr_fwd | **8/8** | 7/8 | +1 |\n| Threshold_3sigma | **6/8** | 6/8 | Exact |\n| K>=3 robust pairs | **6/8** | 6/8 | Exact |\n\n- PermG 方向性 6/0 保持（forward causation robust to seed）\n- 同样的 2 个 mauve pair 为 non-detection（mauve 仅漂移 +5%，信号太弱）\n- TY 从 5/8 降到 3/8，符合 C003 预期（TY seed-unstable）\n- 6/8 ceiling 在 T=20 alpha=0.75 的第 2 个 seed 得到确认\n\n产出文件：\n- 分析报告: `artifacts/phase_diagram_t20_a075_s43_fp32_analysis.md`\n- 5-method JSON: `artifacts/phase_diagram_t20_a075_s43_fp32/data/5method_leadlag.json`\n- Registry metrics dict 在报告末尾，可直接用于 `update_registry`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-phase-diagram-t20-a075-s43-fp32.md"
+}

@@ -1,0 +1,1367 @@
+{
+  "schema_version": "1.0",
+  "id": "bc57e3b60c8fc002b55d",
+  "project": "distrib_canary_collapse",
+  "kind": "conversation",
+  "title": "code d029 rerun verify",
+  "task_key": "worker_code_d029_rerun_verify_20260515T095455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_d029_rerun_verify_20260515T095455.jsonl",
+    "occurrence": 1,
+    "bytes": 78729,
+    "sha256": "3ffb23a0e48e27af0b5c4f2932699eab7f1cf04d360f8a48da9c402065d09854"
+  },
+  "statistics": {
+    "messages": 67,
+    "user_turns": 0,
+    "tool_calls": 33,
+    "roles": {
+      "tool_call": 33,
+      "tool_result": 33,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T10:00:52.673029+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T10:00:52.673341+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T10:00:52.673515+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "grep -n \"threshold_onset\\|significant_fdr\\|significant\" /root/autodl-tmp/distrib_canary_collapse/consensus_framework.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T10:00:52.673653+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T10:00:52.673783+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "ls -la /root/autodl-tmp/distrib_canary_collapse/consensus_framework.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T10:00:52.673901+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "ls -la /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/consensus/",
+              "account": "root"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T10:00:52.674023+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 18174 May 15 17:34 /root/autodl-tmp/distrib_canary_collapse/consensus_framework.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.17}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T10:00:52.674144+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 36\\\\ndrwxr-xr-x 2 root root   146 May 15 17:34 .\\\\ndrwxr-xr-x 3 root root  4096 May 15 16:43 ..\\\\n-rw-r--r-- 1 root root  6474 May 15 17:34 consensus_classification.json\\\\n-rw-r--r-- 1 root root  2151 May 15 17:34 fpr_fnr_loo.json\\\\n-rw-r--r-- 1 root root  3699 May 15 17:34 fpr_fnr_table.json\\\\n-rw-r--r-- 1 root root 12922 May 15 17:34 sensitivity_analysis.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T10:00:52.674303+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "grep -n \"threshold_onset\" /root/autodl-tmp/distrib_canary_collapse/consensus_framework.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T10:00:52.674440+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"22:    \\\\\\\"threshold_onset\\\\\\\",\\\\n85:                        if method == \\\\\\\"threshold_onset\\\\\\\":\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T10:00:52.674564+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "grep -n \"significant_fdr\" /root/autodl-tmp/distrib_canary_collapse/consensus_framework.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T10:00:52.674681+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"89:                            sig[mi, pi, si] = seed_rec[method].get(\\\\\\\"significant_fdr\\\\\\\", False)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T10:00:52.674805+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "grep -n \"significant\" /root/autodl-tmp/distrib_canary_collapse/consensus_framework.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T10:00:52.674936+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"6:significant). Two-stage aggregation: seed→method verdict, then method→consensus.\\\\n87:                            sig[mi, pi, si] = seed_rec[method].get(\\\\\\\"significant\\\\\\\", False)\\\\n89:                            sig[mi, pi, si] = seed_rec[method].get(\\\\\\\"significant_fdr\\\\\\\", False)\\\\n91:                        sig[mi, pi, si] = seed_rec[method].get(\\\\\\\"significant\\\\\\\", False)\\\\n100:    Stage 1 (seed aggregation): method M calls pair P \\\\\\\"significant\\\\\\\" if\\\\n103:        methods call it significant.\\\\n218:      A (pair, seed) is \\\\\\\"truly negative\\\\\\\" when differenced is not significant.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T10:00:52.675100+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cat /root/autodl-tmp/distrib_canary_collapse/consensus_framework.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T10:00:52.675383+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nMulti-method consensus framework for canary→downstream association robustness.\\\\n\\\\nFormalizes \\\\\\\"robust association\\\\\\\": a pair is robust only when ≥method_threshold\\\\nindependent statistical methods agree (each requiring ≥seed_threshold seeds\\\\nsignificant). Two-stage aggregation: seed→method verdict, then method→consensus.\\\\n\\\\nInput:  results/mvp/analysis/method_ablation.json\\\\nOutput: consensus classification, sensitivity heatmap, FPR/FNR table (JSON)\\\\n\\\\nDependencies: numpy, json (stdlib)\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport os\\\\n\\\\nimport numpy as np\\\\n\\\\nMETHOD_NAMES = [\\\\n    \\\\\\\"naive_pearson\\\\\\\",\\\\n    \\\\\\\"differenced_xcorr\\\\\\\",\\\\n    \\\\\\\"threshold_onset\\\\\\\",\\\\n    \\\\\\\"toda_yamamoto\\\\\\\",\\\\n    \\\\\\\"permutation_granger\\\\\\\",\\\\n]\\\\n\\\\n# differenced_xcorr is the FP ground truth (index 1)\\\\nDIFF_INDEX = 1\\\\n\\\\n\\\\ndef _to_native(obj):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Convert numpy types to Python native for JSON serialization.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if isinstance(obj, (np.integer,)):\\\\n        return int(obj)\\\\n    if isinstance(obj, (np.floating,)):\\\\n        return float(obj)\\\\n    if isinstance(obj, (np.bool_,)):\\\\n        return bool(obj)\\\\n    if isinstance(obj, np.ndarray):\\\\n        return obj.tolist()\\\\n    return obj\\\\n\\\\n\\\\nclass NumpyEncoder(json.JSONEncoder):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"JSON encoder that handles numpy types.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    def default(self, obj):\\\\n        native = _to_native(obj)\\\\n        if native is not obj:\\\\n            return native\\\\n        return super().default(obj)\\\\n\\\\n\\\\ndef load_sig_matrix(ablation_path, apply_fdr=True):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Load method_ablation.json into a boolean significance tensor.\\\\n\\\\n    Args:\\\\n        ablation_path: path to method_ablation.json\\\\n\\\\n    Returns:\\\\n        sig_matrix: np.ndarray, shape (5, 16, 4), dtype bool\\\\n                    axes = (method, pair, seed)\\\\n        pair_names: list of (canary, downstream) tuples, len 16\\\\n\n…[truncated 7194 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T10:00:52.675565+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/consensus/fpr_fnr_table.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T10:00:52.675692+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/consensus/consensus_classification.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T10:00:52.675808+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "find /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/consensus/ -name \"*.bak*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T10:00:52.676011+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"ground_truth\\\\\\\": {\\\\n    \\\\\\\"fpr_ground_truth\\\\\\\": \\\\\\\"differenced_xcorr (seed level)\\\\\\\",\\\\n    \\\\\\\"fnr_ground_truth\\\\\\\": \\\\\\\"consensus (\\\\\\\\u22654/5 methods, \\\\\\\\u22653/4 seeds)\\\\\\\",\\\\n    \\\\\\\"n_negatives_seed\\\\\\\": 11,\\\\n    \\\\\\\"n_positives_seed\\\\\\\": 24\\\\n  },\\\\n  \\\\\\\"per_method_fpr\\\\\\\": {\\\\n    \\\\\\\"naive_pearson\\\\\\\": {\\\\n      \\\\\\\"fp\\\\\\\": 11,\\\\n      \\\\\\\"total_negatives\\\\\\\": 11,\\\\n      \\\\\\\"fpr\\\\\\\": 1.0\\\\n    },\\\\n    \\\\\\\"differenced_xcorr\\\\\\\": {\\\\n      \\\\\\\"fp\\\\\\\": 0,\\\\n      \\\\\\\"total_negatives\\\\\\\": 11,\\\\n      \\\\\\\"fpr\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"threshold_onset\\\\\\\": {\\\\n      \\\\\\\"fp\\\\\\\": 1,\\\\n      \\\\\\\"total_negatives\\\\\\\": 11,\\\\n      \\\\\\\"fpr\\\\\\\": 0.0909\\\\n    },\\\\n    \\\\\\\"toda_yamamoto\\\\\\\": {\\\\n      \\\\\\\"fp\\\\\\\": 0,\\\\n      \\\\\\\"total_negatives\\\\\\\": 11,\\\\n      \\\\\\\"fpr\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"permutation_granger\\\\\\\": {\\\\n      \\\\\\\"fp\\\\\\\": 0,\\\\n      \\\\\\\"total_negatives\\\\\\\": 11,\\\\n      \\\\\\\"fpr\\\\\\\": 0.0\\\\n    }\\\\n  },\\\\n  \\\\\\\"per_method_fnr\\\\\\\": {\\\\n    \\\\\\\"naive_pearson\\\\\\\": {\\\\n      \\\\\\\"fn\\\\\\\": 0,\\\\n      \\\\\\\"total_positives\\\\\\\": 24,\\\\n      \\\\\\\"fnr\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"differenced_xcorr\\\\\\\": {\\\\n      \\\\\\\"fn\\\\\\\": 0,\\\\n      \\\\\\\"total_positives\\\\\\\": 24,\\\\n      \\\\\\\"fnr\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"threshold_onset\\\\\\\": {\\\\n      \\\\\\\"fn\\\\\\\": 0,\\\\n      \\\\\\\"total_positives\\\\\\\": 24,\\\\n      \\\\\\\"fnr\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"toda_yamamoto\\\\\\\": {\\\\n      \\\\\\\"fn\\\\\\\": 6,\\\\n      \\\\\\\"total_positives\\\\\\\": 24,\\\\n      \\\\\\\"fnr\\\\\\\": 0.25\\\\n    },\\\\n    \\\\\\\"permutation_granger\\\\\\\": {\\\\n      \\\\\\\"fn\\\\\\\": 1,\\\\n      \\\\\\\"total_positives\\\\\\\": 24,\\\\n      \\\\\\\"fnr\\\\\\\": 0.0417\\\\n    }\\\\n  },\\\\n  \\\\\\\"consensus\\\\\\\": {\\\\n    \\\\\\\"fpr_pair_level\\\\\\\": {\\\\n      \\\\\\\"fp\\\\\\\": 0,\\\\n      \\\\\\\"total_negatives\\\\\\\": 4,\\\\n      \\\\\\\"fpr\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"fpr_seed_level\\\\\\\": {\\\\n      \\\\\\\"fp\\\\\\\": 0,\\\\n      \\\\\\\"total_negatives\\\\\\\": 11,\\\\n      \\\\\\\"fpr\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"fnr\\\\\\\": 0.0,\\\\n    \\\\\\\"fnr_no\n…[truncated 3155 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T10:00:52.676305+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"classifications\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"pair_index\\\\\\\": 0,\\\\n      \\\\\\\"n_sig_methods\\\\\\\": 3,\\\\n      \\\\\\\"is_robust\\\\\\\": false,\\\\n      \\\\\\\"method_verdicts\\\\\\\": [\\\\n        true,\\\\n        true,\\\\n        true,\\\\n        false,\\\\n        false\\\\n      ],\\\\n      \\\\\\\"seed_counts\\\\\\\": [\\\\n        4,\\\\n        4,\\\\n        4,\\\\n        0,\\\\n        0\\\\n      ],\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"perplexity\\\\\\\",\\\\n      \\\\\\\"pair_label\\\\\\\": \\\\\\\"token_entropy\\\\\\\\u2192perplexity\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair_index\\\\\\\": 1,\\\\n      \\\\\\\"n_sig_methods\\\\\\\": 5,\\\\n      \\\\\\\"is_robust\\\\\\\": true,\\\\n      \\\\\\\"method_verdicts\\\\\\\": [\\\\n        true,\\\\n        true,\\\\n        true,\\\\n        true,\\\\n        true\\\\n      ],\\\\n      \\\\\\\"seed_counts\\\\\\\": [\\\\n        4,\\\\n        4,\\\\n        4,\\\\n        4,\\\\n        4\\\\n      ],\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_1\\\\\\\",\\\\n      \\\\\\\"pair_label\\\\\\\": \\\\\\\"token_entropy\\\\\\\\u2192distinct_1\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair_index\\\\\\\": 2,\\\\n      \\\\\\\"n_sig_methods\\\\\\\": 5,\\\\n      \\\\\\\"is_robust\\\\\\\": true,\\\\n      \\\\\\\"method_verdicts\\\\\\\": [\\\\n        true,\\\\n        true,\\\\n        true,\\\\n        true,\\\\n        true\\\\n      ],\\\\n      \\\\\\\"seed_counts\\\\\\\": [\\\\n        4,\\\\n        4,\\\\n        4,\\\\n        4,\\\\n        4\\\\n      ],\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_2\\\\\\\",\\\\n      \\\\\\\"pair_label\\\\\\\": \\\\\\\"token_entropy\\\\\\\\u2192distinct_2\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair_index\\\\\\\": 3,\\\\n      \\\\\\\"n_sig_methods\\\\\\\": 5,\\\\n      \\\\\\\"is_robust\\\\\\\": true,\\\\n      \\\\\\\"method_verdicts\\\\\\\": [\\\\n        true,\\\\n        true,\\\\n        true,\\\\n        true,\\\\n        true\\\\n      ],\\\\n      \\\\\\\"seed_counts\\\\\\\": [\\\\n        4,\\\\n        4,\\\\n        4,\\\\n        4,\\\\n        3\\\\n      ],\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\n…[truncated 6512 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T10:00:52.676474+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T10:00:52.676632+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cd /root/autodl-tmp/distrib_canary_collapse && cp results/mvp/analysis/consensus/consensus_classification.json results/mvp/analysis/consensus/consensus_classification.json.bak_raw && cp results/mvp/analysis/consensus/sensitivity_analysis.json results/mvp/analysis/consensus/sensitivity_analysis.json.bak_raw && cp results/mvp/analysis/consensus/fpr_fnr_table.json results/mvp/analysis/consensus/fpr_fnr_table.json.bak_raw && echo \"BACKUP DONE\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T10:00:52.676760+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"BACKUP DONE\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T10:00:52.676873+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python consensus_framework.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T10:00:52.677036+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded: (5, 16, 4) (methods=5, pairs=16, seeds=4)\\\\nMethods: ['naive_pearson', 'differenced_xcorr', 'threshold_onset', 'toda_yamamoto', 'permutation_granger']\\\\nSeeds: [42, 43, 44, 45]\\\\n\\\\n=== Sub-task 1: Consensus (≥4/5 methods, ≥3/4 seeds) ===\\\\nRobust: 6, Non-robust: 10\\\\n  token_entropy→perplexity            non-robust   3/5 methods  seeds=[4, 4, 4, 0, 0]  [naive_/differ/thresh]\\\\n  token_entropy→distinct_1            ROBUST       5/5 methods  seeds=[4, 4, 4, 4, 4]  [naive_/differ/thresh/toda_y/permut]\\\\n  token_entropy→distinct_2            ROBUST       5/5 methods  seeds=[4, 4, 4, 4, 4]  [naive_/differ/thresh/toda_y/permut]\\\\n  token_entropy→distinct_3            ROBUST       5/5 methods  seeds=[4, 4, 4, 4, 3]  [naive_/differ/thresh/toda_y/permut]\\\\n  self_bleu→perplexity                non-robust   2/5 methods  seeds=[4, 2, 3, 0, 0]  [naive_/thresh]\\\\n  self_bleu→distinct_1                non-robust   1/5 methods  seeds=[4, 2, 0, 1, 1]  [naive_]\\\\n  self_bleu→distinct_2                non-robust   2/5 methods  seeds=[4, 3, 0, 1, 1]  [naive_/differ]\\\\n  self_bleu→distinct_3                non-robust   2/5 methods  seeds=[4, 3, 0, 1, 1]  [naive_/differ]\\\\n  ece→perplexity                      non-robust   3/5 methods  seeds=[4, 4, 4, 0, 0]  [naive_/differ/thresh]\\\\n  ece→distinct_1                      ROBUST       4/5 methods  seeds=[4, 4, 4, 2, 4]  [naive_/differ/thresh/permut]\\\\n  ece→distinct_2                      ROBUST       4/5 methods  seeds=[4, 4, 4, 2, 4]  [naive_/differ/thresh/permut]\\\\n  ece→distinct_3                      ROBUST       4/5 methods  seeds=[4, 4, 4, 2, 4]  [naive_/differ/thresh/permut]\\\\n  effective_rank→perplexity           non-robust   2/5 methods  seeds=[3, 4, 0, 0, 0]  [naive_/differ]\\\\n  effective_rank→distinct_1           non-robust   2/5 methods  seeds=[4, 3, 0, 1, 1]  [naive_/differ]\\\\n  effective_rank→distinct_2           non-robust   1/5 methods  seeds=[4, 2, 0, 1, 0]\n…[truncated 4355 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T10:00:52.677213+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "ls -la /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/consensus/",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T10:00:52.677374+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 68\\\\ndrwxr-xr-x 2 root root  4096 May 15 17:55 .\\\\ndrwxr-xr-x 3 root root  4096 May 15 16:43 ..\\\\n-rw-r--r-- 1 root root  6474 May 15 17:55 consensus_classification.json\\\\n-rw-r--r-- 1 root root  6474 May 15 17:55 consensus_classification.json.bak_raw\\\\n-rw-r--r-- 1 root root  2151 May 15 17:55 fpr_fnr_loo.json\\\\n-rw-r--r-- 1 root root  3699 May 15 17:55 fpr_fnr_table.json\\\\n-rw-r--r-- 1 root root  3699 May 15 17:55 fpr_fnr_table.json.bak_raw\\\\n-rw-r--r-- 1 root root 12922 May 15 17:55 sensitivity_analysis.json\\\\n-rw-r--r-- 1 root root 12922 May 15 17:55 sensitivity_analysis.json.bak_raw\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T10:00:52.677518+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/consensus/sensitivity_analysis.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T10:00:52.677829+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"method_thresholds\\\\\\\": [\\\\n    3,\\\\n    4,\\\\n    5\\\\n  ],\\\\n  \\\\\\\"seed_thresholds\\\\\\\": [\\\\n    2,\\\\n    3,\\\\n    4\\\\n  ],\\\\n  \\\\\\\"n_configs\\\\\\\": 9,\\\\n  \\\\\\\"grid\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"method_threshold\\\\\\\": 3,\\\\n      \\\\\\\"seed_threshold\\\\\\\": 2,\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"\\\\\\\\u22653/5 methods, \\\\\\\\u22652/4 seeds\\\\\\\",\\\\n      \\\\\\\"n_robust\\\\\\\": 9,\\\\n      \\\\\\\"robust_pairs\\\\\\\": [\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192perplexity\\\\\\\",\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192distinct_1\\\\\\\",\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192distinct_2\\\\\\\",\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192distinct_3\\\\\\\",\\\\n        \\\\\\\"self_bleu\\\\\\\\u2192perplexity\\\\\\\",\\\\n        \\\\\\\"ece\\\\\\\\u2192perplexity\\\\\\\",\\\\n        \\\\\\\"ece\\\\\\\\u2192distinct_1\\\\\\\",\\\\n        \\\\\\\"ece\\\\\\\\u2192distinct_2\\\\\\\",\\\\n        \\\\\\\"ece\\\\\\\\u2192distinct_3\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"pair_status\\\\\\\": {\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192perplexity\\\\\\\": true,\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192distinct_1\\\\\\\": true,\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192distinct_2\\\\\\\": true,\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192distinct_3\\\\\\\": true,\\\\n        \\\\\\\"self_bleu\\\\\\\\u2192perplexity\\\\\\\": true,\\\\n        \\\\\\\"self_bleu\\\\\\\\u2192distinct_1\\\\\\\": false,\\\\n        \\\\\\\"self_bleu\\\\\\\\u2192distinct_2\\\\\\\": false,\\\\n        \\\\\\\"self_bleu\\\\\\\\u2192distinct_3\\\\\\\": false,\\\\n        \\\\\\\"ece\\\\\\\\u2192perplexity\\\\\\\": true,\\\\n        \\\\\\\"ece\\\\\\\\u2192distinct_1\\\\\\\": true,\\\\n        \\\\\\\"ece\\\\\\\\u2192distinct_2\\\\\\\": true,\\\\n        \\\\\\\"ece\\\\\\\\u2192distinct_3\\\\\\\": true,\\\\n        \\\\\\\"effective_rank\\\\\\\\u2192perplexity\\\\\\\": false,\\\\n        \\\\\\\"effective_rank\\\\\\\\u2192distinct_1\\\\\\\": false,\\\\n        \\\\\\\"effective_rank\\\\\\\\u2192distinct_2\\\\\\\": false,\\\\n        \\\\\\\"effective_rank\\\\\\\\u2192distinct_3\\\\\\\": false\\\\n      }\\\\n    },\\\\n    {\\\\n      \\\\\\\"method_threshold\\\\\\\": 3,\\\\n      \\\\\\\"seed_threshold\\\\\\\": 3,\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"\\\\\\\\u22653/5 methods, \\\\\\\\u22653/4 seeds\\\\\\\",\\\\n      \\\\\\\"n_robust\\\\\\\": 8,\\\\n  \n…[truncated 8490 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T10:00:52.678035+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "head -200 /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/consensus/sensitivity_analysis.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T10:00:52.678299+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"method_thresholds\\\\\\\": [\\\\n    3,\\\\n    4,\\\\n    5\\\\n  ],\\\\n  \\\\\\\"seed_thresholds\\\\\\\": [\\\\n    2,\\\\n    3,\\\\n    4\\\\n  ],\\\\n  \\\\\\\"n_configs\\\\\\\": 9,\\\\n  \\\\\\\"grid\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"method_threshold\\\\\\\": 3,\\\\n      \\\\\\\"seed_threshold\\\\\\\": 2,\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"\\\\\\\\u22653/5 methods, \\\\\\\\u22652/4 seeds\\\\\\\",\\\\n      \\\\\\\"n_robust\\\\\\\": 9,\\\\n      \\\\\\\"robust_pairs\\\\\\\": [\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192perplexity\\\\\\\",\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192distinct_1\\\\\\\",\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192distinct_2\\\\\\\",\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192distinct_3\\\\\\\",\\\\n        \\\\\\\"self_bleu\\\\\\\\u2192perplexity\\\\\\\",\\\\n        \\\\\\\"ece\\\\\\\\u2192perplexity\\\\\\\",\\\\n        \\\\\\\"ece\\\\\\\\u2192distinct_1\\\\\\\",\\\\n        \\\\\\\"ece\\\\\\\\u2192distinct_2\\\\\\\",\\\\n        \\\\\\\"ece\\\\\\\\u2192distinct_3\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"pair_status\\\\\\\": {\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192perplexity\\\\\\\": true,\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192distinct_1\\\\\\\": true,\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192distinct_2\\\\\\\": true,\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192distinct_3\\\\\\\": true,\\\\n        \\\\\\\"self_bleu\\\\\\\\u2192perplexity\\\\\\\": true,\\\\n        \\\\\\\"self_bleu\\\\\\\\u2192distinct_1\\\\\\\": false,\\\\n        \\\\\\\"self_bleu\\\\\\\\u2192distinct_2\\\\\\\": false,\\\\n        \\\\\\\"self_bleu\\\\\\\\u2192distinct_3\\\\\\\": false,\\\\n        \\\\\\\"ece\\\\\\\\u2192perplexity\\\\\\\": true,\\\\n        \\\\\\\"ece\\\\\\\\u2192distinct_1\\\\\\\": true,\\\\n        \\\\\\\"ece\\\\\\\\u2192distinct_2\\\\\\\": true,\\\\n        \\\\\\\"ece\\\\\\\\u2192distinct_3\\\\\\\": true,\\\\n        \\\\\\\"effective_rank\\\\\\\\u2192perplexity\\\\\\\": false,\\\\n        \\\\\\\"effective_rank\\\\\\\\u2192distinct_1\\\\\\\": false,\\\\n        \\\\\\\"effective_rank\\\\\\\\u2192distinct_2\\\\\\\": false,\\\\n        \\\\\\\"effective_rank\\\\\\\\u2192distinct_3\\\\\\\": false\\\\n      }\\\\n    },\\\\n    {\\\\n      \\\\\\\"method_threshold\\\\\\\": 3,\\\\n      \\\\\\\"seed_threshold\\\\\\\": 3,\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"\\\\\\\\u22653/5 methods, \\\\\\\\u22653/4 seeds\\\\\\\",\\\\n      \\\\\\\"n_robust\\\\\\\": 8,\\\\n  \n…[truncated 6747 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T10:00:52.678460+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "tail -200 /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/consensus/sensitivity_analysis.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T10:00:52.678709+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        \\\\\\\"ece\\\\\\\\u2192distinct_1\\\\\\\": true,\\\\n        \\\\\\\"ece\\\\\\\\u2192distinct_2\\\\\\\": true,\\\\n        \\\\\\\"ece\\\\\\\\u2192distinct_3\\\\\\\": true,\\\\n        \\\\\\\"effective_rank\\\\\\\\u2192perplexity\\\\\\\": false,\\\\n        \\\\\\\"effective_rank\\\\\\\\u2192distinct_1\\\\\\\": false,\\\\n        \\\\\\\"effective_rank\\\\\\\\u2192distinct_2\\\\\\\": false,\\\\n        \\\\\\\"effective_rank\\\\\\\\u2192distinct_3\\\\\\\": false\\\\n      }\\\\n    },\\\\n    {\\\\n      \\\\\\\"method_threshold\\\\\\\": 5,\\\\n      \\\\\\\"seed_threshold\\\\\\\": 2,\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"\\\\\\\\u22655/5 methods, \\\\\\\\u22652/4 seeds\\\\\\\",\\\\n      \\\\\\\"n_robust\\\\\\\": 6,\\\\n      \\\\\\\"robust_pairs\\\\\\\": [\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192distinct_1\\\\\\\",\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192distinct_2\\\\\\\",\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192distinct_3\\\\\\\",\\\\n        \\\\\\\"ece\\\\\\\\u2192distinct_1\\\\\\\",\\\\n        \\\\\\\"ece\\\\\\\\u2192distinct_2\\\\\\\",\\\\n        \\\\\\\"ece\\\\\\\\u2192distinct_3\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"pair_status\\\\\\\": {\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192perplexity\\\\\\\": false,\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192distinct_1\\\\\\\": true,\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192distinct_2\\\\\\\": true,\\\\n        \\\\\\\"token_entropy\\\\\\\\u2192distinct_3\\\\\\\": true,\\\\n        \\\\\\\"self_bleu\\\\\\\\u2192perplexity\\\\\\\": false,\\\\n        \\\\\\\"self_bleu\\\\\\\\u2192distinct_1\\\\\\\": false,\\\\n        \\\\\\\"self_bleu\\\\\\\\u2192distinct_2\\\\\\\": false,\\\\n        \\\\\\\"self_bleu\\\\\\\\u2192distinct_3\\\\\\\": false,\\\\n        \\\\\\\"ece\\\\\\\\u2192perplexity\\\\\\\": false,\\\\n        \\\\\\\"ece\\\\\\\\u2192distinct_1\\\\\\\": true,\\\\n        \\\\\\\"ece\\\\\\\\u2192distinct_2\\\\\\\": true,\\\\n        \\\\\\\"ece\\\\\\\\u2192distinct_3\\\\\\\": true,\\\\n        \\\\\\\"effective_rank\\\\\\\\u2192perplexity\\\\\\\": false,\\\\n        \\\\\\\"effective_rank\\\\\\\\u2192distinct_1\\\\\\\": false,\\\\n        \\\\\\\"effective_rank\\\\\\\\u2192distinct_2\\\\\\\": false,\\\\n        \\\\\\\"effective_rank\\\\\\\\u2192distinct_3\\\\\\\": false\\\\n      }\\\\n    },\\\\n    {\\\\n      \\\\\\\"method_threshold\\\\\\\": 5,\\\\n      \\\\\\\"seed_threshold\\\\\\\": 3,\\\\n      \\\\\\\"label\\\\\\\": \n…[truncated 5965 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T10:00:52.678898+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cd /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/consensus && base64 consensus_classification.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T10:00:52.679098+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ewogICJjbGFzc2lmaWNhdGlvbnMiOiBbCiAgICB7CiAgICAgICJwYWlyX2luZGV4IjogMCwKICAg\\\\nICAgIm5fc2lnX21ldGhvZHMiOiAzLAogICAgICAiaXNfcm9idXN0IjogZmFsc2UsCiAgICAgICJt\\\\nZXRob2RfdmVyZGljdHMiOiBbCiAgICAgICAgdHJ1ZSwKICAgICAgICB0cnVlLAogICAgICAgIHRy\\\\ndWUsCiAgICAgICAgZmFsc2UsCiAgICAgICAgZmFsc2UKICAgICAgXSwKICAgICAgInNlZWRfY291\\\\nbnRzIjogWwogICAgICAgIDQsCiAgICAgICAgNCwKICAgICAgICA0LAogICAgICAgIDAsCiAgICAg\\\\nICAgMAogICAgICBdLAogICAgICAiY2FuYXJ5IjogInRva2VuX2VudHJvcHkiLAogICAgICAiZG93\\\\nbnN0cmVhbSI6ICJwZXJwbGV4aXR5IiwKICAgICAgInBhaXJfbGFiZWwiOiAidG9rZW5fZW50cm9w\\\\neVx1MjE5MnBlcnBsZXhpdHkiCiAgICB9LAogICAgewogICAgICAicGFpcl9pbmRleCI6IDEsCiAg\\\\nICAgICJuX3NpZ19tZXRob2RzIjogNSwKICAgICAgImlzX3JvYnVzdCI6IHRydWUsCiAgICAgICJt\\\\nZXRob2RfdmVyZGljdHMiOiBbCiAgICAgICAgdHJ1ZSwKICAgICAgICB0cnVlLAogICAgICAgIHRy\\\\ndWUsCiAgICAgICAgdHJ1ZSwKICAgICAgICB0cnVlCiAgICAgIF0sCiAgICAgICJzZWVkX2NvdW50\\\\ncyI6IFsKICAgICAgICA0LAogICAgICAgIDQsCiAgICAgICAgNCwKICAgICAgICA0LAogICAgICAg\\\\nIDQKICAgICAgXSwKICAgICAgImNhbmFyeSI6ICJ0b2tlbl9lbnRyb3B5IiwKICAgICAgImRvd25z\\\\ndHJlYW0iOiAiZGlzdGluY3RfMSIsCiAgICAgICJwYWlyX2xhYmVsIjogInRva2VuX2VudHJvcHlc\\\\ndTIxOTJkaXN0aW5jdF8xIgogICAgfSwKICAgIHsKICAgICAgInBhaXJfaW5kZXgiOiAyLAogICAg\\\\nICAibl9zaWdfbWV0aG9kcyI6IDUsCiAgICAgICJpc19yb2J1c3QiOiB0cnVlLAogICAgICAibWV0\\\\naG9kX3ZlcmRpY3RzIjogWwogICAgICAgIHRydWUsCiAgICAgICAgdHJ1ZSwKICAgICAgICB0cnVl\\\\nLAogICAgICAgIHRydWUsCiAgICAgICAgdHJ1ZQogICAgICBdLAogICAgICAic2VlZF9jb3VudHMi\\\\nOiBbCiAgICAgICAgNCwKICAgICAgICA0LAogICAgICAgIDQsCiAgICAgICAgNCwKICAgICAgICA0\\\\nCiAgICAgIF0sCiAgICAgICJjYW5hcnkiOiAidG9rZW5fZW50cm9weSIsCiAgICAgICJkb3duc3Ry\\\\nZWFtIjogImRpc3RpbmN0XzIiLAogICAgICAicGFpcl9sYWJlbCI6ICJ0b2tlbl9lbnRyb3B5XHUy\\\\nMTkyZGlzdGluY3RfMiIKICAgIH0sCiAgICB7CiAgICAgICJwYWlyX2luZGV4IjogMywKICAgICAg\\\\nIm5fc2lnX21ldGhvZHMiOiA1LAogICAgICAiaXNfcm9idXN0IjogdHJ1ZSwKICAgICAgIm1ldGhv\\\\nZF92ZXJkaWN0cyI6IFsKICAgICAgICB0cnVlLAogICAgICAgIHRydWUsCiAgICAgICAgdHJ1ZSwK\\\\nICAgICAgICB0cnVlLAogICAgICAgIHRydWUKICAgICAgXSwK\n…[truncated 6408 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T10:00:52.679265+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cd /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/consensus && base64 fpr_fnr_table.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T10:00:52.679438+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ewogICJncm91bmRfdHJ1dGgiOiB7CiAgICAiZnByX2dyb3VuZF90cnV0aCI6ICJkaWZmZXJlbmNl\\\\nZF94Y29yciAoc2VlZCBsZXZlbCkiLAogICAgImZucl9ncm91bmRfdHJ1dGgiOiAiY29uc2Vuc3Vz\\\\nIChcdTIyNjU0LzUgbWV0aG9kcywgXHUyMjY1My80IHNlZWRzKSIsCiAgICAibl9uZWdhdGl2ZXNf\\\\nc2VlZCI6IDExLAogICAgIm5fcG9zaXRpdmVzX3NlZWQiOiAyNAogIH0sCiAgInBlcl9tZXRob2Rf\\\\nZnByIjogewogICAgIm5haXZlX3BlYXJzb24iOiB7CiAgICAgICJmcCI6IDExLAogICAgICAidG90\\\\nYWxfbmVnYXRpdmVzIjogMTEsCiAgICAgICJmcHIiOiAxLjAKICAgIH0sCiAgICAiZGlmZmVyZW5j\\\\nZWRfeGNvcnIiOiB7CiAgICAgICJmcCI6IDAsCiAgICAgICJ0b3RhbF9uZWdhdGl2ZXMiOiAxMSwK\\\\nICAgICAgImZwciI6IDAuMAogICAgfSwKICAgICJ0aHJlc2hvbGRfb25zZXQiOiB7CiAgICAgICJm\\\\ncCI6IDEsCiAgICAgICJ0b3RhbF9uZWdhdGl2ZXMiOiAxMSwKICAgICAgImZwciI6IDAuMDkwOQog\\\\nICAgfSwKICAgICJ0b2RhX3lhbWFtb3RvIjogewogICAgICAiZnAiOiAwLAogICAgICAidG90YWxf\\\\nbmVnYXRpdmVzIjogMTEsCiAgICAgICJmcHIiOiAwLjAKICAgIH0sCiAgICAicGVybXV0YXRpb25f\\\\nZ3JhbmdlciI6IHsKICAgICAgImZwIjogMCwKICAgICAgInRvdGFsX25lZ2F0aXZlcyI6IDExLAog\\\\nICAgICAiZnByIjogMC4wCiAgICB9CiAgfSwKICAicGVyX21ldGhvZF9mbnIiOiB7CiAgICAibmFp\\\\ndmVfcGVhcnNvbiI6IHsKICAgICAgImZuIjogMCwKICAgICAgInRvdGFsX3Bvc2l0aXZlcyI6IDI0\\\\nLAogICAgICAiZm5yIjogMC4wCiAgICB9LAogICAgImRpZmZlcmVuY2VkX3hjb3JyIjogewogICAg\\\\nICAiZm4iOiAwLAogICAgICAidG90YWxfcG9zaXRpdmVzIjogMjQsCiAgICAgICJmbnIiOiAwLjAK\\\\nICAgIH0sCiAgICAidGhyZXNob2xkX29uc2V0IjogewogICAgICAiZm4iOiAwLAogICAgICAidG90\\\\nYWxfcG9zaXRpdmVzIjogMjQsCiAgICAgICJmbnIiOiAwLjAKICAgIH0sCiAgICAidG9kYV95YW1h\\\\nbW90byI6IHsKICAgICAgImZuIjogNiwKICAgICAgInRvdGFsX3Bvc2l0aXZlcyI6IDI0LAogICAg\\\\nICAiZm5yIjogMC4yNQogICAgfSwKICAgICJwZXJtdXRhdGlvbl9ncmFuZ2VyIjogewogICAgICAi\\\\nZm4iOiAxLAogICAgICAidG90YWxfcG9zaXRpdmVzIjogMjQsCiAgICAgICJmbnIiOiAwLjA0MTcK\\\\nICAgIH0KICB9LAogICJjb25zZW5zdXMiOiB7CiAgICAiZnByX3BhaXJfbGV2ZWwiOiB7CiAgICAg\\\\nICJmcCI6IDAsCiAgICAgICJ0b3RhbF9uZWdhdGl2ZXMiOiA0LAogICAgICAiZnByIjogMC4wCiAg\\\\nICB9LAogICAgImZwcl9zZWVkX2xldmVsIjogewogICAgICAiZnAiOiAwLAogICAgICAidG90YWxf\\\\nbmVnYXRpdmVzIjogMTEsCiAgICAgICJmcHIiOiAwLjAKICAg\n…[truncated 3287 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T10:00:52.679580+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cd /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/consensus && base64 sensitivity_analysis.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T10:00:52.679776+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ewogICJtZXRob2RfdGhyZXNob2xkcyI6IFsKICAgIDMsCiAgICA0LAogICAgNQogIF0sCiAgInNl\\\\nZWRfdGhyZXNob2xkcyI6IFsKICAgIDIsCiAgICAzLAogICAgNAogIF0sCiAgIm5fY29uZmlncyI6\\\\nIDksCiAgImdyaWQiOiBbCiAgICB7CiAgICAgICJtZXRob2RfdGhyZXNob2xkIjogMywKICAgICAg\\\\nInNlZWRfdGhyZXNob2xkIjogMiwKICAgICAgImxhYmVsIjogIlx1MjI2NTMvNSBtZXRob2RzLCBc\\\\ndTIyNjUyLzQgc2VlZHMiLAogICAgICAibl9yb2J1c3QiOiA5LAogICAgICAicm9idXN0X3BhaXJz\\\\nIjogWwogICAgICAgICJ0b2tlbl9lbnRyb3B5XHUyMTkycGVycGxleGl0eSIsCiAgICAgICAgInRv\\\\na2VuX2VudHJvcHlcdTIxOTJkaXN0aW5jdF8xIiwKICAgICAgICAidG9rZW5fZW50cm9weVx1MjE5\\\\nMmRpc3RpbmN0XzIiLAogICAgICAgICJ0b2tlbl9lbnRyb3B5XHUyMTkyZGlzdGluY3RfMyIsCiAg\\\\nICAgICAgInNlbGZfYmxldVx1MjE5MnBlcnBsZXhpdHkiLAogICAgICAgICJlY2VcdTIxOTJwZXJw\\\\nbGV4aXR5IiwKICAgICAgICAiZWNlXHUyMTkyZGlzdGluY3RfMSIsCiAgICAgICAgImVjZVx1MjE5\\\\nMmRpc3RpbmN0XzIiLAogICAgICAgICJlY2VcdTIxOTJkaXN0aW5jdF8zIgogICAgICBdLAogICAg\\\\nICAicGFpcl9zdGF0dXMiOiB7CiAgICAgICAgInRva2VuX2VudHJvcHlcdTIxOTJwZXJwbGV4aXR5\\\\nIjogdHJ1ZSwKICAgICAgICAidG9rZW5fZW50cm9weVx1MjE5MmRpc3RpbmN0XzEiOiB0cnVlLAog\\\\nICAgICAgICJ0b2tlbl9lbnRyb3B5XHUyMTkyZGlzdGluY3RfMiI6IHRydWUsCiAgICAgICAgInRv\\\\na2VuX2VudHJvcHlcdTIxOTJkaXN0aW5jdF8zIjogdHJ1ZSwKICAgICAgICAic2VsZl9ibGV1XHUy\\\\nMTkycGVycGxleGl0eSI6IHRydWUsCiAgICAgICAgInNlbGZfYmxldVx1MjE5MmRpc3RpbmN0XzEi\\\\nOiBmYWxzZSwKICAgICAgICAic2VsZl9ibGV1XHUyMTkyZGlzdGluY3RfMiI6IGZhbHNlLAogICAg\\\\nICAgICJzZWxmX2JsZXVcdTIxOTJkaXN0aW5jdF8zIjogZmFsc2UsCiAgICAgICAgImVjZVx1MjE5\\\\nMnBlcnBsZXhpdHkiOiB0cnVlLAogICAgICAgICJlY2VcdTIxOTJkaXN0aW5jdF8xIjogdHJ1ZSwK\\\\nICAgICAgICAiZWNlXHUyMTkyZGlzdGluY3RfMiI6IHRydWUsCiAgICAgICAgImVjZVx1MjE5MmRp\\\\nc3RpbmN0XzMiOiB0cnVlLAogICAgICAgICJlZmZlY3RpdmVfcmFua1x1MjE5MnBlcnBsZXhpdHki\\\\nOiBmYWxzZSwKICAgICAgICAiZWZmZWN0aXZlX3JhbmtcdTIxOTJkaXN0aW5jdF8xIjogZmFsc2Us\\\\nCiAgICAgICAgImVmZmVjdGl2ZV9yYW5rXHUyMTkyZGlzdGluY3RfMiI6IGZhbHNlLAogICAgICAg\\\\nICJlZmZlY3RpdmVfcmFua1x1MjE5MmRpc3RpbmN0XzMiOiBmYWxzZQogICAgICB9CiAgICB9LAog\\\\nICAgewogICAgICAibWV0aG9kX3RocmVzaG9sZCI6IDMsCiAg\n…[truncated 6409 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T10:00:52.679944+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/consensus_framework",
+              "description": "Create local artifacts directory"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T10:00:52.680061+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T10:00:52.680182+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat <<'HEREDOC_B64' | base64 -d > /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/consensus_framework/consensus_classification.json\newogICJjbGFzc2lmaWNhdGlvbnMiOiBbCiAgICB7CiAgICAgICJwYWlyX2luZGV4IjogMCwKICAgICAgIm5fc2lnX21ldGhvZHMiOiAzLAogICAgICAiaXNfcm9idXN0IjogZmFsc2UsCiAgICAgICJtZXRob2RfdmVyZGljdHMiOiBbCiAgICAgICAgdHJ1ZSwKICAgICAgICB0cnVlLAogICAgICAgIHRydWUsCiAgICAgICAgZmFsc2UsCiAgICAgICAgZmFsc2UKICAgICAgXSwKICAgICAgInNlZWRfY291bnRzIjogWwogICAgICAgIDQsCiAgICAgICAgNCwKICAgICAgICA0LAogICAgICAgIDAsCiAgICAgICAgMAogICAgICBdLAogICAgICAiY2FuYXJ5IjogInRva2VuX2VudHJvcHkiLAogICAgICAiZG93bnN0cmVhbSI6ICJwZXJwbGV4aXR5IiwKICAgICAgInBhaXJfbGFiZWwiOiAidG9rZW5fZW50cm9weVx1MjE5MnBlcnBsZXhpdHkiCiAgICB9LAogICAgewogICAgICAicGFpcl9pbmRleCI6IDEsCiAgICAgICJuX3NpZ19tZXRob2RzIjogNSwKICAgICAgImlzX3JvYnVzdCI6IHRydWUsCiAgICAgICJtZXRob2RfdmVyZGljdHMiOiBbCiAgICAgICAgdHJ1ZSwKICAgICAgICB0cnVlLAogICAgICAgIHRydWUsCiAgICAgICAgdHJ1ZSwKICAgICAgICB0cnVlCiAgICAgIF0sCiAgICAgICJzZWVkX2NvdW50cyI6IFsKICAgICAgICA0LAogICAgICAgIDQsCiAgICAgICAgNCwKICAgICAgICA0LAogICAgICAgIDQKICAgICAgXSwKICAgICAgImNhbmFyeSI6ICJ0b2tlbl9lbnRyb3B5IiwKICAgICAgImRvd25zdHJlYW0iOiAiZGlzdGluY3RfMSIsCiAgICAgICJwYWlyX2xhYmVsIjogInRva2VuX2VudHJvcHlcdTIxOTJkaXN0aW5jdF8xIgogICAgfSwKICAgIHsKICAgICAgInBhaXJfaW5kZXgiOiAyLAogICAgICAibl9zaWdfbWV0aG9kcyI6IDUsCiAgICAgICJpc19yb2J1c3QiOiB0cnVlLAogICAgICAibWV0aG9kX3ZlcmRpY3RzIjogWwogICAgICAgIHRydWUsCiAgICAgICAgdHJ1ZSwKICAgICAgICB0cnVlLAogICAgICAgIHRydWUsCiAgICAgICAgdHJ1ZQogICAgICBdLAogICAgICAic2VlZF9jb3VudHMiOiBbCiAgICAgICAgNCwKICAgICAgICA0LAogICAgICAgIDQsCiAgICAgICAgNCwKICAgICAgICA0CiAgICAgIF0sCiAgICAgICJjYW5hcnkiOiAidG9rZW5fZW50cm9weSIsCiAgICAgICJkb3duc3RyZWFtIjogImRpc3RpbmN0XzIiLAogICAgICAicGFpcl9sYWJlbCI6ICJ0b2tlbl9lbnRyb3B5XHUyMTkyZGlzdGluY3RfMiIKICAgIH0sCiAgICB7CiAgICAgICJwYWlyX2luZGV4IjogMywKICAgICAgIm5fc2lnX21ldGhvZHMiOiA1LAogICAgICAiaXNfcm9idXN0IjogdHJ1ZSwKICAgICAgIm1ldGhvZF92ZXJkaWN0cyI6IFsKICAgICAgICB0cnVlLAogICAgICAgIHRydWUsCiAgICAgICAgdHJ1ZSwKICAgICAgICB0cnVlLAogICAgICAgIHRydWUKICAgICAgXSwKICAgICAgInNlZWRfY291bnRzIjogWwogICAgICAgIDQsCiAgICAgICAgNCwKICAgICAgICA0LAogICAgICAgIDQsCiAgICAgICAgMwogICAgICBdLAogICAgICAiY2FuYXJ5IjogInRva2VuX2VudHJvcHkiLAogICAgICAiZG93bnN0cmVhbSI6ICJkaXN0aW5jdF8zIiwKICAgICAgInBhaXJfbGFiZWwiOiAidG9rZW5fZW50cm9weVx1MjE5MmRpc3RpbmN0XzMiCiAgICB9LAogICAgewogICAgICAicGFpcl9pbmRleCI6IDQsCiAgICAgICJuX3NpZ19tZXRob2RzIjogMiwKICAgICAgImlzX3JvYnVzdCI6IGZhbHNlLAogICAgICAibWV0aG9kX3ZlcmRpY3RzIjogWwogICAgICAgIHRydWUsCiAgICAgICAgZmFsc2UsCiAgICAgICAgdHJ1ZSwKICAgICAgICBmYWxzZSwKICAgICAgICBmYWxzZQogICAgICBdLAogICAgICAic2VlZF9jb3VudHMiOiBbCiAgICAgICAgNCwKICAgICAgICAyLAogICAgICAgIDMsCiAgICAgICAgMCwKICAgICAgICAwCiAgICAgIF0sCiAgICAgICJjYW5hcnkiOiAic2VsZl9ibGV1IiwKICAgICAgImRvd25zdHJlYW0iOiAicGVycGxleGl0eSIsCiAgICAgICJwYWlyX2xhYmVsIjogInNlbGZfYmxldVx1MjE5MnBlcnBsZXhpdHkiCiAgICB9LAogICAgewogICAgICAicGFpcl9pbmRleCI6IDUsCiAgICAgICJuX3NpZ19tZXRob2RzIjogMSwKICAgICAgImlzX3JvYnVzdCI6IGZhbHNlLAogICAgICAibWV0aG9kX3ZlcmRpY3RzIjogWwogICAgICAgIHRydWUsCiAgICAgICAgZmFsc2UsCiAgICAgICAgZmFsc2UsCiAgICAgICAgZmFsc2UsCiAgICAgICAgZmFsc2UKICAgICAgXSwKICAgICAgInNlZWRfY291bnRzIjogWwogICAgICAgIDQsCiAgICAgICAgMiwKICAgICAgICAwLAogICAgICAgIDEsCiAgICAgICAgMQogICAgICBdLAogICAgICAiY2FuYXJ5IjogInNlbGZfYmxldSIsCiAgICAgICJkb3duc3RyZWFtIjogImRpc3RpbmN0XzEiLAogICAgICAicGFpcl9sYWJlbCI6ICJzZWxmX2JsZXVcdTIxOTJkaXN0aW5jdF8xIgogICAgfSwKICAgIHsKICAgICAgInBhaXJfaW5kZXgiOiA2LAogICAgICAibl9zaWdfbWV0aG9kcyI6IDIsCiAgICAgICJpc19yb2J1c3QiOiBmYWxzZSwKICAgICAgIm1ldGhvZF92ZXJkaWN0cyI6IFsKICAgICAgICB0cnVlLAogICAgICAgIHRydWUsCiAgICAgICAgZmFsc2UsCiAgICAgICAgZmFsc2UsCiAgICAgICAgZmFsc2UKICAgICAgXSwKICAgICAgInNlZWRfY291bnRzIjogWwogICAgICAgIDQsCiAgICAgICAgMywKICAgICAgICAwLAogICAgICAgIDEsCiAgICAgICAgMQogICAgICBdLAogICAgICAiY2FuYXJ5IjogInNlbGZfYmxldSIsCiAgICAgICJkb3duc3RyZWFtIjogImRpc3RpbmN0XzIiLAogICAgICAicGFpcl9sYWJlbCI6ICJzZWxmX2JsZXVcdTIxOTJkaXN0aW5jdF8yIgogICAgfSwKICAgIHsKICAgICAgInBhaXJfaW5kZXgiOiA3LAogICAgICAibl9zaWdfbWV0aG9kcyI6IDIsCiAgICAgICJpc19yb2J1c3QiOiBmYWxzZSwKICAgICAgIm1ldGhvZF92ZXJkaWN0cyI6IFsKICAgICAgICB0cnVlLAogICAgICAgIHRydWUsCiAgICAgICAgZmFsc2UsCiAgICAgICAgZmFsc2UsCiAgICAgICAgZmFsc2UKICAgICAgXSwKICAgICAgInNlZWRfY291bnRzIjogWwogICAgICAgIDQsCiAgICAgICAgMywKICAgICAgICAwLAogICAgICAgIDEsCiAgICAgICAgMQogICAgICBdLAogICAgICAiY2FuYXJ5IjogInNlbGZfYmxldSIsCiAgICAgICJkb3duc3RyZWFtIjogImRpc3RpbmN0XzMiLAogICAgICAicGFpcl9sYWJlbCI6ICJzZWxmX2JsZXVcdTIxOTJkaXN0aW5jdF8zIgogICAgfSwKICAgIHsKICAgICAgInBhaXJfaW5kZXgiOiA4LAogICAgICAibl9zaWdfbWV0aG9kcyI6IDMsCiAgICAgICJpc19yb2J1c3QiOiBmYWxzZSwKICAgICAgIm1ldGhvZF92ZXJkaWN0cyI6IFsKICAgICAgICB0cnVlLAogICAgICAgIHRydWUsCiAgICAgICAgdHJ1ZSwKICAgICAgICBmYWxzZSwKICAgICAgICBmYWxzZQogICAgICBdLAogICAgICAic2VlZF9jb3VudHMiOiBbCiAgICAgICAgNCwKICAgICAgICA0LAogICAgICAgIDQsCiAgICAgICAgMCwKICAgICAgICAwCiAgICAgIF0sCiAgICAgICJjYW5hcnkiOiAiZWNlIiwKICAgICAgImRvd25zdHJlYW0iOiAicGVycGxleGl0eSIsCiAgICAgICJwYWlyX2xhYmVsIjogImVjZVx1MjE5MnBlcnBsZXhpdHkiCiAgICB9LAogICAgewogICAgICAicGFpcl9pbmRleCI6IDksCiAgICAgICJuX3NpZ19tZXRob2RzIjogNCwKICAgICAgImlzX3JvYnVzdCI6IHRydWUsCiAgICAgICJtZXRob2RfdmVyZGljdHMiOiBbCiAgICAgICAgdHJ1ZSwKICAgICAgICB0cnVlLAogICAgICAgIHRydWUsCiAgICAgICAgZmFsc2UsCiAgICAgICAgdHJ1ZQogICAgICBdLAogICAgICAic2VlZF9jb3VudHMiOiBbCiAgICAgICAgNCwKICAgICAgICA0LAogICAgICAgIDQsCiAgICAgICAgMiwKICAgICAgICA0CiAgICAgIF0sCiAgICAgICJjYW5hcnkiOiAiZWNlIiwKICAgICAgImRvd25zdHJlYW0iOiAiZGlzdGluY3RfMSIsCiAgICAgICJwYWlyX2xhYmVsIjogImVjZVx1MjE5MmRpc3RpbmN0XzEiCiAgICB9LAogICAgewogICAgICAicGFpcl9pbmRleCI6IDEwLAogICAgICAibl9zaWdfbWV0aG9kcyI6IDQsCiAgICAgICJpc19yb2J1c3QiOiB0cnVlLAogICAgICAibWV0aG9kX3ZlcmRpY3RzIjogWwogICAgICAgIHRydWUsCiAgICAgICAgdHJ1ZSwKICAgICAgICB0cnVlLAogICAgICAgIGZhbHNlLAogICAgICAgIHRydWUKICAgICAgXSwKICAgICAgInNlZWRfY291bnRzIjogWwogICAgICAgIDQsCiAgICAgICAgNCwKICAgICAgICA0LAogICAgICAgIDIsCiAgICAgICAgNAogICAgICBdLAogICAgICAiY2FuYXJ5IjogImVjZSIsCiAgICAgICJkb3duc3RyZWFtIjogImRpc3RpbmN0XzIiLAogICAgICAicGFpcl9sYWJlbCI6ICJlY2VcdTIxOTJkaXN0aW5jdF8yIgogICAgfSwKICAgIHsKICAgICAgInBhaXJfaW5kZXgiOiAxMSwKICAgICAgIm5fc2lnX21ldGhvZHMiOiA0LAogICAgICAiaXNfcm9idXN0IjogdHJ1ZSwKICAgICAgIm1ldGhvZF92ZXJkaWN0cyI6IFsKICAgICAgICB0cnVlLAogICAgICAgIHRydWUsCiAgICAgICAgdHJ1ZSwKICAgICAgICBmYWxzZSwKICAgICAgICB0cnVlCiAgICAgIF0sCiAgICAgICJzZWVkX2NvdW50cyI6IFsKICAgICAgICA0LAogICAgICAgIDQsCiAgICAgICAgNCwKICAgICAgICAyLAogICAgICAgIDQKICAgICAgXSwKICAgICAgImNhbmFyeSI6ICJlY2UiLAogICAgICAiZG93bnN0cmVhbSI6ICJkaXN0aW5jdF8zIiwKICAgICAgInBhaXJfbGFiZWwiOiAiZWNlXHUyMTkyZGlzdGluY3RfMyIKICAgIH0sCiAgICB7CiAgICAgICJwYWlyX2luZGV4IjogMTIsCiAgICAgICJuX3NpZ19tZXRob2RzIjogMiwKICAgICAgImlzX3JvYnVzdCI6IGZhbHNlLAogICAgICAibWV0aG9kX3ZlcmRpY3RzIjogWwogICAgICAgIHRydWUsCiAgICAgICAgdHJ1ZSwKICAgICAgICBmYWxzZSwKICAgICAgICBmYWxzZSwKICAgICAgICBmYWxzZQogICAgICBdLAogICAgICAic2VlZF9jb3VudHMiOiBbCiAgICAgICAgMywKICAgICAgICA0LAogICAgICAgIDAsCiAgICAgICAgMCwKICAgICAgICAwCiAgICAgIF0sCiAgICAgICJjYW5hcnkiOiAiZWZmZWN0aXZlX3JhbmsiLAogICAgICAiZG93bnN0cmVhbSI6ICJwZXJwbGV4aXR5IiwKICAgICAgInBhaXJfbGFiZWwiOiAiZWZmZWN0aXZlX3JhbmtcdTIxOTJwZXJwbGV4aXR5IgogICAgfSwKICAgIHsKICAgICAgInBhaXJfaW5kZXgiOiAxMywKICAgICAgIm5fc2lnX21ldGhvZHMiOiAyLAogICAgICAiaXNfcm9idXN0IjogZmFsc2UsCiAgICAgICJtZXRob2RfdmVyZGljdHMiOiBbCiAgICAgICAgdHJ1ZSwKICAgICAgICB0cnVlLAogICAgICAgIGZhbHNlLAogICAgICAgIGZhbHNlLAogICAgICAgIGZhbHNlCiAgICAgIF0sCiAgICAgICJzZWVkX2NvdW50cyI6IFsKICAgICAgICA0LAogICAgICAgIDMsCiAgICAgICAgMCwKICAgICAgICAxLAogICAgICAgIDEKICAgICAgXSwKICAgICAgImNhbmFyeSI6ICJlZmZlY3RpdmVfcmFuayIsCiAgICAgICJkb3duc3RyZWFtIjogImRpc3RpbmN0XzEiLAogICAgICAicGFpcl9sYWJlbCI6ICJlZmZlY3RpdmVfcmFua1x1MjE5MmRpc3RpbmN0XzEiCiAgICB9LAogICAgewogICAgICAicGFpcl9pbmRleCI6IDE0LAogICAgICAibl9zaWdfbWV0aG9kcyI6IDEsCiAgICAgICJpc19yb2J1c3QiOiBmYWxzZSwKICAgICAgIm1ldGhvZF92ZXJkaWN0cyI6IFsKICAgICAgICB0cnVlLAogICAgICAgIGZhbHNlLAogICAgICAgIGZhbHNlLAogICAgICAgIGZhbHNlLAogICAgICAgIGZhbHNlCiAgICAgIF0sCiAgICAgICJzZWVkX2NvdW50cyI6IFsKICAgICAgICA0LAogICAgICAgIDIsCiAgICAgICAgMCwKICAgICAgICAxLAogICAgICAgIDAKICAgICAgXSwKICAgICAgImNhbmFyeSI6ICJlZmZlY3RpdmVfcmFuayIsCiAgICAgICJkb3duc3RyZWFtIjogImRpc3RpbmN0XzIiLAogICAgICAicGFpcl9sYWJlbCI6ICJlZmZlY3RpdmVfcmFua1x1MjE5MmRpc3RpbmN0XzIiCiAgICB9LAogICAgewogICAgICAicGFpcl9pbmRleCI6IDE1LAogICAgICAibl9zaWdfbWV0aG9kcyI6IDEsCiAgICAgICJpc19yb2J1c3QiOiBmYWxzZSwKICAgICAgIm1ldGhvZF92ZXJkaWN0cyI6IFsKICAgICAgICB0cnVlLAogICAgICAgIGZhbHNlLAogICAgICAgIGZhbHNlLAogICAgICAgIGZhbHNlLAogICAgICAgIGZhbHNlCiAgICAgIF0sCiAgICAgICJzZWVkX2NvdW50cyI6IFsKICAgICAgICA0LAogICAgICAgIDIsCiAgICAgICAgMCwKICAgICAgICAxLAogICAgICAgIDAKICAgICAgXSwKICAgICAgImNhbmFyeSI6ICJlZmZlY3RpdmVfcmFuayIsCiAgICAgICJkb3duc3RyZWFtIjogImRpc3RpbmN0XzMiLAogICAgICAicGFpcl9sYWJlbCI6ICJlZmZlY3RpdmVfcmFua1x1MjE5MmRpc3RpbmN0XzMiCiAgICB9CiAgXSwKICAibl9yb2J1c3QiOiA2LAogICJuX25vbl9yb2J1c3QiOiAxMCwKICAicGFyYW1zIjogewogICAgIm1ldGhvZF90aHJlc2hvbGQiOiA0LAogICAgInNlZWRfdGhyZXNob2xkIjogMywKICAgICJuX21ldGhvZHMiOiA1LAogICAgIm5fc2VlZHMiOiA0CiAgfQp9\nHEREDOC_B64\necho \"consensus written, size: $(wc -c < /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/consensus_framework/consensus_classification.json)\"",
+              "description": "Decode and write consensus_classification.json locally"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T10:00:52.680373+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "consensus written, size: 6474"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T10:00:52.680496+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat <<'HEREDOC_B64' | base64 -d > /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/consensus_framework/fpr_fnr_table.json\newogICJncm91bmRfdHJ1dGgiOiB7CiAgICAiZnByX2dyb3VuZF90cnV0aCI6ICJkaWZmZXJlbmNlZF94Y29yciAoc2VlZCBsZXZlbCkiLAogICAgImZucl9ncm91bmRfdHJ1dGgiOiAiY29uc2Vuc3VzIChcdTIyNjU0LzUgbWV0aG9kcywgXHUyMjY1My80IHNlZWRzKSIsCiAgICAibl9uZWdhdGl2ZXNfc2VlZCI6IDExLAogICAgIm5fcG9zaXRpdmVzX3NlZWQiOiAyNAogIH0sCiAgInBlcl9tZXRob2RfZnByIjogewogICAgIm5haXZlX3BlYXJzb24iOiB7CiAgICAgICJmcCI6IDExLAogICAgICAidG90YWxfbmVnYXRpdmVzIjogMTEsCiAgICAgICJmcHIiOiAxLjAKICAgIH0sCiAgICAiZGlmZmVyZW5jZWRfeGNvcnIiOiB7CiAgICAgICJmcCI6IDAsCiAgICAgICJ0b3RhbF9uZWdhdGl2ZXMiOiAxMSwKICAgICAgImZwciI6IDAuMAogICAgfSwKICAgICJ0aHJlc2hvbGRfb25zZXQiOiB7CiAgICAgICJmcCI6IDEsCiAgICAgICJ0b3RhbF9uZWdhdGl2ZXMiOiAxMSwKICAgICAgImZwciI6IDAuMDkwOQogICAgfSwKICAgICJ0b2RhX3lhbWFtb3RvIjogewogICAgICAiZnAiOiAwLAogICAgICAidG90YWxfbmVnYXRpdmVzIjogMTEsCiAgICAgICJmcHIiOiAwLjAKICAgIH0sCiAgICAicGVybXV0YXRpb25fZ3JhbmdlciI6IHsKICAgICAgImZwIjogMCwKICAgICAgInRvdGFsX25lZ2F0aXZlcyI6IDExLAogICAgICAiZnByIjogMC4wCiAgICB9CiAgfSwKICAicGVyX21ldGhvZF9mbnIiOiB7CiAgICAibmFpdmVfcGVhcnNvbiI6IHsKICAgICAgImZuIjogMCwKICAgICAgInRvdGFsX3Bvc2l0aXZlcyI6IDI0LAogICAgICAiZm5yIjogMC4wCiAgICB9LAogICAgImRpZmZlcmVuY2VkX3hjb3JyIjogewogICAgICAiZm4iOiAwLAogICAgICAidG90YWxfcG9zaXRpdmVzIjogMjQsCiAgICAgICJmbnIiOiAwLjAKICAgIH0sCiAgICAidGhyZXNob2xkX29uc2V0IjogewogICAgICAiZm4iOiAwLAogICAgICAidG90YWxfcG9zaXRpdmVzIjogMjQsCiAgICAgICJmbnIiOiAwLjAKICAgIH0sCiAgICAidG9kYV95YW1hbW90byI6IHsKICAgICAgImZuIjogNiwKICAgICAgInRvdGFsX3Bvc2l0aXZlcyI6IDI0LAogICAgICAiZm5yIjogMC4yNQogICAgfSwKICAgICJwZXJtdXRhdGlvbl9ncmFuZ2VyIjogewogICAgICAiZm4iOiAxLAogICAgICAidG90YWxfcG9zaXRpdmVzIjogMjQsCiAgICAgICJmbnIiOiAwLjA0MTcKICAgIH0KICB9LAogICJjb25zZW5zdXMiOiB7CiAgICAiZnByX3BhaXJfbGV2ZWwiOiB7CiAgICAgICJmcCI6IDAsCiAgICAgICJ0b3RhbF9uZWdhdGl2ZXMiOiA0LAogICAgICAiZnByIjogMC4wCiAgICB9LAogICAgImZwcl9zZWVkX2xldmVsIjogewogICAgICAiZnAiOiAwLAogICAgICAidG90YWxfbmVnYXRpdmVzIjogMTEsCiAgICAgICJmcHIiOiAwLjAKICAgIH0sCiAgICAiZm5yIjogMC4wLAogICAgImZucl9ub3RlIjogIjAgYnkgY29uc3RydWN0aW9uIChjb25zZW5zdXMgSVMgdGhlIEZOUiBncm91bmQgdHJ1dGgpIiwKICAgICJuX3JvYnVzdF9wYWlycyI6IDYsCiAgICAicm9idXN0X3BhaXJzIjogWwogICAgICAidG9rZW5fZW50cm9weVx1MjE5MmRpc3RpbmN0XzEiLAogICAgICAidG9rZW5fZW50cm9weVx1MjE5MmRpc3RpbmN0XzIiLAogICAgICAidG9rZW5fZW50cm9weVx1MjE5MmRpc3RpbmN0XzMiLAogICAgICAiZWNlXHUyMTkyZGlzdGluY3RfMSIsCiAgICAgICJlY2VcdTIxOTJkaXN0aW5jdF8yIiwKICAgICAgImVjZVx1MjE5MmRpc3RpbmN0XzMiCiAgICBdCiAgfSwKICAidGFibGUiOiBbCiAgICB7CiAgICAgICJtZXRob2QiOiAibmFpdmVfcGVhcnNvbiIsCiAgICAgICJmcHIiOiAxLjAsCiAgICAgICJmcHJfZGV0YWlsIjogewogICAgICAgICJmcCI6IDExLAogICAgICAgICJ0b3RhbF9uZWdhdGl2ZXMiOiAxMSwKICAgICAgICAiZnByIjogMS4wCiAgICAgIH0sCiAgICAgICJmbnIiOiAwLjAsCiAgICAgICJmbnJfZGV0YWlsIjogewogICAgICAgICJmbiI6IDAsCiAgICAgICAgInRvdGFsX3Bvc2l0aXZlcyI6IDI0LAogICAgICAgICJmbnIiOiAwLjAKICAgICAgfSwKICAgICAgInNpZ19jb3VudF9wYWlyIjogMTYsCiAgICAgICJzaWdfY291bnRfc2VlZCI6IDYzCiAgICB9LAogICAgewogICAgICAibWV0aG9kIjogImRpZmZlcmVuY2VkX3hjb3JyIiwKICAgICAgImZwciI6IDAuMCwKICAgICAgImZwcl9kZXRhaWwiOiB7CiAgICAgICAgImZwIjogMCwKICAgICAgICAidG90YWxfbmVnYXRpdmVzIjogMTEsCiAgICAgICAgImZwciI6IDAuMAogICAgICB9LAogICAgICAiZm5yIjogMC4wLAogICAgICAiZm5yX2RldGFpbCI6IHsKICAgICAgICAiZm4iOiAwLAogICAgICAgICJ0b3RhbF9wb3NpdGl2ZXMiOiAyNCwKICAgICAgICAiZm5yIjogMC4wCiAgICAgIH0sCiAgICAgICJzaWdfY291bnRfcGFpciI6IDEyLAogICAgICAic2lnX2NvdW50X3NlZWQiOiA1MwogICAgfSwKICAgIHsKICAgICAgIm1ldGhvZCI6ICJ0aHJlc2hvbGRfb25zZXQiLAogICAgICAiZnByIjogMC4wOTA5LAogICAgICAiZnByX2RldGFpbCI6IHsKICAgICAgICAiZnAiOiAxLAogICAgICAgICJ0b3RhbF9uZWdhdGl2ZXMiOiAxMSwKICAgICAgICAiZnByIjogMC4wOTA5CiAgICAgIH0sCiAgICAgICJmbnIiOiAwLjAsCiAgICAgICJmbnJfZGV0YWlsIjogewogICAgICAgICJmbiI6IDAsCiAgICAgICAgInRvdGFsX3Bvc2l0aXZlcyI6IDI0LAogICAgICAgICJmbnIiOiAwLjAKICAgICAgfSwKICAgICAgInNpZ19jb3VudF9wYWlyIjogOSwKICAgICAgInNpZ19jb3VudF9zZWVkIjogMzUKICAgIH0sCiAgICB7CiAgICAgICJtZXRob2QiOiAidG9kYV95YW1hbW90byIsCiAgICAgICJmcHIiOiAwLjAsCiAgICAgICJmcHJfZGV0YWlsIjogewogICAgICAgICJmcCI6IDAsCiAgICAgICAgInRvdGFsX25lZ2F0aXZlcyI6IDExLAogICAgICAgICJmcHIiOiAwLjAKICAgICAgfSwKICAgICAgImZuciI6IDAuMjUsCiAgICAgICJmbnJfZGV0YWlsIjogewogICAgICAgICJmbiI6IDYsCiAgICAgICAgInRvdGFsX3Bvc2l0aXZlcyI6IDI0LAogICAgICAgICJmbnIiOiAwLjI1CiAgICAgIH0sCiAgICAgICJzaWdfY291bnRfcGFpciI6IDMsCiAgICAgICJzaWdfY291bnRfc2VlZCI6IDI0CiAgICB9LAogICAgewogICAgICAibWV0aG9kIjogInBlcm11dGF0aW9uX2dyYW5nZXIiLAogICAgICAiZnByIjogMC4wLAogICAgICAiZnByX2RldGFpbCI6IHsKICAgICAgICAiZnAiOiAwLAogICAgICAgICJ0b3RhbF9uZWdhdGl2ZXMiOiAxMSwKICAgICAgICAiZnByIjogMC4wCiAgICAgIH0sCiAgICAgICJmbnIiOiAwLjA0MTcsCiAgICAgICJmbnJfZGV0YWlsIjogewogICAgICAgICJmbiI6IDEsCiAgICAgICAgInRvdGFsX3Bvc2l0aXZlcyI6IDI0LAogICAgICAgICJmbnIiOiAwLjA0MTcKICAgICAgfSwKICAgICAgInNpZ19jb3VudF9wYWlyIjogNiwKICAgICAgInNpZ19jb3VudF9zZWVkIjogMjcKICAgIH0sCiAgICB7CiAgICAgICJtZXRob2QiOiAiY29uc2Vuc3VzIiwKICAgICAgImZwciI6IDAuMCwKICAgICAgImZwcl9kZXRhaWwiOiB7CiAgICAgICAgImZwIjogMCwKICAgICAgICAidG90YWxfbmVnYXRpdmVzIjogMTEsCiAgICAgICAgImZwciI6IDAuMAogICAgICB9LAogICAgICAiZm5yIjogMC4wLAogICAgICAiZm5yX25vdGUiOiAiMCBieSBjb25zdHJ1Y3Rpb24iLAogICAgICAibl9yb2J1c3QiOiA2CiAgICB9CiAgXQp9\nHEREDOC_B64\necho \"fpr_fnr written, size: $(wc -c < /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/consensus_framework/fpr_fnr_table.json)\"",
+              "description": "Decode and write fpr_fnr_table.json locally"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T10:00:52.680636+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "fpr_fnr written, size: 3699"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T10:00:52.680770+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "base64 /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/consensus/sensitivity_analysis.json | head -120",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T10:00:52.680883+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "base64 /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/consensus/sensitivity_analysis.json | tail -n +121",
+              "account": "root"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T10:00:52.681067+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ewogICJtZXRob2RfdGhyZXNob2xkcyI6IFsKICAgIDMsCiAgICA0LAogICAgNQogIF0sCiAgInNl\\\\nZWRfdGhyZXNob2xkcyI6IFsKICAgIDIsCiAgICAzLAogICAgNAogIF0sCiAgIm5fY29uZmlncyI6\\\\nIDksCiAgImdyaWQiOiBbCiAgICB7CiAgICAgICJtZXRob2RfdGhyZXNob2xkIjogMywKICAgICAg\\\\nInNlZWRfdGhyZXNob2xkIjogMiwKICAgICAgImxhYmVsIjogIlx1MjI2NTMvNSBtZXRob2RzLCBc\\\\ndTIyNjUyLzQgc2VlZHMiLAogICAgICAibl9yb2J1c3QiOiA5LAogICAgICAicm9idXN0X3BhaXJz\\\\nIjogWwogICAgICAgICJ0b2tlbl9lbnRyb3B5XHUyMTkycGVycGxleGl0eSIsCiAgICAgICAgInRv\\\\na2VuX2VudHJvcHlcdTIxOTJkaXN0aW5jdF8xIiwKICAgICAgICAidG9rZW5fZW50cm9weVx1MjE5\\\\nMmRpc3RpbmN0XzIiLAogICAgICAgICJ0b2tlbl9lbnRyb3B5XHUyMTkyZGlzdGluY3RfMyIsCiAg\\\\nICAgICAgInNlbGZfYmxldVx1MjE5MnBlcnBsZXhpdHkiLAogICAgICAgICJlY2VcdTIxOTJwZXJw\\\\nbGV4aXR5IiwKICAgICAgICAiZWNlXHUyMTkyZGlzdGluY3RfMSIsCiAgICAgICAgImVjZVx1MjE5\\\\nMmRpc3RpbmN0XzIiLAogICAgICAgICJlY2VcdTIxOTJkaXN0aW5jdF8zIgogICAgICBdLAogICAg\\\\nICAicGFpcl9zdGF0dXMiOiB7CiAgICAgICAgInRva2VuX2VudHJvcHlcdTIxOTJwZXJwbGV4aXR5\\\\nIjogdHJ1ZSwKICAgICAgICAidG9rZW5fZW50cm9weVx1MjE5MmRpc3RpbmN0XzEiOiB0cnVlLAog\\\\nICAgICAgICJ0b2tlbl9lbnRyb3B5XHUyMTkyZGlzdGluY3RfMiI6IHRydWUsCiAgICAgICAgInRv\\\\na2VuX2VudHJvcHlcdTIxOTJkaXN0aW5jdF8zIjogdHJ1ZSwKICAgICAgICAic2VsZl9ibGV1XHUy\\\\nMTkycGVycGxleGl0eSI6IHRydWUsCiAgICAgICAgInNlbGZfYmxldVx1MjE5MmRpc3RpbmN0XzEi\\\\nOiBmYWxzZSwKICAgICAgICAic2VsZl9ibGV1XHUyMTkyZGlzdGluY3RfMiI6IGZhbHNlLAogICAg\\\\nICAgICJzZWxmX2JsZXVcdTIxOTJkaXN0aW5jdF8zIjogZmFsc2UsCiAgICAgICAgImVjZVx1MjE5\\\\nMnBlcnBsZXhpdHkiOiB0cnVlLAogICAgICAgICJlY2VcdTIxOTJkaXN0aW5jdF8xIjogdHJ1ZSwK\\\\nICAgICAgICAiZWNlXHUyMTkyZGlzdGluY3RfMiI6IHRydWUsCiAgICAgICAgImVjZVx1MjE5MmRp\\\\nc3RpbmN0XzMiOiB0cnVlLAogICAgICAgICJlZmZlY3RpdmVfcmFua1x1MjE5MnBlcnBsZXhpdHki\\\\nOiBmYWxzZSwKICAgICAgICAiZWZmZWN0aXZlX3JhbmtcdTIxOTJkaXN0aW5jdF8xIjogZmFsc2Us\\\\nCiAgICAgICAgImVmZmVjdGl2ZV9yYW5rXHUyMTkyZGlzdGluY3RfMiI6IGZhbHNlLAogICAgICAg\\\\nICJlZmZlY3RpdmVfcmFua1x1MjE5MmRpc3RpbmN0XzMiOiBmYWxzZQogICAgICB9CiAgICB9LAog\\\\nICAgewogICAgICAibWV0aG9kX3RocmVzaG9sZCI6IDMsCiAg\n…[truncated 6407 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-15T10:00:52.681321+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"CiAgICAgICAgImVjZVx1MjE5MmRpc3RpbmN0XzEiOiB0cnVlLAogICAgICAgICJlY2VcdTIxOTJk\\\\naXN0aW5jdF8yIjogdHJ1ZSwKICAgICAgICAiZWNlXHUyMTkyZGlzdGluY3RfMyI6IHRydWUsCiAg\\\\nICAgICAgImVmZmVjdGl2ZV9yYW5rXHUyMTkycGVycGxleGl0eSI6IGZhbHNlLAogICAgICAgICJl\\\\nZmZlY3RpdmVfcmFua1x1MjE5MmRpc3RpbmN0XzEiOiBmYWxzZSwKICAgICAgICAiZWZmZWN0aXZl\\\\nX3JhbmtcdTIxOTJkaXN0aW5jdF8yIjogZmFsc2UsCiAgICAgICAgImVmZmVjdGl2ZV9yYW5rXHUy\\\\nMTkyZGlzdGluY3RfMyI6IGZhbHNlCiAgICAgIH0KICAgIH0sCiAgICB7CiAgICAgICJtZXRob2Rf\\\\ndGhyZXNob2xkIjogNSwKICAgICAgInNlZWRfdGhyZXNob2xkIjogMiwKICAgICAgImxhYmVsIjog\\\\nIlx1MjI2NTUvNSBtZXRob2RzLCBcdTIyNjUyLzQgc2VlZHMiLAogICAgICAibl9yb2J1c3QiOiA2\\\\nLAogICAgICAicm9idXN0X3BhaXJzIjogWwogICAgICAgICJ0b2tlbl9lbnRyb3B5XHUyMTkyZGlz\\\\ndGluY3RfMSIsCiAgICAgICAgInRva2VuX2VudHJvcHlcdTIxOTJkaXN0aW5jdF8yIiwKICAgICAg\\\\nICAidG9rZW5fZW50cm9weVx1MjE5MmRpc3RpbmN0XzMiLAogICAgICAgICJlY2VcdTIxOTJkaXN0\\\\naW5jdF8xIiwKICAgICAgICAiZWNlXHUyMTkyZGlzdGluY3RfMiIsCiAgICAgICAgImVjZVx1MjE5\\\\nMmRpc3RpbmN0XzMiCiAgICAgIF0sCiAgICAgICJwYWlyX3N0YXR1cyI6IHsKICAgICAgICAidG9r\\\\nZW5fZW50cm9weVx1MjE5MnBlcnBsZXhpdHkiOiBmYWxzZSwKICAgICAgICAidG9rZW5fZW50cm9w\\\\neVx1MjE5MmRpc3RpbmN0XzEiOiB0cnVlLAogICAgICAgICJ0b2tlbl9lbnRyb3B5XHUyMTkyZGlz\\\\ndGluY3RfMiI6IHRydWUsCiAgICAgICAgInRva2VuX2VudHJvcHlcdTIxOTJkaXN0aW5jdF8zIjog\\\\ndHJ1ZSwKICAgICAgICAic2VsZl9ibGV1XHUyMTkycGVycGxleGl0eSI6IGZhbHNlLAogICAgICAg\\\\nICJzZWxmX2JsZXVcdTIxOTJkaXN0aW5jdF8xIjogZmFsc2UsCiAgICAgICAgInNlbGZfYmxldVx1\\\\nMjE5MmRpc3RpbmN0XzIiOiBmYWxzZSwKICAgICAgICAic2VsZl9ibGV1XHUyMTkyZGlzdGluY3Rf\\\\nMyI6IGZhbHNlLAogICAgICAgICJlY2VcdTIxOTJwZXJwbGV4aXR5IjogZmFsc2UsCiAgICAgICAg\\\\nImVjZVx1MjE5MmRpc3RpbmN0XzEiOiB0cnVlLAogICAgICAgICJlY2VcdTIxOTJkaXN0aW5jdF8y\\\\nIjogdHJ1ZSwKICAgICAgICAiZWNlXHUyMTkyZGlzdGluY3RfMyI6IHRydWUsCiAgICAgICAgImVm\\\\nZmVjdGl2ZV9yYW5rXHUyMTkycGVycGxleGl0eSI6IGZhbHNlLAogICAgICAgICJlZmZlY3RpdmVf\\\\ncmFua1x1MjE5MmRpc3RpbmN0XzEiOiBmYWxzZSwKICAgICAgICAiZWZmZWN0aXZlX3JhbmtcdTIx\\\\nOTJkaXN0aW5jdF8yIjogZmFsc2UsCiAgICAgICAgImVmZmVj\n…[truncated 6408 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-15T10:00:52.681512+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "base64 /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/consensus/sensitivity_analysis.json | head -80",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-15T10:00:52.681685+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ewogICJtZXRob2RfdGhyZXNob2xkcyI6IFsKICAgIDMsCiAgICA0LAogICAgNQogIF0sCiAgInNl\\\\nZWRfdGhyZXNob2xkcyI6IFsKICAgIDIsCiAgICAzLAogICAgNAogIF0sCiAgIm5fY29uZmlncyI6\\\\nIDksCiAgImdyaWQiOiBbCiAgICB7CiAgICAgICJtZXRob2RfdGhyZXNob2xkIjogMywKICAgICAg\\\\nInNlZWRfdGhyZXNob2xkIjogMiwKICAgICAgImxhYmVsIjogIlx1MjI2NTMvNSBtZXRob2RzLCBc\\\\ndTIyNjUyLzQgc2VlZHMiLAogICAgICAibl9yb2J1c3QiOiA5LAogICAgICAicm9idXN0X3BhaXJz\\\\nIjogWwogICAgICAgICJ0b2tlbl9lbnRyb3B5XHUyMTkycGVycGxleGl0eSIsCiAgICAgICAgInRv\\\\na2VuX2VudHJvcHlcdTIxOTJkaXN0aW5jdF8xIiwKICAgICAgICAidG9rZW5fZW50cm9weVx1MjE5\\\\nMmRpc3RpbmN0XzIiLAogICAgICAgICJ0b2tlbl9lbnRyb3B5XHUyMTkyZGlzdGluY3RfMyIsCiAg\\\\nICAgICAgInNlbGZfYmxldVx1MjE5MnBlcnBsZXhpdHkiLAogICAgICAgICJlY2VcdTIxOTJwZXJw\\\\nbGV4aXR5IiwKICAgICAgICAiZWNlXHUyMTkyZGlzdGluY3RfMSIsCiAgICAgICAgImVjZVx1MjE5\\\\nMmRpc3RpbmN0XzIiLAogICAgICAgICJlY2VcdTIxOTJkaXN0aW5jdF8zIgogICAgICBdLAogICAg\\\\nICAicGFpcl9zdGF0dXMiOiB7CiAgICAgICAgInRva2VuX2VudHJvcHlcdTIxOTJwZXJwbGV4aXR5\\\\nIjogdHJ1ZSwKICAgICAgICAidG9rZW5fZW50cm9weVx1MjE5MmRpc3RpbmN0XzEiOiB0cnVlLAog\\\\nICAgICAgICJ0b2tlbl9lbnRyb3B5XHUyMTkyZGlzdGluY3RfMiI6IHRydWUsCiAgICAgICAgInRv\\\\na2VuX2VudHJvcHlcdTIxOTJkaXN0aW5jdF8zIjogdHJ1ZSwKICAgICAgICAic2VsZl9ibGV1XHUy\\\\nMTkycGVycGxleGl0eSI6IHRydWUsCiAgICAgICAgInNlbGZfYmxldVx1MjE5MmRpc3RpbmN0XzEi\\\\nOiBmYWxzZSwKICAgICAgICAic2VsZl9ibGV1XHUyMTkyZGlzdGluY3RfMiI6IGZhbHNlLAogICAg\\\\nICAgICJzZWxmX2JsZXVcdTIxOTJkaXN0aW5jdF8zIjogZmFsc2UsCiAgICAgICAgImVjZVx1MjE5\\\\nMnBlcnBsZXhpdHkiOiB0cnVlLAogICAgICAgICJlY2VcdTIxOTJkaXN0aW5jdF8xIjogdHJ1ZSwK\\\\nICAgICAgICAiZWNlXHUyMTkyZGlzdGluY3RfMiI6IHRydWUsCiAgICAgICAgImVjZVx1MjE5MmRp\\\\nc3RpbmN0XzMiOiB0cnVlLAogICAgICAgICJlZmZlY3RpdmVfcmFua1x1MjE5MnBlcnBsZXhpdHki\\\\nOiBmYWxzZSwKICAgICAgICAiZWZmZWN0aXZlX3JhbmtcdTIxOTJkaXN0aW5jdF8xIjogZmFsc2Us\\\\nCiAgICAgICAgImVmZmVjdGl2ZV9yYW5rXHUyMTkyZGlzdGluY3RfMiI6IGZhbHNlLAogICAgICAg\\\\nICJlZmZlY3RpdmVfcmFua1x1MjE5MmRpc3RpbmN0XzMiOiBmYWxzZQogICAgICB9CiAgICB9LAog\\\\nICAgewogICAgICAibWV0aG9kX3RocmVzaG9sZCI6IDMsCiAg\n…[truncated 4480 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-15T10:00:52.681837+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "base64 /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/consensus/sensitivity_analysis.json | tail -n +81 | head -80",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-15T10:00:52.681992+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "base64 /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/consensus/sensitivity_analysis.json | tail -n +161",
+              "account": "root"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-15T10:00:52.682167+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ZXJwbGV4aXR5IjogZmFsc2UsCiAgICAgICAgImVjZVx1MjE5MmRpc3RpbmN0XzEiOiB0cnVlLAog\\\\nICAgICAgICJlY2VcdTIxOTJkaXN0aW5jdF8yIjogdHJ1ZSwKICAgICAgICAiZWNlXHUyMTkyZGlz\\\\ndGluY3RfMyI6IHRydWUsCiAgICAgICAgImVmZmVjdGl2ZV9yYW5rXHUyMTkycGVycGxleGl0eSI6\\\\nIGZhbHNlLAogICAgICAgICJlZmZlY3RpdmVfcmFua1x1MjE5MmRpc3RpbmN0XzEiOiBmYWxzZSwK\\\\nICAgICAgICAiZWZmZWN0aXZlX3JhbmtcdTIxOTJkaXN0aW5jdF8yIjogZmFsc2UsCiAgICAgICAg\\\\nImVmZmVjdGl2ZV9yYW5rXHUyMTkyZGlzdGluY3RfMyI6IGZhbHNlCiAgICAgIH0KICAgIH0sCiAg\\\\nICB7CiAgICAgICJtZXRob2RfdGhyZXNob2xkIjogNCwKICAgICAgInNlZWRfdGhyZXNob2xkIjog\\\\nMywKICAgICAgImxhYmVsIjogIlx1MjI2NTQvNSBtZXRob2RzLCBcdTIyNjUzLzQgc2VlZHMiLAog\\\\nICAgICAibl9yb2J1c3QiOiA2LAogICAgICAicm9idXN0X3BhaXJzIjogWwogICAgICAgICJ0b2tl\\\\nbl9lbnRyb3B5XHUyMTkyZGlzdGluY3RfMSIsCiAgICAgICAgInRva2VuX2VudHJvcHlcdTIxOTJk\\\\naXN0aW5jdF8yIiwKICAgICAgICAidG9rZW5fZW50cm9weVx1MjE5MmRpc3RpbmN0XzMiLAogICAg\\\\nICAgICJlY2VcdTIxOTJkaXN0aW5jdF8xIiwKICAgICAgICAiZWNlXHUyMTkyZGlzdGluY3RfMiIs\\\\nCiAgICAgICAgImVjZVx1MjE5MmRpc3RpbmN0XzMiCiAgICAgIF0sCiAgICAgICJwYWlyX3N0YXR1\\\\ncyI6IHsKICAgICAgICAidG9rZW5fZW50cm9weVx1MjE5MnBlcnBsZXhpdHkiOiBmYWxzZSwKICAg\\\\nICAgICAidG9rZW5fZW50cm9weVx1MjE5MmRpc3RpbmN0XzEiOiB0cnVlLAogICAgICAgICJ0b2tl\\\\nbl9lbnRyb3B5XHUyMTkyZGlzdGluY3RfMiI6IHRydWUsCiAgICAgICAgInRva2VuX2VudHJvcHlc\\\\ndTIxOTJkaXN0aW5jdF8zIjogdHJ1ZSwKICAgICAgICAic2VsZl9ibGV1XHUyMTkycGVycGxleGl0\\\\neSI6IGZhbHNlLAogICAgICAgICJzZWxmX2JsZXVcdTIxOTJkaXN0aW5jdF8xIjogZmFsc2UsCiAg\\\\nICAgICAgInNlbGZfYmxldVx1MjE5MmRpc3RpbmN0XzIiOiBmYWxzZSwKICAgICAgICAic2VsZl9i\\\\nbGV1XHUyMTkyZGlzdGluY3RfMyI6IGZhbHNlLAogICAgICAgICJlY2VcdTIxOTJwZXJwbGV4aXR5\\\\nIjogZmFsc2UsCiAgICAgICAgImVjZVx1MjE5MmRpc3RpbmN0XzEiOiB0cnVlLAogICAgICAgICJl\\\\nY2VcdTIxOTJkaXN0aW5jdF8yIjogdHJ1ZSwKICAgICAgICAiZWNlXHUyMTkyZGlzdGluY3RfMyI6\\\\nIHRydWUsCiAgICAgICAgImVmZmVjdGl2ZV9yYW5rXHUyMTkycGVycGxleGl0eSI6IGZhbHNlLAog\\\\nICAgICAgICJlZmZlY3RpdmVfcmFua1x1MjE5MmRpc3RpbmN0XzEiOiBmYWxzZSwKICAgICAgICAi\\\\nZWZmZWN0aXZlX3JhbmtcdTIxOTJkaXN0aW5jdF8yIjogZmFs\n…[truncated 4480 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-15T10:00:52.682407+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"c2UsCiAgICAgICAgImVmZmVjdGl2ZV9yYW5rXHUyMTkycGVycGxleGl0eSI6IGZhbHNlLAogICAg\\\\nICAgICJlZmZlY3RpdmVfcmFua1x1MjE5MmRpc3RpbmN0XzEiOiBmYWxzZSwKICAgICAgICAiZWZm\\\\nZWN0aXZlX3JhbmtcdTIxOTJkaXN0aW5jdF8yIjogZmFsc2UsCiAgICAgICAgImVmZmVjdGl2ZV9y\\\\nYW5rXHUyMTkyZGlzdGluY3RfMyI6IGZhbHNlCiAgICAgIH0KICAgIH0sCiAgICB7CiAgICAgICJt\\\\nZXRob2RfdGhyZXNob2xkIjogNSwKICAgICAgInNlZWRfdGhyZXNob2xkIjogNCwKICAgICAgImxh\\\\nYmVsIjogIlx1MjI2NTUvNSBtZXRob2RzLCBcdTIyNjU0LzQgc2VlZHMiLAogICAgICAibl9yb2J1\\\\nc3QiOiAyLAogICAgICAicm9idXN0X3BhaXJzIjogWwogICAgICAgICJ0b2tlbl9lbnRyb3B5XHUy\\\\nMTkyZGlzdGluY3RfMSIsCiAgICAgICAgInRva2VuX2VudHJvcHlcdTIxOTJkaXN0aW5jdF8yIgog\\\\nICAgICBdLAogICAgICAicGFpcl9zdGF0dXMiOiB7CiAgICAgICAgInRva2VuX2VudHJvcHlcdTIx\\\\nOTJwZXJwbGV4aXR5IjogZmFsc2UsCiAgICAgICAgInRva2VuX2VudHJvcHlcdTIxOTJkaXN0aW5j\\\\ndF8xIjogdHJ1ZSwKICAgICAgICAidG9rZW5fZW50cm9weVx1MjE5MmRpc3RpbmN0XzIiOiB0cnVl\\\\nLAogICAgICAgICJ0b2tlbl9lbnRyb3B5XHUyMTkyZGlzdGluY3RfMyI6IGZhbHNlLAogICAgICAg\\\\nICJzZWxmX2JsZXVcdTIxOTJwZXJwbGV4aXR5IjogZmFsc2UsCiAgICAgICAgInNlbGZfYmxldVx1\\\\nMjE5MmRpc3RpbmN0XzEiOiBmYWxzZSwKICAgICAgICAic2VsZl9ibGV1XHUyMTkyZGlzdGluY3Rf\\\\nMiI6IGZhbHNlLAogICAgICAgICJzZWxmX2JsZXVcdTIxOTJkaXN0aW5jdF8zIjogZmFsc2UsCiAg\\\\nICAgICAgImVjZVx1MjE5MnBlcnBsZXhpdHkiOiBmYWxzZSwKICAgICAgICAiZWNlXHUyMTkyZGlz\\\\ndGluY3RfMSI6IGZhbHNlLAogICAgICAgICJlY2VcdTIxOTJkaXN0aW5jdF8yIjogZmFsc2UsCiAg\\\\nICAgICAgImVjZVx1MjE5MmRpc3RpbmN0XzMiOiBmYWxzZSwKICAgICAgICAiZWZmZWN0aXZlX3Jh\\\\nbmtcdTIxOTJwZXJwbGV4aXR5IjogZmFsc2UsCiAgICAgICAgImVmZmVjdGl2ZV9yYW5rXHUyMTky\\\\nZGlzdGluY3RfMSI6IGZhbHNlLAogICAgICAgICJlZmZlY3RpdmVfcmFua1x1MjE5MmRpc3RpbmN0\\\\nXzIiOiBmYWxzZSwKICAgICAgICAiZWZmZWN0aXZlX3JhbmtcdTIxOTJkaXN0aW5jdF8zIjogZmFs\\\\nc2UKICAgICAgfQogICAgfQogIF0sCiAgInBhaXJfc3RhYmlsaXR5IjogewogICAgInRva2VuX2Vu\\\\ndHJvcHlcdTIxOTJwZXJwbGV4aXR5IjogewogICAgICAicm9idXN0X2luX25fY29uZmlncyI6IDMs\\\\nCiAgICAgICJ0b3RhbF9jb25maWdzIjogOSwKICAgICAgInN0YWJpbGl0eSI6IDAuMzMzCiAgICB9\\\\nLAogICAgInRva2VuX2VudHJvcHlcdTIxOTJkaXN0aW5jdF8x\n…[truncated 3433 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-15T10:00:52.682590+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cd /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/consensus && gzip -c sensitivity_analysis.json | base64 -w0 | wc -c",
+              "account": "root"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-15T10:00:52.682733+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1004\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-15T10:00:52.682852+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "md5sum /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/consensus/sensitivity_analysis.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-15T10:00:52.682968+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"66677aaf6d2c3a4eb51799e931b73dcb  /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/consensus/sensitivity_analysis.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-15T10:00:52.683101+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cd /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/consensus && gzip -c sensitivity_analysis.json | base64 -w0",
+              "account": "root"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-15T10:00:52.683220+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"H4sICPTtBmoAA3NlbnNpdGl2aXR5X2FuYWx5c2lzLmpzb24A7ZrdcqowEMfvfQqGa6eVBKr2VU47DGqoTDngkNA5Hcd3P3wofhCSTSu0o9sLccg/7LrZ/YXtZDuyLPsvE+t05Yt1xvg6jVfcfrb+FAOWRcfVxa0vXvH5Wn61OWNSPRmfTWv0ib9MkzB6K5Xz6s5bFq2aadvqU+JJodg/q2W0GCLNUBwsWFzcsV9yQp48+uhZ9aP42KpvkUfXKh/A7WZS4mfpIufi4FN1s77lb4IoO/6sakSk7yzxWSKydPNZPNSZkw3LNjH7F4nP5qly4SriIkqWwnegQgIV0lMhZ3HoL2KWq/xjSwYaljvdHibqYWrvR1+bIJfR9bkIRF7GeAuN8bMlspyBI20kJ2Zy2pZ3x14nPfM5DGIO0RIDLZVoZVnQclSWCwCRJJiyvGiLwpAtRfTB/CxI3iXutX6EZIIymsoJspAqJzRx3et31XU3/g7UqAHUqBJqsxuBGvJqcF5BwYLAQmC5BsByEVgILGBAEVjKlEBgKYHldgOrs210TdvGp68Ba3AO/ULQXGYBkubqpOlUIWqGQk1nMydBjbqZQ9QgahA1iBrzNkyCGnUbhqhB1CBq7h013hcaKA8bKESNhahB1JR/10BNZwMlQY26gaK/EDVIg5ujgV4lrSspDyDVd29A6GxzJEBQtzlkOCDcap1rigwL/b4LfXQ4/ndI90UU1/7XGa/N9u1FhUaJf3qS8Lili1QE8eUZwzodTqxOHiilpwzSlo/GgbmhA87DBGye/Kx5qjc/Mw7/bDY/c0DFC41xx9i44zgq4ybrPjE2PgGZBqx5X6YB6/1d03La9l7jcnxrzE6NzU6nM41ZwOr2YRawslcwq9ux+s4t3Qb4k/YHKGvt9tyX/dHeh3qPr97Jj+/QoNNaoJdsUMcN+see9oy8YmPQ4lsLWQUKFbhSIEVR9rDShBUQLM1hyVi+Fo52/wFi/pVCejIAAA==\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-15T10:00:52.683361+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "echo \"H4sICPTtBmoAA3NlbnNpdGl2aXR5X2FuYWx5c2lzLmpzb24A7ZrdcqowEMfvfQqGa6eVBKr2VU47DGqoTDngkNA5Hcd3P3wofhCSTSu0o9sLccg/7LrZ/YXtZDuyLPsvE+t05Yt1xvg6jVfcfrb+FAOWRcfVxa0vXvH5Wn61OWNSPRmfTWv0ib9MkzB6K5Xz6s5bFq2aadvqU+JJodg/q2W0GCLNUBwsWFzcsV9yQp48+uhZ9aP42KpvkUfXKh/A7WZS4mfpIufi4FN1s77lb4IoO/6sakSk7yzxWSKydPNZPNSZkw3LNjH7F4nP5qly4SriIkqWwnegQgIV0lMhZ3HoL2KWq/xjSwYaljvdHibqYWrvR1+bIJfR9bkIRF7GeAuN8bMlspyBI20kJ2Zy2pZ3x14nPfM5DGIO0RIDLZVoZVnQclSWCwCRJJiyvGiLwpAtRfTB/CxI3iXutX6EZIIymsoJspAqJzRx3et31XU3/g7UqAHUqBJqsxuBGvJqcF5BwYLAQmC5BsByEVgILGBAEVjKlEBgKYHldgOrs210TdvGp68Ba3AO/ULQXGYBkubqpOlUIWqGQk1nMydBjbqZQ9QgahA1iBrzNkyCGnUbhqhB1CBq7h013hcaKA8bKESNhahB1JR/10BNZwMlQY26gaK/EDVIg5ujgV4lrSspDyDVd29A6GxzJEBQtzlkOCDcap1rigwL/b4LfXQ4/ndI90UU1/7XGa/N9u1FhUaJf3qS8Lili1QE8eUZwzodTqxOHiilpwzSlo/GgbmhA87DBGye/Kx5qjc/Mw7/bDY/c0DFC41xx9i44zgq4ybrPjE2PgGZBqx5X6YB6/1d03La9l7jcnxrzE6NzU6nM41ZwOr2YRawslcwq9ux+s4t3Qb4k/YHKGvt9tyX/dHeh3qPr97Jj+/QoNNaoJdsUMcN+see9oy8YmPQ4lsLWQUKFbhSIEVR9rDShBUQLM1hyVi+Fo52/wFi/pVCejIAAA==\" | base64 -d | gunzip > /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/consensus_framework/sensitivity_analysis.json && md5sum /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/consensus_framework/sensitivity_analysis.json && wc -c /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/consensus_framework/sensitivity_analysis.json",
+              "description": "Decode compressed sensitivity_analysis.json and verify"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-15T10:00:52.683486+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "66677aaf6d2c3a4eb51799e931b73dcb  /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/consensus_framework/sensitivity_analysis.json\n12922 /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/consensus_framework/sensitivity_analysis.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-15T10:00:52.683627+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/consensus_framework/d029_rerun_verification.md",
+              "content": "# D029 FDR Fix Verification Report\n\n**Date**: 2026-05-15 17:55 UTC\n**Server**: westd-19828\n**Script**: `consensus_framework.py`\n\n## 1. Code Fix Confirmation\n\n`consensus_framework.py` line 85-91 (load_sig_matrix):\n\n```python\nif apply_fdr:\n    if method == \"threshold_onset\":\n        # Non-statistical test, no FDR version exists\n        sig[mi, pi, si] = seed_rec[method].get(\"significant\", False)\n    else:\n        sig[mi, pi, si] = seed_rec[method].get(\"significant_fdr\", False)\nelse:\n    sig[mi, pi, si] = seed_rec[method].get(\"significant\", False)\n```\n\nLogic: `threshold_onset` (non-statistical) reads `significant`; all other methods read `significant_fdr` when FDR is applied.\n\n## 2. Timestamp Comparison\n\n| File | Before rerun | After rerun |\n|------|-------------|-------------|\n| consensus_framework.py | May 15 17:34 | (unchanged) |\n| consensus_classification.json | May 15 17:34 | **May 15 17:55** |\n| sensitivity_analysis.json | May 15 17:34 | **May 15 17:55** |\n| fpr_fnr_table.json | May 15 17:34 | **May 15 17:55** |\n\n## 3. sig_count_seed Comparison\n\n| Method | Pre-fix (expected) | Post-fix (actual) | Delta |\n|--------|-------------------|-------------------|-------|\n| naive_pearson | 64 | 63 | -1 |\n| differenced_xcorr | 53 | 53 | 0 |\n| threshold_onset | 35 | 35 | 0 |\n| **toda_yamamoto** | **26** | **24** | **-2** |\n| **permutation_granger** | **34** | **27** | **-7** |\n\n- `permutation_granger`: 34 → 27 (matches expected ~27)\n- `toda_yamamoto`: 26 → 24 (matches expected ~24)\n- `threshold_onset`: unchanged at 35 (correct — uses `significant`, not `significant_fdr`)\n\n## 4. Robust Pairs (6, unchanged)\n\n| # | Pair | Methods agreeing | Status |\n|---|------|-----------------|--------|\n| 1 | token_entropy→distinct_1 | 5/5 | ROBUST |\n| 2 | token_entropy→distinct_2 | 5/5 | ROBUST |\n| 3 | token_entropy→distinct_3 | 5/5 | ROBUST |\n| 4 | ece→distinct_1 | 4/5 | ROBUST |\n| 5 | ece→distinct_2 | 4/5 | ROBUST |\n| 6 | ece→distinct_3 | 4/5 | ROBUST |\n\n6 robust pairs confirmed. Composition identical to pre-fix.\n\n## 5. FPR/FNR Table (Post-fix)\n\n| Method | FPR | FNR | sig_count_pair | sig_count_seed |\n|--------|-----|-----|----------------|----------------|\n| naive_pearson | 100.0% | 0.0% | 16 | 63 |\n| differenced_xcorr | 0.0% | 0.0% | 12 | 53 |\n| threshold_onset | 9.1% | 0.0% | 9 | 35 |\n| toda_yamamoto | 0.0% | 25.0% | 3 | 24 |\n| permutation_granger | 0.0% | 4.2% | 6 | 27 |\n| **consensus** | **0.0%** | **0.0%** | **6** | — |\n\nGround truth:\n- FPR: differenced_xcorr (seed level), N_neg=11\n- FNR: consensus (>=4/5 methods, >=3/4 seeds), N_pos=24\n\n## 6. Verification Status\n\nAll checks pass:\n- [x] Code fix in place (explicit threshold_onset branch)\n- [x] Output timestamps newer than code timestamp\n- [x] perm_granger sig_count_seed: 34 → 27\n- [x] toda_yamamoto sig_count_seed: 26 → 24\n- [x] 6 robust pairs unchanged\n- [x] Consensus FPR = 0.0%\n- [x] Files synced to local artifacts\n"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-15T10:00:52.683790+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/consensus_framework/d029_rerun_verification.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-15T10:00:52.683945+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "D029 verification complete. Summary:\n\n- **Code fix confirmed**: `threshold_onset` reads `significant`, all other methods read `significant_fdr`\n- **sig_count_seed changes**:\n  - `permutation_granger`: 34 → **27** (-7)\n  - `toda_yamamoto`: 26 → **24** (-2)\n  - `threshold_onset`: 35 → 35 (unchanged, correct)\n- **6 robust pairs unchanged**: token_entropy→distinct_{1,2,3}, ece→distinct_{1,2,3}\n- **Consensus FPR = 0.0%**\n- All 3 JSON files regenerated (17:55) and synced to local artifacts\n- Verification report written to `artifacts/analysis/consensus_framework/d029_rerun_verification.md`"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d029_rerun_verify_20260515T095455"
+          },
+          "id": "event-000067"
+        }
+      ],
+      "message_count": 67
+    }
+  ],
+  "readable_path": "readable/conversations/code-d029-rerun-verify.md"
+}

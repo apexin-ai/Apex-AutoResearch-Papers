@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "38b8313ff20a78fa45b1",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis tail sensitive canary",
+  "task_key": "worker_analysis_tail_sensitive_canary_20260520T082509",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_tail_sensitive_canary_20260520T082509_result.json",
+    "occurrence": 1,
+    "bytes": 1317,
+    "sha256": "5226893f2bcba233bc893f958b23eaf9ae5f1a70b939c1f7b5cbee0c72695945"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已注册 (art_20260520_fe6257)。\n\n## 结果摘要\n\n### FDR-significant 检出\n\n| Canary | α=0.00 | α=0.10 | α=0.25 | α=0.50 |\n|--------|--------|--------|--------|--------|\n| effective_rank | 0/4 | 0/4 | **2/4** | 0/4 |\n| token_entropy | 0/4 | 0/4 | 1/4 | **1/4** |\n| ttr | N/A | 0/4 | 0/4 | 0/4 |\n| hapax_ratio | N/A | 0/4 | 0/4 | 0/4 |\n\n### 核心发现\n\n**1. effective_rank 在 α=0.10 有强 suggestive signal**\n- effective_rank → distinct_1: raw p=0.0066, p_FDR=0.082（差 0.03 过 FDR）\n- 与 null baseline (α=0.00, p=0.070) 相比，分离度 10.7×\n- 比 token_entropy 在同一 α 敏感 2.5–3.5×\n\n**2. Blind zone 缩小**\n- 保守结论（FDR 通过）：[0, 0.45] → **[0, 0.25)**，effective_rank 在 α=0.25 FDR-sig\n- Suggestive 结论：effective_rank 在 α=0.10 raw p=0.007 + 10× null separation → blind zone 可能缩小到 **[0, 0.10)**，待多 seed 确认\n\n**3. TTR / hapax_ratio**\n- TTR 被 effective_rank 完全支配，无额外价值\n- hapax_ratio 有互补性：对 mauve 敏感（α=0.10: p=0.026），但对 distinct 不敏感\n\n**4. 建议下一步**\n- 多 seed 验证 effective_rank 在 α=0.10 的信号\n- 将 effective_rank 加入标准 canary 集\n- hapax_ratio 作为 supplementary canary 用于 diversity monitoring"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-tail-sensitive-canary.md"
+}

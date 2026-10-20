@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80b1ec909e4eab90f3f5",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diagnose alpha sweep a050 postd093 s42 fp32",
+  "task_key": "worker_diagnose_alpha_sweep_a050_postd093_s42_fp32_20260520T031341",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_alpha_sweep_a050_postd093_s42_fp32_20260520T031341_result.json",
+    "occurrence": 1,
+    "bytes": 492,
+    "sha256": "e8436ebe470c08d2e58c2875bb4ef1427b002b79dbee97254c81937f674b1389"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**结论：实验成功完成，Cron 误报。**\n\n- EXIT_CODE=0，gen_0~gen_10 全部完成，all_metrics.json 和 analysis_results.json 均已生成\n- 进程正常退出后 GPU 4 已释放（idle 状态）\n- Cron 判定 \"process dead with no sentinel\" 是误判——sentinel 文件实际存在，推测是检测路径或时序问题\n- 无需重试，结果可直接纳入分析流水线\n\n报告已写入 `artifacts/diagnostics_a050_postd093.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-alpha-sweep-a050-postd093-s42-fp32-copy-2.md"
+}

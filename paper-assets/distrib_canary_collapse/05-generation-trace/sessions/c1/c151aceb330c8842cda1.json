@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c151aceb330c8842cda1",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis d213 6pair s42 conversion",
+  "task_key": "worker_analysis_d213_6pair_s42_conversion_20260524T003745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d213_6pair_s42_conversion_20260524T003745_result.json",
+    "occurrence": 1,
+    "bytes": 919,
+    "sha256": "0d2b89818530d3cdc9220ffd13973eb3e1e40ba6150336c47c3e1a053d499422"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D213 完成。汇总表：\n\n| exp_id | T | α | PermG_fwd | PermG_rev | Robust_K3 |\n|--------|---|------|-----------|-----------|-----------|\n| scale_14b_t10_a045_s42_fp32 | 10 | 0.45 | 0/6 | 0/6 | 0/6 |\n| scale_14b_t10_a050_s42_fp32 | 10 | 0.50 | 4/6 | 0/6 | 3/6 |\n| scale_14b_t10_a060_s42_fp32 | 10 | 0.60 | 4/6 | 0/6 | 3/6 |\n| scale_14b_t10_a075_s42_fp32 | 10 | 0.75 | 5/6 | 0/6 | 5/6 |\n| scale_14b_t15_a045_s42_fp32 | 15 | 0.45 | 3/6 | 0/6 | 4/6 |\n| scale_14b_t15_a050_s42_fp32 | 15 | 0.50 | 3/6 | 0/6 | 2/6 |\n| scale_14b_t15_a060_s42_fp32 | 15 | 0.60 | 6/6 | 0/6 | 6/6 |\n| scale_14b_t15_a075_s42_fp32 | 15 | 0.75 | 6/6 | 0/6 | 6/6 |\n\n数据分布在两台服务器：6 个在 17855 (`results/analysis/D102_14b_*_6pair.json`)，2 个在 19828 (`t10_a050_s42`, `t15_a075_s42`)。所有 PermG_rev = 0/6，方向性一致。合并 JSON 已注册为 artifact `D213_14b_s42_6pair_combined`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d213-6pair-s42-conversion.md"
+}

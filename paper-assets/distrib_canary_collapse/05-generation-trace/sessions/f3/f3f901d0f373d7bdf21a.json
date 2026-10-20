@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f3f901d0f373d7bdf21a",
+  "project": "distrib_canary_collapse",
+  "kind": "history",
+  "title": "director / loop_21.md",
+  "task_key": "loop_21",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_21.md",
+    "occurrence": 1,
+    "bytes": 2533,
+    "sha256": "8b2eba5db1630faf5b7dab7ac3200a1618ca1490ddf02f0499d02ac386201942"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 21\nreason: max_messages\nupdated: '2026-05-25T03:18:10+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westd-19828 的 cuda:0（`gpu_ids: [0]`，只有 1 张卡）\n- C2-s43 需要新建 registry entry，不能复用之前 failed 的 c2_opt13b_a050_s43_fp32\n- OPT-1.3B 实验必须用 fp32（之前 fp16 出过 NaN 问题）\n- 审稿阶段 GPU 不能空等——C2 完成后立即串行 C1 四组实验\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19828 (connect.westd.seetacloud.com)，工作目录 /root/autodl-tmp/distrib_canary_collapse\n- Python：/root/miniconda3/bin/python（conda base 环境）\n- 模型缓存：/root/autodl-tmp/.hf_cache\n- 活跃进程：C2-s42 (c2_opt13b_a050_s42_fp32) PID 32378, cuda:0, cron 监控中\n- 待处理 registry entries: 14b_t10_a060_s43, 14b_t10_a075_s43, 14b_t10_a050_s43, t15_a050_s42_fp32, qwen35_dryrun_launch\n\n### 3. 📊 当前状态\nAgent 刚完成 session 重启后的状态同步。当前等待 C2-s42 cron 回调（OPT-1.3B α=0.50 seed 42，预计还剩 ~4-5h）。\n\n已完成：R14 写作修复 13/13、FPR 10-seed 全文更新、null_fpr_s51 抢救、C1 prep（iterative_train.py 已验证支持 --intervention_mode）。\n\nRUNNING: c2_opt13b_a050_s42_fp32\n排队: C2-s43（等 s42 完成后 cuda:0 重跑），然后 C1 四组实验（GPT-2m pred/react + OPT-1.3B pred/react）\n\n### 4. 📋 待办\n- C2-s42 cron 回调（成功）→ Agent 分析结果 + 注册 C2-s43 新 entry → 立即启动 C2-s43\n- C2-s42 cron 回调（失败）→ 诊断原因，决定重跑或跳过\n- C2-s43 完成 → 汇总 C2 两个 seed 结论（OPT-1.3B 是否复现 Pythia 的 phase diagram 结构）→ 启动 C1 串行\n- C1 四组实验全部完成 → 汇总 intervention 效果，更新 paper framing 中 Claim 4\n- 审稿报告回传 → 按 review-report-action skill 处理，逐条 Action Matrix\n\n### 5. 🎯 战略上下文\n- 项目核心：distributional canary collapse——用分布指标（PermG/SCS）做 model collapse 早期预警\n- 当前处于审稿阶段，同时补充 cross-architecture (C2) 和 intervention (C1) 实验\n- C2 验证 phase diagram 跨架构泛化（Pythia → OPT-1.3B），C1 验证干预方法有效性\n- 论文 217 个实验，154 成功，溯源覆盖率 44/55\n- 易错点：OPT-1.3B 之前 s43 因 fp16 NaN failed，必须 fp32；C1 的 iterative_train.py 已经支持 --intervention_mode 但还没实际跑过完整流程\n- 只有 1 张卡，所有实验必须串行，排序优先级：C2-s42 → C2-s43 → C1 四组\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-21.md"
+}

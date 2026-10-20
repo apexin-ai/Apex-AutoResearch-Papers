@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20c92401cadd135107fc",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis d102 rerun gpt2m s43",
+  "task_key": "worker_analysis_d102_rerun_gpt2m_s43_20260521T180952",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d102_rerun_gpt2m_s43_20260521T180952_result.json",
+    "occurrence": 1,
+    "bytes": 974,
+    "sha256": "b6bf203fd2a1bc9463f590ecda81965f9296059688f95afa86c512b6861bc727"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。结果总结：\n\n## d102 重分析对比\n\n| 指标 | 旧值 (perplexity + 3x_sigma_drift) | 新值 (mauve + true_3sigma_d105) |\n|------|-----|-----|\n| **PermG fwd** | **6/8** | **6/8** (不变) |\n| PermG rev | 6/8 | 4/8 |\n| TY forward | 5/8 | 2/8 |\n| threshold_onset | 8/8 | 1/8 |\n| diff_xcorr fwd | 2/8 | 7/8 |\n| naive_xcorr fwd | 0/8 | 6/8 |\n| K≥3 | — | 6/8 |\n| K≥4 | 0/8 | 2/8 |\n\n**核心结论：PermG forward 6/8 不变**，GPT-2m 的 canary 检测力在 d102 标准下稳健。\n\n差异原因：\n1. **threshold_onset 8/8→1/8**：`true_3sigma_d105`（BH-FDR 校正）远比 `3x_sigma_drift`（简单幅值检查）严格\n2. **naive/diff xcorr 大幅上升**：旧脚本可能未应用 D111 方向滤波器，导致显著对被错误分配；d102 脚本在 8-pair（mauve 替换 perplexity）配置下 xcorr 对检出更多\n3. **PermG rev 6/8→4/8**：mauve 两对 reverse 不显著，降低了反向总数"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d102-rerun-gpt2m-s43.md"
+}

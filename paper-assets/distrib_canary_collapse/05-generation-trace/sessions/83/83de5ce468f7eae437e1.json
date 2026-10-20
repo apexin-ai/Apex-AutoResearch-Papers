@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "83de5ce468f7eae437e1",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "infra qwen diag w19",
+  "task_key": "worker_infra_qwen_diag_w19_20260518T184959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_qwen_diag_w19_20260518T184959_result.json",
+    "occurrence": 1,
+    "bytes": 371,
+    "sha256": "c3f90ef4e3cf28fe044a265064a2cf5e3a703929157b8087988bc4fab6e4b6db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== westd-19828 诊断 ===\n--- Qwen cache ---\n/root/autodl-tmp/models/Qwen3.5-0.8B-Base/model.safetensors-00001-of-00001.safetensors\n4.0K\t/root/autodl-tmp/.hf_cache/hub/models--Qwen--Qwen3.5-0.8B-Base/\n目录不存在\n--- 尝试实际下载（捕获错误）---\nbash: line 8: huggingface-cli: command not found\n--- /tmp/test_dl 内容 ---\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-qwen-diag-w19.md"
+}

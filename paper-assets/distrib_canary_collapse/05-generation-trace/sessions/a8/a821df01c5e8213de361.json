@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a821df01c5e8213de361",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis ground truth redefine b1",
+  "task_key": "worker_analysis_ground_truth_redefine_b1_20260516T061705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_ground_truth_redefine_b1_20260516T061705_result.json",
+    "occurrence": 1,
+    "bytes": 825,
+    "sha256": "21c4f0f3d2513142c94d69a14253c414123f126b7afbcfae1d59ce925eaecf08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结论：\n\n**新 Ground Truth 定义**（不依赖任何统计检验）：\n- 标准：α=1.0 drift ≥ N× α=0.0 drift + canary 时序先于 downstream\n- **8/8 pairs 在 2×/3×/5× 阈值下完全不变**（因为 canary drift ratio 远超阈值：token_entropy 11.93×, ece 73.12×）\n\n**新 FNR = 25%**（2/8 pairs missed）：\n- FN pairs: token_entropy→perplexity 和 ece→perplexity\n- 原因：TY 和 permutation Granger 在这两对上 0/4 seeds 显著（短序列 T=11 功效不足）\n- 旧 FNR = 0% 是基于更小的旧参考集（仅 4 pairs），新定义扩展为 8 pairs 更严格\n\n**对 rebuttal 的意义**：ground truth 完全由可观测物理量定义，消除了循环论证；25% FNR 反映 Granger 类方法的已知功效限制而非参考集缺陷。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-ground-truth-redefine-b1.md"
+}

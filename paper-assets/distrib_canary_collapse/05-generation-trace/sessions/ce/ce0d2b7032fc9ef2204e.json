@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ce0d2b7032fc9ef2204e",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code consensus framework formalization",
+  "task_key": "worker_code_consensus_framework_formalization_20260515T083742",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_consensus_framework_formalization_20260515T083742_result.json",
+    "occurrence": 1,
+    "bytes": 1218,
+    "sha256": "c49daabede6c4efbcd3e7bff3a1f9b270d8dee80c8f41c610b164b7bf06014d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D027 三个子任务全部完成。\n\n**Sub-task 1 — Consensus Classification (≥4/5 methods, ≥3/4 seeds)**: 6 robust / 10 non-robust\n- token_entropy→distinct_{1,2,3}: 5/5 unanimous\n- ece→distinct_{1,2,3}: 4-5/5（TY 在 d2/d3 上是唯一 dissenter）\n- canary→perplexity 方向全部 non-robust\n- self_bleu、effective_rank 作为 canary 不可靠\n\n**Sub-task 2 — Sensitivity Analysis**: token_entropy→distinct 在 9/9 配置下 100% stable；ece→distinct_2/d3 在 7/9 下 robust（borderline 如预期）；self_bleu 全系 0%\n\n**Sub-task 3 — FPR/FNR**:\n\n| Method | FPR | FNR |\n|--------|-----|-----|\n| naive | **100%** | 0% |\n| differenced | 0% | 0% |\n| threshold | 11.1% | 0% |\n| TY | 0% | **20.8%** |\n| perm_granger | 11.1% | 0% |\n| **consensus** | **0%** | **0%** |\n\nTY 的 FNR (20.8%) 低于预估的 50-94%，因为 TY 在 4 个最强 robust pair 上实际通过了（FN 集中在 ece→d2/d3 的 5 个 seed 观测）。核心叙事成立：naive 全面 FP，TY 是唯一有 FNR 的方法，consensus 取得平衡。\n\n**产出**: 4 个文件已写入 `artifacts/analysis/consensus_framework/`，服务器端结果在 `results/mvp/analysis/consensus/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-consensus-framework-formalization.md"
+}

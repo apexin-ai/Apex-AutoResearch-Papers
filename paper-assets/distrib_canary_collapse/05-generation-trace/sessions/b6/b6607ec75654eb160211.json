@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b6607ec75654eb160211",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis smollm3 k3 discrepancy resolve",
+  "task_key": "worker_analysis_smollm3_k3_discrepancy_resolve_20260519T193711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_smollm3_k3_discrepancy_resolve_20260519T193711_result.json",
+    "occurrence": 1,
+    "bytes": 3858,
+    "sha256": "8277db78817a169f2d5bb46c0cad23c4c388d62c1050f82cef71e508992bd26f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the complete analysis.\n\n---\n\n## Part 1: SmolLM3 K≥3 差异解决\n\n### 根因\n\nSmolLM3 **没有 `unified_5method.json`**。两个 Worker 用了不同的源文件：\n- **\"0/8\" Worker** → 用了 `5method_leadlag.json` 的 consensus 字段（`robust_pairs: 0`）\n- **\"3/8\" Worker** → 用了 `3sigma_recompute_v2.json`（`robust_pairs_K3_3sigma: \"3/8\"`）\n\n差异原因：**`3sigma_recompute_v2.json` 对 naive_xcorr 不检查方向**（只查 `significant` 字段），导致 ECE 对被错误计入。\n\n### 关键证据：ECE pairs 的 naive_xcorr forward peak_lag 全为负\n\n| Pair | peak_lag | 含义 |\n|------|---------|------|\n| ece→d1 | **-1** | downstream 领先 canary |\n| ece→d2 | **-1** | downstream 领先 canary |\n| ece→d3 | **-2** | downstream 领先 canary |\n| ece→mauve | **-3** | downstream 领先 canary |\n\n对比 entropy pairs 全为正：d1/d2/d3 peak_lag=+5，mauve peak_lag=+4。\n\n### 权威 8×5 矩阵（来自 `5method_leadlag.json`，应用方向检查）\n\n| Pair | naive_xcorr | diff_xcorr | threshold_3σ | permG | TY | **K** |\n|------|:-----------:|:----------:|:------------:|:-----:|:--:|:-----:|\n| entropy→d1 | ✓ (lag=+5, p=0.023) | ✓ (fdr_p=0.0004) | ✗ (ds_onset=null) | ✗ (fdr_p=0.066) | ✗ | **2** |\n| entropy→d2 | ✓ (lag=+5) | ✓ | ✗ (ds_onset=null) | ✗ | ✗ | **2** |\n| entropy→d3 | ✓ (lag=+5) | ✓ | ✗ (ds_onset=null) | ✗ | ✗ | **2** |\n| entropy→mauve | ✓ (lag=+4) | ✗ | ✗ (ds_onset=null) | ✗ | ✗ | **1** |\n| ece→d1 | ✗ (lag=**-1**) | ✓ | ✗ (ds_onset=null) | ✓ | ✗ | **2** |\n| ece→d2 | ✗ (lag=**-1**) | ✓ | ✗ (ds_onset=null) | ✓ | ✗ | **2** |\n| ece→d3 | ✗ (lag=**-2**) | ✓ | ✗ (ds_onset=null) | ✓ | ✗ | **2** |\n| ece→mauve | ✗ (lag=**-3**) | ✗ | ✗ (ds_onset=null) | ✗ | ✗ | **0** |\n\n### 结论\n\n- **K≥3(3σ) = 0/8**（正确值，应用方向检查）\n- **K≥4(3σ) = 0/8**\n- 3sigma_recompute_v2.json 的 3/8 是 bug：naive_xcorr 未检查 peak_lag 方向，把 ECE→d1/d2/d3 的 naive 误判为通过，K 从 2 升到 3\n\n### 差异机制对比\n\n| | `5method_leadlag.json` consensus | `3sigma_recompute_v2.json` |\n|---|---|---|\n| naive_xcorr 判定 | sig=true **AND** peak_lag>0 | sig=true only（忽略方向） |\n| ECE→d1/d2/d3 naive | ✗（lag<0） | ✓（只看 p<0.05） |\n| ECE→d1/d2/d3 K | 2（diff+perm） | 3（naive+diff+perm） |\n| K≥3(3σ) | **0/8** | **3/8** |\n\n---\n\n## Part 2: Table 7 抽查（D105 3σ 一致性）\n\n### Pythia-410M s42\n\n- 文件：`5method_leadlag.json`（无 unified 版本）\n- config: `\"threshold_criterion\": \"3x_sigma_drift\"` ✓\n- 每个 threshold_onset 条目：`\"threshold\": \"3x_sigma_drift\"` ✓\n- **3σ 确认** ✓\n\n### OPT-1.3B s42\n\n- `unified_5method.json` 存在，但 **params 中无 sigma 信息**，threshold_onset 条目也无 threshold 字段\n- 底层 `5method_leadlag.json` 存在，config: `\"threshold_criterion\": \"3x_sigma_drift\"` ✓\n- unified 文件由不同版本脚本生成，未记录 sigma level\n- **3σ 可通过源文件确认** ✓，但 unified 文件本身存在审计盲区\n\n### 抽查结论\n\n两个模型的 threshold_onset 均使用 3σ，D105 一致性成立。但 OPT-1.3B 的 unified_5method.json 格式缺少 sigma 标注，建议补上。\n\n---\n\n## 总结\n\n1. **SmolLM3 K≥3(3σ) = 0/8**（不是 3/8）\n2. 差异来源 = `3sigma_recompute_v2.json` 的 naive_xcorr **方向盲判 bug**（hypothesis (b)）\n3. 没有 `unified_5method.json`（hypothesis (c) 部分成立：Worker 用了不同文件，但不是 unified vs 5method_leadlag，而是 3sigma_recompute_v2 vs 5method_leadlag consensus）\n4. Table 7 的 3σ 一致性：**通过**（两个抽查模型均确认使用 3x_sigma_drift）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-smollm3-k3-discrepancy-resolve.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "506a6ecaf2e446e32aca",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "figure regime map",
+  "task_key": "worker_figure_regime_map_20260515T213041",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_regime_map_20260515T213041_result.json",
+    "occurrence": 1,
+    "bytes": 506,
+    "sha256": "b808d62016d41a425c7c01cc0bfeaf0248d37b0d9b872598f76b3c543b8dc443"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。输出文件：\n\n- **PDF**: `artifacts/figures/regime_map.pdf` (22K)\n- **PNG**: `artifacts/figures/regime_map.png` (128K)\n- **脚本**: `artifacts/figures/plot_regime_map.py`\n- 已注册 artifact `art_20260515_c0cbb4`\n\n图表包含 3 条线（Naive Pearson 橙黄虚线、Perm. Granger FDR 深蓝实线、Consensus robust 绿色实线），α=0.50–0.75 区间灰色阴影标注 phase transition。Naive Pearson 在 α=0.75 无数据点，线段直接从 0.50 连到 1.00。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-regime-map.md"
+}

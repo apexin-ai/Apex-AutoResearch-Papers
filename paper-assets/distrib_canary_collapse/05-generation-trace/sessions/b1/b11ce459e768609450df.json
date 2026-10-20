@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b11ce459e768609450df",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops t20 progress check v2",
+  "task_key": "worker_ops_t20_progress_check_v2_20260520T161333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_t20_progress_check_v2_20260520T161333_result.json",
+    "occurrence": 1,
+    "bytes": 556,
+    "sha256": "170763f4967034c6e3920959373a7432bdf3b6b8a059476ee460e6a279390638"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**当前状态汇总**（全部存活，无完成）：\n\n| 实验 | 进度 | 当前阶段 | 运行时长 | 预估完成 |\n|------|------|---------|---------|---------|\n| t20_a045 | 12/21 | gen_11 生成数据 | 4h22m | ~3-4h |\n| **t20_a050** | 21/21 | **gen_20 生成数据** | 7h49m | **~15-20min** |\n| t20_a060 | 18/21 | gen_17 训练 24% | 6h56m | ~1-1.5h |\n| t20_a075 | 16/21 | gen_15 生成数据 | 5h54m | ~2-2.5h |\n| **t20_a100** | 20/21 | gen_19 训练 7% | 7h49m | **~30-40min** |\n\n4.5 分钟后复查 a050 完成状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-t20-progress-check-v2.md"
+}

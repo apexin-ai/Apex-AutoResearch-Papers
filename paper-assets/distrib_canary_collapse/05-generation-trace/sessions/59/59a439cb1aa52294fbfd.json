@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "59a439cb1aa52294fbfd",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "analysis null s42 s44 d102",
+  "task_key": "worker_analysis_null_s42_s44_d102_20260524T164250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_null_s42_s44_d102_20260524T164250.log",
+    "occurrence": 1,
+    "bytes": 647204,
+    "sha256": "bc78dc2091503cd6824145e7ba8cd257947f6b723acfce7b867daffecca86609"
+  },
+  "statistics": {
+    "messages": 117,
+    "user_turns": 0,
+    "tool_calls": 39,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 35,
+      "tool_call": 39,
+      "tool_result": 39,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 117,
+      "chunks": [
+        {
+          "path": "59a439cb1aa52294fbfd-part-0001.json",
+          "message_count": 111
+        },
+        {
+          "path": "59a439cb1aa52294fbfd-part-0002.json",
+          "message_count": 6
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-null-s42-s44-d102.md"
+}

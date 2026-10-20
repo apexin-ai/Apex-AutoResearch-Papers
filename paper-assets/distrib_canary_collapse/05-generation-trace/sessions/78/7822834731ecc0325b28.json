@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7822834731ecc0325b28",
+  "project": "distrib_canary_collapse",
+  "kind": "history",
+  "title": "agent / loop_16_1779394558.md",
+  "task_key": "loop_16_1779394558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1779394558.md",
+    "occurrence": 1,
+    "bytes": 4517,
+    "sha256": "f46e8739b4fd7b9be69a232f03e920e39eb39e160f3ea53e20e66abb33103f85"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-21T18:44:34+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-17855:cuda:0-5 + westd-19828:cuda:0-1，共 8 张，不可用白名单外 GPU\n- 17855↔19828 SSH 不通，不能跨服务器操作\n- HF_HOME 三件套必带（M060）：`export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1`，缺任一项实验会 fail（t25_a045_v1 已因此失败过）\n- ≤3B 模型强制 fp32（D079），本项目 Pythia-410M 全部 fp32\n- PermG 6/8 ceiling 是已知 MAUVE bottleneck，不可 claim 为方法上限\n\n### 2. 🖥️ 基础设施快照\n- **westd-17855**（6×RTX PRO 6000 Blackwell 98GB）：工作目录 `/root/autodl-tmp/distrib_canary_collapse/`，Python `/root/miniconda3/bin/python`，conda base，HF_HOME `/root/autodl-tmp/.hf_cache`\n- **westd-19828**（2×RTX PRO 6000 Blackwell 98GB）：同上路径、同 conda base\n- 活跃进程（7 个 tmux session，均 submit_training_job 提交）：\n  - 17855:cuda:0 → t25_a050 (PID 519969)\n  - 17855:cuda:2 → t15_a075_v2 (PID 513367)\n  - 17855:cuda:3 → t25_a060★ (PID 515617) — **最关键单格**\n  - 17855:cuda:4 → t20_a060_s43 (PID 541970, cross-seed)\n  - 17855:cuda:5 → t25_a045_v2 (PID 519272)\n  - 19828:cuda:0 → t25_a075 (PID 671833)\n  - 19828:cuda:1 → t20_a045_s43 (PID 688680, cross-seed)\n- **17855:cuda:1 空闲** — t15_a060_s42 已完成，`phase_diagram_t15_a060_s43_fp32` 在排队等 GPU。**这是 L1 违规（GPU 空着=失职），接手后第一件事就是把 s43 提交上去。**\n- 7 个 cron 在监控上述实验，reconcile 确认全部 still running\n\n### 3. 📊 当前状态\nPhase Diagram 20 格中 13 格已填充，7 格 RUNNING（T=15 剩 3 格 + T=25 全 4 格）。另有 2 个 cross-seed 验证在跑。\n\n**Phase Diagram 当前：**\n| T\\α | 0.45 | 0.50 | 0.60 | 0.75 |\n|-----|------|------|------|------|\n| T=5 | 0/8 ✅ | 0/8 ✅ | 0/8 ✅ | 0/8 ✅ |\n| T=10 | 0/8 | 6/8 | 0/8(dip) | 6/8 |\n| T=15 | **8/8** ✅ | 🔄 | 🔄 | 🔄 |\n| T=20 | 5/8 | 6/8 | 0/8 | 6/8 |\n| T=25 | 🔄 | 🔄 | 🔄★ | 🔄 |\n\n近期完成：t15_a060_s42=0/8（sync-dip 三 T 确认 D179）、t15_a050_s42=6/8（success）、t15_a045_s42=8/8（D178 step-function 最强证据）。\n\n无 running Worker，无待处理 Worker 回调。等待 7 个 cron 完成回调。\n\n### 4. 📋 待办（条件触发式）\n- **立即**：17855:cuda:1 空闲 → spawn Worker 提交 `phase_diagram_t15_a060_s43_fp32`（cross-seed，验证 sync-dip T=15）\n- t15_a075_v2 完成 → 5method 分析 → 填 T=15 α=0.75 格 → T=15 行 4/4 完成 → 向 Director 汇报 T=15 行总结\n- t25_a060 完成 → **最关键判断**：>0/8 = sync-dip dissolution（场景 A，最佳叙事），=0/8 = permanent sync-dip（场景 B，C3 升级 multi-method necessity）\n- t20_a045_s43 完成 → cross-seed 验证 s42=5/8 是否 robust（Reviewer 标记最脆弱格）。≥4/8 确认 robust，≤2/8 说明 s42=5/8 是 noise\n- t20_a060_s43 完成 → cross-seed 验证 sync-dip dissolution near-miss（s42 p_fdr=0.064）\n- T=25 4 格全完成 → heatmap 定稿 + D170 叙事升级 → Paper Agent R8 → submit_paper_to_review\n- 20/20 Phase Diagram 完成 → 最终 heatmap + 论文 R8 提交审查 → 目标 EMNLP 2026 ARR June（DDL ~2026-06-15）\n\n### 5. 🎯 战略上下文\n- 项目从\"方法论文\"转为\"现象发现论文\"——核心贡献是 α×T 2D 相图、非单调 dose-response、sync-dip、检测下界理论\n- **三大 landscape 特征已确立**：blind zone（T=5 全暗 + T=10 低 α）、α_c left-shift（T 增加 → 阈值下降）、sync-dip（α≈0.60 T-invariant 检测盲区）\n- T=25 α=0.60 是叙事分叉点：dissolution vs permanent dip，直接决定 C2 claim 强度\n- T=15 α=0.45=8/8 打破了 6/8 ceiling（D178），这是意外发现——step-function 跃迁比预期更锐利\n- **易错**：(1) 不要把 cross-seed 实验（s43）的 Phase Diagram 格子值和 s42 混淆——Phase Diagram 主表用 s42，cross-seed 用于 robustness validation；(2) PermG 6/8 是 MAUVE bottleneck 不是方法上限；(3) T=20 α=0.50 是 6/8 不是之前误记的其他值（M062 已修正）\n- α_c(T) 理论公式：α_c(T) = 0.193 + 75.68·T^(-2.41)，R²=0.883，sync-dip 区间 [0.55, 0.65] 在此模型之外\n- 决策链：D170(叙事升级) → D173(T=5 anchor) → D174(三层 claim) → D176(sync-dip correction) → D177(Reviewer 27 定稿) → D178(step-function) → D179(sync-dip 三T)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1779394558.md"
+}

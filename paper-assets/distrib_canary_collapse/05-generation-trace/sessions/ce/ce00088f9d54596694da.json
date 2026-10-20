@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "id": "ce00088f9d54596694da",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diagnose alpha sweep a060 s42 fp32",
+  "task_key": "worker_diagnose_alpha_sweep_a060_s42_fp32_20260519T000121",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_alpha_sweep_a060_s42_fp32_20260519T000121_result.json",
+    "occurrence": 1,
+    "bytes": 2559,
+    "sha256": "edcfe55787301a3040294a50f2df6e2f69b670c7d402ea4de8d86a06443f4746"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\"root_cause\":\"metrics.py:204 np.linalg.eigvalsh(cov) → LinAlgError: Eigenvalues did not converge. 运行时代码是旧版(eigvalsh在L204无try/except)，当前磁盘版已修复(L207-211有SVD fallback)但未被此进程加载。模型在gen_1训练中坍缩(loss=0, grad_norm=nan from step 100)，产生退化协方差矩阵。\",\"error_type\":\"hyperparameter\",\"fix_steps\":[\"不需要修改代码——磁盘上的metrics.py已有SVD fallback(L207-211)\",\"从gen_1 checkpoint恢复：重跑metrics计算+后续generations即可，无需重训gen_0/gen_1\",\"重提交时确保用当前磁盘版metrics.py（已有try eigvalsh → except → svd fallback）\"],\"can_auto_fix\":true,\"log_tail\":\"Checkpoint saved: results/alpha_sweep/a060_s42_fp32/gen_1/checkpoint\\n  Computing metrics …\\nTraceback (most recent call last):\\n  File iterative_train.py:321 → metrics.compute_all_metrics\\n  File metrics.py:204 → compute_effective_rank\\n    eigenvalues = np.linalg.eigvalsh(cov)\\nnumpy.linalg.LinAlgError: Eigenvalues did not converge\"}\n```\n\n关键事实：\n- gen_0 完整（有 metrics.json），gen_1 训练完成、checkpoint 已保存，但 metrics 计算崩溃\n- 训练从 step 100 起 grad_norm=nan，最终 loss=0 — 这是 α=0.60 fp32 下的预期坍缩行为，是有效的 dose-response 数据点\n- 旧版 metrics.py（进程加载时的版本）没有 try/except，当前磁盘版已修复"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "metrics.py:204 np.linalg.eigvalsh(cov) → LinAlgError: Eigenvalues did not converge. 运行时代码是旧版(eigvalsh在L204无try/except)，当前磁盘版已修复(L207-211有SVD fallback)但未被此进程加载。模型在gen_1训练中坍缩(loss=0, grad_norm=nan from step 100)，产生退化协方差矩阵。",
+              "error_type": "hyperparameter",
+              "fix_steps": [
+                "不需要修改代码——磁盘上的metrics.py已有SVD fallback(L207-211)",
+                "从gen_1 checkpoint恢复：重跑metrics计算+后续generations即可，无需重训gen_0/gen_1",
+                "重提交时确保用当前磁盘版metrics.py（已有try eigvalsh → except → svd fallback）"
+              ],
+              "can_auto_fix": true,
+              "log_tail": "Checkpoint saved: results/alpha_sweep/a060_s42_fp32/gen_1/checkpoint\n  Computing metrics …\nTraceback (most recent call last):\n  File iterative_train.py:321 → metrics.compute_all_metrics\n  File metrics.py:204 → compute_effective_rank\n    eigenvalues = np.linalg.eigvalsh(cov)\nnumpy.linalg.LinAlgError: Eigenvalues did not converge"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-alpha-sweep-a060-s42-fp32.md"
+}

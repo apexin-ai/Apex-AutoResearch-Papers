@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e232b2d366ba5cb2c63",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis conditional granger",
+  "task_key": "worker_analysis_conditional_granger_20260518T095827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_conditional_granger_20260518T095827_result.json",
+    "occurrence": 1,
+    "bytes": 915,
+    "sha256": "92178857bf337974da8925dd3af74ff02ba900464bc8a3d1838c35b757fca178"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D061 完成。\n\n**核心结论：token_entropy 和 ECE 提供冗余信息，不是独立信息。**\n\n结果摘要：\n- 所有 6 个 marginal Granger 测试都高度显著（p < 0.002）\n- 所有 6 个 conditional Granger 测试都不显著（p > 0.08）\n- 控制 ECE 后，entropy 对 diversity 无独立预测力（0/3）\n- 控制 entropy 后，ECE 对 diversity 无独立预测力（0/3）\n\n**解读**：两个 canary 高度共线性，追踪的是同一个底层校准退化过程。对实际早期预警而言，监测任一即可；同时监测增加鲁棒性但不提供新信息。\n\n**Limitation**: T=11 下条件模型 df_resid=5，统计力极低。冗余结论可能部分反映 power 不足。\n\n产出：\n- 脚本：`/root/autodl-tmp/distrib_canary_collapse/analyze_conditional_granger.py`\n- 报告：`artifacts/d061_conditional_granger_analysis.md`（已注册 manifest）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-conditional-granger.md"
+}

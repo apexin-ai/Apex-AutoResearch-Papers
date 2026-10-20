@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a004cfd592fa324cd11d",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops deploy t15 a045 s43 cuda5",
+  "task_key": "worker_ops_deploy-t15-a045-s43-cuda5_20260523T045453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_deploy-t15-a045-s43-cuda5_20260523T045453_result.json",
+    "occurrence": 1,
+    "bytes": 349,
+    "sha256": "b3f86a8fd21606b72d5b5e03f9fc1b8788d08112d1922a42afcd6908f167e89e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n- **PID**: 762806 (子进程 762811 在 GPU 上)\n- **GPU 显存**: 10284 MiB (cuda:5)\n- **Log**: `results/phase_diagram/t15_a045_s43_fp32_14b.log`\n- **状态**: Generation 0 已开始训练\n- **磁盘**: 28G 可用 ≥ 22G (2x 预估 11G)，满足 C007\n- **Registry**: `scale_14b_t15_a045_s43_fp32` → RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-deploy-t15-a045-s43-cuda5.md"
+}

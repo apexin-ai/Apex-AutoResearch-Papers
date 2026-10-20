@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a64b3f5948858769d8c6",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "monitor actual progress 17855 v2",
+  "task_key": "worker_monitor_actual-progress-17855-v2_20260521T221331",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_actual-progress-17855-v2_20260521T221331_result.json",
+    "occurrence": 1,
+    "bytes": 622,
+    "sha256": "6669fdf0092cec4651341613ce8f8007ad472034d722dbce2b6c88801626d4f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 6 experiments have active python processes, no exit files.\n\n```\nt25_a045_s42_fp32: gen 22/25 | RUNNING | 最早启动，进度最快\nt25_a060_s42_fp32: gen  8/25 | RUNNING | 正在 gen_7 生成合成数据\nt25_a050_s42_fp32: gen  8/25 | RUNNING | 03:32 启动\nt20_a060_s43_fp32: gen  8/20 | RUNNING | 03:32 启动\nt15_a060_s43_fp32: gen 10/15 | RUNNING | 02:42 启动\nt15_a045_s43_fp32: gen  8/15 | RUNNING | 正在 gen_8 训练中 (4800/5000 steps, 97%)\n```\n\n6/6 全部存活运行中。t25_a045 接近完成（还剩 3 gen），t15_a060 也过半（10/15）。其余 4 个在 ~40% 进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-actual-progress-17855-v2.md"
+}

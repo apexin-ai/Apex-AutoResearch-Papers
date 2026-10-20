@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b09c7a19f7f1435f55df",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code batch analysis script",
+  "task_key": "worker_code_batch_analysis_script_20260519T011324",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_batch_analysis_script_20260519T011324_result.json",
+    "occurrence": 1,
+    "bytes": 698,
+    "sha256": "9ab40b84548f526a7bac80ba2ad7c6429ac393463314deb84f3f8e1c0b2a0973"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本运行正常，输出格式符合要求。\n\n**已完成**：`/root/autodl-tmp/distrib_canary_collapse/batch_analysis.py` 已部署到 westd-17855 并通过 dry-run 验证（用 `a010_s43_bf16` 数据，11 gens，~4s 完成）。\n\n功能概要：\n- `--exp_dir` 读取 `all_metrics.json`，计算 8 指标 drift%\n- 5 方法 × 8 对（canary: token_entropy/ece × diversity: distinct_1/2/3/mauve），含 BH FDR 校正\n- K>=4 consensus 计数；`--null_dirs` 可选开启完整 MMCT\n- 单模块失败不影响其他模块，缺失数据处理已覆盖\n\n实验完成后用法：\n```bash\npython batch_analysis.py --exp_dir results/alpha_sweep/a005_s42_fp32_v3_d080\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-batch-analysis-script.md"
+}

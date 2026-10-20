@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5301b8f9e4deed7fa9da",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops t10a060 kill d102 v2",
+  "task_key": "worker_ops_t10a060-kill-d102-v2_20260522T194943",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_t10a060-kill-d102-v2_20260522T194943_result.json",
+    "occurrence": 1,
+    "bytes": 1280,
+    "sha256": "beea0e33dfe0ad98d259d49efe68c1c4ff4ca78fe6d9125992378388662aea60"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## D102 结果：1.4B T=10 α=0.60 s42\n\n### 实验完成\n- 数据路径：`results/phase_diagram/t10_a060_s42_fp32_14b`\n- gen_0 到 gen_10 全部完成（11 个点）\n- 实验已自然结束，无需 kill\n\n### D102 5-Method 结果\n\n| 方法 | Forward sig | Reverse sig |\n|------|-----------|------------|\n| **PermG (FDR)** | **4/8** | **0/8** |\n| Diff XCorr (FDR) | 8/8 | 8/8 |\n| Threshold Onset | 0/8 | — |\n| TY Granger | 0/8 (NaN) | — |\n| Naive XCorr | — | — |\n\n### K≥3 Consensus Pairs: **3/8**\n- ece→distinct_1 (3/5: naive, diff, perm)\n- ece→distinct_2 (3/5: naive, diff, perm)\n- ece→distinct_3 (3/5: naive, diff, perm)\n\n### 关键发现：Sync-dip 不是 scale-invariant\n\n**410M α=0.60 T=10: PermG 0/8 (sync-dip)**\n**1.4B α=0.60 T=10: PermG 4/8 fwd, 0/8 rev (strong asymmetry)**\n\n1.4B 模型在 α=0.60 显示出明确的因果先导信号（ece 先于 distinct 指标变化），而 410M 在同一设置下是 sync-dip。说明 sync-dip 是小模型特有现象，随 scale 增大消失。\n\n### 数据质量注意\n- gen_0 和 gen_1 的 MAUVE 为 null（已用 NaN 处理）\n- TY Granger 因 LAPACK 收敛问题全部 NaN（T=10 序列太短 + NaN 值）\n- DLASCL warnings 不影响核心 PermG/DiffXCorr 结果"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-t10a060-kill-d102-v2.md"
+}

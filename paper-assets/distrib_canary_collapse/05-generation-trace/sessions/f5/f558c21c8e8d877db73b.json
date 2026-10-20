@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f558c21c8e8d877db73b",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "research scheffer literature gap",
+  "task_key": "worker_research_scheffer_literature_gap_20260515T083456",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_scheffer_literature_gap_20260515T083456_result.json",
+    "occurrence": 1,
+    "bytes": 634,
+    "sha256": "0ebc63d108f1cd5c47dbf3469765d126199172ed3ac79790982ae2fa0e4b2fe4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两篇 Scheffer 论文已添加到 `literature_map.yaml`：\n\n- **scheffer2009early** — \"Early-warning signals for critical transitions\", Nature 461(7260):53-59, DOI: 10.1038/nature08227\n- **scheffer2012anticipating** — \"Anticipating Critical Transitions\", Science 338(6105):344-348, DOI: 10.1126/science.1225244\n\n均设为 `role: theoretical-foundation`, `category: early-warning-signals`，新建了 \"EARLY WARNING SIGNALS / TIPPING POINTS (ECOLOGICAL THEORY)\" 分类区块，位于 METHODOLOGY 和 gaps 之间。YAML 语法验证通过，已有条目未被修改，总条目从 38 增至 40。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-scheffer-literature-gap.md"
+}

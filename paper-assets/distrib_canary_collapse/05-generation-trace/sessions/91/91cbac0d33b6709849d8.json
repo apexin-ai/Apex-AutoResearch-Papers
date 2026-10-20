@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91cbac0d33b6709849d8",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis d102 t15 a060 s43 d3",
+  "task_key": "worker_analysis_d102-t15-a060-s43-d3_20260523T200904",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d102-t15-a060-s43-d3_20260523T200904_result.json",
+    "occurrence": 1,
+    "bytes": 977,
+    "sha256": "936b10d1010a4e940bd4c7a87b87322a633499341a842498587808b602483a97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**D102 结果总结 (scale_14b_t15_a060_s43_fp32, downstream=distinct_3)**:\n\n| Pair | Votes | Methods |\n|------|-------|---------|\n| token_entropy → distinct_3 | **4/5** | diff, threshold, perm, ty |\n| ece → distinct_3 | **4/5** | naive, diff, threshold, perm |\n\n- **Robust pairs: 2/2 (100%)**\n- 所有 5 种方法中 4 种对两个 pair 都检测到 forward，仅 TY 在 ece→d3 未达显著（p=0.22）\n- Entropy drop-then-recover (2.97→1.80→2.10) 不影响 lead-lag 检出——DiffXCorr (r=0.94) 和 TY 均对非平稳性鲁棒\n- distinct_3 单调下降 0.817→0.566 (-31%)，信号清晰\n- MAUVE 确认无信号（range 0.005），验证 Reviewer #155 的判断\n\n**产出**:\n- 远程 JSON: `results/analysis/D102_14b_t15_a060_s43_fp32_d3.json`\n- 本地 JSON: `artifacts/D102_14b_t15_a060_s43_fp32_d3.json`\n- 分析报告: `artifacts/_project/d102_t15_a060_s43_d3_result_20260523.md`\n- Registry metrics 已更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d102-t15-a060-s43-d3.md"
+}

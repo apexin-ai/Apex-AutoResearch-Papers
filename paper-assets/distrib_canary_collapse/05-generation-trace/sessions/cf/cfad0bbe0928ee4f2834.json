@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cfad0bbe0928ee4f2834",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code fix mix bidirectional",
+  "task_key": "worker_code_fix-mix-bidirectional_20260514T181557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-mix-bidirectional_20260514T181557_result.json",
+    "occurrence": 1,
+    "bytes": 1238,
+    "sha256": "41aaef7045bcf5c4c16157a416af968346d5fb3711cae91e963733286f3b712e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "14/14 全部通过。\n\n### 修改内容\n\n**`iterative_train.py` — `mix_datasets` 函数**：改为双向 subsample 逻辑\n- `needed_syn <= len(synthetic)` → 低 α 路径：保全 real，subsample synthetic\n- 否则 → 高 α 路径：保全 synthetic，subsample real 到 `int(len(syn) * (1-ratio) / ratio)`\n\n**`test_alpha_sweep.py`**：14 个测试全部通过\n\n| 测试 | ratio | 实际比例 | 路径 |\n|------|-------|---------|------|\n| ratio=1.0 | 1.00 | pure syn | 边界 |\n| ratio=0.0 | 0.00 | pure real | 边界 |\n| ratio=0.50 | 0.50 | 0.500 | 低 α |\n| ratio=0.25 | 0.25 | 0.249 | 低 α |\n| ratio=0.90 | 0.90 | 0.900 | 低 α |\n| ratio=0.25 precise | 0.25 | 0.242 | 低 α |\n| **ratio=0.75 precise** | **0.75** | **0.758** | **高 α** |\n| **ratio=0.90 precise** | **0.90** | **0.901** | **高 α** |\n| ratio=0.50 balanced | 0.50 | 0.500 | 低 α |\n| accumulate stability | 0.50 | 0.500 ×3 | 低 α |\n| accumulate high α | 0.50 | 0.500 ×3 | 高 α |\n| no-accumulate | 0.50 | 0.500 ×3 | 高 α |\n| determinism | 0.50 | — | — |\n| **sweep 全覆盖** | 0→1.0 | 全部误差 <0.05 | 双向 |\n\n之前 ratio=0.75 被截断到 0.50、ratio=0.90 被截断的问题已修复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-mix-bidirectional.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73d23fb5271f9ae6c109",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops check running status",
+  "task_key": "worker_ops_check-running-status_20260514T212958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-running-status_20260514T212958_result.json",
+    "occurrence": 1,
+    "bytes": 716,
+    "sha256": "46c89786d5d201b33858227bf24377ff49a057a9bb470ffa3eae7ce3b4277189"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验存活状态\n\n### alpha_sweep_a000_s42 (cuda:0)\n- **存活** — PID 46716（wrapper）和 46721（python）均在运行\n- 运行时长：**2h 28m 39s**\n- 参数：`--synthetic_ratio 0.0 --seed 42 --steps_per_gen 5000 --num_generations 10`\n\n### alpha_sweep_a025_s42_v3 (cuda:1)\n- **存活** — PID 53069（wrapper）和 53074（python）均在运行\n- 运行时长：**26m 12s**\n- 参数：`--synthetic_ratio 0.25 --seed 42 --steps_per_gen 5000 --num_generations 10`\n\n### GPU 状态\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| 0 | 42% | 14,391 MiB |\n| 1 | 61% | 12,753 MiB |\n\n两个实验均正常运行，GPU 活跃且显存占用合理，无异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-running-status-copy-2.md"
+}

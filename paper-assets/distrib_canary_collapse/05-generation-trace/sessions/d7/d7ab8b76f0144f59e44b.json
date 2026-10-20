@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d7ab8b76f0144f59e44b",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "paper fill table7 domain",
+  "task_key": "worker_paper_fill_table7_domain_20260517T181909",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fill_table7_domain_20260517T181909_result.json",
+    "occurrence": 1,
+    "bytes": 375,
+    "sha256": "ca2f84966b20be5de84fa8e9f8b4fe2359eae56d4b02a60942767844ec9f5b0d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译通过，输出 24 页 PDF。\n\n完成的修改：\n1. **Domain 行**：填入 `7/8 & 8/8 & 8/8 & 8/8 & 3/8 & 4/8 & 8/8`，末尾加 `$^\\dagger$` 标记\n2. **脚注**：在 `\\end{tabular}` 后添加 `\\footnotesize` 说明 rev=3/8 来源（ECE 双向耦合 vs token_entropy 单向）\n3. **Caption**：`[TBD]` 更新为仅标注 Scale 实验待完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fill-table7-domain.md"
+}

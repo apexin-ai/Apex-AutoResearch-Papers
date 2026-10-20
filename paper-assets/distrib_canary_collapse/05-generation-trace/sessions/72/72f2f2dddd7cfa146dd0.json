@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "72f2f2dddd7cfa146dd0",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diag interv pred a075 s42 fp32",
+  "task_key": "worker_diag_interv_pred_a075_s42_fp32_20260518T221253",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_interv_pred_a075_s42_fp32_20260518T221253_result.json",
+    "occurrence": 1,
+    "bytes": 644,
+    "sha256": "c3f021dc06c6a5213d4c5328f92cfd3f4b043ecf0b0851022c03fae711f47c15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断和修复完成。总结：\n\n**根因**：原始提交命令缺少 `source conda.sh && conda activate base`，导致 `python: command not found` (EXIT_CODE=127)。\n\n**当前状态**：实验已被另一个 session 于 06:09 重新提交，正在 westd-17855 cuda:4 上正常运行（PID 56026）。\n- 模型 EleutherAI/pythia-410m 已加载\n- 正在 Generation 0 (baseline) 的合成文本生成阶段\n- fp32 模式（无 --bf16 flag），Blackwell GPU 上运行正常\n- output_dir: `results/intervention/predictive_te_a075_s42_fp32/`\n\n**Registry 已更新**：PREPARING → QUEUED → RUNNING，spec 已补全。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-interv-pred-a075-s42-fp32.md"
+}

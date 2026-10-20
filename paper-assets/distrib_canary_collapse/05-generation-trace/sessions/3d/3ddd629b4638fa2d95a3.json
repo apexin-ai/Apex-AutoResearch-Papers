@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ddd629b4638fa2d95a3",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "prep multi seed configs",
+  "task_key": "worker_prep_multi-seed-configs_20260515T120315",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_multi-seed-configs_20260515T120315_result.json",
+    "occurrence": 1,
+    "bytes": 3274,
+    "sha256": "1884ed4e5adac8d55c303902e46c7d97b524fea582758a2f8ca2cd1c6f756e8c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 数据已确认。4 个实验 spec 完整，参数与 a075_s42 一致（仅 seed/synthetic_ratio/output_dir 不同）。a075_s42 未显式传 `--model_name`（默认 pythia-410m），4 个实验同理。\n\n---\n\n## 实验 1: alpha_sweep_a025_s43\n- **exp_id**: alpha_sweep_a025_s43\n- **spec 核验**: model=pythia-410m, data=wikitext103_5k, α=0.25, seed=43, gen=10, steps=5000 ✓\n- **command**:\n```\nbash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s43\"\n```\n- **gpu_ids**: [\"cuda:1\"]\n- **server**: westd-19828\n- **timeout_hours**: 6\n\n## 实验 2: alpha_sweep_a050_s43\n- **exp_id**: alpha_sweep_a050_s43\n- **spec 核验**: model=pythia-410m, data=wikitext103_5k, α=0.50, seed=43, gen=10, steps=5000 ✓\n- **command**:\n```\nbash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s43\"\n```\n- **gpu_ids**: [\"cuda:1\"]\n- **server**: westd-19828\n- **timeout_hours**: 6\n\n## 实验 3: alpha_sweep_a025_s44\n- **exp_id**: alpha_sweep_a025_s44\n- **spec 核验**: model=pythia-410m, data=wikitext103_5k, α=0.25, seed=44, gen=10, steps=5000 ✓\n- **command**:\n```\nbash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s44\"\n```\n- **gpu_ids**: [\"cuda:1\"]\n- **server**: westd-19828\n- **timeout_hours**: 6\n\n## 实验 4: alpha_sweep_a050_s44\n- **exp_id**: alpha_sweep_a050_s44\n- **spec 核验**: model=pythia-410m, data=wikitext103_5k, α=0.50, seed=44, gen=10, steps=5000 ✓\n- **command**:\n```\nbash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s44\"\n```\n- **gpu_ids**: [\"cuda:1\"]\n- **server**: westd-19828\n- **timeout_hours**: 6\n\n---\n\n4 组配置就绪，命令格式与 a075_s42 完全一致，可直接用于 `allocate_and_submit` 串行提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-multi-seed-configs.md"
+}

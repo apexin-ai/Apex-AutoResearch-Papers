@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7f3c95429fa1710b224",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis power artifact simulation",
+  "task_key": "worker_analysis_power-artifact-simulation_20260522T102844",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_power-artifact-simulation_20260522T102844_result.json",
+    "occurrence": 1,
+    "bytes": 1173,
+    "sha256": "43fcf8015ff2a77f714aa8f9728f5d67bbf3616576a5d395685355bb322ddc28"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。所有产出已注册。\n\n## 结果摘要\n\n| 模型 | γ (onset scaling) | R² | 含义 |\n|------|-------------------|-----|------|\n| **H0 (linear signal)** | 0.85 | 0.977 | 纯 power artifact 预测 |\n| **H1 (step transition)** | 1.96 | 0.920 | 理论 phase transition 模型 |\n| **Observed** | **2.08** | — | 实验观测值 |\n\n**结论: `real_transition`** — H0 的 apparent onset 遵循 T^{−0.85}（来自 F-test √T power scaling + df 效应），与观测的 T^{−2.08} 差距 Δγ = 1.24。这是结构性差异：smooth signal 模型无论怎么调参，其 power-law exponent 都被 PermG 检验的统计功效 scaling 约束在 ~0.5–1.0 范围，无法达到 2.08。\n\n观测到的 steep scaling 需要信号结构本身存在 phase transition，而非仅靠检测功效随 T 增长。\n\n### 产出文件\n- `artifacts/power_simulation/power_artifact_test.json` — 完整数据\n- `artifacts/power_simulation/power_artifact_test.py` — 可复现脚本\n- `artifacts/power_simulation/power_artifact_comparison.pdf/png` — 3-panel 对比图\n- `artifacts/power_simulation/power_artifact_analysis.md` — 分析报告"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-power-artifact-simulation.md"
+}

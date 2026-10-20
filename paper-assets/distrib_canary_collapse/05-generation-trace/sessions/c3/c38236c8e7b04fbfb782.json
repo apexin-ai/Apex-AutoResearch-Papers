@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c38236c8e7b04fbfb782",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops restart 14b t15a060 19828",
+  "task_key": "worker_ops_restart-14b-t15a060-19828_20260522T094631",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_restart-14b-t15a060-19828_20260522T094631_result.json",
+    "occurrence": 1,
+    "bytes": 343,
+    "sha256": "3b308dad7e1bb8934711018d4664c359d5e03c66be5f1d3299cddb12c5a85dd0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:1 仍在跑 t10_a050_v2，无法启动 t15_a060。**\n\n当前状态：\n- **cuda:0**: `t25_a075_s43_fp32` (pythia-410m) — PID 731312\n- **cuda:1**: `t10_a050_s42_fp32_14b` (pythia-1.4b) — PID 776064，gen_2 训练中 (2280/5000, 45%)，从 --start_gen 2 恢复，还剩 gen 2~9 共 8 个 gen，预计还需 ~4 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-restart-14b-t15a060-19828.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "46b131524bd82cc9d4fb",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops gpu check and script",
+  "task_key": "worker_ops_gpu_check_and_script_20260515T052241",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_check_and_script_20260515T052241_result.json",
+    "occurrence": 1,
+    "bytes": 1355,
+    "sha256": "d0df7a47d7fc5e9d10bcd58cbc07193c1bf1e9ee0716aa3e41b5353b79054889"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 1. GPU 状态\n\n| GPU | Utilization | Memory Used | Memory Total |\n|-----|------------|-------------|--------------|\n| 0 | 94% | 14,391 MiB | 97,887 MiB (~96GB) |\n| 1 | 43% | 14,391 MiB | 97,887 MiB (~96GB) |\n\n两张卡都在使用中，显存各占 ~14.4GB / 96GB。\n\n### 2. 训练进程\n\n3 个 `iterative_train.py` 进程在跑：\n\n| 任务 | GPU | 参数 | 状态 |\n|------|-----|------|------|\n| `plan_006_s42` | GPU 0 | `--synthetic_ratio 1.0 --num_generations 20 --steps_per_gen 10000` (wikitext103 全集) | 运行中，CPU 188% |\n| `alpha_sweep_a050_s42` | GPU 1 | `--synthetic_ratio 0.50 --num_generations 10 --steps_per_gen 5000` (wikitext103_5k) | 运行中，CPU 208% |\n| `alpha_sweep_a000_s42` | GPU 0 (tmux) | `--synthetic_ratio 0.0 --num_generations 10 --steps_per_gen 5000` (wikitext103_5k) | tmux session 存在，可能已完成或排队 |\n\n另外 `analyze_alpha_sweep.py` 也正在 GPU 上执行（PID 87799, CPU 217%）。\n\n### 3. gen_dose_response.py\n\n**分析脚本，不是训练脚本。** 它从 `results/alpha_sweep/` 和 `results/mvp/` 目录读取各 generation 的 metrics（token_entropy, ece, perplexity, distinct_1/2/3），汇总成 CSV 用于绘制 dose-response 曲线（不同 synthetic_ratio α 值对指标的影响）。无命令行参数，直接运行即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-check-and-script.md"
+}

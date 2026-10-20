@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6064b7de93327d1738b2",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops kill orphan 19828",
+  "task_key": "worker_ops_kill_orphan_19828_20260518T234204",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_orphan_19828_20260518T234204_result.json",
+    "occurrence": 1,
+    "bytes": 529,
+    "sha256": "9d3ec55b78309c2912631d1d1a9818c7e9996a3148ded3cf83a062d9bb5fc9bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n**Kill 前 → Kill 后 (cuda:1)**\n\n| 指标 | Kill 前 | Kill 后 | 变化 |\n|------|---------|---------|------|\n| memory.used | 75,180 MiB | 37,607 MiB | **-37,573 MiB (-50%)** |\n| utilization.gpu | 98% | 98% | 不变 |\n| 进程数 | 2 (395612 + 399353) | 1 (399353) | -1 |\n\n- PID 395612 (bf16 v1 孤儿) 已终止，释放 ~37.5 GB 显存\n- PID 399353 (fp32 v2) 正常运行，CPU 131%，独占 cuda:1\n- cuda:1 从 77% 显存占用降至 38%，fp32 v2 不再受内存争抢"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-orphan-19828.md"
+}

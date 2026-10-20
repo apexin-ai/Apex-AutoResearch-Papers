@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ce00693644801af7440",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis naive baseline comparison",
+  "task_key": "worker_analysis_naive_baseline_comparison_20260524T015506",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_naive_baseline_comparison_20260524T015506_result.json",
+    "occurrence": 1,
+    "bytes": 1099,
+    "sha256": "f02917ffa91f207e97cd19f4aa372cb6de95b4adf8b029266b780a21dd341743"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Analysis complete. Results:\n\n**Summary Table**\n\n| Method | FPR (α=0) | Onset α | Cross-seed |\n|---|---|---|---|\n| PPL-slope (≥2 consec) | **100%** (3/3) | 0.10 | trivially consistent (always fires) |\n| PPL-slope (≥3 consec) | **100%** (3/3) | 0.10 | trivially consistent (always fires) |\n| Variance-threshold | **67%** (2/3) | 0.10 | inconsistent at null |\n| PermG (fwd sig≥1) | **0%** (0/3) | 0.50 | 3/3 at α=0.50 |\n\n**Key finding**: PPL-slope is unusable — perplexity naturally drifts upward even at α=0.00 (gen2→gen6 shows 4 consecutive increases: 20.0→20.3→20.5→20.9→21.0), so it fires on every null seed (100% FPR). Variance-threshold also has 67% FPR. PermG is the only method with 0% FPR — its causal lead-lag test only fires when contamination actually causes downstream degradation, not from natural training drift.\n\nThe \"earlier onset\" of baselines at α=0.10 is meaningless since they also fire at α=0.00.\n\nArtifacts saved to:\n- `artifacts/A2_naive_baseline_comparison.json`\n- `artifacts/_project/A2_naive_baseline_comparison.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-naive-baseline-comparison.md"
+}

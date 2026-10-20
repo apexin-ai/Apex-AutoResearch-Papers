@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "90836bdcb5fa8981ca85",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis dose response cross seed m035",
+  "task_key": "worker_analysis_dose_response_cross_seed_m035_20260520T041622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_dose_response_cross_seed_m035_20260520T041622_result.json",
+    "occurrence": 1,
+    "bytes": 761,
+    "sha256": "c78efa6bd2cf505a3c996f831cdfa2ab3a0b02cdfa1ee42d9e071f69f7f883ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n**Registry 更新**\n- `alpha_sweep_a050_s43_fp32`: PermG=6/8, K≥3=6/8, threshold_3σ=8/8, TY=5/8\n- `alpha_sweep_a075_s43`: PermG=5/8, K≥3=7/8, threshold_3σ=8/8, TY=6/8\n\n**Cross-seed 比较**\n| α | s42 PermG | s43 PermG | 差异 |\n|---|-----------|-----------|------|\n| 0.50 | 6/8 | 6/8 | onset 稳健 |\n| 0.75 | 6/8 | 5/8 | te→d1 FDR p=0.056 边界 |\n\nROADMAP 值确认，1-pair 差异来源定位到 te→d1 的 FDR p=0.056。\n\n**Artifacts**\n- `dose_response_m035.csv` — 全 α (0.00–1.00) × s42+s43, 所有 12 个 s42 和 7 个 s43 实验均用 batch_analysis.py 重新分析（M035/D105/D111 compliant）\n- `dose_response_analysis.md` — 4-regime 结构、method FPR 对比、M037 注意事项"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-dose-response-cross-seed-m035.md"
+}

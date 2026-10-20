@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c2ce690d40af7bae4a61",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops full gpu scan d102",
+  "task_key": "worker_ops_full-gpu-scan-d102_20260523T020540",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_full-gpu-scan-d102_20260523T020540_result.json",
+    "occurrence": 1,
+    "bytes": 702,
+    "sha256": "16083880615ba506079951916808850c25cf6af47c62457fb7379f94455cac91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**全部 6 个实验仍在运行，没有 DEAD PID。**\n\n| PID | 实验 | GPU | 运行时间 | GPU利用率 | 显存 |\n|-----|------|-----|---------|----------|------|\n| 679656 | t15_a060_v2 | cuda:0 | 12h 58m | 100% | 31.5 GiB |\n| 680095 | t15_a050_v3 | cuda:1 | 12h 58m | 95% | 31.5 GiB |\n| 719178 | t10_a075_s43 | cuda:2 | 5h 43m | 99% | 27.7 GiB |\n| 719252 | t10_a060_s43 | cuda:3 | 5h 43m | 98% | 27.7 GiB |\n| 738796 | t10_a045_s43 | cuda:4 | 1h 18m | 100% | 31.3 GiB |\n| 680608 | t15_a045 | cuda:5 | 12h 58m | 99% | 31.5 GiB |\n\n6 块 GPU 全部占满（每块 ~98GB），利用率 95-100%。没有已完成的实验，因此无需执行 D102 分析或 registry 更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-full-gpu-scan-d102.md"
+}

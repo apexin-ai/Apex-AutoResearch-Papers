@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f71553ebe6fb56f13efb",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "emergency 19828 disk critical",
+  "task_key": "worker_emergency_19828_disk_critical_20260519T234939",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_emergency_19828_disk_critical_20260519T234939_result.json",
+    "occurrence": 1,
+    "bytes": 137,
+    "sha256": "04a4b05df5023cefa783b6dd3b83bf2b886575417dbef5df02f4661aa4ed91a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "释放了约 90GB，磁盘从 100% 降至 **64%**（91G 可用）。opt13b 进程 (PID 452614) 存活，已运行 8h16m。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/emergency-19828-disk-critical.md"
+}

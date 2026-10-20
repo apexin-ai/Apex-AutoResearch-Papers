@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d29b492a8f8a04b96eb",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis alpha sweep a048 s42 fp32",
+  "task_key": "worker_analysis_alpha_sweep_a048_s42_fp32_20260521T061354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_alpha_sweep_a048_s42_fp32_20260521T061354_result.json",
+    "occurrence": 1,
+    "bytes": 773,
+    "sha256": "fd238b019c762012747f6e45062a57bf1c2ec6735ae62c5e96dd3f0d6596dada"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。Registry 已更新为 DONE(success)，artifact 已注册。\n\n## 结果摘要\n\n| 指标 | 值 |\n|------|-----|\n| **PermG_fwd** | **0/8** |\n| PermG_rev | 0/8 |\n| DiffXCorr_fwd | 1/8 |\n| DiffXCorr_rev | 1/8 |\n| threshold_onset_3sigma | 0/8 |\n| TY_fwd | 3/8 (C003: 低α下不可靠) |\n| **K_ge3** | **1/8** |\n| K_ge4 | 0/8 |\n| robust_pairs | ece→distinct_1 (naive,diff,ty) |\n\n**Drift**: distinct_2 −46.3%, distinct_3 −45.8%, ece +799.6% — 退化明显但 PermG 检测不到前导信号。\n\n**结论**: α=0.48 PermG 0/8（盲区），与 α=0.45 一致。相变点 α_c 收窄至 **(0.48, 0.50)**，宽度从 0.05 缩至 0.02。α=0.48 处退化信号强度不足以被 permutation Granger 捕获，相变非常陡峭。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-alpha-sweep-a048-s42-fp32.md"
+}

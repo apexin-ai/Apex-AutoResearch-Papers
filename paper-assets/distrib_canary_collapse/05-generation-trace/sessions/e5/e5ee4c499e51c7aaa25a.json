@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5ee4c499e51c7aaa25a",
+  "project": "distrib_canary_collapse",
+  "kind": "history",
+  "title": "director / loop_11.md",
+  "task_key": "loop_11",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_11.md",
+    "occurrence": 1,
+    "bytes": 4023,
+    "sha256": "7acfec4f0ad14f5a9e1e81bcad69db360c751e041f65ae43f310dd438114ea59"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: max_wall_time\nupdated: '2026-05-18T00:58:50+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 cuda:0, cuda:1 (westd-19828)，不可用其他卡\n- 分析必须用 `analyze_generalize.py`（导入 `method_ablation.py::_onset_gen`），禁止用旧 `analyze_opt1b_full.py` 的 `_onset` 函数\n- Table 7 统一参数：n_perm=5000, xcorr_max_lag=5, granger_max_lag=1, raw p<0.05（D057 决策）\n- Consensus K≥4/5 作为 multiplicity control，不做 per-method BH FDR（论文方法论已改）\n- VERSION A 已确认 (D054)，不可降级回 VERSION B\n- 论文唯一真源：`docs/paper/`（不是 artifacts）\n- ECE 双向性叙事：是指标固有属性（非 domain-specific），token_entropy 才是完美单向的\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19828 (connect.westd.seetacloud.com)，账号 root\n- 工作目录：/root/autodl-tmp/distrib_canary_collapse\n- Python: /root/miniconda3/bin/python，conda activate base\n- HF cache: /root/autodl-tmp/.hf_cache (HF_HOME)，gpt2-large 已通过 hf-mirror 恢复\n- metrics.py 有 MAUVE try/except 安全网（gpt2-large 加载失败时 skip）\n- `iterative_train.py` 支持 `--start_gen` 参数（本轮新增，用于 resume）\n- 磁盘：~24% used（清理后释放 191GB，从 100% 降到 24%）\n- 两张 GPU 当前空闲（所有训练实验已完成）\n\n### 3. 📊 当前状态\n本轮完成：\n- Pythia-1.4B Scale 实验完成（K≥4=5/8 raw, PermG rev=0/8）→ Table 7 Scale 行填入\n- C4 seed-43 完成（K≥4=8/8, PG_rev=0/8）→ 确认 C4 s42 的 ECE bidirectionality 是 seed-dependent\n- D057 方法论决策：raw p + consensus-as-multiplicity-control（Reviewer 确认有文献先例）\n- 论文方法论文字已修改（BH FDR → consensus control）\n- Table 7 大部分行已更新（Architecture/Domain/Scale 用统一参数数字）\n- 磁盘满危机修复 + MAUVE/gpt2-large 网络问题修复\n\n**Agent 队列中仍有 2 条未处理指令**（Agent 正在执行中）：\n1. Baseline (Pythia-410M) 行更新为 8/8, 8/8, 8/8, 6/8, **3/8**, 4/8, 6/8\n2. Architecture paragraph 修正（删除 \"0 reverse-direction pairs\" claim，改为 token_entropy 限定）\n3. 附录 FDR sensitivity analysis table\n4. Table 7 caption 最终版\n\n等待 Agent 完成这些后应该就 Round 2 ready。\n\n### 4. 📋 待办\n- Agent 汇报 Table 7 全部更新完成 → Reviewer 做最终一致性审查 → 确认无矛盾后提交 Round 2 (`submit_paper_to_review`)\n- 如果 Reviewer 发现新矛盾 → 修复后再提交\n- C4 seed-43 registry 需确认已更新为 DONE/success（metrics: K≥4=8/8, PG_fwd=8/8, PG_rev=0/8）\n- 附录 FDR sensitivity table 完成后 → 检查是否需要 Reviewer 验证数字\n- 全部完成 → `director_reply_to_user` 通知用户论文准备就绪 + `submit_paper_to_review`\n- GPU 空闲 → 无紧急训练任务，Round 2 提交是当前唯一 blocker\n\n### 5. 🎯 战略上下文\n- 项目目标：EMNLP 2026 Main Track（ARR June cycle，DDL ~June 15）\n- 核心 narrative (D027 Option B)：方法论陷阱 + 多方法共识框架，canary prediction 为 case study\n- D054: VERSION A confirmed（三架构泛化）\n- D055: C4 域 ECE bidirectionality → 后来发现是 ECE 固有属性（Baseline 也有 3/8），不是 domain-specific\n- D056: Scale K≥4=5/8 通过（raw p 下）\n- D057: Table 7 统一用 raw p + consensus K≥4/5 as multiplicity control（Reviewer 确认 Nichols 2005 conjunction analysis 先例）\n- **易错点**：(1) 不要把 FDR-corrected 数字放进 Table 7（D057 决策是 raw p）；(2) ECE 双向性叙事：是指标属性不是 domain/seed noise，token_entropy 才是 \"perfect\"；(3) Baseline PG_rev=3/8 是真的（统一参数后暴露），architecture paragraph 需要改；(4) 26 个成功实验（含 C4 s43），Table 7 五行：Baseline/Architecture/Domain/Scale + GPT-2m 在 Table 3-6\n- **审稿人最可能攻击**：为什么不用 FDR → 附录 sensitivity analysis preempt；方法间非独立 → FPR=0% 实证支撑\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11.md"
+}

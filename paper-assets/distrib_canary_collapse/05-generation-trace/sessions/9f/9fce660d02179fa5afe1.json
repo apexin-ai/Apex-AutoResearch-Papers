@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9fce660d02179fa5afe1",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis a075 s43 5method leadlag",
+  "task_key": "worker_analysis_a075_s43_5method_leadlag_20260516T142157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_a075_s43_5method_leadlag_20260516T142157_result.json",
+    "occurrence": 1,
+    "bytes": 1223,
+    "sha256": "caa3b14e64db0822972fd8b71183a50bb02eaab2cace9e5efae87f1e685201c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 完成\n\n### s43 单独结果\n| Metric | Value |\n|--------|-------|\n| Perm Granger FDR forward | **5/8** sig |\n| Perm Granger FDR reverse | **0/8** |\n| Consensus ≥3/5 | **6/8** robust |\n| Threshold onset | **4/8** (entropy leads 1 gen) |\n\n### Cross-seed 汇总 (s42/s43/s44, 统一 pipeline)\n\n| Pair | s42 | s43 | s44 | 3-seed consistent |\n|------|-----|-----|-----|-------------------|\n| ece→d1 | * | * | * | **YES** |\n| ece→d2 | * | * | * | **YES** |\n| ece→d3 | * | * | * | **YES** |\n| 其余5对 | mixed | mixed | mixed | no |\n\n**关键结论**：\n- 方向性完全稳定：24 次 reverse 测试全部 non-sig\n- ECE → diversity (d1/d2/d3) 是最可复现的 Granger 信号（3/3 seeds）\n- token_entropy 在 threshold onset 上完美稳定（4/8 all seeds，all lead=1 gen）\n- 注意：s42 用统一 pipeline 重跑后为 8/8（旧版 3/8 因代码版本差异）\n\n### 产出\n- `artifacts/alpha_sweep_a075_s43/data/a075_s43_5method_results.json`\n- `artifacts/alpha_sweep_a075_s43/report/a075_s43_5method_analysis.md`\n- `artifacts/_project/data/a075_3seed_cross_seed_summary.txt`\n- 服务器完整 JSON: `results/alpha_sweep/a075_s43/analysis/5method_leadlag.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-a075-s43-5method-leadlag.md"
+}

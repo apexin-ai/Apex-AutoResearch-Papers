@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9516ec4538975df63509",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops interv stale data cleanup",
+  "task_key": "worker_ops_interv_stale_data_cleanup_20260520T213216",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_interv_stale_data_cleanup_20260520T213216_result.json",
+    "occurrence": 1,
+    "bytes": 511,
+    "sha256": "300506efbfa8b6f92cec38f28a27e79434dc01b6edf29a906f3646a08131e84e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n**路径说明**: 新 run 的实际输出路径是 `reactive_d1_s43_fp32/`（不是 `reactive_d1_s43/`）。\n\n**清理内容** (`reactive_d1_s43_fp32/`):\n- 删除旧 gen 目录: gen_3, gen_4, gen_5, gen_6, gen_7, gen_8, gen_9, gen_10\n- 删除旧 run 产物: all_metrics.json, EXIT_CODE\n\n**当前状态**: 目录只剩 gen_0 (基线), gen_1, gen_2 (新 run 产出, May 21), config.json。新 run 进程正常运行中 (PID 382885 tmux session `interv_react_s43`, GPU 0)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-interv-stale-data-cleanup.md"
+}

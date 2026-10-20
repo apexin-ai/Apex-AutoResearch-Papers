@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79169ae0ade4d3a2b15b",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diagnose smollm3 3b wiki a100 s43 fp32",
+  "task_key": "worker_diagnose_smollm3_3b_wiki_a100_s43_fp32_20260519T232437",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_smollm3_3b_wiki_a100_s43_fp32_20260519T232437_result.json",
+    "occurrence": 1,
+    "bytes": 871,
+    "sha256": "7207f060ecd02d367c71019bf2e09990ad3ccea69f9613288fd341439e4c6233"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**失败原因**：磁盘满（`No space left on device`）。数据盘 250GB 已 100% 占满。\n\n**失败阶段**：gen_2 训练 5000 步已全部完成，但在 `save_pretrained` 写 safetensors 时失败。训练本身没有问题。\n\n**完成情况**：\n- gen_0, gen_1：完整\n- gen_2：训练完成但 checkpoint 截断（5.36GB vs 期望 12.3GB），不可用\n- gen_3~gen_9：未开始（共需 10 generations）\n\n**磁盘占用大户**：`results/generalize/` 共 137GB，其中 `pythia14b_wiki_a100_s43` 占 53GB，`smollm3_3b_wiki_a100_s42_fp32_v3` 占 24GB。\n\n**修复方案**：清理不再需要的实验结果释放空间 → 删除 gen_2 损坏目录 → 从 `start_gen=2` 重跑。剩余 7 个 generation 至少需要 ~84GB 空间。\n\n报告已写入 `artifacts/smollm3_3b_wiki_a100_s43_fp32/diagnose.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-smollm3-3b-wiki-a100-s43-fp32.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28560964e53e4a62a917",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code deploy alpha sweep code",
+  "task_key": "worker_code_deploy-alpha-sweep-code_20260514T185918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_deploy-alpha-sweep-code_20260514T185918_result.json",
+    "occurrence": 1,
+    "bytes": 490,
+    "sha256": "d44696db9db6cd5dd56a2de846b98f63c8142c48cff3f33f3549d0b3aa4b2b99"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成，验证通过。\n\n**结果汇总：**\n- 旧版（257行）已备份为 `iterative_train.py.bak.mvp`\n- 新版（293行）已部署，`--help` 输出确认：\n  - `--synthetic_ratio` ✓（Fraction of training data that is synthetic (0-1)）\n  - `--accumulate` ✓（Pool all historical synthetic data instead of only the latest generation）\n- import 无误，参数解析正常\n- 新增功能：双向 mix_datasets、accumulate 模式、EXIT_CODE 哨兵"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-deploy-alpha-sweep-code.md"
+}

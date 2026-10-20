@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a08528a746cf3fddb693",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis a050 postd093 s42",
+  "task_key": "worker_analysis_a050_postd093_s42_20260520T030638",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_a050_postd093_s42_20260520T030638_result.json",
+    "occurrence": 1,
+    "bytes": 1044,
+    "sha256": "7bd392605e0562ceb82d94af7020a8d9d93d73535b6610899f497a8ef5e2ccef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Analysis 完成，`5method_leadlag.json` 已生成。\n\n## 结果报告\n\n### PermG Forward: **6/8** (与 pre-D093 一致)\n\n| pair | p_fdr | sig | dir |\n|------|-------|-----|-----|\n| token_entropy→distinct_1 | 0.0016 | **Yes** | fwd |\n| token_entropy→distinct_2 | 0.0054 | **Yes** | fwd |\n| token_entropy→distinct_3 | 0.0136 | **Yes** | fwd |\n| token_entropy→mauve | 0.3983 | No | fwd |\n| ece→distinct_1 | 0.0008 | **Yes** | fwd |\n| ece→distinct_2 | 0.0076 | **Yes** | fwd |\n| ece→distinct_3 | 0.0036 | **Yes** | fwd |\n| ece→mauve | 0.2312 | No | fwd |\n\n### 5-Method Summary\n\n| Method | fwd sig / total |\n|--------|----------------|\n| naive_xcorr | 3/8 |\n| diff_xcorr | 2/8 |\n| threshold_onset | 8/8 |\n| perm_granger | **6/8** |\n| ty_granger | 4/8 |\n\n**结论**: PermG 6/8 ≥ 6/8 阈值达标。D093 padding side 变更（left→right）未影响 onset 判定——两个 mauve pair 不显著的模式与 pre-D093 一致，6 个 distinct pair 全部 fwd 显著。C006 混杂可降级。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-a050-postd093-s42.md"
+}

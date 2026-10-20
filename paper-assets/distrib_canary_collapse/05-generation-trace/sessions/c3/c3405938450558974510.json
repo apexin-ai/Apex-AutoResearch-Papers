@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c3405938450558974510",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops diagnose t15 a045 s42 d102",
+  "task_key": "worker_ops_diagnose-t15-a045-s42-d102_20260523T044937",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose-t15-a045-s42-d102_20260523T044937_result.json",
+    "occurrence": 1,
+    "bytes": 853,
+    "sha256": "10cfed05fa1ffc5814b4c69f25f3b68797835f4107f38410b233b19b620950bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Here's the summary:\n\n## scale_14b_t15_a045_s42_fp32 — DONE ✓\n\n**训练**: 成功完成，16 代 (gen_0–gen_15)，all_metrics.json 存在，clean exit。\n\n**D102 指标**:\n\n| 方法 | Forward | Reverse |\n|------|---------|---------|\n| PermG FDR | **3/8** | 0/8 |\n| Diff xcorr FDR | 6/8 | 6/8 |\n| Threshold onset | 2/8 | — |\n| TY Granger | 6/8 | — |\n| **K≥3 robust pairs** | **4/8** | — |\n\n**末代指标**: ppl=34.16, mauve=0.0252\n\n**与 410M 对比** (T=15 α=0.45):\n- 410M: PermG **6/8** → 1.4B: PermG **3/8**\n- 1.4B 信号明显更弱。PermG 从 6/8 降到 3/8，K≥3 为 4/8（主要由 ece→distinct pairs 贡献）。mauve pairs 全部未通过检测。\n- 这与 T=10 观察到的 scale attenuation 趋势一致：更大模型对低-中 α 的 canary 信号更有抵抗力。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-t15-a045-s42-d102.md"
+}

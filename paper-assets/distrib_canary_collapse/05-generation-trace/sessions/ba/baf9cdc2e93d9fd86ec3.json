@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "baf9cdc2e93d9fd86ec3",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diagnose generalize pythia1b c4 a100 s42",
+  "task_key": "worker_diagnose_generalize_pythia1b_c4_a100_s42_20260517T122942",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_generalize_pythia1b_c4_a100_s42_20260517T122942_result.json",
+    "occurrence": 1,
+    "bytes": 486,
+    "sha256": "b9de595c803448e38ee5a9198f13e22d244cd75010298491a87f91ffe5819ac9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**失败原因**: 从 hf-mirror.com 下载 `EleutherAI/pythia-1b` 权重时连接中断 (`ChunkedEncodingError`)，仅下载了 ~139 MB / ~2.0 GB (7%)。训练未开始，无任何可用结果。\n\n**修复**: 清理 `.incomplete` 缓存文件 → 预下载模型（带 `resume_download=True`）→ 确认完整后用 `CUDA_VISIBLE_DEVICES=0` 重新提交（GPU 1 当前被其他进程占用）。\n\n报告已写入并注册: `art_20260517_697db2`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-generalize-pythia1b-c4-a100-s42.md"
+}

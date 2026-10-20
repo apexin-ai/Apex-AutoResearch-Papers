@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f52ed483f509d2a5903",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops update anon repo",
+  "task_key": "worker_ops_update-anon-repo_20260524T002953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_update-anon-repo_20260524T002953_result.json",
+    "occurrence": 1,
+    "bytes": 402,
+    "sha256": "39732643f1b1606910ed819611a44779c10cf129fb17bdddc05ebae9c02a0506"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "推送完成。\n\n- **Commit**: `dcdb734f65a826f237dee2319f9057a19a87ae1a`\n- **文件数**: 115\n- **主要变更**: 新增 docs/paper/ 全部论文文件（含 Table 17 6-pair D102 更新 + appendix patch），清理旧分析脚本，新增项目配置和新版分析脚本\n- **匿名化**: 已清理 .venv、task_context（含 token）、checkpoints、distill_tmp；PII 检查通过"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-update-anon-repo.md"
+}

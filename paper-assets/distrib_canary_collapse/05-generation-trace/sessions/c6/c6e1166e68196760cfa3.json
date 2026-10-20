@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0",
+  "id": "c6e1166e68196760cfa3",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "analysis drift discrepancy audit",
+  "task_key": "worker_analysis_drift_discrepancy_audit_20260515T210858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_drift_discrepancy_audit_20260515T210858.log",
+    "occurrence": 1,
+    "bytes": 1351880,
+    "sha256": "9742116045c2d3b5fd58be8ca30fd1adbfd0e585f2602f6c1e62313cf54d1107"
+  },
+  "statistics": {
+    "messages": 499,
+    "user_turns": 3,
+    "tool_calls": 168,
+    "roles": {
+      "log": 1,
+      "system": 125,
+      "record": 1,
+      "assistant": 32,
+      "tool_call": 168,
+      "user": 3,
+      "tool_result": 168,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "c6e1166e68196760cfa3-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 9,
+      "chunks": [
+        {
+          "path": "c6e1166e68196760cfa3-part-0001.json",
+          "message_count": 9
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 27,
+      "chunks": [
+        {
+          "path": "c6e1166e68196760cfa3-part-0001.json",
+          "message_count": 27
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 456,
+      "chunks": [
+        {
+          "path": "c6e1166e68196760cfa3-part-0001.json",
+          "message_count": 137
+        },
+        {
+          "path": "c6e1166e68196760cfa3-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c6e1166e68196760cfa3-part-0003.json",
+          "message_count": 116
+        },
+        {
+          "path": "c6e1166e68196760cfa3-part-0004.json",
+          "message_count": 23
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-drift-discrepancy-audit.md"
+}

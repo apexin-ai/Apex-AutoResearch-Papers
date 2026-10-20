@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "db88fff33a3f32b78e1e",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis gen wiki gpt2m a100 s42 v4",
+  "task_key": "worker_analysis_gen_wiki_gpt2m_a100_s42_v4_20260518T113124",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gen_wiki_gpt2m_a100_s42_v4_20260518T113124_result.json",
+    "occurrence": 1,
+    "bytes": 767,
+    "sha256": "98d85f397063ae9e84f565dbf4861a72bc34e8e928734609b01e80074e847342"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成，实验已标记 DONE(success)。\n\n## 结果摘要\n\n**Table 7 GPT-2m 行**:\n\n| Naive | Diff | Thresh | PG_fwd | PG_rev | TY | K>=4 |\n|-------|------|--------|--------|--------|-----|------|\n| 8/8 | 8/8 | 8/8 | 6/8 | 3/8 | 5/8 | **6/8** |\n\n**与 Baseline (Pythia-410M) 几乎一致**：Naive/Diff/Thresh/PG_fwd/PG_rev/K>=4 完全相同，TY 从 4/8 提升到 5/8。\n\n**Drift 亮点**：\n- token_entropy: -86.6% (严重坍缩)\n- perplexity: +50527.6% (32.6 → 16520.5，所有条件中最极端)\n- distinct_1/2/3: -12% ~ -14%\n\n**结论**: GPT-2m 确认 canary-downstream 因果信号跨架构泛化成立，K>=4=6/8 与其他条件 (5/8-6/8) 一致。报告已注册 (`art_20260518_bd30d8`)，registry 已更新为 DONE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gen-wiki-gpt2m-a100-s42-v4.md"
+}

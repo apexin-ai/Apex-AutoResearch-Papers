@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8d99efda4d7a4f14f6e",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis d120 missing 3 exps",
+  "task_key": "worker_analysis_d120_missing_3_exps_20260520T065220",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d120_missing_3_exps_20260520T065220_result.json",
+    "occurrence": 1,
+    "bytes": 126,
+    "sha256": "59203a2447a16632d14bee428fbd28c717576f0c883f16d723c333762a873903"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个缺失实验的 D120 TY-fixed 分析全部完成，结果已保存到各实验的 `analysis/` 目录下。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d120-missing-3-exps.md"
+}

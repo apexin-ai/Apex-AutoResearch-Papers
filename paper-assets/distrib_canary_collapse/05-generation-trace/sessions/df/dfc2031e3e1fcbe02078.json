@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dfc2031e3e1fcbe02078",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code anon repo push v2",
+  "task_key": "worker_code_anon_repo_push_v2_20260524T011548",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_anon_repo_push_v2_20260524T011548_result.json",
+    "occurrence": 1,
+    "bytes": 283,
+    "sha256": "4fe074bc370be513e4b73606390be8bf48d1703bf8e1709e63becad16de00194"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 匿名仓库更新结果\n- 路径: `/tmp/anon_repo`\n- 远程: `github.com/anonymous-nlp-2026-2/distrib_canary_collapse`\n- 新 commit hash: `f3d6531`\n- 变更文件数: 39（首次全量同步）\n- 匿名化检查: 通过\n- Push: 成功（`dcdb734..f3d6531`）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-anon-repo-push-v2.md"
+}

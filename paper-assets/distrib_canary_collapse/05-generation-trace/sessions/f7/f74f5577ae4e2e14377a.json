@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f74f5577ae4e2e14377a",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops kill duplicate t10 a075 s44",
+  "task_key": "worker_ops_kill-duplicate-t10-a075-s44_20260523T092300",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-duplicate-t10-a075-s44_20260523T092300_result.json",
+    "occurrence": 1,
+    "bytes": 180,
+    "sha256": "ae9ccbcaf6e2ad6a1bfe6ec90c1dab69908e63dbe2d36bfa2e3150cc4cef1df2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **保留**: PID 865472 (父 865467)，cuda:1，11236 MiB\n- **已杀**: PID 865617 + 865611\n- nvidia-smi 确认 cuda:1 上只剩一个进程 (865472)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-duplicate-t10-a075-s44.md"
+}

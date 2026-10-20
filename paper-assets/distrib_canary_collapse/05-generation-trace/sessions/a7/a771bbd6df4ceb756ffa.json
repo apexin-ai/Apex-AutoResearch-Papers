@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a771bbd6df4ceb756ffa",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ssh model dataset prep",
+  "task_key": "worker_ssh_model_dataset_prep_20260517T070038",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_model_dataset_prep_20260517T070038_result.json",
+    "occurrence": 1,
+    "bytes": 1755,
+    "sha256": "a31425dbb4d115456e27006c0ef24b9a6e934d18960e996fec6f21f501479f56"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载稳定 ~3.3MB/s (100MB/2.6GB)，ETA ~12分钟。所有信息已收集完毕。\n\n---\n\n## Phase 1 准备状态汇报\n\n### 1. 代码参数化：已支持 ✓\n\n`iterative_train.py` 已有：\n- `--model_name` (default: `EleutherAI/pythia-410m`)\n- `--data_dir` (default: `data/wikitext103`)\n- `--dataset` (logging 用)\n\n模型加载完全通用（`AutoModelForCausalLM.from_pretrained`），pad_token 有 fallback 处理。**无需代码改动。**\n\n### 2. HF cache 已有模型\n\n| 模型 | 大小 | 状态 |\n|------|------|------|\n| EleutherAI/pythia-410m | 872MB | ✓ 可用 |\n| gpt2-medium | 1.5GB | ✓ 可用（bonus） |\n| gpt2-large | 3.1GB | ✓ 可用（bonus） |\n| facebook/opt-1.3b | ~2.6GB | 下载中 (100MB, ETA ~12min) |\n\n### 3. OPT-1.3B 下载：进行中\n\nPID 245459 后台运行，速率 ~3.3MB/s，预计 ~12 分钟完成。\n\n### 4. C4 数据：已就绪 ✓\n\n`data/c4_5k/` 已存在，格式与 WikiText 一致（HF Arrow，train/eval/prompts 子目录）：\n- Train: 4,500 samples\n- Eval: 500 samples  \n- Prompts: 500 samples\n\n**注意规模差异**：WikiText 5k 有 716,506 train / 5,000 prompts，C4 仅 4,500 train / 500 prompts。如需公平对比，C4 train set 可能需要扩大或 WikiText 需要缩小。\n\n### 5. 磁盘空间：充足\n\n147GB 可用 (42% 使用)。\n\n### 6. 总结\n\n**Status: Ready（待 OPT-1.3B 下载完成，~12min）**\n\n唯一潜在问题：C4 vs WikiText 训练集规模差 159x（4.5K vs 716K），prompts 差 10x（500 vs 5000）。实验公平性可能需要：\n- 扩大 C4 到 ~5000 prompts + 更多 train samples，或\n- 缩小 WikiText 到与 C4 对齐的规模\n\n这取决于实验设计意图——是否需要 Director 决定？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-model-dataset-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd3125050fac91f9419e",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "paper scale paragraph update",
+  "task_key": "worker_paper_scale_paragraph_update_20260518T032731",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_scale_paragraph_update_20260518T032731_result.json",
+    "occurrence": 1,
+    "bytes": 2710,
+    "sha256": "bd2ab7224827b2a62e3d34a0c919c258df2799bed9070c02199253ea7ae7e89c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 产出汇总\n\n### 1. 修改文件及位置\n\n| 文件 | 位置 | 修改类型 |\n|------|------|---------|\n| `experiments.tex` | L370-376 `\\paragraph{Scale generalization.}` | 重写段落 |\n| `experiments.tex` | L356-359 Table 7 footnote | 新增一行脚注 |\n| `discussion.tex` | L33 (Short time-series constraint 段落内) | 插入 1 句 |\n\n### 2. Scale 段落全文\n\n```latex\n\\paragraph{Scale generalization.}\nScaling from 410M to 1.4B parameters (3.4$\\times$) preserves majority consensus\n($K{\\geq}4/5$ in 5/8 pairs): the lead-lag signal persists across model scale.\nOf the three non-consensus pairs, two target perplexity\n(token\\_entropy$\\to$perplexity, $K{=}1$; ECE$\\to$perplexity, $K{=}2$), a channel\nthat also fails to reach $K{\\geq}4$ in the 410M Baseline due to the shared-trend\nartifact identified by the first-differencing diagnostic (\\S\\ref{sec:method_sensitivity}).\nThe sole scale-specific miss is token\\_entropy$\\to$distinct\\_3 ($K{=}3/5$), where\npermutation Granger forward significance falls just short of threshold ($p{=}0.053$);\nexcluding perplexity pairs, Scale consensus reaches 5/6.\nThreshold onset detection achieves 8/8 at this scale, and permutation Granger reverse\nsignificance is 0/8 (the only condition without ECE reverse leakage, likely because the\nlarger model's reduced variance suppresses borderline reverse signals).\nToda--Yamamoto yields 0/8 significant pairs: at $T{=}10$ generations, ADF integration\norder estimates become unstable across conditions (token\\_entropy shifts from $I(0)$ to\n$I(1)$ relative to the Baseline), and the resulting loss of residual degrees of freedom\nrenders the procedure uninformative (\\S\\ref{sec:consensus_validation}).\nThe consensus framework absorbs this single-method failure by design.\n```\n\n旧段落错误已修正：原文称\"two token\\_entropy pairs\"落入非共识，实际是 3 对（遗漏了 ece→ppl）。\n\n### 3. TY limitation — 修改\n\n在 discussion.tex \"Short time-series constraint\" 段落的 FNR 句后插入 1 句：\n\n> Scale amplifies this limitation: in Pythia-1.4B, ADF integration order estimates become unstable (token\\_entropy shifts from I(0) to I(1)) and increased downstream variance degrades signal-to-noise ratios, so Toda--Yamamoto yields 0/8 significance at this scale while the consensus framework still maintains K≥4/5 in 5/8 pairs.\n\n### 4. Table 7 脚注 — 已添加\n\n新增一行：\n> Canary→perplexity pairs do not reach K≥4 in any condition; these are shared-trend artifacts eliminated by first-differencing (§method\\_sensitivity).\n\n### 5. 编译结果\n\n0 errors, 26 pages, `main.pdf` 489907 bytes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-scale-paragraph-update.md"
+}

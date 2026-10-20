@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "755fe66cdf734cff756f",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "check c4 analysis compatibility",
+  "task_key": "worker_check_c4_analysis_compatibility_20260517T171021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_c4_analysis_compatibility_20260517T171021_result.json",
+    "occurrence": 1,
+    "bytes": 2073,
+    "sha256": "c37ba0dedaaccb72755101f9b195d65d40c7c218293f54107ebafedc7f4c03bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks complete. Here's the report:\n\n---\n\n## 预检报告\n\n### 1. 路径参数化 — **Y**\n\n`analyze_generalize.py` 通过 `--exp` 参数选择实验目录，无硬编码 WikiText 路径。C4 分析只需：\n```\npython analyze_generalize.py --exp pythia1b_c4_a100_s42\n```\n\n### 2. C4 目录结构兼容 — **Y**（有注意项）\n\n| 项目 | 状态 |\n|------|------|\n| gen_0 ~ gen_9 metrics.json | 全部存在 ✓ |\n| gen_10 | 空目录（首次运行崩溃，EXIT_CODE=1，IncompleteRead） |\n| `all_metrics.json` | 不存在，`assemble_all_metrics()` 会自动从 per-gen 文件组装 ✓ |\n| 指标字段 | token_entropy, self_bleu, distinct_1/2/3, ece, effective_rank, perplexity, mauve, generation — 与 WikiText 完全一致 ✓ |\n\n**config.json 标签错误**：`\"dataset\": \"wikitext-103-v1\"` 但实际 `\"data_dir\": \"data/c4_5k\"`。仅影响输出显示，不影响分析逻辑。\n\n### 3. Threshold Onset 修复 — **一致，但两处均未修 σ 膨胀**\n\n`analyze_generalize.py` → `method_ablation.py::threshold_lead` → `_onset_gen()`:\n```python\nbase, sigma = s[0], np.std(s)   # σ 含退化值，阈值偏高\n```\n\n`analyze_opt1b_full.py::_onset()` 逻辑**完全相同**。两个 codepath 行为一致，C4 分析不会比 OPT 分析差，也不会触发新 bug。但如果要修正 σ 膨胀，两处都要改。\n\n### 4. Pythia-1.4B — **Y，兼容**\n\n- `pythia14b_wiki_a100_s42/`: gen_0~gen_3 完成（仍在跑），指标字段一致\n- 分析脚本只读 metrics JSON，不加载模型，无模型名/路径依赖\n\n### 需修复项\n\n**仅 config.json 标签**（display-only bug）：`pythia1b_c4_a100_s42/config.json` 中 `dataset` 字段应为 `\"c4_5k\"`。\n\n要我直接修这个 config.json 标签吗？另外，`generalize_pythia1b_c4_a100_s42_v2` 脚本在服务器上未找到——v2 实验可能用的是其他脚本名或已被清理。如果 v2 正在运行并写入同一目录，当前 gen_0-9 数据会被覆盖（不影响分析，只是数据来源变了）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-c4-analysis-compatibility.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df770e0f8c9a90ffa3a1",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "fix d080 17855 kill fix resubmit",
+  "task_key": "worker_fix_d080_17855_kill_fix_resubmit_20260519T001837",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_d080_17855_kill_fix_resubmit_20260519T001837_result.json",
+    "occurrence": 1,
+    "bytes": 911,
+    "sha256": "19604924fd8aa146ee3dcc77ee48a6e7c9230bd52405069bf2178e1997b2bf9d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## D080 执行摘要\n\n**Step 1-2**: 原始 PID 已不存在。发现 GPU 3 上有旧代码启动的 a005_s42_fp32_v3 (PID 69317)，已 kill。`iterative_train.py` 两处 `else None` → `else torch.float32` 修复完成（MD5: `a51bddbed6f1bdf79051283d5238fd19`）。\n\n**Step 3**: 清理完成：\n- `a005_s42_fp32_v3/gen_1` 已删除\n- `a060_s42_fp32_v2/gen_1+gen_2` 已删除（含 810MB NaN checkpoint）\n- `predictive_te_a075_s42_fp32/gen_1+gen_2` 已删除（含 810MB NaN checkpoint）\n\n**Step 4**: Registry 已更新：a005_s42 → failed+notes, a060_fp32_v2 → notes, a060_fp32 → notes, interv_pred_fp32 → notes。\n\n**Step 5**: 三个实验已提交到新 output_dir（`*_d080` 后缀）。\n\n**Step 6**: Qwen3.5 config `torch_dtype=None`，但训练正常（loss=0.71-0.89, grad_norm=14-18），**不受影响**。\n\n**Step 7**: 已设置 15 分钟后自动检查 NaN。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-d080-17855-kill-fix-resubmit.md"
+}

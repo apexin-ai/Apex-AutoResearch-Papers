@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef292418152ef08be832",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "prep pd batch remaining 14",
+  "task_key": "worker_prep_pd_batch_remaining_14_20260525T194359",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_pd_batch_remaining_14_20260525T194359_result.json",
+    "occurrence": 1,
+    "bytes": 254,
+    "sha256": "2e030b608f6be00e424b0134a0f8a89d2022832d51fcfebe85f596eb449dd407"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果：**\n\n- 脚本 `run_pd_batch_remaining.sh` 已创建，内容正确，14 个实验（α=0.45 s46-49, α=0.50 s45-49, α=0.55 s45-49）串行排列。\n- `pd_a045_s45_fp32` tmux session 仍在运行（创建于 May 26 03:42）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-pd-batch-remaining-14.md"
+}

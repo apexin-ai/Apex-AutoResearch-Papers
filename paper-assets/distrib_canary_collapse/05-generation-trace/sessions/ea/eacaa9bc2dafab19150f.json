@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eacaa9bc2dafab19150f",
+  "project": "distrib_canary_collapse",
+  "kind": "history",
+  "title": "reviewer / loop_10.md",
+  "task_key": "loop_10",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_10.md",
+    "occurrence": 1,
+    "bytes": 4078,
+    "sha256": "78725ed733912f39d6860f51059d5e921ea27ca59ed95f30094a5a096d380070"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: max_wall_time\nupdated: '2026-05-17T08:14:47+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-19828 的 cuda:0 和 cuda:1，越界即 CRITICAL\n- C003：禁止引用 α≤0.50 的 TY Granger 显著率（power 不足，结论不可靠）\n- C004：禁止未确认状态下 kill 运行中进程或 rm -rf 实验目录\n- 论文唯一真源：`docs/paper/`（本地 workspace），不是远程残留版本\n- Worker A 裁决已确认：α=0.50 PermG 数据以磁盘 5method_leadlag.json 为准（s42=0/8, s43=6/8, s44=3/8），任何与此矛盾的 Worker 报告直接打回\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19828(root)，工作目录 `/root/autodl-tmp/distrib_canary_collapse`\n- Python：`/root/miniconda3/bin/python`（conda base env）\n- HF cache：`/root/autodl-tmp/.hf_cache`（含 pythia-410m, gpt2-medium, gpt2-large, opt-1.3b）\n- 数据：`data/wikitext103_5k`, `data/c4_5k`\n- 活跃进程（截至 handoff）：\n  - PID 247554, cuda:0: `iterative_train.py --model_name EleutherAI/pythia-410m ... --output_dir results/generalize/pythia410m_wiki_a100_s42`（控制实验，预计 ~13:00 UTC 完成）\n  - PID 249384, cuda:1: `iterative_train.py --model_name facebook/opt-1.3b ... --output_dir results/generalize/opt1b_wiki_a100_s42`（跨架构泛化，预计 ~17:00-22:00 UTC）\n- 第三个实验 `generalize_pythia1b_c4_a100_s42` QUEUED，等 GPU 空闲；注意 Pythia-1B 尚未下载到 HF cache\n\n### 3. 📊 当前状态\n**刚完成**：\n- α=0.50 三种子数据冲突裁决（Worker A 正确）\n- method.tex line 30 修复审计通过（seed-dependent 描述替换 \"unanimously\"）\n- Table 1 三种子 mean±std 审计通过\n- LaTeX triple-pass 编译确认（22 页，0 errors，1 benign float warning）\n- Discussion + Limitations 深度审查已提交（5 条具体建议 + em-dash 清理）\n\n**Registry RUNNING/QUEUED**：\n- generalize_pythia410m_wiki_a100_s42: 实际 RUNNING（registry 仍显示 QUEUED，tracking bug 已报）\n- generalize_opt1b_wiki_a100_s42: 实际 RUNNING（同上）\n- generalize_pythia1b_c4_a100_s42: QUEUED（等 GPU）\n\n**等待中**：无 pending Worker 回调。Director 尚未回应 Discussion/Limitations 审查建议。\n\n### 4. 📋 待办（条件触发式）\n- generalize_pythia410m_wiki 完成 → 审查 5-method analysis 是否与 mvp_v4_rep42 一致（控制验证）\n- generalize_opt1b_wiki 完成 → 核心审查：OPT-1.3B 是否复现 canary→diversity lead；关注 OPT tokenizer 差异对 distinct-n 的影响\n- Phase 2c 启动 → 审查 GPU 分配合规 + 确认 Pythia-1B 下载成功\n- Paper Agent 提交 em-dash 清理 patch → 审查是否全文清零（目标：Discussion 11 + Limitations 4 + 其他章节待计数）\n- Paper Agent 纳入泛化实验结果 → 审查：(a) Phase 2c confound 是否在 Limitations 声明；(b) 新 claim 强度是否与单 seed 证据匹配\n- Round 2 重新提交 → 最终编译审查（无 ??，无 overflow）\n\n### 5. 🎯 战略上下文\n- **项目核心结论**：Lead-lag 分析在 iterative collapse 中高度脆弱（method sensitivity 62.5% FPR, spurious regression, regime dependence）。多方法共识框架 K≥4/5 唯一达到 FPR=0% + FNR=0%。Token entropy 是 diversity collapse 的 1-generation canary（α≥0.75 robust，α=0.50 boundary）。\n- **决策链**：D027(reframe) → D043(EMNLP target) → D050(claim 强度) → D052/D053(boundary 确认) → Phase 2(泛化)\n- **易错点**：\n  1. 不要把 Table 2 的 Naive XCorr \"100%\" 理解为 forward-only——它计算任意 lag 方向的显著性（by design 展示过度宽松）\n  2. α=0.50 的 \"9/24\" 包含 ECE→perplexity 对（2/3 seeds 中 PermG 显著），与 α=1.0 \"perplexity = spurious\" 的结论不矛盾——后者特指 α=1.0 的 co-trending artifact\n  3. Registry 三个 generalize 实验状态为 QUEUED 但实际已在 GPU 上跑——registry 没 update 到 RUNNING，这是已知 tracking bug\n  4. Phase 2c (Pythia-1B + C4) 有 confound（同时变 scale + domain），已建议 Limitations 声明但尚未执行\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-copy-3.md"
+}

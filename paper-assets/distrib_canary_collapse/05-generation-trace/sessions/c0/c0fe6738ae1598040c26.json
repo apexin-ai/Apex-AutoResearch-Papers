@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c0fe6738ae1598040c26",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops launch null s46 19828",
+  "task_key": "worker_ops_launch_null_s46_19828_20260521T061439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_launch_null_s46_19828_20260521T061439_result.json",
+    "occurrence": 1,
+    "bytes": 602,
+    "sha256": "11d3322005e2cad2ae7e357d74a529411d667c94ed6b059bff22c51a03a17f98"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程正常运行中（128 线程，886MB RSS，VmSize 11.9GB）。模型加载中属于正常行为。\n\n实验已成功启动：\n\n- **exp_id**: `alpha_sweep_a000_s46_fp32`\n- **PID**: 647969 (bash) → 647974 (python)\n- **GPU**: cuda:1 @ westd-19828\n- **参数**: Pythia-410M, seed=46, α=0.0, fp32, 10 gen × 5000 steps\n- **日志**: `/root/autodl-tmp/distrib_canary_collapse/logs/a000_s46_fp32.log`\n- **输出**: `results/alpha_sweep/a000_s46_fp32/`\n\n模型正从 HF cache 加载（fp32，CPU 端分配内存中），加载完毕后会占用 cuda:1 显存并开始训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-launch-null-s46-19828.md"
+}

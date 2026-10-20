@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "6541fc3809b30301c7dc",
+  "project": "distrib_canary_collapse",
+  "kind": "conversation",
+  "title": "monitor actual progress 17855",
+  "task_key": "worker_monitor_actual-progress-17855_20260521T221137",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_monitor_actual-progress-17855_20260521T221137.jsonl",
+    "occurrence": 1,
+    "bytes": 177,
+    "sha256": "5c00a75f82ddbcb14d3288b71336b751d17f9670c378da399bde1d2b90c60b91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T22:11:48.021762+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 1am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_monitor_actual-progress-17855_20260521T221137"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/monitor-actual-progress-17855.md"
+}

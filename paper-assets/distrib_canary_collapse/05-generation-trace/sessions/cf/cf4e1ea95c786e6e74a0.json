@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "cf4e1ea95c786e6e74a0",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "code phase diagram prep",
+  "task_key": "worker_code_phase_diagram_prep_20260521T083751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase_diagram_prep_20260521T083751.log",
+    "occurrence": 1,
+    "bytes": 736143,
+    "sha256": "45ba8123f1e3b33e7186e8b8be0da2e1cb1c2791c94ad6e773f075081828a071"
+  },
+  "statistics": {
+    "messages": 485,
+    "user_turns": 0,
+    "tool_calls": 184,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 111,
+      "tool_call": 184,
+      "tool_result": 184,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 485,
+      "chunks": [
+        {
+          "path": "cf4e1ea95c786e6e74a0-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "cf4e1ea95c786e6e74a0-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "cf4e1ea95c786e6e74a0-part-0003.json",
+          "message_count": 125
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-phase-diagram-prep.md"
+}

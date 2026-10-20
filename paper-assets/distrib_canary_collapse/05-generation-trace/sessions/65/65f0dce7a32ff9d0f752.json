@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65f0dce7a32ff9d0f752",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops check t15 a050 s43 completion",
+  "task_key": "worker_ops_check-t15-a050-s43-completion_20260523T201552",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-t15-a050-s43-completion_20260523T201552_result.json",
+    "occurrence": 1,
+    "bytes": 1032,
+    "sha256": "54bc1151b9537cd0739ab5d260bd5ef92aff6fe70232aac1b18ce4516e96694a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n## 实验 scale_14b_t15_a050_s43_fp32\n\n**状态**: DONE (success), EXIT_CODE=0, 16 generations 全部完成\n\n**最终指标**: ppl=37.09, distinct_3=0.500, entropy=2.271, ece=0.157\n\n## D102 Lead-Lag 分析 (downstream=distinct_3)\n\n| Pair | Votes | Robust? |\n|------|-------|---------|\n| token_entropy → distinct_3 | 2/5 (diff, ty) | No |\n| ece → distinct_3 | **4/5** (naive, diff, perm, ty) | **Yes** |\n\n**Robust pairs: 1/2** — 只有 ece 是可靠 canary。\n\n关键发现：α=0.50 时 entropy 表现为 drop-then-stabilize（2.97→2.17→2.27），打破了 lead-lag 检测的单调性假设，因此不再 robust。相比 α=0.60 时两个 canary 都 4/5 robust，α=0.50 的 entropy 信号明显弱化，但 ece 仍保持检测能力。\n\n**产出文件**:\n- 远程: `results/analysis/D102_14b_t15_a050_s43_fp32_d3.json`\n- 本地 JSON: `artifacts/D102_14b_t15_a050_s43_fp32_d3.json`\n- 分析报告: `artifacts/_project/d102_t15_a050_s43_d3_result_20260523.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-t15-a050-s43-completion.md"
+}

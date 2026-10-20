@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eaf133dd0cf092e5d76f",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis fpr transparency table",
+  "task_key": "worker_analysis_fpr_transparency_table_20260524T062949",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_fpr_transparency_table_20260524T062949_result.json",
+    "occurrence": 1,
+    "bytes": 678,
+    "sha256": "36b4e2c746e109e5f7cb405dfe988a092eede192e198961a7e614a68e44beeb8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。产出：\n\n1. **`artifacts/fpr_transparency_all_seeds.json`** — 6 seeds × 6 pairs 的完整 per-pair p-value 数据\n2. **`artifacts/appendix_fpr_transparency_table.tex`** — 附录 LaTeX 表（36 行，K≥3 行灰底高亮）\n\n关键数据：\n- K≥3 FPR = **6/36 = 16.7%**（逐 seed: s45=1, s46=1, s47=2, s48=0, s49=0, s50=2）\n- 6 个 K≥3 假阳全部由 **naive + threshold + TY** 三个弱方法驱动（无 PermG/DiffXcorr 参与）\n- PermG FDR 假阳仅出现在 s45（2/6）和 s50（2/6），其他 4 seeds 均为 0/6\n\nLaTeX 表需要额外加载 `\\usepackage[table]{xcolor}`（用于 `\\rowcolor`），文件顶部已注明。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-fpr-transparency-table.md"
+}

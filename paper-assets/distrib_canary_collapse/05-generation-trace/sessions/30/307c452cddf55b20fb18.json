@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "307c452cddf55b20fb18",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis drift discrepancy audit",
+  "task_key": "worker_analysis_drift_discrepancy_audit_20260515T210858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_drift_discrepancy_audit_20260515T210858_result.json",
+    "occurrence": 1,
+    "bytes": 1297,
+    "sha256": "6a4c9197f8e9674e00a3b4a7f1f8d8291da1ab60a1dbe65a63d2ba5a2f0b8776"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。核心发现：\n\n## 结论\n\n**两边都有问题，但性质不同：**\n\n### Bug A: cross_alpha_summary — 单 seed 假冒多 seed\n- `cross_alpha_analysis_v4.py` 第 784-789 行的 `compute_dose_response()` 只加载 `rep_42` 数据\n- `regime_map_data.json` 把 α=1.0 drift 标记为 `\"seed\": [42,43,44,45]`，但实际只用了 seed 42\n- **drift 数值本身对 seed 42 是正确的**（-28.3%, -35.2%）\n\n### Bug B: Paper Table 1 — 论文写作 agent 虚构统计量\n- Paper-writing worker 没有 SSH 到服务器，registry 中缺少 rep42/43/45 的 gen10 distinct 数据\n- Agent 凭空编造了 \"4-seed mean±std\" 数值\n- 验证：对 registry 中有完整数据的指标（entropy, ECE, ppl），论文的 std 偏差达 5-7 倍\n  - ECE: 论文 ±158 vs 正确 ±30.7\n  - PPL: 论文 ±320 vs 正确 ±45.1\n- Seed 42 的 d2 drift (-35.2%) 距论文声称的 mean (-29.7) 有 3.7σ，在 4 个样本中统计上不可能\n\n### 紧急行动\n1. SSH 到服务器获取 4 个 seed 的 gen10 distinct 全精度数据\n2. 重新计算正确的 4-seed mean±std\n3. 修正 `experiments.tex` 第 40 行\n4. 修正 `regime_map_data.json` 的 α=1.0 drift 标注\n\n报告已写入 `artifacts/drift_discrepancy_audit/audit_report.md` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-drift-discrepancy-audit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c788b79d34381467887",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "prep gpt2m a025 config",
+  "task_key": "worker_prep_gpt2m-a025-config_20260515T120322",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_gpt2m-a025-config_20260515T120322_result.json",
+    "occurrence": 1,
+    "bytes": 1572,
+    "sha256": "2ce10db91bb95e63346d63427dba56ffa0b6bc211916d2a141d676777cb66f2f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已读取两个实验的完整配置。`gen_wiki_gpt2m_a025_s42` 仍为 QUEUED，可直接使用。\n\n基于 `gen_wiki_gpt2m_a100_s42_v2` 的命令模板，修改 `synthetic_ratio` 和 `output_dir`，完整提交配置如下：\n\n---\n\n**提交配置：gen_wiki_gpt2m_a025_s42**\n\n```\nexp_id: gen_wiki_gpt2m_a025_s42\ngpu_ids: [\"cuda:0\"]\ntimeout_hours: 12\nserver: westd-19828\naccount: root\n\ncommand:\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a025_s42 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/models/gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 0.25 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a025_s42\"\n```\n\n与 v2 参考的差异：\n| 参数 | v2 (α=1.0) | 本次 (α=0.25) |\n|------|-----------|--------------|\n| `--synthetic_ratio` | 1.0 | 0.25 |\n| `--output_dir` | `results/gen_wiki_gpt2m_a100_s42` | `results/gen_wiki_gpt2m_a025_s42` |\n| `mkdir -p` | `results/gen_wiki_gpt2m_a100_s42` | `results/gen_wiki_gpt2m_a025_s42` |\n\n其余参数（model_name 本地路径、TRANSFORMERS_OFFLINE=1、conda 激活、batch_size=32、seed=42）完全一致。\n\n**注意**：`gen_wiki_gpt2m_a100_s42_v2` 实际以 EXIT_CODE=1 失败（18 秒即退出）。如果根本原因未修复，本次提交可能遇到同样问题。建议提交前先确认 v2 的失败日志。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-gpt2m-a025-config.md"
+}

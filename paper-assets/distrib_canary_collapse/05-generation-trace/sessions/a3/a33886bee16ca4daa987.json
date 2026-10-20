@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a33886bee16ca4daa987",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops restart 14b 17855 batch",
+  "task_key": "worker_ops_restart-14b-17855-batch_20260522T094618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_restart-14b-17855-batch_20260522T094618_result.json",
+    "occurrence": 1,
+    "bytes": 847,
+    "sha256": "c40ec1269c81528f0f5467ae0594b7f90864139afb9aef1d6ef360353bcd0c04"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both experiments launched and verified. Final state on 17855:\n\n| GPU | PID | Experiment | Status |\n|-----|-----|-----------|--------|\n| 0 | 661775 | **t10_a050_s42_fp32_14b** (NEW) | Gen 0, 10.3GB, fixed code |\n| 1 | 662119 | **t15_a050_s42_fp32_14b v3** | Resumed gen 2, 10.3GB, fixed code |\n| 2 | 655764 | t10_a075_14b v2 | 29GB, old code |\n| 3 | 655841 | t10_a060_14b v2 | 29GB, old code |\n| 4 | 577241 | t25_a045_s43 410M | 14.5GB, since 08:19 |\n| 5 | 603938 | t20_a075_s43 410M | 14.5GB, since 12:10 |\n\nNew PIDs: **661775** (cuda:0, t10_a050) and **662119** (cuda:1, t15_a050_v3). Both loaded post-MAUVE-fix code. GPU memory at 10.3GB indicates model loaded, will grow to ~29GB during training steps.\n\nNote: GPUs 2-3 still run v2 experiments with pre-fix code — Director only requested restart for cuda:0/cuda:1."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-restart-14b-17855-batch.md"
+}

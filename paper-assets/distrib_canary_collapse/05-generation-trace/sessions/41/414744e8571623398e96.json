@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "414744e8571623398e96",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code consensus doc sig seeds fdr fix",
+  "task_key": "worker_code_consensus_doc_sig_seeds_fdr_fix_20260515T111624",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_consensus_doc_sig_seeds_fdr_fix_20260515T111624_result.json",
+    "occurrence": 1,
+    "bytes": 649,
+    "sha256": "bec268851338953b32000ef419b4d9283e40fa0723930c1af6cfa566dde00e82"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "§5.2 sig_seeds 矩阵已修正完毕。两个本地副本均已更新，服务器端无同名文件。\n\n变更汇总（9 个 cell）：\n\n| Cell | 旧值 | FDR 修正值 |\n|------|:---:|:---:|\n| entropy→d3 perm | 4 | 3 |\n| self_bleu→ppl perm | 1 | 0 |\n| ece→d1 TY | 3 | 2 |\n| eff_rank→d1 perm | 2 | 1 |\n| eff_rank→d2 diff | 3 | 2 |\n| eff_rank→d2 perm | 2 | 0 |\n| eff_rank→d3 diff | 3 | 2 |\n| eff_rank→d3 TY | 2 | 1 |\n| eff_rank→d3 perm | 2 | 0 |\n\n列总和验证：TY=24 ✓, perm=27 ✓, naive=63 不变 ✓, threshold=35 不变 ✓, diff 55→53（2 cell 微调）✓。§5.3/5.4 数据已一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-consensus-doc-sig-seeds-fdr-fix.md"
+}

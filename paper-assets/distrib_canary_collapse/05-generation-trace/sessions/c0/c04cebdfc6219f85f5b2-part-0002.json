@@ -1,0 +1,799 @@
+{
+  "schema_version": "1.0",
+  "session_id": "c04cebdfc6219f85f5b2",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 136,
+          "timestamp": "2026-05-20T04:28:12.280Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012KUdhwF8KQPd94Aj3GYtHu",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"opt13b_wiki_a100_s43_fp32\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T15:10:53.215Z\\\", \\\"updated_at\\\": \\\"2026-05-20T04:28:12.012Z\\\", \\\"hypothesis\\\": \\\"OPT-1.3B × WikiText-103 × α=1.0 × seed=43 × fp32 跨架构 multi-seed 验证。s42 已完成 K≥4=6/8，s43 验证跨 seed 稳健性。plan_030。\\\", \\\"parent\\\": \\\"gen_opt13b_a100_s43_bf16\\\", \\\"spec\\\": {\\\"data_path\\\": \\\"data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"facebook/opt-1.3b\\\", \\\"seed\\\": 43, \\\"precision\\\": \\\"fp32\\\", \\\"padding_side_fix\\\": \\\"D093 applied\\\"}, \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": \\\"452614\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/opt13b_wiki_a100_s43_fp32.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name facebook/opt-1.3b --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/gen_opt13b_wiki_a100_s43_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-20T00:12:30.568Z\\\"}, \\\"notes\\\": \\\"D103: s42 统一 pair K≥4=0/8。s43 验证 OPT 在统一配置下的 PermG/MMCT 表现。\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T00:12:36.303992+00:00\\\"}]}, \\\"metrics\\\": {\\\"threshold_onset_3sigma_m037\\\": \\\"already_3sigma_d105\\\", \\\"K3_3sigma_m037\\\": \\\"6/8\\\", \\\"K3_3sigma_d111_detail\\\": \\\"naive=8/8 diff=6/8 thr3s=0/8 pg=6/8 ty=5/8\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/gen_opt13b_wiki_a100_s43_fp32/\\\", \\\"completed_at\\\": \\\"2026-05-20T00:19:48.520Z\\\", \\\"note\\\": \\\"🚨 D111 CORRECTION: Original analysis reported K≥3=6/8, K≥4=4/8 but ALL 8 pairs have naive peak_lag ≤ 0 AND diff peak_lag ≤ 0. D111 corrected: naive_fwd=0/8, diff_fwd=0/8, K≥3=0/8, K≥4=0/8. PermG=6/8 unaffected. threshold_onset needs D105 3σ verification.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6582}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8c9f618c-c810-469d-a1a5-9f490987a956",
+            "uuid": "3043cefd-629f-4164-9028-e45370316929",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"opt13b_wiki_a100_s43_fp32\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T15:10:53.215Z\\\", \\\"updated_at\\\": \\\"2026-05-20T04:28:12.012Z\\\", \\\"hypothesis\\\": \\\"OPT-1.3B × WikiText-103 × α=1.0 × seed=43 × fp32 跨架构 multi-seed 验证。s42 已完成 K≥4=6/8，s43 验证跨 seed 稳健性。plan_030。\\\", \\\"parent\\\": \\\"gen_opt13b_a100_s43_bf16\\\", \\\"spec\\\": {\\\"data_path\\\": \\\"data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"facebook/opt-1.3b\\\", \\\"seed\\\": 43, \\\"precision\\\": \\\"fp32\\\", \\\"padding_side_fix\\\": \\\"D093 applied\\\"}, \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": \\\"452614\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/opt13b_wiki_a100_s43_fp32.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name facebook/opt-1.3b --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/gen_opt13b_wiki_a100_s43_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-20T00:12:30.568Z\\\"}, \\\"notes\\\": \\\"D103: s42 统一 pair K≥4=0/8。s43 验证 OPT 在统一配置下的 PermG/MMCT 表现。\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T00:12:36.303992+00:00\\\"}]}, \\\"metrics\\\": {\\\"threshold_onset_3sigma_m037\\\": \\\"already_3sigma_d105\\\", \\\"K3_3sigma_m037\\\": \\\"6/8\\\", \\\"K3_3sigma_d111_detail\\\": \\\"naive=8/8 diff=6/8 thr3s=0/8 pg=6/8 ty=5/8\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/gen_opt13b_wiki_a100_s43_fp32/\\\", \\\"completed_at\\\": \\\"2026-05-20T00:19:48.520Z\\\", \\\"note\\\": \\\"🚨 D111 CORRECTION: Original analysis reported K≥3=6/8, K≥4=4/8 but ALL 8 pairs have naive peak_lag ≤ 0 AND diff peak_lag ≤ 0. D111 corrected: naive_fwd=0/8, diff_fwd=0/8, K≥3=0/8, K≥4=0/8. PermG=6/8 unaffected. threshold_onset needs D105 3σ verification.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6582}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"opt13b_wiki_a100_s43_fp32\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T15:10:53.215Z\", \"updated_at\": \"2026-05-20T04:28:12.012Z\", \"hypothesis\": \"OPT-1.3B × WikiText-103 × α=1.0 × seed=43 × fp32 跨架构 multi-seed 验证。s42 已完成 K≥4=6/8，s43 验证跨 seed 稳健性。plan_030。\", \"parent\": \"gen_opt13b_a100_s43_bf16\", \"spec\": {\"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"facebook/opt-1.3b\", \"seed\": 43, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\"}, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"pid\": \"452614\", \"log_path\": \"~/runs/distrib_canary_collapse/opt13b_wiki_a100_s43_fp32.log\", \"reproduce\": {\"command\": \"bash -c \\\"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name facebook/opt-1.3b --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/gen_opt13b_wiki_a100_s43_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"finished_at\": \"2026-05-20T00:12:30.568Z\"}, \"notes\": \"D103: s42 统一 pair K≥4=0/8。s43 验证 OPT 在统一配置下的 PermG/MMCT 表现。\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T00:12:36.303992+00:00\"}]}, \"metrics\": {\"threshold_onset_3sigma_m037\": \"already_3sigma_d105\", \"K3_3sigma_m037\": \"6/8\", \"K3_3sigma_d111_detail\": \"naive=8/8 diff=6/8 thr3s=0/8 pg=6/8 ty=5/8\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/gen_opt13b_wiki_a100_s43_fp32/\", \"completed_at\": \"2026-05-20T00:19:48.520Z\", \"note\": \"🚨 D111 CORRECTION: Original analysis reported K≥3=6/8, K≥4=4/8 but ALL 8 pairs have naive peak_lag ≤ 0 AND diff peak_lag ≤ 0. D111 corrected: naive_fwd=0/8, diff_fwd=0/8, K≥3=0/8, K≥4=0/8. PermG=6/8 unaffected. threshold_onset needs D105 3σ verification.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6582}}"
+              }
+            }
+          },
+          "id": "event-000136"
+        },
+        {
+          "source_line": 137,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AtcvFXJv4wvXZXUUCHS2sr",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "generalize_pythia1b_c4_a100_s43",
+                "field": "metrics",
+                "value": {
+                  "threshold_onset_3sigma_m037": "3x_sigma_drift→true_3sigma",
+                  "K3_3sigma_m037": "6/8",
+                  "K3_3sigma_d111_detail": "naive=4/8 diff=8/8 thr3s=2/8 pg=8/8 ty=4/8"
+                },
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8c9f618c-c810-469d-a1a5-9f490987a956",
+            "uuid": "f62d8e81-88b3-459d-a424-1d73f83c9162",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012NpKK919ZMjusGzWUhCmzP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 635,
+                "cache_read_input_tokens": 114032,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 635
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000137"
+        },
+        {
+          "source_line": 138,
+          "timestamp": "2026-05-20T04:28:14.474Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AtcvFXJv4wvXZXUUCHS2sr",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"generalize_pythia1b_c4_a100_s43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T19:15:09.476Z\\\", \\\"updated_at\\\": \\\"2026-05-20T04:28:13.996Z\\\", \\\"hypothesis\\\": \\\"C4 域 multi-seed 验证——seed=43 下 Pythia-1B C4 α=1.0 是否复现 8/8 consensus 和 token_entropy 单向性 (rev=0/4)，确认 domain robustness 非单种子偶然\\\", \\\"parent\\\": \\\"generalize_pythia1b_c4_a100_s42_v2\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export TRANSFORMERS_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/pythia-1b-local --seed 43 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/pythia1b_c4_a100_s43\\\\\\\"\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"291511\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/generalize_pythia1b_c4_a100_s43.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T20:07:39.212Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 15455.0, \\\"gpu_hours\\\": 4.29}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T00:16:50.616Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T00:16:52.976550+00:00\\\"}]}, \\\"metrics\\\": {\\\"threshold_onset_3sigma_m037\\\": \\\"3x_sigma_drift→true_3sigma\\\", \\\"K3_3sigma_m037\\\": \\\"6/8\\\", \\\"K3_3sigma_d111_detail\\\": \\\"naive=4/8 diff=8/8 thr3s=2/8 pg=8/8 ty=4/8\\\"}, \\\"checkpoint_path\\\": \\\"results/generalize/pythia1b_c4_a100_s43/\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/generalize_pythia1b_c4_a100_s43.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-18T00:25:14.256Z\\\", \\\"notes\\\": \\\"D102 unified 8-pair. PermG fwd 8/8, rev 0/8 (perfect asymmetry). D102决策: Table 7 主指标=PermG fwd. Cross-seed confirms C4 robustness.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.963}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8c9f618c-c810-469d-a1a5-9f490987a956",
+            "uuid": "019c2a3e-c207-4507-b6d8-a97e0555785a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"generalize_pythia1b_c4_a100_s43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T19:15:09.476Z\\\", \\\"updated_at\\\": \\\"2026-05-20T04:28:13.996Z\\\", \\\"hypothesis\\\": \\\"C4 域 multi-seed 验证——seed=43 下 Pythia-1B C4 α=1.0 是否复现 8/8 consensus 和 token_entropy 单向性 (rev=0/4)，确认 domain robustness 非单种子偶然\\\", \\\"parent\\\": \\\"generalize_pythia1b_c4_a100_s42_v2\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export TRANSFORMERS_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/pythia-1b-local --seed 43 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/pythia1b_c4_a100_s43\\\\\\\"\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"291511\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/generalize_pythia1b_c4_a100_s43.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T20:07:39.212Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 15455.0, \\\"gpu_hours\\\": 4.29}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T00:16:50.616Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T00:16:52.976550+00:00\\\"}]}, \\\"metrics\\\": {\\\"threshold_onset_3sigma_m037\\\": \\\"3x_sigma_drift→true_3sigma\\\", \\\"K3_3sigma_m037\\\": \\\"6/8\\\", \\\"K3_3sigma_d111_detail\\\": \\\"naive=4/8 diff=8/8 thr3s=2/8 pg=8/8 ty=4/8\\\"}, \\\"checkpoint_path\\\": \\\"results/generalize/pythia1b_c4_a100_s43/\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/generalize_pythia1b_c4_a100_s43.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-18T00:25:14.256Z\\\", \\\"notes\\\": \\\"D102 unified 8-pair. PermG fwd 8/8, rev 0/8 (perfect asymmetry). D102决策: Table 7 主指标=PermG fwd. Cross-seed confirms C4 robustness.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.963}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"generalize_pythia1b_c4_a100_s43\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T19:15:09.476Z\", \"updated_at\": \"2026-05-20T04:28:13.996Z\", \"hypothesis\": \"C4 域 multi-seed 验证——seed=43 下 Pythia-1B C4 α=1.0 是否复现 8/8 consensus 和 token_entropy 单向性 (rev=0/4)，确认 domain robustness 非单种子偶然\", \"parent\": \"generalize_pythia1b_c4_a100_s42_v2\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export TRANSFORMERS_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/pythia-1b-local --seed 43 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/pythia1b_c4_a100_s43\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"291511\", \"log_path\": \"~/runs/distrib_canary_collapse/generalize_pythia1b_c4_a100_s43.log\", \"submitted_at\": \"2026-05-17T20:07:39.212Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 15455.0, \"gpu_hours\": 4.29}, \"reproduce\": {\"finished_at\": \"2026-05-18T00:16:50.616Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T00:16:52.976550+00:00\"}]}, \"metrics\": {\"threshold_onset_3sigma_m037\": \"3x_sigma_drift→true_3sigma\", \"K3_3sigma_m037\": \"6/8\", \"K3_3sigma_d111_detail\": \"naive=4/8 diff=8/8 thr3s=2/8 pg=8/8 ty=4/8\"}, \"checkpoint_path\": \"results/generalize/pythia1b_c4_a100_s43/\", \"log_path\": \"~/runs/distrib_canary_collapse/generalize_pythia1b_c4_a100_s43.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T00:25:14.256Z\", \"notes\": \"D102 unified 8-pair. PermG fwd 8/8, rev 0/8 (perfect asymmetry). D102决策: Table 7 主指标=PermG fwd. Cross-seed confirms C4 robustness.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.963}}"
+              }
+            }
+          },
+          "id": "event-000138"
+        },
+        {
+          "source_line": 139,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UPQzjtFXxnDCxaQ7AUNDXm",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "alpha_sweep_a050_postd093_s42_fp32",
+                "field": "metrics",
+                "value": {
+                  "threshold_onset_3sigma_m037": "unknown→true_3sigma",
+                  "K3_3sigma_m037": "3/8",
+                  "K3_3sigma_d111_detail": "naive=3/8 diff=2/8 thr3s=0/8 pg=6/8 ty=4/8"
+                },
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8c9f618c-c810-469d-a1a5-9f490987a956",
+            "uuid": "26ba5476-bfe7-4d29-8099-658464e4c490",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012NpKK919ZMjusGzWUhCmzP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 635,
+                "cache_read_input_tokens": 114032,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 635
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000139"
+        },
+        {
+          "source_line": 140,
+          "timestamp": "2026-05-20T04:28:16.760Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UPQzjtFXxnDCxaQ7AUNDXm",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"alpha_sweep_a050_postd093_s42_fp32\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:57:33.388Z\\\", \\\"updated_at\\\": \\\"2026-05-20T04:28:16.487Z\\\", \\\"hypothesis\\\": \\\"验证 α=0.50 PermG≥6/8 是否独立于 D093 padding 变更。如果 post-D093 仍 PermG≥6/8 → onset [0.45, 0.50] 稳健；如果 PermG=0/8 → onset 依赖 padding side，需要全面重审\\\", \\\"parent\\\": \\\"alpha_sweep_a050_s42_fp32\\\", \\\"note\\\": \\\"D093 confound check: post-D093 right padding code\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=4 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_postd093_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\", \\\"server\\\": \\\"westd-17855\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": 205750, \\\"data_path\\\": \\\"data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"seed\\\": 42, \\\"precision\\\": \\\"fp32\\\", \\\"log_path\\\": \\\"results/alpha_sweep/a050_postd093_s42_fp32/train.log\\\", \\\"checkpoint_path\\\": \\\"results/alpha_sweep/a050_postd093_s42_fp32\\\", \\\"checkpoint_source\\\": \\\"N/A - derivation rerun not eval\\\", \\\"eval_data\\\": \\\"N/A - training experiment not eval\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T03:12:21.470Z\\\"}, \\\"failure_reason\\\": \\\"\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T03:12:23.407Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T03:12:29.424454+00:00\\\"}]}, \\\"metrics\\\": {\\\"threshold_onset_3sigma_m037\\\": \\\"unknown→true_3sigma\\\", \\\"K3_3sigma_m037\\\": \\\"3/8\\\", \\\"K3_3sigma_d111_detail\\\": \\\"naive=3/8 diff=2/8 thr3s=0/8 pg=6/8 ty=4/8\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/gen_10/checkpoint\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/train.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3717}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8c9f618c-c810-469d-a1a5-9f490987a956",
+            "uuid": "4ae4a7ab-0842-4315-8ccc-9ddebdf39c22",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"alpha_sweep_a050_postd093_s42_fp32\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:57:33.388Z\\\", \\\"updated_at\\\": \\\"2026-05-20T04:28:16.487Z\\\", \\\"hypothesis\\\": \\\"验证 α=0.50 PermG≥6/8 是否独立于 D093 padding 变更。如果 post-D093 仍 PermG≥6/8 → onset [0.45, 0.50] 稳健；如果 PermG=0/8 → onset 依赖 padding side，需要全面重审\\\", \\\"parent\\\": \\\"alpha_sweep_a050_s42_fp32\\\", \\\"note\\\": \\\"D093 confound check: post-D093 right padding code\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=4 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_postd093_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\", \\\"server\\\": \\\"westd-17855\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": 205750, \\\"data_path\\\": \\\"data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"seed\\\": 42, \\\"precision\\\": \\\"fp32\\\", \\\"log_path\\\": \\\"results/alpha_sweep/a050_postd093_s42_fp32/train.log\\\", \\\"checkpoint_path\\\": \\\"results/alpha_sweep/a050_postd093_s42_fp32\\\", \\\"checkpoint_source\\\": \\\"N/A - derivation rerun not eval\\\", \\\"eval_data\\\": \\\"N/A - training experiment not eval\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T03:12:21.470Z\\\"}, \\\"failure_reason\\\": \\\"\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T03:12:23.407Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T03:12:29.424454+00:00\\\"}]}, \\\"metrics\\\": {\\\"threshold_onset_3sigma_m037\\\": \\\"unknown→true_3sigma\\\", \\\"K3_3sigma_m037\\\": \\\"3/8\\\", \\\"K3_3sigma_d111_detail\\\": \\\"naive=3/8 diff=2/8 thr3s=0/8 pg=6/8 ty=4/8\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/gen_10/checkpoint\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/train.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3717}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"alpha_sweep_a050_postd093_s42_fp32\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T22:57:33.388Z\", \"updated_at\": \"2026-05-20T04:28:16.487Z\", \"hypothesis\": \"验证 α=0.50 PermG≥6/8 是否独立于 D093 padding 变更。如果 post-D093 仍 PermG≥6/8 → onset [0.45, 0.50] 稳健；如果 PermG=0/8 → onset 依赖 padding side，需要全面重审\", \"parent\": \"alpha_sweep_a050_s42_fp32\", \"note\": \"D093 confound check: post-D093 right padding code\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=4 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_postd093_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:4\"], \"pid\": 205750, \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"precision\": \"fp32\", \"log_path\": \"results/alpha_sweep/a050_postd093_s42_fp32/train.log\", \"checkpoint_path\": \"results/alpha_sweep/a050_postd093_s42_fp32\", \"checkpoint_source\": \"N/A - derivation rerun not eval\", \"eval_data\": \"N/A - training experiment not eval\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T03:12:21.470Z\"}, \"failure_reason\": \"\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T03:12:23.407Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-20T03:12:29.424454+00:00\"}]}, \"metrics\": {\"threshold_onset_3sigma_m037\": \"unknown→true_3sigma\", \"K3_3sigma_m037\": \"3/8\", \"K3_3sigma_d111_detail\": \"naive=3/8 diff=2/8 thr3s=0/8 pg=6/8 ty=4/8\"}, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/gen_10/checkpoint\", \"log_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/train.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3717}}"
+              }
+            }
+          },
+          "id": "event-000140"
+        },
+        {
+          "source_line": 141,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01852Q1hu2RxTo7TSDm1bV4K",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "pythia410m_wiki_a100_s43_fp32",
+                "field": "metrics",
+                "value": {
+                  "threshold_onset_3sigma_m037": "unknown→true_3sigma",
+                  "K3_3sigma_m037": "6/8",
+                  "K3_3sigma_d111_detail": "naive=6/8 diff=6/8 thr3s=0/8 pg=6/8 ty=6/8",
+                  "caveat": "xcorr recomputed from raw metrics without FDR"
+                },
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8c9f618c-c810-469d-a1a5-9f490987a956",
+            "uuid": "2061d59a-d8ac-4101-9a84-ca65cecb0421",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012NpKK919ZMjusGzWUhCmzP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 635,
+                "cache_read_input_tokens": 114032,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 635
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000141"
+        },
+        {
+          "source_line": 142,
+          "timestamp": "2026-05-20T04:28:18.413Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01852Q1hu2RxTo7TSDm1bV4K",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"pythia410m_wiki_a100_s43_fp32\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T19:07:43.365Z\\\", \\\"updated_at\\\": \\\"2026-05-20T04:28:18.111Z\\\", \\\"hypothesis\\\": \\\"Pythia-410M s43 cross-seed 验证：410M 是 dose-response 全部实验的 base model，但 Table 7 α=1.0 仅有 s42 单 seed（PermG=6/8, K≥3=6/8）。5/8 架构单 seed 是审稿攻击面。s43 验证 core model 的跨 seed 稳健性。Claim 1/3。\\\", \\\"parent\\\": \\\"generalize_pythia410m_wiki_a100_s42\\\", \\\"server\\\": \\\"westd-17855\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-17855\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-19T19:08:05.966Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/pythia410m_wiki_a100_s43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-19T23:16:45.663Z\\\", \\\"training_hours\\\": 4.14}, \\\"spec\\\": {\\\"data_path\\\": \\\"data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"seed\\\": 43, \\\"precision\\\": \\\"fp32\\\", \\\"padding_side_fix\\\": \\\"D093 applied\\\", \\\"checkpoint_source\\\": \\\"EleutherAI/pythia-410m (training from scratch)\\\", \\\"eval_data\\\": \\\"N/A (training experiment)\\\"}, \\\"pid\\\": \\\"183582\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/pythia410m_wiki_a100_s43_fp32.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T23:16:51.131993+00:00\\\"}]}, \\\"metrics\\\": {\\\"threshold_onset_3sigma_m037\\\": \\\"unknown→true_3sigma\\\", \\\"K3_3sigma_m037\\\": \\\"6/8\\\", \\\"K3_3sigma_d111_detail\\\": \\\"naive=6/8 diff=6/8 thr3s=0/8 pg=6/8 ty=6/8\\\", \\\"caveat\\\": \\\"xcorr recomputed from raw metrics without FDR\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s43\\\", \\\"completed_at\\\": \\\"2026-05-19T23:22:48.287Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6739}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8c9f618c-c810-469d-a1a5-9f490987a956",
+            "uuid": "bb32e7be-193f-40a3-a560-22d6f0593516",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"pythia410m_wiki_a100_s43_fp32\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T19:07:43.365Z\\\", \\\"updated_at\\\": \\\"2026-05-20T04:28:18.111Z\\\", \\\"hypothesis\\\": \\\"Pythia-410M s43 cross-seed 验证：410M 是 dose-response 全部实验的 base model，但 Table 7 α=1.0 仅有 s42 单 seed（PermG=6/8, K≥3=6/8）。5/8 架构单 seed 是审稿攻击面。s43 验证 core model 的跨 seed 稳健性。Claim 1/3。\\\", \\\"parent\\\": \\\"generalize_pythia410m_wiki_a100_s42\\\", \\\"server\\\": \\\"westd-17855\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-17855\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-19T19:08:05.966Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/pythia410m_wiki_a100_s43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-19T23:16:45.663Z\\\", \\\"training_hours\\\": 4.14}, \\\"spec\\\": {\\\"data_path\\\": \\\"data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"seed\\\": 43, \\\"precision\\\": \\\"fp32\\\", \\\"padding_side_fix\\\": \\\"D093 applied\\\", \\\"checkpoint_source\\\": \\\"EleutherAI/pythia-410m (training from scratch)\\\", \\\"eval_data\\\": \\\"N/A (training experiment)\\\"}, \\\"pid\\\": \\\"183582\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/pythia410m_wiki_a100_s43_fp32.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T23:16:51.131993+00:00\\\"}]}, \\\"metrics\\\": {\\\"threshold_onset_3sigma_m037\\\": \\\"unknown→true_3sigma\\\", \\\"K3_3sigma_m037\\\": \\\"6/8\\\", \\\"K3_3sigma_d111_detail\\\": \\\"naive=6/8 diff=6/8 thr3s=0/8 pg=6/8 ty=6/8\\\", \\\"caveat\\\": \\\"xcorr recomputed from raw metrics without FDR\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s43\\\", \\\"completed_at\\\": \\\"2026-05-19T23:22:48.287Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6739}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"pythia410m_wiki_a100_s43_fp32\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T19:07:43.365Z\", \"updated_at\": \"2026-05-20T04:28:18.111Z\", \"hypothesis\": \"Pythia-410M s43 cross-seed 验证：410M 是 dose-response 全部实验的 base model，但 Table 7 α=1.0 仅有 s42 单 seed（PermG=6/8, K≥3=6/8）。5/8 架构单 seed 是审稿攻击面。s43 验证 core model 的跨 seed 稳健性。Claim 1/3。\", \"parent\": \"generalize_pythia410m_wiki_a100_s42\", \"server\": \"westd-17855\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-17855\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-19T19:08:05.966Z\", \"command\": \"bash -c \\\"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/pythia410m_wiki_a100_s43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"finished_at\": \"2026-05-19T23:16:45.663Z\", \"training_hours\": 4.14}, \"spec\": {\"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\", \"checkpoint_source\": \"EleutherAI/pythia-410m (training from scratch)\", \"eval_data\": \"N/A (training experiment)\"}, \"pid\": \"183582\", \"log_path\": \"~/runs/distrib_canary_collapse/pythia410m_wiki_a100_s43_fp32.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T23:16:51.131993+00:00\"}]}, \"metrics\": {\"threshold_onset_3sigma_m037\": \"unknown→true_3sigma\", \"K3_3sigma_m037\": \"6/8\", \"K3_3sigma_d111_detail\": \"naive=6/8 diff=6/8 thr3s=0/8 pg=6/8 ty=6/8\", \"caveat\": \"xcorr recomputed from raw metrics without FDR\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s43\", \"completed_at\": \"2026-05-19T23:22:48.287Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6739}}"
+              }
+            }
+          },
+          "id": "event-000142"
+        },
+        {
+          "source_line": 143,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MgLjpK4wHBdV1tiRAeVDhJ",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "generalize_pythia14b_wiki_a100_s42",
+                "field": "metrics",
+                "value": {
+                  "threshold_onset_3sigma_m037": "3x_sigma_drift→true_3sigma",
+                  "K3_3sigma_m037": "1/8",
+                  "K3_3sigma_d111_detail": "naive=6/8 diff=6/8 thr3s=0/8 pg=2/8 ty=0/8"
+                },
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8c9f618c-c810-469d-a1a5-9f490987a956",
+            "uuid": "24f3ab49-085d-4414-b239-30ebc98a62a6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012NpKK919ZMjusGzWUhCmzP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 635,
+                "cache_read_input_tokens": 114032,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 635
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000143"
+        },
+        {
+          "source_line": 144,
+          "timestamp": "2026-05-20T04:28:19.911Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MgLjpK4wHBdV1tiRAeVDhJ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"generalize_pythia14b_wiki_a100_s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T13:25:15.889Z\\\", \\\"updated_at\\\": \\\"2026-05-20T04:28:19.595Z\\\", \\\"hypothesis\\\": \\\"方法论陷阱跨 scale 泛化——Pythia-1.4B (同家族 410M→1.4B) 在 α=1.0 WikiText 上保持 consensus ≥4/5 的 canary→downstream 因果信号，证明框架不依赖特定模型规模\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-17T13:57:38.626Z\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"iterative_train.py --start_gen 8 (resumed)\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"292246\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/generalize_pythia14b_wiki_a100_s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T20:11:35.916Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"EleutherAI/pythia-1.4b\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/gen_10/checkpoint\\\", \\\"wall_clock_seconds\\\": 12846.8, \\\"gpu_hours\\\": 3.57}, \\\"metrics\\\": {\\\"threshold_onset_3sigma_m037\\\": \\\"3x_sigma_drift→true_3sigma\\\", \\\"K3_3sigma_m037\\\": \\\"1/8\\\", \\\"K3_3sigma_d111_detail\\\": \\\"naive=6/8 diff=6/8 thr3s=0/8 pg=2/8 ty=0/8\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-17T23:45:42.719Z\\\", \\\"notes\\\": \\\"D102 unified 8-pair. PermG fwd 2/8 (weakest Wiki model). D102决策: Table 7 主指标=PermG fwd, 辅助=K≥3. 报告cross-seed range: s42=2/8, s43=6/8, 标注seed sensitivity. Threshold σ统一=3σ(低优先级, 等训练完后统一重算).\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7551}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8c9f618c-c810-469d-a1a5-9f490987a956",
+            "uuid": "0e396c22-f14a-46cb-87b4-42146a7f712d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"generalize_pythia14b_wiki_a100_s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T13:25:15.889Z\\\", \\\"updated_at\\\": \\\"2026-05-20T04:28:19.595Z\\\", \\\"hypothesis\\\": \\\"方法论陷阱跨 scale 泛化——Pythia-1.4B (同家族 410M→1.4B) 在 α=1.0 WikiText 上保持 consensus ≥4/5 的 canary→downstream 因果信号，证明框架不依赖特定模型规模\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-17T13:57:38.626Z\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"iterative_train.py --start_gen 8 (resumed)\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"292246\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/generalize_pythia14b_wiki_a100_s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T20:11:35.916Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"EleutherAI/pythia-1.4b\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/gen_10/checkpoint\\\", \\\"wall_clock_seconds\\\": 12846.8, \\\"gpu_hours\\\": 3.57}, \\\"metrics\\\": {\\\"threshold_onset_3sigma_m037\\\": \\\"3x_sigma_drift→true_3sigma\\\", \\\"K3_3sigma_m037\\\": \\\"1/8\\\", \\\"K3_3sigma_d111_detail\\\": \\\"naive=6/8 diff=6/8 thr3s=0/8 pg=2/8 ty=0/8\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-17T23:45:42.719Z\\\", \\\"notes\\\": \\\"D102 unified 8-pair. PermG fwd 2/8 (weakest Wiki model). D102决策: Table 7 主指标=PermG fwd, 辅助=K≥3. 报告cross-seed range: s42=2/8, s43=6/8, 标注seed sensitivity. Threshold σ统一=3σ(低优先级, 等训练完后统一重算).\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7551}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"generalize_pythia14b_wiki_a100_s42\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T13:25:15.889Z\", \"updated_at\": \"2026-05-20T04:28:19.595Z\", \"hypothesis\": \"方法论陷阱跨 scale 泛化——Pythia-1.4B (同家族 410M→1.4B) 在 α=1.0 WikiText 上保持 consensus ≥4/5 的 canary→downstream 因果信号，证明框架不依赖特定模型规模\", \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-17T13:57:38.626Z\"}, \"spec\": {\"command\": \"iterative_train.py --start_gen 8 (resumed)\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"292246\", \"log_path\": \"~/runs/distrib_canary_collapse/generalize_pythia14b_wiki_a100_s42.log\", \"submitted_at\": \"2026-05-17T20:11:35.916Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/gen_10/checkpoint\", \"wall_clock_seconds\": 12846.8, \"gpu_hours\": 3.57}, \"metrics\": {\"threshold_onset_3sigma_m037\": \"3x_sigma_drift→true_3sigma\", \"K3_3sigma_m037\": \"1/8\", \"K3_3sigma_d111_detail\": \"naive=6/8 diff=6/8 thr3s=0/8 pg=2/8 ty=0/8\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-17T23:45:42.719Z\", \"notes\": \"D102 unified 8-pair. PermG fwd 2/8 (weakest Wiki model). D102决策: Table 7 主指标=PermG fwd, 辅助=K≥3. 报告cross-seed range: s42=2/8, s43=6/8, 标注seed sensitivity. Threshold σ统一=3σ(低优先级, 等训练完后统一重算).\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7551}}"
+              }
+            }
+          },
+          "id": "event-000144"
+        },
+        {
+          "source_line": 145,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015dAy9A1isfAgW24KoiwnZ8",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "generalize_pythia14b_wiki_a100_s43",
+                "field": "metrics",
+                "value": {
+                  "threshold_onset_3sigma_m037": "3x_sigma_drift→true_3sigma",
+                  "K3_3sigma_m037": "3/8",
+                  "K3_3sigma_d111_detail": "naive=0/8 diff=6/8 thr3s=0/8 pg=6/8 ty=3/8",
+                  "note": "D111 reduces K3 from 6/8 to 3/8 (all naive peak_lag>0)"
+                },
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8c9f618c-c810-469d-a1a5-9f490987a956",
+            "uuid": "94ab5845-ca33-4f83-888e-8f629b6a967e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012NpKK919ZMjusGzWUhCmzP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 635,
+                "cache_read_input_tokens": 114032,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 635
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000145"
+        },
+        {
+          "source_line": 146,
+          "timestamp": "2026-05-20T04:28:21.841Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015dAy9A1isfAgW24KoiwnZ8",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"generalize_pythia14b_wiki_a100_s43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T02:44:10.708Z\\\", \\\"updated_at\\\": \\\"2026-05-20T04:28:21.572Z\\\", \\\"hypothesis\\\": \\\"Pythia-1.4B s43 validates whether Scale row K>=4=5/8 is a systematic scale effect: if s43 also weak then scale is a real challenge, if s43 strong then s42 is seed noise\\\", \\\"parent\\\": \\\"generalize_pythia14b_wiki_a100_s42\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/pythia-1.4b-local --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 8 --seed 43 --output_dir results/generalize/pythia14b_wiki_a100_s43\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"314396\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/generalize_pythia14b_wiki_a100_s43.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T02:46:35.941Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"EleutherAI/pythia-1.4b\\\", \\\"seed\\\": 43, \\\"wall_clock_seconds\\\": 27235.4, \\\"gpu_hours\\\": 7.57}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T10:13:51.203Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T10:13:54.511136+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"threshold_onset_3sigma_m037\\\": \\\"3x_sigma_drift→true_3sigma\\\", \\\"K3_3sigma_m037\\\": \\\"3/8\\\", \\\"K3_3sigma_d111_detail\\\": \\\"naive=0/8 diff=6/8 thr3s=0/8 pg=6/8 ty=3/8\\\", \\\"note\\\": \\\"D111 reduces K3 from 6/8 to 3/8 (all naive peak_lag>0)\\\"}, \\\"checkpoint_path\\\": \\\"results/generalize/pythia14b_wiki_a100_s43\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/generalize_pythia14b_wiki_a100_s43.log\\\", \\\"completed_at\\\": \\\"2026-05-18T10:20:31.314Z\\\", \\\"notes\\\": \\\"D102 unified 8-pair. PermG fwd 6/8 stable. D102决策: Table 7 列出两seed, s42=2/8 vs s43=6/8 标注seed sensitivity.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6542}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8c9f618c-c810-469d-a1a5-9f490987a956",
+            "uuid": "7c6e338b-0dbe-4670-93d1-63244951cdf1",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"generalize_pythia14b_wiki_a100_s43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T02:44:10.708Z\\\", \\\"updated_at\\\": \\\"2026-05-20T04:28:21.572Z\\\", \\\"hypothesis\\\": \\\"Pythia-1.4B s43 validates whether Scale row K>=4=5/8 is a systematic scale effect: if s43 also weak then scale is a real challenge, if s43 strong then s42 is seed noise\\\", \\\"parent\\\": \\\"generalize_pythia14b_wiki_a100_s42\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/pythia-1.4b-local --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 8 --seed 43 --output_dir results/generalize/pythia14b_wiki_a100_s43\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"314396\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/generalize_pythia14b_wiki_a100_s43.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T02:46:35.941Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"EleutherAI/pythia-1.4b\\\", \\\"seed\\\": 43, \\\"wall_clock_seconds\\\": 27235.4, \\\"gpu_hours\\\": 7.57}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T10:13:51.203Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T10:13:54.511136+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"threshold_onset_3sigma_m037\\\": \\\"3x_sigma_drift→true_3sigma\\\", \\\"K3_3sigma_m037\\\": \\\"3/8\\\", \\\"K3_3sigma_d111_detail\\\": \\\"naive=0/8 diff=6/8 thr3s=0/8 pg=6/8 ty=3/8\\\", \\\"note\\\": \\\"D111 reduces K3 from 6/8 to 3/8 (all naive peak_lag>0)\\\"}, \\\"checkpoint_path\\\": \\\"results/generalize/pythia14b_wiki_a100_s43\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/generalize_pythia14b_wiki_a100_s43.log\\\", \\\"completed_at\\\": \\\"2026-05-18T10:20:31.314Z\\\", \\\"notes\\\": \\\"D102 unified 8-pair. PermG fwd 6/8 stable. D102决策: Table 7 列出两seed, s42=2/8 vs s43=6/8 标注seed sensitivity.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6542}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"generalize_pythia14b_wiki_a100_s43\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T02:44:10.708Z\", \"updated_at\": \"2026-05-20T04:28:21.572Z\", \"hypothesis\": \"Pythia-1.4B s43 validates whether Scale row K>=4=5/8 is a systematic scale effect: if s43 also weak then scale is a real challenge, if s43 strong then s42 is seed noise\", \"parent\": \"generalize_pythia14b_wiki_a100_s42\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/pythia-1.4b-local --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 8 --seed 43 --output_dir results/generalize/pythia14b_wiki_a100_s43\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"314396\", \"log_path\": \"~/runs/distrib_canary_collapse/generalize_pythia14b_wiki_a100_s43.log\", \"submitted_at\": \"2026-05-18T02:46:35.941Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b\", \"seed\": 43, \"wall_clock_seconds\": 27235.4, \"gpu_hours\": 7.57}, \"reproduce\": {\"finished_at\": \"2026-05-18T10:13:51.203Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T10:13:54.511136+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"threshold_onset_3sigma_m037\": \"3x_sigma_drift→true_3sigma\", \"K3_3sigma_m037\": \"3/8\", \"K3_3sigma_d111_detail\": \"naive=0/8 diff=6/8 thr3s=0/8 pg=6/8 ty=3/8\", \"note\": \"D111 reduces K3 from 6/8 to 3/8 (all naive peak_lag>0)\"}, \"checkpoint_path\": \"results/generalize/pythia14b_wiki_a100_s43\", \"log_path\": \"~/runs/distrib_canary_collapse/generalize_pythia14b_wiki_a100_s43.log\", \"completed_at\": \"2026-05-18T10:20:31.314Z\", \"notes\": \"D102 unified 8-pair. PermG fwd 6/8 stable. D102决策: Table 7 列出两seed, s42=2/8 vs s43=6/8 标注seed sensitivity.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6542}}"
+              }
+            }
+          },
+          "id": "event-000146"
+        },
+        {
+          "source_line": 147,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "All 9 registry entries updated. Let me also note a discrepancy with opt13b_s43: the registry had a note saying \"D111 corrected: naive_fwd=0/8, diff_fwd=0/8, K≥3=0/8\" but my M037 audit shows naive=8/8 (all peak_lag < 0), K≥3=6/8. This is a significant discrepancy.\n\nWait, looking at the old registry note: \"ALL 8 pairs have naive peak_lag ≤ 0 AND diff peak_lag ≤ 0\". \n\nThe old D111 convention treated peak_lag ≤ 0 as not forward-significant, but M035 corrected this to peak_lag < 0 being forward. So the old interpretation would exclude cases where peak_lag = 0, while the corrected version only counts strictly negative values. Looking at my opt13b results, all the naive_xcorr peak_lags are actually negative (like -2, -3, -1, -4), so they all satisfy the M035 corrected criterion.\n\nThe old D111 note was using the incorrect interpretation where peak_lag ≤ 0 meant NOT forward. With the M035 correction, peak_lag = -1, -2, -3 etc. are all properly classified as forward. So my M037 result showing K≥3=6/8 for opt13b_s43 is the correct one, superseding the old D111 note's K≥3=0/8 which was based on the flawed interpretation. Let me look more carefully at what the old note actually said about those 8 pairs. Looking at the peak_lag values across all model pairs, they're all strictly negative—none equal zero—which means under M035's definition they all qualify as forward. This confirms M037 is correct and the old D111 classification was indeed wrong.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8c9f618c-c810-469d-a1a5-9f490987a956",
+            "uuid": "71f79431-5a90-438b-9188-342e944dbf90",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Gb13ucyFfhpESaerpoH48d",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11216,
+                "cache_read_input_tokens": 114667,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11216
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000147"
+        },
+        {
+          "source_line": 148,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 9 个实验的 registry 已更新。注意到 opt13b_s43 的旧 registry note 说 \"K≥3=0/8\"（基于旧 D111 `peak_lag ≤ 0 → not forward`），M037 修正为 K≥3=6/8（M035: `peak_lag < 0 = forward`，所有 naive peak_lag 都严格 < 0）。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8c9f618c-c810-469d-a1a5-9f490987a956",
+            "uuid": "e11077f9-1ce3-4dc7-a9b6-956e7f30825e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Gb13ucyFfhpESaerpoH48d",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11216,
+                "cache_read_input_tokens": 114667,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11216
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000148"
+        },
+        {
+          "source_line": 149,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SqeRwNTHsZh8SEFXUYnnDZ",
+              "name": "TodoWrite",
+              "input": {
+                "todos": [
+                  {
+                    "content": "Map all 9 experiments to their analysis files on both servers",
+                    "status": "completed",
+                    "activeForm": "Mapping experiment directories to analysis files"
+                  },
+                  {
+                    "content": "Write and run unified M037 audit script with D111 direction check on westd-19828 (7 experiments)",
+                    "status": "completed",
+                    "activeForm": "Writing M037 audit script for westd-19828"
+                  },
+                  {
+                    "content": "Run M037 audit on westd-17855 (2 experiments: padding s42, pythia410m s43)",
+                    "status": "completed",
+                    "activeForm": "Running M037 audit on westd-17855"
+                  },
+                  {
+                    "content": "Cross-check opt13b_s43 d105_analysis.json with D111 direction",
+                    "status": "completed",
+                    "activeForm": "Cross-checking opt13b_s43 with D111 direction"
+                  },
+                  {
+                    "content": "Write audit report and register artifact",
+                    "status": "completed",
+                    "activeForm": "Writing audit report"
+                  }
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8c9f618c-c810-469d-a1a5-9f490987a956",
+            "uuid": "411142e1-d802-4514-8656-af1272a70939",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Gb13ucyFfhpESaerpoH48d",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11216,
+                "cache_read_input_tokens": 114667,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11216
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000149"
+        },
+        {
+          "source_line": 150,
+          "timestamp": "2026-05-20T04:28:50.328Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SqeRwNTHsZh8SEFXUYnnDZ",
+              "type": "tool_result",
+              "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8c9f618c-c810-469d-a1a5-9f490987a956",
+            "uuid": "660a25ad-f438-41a2-aeb5-c349cb18acc5",
+            "tool_use_result": {
+              "oldTodos": [
+                {
+                  "content": "Map all 9 experiments to their analysis files on both servers",
+                  "status": "completed",
+                  "activeForm": "Mapping experiment directories to analysis files"
+                },
+                {
+                  "content": "Write and run unified M037 audit script with D111 direction check on westd-19828 (7 experiments)",
+                  "status": "completed",
+                  "activeForm": "Writing M037 audit script for westd-19828"
+                },
+                {
+                  "content": "Run M037 audit on westd-17855 (2 experiments: padding s42, pythia410m s43)",
+                  "status": "completed",
+                  "activeForm": "Running M037 audit on westd-17855"
+                },
+                {
+                  "content": "Cross-check opt13b_s43 d105_analysis.json with D111 direction",
+                  "status": "completed",
+                  "activeForm": "Cross-checking opt13b_s43 with D111 direction"
+                },
+                {
+                  "content": "Write audit report and register artifact",
+                  "status": "in_progress",
+                  "activeForm": "Writing audit report"
+                }
+              ],
+              "newTodos": [
+                {
+                  "content": "Map all 9 experiments to their analysis files on both servers",
+                  "status": "completed",
+                  "activeForm": "Mapping experiment directories to analysis files"
+                },
+                {
+                  "content": "Write and run unified M037 audit script with D111 direction check on westd-19828 (7 experiments)",
+                  "status": "completed",
+                  "activeForm": "Writing M037 audit script for westd-19828"
+                },
+                {
+                  "content": "Run M037 audit on westd-17855 (2 experiments: padding s42, pythia410m s43)",
+                  "status": "completed",
+                  "activeForm": "Running M037 audit on westd-17855"
+                },
+                {
+                  "content": "Cross-check opt13b_s43 d105_analysis.json with D111 direction",
+                  "status": "completed",
+                  "activeForm": "Cross-checking opt13b_s43 with D111 direction"
+                },
+                {
+                  "content": "Write audit report and register artifact",
+                  "status": "completed",
+                  "activeForm": "Writing audit report"
+                }
+              ],
+              "verificationNudgeNeeded": false
+            }
+          },
+          "id": "event-000150"
+        },
+        {
+          "source_line": 151,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## M037 审计完成\n\n### 结果汇总\n\n| 实验 | K≥3(3σ+D111) | 旧 threshold |\n|---|---|---|\n| Pythia-410M s42 | **6/8** | 3x_sigma_drift |\n| GPT-2m s43 | **6/8** | 3x_sigma_drift |\n| OPT-1.3B s42 | **6/8** | 3x_sigma_drift |\n| OPT-1.3B s43 | **6/8** | D105 3σ (已正确) |\n| C4 Pythia-1B s43 | **6/8** | 3x_sigma_drift |\n| Padding-410M s42 | **3/8** | unknown |\n| Pythia-410M s43 | **6/8** | unknown† |\n| Pythia-1.4B s42 | **1/8** | 3x_sigma_drift |\n| Pythia-1.4B s43 | **3/8** | 3x_sigma_drift |\n\n### 关键发现\n\n1. **6/9 实验用的是 `3x_sigma_drift`**（简单幅值检查），不是 D105 要求的 true 3σ。切换后 threshold_onset 显著率普遍降至 0-2/8。\n\n2. **D111 direction check 的影响**：大多数实验不受影响（naive peak_lag 已 < 0）。例外是 **Pythia-1.4B s43**（K≥3 从 6/8 降至 3/8，所有 naive peak_lag > 0）。\n\n3. **opt13b_s43 旧 registry 有误**：旧 note 声称 K≥3=0/8（基于错误的 `peak_lag ≤ 0 = not forward`），M037 修正为 6/8（所有 naive peak_lag 严格 < 0，M035 判定为 forward）。\n\n4. 产出文件: `artifacts/m037_audit/audit_report.md`，已 `register_artifact`。9 个实验的 registry 已更新 `threshold_onset_3sigma_m037` 和 `K3_3sigma_m037` 字段。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8c9f618c-c810-469d-a1a5-9f490987a956",
+            "uuid": "41123c6f-aa78-4877-a023-9ac5508f8976",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019MsrRFKCXvsryCVxnDU6YW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1452,
+                "cache_read_input_tokens": 125883,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1452
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000151"
+        },
+        {
+          "source_line": 152,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## M037 审计完成\n\n### 结果汇总\n\n| 实验 | K≥3(3σ+D111) | 旧 threshold |\n|---|---|---|\n| Pythia-410M s42 | **6/8** | 3x_sigma_drift |\n| GPT-2m s43 | **6/8** | 3x_sigma_drift |\n| OPT-1.3B s42 | **6/8** | 3x_sigma_drift |\n| OPT-1.3B s43 | **6/8** | D105 3σ (已正确) |\n| C4 Pythia-1B s43 | **6/8** | 3x_sigma_drift |\n| Padding-410M s42 | **3/8** | unknown |\n| Pythia-410M s43 | **6/8** | unknown† |\n| Pythia-1.4B s42 | **1/8** | 3x_sigma_drift |\n| Pythia-1.4B s43 | **3/8** | 3x_sigma_drift |\n\n### 关键发现\n\n1. **6/9 实验用的是 `3x_sigma_drift`**（简单幅值检查），不是 D105 要求的 true 3σ。切换后 threshold_onset 显著率普遍降至 0-2/8。\n\n2. **D111 direction check 的影响**：大多数实验不受影响（naive peak_lag 已 < 0）。例外是 **Pythia-1.4B s43**（K≥3 从 6/8 降至 3/8，所有 naive peak_lag > 0）。\n\n3. **opt13b_s43 旧 registry 有误**：旧 note 声称 K≥3=0/8（基于错误的 `peak_lag ≤ 0 = not forward`），M037 修正为 6/8（所有 naive peak_lag 严格 < 0，M035 判定为 forward）。\n\n4. 产出文件: `artifacts/m037_audit/audit_report.md`，已 `register_artifact`。9 个实验的 registry 已更新 `threshold_onset_3sigma_m037` 和 `K3_3sigma_m037` 字段。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 828331,
+            "duration_api_ms": 820658,
+            "num_turns": 56,
+            "stop_reason": "end_turn",
+            "session_id": "8c9f618c-c810-469d-a1a5-9f490987a956",
+            "total_cost_usd": 2.8135284999999994,
+            "usage": {
+              "input_tokens": 32,
+              "cache_creation_input_tokens": 115494,
+              "cache_read_input_tokens": 1863254,
+              "output_tokens": 46252,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 115494,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 616,
+                  "cache_read_input_tokens": 125883,
+                  "cache_creation_input_tokens": 1452,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1452
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 3479,
+                "outputTokens": 25,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.003604,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 32,
+                "outputTokens": 46252,
+                "cacheReadInputTokens": 1863254,
+                "cacheCreationInputTokens": 115494,
+                "webSearchRequests": 0,
+                "costUSD": 2.8099244999999997,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "a0fb7283-c196-4151-a6f6-224fcff862ad"
+          },
+          "id": "event-000152"
+        }
+      ]
+    }
+  ]
+}

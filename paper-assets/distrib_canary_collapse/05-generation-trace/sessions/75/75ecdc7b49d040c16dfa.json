@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75ecdc7b49d040c16dfa",
+  "project": "distrib_canary_collapse",
+  "kind": "history",
+  "title": "agent / loop_16_1779401828.md",
+  "task_key": "loop_16_1779401828",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1779401828.md",
+    "occurrence": 1,
+    "bytes": 4567,
+    "sha256": "09bece35033ab14b0d88ebf58e36588e23f99923c047c111100b3557d9c5bd32"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-21T22:10:05+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-17855:cuda:{0-5} + westd-19828:cuda:{0,1}，共 8 卡，不可用其他\n- 17855↔19828 SSH 不互通，不要尝试跨服务器 scp/rsync\n- ≤3B 模型强制 fp32（D079），所有当前 Pythia-410M 实验均为 fp32\n- HF_HOME 三件套必带：`HF_HOME=/root/autodl-tmp/.hf_cache && TRANSFORMERS_OFFLINE=1 && HF_HUB_OFFLINE=1`（M060）\n- T=20 α=0.60 PermG=0/8 是定论（D176 修正），不要引用旧的 6/8 数据\n- T=20 α=0.50 PermG=6/8（M062 修正），不要引用旧值\n\n### 2. 🖥️ 基础设施快照\n- **westd-17855**: 6× RTX PRO 6000 Blackwell (98GB)，工作目录 `/root/autodl-tmp/distrib_canary_collapse/`，Python `/root/miniconda3/bin/python`，conda base 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **westd-19828**: 2× RTX PRO 6000 Blackwell (98GB)，同路径同环境\n- HF cache: `/root/autodl-tmp/.hf_cache`，wandb 未配置（本项目无 W&B）\n- 活跃进程（8/8 GPU 满载）：\n  - 17855:0 → t25_a050_v2 PID 552682 | 17855:1 → t15_a060_s43 PID 546619\n  - 17855:2 → t15_a045_s43 PID 550484 | 17855:3 → t25_a060_v2★ PID 552604\n  - 17855:4 → t20_a060_s43_v2 PID 553240 | 17855:5 → t25_a045_v2 PID 519272\n  - 19828:0 → t25_a075 PID 671833 | 19828:1 → t20_a045_s43 PID 688680\n- Cron：8 个活跃 cron 分别监控上述 8 个实验，reconcile 刚做过，全部 still running\n\n### 3. 📊 当前状态\n上一个 session 完成了：M065 磁盘满 crash 后的清理（17855: 100%→61%，19828: 96%→40%）+ 5 个 v2 重启 + T=15 行完成（D180）+ D170 叙事升级启动。\n\n**RUNNING 实验 8/8**：\n- **T=25 主格 (4)**：t25_a045_v2(17855:5)、t25_a050_v2(17855:0)、t25_a060_v2★(17855:3)、t25_a075(19828:0) — Phase Diagram 最后一行，全部 v2 或首次，约 ~20% 进度（估 ~8-10h 剩余）\n- **Cross-seed (4)**：t15_a045_s43(17855:2)、t15_a060_s43(17855:1)、t20_a045_s43(19828:1)、t20_a060_s43_v2(17855:4) — 验证 Phase Diagram 关键格的 seed 稳健性\n\n**等待中**：\n- 8 个 cron 回调（实验完成时自动触发）\n- 无 pending Worker 回调\n- 无 pending Director 决策\n\n### 4. 📋 待办（条件触发式）\n- t15_a045_s43 / t15_a060_s43 完成（最先完成，~3-4h）→ spawn Worker 跑 5method 分析 → 更新 Phase Diagram cross-seed 列 → 汇报 Director\n- t20_a045_s43 完成 → 5method 分析 → 对比 s42=5/8（Reviewer 最关心的 fragile cell），s43≥4/8 则 robust，≤2/8 则 claim 需降级\n- t20_a060_s43_v2 完成 → 5method → 对比 s42=0/8 near-miss p=0.064，若 s43 也 near-miss 则 dissolution-in-progress\n- T=25 四组全部完成 → 5method → 填 Phase Diagram T=25 行 → 根据场景分叉：\n  - α=0.60 >0/8 → Scenario A（最佳：sync-dip dissolves）→ C2 强 claim\n  - α=0.60 =0/8 → Scenario B（sync-dip permanent）→ C3 升级（multi-method necessity）\n  - α=0.45 =0/8 → Scenario D（理论严重失败）→ 紧急诊断\n- Phase Diagram 20/20 全部就绪 → heatmap 定稿 → D170 叙事定稿 → submit_paper_to_review → R8 提交\n\n### 5. 🎯 战略上下文\n- **项目核心**：α×T 2D Phase Diagram 论文（\"Mapping the Detectability Landscape of Iterative Model Collapse\"），目标 EMNLP 2026 ARR June（DDL ~2026-06-15）\n- **当前位置**：Phase Diagram 16/20 格已完成，T=25 行（最后 4 格）+ 4 个 cross-seed 正在跑。完成后可以定稿\n- **三大 landscape 特征已确认**：blind zone（T=5 全暗）、α_c left-shift（随 T 增大检测阈值下降）、sync-dip（α≈0.60 非单调跌落，T=10/15/20 均 0/8）\n- **T=25 α=0.60 是论文最关键单格**（D176）：决定 sync-dip 是 finite-T artifact 还是 permanent structural feature，直接影响 C2/C3 claim 强度\n- **PermG 数据冲突警告**：ROADMAP/D180 记 T=15 α=0.45 = 6/8，但 D178/memory.md 记 8/8。下一个 session 需确认哪个正确（查 registry 和 5method 原始输出）。如果真是 8/8 则打破 6/8 ceiling，叙事意义重大\n- **6/8 ceiling 现象**：α=0.50/0.75 在所有 T 值均 6/8 上限（MAUVE bottleneck），如果 T=15 α=0.45 真是 8/8 则是唯一突破，需要解释\n- **易踩的坑**：(1) 不要混淆 v1（disk-full crash）和 v2（重启）的实验 ID，v2 是从 gen_0 重跑的 (2) sync-dip 区间 [0.55, 0.65] 是 T=10 的数据，不要假设其他 T 值区间相同 (3) 5method 分析脚本在 `analyze_5method.py`，必须用 fp32 结果目录\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1779401828.md"
+}

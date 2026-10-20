@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b4b8c63d9a8da465898a",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops latex compile check",
+  "task_key": "worker_ops_latex_compile_check_20260517T005812",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_latex_compile_check_20260517T005812_result.json",
+    "occurrence": 1,
+    "bytes": 1083,
+    "sha256": "d5a3a3d38c4d8d34c295712982cd43fc41f02897b8038135c3fe7ad57f64ace2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译验证完成。汇报：\n\n## 编译结果\n\n| 项目 | 状态 |\n|------|------|\n| **编译状态** | 成功 (exit 0) |\n| **PDF 页数** | 21 页 |\n| **Fatal errors** | 0 |\n| **Figure 缺失** | 0 (5 个 PDF 全部嵌入成功) |\n| **Undefined references** | 0 |\n| **Citation warnings** | 0 (所有 34 条引用解析成功) |\n| **Overfull hbox** | 8 (其中 5 个 >10pt，均为表格在 twocolumn 下溢出) |\n| **Underfull hbox** | 55 |\n| **Underfull vbox** | 7 |\n\n## 修复内容\n\n- **创建了 `main.tex`** — 项目原来只有各 section 的 .tex 文件，缺少编译入口。使用 `article` + `twocolumn` + `natbib` 作为编译验证模板（正式投稿时替换为 acl2023.sty）。\n- **同步了所有 .tex/.bib 文件到服务器** — 服务器上原来只有 figures/ 目录。\n\n## 已知非致命问题\n\nOverfull hbox (225pt, 108pt, 107pt, 62pt, 55pt) 全部来自宽表格（Tab 2/3/4/5/6）在 generic twocolumn 下溢出。这在使用 ACL 模板（单栏或有 `table*` 环境）时不会出现，无需当前修复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-latex-compile-check-copy-2.md"
+}

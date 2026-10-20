@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3bb7e9c747fdeb97dbcc",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops registry audit gpu conflict",
+  "task_key": "worker_ops_registry_audit_gpu_conflict_20260520T083154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_registry_audit_gpu_conflict_20260520T083154_result.json",
+    "occurrence": 1,
+    "bytes": 2314,
+    "sha256": "f6ced67728d39d7c32c419bd0f74fd2247441f28a93645218a3af0f045a765ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the full report:\n\n---\n\n## 1. 17855 — Stale RUNNING 实验状态\n\n| 实验 ID | PID | 状态 | 结果目录 | 完成度 | 失败原因 |\n|---------|-----|------|----------|--------|----------|\n| `interv_pred_14b_s42_fp32` | 191999 (DEAD) | **COMPLETED** | `intervention/predictive_te_14b_s42/` | 10/10 gen + all_metrics.json | — |\n| `interv_pred_a075_s42_fp32` | — (DEAD) | **FAILED** | `intervention/predictive_te_a075_s42_fp32/` | gen_0 only | `CUDA error: device-side assert triggered` |\n| `alpha_sweep_a005_s42` | — (DEAD) | **FAILED** | `alpha_sweep/a005_s42_fp32/` | gen_0 + gen_1 | `Eigenvalues did not converge` |\n| `alpha_sweep_a060_s42_fp32` | — (DEAD) | **FAILED** | `alpha_sweep/a060_s42_fp32/` | gen_0 + gen_1 | `Eigenvalues did not converge` |\n\n所有 4 个均已于 **2026-05-18** 结束。`a060_s42_fp32` 已有 v4 在 GPU 5 上运行 (PID 295540)。\n\n---\n\n## 2. 19828 — GPU 分配实况\n\n| PID | GPU | VRAM | 实验 | 运行时间 |\n|-----|-----|------|------|----------|\n| 531132 | **cuda:0** | 14,230 MiB | `ablation/accumulate_a050_s43` (pythia-410m, α=0.50, --accumulate) | 3h27m |\n| 532902 | **cuda:1** | 14,492 MiB | `intervention/predictive_te_a075_s42` (pythia-410m, α=0.75) | 3h13m |\n| 538779 | **cuda:1** | 32,510 MiB | `scale/14b_a050_s42_fp32` (pythia-1.4b, α=0.50) | 2h42m |\n\n**冲突确认：cuda:1 上有两个实验共享。** 合计 VRAM 47,002 / 97,887 MiB (48%)，显存充裕。两个都在正常运行（94% GPU 利用率）。Registry 中 PID 538774 实际是 bash wrapper，真实 python 进程是 538779。\n\n---\n\n## 3. 建议操作\n\n**Registry 需更新：**\n1. `interv_pred_14b_s42_fp32` → status=DONE (success), 结果完整\n2. `interv_pred_a075_s42_fp32` → status=DONE (failed), 原因: CUDA device-side assert\n3. `alpha_sweep_a005_s42` → status=DONE (failed), 原因: Eigenvalues did not converge\n4. `alpha_sweep_a060_s42_fp32` → status=DONE (failed), 原因: Eigenvalues did not converge; v4 正在重跑\n\n**19828 GPU 冲突：** 无需干预。两个实验共享 cuda:1 但 VRAM 未超限，运行 2.5h+ 无异常。但 registry 应修正 `scale_14b_a050_s42_fp32` 的 GPU 记录为 cuda:1（如果之前记为其他值）。\n\n需要我执行 registry 更新吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-registry-audit-gpu-conflict.md"
+}

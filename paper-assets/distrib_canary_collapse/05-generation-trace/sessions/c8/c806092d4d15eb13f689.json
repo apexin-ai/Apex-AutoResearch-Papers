@@ -1,0 +1,555 @@
+{
+  "schema_version": "1.0",
+  "id": "c806092d4d15eb13f689",
+  "project": "distrib_canary_collapse",
+  "kind": "conversation",
+  "title": "paper writing background",
+  "task_key": "worker_paper_writing_background_20260515T191131",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_background_20260515T191131.jsonl",
+    "occurrence": 1,
+    "bytes": 27258,
+    "sha256": "037baf2de6ffadda8b6766de9b84357bfcacde6556709a8eba4e4807bf0515d8"
+  },
+  "statistics": {
+    "messages": 27,
+    "user_turns": 0,
+    "tool_calls": 13,
+    "roles": {
+      "tool_call": 13,
+      "tool_result": 13,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T19:12:57.625068+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_background_20260515T191131",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T19:12:57.625599+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认\n…[truncated 7201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_background_20260515T191131",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T19:12:57.625783+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_background_20260515T191131",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/red-section.skill.md"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T19:12:57.626057+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: red-section\n3\tdescription: \"当实验结论为 negative / 审稿人指出 core claim 不成立 / 你要写或修改任何 paper/**/*.md 或 .tex 文件时,立即使用本 skill。提供 Framing 调整提案模板、写作规范、审稿攻击面预演。违反即被 Reviewer critical 打回。\"\n4\talways: true\n5\troles:\n6\t  - agent\n7\t---\n8\t\n9\t# Red Section — Narrative Re-framing\n10\t\n11\t## 什么时候用\n12\t- 实验 conclusion = negative\n13\t- 审稿人指出 core claim 不成立\n14\t- 写论文前（作为通用写作规范）\n15\t\n16\t## Negative 结果的正确心态\n17\t\"不是失败，是发现了 X\"。你的输出应该是 framing 调整提案，而不是 failure report。\n18\t\n19\t## 产出格式\n20\t\n21\t### Framing 调整提案模板\n22\t1. 原 claim：什么\n23\t2. 实验结果：什么（客观数字，不加修饰）\n24\t3. 重新审视：\n25\t   - 这个结果挑战了哪个 hypothesis？\n26\t   - 是否暴露了被忽略的变量？\n27\t   - 在新的 framing 下，哪些已做实验依然有效？哪些要补？\n28\t4. 新的 narrative 骨架（3 种备选，供 Director 选）\n29\t5. 对论文各章节的影响（abstract / intro / method / experiments / discussion / conclusion 逐一评估）\n30\t6. 建议下一步实验（必须至少 3 组备选，填新 framing 下的矩阵空格）\n31\t\n32\t### 写作规范（所有写作场景通用）\n33\t- 禁止 cherry-picking\n34\t- 所有数字必须追溯到 registry\n35\t- 强度与 evidence 匹配（1 个数据集 → 不能说 \"consistently\"）\n36\t- 每个定量 claim 必须附 exp_id\n37\t- 限制强度词（\"significantly\" 必须有统计检验）\n38\t\n39\t### 审稿攻击面预演\n40\t- 这个 section 最容易被审稿人攻击的点\n41\t- 预写 rebuttal 要点\n42\t\n43\t## 输出给谁\n44\t- Framing 调整提案 → Main Agent 向 Director 汇报\n45\t- 写作 skill 合规检查 → Reviewer 审查时验证\n46\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_background_20260515T191131",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T19:12:57.626208+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_background_20260515T191131",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T19:12:57.626442+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\tThe experiments in \\S\\ref{sec:method_sensitivity}--\\ref{sec:consensus_validation} reveal that lead-lag conclusions in iterative training collapse are fragile along multiple axes.\n5\tThis section distills three methodological pitfalls (\\S\\ref{sec:pitfalls}), proposes a multi-method consensus framework to address them (\\S\\ref{sec:consensus}), and calibrates the framework's error rates using built-in experimental controls (\\S\\ref{sec:calibration}).\n6\t\n7\t\n8\t\\subsection{Methodological Pitfalls in Lead-Lag Analysis}\n9\t\\label{sec:pitfalls}\n10\t\n11\tWe identify three pitfalls that, individually or in combination, can produce incorrect conclusions about temporal precedence in iterative training systems.\n12\tEach is documented below with representative data from our experiments; full results appear in \\S\\ref{sec:experiments}.\n13\t\n14\t\\paragraph{Pitfall 1: Method sensitivity.}\n15\tApplied to the same data ($\\alpha{=}1.0$, 4~seeds, 16 canary$\\to$downstream pairs), five lead-lag detection methods yield FDR significance rates ranging from 100\\% (naive cross-correlation) to 25\\% (Toda--Yamamoto Granger causality), with inter-method agreement of Cohen's $\\kappa{=}0.185$---poor agreement (\\S\\ref{sec:method_sensitivity}).\n16\tThe spurious-signal rate---the fraction of pairs flagged by the most liberal method but not confirmed by the most conservative---is 75\\% across all five methods and 62.5\\% when excluding Toda--Yamamoto, whose low statistical power at $T{=}10$ inflates this rate.\n17\tThis pitfall is dangerous because method choice alone can determine whether a lead-lag relationship is deemed present or absent.\n18\tIn a literature where single-method analyses are the norm, the implicit assumption that method choice does not matter is demonstrably false.\n19\t\n20\t\\paragraph{Pitfall 2: Spurious regression under shared trends.}\n21\tA single preprocessing decision---first-differencing to remove shared non-stationary trends---can eliminate an entire ana\n…[truncated 8740 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_background_20260515T191131",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T19:12:57.626600+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_background_20260515T191131",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T19:12:57.626849+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\\label{sec:setup}\n6\t\n7\tWe study lead-lag analysis pitfalls in iterative training collapse using Pythia-410M \\cite{biderman2023pythia}, a 410M-parameter autoregressive language model.\n8\tPythia provides a controlled setting: small enough for multi-seed experiments across five contamination levels, yet large enough to exhibit meaningful generation-over-generation degradation.\n9\tTraining data is drawn from WikiText-103 \\cite{merity2017pointer}, using 5{,}000-sample subsets per generation.\n10\t\n11\tOur protocol follows the full-replacement paradigm of \\citet{shumailov2024curse}.\n12\tEach generation $t$ proceeds in three steps: (1)~fine-tune the generation-$(t{-}1)$ model for 5{,}000 steps on a mixture of $\\alpha$ fraction synthetic data and $(1{-}\\alpha)$ fraction real data; (2)~generate 5{,}000 synthetic samples from the fine-tuned model; (3)~fully replace the synthetic pool.\n13\tWe run $T{=}10$ generations (11 time points including the generation-0 baseline) across contamination levels $\\alpha \\in \\{0.00, 0.25, 0.50, 0.75, 1.00\\}$.\n14\tThe $\\alpha{=}1.0$ condition uses four random seeds $\\{42, 43, 44, 45\\}$; other conditions use seed~42, with multi-seed replication in progress.\n15\t\n16\tWe track two \\emph{canary metrics}---cheap-to-compute statistics hypothesized to precede downstream degradation, inspired by early-warning signals in dynamical systems \\cite{scheffer2009early}---and three \\emph{downstream metrics}.\n17\tCanary metrics are token entropy (next-token prediction entropy averaged over held-out samples) and expected calibration error (ECE).\n18\tDownstream metrics are distinct-1 and distinct-2 ($n$-gram diversity \\cite{li2016diversity}) and perplexity.\n19\tWe additionally evaluate effective rank and Self-BLEU as candidate canaries (\\S\\ref{sec:case_study}).\n20\tResults for distinct-3 are reported in Appendix~\\ref{app:distinct3}.\n21\t\n22\tAll hypothesis tests apply Benjamini--Hochberg (BH\n…[truncated 15234 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_background_20260515T191131",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T19:12:57.627004+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_background_20260515T191131",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/paper_framing.md"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T19:12:57.627207+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Paper Framing — distrib_canary_collapse\n2\t\n3\t## Target Venue\n4\t- Primary: **EMNLP 2026 Main Track** (D043, 用户指定)\n5\t- ARR cycle: June 2026 (deadline ~June 15, 待确认具体日期)\n6\t- 格式: ACL 系列模板 (acl.sty), 8 页正文 + unlimited appendix\n7\t- Note: ARR May cycle 已过；June cycle 对齐 EMNLP 2026 commitment deadline\n8\t\n9\t## Narrative Structure (D027: Option B reframe)\n10\t\n11\t**主线**：方法论陷阱 + 多方法共识框架。Canary prediction 为系统性 case study。\n12\t**Claim 呈现顺序**：论文中 Claim 3 领衔 → Claim 2 (regime map) → Claim 1 (case study)。\n13\t**内部编号保持不变**（避免引用混乱），论文呈现时重排。\n14\t\n15\t## Core Claims (3 条，内部编号不变)\n16\t\n17\t1. **Canary→Diversity Granger-Causal Precedence (论文中作为 Case Study Finding)**: token_entropy 对 diversity 退化（distinct_1/2）具有 Granger-causal precedence——领先 1-2 代，差分后仍显著，证据来自多方法一致性：cross-correlation（lag=-1, std=0.0, |r|>0.99, p<0.004, 4/4 seed）、差分交叉相关（显著）、threshold onset（canary gen 1-2, diversity gen 3-4）、**permutation Granger（差分后仍 4/4 seed 显著，F=612-2615）**。论文可用措辞 (D037 更新)：*\"We demonstrate Granger-causal precedence of canary metrics at α≥0.75: α=1.0 achieves 24/24 FDR-sig (4 seeds), α=0.75 achieves 3/4 FDR-sig with the fourth borderline (p_fdr=0.054; single seed, pending multi-seed confirmation C001). Consistent temporal precedence (cross-correlation lag=+1, r=0.80–0.94) is observed across all contamination levels, though formal Granger tests at α≤0.50 do not reach FDR-corrected significance at T=11 (power analysis: §X).\"*升级上限：Granger ≠ true causality（Granger 1969），Discussion 一句话声明；双变量模型无法排除未观测混淆因子（详见 Reviewer Concerns 表）。ECE 在 cross-correlation 和 permutation Granger 下同样领先（差分后 4/4 SIG），但跨方法一致性弱于 token_entropy，地位为 conditional secondary canary 待 plan_006 确认（详见约束 #9）。注意：TY Granger 在 N=11 下不可用于区分真/伪关联（见 Claim 3），核心证据链基于多方法一致性而非单一 TY 背书。\n18\t2. **Regime-Dependent Predictability**: 可预测性取决于 collapse 维度和 contamination regime——canary→diversity 在差分后仍 robust（6/6 pair × 4/4 seed），但 canary→perplexity **经差分检验确认为伪回归**（0/4 seed, F≈0, p=0.99），未差分时的\"信号\"（F=16-36）完全由共享非平稳趋势驱动（D017）。ECE→perplexity 的反向因果同理存疑。**Claim 2 reframing (D0\n…[truncated 15197 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_background_20260515T191131",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T19:12:57.627403+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_background_20260515T191131",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/references.bib"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T19:12:57.627616+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% ============================================================\n2\t% CORE MODEL COLLAPSE\n3\t% ============================================================\n4\t\n5\t@article{shumailov2024curse,\n6\t  title     = {The Curse of Recursion: Training on Generated Data Makes Models Forget},\n7\t  author    = {Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Gal, Yarin and Papernot, Nicolas and Anderson, Ross},\n8\t  journal   = {Nature},\n9\t  year      = {2024},\n10\t  url       = {https://arxiv.org/abs/2305.17493},\n11\t}\n12\t\n13\t@inproceedings{alemohammad2024mad,\n14\t  title     = {Self-Consuming Generative Models Go {MAD}},\n15\t  author    = {Alemohammad, Sina and Casco-Rodriguez, Josue and Luzi, Lorenzo and Humayun, Ahmed Imtiaz and Babaei, Hossein and LeJeune, Daniel and Siahkoohi, Ali and Baraniuk, Richard},\n16\t  booktitle = {International Conference on Learning Representations},\n17\t  year      = {2024},\n18\t  url       = {https://arxiv.org/abs/2307.01850},\n19\t}\n20\t\n21\t@inproceedings{dohmatob2024tale,\n22\t  title     = {A Tale of Tails: Model Collapse as a Change of Scaling Laws},\n23\t  author    = {Dohmatob, Elvis and Feng, Yunzhen and others},\n24\t  booktitle = {International Conference on Machine Learning},\n25\t  year      = {2024},\n26\t  url       = {https://arxiv.org/abs/2402.07043},\n27\t}\n28\t\n29\t@inproceedings{dohmatob2025strong,\n30\t  title     = {Strong Model Collapse},\n31\t  author    = {Dohmatob, Elvis and Feng, Yunzhen and Subramonian, Arjun and Kempe, Julia},\n32\t  booktitle = {International Conference on Learning Representations},\n33\t  year      = {2025},\n34\t  url       = {https://arxiv.org/abs/2410.04840},\n35\t}\n36\t\n37\t@inproceedings{guo2024linguistic,\n38\t  title     = {The Curious Decline of Linguistic Diversity: Training Language Models on Synthetic Text},\n39\t  author    = {Guo, Yanzhu and Shang, Guokan and others},\n40\t  booktitle = {Findings of the Association for Computational Linguistics: {NAACL}},\n41\t  year      = {2024},\n42\t  url       = {https://arxiv.org/abs/2311.0\n…[truncated 16097 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_background_20260515T191131",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T19:12:57.627804+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_background_20260515T191131",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/",
+              "description": "List paper directory contents"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T19:12:57.627927+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "experiments.tex\nmethod.tex\nreferences.bib"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_background_20260515T191131",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T19:12:57.628078+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_background_20260515T191131",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/background.tex",
+              "content": "\\section{Background}\n\\label{sec:background}\n\nThis section establishes the formal setup and notation used throughout the paper.\n\n\\paragraph{Iterative training loop.}\nLet $M_0$ denote a pretrained language model and $\\mathcal{D}_\\text{real}$ a fixed corpus of human-written text.\nAt each generation $t \\geq 1$, the model $M_{t-1}$ generates a synthetic corpus $\\mathcal{D}_\\text{synth}^{(t-1)}$, and the next-generation model $M_t$ is fine-tuned on a mixture of $\\alpha$ fraction synthetic data and $(1{-}\\alpha)$ fraction real data:\n\\begin{equation}\n    \\mathcal{D}_\\text{train}^{(t)} = \\alpha \\cdot \\mathcal{D}_\\text{synth}^{(t-1)} \\;+\\; (1{-}\\alpha) \\cdot \\mathcal{D}_\\text{real}, \\quad \\alpha \\in [0, 1].\n    \\label{eq:mixing}\n\\end{equation}\nThe contamination level $\\alpha$ controls the fraction of machine-generated text in each training round.\nAt $\\alpha{=}1.0$, this reduces to the full-replacement paradigm of \\citet{shumailov2024curse}, where each generation trains exclusively on the previous generation's output.\nIterating this process for $T$ generations yields a trajectory $M_0 \\to M_1 \\to \\cdots \\to M_T$.\n\n\\paragraph{Metric families.}\nWe distinguish two families of metrics evaluated at each generation~$t$.\n\\emph{Canary metrics} are cheap-to-compute statistics on the model's output distribution, hypothesized to change before downstream quality degrades---analogous to early-warning indicators studied in the context of critical transitions in dynamical systems \\cite{scheffer2009early}.\nWe consider two canary metrics: \\emph{token entropy}, the average next-token prediction entropy over held-out samples, and \\emph{expected calibration error} (ECE), which measures the discrepancy between predicted token probabilities and empirical correctness frequencies.\n\\emph{Downstream metrics} capture generation quality directly.\nWe use \\emph{distinct-$n$} ($n \\in \\{1, 2, 3\\}$), the ratio of unique $n$-grams to total $n$-grams in generated text \\cite{li2016diversity}, as a measure of lexical diversity, and \\emph{perplexity} on a held-out set as a measure of language modeling quality.\nEach metric produces a time series of $T{+}1$ observations (generations $0$ through $T$).\n\n\\paragraph{The lead-lag testing problem.}\nGiven two such time series $X = (x_0, \\ldots, x_T)$ and $Y = (y_0, \\ldots, y_T)$---for instance, a canary metric and a downstream metric---the central question is whether changes in $X$ temporally precede changes in $Y$.\nThis requires more than measuring correlation: the test must establish \\emph{directionality} ($X \\to Y$ rather than $Y \\to X$) and account for confounders such as shared non-stationary trends that can produce spurious associations.\nThe classical framework for testing temporal predictive precedence is Granger causality \\cite{granger1969investigating}, which asks whether past values of $X$ improve prediction of $Y$ beyond $Y$'s own history.\nWe note that Granger precedence tests predictive improvement, not true causality \\cite{shojaie2022granger}; this distinction is discussed further in \\S\\ref{sec:method}.\n\n\\paragraph{Five detection methods.}\nWe employ five lead-lag detection methods spanning a spectrum from permissive to conservative:\n(1)~\\emph{naive cross-correlation}, which computes Pearson correlation on undifferenced series at lags up to~5;\n(2)~\\emph{differenced cross-correlation}, which applies the same procedure to first-differenced series, removing shared linear trends;\n(3)~\\emph{threshold onset detection}, which compares the generation at which each metric first exceeds a predefined deviation threshold;\n(4)~\\emph{permutation Granger causality}, a non-parametric Granger test using 5{,}000 permutations on first-differenced series \\cite{shojaie2022granger}; and\n(5)~\\emph{Toda--Yamamoto Granger causality}, an augmented VAR approach that tests Granger precedence without requiring prior differencing \\cite{granger1969investigating}.\nThese methods differ in their assumptions about stationarity, their sensitivity to shared trends, and their statistical power at short time-series lengths.\nTheir joint application forms the basis of the multi-method consensus framework developed in \\S\\ref{sec:method}.\n"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T19:12:57.628237+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/background.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_background_20260515T191131",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T19:12:57.628423+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_background_20260515T191131",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -c '\\\\label{sec:background}' /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/background.tex",
+              "description": "Check label exists"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T19:12:57.628541+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_background_20260515T191131",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T19:12:57.628649+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_background_20260515T191131",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -oP '\\\\\\\\cite\\{[^}]+\\}' /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/background.tex | sort -u",
+              "description": "Extract all citation keys"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T19:12:57.628757+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_background_20260515T191131",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T19:12:57.628862+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_background_20260515T191131",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -w /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/background.tex",
+              "description": "Count words"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T19:12:57.628967+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "511 /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/background.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_background_20260515T191131",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T19:12:57.629073+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_background_20260515T191131",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -oP '\\\\\\\\cite[tp]?\\{([^}]+)\\}' /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/background.tex | sed 's/\\\\\\\\cite[tp]\\?{//;s/}//' | tr ',' '\\n' | sort -u",
+              "description": "Extract citation keys properly"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T19:12:57.629184+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_background_20260515T191131",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T19:12:57.629318+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_background_20260515T191131",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\cite",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/background.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T19:12:57.629446+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "14:At $\\alpha{=}1.0$, this reduces to the full-replacement paradigm of \\citet{shumailov2024curse}, where each generation trains exclusively on the previous generation's output.\n19:\\emph{Canary metrics} are cheap-to-compute statistics on the model's output distribution, hypothesized to change before downstream quality degrades---analogous to early-warning indicators studied in the context of critical transitions in dynamical systems \\cite{scheffer2009early}.\n22:We use \\emph{distinct-$n$} ($n \\in \\{1, 2, 3\\}$), the ratio of unique $n$-grams to total $n$-grams in generated text \\cite{li2016diversity}, as a measure of lexical diversity, and \\emph{perplexity} on a held-out set as a measure of language modeling quality.\n28:The classical framework for testing temporal predictive precedence is Granger causality \\cite{granger1969investigating}, which asks whether past values of $X$ improve prediction of $Y$ beyond $Y$'s own history.\n29:We note that Granger precedence tests predictive improvement, not true causality \\cite{shojaie2022granger}; this distinction is discussed further in \\S\\ref{sec:method}.\n36:(4)~\\emph{permutation Granger causality}, a non-parametric Granger test using 5{,}000 permutations on first-differenced series \\cite{shojaie2022granger}; and\n37:(5)~\\emph{Toda--Yamamoto Granger causality}, an augmented VAR approach that tests Granger precedence without requiring prior differencing \\cite{granger1969investigating}."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_background_20260515T191131",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T19:12:57.629588+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 5 required citation keys present: `shumailov2024curse`, `scheffer2009early`, `li2016diversity`, `granger1969investigating`, `shojaie2022granger`. All exist in `references.bib`.\n\nVerification summary:\n- `\\label{sec:background}` present\n- All `\\cite{}` keys verified in `references.bib`\n- No result claims, no strength-word violations\n- Notation consistent with method.tex/experiments.tex: $\\alpha$, $T$, canary/downstream terminology, five method names, BH FDR, permutation count\n- PC11 addressed: \"Granger precedence tests predictive improvement, not true causality\"\n- 511 words (LaTeX commands included in count; prose body ~490 words)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_background_20260515T191131"
+          },
+          "id": "event-000027"
+        }
+      ],
+      "message_count": 27
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing-background.md"
+}

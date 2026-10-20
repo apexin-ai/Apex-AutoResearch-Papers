@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d1f3922121a1d24e9663",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops deploy 14b t10a045 17855c4",
+  "task_key": "worker_ops_deploy-14b-t10a045-17855c4_20260522T123042",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_deploy-14b-t10a045-17855c4_20260522T123042_result.json",
+    "occurrence": 1,
+    "bytes": 861,
+    "sha256": "740dd09cf7111f7e67e614147130cafb2053cba0851fe15a451f83e853feb07b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。总结：\n\n**实验 scale_14b_t10_a045_s42_fp32**\n- 服务器: westd-17855, cuda:4\n- PID: 679198\n- GPU 占用: 10.3 GB / 87% 利用率\n- 模型: pythia-1.4b-deduped（通过 ModelScope 下载到 `/root/autodl-tmp/.ms_cache/EleutherAI/pythia-1.4b-deduped`）\n- 日志: `/tmp/train_scale_14b_t10_a045_s42.log`\n- Registry 状态: RUNNING\n\n注意事项：\n- pythia-1.4b-deduped 在 17855 的 HF 缓存中不存在，HuggingFace CDN 下载速度 ~65KB/s 不可用，改用 ModelScope CDN（5-17 MB/s）下载，约 8 分钟完成\n- `--model_name` 改为本地路径 `/root/autodl-tmp/.ms_cache/EleutherAI/pythia-1.4b-deduped`（因 TRANSFORMERS_OFFLINE=1 需要本地模型）\n- 日志输出因 nohup 缓冲暂时停留在 \"Generation 0 (baseline)\"，GPU 活跃计算中，baseline 评估预计数分钟后日志会刷新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-deploy-14b-t10a045-17855c4.md"
+}

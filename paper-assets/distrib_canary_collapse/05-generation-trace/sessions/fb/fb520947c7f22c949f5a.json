@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb520947c7f22c949f5a",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops check alpha sweep progress",
+  "task_key": "worker_ops_check-alpha-sweep-progress_20260514T233150",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-alpha-sweep-progress_20260514T233150_result.json",
+    "occurrence": 1,
+    "bytes": 781,
+    "sha256": "1b90e951ddba2f37e82ec01f4430b00869998eb9fd6c39e4a9f637d30b14ae5e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nalpha_sweep_a000_s42 (α=0.0):\n  - GPU: cuda:0, 利用率 89%, 12.5GB/98GB\n  - 进程: PID 46721, 已运行 4h31m\n  - 进度: gen 10/10 训练中（synthetic data 已生成，正在训练）\n  - 每 gen 约 26 分钟\n  - 预估剩余: < 15 分钟（最后一个 gen 的训练阶段）\n\nalpha_sweep_a025_s42_v3 (α=0.25):\n  - GPU: cuda:1, 利用率 46%, 14.4GB/98GB\n  - 进程: PID 53074, 已运行 2h29m\n  - 进度: gen 5/10 完成，gen 6 刚开始\n  - 每 gen 约 23.5 分钟\n  - 预估剩余: ~1 小时 58 分钟（5 个 gen）\n```\n\n注：a000_s42 的输出目录是 `results/alpha_sweep/a000_s42/`，a025_s42 是 `results/alpha_sweep/a025_s42/`。两个实验的 `num_generations=10`，总共产生 gen_0 到 gen_10（gen_0 为初始轮）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-alpha-sweep-progress.md"
+}

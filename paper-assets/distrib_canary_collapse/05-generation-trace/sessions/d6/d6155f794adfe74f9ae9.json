@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6155f794adfe74f9ae9",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "prep a000 batch2 config",
+  "task_key": "worker_prep_a000_batch2_config_20260516T112622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_a000_batch2_config_20260516T112622_result.json",
+    "occurrence": 1,
+    "bytes": 2437,
+    "sha256": "ee542aaab47bf3f786795b2b056b63599b5f8d69edafa085ad1e1b3f79821a81"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完毕，汇总报告：\n\n---\n\n## α=0.0 Batch 2 预备验证\n\n### 1. synthetic_ratio=0.0 安全性\n\n**安全。** `iterative_train.py:112` 有显式处理：\n\n```python\nif synthetic_ratio <= 0.0:\n    return real_dataset  # 返回纯真实数据，不混合\n```\n\n历史验证：a000_s42 已成功完成（`all_metrics.json` 存在，11 个 gen 目录齐全）。\n\n### 2. 磁盘占用\n\n| 实验 | 总大小 |\n|------|--------|\n| a000_s42 (α=0.0) | 1.6 GB |\n| a075_s42 (α=0.75) | 1.6 GB |\n\nα=0.0 和 α=0.75 占用相同——因为 synthetic_data 仍然会生成（用于计算 metrics），只是不参与训练混合。gen_0~9 各 ~6-7MB（synthetic_data + metrics），gen_10 ~1.6GB（含 checkpoint）。\n\n### 3. 磁盘余量\n\n```\n/dev/md0  250G  37G used  214G available  15%\n```\n\n两个实验需要 ~3.2GB，**214GB 余量完全充足**。\n\n### 4. 完整启动命令\n\n基于 a000_s42 和 a075_s43 的 config.json 参数：\n\n**a000_s43 (cuda:0):**\n```python\nmcp__agent-ml-research__ssh_execute(\n    server=\"westd-19828\",\n    account=\"root\",\n    command=\"cd /root/autodl-tmp/distrib_canary_collapse && CUDA_VISIBLE_DEVICES=0 nohup python iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --dataset wikitext-103-v1 --synthetic_ratio 0.0 --num_generations 10 --steps_per_gen 5000 --output_dir results/alpha_sweep/a000_s43 --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 > results/alpha_sweep/a000_s43/train.log 2>&1 &\"\n)\n```\n\n**a000_s44 (cuda:1):**\n```python\nmcp__agent-ml-research__ssh_execute(\n    server=\"westd-19828\",\n    account=\"root\",\n    command=\"cd /root/autodl-tmp/distrib_canary_collapse && CUDA_VISIBLE_DEVICES=1 nohup python iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --dataset wikitext-103-v1 --synthetic_ratio 0.0 --num_generations 10 --steps_per_gen 5000 --output_dir results/alpha_sweep/a000_s44 --seed 44 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 > results/alpha_sweep/a000_s44/train.log 2>&1 &\"\n)\n```\n\n注意：启动前需先 `mkdir -p results/alpha_sweep/a000_s43 results/alpha_sweep/a000_s44`（否则 nohup 的 log 重定向会失败）。且须确认 a075_s43/s44 已完成（检查 EXIT_CODE 文件），再释放 GPU。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-a000-batch2-config.md"
+}

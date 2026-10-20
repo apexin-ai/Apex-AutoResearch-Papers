@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e6f97d59b32fe701260",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code d028 pipeline integration fdr",
+  "task_key": "worker_code_d028_pipeline_integration_fdr_20260515T105558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d028_pipeline_integration_fdr_20260515T105558_result.json",
+    "occurrence": 1,
+    "bytes": 913,
+    "sha256": "4f72bf45e1306e8756abce50f26a0ccb51ce30c40a269e10a3611338033dacc9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两项任务完成。总结：\n\n**Task 1 (P0): consensus_framework.py FPR ground truth 切换**\n- `main()` 现在先调 `compute_fpr_null_control`（α=0.0 null control）作为 primary FPR → `fpr_fnr_table.json`\n- `compute_fpr_fnr_diff`（differenced_xcorr）保留为 legacy → `fpr_fnr_table_legacy.json`\n- 顶部注释已更新，`DIFF_INDEX` 保留（legacy 路径仍用）\n- 验证通过：null control 下 permG FPR=0%, TY FPR=0%；legacy 下 consensus FPR=0%, FNR=0%\n- 3 个文件已同步到本地 `artifacts/analysis/consensus_framework/`\n\n**Task 2 (P1): Phase 2 报告 FDR 化**\n- 主表替换为 BH FDR-corrected 数字，raw 值移至引用块对比\n- 关键翻转：α=0.25 permG 25%→**0%**, α=0.50 permG 25%→**0%**, α=0.25 TY 62.5%→**37.5%**\n- Registry metrics 已更新：所有 sig rate 字段加 `_raw`/`_fdr` 后缀，新增 `fdr_correction: \"BH q=0.05\"`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d028-pipeline-integration-fdr.md"
+}

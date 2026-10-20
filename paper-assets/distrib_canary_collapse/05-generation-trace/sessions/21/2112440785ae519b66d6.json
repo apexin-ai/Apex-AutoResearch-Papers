@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2112440785ae519b66d6",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "infra sync code w17",
+  "task_key": "worker_infra_sync_code_w17_20260518T193451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_sync_code_w17_20260518T193451_result.json",
+    "occurrence": 1,
+    "bytes": 215,
+    "sha256": "fc5a654f85e5ec0d33f81c72278ee8fce61a0f560d47d64f3d68970e3678675a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过。Import OK，`--help` 输出正常。三步全部完成：文件已从 westd-19828 同步到 westd-17855，MD5 一致（`77219830ffc971be642eb7871fe023d5`），导入和 CLI 均正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-sync-code-w17.md"
+}

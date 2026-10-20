@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28ef0004ec2037b4c420",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diag full gpu audit 19828",
+  "task_key": "worker_diag_full_gpu_audit_19828_20260518T234937",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_full_gpu_audit_19828_20260518T234937_result.json",
+    "occurrence": 1,
+    "bytes": 1239,
+    "sha256": "6c7a3e86b05b078bcfe0ca49c692fa702df859cf662b6bef5e4a76ad40c6f989"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态报告 (westd-19828)\n\n### cuda:0 — scale_14b (Pythia-1.4B, α=0.50, s42)\n| 项目 | 值 |\n|------|-----|\n| PID | 369475 |\n| 显存 | 36736 / 97887 MiB (37.5%) |\n| GPU 利用率 | 94% |\n| 运行时间 | 7h15m |\n| 进度 | gen_10/10 — checkpoint 刚写入 (07:50)，正在训练最后一代或计算 metrics |\n| all_metrics.json | **不存在** |\n| 状态 | **运行中，接近完成** |\n| 可用性 | **不可用** — 进程仍在占用 |\n\n### cuda:1 — smollm3_fp32 (SmolLM3-3B, α=1.0, s42, fp32)\n| 项目 | 值 |\n|------|-----|\n| PID | 399353 |\n| 显存 | 37598 / 97887 MiB (38.4%) |\n| GPU 利用率 | 98% |\n| 运行时间 | 1h55m |\n| 进度 | gen_1/10 — gen_1 已有 synthetic_data，正在训练 gen_2 |\n| all_metrics.json | **不存在** |\n| 状态 | **运行中，早期阶段**，预计还需 ~8h |\n\n### 其他\n- **PID 395612**: 已确认不存在，无孤儿进程\n- **闲置 tmux sessions**: `generalize_opt1b_wiki_a100_s42` 和 `generalize_pythia410m_wiki_a100_s42` (May 17 创建，已完成，shell 空闲)\n- **gen_10 metrics**: 尚未生成，scale_14b 完成后再读取\n- **cuda:0 预计释放**: scale_14b 在 gen_10 最后阶段，预计 30min-1h 内完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-full-gpu-audit-19828.md"
+}

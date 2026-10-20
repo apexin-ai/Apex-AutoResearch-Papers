@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb8cfb8b0cf5040b38c6",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "infra qwen cache verify",
+  "task_key": "worker_infra_qwen_cache_verify_20260518T184154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_qwen_cache_verify_20260518T184154_result.json",
+    "occurrence": 1,
+    "bytes": 1127,
+    "sha256": "95dd4b8cf2d936b29713965a434013ffc74e0cd3c277c89cfac295106171e59d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两台服务器验证完毕。\n\n## 结果汇总\n\n| | westd-19828 | westd-17855 |\n|---|---|---|\n| **权重位置** | `/root/autodl-tmp/models/Qwen3.5-0.8B-Base/` | `/root/autodl-tmp/models/Qwen3.5-0.8B-Base/` |\n| **文件** | `model.safetensors-00001-of-00001.safetensors` (1,746,942,600 bytes) | 同左 |\n| **目录大小** | 1.7G | 1.7G |\n| **Model class** | `Qwen3_5ForCausalLM` | `Qwen3_5ForCausalLM` |\n| **参数量** | 0.75B | 0.75B |\n| **Vocab** | 248,044 | 248,044 |\n| **Generate** | 成功 | 成功 |\n| **HF cache** | 仅 refs/main（无权重副本） | 无 |\n| **结论** | **可用** | **可用** |\n\n注意事项：\n1. 两台服务器的权重都在显式目录而非 HF cache，加载时需指定本地路径 `/root/autodl-tmp/models/Qwen3.5-0.8B-Base`，不能直接用 `Qwen/Qwen3.5-0.8B-Base` hub ID\n2. weight_map 含 `model.visual.merger` 键，但实际加载为 `Qwen3_5ForCausalLM`（纯文本 CausalLM），参数量 0.75B 符合预期\n3. 缺少 `flash-linear-attention` 和 `causal-conv1d`，当前 fallback 到 torch 实现（训练时可能需要安装以获得加速）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-qwen-cache-verify.md"
+}

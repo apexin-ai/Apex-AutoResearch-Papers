@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2beccc0a4b8a282388f4",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops kill dryrun fix comment",
+  "task_key": "worker_ops_kill-dryrun-fix-comment_20260514T220351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-dryrun-fix-comment_20260514T220351_result.json",
+    "occurrence": 1,
+    "bytes": 566,
+    "sha256": "9adfa652335409814c56e49b8dc5e982a69c8c9d85cb8a5081447e4ed0f128cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Summary\n\n1. **进程 kill**: PID 57123 和 57471 已成功终止（SIGTERM 即可，无需 force kill）。`ps` 确认进程不存在。\n\n2. **VRAM**: cuda:0 和 cuda:1 各占 ~14.4GB，均为 a000_s42 实验进程（PID 46721, 53074）。dry-run 进程的 VRAM 已释放——之前 dry-run 和 a000_s42 共享 GPU，kill 后剩余占用即为 a000_s42 本身。\n\n3. **注释修复**: `method_ablation.py:301` 已从 `partial eta-squared = F/(F+df_resid)` 改为 `Cohen's f² = F/df_resid`，与代码实际实现 `f2_val = F / df` 一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-dryrun-fix-comment.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b92be372958297b3eebd",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops null seed final check",
+  "task_key": "worker_ops_null_seed_final_check_20260524T044957",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_null_seed_final_check_20260524T044957_result.json",
+    "occurrence": 1,
+    "bytes": 1349,
+    "sha256": "f9b7c49e39192fec799c78b92753c2db311d8511a23e789b60b2536f4e09cd14"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Null Seed 实验状态\n\n| exp_id | Server | 状态 | Gen 进度 | PermG FPR |\n|--------|--------|------|----------|-----------|\n| null_s45 (T=10) | 17855 | **done** (EC=0) | 11/11 | 2/6 (33.3%) |\n| null_s46 (T=10) | 17855 | running | 8/11 | - |\n| null_s47 (T=10) | 17855 | **done** (EC=0) | 11/11 | 0/6 (0.0%) |\n| null_s48 (T=10) | 17855 | running | 8/11 | - |\n| null_s49 (T=10) | 17855 | running | 8/11 | - |\n| null_s50 (T=10) | 17855 | running | 8/11 | - |\n| null_gpt2m_s42 | 17855 | running | 4/11 | - |\n| null_gpt2m_s43 | 17855 | running | 4/11 | - |\n| null_t15_s42 | 19828 | running | 4/16 | - |\n| null_t15_s43 | 19828 | running | 4/16 | - |\n\nD102 analyses for s45 and s47 already existed (6-pair). No new completed experiments to analyze.\n\n**False positives in s45:** token_entropy→distinct_2, token_entropy→distinct_3\n\n## Pooled FPR（已完成 seeds）\n- **Pythia-410M T=10:** 2/12 (16.7%) — 2 seeds done\n- **Pythia-410M T=15:** pending (4/16 gens)\n- **GPT-2m T=10:** pending (4/11 gens)\n- **Total:** 2/12 (16.7%)\n\n## GPU 状态\n- **17855:** 6 GPUs all ~95% util, 14-15GB VRAM — running 6 experiments\n- **19828:** 2 GPUs both ~96% util, 14GB VRAM — running 2 experiments\n\ns46/48/49/50 at 8/11 gens should finish in a few hours. GPT-2m and T=15 at ~36% progress, likely 6-8h remaining."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-null-seed-final-check.md"
+}

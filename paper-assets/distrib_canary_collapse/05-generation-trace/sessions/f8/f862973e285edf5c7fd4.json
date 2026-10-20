@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f862973e285edf5c7fd4",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops kill orphan and setup 19828",
+  "task_key": "worker_ops_kill_orphan_and_setup_19828_20260521T023910",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_orphan_and_setup_19828_20260521T023910_result.json",
+    "occurrence": 1,
+    "bytes": 290,
+    "sha256": "6559a0dec1d0340f4e835ad7aa88eef9593ed3d1171defab62eac2a00381ea6c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务完成：\n\n1. **westd-17855**: PID 408491 已 kill，显存释放\n2. **westd-19828**: Pythia-410M 通过 ModelScope 下载成功（HF 代理 connection reset，走了 fallback），`alpha_sweep_a048_s43_fp32` 已提交，模型加载正常，正在读取数据"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-orphan-and-setup-19828.md"
+}

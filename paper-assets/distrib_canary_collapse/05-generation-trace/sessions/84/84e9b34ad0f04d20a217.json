@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84e9b34ad0f04d20a217",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis phase diagram t15 a075 s42 fp32 v2",
+  "task_key": "worker_analysis_phase_diagram_t15_a075_s42_fp32_v2_20260521T191505",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_phase_diagram_t15_a075_s42_fp32_v2_20260521T191505_result.json",
+    "occurrence": 1,
+    "bytes": 565,
+    "sha256": "7c89e5d32dc759e0cb417aec4eaa27debb4694305c869084934dfc62364147b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果：PermG = 6/8**，K≥3 robust pairs = 6/8，hypothesis confirmed (success)。\n\nPhase Diagram T=15 α=0.75 格子：\n| 方法 | 显著对数 |\n|------|---------|\n| PermG (FDR) | 6/8 |\n| Diff XCorr (FDR) | 7/8 |\n| Threshold Onset | 4/8 |\n| TY Granger | 4/8 |\n| **Robust K≥3** | **6/8** |\n\nReverse PermG = 0/8，方向性干净。\n\nα=0.75 跨 T 一致：T=10 → 6/8, **T=15 → 6/8**, T=20 → 6/8。远超 α_c(15)≈0.304 的预期检测得到确认。Registry 已更新为 DONE/success，artifacts 已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-phase-diagram-t15-a075-s42-fp32-v2.md"
+}

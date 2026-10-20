@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d225f24b1ac88552c6b0",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops deploy 14b t10a050 19828c1",
+  "task_key": "worker_ops_deploy-14b-t10a050-19828c1_20260522T121054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_deploy-14b-t10a050-19828c1_20260522T121054_result.json",
+    "occurrence": 1,
+    "bytes": 580,
+    "sha256": "d695bbcebab9d5d8e1cb5e33ae06fba36906650cf7a435a803e6051a11b2d157"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:1 被占用。** \n\nPID 776064 正在运行一个 Pythia-1.4B T=10 α=0.50 实验（已运行 3h 5m），输出到 `results/phase_diagram/t10_a050_s42_fp32_14b`，从 gen 2 续跑。\n\n这看起来就是 `scale_14b_t10_a050` 的某个版本——有人已经在 cuda:1 上重启了它。显存占用 32646 MiB，利用率 77%。\n\n**无法部署新实验到 19828:cuda:1。** 需要确认这个正在运行的实验是否就是我们要部署的 scale_14b_t10_a050，或者是之前遗留的旧版本。要我查一下它的进度和 registry 状态吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-deploy-14b-t10a050-19828c1.md"
+}

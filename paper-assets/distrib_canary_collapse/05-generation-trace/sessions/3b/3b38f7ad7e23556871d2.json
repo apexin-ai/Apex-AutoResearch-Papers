@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b38f7ad7e23556871d2",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ssh check 19828 gpu",
+  "task_key": "worker_ssh_check-19828-gpu_20260519T131205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-19828-gpu_20260519T131205_result.json",
+    "occurrence": 1,
+    "bytes": 1441,
+    "sha256": "db34cf76f7775d28b1be500850bcf5cd9ee1ce761ebc6a1f0ec57709d5dc1b78"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态汇总\n\n### nvidia-smi\n\n| GPU | 型号 | 温度 | 功耗 | 显存占用 | GPU利用率 | 进程 PID |\n|-----|------|------|------|----------|----------|----------|\n| cuda:0 | RTX PRO 6000 Black (96GB) | 73°C | 494W/600W | 62679/97887 MiB (64%) | 100% | 407864 |\n| cuda:1 | RTX PRO 6000 Black (96GB) | 71°C | 504W/600W | 64417/97887 MiB (66%) | 99% | 408266 |\n\n### 进程状态\n\n4 个进程全部存活，已运行约 12h50m：\n\n| 进程 | PID | 状态 | 运行时间 | 说明 |\n|------|-----|------|----------|------|\n| bash wrapper (gpt2m) | 407859 | Ss+ | 12:51:16 | 父进程 |\n| **python (gpt2m s43)** | **407864** | **Sl** | **12:51:16** | cuda:0 训练进程 |\n| bash wrapper (smollm3) | 408261 | Ss+ | 12:47:57 | 父进程 |\n| **python (smollm3 s42)** | **408266** | **Rl** | **12:47:57** | cuda:1 训练进程 |\n\n### 训练进度\n\n| 实验 | 当前 Gen | Step 进度 | 速度 | 剩余 Gen | 预计完成 |\n|------|---------|-----------|------|---------|---------|\n| **gen_gpt2m_a100_s43** | gen 9/10 (最后一个) | 3383/5000 (68%) | 1.12 it/s | 0 | ~24 min 完成当前 gen → **实验即将结束** |\n| **smollm3_3b_wiki_a100_s42_v3** | gen 7/10 | 3498/5000 (70%) | 1.18 it/s | 2 (gen_8, gen_9) | ~22 min 完成当前 gen + 2 gen × ~71 min ≈ **~2.5h 完成全部** |\n\nGPT-2m 实验约半小时内跑完，SmolLM3-3B 还需约 2.5 小时。两张卡满载运行正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-19828-gpu.md"
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "3a263c487f9a587ed345",
+  "project": "distrib_canary_collapse",
+  "kind": "conversation",
+  "title": "code a050 prep",
+  "task_key": "worker_code_a050-prep_20260515T002252",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_a050-prep_20260515T002252.jsonl",
+    "occurrence": 1,
+    "bytes": 273,
+    "sha256": "0d0ab6e4834bcdf136729fa96da4f9e5db45747ddffa1ffba8022ab20958aef3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T00:23:01.947622+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 500 Internal server error. This is a server-side issue, usually temporary — try again in a moment. If it persists, check status.claude.com."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_a050-prep_20260515T002252"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/code-a050-prep.md"
+}

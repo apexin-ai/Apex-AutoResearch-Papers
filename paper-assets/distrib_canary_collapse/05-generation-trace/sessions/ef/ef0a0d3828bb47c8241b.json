@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef0a0d3828bb47c8241b",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "paper fix discussion L84 fdr",
+  "task_key": "worker_paper_fix_discussion_L84_fdr_20260518T014147",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix_discussion_L84_fdr_20260518T014147_result.json",
+    "occurrence": 1,
+    "bytes": 479,
+    "sha256": "9e8bab24079b955e769158688ba16b9ff59cac9b970e254c7b087ddd59379859"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，0 errors，输出 26 页 PDF。\n\n修改完成。`discussion.tex` 的 canary quality hierarchy 段落已修正：\n- 原文错误地将所有条件统称为 \"non-significant after FDR correction\"\n- 新文本区分了 Baseline/OPT（$p\\approx 0.03$, FDR 后不显著）和 C4（3/4 pairs $p<0.005$, BH-significant）\n- 补充了 \"coupling strength varies with training domain\" 的解释，衔接后续 calibration-diversity feedback 机制段"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-discussion-l84-fdr.md"
+}

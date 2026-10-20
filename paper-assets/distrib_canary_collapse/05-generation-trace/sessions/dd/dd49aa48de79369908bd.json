@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd49aa48de79369908bd",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis d150 shapley v3 dedup fdr",
+  "task_key": "worker_analysis_d150_shapley_v3_dedup_fdr_20260520T142236",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d150_shapley_v3_dedup_fdr_20260520T142236_result.json",
+    "occurrence": 1,
+    "bytes": 943,
+    "sha256": "3db20aad33be1d72e039e638364028f113de408d6d88ba58433ba8c227c6947b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks pass. Here's the summary:\n\n**Shapley v3 完成。**\n\n**修复内容：**\n- **排除 4 个非标准变体**: `a005_s42_fp32_v3_d080`, `a060_s42_fp32_v3_d080`, `a050_postd093_s42_fp32`, `gpt2m_wiki_a100_s43_bf16`\n- **去重 8 个 alpha_sweep 条目**: 同一 (dataset, alpha, seed) 保留 17855 fp32 版本（含 α=0.00 s42 去重）\n- **FDR 字段已验证**: 4 个 p-value 方法使用 `significant_fdr`，threshold_onset 使用 `significant`（确定性，无 p-value）\n\n**数据规模变化**: 60 → 48 experiments, null 4→3, signal 56→45\n\n**验证通过**:\n- 无 v3_d080/postd093/bf16 污染\n- α=0.00 s42 仅 1 条（17855 fp32）\n- perm_granger FPR Shapley = 0.000（raw 0/24）\n- Shapley sum 精确匹配 grand coalition\n\n**输出文件**:\n- `artifacts/shapley_v2/shapley_values_v2.json` — 已覆盖为 v3 内容\n- `artifacts/shapley_v2/shapley_method_contribution.pdf` — 已重画"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d150-shapley-v3-dedup-fdr.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b062279812454c9730e9",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops fix 19828 dual instance",
+  "task_key": "worker_ops_fix_19828_dual_instance_20260521T084631",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_19828_dual_instance_20260521T084631_result.json",
+    "occurrence": 1,
+    "bytes": 446,
+    "sha256": "f99cccebaad74a78846e026321edee3e047e813bcfdc007824fdba534318b5bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已修复。\n\n**结果：**\n- PID 655861（多余实例）已 kill，进程不存在\n- PID 656193（registry 注册的正确实例，parent session = 656188）继续运行\n- cuda:1 上的 a000_s46_fp32 未受影响\n\n**当前 GPU 状态：**\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| cuda:0 | 97% | 14,239 / 97,887 MiB |\n| cuda:1 | 96% | 14,239 / 97,887 MiB |\n\n两张卡各跑一个实验，资源正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-19828-dual-instance.md"
+}

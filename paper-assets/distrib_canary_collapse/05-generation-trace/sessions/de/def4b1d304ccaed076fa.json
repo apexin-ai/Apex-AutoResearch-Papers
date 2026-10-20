@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "def4b1d304ccaed076fa",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diag westd17855 gpu fix",
+  "task_key": "worker_diag_westd17855_gpu_fix_20260518T220434",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_westd17855_gpu_fix_20260518T220434_result.json",
+    "occurrence": 1,
+    "bytes": 1105,
+    "sha256": "85d8395a95c62faada4c8ff87f6956b80d313e0edb903abfbaba4b10b864741c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 个实验 registry 状态已更新为 RUNNING。最终状态汇总：\n\n## westd-17855 GPU 状态\n\n| GPU | 实验 | PID | tmux session | 状态 |\n|-----|------|-----|-------------|------|\n| cuda:0 | scale_69b_a100_s42 | 29033 | scale_69b_a100_s42 | RUNNING (已有) |\n| cuda:1 | qwen35_08b_wiki_a100_s42 (fp32) | 55423 | qwen35_08b_fp32 | RUNNING ✓ |\n| cuda:2 | alpha_sweep_a060_s42_fp32 | 55503 | a060_s42_fp32 | RUNNING ✓ |\n| cuda:3 | alpha_sweep_a005_s42 (fp32) | 55751 | a005_s42_fp32 | RUNNING ✓ |\n| cuda:4 | interv_pred_a075_s42_fp32 | 56026 | interv_pred_fp32 | RUNNING ✓ |\n| cuda:5 | alpha_sweep_a010_s43 | 45289 | alpha_sweep_a010_s43 | RUNNING (已有) |\n\n**注意事项：**\n- cuda:4 dry-run 进程 (PID 52764) 已 kill\n- submit_on_allocated 在 westd-17855 上因 conda 环境未激活导致 `python: command not found`，改用手动 tmux + conda activate 提交\n- cuda:5 上 OPT-1.3B (PID 44889) 无 CUDA_VISIBLE_DEVICES，与 alpha_sweep_a010_s43 共享 GPU（上次 session 遗留，未动）\n- 所有新实验均 fp32（无 --bf16 参数）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-westd17855-gpu-fix.md"
+}

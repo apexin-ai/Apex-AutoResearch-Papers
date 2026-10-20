@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52a380bd3eafb3f73b26",
+  "project": "distrib_canary_collapse",
+  "kind": "history",
+  "title": "agent / loop_17_1779491717.md",
+  "task_key": "loop_17_1779491717",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_17_1779491717.md",
+    "occurrence": 1,
+    "bytes": 4980,
+    "sha256": "ae722a6f8f6178a427c909d73d2bcd1addd93ebcbe46deb718bd3ffa6494dc12"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 17\nreason: idle_timeout\nupdated: '2026-05-22T23:02:00+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-17855 cuda:0-5，westd-19828 cuda:0-1。超出必须 push back Director\n- 17855↔19828 SSH 不通，不能跨服务器操作\n- ≤3B fp32，>3B bf16（D079）。当前 1.4B scale 实验用 fp32 是正确的\n- d102 分析唯一有效组合：downstream=mauve, threshold=true_3sigma_d105（M063/M064/M066），其他组合出错误结论\n- T=25 α=0.60 v3★ 是 Phase Diagram 最关键单格，优先级最高\n- HF_HOME 三件套必带（M060）：HF_HUB_CACHE=/root/autodl-tmp/.hf_cache\n\n### 2. 🖥️ 基础设施快照\n- **westd-17855**：6× RTX PRO 6000 Blackwell (98GB)，工作目录 /root/autodl-tmp/distrib_canary_collapse\n- **westd-19828**：2× RTX PRO 6000 Blackwell (98GB)，同上路径\n- Python：/root/miniconda3/bin/python（conda base 环境，不是 venv）\n- 激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 磁盘：17855 816GB/879GB 可用(3%)，19828 817GB/879GB 可用(2%)——充裕\n- 活跃进程：\n  - 17855:0 — t25_a050_v3 PID 582618（resume --start_gen 13，还需 12 gens）\n  - 17855:1 — t15_a075_s43 PID 582768（cross-seed，~2-3h）\n  - 17855:3 — t25_a060_v3★ PID 582540（resume --start_gen 14，还需 11 gens，最关键）\n  - 17855:4 — t20_a075_s43 PID 603933（cross-seed）\n  - 17855:5 — t25_a045_s43（cross-seed，~2/25）\n  - 19828:0 — t25_a075_s43_v3 PID 731312（cross-seed，--start_gen 9）\n- 空闲 GPU：17855:2，19828:1\n- Cron 监控 6 个实验（reconcile 确认全部 still running）\n\n### 3. 📊 当前状态\n**刚做完**：session-start 初始化（registry 同步、cron reconcile、report.md 读取）。\n\n**正在处理**：scale_14b_t10_a050_s42_fp32 失败回调（EXIT_CODE=1，westd-19828:cuda:1，运行 7.5 分钟后崩溃）。已 spawn Worker `worker_diagnose_scale_14b_t10_a050_s42_fp32_20260522T065302` 去 SSH 读日志诊断，**Worker 尚未回调**。\n\n**RUNNING 实验（5个）**：\n| exp_id | server:gpu | 摘要 |\n|--------|-----------|------|\n| phase_diagram_t25_a060_s42_fp32_v3★ | 17855:3 | 最关键格，sync-dip dissolution 终态 |\n| phase_diagram_t25_a050_s42_fp32_v3 | 17855:0 | T=25 onset boundary |\n| phase_diagram_t15_a075_s43_fp32 | 17855:1 | cross-seed validation |\n| phase_diagram_t20_a075_s43_fp32 | 17855:4 | cross-seed T=20 |\n| phase_diagram_t25_a075_s43_fp32_v3 | 19828:0 | cross-seed T=25 |\n\n**PREPARING（7个）**：scale_14b 系列 5 个 + t15_a050_s42_fp32 + qwen35_dryrun_launch\n\n**等待中**：\n- Worker 诊断回调 → 确认 scale_14b 失败根因 → 决定是否重试\n- 5 个 RUNNING 实验的 cron 完成回调 → 各自走 d102 分析\n\n### 4. 📋 待办（条件触发式）\n- 诊断 Worker 回调到达 → 读诊断报告 → 如果是 OOM/磁盘/代码 bug → 修复后在 19828:1 重提交 scale_14b_t10_a050_s42_fp32；如果是环境问题 → 先修环境再批量提交其余 scale_14b\n- t25_a060_v3★ 完成 → **最高优先级** d102 分析 → 场景分叉：PermG>0/8=场景A（sync-dip dissolution），PermG=0/8=场景B（sync-dip permanent）→ 汇报 Director + 触发 D170 叙事定稿\n- t25_a050_v3 完成 → d102 分析 → 更新 Phase Diagram T=25 row\n- t15_a075_s43 / t20_a075_s43 / t25_a075_s43_v3 完成 → d102 分析 → cross-seed robustness 验证\n- 19828:1 空闲 + 诊断完成 → 在上面启动 scale_14b 系列（从 PREPARING 中选优先级最高的）\n- 17855:2 空闲 → 可启动 scale_14b 或其他 PREPARING 实验（需 Director 分配）\n- Phase Diagram 20/20 全部填充 → heatmap 定稿 → D170 叙事定稿 → submit_paper_to_review\n\n### 5. 🎯 战略上下文\n- **核心方向**：从\"方法论文\"转为\"现象发现论文\"。核心贡献：α×T 2D 相图、非单调 dose-response、sync-dip、检测下界理论\n- **目标**：EMNLP 2026 ARR June（DDL ~2026-06-15）\n- **Phase Diagram 状态**：T=5/T=10/T=15 行基本完成，T=20 大部分完成，T=25 是最后决战行（v3 重跑中）\n- **sync-dip（α=0.60 列全为 0/8）**是本文最重要的发现之一。D185 否决了同步化假说，D186 将机制叙事降级为 \"PermG linearity-based\"，D187 确认 TE 为 artifact。C2 机制解释仍在演进中\n- **PermG 6/8 ceiling**：跨所有 T 一致，是 MAUVE bottleneck 导致的，不是方法问题\n- **α_c left-shift**：5 点验证完成（T=5,10,15,20,25），α_c 随 T 增大而减小，符合 Power Theory √T\n- **scale_14b 系列**：新开的 1.4B 验证线，测试 phase diagram 的 scale invariance。第一个实验就 crash 了，需要先诊断修复再铺后续\n- **易错点**：\n  - 不要用旧版 d102 脚本（M066 修正过，旧脚本给出无效 8/8）\n  - T=20 α=0.60 s43=3/8（D184），与 s42=0/8 不同 → sync-dip 在 T=20 有 seed dependence\n  - v2 版本的 t25 实验多次因磁盘满 crash，已清理并以 v3 resume 重启，不要重复提交 v2\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-17-1779491717.md"
+}

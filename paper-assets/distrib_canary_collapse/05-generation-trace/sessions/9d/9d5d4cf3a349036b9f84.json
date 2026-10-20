@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d5d4cf3a349036b9f84",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "fix batch analysis d111 direction",
+  "task_key": "worker_fix_batch_analysis_d111_direction_20260519T223814",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_batch_analysis_d111_direction_20260519T223814_result.json",
+    "occurrence": 1,
+    "bytes": 250,
+    "sha256": "47ce202c22439fd2995639f5c3630023ef5d6c1de6ee82e8bd972e7169126e31"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过：\n\n- **naive_xcorr: 3/8** (原来是 8/8)\n- **diff_xcorr: 0/8** (原来是 8/8)\n- **consensus_k4: 0/8** (原来是 3/8)\n\n与预期验证标准完全匹配。两个文件的 `peak_lag > 0` 方向检查都已修复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-batch-analysis-d111-direction.md"
+}

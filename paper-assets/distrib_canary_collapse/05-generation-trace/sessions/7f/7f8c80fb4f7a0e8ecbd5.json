@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f8c80fb4f7a0e8ecbd5",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis generalize pythia14b wiki a100 s43",
+  "task_key": "worker_analysis_generalize_pythia14b_wiki_a100_s43_20260518T101511",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_generalize_pythia14b_wiki_a100_s43_20260518T101511_result.json",
+    "occurrence": 1,
+    "bytes": 1056,
+    "sha256": "c691033175fb070c6cf5cef488518ec5b9682f861aba14d46bcc80ddf21946a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n## 结果摘要\n\n**Conclusion: SUCCESS** — 1.4B scale effect 是系统性的，非 seed noise。\n\n### s42 vs s43 对比 (analyze_generalize.py, 16 pairs x 5 methods)\n\n| | s42 | s43 |\n|---|---|---|\n| Total sig | 45/80 | 46/80 |\n| Naive | 15/16 | 15/16 |\n| Diff | 10/16 | 10/16 |\n| Thresh | 9/16 | 8/16 |\n| TY | 3/16 | 4/16 |\n| PG | 8/16 | 9/16 |\n| **K>=4** | **8/16** | **6/16** |\n| **K>=3** | **9/16** | **9/16** |\n\n### 关键发现\n\n1. **总体显著率几乎相同** (45 vs 46)，per-method 最大偏差 1/16\n2. **K>=3 完全一致** (9/16)，K>=4 差异 (8→6) 完全来自 effective_rank→diversity pairs 中 TY 失去显著性（符合 C003 约束：TY 在短序列不稳定）\n3. **核心 canary 稳定**: token_entropy→diversity 和 ece→diversity 在两个 seed 中都达到 K>=4 共识，s43 的 ece pairs 甚至更强 (5/5 vs 4/5)\n4. **Drift 幅度一致**: entropy -55%~-57%, d1 -27%~-31%, ece +5586~5693%, ppl +3341~3972%\n\nRegistry 已更新为 DONE(success)，报告已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-generalize-pythia14b-wiki-a100-s43.md"
+}

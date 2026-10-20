@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a44ff4a55721f107b71d",
+  "project": "distrib_canary_collapse",
+  "kind": "history",
+  "title": "agent / loop_16_1779409999.md",
+  "task_key": "loop_16_1779409999",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1779409999.md",
+    "occurrence": 1,
+    "bytes": 3276,
+    "sha256": "a3e27d62d6043824e3ce1ff195105e1f68d3bc12e2ffed4ba2781163cfe7eb3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-21T23:17:45+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-19828:cuda:0, westd-19828:cuda:1, westd-17855:cuda:0~5（共 8 张）\n- ≤3B 模型必须 fp32；>3B 允许 bf16（D079）\n- PermG only 用于论文 claim，K≥3 frozen（M037）\n- α_c 相关 claim 必须 ≥2 seeds 才能写进论文；单 seed 结果标注 \"single-seed\"\n- 论文 8 页硬限（EMNLP 2026 ARR），Limitations 不计入\n\n### 2. 🖥️ 基础设施快照\n- **westd-19828**: 2× RTX PRO 6000 Blackwell (98GB), 工作目录 `/root/autodl-tmp/distrib_canary_collapse/`, Python `/root/miniconda3/bin/python`, conda base\n- **westd-17855**: 6× RTX PRO 6000 Blackwell (98GB), 同上路径结构\n- 数据集: `data/wikitext103_5k`（5000 samples），模型: `EleutherAI/pythia-410m`（HF cache on server）\n- 活跃进程: `scale_69b_a100_s43_bf16` (PID 400545, westd-17855:cuda:3, cron 监控中)\n- 磁盘: westd-19828 根分区 816GB/879GB 可用; westd-17855 同\n\n### 3. 📊 当前状态\n- **刚做**: 收到 alpha_sweep_a048_s43_fp32 完成回调，已 spawn Worker `worker_analysis_alpha_sweep_a048_s43_fp32_20260521T071507` 去 westd-19828 执行 5-method 分析。Worker 正在运行，尚未回调。\n- **RUNNING**: scale_69b_a100_s43_bf16（Pythia-6.9B cross-seed bf16，westd-17855:cuda:3）\n- **ANALYZING**: alpha_sweep_a048_s43_fp32（等 Worker 分析完推到 DONE）\n- **PREPARING** (7个): alpha_sweep_a046_s43_fp32, alpha_sweep_a052_s43_fp32, alpha_sweep_a000_s45/s46/s47_fp32, gen_gpt2m_s43_fp32, qwen35_dryrun_launch\n- **等待**: Worker 回调后需 update_registry → DONE，然后汇报 Director\n\n### 4. 📋 待办（条件触发式）\n- Worker `analysis_alpha_sweep_a048_s43_fp32` 回调 → 读 5method JSON → update_registry(conclusion/metrics/checkpoint_path/log_path) → 注册 artifact → 汇报 Director（对比 s42=0/8）\n- 若 s43 也 PermG 0/8 → α=0.48 cross-seed confirmed blind zone，α_c > 0.48（加强 [0.50, 0.52] CI）\n- 若 s43 PermG > 0/8 → transition sharpness seed-dependent，需汇报 Director 调整 α_c claim\n- scale_69b_a100_s43_bf16 cron 回调 → spawn analysis Worker → 对比 s42 Pythia-6.9B 结果（s42 PermG=7/8, K≥3=8/8）\n- westd-19828:cuda:0 释放后（a048_s43 分析完）→ 可启动 PREPARING 队列中下一个实验（优先 a046_s43 或 a052_s43）\n\n### 5. 🎯 战略上下文\n- **阶段**: Round 6 论文修订，DDL 2026-05-25（EMNLP 2026 ARR June），目标 3.5+\n- **核心发现**: Phase transition at α_c ≈ 0.50（sigmoid）。s42 数据：α≤0.48 全 0/8，α=0.50 jump to 6/8。当前跑 s43 cross-seed 验证这个 sharp transition\n- **s43 已完成的验证**: a045_s43=0/8, a050_s43=6/8 → 与 s42 一致！a048_s43 是关键点——如果也 0/8 则 α_c ∈ (0.48, 0.50] 被 2-seed 确认\n- **易错点**:\n  - α_c claim 精度：目前写 \"α_c≈0.50\" 但实际是 (0.48, 0.50]，不要过度精确化\n  - a060_s42_fp32_v4 结果是 PermG 0/8（异常！高 α 反而 0），这是已知 anomaly，论文中不用这个点\n  - GPT-2m 是 precision-dependent（fp32=6/8, bf16=0/8），D157 决策已确认，不要混淆\n  - Paper Agent Phase 2 正在改论文（C3 power analysis, C4 first-diff），不要与其冲突\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1779409999.md"
+}

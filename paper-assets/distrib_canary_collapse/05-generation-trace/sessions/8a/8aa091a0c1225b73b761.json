@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8aa091a0c1225b73b761",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analyze d102 t25 a045 17855",
+  "task_key": "worker_analyze_d102-t25-a045-17855_20260521T235714",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_d102-t25-a045-17855_20260521T235714_result.json",
+    "occurrence": 1,
+    "bytes": 1109,
+    "sha256": "c5f926423edb370dbd0a3aa19b2dc84b5a8eeca62ac52db889b11720010cefb4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D102 完成。汇报：\n\n---\n\n## 结果\n\n| 项目 | 值 |\n|------|-----|\n| **实验状态** | COMPLETED (26 gens, gen_0–gen_25) |\n| **D102 合规** | threshold=`true_3sigma_d105`, downstream=全部4个 (distinct_1/2/3, mauve) |\n| **PermG fwd** | **6/8** (FDR sig) |\n| **PermG rev** | **0/8** |\n| **Robust (≥3/5 methods)** | **6/8** |\n\n## Significant pairs (forward, ≥3/5 consensus)\n\n| Pair | Votes | Methods |\n|------|-------|---------|\n| token_entropy→distinct_1 | 3/5 | diff, threshold, perm |\n| token_entropy→distinct_2 | 3/5 | diff, threshold, perm |\n| token_entropy→distinct_3 | 3/5 | diff, threshold, perm |\n| ece→distinct_1 | 4/5 | naive, diff, threshold, perm |\n| ece→distinct_2 | 3/5 | diff, threshold, perm |\n| ece→distinct_3 | 3/5 | diff, threshold, perm |\n\n**Non-significant**: token_entropy→mauve (0/5), ece→mauve (2/5, only naive+TY)\n\n## 输出文件\n- `results/phase_diagram/t25_a045_s42_fp32/analysis/5method_leadlag.json`\n- `results/phase_diagram/t25_a045_s42_fp32/analysis/5method_summary.txt`\n\n（均在 westd-17855 上）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-d102-t25-a045-17855.md"
+}

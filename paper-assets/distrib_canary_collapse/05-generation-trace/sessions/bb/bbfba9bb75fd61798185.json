@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bbfba9bb75fd61798185",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "bugfix ty granger direction fix",
+  "task_key": "worker_bugfix_ty_granger_direction_fix_20260520T182806",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_bugfix_ty_granger_direction_fix_20260520T182806_result.json",
+    "occurrence": 1,
+    "bytes": 1004,
+    "sha256": "02be19e8e6dfd9086dfa6652677ea1a7cef9ca44564239e5e0a04cbf2d19474d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**修复内容**: `run_5method_analysis_d102.py` 第 223 行 `causing=1, caused=0` → `causing=0, caused=1`\n\n**合成数据验证**: Forward p≈0 (显著)，Reverse p=0.80 (不显著) — 确认修复正确\n\n**三个 T=20 实验重跑结果**:\n\n| 实验 | TY fwd | TY rev | K≥3 | 非 TY 方法 |\n|---|---|---|---|---|\n| a050 | 4→2 | 2→4 | 6→6 | 不变 |\n| a060 | 3→5 | 5→3 | 3→**4** | 不变 |\n| a100 | 1→2 | 2→1 | 6→6 | 不变 |\n\nTY forward/reverse 精确互换，非 TY 方法零变化，确认 bug 是纯方向反转。a060 的 K≥3 从 3 提升到 4（token_entropy→distinct_{1,2,3} 三个 pair 通过 TY 后达到 3/5 consensus）。\n\n**产出**:\n- 修复脚本: `westd-17855:run_5method_analysis_d102.py`\n- 对比报告: `artifacts/ty_direction_fix_results.md`\n- 修复后 JSON: `artifacts/t20_tyfix_v2/{exp}/5method_summary_tyfix.json`\n- 服务器备份: `5method_leadlag_pre_tyfix.json`（三个实验均有）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/bugfix-ty-granger-direction-fix.md"
+}

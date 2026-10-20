@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b22585c9ed988372252a",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis mmct a010 contradiction",
+  "task_key": "worker_analysis_mmct_a010_contradiction_20260519T052213",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mmct_a010_contradiction_20260519T052213_result.json",
+    "occurrence": 1,
+    "bytes": 604,
+    "sha256": "c1a8412f5848a49350651f4e3899c5ac3a19f632f3cfd3e31686bf94c5cf715d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完成。矛盾根因:\n\n- **4/8**: 来自 a010_s43_fp32 分析报告，将简单共识计数 (consensus_k4) **误标为 \"MMCT\"**。4 个通过的 pair 全部依赖 TY Granger 作为第 4 票，C003 约束排除 TY 后降为 **0/8**。\n- **1/8**: 来自正式 MMCT v2 (a010_s42)，使用置换检验 + null 分布校准。仅 ece->distinct_2 显著 (p=0.04)。\n\n不存在真正矛盾，两个数字来自不同方法。dose-response 表应使用 1/8 (MMCT v2)，待 a010_s42_fp32 完成后用 fp32 数据重算。报告已写入 `artifacts/mmct_a010_contradiction_report.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mmct-a010-contradiction.md"
+}

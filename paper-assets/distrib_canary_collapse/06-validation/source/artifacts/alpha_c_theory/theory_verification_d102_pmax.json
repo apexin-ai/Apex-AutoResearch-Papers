@@ -1,0 +1,529 @@
+{
+  "method": "P_max Multiplicative Model (D102)",
+  "description": "P_max ceiling model with beta fixed from old model. P(det) = P_max * Phi(A*alpha^beta*sqrt(T) - z0). P_max=0.75 (6/8 MAUVE ceiling), alpha_inf=0, beta=0.24 (from D102 old model). Only A and z0 are fitted. Profile over beta shows beta is unidentifiable under P_max (NLL plateau from beta~0.24 to beta~3.0+).",
+  "model": "P(det|alpha,T) = P_max * Phi(A * alpha^beta * sqrt(T) - z0)",
+  "P_max": 0.75,
+  "P_max_source": "6/8 PermG ceiling (2/8 pairs systematically fail, MAUVE bottleneck)",
+  "fixed_params": {
+    "P_max": 0.75,
+    "alpha_inf": 0.0,
+    "beta": 0.24,
+    "beta_source": "D102 old model (profile likelihood best)"
+  },
+  "fitted_params": {
+    "z0_over_A": 2.660835610032736,
+    "A": 960.808006578668,
+    "z0": 2556.552158309087,
+    "n_free_params": 2,
+    "neg_logL": 28.090699230434907,
+    "separation_note": "T=10 data has quasi-complete separation (0/8 for alpha<=0.45, 6/8 for alpha>=0.50). A and z0 individually diverge to infinity but their ratio z0/A=2.6608 converges. alpha_c(T) depends only on this ratio."
+  },
+  "derived": {
+    "gamma": 2.0833333333333335,
+    "gamma_formula": "1/(2*beta)",
+    "C_coefficient": 59.00767689965692,
+    "scaling": "alpha_c(T) = 59.01 * T^(-2.083)",
+    "alpha_c_values": {
+      "5": 2.0640537758694064,
+      "8": 0.7753022496464202,
+      "10": 0.48705183475919783,
+      "15": 0.20927550278888254,
+      "20": 0.11492892894342381,
+      "25": 0.07219938512281154,
+      "50": 0.017036786252208645
+    }
+  },
+  "training_fit": {
+    "n_train": 14,
+    "n_params": 2,
+    "MAE": 0.008928571428571428,
+    "McFadden_R2": 0.5961756289742189,
+    "points": [
+      {
+        "T": 10,
+        "alpha": 0.0,
+        "k_actual": 0,
+        "n": 8,
+        "p_pred": 0.0
+      },
+      {
+        "T": 10,
+        "alpha": 0.05,
+        "k_actual": 0,
+        "n": 8,
+        "p_pred": 0.0
+      },
+      {
+        "T": 10,
+        "alpha": 0.1,
+        "k_actual": 0,
+        "n": 8,
+        "p_pred": 0.0
+      },
+      {
+        "T": 10,
+        "alpha": 0.25,
+        "k_actual": 0,
+        "n": 8,
+        "p_pred": 0.0
+      },
+      {
+        "T": 10,
+        "alpha": 0.3,
+        "k_actual": 0,
+        "n": 8,
+        "p_pred": 0.0
+      },
+      {
+        "T": 10,
+        "alpha": 0.35,
+        "k_actual": 0,
+        "n": 8,
+        "p_pred": 0.0
+      },
+      {
+        "T": 10,
+        "alpha": 0.4,
+        "k_actual": 0,
+        "n": 8,
+        "p_pred": 0.0
+      },
+      {
+        "T": 10,
+        "alpha": 0.45,
+        "k_actual": 0,
+        "n": 8,
+        "p_pred": 0.0
+      },
+      {
+        "T": 10,
+        "alpha": 0.5,
+        "k_actual": 6,
+        "n": 8,
+        "p_pred": 0.75
+      },
+      {
+        "T": 10,
+        "alpha": 0.75,
+        "k_actual": 6,
+        "n": 8,
+        "p_pred": 0.75
+      },
+      {
+        "T": 10,
+        "alpha": 1.0,
+        "k_actual": 6,
+        "n": 8,
+        "p_pred": 0.75
+      },
+      {
+        "T": 20,
+        "alpha": 0.45,
+        "k_actual": 5,
+        "n": 8,
+        "p_pred": 0.75
+      },
+      {
+        "T": 20,
+        "alpha": 0.5,
+        "k_actual": 6,
+        "n": 8,
+        "p_pred": 0.75
+      },
+      {
+        "T": 20,
+        "alpha": 0.75,
+        "k_actual": 6,
+        "n": 8,
+        "p_pred": 0.75
+      }
+    ]
+  },
+  "cross_validation": {
+    "n_test": 6,
+    "MAE": 0.0,
+    "CI_95_coverage": "6/6",
+    "CI_95_coverage_rate": 1.0,
+    "points": [
+      {
+        "T": 5,
+        "alpha": 0.45,
+        "k_actual": 0,
+        "n": 8,
+        "p_pred": 0.0,
+        "k_pred": 0.0,
+        "residual": 0.0,
+        "CI_95": {
+          "lo": 0.0,
+          "hi": 0.0,
+          "covered": true
+        }
+      },
+      {
+        "T": 5,
+        "alpha": 0.5,
+        "k_actual": 0,
+        "n": 8,
+        "p_pred": 0.0,
+        "k_pred": 0.0,
+        "residual": 0.0,
+        "CI_95": {
+          "lo": 0.0,
+          "hi": 0.0,
+          "covered": true
+        }
+      },
+      {
+        "T": 5,
+        "alpha": 0.75,
+        "k_actual": 0,
+        "n": 8,
+        "p_pred": 0.0,
+        "k_pred": 0.0,
+        "residual": 0.0,
+        "CI_95": {
+          "lo": 0.0,
+          "hi": 0.0,
+          "covered": true
+        }
+      },
+      {
+        "T": 15,
+        "alpha": 0.45,
+        "k_actual": 6,
+        "n": 8,
+        "p_pred": 0.75,
+        "k_pred": 6.0,
+        "residual": 0.0,
+        "CI_95": {
+          "lo": 0.375,
+          "hi": 1.0,
+          "covered": true
+        }
+      },
+      {
+        "T": 15,
+        "alpha": 0.5,
+        "k_actual": 6,
+        "n": 8,
+        "p_pred": 0.75,
+        "k_pred": 6.0,
+        "residual": 0.0,
+        "CI_95": {
+          "lo": 0.375,
+          "hi": 1.0,
+          "covered": true
+        }
+      },
+      {
+        "T": 15,
+        "alpha": 0.75,
+        "k_actual": 6,
+        "n": 8,
+        "p_pred": 0.75,
+        "k_pred": 6.0,
+        "residual": 0.0,
+        "CI_95": {
+          "lo": 0.375,
+          "hi": 1.0,
+          "covered": true
+        }
+      }
+    ]
+  },
+  "extra_validation_T25": {
+    "n_points": 4,
+    "MAE": 0.03125,
+    "points": [
+      {
+        "T": 25,
+        "alpha": 0.45,
+        "k_actual": 6,
+        "n": 8,
+        "p_pred": 0.75,
+        "k_pred": 6.0,
+        "residual": 0.0
+      },
+      {
+        "T": 25,
+        "alpha": 0.5,
+        "k_actual": 6,
+        "n": 8,
+        "p_pred": 0.75,
+        "k_pred": 6.0,
+        "residual": 0.0
+      },
+      {
+        "T": 25,
+        "alpha": 0.6,
+        "k_actual": 5,
+        "n": 8,
+        "p_pred": 0.75,
+        "k_pred": 6.0,
+        "residual": -0.125
+      },
+      {
+        "T": 25,
+        "alpha": 0.75,
+        "k_actual": 6,
+        "n": 8,
+        "p_pred": 0.75,
+        "k_pred": 6.0,
+        "residual": 0.0
+      }
+    ]
+  },
+  "beta_identifiability": {
+    "note": "Profile over beta shows NLL plateau: beta is poorly identified under P_max. The data is step-function-like (all 0/8 or 6/8 except one 5/8), so many beta values achieve near-identical likelihood. We fix beta=0.24 from the old model for direct comparability.",
+    "delta_nll_2_range": {
+      "beta_lo": 0.05,
+      "beta_hi": 0.7,
+      "gamma_lo": 0.7142857142857143,
+      "gamma_hi": 10.0
+    },
+    "profile_top10": [
+      {
+        "beta": 0.05,
+        "A": 1451.0533318771013,
+        "z0": 4420.253443166263,
+        "train_nll": 28.090699230434907,
+        "test_nll": 13.496043470875398,
+        "total_nll": 41.58674270131031,
+        "test_mae": 0.0,
+        "gamma": 10.0
+      },
+      {
+        "beta": 0.060000000000000005,
+        "A": 924.2108159593931,
+        "z0": 2796.8876109573407,
+        "train_nll": 28.090699230434907,
+        "test_nll": 13.496043470875398,
+        "total_nll": 41.58674270131031,
+        "test_mae": 0.0,
+        "gamma": 8.333333333333332
+      },
+      {
+        "beta": 0.07,
+        "A": 617.8351300812119,
+        "z0": 1854.617545272578,
+        "train_nll": 28.090699230434907,
+        "test_nll": 13.496043470875398,
+        "total_nll": 41.58674270131031,
+        "test_mae": 0.0,
+        "gamma": 7.142857142857142
+      },
+      {
+        "beta": 0.08000000000000002,
+        "A": 1502.8800560178965,
+        "z0": 4479.940956886346,
+        "train_nll": 28.090699230434907,
+        "test_nll": 13.496043470875398,
+        "total_nll": 41.58674270131031,
+        "test_mae": 0.0,
+        "gamma": 6.249999999999999
+      },
+      {
+        "beta": 0.09000000000000001,
+        "A": 669.9142683168366,
+        "z0": 1978.8313904743372,
+        "train_nll": 28.090699230434907,
+        "test_nll": 13.496043470875398,
+        "total_nll": 41.58674270131031,
+        "test_mae": 0.0,
+        "gamma": 5.5555555555555545
+      },
+      {
+        "beta": 0.1,
+        "A": 1514.7400570509149,
+        "z0": 4457.051487876712,
+        "train_nll": 28.090699230434907,
+        "test_nll": 13.496043470875398,
+        "total_nll": 41.58674270131031,
+        "test_mae": 0.0,
+        "gamma": 5.0
+      },
+      {
+        "beta": 0.11000000000000001,
+        "A": 1022.574492260851,
+        "z0": 2980.1344064749305,
+        "train_nll": 28.090699230434907,
+        "test_nll": 13.496043470875398,
+        "total_nll": 41.58674270131031,
+        "test_mae": 0.0,
+        "gamma": 4.545454545454545
+      },
+      {
+        "beta": 0.12000000000000001,
+        "A": 1642.8685767147472,
+        "z0": 4733.587442220352,
+        "train_nll": 28.090699230434907,
+        "test_nll": 13.496043470875398,
+        "total_nll": 41.58674270131031,
+        "test_mae": 0.0,
+        "gamma": 4.166666666666666
+      },
+      {
+        "beta": 0.13,
+        "A": 1423.6797160461301,
+        "z0": 4081.4917287646476,
+        "train_nll": 28.090699230434907,
+        "test_nll": 13.496043470875398,
+        "total_nll": 41.58674270131031,
+        "test_mae": 0.0,
+        "gamma": 3.846153846153846
+      },
+      {
+        "beta": 0.14,
+        "A": 1217.8834092670513,
+        "z0": 3463.4309467674534,
+        "train_nll": 28.090699230434907,
+        "test_nll": 13.496043470875398,
+        "total_nll": 41.58674270131031,
+        "test_mae": 0.0,
+        "gamma": 3.571428571428571
+      }
+    ]
+  },
+  "model_comparison": {
+    "old_model": "P(det) = Phi(A * alpha^beta * sqrt(T) - z0)",
+    "new_model": "P(det) = P_max * Phi(A * alpha^beta * sqrt(T) - z0)",
+    "shared_params": {
+      "beta": 0.24,
+      "gamma": 2.0833333333333335,
+      "alpha_inf": 0.0
+    },
+    "old_fitted": {
+      "A": 1.3939686104887257,
+      "z0": 4.486524832759895,
+      "n_params": 4,
+      "train_nll": 44.40394467503519
+    },
+    "new_fitted": {
+      "A": 960.808006578668,
+      "z0": 2556.552158309087,
+      "P_max": 0.75,
+      "n_params": 2,
+      "train_nll": 28.090699230434907
+    },
+    "comparison_by_dataset": {
+      "train": {
+        "old_mae": 0.1625737307454606,
+        "new_mae": 0.008928571428571428
+      },
+      "test": {
+        "old_mae": 0.10597359141668104,
+        "new_mae": 0.0
+      },
+      "extra_T25": {
+        "old_mae": 0.21892789961219694,
+        "new_mae": 0.03125
+      }
+    },
+    "key_improvement": "Old model overpredicts at high alpha + high T (P\u21921.0), new model caps at P_max=0.75 matching the observed 6/8 ceiling. Largest improvements at T>=15, alpha>=0.50.",
+    "high_alpha_detail": [
+      {
+        "T": 5,
+        "alpha": 0.5,
+        "k_actual": 0,
+        "n": 8,
+        "p_old": 0.032358178843131705,
+        "p_new": 0.0
+      },
+      {
+        "T": 10,
+        "alpha": 0.5,
+        "k_actual": 6,
+        "n": 8,
+        "p_old": 0.22543258327547389,
+        "p_new": 0.75
+      },
+      {
+        "T": 15,
+        "alpha": 0.5,
+        "k_actual": 6,
+        "n": 8,
+        "p_old": 0.5338288923052074,
+        "p_new": 0.75
+      },
+      {
+        "T": 20,
+        "alpha": 0.5,
+        "k_actual": 6,
+        "n": 8,
+        "p_old": 0.7858488033908346,
+        "p_new": 0.75
+      },
+      {
+        "T": 25,
+        "alpha": 0.5,
+        "k_actual": 6,
+        "n": 8,
+        "p_old": 0.9214887801721826,
+        "p_new": 0.75
+      },
+      {
+        "T": 25,
+        "alpha": 0.6,
+        "k_actual": 5,
+        "n": 8,
+        "p_old": 0.953436769905111,
+        "p_new": 0.75
+      },
+      {
+        "T": 5,
+        "alpha": 0.75,
+        "k_actual": 0,
+        "n": 8,
+        "p_old": 0.05734432008839396,
+        "p_new": 0.0
+      },
+      {
+        "T": 10,
+        "alpha": 0.75,
+        "k_actual": 6,
+        "n": 8,
+        "p_old": 0.35476308711980326,
+        "p_new": 0.75
+      },
+      {
+        "T": 15,
+        "alpha": 0.75,
+        "k_actual": 6,
+        "n": 8,
+        "p_old": 0.7095652628820844,
+        "p_new": 0.75
+      },
+      {
+        "T": 20,
+        "alpha": 0.75,
+        "k_actual": 6,
+        "n": 8,
+        "p_old": 0.9085034193489288,
+        "p_new": 0.75
+      },
+      {
+        "T": 25,
+        "alpha": 0.75,
+        "k_actual": 6,
+        "n": 8,
+        "p_old": 0.9782216203157593,
+        "p_new": 0.75
+      },
+      {
+        "T": 10,
+        "alpha": 1.0,
+        "k_actual": 6,
+        "n": 8,
+        "p_old": 0.46875134265448276,
+        "p_new": 0.75
+      }
+    ]
+  },
+  "data_sources": {
+    "training_T10": "dose_response_5method_regime_m035.csv (seed=42, Pythia-410M)",
+    "training_T20": "heatmap_data_manifest.json (D102)",
+    "validation_T5": "heatmap_data_manifest.json (D102)",
+    "validation_T15": "heatmap + t15_a075_v2 leadlag (D102)",
+    "extra_T25": "Phase Diagram T=25 experiments (D170)"
+  }
+}

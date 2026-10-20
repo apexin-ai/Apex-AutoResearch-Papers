@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f23340e375666a9544b4",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis cross alpha prep",
+  "task_key": "worker_analysis_cross_alpha_prep_20260515T121153",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cross_alpha_prep_20260515T121153_result.json",
+    "occurrence": 1,
+    "bytes": 2179,
+    "sha256": "769018db43c22bc5ab4a49249269833ccdf6f594ca86a8531d6d363bc0fe06cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4-point dry-run 成功，输出已保存。下面是完整就绪状态报告。\n\n---\n\n## 就绪状态报告\n\n### 脚本状态：**Ready，无需修改**\n\n`cross_alpha_analysis_v4.py` 自动发现机制完全动态——glob `results/alpha_sweep/a*_s42`，自动加 MVP 作为 α=1.0。a075_s42 的 `all_metrics.json` 生成后会被自动识别。\n\n**唯一风险**：自动发现模式下，a075_s42 目录已存在但无 `all_metrics.json` 时脚本会崩溃（`FileNotFoundError`）。解决方案：用 `--alpha-dirs` 显式指定，或等 a075 完全结束。\n\n### 数据完整性\n\n| α 点 | 路径 | all_metrics.json | generations | 状态 |\n|------|------|-----------------|-------------|------|\n| 0.00 | alpha_sweep/a000_s42 | ✓ | 11 (gen 0-10) | 完成 |\n| 0.25 | alpha_sweep/a025_s42 | ✓ | 11 (gen 0-10) | 完成 |\n| 0.50 | alpha_sweep/a050_s42 | ✓ | 11 (gen 0-10) | 完成 |\n| 0.75 | alpha_sweep/a075_s42 | ✗ | gen_8 进行中 | **运行中** |\n| 1.00 | mvp/rep_42..45 | ✓ (4 seeds) | 11 (gen 0-10) | 完成 |\n\na075_s42 已到 gen_8/10，预计 ~1-2h 内完成（不是任务描述说的 3-4h）。\n\n### 4-point dry-run 结果验证\n\n执行成功（7.8s），关键结论与之前一致：\n- **FDR**: 10/32 raw-sig → **1/32 FDR-sig**（ECE→d1 在 α=1.0，p_fdr=0.0192）\n- **非单调 dose-response 确认**：d1 drift α=0.25 (-40.3%) > α=0.50 (-37.3%) > α=1.0 (-28.3%)\n- **Consensus**: α=0.0 → 0/16 robust, α=0.25 → 1/16, α=0.50 → 0/16, α=1.0 → 6/16 robust\n- **6 个 regime-dependent pairs** 全是 canary→downstream 方向（entropy/ece → d1/d2/d3），仅在 α=1.0 robust\n- 输出已保存为 `cross_alpha_v5.json` + `cross_alpha_v5_report.md`\n\n### a075 数据到位后的精确执行命令\n\n**自动发现（推荐，等 a075 完全结束后）：**\n```bash\ncd /root/autodl-tmp/distrib_canary_collapse\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\npython cross_alpha_analysis_v4.py --version 6\n```\n\n**显式指定（更安全）：**\n```bash\npython cross_alpha_analysis_v4.py --alpha-dirs a000_s42 a025_s42 a050_s42 a075_s42 mvp --version 6\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cross-alpha-prep.md"
+}

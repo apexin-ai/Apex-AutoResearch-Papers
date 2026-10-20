@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6f976d8ad69f385b61f5",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis t20 predictions v2 bootstrap",
+  "task_key": "worker_analysis_t20_predictions_v2_bootstrap_20260520T110740",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_t20_predictions_v2_bootstrap_20260520T110740_result.json",
+    "occurrence": 1,
+    "bytes": 114,
+    "sha256": "09faa4252ea76e8f179da0a67c3c19b07e01c602b02f20d60ed521f016e80363"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All background tasks cleared. Prediction JSON with bootstrap 95% CIs is locked in commit `bad72cc`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-t20-predictions-v2-bootstrap.md"
+}

@@ -1,0 +1,2836 @@
+{
+  "schema_version": "1.0",
+  "id": "91a55092021beb4d0c0e",
+  "project": "distrib_canary_collapse",
+  "kind": "conversation",
+  "title": "analysis r3 mmct weight robustness",
+  "task_key": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_r3_mmct_weight_robustness_20260520T153326.jsonl",
+    "occurrence": 1,
+    "bytes": 133516,
+    "sha256": "a29e3510fb0f75ded54bd3fabbd005666021d922c71ae23317b93cddd2fd4ef3"
+  },
+  "statistics": {
+    "messages": 141,
+    "user_turns": 0,
+    "tool_calls": 70,
+    "roles": {
+      "tool_call": 70,
+      "tool_result": 70,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T15:44:05.968320+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/shapley_v2/shapley_values_v2.json",
+              "limit": "100"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T15:44:05.968723+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"version\": \"v3_dedup_fdr\",\n3\t  \"generated_at\": \"2026-05-20T14:29:55.778865\",\n4\t  \"data_sources\": [\n5\t    \"17855:alpha_sweep/a000_s42_fp32\",\n6\t    \"17855:alpha_sweep/a010_s42_fp32\",\n7\t    \"17855:alpha_sweep/a010_s43_fp32\",\n8\t    \"17855:alpha_sweep/a025_s42_fp32\",\n9\t    \"17855:alpha_sweep/a025_s43_fp32\",\n10\t    \"17855:alpha_sweep/a025_s44_fp32\",\n11\t    \"17855:alpha_sweep/a030_s42_fp32\",\n12\t    \"17855:alpha_sweep/a035_s42_fp32\",\n13\t    \"17855:alpha_sweep/a040_s42_fp32\",\n14\t    \"17855:alpha_sweep/a045_s42_fp32\",\n15\t    \"17855:alpha_sweep/a050_s42_fp32\",\n16\t    \"17855:alpha_sweep/a050_s43_fp32\",\n17\t    \"17855:alpha_sweep/a050_s44_fp32\",\n18\t    \"17855:alpha_sweep/a060_s42_fp32_v4\",\n19\t    \"17855:alpha_sweep/a060_s43_fp32\",\n20\t    \"17855:alpha_sweep/a075_s42_fp32\",\n21\t    \"17855:alpha_sweep/c4_a025_s42_fp32\",\n22\t    \"17855:alpha_sweep/c4_a050_s42_fp32\",\n23\t    \"17855:alpha_sweep/c4_a075_s42_fp32\",\n24\t    \"17855:generalize/pythia410m_wiki_a100_s43\",\n25\t    \"17855:generalize/qwen35_08b_wiki_a100_s42_fp32_v2\",\n26\t    \"17855:generalize/qwen35_08b_wiki_a100_s43_fp32\",\n27\t    \"17855:generalize/smollm3_3b_wiki_a100_s43_17855\",\n28\t    \"17855:padding_robustness/a100_s42_fp32\",\n29\t    \"17855:scale/14b_c4_s42_fp32\",\n30\t    \"17855:scale_check/pythia69b_wiki_a100_s42\",\n31\t    \"17855:scale_check/pythia69b_wiki_a100_s43\",\n32\t    \"19828:ablation/accumulate_a050_s43\",\n33\t    \"19828:alpha_sweep/a000_s43\",\n34\t    \"19828:alpha_sweep/a000_s44\",\n35\t    \"19828:alpha_sweep/a055_s42_fp32\",\n36\t    \"19828:alpha_sweep/a075_s43\",\n37\t    \"19828:alpha_sweep/a075_s44\",\n38\t    \"19828:alpha_sweep/c4_a050_s43_fp32\",\n39\t    \"19828:alpha_sweep/c4_a075_s43_fp32\",\n40\t    \"19828:gen_opt13b_wiki_a100_s43_fp32\",\n41\t    \"19828:gen_wiki_gpt2m_a100_s43\",\n42\t    \"19828:generalize/gpt2m_wiki_a100_s42\",\n43\t    \"19828:generalize/opt1b_wiki_a100_s42\",\n44\t    \"19828:generalize/pythia14b_wiki_a100_s42\",\n45\t    \"19828:generalize/pythia14b_wiki_a100_s43\",\n46\t    \"19828:generalize/pythia1b_c4_a100_s42\",\n47\t    \"19828:g\n…[truncated 1746 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T15:44:05.968922+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "artifacts/shapley_v2/**/*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T15:44:05.969066+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/shapley_v2/shapley_values_v2.json\nartifacts/shapley_v2/shapley_method_contribution.pdf\nartifacts/shapley_v2/shapley_method_contribution.png"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T15:44:05.969241+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/shapley_v2/shapley_values_v2.json",
+              "offset": "100",
+              "limit": "200"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T15:44:05.969450+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "100\t    \"ece->mauve\"\n101\t  ],\n102\t  \"methods\": [\n103\t    \"naive_xcorr\",\n104\t    \"diff_xcorr\",\n105\t    \"threshold_onset\",\n106\t    \"perm_granger\",\n107\t    \"ty_granger\"\n108\t  ],\n109\t  \"main_result_6pair\": {\n110\t    \"fpr_shapley\": {\n111\t      \"naive_xcorr\": 0.621528,\n112\t      \"diff_xcorr\": 0.163194,\n113\t      \"threshold_onset\": 0.100694,\n114\t      \"perm_granger\": 0.0,\n115\t      \"ty_granger\": 0.03125\n116\t    },\n117\t    \"fnr_shapley\": {\n118\t      \"naive_xcorr\": -0.41858,\n119\t      \"diff_xcorr\": -0.305617,\n120\t      \"threshold_onset\": -0.026914,\n121\t      \"perm_granger\": -0.18,\n122\t      \"ty_granger\": -0.068889\n123\t    },\n124\t    \"combined_shapley\": {\n125\t      \"naive_xcorr\": 0.202948,\n126\t      \"diff_xcorr\": -0.142423,\n127\t      \"threshold_onset\": 0.07378,\n128\t      \"perm_granger\": -0.18,\n129\t      \"ty_granger\": -0.037639\n130\t    }\n131\t  },\n132\t  \"robustness_8pair\": {\n133\t    \"fpr_shapley\": {\n134\t      \"naive_xcorr\": 0.621528,\n135\t      \"diff_xcorr\": 0.163194,\n136\t      \"threshold_onset\": 0.100694,\n137\t      \"perm_granger\": 0.0,\n138\t      \"ty_granger\": 0.03125\n139\t    },\n140\t    \"fnr_shapley\": {\n141\t      \"naive_xcorr\": -0.451852,\n142\t      \"diff_xcorr\": -0.269444,\n143\t      \"threshold_onset\": -0.037963,\n144\t      \"perm_granger\": -0.15162,\n145\t      \"ty_granger\": -0.058565\n146\t    },\n147\t    \"combined_shapley\": {\n148\t      \"naive_xcorr\": 0.169676,\n149\t      \"diff_xcorr\": -0.10625,\n150\t      \"threshold_onset\": 0.062731,\n151\t      \"perm_granger\": -0.15162,\n152\t      \"ty_granger\": -0.027315\n153\t    }\n154\t  },\n155\t  \"raw_rates_8pair\": {\n156\t    \"naive_xcorr\": {\n157\t      \"fpr\": 0.9167,\n158\t      \"fnr\": 0.0528,\n159\t      \"fp_count\": 22,\n160\t      \"fp_total\": 24,\n161\t      \"fn_count\": 19,\n162\t      \"fn_total\": 360\n163\t    },\n164\t    \"diff_xcorr\": {\n165\t      \"fpr\": 0.375,\n166\t      \"fnr\": 0.2528,\n167\t      \"fp_count\": 9,\n168\t      \"fp_total\": 24,\n169\t      \"fn_count\": 91,\n170\t      \"fn_total\": 360\n171\t    },\n172\t    \"threshold_onset\": {\n173\t      \"fpr\": 0.25,\n174\t      \"fnr\": \n…[truncated 1600 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T15:44:05.969639+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "artifacts/shapley_v2/*.py",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T15:44:05.969769+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T15:44:05.969888+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "shapley.*\\.py",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T15:44:05.970004+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T15:44:05.970117+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "artifacts/**/shapley*.py",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T15:44:05.970230+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T15:44:05.970369+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "shapley",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+              "glob": "*.py",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T15:44:05.970486+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T15:44:05.970604+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "5method_leadlag",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T15:44:05.970811+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 250 files limit: 250\nlogs/workers/worker_analysis_r3_mmct_weight_robustness_20260520T153326.log\nlogs/chats/feishu_group_oc_1f489e32588225ae3672d716b94662a8_paper_agent.jsonl\nlogs/chats/feishu_group_oc_150c7ce908e05d7932315e0288cf5bfb_director.jsonl\nlogs/chats/feishu_group_oc_1f489e32588225ae3672d716b94662a8.jsonl\nlogs/chats/feishu_group_oc_1f489e32588225ae3672d716b94662a8_reviewer.jsonl\nlogs/workers/worker_code_t20_analysis_script_prep_20260520T151115_result.json\nlogs/workers/worker_code_t20_analysis_script_prep_20260520T151115.log\nscripts/t20_post_analysis.py\nartifacts/manifest.yaml\nlogs/chats/worker_analysis_d150_shapley_v3_dedup_fdr_20260520T142236.jsonl\nlogs/workers/worker_analysis_d150_shapley_v3_dedup_fdr_20260520T142236.log\nlogs/chats/worker_analysis_d150_dose_response_csv_v2_fdr_fix_20260520T140303.jsonl\nlogs/workers/worker_analysis_d150_dose_response_csv_v2_fdr_fix_20260520T140303.log\nartifacts/dose_response_d120_summary.md\nlogs/workers/worker_analysis_d150_p11_permg_power_analysis_20260520T134046.log\nlogs/chats/worker_analysis_d150_p0a_shapley_recompute_20260520T134235.jsonl\nlogs/workers/worker_analysis_d150_p0a_shapley_recompute_20260520T134235.log\nmistakes.yaml\nlogs/chats/worker_analysis_d150_p0b_dose_response_csv_20260520T134252.jsonl\nlogs/workers/worker_analysis_d150_p0b_dose_response_csv_20260520T134252.log\nlogs/workers/worker_analysis_alpha_sweep_a055_s42_fp32_20260520T134300.log\nreport.md\nregistry.yaml\nlogs/chats/cron_hook_alpha_sweep_a055_s42_fp32.jsonl\nlogs/chats/worker_analysis_d150_p01_spec_curve_audit_20260520T132018.jsonl\nlogs/workers/worker_analysis_d150_p01_spec_curve_audit_20260520T132018.log\nartifacts/d150_p01_spec_curve_audit.md\nlogs/chats/worker_analysis_d150_p02_a045_seed_count_20260520T132027.jsonl\nlogs/workers/worker_analysis_d150_p02_a045_seed_count_20260520T132027.log\npaper_framing.md\nlogs/chats/worker_analysis_alpha_sweep_a060_s42_fp32_v4_20260520T114641.jsonl\nlogs/workers/worker_analysis_alpha_sweep_a060_s42_fp32_v4_20260520\n…[truncated 14935 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T15:44:05.970989+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_analysis_r3_mmct_weight_robustness_20260520T153326.log",
+              "limit": "100"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T15:44:05.971461+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_analysis_d150_shapley_v3_dedup_fdr_20260520T142236.log",
+              "limit": "200"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T15:44:05.971606+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (30707 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T15:44:05.971734+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (551546 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T15:44:05.971863+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "significant_fdr|per_pair|significance_matrix",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_analysis_d150_shapley_v3_dedup_fdr_20260520T142236.log",
+              "output_mode": "content",
+              "head_limit": "30"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T15:44:05.971993+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "30:[Omitted long matching line]\n31:[Omitted long matching line]\n32:[Omitted long matching line]\n34:[Omitted long matching line]\n36:[Omitted long matching line]\n37:[Omitted long matching line]\n38:[Omitted long matching line]\n39:[Omitted long matching line]\n40:[Omitted long matching line]\n41:[Omitted long matching line]\n45:[Omitted long matching line]\n47:[Omitted long matching line]\n49:[Omitted long matching line]\n50:[Omitted long matching line]\n73:[Omitted long matching line]\n87:[Omitted long matching line]\n90:[Omitted long matching line]\n91:[Omitted long matching line]\n95:[Omitted long matching line]\n97:[Omitted long matching line]\n98:[Omitted long matching line]\n124:[Omitted long matching line]\n125:[Omitted long matching line]\n126:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T15:44:05.972115+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_analysis_r3_mmct_weight_robustness_20260520T153326.log",
+              "limit": "100",
+              "offset": "0"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T15:44:05.972232+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (32952 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T15:44:05.972428+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "weight_robustness|mmct_weight|previous attempt|error|failed",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_analysis_r3_mmct_weight_robustness_20260520T153326.log",
+              "output_mode": "content",
+              "head_limit": "20"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T15:44:05.972572+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "23:[Omitted long matching line]\n24:[Omitted long matching line]\n25:[Omitted long matching line]\n26:[Omitted long matching line]\n28:[Omitted long matching line]\n29:[Omitted long matching line]\n32:[Omitted long matching line]\n33:[Omitted long matching line]\n34:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T15:44:05.972718+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "scripts/*.py",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T15:44:05.972838+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "scripts/plot_regime_map.py\nscripts/plot_consensus_workflow.py\nscripts/gen_single_method_table.py\nscripts/tail_sensitive_canary_analysis.py\nscripts/d127_multispatial_ccm.py\nscripts/d127_wasserstein.py\nscripts/d127_csd_analysis.py\nscripts/d127_spec_curve.py\nscripts/permg_power_analysis.py\nscripts/fig_sr_framework.py\nscripts/t20_post_analysis.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T15:44:05.972960+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "artifacts/**/*significance*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T15:44:05.973075+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T15:44:05.973185+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "artifacts/**/mmct_weight*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T15:44:05.973344+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T15:44:05.973508+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T15:44:05.973631+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-20T15:44:05.973755+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cat /root/autodl-tmp/distrib_canary_collapse/alpha_sweep/a000_s43/5method_leadlag.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-20T15:44:05.973877+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/distrib_canary_collapse/alpha_sweep/a000_s43/5method_leadlag.json: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.17}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-20T15:44:05.973993+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "find /root/autodl-tmp/distrib_canary_collapse/alpha_sweep/a000_s43 -name \"*.json\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-20T15:44:05.974114+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"find: '/root/autodl-tmp/distrib_canary_collapse/alpha_sweep/a000_s43': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-20T15:44:05.974229+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "ls /root/autodl-tmp/distrib_canary_collapse/alpha_sweep/",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-20T15:44:05.974375+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/distrib_canary_collapse/alpha_sweep/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-20T15:44:05.974501+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "ls /root/autodl-tmp/distrib_canary_collapse/",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-20T15:44:05.974654+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__pycache__\\\\na075_s42_leadlag.py\\\\na075_s43_leadlag.py\\\\na075_s44_leadlag.py\\\\nalpha_sweep_queue.md\\\\nanalysis\\\\nanalyze_alpha_sweep.py\\\\nanalyze_conditional_granger.py\\\\nanalyze_extended.py\\\\nanalyze_generalize.py\\\\nanalyze_mvp.py\\\\nanalyze_opt13b_s43.py\\\\nanalyze_opt1b_full.py\\\\nartifacts\\\\nbootstrap_ty_validation.py\\\\nc4_full_8pair_analysis.py\\\\ncompute_gen7_metrics.py\\\\ncompute_shapley.py\\\\ncompute_shapley_v2.py\\\\ncompute_shapley_v3.py\\\\nconfigs\\\\nconsensus_framework.py\\\\ncross_alpha_analysis.py\\\\ncross_alpha_analysis_v4.py\\\\ncross_alpha_v3_analysis.py\\\\ncsmp\\\\nd102_rerun_8pair.py\\\\nd120_all_results.json\\\\nd120_batch.sh\\\\nd120_collect.py\\\\nd120_recalc_19828.md\\\\ndata\\\\ndebug_ty.py\\\\ndetrending_utils.py\\\\ndmax_sensitivity.py\\\\ndocs\\\\nextract_drift.py\\\\nextract_m004.py\\\\nextract_m004_v2.py\\\\nextract_table7_8pair.py\\\\nfigures\\\\ngen_dose_response.py\\\\ngen_paper_figures.py\\\\ngen_single_method_table.py\\\\ngpt2m_8pair_analysis.py\\\\ngpt2m_a025_analysis.py\\\\nground_truth_redefine.py\\\\nground_truth_redefine_v2.py\\\\nintervention_effect_comparison.py\\\\niterative_train.py\\\\niterative_train.py.bak\\\\niterative_train.py.bak.mvp\\\\niterative_train.py.bak.v2\\\\nleadlag_gpt2m_s42.py\\\\nlogs\\\\nm037_audit.py\\\\nmauve_supplement_analysis.py\\\\nmethod_ablation.py\\\\nmethod_ablation.py.bak_d105\\\\nmethod_ablation_phase2.py\\\\nmethod_ablation_phase3.py\\\\nmetrics.py\\\\nmetrics.py.bak\\\\nmmct\\\\nper_alpha_fdr.py\\\\nper_alpha_fdr_results.json\\\\nperm_granger_power_bootstrap.py\\\\npermutation_granger.py\\\\npooled_panel_analysis.py\\\\nprepare_c4.py\\\\nprepare_c4_5k_fix.py\\\\nprepare_c4_5k_v5.py\\\\nprepare_c4_v2.py\\\\nprepare_c4_v3.py\\\\nprepare_c4_v4.py\\\\nprepare_data.py\\\\npythia14b_8pair_analysis.py\\\\nrecompute_3sigma.py\\\\nrecompute_3sigma_d105.py\\\\nrecompute_3sigma_d105_backfill.py\\\\nrecompute_3sigma_v2.py\\\\nresults\\\\nresume_plan006_s42.py\\\\nreverse_permg_pythia410m.py\\\\nrun_5method_analysis.py\\\\nrun_5method_analysis.py.bak_m035\\\\nrun_5method_analysis_d10\n…[truncated 698 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-20T15:44:05.974817+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "head -100 /root/autodl-tmp/distrib_canary_collapse/compute_shapley_v3.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-20T15:44:05.974987+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Compute true Shapley values with three threshold choices for comparison.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json\\\\nimport numpy as np\\\\nfrom itertools import combinations\\\\nfrom math import factorial, ceil\\\\nimport matplotlib\\\\nmatplotlib.use('Agg')\\\\nimport matplotlib.pyplot as plt\\\\n\\\\nMETHODS = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\\\\nMETHOD_LABELS = ['Naive\\\\\\\\nXCorr', 'Diff XCorr\\\\\\\\n(FDR)', 'Threshold\\\\\\\\nOnset', 'Perm Granger\\\\\\\\n(FDR)', 'TY\\\\\\\\nGranger']\\\\nN = len(METHODS)\\\\n\\\\nREFERENCE_PAIRS = [\\\\n    ('token_entropy', 'distinct_1'), ('token_entropy', 'distinct_2'),\\\\n    ('token_entropy', 'distinct_3'), ('ece', 'distinct_1'),\\\\n    ('ece', 'distinct_2'), ('ece', 'distinct_3'),\\\\n]\\\\n\\\\ndef load_null_verdicts():\\\\n    verdicts = []\\\\n    base = '/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep'\\\\n    for seed in [42, 43, 44]:\\\\n        with open(f'{base}/a000_s{seed}/analysis/5method_leadlag.json') as f:\\\\n            data = json.load(f)\\\\n        for pair in data['pairs']:\\\\n            fwd = pair['forward']\\\\n            row = {\\\\n                0: fwd['naive_xcorr']['significant'],\\\\n                1: fwd['diff_xcorr'].get('significant_fdr', fwd['diff_xcorr']['significant']),\\\\n                2: fwd['threshold_onset']['significant'],\\\\n                3: fwd['perm_granger'].get('significant_fdr', fwd['perm_granger']['significant']),\\\\n                4: fwd['ty_granger']['significant'],\\\\n            }\\\\n            verdicts.append({'seed': seed, 'pair': (pair['canary'], pair['downstream']), 'votes': row})\\\\n    return verdicts\\\\n\\\\ndef load_signal_verdicts():\\\\n    with open('/root/autodl-tmp/distrib_canary_collapse/results/method_ablation_phase2_panel.json') as f:\\\\n        data = json.load(f)\\\\n    m2i = {'naive': 0, 'differenced': 1, 'threshold': 2, 'permutation_granger': 3, 'TY': 4}\\\\n    verdicts = []\\\\n    for e in data['panel']:\\\\n       \n…[truncated 2296 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-20T15:44:05.975139+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/distrib_canary_collapse/d120_all_results.json')); print(type(d)); print(list(d.keys())[:10] if isinstance(d,dict) else len(d))\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-20T15:44:05.975284+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-20T15:44:05.975461+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "python3 -c \"\nimport json\nd=json.load(open('/root/autodl-tmp/distrib_canary_collapse/d120_all_results.json'))\nprint(type(d))\nif isinstance(d, dict):\n    print(list(d.keys())[:15])\nelif isinstance(d, list):\n    print(len(d))\n    if len(d) > 0:\n        print(type(d[0]))\n        if isinstance(d[0], dict):\n            print(list(d[0].keys())[:15])\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-20T15:44:05.975600+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"<class 'list'>\\\\n27\\\\n<class 'dict'>\\\\n['dir', 'alpha', 'seed', 'n_gens', 'PermG_fwd', 'DiffX_fwd', 'thresh_fwd', 'TY_fwd', 'K_ge3', 'thresh_detail', 'consensus']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-20T15:44:05.975722+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "python3 -c \"\nimport json\nd=json.load(open('/root/autodl-tmp/distrib_canary_collapse/d120_all_results.json'))\nprint(json.dumps(d[0], indent=2)[:2000])\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-20T15:44:05.975919+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dir\\\\\\\": \\\\\\\"results/alpha_sweep/a000_s42\\\\\\\",\\\\n  \\\\\\\"alpha\\\\\\\": 0.0,\\\\n  \\\\\\\"seed\\\\\\\": 42,\\\\n  \\\\\\\"n_gens\\\\\\\": 11,\\\\n  \\\\\\\"PermG_fwd\\\\\\\": 0,\\\\n  \\\\\\\"DiffX_fwd\\\\\\\": 4,\\\\n  \\\\\\\"thresh_fwd\\\\\\\": 3,\\\\n  \\\\\\\"TY_fwd\\\\\\\": 1,\\\\n  \\\\\\\"K_ge3\\\\\\\": 0,\\\\n  \\\\\\\"thresh_detail\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_1\\\\\\\",\\\\n      \\\\\\\"c_onset\\\\\\\": 1,\\\\n      \\\\\\\"d_onset\\\\\\\": null,\\\\n      \\\\\\\"lead_time\\\\\\\": null,\\\\n      \\\\\\\"sig\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_2\\\\\\\",\\\\n      \\\\\\\"c_onset\\\\\\\": 1,\\\\n      \\\\\\\"d_onset\\\\\\\": 5,\\\\n      \\\\\\\"lead_time\\\\\\\": 4,\\\\n      \\\\\\\"sig\\\\\\\": true\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_3\\\\\\\",\\\\n      \\\\\\\"c_onset\\\\\\\": 1,\\\\n      \\\\\\\"d_onset\\\\\\\": 5,\\\\n      \\\\\\\"lead_time\\\\\\\": 4,\\\\n      \\\\\\\"sig\\\\\\\": true\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->mauve\\\\\\\",\\\\n      \\\\\\\"c_onset\\\\\\\": 1,\\\\n      \\\\\\\"d_onset\\\\\\\": 3,\\\\n      \\\\\\\"lead_time\\\\\\\": 2,\\\\n      \\\\\\\"sig\\\\\\\": true\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece->distinct_1\\\\\\\",\\\\n      \\\\\\\"c_onset\\\\\\\": 9,\\\\n      \\\\\\\"d_onset\\\\\\\": null,\\\\n      \\\\\\\"lead_time\\\\\\\": null,\\\\n      \\\\\\\"sig\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece->distinct_2\\\\\\\",\\\\n      \\\\\\\"c_onset\\\\\\\": 9,\\\\n      \\\\\\\"d_onset\\\\\\\": 5,\\\\n      \\\\\\\"lead_time\\\\\\\": -4,\\\\n      \\\\\\\"sig\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece->distinct_3\\\\\\\",\\\\n      \\\\\\\"c_onset\\\\\\\": 9,\\\\n      \\\\\\\"d_onset\\\\\\\": 5,\\\\n      \\\\\\\"lead_time\\\\\\\": -4,\\\\n      \\\\\\\"sig\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece->mauve\\\\\\\",\\\\n      \\\\\\\"c_onset\\\\\\\": 9,\\\\n      \\\\\\\"d_onset\\\\\\\": 3,\\\\n      \\\\\\\"lead_time\\\\\\\": -6,\\\\n      \\\\\\\"sig\\\\\\\": false\\\\n    }\\\\n  ],\\\\n  \\\\\\\"consensus\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy\\\\\\\\u2192distinct_1\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 2,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\"\\\\n\n…[truncated 953 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-20T15:44:05.976088+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-20T15:44:05.976227+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ablation\\\\nalpha_sweep\\\\nalpha_sweep_analysis\\\\nanalysis\\\\nbootstrap_ty_dryrun.json\\\\nbootstrap_ty_results.json\\\\ndetrending\\\\ndose_response_drift.csv\\\\ngen_opt13b_wiki_a100_s43_fp32\\\\ngen_wiki_gpt2m_a100_s43\\\\ngeneralize\\\\nintervention\\\\nlag_sensitivity\\\\nlag_sensitivity_log.txt\\\\nmethod_ablation_phase2_panel.json\\\\nmethod_ablation_phase2_report.md\\\\nmethod_ablation_phase3_panel.json\\\\nmethod_ablation_phase3_report.md\\\\nperm_granger_power_bootstrap.json\\\\nrebuttal\\\\nscale\\\\nscale_check\\\\nshapley_method_contribution_v3.pdf\\\\nshapley_method_contribution_v3.png\\\\nshapley_values.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-20T15:44:05.976387+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "find /root/autodl-tmp/distrib_canary_collapse/results -name \"5method_leadlag.json\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-20T15:44:05.976542+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/analysis_mauve/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s42/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s44/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s43/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s44/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43/analysis_mauve/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44/analysis_mauve/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s42/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_bf16/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/c4_a050_s43_fp32/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/c4_a075_s43_fp32/analysis/5method_leadlag.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a055_s42\n…[truncated 1726 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-20T15:44:05.976717+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "wc -l /root/autodl-tmp/distrib_canary_collapse/compute_shapley_v3.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-20T15:44:05.976848+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"227 /root/autodl-tmp/distrib_canary_collapse/compute_shapley_v3.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-20T15:44:05.976976+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cat /root/autodl-tmp/distrib_canary_collapse/compute_shapley_v3.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-20T15:44:05.977216+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Compute true Shapley values with three threshold choices for comparison.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json\\\\nimport numpy as np\\\\nfrom itertools import combinations\\\\nfrom math import factorial, ceil\\\\nimport matplotlib\\\\nmatplotlib.use('Agg')\\\\nimport matplotlib.pyplot as plt\\\\n\\\\nMETHODS = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\\\\nMETHOD_LABELS = ['Naive\\\\\\\\nXCorr', 'Diff XCorr\\\\\\\\n(FDR)', 'Threshold\\\\\\\\nOnset', 'Perm Granger\\\\\\\\n(FDR)', 'TY\\\\\\\\nGranger']\\\\nN = len(METHODS)\\\\n\\\\nREFERENCE_PAIRS = [\\\\n    ('token_entropy', 'distinct_1'), ('token_entropy', 'distinct_2'),\\\\n    ('token_entropy', 'distinct_3'), ('ece', 'distinct_1'),\\\\n    ('ece', 'distinct_2'), ('ece', 'distinct_3'),\\\\n]\\\\n\\\\ndef load_null_verdicts():\\\\n    verdicts = []\\\\n    base = '/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep'\\\\n    for seed in [42, 43, 44]:\\\\n        with open(f'{base}/a000_s{seed}/analysis/5method_leadlag.json') as f:\\\\n            data = json.load(f)\\\\n        for pair in data['pairs']:\\\\n            fwd = pair['forward']\\\\n            row = {\\\\n                0: fwd['naive_xcorr']['significant'],\\\\n                1: fwd['diff_xcorr'].get('significant_fdr', fwd['diff_xcorr']['significant']),\\\\n                2: fwd['threshold_onset']['significant'],\\\\n                3: fwd['perm_granger'].get('significant_fdr', fwd['perm_granger']['significant']),\\\\n                4: fwd['ty_granger']['significant'],\\\\n            }\\\\n            verdicts.append({'seed': seed, 'pair': (pair['canary'], pair['downstream']), 'votes': row})\\\\n    return verdicts\\\\n\\\\ndef load_signal_verdicts():\\\\n    with open('/root/autodl-tmp/distrib_canary_collapse/results/method_ablation_phase2_panel.json') as f:\\\\n        data = json.load(f)\\\\n    m2i = {'naive': 0, 'differenced': 1, 'threshold': 2, 'permutation_granger': 3, 'TY': 4}\\\\n    verdicts = []\\\\n    for e in data['panel']:\\\\n       \n…[truncated 6800 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-20T15:44:05.977413+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "head -150 /root/autodl-tmp/distrib_canary_collapse/compute_shapley_v2.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-20T15:44:05.977608+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Compute true Shapley values with fixed K=4 threshold (paper's K>=4/5).\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json\\\\nimport numpy as np\\\\nfrom itertools import combinations\\\\nfrom math import factorial\\\\nimport matplotlib\\\\nmatplotlib.use('Agg')\\\\nimport matplotlib.pyplot as plt\\\\n\\\\nMETHODS = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\\\\nMETHOD_LABELS = ['Naive\\\\\\\\nXCorr', 'Diff XCorr\\\\\\\\n(FDR)', 'Threshold\\\\\\\\nOnset', 'Perm Granger\\\\\\\\n(FDR)', 'TY\\\\\\\\nGranger']\\\\nN = len(METHODS)\\\\nK_FIXED = 4\\\\n\\\\nREFERENCE_PAIRS = [\\\\n    ('token_entropy', 'distinct_1'),\\\\n    ('token_entropy', 'distinct_2'),\\\\n    ('token_entropy', 'distinct_3'),\\\\n    ('ece', 'distinct_1'),\\\\n    ('ece', 'distinct_2'),\\\\n    ('ece', 'distinct_3'),\\\\n]\\\\n\\\\ndef load_null_verdicts():\\\\n    verdicts = []\\\\n    seeds = [42, 43, 44]\\\\n    base = '/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep'\\\\n    for seed in seeds:\\\\n        path = f'{base}/a000_s{seed}/analysis/5method_leadlag.json'\\\\n        with open(path) as f:\\\\n            data = json.load(f)\\\\n        for pair in data['pairs']:\\\\n            row = {}\\\\n            fwd = pair['forward']\\\\n            row[0] = fwd['naive_xcorr']['significant']\\\\n            dx = fwd['diff_xcorr']\\\\n            row[1] = dx.get('significant_fdr', dx['significant'])\\\\n            row[2] = fwd['threshold_onset']['significant']\\\\n            pg = fwd['perm_granger']\\\\n            row[3] = pg.get('significant_fdr', pg['significant'])\\\\n            row[4] = fwd['ty_granger']['significant']\\\\n            verdicts.append({'seed': seed, 'canary': pair['canary'],\\\\n                           'downstream': pair['downstream'], 'votes': row})\\\\n    return verdicts\\\\n\\\\ndef load_signal_verdicts():\\\\n    path = '/root/autodl-tmp/distrib_canary_collapse/results/method_ablation_phase2_panel.json'\\\\n    with open(path) as f:\\\\n        data = json.load(f)\\\\n    panel_to_idx = {'n\n…[truncated 4438 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-20T15:44:05.977805+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42_fp32/analysis/5method_leadlag.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-20T15:44:05.977969+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42_fp32/analysis/5method_leadlag.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-20T15:44:05.978154+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "head -120 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42_fp32/analysis/5method_leadlag.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-20T15:44:05.978378+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"meta\\\\\\\": {\\\\n    \\\\\\\"alpha\\\\\\\": 0.0,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"n_gens\\\\\\\": 11,\\\\n    \\\\\\\"data_dir\\\\\\\": \\\\\\\"results/alpha_sweep/a000_s42_fp32\\\\\\\",\\\\n    \\\\\\\"methods\\\\\\\": [\\\\n      \\\\\\\"naive_xcorr\\\\\\\",\\\\n      \\\\\\\"diff_xcorr\\\\\\\",\\\\n      \\\\\\\"threshold_onset\\\\\\\",\\\\n      \\\\\\\"perm_granger\\\\\\\",\\\\n      \\\\\\\"ty_granger\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"n_perm\\\\\\\": 5000,\\\\n    \\\\\\\"canaries\\\\\\\": [\\\\n      \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"ece\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"downstreams\\\\\\\": [\\\\n      \\\\\\\"distinct_1\\\\\\\",\\\\n      \\\\\\\"distinct_2\\\\\\\",\\\\n      \\\\\\\"distinct_3\\\\\\\",\\\\n      \\\\\\\"mauve\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"threshold_criterion\\\\\\\": \\\\\\\"true_3sigma_d105\\\\\\\"\\\\n  },\\\\n  \\\\\\\"pairs\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_1\\\\\\\",\\\\n      \\\\\\\"forward\\\\\\\": {\\\\n        \\\\\\\"naive_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"naive_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -5,\\\\n          \\\\\\\"r\\\\\\\": 0.9023,\\\\n          \\\\\\\"p_value\\\\\\\": 0.013857,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"all_lags\\\\\\\": [\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -5,\\\\n              \\\\\\\"r\\\\\\\": 0.9023,\\\\n              \\\\\\\"p\\\\\\\": 0.013857\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -4,\\\\n              \\\\\\\"r\\\\\\\": 0.7904,\\\\n              \\\\\\\"p\\\\\\\": 0.034399\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -3,\\\\n              \\\\\\\"r\\\\\\\": 0.694,\\\\n              \\\\\\\"p\\\\\\\": 0.056207\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -2,\\\\n              \\\\\\\"r\\\\\\\": 0.3609,\\\\n              \\\\\\\"p\\\\\\\": 0.339995\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -1,\\\\n              \\\\\\\"r\\\\\\\": 0.741,\\\\n              \\\\\\\"p\\\\\\\": 0.014202\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 0,\\\\n              \\\\\\\"r\\\\\\\": 0.3702,\\\\n              \\\\\\\"p\\\\\\\": 0.262357\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 1\n…[truncated 1521 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-20T15:44:05.978554+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "python3 -c \"\nimport json\nd = json.load(open('/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42_fp32/analysis/5method_leadlag.json'))\npair = d['pairs'][0]\nfwd = pair['forward']\n# Check what fields each method has\nfor m in ['naive_xcorr','diff_xcorr','threshold_onset','perm_granger','ty_granger']:\n    keys = list(fwd[m].keys())\n    print(f'{m}: {[k for k in keys if \\\"sig\\\" in k.lower() or \\\"fdr\\\" in k.lower()]}')\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-20T15:44:05.978707+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 -c \\\\\\\"\\\\\\\\nimport json\\\\\\\\nd = json.load(open(\\\\\\\\'/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42_fp32/analysis/5method_leadlag.json\\\\\\\\'))\\\\\\\\npair = d[\\\\\\\\'pairs\\\\\\\\'][0]\\\\\\\\nfwd = pair[\\\\\\\\'forward\\\\\\\\']\\\\\\\\n# Check what fields each method has\\\\\\\\nfor m in [\\\\\\\\'naive_xcorr\\\\\\\\',\\\\\\\\'diff_xcorr\\\\\\\\',\\\\\\\\'threshold_onset\\\\\\\\',\\\\\\\\'perm_granger\\\\\\\\',\\\\\\\\'ty_granger\\\\\\\\']:\\\\\\\\n    keys = list(fwd[m].keys())\\\\\\\\n    print(f\\\\\\\\'{m}: {[k for k in keys if \\\\\\\\\\\\\\\\\\\\\\\"sig\\\\\\\\\\\\\\\\\\\\\\\" in k.lower() or \\\\\\\\\\\\\\\\\\\\\\\"fdr\\\\\\\\\\\\\\\\\\\\\\\" in k.lower()]}\\\\\\\\')\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-20T15:44:05.978839+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "find /root -name \"python3\" -o -name \"python\" -type f 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-20T15:44:05.978968+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-20T15:44:05.979090+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "ls /root/miniconda3/bin/python3",
+              "account": "root"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-20T15:44:05.979208+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "find /root -name \"python3\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-20T15:44:05.979363+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-20T15:44:05.979505+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.85}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-20T15:44:05.979627+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nd = json.load(open('/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42_fp32/analysis/5method_leadlag.json'))\npair = d['pairs'][0]\nfwd = pair['forward']\nfor m in ['naive_xcorr','diff_xcorr','threshold_onset','perm_granger','ty_granger']:\n    keys = [k for k in fwd[m].keys() if 'sig' in k.lower() or 'fdr' in k.lower() or 'p_val' in k.lower()]\n    print(f'{m}: {keys}')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-20T15:44:05.979754+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"naive_xcorr: ['p_value', 'significant']\\\\ndiff_xcorr: ['p_value', 'significant', 'p_fdr', 'significant_fdr']\\\\nthreshold_onset: ['significant']\\\\nperm_granger: ['p_value', 'significant', 'p_fdr', 'significant_fdr']\\\\nty_granger: ['p_value', 'significant']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-20T15:44:05.979901+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\n# Check a signal experiment (alpha=0.50)\nd = json.load(open('/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42_fp32/analysis/5method_leadlag.json'))\npair = d['pairs'][0]\nfwd = pair['forward']\nfor m in ['naive_xcorr','diff_xcorr','threshold_onset','perm_granger','ty_granger']:\n    keys = [k for k in fwd[m].keys() if 'sig' in k.lower() or 'fdr' in k.lower() or 'p_val' in k.lower()]\n    print(f'{m}: {keys}')\nprint()\nprint('threshold_criterion:', d.get('meta',{}).get('threshold_criterion','N/A'))\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-20T15:44:05.980042+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"naive_xcorr: ['p_value', 'significant']\\\\ndiff_xcorr: ['p_value', 'significant', 'p_fdr', 'significant_fdr']\\\\nthreshold_onset: ['significant']\\\\nperm_granger: ['p_value', 'significant', 'p_fdr', 'significant_fdr']\\\\nty_granger: ['p_value', 'significant']\\\\n\\\\nthreshold_criterion: true_3sigma_d105\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-20T15:44:05.980212+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "naive_xcorr.*significant|fdr.*naive|def.*extract|def.*load",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_analysis_d150_shapley_v3_dedup_fdr_20260520T142236.log",
+              "output_mode": "content",
+              "head_limit": "30"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-20T15:44:05.980438+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "27:[Omitted long matching line]\n29:[Omitted long matching line]\n41:[Omitted long matching line]\n45:[Omitted long matching line]\n47:[Omitted long matching line]\n49:[Omitted long matching line]\n50:[Omitted long matching line]\n73:[Omitted long matching line]\n87:[Omitted long matching line]\n90:[Omitted long matching line]\n91:[Omitted long matching line]\n92:[Omitted long matching line]\n95:[Omitted long matching line]\n97:[Omitted long matching line]\n98:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-20T15:44:05.980632+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_analysis_d150_shapley_v3_dedup_fdr_20260520T142236.log",
+              "offset": "25",
+              "limit": "30"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-20T15:44:05.980811+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (96337 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-20T15:44:05.980993+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "significant_fdr.*naive|naive.*fdr|apply_fdr|BH|benjamini|from.*stats",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_analysis_d150_shapley_v3_dedup_fdr_20260520T142236.log",
+              "output_mode": "content",
+              "head_limit": "20"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-20T15:44:05.981176+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "19:[Omitted long matching line]\n29:[Omitted long matching line]\n30:[Omitted long matching line]\n31:[Omitted long matching line]\n32:[Omitted long matching line]\n34:[Omitted long matching line]\n41:[Omitted long matching line]\n45:[Omitted long matching line]\n47:[Omitted long matching line]\n49:[Omitted long matching line]\n50:[Omitted long matching line]\n55:[Omitted long matching line]\n56:[Omitted long matching line]\n57:[Omitted long matching line]\n59:[Omitted long matching line]\n71:[Omitted long matching line]\n73:[Omitted long matching line]\n87:[Omitted long matching line]\n88:[Omitted long matching line]\n90:[Omitted long matching line]\n\n[Showing results with pagination = limit: 20]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-20T15:44:05.981411+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"significant_fdr\\|naive.*fdr\\|BH\\|benjamini\\|apply_fdr\\|def extract\\|def load\\|def get_sig\" /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_analysis_d150_shapley_v3_dedup_fdr_20260520T142236.log | head -30",
+              "description": "Find FDR-related code patterns in Shapley v3 worker log"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-20T15:44:05.981810+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (284.8KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/73b4c047-87f5-4ad8-b3b8-1b2e55ffbbf9/tool-results/b2zgqzo0v.txt\n\nPreview (first 2KB):\n19:{\"type\":\"assistant\",\"message\":{\"model\":\"claude-opus-4-6\",\"id\":\"msg_01SHtkeiakkHvVKBAy2jxEbC\",\"type\":\"message\",\"role\":\"assistant\",\"content\":[{\"type\":\"thinking\",\"thinking\":\"Now I have all files from both servers. Let me identify:\\n\\n**Files to EXCLUDE** (non-standard variants):\\n- `v3_d080`: `17855:a005_s42_fp32_v3_d080`, `17855:a060_s42_fp32_v3_d080`\\n- `postd093`: `17855:a050_postd093_s42_fp32`\\n- `bf16`: `19828:a060_s42_bf16`, `17855:a010_s43_bf16`, `17855:reactive_d1_s43_bf16`, `17855:predictive_te_s43_bf16`, `17855:gpt2m_wiki_a100_s43_bf16`\\n\\n\\nNow I'm mapping out the remaining experiments from westd-19828 and checking for any duplicates across the two servers. Now I'm looking at additional experiment configurations, including intervention studies with reactive and predictive approaches, some generalization checks across different model scales, and ablation studies on accumulation parameters. There's also a separate westd dataset with its own alpha sweep configurations. Looking at the list of experiments, I'm now checking for duplicates across the different experiment categories. I notice some entries share the same alpha, seed, and dataset parameters but differ in precision or version — like the a000_s42 variants where I should keep the fp32 version for consistency. → keep 17855 fp32\\n- a075_s42: 19828 has `a075_s42`, 17855 has `a075_s42_fp32` → keep 17855 fp32\\n\\nFor 19828-only (no 17855 equivalent):\\n- a000_s43, a000_s44 → only on 19828\\n- a055_s42_fp32 → only on 19828\\n- a075_s43, a075_s44 → only on 19828\\n- c4_a050_s43_fp32, c4_a075_s43_fp32 → only on 19828\\n- All generalize/ on 19828 are unique models/seeds\\n- intervention/, scale_check/, gen_*, ablation/ → unique\\n\\nFor 17855-only:\n…[truncated 300 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-20T15:44:05.982039+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"def get_significance\\|'significant_fdr'\\|fdr_field\\|naive_xcorr.*sig\\|p_values.*BH\\|multipletests\" /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_analysis_d150_shapley_v3_dedup_fdr_20260520T142236.log | head -20",
+              "description": "Find FDR correction logic in Shapley v3 worker"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-20T15:44:05.982504+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (359.7KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/73b4c047-87f5-4ad8-b3b8-1b2e55ffbbf9/tool-results/b8ex8g2ls.txt\n\nPreview (first 2KB):\n9:{\"type\":\"user\",\"message\":{\"role\":\"user\",\"content\":[{\"tool_use_id\":\"toolu_0188whpT6DQi6CmfDvoLTxkY\",\"type\":\"tool_result\",\"content\":\"1\\t{\\n2\\t  \\\"version\\\": \\\"v2_d120_compliant\\\",\\n3\\t  \\\"generated_at\\\": \\\"2026-05-20T13:54:43.392607\\\",\\n4\\t  \\\"data_sources\\\": [\\n5\\t    \\\"19828:alpha_sweep/a000_s42\\\",\\n6\\t    \\\"19828:alpha_sweep/a000_s43\\\",\\n7\\t    \\\"19828:alpha_sweep/a000_s44\\\",\\n8\\t    \\\"19828:ablation/accumulate_a050_s43\\\",\\n9\\t    \\\"19828:alpha_sweep/a010_s42\\\",\\n10\\t    \\\"19828:alpha_sweep/a025_s43\\\",\\n11\\t    \\\"19828:alpha_sweep/a025_s44\\\",\\n12\\t    \\\"19828:alpha_sweep/a050_s42\\\",\\n13\\t    \\\"19828:alpha_sweep/a050_s43\\\",\\n14\\t    \\\"19828:alpha_sweep/a050_s44\\\",\\n15\\t    \\\"19828:alpha_sweep/a055_s42_fp32\\\",\\n16\\t    \\\"19828:alpha_sweep/a075_s42\\\",\\n17\\t    \\\"19828:alpha_sweep/a075_s43\\\",\\n18\\t    \\\"19828:alpha_sweep/a075_s44\\\",\\n19\\t    \\\"19828:alpha_sweep/c4_a050_s43_fp32\\\",\\n20\\t    \\\"19828:alpha_sweep/c4_a075_s43_fp32\\\",\\n21\\t    \\\"19828:gen_opt13b_wiki_a100_s43_fp32\\\",\\n22\\t    \\\"19828:gen_wiki_gpt2m_a100_s43\\\",\\n23\\t    \\\"19828:generalize/gpt2m_wiki_a100_s42\\\",\\n24\\t    \\\"19828:generalize/opt1b_wiki_a100_s42\\\",\\n25\\t    \\\"19828:generalize/pythia14b_wiki_a100_s42\\\",\\n26\\t    \\\"19828:generalize/pythia14b_wiki_a100_s43\\\",\\n27\\t    \\\"19828:generalize/pythia1b_c4_a100_s42\\\",\\n28\\t    \\\"19828:generalize/pythia1b_c4_a100_s43\\\",\\n29\\t    \\\"19828:generalize/pythia410m_wiki_a100_s42\\\",\\n30\\t    \\\"19828:generalize/smollm3_3b_wiki_a100_s42_fp32_v3\\\",\\n31\\t    \\\"19828:intervention/predictive_te_s42\\\",\\n32\\t    \\\"19828:intervention/reactive_d1_s42\\\",\\n33\\t    \\\"19828:scale_check/pythia14b_a050_s42\\\",\\n34\\t    \\\"17855:alpha_sweep/a000_s42_fp32\\\",\\n35\\t    \\\"17855:alpha_sweep/a005_s42_fp32_v3_d080\\\",\\n\n…[truncated 300 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-20T15:44:05.982775+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"get_sig_field\\|fdr_field\\|significant_fdr\\|def extract_verdicts\\|naive_xcorr.*sig\\|sig_field\" /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_analysis_d150_shapley_v3_dedup_fdr_20260520T142236.log 2>/dev/null | grep -v \"Omitted\\|tool_result\\|stdout\\|stderr\" | head -30",
+              "description": "Find significance field extraction logic"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-20T15:44:05.983122+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (46.6KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/73b4c047-87f5-4ad8-b3b8-1b2e55ffbbf9/tool-results/brv3lquf6.txt\n\nPreview (first 2KB):\n30:{\"type\":\"assistant\",\"message\":{\"model\":\"claude-opus-4-6\",\"id\":\"msg_014x4ao7ATgemy3BH3XgCCus\",\"type\":\"message\",\"role\":\"assistant\",\"content\":[{\"type\":\"thinking\",\"thinking\":\"I can see the structure. On westd-17855 (a045_s42_fp32), the structure is:\\n- Top level has `meta` with `threshold_criterion` inside\\n- `pairs` is an array of objects with `canary`, `downstream`, `forward` containing methods\\n- Each method has: `method`, `peak_lag`, `r`, `p_value`, `significant`, `all_lags`\\n\\nOn westd-19828 (a000_s42), the structure is:\\n- Top level has `alpha`, `seed`, `n_generations`, `data_dir`, `methods`, `config` with `threshold_criterion` and `fdr_alpha` inside\\n\\n\\n- `pairs` is similarly an array\\n\\nI need to dig deeper into the files to find where `significant_fdr` is stored — it might be a separate field in the method objects or handled differently. I should also check what fields the `threshold_onset` method contains and look for any perm_granger entries.\",\"signature\":\"Eo0ICmMIDRgCKkDQzeIoa6HnlsPAlDM2Z+vHUWVyYhik4vXzJX9HbOaQGSx5yE6OKsRyTsUxfQpsaZ1oYQ29GzSUXcOhdiqCoaImMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDASAWfw9ntMV/mjNiRoMkchIi50PMxOHy/e4IjBpNsdlY2AsbHjhkih1quQmj+ithDW4rJIkAGTWZdejq/M8Ou3t0IJWzk8uqoLicGEq1wbjmArnEPu2BBLXWUb7xNBsmdZy0BA1bdgdDOmszpdWzkiWC9ZwgAwCn6OVkV82iwCPpo9iqGRpKy6NMn7oS3k2WAWD0VVFpYrvfOVCLsk68dG9+A/IWEFPyouDyDvtGuseyA55kVOe8FNIihouaSAeq9LYRH4xFfTaP3An3GhMOdIKsHXT7vVwhsR1xKQsh6pqXnYKCZeDeWKJ+hJdasRL5yFGGJavwDX2r3I6ZvAusw1MDivZA6UNh/qMRRfpQihaDxq+DrZyVjrNcRN4Je9m6fwZEzTMIb7s85RQNStFvQpikZFvrgVkMNxzH/VHTaCdm8zOFqst/3/0fgMwF9KB7et0cvwoCI7yBP6yOds2NddVYY9B2zRCuIkzFtZNIRaDK3AAtrKkJA9uEeqNnxlwBXNHSyZKCNMY+SutLzBOraNN/encsls0SvOEImUHmgntGex5WdVuqtMCdLo0F+D06WyofnSPvK4yMj1R8Sw/EtHuofj\n…[truncated 299 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-20T15:44:05.983407+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "python3 -c \"\nimport json, glob\n# Check a few files for which methods have significant_fdr\nfiles = glob.glob('/root/autodl-tmp/distrib_canary_collapse/results/*/a000_s43/analysis/5method_leadlag.json')\nfiles += glob.glob('/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/analysis/5method_leadlag.json')\nfor f in files[:3]:\n    d = json.load(open(f))\n    pair = d['pairs'][0]\n    fwd = pair['forward']\n    print(f'File: {f.split(\\\"/results/\\\")[1]}')\n    for m in ['naive_xcorr','diff_xcorr','threshold_onset','perm_granger','ty_granger']:\n        sig_keys = [k for k in fwd[m].keys() if 'sig' in k.lower() or 'fdr' in k.lower()]\n        print(f'  {m}: {sig_keys}')\n    print()\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-20T15:44:05.983595+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"File: alpha_sweep/a000_s43/analysis/5method_leadlag.json\\\\n  naive_xcorr: ['significant']\\\\n  diff_xcorr: ['significant', 'fdr_p', 'significant_fdr']\\\\n  threshold_onset: ['significant']\\\\n  perm_granger: ['significant', 'fdr_p', 'significant_fdr']\\\\n  ty_granger: ['significant']\\\\n\\\\nFile: alpha_sweep/a050_s42/analysis/5method_leadlag.json\\\\n  naive_xcorr: ['significant']\\\\n  diff_xcorr: ['significant', 'fdr_p', 'significant_fdr']\\\\n  threshold_onset: ['significant']\\\\n  perm_granger: ['significant', 'fdr_p', 'significant_fdr']\\\\n  ty_granger: ['significant']\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-20T15:44:05.983782+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "python3 -c \"\nimport json, os\n\nBASE = '/root/autodl-tmp/distrib_canary_collapse/results'\n\n# All 19828 experiments from Shapley v3\nexperiments_19828 = [\n    'ablation/accumulate_a050_s43',\n    'alpha_sweep/a000_s43', 'alpha_sweep/a000_s44',\n    'alpha_sweep/a055_s42_fp32',\n    'alpha_sweep/a075_s43', 'alpha_sweep/a075_s44',\n    'alpha_sweep/c4_a050_s43_fp32', 'alpha_sweep/c4_a075_s43_fp32',\n    'gen_opt13b_wiki_a100_s43_fp32', 'gen_wiki_gpt2m_a100_s43',\n    'generalize/gpt2m_wiki_a100_s42', 'generalize/opt1b_wiki_a100_s42',\n    'generalize/pythia14b_wiki_a100_s42', 'generalize/pythia14b_wiki_a100_s43',\n    'generalize/pythia1b_c4_a100_s42', 'generalize/pythia1b_c4_a100_s43',\n    'generalize/pythia410m_wiki_a100_s42',\n    'generalize/smollm3_3b_wiki_a100_s42_fp32_v3',\n    'intervention/predictive_te_s42', 'intervention/reactive_d1_s42',\n    'scale_check/pythia14b_a050_s42',\n]\n\nMETHODS = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\n\ndef get_sig(method_data, method_name):\n    if method_name in ('diff_xcorr', 'perm_granger'):\n        return method_data.get('significant_fdr', method_data['significant'])\n    return method_data['significant']\n\nresults = []\nfor exp in experiments_19828:\n    path = f'{BASE}/{exp}/analysis/5method_leadlag.json'\n    if not os.path.exists(path):\n        print(f'MISSING: {path}')\n        continue\n    d = json.load(open(path))\n    meta = d.get('meta', d)\n    alpha = meta.get('alpha', None)\n    exp_data = {'experiment': f'19828:{exp}', 'alpha': alpha, 'pairs': []}\n    for pair in d['pairs']:\n        fwd = pair['forward']\n        pair_data = {\n            'pair': f\\\"{pair['canary']}->{pair['downstream']}\\\",\n            'methods': {}\n        }\n        for m in METHODS:\n            pair_data['methods'][m] = get_sig(fwd[m], m)\n        exp_data['pairs'].append(pair_data)\n    results.append(exp_data)\n\nprint(json.dumps(results))\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-20T15:44:05.984150+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[{\\\\\\\"experiment\\\\\\\": \\\\\\\"19828:ablation/accumulate_a050_s43\\\\\\\", \\\\\\\"alpha\\\\\\\": 0.5, \\\\\\\"pairs\\\\\\\": [{\\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_1\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": false, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": false}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_2\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": false, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": false}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_3\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": false, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": false}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->mauve\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": false, \\\\\\\"diff_xcorr\\\\\\\": false, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": false}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"ece->distinct_1\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": false, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": true}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"ece->distinct_2\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": true, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": true}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"ece->distinct_3\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": true, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": true}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"ece->mauve\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": false, \\\\\\\"diff_xcorr\\\\\\\": false, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": false}}]}, {\\\\\\\"experiment\\\\\\\": \\\\\\\"19828:alpha_sweep/a000_s43\\\\\\\", \\\\\\\"alpha\\\\\\\": 0.0, \\\\\\\"pairs\\\\\\\": [{\\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_1\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_\n…[truncated 8658 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-20T15:44:05.984360+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, os\n\nBASE = '/root/autodl-tmp/distrib_canary_collapse/results'\n\n# All 17855 experiments from Shapley v3\nexperiments_17855 = [\n    'alpha_sweep/a000_s42_fp32',\n    'alpha_sweep/a010_s42_fp32', 'alpha_sweep/a010_s43_fp32',\n    'alpha_sweep/a025_s42_fp32', 'alpha_sweep/a025_s43_fp32', 'alpha_sweep/a025_s44_fp32',\n    'alpha_sweep/a030_s42_fp32', 'alpha_sweep/a035_s42_fp32',\n    'alpha_sweep/a040_s42_fp32', 'alpha_sweep/a045_s42_fp32',\n    'alpha_sweep/a050_s42_fp32', 'alpha_sweep/a050_s43_fp32', 'alpha_sweep/a050_s44_fp32',\n    'alpha_sweep/a060_s42_fp32_v4', 'alpha_sweep/a060_s43_fp32',\n    'alpha_sweep/a075_s42_fp32',\n    'alpha_sweep/c4_a025_s42_fp32', 'alpha_sweep/c4_a050_s42_fp32', 'alpha_sweep/c4_a075_s42_fp32',\n    'generalize/pythia410m_wiki_a100_s43',\n    'generalize/qwen35_08b_wiki_a100_s42_fp32_v2',\n    'generalize/qwen35_08b_wiki_a100_s43_fp32',\n    'generalize/smollm3_3b_wiki_a100_s43_17855',\n    'padding_robustness/a100_s42_fp32',\n    'scale/14b_c4_s42_fp32',\n    'scale_check/pythia69b_wiki_a100_s42', 'scale_check/pythia69b_wiki_a100_s43',\n]\n\nMETHODS = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\n\ndef get_sig(method_data, method_name):\n    if method_name in ('diff_xcorr', 'perm_granger'):\n        return method_data.get('significant_fdr', method_data['significant'])\n    return method_data['significant']\n\nresults = []\nfor exp in experiments_17855:\n    path = f'{BASE}/{exp}/analysis/5method_leadlag.json'\n    if not os.path.exists(path):\n        print(f'MISSING: {path}', flush=True)\n        continue\n    d = json.load(open(path))\n    meta = d.get('meta', d)\n    alpha = meta.get('alpha', None)\n    exp_data = {'experiment': f'17855:{exp}', 'alpha': alpha, 'pairs': []}\n    for pair in d['pairs']:\n        fwd = pair['forward']\n        pair_data = {\n            'pair': f\\\"{pair['canary']}->{pair['downstream']}\\\",\n            'methods': {}\n        }\n        for m in METHODS:\n            pair_data['methods'][m] = get_sig(fwd[m], m)\n        exp_data['pairs'].append(pair_data)\n    results.append(exp_data)\n\nprint(json.dumps(results))\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-20T15:44:05.984736+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[{\\\\\\\"experiment\\\\\\\": \\\\\\\"17855:alpha_sweep/a000_s42_fp32\\\\\\\", \\\\\\\"alpha\\\\\\\": 0.0, \\\\\\\"pairs\\\\\\\": [{\\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_1\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": true, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": false}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_2\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": true, \\\\\\\"threshold_onset\\\\\\\": true, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": true}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_3\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": true, \\\\\\\"threshold_onset\\\\\\\": true, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": false}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->mauve\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": false, \\\\\\\"threshold_onset\\\\\\\": true, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": false}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"ece->distinct_1\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": false, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": false}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"ece->distinct_2\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": false, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": false}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"ece->distinct_3\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": false, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": false}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"ece->mauve\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": true, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": false}}]}, {\\\\\\\"experiment\\\\\\\": \\\\\\\"17855:alpha_sweep/a010_s42_fp32\\\\\\\", \\\\\\\"alpha\\\\\\\": 0.1, \\\\\\\"pairs\\\\\\\": [{\\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_1\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xco\n…[truncated 8658 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-20T15:44:05.984948+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "python3 -c \"\nimport json, os\n\nBASE = '/root/autodl-tmp/distrib_canary_collapse/results'\n\nexperiments_19828 = [\n    'ablation/accumulate_a050_s43',\n    'alpha_sweep/a000_s43', 'alpha_sweep/a000_s44',\n    'alpha_sweep/a055_s42_fp32',\n    'alpha_sweep/a075_s43', 'alpha_sweep/a075_s44',\n    'alpha_sweep/c4_a050_s43_fp32', 'alpha_sweep/c4_a075_s43_fp32',\n    'gen_opt13b_wiki_a100_s43_fp32', 'gen_wiki_gpt2m_a100_s43',\n    'generalize/gpt2m_wiki_a100_s42', 'generalize/opt1b_wiki_a100_s42',\n    'generalize/pythia14b_wiki_a100_s42', 'generalize/pythia14b_wiki_a100_s43',\n    'generalize/pythia1b_c4_a100_s42', 'generalize/pythia1b_c4_a100_s43',\n    'generalize/pythia410m_wiki_a100_s42',\n    'generalize/smollm3_3b_wiki_a100_s42_fp32_v3',\n    'intervention/predictive_te_s42', 'intervention/reactive_d1_s42',\n    'scale_check/pythia14b_a050_s42',\n]\n\nMETHODS = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\n\ndef get_sig(method_data, method_name):\n    if method_name in ('diff_xcorr', 'perm_granger'):\n        return method_data.get('significant_fdr', method_data['significant'])\n    return method_data['significant']\n\nresults = []\nfor exp in experiments_19828:\n    path = f'{BASE}/{exp}/analysis/5method_leadlag.json'\n    if not os.path.exists(path):\n        continue\n    d = json.load(open(path))\n    meta = d.get('meta', d)\n    alpha = meta.get('alpha', None)\n    exp_data = {'experiment': f'19828:{exp}', 'alpha': alpha, 'pairs': []}\n    for pair in d['pairs']:\n        fwd = pair['forward']\n        pair_data = {\n            'pair': f\\\"{pair['canary']}->{pair['downstream']}\\\",\n            'methods': {}\n        }\n        for m in METHODS:\n            pair_data['methods'][m] = get_sig(fwd[m], m)\n        exp_data['pairs'].append(pair_data)\n    results.append(exp_data)\n\nwith open('/tmp/sig_matrix_19828.json', 'w') as f:\n    json.dump(results, f)\nprint(f'Saved {len(results)} experiments')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-20T15:44:05.985107+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Saved 21 experiments\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-20T15:44:05.985241+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, os\n\nBASE = '/root/autodl-tmp/distrib_canary_collapse/results'\n\nexperiments_17855 = [\n    'alpha_sweep/a000_s42_fp32',\n    'alpha_sweep/a010_s42_fp32', 'alpha_sweep/a010_s43_fp32',\n    'alpha_sweep/a025_s42_fp32', 'alpha_sweep/a025_s43_fp32', 'alpha_sweep/a025_s44_fp32',\n    'alpha_sweep/a030_s42_fp32', 'alpha_sweep/a035_s42_fp32',\n    'alpha_sweep/a040_s42_fp32', 'alpha_sweep/a045_s42_fp32',\n    'alpha_sweep/a050_s42_fp32', 'alpha_sweep/a050_s43_fp32', 'alpha_sweep/a050_s44_fp32',\n    'alpha_sweep/a060_s42_fp32_v4', 'alpha_sweep/a060_s43_fp32',\n    'alpha_sweep/a075_s42_fp32',\n    'alpha_sweep/c4_a025_s42_fp32', 'alpha_sweep/c4_a050_s42_fp32', 'alpha_sweep/c4_a075_s42_fp32',\n    'generalize/pythia410m_wiki_a100_s43',\n    'generalize/qwen35_08b_wiki_a100_s42_fp32_v2',\n    'generalize/qwen35_08b_wiki_a100_s43_fp32',\n    'generalize/smollm3_3b_wiki_a100_s43_17855',\n    'padding_robustness/a100_s42_fp32',\n    'scale/14b_c4_s42_fp32',\n    'scale_check/pythia69b_wiki_a100_s42', 'scale_check/pythia69b_wiki_a100_s43',\n]\n\nMETHODS = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\n\ndef get_sig(method_data, method_name):\n    if method_name in ('diff_xcorr', 'perm_granger'):\n        return method_data.get('significant_fdr', method_data['significant'])\n    return method_data['significant']\n\nresults = []\nfor exp in experiments_17855:\n    path = f'{BASE}/{exp}/analysis/5method_leadlag.json'\n    if not os.path.exists(path):\n        print(f'MISSING: {exp}')\n        continue\n    d = json.load(open(path))\n    meta = d.get('meta', d)\n    alpha = meta.get('alpha', None)\n    exp_data = {'experiment': f'17855:{exp}', 'alpha': alpha, 'pairs': []}\n    for pair in d['pairs']:\n        fwd = pair['forward']\n        pair_data = {\n            'pair': f\\\"{pair['canary']}->{pair['downstream']}\\\",\n            'methods': {}\n        }\n        for m in METHODS:\n            pair_data['methods'][m] = get_sig(fwd[m], m)\n        exp_data['pairs'].append(pair_data)\n    results.append(exp_data)\n\nwith open('/tmp/sig_matrix_17855.json', 'w') as f:\n    json.dump(results, f)\nprint(f'Saved {len(results)} experiments')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-20T15:44:05.985416+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Saved 27 experiments\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.82}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-20T15:44:05.985558+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cat /tmp/sig_matrix_19828.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-20T15:44:05.985682+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "cat /tmp/sig_matrix_17855.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-20T15:44:05.986015+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[{\\\\\\\"experiment\\\\\\\": \\\\\\\"19828:ablation/accumulate_a050_s43\\\\\\\", \\\\\\\"alpha\\\\\\\": 0.5, \\\\\\\"pairs\\\\\\\": [{\\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_1\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": false, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": false}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_2\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": false, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": false}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_3\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": false, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": false}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->mauve\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": false, \\\\\\\"diff_xcorr\\\\\\\": false, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": false}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"ece->distinct_1\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": false, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": true}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"ece->distinct_2\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": true, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": true}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"ece->distinct_3\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": true, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": true}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"ece->mauve\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": false, \\\\\\\"diff_xcorr\\\\\\\": false, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": false}}]}, {\\\\\\\"experiment\\\\\\\": \\\\\\\"19828:alpha_sweep/a000_s43\\\\\\\", \\\\\\\"alpha\\\\\\\": 0.0, \\\\\\\"pairs\\\\\\\": [{\\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_1\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_\n…[truncated 8655 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-20T15:44:05.986405+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[{\\\\\\\"experiment\\\\\\\": \\\\\\\"17855:alpha_sweep/a000_s42_fp32\\\\\\\", \\\\\\\"alpha\\\\\\\": 0.0, \\\\\\\"pairs\\\\\\\": [{\\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_1\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": true, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": false}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_2\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": true, \\\\\\\"threshold_onset\\\\\\\": true, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": true}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_3\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": true, \\\\\\\"threshold_onset\\\\\\\": true, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": false}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->mauve\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": false, \\\\\\\"threshold_onset\\\\\\\": true, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": false}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"ece->distinct_1\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": false, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": false}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"ece->distinct_2\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": false, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": false}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"ece->distinct_3\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": false, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": false}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"ece->mauve\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": true, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": false}}]}, {\\\\\\\"experiment\\\\\\\": \\\\\\\"17855:alpha_sweep/a010_s42_fp32\\\\\\\", \\\\\\\"alpha\\\\\\\": 0.1, \\\\\\\"pairs\\\\\\\": [{\\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_1\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xco\n…[truncated 8656 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-20T15:44:05.986619+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "scp westd-19828:/tmp/sig_matrix_19828.json /tmp/sig_matrix_19828.json && scp westd-17855:/tmp/sig_matrix_17855.json /tmp/sig_matrix_17855.json && echo \"Done\" && wc -c /tmp/sig_matrix_19828.json /tmp/sig_matrix_17855.json",
+              "description": "Download significance matrices from both servers"
+            }
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-20T15:44:05.986756+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 255\nWarning: Permanently added '[connect.westd.seetacloud.com]:19828' (ED25519) to the list of known hosts.\r\nssh: Could not resolve hostname westd-17855: Temporary failure in name resolution\r\nscp: Connection closed"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-20T15:44:05.986883+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -E \"westd-1(7855|9828)\" ~/.ssh/config | head -20",
+              "description": "Check SSH config for server aliases"
+            }
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-20T15:44:05.987003+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Host westd-19828"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-20T15:44:05.987120+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A5 \"westd-19828\" ~/.ssh/config",
+              "description": "Get westd-19828 SSH config details"
+            }
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-20T15:44:05.987238+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Host westd-19828\n    HostName connect.westd.seetacloud.com\n    Port 19828\n    User root\n    IdentityFile ~/.ssh/id_ed25519\n    StrictHostKeyChecking no"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-20T15:44:05.987405+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -B1 -A5 \"17855\" ~/.ssh/config",
+              "description": "Find westd-17855 SSH config"
+            }
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-20T15:44:05.987536+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": "2026-05-20T15:44:05.987679+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "scp -P 19828 root@connect.westd.seetacloud.com:/tmp/sig_matrix_19828.json /tmp/sig_matrix_19828.json 2>&1",
+              "description": "Download 19828 data via explicit SCP"
+            }
+          },
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": "2026-05-20T15:44:05.987798+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-20T15:44:05.987918+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -c /tmp/sig_matrix_19828.json",
+              "description": "Check 19828 data file size"
+            }
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": "2026-05-20T15:44:05.988033+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "27906 /tmp/sig_matrix_19828.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": "2026-05-20T15:44:05.988158+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, base64\nwith open('/tmp/sig_matrix_17855.json','rb') as f:\n    data = f.read()\nprint(base64.b64encode(data).decode())\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": "2026-05-20T15:44:05.988355+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"W3siZXhwZXJpbWVudCI6ICIxNzg1NTphbHBoYV9zd2VlcC9hMDAwX3M0Ml9mcDMyIiwgImFscGhhIjogMC4wLCAicGFpcnMiOiBbeyJwYWlyIjogInRva2VuX2VudHJvcHktPmRpc3RpbmN0XzEiLCAibWV0aG9kcyI6IHsibmFpdmVfeGNvcnIiOiB0cnVlLCAiZGlmZl94Y29yciI6IHRydWUsICJ0aHJlc2hvbGRfb25zZXQiOiBmYWxzZSwgInBlcm1fZ3JhbmdlciI6IGZhbHNlLCAidHlfZ3JhbmdlciI6IGZhbHNlfX0sIHsicGFpciI6ICJ0b2tlbl9lbnRyb3B5LT5kaXN0aW5jdF8yIiwgIm1ldGhvZHMiOiB7Im5haXZlX3hjb3JyIjogdHJ1ZSwgImRpZmZfeGNvcnIiOiB0cnVlLCAidGhyZXNob2xkX29uc2V0IjogdHJ1ZSwgInBlcm1fZ3JhbmdlciI6IGZhbHNlLCAidHlfZ3JhbmdlciI6IHRydWV9fSwgeyJwYWlyIjogInRva2VuX2VudHJvcHktPmRpc3RpbmN0XzMiLCAibWV0aG9kcyI6IHsibmFpdmVfeGNvcnIiOiB0cnVlLCAiZGlmZl94Y29yciI6IHRydWUsICJ0aHJlc2hvbGRfb25zZXQiOiB0cnVlLCAicGVybV9ncmFuZ2VyIjogZmFsc2UsICJ0eV9ncmFuZ2VyIjogZmFsc2V9fSwgeyJwYWlyIjogInRva2VuX2VudHJvcHktPm1hdXZlIiwgIm1ldGhvZHMiOiB7Im5haXZlX3hjb3JyIjogdHJ1ZSwgImRpZmZfeGNvcnIiOiBmYWxzZSwgInRocmVzaG9sZF9vbnNldCI6IHRydWUsICJwZXJtX2dyYW5nZXIiOiBmYWxzZSwgInR5X2dyYW5nZXIiOiBmYWxzZX19LCB7InBhaXIiOiAiZWNlLT5kaXN0aW5jdF8xIiwgIm1ldGhvZHMiOiB7Im5haXZlX3hjb3JyIjogdHJ1ZSwgImRpZmZfeGNvcnIiOiBmYWxzZSwgInRocmVzaG9sZF9vbnNldCI6IGZhbHNlLCAicGVybV9ncmFuZ2VyIjogZmFsc2UsICJ0eV9ncmFuZ2VyIjogZmFsc2V9fSwgeyJwYWlyIjogImVjZS0+ZGlzdGluY3RfMiIsICJtZXRob2RzIjogeyJuYWl2ZV94Y29yciI6IHRydWUsICJkaWZmX3hjb3JyIjogZmFsc2UsICJ0aHJlc2hvbGRfb25zZXQiOiBmYWxzZSwgInBlcm1fZ3JhbmdlciI6IGZhbHNlLCAidHlfZ3JhbmdlciI6IGZhbHNlfX0sIHsicGFpciI6ICJlY2UtPmRpc3RpbmN0XzMiLCAibWV0aG9kcyI6IHsibmFpdmVfeGNvcnIiOiB0cnVlLCAiZGlmZl94Y29yciI6IGZhbHNlLCAidGhyZXNob2xkX29uc2V0IjogZmFsc2UsICJwZXJtX2dyYW5nZXIiOiBmYWxzZSwgInR5X2dyYW5nZXIiOiBmYWxzZX19LCB7InBhaXIiOiAiZWNlLT5tYXV2ZSIsICJtZXRob2RzIjogeyJuYWl2ZV94Y29yciI6IHRydWUsICJkaWZmX3hjb3JyIjogdHJ1ZSwgInRocmVzaG9sZF9vbnNldCI6IGZhbHNlLCAicGVybV9ncmFuZ2VyIjogZmFsc2UsICJ0eV9ncmFuZ2VyIjogZmFsc2V9fV19LCB7ImV4cGVyaW1lbnQiOiAiMTc4NTU6YWxwaGFfc3dlZXAvYTAxMF9zNDJfZnAzMiIsICJhbHBoYSI6IDAuMSwgInBhaXJzIjogW3sicGFpciI6ICJ0b2tlbl9lbnRyb3B5LT5kaXN0aW5jdF8xIiwgIm1ldGhvZHMiOiB7Im5h\n…[truncated 6204 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": "2026-05-20T15:44:05.988543+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('/tmp/sig_matrix_17855.json') as f:\n    data = json.load(f)\n# Split into 3 chunks for reliable transfer\nchunk_size = 10\nfor i in range(0, len(data), chunk_size):\n    chunk = data[i:i+chunk_size]\n    with open(f'/tmp/sig_17855_chunk{i}.json', 'w') as f:\n        json.dump(chunk, f)\n    print(f'chunk{i}: {len(chunk)} experiments')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": "2026-05-20T15:44:05.988689+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"chunk0: 10 experiments\\\\nchunk10: 10 experiments\\\\nchunk20: 7 experiments\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": "2026-05-20T15:44:05.988814+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "cat /tmp/sig_17855_chunk0.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": "2026-05-20T15:44:05.988933+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "cat /tmp/sig_17855_chunk10.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": "2026-05-20T15:44:05.989278+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[{\\\\\\\"experiment\\\\\\\": \\\\\\\"17855:alpha_sweep/a000_s42_fp32\\\\\\\", \\\\\\\"alpha\\\\\\\": 0.0, \\\\\\\"pairs\\\\\\\": [{\\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_1\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": true, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": false}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_2\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": true, \\\\\\\"threshold_onset\\\\\\\": true, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": true}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_3\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": true, \\\\\\\"threshold_onset\\\\\\\": true, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": false}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->mauve\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": false, \\\\\\\"threshold_onset\\\\\\\": true, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": false}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"ece->distinct_1\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": false, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": false}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"ece->distinct_2\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": false, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": false}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"ece->distinct_3\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": false, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": false}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"ece->mauve\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": true, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": false}}]}, {\\\\\\\"experiment\\\\\\\": \\\\\\\"17855:alpha_sweep/a010_s42_fp32\\\\\\\", \\\\\\\"alpha\\\\\\\": 0.1, \\\\\\\"pairs\\\\\\\": [{\\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_1\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xco\n…[truncated 8654 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": "2026-05-20T15:44:05.989454+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "cat /tmp/sig_17855_chunk20.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": "2026-05-20T15:44:05.989793+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[{\\\\\\\"experiment\\\\\\\": \\\\\\\"17855:alpha_sweep/a050_s42_fp32\\\\\\\", \\\\\\\"alpha\\\\\\\": 0.5, \\\\\\\"pairs\\\\\\\": [{\\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_1\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": true, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": true, \\\\\\\"ty_granger\\\\\\\": true}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_2\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": true, \\\\\\\"threshold_onset\\\\\\\": true, \\\\\\\"perm_granger\\\\\\\": true, \\\\\\\"ty_granger\\\\\\\": false}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_3\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": true, \\\\\\\"threshold_onset\\\\\\\": true, \\\\\\\"perm_granger\\\\\\\": true, \\\\\\\"ty_granger\\\\\\\": true}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->mauve\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": true, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": false}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"ece->distinct_1\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": true, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": true, \\\\\\\"ty_granger\\\\\\\": false}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"ece->distinct_2\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": true, \\\\\\\"threshold_onset\\\\\\\": true, \\\\\\\"perm_granger\\\\\\\": true, \\\\\\\"ty_granger\\\\\\\": false}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"ece->distinct_3\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": true, \\\\\\\"threshold_onset\\\\\\\": true, \\\\\\\"perm_granger\\\\\\\": true, \\\\\\\"ty_granger\\\\\\\": true}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"ece->mauve\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": false, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": false, \\\\\\\"ty_granger\\\\\\\": false}}]}, {\\\\\\\"experiment\\\\\\\": \\\\\\\"17855:alpha_sweep/a050_s43_fp32\\\\\\\", \\\\\\\"alpha\\\\\\\": 0.5, \\\\\\\"pairs\\\\\\\": [{\\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_1\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": true\n…[truncated 8661 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": "2026-05-20T15:44:05.990161+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[{\\\\\\\"experiment\\\\\\\": \\\\\\\"17855:generalize/qwen35_08b_wiki_a100_s42_fp32_v2\\\\\\\", \\\\\\\"alpha\\\\\\\": 1.0, \\\\\\\"pairs\\\\\\\": [{\\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_1\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": true, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": true, \\\\\\\"ty_granger\\\\\\\": true}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_2\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": true, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": true, \\\\\\\"ty_granger\\\\\\\": true}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_3\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": true, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": true, \\\\\\\"ty_granger\\\\\\\": true}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->mauve\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": true, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": true, \\\\\\\"ty_granger\\\\\\\": false}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"ece->distinct_1\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": true, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": true, \\\\\\\"ty_granger\\\\\\\": true}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"ece->distinct_2\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": true, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": true, \\\\\\\"ty_granger\\\\\\\": true}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"ece->distinct_3\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": true, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": true, \\\\\\\"ty_granger\\\\\\\": true}}, {\\\\\\\"pair\\\\\\\": \\\\\\\"ece->mauve\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\": true, \\\\\\\"diff_xcorr\\\\\\\": true, \\\\\\\"threshold_onset\\\\\\\": false, \\\\\\\"perm_granger\\\\\\\": true, \\\\\\\"ty_granger\\\\\\\": false}}]}, {\\\\\\\"experiment\\\\\\\": \\\\\\\"17855:generalize/qwen35_08b_wiki_a100_s43_fp32\\\\\\\", \\\\\\\"alpha\\\\\\\": 1.0, \\\\\\\"pairs\\\\\\\": [{\\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_1\\\\\\\", \\\\\\\"methods\\\\\\\": {\\\\\\\"naive_xcorr\\\\\\\":\n…[truncated 8643 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000124"
+        },
+        {
+          "source_line": 125,
+          "timestamp": "2026-05-20T15:44:05.990412+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "python3 -c \"\nimport json\n# Copy 17855 data to 19828 via encoding \nwith open('/tmp/sig_matrix_19828.json') as f:\n    d19828 = json.load(f)\nprint(f'19828: {len(d19828)} experiments')\n# Verify null experiments\nnulls = [e for e in d19828 if e['alpha'] == 0.0]\nprint(f'Null experiments on 19828: {len(nulls)}')\nfor n in nulls:\n    print(f'  {n[\\\"experiment\\\"]}')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000125"
+        },
+        {
+          "source_line": 126,
+          "timestamp": "2026-05-20T15:44:05.990568+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"19828: 21 experiments\\\\nNull experiments on 19828: 2\\\\n  19828:alpha_sweep/a000_s43\\\\n  19828:alpha_sweep/a000_s44\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": "2026-05-20T15:44:05.990733+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, zlib, base64\nwith open('/tmp/sig_matrix_17855.json','rb') as f:\n    data = f.read()\ncompressed = zlib.compress(data)\nencoded = base64.b64encode(compressed).decode()\n# Print in smaller chunks with delimiter\nchunk_size = 4000\nfor i in range(0, len(encoded), chunk_size):\n    print(f'CHUNK:{encoded[i:i+chunk_size]}')\nprint(f'END:total_chunks={len(range(0, len(encoded), chunk_size))},orig_size={len(data)},compressed_size={len(compressed)}')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000127"
+        },
+        {
+          "source_line": 128,
+          "timestamp": "2026-05-20T15:44:05.990875+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"CHUNK:eJztnd1yokAQhV8l5XV2BcEkm4t9kVRqaoKjUuFvgfxtKu++QiXZaJgSgZk5A30XFfSUnHye7h7Hm9eZeM5EHsYiKWfXZzP38mq5vOZRtuWseBIim3PHcVjhL9g68xaz87NZ/eDuWOens7uV8TAvdrduXus/q+co03uRsN0T5mn28uP3KizKMAlK5lZnx6LcpqvqjNdZwsNHwZ6DNK/OK/MHsTtgFa7Xh/eV21wU2zRasTQpRCV0zaOiemSnPWabnCcbkX+5u3w5vPPt7fzsuMTFgBLfH2ijsDq0nUDPjMDjb2HMHx7F6eI+X21gdSIQ/ZwnF9bTevvKOhhOk7IOTlOrrKPDhkTIba3qODFdGTFdIqZ+iUMyc1iJLSz98cxa5PWmph5hQJ4bJzMHFXUSND0roPlxPAAzm2NST4EaiNmk8GgMHjoCGM6Y46bl96vZG5YqddmEysVSki8XSzhWGgiYyj5TB+SlLo0Itp5IYU7UtICaTQFTAzW1I8kYNpX2MomaaP6jduYESvOanD6RE0YjkpsJnYROQqcMnZ5sFORRpa6sNIHDpqrOJi41tRTDxEzVzDQxPfdk3U2PupsGJCJZmahphpo0PocPmr4saPp2QLN9ikP61J8ONLWgCcd8IEFTwTiIkPmJTFnQ9Clo2hE0cdZpUs4cdc5UKgzBXm2ZuZTFTDxkdlpiOM1Fmu0Fal+jaRsqW15VdajsZTZ1oOxjMTsp2bTUyA5KGsqVI8KkgUzZLI44OVpOaouTpzvrJE42LSwiTmpXaOhLP9gNSyLlwLpwXGbbWPzif+XNHv19XF7A4ZL6ldSvBOtXIjCTGpZGsNlUihMziZkD7MVB0AQVRt+U7MzMS9lg/JLqct1zKJyCiYDZfXiB57cxluUGYBn4bAT7cZgZi6tRaGiLTOjB+LF/f0qXeCMfHRW5/j5mzUvLFxHhx0usihx67NNpioFjPEqXsEMf+Tt1AiqpFAdSOJV9MQmVU0PlsE3LAS+gHJUbkYicR+FfMc9eym3IfdeJ2VN4HzLu1r9Z4X0lpgv4cxV2AhO+dzkELyfYuiRkakKmem+1ouafJ5F4S+Zc3e1R82OJ0cJGekI1MicLz6mFTRr6TCdrSqj5fYWRLcjED5z4FTpMN5MCpw5dOC7DH/58QWcRp1EUe8w7RGd9pG52KivmaN8iWqBp9p0D2bxIBUfVKsNed5Tx1SpMNixP7x6KMhFFMd+r2Sl9UvqcCjspf+LognCXHJtFwCMxd/07FvjEShSFOB6m/iaBEgaUxlqcNSVZsBXB/fs8/eLXwWCImEnMxNvM6NiUA8d4xEx9zDzVWoqYSUuQTCvEsTPV5IRNJGzqqMlv/wGHxSqq\\\\nEND:total_chunks=1,orig_size=35938,compressed_size=1023\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.82}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000128"
+        },
+        {
+          "source_line": 129,
+          "timestamp": "2026-05-20T15:44:05.991052+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json, zlib, base64\n\nb64_data = 'eJztnd1yokAQhV8l5XV2BcEkm4t9kVRqaoKjUuFvgfxtKu++QiXZaJgSgZk5A30XFfSUnHye7h7Hm9eZeM5EHsYiKWfXZzP38mq5vOZRtuWseBIim3PHcVjhL9g68xaz87NZ/eDuWOens7uV8TAvdrduXus/q+co03uRsN0T5mn28uP3KizKMAlK5lZnx6LcpqvqjNdZwsNHwZ6DNK/OK/MHsTtgFa7Xh/eV21wU2zRasTQpRCV0zaOiemSnPWabnCcbkX+5u3w5vPPt7fzsuMTFgBLfH2ijsDq0nUDPjMDjb2HMHx7F6eI+X21gdSIQ/ZwnF9bTevvKOhhOk7IOTlOrrKPDhkTIba3qODFdGTFdIqZ+iUMyc1iJLSz98cxa5PWmph5hQJ4bJzMHFXUSND0roPlxPAAzm2NST4EaiNmk8GgMHjoCGM6Y46bl96vZG5YqddmEysVSki8XSzhWGgiYyj5TB+SlLo0Itp5IYU7UtICaTQFTAzW1I8kYNpX2MomaaP6jduYESvOanD6RE0YjkpsJnYROQqcMnZ5sFORRpa6sNIHDpqrOJi41tRTDxEzVzDQxPfdk3U2PupsGJCJZmahphpo0PocPmr4saPp2QLN9ikP61J8ONLWgCcd8IEFTwTiIkPmJTFnQ9Clo2hE0cdZpUs4cdc5UKgzBXm2ZuZTFTDxkdlpiOM1Fmu0Fal+jaRsqW15VdajsZTZ1oOxjMTsp2bTUyA5KGsqVI8KkgUzZLI44OVpOaouTpzvrJE42LSwiTmpXaOhLP9gNSyLlwLpwXGbbWPzif+XNHv19XF7A4ZL6ldSvBOtXIjCTGpZGsNlUihMziZkD7MVB0AQVRt+U7MzMS9lg/JLqct1zKJyCiYDZfXiB57cxluUGYBn4bAT7cZgZi6tRaGiLTOjB+LF/f0qXeCMfHRW5/j5mzUvLFxHhx0usihx67NNpioFjPEqXsEMf+Tt1AiqpFAdSOJV9MQmVU0PlsE3LAS+gHJUbkYicR+FfMc9eym3IfdeJ2VN4HzLu1r9Z4X0lpgv4cxV2AhO+dzkELyfYuiRkakKmem+1ouafJ5F4S+Zc3e1R82OJ0cJGekI1MicLz6mFTRr6TCdrSqj5fYWRLcjED5z4FTpMN5MCpw5dOC7DH/58QWcRp1EUe8w7RGd9pG52KivmaN8iWqBp9p0D2bxIBUfVKsNed5Tx1SpMNixP7x6KMhFFMd+r2Sl9UvqcCjspf+LognCXHJtFwCMxd/07FvjEShSFOB6m/iaBEgaUxlqcNSVZsBXB/fs8/eLXwWCImEnMxNvM6NiUA8d4xEx9zDzVWoqYSUuQTCvEsTPV5IRNJGzqqMlv/wGHxSqq'\n\ndata = zlib.decompress(base64.b64decode(b64_data))\nd17855 = json.loads(data)\nprint(f'17855 experiments: {len(d17855)}')\nfor e in d17855:\n    print(f\\\"  {e['experiment']}: alpha={e['alpha']}, pairs={len(e['pairs'])}\\\")\n\nwith open('/tmp/sig_matrix_17855.json', 'w') as f:\n    json.dump(d17855, f)\nprint('Saved to /tmp/sig_matrix_17855.json')\n\"\n",
+              "description": "Decode 17855 significance data from compressed base64"
+            }
+          },
+          "id": "event-000129"
+        },
+        {
+          "source_line": 130,
+          "timestamp": "2026-05-20T15:44:05.991200+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "17855 experiments: 27\n  17855:alpha_sweep/a000_s42_fp32: alpha=0.0, pairs=8\n  17855:alpha_sweep/a010_s42_fp32: alpha=0.1, pairs=8\n  17855:alpha_sweep/a010_s43_fp32: alpha=0.1, pairs=8\n  17855:alpha_sweep/a025_s42_fp32: alpha=0.25, pairs=8\n  17855:alpha_sweep/a025_s43_fp32: alpha=0.25, pairs=8\n  17855:alpha_sweep/a025_s44_fp32: alpha=0.25, pairs=8\n  17855:alpha_sweep/a030_s42_fp32: alpha=0.3, pairs=8\n  17855:alpha_sweep/a035_s42_fp32: alpha=0.35, pairs=8\n  17855:alpha_sweep/a040_s42_fp32: alpha=0.4, pairs=8\n  17855:alpha_sweep/a045_s42_fp32: alpha=0.45, pairs=8\n  17855:alpha_sweep/a050_s42_fp32: alpha=0.5, pairs=8\n  17855:alpha_sweep/a050_s43_fp32: alpha=0.5, pairs=8\n  17855:alpha_sweep/a050_s44_fp32: alpha=0.5, pairs=8\n  17855:alpha_sweep/a060_s42_fp32_v4: alpha=0.6, pairs=8\n  17855:alpha_sweep/a060_s43_fp32: alpha=0.6, pairs=8\n  17855:alpha_sweep/a075_s42_fp32: alpha=0.75, pairs=8\n  17855:alpha_sweep/c4_a025_s42_fp32: alpha=0.25, pairs=8\n  17855:alpha_sweep/c4_a050_s42_fp32: alpha=0.5, pairs=8\n  17855:alpha_sweep/c4_a075_s42_fp32: alpha=0.75, pairs=8\n  17855:generalize/pythia410m_wiki_a100_s43: alpha=1.0, pairs=8\n  17855:generalize/qwen35_08b_wiki_a100_s42_fp32_v2: alpha=1.0, pairs=8\n  17855:generalize/qwen35_08b_wiki_a100_s43_fp32: alpha=1.0, pairs=8\n  17855:generalize/smollm3_3b_wiki_a100_s43_17855: alpha=1.0, pairs=8\n  17855:padding_robustness/a100_s42_fp32: alpha=1.0, pairs=8\n  17855:scale/14b_c4_s42_fp32: alpha=1.0, pairs=8\n  17855:scale_check/pythia69b_wiki_a100_s42: alpha=1.0, pairs=8\n  17855:scale_check/pythia69b_wiki_a100_s43: alpha=1.0, pairs=8\nSaved to /tmp/sig_matrix_17855.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000130"
+        },
+        {
+          "source_line": 131,
+          "timestamp": "2026-05-20T15:44:05.991424+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/tmp/mmct_weight_robustness.py",
+              "content": "\"\"\"MMCT Weight Robustness Analysis: Shapley values under 4 weighting schemes.\"\"\"\nimport json\nfrom itertools import combinations\nfrom math import factorial\nfrom datetime import datetime\n\nMETHODS = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\nMETHOD_LABELS = ['NaiveXCorr', 'DiffXCorr', 'ThreshOnset', 'PermGranger', 'TYGranger']\nN = len(METHODS)\n\nFPR_PAIRS = [\n    'token_entropy->distinct_1', 'token_entropy->distinct_2',\n    'token_entropy->distinct_3', 'token_entropy->mauve',\n    'ece->distinct_1', 'ece->distinct_2',\n    'ece->distinct_3', 'ece->mauve',\n]\nFNR_PAIRS_8 = FPR_PAIRS\n\nwith open('/tmp/sig_matrix_19828.json') as f:\n    data_19828 = json.load(f)\nwith open('/tmp/sig_matrix_17855.json') as f:\n    data_17855 = json.load(f)\n\nall_experiments = data_19828 + data_17855\nnull_experiments = [e for e in all_experiments if e['alpha'] == 0.0]\nsignal_experiments = [e for e in all_experiments if e['alpha'] > 0.0]\n\nprint(f\"Total: {len(all_experiments)} experiments ({len(null_experiments)} null, {len(signal_experiments)} signal)\")\n\n# Build observation lists: each obs = {method_name: bool}\nnull_obs = []\nfor exp in null_experiments:\n    for pair in exp['pairs']:\n        if pair['pair'] in FPR_PAIRS:\n            null_obs.append(pair['methods'])\n\nsignal_obs = []\nfor exp in signal_experiments:\n    for pair in exp['pairs']:\n        if pair['pair'] in FNR_PAIRS_8:\n            signal_obs.append(pair['methods'])\n\nprint(f\"Null observations: {len(null_obs)} | Signal observations: {len(signal_obs)}\")\n\n# Verify per-method FPR against known values\nprint(\"\\n=== Per-method FPR/FNR verification ===\")\nfor m in METHODS:\n    fpr = sum(1 for o in null_obs if o[m]) / len(null_obs)\n    fnr = sum(1 for o in signal_obs if not o[m]) / len(signal_obs)\n    print(f\"  {m:<18s}: FPR={fpr:.4f}, FNR={fnr:.4f}\")\n\n# Compute empirical FPR for weight calculation\nmethod_fpr = {}\nfor m in METHODS:\n    method_fpr[m] = sum(1 for o in null_obs if o[m]) / len(null_obs)\n\nprint(f\"\\nEmpirical FPR: {method_fpr}\")\n\n# Define 4 weighting schemes\nEPS = 0.01\nweight_schemes = {\n    'equal': {m: 1.0 for m in METHODS},\n    'cap5': {m: min(1.0 / max(method_fpr[m], EPS), 5.0) for m in METHODS},\n    'cap10': {m: min(1.0 / max(method_fpr[m], EPS), 10.0) for m in METHODS},\n    'original_cap100': {m: 1.0 / max(method_fpr[m], EPS) for m in METHODS},\n}\n\nprint(\"\\n=== Weight Schemes ===\")\nfor scheme_name, weights in weight_schemes.items():\n    print(f\"\\n  {scheme_name}:\")\n    for m in METHODS:\n        print(f\"    {m:<18s}: w={weights[m]:.2f}\")\n    print(f\"    sum(w) = {sum(weights.values()):.2f}\")\n\n# Coalition value function with weighted consensus\ndef coalition_value_weighted(coalition_methods, observations, weights, is_fnr=False):\n    \"\"\"\n    For FPR: v(S) = fraction of obs where weighted sum of S >= threshold\n    For FNR: v(S) = fraction of obs where weighted sum of S < threshold\n    threshold = 3rd smallest weight in full method set (K>=3 analogue)\n    \"\"\"\n    if len(coalition_methods) == 0:\n        return 1.0 if is_fnr else 0.0\n\n    # Threshold: sum of 3 smallest weights in the COALITION (adaptive K>=3)\n    # For weighted consensus: detect if sum of weights >= weighted_threshold\n    # weighted_threshold = sum of 3 smallest weights among ALL methods\n    all_weights_sorted = sorted(weights[m] for m in METHODS)\n    weighted_threshold = sum(all_weights_sorted[:3])\n\n    coalition_total_weight = sum(weights[m] for m in coalition_methods)\n    if coalition_total_weight < weighted_threshold:\n        return 1.0 if is_fnr else 0.0\n\n    count = 0\n    total = len(observations)\n    for obs in observations:\n        weighted_sum = sum(weights[m] for m in coalition_methods if obs[m])\n        if is_fnr:\n            if weighted_sum < weighted_threshold:\n                count += 1\n        else:\n            if weighted_sum >= weighted_threshold:\n                count += 1\n    return count / total\n\n\ndef compute_shapley(method_name, value_func, n=5):\n    method_idx = METHODS.index(method_name)\n    other = [m for m in METHODS if m != method_name]\n    phi = 0.0\n    for size in range(n):\n        w = factorial(size) * factorial(n - size - 1) / factorial(n)\n        for S in combinations(other, size):\n            S_list = list(S)\n            S_with_i = sorted(S_list + [method_name])\n            marginal = value_func(S_with_i) - value_func(S_list)\n            phi += w * marginal\n    return phi\n\n\n# Compute Shapley values for each weighting scheme\nresults = {}\n\nfor scheme_name, weights in weight_schemes.items():\n    print(f\"\\n{'='*60}\")\n    print(f\"Scheme: {scheme_name}\")\n    print(f\"{'='*60}\")\n\n    # FPR Shapley\n    fpr_shapley = {}\n    for m in METHODS:\n        sv = compute_shapley(\n            m,\n            lambda S, w=weights: coalition_value_weighted(S, null_obs, w, is_fnr=False)\n        )\n        fpr_shapley[m] = sv\n\n    # FNR Shapley\n    fnr_shapley = {}\n    for m in METHODS:\n        sv = compute_shapley(\n            m,\n            lambda S, w=weights: coalition_value_weighted(S, signal_obs, w, is_fnr=True)\n        )\n        fnr_shapley[m] = sv\n\n    # Combined = FPR + FNR (lower = better, negative = good)\n    combined_shapley = {m: fpr_shapley[m] + fnr_shapley[m] for m in METHODS}\n\n    # Rank by combined (ascending = best)\n    ranking = sorted(METHODS, key=lambda m: combined_shapley[m])\n\n    permg_rank = ranking.index('perm_granger') + 1\n\n    print(f\"\\n  {'Method':<18s} {'Shap(FPR)':>12} {'Shap(FNR)':>12} {'Combined':>12}\")\n    print(f\"  {'-'*56}\")\n    for m in METHODS:\n        print(f\"  {m:<18s} {fpr_shapley[m]:>+12.6f} {fnr_shapley[m]:>+12.6f} {combined_shapley[m]:>+12.6f}\")\n    print(f\"\\n  Ranking (best to worst): {' > '.join(ranking)}\")\n    print(f\"  PermG rank: #{permg_rank}\")\n\n    results[scheme_name] = {\n        'weights': {m: round(weights[m], 4) for m in METHODS},\n        'weight_sum': round(sum(weights.values()), 4),\n        'fpr_shapley': {m: round(fpr_shapley[m], 6) for m in METHODS},\n        'fnr_shapley': {m: round(fnr_shapley[m], 6) for m in METHODS},\n        'combined_shapley': {m: round(combined_shapley[m], 6) for m in METHODS},\n        'rankings': ranking,\n        'permg_rank': permg_rank,\n    }\n\n# Summary table\nprint(f\"\\n{'='*80}\")\nprint(\"SUMMARY: PermG Rank Across Weight Schemes\")\nprint(f\"{'='*80}\")\nprint(f\"{'Scheme':<20s} {'PermG Rank':>12} {'PermG Combined':>16} {'Best Method':>18}\")\nprint(f\"{'-'*68}\")\nfor scheme_name in ['equal', 'cap5', 'cap10', 'original_cap100']:\n    r = results[scheme_name]\n    print(f\"{scheme_name:<20s} {'#'+str(r['permg_rank']):>12} {r['combined_shapley']['perm_granger']:>+16.6f} {r['rankings'][0]:>18}\")\n\n# Determine conclusion\nranks = [results[s]['permg_rank'] for s in weight_schemes]\nif all(r == 1 for r in ranks):\n    conclusion = \"PermG ranks #1 under ALL 4 weighting schemes. The circularity concern is fully addressed.\"\nelif all(r <= 2 for r in ranks):\n    conclusion = f\"PermG ranks #1-2 across all schemes (ranks: {ranks}). Dominant performance not an artifact of weighting.\"\nelse:\n    conclusion = f\"PermG ranks vary: {ranks}. Some weight sensitivity exists.\"\n\nprint(f\"\\nConclusion: {conclusion}\")\n\n# Save output\noutput = {\n    'version': 'mmct_weight_robustness_v1',\n    'generated_at': datetime.now().isoformat(),\n    'data': {\n        'n_null_experiments': len(null_experiments),\n        'n_signal_experiments': len(signal_experiments),\n        'n_null_obs': len(null_obs),\n        'n_signal_obs': len(signal_obs),\n        'method_fpr': {m: round(v, 4) for m, v in method_fpr.items()},\n    },\n    'weight_schemes': results,\n    'conclusion': conclusion,\n}\n\nout_path = '/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/mmct_weight_robustness.json'\nwith open(out_path, 'w') as f:\n    json.dump(output, f, indent=2)\nprint(f\"\\nSaved to: {out_path}\")\n"
+            }
+          },
+          "id": "event-000131"
+        },
+        {
+          "source_line": 132,
+          "timestamp": "2026-05-20T15:44:05.991660+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /tmp/mmct_weight_robustness.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000132"
+        },
+        {
+          "source_line": 133,
+          "timestamp": "2026-05-20T15:44:05.991791+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 /tmp/mmct_weight_robustness.py",
+              "description": "Run MMCT weight robustness analysis"
+            }
+          },
+          "id": "event-000133"
+        },
+        {
+          "source_line": 134,
+          "timestamp": "2026-05-20T15:44:05.991941+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Total: 48 experiments (3 null, 45 signal)\nNull observations: 24 | Signal observations: 360\n\n=== Per-method FPR/FNR verification ===\n  naive_xcorr       : FPR=0.9167, FNR=0.0528\n  diff_xcorr        : FPR=0.3750, FNR=0.2528\n  threshold_onset   : FPR=0.2500, FNR=0.8889\n  perm_granger      : FPR=0.0000, FNR=0.5028\n  ty_granger        : FPR=0.0833, FNR=0.7944\n\nEmpirical FPR: {'naive_xcorr': 0.9166666666666666, 'diff_xcorr': 0.375, 'threshold_onset': 0.25, 'perm_granger': 0.0, 'ty_granger': 0.08333333333333333}\n\n=== Weight Schemes ===\n\n  equal:\n    naive_xcorr       : w=1.00\n    diff_xcorr        : w=1.00\n    threshold_onset   : w=1.00\n    perm_granger      : w=1.00\n    ty_granger        : w=1.00\n    sum(w) = 5.00\n\n  cap5:\n    naive_xcorr       : w=1.09\n    diff_xcorr        : w=2.67\n    threshold_onset   : w=4.00\n    perm_granger      : w=5.00\n    ty_granger        : w=5.00\n    sum(w) = 17.76\n\n  cap10:\n    naive_xcorr       : w=1.09\n    diff_xcorr        : w=2.67\n    threshold_onset   : w=4.00\n    perm_granger      : w=10.00\n    ty_granger        : w=10.00\n    sum(w) = 27.76\n\n  original_cap100:\n    naive_xcorr       : w=1.09\n    diff_xcorr        : w=2.67\n    threshold_onset   : w=4.00\n    perm_granger      : w=100.00\n    ty_granger        : w=12.00\n    sum(w) = 119.76\n\n============================================================\nScheme: equal\n============================================================\n\n  Method                Shap(FPR)    Shap(FNR)     Combined\n  --------------------------------------------------------\n  naive_xcorr           +0.038194    -0.175463    -0.137269\n  diff_xcorr            +0.038194    -0.170833    -0.132639\n  threshold_onset       +0.038194    -0.019907    +0.018287\n  perm_granger          +0.000000    -0.151620    -0.151620\n  ty_granger            +0.010417    -0.051620    -0.041204\n\n  Ranking (best to worst): perm_granger > naive_xcorr > diff_xcorr > ty_granger > threshold_onset\n  PermG rank: #1\n\n=========================================\n…[truncated 2842 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000134"
+        },
+        {
+          "source_line": 135,
+          "timestamp": "2026-05-20T15:44:05.992163+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/mmct_weight_robustness.json",
+              "limit": "80"
+            }
+          },
+          "id": "event-000135"
+        },
+        {
+          "source_line": 136,
+          "timestamp": "2026-05-20T15:44:05.992354+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"version\": \"mmct_weight_robustness_v1\",\n3\t  \"generated_at\": \"2026-05-20T15:42:10.192607\",\n4\t  \"data\": {\n5\t    \"n_null_experiments\": 3,\n6\t    \"n_signal_experiments\": 45,\n7\t    \"n_null_obs\": 24,\n8\t    \"n_signal_obs\": 360,\n9\t    \"method_fpr\": {\n10\t      \"naive_xcorr\": 0.9167,\n11\t      \"diff_xcorr\": 0.375,\n12\t      \"threshold_onset\": 0.25,\n13\t      \"perm_granger\": 0.0,\n14\t      \"ty_granger\": 0.0833\n15\t    }\n16\t  },\n17\t  \"weight_schemes\": {\n18\t    \"equal\": {\n19\t      \"weights\": {\n20\t        \"naive_xcorr\": 1.0,\n21\t        \"diff_xcorr\": 1.0,\n22\t        \"threshold_onset\": 1.0,\n23\t        \"perm_granger\": 1.0,\n24\t        \"ty_granger\": 1.0\n25\t      },\n26\t      \"weight_sum\": 5.0,\n27\t      \"fpr_shapley\": {\n28\t        \"naive_xcorr\": 0.038194,\n29\t        \"diff_xcorr\": 0.038194,\n30\t        \"threshold_onset\": 0.038194,\n31\t        \"perm_granger\": 0.0,\n32\t        \"ty_granger\": 0.010417\n33\t      },\n34\t      \"fnr_shapley\": {\n35\t        \"naive_xcorr\": -0.175463,\n36\t        \"diff_xcorr\": -0.170833,\n37\t        \"threshold_onset\": -0.019907,\n38\t        \"perm_granger\": -0.15162,\n39\t        \"ty_granger\": -0.05162\n40\t      },\n41\t      \"combined_shapley\": {\n42\t        \"naive_xcorr\": -0.137269,\n43\t        \"diff_xcorr\": -0.132639,\n44\t        \"threshold_onset\": 0.018287,\n45\t        \"perm_granger\": -0.15162,\n46\t        \"ty_granger\": -0.041204\n47\t      },\n48\t      \"rankings\": [\n49\t        \"perm_granger\",\n50\t        \"naive_xcorr\",\n51\t        \"diff_xcorr\",\n52\t        \"ty_granger\",\n53\t        \"threshold_onset\"\n54\t      ],\n55\t      \"permg_rank\": 1\n56\t    },\n57\t    \"cap5\": {\n58\t      \"weights\": {\n59\t        \"naive_xcorr\": 1.0909,\n60\t        \"diff_xcorr\": 2.6667,\n61\t        \"threshold_onset\": 4.0,\n62\t        \"perm_granger\": 5.0,\n63\t        \"ty_granger\": 5.0\n64\t      },\n65\t      \"weight_sum\": 17.7576,\n66\t      \"fpr_shapley\": {\n67\t        \"naive_xcorr\": 0.034722,\n68\t        \"diff_xcorr\": 0.034722,\n69\t        \"threshold_onset\": 0.041667,\n70\t        \"perm_granger\": 0.0,\n71\t        \"ty_granger\": 0.01388\n…[truncated 269 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000136"
+        },
+        {
+          "source_line": 137,
+          "timestamp": "2026-05-20T15:44:05.992595+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/mmct_weight_robustness.json",
+              "offset": "130",
+              "limit": "50"
+            }
+          },
+          "id": "event-000137"
+        },
+        {
+          "source_line": 138,
+          "timestamp": "2026-05-20T15:44:05.992757+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "130\t        \"diff_xcorr\",\n131\t        \"threshold_onset\"\n132\t      ],\n133\t      \"permg_rank\": 1\n134\t    },\n135\t    \"original_cap100\": {\n136\t      \"weights\": {\n137\t        \"naive_xcorr\": 1.0909,\n138\t        \"diff_xcorr\": 2.6667,\n139\t        \"threshold_onset\": 4.0,\n140\t        \"perm_granger\": 100.0,\n141\t        \"ty_granger\": 12.0\n142\t      },\n143\t      \"weight_sum\": 119.7576,\n144\t      \"fpr_shapley\": {\n145\t        \"naive_xcorr\": 0.03125,\n146\t        \"diff_xcorr\": 0.03125,\n147\t        \"threshold_onset\": 0.03125,\n148\t        \"perm_granger\": 0.0,\n149\t        \"ty_granger\": 0.072917\n150\t      },\n151\t      \"fnr_shapley\": {\n152\t        \"naive_xcorr\": -0.006019,\n153\t        \"diff_xcorr\": -0.006019,\n154\t        \"threshold_onset\": -0.006019,\n155\t        \"perm_granger\": -0.425694,\n156\t        \"ty_granger\": -0.139583\n157\t      },\n158\t      \"combined_shapley\": {\n159\t        \"naive_xcorr\": 0.025231,\n160\t        \"diff_xcorr\": 0.025231,\n161\t        \"threshold_onset\": 0.025231,\n162\t        \"perm_granger\": -0.425694,\n163\t        \"ty_granger\": -0.066667\n164\t      },\n165\t      \"rankings\": [\n166\t        \"perm_granger\",\n167\t        \"ty_granger\",\n168\t        \"naive_xcorr\",\n169\t        \"diff_xcorr\",\n170\t        \"threshold_onset\"\n171\t      ],\n172\t      \"permg_rank\": 1\n173\t    }\n174\t  },\n175\t  \"conclusion\": \"PermG ranks #1 under ALL 4 weighting schemes. The circularity concern is fully addressed.\"\n176\t}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000138"
+        },
+        {
+          "source_line": 139,
+          "timestamp": "2026-05-20T15:44:05.992907+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/mmct_weight_robustness.json",
+              "old_string": "  \"conclusion\": \"PermG ranks #1 under ALL 4 weighting schemes. The circularity concern is fully addressed.\"\n}",
+              "new_string": "  \"conclusion\": \"PermG ranks #1 under ALL 4 weighting schemes. The circularity concern is fully addressed.\",\n  \"notes\": {\n    \"threshold_rule\": \"weighted K>=3: threshold = sum of 3 smallest method weights\",\n    \"cap10_cap100_identical\": \"cap10 and original_cap100 yield identical Shapley values because threshold=7.76 in both cases (same 3 smallest weights: 1.09+2.67+4.00), and both PermG and TY individually exceed this threshold\",\n    \"equal_weight_is_strongest_test\": \"Equal weighting (w=1 for all) eliminates ANY FPR-based advantage. PermG still #1 with combined=-0.1516 (zero FPR contribution + strong FNR reduction), beating NaiveXCorr (-0.137) and DiffXCorr (-0.133)\",\n    \"fpr_rates_verified\": \"Per-method FPR/FNR match Shapley v3 reference exactly: naive=0.917/0.053, diff=0.375/0.253, thresh=0.250/0.889, permg=0.000/0.503, ty=0.083/0.794\",\n    \"data_source\": \"48 D120-compliant experiments (3 null + 45 signal), same as Shapley v3 dedup FDR\"\n  }\n}"
+            }
+          },
+          "id": "event-000139"
+        },
+        {
+          "source_line": 140,
+          "timestamp": "2026-05-20T15:44:05.993083+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/mmct_weight_robustness.json has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000140"
+        },
+        {
+          "source_line": 141,
+          "timestamp": "2026-05-20T15:44:05.993246+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results:\n\n| Scheme | PermG Rank | PermG Combined | 2nd Place | Gap |\n|--------|-----------|----------------|-----------|-----|\n| **Equal (w=1)** | **#1** | -0.1516 | NaiveXCorr (-0.1373) | 0.014 |\n| **Cap-5** | **#1** | -0.1653 | NaiveXCorr (-0.1227) | 0.043 |\n| **Cap-10** | **#1** | -0.4257 | TYGranger (-0.0667) | 0.359 |\n| **Cap-100 (original)** | **#1** | -0.4257 | TYGranger (-0.0667) | 0.359 |\n\n**PermG ranks #1 under ALL 4 weighting schemes**, including equal-weighting where every method has w=1 (no FPR-based advantage at all). The circularity concern is fully resolved.\n\nKey points:\n- **Equal-weight** is the strongest test: PermG's advantage comes purely from zero FPR + strong FNR reduction, not from weight design\n- Cap-10 and Cap-100 are degenerate (identical results) because the 3-smallest-weight threshold is the same (7.76) and both PermG/TY individually exceed it\n- FPR/FNR rates verified against Shapley v3 reference (exact match)\n\nOutput: `artifacts/mmct_weight_robustness.json`"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r3_mmct_weight_robustness_20260520T153326"
+          },
+          "id": "event-000141"
+        }
+      ],
+      "message_count": 141
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-r3-mmct-weight-robustness.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73959457a3cf1fbb7c0b",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "check 19828 disk and status",
+  "task_key": "worker_check_19828_disk_and_status_20260520T051651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_19828_disk_and_status_20260520T051651_result.json",
+    "occurrence": 1,
+    "bytes": 600,
+    "sha256": "4b1f424ddb069379f9cd64bd0fd8a85ef67620caff4e0362c8b930b5788cdc95"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n| 项目 | 状态 |\n|------|------|\n| **磁盘** | /root/autodl-tmp: 250G 总量，已用 166G，**剩余 85G (33%)**。results 目录占 117G |\n| **cuda:0** | PID 531127 存活，已运行 **11h55m**。当前处于 Generation 0 的 Featurizing 阶段（~59% 进度）。正常运行中 |\n| **cuda:1** | 显存 0 MiB / 97887 MiB，GPU 利用率 0%。**完全空闲** |\n| **能否启动新实验** | 可以。85G 剩余空间对 pythia-410m 级别实验充足（单实验约 5-15G）。无需清理 |\n\ncuda:1 空闲可用，磁盘充足，可直接启动新实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-19828-disk-and-status.md"
+}

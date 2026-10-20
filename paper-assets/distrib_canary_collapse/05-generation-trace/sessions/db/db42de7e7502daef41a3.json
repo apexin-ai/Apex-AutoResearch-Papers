@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "db42de7e7502daef41a3",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis d150 p11 permg power analysis",
+  "task_key": "worker_analysis_d150_p11_permg_power_analysis_20260520T134046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d150_p11_permg_power_analysis_20260520T134046_result.json",
+    "occurrence": 1,
+    "bytes": 1512,
+    "sha256": "a889da71f22ff6d1b9e6b1a1db0c310d4a73a0a8ce5c55533bf41dcf878110ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All three deliverables complete:\n\n1. **脚本**: `scripts/permg_power_analysis.py` (本地+服务器)\n2. **结果 JSON**: `artifacts/permg_power_analysis.json`\n3. **Power curve 图**: `artifacts/permg_power_curve.png`\n\n## 核心结果\n\n**配置**: 21 β × 5 T × 100 reps × 8 pairs × 5000 perms, 总计 836s\n\n### FPR 验证 (β=0)\n| T | Raw | FDR8 |\n|---|-----|------|\n| 6 | 0.01 | 0.00 |\n| 8 | 0.06 | 0.02 |\n| 10 | 0.09 | 0.02 |\n| 15 | 0.06 | 0.02 |\n| 20 | 0.05 | 0.01 |\n\nRaw FPR 在 α=0.05 附近，FDR8 严格控制在 ≤0.02。\n\n### β₅₀ (50% power 所需最小 β)\n| T | Raw | FDR8 |\n|---|-----|------|\n| 6 | — | — |\n| 8 | 1.80 | — |\n| 10 | 1.20 | 2.00 |\n| 15 | 0.80 | 1.20 |\n| 20 | 0.60 | 0.90 |\n\n### √T Scaling 检查 (raw)\n- T=8: β₅₀·√T = 5.09\n- T=10: β₅₀·√T = 3.80\n- T=15: β₅₀·√T = 3.10\n- T=20: β₅₀·√T = 2.68\n\nβ₅₀·√T 从 5.1 下降到 2.7——不是严格常数，但趋势一致：power 随 T 增长，β₅₀ 大致按 1/√T 缩放（T=6/8 过短导致 power 严重不足，T≥10 后趋势稳定）。\n\n### 关键发现\n- **T=10 处 steep sigmoid** 确认：raw power 从 β=0.5 (25%) 跃升到 β=1.3 (66%)，与论文中的 phase transition 一致\n- **T=6 基本无 power**：即使 β=2.0，raw power 仅 13%（FDR8: 0%）。说明 T≤6 时 PermG 根本不可靠\n- **FDR8 vs Raw 差距**：FDR 校正后 power 下降约 30-40%，但 T≥15 时仍能达到 >80% power（β≥1.2）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d150-p11-permg-power-analysis.md"
+}

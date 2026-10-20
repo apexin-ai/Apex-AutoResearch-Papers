@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d8ca8d803cecea70fc6",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code alpha sweep aggregation script",
+  "task_key": "worker_code_alpha_sweep_aggregation_script_20260514T211956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_alpha_sweep_aggregation_script_20260514T211956_result.json",
+    "occurrence": 1,
+    "bytes": 642,
+    "sha256": "8c49fd0102acc80ff7a5357613a71373bdb697873c09200509a0ea0141849739"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已部署并验证通过。\n\n**输出**:\n- `results/alpha_sweep_analysis/phase_diagram.csv` — 每行一个 (α, seed, channel) 组合，包含 lag, r_value, p_value, is_significant, lead_time_generations\n- `results/alpha_sweep_analysis/phase_diagram.json` — 完整结果 + 按 α 分组汇总 + phase boundary 检测\n\n**当前状态**: 只有 `a000_s42`（6 代）可分析，`a025_s42` 仅 1 代被跳过。α=0.0 下所有 channel 的 permutation test 均不显著（样本量太小，只有 6 个时间点）。等更多 α 和 seed 的实验跑完后，重新执行即可获得完整 phase diagram 数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-alpha-sweep-aggregation-script.md"
+}

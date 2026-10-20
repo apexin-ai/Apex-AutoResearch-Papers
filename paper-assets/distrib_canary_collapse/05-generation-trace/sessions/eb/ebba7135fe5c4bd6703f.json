@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ebba7135fe5c4bd6703f",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "infra model prep gemma qwen w19",
+  "task_key": "worker_infra_model_prep_gemma_qwen_w19_20260518T173646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_model_prep_gemma_qwen_w19_20260518T173646_result.json",
+    "occurrence": 1,
+    "bytes": 1220,
+    "sha256": "b0922fe8a3821e82cdb56d82039224badd2eb736b1148d5033cc18274d854794"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 1. 模型下载状态\n\n| 模型 | 状态 | 大小 | 路径 |\n|------|------|------|------|\n| Qwen/Qwen3.5-0.8B-Base | 完成 | 1.7G (safetensors) | `/root/autodl-tmp/models/Qwen3.5-0.8B-Base/` |\n| google/gemma-4-E2B | 完成 | 9.6G (safetensors) | `/root/autodl-tmp/models/gemma-4-E2B/` |\n\n### 2. GPU 状态 & Dry-run\n\n| GPU | 显存使用 | 利用率 | 运行进程 |\n|-----|----------|--------|----------|\n| 0 | 32083/97887 MiB | 79% | pythia-1.4b a050_s42 训练 |\n| 1 | 14765/97887 MiB | 49% | 另一训练进程 |\n\n**Dry-run 结果**（均在 GPU 1 执行）：\n- **Qwen3.5-0.8B-Base**: 0.75B params, vocab 248044, forward pass OK\n- **Gemma 4 E2B**: 5.10B params（实际比名称暗示的大得多，多模态 text+vision+audio），vocab 262144, forward pass OK\n\n### 3. 磁盘空间\n\n250G 总量，175G 已用，76G 可用（70%）\n\n### 注意事项\n- **transformers 升级到 5.8.1**（原 4.57.6 不支持 `qwen3_5` 和 `gemma4` model type）。副作用：vllm 0.18.1 有依赖冲突 (`transformers<5`)\n- transformers 5.8.1 中 `torch_dtype` 参数已改名为 `dtype`\n- Gemma 4 E2B 实际 5.10B params，safetensors 9.6G，加载到 GPU 约需 10G VRAM"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-model-prep-gemma-qwen-w19.md"
+}

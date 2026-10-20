@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2db95e98d8dd80234591",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis cross alpha aggregation",
+  "task_key": "worker_analysis_cross_alpha_aggregation_20260515T210112",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cross_alpha_aggregation_20260515T210112_result.json",
+    "occurrence": 1,
+    "bytes": 1104,
+    "sha256": "42ca08e66b83aa8ec4023f4a17152ddb19ba156ba17b98d25a9bf26e45edb99e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出完成。两个 artifact 已注册：\n\n**`cross_alpha_summary.md`** — 5 张表 + key findings：\n- **Table 1** (Drift): 6 个 (α, seed) 组合的 6 指标 drift%\n- **Table 2** (Detectability): Granger FDR sig、consensus robust、method ablation 按 α 汇总\n- **Table 3** (Cross-seed): α=0.25 s42 vs s43 逐指标对比，diversity drift 差异 <1.2pp\n- **Table 4** (Granger detail): 4 个 forward pair × 5 个 α 的 FDR p 值矩阵\n- **Table 5** (Consensus): 每个 α 的 robust pair 数和关键 pair 列表\n\n**`regime_map_data.json`** — matplotlib 绘图数据，含 `plotting.x/y_*` 数组可直接画图\n\n核心发现：\n1. α=0.50→0.75 存在 **sharp phase transition**（Granger FDR sig 从 0% 跳到 75%，consensus robust 从 0/16 跳到 11/16）\n2. Diversity drift 在 α=0.25 最严重（d3: −60%），calibration drift 随 α 单调递增 — 两类指标 **dissociated**\n3. Naive 方法在 null control (α=0) 也报 100% sig，robust 方法正确归零；方法选择翻转 >50% 结论\n4. α=0.25 跨 seed 高度一致（d1 差异 0.2pp）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cross-alpha-aggregation.md"
+}

@@ -1,0 +1,1199 @@
+{
+  "schema_version": "1.0",
+  "session_id": "327f4f5b0bb01048b693",
+  "rounds": [
+    {
+      "number": 3,
+      "messages": [
+        {
+          "source_line": 161,
+          "timestamp": "2026-05-20T21:56:52.679Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LkMkcBqzwaTgAHSJmYEex5",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"c4_a025_s42_fp32\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T18:30:39.613Z\\\", \\\"updated_at\\\": \\\"2026-05-20T21:56:51.429Z\\\", \\\"hypothesis\\\": \\\"C4 跨域 onset 比较：WikiText onset ∈ (0.40, 0.50) 全部 PermG=0/8。C4 在 α=0.50 已是 8/8（fp32）。如果 C4 α=0.25 PermG>0 → C4 onset 显著低于 WikiText，跨域灵敏度差异是论文级发现。Claim 2 cross-domain。\\\", \\\"parent\\\": \\\"c4_a050_s42_fp32\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.25 --output_dir results/alpha_sweep/c4_a025_s42_fp32\\\", \\\"server\\\": \\\"westd-17855\\\", \\\"data_path\\\": \\\"data/c4_5k\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"seed\\\": 42, \\\"precision\\\": \\\"fp32\\\", \\\"gpu\\\": [\\\"cuda:5\\\"], \\\"pid\\\": \\\"178625\\\", \\\"checkpoint_source\\\": \\\"EleutherAI/pythia-410m (training from scratch)\\\", \\\"eval_data\\\": \\\"N/A (training experiment)\\\", \\\"checkpoint_path\\\": \\\"results/alpha_sweep/c4_a025_s42_fp32/gen_10/checkpoint\\\", \\\"log_path\\\": \\\"results/alpha_sweep/c4_a025_s42_fp32/analysis_results.json\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T22:14:56.027Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T22:14:59.957789+00:00\\\"}]}, \\\"metrics\\\": {\\\"PermG_fwd\\\": \\\"0/8\\\", \\\"PermG_rev\\\": \\\"0/8\\\", \\\"K_ge_3_3sigma\\\": \\\"0/8\\\", \\\"K_ge_4_3sigma\\\": \\\"0/8\\\", \\\"threshold_onset_3sigma\\\": \\\"2/8\\\", \\\"naive_xcorr\\\": \\\"4/8\\\", \\\"diff_xcorr\\\": \\\"8/8\\\", \\\"drift_token_entropy\\\": \\\"-53.01%\\\", \\\"drift_ece\\\": \\\"+3242.80%\\\", \\\"drift_perplexity\\\": \\\"+3617.05%\\\", \\\"drift_d1\\\": \\\"-4.10%\\\", \\\"drift_d2\\\": \\\"-8.78%\\\", \\\"drift_d3\\\": \\\"-11.95%\\\", \\\"drift_mauve\\\": \\\"-52.08%\\\", \\\"drift_effective_rank\\\": \\\"+111.90%\\\", \\\"D105_3sigma\\\": \\\"true 3sigma (std of full series)\\\", \\\"D111_direction\\\": \\\"peak_lag < 0 (C009 corrected)\\\", \\\"analysis_script\\\": \\\"run_5method_analysis_d102.py\\\", \\\"n_perm\\\": 5000, \\\"D120_recomputed\\\": \\\"2026-05-20\\\", \\\"D102_8pair\\\": \\\"canary=[token_entropy,ece] x downstream=[d1,d2,d3,mauve]\\\", \\\"ty_forward_sig\\\": 2, \\\"perm_granger_fdr_forward_sig\\\": 0, \\\"perm_granger_fdr_reverse_sig\\\": 0, \\\"diff_xcorr_fdr_forward_sig\\\": 8, \\\"diff_xcorr_fdr_reverse_sig\\\": 8, \\\"threshold_onset_forward_sig\\\": 2, \\\"robust_pairs_K3\\\": 2, \\\"robust_pairs_K4\\\": 0}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-19T22:20:21.543Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3653}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01Kz96YPZnEkVnk7EvotHYtR",
+            "session_id": "ce888eb4-8047-4886-9242-e332bdd6aa09",
+            "uuid": "c4f153fb-ea94-47dd-bc66-e6a5c1495883"
+          },
+          "id": "event-000161"
+        },
+        {
+          "source_line": 162,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a7287d26bf61d800c",
+                "tool_use_id": "toolu_01Kz96YPZnEkVnk7EvotHYtR",
+                "description": "Clean registry batch 3 (8 exps)",
+                "usage": {
+                  "total_tokens": 23607,
+                  "tool_uses": 11,
+                  "duration_ms": 54078
+                },
+                "last_tool_name": "mcp__agent-ml-research__update_registry",
+                "uuid": "dc875bb5-f588-407a-b20d-ab3281abb928",
+                "session_id": "ce888eb4-8047-4886-9242-e332bdd6aa09"
+              }
+            }
+          ],
+          "id": "event-000162"
+        },
+        {
+          "source_line": 163,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017uf2eFdrtHJiWazCDs9QBK",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "c4_a050_s42_fp32",
+                "field": "metrics",
+                "value": {
+                  "PermG_fwd": "8/8",
+                  "PermG_rev": "7/8",
+                  "K_ge_3_3sigma": "4/8",
+                  "K_ge_4_3sigma": "0/8",
+                  "threshold_onset_3sigma": "0/8",
+                  "naive_xcorr": "4/8",
+                  "diff_xcorr": "8/8",
+                  "drift_token_entropy_pct": -47.99,
+                  "drift_ece_pct": 3103.74,
+                  "drift_perplexity_pct": 2931.59,
+                  "drift_d1_pct": -9.78,
+                  "drift_d2_pct": -15.72,
+                  "drift_d3_pct": -17.75,
+                  "drift_mauve_pct": -54.25,
+                  "gen0_token_entropy": 3.109,
+                  "D105_3sigma": "true 3sigma (std of full series)",
+                  "D111_direction": "peak_lag < 0 (C009 corrected)",
+                  "analysis_script": "run_5method_analysis_d102.py",
+                  "n_perm": 5000,
+                  "D120_recomputed": "2026-05-20",
+                  "D102_8pair": "canary=[token_entropy,ece] x downstream=[d1,d2,d3,mauve]",
+                  "note": "PermG bidirectional (fwd=8/8 rev=7/8) — unique to C4 cross-domain at α=0.50",
+                  "ty_forward_sig": 2,
+                  "perm_granger_fdr_forward_sig": 8,
+                  "perm_granger_fdr_reverse_sig": 7,
+                  "diff_xcorr_fdr_forward_sig": 8,
+                  "diff_xcorr_fdr_reverse_sig": 8,
+                  "threshold_onset_forward_sig": 0,
+                  "robust_pairs_K3": 5,
+                  "robust_pairs_K4": 1
+                },
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01Kz96YPZnEkVnk7EvotHYtR",
+            "session_id": "ce888eb4-8047-4886-9242-e332bdd6aa09",
+            "uuid": "a93a748d-fa59-43bf-9074-2bdd88b07828",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019neRVjXb4rt5dVp8RvBjKS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4635,
+                "cache_read_input_tokens": 18821,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4635,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000163"
+        },
+        {
+          "source_line": 164,
+          "timestamp": "2026-05-20T21:56:56.063Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017uf2eFdrtHJiWazCDs9QBK",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"c4_a050_s42_fp32\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T14:37:57.965Z\\\", \\\"updated_at\\\": \\\"2026-05-20T21:56:55.722Z\\\", \\\"hypothesis\\\": \\\"bf16 precision destroys PermG causal signal at C4 α=0.50; fp32 rerun should recover non-zero PermG fwd if the 0/8 was a precision artifact rather than a true blind zone\\\", \\\"parent\\\": \\\"alpha_sweep_c4_a050_s42\\\", \\\"spec\\\": {\\\"data_path\\\": \\\"data/c4_5k\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"seed\\\": 42, \\\"precision\\\": \\\"fp32\\\", \\\"padding_side_fix\\\": \\\"D093 applied\\\"}, \\\"server\\\": \\\"westd-17855\\\", \\\"gpu\\\": \\\"cuda:5\\\", \\\"pid\\\": \\\"152615\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/c4_a050_s42_fp32.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/c4_a050_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-19T18:20:17.068Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T18:20:20.777203+00:00\\\"}]}, \\\"metrics\\\": {\\\"PermG_fwd\\\": \\\"8/8\\\", \\\"PermG_rev\\\": \\\"7/8\\\", \\\"K_ge_3_3sigma\\\": \\\"4/8\\\", \\\"K_ge_4_3sigma\\\": \\\"0/8\\\", \\\"threshold_onset_3sigma\\\": \\\"0/8\\\", \\\"naive_xcorr\\\": \\\"4/8\\\", \\\"diff_xcorr\\\": \\\"8/8\\\", \\\"drift_token_entropy_pct\\\": -47.99, \\\"drift_ece_pct\\\": 3103.74, \\\"drift_perplexity_pct\\\": 2931.59, \\\"drift_d1_pct\\\": -9.78, \\\"drift_d2_pct\\\": -15.72, \\\"drift_d3_pct\\\": -17.75, \\\"drift_mauve_pct\\\": -54.25, \\\"gen0_token_entropy\\\": 3.109, \\\"D105_3sigma\\\": \\\"true 3sigma (std of full series)\\\", \\\"D111_direction\\\": \\\"peak_lag < 0 (C009 corrected)\\\", \\\"analysis_script\\\": \\\"run_5method_analysis_d102.py\\\", \\\"n_perm\\\": 5000, \\\"D120_recomputed\\\": \\\"2026-05-20\\\", \\\"D102_8pair\\\": \\\"canary=[token_entropy,ece] x downstream=[d1,d2,d3,mauve]\\\", \\\"note\\\": \\\"PermG bidirectional (fwd=8/8 rev=7/8) — unique to C4 cross-domain at α=0.50\\\", \\\"ty_forward_sig\\\": 2, \\\"perm_granger_fdr_forward_sig\\\": 8, \\\"perm_granger_fdr_reverse_sig\\\": 7, \\\"diff_xcorr_fdr_forward_sig\\\": 8, \\\"diff_xcorr_fdr_reverse_sig\\\": 8, \\\"threshold_onset_forward_sig\\\": 0, \\\"robust_pairs_K3\\\": 5, \\\"robust_pairs_K4\\\": 1}, \\\"checkpoint_path\\\": \\\"westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/c4_a050_s42_fp32\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-19T18:26:00.846Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8464}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01Kz96YPZnEkVnk7EvotHYtR",
+            "session_id": "ce888eb4-8047-4886-9242-e332bdd6aa09",
+            "uuid": "5c305f34-6ba3-463a-9d40-b7f9ba17992a"
+          },
+          "id": "event-000164"
+        },
+        {
+          "source_line": 165,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a7287d26bf61d800c",
+                "tool_use_id": "toolu_01Kz96YPZnEkVnk7EvotHYtR",
+                "description": "Clean registry batch 3 (8 exps)",
+                "usage": {
+                  "total_tokens": 23608,
+                  "tool_uses": 12,
+                  "duration_ms": 58345
+                },
+                "last_tool_name": "mcp__agent-ml-research__update_registry",
+                "uuid": "d31de546-5ba0-4429-a86f-28b0371bc74d",
+                "session_id": "ce888eb4-8047-4886-9242-e332bdd6aa09"
+              }
+            }
+          ],
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QY8vAJLa9eNx9n6ZJ96Rpq",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "c4_a050_s43_fp32",
+                "field": "metrics",
+                "value": {
+                  "PermG_fwd": "8/8",
+                  "PermG_rev": "1/8",
+                  "K_ge_3_3sigma": "3/8",
+                  "K_ge_4_3sigma": "0/8",
+                  "threshold_onset_3sigma": "0/8",
+                  "naive_xcorr": "4/8",
+                  "diff_xcorr": "6/8",
+                  "drift_token_entropy": -47.98,
+                  "drift_ece": 3102.5,
+                  "drift_perplexity": 2957.1,
+                  "drift_distinct_1": -9.9,
+                  "drift_distinct_2": -16,
+                  "drift_distinct_3": -17.5,
+                  "drift_mauve": -47.5,
+                  "drift_effective_rank": 113.4,
+                  "gen0_token_entropy": 3.1094,
+                  "D111_direction_check": "applied: naive_xcorr peak_lag<0, diff_xcorr peak_lag<0",
+                  "D102_8pair": "canary=[token_entropy,ece] x downstream=[d1,d2,d3,mauve]",
+                  "D105_3sigma": "true 3sigma (std of full series)",
+                  "analysis_script": "run_5method_analysis_d102.py + D105 inline recompute",
+                  "n_perm": 5000,
+                  "ty_forward_sig": 3,
+                  "perm_granger_fdr_forward_sig": 8,
+                  "perm_granger_fdr_reverse_sig": 1,
+                  "diff_xcorr_fdr_forward_sig": 8,
+                  "diff_xcorr_fdr_reverse_sig": 8,
+                  "threshold_onset_forward_sig": 0,
+                  "robust_pairs_K3": 6,
+                  "robust_pairs_K4": 0
+                },
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01Kz96YPZnEkVnk7EvotHYtR",
+            "session_id": "ce888eb4-8047-4886-9242-e332bdd6aa09",
+            "uuid": "7faff7c5-ebeb-458a-97c7-e6429972b69e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019neRVjXb4rt5dVp8RvBjKS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4635,
+                "cache_read_input_tokens": 18821,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4635,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "a454f197982797b49",
+                "tool_use_id": "toolu_01MbocLcbb3jm4fcqPH5hYpX",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Clean registry batch 2 (8 exps)",
+                "usage": {
+                  "total_tokens": 35852,
+                  "tool_uses": 14,
+                  "duration_ms": 67180
+                },
+                "uuid": "6e0ab335-973c-4f3b-a539-e70f1164cd10",
+                "session_id": "ce888eb4-8047-4886-9242-e332bdd6aa09"
+              }
+            }
+          ],
+          "id": "event-000167"
+        },
+        {
+          "source_line": 168,
+          "timestamp": "2026-05-20T21:57:00.590Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MbocLcbb3jm4fcqPH5hYpX",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "All 8 updates succeeded. Summary:\n\n| # | Experiment | Removed Fields | Status |\n|---|-----------|----------------|--------|\n| 1 | `scale_69b_a100_s42` | TY_granger, K_ge3, K_ge4 | SUCCESS |\n| 2 | `scale_69b_a100_s43` | TY_granger, K_ge3, K_ge4 | SUCCESS |\n| 3 | `smollm3_3b_wiki_a100_s43_fp32` | TY_Granger, K_ge3, K_ge4 | SUCCESS |\n| 4 | `t20_a060_s42_fp32` | K_ge3 | SUCCESS |\n| 5 | `t20_a075_s42_fp32` | TY_Granger, K_ge3 | SUCCESS |\n| 6 | `alpha_sweep_a035_s42_fp32` | TY_granger | SUCCESS |\n| 7 | `alpha_sweep_a040_s42_fp32_v2` | TY_granger | SUCCESS |\n| 8 | `alpha_sweep_a050_s43_fp32` | TY_granger | SUCCESS |\n\nFor experiments 6-8, I extracted their current metrics from the registry cache file, removed the `TY_granger` field from each, and wrote back the full cleaned metrics dict. All 8 `update_registry` calls returned `success: true`."
+                },
+                {
+                  "type": "text",
+                  "text": "agentId: a454f197982797b49 (use SendMessage with to: 'a454f197982797b49' to continue this agent)\n<usage>total_tokens: 36139\ntool_uses: 14\nduration_ms: 67184</usage>"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ce888eb4-8047-4886-9242-e332bdd6aa09",
+            "uuid": "56d58d0d-e88b-44a3-822c-e2cc891d1262",
+            "tool_use_result": {
+              "status": "completed",
+              "prompt": "You need to update 8 ML experiment registry entries to remove legacy fields from their metrics dicts. The tool is `mcp__agent-ml-research__update_registry` with params: exp_id, field=\"metrics\", value=(cleaned metrics dict), project=\"distrib_canary_collapse\".\n\nLoad the tool schema first with ToolSearch query \"select:mcp__agent-ml-research__update_registry\".\n\nFor each experiment below, call update_registry with field=\"metrics\" and the cleaned metrics value. Do all 8 updates.\n\n1. scale_69b_a100_s42 - removed: TY_granger=\"1/8\", K_ge3=\"5/8\", K_ge4=\"0/8\"\nCleaned metrics: {\"PermG_fwd\": \"7/8\", \"PermG_rev\": \"0/8\", \"diff_xcorr_fdr\": \"6/8\", \"naive_xcorr\": \"5/8\", \"threshold_onset\": \"2/8\", \"d120_canonical\": true, \"previous_K_ge3\": \"8/8\", \"note\": \"D120 canonical: K≥3 dropped 8/8→5/8. mauve pairs lost consensus. Core distinct_1/2/3 retained.\"}\n\n2. scale_69b_a100_s43 - removed: TY_granger=\"0/8\", K_ge3=\"6/8\", K_ge4=\"0/8\"\nCleaned metrics: {\"PermG_fwd\": \"6/8\", \"PermG_rev\": \"0/8\", \"diff_xcorr_fdr\": \"6/8\", \"naive_xcorr\": \"6/8\", \"threshold_onset\": \"0/8\", \"d120_canonical\": true, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/scale_check/pythia69b_wiki_a100_s43/gen_10/checkpoint/\"}\n\n3. smollm3_3b_wiki_a100_s43_fp32 - removed: TY_Granger=\"6/8\", K_ge3=\"6/8\", K_ge4=\"3/8\"\nCleaned metrics: {\"PermG_fwd_fdr\": \"3/8\", \"PermG_rev_fdr\": \"0/8\", \"DiffXCorr_fdr\": \"8/8\", \"note\": \"PermG 3/8 cross-seed replication (s42=3/8, s43=3/8). All via ECE channel. token_entropy U-shape confirmed both seeds. K≥3 diff driven by TY d_max instability (s43 I(0) vs s42 I(2)).\", \"ty_forward_sig\": 6, \"perm_granger_fdr_forward_sig\": 3, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 2, \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 4}\n\n4. t20_a060_s42_fp32 - removed: K_ge3=\"4/8\"\nCleaned metrics: {\"PermG_fwd_fdr\": \"0/8\", \"PermG_rev_fdr\": \"0/8\", \"DiffXCorr_fdr_fwd\": \"6/8\", \"DiffXCorr_fdr_rev\": \"6/8\", \"Threshold_3sigma\": \"6/8\", \"TY_Granger_fwd\": \"5/8\", \"TY_Granger_rev\": \"3/8\", \"verdict\": \"PASS\", \"predicted_permg\": 0, \"observed_permg\": 0, \"note\": \"Sync-dip structural: T=10→T=20 PermG still 0/8. TY direction fix: fwd 3→5, rev 5→3, K≥3 3→4. te→d1 PermG raw p=0.048, FDR p=0.064 near-miss.\", \"ty_forward_sig\": 5, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 6, \"robust_pairs_K3\": 4, \"robust_pairs_K4\": 0}\n\n5. t20_a075_s42_fp32 - removed: TY_Granger=\"5/8\", K_ge3=\"6/8\"\nCleaned metrics: {\"PermG_fwd_fdr\": \"6/8\", \"PermG_rev_fdr\": \"0/8\", \"DiffXCorr_fdr_fwd\": \"7/8\", \"Threshold_3sigma\": \"6/8\", \"NaiveXCorr_fwd\": \"4/8\", \"verdict\": \"PASS\", \"predicted_permg\": 7, \"observed_permg\": 6, \"predicted_ci\": [6, 8], \"note\": \"T-invariance confirmed: T=10 6/8 → T=20 6/8. Mauve non-detection structural (p>0.4). Strong directionality fwd=6/8 rev=0/8.\", \"ty_forward_sig\": 5, \"perm_granger_fdr_forward_sig\": 6, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 7, \"diff_xcorr_fdr_reverse_sig\": 7, \"threshold_onset_forward_sig\": 6, \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 6}\n\n6. alpha_sweep_a035_s42_fp32 - removed: TY_granger=\"4/8\"\nYou need to read the full current metrics for this experiment first. Use read_registry with filters={\"exp_id\": \"...\"} or read the file at /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/ce888eb4-8047-4886-9242-e332bdd6aa09/tool-results/mcp-agent-ml-research-read_registry-1779313937907.txt (JSON with schema {result: string}, nested as result.data.experiments.<exp_id>.metrics). Extract the metrics dict, remove the legacy field, and write back.\n\n7. alpha_sweep_a040_s42_fp32_v2 - removed: TY_granger=\"4/8\"\nSame approach - read the full metrics, remove TY_granger, write back.\n\n8. alpha_sweep_a050_s43_fp32 - removed: TY_granger=\"5/8\"\nSame approach - read the full metrics, remove TY_granger, write back.\n\nFor experiments 6-8, extract the full metrics from the file mentioned above using python/jq, then call update_registry.\n\nReport which experiments succeeded and which failed.",
+              "agentId": "a454f197982797b49",
+              "agentType": "general-purpose",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "All 8 updates succeeded. Summary:\n\n| # | Experiment | Removed Fields | Status |\n|---|-----------|----------------|--------|\n| 1 | `scale_69b_a100_s42` | TY_granger, K_ge3, K_ge4 | SUCCESS |\n| 2 | `scale_69b_a100_s43` | TY_granger, K_ge3, K_ge4 | SUCCESS |\n| 3 | `smollm3_3b_wiki_a100_s43_fp32` | TY_Granger, K_ge3, K_ge4 | SUCCESS |\n| 4 | `t20_a060_s42_fp32` | K_ge3 | SUCCESS |\n| 5 | `t20_a075_s42_fp32` | TY_Granger, K_ge3 | SUCCESS |\n| 6 | `alpha_sweep_a035_s42_fp32` | TY_granger | SUCCESS |\n| 7 | `alpha_sweep_a040_s42_fp32_v2` | TY_granger | SUCCESS |\n| 8 | `alpha_sweep_a050_s43_fp32` | TY_granger | SUCCESS |\n\nFor experiments 6-8, I extracted their current metrics from the registry cache file, removed the `TY_granger` field from each, and wrote back the full cleaned metrics dict. All 8 `update_registry` calls returned `success: true`."
+                }
+              ],
+              "totalDurationMs": 67184,
+              "totalTokens": 36139,
+              "totalToolUseCount": 14,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 13622,
+                "cache_read_input_tokens": 22149,
+                "output_tokens": 367,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 13622
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 367,
+                    "cache_read_input_tokens": 22149,
+                    "cache_creation_input_tokens": 13622,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 13622,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "toolStats": {
+                "readCount": 1,
+                "searchCount": 3,
+                "bashCount": 1,
+                "editFileCount": 0,
+                "linesAdded": 0,
+                "linesRemoved": 0,
+                "otherToolCount": 9
+              }
+            }
+          },
+          "id": "event-000168"
+        },
+        {
+          "source_line": 169,
+          "timestamp": "2026-05-20T21:57:00.261Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QY8vAJLa9eNx9n6ZJ96Rpq",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"c4_a050_s43_fp32\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T00:11:58.679Z\\\", \\\"updated_at\\\": \\\"2026-05-20T21:56:59.916Z\\\", \\\"hypothesis\\\": \\\"C4 α=0.50 cross-seed validation: s42 showed PermG=8/8, K≥3=6/8 (fp32). s43 tests seed robustness of C4 onset detection. If PermG≥6/8 → C4 onset at α=0.50 is seed-robust; if PermG drops significantly → C4 onset is seed-sensitive, weakening cross-domain claim.\\\", \\\"parent\\\": \\\"\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/c4_a050_s43_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"483063\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/c4_a050_s43_fp32.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T00:13:23.125Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/c4_5k\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"seed\\\": 43, \\\"precision\\\": \\\"fp32\\\", \\\"padding_side_fix\\\": \\\"D093 applied\\\", \\\"wall_clock_seconds\\\": 15115.5, \\\"gpu_hours\\\": 4.2}, \\\"checkpoint_path\\\": \\\"results/alpha_sweep/c4_a050_s43_fp32/gen_10/checkpoint\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/c4_a050_s43_fp32.log\\\", \\\"metrics\\\": {\\\"PermG_fwd\\\": \\\"8/8\\\", \\\"PermG_rev\\\": \\\"1/8\\\", \\\"K_ge_3_3sigma\\\": \\\"3/8\\\", \\\"K_ge_4_3sigma\\\": \\\"0/8\\\", \\\"threshold_onset_3sigma\\\": \\\"0/8\\\", \\\"naive_xcorr\\\": \\\"4/8\\\", \\\"diff_xcorr\\\": \\\"6/8\\\", \\\"drift_token_entropy\\\": -47.98, \\\"drift_ece\\\": 3102.5, \\\"drift_perplexity\\\": 2957.1, \\\"drift_distinct_1\\\": -9.9, \\\"drift_distinct_2\\\": -16, \\\"drift_distinct_3\\\": -17.5, \\\"drift_mauve\\\": -47.5, \\\"drift_effective_rank\\\": 113.4, \\\"gen0_token_entropy\\\": 3.1094, \\\"D111_direction_check\\\": \\\"applied: naive_xcorr peak_lag<0, diff_xcorr peak_lag<0\\\", \\\"D102_8pair\\\": \\\"canary=[token_entropy,ece] x downstream=[d1,d2,d3,mauve]\\\", \\\"D105_3sigma\\\": \\\"true 3sigma (std of full series)\\\", \\\"analysis_script\\\": \\\"run_5method_analysis_d102.py + D105 inline recompute\\\", \\\"n_perm\\\": 5000, \\\"ty_forward_sig\\\": 3, \\\"perm_granger_fdr_forward_sig\\\": 8, \\\"perm_granger_fdr_reverse_sig\\\": 1, \\\"diff_xcorr_fdr_forward_sig\\\": 8, \\\"diff_xcorr_fdr_reverse_sig\\\": 8, \\\"threshold_onset_forward_sig\\\": 0, \\\"robust_pairs_K3\\\": 6, \\\"robust_pairs_K4\\\": 0}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T04:25:18.624Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7844}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01Kz96YPZnEkVnk7EvotHYtR",
+            "session_id": "ce888eb4-8047-4886-9242-e332bdd6aa09",
+            "uuid": "1af69441-7946-48d8-ae46-e1908621d9e5"
+          },
+          "id": "event-000169"
+        },
+        {
+          "source_line": 170,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a7287d26bf61d800c",
+                "tool_use_id": "toolu_01Kz96YPZnEkVnk7EvotHYtR",
+                "description": "Clean registry batch 3 (8 exps)",
+                "usage": {
+                  "total_tokens": 23609,
+                  "tool_uses": 13,
+                  "duration_ms": 62136
+                },
+                "last_tool_name": "mcp__agent-ml-research__update_registry",
+                "uuid": "19dbf4da-f0ac-47f3-9ee0-2e5ff3bcffe3",
+                "session_id": "ce888eb4-8047-4886-9242-e332bdd6aa09"
+              }
+            }
+          ],
+          "id": "event-000170"
+        },
+        {
+          "source_line": 171,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015ns6kMGJnhzUC1DJAfgFDU",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "c4_a075_s42_fp32",
+                "field": "metrics",
+                "value": {
+                  "PermG_fwd": "8/8",
+                  "PermG_rev": "0/8",
+                  "K_ge_3_3sigma": "8/8",
+                  "K_ge_4_3sigma": "0/8",
+                  "threshold_onset_3sigma": "0/8",
+                  "naive_xcorr": "8/8",
+                  "diff_xcorr": "8/8",
+                  "drift_token_entropy": -35.32,
+                  "drift_ece": 2809.23,
+                  "drift_perplexity": 2152.6,
+                  "drift_distinct_1": -12.4,
+                  "drift_distinct_2": -15.41,
+                  "drift_distinct_3": -14.59,
+                  "drift_mauve": -42.26,
+                  "drift_effective_rank": 110.31,
+                  "gen0_token_entropy": 3.1094,
+                  "D105_3sigma": "true 3sigma (std of full series)",
+                  "D111_direction": "peak_lag < 0 (C009 corrected)",
+                  "analysis_script": "run_5method_analysis_d102.py",
+                  "n_perm": 5000,
+                  "D120_recomputed": "2026-05-20",
+                  "D102_8pair": "canary=[token_entropy,ece] x downstream=[d1,d2,d3,mauve]",
+                  "ty_forward_sig": 3,
+                  "perm_granger_fdr_forward_sig": 8,
+                  "perm_granger_fdr_reverse_sig": 0,
+                  "diff_xcorr_fdr_forward_sig": 8,
+                  "diff_xcorr_fdr_reverse_sig": 8,
+                  "threshold_onset_forward_sig": 0,
+                  "robust_pairs_K3": 8,
+                  "robust_pairs_K4": 3
+                },
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01Kz96YPZnEkVnk7EvotHYtR",
+            "session_id": "ce888eb4-8047-4886-9242-e332bdd6aa09",
+            "uuid": "a27be1a8-d3f7-4d61-afef-49ffa0d5bd8e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019neRVjXb4rt5dVp8RvBjKS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4635,
+                "cache_read_input_tokens": 18821,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4635,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000171"
+        },
+        {
+          "source_line": 172,
+          "timestamp": "2026-05-20T21:57:04.014Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015ns6kMGJnhzUC1DJAfgFDU",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"c4_a075_s42_fp32\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T14:37:54.299Z\\\", \\\"updated_at\\\": \\\"2026-05-20T21:57:03.687Z\\\", \\\"hypothesis\\\": \\\"Claim 2 cross-domain validation: canary lead-lag generalizes from WikiText to C4 at α=0.75 regime boundary, expecting PermG_fwd signal comparable to WikiText parent (6/8)\\\", \\\"parent\\\": \\\"alpha_sweep_a075_s42_fp32\\\", \\\"spec\\\": {\\\"data_path\\\": \\\"data/c4_5k\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"seed\\\": 42, \\\"precision\\\": \\\"fp32\\\", \\\"padding_side_fix\\\": \\\"D093 applied\\\"}, \\\"server\\\": \\\"westd-17855\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": \\\"151771\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/c4_a075_s42_fp32.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/c4_a075_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-19T18:20:08.048Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T18:20:11.695721+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"results/alpha_sweep/c4_a075_s42_fp32/gen_10/checkpoint\\\", \\\"metrics\\\": {\\\"PermG_fwd\\\": \\\"8/8\\\", \\\"PermG_rev\\\": \\\"0/8\\\", \\\"K_ge_3_3sigma\\\": \\\"8/8\\\", \\\"K_ge_4_3sigma\\\": \\\"0/8\\\", \\\"threshold_onset_3sigma\\\": \\\"0/8\\\", \\\"naive_xcorr\\\": \\\"8/8\\\", \\\"diff_xcorr\\\": \\\"8/8\\\", \\\"drift_token_entropy\\\": -35.32, \\\"drift_ece\\\": 2809.23, \\\"drift_perplexity\\\": 2152.6, \\\"drift_distinct_1\\\": -12.4, \\\"drift_distinct_2\\\": -15.41, \\\"drift_distinct_3\\\": -14.59, \\\"drift_mauve\\\": -42.26, \\\"drift_effective_rank\\\": 110.31, \\\"gen0_token_entropy\\\": 3.1094, \\\"D105_3sigma\\\": \\\"true 3sigma (std of full series)\\\", \\\"D111_direction\\\": \\\"peak_lag < 0 (C009 corrected)\\\", \\\"analysis_script\\\": \\\"run_5method_analysis_d102.py\\\", \\\"n_perm\\\": 5000, \\\"D120_recomputed\\\": \\\"2026-05-20\\\", \\\"D102_8pair\\\": \\\"canary=[token_entropy,ece] x downstream=[d1,d2,d3,mauve]\\\", \\\"ty_forward_sig\\\": 3, \\\"perm_granger_fdr_forward_sig\\\": 8, \\\"perm_granger_fdr_reverse_sig\\\": 0, \\\"diff_xcorr_fdr_forward_sig\\\": 8, \\\"diff_xcorr_fdr_reverse_sig\\\": 8, \\\"threshold_onset_forward_sig\\\": 0, \\\"robust_pairs_K3\\\": 8, \\\"robust_pairs_K4\\\": 3}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-19T18:26:33.496Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7482}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01Kz96YPZnEkVnk7EvotHYtR",
+            "session_id": "ce888eb4-8047-4886-9242-e332bdd6aa09",
+            "uuid": "c9a38e16-b8a0-4dfd-afd6-551b5e0cad6e"
+          },
+          "id": "event-000172"
+        },
+        {
+          "source_line": 173,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a7287d26bf61d800c",
+                "tool_use_id": "toolu_01Kz96YPZnEkVnk7EvotHYtR",
+                "description": "Clean registry batch 3 (8 exps)",
+                "usage": {
+                  "total_tokens": 23610,
+                  "tool_uses": 14,
+                  "duration_ms": 66433
+                },
+                "last_tool_name": "mcp__agent-ml-research__update_registry",
+                "uuid": "c022ed6e-8d37-4149-b758-9325eab718a8",
+                "session_id": "ce888eb4-8047-4886-9242-e332bdd6aa09"
+              }
+            }
+          ],
+          "id": "event-000173"
+        },
+        {
+          "source_line": 174,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KNpnUBYyQho8bmqKeUy3Ao",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "c4_a075_s43_fp32",
+                "field": "metrics",
+                "value": {
+                  "PermG_fwd": "8/8",
+                  "PermG_rev": "0/8",
+                  "K_ge_3_3sigma": "8/8",
+                  "K_ge_4_3sigma": "1/8",
+                  "threshold_onset_3sigma": "0/8",
+                  "naive_xcorr": "8/8",
+                  "diff_xcorr": "8/8",
+                  "drift_token_entropy": -34.12,
+                  "drift_ece": 2781.6,
+                  "drift_perplexity": 2149.2,
+                  "drift_distinct_1": -12.6,
+                  "drift_distinct_2": -16.2,
+                  "drift_distinct_3": -15.7,
+                  "drift_mauve": -52.8,
+                  "drift_effective_rank": 111,
+                  "gen0_token_entropy": 3.1094,
+                  "D111_direction_check": "applied: naive_xcorr peak_lag<0, diff_xcorr peak_lag<0",
+                  "D102_8pair": "canary=[token_entropy,ece] x downstream=[d1,d2,d3,mauve]",
+                  "D105_3sigma": "true 3sigma (std of full series)",
+                  "analysis_script": "run_5method_analysis_d102.py + D105 inline recompute",
+                  "n_perm": 5000,
+                  "ty_forward_sig": 3,
+                  "perm_granger_fdr_forward_sig": 8,
+                  "perm_granger_fdr_reverse_sig": 0,
+                  "diff_xcorr_fdr_forward_sig": 8,
+                  "diff_xcorr_fdr_reverse_sig": 8,
+                  "threshold_onset_forward_sig": 0,
+                  "robust_pairs_K3": 8,
+                  "robust_pairs_K4": 3
+                },
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01Kz96YPZnEkVnk7EvotHYtR",
+            "session_id": "ce888eb4-8047-4886-9242-e332bdd6aa09",
+            "uuid": "a17b5efa-4fa4-4d14-807b-6b7c86b31a9a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019neRVjXb4rt5dVp8RvBjKS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4635,
+                "cache_read_input_tokens": 18821,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4635,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000174"
+        },
+        {
+          "source_line": 175,
+          "timestamp": "2026-05-20T21:57:08.372Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KNpnUBYyQho8bmqKeUy3Ao",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"c4_a075_s43_fp32\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T00:14:59.039Z\\\", \\\"updated_at\\\": \\\"2026-05-20T21:57:08.035Z\\\", \\\"hypothesis\\\": \\\"C4 α=0.75 cross-seed validation: s42 showed PermG=8/8, K≥3=6/8 (fp32, detection regime). s43 tests seed robustness. If PermG≥6/8 → C4 detection regime is seed-robust at α=0.75; combined with c4_a050_s43 → C4 dose-response has multi-seed coverage at both onset and detection α.\\\", \\\"parent\\\": \\\"c4_a075_s42_fp32\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/c4_a075_s43_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"484093\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/c4_a075_s43_fp32.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T00:15:54.585Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/c4_5k\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"seed\\\": 43, \\\"precision\\\": \\\"fp32\\\", \\\"padding_side_fix\\\": \\\"D093 applied\\\", \\\"wall_clock_seconds\\\": 14962.4, \\\"gpu_hours\\\": 4.16}, \\\"checkpoint_path\\\": \\\"results/alpha_sweep/c4_a075_s43_fp32/gen_10/checkpoint\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/c4_a075_s43_fp32.log\\\", \\\"metrics\\\": {\\\"PermG_fwd\\\": \\\"8/8\\\", \\\"PermG_rev\\\": \\\"0/8\\\", \\\"K_ge_3_3sigma\\\": \\\"8/8\\\", \\\"K_ge_4_3sigma\\\": \\\"1/8\\\", \\\"threshold_onset_3sigma\\\": \\\"0/8\\\", \\\"naive_xcorr\\\": \\\"8/8\\\", \\\"diff_xcorr\\\": \\\"8/8\\\", \\\"drift_token_entropy\\\": -34.12, \\\"drift_ece\\\": 2781.6, \\\"drift_perplexity\\\": 2149.2, \\\"drift_distinct_1\\\": -12.6, \\\"drift_distinct_2\\\": -16.2, \\\"drift_distinct_3\\\": -15.7, \\\"drift_mauve\\\": -52.8, \\\"drift_effective_rank\\\": 111, \\\"gen0_token_entropy\\\": 3.1094, \\\"D111_direction_check\\\": \\\"applied: naive_xcorr peak_lag<0, diff_xcorr peak_lag<0\\\", \\\"D102_8pair\\\": \\\"canary=[token_entropy,ece] x downstream=[d1,d2,d3,mauve]\\\", \\\"D105_3sigma\\\": \\\"true 3sigma (std of full series)\\\", \\\"analysis_script\\\": \\\"run_5method_analysis_d102.py + D105 inline recompute\\\", \\\"n_perm\\\": 5000, \\\"ty_forward_sig\\\": 3, \\\"perm_granger_fdr_forward_sig\\\": 8, \\\"perm_granger_fdr_reverse_sig\\\": 0, \\\"diff_xcorr_fdr_forward_sig\\\": 8, \\\"diff_xcorr_fdr_reverse_sig\\\": 8, \\\"threshold_onset_forward_sig\\\": 0, \\\"robust_pairs_K3\\\": 8, \\\"robust_pairs_K4\\\": 3}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T04:25:16.959Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8071}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01Kz96YPZnEkVnk7EvotHYtR",
+            "session_id": "ce888eb4-8047-4886-9242-e332bdd6aa09",
+            "uuid": "f8a1ff0c-ba48-4ee7-b9a3-65b877911c5c"
+          },
+          "id": "event-000175"
+        },
+        {
+          "source_line": 176,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a7287d26bf61d800c",
+                "tool_use_id": "toolu_01Kz96YPZnEkVnk7EvotHYtR",
+                "description": "Clean registry batch 3 (8 exps)",
+                "usage": {
+                  "total_tokens": 23611,
+                  "tool_uses": 15,
+                  "duration_ms": 70131
+                },
+                "last_tool_name": "mcp__agent-ml-research__update_registry",
+                "uuid": "e9165d39-403d-4bdf-a15a-3d196aae2aab",
+                "session_id": "ce888eb4-8047-4886-9242-e332bdd6aa09"
+              }
+            }
+          ],
+          "id": "event-000176"
+        },
+        {
+          "source_line": 177,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019yMXWdDNRGx2zfejZnavYG",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "padding_robustness_a100_s42_fp32",
+                "field": "metrics",
+                "value": {
+                  "PermG_fwd": "6/8",
+                  "PermG_rev": "0/8",
+                  "K_ge_3_3sigma": "6/8",
+                  "K_ge_4_3sigma": "0/8",
+                  "threshold_onset_3sigma": "0/8",
+                  "naive_xcorr": "6/8",
+                  "diff_xcorr": "6/8",
+                  "D105_3sigma": "true 3sigma (std of full series)",
+                  "D111_direction": "peak_lag < 0 (C009 corrected)",
+                  "analysis_script": "run_5method_analysis_d102.py",
+                  "n_perm": 5000,
+                  "D120_recomputed": "2026-05-20",
+                  "D102_8pair": "canary=[token_entropy,ece] x downstream=[d1,d2,d3,mauve]",
+                  "failing_pairs": "token_entropy<mauve (0/5), ece<mauve (0/5)",
+                  "vs_wiki_baseline": "K3=6/8 matches generalize_pythia410m_wiki_a100_s42 (6/8). Both fail mauve pairs. Padding side has no detectable effect on lead-lag.",
+                  "ty_forward_sig": 2,
+                  "perm_granger_fdr_forward_sig": 6,
+                  "perm_granger_fdr_reverse_sig": 0,
+                  "diff_xcorr_fdr_forward_sig": 6,
+                  "diff_xcorr_fdr_reverse_sig": 6,
+                  "threshold_onset_forward_sig": 0,
+                  "robust_pairs_K3": 6,
+                  "robust_pairs_K4": 2
+                },
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01Kz96YPZnEkVnk7EvotHYtR",
+            "session_id": "ce888eb4-8047-4886-9242-e332bdd6aa09",
+            "uuid": "64f74035-5e43-4976-96fb-19907c880017",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019neRVjXb4rt5dVp8RvBjKS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4635,
+                "cache_read_input_tokens": 18821,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4635,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000177"
+        },
+        {
+          "source_line": 178,
+          "timestamp": "2026-05-20T21:57:12.054Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019yMXWdDNRGx2zfejZnavYG",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"padding_robustness_a100_s42_fp32\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T09:54:17.535Z\\\", \\\"updated_at\\\": \\\"2026-05-20T21:57:11.729Z\\\", \\\"hypothesis\\\": \\\"D093 padding_side='left' 修复后重跑 α=1.0 s42 fp32，对比修复前 mvp_v4_rep42 结果，验证 right-padding bug 对 collapse 轨迹和 lead-lag 信号的影响程度。预期：相对趋势不变，绝对数值可能有小幅差异\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --output_dir results/padding_robustness/a100_s42_fp32 --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\\\\\"\\\", \\\"server\\\": \\\"westd-17855\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"122877\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/padding_robustness_a100_s42_fp32.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T10:04:16.220Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 16952.1, \\\"gpu_hours\\\": 4.71}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T14:17:27.871Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T14:17:33.010198+00:00\\\"}]}, \\\"metrics\\\": {\\\"PermG_fwd\\\": \\\"6/8\\\", \\\"PermG_rev\\\": \\\"0/8\\\", \\\"K_ge_3_3sigma\\\": \\\"6/8\\\", \\\"K_ge_4_3sigma\\\": \\\"0/8\\\", \\\"threshold_onset_3sigma\\\": \\\"0/8\\\", \\\"naive_xcorr\\\": \\\"6/8\\\", \\\"diff_xcorr\\\": \\\"6/8\\\", \\\"D105_3sigma\\\": \\\"true 3sigma (std of full series)\\\", \\\"D111_direction\\\": \\\"peak_lag < 0 (C009 corrected)\\\", \\\"analysis_script\\\": \\\"run_5method_analysis_d102.py\\\", \\\"n_perm\\\": 5000, \\\"D120_recomputed\\\": \\\"2026-05-20\\\", \\\"D102_8pair\\\": \\\"canary=[token_entropy,ece] x downstream=[d1,d2,d3,mauve]\\\", \\\"failing_pairs\\\": \\\"token_entropy<mauve (0/5), ece<mauve (0/5)\\\", \\\"vs_wiki_baseline\\\": \\\"K3=6/8 matches generalize_pythia410m_wiki_a100_s42 (6/8). Both fail mauve pairs. Padding side has no detectable effect on lead-lag.\\\", \\\"ty_forward_sig\\\": 2, \\\"perm_granger_fdr_forward_sig\\\": 6, \\\"perm_granger_fdr_reverse_sig\\\": 0, \\\"diff_xcorr_fdr_forward_sig\\\": 6, \\\"diff_xcorr_fdr_reverse_sig\\\": 6, \\\"threshold_onset_forward_sig\\\": 0, \\\"robust_pairs_K3\\\": 6, \\\"robust_pairs_K4\\\": 2}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/padding_robustness/a100_s42_fp32/gen_10\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/padding_robustness_a100_s42_fp32.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-19T14:46:48.338Z\\\", \\\"note\\\": \\\"D111 direction-checked: naive 6/8→0/8, diff 6/8→0/8 (ALL lags negative), K≥3 6/8→6/8 (unchanged), K≥4 6/8→0/8. Forward evidence from threshold+permG+TY only.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.788}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01Kz96YPZnEkVnk7EvotHYtR",
+            "session_id": "ce888eb4-8047-4886-9242-e332bdd6aa09",
+            "uuid": "d77ab896-cfb0-48bd-a3c8-d240f35cf4f4"
+          },
+          "id": "event-000178"
+        },
+        {
+          "source_line": 179,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "a7287d26bf61d800c",
+                "tool_use_id": "toolu_01Kz96YPZnEkVnk7EvotHYtR",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Clean registry batch 3 (8 exps)",
+                "usage": {
+                  "total_tokens": 39702,
+                  "tool_uses": 15,
+                  "duration_ms": 78181
+                },
+                "uuid": "d1f2ebde-a41e-4384-abb9-f14b0f0a55a0",
+                "session_id": "ce888eb4-8047-4886-9242-e332bdd6aa09"
+              }
+            }
+          ],
+          "id": "event-000179"
+        },
+        {
+          "source_line": 180,
+          "timestamp": "2026-05-20T21:57:19.303Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Kz96YPZnEkVnk7EvotHYtR",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "All 8 updates succeeded. Here is the summary:\n\n| Experiment | Status | Field Removed |\n|---|---|---|\n| `alpha_sweep_a060_s42_fp32_v4` | SUCCESS | `TY_granger: \"0/8\"` |\n| `alpha_sweep_a075_s43` | SUCCESS | `TY_granger: \"6/8\"` |\n| `c4_a025_s42_fp32` | SUCCESS | `TY_granger: \"N/A (signonly API error on 17855)\"` |\n| `c4_a050_s42_fp32` | SUCCESS | `TY_granger: \"N/A (signonly API error on 17855)\"` |\n| `c4_a050_s43_fp32` | SUCCESS | `TY_granger: \"0/8\"` |\n| `c4_a075_s42_fp32` | SUCCESS | `TY_granger: \"N/A (signonly API error on 17855)\"` |\n| `c4_a075_s43_fp32` | SUCCESS | `TY_granger: \"1/8\"` |\n| `padding_robustness_a100_s42_fp32` | SUCCESS | `TY_granger: \"N/A (signonly API error on 17855)\"` |\n\nAll 8 experiments updated successfully. The `TY_granger` field has been removed from each experiment's metrics dict while preserving all other fields intact."
+                },
+                {
+                  "type": "text",
+                  "text": "agentId: a7287d26bf61d800c (use SendMessage with to: 'a7287d26bf61d800c' to continue this agent)\n<usage>total_tokens: 39910\ntool_uses: 15\nduration_ms: 78182</usage>"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ce888eb4-8047-4886-9242-e332bdd6aa09",
+            "uuid": "388d4197-e086-4466-9659-ad4e944beabf",
+            "tool_use_result": {
+              "status": "completed",
+              "prompt": "You need to update 8 ML experiment registry entries to remove legacy fields from their metrics dicts. The tool is `mcp__agent-ml-research__update_registry` with params: exp_id, field=\"metrics\", value=(cleaned metrics dict), project=\"distrib_canary_collapse\".\n\nLoad the tool schema first with ToolSearch query \"select:mcp__agent-ml-research__update_registry\".\n\nFor experiments where I don't provide the full cleaned metrics, you need to extract them from this file:\n/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/ce888eb4-8047-4886-9242-e332bdd6aa09/tool-results/mcp-agent-ml-research-read_registry-1779313937907.txt\n\nThe file is JSON with schema {result: string}. Parse result as JSON, then access .data.experiments.<exp_id>.metrics. Remove the legacy field(s), then call update_registry with the cleaned dict.\n\nThe legacy fields to remove (case-insensitive matching on these patterns): ty_granger, k_ge3, k_ge4, consensus_k3_3sigma\n\nHere are the 8 experiments:\n\n1. alpha_sweep_a060_s42_fp32_v4 - remove: TY_granger=\"0/8\"\n2. alpha_sweep_a075_s43 - remove: TY_granger=\"6/8\"\n3. c4_a025_s42_fp32 - remove: TY_granger=\"N/A (signonly API error on 17855)\"\n4. c4_a050_s42_fp32 - remove: TY_granger=\"N/A (signonly API error on 17855)\"\n5. c4_a050_s43_fp32 - remove: TY_granger=\"0/8\"\n6. c4_a075_s42_fp32 - remove: TY_granger=\"N/A (signonly API error on 17855)\"\n7. c4_a075_s43_fp32 - remove: TY_granger=\"1/8\"\n8. padding_robustness_a100_s42_fp32 - remove: TY_granger=\"N/A (signonly API error on 17855)\"\n\nFor each: read the full metrics from the file, remove the TY_granger field (exact key match, it's \"TY_granger\" with that casing), write back the cleaned metrics.\n\nReport which experiments succeeded and which failed.",
+              "agentId": "a7287d26bf61d800c",
+              "agentType": "general-purpose",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "All 8 updates succeeded. Here is the summary:\n\n| Experiment | Status | Field Removed |\n|---|---|---|\n| `alpha_sweep_a060_s42_fp32_v4` | SUCCESS | `TY_granger: \"0/8\"` |\n| `alpha_sweep_a075_s43` | SUCCESS | `TY_granger: \"6/8\"` |\n| `c4_a025_s42_fp32` | SUCCESS | `TY_granger: \"N/A (signonly API error on 17855)\"` |\n| `c4_a050_s42_fp32` | SUCCESS | `TY_granger: \"N/A (signonly API error on 17855)\"` |\n| `c4_a050_s43_fp32` | SUCCESS | `TY_granger: \"0/8\"` |\n| `c4_a075_s42_fp32` | SUCCESS | `TY_granger: \"N/A (signonly API error on 17855)\"` |\n| `c4_a075_s43_fp32` | SUCCESS | `TY_granger: \"1/8\"` |\n| `padding_robustness_a100_s42_fp32` | SUCCESS | `TY_granger: \"N/A (signonly API error on 17855)\"` |\n\nAll 8 experiments updated successfully. The `TY_granger` field has been removed from each experiment's metrics dict while preserving all other fields intact."
+                }
+              ],
+              "totalDurationMs": 78182,
+              "totalTokens": 39910,
+              "totalToolUseCount": 15,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 16090,
+                "cache_read_input_tokens": 23456,
+                "output_tokens": 363,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 16090
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 363,
+                    "cache_read_input_tokens": 23456,
+                    "cache_creation_input_tokens": 16090,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 16090,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "toolStats": {
+                "readCount": 3,
+                "searchCount": 1,
+                "bashCount": 2,
+                "editFileCount": 0,
+                "linesAdded": 0,
+                "linesRemoved": 0,
+                "otherToolCount": 9
+              }
+            }
+          },
+          "id": "event-000180"
+        },
+        {
+          "source_line": 181,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 25 个实验更新成功。验证一下清理结果。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ce888eb4-8047-4886-9242-e332bdd6aa09",
+            "uuid": "1af2e023-d98f-4323-8fdb-fec21f96696b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ENMX5c6o3bYj4GvR9W1PCS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7248,
+                "cache_read_input_tokens": 46065,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7248
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019jPjEnjQimCjHW77zPz8k4",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "distrib_canary_collapse",
+                "fields": [
+                  "metrics"
+                ],
+                "limit": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ce888eb4-8047-4886-9242-e332bdd6aa09",
+            "uuid": "96182aae-cba6-47e2-89b9-4d049dd769c9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ENMX5c6o3bYj4GvR9W1PCS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7248,
+                "cache_read_input_tokens": 46065,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7248
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": "2026-05-20T21:57:23.536Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019jPjEnjQimCjHW77zPz8k4",
+              "type": "tool_result",
+              "content": "Error: result (70,147 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/ce888eb4-8047-4886-9242-e332bdd6aa09/tool-results/mcp-agent-ml-research-read_registry-1779314243533.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/ce888eb4-8047-4886-9242-e332bdd6aa09/tool-results/mcp-agent-ml-research-read_registry-1779314243533.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/ce888eb4-8047-4886-9242-e332bdd6aa09/tool-results/mcp-agent-ml-research-read_registry-1779314243533.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ce888eb4-8047-4886-9242-e332bdd6aa09",
+            "uuid": "a28ad191-2a50-4c86-b244-54e164d623e1",
+            "tool_use_result": {
+              "content": "Error: result (70,147 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/ce888eb4-8047-4886-9242-e332bdd6aa09/tool-results/mcp-agent-ml-research-read_registry-1779314243533.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/ce888eb4-8047-4886-9242-e332bdd6aa09/tool-results/mcp-agent-ml-research-read_registry-1779314243533.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/ce888eb4-8047-4886-9242-e332bdd6aa09/tool-results/mcp-agent-ml-research-read_registry-1779314243533.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {\"padding_robustness_a100_s42_fp32\": {\"metrics\": {\"PermG_fwd\": \"6/8\", \"PermG_rev\": \"0/8\", \"K_ge_3_3sigma\": \"6/8\", \"K_ge_4_3sigma\": \"0/8\", \"threshold_onset_3sigma\": \"0/8\", \"naive_xcorr\": \"6/8\", \"diff_xcorr\": \"6/8\", \"D105_3sigma\": \"true 3sigma (std of full series)\", \"D111_direction\": \"peak_lag < 0 (C009 corrected)\", \"analysis_script\": \"run_5method_analysis_d102.py\", \"n_perm\": 5000, \"D120_recomputed\": \"2026-05-20\", \"D102_8pair\": \"canary=[token_entropy,ece] x downstream=[d1,d2,d3,mauve]\", \"failing_pairs\": \"token_entropy<mauve (0/5), ece<mauve (0/5)\", \"vs_wiki_baseline\": \"K3=6/8 matches generalize_pythia410m_wiki_a100_s42 (6/8). Both fail mauve pairs. Padding side has no detectable effect on lead-lag.\", \"ty_forward_sig\": 2, \"perm_granger_fdr_forward_sig\": 6, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 2}}, \"c4_a075_s43_fp32\": {\"metrics\": {\"PermG_fwd\": \"8/8\", \"PermG_rev\": \"0/8\", \"K_ge_3_3sigma\": \"8/8\", \"K_ge_4_3sigma\": \"1/8\", \"threshold_onset_3sigma\": \"0/8\", \"naive_xcorr\": \"8/8\", \"diff_xcorr\": \"8/8\", \"drift_token_entropy\": -34.12, \"drift_ece\": 2781.6, \"drift_perplexity\": 2149.2, \"drift_distinct_1\": -12.6, \"drift_distinct_2\": -16.2, \"drift_distinct_3\": -15.7, \"drift_mauve\": -52.8, \"drift_effective_rank\": 111, \"gen0_token_entropy\": 3.1094, \"D111_direction_check\": \"applied: naive_xcorr peak_lag<0, diff_xcorr peak_lag<0\", \"D102_8pair\": \"canary=[token_entropy,ece] x downstream=[d1,d2,d3,mauve]\", \"D105_3sigma\": \"true 3sigma (std of full series)\", \"analysis_script\": \"run_5method_analysis_d102.py + D105 inline recompute\", \"n_perm\": 5000, \"ty_forward_sig\": 3, \"perm_granger_fdr_forward_sig\": 8, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 8, \"robust_pairs_K4\": 3}}, \"c4_a075_s42_fp32\": {\"metrics\": {\"PermG_fwd\": \"8/8\", \"PermG_rev\": \"0/8\", \"K_ge_3_3sigma\": \"8/8\", \"K_ge_4_3sigma\": \"0/8\", \"threshold_onset_3sigma\": \"0/8\", \"naive_xcorr\": \"8/8\", \"diff_xcorr\": \"8/8\", \"drift_token_entropy\": -35.32, \"drift_ece\": 2809.23, \"drift_perplexity\": 2152.6, \"drift_distinct_1\": -12.4, \"drift_distinct_2\": -15.41, \"drift_distinct_3\": -14.59, \"drift_mauve\": -42.26, \"drift_effective_rank\": 110.31, \"gen0_token_entropy\": 3.1094, \"D105_3sigma\": \"true 3sigma (std of full series)\", \"D111_direction\": \"peak_lag < 0 (C009 corrected)\", \"analysis_script\": \"run_5method_analysis_d102.py\", \"n_perm\": 5000, \"D120_recomputed\": \"2026-05-20\", \"D102_8pair\": \"canary=[token_entropy,ece] x downstream=[d1,d2,d3,mauve]\", \"ty_forward_sig\": 3, \"perm_granger_fdr_forward_sig\": 8, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 8, \"robust_pairs_K4\": 3}}, \"c4_a050_s43_fp32\": {\"metrics\": {\"PermG_fwd\": \"8/8\", \"PermG_rev\": \"1/8\", \"K_ge_3_3sigma\": \"3/8\", \"K_ge_4_3sigma\": \"0/8\", \"threshold_onset_3sigma\": \"0/8\", \"naive_xcorr\": \"4/8\", \"diff_xcorr\": \"6/8\", \"drift_token_entropy\": -47.98, \"drift_ece\": 3102.5, \"drift_perplexity\": 2957.1, \"drift_distinct_1\": -9.9, \"drift_distinct_2\": -16, \"drift_distinct_3\": -17.5, \"drift_mauve\": -47.5, \"drift_effective_rank\": 113.4, \"gen0_token_entropy\": 3.1094, \"D111_direction_check\": \"applied: naive_xcorr peak_lag<0, diff_xcorr peak_lag<0\", \"D102_8pair\": \"canary=[token_entropy,ece] x downstream=[d1,d2,d3,mauve]\", \"D105_3sigma\": \"true 3sigma (std of full series)\", \"analysis_script\": \"run_5method_analysis_d102.py + D105 inline recompute\", \"n_perm\": 5000, \"ty_forward_sig\": 3, \"perm_granger_fdr_forward_sig\": 8, \"perm_granger_fdr_reverse_sig\": 1, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 0}}, \"c4_a050_s42_fp32\": {\"metrics\": {\"PermG_fwd\": \"8/8\", \"PermG_rev\": \"7/8\", \"K_ge_3_3sigma\": \"4/8\", \"K_ge_4_3sigma\": \"0/8\", \"threshold_onset_3sigma\": \"0/8\", \"naive_xcorr\": \"4/8\", \"diff_xcorr\": \"8/8\", \"drift_token_entropy_pct\": -47.99, \"drift_ece_pct\": 3103.74, \"drift_perplexity_pct\": 2931.59, \"drift_d1_pct\": -9.78, \"drift_d2_pct\": -15.72, \"drift_d3_pct\": -17.75, \"drift_mauve_pct\": -54.25, \"gen0_token_entropy\": 3.109, \"D105_3sigma\": \"true 3sigma (std of full series)\", \"D111_direction\": \"peak_lag < 0 (C009 corrected)\", \"analysis_script\": \"run_5method_analysis_d102.py\", \"n_perm\": 5000, \"D120_recomputed\": \"2026-05-20\", \"D102_8pair\": \"canary=[token_entropy,ece] x downstream=[d1,d2,d3,mauve]\", \"note\": \"PermG bidirectional (fwd=8/8 rev=7/8) — unique to C4 cross-domain at α=0.50\", \"ty_forward_sig\": 2, \"perm_granger_fdr_forward_sig\": 8, \"perm_granger_fdr_reverse_sig\": 7, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 5, \"robust_pairs_K4\": 1}}, \"alpha_sweep_a050_s43_fp32\": {\"metrics\": {\"token_entropy_gen0\": 3.2342, \"token_entropy_gen10\": 2.7227, \"token_entropy_drift_pct\": -15.81, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0842, \"ece_drift_pct\": 679.56, \"distinct_1_gen0\": 0.0929, \"distinct_1_gen10\": 0.066, \"distinct_1_drift_pct\": -29, \"perplexity_gen0\": 26.95, \"perplexity_gen10\": 31.58, \"perplexity_drift_pct\": 17.17, \"mauve_drift_pct\": -23.54, \"PermG_fwd\": \"6/8\", \"PermG_rev\": \"0/8\", \"naive_xcorr_fwd_D111\": \"2/8\", \"diff_xcorr_fwd_D111\": \"6/8\", \"threshold_onset_3sigma\": \"8/8\", \"K3_3sigma\": \"6/8\", \"K4_3sigma\": \"5/8\", \"perm_granger_fdr_forward_sig\": 6, \"D105_D111_compliant\": true, \"M035_direction\": \"peak_lag < 0\", \"precision\": \"fp32\", \"n_perm\": 5000, \"pair_config\": \"canary=[token_entropy,ece] x downstream=[distinct_1,distinct_2,distinct_3,mauve]\", \"ty_forward_sig\": 1, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 6, \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 1}}, \"c4_a025_s42_fp32\": {\"metrics\": {\"PermG_fwd\": \"0/8\", \"PermG_rev\": \"0/8\", \"K_ge_3_3sigma\": \"0/8\", \"K_ge_4_3sigma\": \"0/8\", \"threshold_onset_3sigma\": \"2/8\", \"naive_xcorr\": \"4/8\", \"diff_xcorr\": \"8/8\", \"drift_token_entropy\": \"-53.01%\", \"drift_ece\": \"+3242.80%\", \"drift_perplexity\": \"+3617.05%\", \"drift_d1\": \"-4.10%\", \"drift_d2\": \"-8.78%\", \"drift_d3\": \"-11.95%\", \"drift_mauve\": \"-52.08%\", \"drift_effective_rank\": \"+111.90%\", \"D105_3sigma\": \"true 3sigma (std of full series)\", \"D111_direction\": \"peak_lag < 0 (C009 corrected)\", \"analysis_script\": \"run_5method_analysis_d102.py\", \"n_perm\": 5000, \"D120_recomputed\": \"2026-05-20\", \"D102_8pair\": \"canary=[token_entropy,ece] x downstream=[d1,d2,d3,mauve]\", \"ty_forward_sig\": 2, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 2, \"robust_pairs_K3\": 2, \"robust_pairs_K4\": 0}}, \"alpha_sweep_a075_s43\": {\"metrics\": {\"gen0\": {\"token_entropy\": 3.234, \"ece\": 0.0108, \"perplexity\": 26.95, \"distinct_1\": 0.0983, \"distinct_2\": 0.5132, \"distinct_3\": 0.8057, \"effective_rank\": 46.61, \"mauve\": 0.0335}, \"gen10\": {\"token_entropy\": 2.349, \"ece\": 0.204, \"perplexity\": 76.08, \"distinct_1\": 0.0666, \"distinct_2\": 0.2984, \"distinct_3\": 0.4838, \"effective_rank\": 79.4, \"mauve\": 0.0289}, \"drift_pct\": {\"token_entropy\": -27.38, \"ece\": 1791.96, \"perplexity\": 182.3, \"distinct_1\": -32.3, \"distinct_2\": -41.86, \"distinct_3\": -39.96, \"effective_rank\": 70.36, \"mauve\": -13.63}, \"PermG_fwd\": \"5/8\", \"PermG_rev\": \"0/8\", \"naive_xcorr_fwd_D111\": \"2/8\", \"diff_xcorr_fwd_D111\": \"6/8\", \"threshold_onset_3sigma\": \"8/8\", \"K3_3sigma\": \"7/8\", \"K4_3sigma\": \"5/8\", \"perm_granger_fdr_forward_sig\": 5, \"D105_D111_compliant\": true, \"M035_direction\": \"peak_lag < 0\", \"precision\": \"fp32\", \"n_perm\": 5000, \"pair_config\": \"canary=[token_entropy,ece] x downstream=[distinct_1,distinct_2,distinct_3,mauve]\", \"ty_forward_sig\": 2, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 2, \"robust_pairs_K3\": 2, \"robust_pairs_K4\": 0}}, \"alpha_sweep_a040_s42_fp32_v2\": {\"metrics\": {\"PermG_fwd\": \"0/8\", \"PermG_rev\": \"0/8\", \"K4_3sigma\": \"0/8\", \"K3_3sigma\": \"1/8\", \"threshold_onset_3sigma\": \"8/8\", \"naive_xcorr\": \"4/8\", \"diff_xcorr\": \"0/8\", \"drift_token_entropy\": \"-19.13%\", \"drift_ece\": \"+736.90%\", \"drift_distinct1\": \"-35.48%\", \"drift_distinct2\": \"-48.01%\", \"drift_distinct3\": \"-48.42%\", \"drift_mauve\": \"-23.04%\", \"drift_perplexity\": \"+5.36%\", \"D111_direction_check\": \"applied: naive 8/8→4/8, diff 3/8→0/8, K3 6/8→1/8, K4 1/8→0/8\"}}, \"alpha_sweep_a035_s42_fp32\": {\"metrics\": {\"PermG_fwd\": \"0/8\", \"PermG_rev\": \"0/8\", \"K_ge3_3sigma\": \"6/8\", \"K_ge4_3sigma\": \"2/8\", \"threshold_onset\": \"8/8\", \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"4/8\", \"detection_rate_k4\": 0.25, \"drift_pct\": {\"token_entropy\": -18.53, \"ece\": 651.26, \"perplexity\": -1.27, \"distinct_1\": -36.38, \"distinct_2\": -49.45, \"distinct_3\": -50.04, \"effective_rank\": 22.21, \"mauve\": -17.78}, \"gen0\": {\"token_entropy\": 3.234, \"ece\": 0.0108, \"perplexity\": 26.95, \"distinct_1\": 0.098, \"distinct_2\": 0.514, \"distinct_3\": 0.813, \"effective_rank\": 46.61, \"mauve\": 0.0311}, \"gen10\": {\"token_entropy\": 2.635, \"ece\": 0.0812, \"perplexity\": 26.61, \"distinct_1\": 0.0623, \"distinct_2\": 0.26, \"distinct_3\": 0.406, \"effective_rank\": 56.96, \"mauve\": 0.0256}, \"consensus_detail\": {\"K4_pairs\": [\"token_entropy->distinct_1\", \"ece->distinct_1\"], \"K3_pairs\": [\"token_entropy->distinct_2\", \"token_entropy->mauve\", \"ece->distinct_2\", \"ece->mauve\"], \"K2_pairs\": [\"token_entropy->distinct_3\", \"ece->distinct_3\"]}, \"n_generations\": 11, \"precision\": \"fp32\", \"onset_conclusion\": \"PermG=0/8 confirms onset >= 0.35; combined with a040(0/8) and a050(6/8), onset in [0.40, 0.50]\", \"ty_forward_sig\": 0, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 4, \"diff_xcorr_fdr_reverse_sig\": 4, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}}, \"alpha_sweep_a060_s42_fp32_v4\": {\"metrics\": {\"PermG_fwd\": \"0/8\", \"PermG_rev\": \"0/8\", \"diff_xcorr_fdr\": \"6/8\", \"naive_xcorr_fwd_D111\": \"2/8\", \"threshold_onset_3sigma\": \"0/8\", \"K_ge_3\": \"0/8\", \"K_ge_4\": \"0/8\", \"robust_pairs\": 0, \"n_gens\": 11, \"n_perm\": 5000, \"threshold_criterion\": \"true_3sigma_d105\", \"D105_3sigma\": \"true 3sigma (std of full series)\", \"D111_direction\": \"peak_lag < 0 (C009 corrected)\", \"D105_D111_compliant\": true, \"precision\": \"fp32\", \"pair_config\": \"canary=[token_entropy,ece] x downstream=[distinct_1,distinct_2,distinct_3,mauve]\", \"drift_token_entropy_pct\": -28.54, \"drift_ece_pct\": 1560.77, \"drift_perplexity_pct\": 92.33, \"drift_distinct1_pct\": -30.51, \"drift_distinct2_pct\": -38.67, \"drift_distinct3_pct\": -36.27, \"drift_mauve_pct\": -16.73, \"drift_effrank_pct\": 57.25, \"gen0_token_entropy\": 3.2342, \"gen0_ece\": 0.0108, \"gen0_perplexity\": 26.949, \"gen10_token_entropy\": 2.3111, \"gen10_ece\": 0.1794, \"gen10_perplexity\": 51.832, \"note\": \"Non-monotonic PermG dip: 0/8 despite drift comparable to α=0.75 (6/8). ece→distinct_1 raw p=0.034, ece→distinct_2 raw p=0.047 — marginal but FDR-corrected to non-significant. Replaces v3 (D125 excluded).\", \"ty_forward_sig\": 1, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}}, \"t20_a075_s42_fp32\": {\"metrics\": {\"PermG_fwd_fdr\": \"6/8\", \"PermG_rev_fdr\": \"0/8\", \"DiffXCorr_fdr_fwd\": \"7/8\", \"Threshold_3sigma\": \"6/8\", \"NaiveXCorr_fwd\": \"4/8\", \"verdict\": \"PASS\", \"predicted_permg\": 7, \"observed_permg\": 6, \"predicted_ci\": [6, 8], \"note\": \"T-invariance confirmed: T=10 6/8 → T=20 6/8. Mauve non-detection structural (p>0.4). Strong directionality fwd=6/8 rev=0/8.\", \"ty_forward_sig\": 5, \"perm_granger_fdr_forward_sig\": 6, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 7, \"diff_xcorr_fdr_reverse_sig\": 7, \"threshold_onset_forward_sig\": 6, \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 6}}, \"t20_a060_s42_fp32\": {\"metrics\": {\"PermG_fwd_fdr\": \"0/8\", \"PermG_rev_fdr\": \"0/8\", \"DiffXCorr_fdr_fwd\": \"6/8\", \"DiffXCorr_fdr_rev\": \"6/8\", \"Threshold_3sigma\": \"6/8\", \"TY_Granger_fwd\": \"5/8\", \"TY_Granger_rev\": \"3/8\", \"verdict\": \"PASS\", \"predicted_permg\": 0, \"observed_permg\": 0, \"note\": \"Sync-dip structural: T=10→T=20 PermG still 0/8. TY direction fix: fwd 3→5, rev 5→3, K≥3 3→4. te→d1 PermG raw p=0.048, FDR p=0.064 near-miss.\", \"ty_forward_sig\": 5, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 6, \"robust_pairs_K3\": 4, \"robust_pairs_K4\": 0}}, \"smollm3_3b_wiki_a100_s43_fp32\": {\"metrics\": {\"PermG_fwd_fdr\": \"3/8\", \"PermG_rev_fdr\": \"0/8\", \"DiffXCorr_fdr\": \"8/8\", \"note\": \"PermG 3/8 cross-seed replication (s42=3/8, s43=3/8). All via ECE channel. token_entropy U-shape confirmed both seeds. K≥3 diff driven by TY d_max instability (s43 I(0) vs s42 I(2)).\", \"ty_forward_sig\": 6, \"perm_granger_fdr_forward_sig\": 3, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 2, \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 4}}, \"scale_69b_a100_s43\": {\"metrics\": {\"PermG_fwd\": \"6/8\", \"PermG_rev\": \"0/8\", \"diff_xcorr_fdr\": \"6/8\", \"naive_xcorr\": \"6/8\", \"threshold_onset\": \"0/8\", \"d120_canonical\": true, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/scale_check/pythia69b_wiki_a100_s43/gen_10/checkpoint/\"}}, \"scale_69b_a100_s42\": {\"metrics\": {\"PermG_fwd\": \"7/8\", \"PermG_rev\": \"0/8\", \"diff_xcorr_fdr\": \"6/8\", \"naive_xcorr\": \"5/8\", \"threshold_onset\": \"2/8\", \"d120_canonical\": true, \"previous_K_ge3\": \"8/8\", \"note\": \"D120 canonical: K≥3 dropped 8/8→5/8. mauve pairs lost consensus. Core distinct_1/2/3 retained.\"}}, \"scale_14b_c4_s42_fp32\": {\"metrics\": {\"PermG_fwd\": \"8/8\", \"PermG_rev\": \"0/8\", \"diff_xcorr_fdr\": \"8/8\", \"naive_xcorr\": \"8/8\", \"threshold_onset\": \"0/8\", \"note\": \"D120 TY-fixed analysis. TY=0 due to T=11 low power (dmax=1, df_resid insufficient). Threshold=0 (signal too strong, all gens exceed threshold, no onset detectable).\", \"ty_forward_sig\": 2, \"perm_granger_fdr_forward_sig\": 8, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 8, \"robust_pairs_K4\": 2}}, \"scale_14b_a050_s42_fp32\": {\"metrics\": {\"PermG_fwd_fdr\": \"3/8\", \"PermG_rev_fdr\": \"0/8\", \"DiffXCorr_fdr_dir\": \"3/8\", \"NaiveXCorr_dir\": \"3/8\", \"Threshold_3sigma\": \"2/8\", \"ppl_drift_pct\": 78.7, \"token_entropy_drift_pct\": -25.6, \"note\": \"CORRECTED 2026-05-20: PermG 0/8→3/8. Original analysis used non-canonical pairs (metrics→perplexity). Canonical source: scale_check/pythia14b_a050_s42/ with 8 standard pairs {te,ece}×{d1,d2,d3,mauve}. 3/8 all via ece channel (ece→d1/d2/d3 fdr_p≈0.044).\", \"ty_forward_sig\": 0, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}}, \"qwen35_08b_wiki_a100_s43_fp32\": {\"metrics\": {\"PermG_fwd\": \"6/8\", \"PermG_rev\": \"0/8\", \"diff_xcorr_fdr\": \"6/8\", \"naive_xcorr\": \"6/8\", \"threshold_onset\": \"8/8\", \"d120_canonical\": true, \"note\": \"6 distinct_* pairs all K=5/5 (perfect). mauve pairs K=1/5 (peak_lag=+1, direction filter excluded). threshold_onset=8/8 strongest of any experiment.\", \"ty_forward_sig\": 6, \"perm_granger_fdr_forward_sig\": 6, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 5}}, \"qwen35_08b_wiki_a100_s42_v2\": {\"metrics\": {\"PermG_fwd\": \"8/8\", \"PermG_rev\": \"0/8\", \"diff_xcorr_fdr\": \"8/8\", \"naive_xcorr\": \"4/8\", \"threshold_onset\": \"0/8\", \"d120_canonical\": true, \"previous_K_ge3\": \"8/8\", \"note\": \"D120 canonical: K≥3 dropped 8/8→6/8. mauve pairs lost consensus. TY=6/8 strong contributor.\", \"ty_forward_sig\": 5, \"perm_granger_fdr_forward_sig\": 8, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 7, \"robust_pairs_K4\": 1}}, \"smollm3_3b_wiki_a100_s42_v3\": {\"metrics\": {\"PermG_fwd\": \"3/8\", \"PermG_rev\": \"0/8\", \"robust_pairs_K4_3sigma\": \"0/8\", \"robust_pairs_K3_3sigma\": \"0/8\", \"robust_pairs_K3_2sigma\": \"6/8\", \"robust_pairs_K4_2sigma\": \"3/8\", \"threshold_onset_3sigma\": \"0/8\", \"threshold_onset_2sigma\": \"8/8\", \"naive_xcorr\": \"4/8\", \"diff_xcorr\": \"6/8\", \"note\": \"D105+D111: FDR per-method, 3sigma, direction-checked. K≥3 corrected 3/8→0/8: 3sigma_recompute_v2 had naive_xcorr direction-blind bug (ECE pairs peak_lag<0 wrongly counted). Authoritative source: 5method_leadlag.json with peak_lag>0 check. PermG_fwd=3/8 (ECE→d1/d2/d3 via diff_xcorr+permG). naive_xcorr corrected 8/8→4/8 (entropy pairs only, ECE pairs all lag<0).\", \"ty_forward_sig\": 2, \"perm_granger_fdr_forward_sig\": 3, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 3, \"robust_pairs_K4\": 1}}, \"alpha_sweep_a045_s43_fp32\": {\"metrics\": {\"PermG_fwd\": \"0/8\", \"PermG_rev\": \"0/8\", \"K_ge_3\": \"2/8\", \"K_ge_4\": \"0/8\", \"naive_xcorr\": \"1/8\", \"diff_xcorr\": \"1/8\", \"threshold_onset\": \"8/8\", \"drift_entropy_pct\": -19.61, \"drift_ece_pct\": 800, \"drift_perplexity_pct\": 12.37, \"drift_distinct1_pct\": -34.69, \"drift_distinct2_pct\": -47.24, \"drift_distinct3_pct\": -47.55, \"drift_mauve_pct\": -18.78, \"drift_effrank_pct\": 26.45, \"gen0_token_entropy\": 3.2342, \"gen0_ece\": 0.0108, \"gen0_distinct_1\": 0.0983, \"gen0_perplexity\": 26.95, \"gen0_mauve\": 0.0315, \"gen10_token_entropy\": 2.5999, \"gen10_ece\": 0.0972, \"gen10_distinct_1\": 0.0642, \"gen10_perplexity\": 30.28, \"gen10_mauve\": 0.0256, \"ty_forward_sig\": 2, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 3, \"diff_xcorr_fdr_reverse_sig\": 3, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}}, \"alpha_sweep_a045_s42_fp32\": {\"metrics\": {\"permg_fwd\": 0, \"permg_rev\": 0, \"naive_xcorr\": 7, \"diff_xcorr\": 3, \"threshold_onset\": 8, \"total_pairs\": 8, \"drift_entropy_pct\": -18.73, \"drift_ece_pct\": 770.37, \"drift_d1_pct\": -35.39, \"drift_d2_pct\": -47.87, \"drift_d3_pct\": -47.79, \"drift_perplexity_pct\": 12.19, \"drift_mauve_pct\": -24.89, \"drift_effrank_pct\": 23.41, \"gen0_token_entropy\": 3.2342, \"gen10_token_entropy\": 2.6283, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.094, \"gen0_distinct_1\": 0.098, \"gen10_distinct_1\": 0.0633, \"gen0_perplexity\": 26.949, \"gen10_perplexity\": 30.234, \"gen0_mauve\": 0.0311, \"gen10_mauve\": 0.0234, \"onset_boundary\": \"[0.45, 0.50]\", \"ty_forward_sig\": 0, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}}, \"alpha_sweep_a030_s42_fp32\": {\"metrics\": {\"permg_fwd\": \"0/8\", \"permg_rev\": \"0/8\", \"naive_xcorr\": \"5/8\", \"diff_xcorr\": \"3/8\", \"threshold_onset\": \"8/8\", \"drift_entropy_pct\": -17.32, \"drift_ece_pct\": 549.38, \"drift_d1_pct\": -36.72, \"drift_d2_pct\": -49.75, \"drift_d3_pct\": -50.09, \"drift_mauve_pct\": -26.09, \"n_generations\": 11, \"n_perm\": 5000, \"D111_direction_check\": \"applied: naive 8/8→5/8, diff 4/8→3/8, K3 6/8→3/8, K4 unchanged 3/8\", \"ty_forward_sig\": 1, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 4, \"diff_xcorr_fdr_reverse_sig\": 4, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}}, \"alpha_sweep_a060_s43_fp32\": {\"metrics\": {\"perm_granger_fwd_fdr\": \"0/8\", \"perm_granger_rev_fdr\": \"0/8\", \"consensus_k4_3sigma\": \"3/8\", \"threshold_onset_3sigma\": \"8/8\", \"naive_xcorr\": \"7/8\", \"diff_xcorr_fdr\": \"6/8\", \"drift_pct\": {\"token_entropy\": -28.61, \"distinct_1\": -31.02, \"distinct_2\": -39.02, \"distinct_3\": -37.3, \"ece\": 1530.81, \"perplexity\": 85.11, \"mauve\": -10.96, \"effective_rank\": 61}, \"gen0\": {\"token_entropy\": 3.234, \"perplexity\": 26.949, \"distinct_1\": 0.098}, \"gen9\": {\"token_entropy\": 2.309, \"perplexity\": 49.885, \"distinct_1\": 0.068}, \"note\": \"T=10 (gen_0-9, gen_10 timeout EXIT_CODE=124), D108 non-monotonicity confirmed\", \"ty_forward_sig\": 1, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}}, \"interv_react_s43\": {}, \"scale_69b_a100_s43_fp32\": {}, \"alpha_sweep_a065_s42_fp32\": {}, \"t20_a025_s42_fp32\": {}, \"alpha_sweep_a075_s42\": {\"metrics\": {\"progress\": \"11/11 gen (complete)\", \"gen0_token_entropy\": 3.234, \"gen10_token_entropy\": 2.337, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.2063, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 76.03, \"gen0_distinct_1\": 0.0982, \"gen10_distinct_1\": 0.0661, \"gen0_distinct_2\": 0.5178, \"gen10_distinct_2\": 0.3037, \"gen0_distinct_3\": 0.8127, \"gen10_distinct_3\": 0.5011, \"token_entropy_drift_pct\": -27.7, \"ece_drift_pct\": 1809.5, \"perplexity_drift_pct\": 182.1, \"distinct_1_drift_pct\": -32.7, \"distinct_2_drift_pct\": -41.3, \"distinct_3_drift_pct\": -38.4, \"granger_ece_to_d1_p_fdr\": 0.046, \"granger_ece_to_d2_p_fdr\": 0.046, \"granger_entropy_to_d2_p_fdr\": 0.048, \"granger_entropy_to_d1_p_fdr\": 0.054, \"granger_fdr_sig_count\": \"3/8\", \"consensus_robust_pairs\": \"11/16\", \"xcorr_entropy_d1_lag\": 2, \"xcorr_entropy_d1_r\": 0.973, \"ty_forward_sig\": 2, \"perm_granger_fdr_forward_sig\": 6, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 4, \"robust_pairs_K4\": 0}}, \"gen_wiki_gpt2m_a100_s42\": {\"metrics\": {\"ty_forward_sig\": 4, \"perm_granger_fdr_forward_sig\": 6, \"perm_granger_fdr_reverse_sig\": 3, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 4}}, \"opt13b_wiki_a100_s43_fp32\": {\"metrics\": {\"threshold_onset_3sigma_m037\": \"already_3sigma_d105\", \"K3_3sigma_m037\": \"6/8\", \"K3_3sigma_d111_detail\": \"naive=8/8 diff=6/8 thr3s=0/8 pg=6/8 ty=5/8\", \"ty_forward_sig\": 3, \"perm_granger_fdr_forward_sig\": 6, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 2}}, \"alpha_sweep_a060_s42_fp32_v3\": {\"metrics\": {\"final_ppl\": 45.41, \"final_entropy\": 2.48, \"final_eff_rank\": 69.3, \"final_mauve\": 0.023, \"precision\": \"fp32\", \"token_entropy_drift\": -23.36, \"ece_drift\": 1260.23, \"perplexity_drift\": 68.52, \"distinct_1_drift\": -28.17, \"distinct_2_drift\": -37.22, \"distinct_3_drift\": -35.35, \"perm_granger_fwd\": \"3/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"8/8\", \"threshold_onset_fwd\": \"8/8\", \"consensus_k4\": \"7/8\", \"mmct_wpair_fwd\": 0.875, \"ty_forward_sig\": 5, \"perm_granger_fdr_forward_sig\": 3, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 3, \"robust_pairs_K4\": 2}}, \"alpha_sweep_a050_s42\": {\"metrics\": {\"progress\": \"11/11 gen (complete)\", \"gen0_token_entropy\": 3.234, \"gen10_token_entropy\": 2.632, \"gen0_ece\": 0.011, \"gen10_ece\": 0.102, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 32.64, \"gen0_distinct_1\": 0.098, \"gen10_distinct_1\": 0.062, \"gen0_distinct_2\": 0.518, \"gen10_distinct_2\": 0.251, \"gen0_distinct_3\": 0.813, \"gen10_distinct_3\": 0.387, \"token_entropy_drift_pct\": -18.6, \"ece_drift_pct\": 842.8, \"perplexity_drift_pct\": 21.1, \"distinct_1_drift_pct\": -37.3, \"distinct_2_drift_pct\": -51.5, \"distinct_3_drift_pct\": -52.4, \"granger_entropy_to_d1_p_raw\": 0.095, \"granger_entropy_to_d2_p_raw\": 0.097, \"granger_ece_to_d1_p_raw\": 0.019, \"granger_ece_to_d2_p_raw\": 0.039, \"granger_fdr_note\": \"4 tests within alpha=0.50; BH FDR threshold rank1=0.0125, rank2=0.025 → 0/4 FDR-sig at q=0.05. Raw p pattern (ECE < entropy) is qualitative signal only.\", \"d024_non_monotonic\": true, \"d024_ece_vs_entropy_note\": \"ECE raw p < entropy raw p at α=0.50 (0.019 vs 0.095 at 5000 perms), 0/4 FDR-sig; regime switch hypothesis pending α=0.75 confirmation\", \"ty_forward_sig\": 4, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 2, \"robust_pairs_K4\": 0}}, \"alpha_sweep_a060_s42_bf16\": {\"metrics\": {\"gen0\": {\"token_entropy\": 3.2574, \"ece\": 0.0123, \"perplexity\": 27.68, \"distinct_1\": 0.0914, \"distinct_2\": 0.5043, \"distinct_3\": 0.8329}, \"gen10\": {\"token_entropy\": 2.6404, \"ece\": 0.0426, \"perplexity\": 20.27, \"distinct_1\": 0.0663, \"distinct_2\": 0.3157, \"distinct_3\": 0.5707}, \"drift_pct\": {\"token_entropy\": -18.9, \"ece\": 246.5, \"perplexity\": -26.8, \"distinct_1\": -27.5, \"distinct_2\": -37.4, \"distinct_3\": -31.5}, \"lead_lag_unified_2sigma\": {\"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset_fwd\": \"6/8\", \"perm_granger_fwd\": \"8/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"0/8\", \"consensus_K4\": \"6/8\"}, \"mmct\": {\"uniform_forward\": \"0/8\", \"uniform_bidirectional\": \"0/8\", \"weighted_pair_forward\": \"6/8\", \"weighted_pair_bidirectional\": \"6/8\", \"weighted_global_forward\": \"0/8\", \"weighted_global_bidirectional\": \"0/8\"}, \"ty_forward_sig\": 4, \"perm_granger_fdr_forward_sig\": 4, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 4, \"robust_pairs_K4\": 2}}, \"pythia410m_wiki_a100_s43_fp32\": {\"metrics\": {\"threshold_onset_3sigma_m037\": \"unknown→true_3sigma\", \"K3_3sigma_m037\": \"6/8\", \"K3_3sigma_d111_detail\": \"naive=6/8 diff=6/8 thr3s=0/8 pg=6/8 ty=6/8\", \"caveat\": \"xcorr recomputed from raw metrics without FDR\", \"ty_forward_sig\": 4, \"perm_granger_fdr_forward_sig\": 6, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 4}}, \"alpha_sweep_a050_postd093_s42_fp32\": {\"metrics\": {\"threshold_onset_3sigma_m037\": \"unknown→true_3sigma\", \"K3_3sigma_m037\": \"3/8\", \"K3_3sigma_d111_detail\": \"naive=3/8 diff=2/8 thr3s=0/8 pg=6/8 ty=4/8\", \"ty_forward_sig\": 3, \"perm_granger_fdr_forward_sig\": 6, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 2, \"diff_xcorr_fdr_reverse_sig\": 2, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 2, \"robust_pairs_K4\": 0}}, \"interv_react_s43_bf16\": {\"metrics\": {\"ty_forward_sig\": 8, \"perm_granger_fdr_forward_sig\": 7, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 6, \"robust_pairs_K3\": 8, \"robust_pairs_K4\": 7}}, \"alpha_sweep_a025_s43\": {\"metrics\": {\"gen0\": {\"token_entropy\": 3.2342, \"ece\": 0.0108, \"perplexity\": 26.949, \"distinct_1\": 0.09833, \"distinct_2\": 0.5132, \"distinct_3\": 0.8057, \"effective_rank\": 46.61, \"mauve\": 0.03351}, \"gen10\": {\"token_entropy\": 3.0723, \"ece\": 0.02146, \"perplexity\": 21.899, \"distinct_1\": 0.05849, \"distinct_2\": 0.2236, \"distinct_3\": 0.333, \"effective_rank\": 45.37, \"mauve\": 0.01871}, \"drift_pct\": {\"token_entropy\": -5, \"ece\": 98.6, \"perplexity\": -18.7, \"distinct_1\": -40.5, \"distinct_2\": -56.4, \"distinct_3\": -58.7, \"effective_rank\": -2.7, \"mauve\": -44.2}, \"ty_forward_sig\": 0, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 2, \"diff_xcorr_fdr_reverse_sig\": 2, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}}, \"generalize_pythia410m_wiki_a100_s42\": {\"metrics\": {\"threshold_onset_3sigma_m037\": \"3x_sigma_drift→true_3sigma\", \"K3_3sigma_m037\": \"6/8\", \"K3_3sigma_d111_detail\": \"naive=7/8 diff=6/8 thr3s=2/8 pg=6/8 ty=1/8\", \"ty_forward_sig\": 3, \"perm_granger_fdr_forward_sig\": 6, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 2, \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 3}}, \"alpha_sweep_a055_s42_fp32\": {\"metrics\": {\"perm_granger_fwd\": 0, \"perm_granger_fwd_str\": \"0/8\", \"K_geq3\": 0, \"K_geq4\": 0, \"robust_pairs\": 0, \"diff_xcorr_fwd\": 8, \"threshold_onset_3sigma_fwd\": 0, \"ty_granger_fwd\": 1, \"naive_xcorr_fwd\": 1, \"perm_granger_p_fdr_range\": \"0.072\", \"token_entropy_drift_pct\": -27.1, \"ece_drift_pct\": 1402.8, \"perplexity_drift_pct\": 66.1, \"distinct_1_drift_pct\": -31.9, \"mauve_drift_pct\": -16.7, \"ty_forward_sig\": 4, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 1, \"robust_pairs_K4\": 0}}, \"intervention_reactive_s42\": {\"metrics\": {\"trigger_gen\": 2, \"trigger_distinct1_drop_pct\": -15.58, \"gen0_distinct_1\": 0.0982, \"gen0_ppl\": 26.95, \"gen0_entropy\": 3.234, \"gen2_distinct_1\": 0.0823, \"gen2_ppl\": 157.09, \"gen2_entropy\": 1.478, \"gen10_distinct_1\": 0.0844, \"gen10_ppl\": 21.24, \"gen10_entropy\": 3.071, \"gen10_ece\": 0.0152, \"gen10_mauve\": 0.0289, \"distinct_1_drift_pct\": -14.1, \"ppl_drift_pct\": -21.2, \"entropy_drift_pct\": -5, \"vs_no_intervention_ppl_gen10\": 1003.73, \"vs_no_intervention_distinct1_gen10\": 0.0704, \"recovery_complete_by_gen\": 4, \"converges_to_alpha0_baseline\": true, \"ty_forward_sig\": 4, \"perm_granger_fdr_forward_sig\": 8, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 8, \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 4}}, \"alpha_sweep_a025_s42_fp32\": {\"metrics\": {\"PermG_fwd\": \"0/8\", \"PermG_rev\": \"0/8\", \"K_ge_4\": \"0/8\", \"MMCT\": \"0/8\", \"MMCT_detection_rate\": 0, \"d1_drift_pct\": -39.15, \"d2_drift_pct\": -54.75, \"d3_drift_pct\": -56.98, \"mauve_drift_pct\": -41.86, \"entropy_drift_pct\": -4.79, \"ece_drift_pct\": 79.17, \"ppl_drift_pct\": -18.09, \"eff_rank_drift_pct\": -3.78, \"ppl_by_gen\": [26.95, 19.39, 20.37, 20.75, 21.14, 21.3, 21.48, 21.88, 21.9, 22.25, 22.07], \"entropy_by_gen\": [3.234, 2.983, 3.015, 3.039, 3.051, 3.034, 3.049, 3.067, 3.063, 3.104, 3.079], \"d1_by_gen\": [0.098, 0.0976, 0.0815, 0.0737, 0.0688, 0.0657, 0.0635, 0.0614, 0.061, 0.0601, 0.0596], \"mauve_by_gen\": [0.0311, 0.0314, 0.0326, 0.0318, 0.0314, 0.0272, 0.0242, 0.0221, 0.0207, 0.0207, 0.0181], \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"ty_granger_sig\": \"3/8\", \"consensus_detail_max_votes\": 3, \"hypothesis_validated\": true, \"note\": \"PermG=0/8 confirms α=0.25 is below phase transition. d1_drift=-39.15% is surprisingly large (> α=0.50's -28.7%), suggesting diversity collapse proceeds without Granger-detectable lead-lag at this α. token_entropy→distinct_1 had raw PermG p=0.007 but FDR-corrected p=0.053 (borderline).\", \"ty_forward_sig\": 1, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 3, \"diff_xcorr_fdr_reverse_sig\": 3, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}}, \"generalize_pythia1b_c4_a100_s43\": {\"metrics\": {\"threshold_onset_3sigma_m037\": \"3x_sigma_drift→true_3sigma\", \"K3_3sigma_m037\": \"6/8\", \"K3_3sigma_d111_detail\": \"naive=4/8 diff=8/8 thr3s=2/8 pg=8/8 ty=4/8\", \"ty_forward_sig\": 1, \"perm_granger_fdr_forward_sig\": 8, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 2, \"robust_pairs_K3\": 4, \"robust_pairs_K4\": 2}}, \"alpha_sweep_a050_s44_fp32\": {\"metrics\": {\"token_entropy_gen0\": 3.234, \"token_entropy_gen10\": 2.697, \"token_entropy_drift_pct\": -16.61, \"distinct_1_gen0\": 0.0915, \"distinct_1_gen10\": 0.066, \"distinct_1_drift_pct\": -27.93, \"distinct_2_drift_pct\": -34.64, \"distinct_3_drift_pct\": -30.6, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0874, \"ece_drift_pct\": 709.03, \"perplexity_gen0\": 26.949, \"perplexity_gen10\": 31.424, \"perplexity_drift_pct\": 16.61, \"effective_rank_drift_pct\": 25.06, \"mauve_drift_pct\": -13.88, \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset_fwd\": \"8/8\", \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": 0.75, \"precision\": \"fp32\", \"n_perm\": 5000, \"ty_forward_sig\": 3, \"perm_granger_fdr_forward_sig\": 6, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 4, \"robust_pairs_K4\": 2}}, \"interv_pred_s43_bf16\": {\"metrics\": {\"trigger_gen\": 1, \"trigger_entropy_drop_pct\": -22.54, \"gen0_ppl\": 27.68, \"gen0_entropy\": 3.2574, \"gen0_distinct_1\": 0.0917, \"gen0_ece\": 0.0123, \"gen1_ppl\": 24.65, \"gen1_entropy\": 2.5233, \"gen1_distinct_1\": 0.0897, \"gen1_ece\": 0.0469, \"gen2_ppl\": 17.49, \"gen2_entropy\": 2.9029, \"gen10_ppl\": 16.68, \"gen10_entropy\": 2.8169, \"gen10_eff_rank\": 58.8, \"gen10_mauve\": 0.0299, \"recovery_complete_by_gen\": 2, \"converges_to_alpha0_baseline\": true, \"precision_note\": \"bf16; collapse milder than fp32 s42 (entropy drop 22.54% vs 40.71%, ppl 24.65 vs 56.99) due to stochastic rounding regularization. Core pattern (G1 trigger, G2 recovery) confirmed.\", \"cross_seed_note\": \"s42(fp32): trigger G1 entropy -40.71%, ppl spike 56.99. s43(bf16): trigger G1 entropy -22.54%, no ppl spike. Pattern consistent, magnitude differs due to precision.\", \"ty_forward_sig\": 6, \"perm_granger_fdr_forward_sig\": 8, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 3, \"robust_pairs_K3\": 7, \"robust_pairs_K4\": 6}}, \"generalize_pythia1b_c4_a100_s42\": {\"metrics\": {\"D102_reanalysis\": \"→mauve (replacing →ppl)\", \"pair_config\": \"canary=[token_entropy,ece] × downstream=[distinct_1,distinct_2,distinct_3,mauve]\", \"n_perm\": 5000, \"perm_granger_fdr_forward_sig\": 8, \"diff_xcorr_fdr_forward_sig\": 8, \"threshold_forward_sig\": \"8/8\", \"ty_forward_sig\": 1, \"robust_pairs_K3\": 7, \"robust_pairs_K4\": 0, \"D102_note\": \"ppl→mauve统一后: robust 2→8, perm_fdr 6→8, diff_fdr 6→8, ty 1→4.\", \"K_ge3_D116\": \"~1/8\", \"K_ge4_D116\": \"0/8\", \"D116_note\": \"D105+D111 joint: threshold JSON 3x_sigma_drift=8/8 but registry threshold_onset_3sigma=0/8 (M034). D111 kills diff_fwd. Reviewer estimate ~1/8.\", \"perm_granger_fdr_reverse_sig\": 3, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 0}}, \"alpha_sweep_a050_s44\": {\"metrics\": {\"perm_granger_fdr_fwd\": \"3/8\", \"perm_granger_fdr_rev\": \"0/8\", \"consensus_ge3\": \"0/8\", \"consensus_ge4\": \"0/8\", \"naive_xcorr_fwd\": \"4/8\", \"diff_xcorr_fdr_fwd\": \"6/8\", \"threshold_onset_fwd\": \"0/8\", \"ty_granger_fwd\": \"0/8\", \"ece_d1_fdr_p\": 0.016, \"ece_d2_fdr_p\": 0.0408, \"ece_d3_fdr_p\": 0.0536, \"ece_ppl_fdr_p\": 0.0475, \"entropy_d1_fdr_p\": 0.0862, \"entropy_d2_fdr_p\": 0.0862, \"entropy_d3_fdr_p\": 0.0862, \"entropy_ppl_fdr_p\": 0.0862, \"cross_seed_note\": \"s42:0/8, s43:6/8, s44:3/8 — confirms boundary regime with high seed variance; ECE only canary with signal at α=0.50\", \"ty_forward_sig\": 2, \"perm_granger_fdr_forward_sig\": 2, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 2, \"robust_pairs_K4\": 1}}, \"alpha_sweep_a010_s43_fp32\": {\"metrics\": {\"token_entropy_drift\": -4.49, \"distinct_1_drift\": -22.08, \"distinct_2_drift\": -23.47, \"distinct_3_drift\": -16.39, \"perplexity_drift\": -18.04, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"6/8\", \"threshold_onset_fwd\": \"4/8\", \"consensus_k4\": \"0/8 (C003 corrected)\", \"precision\": \"fp32\", \"blind_zone_confirmed_fp32\": true, \"vs_bf16_note\": \"fp32 reduces drift ~2x but does not change detection failure (PermG=0/8, k4=0/8 same as bf16)\", \"ty_forward_sig\": 1, \"perm_granger_fdr_forward_sig\": 3, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 7, \"diff_xcorr_fdr_reverse_sig\": 7, \"threshold_onset_forward_sig\": 2, \"robust_pairs_K3\": 4, \"robust_pairs_K4\": 2}}, \"alpha_sweep_a040_s42_fp32\": {\"metrics\": {\"ty_forward_sig\": 2, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 3, \"diff_xcorr_fdr_reverse_sig\": 3, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 1, \"robust_pairs_K4\": 0}}, \"intervention_predictive_s42\": {\"metrics\": {\"trigger_gen\": 1, \"trigger_entropy_drop_pct\": -40.71, \"gen0_ppl\": 26.95, \"gen0_entropy\": 3.234, \"gen0_distinct_1\": 0.0982, \"gen0_ece\": 0.0108, \"gen1_ppl\": 56.99, \"gen1_entropy\": 1.918, \"gen1_distinct_1\": 0.0975, \"gen1_ece\": 0.205, \"gen2_ppl\": 20.81, \"gen2_entropy\": 3.055, \"gen10_ppl\": 21.29, \"gen10_entropy\": 3.079, \"gen10_eff_rank\": 44.1, \"gen10_mauve\": 0.0272, \"recovery_complete_by_gen\": 2, \"vs_reactive_trigger_advantage\": \"1 gen earlier\", \"vs_reactive_peak_ppl_reduction\": \"63% (56.99 vs 157.09)\", \"vs_reactive_recovery_advantage\": \"1 gen faster (Gen 2 vs Gen 4)\", \"converges_to_alpha0_baseline\": true, \"ty_forward_sig\": 1, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 8, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}}, \"alpha_sweep_a010_s43\": {\"metrics\": {\"token_entropy_drift\": -13.1, \"ece_drift\": -61.1, \"perplexity_drift\": -38.9, \"distinct_1_drift\": -29.1, \"distinct_2_drift\": -40.3, \"distinct_3_drift\": -31.9, \"effective_rank_drift\": 23.5, \"mauve_drift\": -46.3, \"naive_xcorr_fwd\": \"7/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset_fwd\": \"3/8\", \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"0/8\", \"k_gte4\": \"0/8\", \"ty_forward_sig\": 0, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}}, \"generalize_pythia14b_wiki_a100_s43\": {\"metrics\": {\"lead_lag\": {\"perm_granger_fdr_fwd\": \"6/8\", \"ty_granger_fwd\": \"3/8\", \"K_gte3\": \"3/8\", \"threshold_onset_3sigma\": \"0/8\", \"diff_xcorr_fdr_fwd\": \"8/8\"}, \"note\": \"M046 D120 canonical reanalysis: TY 4→3, K≥3 7→3, Threshold 8→0\", \"ty_forward_sig\": 2, \"perm_granger_fdr_forward_sig\": 6, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 2, \"robust_pairs_K4\": 0}}, \"alpha_sweep_a075_s44\": {\"metrics\": {\"gen0\": {\"token_entropy\": 3.234, \"ece\": 0.0108, \"perplexity\": 26.95, \"distinct_1\": 0.0982, \"distinct_2\": 0.5178, \"distinct_3\": 0.8127}, \"gen10\": {\"token_entropy\": 2.336, \"ece\": 0.206, \"perplexity\": 76.35, \"distinct_1\": 0.067, \"distinct_2\": 0.309, \"distinct_3\": 0.508}, \"drift_pct\": {\"token_entropy\": -27.8, \"ece\": 1774, \"perplexity\": 183.4, \"distinct_1\": -31.8, \"distinct_2\": -39.9, \"distinct_3\": -37.5}, \"ty_forward_sig\": 1, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 7, \"diff_xcorr_fdr_reverse_sig\": 7, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 1, \"robust_pairs_K4\": 0}}, \"generalize_pythia14b_wiki_a100_s42\": {\"metrics\": {\"lead_lag\": {\"perm_granger_fdr_fwd\": \"2/8\", \"ty_granger_fwd\": \"3/8\", \"K_gte3\": \"3/8\", \"threshold_onset_3sigma\": \"0/8\", \"diff_xcorr_fdr_fwd\": \"7/8\"}, \"note\": \"M046 D120 canonical reanalysis: TY 0→3, K≥3 1→3\", \"ty_forward_sig\": 0, \"perm_granger_fdr_forward_sig\": 2, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 7, \"diff_xcorr_fdr_reverse_sig\": 7, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 1, \"robust_pairs_K4\": 0}}, \"alpha_sweep_a010_s42_fp32\": {\"metrics\": {\"token_entropy_drift_pct\": -4.59, \"distinct_1_drift_pct\": -23.8, \"distinct_2_drift_pct\": -27.15, \"distinct_3_drift_pct\": -19.36, \"perplexity_drift_pct\": -18.94, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"consensus_k4\": \"2/8\", \"mmct_wpair_fwd\": \"2/8\", \"mmct_detection_rate\": 0.25, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\", \"blind_zone_confirmed\": true, \"cross_seed_permg_stable\": true, \"ty_forward_sig\": 4, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}}, \"generalize_opt1b_wiki_a100_s42\": {\"metrics\": {\"threshold_onset_3sigma_m037\": \"3x_sigma_drift→true_3sigma\", \"K3_3sigma_m037\": \"6/8\", \"K3_3sigma_d111_detail\": \"naive=7/8 diff=6/8 thr3s=2/8 pg=6/8 ty=0/8\", \"ty_forward_sig\": 0, \"perm_granger_fdr_forward_sig\": 6, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 7, \"diff_xcorr_fdr_reverse_sig\": 7, \"threshold_onset_forward_sig\": 2, \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 1}}, \"alpha_sweep_a010_s42\": {\"metrics\": {\"ty_forward_sig\": 1, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 5, \"diff_xcorr_fdr_reverse_sig\": 5, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}}, \"alpha_sweep_a050_s43\": {\"metrics\": {\"gen0_token_entropy\": 3.234195, \"gen0_ece\": 0.010805, \"gen0_perplexity\": 26.948959, \"gen10_token_entropy\": 2.672, \"gen10_ece\": 0.097, \"gen10_perplexity\": 32.633, \"gen0_distinct_1\": 0.09833, \"gen0_distinct_2\": 0.5132, \"gen0_distinct_3\": 0.8057, \"gen10_distinct_1\": 0.0624, \"gen10_distinct_2\": 0.2617, \"gen10_distinct_3\": 0.4126, \"token_entropy_drift_pct\": -17.4, \"ece_drift_pct\": 799, \"perplexity_drift_pct\": 21.1, \"distinct_1_drift_pct\": -36.5, \"distinct_2_drift_pct\": -49, \"distinct_3_drift_pct\": -48.8, \"cross_seed_note\": \"vs s42: drift direction identical, magnitude <7% deviation, ppl near-identical (32.633 vs 32.64)\", \"ty_forward_sig\": 0, \"perm_granger_fdr_forward_sig\": 1, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 4, \"diff_xcorr_fdr_reverse_sig\": 4, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 1, \"robust_pairs_K4\": 0}}, \"gen_gpt2m_a100_s43_bf16\": {\"metrics\": {\"token_entropy_gen0\": 3.6021, \"token_entropy_gen10\": 3.0035, \"token_entropy_delta_pct\": -16.6, \"distinct_1_gen0\": 0.1092, \"distinct_1_gen10\": 0.0724, \"distinct_1_delta_pct\": -33.7, \"distinct_2_delta_pct\": -39.6, \"distinct_3_delta_pct\": -33.5, \"ece_delta_pct\": 547.9, \"lead_lag\": {\"perm_granger_fdr_fwd\": \"0/8\", \"TY_granger_fwd\": \"3/8\", \"K_gte3\": \"0/8\", \"threshold_onset_3sigma\": \"0/8\", \"diff_xcorr_fdr_fwd\": \"N/A\"}, \"d120_canonical\": true, \"note\": \"M046 D120 canonical analysis on 17855. bf16 precision: PermG=0/8 vs fp32=6/8 (same config gen_gpt2m_a100_s43_fp32). bf16 stochastic rounding destroys causal signal completely.\", \"ty_forward_sig\": 3, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 5, \"diff_xcorr_fdr_reverse_sig\": 5, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}}, \"alpha_sweep_a005_s42_v3\": {\"metrics\": {\"final_ppl\": 20.81, \"final_entropy\": 3.04, \"final_eff_rank\": 45.3, \"final_mauve\": 0.023, \"precision\": \"fp32\", \"token_entropy_drift\": -5.96, \"ece_drift\": 55.41, \"perplexity_drift\": -22.78, \"distinct_1_drift\": -24.86, \"distinct_2_drift\": -28.42, \"distinct_3_drift\": -19.54, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"consensus_k4\": \"0/8\", \"mmct_wpair_fwd\": 0, \"ty_forward_sig\": 2, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 3, \"diff_xcorr_fdr_reverse_sig\": 3, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 2, \"robust_pairs_K4\": 0}}, \"alpha_sweep_a025_s44_fp32\": {\"metrics\": {\"drift_pct\": {\"d1\": -38.35, \"d2\": -53.44, \"d3\": -55.35, \"entropy\": -4.11, \"ece\": 68.01, \"ppl\": -16.27, \"mauve\": -40.63, \"eff_rank\": -0.87}, \"gen0_abs\": {\"token_entropy\": 3.234, \"distinct_1\": 0.0974, \"perplexity\": 26.95, \"ece\": 0.0108}, \"gen9_abs\": {\"token_entropy\": 3.101, \"distinct_1\": 0.06, \"perplexity\": 22.57, \"ece\": 0.0182}, \"lead_lag\": {\"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"consensus_k4\": \"0/8\", \"naive_xcorr\": \"8/8\", \"diff_xcorr\": \"0/8\", \"threshold_onset\": \"0/8\", \"ty_granger\": \"1/8\"}, \"mmct_detection_rate\": 0, \"ty_forward_sig\": 0, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 0, \"diff_xcorr_fdr_reverse_sig\": 0, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}}, \"alpha_sweep_a075_s42_fp32\": {\"metrics\": {\"n_generations\": 11, \"gen0\": {\"token_entropy\": 3.2342, \"ece\": 0.0108, \"perplexity\": 26.949, \"distinct_1\": 0.098, \"distinct_2\": 0.5141, \"distinct_3\": 0.8127, \"effective_rank\": 46.613, \"mauve\": 0.0311}, \"gen10\": {\"token_entropy\": 2.283, \"ece\": 0.2145, \"perplexity\": 77.697, \"distinct_1\": 0.0731, \"distinct_2\": 0.357, \"distinct_3\": 0.5957, \"effective_rank\": 78.06, \"mauve\": 0.0299}, \"drift_pct\": {\"token_entropy\": -29.41, \"ece\": 1885.41, \"perplexity\": 188.31, \"distinct_1\": -25.38, \"distinct_2\": -30.55, \"distinct_3\": -26.7, \"effective_rank\": 67.47, \"mauve\": -3.73}, \"lead_lag\": {\"PermG_fwd\": \"6/8\", \"PermG_rev\": \"0/8\", \"K_ge_4\": \"6/8\", \"MMCT_detection\": 0.75, \"TY_granger\": \"8/8\", \"naive_xcorr\": \"7/8\", \"diff_xcorr\": \"6/8\", \"threshold_onset\": \"8/8\"}, \"asymmetry\": \"strong (fwd=6, rev=0)\", \"ty_forward_sig\": 2, \"perm_granger_fdr_forward_sig\": 6, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 0}}, \"alpha_sweep_a050_s42_fp32\": {\"metrics\": {\"token_entropy_gen0\": 3.2342, \"token_entropy_gen10\": 2.7075, \"token_entropy_drift_pct\": -16.3, \"distinct_1_gen0\": 0.0916, \"distinct_1_gen10\": 0.0649, \"distinct_1_drift_pct\": -29.2, \"perplexity_gen0\": 26.95, \"perplexity_gen10\": 31.46, \"perplexity_drift_pct\": 16.8, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0868, \"ece_drift_pct\": 703.4, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"4/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": \"6/8\", \"precision\": \"fp32\", \"n_perm\": 5000, \"padding_side\": \"right (D093 fix NOT applied)\", \"ty_forward_sig\": 3, \"perm_granger_fdr_forward_sig\": 6, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 7, \"diff_xcorr_fdr_reverse_sig\": 7, \"threshold_onset_forward_sig\": 4, \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 3}}, \"alpha_sweep_a000_s44\": {\"metrics\": {\"gen0\": {\"token_entropy\": 3.2342, \"ece\": 0.0108, \"perplexity\": 26.949, \"distinct_1\": 0.0981, \"distinct_2\": 0.5132, \"distinct_3\": 0.8058, \"effective_rank\": 46.613}, \"gen10\": {\"token_entropy\": 3.0957, \"ece\": 0.0134, \"perplexity\": 21.616, \"distinct_1\": 0.0838, \"distinct_2\": 0.4665, \"distinct_3\": 0.7749, \"effective_rank\": 44.498}, \"drift_pct\": {\"token_entropy\": -4.3, \"ece\": 24, \"perplexity\": -19.8, \"distinct_1\": -14.6, \"distinct_2\": -9.1, \"distinct_3\": -3.8, \"effective_rank\": -4.5}, \"five_method\": {\"perm_granger_fdr_sig\": \"0/8\", \"ty_sig\": \"0/8\", \"robust_pairs_ge3\": \"0/8\", \"fpr_controlled\": true}, \"ty_forward_sig\": 0, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 3, \"diff_xcorr_fdr_reverse_sig\": 3, \"threshold_onset_forward_sig\": 2, \"robust_pairs_K3\": 1, \"robust_pairs_K4\": 0}}, \"alpha_sweep_a025_s44\": {\"metrics\": {\"ty_forward_sig\": 4, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 0, \"diff_xcorr_fdr_reverse_sig\": 0, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}}, \"alpha_sweep_a025_s43_fp32\": {\"metrics\": {\"drift_pct\": {\"d1\": -38.95, \"d2\": -53.35, \"d3\": -54.8, \"entropy\": -4.94, \"ece\": 64.77, \"ppl\": -18.38, \"mauve\": -35.59, \"eff_rank\": -1.99}, \"gen0_abs\": {\"token_entropy\": 3.234, \"distinct_1\": 0.0983, \"perplexity\": 26.95, \"ece\": 0.0108}, \"gen10_abs\": {\"token_entropy\": 3.069, \"distinct_1\": 0.0595, \"perplexity\": 21.95, \"ece\": 0.0218}, \"lead_lag\": {\"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"consensus_k4\": \"0/8\", \"mmct_detection_rate\": 0, \"ty_granger\": \"6/8\", \"naive_xcorr\": \"8/8\", \"threshold_onset\": \"4/8\"}, \"max_consensus_votes\": 3, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\", \"ty_forward_sig\": 1, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 0, \"diff_xcorr_fdr_reverse_sig\": 0, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}}, \"alpha_sweep_a000_s43\": {\"metrics\": {\"gen0\": {\"token_entropy\": 3.2342, \"ece\": 0.0108, \"perplexity\": 26.949, \"distinct_1\": 0.0983, \"distinct_2\": 0.5132, \"distinct_3\": 0.8057, \"effective_rank\": 46.613}, \"gen10\": {\"token_entropy\": 3.0907, \"ece\": 0.0148, \"perplexity\": 21.469, \"distinct_1\": 0.0847, \"distinct_2\": 0.4631, \"distinct_3\": 0.7672, \"effective_rank\": 43.72}, \"drift_pct\": {\"token_entropy\": -4.4, \"ece\": 37.2, \"perplexity\": -20.3, \"distinct_1\": -13.9, \"distinct_2\": -9.8, \"distinct_3\": -4.8, \"effective_rank\": -6.2}, \"five_method\": {\"perm_granger_fdr_sig\": \"0/8\", \"ty_sig\": \"1/8 (df_resid=1 unreliable)\", \"robust_pairs_ge3\": \"0/8\", \"fpr_controlled\": true}, \"ty_forward_sig\": 2, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 2, \"diff_xcorr_fdr_reverse_sig\": 2, \"threshold_onset_forward_sig\": 1, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}}, \"alpha_sweep_a000_s42\": {\"metrics\": {\"gen0_token_entropy\": 3.2342, \"gen10_token_entropy\": 3.0693, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.0164, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 21.11, \"gen0_distinct_1\": 0.0982, \"gen10_distinct_1\": 0.0847, \"token_entropy_drift_pct\": -5.1, \"ece_drift_pct\": 51.7, \"perplexity_drift_pct\": -21.7, \"distinct_1_drift_pct\": -13.8, \"distinct_2_drift_pct\": -9.8, \"distinct_3_drift_pct\": -4.5, \"gen1_10_perplexity_drift_pct\": 9.4, \"gen1_10_distinct_1_drift_pct\": -13.1, \"gen1_10_entropy_drift_pct\": 2.6, \"ty_forward_sig\": 2, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 4, \"diff_xcorr_fdr_reverse_sig\": 4, \"threshold_onset_forward_sig\": 3, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}}, \"t20_a045_s42_fp32\": {\"metrics\": {\"perm_granger_fdr_forward_sig\": 5, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 7, \"diff_xcorr_fdr_reverse_sig\": 7, \"threshold_onset_forward_sig\": 4, \"ty_forward_sig\": 2, \"robust_pairs_K3\": 3, \"robust_pairs_K4\": 1, \"n_generations\": 20, \"alpha\": 0.45, \"seed\": 42, \"threshold_criterion\": \"true_3sigma_d105\", \"predicted_permg\": 0, \"observed_permg\": 5, \"prediction_verdict\": \"FAIL\", \"observed_rate_in_predicted_ci\": true, \"blind_zone_conclusion\": \"power_issue_not_fundamental\"}}, \"data_strategy_ablation_s43\": {\"metrics\": {\"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 2, \"diff_xcorr_fdr_reverse_sig\": 2, \"threshold_onset_forward_sig\": 0, \"ty_forward_sig\": 3, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0, \"n_generations\": 10, \"alpha\": 0.5, \"seed\": 43, \"data_strategy\": \"accumulate\", \"baseline_exp\": \"alpha_sweep_a050_s43_fp32\", \"threshold_criterion\": \"true_3sigma_d105\"}}, \"t20_a050_s42_fp32\": {\"metrics\": {\"perm_granger_fdr_forward_sig\": 6, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 6, \"ty_forward_sig\": 2, \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 2, \"n_generations\": 20, \"alpha\": 0.5, \"seed\": 42, \"threshold_criterion\": \"true_3sigma_d105\"}}, \"t20_a100_s42_fp32\": {\"metrics\": {\"perm_granger_fdr_forward_sig\": 6, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 6, \"ty_forward_sig\": 2, \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 6, \"n_generations\": 20, \"alpha\": 1, \"seed\": 42, \"threshold_criterion\": \"true_3sigma_d105\"}}, \"generalize_pythia1b_c4_a100_s43_v2\": {\"metrics\": {\"lead_lag\": {\"perm_granger_fdr_fwd\": \"8/8\", \"ty_granger_fwd\": \"4/8\", \"K_gte3\": \"6/8\", \"threshold_onset_3sigma\": \"2/8\", \"diff_xcorr_fdr_fwd\": \"8/8\"}, \"note\": \"M046 D120 canonical reanalysis: TY 2→4, K≥3 5→6\"}}, \"data_strategy_ablation_s42\": {\"metrics\": {\"accumulate_permg_fwd\": \"0/8\", \"replace_permg_fwd\": \"6/8\", \"accumulate_K_gte3\": \"0/8\", \"replace_K_gte3\": \"6/8\", \"accumulate_TY\": \"4/8\", \"replace_TY\": \"4/8\", \"accumulate_entropy_drift\": \"-2.4%\", \"replace_entropy_drift\": \"-16.3%\", \"accumulate_ece_drift\": \"+89%\", \"replace_ece_drift\": \"+703%\", \"accumulate_distinct1_drift\": \"-27%\", \"replace_distinct1_drift\": \"-29%\"}}, \"alpha_sweep_a060_s42_fp32\": {}, \"alpha_sweep_a005_s42\": {}, \"interv_pred_a075_s42_fp32\": {}, \"interv_pred_14b_s42_fp32\": {}, \"interv_pred_a075_s42\": {}, \"gen_gpt2m_a100_s43_fp32\": {\"metrics\": {\"threshold_onset_3sigma_m037\": \"3x_sigma_drift→true_3sigma\", \"K3_3sigma_m037\": \"6/8\", \"K3_3sigma_d111_detail\": \"naive=7/8 diff=6/8 thr3s=0/8 pg=6/8 ty=4/8\"}}, \"alpha_sweep_a010_s42_bf16\": {}, \"scale_14b_a050_s42_bf16\": {}, \"method_ablation_phase3\": {\"metrics\": {\"n_alpha_points\": 10, \"alphas\": [0, 0.05, 0.1, 0.25, 0.35, 0.4, 0.5, 0.6, 0.75, 1], \"naive_sig_rates\": [1, 0.875, 0.875, 1, 1, 1, 1, 0.875, 0.875, 1], \"diff_sig_rates\": [0.5, 0.375, 0.75, 0.375, 0.5, 0.375, 0.875, 1, 0.75, 0.75], \"thresh_3sigma_rates\": [0.5, 0.625, 0.625, 0.625, 1, 1, 1, 1, 1, 1], \"permG_fwd_rates\": [0, 0, 0, 0, 0, 0, 0.75, 0.375, 0.75, 0.75], \"permG_rev_rates\": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], \"TY_rates\": [0.25, 0.375, 0.375, 0.375, 0.5, 0.5, 0.5, 1, 1, 0.375], \"K_ge3_rates\": [0.375, 0.375, 0.5, 0.5, 0.75, 0.75, 0.875, 1, 0.875, 0.75], \"K_ge4_rates\": [0, 0, 0.25, 0, 0.25, 0.125, 0.75, 0.875, 0.75, 0.75], \"regime_structure\": {\"null\": \"alpha<=0.40: PermG=0%, naive=87-100% FPR. 11 data points all PermG=0/8\", \"onset\": \"alpha=[0.40,0.50]: PermG jumps 0→75%, K≥4 jumps 0→75%\", \"sync_collapse\": \"alpha=0.60: PermG drops to 37.5% (non-monotonic, D108). BUT K≥4 peaks at 87.5% — TY complements PermG (TY=100% here vs 50% at α=0.50). MMCT multi-method consensus strongest at this α\", \"detection\": \"alpha>=0.75: PermG=75%, TY non-monotonic drop to 37.5-100%\"}, \"claim3_support\": \"strong: 4-regime dose-response with non-monotonic PermG at α=0.60 (sync collapse) and TY complementarity. Method choice directly determines conclusion validity. PermG 0% FPR in null regime = cleanest discriminator.\", \"D105_standard\": \"3sigma + FDR BH + n_perm=5000 + unified 8-pair\"}}, \"gen_gpt2m_a100_s43\": {}, \"qwen35_dryrun_launch\": {}, \"interv_react_s43_fp32\": {\"metrics\": {\"trigger_gen\": 2, \"trigger_distinct1_drop_pct\": -15.83, \"gen2_ppl\": 158.22, \"recovery_ppl\": 21.98, \"recovery_complete_by_gen\": 3, \"intervention_metric\": \"distinct_1\", \"intervention_threshold\": 0.1, \"intervention_alpha\": 0, \"gen0\": {\"token_entropy\": 3.234, \"perplexity\": 26.949, \"distinct_1\": 0.098}, \"gen9\": {\"token_entropy\": 3.079, \"perplexity\": 21.357, \"distinct_1\": 0.089}, \"gen10\": {\"token_entropy\": 3.088, \"perplexity\": 21.387, \"distinct_1\": 0.083}, \"note\": \"reactive intervention triggered at gen2 (d1=0.083 < threshold=0.1), alpha 1.0→0.0; ppl spike 26.9→158.2 recovered by gen3 to 22.0; d1 partial recovery 0.098→0.083→0.089\"}}, \"generalize_pythia1b_c4_a100_s42_v2\": {\"metrics\": {\"robust_pairs_K4_3sigma\": \"4/8\", \"robust_pairs_K3_3sigma\": \"8/8\", \"threshold_onset_3sigma\": \"0/8\", \"D105_3sigma_note\": \"D105 backfill: true 3sigma, fdr_permethod, unified 8-pair (canary={token_entropy,ece} x downstream={d1,d2,d3,mauve})\"}}, \"gen_wiki_gpt2m_a100_s42_v4\": {\"metrics\": {\"robust_pairs_K4_3sigma\": \"2/8\", \"robust_pairs_K3_3sigma\": \"6/8\", \"threshold_onset_3sigma\": \"0/8\", \"D105_3sigma_note\": \"True 3sigma recompute. threshold_onset dropped 6/8->0/8. K4 dropped 6/8->2/8. PermG/TY unchanged.\"}}, \"interv_pred_a075_s42_fp32_v4\": {\"metrics\": {\"final_ppl\": 20.81, \"final_entropy\": 3.05, \"final_eff_rank\": 44.8, \"final_mauve\": 0.031, \"precision\": \"fp32\", \"intervention_trigger_gen\": 1, \"recovery_gen\": 2, \"token_entropy_drift\": -5.74, \"ece_drift\": 55.78, \"perplexity_drift\": -22.76, \"distinct_1_drift\": -7.97, \"distinct_2_drift\": -5.22, \"distinct_3_drift\": -3.9, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"8/8\", \"threshold_onset_fwd\": \"0/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": 0.75}}, \"alpha_sweep_a060_s42_fp32_v2\": {}, \"qwen35_08b_wiki_a100_s42\": {}, \"smollm3_3b_wiki_a100_s42_v2\": {}, \"scale_14b_a050_s42\": {\"metrics\": {\"token_entropy_g0\": 2.946, \"token_entropy_g10\": 2.227, \"token_entropy_drift_pct\": -24.4, \"distinct_1_g0\": 0.0993, \"distinct_1_g10\": 0.0636, \"distinct_1_drift_pct\": -36, \"distinct_2_g0\": 0.521, \"distinct_2_g10\": 0.262, \"distinct_2_drift_pct\": -49.7, \"distinct_3_g0\": 0.813, \"distinct_3_g10\": 0.408, \"distinct_3_drift_pct\": -49.8, \"perplexity_g0\": 19.68, \"perplexity_g10\": 35.14, \"perplexity_drift_pct\": 78.6, \"mauve_g0\": 0.033, \"mauve_g10\": 0.024, \"mauve_drift_pct\": -28.2, \"ece_g0\": 0.007, \"ece_g10\": 0.153, \"effective_rank_g0\": 50.76, \"effective_rank_g10\": 82.21, \"num_generations\": 11}}, \"conditional_granger_d061\": {}, \"interv_pred_a075_s42_fp32_v2\": {}, \"smollm3_3b_wiki_a100_s42\": {}, \"alpha_sweep_c4_a050_s42_bf16\": {\"metrics\": {\"token_entropy_gen0\": 3.136, \"token_entropy_gen10\": 1.94, \"token_entropy_delta_pct\": -38.2, \"distinct_1_gen0\": 0.111, \"distinct_1_gen10\": 0.089, \"distinct_1_delta_pct\": -20.3, \"perplexity_gen0\": 24.4, \"perplexity_gen10\": 122.8, \"perplexity_delta_pct\": 402, \"mauve_gen0\": 0.691, \"mauve_gen10\": 0.078, \"ece_gen0\": 0.011, \"ece_gen10\": 0.259, \"diff_xcorr_te_d1_lag\": 1, \"diff_xcorr_te_d1_r\": 0.914, \"permg_fwd_fdr_sig\": \"0/8\", \"permg_rev_fdr_sig\": \"0/8\"}}, \"gen_opt13b_a100_s43_bf16\": {}, \"alpha_sweep_a010_s42_v2\": {}, \"interv_pred_s43\": {}, \"alpha_sweep_c4_a050_s42\": {}, \"alpha_sweep_a060_s42_v2\": {}, \"mvp_v4_rep45\": {\"metrics\": {\"gen0_token_entropy\": 3.234195, \"gen0_ece\": 0.010805, \"gen0_perplexity\": 26.948959, \"gen0_distinct_1\": 0.098574, \"gen0_distinct_2\": 0.51463, \"gen0_distinct_3\": 0.808362, \"gen10_token_entropy\": 1.31536, \"gen10_ece\": 0.41654, \"gen10_perplexity\": 1016.22, \"gen10_distinct_1\": 0.069859, \"gen10_distinct_2\": 0.329549, \"gen10_distinct_3\": 0.543743, \"token_entropy_drift_pct\": -59.3296, \"ece_drift_pct\": 3755.0671, \"perplexity_drift_pct\": 3670.9063, \"distinct_1_drift_pct\": -29.1304, \"distinct_2_drift_pct\": -35.9639, \"distinct_3_drift_pct\": -32.7352}}, \"mvp_v4_rep43\": {\"metrics\": {\"gen0_token_entropy\": 3.234195, \"gen0_ece\": 0.010805, \"gen0_perplexity\": 26.948959, \"gen0_distinct_1\": 0.098334, \"gen0_distinct_2\": 0.513178, \"gen0_distinct_3\": 0.805669, \"gen10_token_entropy\": 1.25961, \"gen10_ece\": 0.41951, \"gen10_perplexity\": 1014.66, \"gen10_distinct_1\": 0.070383, \"gen10_distinct_2\": 0.329651, \"gen10_distinct_3\": 0.539571, \"token_entropy_drift_pct\": -61.0534, \"ece_drift_pct\": 3782.5544, \"perplexity_drift_pct\": 3665.1176, \"distinct_1_drift_pct\": -28.4246, \"distinct_2_drift_pct\": -35.7628, \"distinct_3_drift_pct\": -33.0282}}, \"mvp_v4_rep42\": {\"metrics\": {\"gen0_token_entropy\": 3.234195, \"gen0_ece\": 0.010805, \"gen0_perplexity\": 26.948959, \"gen0_distinct_1\": 0.098216, \"gen0_distinct_2\": 0.517803, \"gen0_distinct_3\": 0.812728, \"gen10_token_entropy\": 1.27592, \"gen10_ece\": 0.41734, \"gen10_perplexity\": 1003.73, \"gen10_distinct_1\": 0.070383, \"gen10_distinct_2\": 0.335471, \"gen10_distinct_3\": 0.555579, \"token_entropy_drift_pct\": -60.5491, \"ece_drift_pct\": 3762.4711, \"perplexity_drift_pct\": 3624.5595, \"distinct_1_drift_pct\": -28.3386, \"distinct_2_drift_pct\": -35.2126, \"distinct_3_drift_pct\": -31.6402}}, \"gen_wiki_gpt2m_a025_s42\": {\"metrics\": {\"gen0\": {\"token_entropy\": 3.5714, \"ece\": 0.0112, \"perplexity\": 32.63, \"distinct_1\": 0.1044, \"distinct_2\": 0.5483, \"distinct_3\": 0.8441, \"effective_rank\": 2.3722, \"mauve\": 0.0315}, \"gen10\": {\"token_entropy\": 2.3999, \"ece\": 0.0583, \"perplexity\": 18.12, \"distinct_1\": 0.0799, \"distinct_2\": 0.375, \"distinct_3\": 0.5893, \"effective_rank\": 8.4833, \"mauve\": 0.0282}, \"drift_pct\": {\"token_entropy\": -32.81, \"ece\": 422, \"perplexity\": -44.47, \"distinct_1\": -23.47, \"distinct_2\": -31.6, \"distinct_3\": -30.19, \"effective_rank\": 257.6, \"mauve\": -10.48}, \"lead_lag_consensus\": {\"tier3_pairs\": 1, \"tier2_pairs\": 7, \"perm_granger_sig\": \"0/8\", \"ty_sig\": \"1/8\"}}}, \"mvp_v2_rep44\": {}, \"mvp_rep44\": {\"metrics\": {\"gen10_token_entropy\": 1.2205, \"gen10_ece\": 0.4237, \"gen10_perplexity\": 1033.16, \"gen10_distinct_1\": 0.0731, \"gen10_distinct_2\": 0.3637, \"gen10_distinct_3\": 0.6075}}, \"alpha_sweep_a025_s42\": {}, \"alpha_sweep_a025_s42_v2\": {}, \"alpha_sweep_a060_s42\": {}, \"plan_006_s43\": {}, \"gen_wiki_gpt2m_a100_s42_v3\": {\"metrics\": {\"token_entropy_drift_pct\": -86.5, \"ece_drift_pct\": 4543, \"perplexity_drift_pct\": 44703, \"distinct_1_drift_pct\": -12.4, \"distinct_2_drift_pct\": -14.7, \"distinct_3_drift_pct\": -12.7, \"five_method_forward_consensus\": \"6/6 pairs at 4/5 methods (Tier 3)\", \"five_method_reverse_consensus\": \"0/6 pairs\", \"naive_xcorr_forward\": \"|r|>0.98, all sig\", \"diff_xcorr_forward\": \"all p_fdr<0.001\", \"diff_xcorr_reverse\": \"all p>0.18 (clean directional separation)\", \"threshold_onset_entropy\": \"gen 1 (earliest canary)\", \"threshold_onset_ece\": \"gen 1-2\", \"threshold_onset_diversity\": \"gen 3\", \"perm_granger_forward\": \"p_fdr=0.003, BH corrected\", \"ty_granger_forward\": \"0/6 sig (df_resid=1-4, underpowered, consistent with Pythia C001)\", \"entropy_leads_diversity_lag\": \"1-2 gen\", \"ece_leads_diversity_lag\": \"1 gen\", \"diversity_plateau_from\": \"gen5\", \"cross_arch_note\": \"Replicates Pythia entropy-leads-diversity pattern at Tier 3 consensus. TY underpowered as expected.\"}}, \"mvp_v4_rep44\": {\"metrics\": {\"gen0_token_entropy\": 3.234195, \"gen0_ece\": 0.010805, \"gen0_perplexity\": 26.948959, \"gen0_distinct_1\": 0.098088, \"gen0_distinct_2\": 0.513235, \"gen0_distinct_3\": 0.805767, \"gen10_token_entropy\": 1.22049, \"gen10_ece\": 0.42369, \"gen10_perplexity\": 1033.16, \"gen10_distinct_1\": 0.073102, \"gen10_distinct_2\": 0.363737, \"gen10_distinct_3\": 0.607502, \"token_entropy_drift_pct\": -62.2629, \"ece_drift_pct\": 3821.2402, \"perplexity_drift_pct\": 3733.7659, \"distinct_1_drift_pct\": -25.473, \"distinct_2_drift_pct\": -29.1286, \"distinct_3_drift_pct\": -24.6057}}, \"plan_006_s42\": {\"metrics\": {\"progress\": \"18/20 gen (gen_0-17 complete, gen_18-20 timeout)\", \"gen0_token_entropy\": 3.2342, \"gen17_token_entropy\": 1.1819, \"gen0_ece\": 0.0108, \"gen17_ece\": 0.4454, \"gen0_perplexity\": 26.95, \"gen17_perplexity\": 3367.66, \"gen0_distinct_1\": 0.0982, \"gen17_distinct_1\": 0.0756, \"gen0_distinct_2\": 0.5178, \"gen17_distinct_2\": 0.3617, \"gen0_distinct_3\": 0.8127, \"gen17_distinct_3\": 0.5865, \"token_entropy_drift_pct_gen0_17\": -63.4, \"distinct_1_drift_pct_gen0_17\": -23, \"distinct_2_drift_pct_gen0_17\": -30.1, \"distinct_3_drift_pct_gen0_17\": -27.8, \"ece_drift_pct_gen0_17\": 4024, \"ppl_drift_pct_gen0_17\": 12395, \"phase1_rapid_collapse\": \"gen0-5\", \"phase2_apparent_plateau\": \"gen5-12\", \"phase3_secondary_decline\": \"gen13-17\", \"phase3_d2_decline_pct\": -5.8, \"phase3_d3_decline_pct\": -6.9, \"diversity_saturated_at_gen\": 5, \"diversity_secondary_decline_at_gen\": 13, \"perplexity_saturated\": false}}, \"plan_006_s42_resume\": {}, \"gen_wiki_gpt2m_a100_s42_v2\": {}, \"method_ablation_phase2\": {\"metrics\": {\"n_panel_rows\": 56, \"n_alphas\": 4, \"alphas\": [0, 0.25, 0.5, 1], \"naive_sig_rate_overall\": 1, \"perm_granger_sig_rate_a000_raw\": 0, \"perm_granger_sig_rate_a000_fdr\": 0, \"perm_granger_sig_rate_a025_raw\": 0.25, \"perm_granger_sig_rate_a025_fdr\": 0, \"perm_granger_sig_rate_a050_raw\": 0.25, \"perm_granger_sig_rate_a050_fdr\": 0, \"perm_granger_sig_rate_a100_raw\": 0.75, \"perm_granger_sig_rate_a100_fdr\": 0.75, \"TY_sig_rate_a000_raw\": 0, \"TY_sig_rate_a000_fdr\": 0, \"TY_sig_rate_a025_raw\": 0.625, \"TY_sig_rate_a025_fdr\": 0.375, \"TY_sig_rate_a050_raw\": 0, \"TY_sig_rate_a050_fdr\": 0, \"TY_sig_rate_a100_raw\": 0.5938, \"TY_sig_rate_a100_fdr\": 0.5938, \"diff_sig_rate_a000_raw\": 0.5, \"diff_sig_rate_a000_fdr\": 0.375, \"mean_inter_method_kappa\": 0.185, \"naive_vs_perm_granger_flip_rate\": 0.5, \"naive_vs_TY_flip_rate\": 0.57, \"fdr_flips_perm_granger\": 4, \"pair_verdict_a100_perm_granger\": \"6/8\", \"pair_verdict_a100_TY\": \"6/8\", \"entropy_to_diversity_a100_all_5methods_sig\": true, \"fdr_correction\": \"BH q=0.05\"}}, \"alpha_sweep_a025_s42_v3\": {\"metrics\": {\"gen0_token_entropy\": 3.2342, \"gen10_token_entropy\": 3.1017, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.01942, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 22.32, \"gen0_distinct_1\": 0.0982, \"gen10_distinct_1\": 0.0586, \"gen0_distinct_2\": 0.5178, \"gen10_distinct_2\": 0.2219, \"gen0_distinct_3\": 0.8127, \"gen10_distinct_3\": 0.3263, \"token_entropy_drift_pct\": -4.1, \"ece_drift_pct\": 79.7, \"perplexity_drift_pct\": -17.2, \"distinct_1_drift_pct\": -40.3, \"distinct_2_drift_pct\": -57.1, \"distinct_3_drift_pct\": -59.9}}, \"method_ablation_phase1\": {\"metrics\": {\"spurious_rate_5method\": 0.75, \"spurious_rate_4method\": 0.625, \"naive_sig\": \"16/16\", \"differenced_sig\": \"14/16\", \"threshold_sig\": \"9/16\", \"permutation_granger_sig\": \"6/16\", \"ty_sig\": \"4/16\", \"ty_power_T10\": \"0.05-0.20\", \"bh_fdr_flips\": 0}}, \"plan_009_bootstrap_ty\": {\"metrics\": {\"T10_d0_type1\": 0.081, \"T10_d0_power\": 0.205, \"T10_d1_type1\": 0.047, \"T10_d1_power\": 0.09, \"T10_dadapt_type1\": 0.052, \"T10_dadapt_power\": 0.05, \"T20_d0_power\": 0.409, \"T20_d1_power\": 0.172, \"T30_d0_power\": 0.606, \"T30_d1_power\": 0.283}}, \"mvp_v3_rep43\": {}, \"mvp_v3_rep42\": {}, \"mvp_v2_rep43\": {}, \"mvp_v2_rep42\": {}, \"mvp_rep43\": {}, \"mvp_rep42\": {}}, \"count\": 128, \"total\": 128, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4888}}"
+              }
+            }
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MpGZnrpgEqFQqrjf1oWGDN",
+              "name": "Bash",
+              "input": {
+                "command": "RFILE=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/ce888eb4-8047-4886-9242-e332bdd6aa09/tool-results/mcp-agent-ml-research-read_registry-1779314243533.txt\" && python3 -c \"\nimport json\n\nwith open('$RFILE') as f:\n    data = json.load(f)\n\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\ntarget_patterns = ['ty_granger', 'k_ge3', 'k_ge4', 'consensus_k3_3sigma']\n\nremaining = {}\nfor exp_id, exp in experiments.items():\n    metrics = exp.get('metrics', {})\n    if not isinstance(metrics, dict):\n        continue\n    for k, v in metrics.items():\n        if k.lower() in target_patterns and v is not None:\n            remaining.setdefault(exp_id, {})[k] = v\n\nif remaining:\n    print('REMAINING legacy fields:')\n    for exp_id, fields in sorted(remaining.items()):\n        print(f'  {exp_id}: {fields}')\nelse:\n    print('CLEAN: No legacy fields remaining in any experiment.')\n\"\n",
+                "description": "Verify no legacy fields remain after cleanup"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ce888eb4-8047-4886-9242-e332bdd6aa09",
+            "uuid": "50c33a3a-a356-4bf9-a025-5f9053e316da",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QqbgRzDM5eG2fGWWK9BQ4p",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 629,
+                "cache_read_input_tokens": 53313,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 629
+                },
+                "output_tokens": 56,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": "2026-05-20T21:57:30.131Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MpGZnrpgEqFQqrjf1oWGDN",
+              "type": "tool_result",
+              "content": "CLEAN: No legacy fields remaining in any experiment.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ce888eb4-8047-4886-9242-e332bdd6aa09",
+            "uuid": "57a7f340-cb5e-445a-afba-80e038b1618a",
+            "tool_use_result": {
+              "stdout": "CLEAN: No legacy fields remaining in any experiment.",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过，所有旧字段已清零。\n\n## 清理报告\n\n| 实验 | 删除字段 | 旧值 |\n|------|---------|------|\n| **alpha_sweep_a060_s43_fp32** (优先) | consensus_k3_3sigma | **7/8** (与 consensus_ge3=0 严重冲突) |\n| | ty_granger | 4/8 |\n| alpha_sweep_a030_s42_fp32 | k_ge3, k_ge4, ty_granger | 3/8, 3/8, 5/8 |\n| alpha_sweep_a035_s42_fp32 | TY_granger | 4/8 |\n| alpha_sweep_a040_s42_fp32_v2 | TY_granger | 4/8 |\n| alpha_sweep_a045_s42_fp32 | k_ge3, k_ge4, ty_granger | 3, 0, 1 |\n| alpha_sweep_a045_s43_fp32 | ty_granger | 7/8 |\n| alpha_sweep_a050_s43_fp32 | TY_granger | 5/8 |\n| alpha_sweep_a060_s42_fp32_v4 | TY_granger | 0/8 |\n| alpha_sweep_a075_s43 | TY_granger | 6/8 |\n| c4_a025_s42_fp32 | TY_granger | N/A (API error) |\n| c4_a050_s42_fp32 | TY_granger | N/A (API error) |\n| c4_a050_s43_fp32 | TY_granger | 0/8 |\n| c4_a075_s42_fp32 | TY_granger | N/A (API error) |\n| c4_a075_s43_fp32 | TY_granger | 1/8 |\n| padding_robustness_a100_s42_fp32 | TY_granger | N/A (API error) |\n| qwen35_08b_wiki_a100_s42_v2 | TY_granger, K_ge3, K_ge4 | 6/8, 6/8, 3/8 |\n| qwen35_08b_wiki_a100_s43_fp32 | TY_granger, K_ge3, K_ge4 | 6/8, 6/8, 6/8 |\n| scale_14b_a050_s42_fp32 | TY_Granger, K_ge3, K_ge4 | 0/8, 0/8, 0/8 |\n| scale_14b_c4_s42_fp32 | TY_granger, K_ge3, K_ge4 | 0/8, 8/8, 0/8 |\n| scale_69b_a100_s42 | TY_granger, K_ge3, K_ge4 | 1/8, 5/8, 0/8 |\n| scale_69b_a100_s43 | TY_granger, K_ge3, K_ge4 | 0/8, 6/8, 0/8 |\n| smollm3_3b_wiki_a100_s42_v3 | ty_granger | 0/8 |\n| smollm3_3b_wiki_a100_s43_fp32 | TY_Granger, K_ge3, K_ge4 | 6/8, 6/8, 3/8 |\n| t20_a060_s42_fp32 | K_ge3 | 4/8 |\n| t20_a075_s42_fp32 | TY_Granger, K_ge3 | 5/8, 6/8 |\n\n**总计：25 个实验、45 个旧字段已清理**（比预估多 — 大小写变体 `TY_granger`/`TY_Granger` 扩大了范围）。验证确认 registry 中不再有任何 `ty_granger`/`K_ge3`/`K_ge4`/`consensus_k3_3sigma` 残留。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ce888eb4-8047-4886-9242-e332bdd6aa09",
+            "uuid": "8dcbd374-6443-49b2-bc78-d5fc2414a118",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017iFdR4UBWQJwqKAYyCXoi1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 534,
+                "cache_read_input_tokens": 53942,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 534
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过，所有旧字段已清零。\n\n## 清理报告\n\n| 实验 | 删除字段 | 旧值 |\n|------|---------|------|\n| **alpha_sweep_a060_s43_fp32** (优先) | consensus_k3_3sigma | **7/8** (与 consensus_ge3=0 严重冲突) |\n| | ty_granger | 4/8 |\n| alpha_sweep_a030_s42_fp32 | k_ge3, k_ge4, ty_granger | 3/8, 3/8, 5/8 |\n| alpha_sweep_a035_s42_fp32 | TY_granger | 4/8 |\n| alpha_sweep_a040_s42_fp32_v2 | TY_granger | 4/8 |\n| alpha_sweep_a045_s42_fp32 | k_ge3, k_ge4, ty_granger | 3, 0, 1 |\n| alpha_sweep_a045_s43_fp32 | ty_granger | 7/8 |\n| alpha_sweep_a050_s43_fp32 | TY_granger | 5/8 |\n| alpha_sweep_a060_s42_fp32_v4 | TY_granger | 0/8 |\n| alpha_sweep_a075_s43 | TY_granger | 6/8 |\n| c4_a025_s42_fp32 | TY_granger | N/A (API error) |\n| c4_a050_s42_fp32 | TY_granger | N/A (API error) |\n| c4_a050_s43_fp32 | TY_granger | 0/8 |\n| c4_a075_s42_fp32 | TY_granger | N/A (API error) |\n| c4_a075_s43_fp32 | TY_granger | 1/8 |\n| padding_robustness_a100_s42_fp32 | TY_granger | N/A (API error) |\n| qwen35_08b_wiki_a100_s42_v2 | TY_granger, K_ge3, K_ge4 | 6/8, 6/8, 3/8 |\n| qwen35_08b_wiki_a100_s43_fp32 | TY_granger, K_ge3, K_ge4 | 6/8, 6/8, 6/8 |\n| scale_14b_a050_s42_fp32 | TY_Granger, K_ge3, K_ge4 | 0/8, 0/8, 0/8 |\n| scale_14b_c4_s42_fp32 | TY_granger, K_ge3, K_ge4 | 0/8, 8/8, 0/8 |\n| scale_69b_a100_s42 | TY_granger, K_ge3, K_ge4 | 1/8, 5/8, 0/8 |\n| scale_69b_a100_s43 | TY_granger, K_ge3, K_ge4 | 0/8, 6/8, 0/8 |\n| smollm3_3b_wiki_a100_s42_v3 | ty_granger | 0/8 |\n| smollm3_3b_wiki_a100_s43_fp32 | TY_Granger, K_ge3, K_ge4 | 6/8, 6/8, 3/8 |\n| t20_a060_s42_fp32 | K_ge3 | 4/8 |\n| t20_a075_s42_fp32 | TY_Granger, K_ge3 | 5/8, 6/8 |\n\n**总计：25 个实验、45 个旧字段已清理**（比预估多 — 大小写变体 `TY_granger`/`TY_Granger` 扩大了范围）。验证确认 registry 中不再有任何 `ty_granger`/`K_ge3`/`K_ge4`/`consensus_k3_3sigma` 残留。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 334717,
+            "duration_api_ms": 437413,
+            "num_turns": 22,
+            "stop_reason": "end_turn",
+            "session_id": "ce888eb4-8047-4886-9242-e332bdd6aa09",
+            "total_cost_usd": 2.09684475,
+            "usage": {
+              "input_tokens": 23,
+              "cache_creation_input_tokens": 42635,
+              "cache_read_input_tokens": 669816,
+              "output_tokens": 15935,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 42635,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 1116,
+                  "cache_read_input_tokens": 53942,
+                  "cache_creation_input_tokens": 534,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 534
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2153,
+                "outputTokens": 13,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002218,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 51,
+                "outputTokens": 31681,
+                "cacheReadInputTokens": 936281,
+                "cacheCreationInputTokens": 133473,
+                "webSearchRequests": 0,
+                "costUSD": 2.0946267499999998,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "9da951ed-1bcc-4b43-aa46-b0309a9d4440"
+          },
+          "id": "event-000187"
+        }
+      ]
+    }
+  ]
+}

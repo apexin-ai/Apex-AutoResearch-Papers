@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "233b3c0db7353e550f4e",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "reanalyze d102 k4 3sigma",
+  "task_key": "worker_reanalyze_d102_k4_3sigma_20260519T160816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_reanalyze_d102_k4_3sigma_20260519T160816_result.json",
+    "occurrence": 1,
+    "bytes": 1435,
+    "sha256": "c191c3b556e5e4b560f27690eed0c3c2091d38a81f5494d177219d81951be3c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个 registry 全部更新完成。汇总表：\n\n| 实验 | PermG fwd | PermG rev | K≥4(3σ) | K≥3(3σ) | Naive | DiffXCorr | Thr(3σ) | TY | K≥4(2σ) | K≥3(2σ) |\n|---|---|---|---|---|---|---|---|---|---|---|\n| pythia14b_wiki_s42 | 2/8 | 0/8 | **0/8** | 2/8 | 8/8 | 7/8 | 0/8 | 0/8 | 2/8 | 7/8 |\n| pythia14b_wiki_s43 | 6/8 | 2/8 | **3/8** | 6/8 | 7/8 | 8/8 | 0/8 | 3/8 | 6/8 | 7/8 |\n| pythia1b_c4_s42 | 8/8 | 3/8 | **4/8** | 8/8 | 8/8 | 8/8 | 0/8 | 4/8 | 8/8 | 8/8 |\n| pythia1b_c4_s43 | 8/8 | 0/8 | **5/8** | 8/8 | 8/8 | 8/8 | 2/8 | 4/8 | 8/8 | 8/8 |\n\n关键发现：\n\n1. **D102 的 `\"3x_sigma_drift\"` 标签是错误的** — 实际代码 `method_ablation._onset_gen` 用的是 `2 * sigma`。真正的 3σ 结果差异很大。\n\n2. **3σ threshold_onset 几乎全灭**：downstream 指标在 T=11 内很少突破 gen-0 + 3σ。canary（entropy gen1, ece gen2）能过 3σ，但 distinct_n 和 mauve 不行。唯一例外是 C4 s43 的两个 →mauve pair（onset gen 8）。\n\n3. **K≥4(3σ) 完全依赖其余 4 个方法的共识**：threshold 贡献 ≈0，因此 K≥4 需要 Naive + DiffXCorr + PermG + TY 全部显著才行。C4 域最强（4-5/8），Wiki 1.4B s42 最弱（0/8）。\n\n4. **K≥3(3σ) 对 C4 域依然完美**（8/8 × 2 seeds），Wiki 1.4B 有 seed 差异（s42=2/8, s43=6/8）。\n\nJSON 保存在服务器 `results/generalize/analysis/3sigma_recompute_v2.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/reanalyze-d102-k4-3sigma.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "459903080e2a6b0fb323",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "check c2 s42 progress",
+  "task_key": "worker_check_c2_s42_progress_20260525T103311",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_c2_s42_progress_20260525T103311_result.json",
+    "occurrence": 1,
+    "bytes": 572,
+    "sha256": "36bbb10e46aa873e9265092db79cf9c9c7955a135dbc89995ed2259f3dd42290"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**C2-s42 实验状态**:\n\n- **gen_0 ~ gen_9**: 全部完成（gen_9 已有 metrics.json + checkpoint）\n- **gen_10**: 正在训练中，step 3760/5000 (75%)，速度 2.05 it/s\n- **预估剩余**: gen_10 训练还剩 ~10 分钟（1240 steps / 2.05 it/s），之后还有 eval + metrics 计算\n- **无错误**，loss 0.9007，正常运行\n\n注意：目录里出现了 gen_10，但你说共 10 个 generation (gen 0-9)。可能配置实际是 11 个 generation，或者有额外的 evaluation generation。如果只需要 gen 0-9，实验已经完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-c2-s42-progress.md"
+}

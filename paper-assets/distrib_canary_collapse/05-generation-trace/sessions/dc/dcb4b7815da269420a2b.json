@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dcb4b7815da269420a2b",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "paper d057 updates",
+  "task_key": "worker_paper_d057_updates_20260518T003621",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d057_updates_20260518T003621_result.json",
+    "occurrence": 1,
+    "bytes": 1329,
+    "sha256": "6d29f081fa5463c3545716e202129b89537051e0434d0c85c6065e5f15b88768"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All modifications complete. Summary:\n\n**Modification 1 (Method text)**: Replaced BH FDR statement in experiments.tex with new 4-sentence description: independent testing at p<0.05, permutation exact p-values, cross-method consensus K≥4/5 as multiplicity control. All other FDR/BH references across the paper (experiments.tex, method.tex, abstract.tex, discussion.tex, introduction.tex, appendix.tex) updated for consistency.\n\n**Modification 2 (Table 7 headers)**: Caption updated from \"BH-corrected FDR significance\" to \"significance (permutation p<0.05)\".\n\n**Modification 3 (Table 7 data)**:\n- OPT-1.3B: Naive=8, Diff=8, Thresh=8, PG_fwd=6, PG_rev=0, TY=6, K≥4=6\n- C4 s42: Naive=8, Diff=8, Thresh=6, PG_fwd=8, PG_rev=3, TY=4, K≥4=7\n- Scale row verified correct (unchanged)\n- Footnote updated to explain the single non-consensus pair\n\n**Modification 4 (C4 ECE)**: Replaced 8-sentence bidirectionality paragraph with 4-sentence version noting s42 reverse significance (3/8) did not replicate in s43 (0/8), indicating seed-specific noise.\n\n**Modification 5 (Scale)**: Verified existing text already matches D057 values (K≥4=5/8, Thresh=8/8, TY=0/8).\n\nVerification: 0 em-dashes, 0 LaTeX errors, only 2 appropriate FDR mentions remain (our rationale text + intro's criticism of prior work)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-d057-updates.md"
+}

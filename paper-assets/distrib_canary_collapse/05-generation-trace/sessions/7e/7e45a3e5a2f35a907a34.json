@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e45a3e5a2f35a907a34",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis qwen35 08b wiki a100 s42 v2",
+  "task_key": "worker_analysis_qwen35_08b_wiki_a100_s42_v2_20260519T131606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen35_08b_wiki_a100_s42_v2_20260519T131606_result.json",
+    "occurrence": 1,
+    "bytes": 759,
+    "sha256": "e297deb1ea937e06459bcc9da15a89e0702379d89e046a054796e8aa05837757"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果总结\n\n- **conclusion: success**\n- PermG (FDR): **8/8** fwd, **0/8** rev — 完美单向因果\n- K≥4 consensus: **8/8**\n- MMCT (uniform_fwd): **1.0** (8/8)\n- TY Granger: 6/8\n- distinct_1 drift: **-32.50%**\n- distinct_2 drift: -45.99%\n- distinct_3 drift: -47.21%\n- token_entropy drift: **-54.03%**\n- ece drift: **+5643.53%**\n- mauve drift: -22.89%\n- perplexity: 20.55 → 1247.19 (+5969%)\n- GPU hours: 12.8h\n\n**关键发现**: Qwen3.5-0.8B (第5个独立架构族) 在 fp32 α=1.0 下展现出所有架构中最强的 canary→downstream lead-lag 信号——8/8 pair 全部 PermG 正向显著且 0/8 反向显著，跨架构泛化完全确认。与 Pythia-410M (~75% PermG) 相比，Qwen3.5 的信号更为清晰。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen35-08b-wiki-a100-s42-v2.md"
+}

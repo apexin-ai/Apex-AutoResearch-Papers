@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "66640f78939963396c9e",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "figure d150 enhanced dose response",
+  "task_key": "worker_figure_d150_enhanced_dose_response_20260520T144439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_d150_enhanced_dose_response_20260520T144439_result.json",
+    "occurrence": 1,
+    "bytes": 15,
+    "sha256": "ce4a1647d45fe2a4c49a27ff15d18a962283163096043939113e1780f0c8cb91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-d150-enhanced-dose-response.md"
+}

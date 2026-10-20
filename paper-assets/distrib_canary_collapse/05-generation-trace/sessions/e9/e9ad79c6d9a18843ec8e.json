@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "e9ad79c6d9a18843ec8e",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "paper d219 fpr claim inventory",
+  "task_key": "worker_paper_d219_fpr_claim_inventory_20260524T073707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d219_fpr_claim_inventory_20260524T073707.log",
+    "occurrence": 1,
+    "bytes": 1725669,
+    "sha256": "6acbe1fb3c485439f6cf4ea3480660d7f104d77c4a91747436f6a2719624a8b0"
+  },
+  "statistics": {
+    "messages": 182,
+    "user_turns": 0,
+    "tool_calls": 71,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 36,
+      "tool_call": 71,
+      "tool_result": 71,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 182,
+      "chunks": [
+        {
+          "path": "e9ad79c6d9a18843ec8e-part-0001.json",
+          "message_count": 99
+        },
+        {
+          "path": "e9ad79c6d9a18843ec8e-part-0002.json",
+          "message_count": 15
+        },
+        {
+          "path": "e9ad79c6d9a18843ec8e-part-0003.json",
+          "message_count": 68
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-d219-fpr-claim-inventory.md"
+}

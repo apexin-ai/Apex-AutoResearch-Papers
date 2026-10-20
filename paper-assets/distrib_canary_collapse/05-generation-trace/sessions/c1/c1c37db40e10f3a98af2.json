@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c1c37db40e10f3a98af2",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis a048 s43 5method",
+  "task_key": "worker_analysis_a048_s43_5method_20260521T072703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_a048_s43_5method_20260521T072703_result.json",
+    "occurrence": 1,
+    "bytes": 579,
+    "sha256": "95cf0af7ebf512669903156e0aa861e846f4fdfc59c82f7a0c7610b4bfc2167c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n| Metric | Value |\n|--------|-------|\n| PermG_fwd (FDR) | **0/8** |\n| PermG_rev (FDR) | 0/8 |\n| DiffXCorr_fwd (FDR) | 5/8 |\n| DiffXCorr_rev (FDR) | 5/8 |\n| Threshold onset (3σ) | 0/8 |\n| TY_fwd | 2/8 (C003: 不可引用) |\n| **K≥3** | **0/8** |\n| **K≥4** | **0/8** |\n\n**Drift**: token_entropy -19%, distinct_1/2/3 -35~48%, ece +835%, perplexity +18%, mauve -16%\n\n**结论**: α=0.48 s43 PermG=0/8，与 s42 完全一致，**blind zone cross-seed confirmed**。Registry 已更新为 DONE/success，artifact 已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-a048-s43-5method.md"
+}

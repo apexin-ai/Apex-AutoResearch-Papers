@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b44c06a71b39d4146e55",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "writing literature integration",
+  "task_key": "worker_writing_literature-integration_20260515T210855",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_literature-integration_20260515T210855_result.json",
+    "occurrence": 1,
+    "bytes": 892,
+    "sha256": "af32b33b65b0158544765fbb1383271e78475aef8e58bbcf11d4e0415677a3c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits confirmed across all files:\n\n**references.bib** — 5 entries added:\n- `cao2025entropycal` (NeurIPS 2025) — CANARY section\n- `sahoo2026calibration` — CANARY section\n- `falahati2026curated` (ICML 2026) — DATA MIXING section\n- `ruiz2026causalaudit` — METHODOLOGY section\n- `yi2026causalcompass` — METHODOLOGY section\n\n**related_work.tex** (docs + artifacts) — 3 sentences added after Lead-lag methodology paragraph:\n- Causal-Audit ex ante pre-screening vs our ex post consensus\n- CausalCompass confirms no single method dominates → multi-method necessity\n- Sahoo (ECE sensitivity) and Falahati (pluralistic curation) cited inline\n\n**discussion.tex** (docs + artifacts) — 1 sentence added after \"scoped to distinct-$n$\" limitation:\n- Cao et al. calibration-diversity tradeoff explains why token entropy leads diversity but not perplexity"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-literature-integration.md"
+}

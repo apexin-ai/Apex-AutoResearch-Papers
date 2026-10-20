@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b047a7fa97091141e9c9",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops status check westd",
+  "task_key": "worker_ops_status-check-westd_20260514T212959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_status-check-westd_20260514T212959_result.json",
+    "occurrence": 1,
+    "bytes": 669,
+    "sha256": "c19d36bbccc06f93ff3d5310c5302863e855ae6bc66dcd2281349d4732b8640d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 3 个进程存活：\n\n| 任务 | PID | 运行时长 | 状态 |\n|------|-----|---------|------|\n| alpha_sweep_a000_s42 (α=0.0, cuda:0) | 46716 | **2h 28m 56s** | 运行中 |\n| alpha_sweep_a025_s42_v3 (α=0.25, cuda:1) — wrapper | 53069 | **26m 28s** | 运行中 |\n| alpha_sweep_a025_s42_v3 (α=0.25, cuda:1) — python | 53074 | **26m 28s** | 运行中 |\n\nGPU 利用率：\n\n| GPU | 利用率 | 显存占用 |\n|-----|--------|---------|\n| GPU 0 | 43% | 14,391 / 97,887 MiB |\n| GPU 1 | 68% | 12,753 / 97,887 MiB |\n\n两个实验均正常运行，GPU 都在活跃计算。α=0.0 已跑约 2.5 小时，α=0.25 刚启动约半小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-status-check-westd.md"
+}

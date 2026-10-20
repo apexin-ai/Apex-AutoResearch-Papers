@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c23ba386f840f882a1e8",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops check a050 and verify data",
+  "task_key": "worker_ops_check-a050-and-verify-data_20260515T044616",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-a050-and-verify-data_20260515T044616_result.json",
+    "occurrence": 1,
+    "bytes": 1569,
+    "sha256": "448a2ede66fafc8383c6149cb68f1339f2c7d1fe1235e3d420e7dd6f28a00b83"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 1. a050_s42 进度\n\n**未完成，当前在 gen_8（训练中）。**\n\n- gen_0 ~ gen_7 已完成，gen_8 正在跑（有 `synthetic_data/` 和 `trainer/`，尚未产出 metrics）\n- gen_9 尚未开始\n- 进程 73737 **仍在运行**，已运行 `03:26:41`\n- 配置：`num_generations 10`, `synthetic_ratio 0.50`, `seed 42`, `CUDA_VISIBLE_DEVICES=1`\n\n预计还需 ~50 分钟完成（gen_8 剩余训练 + gen_9 完整周期，按每代 ~25min 估算）。\n\n---\n\n### 2. α=0.25 数据源核实\n\n- **`a025_s42_v3/` 不存在**\n- **`a025_s42/` 是唯一版本**，已完成，有 `EXIT_CODE` 和顶层 `all_metrics.json`\n- 实际跑了 **11 代**（gen_0 ~ gen_10），不是 10 代\n\ndose-response worker 用的 `a025_s42` 就是正式数据，不存在版本混淆问题。\n\n**a025_s42 关键指标（gen_0 → gen_10）：**\n\n| 指标 | gen_0 | gen_9 | gen_10 | drift (gen_0→gen_10) |\n|------|-------|-------|--------|---------------------|\n| distinct_1 | 0.0982 | 0.0590 | 0.0586 | **-40.4%** |\n| distinct_2 | 0.5178 | 0.2290 | 0.2219 | **-57.1%** |\n| distinct_3 | 0.8127 | 0.3438 | 0.3263 | **-59.9%** |\n| perplexity | 26.95 | 22.51 | 22.32 | -17.2% |\n| mauve | 0.0341 | 0.0167 | 0.0163 | -52.3% |\n| effective_rank | 46.61 | 46.04 | 45.30 | -2.8% |\n\n---\n\n### 3. MVP (α=1.0) 数据路径\n\n- **`results/mvp/`** — 4 个种子的重复实验：`rep_42`, `rep_43`, `rep_44`, `rep_45`，加上 `analysis/` 目录\n- **`results/extended_20gen/`** — 包含 `s42/` 子目录（20 代扩展实验）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-a050-and-verify-data.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97080fda437180e65dbd",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops check gpu status 17855",
+  "task_key": "worker_ops_check-gpu-status-17855_20260522T050824",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-gpu-status-17855_20260522T050824_result.json",
+    "occurrence": 1,
+    "bytes": 1368,
+    "sha256": "5ad770b40440b31ab376996936e098115be5eac372c5e7af4db807a3c7f5885f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-17855 实验状态汇总\n\n### GPU 状态\n| GPU | 利用率 | 显存占用 | 总显存 |\n|-----|--------|----------|--------|\n| 0 | **0%** | 14.3G | 95.6G |\n| 1 | 96% | 13.9G | 95.6G |\n| 2 | 94% | 13.9G | 95.6G |\n| 3 | 94% | 14.1G | 95.6G |\n| 4 | 89% | 13.9G | 95.6G |\n| 5 | 97% | 13.9G | 95.6G |\n\n### 实验进度\n\n| 实验 | PID | GPU | 状态 | 进度 | 运行时间 |\n|------|-----|-----|------|------|----------|\n| **t25_a060_v3★** | 582540 | cuda:3 | **ALIVE** | gen_22 训练中 (22/25) | 4h07m |\n| t25_a050_v3 | 582618 | cuda:0 | **ALIVE** | gen_21 训练中 (21/25) | 4h07m |\n| t15_a075_s43 | 582768 | cuda:1 | **ALIVE** | gen_10 训练中 (10/15) | 4h07m |\n| t10_a075_s43 | 586115 | cuda:2 | **ALIVE** | gen_9 训练中 (**9/10, 最后一个 gen**) | 3h42m |\n| t20_a075_s43 | 603933 | cuda:4 | **ALIVE** | gen_2 训练中 (2/20) | 58m |\n| t25_a045_s43 | 577236 | cuda:5 | **ALIVE** | gen_12 训练中 (12/25) | 4h49m |\n\n### 要点\n- 全部 6 个实验**进程存活**，正常运行\n- **t10_a075_s43** 即将完成（最后 1 个 gen）\n- **t25_a060_v3★** 和 **t25_a050_v3** 接近完成（剩余 3-4 个 gen）\n- **t20_a075_s43** 刚启动约 1 小时，进度较早（2/20）\n- GPU 0 利用率 0% 但 t25_a050_v3 (cuda:0) 进程存活——可能正在做非 GPU 操作（数据生成/保存阶段）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-gpu-status-17855.md"
+}

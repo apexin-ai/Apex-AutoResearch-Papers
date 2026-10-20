@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd8c3673faa33544e9b8",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis r5 first differencing sim",
+  "task_key": "worker_analysis_r5_first_differencing_sim_20260520T204921",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r5_first_differencing_sim_20260520T204921_result.json",
+    "occurrence": 1,
+    "bytes": 912,
+    "sha256": "377753a10512928f133d0fb2ae11c2fa0f2d365f5ba8d202a4a326d461940671"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n### J2 First-Differencing Power Simulation (T=11, 1000 reps, 200 perms)\n\n| Effect | β | Raw Power | Diff Power | Perm Power | Diff Loss | Perm Retention |\n|--------|-----|-----------|------------|------------|-----------|----------------|\n| Small | 0.1 | 0.117 | 0.075 | 0.087 | **35.9%** | 74.4% |\n| Medium | 0.3 | 0.201 | 0.131 | 0.160 | **34.8%** | 79.6% |\n| Large | 0.6 | 0.458 | 0.250 | 0.387 | **45.4%** | 84.5% |\n\n**结论：First-differencing 在 T=11 下平均损失 39% 统计功效。Permutation Granger 保留了 80% 的 raw-levels 功效，无需差分。**\n\n实证 DGP（a050_s42_fp32 token_entropy→perplexity）的 Cohen's f² = 4.81，远超 \"large\" 标准（0.35），说明我们实验中的因果信号极强，但 T=11 的短序列仍严重制约检验功效。\n\n输出已保存到 `artifacts/j2_first_diff_power_simulation.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r5-first-differencing-sim.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "754b3cb7f3f68337d3b7",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis gpt2m metrics and leadlag",
+  "task_key": "worker_analysis_gpt2m_metrics_and_leadlag_20260515T221815",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gpt2m_metrics_and_leadlag_20260515T221815_result.json",
+    "occurrence": 1,
+    "bytes": 996,
+    "sha256": "e9c04862cd5455a83a279c3466c28a527bb7d5f65bb759a1e7205e4205d50b71"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。核心结果：\n\n**Registry 已更新** — gen0/gen10 metrics + drift_pct（entropy −86.5%, ECE +4543%, perplexity +44703%, d1/d2/d3 −12~15%）。\n\n**Lead-lag 分析关键发现：**\n\n| | Full (T=11) | Sub (T=6) |\n|---|---|---|\n| Forward sig (FDR) | **6/6** | 0/6 |\n| Reverse sig (FDR) | 3/6 (仅 diversity→ece) | 2/6 (不可靠, df_resid=1) |\n| Forward mean f² | 66.15 | — |\n\n- **Full window:** canary→diversity 全部显著，entropy 领先 diversity 1–2 代，ECE 领先 1 代。方向性清晰（forward f² 是 reverse 的 19×）。\n- **Sub-window:** df_resid=1，Granger 完全无力。但 cross-correlation |r|>0.99，信号存在只是检验力不够。\n- **GPT-2 Medium 复现了 Pythia 的 entropy-leads-diversity pattern**，支持跨架构泛化。\n- Diversity 从 gen5 起 plateau（d1 从 0.0915 到 0.0914），印证 Reviewer 的判断。\n\n报告和 JSON 结果已保存并注册（artifact `art_20260515_533dd2`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gpt2m-metrics-and-leadlag.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e0094463494048a0b46",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "writing d170 narrative t15 upgrade",
+  "task_key": "worker_writing_d170-narrative-t15-upgrade_20260521T201358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_d170-narrative-t15-upgrade_20260521T201358_result.json",
+    "occurrence": 1,
+    "bytes": 833,
+    "sha256": "224206891696c5b63d908cacbec81dbd4172c8dd07e2247ae206ecf07cc178f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D170 已更新。变更摘要：\n\n- **文件顶部**新增 Phase Diagram 数据表（16/20 cells）\n- **Abstract Option B**：sync-dip 从 \"persisting across $T$\" → 明确 \"three observation lengths ($T{=}10$, $15$, $20$: all 0/8)\"\n- **Intro C1**：加入 T≥15 landscape stabilization、T=15 vs T=20 近镜像 profile、3-T sync-dip\n- **Results**：新增三个段落——\n  - `$T{=}15$ confirms the predicted left-shift`：α=0.45 从 0/8→6/8 作为 α_c(T) predict-then-verify\n  - `Detection landscape stabilizes at $T{\\geq}15$`：T=15≈T=20 镜像，boundary-adjacent 5/8→6/8 解释\n  - `6/8 detection ceiling and the synchronous dip`：7-cell ceiling + 3-T invariant sync-dip\n- **备注**补充 5 条 [UPDATED] 记录\n\n所有数字与指令表一致，所有修改处标注 `[UPDATED]`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-d170-narrative-t15-upgrade.md"
+}

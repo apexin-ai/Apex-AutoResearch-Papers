@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aefc4d79acd30f645516",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis t20 a075 s42 fp32",
+  "task_key": "worker_analysis_t20_a075_s42_fp32_20260520T182930",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_t20_a075_s42_fp32_20260520T182930_result.json",
+    "occurrence": 1,
+    "bytes": 1370,
+    "sha256": "af37ea9d87ee1a568a9a9ae57f2d66335fbea75eca62e7052e54ad16822059b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## T=20 α=0.75 s42 fp32 分析结果\n\n### 核心指标\n\n| 指标 | 值 |\n|------|-----|\n| **PermG Forward** | **6/8** |\n| PermG Reverse | 0/8 |\n| Diff XCorr FDR fwd | 7/8 |\n| Threshold Onset fwd | 6/8 |\n| Naive XCorr fwd | 4/8 |\n| TY Granger fwd | 5/8 |\n| **K≥3 Robust Pairs** | **6/8** (全部 4/5 票) |\n\n### 预测验证\n\n| | Predicted | Observed |\n|---|-----------|----------|\n| PermG count | 7 | 6 |\n| 95% CI | [6, 8] | 6 ∈ [6,8] |\n| **Verdict** | | **PASS** (lower boundary) |\n| **Scenario** | | **A (T-invariance)** |\n\n### 与 T=10 对比\n\nT=10 baseline PermG = 6/8, T=20 = 6/8, delta = 0. 完全一致。\n\n### Cross-alpha T=20 全景\n\n| α | T=20 PermG | Scenario |\n|---|-----------|----------|\n| 0.50 | 6/8 | A (T-invariant) |\n| 0.60 | 0/8 | Sync dip |\n| **0.75** | **6/8** | **A (T-invariant)** |\n| 1.00 | 6/8 | A (T-invariant) |\n\n### 关键发现\n\n1. **T-invariance 确认**：T=20 相比 T=10 零增益，6/8 是结构性上限\n2. **Mauve 非检测是结构性的**：两个 mauve pair PermG p > 0.4，不是 borderline，不是 power 问题\n3. **方向性不对称强**：PermG 6/8 fwd vs 0/8 rev，因果方向明确\n4. **3/4 alpha 值 T-invariant at 6/8**：α=0.60 sync dip 仍是唯一异常点\n\n产出已注册：`art_20260520_9b6aa5` (verify JSON), `art_20260520_248a09` (analysis report)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-t20-a075-s42-fp32.md"
+}

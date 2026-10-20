@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "915399adfe256bc21c88",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "research literature scan",
+  "task_key": "worker_research_literature-scan_20260514T145431",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature-scan_20260514T145431_result.json",
+    "occurrence": 1,
+    "bytes": 791,
+    "sha256": "042a5a256eb968347adb9452d002239d46d99c9a33d625311015f6e9e738c95f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存到 `artifacts/literature_scan_20260514.md`。\n\n**核心发现**：\n\n- **Novelty 安全**：无人将 Granger causality 用于 collapse metric 的 lead-lag 分析，也无人构建多指标 canary panel。这两个仍是我们的独有贡献。\n- **最直接竞争者**仍是 chen2025scales（2510.05133），观察到 ECE 先于 accuracy 退化但无因果量化。\n- **需注意的理论约束**：Truong & Truong（2512.12381）证明 entropy collapse 是一阶相变，在剧烈 collapse regime 下 canary early warning 可能失效——这解释了我们 100% synthetic 下 canary 无法 lead perplexity 的观察，论文需讨论此局限。\n- 共收录 18 篇论文，按 competitor / background / mitigation 分类，附引用优先级建议。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-scan.md"
+}

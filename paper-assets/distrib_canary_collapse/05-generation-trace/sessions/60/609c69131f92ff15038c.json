@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "609c69131f92ff15038c",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops kill restart 14b t15a075 19828",
+  "task_key": "worker_ops_kill-restart-14b-t15a075-19828_20260522T123031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-restart-14b-t15a075-19828_20260522T123031_result.json",
+    "occurrence": 1,
+    "bytes": 482,
+    "sha256": "b3de29c4a54472e85016b04a21084f5e95b73cb143abb6081ed54e662c9732e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**总结：**\n- Zombie PID 791123 已 kill，清理了 5 个 orphan 下载进程\n- 发现 pythia-1.4b-deduped 模型已存在于 `/root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b-deduped/`（t10_a050_v2 使用的直接路径），跳过下载\n- 实验已在 tmux session `scale_14b_t15_a075` 重启，**PID 793171**，cuda:0 占用 10.3GB\n- 正在运行 Generation 0 (baseline)\n- Registry 已更新（model_name 改为 deduped，新 PID/log_path）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-restart-14b-t15a075-19828.md"
+}

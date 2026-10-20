@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a205e5f75a81e669cff",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops fix t20 a045 registry",
+  "task_key": "worker_ops_fix_t20_a045_registry_20260520T125202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_t20_a045_registry_20260520T125202_result.json",
+    "occurrence": 1,
+    "bytes": 505,
+    "sha256": "95c3f402d80d40a368389f00d105aa39273c7c69d2ac3c57e6c93fea75140873"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。状态汇总：\n\n- **进程**: pid=332328 存活，运行 ~1h，子进程 pid=332333 占用 cuda:5（14494 MiB）\n- **进度**: Gen 2/20 评估阶段（Featurizing），训练速度 ~7.67 it/s\n- **Registry**: ALLOCATED → **RUNNING**，spec 完整（server=westd-17855, gpu=cuda:5, pid=332328）\n- **parent**: 已恢复为 `alpha_sweep_a045_s42_fp32`\n- **监控 cron**: 已注册（job `edcc9581`，每小时 :23 检查），预估总时长 ~10-11h（20 gen × ~30min/gen）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-t20-a045-registry.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "447103e1940b5d7e1c6a",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops read fixed csv",
+  "task_key": "worker_ops_read-fixed-csv_20260515T051022",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_read-fixed-csv_20260515T051022_result.json",
+    "occurrence": 1,
+    "bytes": 1263,
+    "sha256": "7e888d2d18786dbb10531e457019c0b33cc7d2f8d040f84d250286dfaebf43af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nalpha,metric,gen_0_value,gen_last_value,gen_last_idx,drift_pct,n_gens_available\n0.00,token_entropy,3.234195,3.069313,10,-5.10%,11\n0.00,ece,0.010805,0.016391,10,+51.70%,11\n0.00,perplexity,26.948959,21.107704,10,-21.68%,11\n0.00,distinct_1,0.098216,0.084680,10,-13.78%,11\n0.00,distinct_2,0.517803,0.467199,10,-9.77%,11\n0.00,distinct_3,0.812728,0.776020,10,-4.52%,11\n0.25,token_entropy,3.234195,3.101744,10,-4.10%,11\n0.25,ece,0.010805,0.019418,10,+79.72%,11\n0.25,perplexity,26.948959,22.316978,10,-17.19%,11\n0.25,distinct_1,0.098216,0.058594,10,-40.34%,11\n0.25,distinct_2,0.517803,0.221939,10,-57.14%,11\n0.25,distinct_3,0.812728,0.326271,10,-59.85%,11\n0.50,token_entropy,3.234195,2.611095,8,-19.27%,9\n0.50,ece,0.010805,0.098833,8,+814.74%,9\n0.50,perplexity,26.948959,31.584056,8,+17.20%,9\n0.50,distinct_1,0.098216,0.062703,8,-36.16%,9\n0.50,distinct_2,0.517803,0.263057,8,-49.20%,9\n0.50,distinct_3,0.812728,0.413272,8,-49.15%,9\n1.00,token_entropy,3.234195,1.275924,10,-60.55%,11\n1.00,ece,0.010805,0.417338,10,+3762.61%,11\n1.00,perplexity,26.948959,1003.732954,10,+3624.57%,11\n1.00,distinct_1,0.098216,0.070383,10,-28.34%,11\n1.00,distinct_2,0.517803,0.335471,10,-35.21%,11\n1.00,distinct_3,0.812728,0.555579,10,-31.64%,11\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-read-fixed-csv.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ca890c111504d1391a9",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "writing t25 a060 scenario drafts",
+  "task_key": "worker_writing_t25-a060-scenario-drafts_20260521T205648",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_t25-a060-scenario-drafts_20260521T205648_result.json",
+    "occurrence": 1,
+    "bytes": 186,
+    "sha256": "e560eb5527c05e66d1f6695e200cc116c48e05ccaf472b506021f39752ce51b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已追加。文件从 70 行扩展到 122 行，新增 `T=25 α=0.60 Scenario Drafts` section，包含 Scenario A (Dissolution) 和 Scenario B (Permanence) 两套预案。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-t25-a060-scenario-drafts.md"
+}

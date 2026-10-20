@@ -1,0 +1,1050 @@
+{
+  "schema_version": "1.0",
+  "id": "807ad50bdecac005f5fe",
+  "project": "distrib_canary_collapse",
+  "kind": "conversation",
+  "title": "analysis dose response gap",
+  "task_key": "worker_analysis_dose-response-gap_20260519T071655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_dose-response-gap_20260519T071655.jsonl",
+    "occurrence": 1,
+    "bytes": 66920,
+    "sha256": "9c0c8af9b1f36d8f3c7608cb9dc7ad8d16c20d6eeffa74d75707781a3f1fcb74"
+  },
+  "statistics": {
+    "messages": 51,
+    "user_turns": 0,
+    "tool_calls": 25,
+    "roles": {
+      "tool_call": 25,
+      "tool_result": 25,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T07:24:06.447111+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__save_project_file",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T07:24:06.447418+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T07:24:06.447594+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "experiment_plan",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T07:24:06.447727+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T07:24:06.447871+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "distrib_canary_collapse",
+              "file": "experiment_plan.yaml",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T07:24:06.448013+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file must be one of ['ARCHITECTURE.md', 'DATA.md', 'EVALUATION.md', 'MODELS.md', 'ROADMAP.md', 'constraints.yaml', 'decisions.yaml', 'ideas.md', 'literature_map.yaml', 'memory.md', 'mistakes.yaml', 'paper_checklist.yaml', 'paper_framing.md', 'paper_provenance.yaml', 'report.md', 'writing_plan.yaml'], got 'experiment_plan.yaml'\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T07:24:06.448135+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "distrib_canary_collapse",
+              "file": "ROADMAP.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T07:24:06.448321+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/ROADMAP.md\\\", \\\"content\\\": \\\"# distrib_canary_collapse — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-19 05:39 UTC | 更新原因: Reviewer 确认 8/8 GPU 满载 + dose-response 表补入 a005/a010/a060 已完成数据\\\\n\\\\n> **阶段**: 8 卡冲刺 Day 2 — D091 fp32 修复中 + D092 bf16/fp32 反转 + Paper Agent 写作中\\\\n\\\\n## 核心方向\\\\n**D067 升级**: analysis → method paper。核心贡献：\\\\n1. **MMCT** — FPR=0, dose-response (fp32 重算中)，跨架构 7/7 泛化\\\\n2. **Regime map + 盲区 (D075)** — 8 点 α-sweep, permG step function, canary 盲区 α≤0.10\\\\n3. **Downstream 指标选择 (D085)** — perplexity 极端 collapse 下丧失 lag structure\\\\n\\\\n**Target**: EMNLP 2026 main track（ARR June cycle, DDL ~June 15, ~27 days）\\\\n\\\\n## 当前进展\\\\n- 43+ 成功 / 8 RUNNING (8/8 GPU 满载确认)\\\\n- **D091**: α=0.50 fp32 × 3 seeds 05:31 UTC 提交，~5h 完成\\\\n- **D092**: MMCT α=0.10 矛盾已解（4/8 为误标），bf16/fp32 PermG 反转→step function 必须纯 fp32\\\\n- Paper Agent: Intro ✅ + patches, Method/RW 写作中\\\\n- Lag sensitivity + intervention 5-method + dual-track figure ✅ Reviewer PASS\\\\n- a005 fp32 盲区延伸至 α=0.05 ✅ | a060 fp32 transitional ✅\\\\n\\\\n## GPU 分配（8/8 满载 ✅）\\\\n| Server:GPU | exp_id | 精度 | 目的 | 状态 |\\\\n|------------|--------|------|------|------|\\\\n| 17855:cuda:0 | scale_69b | bf16 | 6.9B scale claim | gen 9/10, ~1h |\\\\n| 17855:cuda:1 | qwen35_v2 | fp32 | 新架构 Table 7 | 运行中 |\\\\n| 17855:cuda:2 | a050_s42_fp32 | fp32 | D091 修复 | 05:31 提交, ~5h |\\\\n| 17855:cuda:3 | a050_s43_fp32 | fp32 | D091 修复 | 05:31 提交, ~5h |\\\\n| 17855:cuda:4 | a050_s44_fp32 | fp32 | D091 修复 | 05:31 提交, ~5h |\\\\n| 17855:cuda:5 | a010_s42_fp32 | fp32 | blind zone 双 seed | 运行中, ~5h |\\\\n| 19828:cuda:0 | gpt2m_s43_fp32 | fp32 | GPT-2m Table 7 | 运行中 |\\\\n| 19828:cuda:1 | smollm3_v3 | fp32 | SmolLM3 Table 7 | 运行中, ~14h |\\\\n\\\\n## fp32 Dose-Response Map（D091+D092: 纯 fp32 mandatory）\\\\n| α | PermG | MMCT wpair | d1 drift | Regime | provenance |\\\\n|---|-------|------------|----------|--------|------------|\\\\n| 0.00 | 0/24 (0%) | 0/24 (0%\n…[truncated 3198 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T07:24:06.448489+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'DONE'}",
+              "project": "distrib_canary_collapse",
+              "fields": "['*']",
+              "limit": "50"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T07:24:06.448977+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (103,668 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/03d5af73-1683-4f7f-b98e-711760aaa332/tool-results/mcp-agent-ml-research-read_registry-1779175042961.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/03d5af73-1683-4f7f-b98e-711760aaa332/tool-results/mcp-agent-ml-research-read_registry-1779175042961.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T07:24:06.449158+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/experiment_plan.yaml",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T07:24:06.449316+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "experiment_plan.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T07:24:06.449471+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/03d5af73-1683-4f7f-b98e-711760aaa332/tool-results/mcp-agent-ml-research-read_registry-1779175042961.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nprint(f'Total DONE experiments: {len(exps)}')\nprint()\nfor e in exps:\n    eid = e.get('experiment_id','')\n    status = e.get('status','')\n    conclusion = e.get('conclusion','')[:120] if e.get('conclusion') else ''\n    prec = ''\n    if e.get('config'):\n        prec = e['config'].get('precision','') or e['config'].get('dtype','')\n    alpha = ''\n    if e.get('config'):\n        alpha = e['config'].get('alpha','')\n    seeds = ''\n    if e.get('config'):\n        seeds = e['config'].get('seed','') or e['config'].get('seeds','')\n    metrics_keys = list(e.get('metrics',{}).keys())[:5] if e.get('metrics') else []\n    print(f'{eid} | alpha={alpha} | prec={prec} | seed={seeds} | conclusion={conclusion}')\n\" 2>&1 | head -80",
+              "description": "Parse registry DONE experiments summary"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T07:24:06.449609+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Traceback (most recent call last):\n  File \"<string>\", line 9, in <module>\n    eid = e.get('experiment_id','')\n          ^^^^^\nAttributeError: 'str' object has no attribute 'get'\nTotal DONE experiments: 50"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T07:24:06.449725+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/experiment_plan.yaml"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T07:24:06.449934+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\texperiments:\n2\t- id: plan_001\n3\t  claim: 2\n4\t  description: 'α-sweep anchor: Pythia-410M × WikiText-103 × α=0.25 × 10 gen × seed=42'\n5\t  priority: P0\n6\t  gpu_budget_hours: 4\n7\t  deps: []\n8\t  notes: α-sweep 基准实验。D025 统一参数。\n9\t  registry_id: alpha_sweep_a025_s42_v3\n10\t- id: plan_001b\n11\t  claim: 3\n12\t  description: 'α=0.0 null control: Pythia-410M × WikiText-103 × α=0.0 × 10 gen ×\n13\t    seed=42。FPR ground truth'\n14\t  priority: P0\n15\t  gpu_budget_hours: 4\n16\t  deps: []\n17\t  notes: 'D028: perm_granger/TY 0% FPR，naive 100% FPR'\n18\t  registry_id: alpha_sweep_a000_s42\n19\t- id: plan_001c\n20\t  claim: 2\n21\t  description: 'α=0.50 sweep: Pythia-410M × WikiText-103 × α=0.50 × 10 gen × seed=42'\n22\t  priority: P0\n23\t  gpu_budget_hours: 4\n24\t  deps: []\n25\t  notes: 'D025: 所有严格方法 FDR 后归零（0/8），仅 naive 8/8。α=0.50 是 method×regime interaction\n26\t    最极端例证'\n27\t  registry_id: alpha_sweep_a050_s42\n28\t- id: plan_001d\n29\t  claim: 1\n30\t  description: 'α=0.75 sweep: Pythia-410M × WikiText-103 × α=0.75 × 10 gen × seed=42'\n31\t  priority: P0\n32\t  gpu_budget_hours: 4\n33\t  deps: []\n34\t  notes: 'D037: 3/4 FDR-sig forward, 0/4 reverse, consensus 11/16 robust'\n35\t  registry_id: alpha_sweep_a075_s42\n36\t- id: plan_045\n37\t  claim: 2\n38\t  description: 'α=0.05 sweep: Pythia-410M × WikiText-103 × α=0.05 × 10 gen × seed=42。定位\n39\t    diversity 悬崖精确位置（α=0.00 d1=-14% → α=0.10 d1=-40% 之间的断崖）'\n40\t  priority: P0\n41\t  gpu_budget_hours: 4\n42\t  deps: []\n43\t  notes: 'D076: HIGH ROI。如果 α=0.05 d1≈-40% → 5% 污染即全损；如果 d1 在 -14% 和 -40% 之间 → 存在明确阈值'\n44\t  registry_id: alpha_sweep_a005_s42_v3\n45\t- id: plan_025\n46\t  claim: 2\n47\t  description: 'α=0.10 sweep: Pythia-410M × WikiText-103 × α=0.10 × 10 gen × seed=42。Regime\n48\t    map 下界，验证极低污染下 signal 是否存在'\n49\t  priority: P0\n50\t  gpu_budget_hours: 4\n51\t  deps: []\n52\t  notes: 'D061: regime map 5→7 点，精确刻画低端 boundary。D075: canary blind zone confirmed'\n53\t  registry_id: alpha_sweep_a010_s42_fp32\n54\t- id: plan_026\n55\t  claim: 2\n56\t  description: 'α=0.60 sweep: Pythia-410M × WikiText-103\n…[truncated 12371 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T07:24:06.450091+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/03d5af73-1683-4f7f-b98e-711760aaa332/tool-results/mcp-agent-ml-research-read_registry-1779175042961.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nprint(f'Total DONE experiments: {len(exps)}')\nprint()\n# exps is a dict\nif isinstance(exps, dict):\n    for eid, e in exps.items():\n        status = e.get('status','')\n        conclusion = (e.get('conclusion','') or '')[:120]\n        prec = ''\n        if e.get('config'):\n            prec = e['config'].get('precision','') or e['config'].get('dtype','')\n        alpha = ''\n        if e.get('config'):\n            alpha = e['config'].get('alpha','')\n        seeds = ''\n        if e.get('config'):\n            seeds = e['config'].get('seed','') or e['config'].get('seeds','')\n        print(f'{eid} | alpha={alpha} | prec={prec} | seed={seeds} | {conclusion}')\nelif isinstance(exps, list):\n    for e in exps:\n        if isinstance(e, dict):\n            eid = e.get('experiment_id','')\n            conclusion = (e.get('conclusion','') or '')[:120]\n            prec = ''\n            if e.get('config'):\n                prec = e['config'].get('precision','') or e['config'].get('dtype','')\n            alpha = ''\n            if e.get('config'):\n                alpha = e['config'].get('alpha','')\n            seeds = ''\n            if e.get('config'):\n                seeds = e['config'].get('seed','') or e['config'].get('seeds','')\n            print(f'{eid} | alpha={alpha} | prec={prec} | seed={seeds} | {conclusion}')\n        else:\n            print(f'Element: {e}')\n\" 2>&1 | head -80",
+              "description": "Parse registry data with type handling"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T07:24:06.450248+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Total DONE experiments: 50\n\ninterv_pred_a075_s42_fp32_v4 | alpha= | prec= | seed= | success\nalpha_sweep_a060_s42_fp32_v3 | alpha= | prec= | seed= | success\nalpha_sweep_a005_s42_v3 | alpha= | prec= | seed= | success\nalpha_sweep_a010_s43_fp32 | alpha= | prec= | seed= | success\nalpha_sweep_a005_s42 | alpha= | prec= | seed= | failed\nalpha_sweep_a060_s42_fp32_v2 | alpha= | prec= | seed= | killed\nalpha_sweep_a010_s43 | alpha= | prec= | seed= | success\nqwen35_08b_wiki_a100_s42 | alpha= | prec= | seed= | killed\nsmollm3_3b_wiki_a100_s42_v2 | alpha= | prec= | seed= | failed\ninterv_pred_a075_s42_fp32 | alpha= | prec= | seed= | failed\nalpha_sweep_a060_s42_fp32 | alpha= | prec= | seed= | failed\nscale_14b_a050_s42 | alpha= | prec= | seed= | success\nconditional_granger_d061 | alpha= | prec= | seed= | success\nmethod_ablation_phase3 | alpha= | prec= | seed= | success\ninterv_pred_a075_s42_fp32_v2 | alpha= | prec= | seed= | killed\ninterv_pred_s43_bf16 | alpha= | prec= | seed= | success\nsmollm3_3b_wiki_a100_s42 | alpha= | prec= | seed= | killed\ninterv_react_s43_bf16 | alpha= | prec= | seed= | success\ngen_gpt2m_a100_s43_bf16 | alpha= | prec= | seed= | success\nalpha_sweep_a060_s42_bf16 | alpha= | prec= | seed= | success\nalpha_sweep_c4_a050_s42_bf16 | alpha= | prec= | seed= | success\ngen_opt13b_a100_s43_bf16 | alpha= | prec= | seed= | killed\nalpha_sweep_a010_s42_v2 | alpha= | prec= | seed= | negative\ninterv_pred_s43 | alpha= | prec= | seed= | killed\nalpha_sweep_c4_a050_s42 | alpha= | prec= | seed= | killed\nalpha_sweep_a060_s42_v2 | alpha= | prec= | seed= | killed\nintervention_predictive_s42 | alpha= | prec= | seed= | success\nintervention_reactive_s42 | alpha= | prec= | seed= | success\ngen_wiki_gpt2m_a100_s42_v4 | alpha= | prec= | seed= | success\ngeneralize_pythia14b_wiki_a100_s42 | alpha= | prec= | seed= | success\ngeneralize_pythia410m_wiki_a100_s42 | alpha= | prec= | seed= | success\ngeneralize_pythia1b_c4_a100_s43 | alpha= | prec= | seed= | success\ngeneralize_opt1b_wiki_a100_s42 | alpha=\n…[truncated 974 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T07:24:06.450480+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/03d5af73-1683-4f7f-b98e-711760aaa332/tool-results/mcp-agent-ml-research-read_registry-1779175042961.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\n# Get all alpha sweep experiments\nfor eid, e in exps.items():\n    if 'alpha' in eid or 'a0' in eid or 'a1' in eid or 'sweep' in eid:\n        status = e.get('status','')\n        conclusion = (e.get('conclusion','') or '')[:200]\n        config = e.get('config', {})\n        metrics = e.get('metrics', {})\n        created = e.get('created_at','')[:10]\n        updated = e.get('updated_at','')[:10]\n        print(f'=== {eid} ===')\n        print(f'  status: {status} | conclusion: {conclusion}')\n        print(f'  config: {json.dumps(config)[:300]}')\n        print(f'  metrics keys: {list(metrics.keys())[:10]}')\n        print(f'  created: {created} | updated: {updated}')\n        print()\n\" 2>&1",
+              "description": "Extract alpha sweep experiment details from registry"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T07:24:06.450664+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 19, in <module>\n    print(f'  metrics keys: {list(metrics.keys())[:10]}')\n                                  ^^^^^^^^^^^^\nAttributeError: 'str' object has no attribute 'keys'\n=== interv_pred_a075_s42_fp32_v4 ===\n  status: DONE | conclusion: success\n  config: {}\n  metrics keys: ['final_ppl', 'final_entropy', 'final_eff_rank', 'final_mauve', 'precision', 'intervention_trigger_gen', 'recovery_gen', 'token_entropy_drift', 'ece_drift', 'perplexity_drift']\n  created: 2026-05-19 | updated: 2026-05-19\n\n=== alpha_sweep_a060_s42_fp32_v3 ===\n  status: DONE | conclusion: success\n  config: {}\n  metrics keys: ['final_ppl', 'final_entropy', 'final_eff_rank', 'final_mauve', 'precision', 'token_entropy_drift', 'ece_drift', 'perplexity_drift', 'distinct_1_drift', 'distinct_2_drift']\n  created: 2026-05-19 | updated: 2026-05-19\n\n=== alpha_sweep_a005_s42_v3 ===\n  status: DONE | conclusion: success\n  config: {}\n  metrics keys: ['final_ppl', 'final_entropy', 'final_eff_rank', 'final_mauve', 'precision', 'token_entropy_drift', 'ece_drift', 'perplexity_drift', 'distinct_1_drift', 'distinct_2_drift']\n  created: 2026-05-19 | updated: 2026-05-19\n\n=== alpha_sweep_a010_s43_fp32 ===\n  status: DONE | conclusion: success\n  config: {}\n  metrics keys: ['token_entropy_drift', 'distinct_1_drift', 'distinct_2_drift', 'distinct_3_drift', 'perplexity_drift', 'perm_granger_fwd', 'perm_granger_rev', 'ty_granger_fwd', 'threshold_onset_fwd', 'consensus_k4']\n  created: 2026-05-19 | updated: 2026-05-19\n\n=== alpha_sweep_a005_s42 ===\n  status: DONE | conclusion: failed\n  config: {}\n  metrics keys: []\n  created: 2026-05-18 | updated: 2026-05-19\n\n=== alpha_sweep_a060_s42_fp32_v2 ===\n  status: DONE | conclusion: killed\n  config: {}\n  metrics keys: []\n  created: 2026-05-18 | updated: 2026-05-19\n\n=== alpha_sweep_a010_s43 ===\n  status: DONE | conclusion: success\n  config: {}\n  metrics keys: ['token_entropy_drift', 'ece_drift', 'perplexity_drift', 'di\n…[truncated 5600 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T07:24:06.450825+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/03d5af73-1683-4f7f-b98e-711760aaa332/tool-results/mcp-agent-ml-research-read_registry-1779175042961.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\n# Focus on alpha sweep + dose-response relevant experiments\n# Check precision in metrics\nrelevant = []\nfor eid, e in exps.items():\n    if 'alpha' in eid or 'a0' in eid or 'a1' in eid or 'sweep' in eid or 'mvp' in eid:\n        metrics = e.get('metrics', {})\n        if isinstance(metrics, str):\n            metrics = {}\n        prec = metrics.get('precision', 'N/A')\n        status = e.get('status','')\n        conclusion = e.get('conclusion','')\n        d1_drift = metrics.get('distinct_1_drift', metrics.get('distinct_1_drift_pct', metrics.get('distinct_1_delta_pct', 'N/A')))\n        permg_fwd = metrics.get('perm_granger_fwd', metrics.get('pg_fwd', 'N/A'))\n        mmct = metrics.get('mmct_wpair', metrics.get('mmct', 'N/A'))\n        print(f'{eid} | prec={prec} | status={status}/{conclusion} | d1={d1_drift} | permg={permg_fwd} | mmct={mmct}')\n\n# Also check a000 experiments\nprint()\nprint('--- All a000/a025/a050/a075/a100 experiments ---')\nfor eid, e in exps.items():\n    metrics = e.get('metrics', {})\n    if isinstance(metrics, str):\n        metrics = {}\n    prec = metrics.get('precision', '')\n    conclusion = e.get('conclusion','')\n    if any(x in eid for x in ['a000', 'a025', 'a050', 'a075', 'a100']):\n        print(f'{eid} | prec={prec} | conclusion={conclusion}')\n\" 2>&1",
+              "description": "Extract precision and key metrics for dose-response experiments"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T07:24:06.450988+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "interv_pred_a075_s42_fp32_v4 | prec=fp32 | status=DONE/success | d1=-7.97 | permg=6/8 | mmct=N/A\nalpha_sweep_a060_s42_fp32_v3 | prec=fp32 | status=DONE/success | d1=-28.17 | permg=3/8 | mmct=N/A\nalpha_sweep_a005_s42_v3 | prec=fp32 | status=DONE/success | d1=-24.86 | permg=0/8 | mmct=N/A\nalpha_sweep_a010_s43_fp32 | prec=fp32 | status=DONE/success | d1=-22.08 | permg=0/8 | mmct=N/A\nalpha_sweep_a005_s42 | prec=N/A | status=DONE/failed | d1=N/A | permg=N/A | mmct=N/A\nalpha_sweep_a060_s42_fp32_v2 | prec=N/A | status=DONE/killed | d1=N/A | permg=N/A | mmct=N/A\nalpha_sweep_a010_s43 | prec=N/A | status=DONE/success | d1=-29.1 | permg=0/8 | mmct=N/A\nqwen35_08b_wiki_a100_s42 | prec=N/A | status=DONE/killed | d1=N/A | permg=N/A | mmct=N/A\nsmollm3_3b_wiki_a100_s42_v2 | prec=N/A | status=DONE/failed | d1=N/A | permg=N/A | mmct=N/A\ninterv_pred_a075_s42_fp32 | prec=N/A | status=DONE/failed | d1=N/A | permg=N/A | mmct=N/A\nalpha_sweep_a060_s42_fp32 | prec=N/A | status=DONE/failed | d1=N/A | permg=N/A | mmct=N/A\nscale_14b_a050_s42 | prec=N/A | status=DONE/success | d1=-36 | permg=N/A | mmct=N/A\ninterv_pred_a075_s42_fp32_v2 | prec=N/A | status=DONE/killed | d1=N/A | permg=N/A | mmct=N/A\nsmollm3_3b_wiki_a100_s42 | prec=N/A | status=DONE/killed | d1=N/A | permg=N/A | mmct=N/A\ngen_gpt2m_a100_s43_bf16 | prec=N/A | status=DONE/success | d1=-33.7 | permg=1/8 | mmct=N/A\nalpha_sweep_a060_s42_bf16 | prec=N/A | status=DONE/success | d1=N/A | permg=N/A | mmct={'uniform_forward': '0/8', 'uniform_bidirectional': '0/8', 'weighted_pair_forward': '6/8', 'weighted_pair_bidirectional': '6/8', 'weighted_global_forward': '0/8', 'weighted_global_bidirectional': '0/8'}\nalpha_sweep_c4_a050_s42_bf16 | prec=N/A | status=DONE/success | d1=-20.3 | permg=N/A | mmct=N/A\ngen_opt13b_a100_s43_bf16 | prec=N/A | status=DONE/killed | d1=N/A | permg=N/A | mmct=N/A\nalpha_sweep_a010_s42_v2 | prec=N/A | status=DONE/negative | d1=N/A | permg=N/A | mmct=N/A\nalpha_sweep_c4_a050_s42 | prec=N/A | status=DONE/killed | d1=N/A | p\n…[truncated 3664 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T07:24:06.451168+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "project": "distrib_canary_collapse",
+              "fields": "['*']",
+              "limit": "20"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T07:24:06.451476+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"alpha_sweep_a050_s44_fp32\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T05:31:02.887Z\\\", \\\"updated_at\\\": \\\"2026-05-19T05:31:51.211Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"iterative_train.py --model_name EleutherAI/pythia-410m --seed 44 --synthetic_ratio 0.50\\\", \\\"server\\\": \\\"westd-17855\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"96734\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a050_s44_fp32.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T05:31:02.665Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"seed\\\": 44, \\\"checkpoint_source\\\": \\\"EleutherAI/pythia-410m\\\", \\\"eval_data\\\": \\\"data/wikitext103_5k\\\"}, \\\"hypothesis\\\": \\\"D091: α=0.50 fp32 s44 boundary regime. Pre-D080 data was fp16. fp32 rerun confirms PermG step function lower bound at boundary regime. 3-seed parallel with s42/s43.\\\"}, \\\"alpha_sweep_a050_s43_fp32\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T05:31:00.885Z\\\", \\\"updated_at\\\": \\\"2026-05-19T05:31:48.974Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --synthetic_ratio 0.50\\\", \\\"server\\\": \\\"westd-17855\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"96593\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a050_s43_fp32.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T05:31:00.668Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"EleutherAI/pythia-410m\\\", \\\"eval_data\\\": \\\"data/wikitext103_5k\\\"}, \\\"hypothesis\\\": \\\"D091: α=0.50 fp32 s43 boundary regime. Pre-D080 data was fp16. fp32 rerun confirms PermG step function lower bound at boundary regime. 3-seed parallel with s42\n…[truncated 7919 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T07:24:06.451658+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/03d5af73-1683-4f7f-b98e-711760aaa332/tool-results/mcp-agent-ml-research-read_registry-1779175042961.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\n# Plan registry_ids to check\nplan_ids = {\n    'plan_001': 'alpha_sweep_a025_s42_v3',\n    'plan_001b': 'alpha_sweep_a000_s42',\n    'plan_001c': 'alpha_sweep_a050_s42',\n    'plan_001d': 'alpha_sweep_a075_s42',\n    'plan_045': 'alpha_sweep_a005_s42_v3',\n    'plan_025': 'alpha_sweep_a010_s42_fp32',\n    'plan_026': 'alpha_sweep_a060_s42_fp32_v3',\n    'plan_011': 'alpha_sweep_a025_s43',\n    'plan_012': 'alpha_sweep_a050_s43',\n    'plan_013': 'alpha_sweep_a025_s44',\n    'plan_014': 'alpha_sweep_a050_s44',\n    'plan_002': 'method_ablation_phase1',\n    'plan_002b': 'method_ablation_phase2',\n    'plan_003': 'mvp_v4_rep42',\n    'plan_006': 'plan_006_s42',\n    'plan_009': 'plan_009_bootstrap_ty',\n    'plan_015': 'generalize_pythia410m_wiki_a100_s42',\n    'plan_016': 'generalize_opt1b_wiki_a100_s42',\n    'plan_010': 'gen_wiki_gpt2m_a100_s42_v3',\n    'plan_021': 'gen_wiki_gpt2m_a100_s42_v4',\n    'plan_034': 'gen_gpt2m_a100_s43_bf16',\n    'plan_030': 'gen_opt13b_a100_s43_bf16',\n    'plan_017': 'generalize_pythia14b_wiki_a100_s42',\n    'plan_018': 'generalize_pythia14b_wiki_a100_s43',\n    'plan_027': 'scale_69b_a100_s42',\n    'plan_019': 'generalize_pythia1b_c4_a100_s42_v2',\n    'plan_020': 'generalize_pythia1b_c4_a100_s43',\n    'plan_023': 'intervention_predictive_s42',\n    'plan_024': 'intervention_reactive_s42',\n    'plan_031': 'interv_pred_s43_bf16',\n    'plan_032': 'interv_react_s43_bf16',\n    'plan_033': 'interv_pred_a075_s42_fp32_v4',\n    'plan_038': 'method_ablation_phase3',  # note: no registry_id in plan\n    'plan_039': 'alpha_sweep_a010_s43',\n    'plan_004': 'alpha_sweep_c4_a050_s42_bf16',\n    'plan_005': 'scale_14b_a050_s42',\n    'plan_041': 'smollm3_3b_wiki_a100_s42_v3',\n    'plan_042': 'qwen35_08b_wiki_a100_s42_v2',\n}\n\nprint('=== Plan registry_id status check ===')\nfor plan_id, reg_id in plan_ids.items():\n    if reg_id in exps:\n        e = exps[reg_id]\n        conclusion = e.get('conclusion','')\n        status = e.get('status','')\n        flag = ''\n        if conclusion in ('killed', 'failed', 'negative'):\n            flag = ' *** EXPIRED ***'\n        print(f'{plan_id}: {reg_id} -> {status}/{conclusion}{flag}')\n    else:\n        print(f'{plan_id}: {reg_id} -> NOT IN REGISTRY')\n\" 2>&1",
+              "description": "Check plan registry_ids against registry status"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T07:24:06.451821+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== Plan registry_id status check ===\nplan_001: alpha_sweep_a025_s42_v3 -> NOT IN REGISTRY\nplan_001b: alpha_sweep_a000_s42 -> NOT IN REGISTRY\nplan_001c: alpha_sweep_a050_s42 -> NOT IN REGISTRY\nplan_001d: alpha_sweep_a075_s42 -> NOT IN REGISTRY\nplan_045: alpha_sweep_a005_s42_v3 -> DONE/success\nplan_025: alpha_sweep_a010_s42_fp32 -> NOT IN REGISTRY\nplan_026: alpha_sweep_a060_s42_fp32_v3 -> DONE/success\nplan_011: alpha_sweep_a025_s43 -> DONE/success\nplan_012: alpha_sweep_a050_s43 -> DONE/success\nplan_013: alpha_sweep_a025_s44 -> DONE/success\nplan_014: alpha_sweep_a050_s44 -> DONE/success\nplan_002: method_ablation_phase1 -> NOT IN REGISTRY\nplan_002b: method_ablation_phase2 -> NOT IN REGISTRY\nplan_003: mvp_v4_rep42 -> DONE/success\nplan_006: plan_006_s42 -> NOT IN REGISTRY\nplan_009: plan_009_bootstrap_ty -> NOT IN REGISTRY\nplan_015: generalize_pythia410m_wiki_a100_s42 -> DONE/success\nplan_016: generalize_opt1b_wiki_a100_s42 -> DONE/success\nplan_010: gen_wiki_gpt2m_a100_s42_v3 -> NOT IN REGISTRY\nplan_021: gen_wiki_gpt2m_a100_s42_v4 -> DONE/success\nplan_034: gen_gpt2m_a100_s43_bf16 -> DONE/success\nplan_030: gen_opt13b_a100_s43_bf16 -> DONE/killed *** EXPIRED ***\nplan_017: generalize_pythia14b_wiki_a100_s42 -> DONE/success\nplan_018: generalize_pythia14b_wiki_a100_s43 -> DONE/success\nplan_027: scale_69b_a100_s42 -> NOT IN REGISTRY\nplan_019: generalize_pythia1b_c4_a100_s42_v2 -> DONE/success\nplan_020: generalize_pythia1b_c4_a100_s43 -> DONE/success\nplan_023: intervention_predictive_s42 -> DONE/success\nplan_024: intervention_reactive_s42 -> DONE/success\nplan_031: interv_pred_s43_bf16 -> DONE/success\nplan_032: interv_react_s43_bf16 -> DONE/success\nplan_033: interv_pred_a075_s42_fp32_v4 -> DONE/success\nplan_038: method_ablation_phase3 -> DONE/success\nplan_039: alpha_sweep_a010_s43 -> DONE/success\nplan_004: alpha_sweep_c4_a050_s42_bf16 -> DONE/success\nplan_005: scale_14b_a050_s42 -> DONE/success\nplan_041: smollm3_3b_wiki_a100_s42_v3 -> NOT IN REGISTRY\nplan_042: qwen35_08b_wiki_a10\n…[truncated 27 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T07:24:06.452044+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/03d5af73-1683-4f7f-b98e-711760aaa332/tool-results/mcp-agent-ml-research-read_registry-1779175042961.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\n# Get detailed metrics for a000/a025 experiments (the fp16 gap)\ntargets = ['alpha_sweep_a000_s43', 'alpha_sweep_a000_s44', \n           'alpha_sweep_a025_s43', 'alpha_sweep_a025_s44',\n           'alpha_sweep_a075_s43', 'alpha_sweep_a075_s44',\n           'alpha_sweep_a050_s43', 'alpha_sweep_a050_s44']\nfor eid in targets:\n    if eid in exps:\n        e = exps[eid]\n        metrics = e.get('metrics', {})\n        conclusion = e.get('conclusion','')\n        hypothesis = (e.get('hypothesis','') or '')[:200]\n        created = e.get('created_at','')[:10]\n        print(f'=== {eid} ({conclusion}, {created}) ===')\n        print(f'  hypothesis: {hypothesis}')\n        if isinstance(metrics, dict):\n            for k,v in metrics.items():\n                print(f'  {k}: {v}')\n        print()\n\" 2>&1",
+              "description": "Get detailed metrics for fp16 gap experiments"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T07:24:06.452216+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== alpha_sweep_a000_s43 (success, 2026-05-16) ===\n  hypothesis: α=0.0 null control multi-seed: 无合成数据再训练在跨 seed 复现下仍不产生 spurious causal signal（PermG FDR 0/8），证实 signal 源于合成污染而非训练随机性\n  gen0: {'token_entropy': 3.2342, 'ece': 0.0108, 'perplexity': 26.949, 'distinct_1': 0.0983, 'distinct_2': 0.5132, 'distinct_3': 0.8057, 'effective_rank': 46.613}\n  gen10: {'token_entropy': 3.0907, 'ece': 0.0148, 'perplexity': 21.469, 'distinct_1': 0.0847, 'distinct_2': 0.4631, 'distinct_3': 0.7672, 'effective_rank': 43.72}\n  drift_pct: {'token_entropy': -4.4, 'ece': 37.2, 'perplexity': -20.3, 'distinct_1': -13.9, 'distinct_2': -9.8, 'distinct_3': -4.8, 'effective_rank': -6.2}\n  five_method: {'perm_granger_fdr_sig': '0/8', 'ty_sig': '1/8 (df_resid=1 unreliable)', 'robust_pairs_ge3': '0/8', 'fpr_controlled': True}\n\n=== alpha_sweep_a000_s44 (success, 2026-05-16) ===\n  hypothesis: α=0.0 null control multi-seed: 无合成数据再训练在跨 seed 复现下仍不产生 spurious causal signal（PermG FDR 0/8），证实 signal 源于合成污染而非训练随机性\n  gen0: {'token_entropy': 3.2342, 'ece': 0.0108, 'perplexity': 26.949, 'distinct_1': 0.0981, 'distinct_2': 0.5132, 'distinct_3': 0.8058, 'effective_rank': 46.613}\n  gen10: {'token_entropy': 3.0957, 'ece': 0.0134, 'perplexity': 21.616, 'distinct_1': 0.0838, 'distinct_2': 0.4665, 'distinct_3': 0.7749, 'effective_rank': 44.498}\n  drift_pct: {'token_entropy': -4.3, 'ece': 24, 'perplexity': -19.8, 'distinct_1': -14.6, 'distinct_2': -9.1, 'distinct_3': -3.8, 'effective_rank': -4.5}\n  five_method: {'perm_granger_fdr_sig': '0/8', 'ty_sig': '0/8', 'robust_pairs_ge3': '0/8', 'fpr_controlled': True}\n\n=== alpha_sweep_a025_s43 (success, 2026-05-15) ===\n  hypothesis: α=0.25 multi-seed 复现: 低污染下 diversity collapse (40-59%) 但无 Granger causal signal (0/8 PermG) 的模式跨种子稳定，定义 sub-threshold regime 下界\n  gen0: {'token_entropy': 3.2342, 'ece': 0.0108, 'perplexity': 26.949, 'distinct_1': 0.09833, 'distinct_2': 0.5132, 'distinct_3': 0.8057, 'effective_rank': 46.61, 'mauve': 0.03351}\n  gen10: {'token_entropy': 3.0723, 'ece': 0\n…[truncated 3262 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T07:24:06.452466+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__save_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "tool_args": {
+              "project": "distrib_canary_collapse",
+              "file": "report.md",
+              "content": "# Dose-Response Map fp32 缺口分析报告\n\n> 生成时间: 2026-05-19 ~06:00 UTC\n\n## 1. Dose-Response Map 逐 α Provenance 状态\n\n| α | Provenance | Seeds (registry) | PermG | d1 drift | Regime | 关键实验 ID |\n|---|-----------|-------------------|-------|----------|--------|-------------|\n| 0.00 | **fp16** (pre-D080) | s43, s44 (registry); s42 (pre-registry) | 0/24 (0%) | -13.8% | Null | alpha_sweep_a000_s43, alpha_sweep_a000_s44 |\n| 0.05 | ✅ fp32 | s42 | 0/8 (0%) | -24.9% | 盲区 | alpha_sweep_a005_s42_v3 |\n| 0.10 | ✅ fp32 (部分) | s43 fp32 done; s42 fp32 RUNNING | 0/8 | -22.1% | Canary 盲区 | alpha_sweep_a010_s43_fp32; alpha_sweep_a010_s42_fp32 (RUNNING) |\n| 0.25 | **fp16** (pre-D080) | s43, s44 (registry); s42 (pre-registry) | ~0/24 | -40.3% | Sub-threshold | alpha_sweep_a025_s43, alpha_sweep_a025_s44 |\n| 0.50 | **fp32 × 3 RUNNING** | s42/s43/s44 全部 RUNNING | TBD | TBD | Boundary | alpha_sweep_a050_s42/s43/s44_fp32 (05:31 提交, ~5h) |\n| 0.60 | ✅ fp32 | s42 | 3/8 (38%) | -28.2% | Transitional | alpha_sweep_a060_s42_fp32_v3 |\n| 0.75 | **fp16** (信号强, 低优先) | s43, s44 (registry); s42 (pre-registry) | ~20/24 (83%) | -32.7% | Transitional | alpha_sweep_a075_s43, alpha_sweep_a075_s44 |\n| 1.00 | ✅ fp32 (多 seed) | multi-seed | ~24/32 (75%) | -28.3% | Confirmatory | mvp_v4_rep42, mvp_v4_rep43, mvp_v4_rep45 等 |\n\n## 2. fp16 缺口详情\n\n### α=0.25 (P0 — dose-response 主轴 gap)\n- **现有 fp16 数据**: alpha_sweep_a025_s43 (d1=-40.5%, PermG=0/8), alpha_sweep_a025_s44 (metrics incomplete)\n- **缺口**: 3 seeds 均为 fp16。D091+D092 要求主轴表纯 fp32。\n- **影响**: sub-threshold regime 的 PermG 零检出是 step function 叙事关键锚点，fp16 provenance 削弱可信度。\n\n### α=0.00 (P0 — FPR ground truth)\n- **现有 fp16 数据**: alpha_sweep_a000_s43 (PermG=0/8, d1=-13.9%), alpha_sweep_a000_s44 (PermG=0/8, d1=-14.6%)\n- **缺口**: 3 seeds 均为 fp16。null control 是 FPR=0 的 ground truth。\n- **影响**: Claim 3 (FPR control) 的基础数据，fp16 provenance 使 FPR=0 claim 有精度争议风险。\n\n### α=0.75 (P2 — 低优先)\n- **现有 fp16 数据**: alpha_sweep_a075_s43 (d1=-32.3%, PermG 高), alpha_sweep_a075_s44 (d1=-31.8%)\n- **信号强度**: PermG ~83%、drift ~32%，信号足够强，fp16→fp32 不太可能翻转结论。\n- **建议**: 如果 GPU 资源在 α=0.00/0.25 fp32 完成后仍有余裕，可补跑。\n\n## 3. α=0.25 fp32 重跑建议\n\n**3 seeds × ~4h each = ~12 GPU-hours**\n\n```bash\n# seed=42\npython -u iterative_train.py \\\n  --model_name EleutherAI/pythia-410m --seed 42 \\\n  --data_dir data/wikitext103_5k --steps_per_gen 5000 \\\n  --num_generations 10 --synthetic_ratio 0.25 \\\n  --output_dir results/alpha_sweep/a025_s42_fp32\n\n# seed=43\npython -u iterative_train.py \\\n  --model_name EleutherAI/pythia-410m --seed 43 \\\n  --data_dir data/wikitext103_5k --steps_per_gen 5000 \\\n  --num_generations 10 --synthetic_ratio 0.25 \\\n  --output_dir results/alpha_sweep/a025_s43_fp32\n\n# seed=44\npython -u iterative_train.py \\\n  --model_name EleutherAI/pythia-410m --seed 44 \\\n  --data_dir data/wikitext103_5k --steps_per_gen 5000 \\\n  --num_generations 10 --synthetic_ratio 0.25 \\\n  --output_dir results/alpha_sweep/a025_s44_fp32\n```\n\n- **预估时间**: ~4-5h/seed (Pythia-410M, 10 gen, 5k steps/gen)\n- **GPU**: 3 空闲 GPU 并行 → ~5h 全部完成\n- **Registry ID**: alpha_sweep_a025_s42_fp32, alpha_sweep_a025_s43_fp32, alpha_sweep_a025_s44_fp32\n- **前置**: 需等 α=0.50 fp32 × 3 完成释放 GPU (~10:30 UTC)\n\n## 4. α=0.00 fp32 重跑建议\n\n**3 seeds × ~4h each = ~12 GPU-hours**\n\n```bash\n# seed=42\npython -u iterative_train.py \\\n  --model_name EleutherAI/pythia-410m --seed 42 \\\n  --data_dir data/wikitext103_5k --steps_per_gen 5000 \\\n  --num_generations 10 --synthetic_ratio 0.00 \\\n  --output_dir results/alpha_sweep/a000_s42_fp32\n\n# seed=43\npython -u iterative_train.py \\\n  --model_name EleutherAI/pythia-410m --seed 43 \\\n  --data_dir data/wikitext103_5k --steps_per_gen 5000 \\\n  --num_generations 10 --synthetic_ratio 0.00 \\\n  --output_dir results/alpha_sweep/a000_s43_fp32\n\n# seed=44\npython -u iterative_train.py \\\n  --model_name EleutherAI/pythia-410m --seed 44 \\\n  --data_dir data/wikitext103_5k --steps_per_gen 5000 \\\n  --num_generations 10 --synthetic_ratio 0.00 \\\n  --output_dir results/alpha_sweep/a000_s44_fp32\n```\n\n- **预估时间**: ~4-5h/seed\n- **Registry ID**: alpha_sweep_a000_s42_fp32, alpha_sweep_a000_s43_fp32, alpha_sweep_a000_s44_fp32\n- **可与 α=0.25 并行**: 共需 6 GPU，可在 α=0.50 fp32 + a010_s42 + scale_69b 完成后启动\n\n## 5. experiment_plan.yaml 过期 registry_id（6 条）\n\n| Plan ID | 当前 registry_id | 状态 | 建议修复 |\n|---------|-----------------|------|----------|\n| plan_001 | alpha_sweep_a025_s42_v3 | NOT IN REGISTRY (pre-registry fp16) | 移除 → 待 fp32 重跑后填入 alpha_sweep_a025_s42_fp32 |\n| plan_001b | alpha_sweep_a000_s42 | NOT IN REGISTRY (pre-registry fp16) | 移除 → 待 fp32 重跑后填入 alpha_sweep_a000_s42_fp32 |\n| plan_001c | alpha_sweep_a050_s42 | NOT IN REGISTRY (pre-registry fp16) | 更新为 alpha_sweep_a050_s42_fp32 (RUNNING) |\n| plan_001d | alpha_sweep_a075_s42 | NOT IN REGISTRY (pre-registry fp16) | 移除 → 低优先 fp32 重跑 |\n| plan_010 | gen_wiki_gpt2m_a100_s42_v3 | NOT IN REGISTRY (superseded) | ✅ 更新为 gen_wiki_gpt2m_a100_s42_v4 (DONE/success) |\n| plan_030 | gen_opt13b_a100_s43_bf16 | DONE/killed | 移除 → 需重新安排 OPT-1.3B s43 实验 |\n\n## 6. GPU 调度建议\n\n当前 8/8 满载。释放顺序预估：\n1. **~07:00 UTC**: scale_69b (cuda:0) 完成 → 1 GPU 释放\n2. **~10:30 UTC**: a050 fp32 × 3 (cuda:2/3/4) + a010_s42 (cuda:5) 完成 → 4 GPU 释放\n3. **qwen35/gpt2m_s43/smollm3**: 时间不确定，但预计 05-19 内完成\n\nα=0.25 + α=0.00 共 6 seeds → 需 6 GPU 并行。最早可在 ~10:30 UTC（a050 完成后）启动全部 6 个。\n"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T07:24:06.452663+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file 'report.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml']. Use (auto-generated, not manually writable) instead.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T07:24:06.452822+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__save_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "tool_args": {
+              "project": "distrib_canary_collapse",
+              "file": "report_dose_response_gaps.md",
+              "content": "# Dose-Response Map fp32 缺口分析报告\n\n> 生成时间: 2026-05-19 ~06:00 UTC\n\n## 1. Dose-Response Map 逐 α Provenance 状态\n\n| α | Provenance | Seeds (registry) | PermG | d1 drift | Regime | 关键实验 ID |\n|---|-----------|-------------------|-------|----------|--------|-------------|\n| 0.00 | **fp16** (pre-D080) | s43, s44 (registry); s42 (pre-registry) | 0/24 (0%) | -13.8% | Null | alpha_sweep_a000_s43, alpha_sweep_a000_s44 |\n| 0.05 | ✅ fp32 | s42 | 0/8 (0%) | -24.9% | 盲区 | alpha_sweep_a005_s42_v3 |\n| 0.10 | ✅ fp32 (部分) | s43 fp32 done; s42 fp32 RUNNING | 0/8 | -22.1% | Canary 盲区 | alpha_sweep_a010_s43_fp32; alpha_sweep_a010_s42_fp32 (RUNNING) |\n| 0.25 | **fp16** (pre-D080) | s43, s44 (registry); s42 (pre-registry) | ~0/24 | -40.3% | Sub-threshold | alpha_sweep_a025_s43, alpha_sweep_a025_s44 |\n| 0.50 | **fp32 × 3 RUNNING** | s42/s43/s44 全部 RUNNING | TBD | TBD | Boundary | alpha_sweep_a050_s42/s43/s44_fp32 (05:31 提交, ~5h) |\n| 0.60 | ✅ fp32 | s42 | 3/8 (38%) | -28.2% | Transitional | alpha_sweep_a060_s42_fp32_v3 |\n| 0.75 | **fp16** (信号强, 低优先) | s43, s44 (registry); s42 (pre-registry) | ~20/24 (83%) | -32.7% | Transitional | alpha_sweep_a075_s43, alpha_sweep_a075_s44 |\n| 1.00 | ✅ fp32 (多 seed) | multi-seed | ~24/32 (75%) | -28.3% | Confirmatory | mvp_v4_rep42, mvp_v4_rep43, mvp_v4_rep45 等 |\n\n## 2. fp16 缺口详情\n\n### α=0.25 (P0)\n- **现有 fp16 数据**: alpha_sweep_a025_s43 (d1=-40.5%, PermG=0/8), alpha_sweep_a025_s44 (metrics incomplete)\n- **缺口**: 3 seeds 均为 fp16。D091+D092 要求主轴表纯 fp32。\n- **影响**: sub-threshold regime 的 PermG 零检出是 step function 叙事关键锚点。\n\n### α=0.00 (P0)\n- **现有 fp16 数据**: alpha_sweep_a000_s43 (PermG=0/8, d1=-13.9%), alpha_sweep_a000_s44 (PermG=0/8, d1=-14.6%)\n- **缺口**: 3 seeds 均为 fp16。null control 是 FPR=0 的 ground truth。\n- **影响**: Claim 3 (FPR control) 的基础数据。\n\n### α=0.75 (P2)\n- **现有 fp16 数据**: alpha_sweep_a075_s43 (d1=-32.3%), alpha_sweep_a075_s44 (d1=-31.8%)\n- **信号强度**: PermG ~83%，drift ~32%，fp16→fp32 不太可能翻转结论。低优先。\n\n## 3. α=0.25 fp32 重跑建议\n\n3 seeds × ~4-5h = ~12-15 GPU-hours\n\n```bash\n# seed=42\npython -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 \\\n  --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 \\\n  --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s42_fp32\n\n# seed=43\npython -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 \\\n  --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 \\\n  --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s43_fp32\n\n# seed=44\npython -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 44 \\\n  --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 \\\n  --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s44_fp32\n```\n\nRegistry ID: alpha_sweep_a025_s42_fp32, alpha_sweep_a025_s43_fp32, alpha_sweep_a025_s44_fp32\n\n## 4. α=0.00 fp32 重跑建议\n\n3 seeds × ~4-5h = ~12-15 GPU-hours\n\n```bash\n# seed=42\npython -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 \\\n  --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 \\\n  --synthetic_ratio 0.00 --output_dir results/alpha_sweep/a000_s42_fp32\n\n# seed=43\npython -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 \\\n  --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 \\\n  --synthetic_ratio 0.00 --output_dir results/alpha_sweep/a000_s43_fp32\n\n# seed=44\npython -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 44 \\\n  --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 \\\n  --synthetic_ratio 0.00 --output_dir results/alpha_sweep/a000_s44_fp32\n```\n\nRegistry ID: alpha_sweep_a000_s42_fp32, alpha_sweep_a000_s43_fp32, alpha_sweep_a000_s44_fp32\n\n最早启动时间: ~10:30 UTC（a050 fp32 × 3 完成释放 cuda:2/3/4 后），6 seeds 并行 ~5h 完成。\n\n## 5. experiment_plan.yaml 过期 registry_id（6 条）\n\n| Plan ID | 当前 registry_id | 状态 | 修复动作 |\n|---------|-----------------|------|----------|\n| plan_001 | alpha_sweep_a025_s42_v3 | NOT IN REGISTRY (pre-registry fp16) | 移除 → 待 fp32 重跑 |\n| plan_001b | alpha_sweep_a000_s42 | NOT IN REGISTRY (pre-registry fp16) | 移除 → 待 fp32 重跑 |\n| plan_001c | alpha_sweep_a050_s42 | NOT IN REGISTRY (pre-registry fp16) | → alpha_sweep_a050_s42_fp32 (RUNNING) |\n| plan_001d | alpha_sweep_a075_s42 | NOT IN REGISTRY (pre-registry fp16) | 移除 → 低优先 fp32 重跑 |\n| plan_010 | gen_wiki_gpt2m_a100_s42_v3 | NOT IN REGISTRY (superseded) | → gen_wiki_gpt2m_a100_s42_v4 (DONE/success) |\n| plan_030 | gen_opt13b_a100_s43_bf16 | DONE/killed | 移除 → 需重新安排 |\n"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T07:24:06.452996+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file 'report_dose_response_gaps.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T07:24:06.453141+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-19T07:24:06.453280+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-19T07:24:06.453440+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "report_dose_response_gaps",
+              "type": "report",
+              "description": "Dose-response map fp32 缺口分析：逐 α provenance 状态、fp16 缺口详情、α=0.00/0.25 fp32 重跑规格、experiment_plan.yaml 6 条过期 registry_id 清单",
+              "project": "distrib_canary_collapse",
+              "content": "# Dose-Response Map fp32 缺口分析报告\n\n> 生成时间: 2026-05-19 ~06:00 UTC\n\n## 1. Dose-Response Map 逐 α Provenance 状态\n\n| α | Provenance | Seeds (registry) | PermG | d1 drift | Regime | 关键实验 ID |\n|---|-----------|-------------------|-------|----------|--------|-------------|\n| 0.00 | **fp16** (pre-D080) | s43, s44 (registry); s42 (pre-registry) | 0/24 (0%) | -13.8% | Null | alpha_sweep_a000_s43, alpha_sweep_a000_s44 |\n| 0.05 | ✅ fp32 | s42 | 0/8 (0%) | -24.9% | 盲区 | alpha_sweep_a005_s42_v3 |\n| 0.10 | ✅ fp32 (部分) | s43 fp32 done; s42 fp32 RUNNING | 0/8 | -22.1% | Canary 盲区 | alpha_sweep_a010_s43_fp32; alpha_sweep_a010_s42_fp32 (RUNNING) |\n| 0.25 | **fp16** (pre-D080) | s43, s44 (registry); s42 (pre-registry) | ~0/24 | -40.3% | Sub-threshold | alpha_sweep_a025_s43, alpha_sweep_a025_s44 |\n| 0.50 | **fp32 × 3 RUNNING** | s42/s43/s44 全部 RUNNING | TBD | TBD | Boundary | alpha_sweep_a050_s42/s43/s44_fp32 (05:31 提交, ~5h) |\n| 0.60 | ✅ fp32 | s42 | 3/8 (38%) | -28.2% | Transitional | alpha_sweep_a060_s42_fp32_v3 |\n| 0.75 | **fp16** (信号强, 低优先) | s43, s44 (registry); s42 (pre-registry) | ~20/24 (83%) | -32.7% | Transitional | alpha_sweep_a075_s43, alpha_sweep_a075_s44 |\n| 1.00 | ✅ fp32 (多 seed) | multi-seed | ~24/32 (75%) | -28.3% | Confirmatory | mvp_v4_rep42, mvp_v4_rep43, mvp_v4_rep45 等 |\n\n**fp32 覆盖率**: 8 点中 3 点 ✅ fp32 (0.05, 0.60, 1.00)，1 点部分 fp32 (0.10)，1 点 RUNNING (0.50)，3 点 fp16 (0.00, 0.25, 0.75)。\n\n## 2. fp16 缺口详情\n\n### α=0.25 (P0 — dose-response 主轴 gap)\n- **现有 fp16 数据**: alpha_sweep_a025_s43 (d1=-40.5%, PermG=0/8), alpha_sweep_a025_s44 (metrics incomplete)\n- **缺口**: 3 seeds 均为 fp16。D091+D092 要求主轴表纯 fp32。\n- **影响**: sub-threshold regime 的 PermG 零检出是 step function 叙事关键锚点。\n\n### α=0.00 (P0 — FPR ground truth)\n- **现有 fp16 数据**: alpha_sweep_a000_s43 (PermG=0/8, d1=-13.9%), alpha_sweep_a000_s44 (PermG=0/8, d1=-14.6%)\n- **缺口**: 3 seeds 均为 fp16。null control 是 FPR=0 的 ground truth。\n- **影响**: Claim 3 (FPR control) 的基础数据。\n\n### α=0.75 (P2 — 低优先)\n- **现有 fp16 数据**: alpha_sweep_a075_s43 (d1=-32.3%), alpha_sweep_a075_s44 (d1=-31.8%)\n- **信号强度**: PermG ~83%，drift ~32%，fp16→fp32 不太可能翻转结论。低优先。\n\n## 3. α=0.25 fp32 重跑建议\n\n3 seeds × ~4-5h = ~12-15 GPU-hours\n\n```bash\n# seed=42\npython -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 \\\n  --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 \\\n  --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s42_fp32\n\n# seed=43\npython -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 \\\n  --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 \\\n  --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s43_fp32\n\n# seed=44\npython -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 44 \\\n  --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 \\\n  --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s44_fp32\n```\n\nRegistry ID: alpha_sweep_a025_s42_fp32, alpha_sweep_a025_s43_fp32, alpha_sweep_a025_s44_fp32\n\n## 4. α=0.00 fp32 重跑建议\n\n3 seeds × ~4-5h = ~12-15 GPU-hours\n\n```bash\n# seed=42\npython -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 \\\n  --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 \\\n  --synthetic_ratio 0.00 --output_dir results/alpha_sweep/a000_s42_fp32\n\n# seed=43\npython -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 \\\n  --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 \\\n  --synthetic_ratio 0.00 --output_dir results/alpha_sweep/a000_s43_fp32\n\n# seed=44\npython -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 44 \\\n  --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 \\\n  --synthetic_ratio 0.00 --output_dir results/alpha_sweep/a000_s44_fp32\n```\n\nRegistry ID: alpha_sweep_a000_s42_fp32, alpha_sweep_a000_s43_fp32, alpha_sweep_a000_s44_fp32\n\n最早启动时间: ~10:30 UTC（a050 fp32 × 3 完成释放 cuda:2/3/4 后），6 seeds 并行 ~5h 完成。\n\n## 5. experiment_plan.yaml 过期 registry_id（6 条）\n\n| # | Plan ID | 当前 registry_id | 状态 | 修复动作 |\n|---|---------|-----------------|------|----------|\n| 1 | plan_001 | alpha_sweep_a025_s42_v3 | NOT IN REGISTRY (pre-registry fp16) | 移除 → 待 fp32 重跑后填入 alpha_sweep_a025_s42_fp32 |\n| 2 | plan_001b | alpha_sweep_a000_s42 | NOT IN REGISTRY (pre-registry fp16) | 移除 → 待 fp32 重跑后填入 alpha_sweep_a000_s42_fp32 |\n| 3 | plan_001c | alpha_sweep_a050_s42 | NOT IN REGISTRY (pre-registry fp16) | → alpha_sweep_a050_s42_fp32 (RUNNING) |\n| 4 | plan_001d | alpha_sweep_a075_s42 | NOT IN REGISTRY (pre-registry fp16) | 移除 → 低优先 fp32 重跑 |\n| 5 | plan_010 | gen_wiki_gpt2m_a100_s42_v3 | NOT IN REGISTRY (superseded by v4) | ✅ → gen_wiki_gpt2m_a100_s42_v4 (DONE/success) |\n| 6 | plan_030 | gen_opt13b_a100_s43_bf16 | DONE/killed | 移除 → 需重新安排 OPT-1.3B s43 |\n\n## 6. GPU 调度建议\n\n当前 8/8 满载。释放顺序预估：\n1. **~07:00 UTC**: scale_69b (cuda:0) 完成 → 1 GPU 释放\n2. **~10:30 UTC**: a050 fp32 × 3 (cuda:2/3/4) + a010_s42 (cuda:5) 完成 → 4 GPU 释放\n3. **qwen35/gpt2m_s43/smollm3**: 时间不确定，预计 05-19 内完成\n\nα=0.25 + α=0.00 共 6 seeds → 需 6 GPU 并行。最早 ~10:30 UTC 启动全部。~15:30 UTC 全部完成后 dose-response map 达到 7/8 fp32 覆盖（仅 α=0.75 仍 fp16）。",
+              "content_filename": "report_dose_response_gaps.md",
+              "tags": "['dose-response', 'fp32', 'gap-analysis', 'D091', 'D092']"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-19T07:24:06.453653+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260519_4b0a1a\\\", \\\"name\\\": \\\"report_dose_response_gaps\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Dose-response map fp32 缺口分析：逐 α provenance 状态、fp16 缺口详情、α=0.00/0.25 fp32 重跑规格、experiment_plan.yaml 6 条过期 registry_id 清单\\\", \\\"path\\\": \\\"projects/distrib_canary_collapse/artifacts/_project/report/report_dose_response_gaps.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"distrib_canary_collapse\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-19T07:23:11.152660+00:00\\\", \\\"tags\\\": [\\\"dose-response\\\", \\\"fp32\\\", \\\"gap-analysis\\\", \\\"D091\\\", \\\"D092\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-19T07:24:06.453810+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/experiment_plan.yaml",
+              "old_string": "  registry_id: alpha_sweep_a025_s42_v3\n- id: plan_001b\n  claim: 3\n  description: 'α=0.0 null control: Pythia-410M × WikiText-103 × α=0.0 × 10 gen ×\n    seed=42。FPR ground truth'\n  priority: P0\n  gpu_budget_hours: 4\n  deps: []\n  notes: 'D028: perm_granger/TY 0% FPR，naive 100% FPR'\n  registry_id: alpha_sweep_a000_s42",
+              "new_string": "  registry_id: null  # fp16 expired; 待 fp32 重跑 → alpha_sweep_a025_s42_fp32\n- id: plan_001b\n  claim: 3\n  description: 'α=0.0 null control: Pythia-410M × WikiText-103 × α=0.0 × 10 gen ×\n    seed=42。FPR ground truth'\n  priority: P0\n  gpu_budget_hours: 4\n  deps: []\n  notes: 'D028: perm_granger/TY 0% FPR，naive 100% FPR'\n  registry_id: null  # fp16 expired; 待 fp32 重跑 → alpha_sweep_a000_s42_fp32"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-19T07:24:06.453995+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/experiment_plan.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-19T07:24:06.454125+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/experiment_plan.yaml",
+              "old_string": "  registry_id: alpha_sweep_a050_s42",
+              "new_string": "  registry_id: alpha_sweep_a050_s42_fp32  # fp16→fp32 RUNNING (D091)"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-19T07:24:06.454317+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/experiment_plan.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-19T07:24:06.454462+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/experiment_plan.yaml",
+              "old_string": "  registry_id: alpha_sweep_a075_s42",
+              "new_string": "  registry_id: null  # fp16 expired; 低优先 fp32 重跑"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-19T07:24:06.454628+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/experiment_plan.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-19T07:24:06.454751+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/experiment_plan.yaml",
+              "old_string": "  registry_id: gen_wiki_gpt2m_a100_s42_v3",
+              "new_string": "  registry_id: gen_wiki_gpt2m_a100_s42_v4  # v3→v4 统一参数重跑 (DONE/success)"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-19T07:24:06.454911+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/experiment_plan.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-19T07:24:06.455032+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/experiment_plan.yaml",
+              "old_string": "  registry_id: gen_opt13b_a100_s43_bf16",
+              "new_string": "  registry_id: null  # killed; 需重新安排 OPT-1.3B s43"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-19T07:24:06.455191+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/experiment_plan.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-19T07:24:06.455362+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/experiment_plan.yaml",
+              "limit": "50"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-19T07:24:06.455509+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\texperiments:\n2\t- id: plan_001\n3\t  claim: 2\n4\t  description: 'α-sweep anchor: Pythia-410M × WikiText-103 × α=0.25 × 10 gen × seed=42'\n5\t  priority: P0\n6\t  gpu_budget_hours: 4\n7\t  deps: []\n8\t  notes: α-sweep 基准实验。D025 统一参数。\n9\t  registry_id: null  # fp16 expired; 待 fp32 重跑 → alpha_sweep_a025_s42_fp32\n10\t- id: plan_001b\n11\t  claim: 3\n12\t  description: 'α=0.0 null control: Pythia-410M × WikiText-103 × α=0.0 × 10 gen ×\n13\t    seed=42。FPR ground truth'\n14\t  priority: P0\n15\t  gpu_budget_hours: 4\n16\t  deps: []\n17\t  notes: 'D028: perm_granger/TY 0% FPR，naive 100% FPR'\n18\t  registry_id: null  # fp16 expired; 待 fp32 重跑 → alpha_sweep_a000_s42_fp32\n19\t- id: plan_001c\n20\t  claim: 2\n21\t  description: 'α=0.50 sweep: Pythia-410M × WikiText-103 × α=0.50 × 10 gen × seed=42'\n22\t  priority: P0\n23\t  gpu_budget_hours: 4\n24\t  deps: []\n25\t  notes: 'D025: 所有严格方法 FDR 后归零（0/8），仅 naive 8/8。α=0.50 是 method×regime interaction\n26\t    最极端例证'\n27\t  registry_id: alpha_sweep_a050_s42_fp32  # fp16→fp32 RUNNING (D091)\n28\t- id: plan_001d\n29\t  claim: 1\n30\t  description: 'α=0.75 sweep: Pythia-410M × WikiText-103 × α=0.75 × 10 gen × seed=42'\n31\t  priority: P0\n32\t  gpu_budget_hours: 4\n33\t  deps: []\n34\t  notes: 'D037: 3/4 FDR-sig forward, 0/4 reverse, consensus 11/16 robust'\n35\t  registry_id: null  # fp16 expired; 低优先 fp32 重跑\n36\t- id: plan_045\n37\t  claim: 2\n38\t  description: 'α=0.05 sweep: Pythia-410M × WikiText-103 × α=0.05 × 10 gen × seed=42。定位\n39\t    diversity 悬崖精确位置（α=0.00 d1=-14% → α=0.10 d1=-40% 之间的断崖）'\n40\t  priority: P0\n41\t  gpu_budget_hours: 4\n42\t  deps: []\n43\t  notes: 'D076: HIGH ROI。如果 α=0.05 d1≈-40% → 5% 污染即全损；如果 d1 在 -14% 和 -40% 之间 → 存在明确阈值'\n44\t  registry_id: alpha_sweep_a005_s42_v3\n45\t- id: plan_025\n46\t  claim: 2\n47\t  description: 'α=0.10 sweep: Pythia-410M × WikiText-103 × α=0.10 × 10 gen × seed=42。Regime\n48\t    map 下界，验证极低污染下 signal 是否存在'\n49\t  priority: P0\n50\t  gpu_budget_hours: 4"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-19T07:24:06.455657+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n 'registry_id' /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/experiment_plan.yaml",
+              "description": "Verify all registry_id entries in experiment plan"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-19T07:24:06.455789+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "9:  registry_id: null  # fp16 expired; 待 fp32 重跑 → alpha_sweep_a025_s42_fp32\n18:  registry_id: null  # fp16 expired; 待 fp32 重跑 → alpha_sweep_a000_s42_fp32\n27:  registry_id: alpha_sweep_a050_s42_fp32  # fp16→fp32 RUNNING (D091)\n35:  registry_id: null  # fp16 expired; 低优先 fp32 重跑\n44:  registry_id: alpha_sweep_a005_s42_v3\n53:  registry_id: alpha_sweep_a010_s42_fp32\n62:  registry_id: alpha_sweep_a060_s42_fp32_v3\n72:  registry_id: alpha_sweep_a025_s43\n82:  registry_id: alpha_sweep_a050_s43\n90:  registry_id: alpha_sweep_a025_s44\n100:  registry_id: alpha_sweep_a050_s44\n109:  registry_id: method_ablation_phase1\n123:  registry_id: method_ablation_phase2\n130:  registry_id: mvp_v4_rep42\n139:  registry_id: plan_006_s42\n148:  registry_id: plan_009_bootstrap_ty\n157:  registry_id: generalize_pythia410m_wiki_a100_s42\n165:  registry_id: generalize_opt1b_wiki_a100_s42\n174:  registry_id: gen_wiki_gpt2m_a100_s42_v4  # v3→v4 统一参数重跑 (DONE/success)\n184:  registry_id: gen_wiki_gpt2m_a100_s42_v4\n194:  registry_id: gen_gpt2m_a100_s43_bf16\n203:  registry_id: null  # killed; 需重新安排 OPT-1.3B s43\n211:  registry_id: generalize_pythia14b_wiki_a100_s42\n220:  registry_id: generalize_pythia14b_wiki_a100_s43\n232:  registry_id: scale_69b_a100_s42\n264:  registry_id: generalize_pythia1b_c4_a100_s42_v2\n273:  registry_id: generalize_pythia1b_c4_a100_s43\n301:  registry_id: intervention_predictive_s42\n311:  registry_id: intervention_reactive_s42\n320:  registry_id: interv_pred_s43_bf16\n329:  registry_id: interv_react_s43_bf16\n340:  registry_id: interv_pred_a075_s42_fp32_v4\n378:  registry_id: alpha_sweep_a010_s43\n395:  registry_id: alpha_sweep_c4_a050_s42_bf16\n404:  registry_id: scale_14b_a050_s42\n424:  registry_id: smollm3_3b_wiki_a100_s42_v3\n433:  registry_id: qwen35_08b_wiki_a100_s42_v2"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-19T07:24:06.455991+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## 汇总\n\n### 报告已注册\n`art_20260519_4b0a1a` → `artifacts/_project/report/report_dose_response_gaps.md`\n\n### Dose-Response Map fp32 状态\n- **✅ fp32 完成**: α=0.05, 0.60, 1.00（3/8 点）\n- **部分 fp32**: α=0.10（s43 done, s42 RUNNING）\n- **RUNNING**: α=0.50（3 seeds fp32, ~10:30 UTC 完成）\n- **fp16 缺口**: α=0.00（3 seeds）、α=0.25（3 seeds）、α=0.75（低优先）\n\n### experiment_plan.yaml 6 条过期指针已修复\n| Plan ID | 修复 |\n|---------|------|\n| plan_001 (α=0.25 s42) | `alpha_sweep_a025_s42_v3` → `null`（待 fp32 重跑）|\n| plan_001b (α=0.00 s42) | `alpha_sweep_a000_s42` → `null`（待 fp32 重跑）|\n| plan_001c (α=0.50 s42) | `alpha_sweep_a050_s42` → `alpha_sweep_a050_s42_fp32`（RUNNING）|\n| plan_001d (α=0.75 s42) | `alpha_sweep_a075_s42` → `null`（低优先）|\n| plan_010 (GPT-2m) | `gen_wiki_gpt2m_a100_s42_v3` → `gen_wiki_gpt2m_a100_s42_v4`（success）|\n| plan_030 (OPT-1.3B s43) | `gen_opt13b_a100_s43_bf16` → `null`（killed，需重排）|\n\n### 下一步\nα=0.00 + α=0.25 共 6 seeds fp32 重跑，最早 ~10:30 UTC（a050 完成释放 GPU 后）启动，~15:30 UTC 完成。完成后 map 达 7/8 fp32 覆盖。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_dose-response-gap_20260519T071655"
+          },
+          "id": "event-000051"
+        }
+      ],
+      "message_count": 51
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-dose-response-gap.md"
+}

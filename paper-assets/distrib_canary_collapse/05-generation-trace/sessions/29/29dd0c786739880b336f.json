@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "29dd0c786739880b336f",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops transfer phase transition pdf",
+  "task_key": "worker_ops_transfer_phase_transition_pdf_20260520T102021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_transfer_phase_transition_pdf_20260520T102021_result.json",
+    "occurrence": 1,
+    "bytes": 457,
+    "sha256": "5723e4246d44d78bba10c6223dffad49715f243ece803da11fbde2f79c387664"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "传输完成，无其他图表文件。\n\n| 文件 | 大小 | 本地路径 |\n|------|------|---------|\n| fig_phase_transition.pdf | 35,117 B (34 KB) | `artifacts/d127_phase_transition/fig_phase_transition.pdf` |\n| fig_phase_transition.png | 126,432 B (123 KB) | `artifacts/d127_phase_transition/fig_phase_transition.png` |\n\n两个文件均从 westd-17855 成功传输到本地。远程目录下无其他 phase transition 相关图表。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-transfer-phase-transition-pdf.md"
+}

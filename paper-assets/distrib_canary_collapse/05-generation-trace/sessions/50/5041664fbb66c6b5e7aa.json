@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5041664fbb66c6b5e7aa",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops disk cleanup 17855",
+  "task_key": "worker_ops_disk-cleanup-17855_20260522T201944",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk-cleanup-17855_20260522T201944_result.json",
+    "occurrence": 1,
+    "bytes": 1301,
+    "sha256": "c34cf4baa1ee053ae764e4bb108dabc3cb04b609b966326390b8cb8c0dc449fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 清理前\n- 17855 磁盘: 93% (27GB 剩余)\n\n## 清理详情\n\n| 目录 | 清理前 | 清理后 | 释放 |\n|------|-------|-------|------|\n| scale/14b_c4_s42_fp32 gen_9 | 5.3G | 9.6M | ~5.3G |\n| phase_diagram/t10_a060_s42_fp32_14b gen_9 | 5.3G | 11M | ~5.3G |\n| phase_diagram/t10_a075_s42_fp32_14b gen_9 | 5.3G | 11M | ~5.3G |\n| phase_diagram_14b/ | 不存在 | — | 0 |\n| **合计** | | | **~15.9G** |\n\ngen_1-gen_8 已经是小文件（~7M，之前已清理过），只有 gen_9 有模型残留。\n\n## 清理后\n- 17855 磁盘: 88% (43GB 剩余)\n- 目标 ≥80GB: **✗**（差 ~37GB）\n\n## 19828 磁盘\n- 54% (116GB 剩余)\n\n---\n\n**未达标原因分析**：4 个 14b 实验正在运行（t10_a045, t15_a045/a050/a060），各占 ~11G，每个保留了 2 个 gen 的 5.3G 模型文件。可安全清理每个实验中较旧的 gen checkpoint，预计再释放 ~21G（→64GB）。仍不够 80G。\n\n大空间占用：\n\n| 目录 | 大小 | 说明 |\n|------|------|------|\n| .hf_cache | 41G | 模型缓存 |\n| scale_check/pythia69b | 26G | 6.9B 实验 |\n| generalize/smollm3_3b | 24G | 3B 实验 |\n| intervention/predictive_te_14b | 11G | 14b 干预实验 |\n\n需要 Director 决定是否额外清理这些目录或运行中实验的旧 checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-17855.md"
+}

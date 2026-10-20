@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c580d38823f20c2e4160",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "submit c4 a050 s43 fp32",
+  "task_key": "worker_submit_c4_a050_s43_fp32_20260520T001240",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_c4_a050_s43_fp32_20260520T001240_result.json",
+    "occurrence": 1,
+    "bytes": 351,
+    "sha256": "3e7545dd5539e17272c187e468571805f87f9fb6bff4fd99bb42b8b237ef503b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已正常启动，模型加载完毕，进入 Generation 0 (baseline)。\n\n**汇总：**\n- **exp_id**: `c4_a050_s43_fp32`\n- **服务器**: westd-19828, cuda:1\n- **PID**: 483063\n- **日志**: `~/runs/distrib_canary_collapse/c4_a050_s43_fp32.log`\n- **Registry**: RUNNING\n- **状态**: 模型已加载，Generation 0 训练中"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-c4-a050-s43-fp32.md"
+}

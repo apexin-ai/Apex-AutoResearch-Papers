@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6fec526a69024db36274",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "paper table7 docs fix",
+  "task_key": "worker_paper_table7_docs_fix_20260518T131014",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_table7_docs_fix_20260518T131014_result.json",
+    "occurrence": 1,
+    "bytes": 1459,
+    "sha256": "ba39b3f6ba3817b46ed29a514f8fb3500737bb6922f09fd03b52ded8c89015cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits applied correctly. Summary of changes:\n\n**L336**: \"single seed\" → seed description split by condition type (architecture=single, scale/domain=two seeds s42/s43)\n\n**L341 (Caption)**: Removed \"single seed per condition\", removed \"[TBD]\", removed GPT-2m 6-pair exception text; added `$n_{\\text{perm}}{=}5{,}000$`, \"8~pairs per condition\", two-seed replicability note\n\n**L347-357 (Table rows + footnotes)**:\n- Baseline: `7/8, 6/8, 6/8, 6/8, 0/8, 6/8, 6/8` → `8/8, 8/8, 8/8, 6/8, 3/8, 4/8, 6/8`\n- GPT-2m: `6/6` format → `8/8` format (8-pair)\n- OPT-1.3B: `6/8, 6/8, 8/8, 6/8, 0/8, 2/8, 6/8` → `8/8, 6/8, 8/8, 6/8, 2/8, 6/8, 6/8`\n- Scale: `[TBD]` → two rows (s42: 5/8 consensus, s43: 6/8 consensus)\n- Domain: `[TBD]` → two rows (both 6/8 consensus)\n- Added two footnotes (PG reverse explanation, perplexity 0/14)\n\n**L363-364 (Architecture text)**: Updated reverse-direction claim from \"0 reverse\" to \"2/8 to 3/8, concentrated in distinct→ECE pairs\"\n\n**L367-369 (Method variation)**: Threshold \"8/8 on both GPT-2-medium and OPT-1.3B\"; TY \"4/8 (Pythia) to 6/8 (OPT), GPT-2m at 5/8\"; simplified consensus sentence\n\n**L372 removed**: TODO comment\n\n**L378-389 (new)**: Scale paragraph (seed-dependent consensus, s42=5/8, s43=6/8) and Domain paragraph (both seeds 6/8, seed-dependent reverse) replacing the commented placeholder. Cross-condition paragraph already existed at L371, not duplicated."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-table7-docs-fix.md"
+}

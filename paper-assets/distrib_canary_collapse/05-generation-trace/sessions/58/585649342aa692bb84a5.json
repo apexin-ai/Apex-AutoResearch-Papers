@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "585649342aa692bb84a5",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis t20 a060 s42 fp32",
+  "task_key": "worker_analysis_t20_a060_s42_fp32_20260520T174009",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_t20_a060_s42_fp32_20260520T174009_result.json",
+    "occurrence": 1,
+    "bytes": 1074,
+    "sha256": "c20dd55ce935bc991babdd5a7d73155faa1ca5a4c5c81470409a308cbbec3b71"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## T=20 α=0.60 验证结果\n\n**Verdict: PASS** — 预测 PermG 0/8，观测 PermG 0/8。\n\n### 核心发现\n\n| Method | Fwd Sig | Rev Sig |\n|--------|---------|---------|\n| PermG (FDR) | 0/8 | 0/8 |\n| Diff XCorr (FDR) | 6/8 | 6/8 |\n| Threshold Onset | 6/8 | — |\n| TY Granger | 3/8 | — |\n| **Robust (K≥3)** | **3/8** | — |\n\n### Sync-dip 结论\n\n**α=0.60 sync dip 是结构性的，不是功效问题。** T=10→T=20 数据量翻倍后 PermG 仍为 0/8。\n\n关键证据：\n- Lead-lag 结构存在（Diff XCorr 6/8, Threshold 6/8），但 Granger 检验无法捕捉\n- token_entropy→distinct_1 的 PermG raw p=0.048（名义显著），FDR 修正后 p=0.064（near-miss）\n- 3 个 robust pairs 全部是 ece-based（ece→distinct_1/2/3），token_entropy 在此 α 值下只达 2/5 consensus\n\n### 方向性\n\nDiff XCorr fwd/rev 对称（6/6）——α=0.60 regime 下无法分辨因果方向，与 sync dip 的同步耦合机制一致。\n\n### 产出\n\n`artifacts/t20_a060_verify.json` 已注册（art_20260520_7356b6）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-t20-a060-s42-fp32.md"
+}

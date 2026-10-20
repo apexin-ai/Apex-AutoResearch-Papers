@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a14b2492a1f93b81ac35",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "audit table7 d111 batch2",
+  "task_key": "worker_audit_table7_d111_batch2_20260520T010742",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_table7_d111_batch2_20260520T010742_result.json",
+    "occurrence": 1,
+    "bytes": 782,
+    "sha256": "7566ffcda5aa90586813f40bc7a365a07f4bb5041eb904762be2d38bf878b42f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告写入 `artifacts/table7_d111_audit_batch2.md`。\n\n核心发现：\n\n| 实验 | K≥3 old→D111 | K≥4 old→D111 |\n|------|-------------|-------------|\n| GPT-2m s42 | 6/8 → **5/8** | 2/8 → **0/8** |\n| GPT-2m s43 | 6/8 → **1/8** | 4/8 → **0/8** |\n| OPT-1.3B s42 | 6/8 → **3/8** | 2/8 → **0/8** |\n| Padding s42 | 6/8 → **6/8** | 6/8 → **0/8** |\n\n**K≥4 全部归零** — 所有 4 个实验的 32 个 diff_xcorr forward peak_lag 无一 > 0，D111 方向检查将 diff_xcorr 完全排除出 K 计算。K≥3 影响因实验而异：Padding 最稳健（thresh+permG+TY 撑住 6/8），GPT-2m s43 最严重（threshold_onset 只有 1/8 显著，可能是旧版阈值计算的问题）。PermG 不受影响，仍为 6/8。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-table7-d111-batch2.md"
+}

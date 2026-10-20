@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7adbf64dff788d8da4ed",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops t10a075 kill d102 v2",
+  "task_key": "worker_ops_t10a075-kill-d102-v2_20260522T194937",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_t10a075-kill-d102-v2_20260522T194937_result.json",
+    "occurrence": 1,
+    "bytes": 2627,
+    "sha256": "874bc6b971f6ba7db4844623f32e54a90685ef2994a5b3cbae63f468df1a190e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Gen_10 training is in progress on GPU 3 (started ~03:55 server time). Based on previous generation timing (~27 min generation + ~40 min training + eval), gen_10 should complete around ~05:02 server time (~67 min total).\n\nHere's the current status and results:\n\n---\n\n## Status\n\n- **Server**: westd-17855\n- **Data path**: `results/phase_diagram/t10_a075_s42_fp32_14b/`\n- **gen_0–gen_9**: Complete with metrics.json\n- **gen_10**: Training restarted (PID 714525 on GPU 3), ETA ~40 min remaining\n- **No process to kill**: Previous t10_a075 process died (exit code 1) before this session\n\n## Preliminary D102 5-Method Results (gen_0–gen_9, 10 data points)\n\n**Note**: gen_0 and gen_1 have `mauve=null`, so mauve pairs use gen_2–9 (8 points).\n\n### Summary\n\n| Method | Forward sig |\n|--------|------------|\n| **PermG (FDR)** | **4/8** |\n| DiffXCorr (FDR) | 7/8 |\n| Naive XCorr (D111) | 4/8 |\n| Threshold 3σ | 0/8 |\n| TY Granger | 0/8 |\n| **K≥3 consensus** | **4/8** |\n| K≥4 consensus | 0/8 |\n\n### Consensus Detail\n```\ntoken_entropy → distinct_1:  3/5  [naive, diff, perm]\ntoken_entropy → distinct_2:  1/5  [diff]\ntoken_entropy → distinct_3:  1/5  [diff]\ntoken_entropy → mauve:       0/5  [none]\nece → distinct_1:            3/5  [naive, diff, perm]\nece → distinct_2:            3/5  [naive, diff, perm]\nece → distinct_3:            3/5  [naive, diff, perm]\nece → mauve:                 0/5  [none]\n```\n\n### KEY DISCRIMINATOR Assessment\n\n**PermG_fwd = 4/8 → Scenario C (weak detection)**\n\nThe 4 significant PermG pairs are all ece-based (ece→d1,d2,d3) plus te→d1. The te→d2 (p=0.0472 raw) and te→d3 (p=0.0676 raw) are borderline — FDR correction pushes them above 0.05. Adding gen_10 (11th data point) might tip te→d2 over the line, potentially raising PermG to 5/8, but unlikely to reach 6/8 (Scenario B threshold).\n\n### Drift Statistics (gen_0 → gen_9)\n```\ntoken_entropy    2.9731 → 1.9053  (-35.92%)\nece              0.0081 → 0.2660  (+3185.31%)\nperplexity       19.83  → 86.73   (+337.37%)\ndistinct_1       0.0992 → 0.0806  (-18.74%)\ndistinct_2       0.5222 → 0.4072  (-22.01%)\ndistinct_3       0.8211 → 0.6704  (-18.35%)\n```\n\n**Preliminary JSON saved at**: `/root/autodl-tmp/distrib_canary_collapse/D102_14b_t10_a075_s42_fp32_10gen.json`\n\nThe full 11-gen analysis will run automatically once gen_10 finishes. The analysis script is deployed at `run_d102_14b_t10_a075.py` — run it with `python run_d102_14b_t10_a075.py results/phase_diagram/t10_a075_s42_fp32_14b 10` after gen_10/metrics.json appears."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-t10a075-kill-d102-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8296ac20877a3a415919",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "submit a040 s42 fp32 fix",
+  "task_key": "worker_submit_a040_s42_fp32_fix_20260519T140955",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_a040_s42_fp32_fix_20260519T140955_result.json",
+    "occurrence": 1,
+    "bytes": 287,
+    "sha256": "98bd880f2dec386ff4312835a6ded29060cf336dd5b609a8c8faf77a6b1a51bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n- GPU 0：仅 PID 137279（a060_s43_fp32），错误进程已清除\n- **GPU 4：PID 147488（alpha_sweep_a040_s42_fp32_v2），6516MiB，正确运行在物理 GPU 4 上**\n- Registry：旧实验标记 failed，新实验 hypothesis/parent/spec 已设置"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-a040-s42-fp32-fix.md"
+}

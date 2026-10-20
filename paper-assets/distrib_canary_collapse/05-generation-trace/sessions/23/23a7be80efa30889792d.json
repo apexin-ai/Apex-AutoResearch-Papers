@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23a7be80efa30889792d",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops comprehensive status check",
+  "task_key": "worker_ops_comprehensive_status_check_20260521T023659",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_comprehensive_status_check_20260521T023659_result.json",
+    "occurrence": 1,
+    "bytes": 1527,
+    "sha256": "1cb8e2818b07755dc82cbbaa0d478bb4f7670654c43f8dc9f46584af83807a53"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### westd-17855 (6× A100 97GB)\n\n**GPU 状态：**\n\n| GPU | Util | VRAM |\n|-----|------|------|\n| 0 | 98% | 28.5 / 97.9 GB |\n| 1 | 59% | 14.5 / 97.9 GB |\n| 2 | 67% | 14.5 / 97.9 GB |\n| 3 | 92% | 71.0 / 97.9 GB |\n| 4 | 72% | 7.5 / 97.9 GB |\n| 5 | 84% | 7.5 / 97.9 GB |\n\n**实验：**\n\n| 实验 | 状态 | 进度 |\n|------|------|------|\n| alpha_sweep_a046_s42_fp32 | RUNNING | gen 0/10 (baseline, 刚启动) |\n| alpha_sweep_a048_s42_fp32 | RUNNING | gen 1/10 (training 95%, 4762/5000 steps) |\n| alpha_sweep_a052_s42_fp32 | RUNNING | gen 0/10 (baseline, 刚启动) |\n| alpha_sweep_a070_s42_fp32 | RUNNING | gen 3/10 (generating synthetic data) |\n| t20_a025_s42_fp32 | RUNNING | gen 15/20 (generating synthetic data), 16 gen dirs |\n| scale_69b_a100_s43_bf16 | RUNNING | gen 3/10 (generating synthetic data) |\n\n**C4 Monte Carlo：** RUNNING — scenario 4/12, elapsed ~14.7min\n\n**Conditional Granger v2 JSON：** NOT FOUND\n\n---\n\n### westd-19828 (2× A100 97GB)\n\n**GPU 状态：**\n\n| GPU | Util | VRAM |\n|-----|------|------|\n| 0 | 0% | 空闲 |\n| 1 | 97% | 24.3 / 97.9 GB |\n\n**实验：**\n\n| 实验 | 状态 | 进度 |\n|------|------|------|\n| generalize_pythia1b_c4_a100_s43_v2 | RUNNING | gen 6/10 (training ~33-43%, 7 gen dirs) |\n| scale_14b_a050_s42_bf16 | NOT FOUND | 无日志、无 gen 目录 |\n\n---\n\n**要点：** 17855 全部 6 卡满载跑 6 个实验；19828 仅 GPU1 在跑 pythia1b C4 泛化实验，GPU0 完全空闲。14b 实验未部署。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-comprehensive-status-check.md"
+}

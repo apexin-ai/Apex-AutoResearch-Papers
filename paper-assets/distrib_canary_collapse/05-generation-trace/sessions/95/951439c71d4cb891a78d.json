@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "951439c71d4cb891a78d",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis pythia1b c4 s43 v2 5method",
+  "task_key": "worker_analysis_pythia1b_c4_s43_v2_5method_20260521T074525",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_pythia1b_c4_s43_v2_5method_20260521T074525_result.json",
+    "occurrence": 1,
+    "bytes": 578,
+    "sha256": "275d2aac5de547b1547f67d7ead054d52c61dc005b2774a8aab57038ef729ab4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。`generalize_pythia1b_c4_a100_s43_v2` → **DONE (success)**。\n\n### 结果汇总\n\n| 指标 | 值 |\n|------|-----|\n| PermG_fwd (FDR) | **8/8** |\n| PermG_rev (FDR) | 0/8 |\n| DiffXCorr_fwd (FDR) | 8/8 |\n| DiffXCorr_rev (FDR) | 8/8 |\n| Threshold_onset_3sigma | 0/8 |\n| TY_fwd | 1/8 |\n| **K≥3** | **8/8** |\n| K≥4 | 1/8 |\n\n与 parent s42（PermG 8/8, K≥3 6/8）对比，s43 v2 的 K≥3 从 6/8 提升到 8/8，信号更强。PermG 方向性清晰（forward 8/8, reverse 0/8），确认 canary → downstream 因果方向。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-pythia1b-c4-s43-v2-5method.md"
+}

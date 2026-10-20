@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "8431c4ac7a75466d4ccc",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "ops fix 14b mauve none 17855",
+  "task_key": "worker_ops_fix-14b-mauve-none-17855_20260522T083509",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-14b-mauve-none-17855_20260522T083509.log",
+    "occurrence": 1,
+    "bytes": 626903,
+    "sha256": "0599eb4a6b804fcb52d036b28ad9a48ce85e51be4439e2f28b07b2607c810fb1"
+  },
+  "statistics": {
+    "messages": 221,
+    "user_turns": 0,
+    "tool_calls": 83,
+    "roles": {
+      "system": 1,
+      "record": 1,
+      "assistant": 52,
+      "tool_call": 83,
+      "tool_result": 83,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 221,
+      "chunks": [
+        {
+          "path": "8431c4ac7a75466d4ccc-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "8431c4ac7a75466d4ccc-part-0002.json",
+          "message_count": 41
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-fix-14b-mauve-none-17855.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ef165c24ab6a9f10212",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diag gen gpt2m a100 s43 bf16",
+  "task_key": "worker_diag_gen_gpt2m_a100_s43_bf16_20260518T205436",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_gen_gpt2m_a100_s43_bf16_20260518T205436_result.json",
+    "occurrence": 1,
+    "bytes": 615,
+    "sha256": "14782e14d8745c4d86ecbb662492f8f94a9723b6b3cd169cb3c465d23dff7418"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断结论：**两个实验都已成功完成，EXIT_CODE=129 是误报。**\n\n核心证据：\n- `gen_gpt2m_a100_s43_bf16`：gen_0 到 gen_10/10 全部完成，`all_metrics.json` 含 11 条完整记录，哨兵文件内容为 **0**\n- `alpha_sweep_a060_s42_bf16`：同上，哨兵文件 = 0，指标完整\n- SIGHUP 发生在脚本写完哨兵文件之后（日志行 4137-4138 为最后两行），不影响实验数据\n\n**不需要重跑。** 建议监控系统以哨兵文件内容（而非进程退出码）判定实验状态。报告已写入 `artifacts/diag_gen_gpt2m_a100_s43_bf16.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-gen-gpt2m-a100-s43-bf16.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8de804bed9acddec108a",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "infra download smollm3 w19",
+  "task_key": "worker_infra_download_smollm3_w19_20260518T191121",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_download_smollm3_w19_20260518T191121_result.json",
+    "occurrence": 1,
+    "bytes": 1058,
+    "sha256": "909826de86bfb6e22643624f863a207996dd005f676b9521925991ab606e1776"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果汇总：\n\n```\n--- 文件列表 ---\ntotal 5.8G\n-rw-r--r-- 1 root root  13K  README.md\n-rw-r--r-- 1 root root  943  config.json\n-rw-r--r-- 1 root root  126  generation_config.json\n-rw-r--r-- 1 root root 4.7G  model-00001-of-00002.safetensors\n-rw-r--r-- 1 root root 1.2G  model-00002-of-00002.safetensors\n-rw-r--r-- 1 root root  27K  model.safetensors.index.json\n-rw-r--r-- 1 root root 311K  notebook.ipynb\n-rw-r--r-- 1 root root  151  special_tokens_map.json\n-rw-r--r-- 1 root root  17M  tokenizer.json\n-rw-r--r-- 1 root root  50K  tokenizer_config.json\n\n--- 目录总大小 ---\n5.8G  /root/autodl-tmp/models/SmolLM3-3B-Base/\n\n--- 模型验证 ---\nVocab size: 128000\nModel class: SmolLM3ForCausalLM\nParams: 3.08B\nOutput: The meaning of life is a question that has been asked by philosophers, theolog\nSUCCESS\n```\n\n模型已下载到 `/root/autodl-tmp/models/SmolLM3-3B-Base/`，3.08B 参数，CPU bf16 加载和生成均正常。onnx 目录是第一次下载残留的空目录，不影响使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-download-smollm3-w19.md"
+}

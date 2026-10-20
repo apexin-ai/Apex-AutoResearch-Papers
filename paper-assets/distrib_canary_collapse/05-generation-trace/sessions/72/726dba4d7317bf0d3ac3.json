@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "726dba4d7317bf0d3ac3",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis formal shape test",
+  "task_key": "worker_analysis_formal-shape-test_20260522T114131",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_formal-shape-test_20260522T114131_result.json",
+    "occurrence": 1,
+    "bytes": 1698,
+    "sha256": "5f6a99f2ac9750040bb3451124088bb2c6c3aa1d7f9f8193b5d2479e61a69745"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。输出文件：\n- `artifacts/shape_test/shape_test_results.json`\n- `artifacts/shape_test/shape_test_analysis.md`\n\n核心结果：\n\n**Version A（排除 sync-dip）：**\n\n| Row | ΔAIC(smooth vs step) | Preferred |\n|-----|---------------------|-----------|\n| T=5 phase | — | trivial (all 0) |\n| T=10 phase (3pt) | +2.0 | step |\n| T=10 dense (14pt) | **−63.8** | **smooth** |\n| T=15 phase (3pt) | +2.0 | step (LL 相同) |\n| T=20 phase (3pt) | +1.4 | step |\n| T=25 phase (4pt) | +1.9 | step |\n\n**Version B（含 sync-dip）：**\n\n| Row | ΔAIC(smooth vs step) | Preferred |\n|-----|---------------------|-----------|\n| T=10 phase (4pt) | +0.8 | step |\n| T=10 dense (17pt) | **−110.0** | **smooth** |\n| T=15 phase (4pt) | −3.1 | smooth |\n| T=20 phase (4pt) | −5.1 | smooth |\n| T=25 phase (4pt) | +1.9 | step |\n\n关键发现：\n\n1. **Phase diagram 各行只有 3-4 个数据点**，区分能力极弱——sigmoid 优化后收敛到 step function（k→500），LL 与 step 相同。排除 sync-dip 后全部 favor step（纯因参数惩罚）。\n\n2. **T=10 dense（14-17 点）是唯一有真实区分力的数据**，sigmoid 以 ΔAIC=−64 到 −110 碾压 step。拟合参数：k≈15, α_0≈0.68-0.72，描述 α≈0.5-0.7 区间的渐进上升。\n\n3. **Version B 中 T=15/T=20 smooth 胜出完全由 sync-dip 驱动**——α=0.60 的 0/8 让 step model 承受巨大 LL 惩罚（−11.09），sigmoid 通过降低整体预测概率来缓冲。排除 sync-dip 后这一优势消失。\n\n4. Smooth(P_max free) 相比 smooth(P_max=0.75 fixed) 几乎无额外收益——拟合出的 P_max≈0.75-0.78，多一个参数不值得。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-formal-shape-test.md"
+}

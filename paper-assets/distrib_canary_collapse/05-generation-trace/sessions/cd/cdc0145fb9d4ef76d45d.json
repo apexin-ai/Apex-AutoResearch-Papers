@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cdc0145fb9d4ef76d45d",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code plan006 training prep",
+  "task_key": "worker_code_plan006-training-prep_20260514T233036",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan006-training-prep_20260514T233036_result.json",
+    "occurrence": 1,
+    "bytes": 2674,
+    "sha256": "c0cee32734d67d7756e17400fb2afc6465dabeb48118641b7c7776e84b447b4f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 成功，所有模块正常。以下是完整结果。\n\n---\n\n## 任务 1: 训练命令\n\n`iterative_train.py` 参数确认：\n- `--synthetic_ratio 1.0` ✓ (default)\n- `--num_generations 20` ✓ (需要覆盖 default=10)\n- `--seed` ✓\n- `--steps_per_gen 10000` (匹配 MVP，代码 default 是 5000)\n- `--max_lag` 不在训练脚本中，仅分析侧参数\n- 输出目录使用 `results/extended_20gen/s{seed}/`（匹配 `analyze_extended.py` 默认输入路径）\n- 不加 `--accumulate`（与 MVP 一致）\n\n**Seed 42 训练命令：**\n```bash\ncd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python iterative_train.py \\\n    --data_dir data/wikitext103 \\\n    --output_dir results/extended_20gen/s42 \\\n    --seed 42 \\\n    --synthetic_ratio 1.0 \\\n    --num_generations 20 \\\n    --steps_per_gen 10000\n```\n\n**Seed 43 训练命令：**\n```bash\ncd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python iterative_train.py \\\n    --data_dir data/wikitext103 \\\n    --output_dir results/extended_20gen/s43 \\\n    --seed 43 \\\n    --synthetic_ratio 1.0 \\\n    --num_generations 20 \\\n    --steps_per_gen 10000\n```\n\n---\n\n## 任务 2: 分析脚本验证 Checklist\n\n| 模块 | 状态 | 说明 |\n|------|------|------|\n| Full cross-correlation (max_lag=10) | ✅ | raw + first-diff，含 permutation p-value (N=5000) |\n| 差分 permutation Granger | ✅ | `difference=True`，BH FDR 校正 |\n| Rolling window (gen 5→end) | ✅ | `window_analysis(metrics, 5, last_gen)` |\n| TY supplementary | ✅ | d_max=0, 1, adaptive 三组，BH FDR |\n| MVP comparison | ✅ | lag 稳定性 + power gain 判断 |\n| **ECE→distinct_2/3 TY** | ✅ | CANARY=[\"token_entropy\",\"ece\"] × DOWNSTREAM=[\"distinct_1\",\"distinct_2\",\"distinct_3\",\"perplexity\"]，24 组 TY 测试全覆盖 |\n\n**路径映射：**\n- 训练输出：`results/extended_20gen/s{seed}/all_metrics.json`\n- 分析输入：`--results_dir results/extended_20gen`（默认值，完全匹配）\n- 分析输出：`results/extended_20gen/analysis/{extended_analysis.json, summary.txt, mvp_comparison.json}`\n- MVP 对比基准：`results/mvp/rep_{seed}/all_metrics.json`（seed 42, 43 均可用）\n\n**Dry-run 结果：** 两个 seed 均跑通，3 个输出文件正确生成。summary.txt 包含 TY SUPPLEMENTARY 表，ECE→distinct_2/3 行完整。\n\n---\n\n## 任务 3: 代码修改\n\n**无需任何代码修改。** 训练和分析脚本均支持 plan_006 参数配置，路径匹配，模块完备。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan006-training-prep.md"
+}

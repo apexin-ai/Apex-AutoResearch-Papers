@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9044437f426f3ee272de",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis t20 power theory verification",
+  "task_key": "worker_analysis_t20_power_theory_verification_20260521T014415",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_t20_power_theory_verification_20260521T014415_result.json",
+    "occurrence": 1,
+    "bytes": 719,
+    "sha256": "f674443aa579b9cd609ff48069c8f32af12f18a24fc792a3043ec08d5d7ab6cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/t20_power_theory_verification.md` 并注册。\n\n核心结果：\n\n- **5 个已完成 T=20 实验，4/5 区间验证 PASS (80%)**\n- **α=0.45** 点预测失败（0/8→5/8），但观测值落在 bootstrap CI [0.015, 0.828] 内。blind zone 是统计功效问题，α_c 随 T 左移\n- **α=0.50/0.75/1.00** 全部 T-invariant：T=10 和 T=20 均为 6/8，mauve pairs 构成结构性天花板\n- **α=0.60** sync dip T-invariant（0/8→0/8），确认为 S×R 非单调的结构性现象\n- **t20_a025** 仍在运行（null baseline）\n- 点预测准确率仅 2/5（40%），但区间预测 4/5（80%）——理论适合作为相变理解框架，而非精确点预测器"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-t20-power-theory-verification.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95d4a656884f94b6d68d",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "monitor gpu utilization check",
+  "task_key": "worker_monitor_gpu_utilization_check_20260515T073436",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_gpu_utilization_check_20260515T073436_result.json",
+    "occurrence": 1,
+    "bytes": 1662,
+    "sha256": "b24db281c71a03bcba2f7b1423f0374a5df5b2f8180bce6ee90c4918a6402b86"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### GPU 利用率快照\n| GPU | 实验 | Util | VRAM |\n|-----|------|------|------|\n| 0 | plan_006 | 37% | 12.5 / 97.9 GB |\n| 1 | a075 | 15% | 14.4 / 97.9 GB |\n\n两卡均值 ~26%，比触发警告时的 12% 有所回升。\n\n### 各实验阶段\n\n**a075 (cuda:1)** — Gen 1 数据生成阶段（合成数据推理）\n- Gen 0 已完成（ppl=26.95, entropy=3.23, eff_rank=46.6）\n- 当前在 Gen 1 的 `model.generate()` 循环中（日志 1287/1502 行都是 padding 警告）\n- 15% util **正常**：自回归生成是 memory-bandwidth-bound，不是 compute-bound\n\n**plan_006 (cuda:0)** — Gen 14+ 训练阶段，step 456/10000\n- ~5-7 it/s，loss=0.0507\n- 37% util 偏低，原因是 `batch_size=4` 对 98GB 显存来说太小\n\n### 可调参数\n\n| 参数 | 当前值 | 位置 | 说明 |\n|------|--------|------|------|\n| `--batch_size` | 4 | L59 | 训练 batch，可增大 |\n| `--gen_batch_size` | 16 | L64 | 生成 batch，可增大 |\n| `--gen_max_new_tokens` | 256 | L62 | 生成长度 |\n| `num_workers` | 未设置 | — | DataLoader 未配置 |\n| `pin_memory` | 未设置 | — | DataLoader 未配置 |\n\n### 结论\n\n**低利用率的主要原因是 a075 处于生成阶段**（memory-bound 推理，util 天然低）。plan_006 训练阶段 37% 也偏低，因为 batch_size=4 远未充分利用 98GB 显存。\n\n**是否需要改代码：当前不需要。** 两个实验正在跑，中途改参数意义不大。下次实验可考虑：\n1. `--batch_size` 提到 16~32\n2. `--gen_batch_size` 提到 32~64\n3. TrainingArguments 里加 `dataloader_num_workers=4, dataloader_pin_memory=True`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-gpu-utilization-check.md"
+}

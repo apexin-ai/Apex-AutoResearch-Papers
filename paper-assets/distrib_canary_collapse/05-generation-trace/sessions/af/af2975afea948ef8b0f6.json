@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af2975afea948ef8b0f6",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "reanalyze gpt2m s43 s42 unified pairs",
+  "task_key": "worker_reanalyze_gpt2m_s43_s42_unified_pairs_20260519T153238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_reanalyze_gpt2m_s43_s42_unified_pairs_20260519T153238_result.json",
+    "occurrence": 1,
+    "bytes": 2295,
+    "sha256": "8c63b1f56579f0bde52db2ac958cf7fa82fbc15baf85e63471a8784617f349ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。汇总报告：\n\n---\n\n## D101 结果：GPT-2m 统一 Downstream Pair 重分析\n\n### Pair 配置变更\n- **旧**: ent/ece → d1, d2, d3, **perplexity** (8 pairs)\n- **新**: ent/ece → d1, d2, d3, **mauve** (8 pairs)\n\n### GPT-2m s43 新旧对比\n\n| 指标 | 旧 (含 ppl) | 新 (含 mauve) | 变化原因 |\n|------|-----------|-------------|---------|\n| PermG fwd | 8/8 | **6/8** | mauve 2 pairs 不显著 (p=0.33, 0.49) |\n| PermG rev | 5/8 | **4/8** | mauve→ece 丢失 |\n| Diff XCorr fwd | 8/8 | **6/8** | mauve pairs DiffFDR=0.24 |\n| TY fwd | 4/8 | 4/8 | 不变 |\n| Threshold | 0/8 | 0/8 | 不变 |\n| K≥3 | 4/8 | 4/8 | 不变 |\n| K≥4 | 1/8 | 1/8 | 不变 |\n| MMCT uniform | — | 4/8 (50%) | |\n| MMCT wpair | — | 6/8 (75%) | |\n\n### GPT-2m s42 新旧对比\n\n| 指标 | 旧 (含 ppl) | 新 (含 mauve) | 变化原因 |\n|------|-----------|-------------|---------|\n| PermG fwd | 6/8 | 6/8 | 不变 (ppl/mauve 都不 sig) |\n| PermG rev | 3/8 | 3/8 | 不变 |\n| TY fwd | 5/8 | **2/8** | ppl 的 TY 显著被 mauve 的不显著取代 |\n| K≥3 (5method) | — | 2/8 | 保守 consensus |\n| K≥4 (5method) | — | 0/8 | |\n| MMCT uniform | — | 2/8 (25%) | |\n| MMCT wpair | — | 6/8 (75%) | |\n\n### 跨 Seed 一致性\n\n| 指标 | s43 | s42 |\n|------|-----|-----|\n| PermG fwd | 6/8 | 6/8 | **一致** |\n| PermG rev | 4/8 | 3/8 | 近似 |\n| K≥3 | 4/8 | 2/8 | s42 较弱（ece→d2/d3 在 s42 中 TY 不显著） |\n| MMCT wpair | 75% | 75% | **一致** |\n\n### 关键发现\n\n1. **Mauve 作为 downstream 在 T=11 下信号极弱**：所有 mauve pair 的 PermG p>0.10，DiffXCorr FDR>0.07。mauve 变化幅度仅 +7.9% (s43) / +7.9% (s42)，相比 distinct 指标 -12~-14% 的 drift，信噪比不足。\n\n2. **Core distinct pairs 不受影响**：K≥3 和 K≥4 的 robust pairs 完全由 distinct 指标驱动，不含 ppl 或 mauve。统一 pair 后这些核心结论不变。\n\n3. **PermG fwd 从 8/8 降到 6/8（s43）**：纯粹因为去掉了 ppl pairs（ppl drift +50527% 信号极强），换成 mauve（drift 仅 ~8%）。这是 apples-to-apples 对比的正确代价。\n\n4. **MMCT wpair 跨 seed 稳定在 75%**：FPR 逆加权后，distinct pairs 的强信号补偿了 mauve 的弱信号。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/reanalyze-gpt2m-s43-s42-unified-pairs.md"
+}

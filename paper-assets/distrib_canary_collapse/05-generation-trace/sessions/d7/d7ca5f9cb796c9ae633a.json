@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d7ca5f9cb796c9ae633a",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code launch pythia14b wiki",
+  "task_key": "worker_code_launch_pythia14b_wiki_20260517T135847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_launch_pythia14b_wiki_20260517T135847_result.json",
+    "occurrence": 1,
+    "bytes": 464,
+    "sha256": "bf51e90fffcd13bc2cd6c50430b2e1ccdd0cc5225fb11213a687eb618a672599"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练成功启动，已进入 Gen 0 baseline 阶段。\n\n**汇总：**\n\n| 项目 | 结果 |\n|------|------|\n| 下载方案 | 方案A（huggingface-cli + hf-mirror.com） |\n| model.safetensors | 2.8GB |\n| 参数量 | 1.41B（符合预期） |\n| 提交状态 | 成功 |\n| PID | 274091 |\n| 日志路径 | `~/runs/distrib_canary_collapse/generalize_pythia14b_wiki_a100_s42.log` |\n| GPU | cuda:1 |\n| 当前进度 | Gen 0 baseline 生成中 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-launch-pythia14b-wiki.md"
+}

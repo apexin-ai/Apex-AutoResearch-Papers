@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6d9131e25ad7af05c032",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "reanalyze d102 scale69b verify",
+  "task_key": "worker_reanalyze_d102_scale69b_verify_20260519T154954",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_reanalyze_d102_scale69b_verify_20260519T154954_result.json",
+    "occurrence": 1,
+    "bytes": 1133,
+    "sha256": "1a32a9420692427bb2995af685b6d9eb95bd59419901c69b06e5892739a8727e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "配置已确认是标准的：\n\n- **Canary (2)**: token_entropy, ece\n- **Downstream (4)**: distinct_1, distinct_2, distinct_3, mauve\n- **共 8 对** — 完全匹配统一 pair 配置，无 perplexity/effective_rank 参与 pair 分析\n\n现有分析指标汇总：\n\n| 指标 | 值 |\n|------|-----|\n| **PermG fwd** | 7/8 sig (87.5%) |\n| **PermG rev** | 0/8 sig |\n| **Consensus K≥4** | 6/8 sig (75%) |\n| **MMCT detection_rate** | 0.75 |\n| **TY Granger** | 4/8 sig |\n\nConsensus K≥4 详情：\n- token_entropy→distinct_1: 4 votes (naive, diff, thresh, pg_fwd)\n- token_entropy→distinct_2: 5 votes (naive, diff, thresh, pg_fwd, ty)\n- token_entropy→distinct_3: 5 votes (naive, diff, thresh, pg_fwd, ty)\n- token_entropy→mauve: 3 votes (naive, thresh, ty) — **未达 K≥4**\n- ece→distinct_1: 4 votes (naive, diff, thresh, pg_fwd)\n- ece→distinct_2: 5+ votes\n- ece→distinct_3: 5+ votes\n- ece→mauve: 需确认\n\ndrift_pct 中虽有 perplexity 和 effective_rank，但这些只是 metrics.json 中计算的漂移量，**未参与 lead-lag pair 分析**。配置标准，无需重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/reanalyze-d102-scale69b-verify.md"
+}

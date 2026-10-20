@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "39c18819ca453d678152",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "paper figure fig metric trajectory",
+  "task_key": "worker_paper_figure_fig_metric_trajectory_20260515T175029",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig_metric_trajectory_20260515T175029_result.json",
+    "occurrence": 1,
+    "bytes": 740,
+    "sha256": "4f0f7466fca9e8a2fa2d3f9722f706e3a512114c2525e041f269e6e1d47a5588"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Fig 4 已生成并注册。\n\n**输出文件**:\n- PDF: `figures/paper/fig_metric_trajectory.pdf` (19 KB, 矢量)\n- PNG: `figures/paper/fig_metric_trajectory.png` (105 KB)\n\n**数据验证** (4-seed mean, 与参考值一致):\n- token_entropy: gen0=3.234 → gen10≈1.27, drift **-61%**\n- distinct_1: gen0≈0.098 → gen10≈0.071, drift **-28%**\n\n**可视化要素**:\n- 蓝色 token_entropy 在 gen 1 即骤降至 ~0.59，橙色 distinct_1 在 gen 1 仍 ~1.0，gen 2 才开始下降 → \"1-gen lead\" 标注清晰\n- 4-seed mean ± std 半透明区间（方差极小，说明现象跨 seed 稳定）\n- 右侧标注最终 drift 百分比\n- 3.25in × 2.5in single-column，serif 字体，Okabe-Ito 配色，300 DPI"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig-metric-trajectory.md"
+}

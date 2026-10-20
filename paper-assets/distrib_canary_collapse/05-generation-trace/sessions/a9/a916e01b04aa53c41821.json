@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "a916e01b04aa53c41821",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "code d028 pipeline integration fdr",
+  "task_key": "worker_code_d028_pipeline_integration_fdr_20260515T105558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d028_pipeline_integration_fdr_20260515T105558.log",
+    "occurrence": 1,
+    "bytes": 663051,
+    "sha256": "bbfc0de1e241deff75036134778f5f05de82e6963821c7e8f2cd0489021fc583"
+  },
+  "statistics": {
+    "messages": 163,
+    "user_turns": 0,
+    "tool_calls": 57,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 45,
+      "tool_call": 57,
+      "tool_result": 57,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 163,
+      "chunks": [
+        {
+          "path": "a916e01b04aa53c41821-part-0001.json",
+          "message_count": 139
+        },
+        {
+          "path": "a916e01b04aa53c41821-part-0002.json",
+          "message_count": 24
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-d028-pipeline-integration-fdr.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "64525b0143ad3ec98b47",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "research track a pmax grid search",
+  "task_key": "worker_research_track-a-pmax-grid-search_20260522T074208",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_track-a-pmax-grid-search_20260522T074208_result.json",
+    "occurrence": 1,
+    "bytes": 1092,
+    "sha256": "9f13de60fe969998decf89eca0de060ced9cb673793c58c75676cf49c6de09fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n## 结果\n\n**P_max=0.75 是最优值**，精确对应 6/8 ceiling：\n\n| 指标 | 旧模型 (P_max=1) | 新模型 (P_max=0.75) |\n|------|-----------------|-------------------|\n| Test MAE (T=5,15) | 0.1060 | ≈0 |\n| T=25 MAE | 0.2190 | 0.0312 |\n\n**P_max profile 规律**：\n- P_max=0.50→0.75: test MAE 线性下降至 0（z₀ 全在边界=20，步函数退化）\n- P_max=0.75: 完美匹配验证集（T=5 全 0/8，T=15 全 6/8=0.75）\n- P_max=0.80→0.90: β 跳到 0.17-0.18（γ≈2.8），z₀ 仍在边界\n- P_max=0.95→1.00: z₀ 恢复到 4.5-5.2（内点解），β=0.24-0.28，即旧模型\n\n**关键问题**：P_max=0.75 时模型退化为步函数（z₀ hit boundary → Φ 变成阶跃），β=0.05（γ=10）无物理意义，α_c(T) 值不可靠。\n\n**建议**：论文中将 P_max=0.75 作为固定 ceiling（经验确定，不拟合），smooth transition 部分仍用原始 Φ 模型描述 sub-ceiling 行为。\n\n产出已注册：`theory_verification_d102_pmax_grid.json`、`pmax_grid_analysis.md`、脚本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-track-a-pmax-grid-search.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "59e01552b52b4200c057",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code consensus doc full revision",
+  "task_key": "worker_code_consensus_doc_full_revision_20260515T101501",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_consensus_doc_full_revision_20260515T101501_result.json",
+    "occurrence": 1,
+    "bytes": 817,
+    "sha256": "3c7e6271e48d73450175b2525dedb7011916bd7576be0771601c3832609acbb0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修订完成。两份 `consensus_framework.md` 已同步更新（v1.0 → v1.1 FDR-corrected）。\n\n变更摘要：\n\n**§5.3 Sensitivity Grid** — (3/5, 2/4) 12→9 对（erank 全部移除）；(5/5, 4/4) 3→2 对（仅 entropy→d1, d2）；(5/5, 3/4) 4→3 对（ece→d1 移除）；(4/5, 2/4) 7→6 对（erank→d3 移除）\n\n**§5.4 Stability** — Perfectly stable 仅 entropy→d1/d2 (9/9)；entropy→d3 降至 8/9；ece→d1 从 8/9 降至 7/9 与 d2/d3 对齐；erank→d1/d2/d3 全部归零\n\n**§6 Error Rates** — 新增 §6.1 α=0.0 null control FPR 表（primary）；原 diff-based ground truth 降级为 §6.2（deprecated），标注 diff 自身 37.5% FPR；perm_granger FPR 0.11→0.0，FNR 0→4.2%；TY FNR 20.8%→25%；n_negatives 9→11；新增 §6.4 LOO FPR 占位"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-consensus-doc-full-revision.md"
+}

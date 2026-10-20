@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f5c23fdb5522e080082",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "paper shapley recompute d219",
+  "task_key": "worker_paper_shapley_recompute_d219_20260524T085055",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_shapley_recompute_d219_20260524T085055_result.json",
+    "occurrence": 1,
+    "bytes": 1371,
+    "sha256": "2391a35825448aef8533992a57005b3cb0ac63642449bb7da3591ccdc711725a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**Shapley v3 结果 (6-seed null, 36 pairs)**\n\n| Method | φ^FPR | φ^FNR | φ^comb |\n|--------|-------|-------|--------|\n| Naive | +0.609 | -0.419 | +0.190 |\n| **DiffXCorr** | **+0.007** | **-0.306** | **-0.299** |\n| Threshold | +0.111 | -0.027 | +0.084 |\n| PermG | +0.039 | -0.180 | -0.141 |\n| TY | +0.150 | -0.069 | +0.082 |\n\n**关键变化**: DiffXCorr 取代 PermG 成为 combined Shapley 最优方法（-0.299 vs -0.141），因其 FPR 极低（1/36=2.8%）。PermG 仍是最优 directional method。\n\n**更新清单**:\n- `artifacts/shapley_v3/shapley_values_v3.json` — 新 Shapley 数据\n- `docs/paper/figures/gen_shapley_contribution.py` — 指向 v3 数据，移除 \"zero FPR\" 标注\n- `docs/paper/figures/shapley_method_contribution.pdf/png` — 重新生成\n- `docs/paper/appendix.tex` — 7 处 TODO-D219 全部删除并更新：\n  - FDR sensitivity table: null 改为 /36 (3/4/8 at q=0.01/0.05/0.10)\n  - Shapley intro: 6 null seeds 45-50, 36 pairs\n  - Shapley body: DiffXCorr best overall, PermG best directional\n  - Shapley table: 新数值，DiffXCorr 加粗\n  - Figure caption: 更新\n  - 8-pair robustness: DiffXCorr -0.263, PermG -0.112\n  - Weight robustness: 标注使用 3-seed null，注明 6-seed 结果偏移\n\n**FDR sensitivity (null)**:\n- q=0.01: 3/36, q=0.05: 4/36, q=0.10: 8/36"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-shapley-recompute-d219.md"
+}

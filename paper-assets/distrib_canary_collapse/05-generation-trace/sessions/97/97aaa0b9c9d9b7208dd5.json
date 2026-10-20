@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97aaa0b9c9d9b7208dd5",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code plan 009 bootstrap ty",
+  "task_key": "worker_code_plan_009_bootstrap_ty_20260514T212820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_009_bootstrap_ty_20260514T212820_result.json",
+    "occurrence": 1,
+    "bytes": 1945,
+    "sha256": "648f21bec14b85d630d3f93b4600e690387d006d740dc9aacf37145aba22080b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n**N=1000 Monte Carlo 模拟完成。** 完整结果已保存至服务器 `results/bootstrap_ty_results.json`。\n\n### Type I Error Rate (H0: 独立 AR(1))\n\n| T | d_max=0 | d_max=1 | d_max=adaptive |\n|---|---------|---------|----------------|\n| 10 | **0.081** | 0.047 | 0.052 |\n| 15 | **0.080** | 0.052 | 0.046 |\n| 20 | 0.075 | 0.043 | 0.043 |\n| 30 | **0.081** | 0.043 | 0.043 |\n\n- d_max=0 时 Type I 偏高（~0.08），超过名义 0.05 但未超 0.10 红线\n- d_max=1 和 adaptive 控制在 0.04-0.05，接近名义水平\n\n### Statistical Power (H1: VAR(2), β=0.3)\n\n| T | d_max=0 | d_max=1 | d_max=adaptive |\n|---|---------|---------|----------------|\n| 10 | 0.205 | 0.090 | **0.050** |\n| 15 | 0.311 | 0.131 | 0.124 |\n| 20 | 0.409 | 0.172 | 0.169 |\n| 30 | **0.606** | 0.283 | 0.289 |\n\n### 关键结论\n\n1. **T=10 效力严重不足**：即使在最宽松的 d_max=0 下 power 仅 0.205；d_max=adaptive 时 power=0.05（等同于随机）。**审稿人的担忧完全成立。**\n\n2. **T=20 仍然不够**：d_max=1 时 power=0.172，远低于 0.50 门槛。\n\n3. **T=30 也不达标**：d_max=1 时 power=0.283，仍低于 0.50。唯有 d_max=0 时 power=0.606 达到 moderate 水平，但此时 Type I error 偏高（0.081）。\n\n4. **d_max 敏感性显著**：所有 T 下 power range 都超过 0.15（T=30 时达 0.323），d_max 选择对结论影响巨大。\n\n### 对论文的影响\n\n- **T=10 下 TY Granger 检验不可靠**，既不能作为主要证据也不能作为 robustness check。必须在论文中透明报告这一局限。\n- 即使扩展到 T=20，power 仍然极低。要达到 power≥0.50 可能需要 T≥40-50（或更强的因果效应）。\n- **建议**：论文应 (a) 将 TY 作为辅助指标而非核心证据，(b) 补充 permutation-based 检验或 bootstrap 推断作为替代，(c) 在 limitation 中明确报告此 power analysis 结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-009-bootstrap-ty.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "29455c46afb19d142cc9",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "paper consistency audit",
+  "task_key": "worker_paper_consistency_audit_20260516T002041",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_consistency_audit_20260516T002041_result.json",
+    "occurrence": 1,
+    "bytes": 962,
+    "sha256": "0d41f59f0bcfc5db59e13bd80536c879eccd90562dee9f9ede908abc67807545"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告已写入 `artifacts/paper_consistency_audit.md`。\n\n**关键发现：**\n\n**❌ 1 个严重问题** — Table 1 (tab:drift_summary) 的 α=1.0 行，4-seed mean±std 与 registry 数据不一致：\n- ECE drift: 论文写 +3862±158，实际 +3780±30（mean 偏 82，std 偏 5 倍）\n- Distinct-1: 论文 −25.3，实际 −27.8（偏 2.5 个百分点）\n- Distinct-2: 论文 −29.7，实际 −34.0（偏 4.3 个百分点）\n- Perplexity std: 论文 ±320，实际 ±45（偏 7 倍）\n- 其余 4 行（单 seed）全部精确匹配，问题仅出在聚合计算\n\n**⚠️ 2 个中等问题** — Discussion 称 GPT-2m 结果 \"not yet available\"，但 registry 已有完整结果（Tier 3 consensus 复现）；α=0.25/0.50 已有部分 multi-seed 数据可纳入\n\n**✅ 40+ 个数字验证通过** — 所有方法消融率、κ 值、Granger p 值、sig 计数、FPR/FNR、实验参数均与 registry 一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-consistency-audit.md"
+}

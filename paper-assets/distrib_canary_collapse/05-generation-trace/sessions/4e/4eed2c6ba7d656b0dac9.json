@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "id": "4eed2c6ba7d656b0dac9",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis scale 69b a100 s43",
+  "task_key": "worker_analysis_scale_69b_a100_s43_20260520T075602",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_scale_69b_a100_s43_20260520T075602_result.json",
+    "occurrence": 1,
+    "bytes": 3481,
+    "sha256": "4bc1d2b65466846b098ff31d7dd113dab147d527b47464bd471215aee78c7077"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果如下：\n\n## scale_69b_a100_s43 — D120 Canonical 5-Method Analysis\n\n```json\n{\n  \"experiment\": \"scale_69b_a100_s43\",\n  \"model\": \"EleutherAI/pythia-6.9b\",\n  \"dataset\": \"wikitext-103-v1\",\n  \"alpha\": 1.0,\n  \"seed\": 43,\n  \"generations\": 11,\n  \"bf16\": true,\n  \"gradient_checkpointing\": true,\n\n  \"metrics\": {\n    \"PermG_fwd\": \"6/8\",\n    \"PermG_rev\": \"0/8\",\n    \"diff_xcorr_fdr\": \"6/8\",\n    \"naive_xcorr\": \"6/8\",\n    \"threshold_onset\": \"0/8\",\n    \"TY_granger\": \"0/8\",\n    \"K_ge3\": \"6/8\",\n    \"K_ge4\": \"0/8\"\n  },\n\n  \"consensus_detail\": {\n    \"token_entropy<distinct_1\": \"3/5 [naive, diff, perm]\",\n    \"token_entropy<distinct_2\": \"3/5 [naive, diff, perm]\",\n    \"token_entropy<distinct_3\": \"3/5 [naive, diff, perm]\",\n    \"token_entropy<mauve\":      \"0/5\",\n    \"ece<distinct_1\":           \"3/5 [naive, diff, perm]\",\n    \"ece<distinct_2\":           \"3/5 [naive, diff, perm]\",\n    \"ece<distinct_3\":           \"3/5 [naive, diff, perm]\",\n    \"ece<mauve\":                \"0/5\"\n  },\n\n  \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/scale_check/pythia69b_wiki_a100_s43/gen_10/checkpoint/\",\n  \"analysis_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/scale_check/pythia69b_wiki_a100_s43/analysis/5method_leadlag.json\",\n  \"server\": \"westd-17855\"\n}\n```\n\n## s42 vs s43 对比\n\n| Metric | s42 (parent) | s43 | Delta |\n|--------|:---:|:---:|:---:|\n| PermG_fwd | 7/8 | 6/8 | -1 |\n| PermG_rev | 0/8 | 0/8 | = |\n| diff_xcorr_fdr | 6/8 | 6/8 | = |\n| naive_xcorr | 5/8 | 6/8 | +1 |\n| threshold_onset | 2/8 | 0/8 | -2 |\n| TY_granger | 1/8 | 0/8 | -1 |\n| **K≥3** | **5/8** | **6/8** | **+1** |\n| K≥4 | 0/8 | 0/8 | = |\n\n**要点**：\n- 核心三方法（PermG + diff_xcorr + naive_xcorr）在 6 个 distinct_* pair 上高度一致，跨 seed 稳定\n- mauve pair 两个 seed 均 0/5，信号弱\n- threshold_onset 从 2→0：s43 的 downstream 指标未触发 true 3σ 阈值（canary onset 在 gen_2 但 downstream onset 为 null）\n- TY 继续不稳定（1→0），符合 C003 预期\n- K≥3 从 5→6 提升，s43 的 naive_xcorr 在更多 pair 上与 diff/perm 一致"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "experiment": "scale_69b_a100_s43",
+              "model": "EleutherAI/pythia-6.9b",
+              "dataset": "wikitext-103-v1",
+              "alpha": 1.0,
+              "seed": 43,
+              "generations": 11,
+              "bf16": true,
+              "gradient_checkpointing": true,
+              "metrics": {
+                "PermG_fwd": "6/8",
+                "PermG_rev": "0/8",
+                "diff_xcorr_fdr": "6/8",
+                "naive_xcorr": "6/8",
+                "threshold_onset": "0/8",
+                "TY_granger": "0/8",
+                "K_ge3": "6/8",
+                "K_ge4": "0/8"
+              },
+              "consensus_detail": {
+                "token_entropy<distinct_1": "3/5 [naive, diff, perm]",
+                "token_entropy<distinct_2": "3/5 [naive, diff, perm]",
+                "token_entropy<distinct_3": "3/5 [naive, diff, perm]",
+                "token_entropy<mauve": "0/5",
+                "ece<distinct_1": "3/5 [naive, diff, perm]",
+                "ece<distinct_2": "3/5 [naive, diff, perm]",
+                "ece<distinct_3": "3/5 [naive, diff, perm]",
+                "ece<mauve": "0/5"
+              },
+              "checkpoint_path": "/root/autodl-tmp/distrib_canary_collapse/results/scale_check/pythia69b_wiki_a100_s43/gen_10/checkpoint/",
+              "analysis_path": "/root/autodl-tmp/distrib_canary_collapse/results/scale_check/pythia69b_wiki_a100_s43/analysis/5method_leadlag.json",
+              "server": "westd-17855"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-scale-69b-a100-s43.md"
+}

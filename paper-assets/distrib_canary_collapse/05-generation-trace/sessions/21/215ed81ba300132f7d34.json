@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "215ed81ba300132f7d34",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "prep generalization readiness",
+  "task_key": "worker_prep_generalization_readiness_20260515T113900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_generalization_readiness_20260515T113900_result.json",
+    "occurrence": 1,
+    "bytes": 3293,
+    "sha256": "9091e725b84225e415c85e2de4ec0d1fec547fc8fb453c1e4bd6a954380f49c0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在写就绪报告。\n\n---\n\n## Generalization 实验就绪报告\n\n### 检查结果\n\n| 项目 | 状态 | 说明 |\n|------|------|------|\n| GPT-2-medium 模型缓存 | ⏳ 下载中 | HF cache 无完整权重。已启动 ModelScope 下载（~54%，预计 3-4 分钟完成），路径：`/root/autodl-tmp/.hf_cache/modelscope/AI-ModelScope/gpt2-medium/` |\n| C4 数据 | ✅ | `/root/autodl-tmp/distrib_canary_collapse/data/c4_5k/` — train: 4500, eval: 500, prompts: 500（Arrow 格式） |\n| WikiText 数据 | ✅ | `data/wikitext103` 和 `data/wikitext103_5k` 均存在 |\n| 训练脚本兼容性 | ⚠️ 见下 | 支持所有基本参数，但 eval 和 train 绑定同一 data_dir |\n| 磁盘空间 | ✅ | 99GB 可用（250GB 中用了 152GB） |\n| GPU 可用性 | ✅ | cuda:0 空闲（0 MiB），cuda:1 被 alpha_sweep a075_s42 占用 |\n\n### 脚本参数确认\n\n| 参数 | 参数名 | 值 |\n|------|--------|-----|\n| 模型 | `--model_name` | `gpt2-medium` 或本地路径 |\n| 数据 | `--data_dir` | `data/wikitext103_5k` |\n| α (synthetic ratio) | `--synthetic_ratio` | `1.0` / `0.25` |\n| Batch size | `--batch_size` | `32` |\n| 代数 | `--num_generations` | `10` |\n| 步数/代 | `--steps_per_gen` | `5000` |\n\n### ⚠️ 需关注的问题\n\n1. **plan_006_s42 已超时退出**（EXIT_CODE=124）：模型是 **Pythia-410m**（非 GPT-2-medium），完成 gen 0-18，gen 19 未完成。你说的 GPT-2-medium plan_006 似乎还未启动。\n\n2. **脚本无独立 eval_dir**：`iterative_train.py` 的 eval_dataset 从 `--data_dir` 的 `eval/` 子目录加载，与训练数据绑定。如果 \"generalization\" 是指训练 WikiText + 评估 C4，需要修改脚本增加 `--eval_dir` 参数；如果只是换模型跑同样流程，则无需改。\n\n3. **GPT-2-medium 加载方式**：ModelScope 下载完成后，`--model_name` 应传本地路径 `/root/autodl-tmp/.hf_cache/modelscope/AI-ModelScope/gpt2-medium/`，或者在启动命令中设置 `HF_ENDPOINT=https://hf-mirror.com` 让 transformers 从镜像站加载。\n\n4. **僵尸进程**：PID 94952（dryrun a025_s43）占用 4098% CPU 但 0% GPU，看起来卡住了。建议 kill。\n\n### 建议启动命令\n\n等 ModelScope 下载完成后：\n\n```bash\ncd /root/autodl-tmp/distrib_canary_collapse && \\\nexport CUDA_VISIBLE_DEVICES=0 && \\\nexport HF_HOME=/root/autodl-tmp/.hf_cache && \\\nexport HF_HUB_DISABLE_XET=1 && \\\nexport HF_ENDPOINT=https://hf-mirror.com && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nPYTHONUNBUFFERED=1 python -u iterative_train.py \\\n    --model_name /root/autodl-tmp/.hf_cache/modelscope/AI-ModelScope/gpt2-medium \\\n    --data_dir data/wikitext103_5k \\\n    --synthetic_ratio 1.0 \\\n    --num_generations 10 \\\n    --steps_per_gen 5000 \\\n    --batch_size 32 \\\n    --seed 42 \\\n    --output_dir results/gen_wiki_gpt2m_a100_s42\n```\n\nα=0.25 版本将 `--synthetic_ratio 0.25` 和 `--output_dir results/gen_wiki_gpt2m_a025_s42` 替换即可。\n\n### 待确认\n\n1. \"generalization\" 是指换模型验证 collapse 可复现，还是指 cross-domain eval（训练 WikiText 评估 C4）？后者需改脚本。\n2. PID 94952 是否可以 kill？\n3. plan_006_s42 gen 19 是否需要补完？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-generalization-readiness.md"
+}

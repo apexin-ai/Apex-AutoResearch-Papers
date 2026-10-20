@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ed59192d0ab65e97033",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis r5 null correlation matrix",
+  "task_key": "worker_analysis_r5_null_correlation_matrix_20260520T204816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r5_null_correlation_matrix_20260520T204816_result.json",
+    "occurrence": 1,
+    "bytes": 1019,
+    "sha256": "2509a99ca1241c09a5ba79072d97f872f85004171bdc6bfdd6a067624d4c14de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出 `artifacts/r5_null_correlation_matrix.json`，核心结果：\n\n| Method | s42 | s43 | s44 | Total |\n|--------|-----|-----|-----|-------|\n| **PermG_fdr** | 0/8 | 0/8 | 0/8 | **0/24** |\n| DiffXCorr_fdr | 4/8 | 2/8 | 3/8 | 9/24 |\n| NaiveXCorr | 8/8 | 7/8 | 7/8 | 22/24 |\n| ThresholdOnset | 3/8 | 1/8 | 2/8 | 6/24 |\n| TY_Granger | 2/8 | 2/8 | 0/8 | 4/24 |\n\n**Clopper-Pearson CI (PermG, 0 rejections):**\n- 0/3 seeds: [0, 0.708]\n- 0/24 (if pairs independent): [0, 0.142]\n\n**Effective N:**\n- PermG 全零 → effective N = 3（下界），无法区分 pair 独立性\n- DiffXCorr ICC = 0.3386（中等聚类），te→d2 跨 3 seed 一致 reject (3/3)，ece 系列一致 non-reject (0/3)，说明 pair 间不独立，effective N 介于 3 和 24 之间\n\n**关键发现：** PermG_fdr 是唯一在 α=0 null 下保持 0% FPR 的方法。NaiveXCorr 在 null 下 FPR 高达 92%，DiffXCorr_fdr 37.5%，ThresholdOnset 25%，TY_Granger 17%——这些方法在无真实信号时大量误报。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r5-null-correlation-matrix.md"
+}

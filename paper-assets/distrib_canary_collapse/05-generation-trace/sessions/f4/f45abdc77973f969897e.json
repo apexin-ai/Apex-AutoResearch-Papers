@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f45abdc77973f969897e",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis mmct bugfix expand v3",
+  "task_key": "worker_analysis_mmct_bugfix_expand_v3_20260518T155459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mmct_bugfix_expand_v3_20260518T155459_result.json",
+    "occurrence": 1,
+    "bytes": 1666,
+    "sha256": "7e935e94c6ab51d13106f06f8807756a8f18a9d4caa9378be670c7ac2f022c8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果总结：\n\n### 验证清单\n\n| # | 检查项 | 结果 |\n|---|--------|------|\n| 1 | Bug fix 后 bidirectional 结果变化 | ✅ weighted_pair: fwd 87.5% vs bidir 62.5%；weighted_global: fwd 12.5% vs bidir 8.3% |\n| 2 | α=0.00 所有 6 模式 FPR=0 | ✅ 全部 0/24 |\n| 3 | α=1.0 检测率 ≥ α=0.75 | ⚠️ 见下方分析 |\n| 4 | Table 7 全部 7 条件出结果 | ✅ 7 conditions × 6 modes |\n| 5 | Global vs pair 有区别 | ✅ pair 87.5% vs global 12.5% (α=0.75) |\n\n### α=0.75 检测率 (6-way)\n\n| Mode | 检测率 |\n|------|--------|\n| weighted_pair_forward | **21/24 = 87.5%** |\n| weighted_pair_bidirectional | 15/24 = 62.5% |\n| uniform_forward | 8/24 = 33.3% |\n| uniform_bidirectional | 8/24 = 33.3% |\n| weighted_global_forward | 3/24 = 12.5% |\n| weighted_global_bidirectional | 2/24 = 8.3% |\n\n### Table 7 (α=1.0, weighted_pair_forward 最优模式)\n\nBaseline 5/8, GPT-2m **7/8**, OPT 5/8, 1.4B-s42 4/8, 1.4B-s43 4/8, C4-s42 5/8, C4-s43 4/8\n\n### 关键发现\n\n**Global weighting 过于保守。** 原因：global FPR pooling 将 naive_xcorr 的 95.8% FPR 应用于所有 pairs，使其权重仅 1.04（几乎忽略）。在 24 个 null observations 中，已有 ~5 个 null scores ≥ 0.3966（naive+diff+perm 的组合），导致大量 α=1.0 的真阳性无法通过 p<0.05 阈值。Per-pair weighting 因为可以针对不同 pair 的 FPR 特征自适应调节权重而表现更好。\n\n### 输出文件\n\n`artifacts/mmct_results/` 下 5 个文件全部生成：`mmct_results.json` (838KB), `null_distribution.json`, `mmct_report.md`, `fpr_fnr_comparison.md`, `mmct_table7.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mmct-bugfix-expand-v3.md"
+}

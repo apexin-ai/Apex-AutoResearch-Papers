@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a414341564e33eec531",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops t10a075 kill d102",
+  "task_key": "worker_ops_t10a075-kill-d102_20260522T191455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_t10a075-kill-d102_20260522T191455_result.json",
+    "occurrence": 1,
+    "bytes": 2728,
+    "sha256": "7028edda974b07bc6e56cbab2dc0e0ae1d55d4c3cb7fd15df749b155acd6fb1b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All phases complete. Here's the report.\n\n---\n\n## D102 5-Method Analysis — Pythia-1.4B | α=0.75 | seed=42 | T=10 | fp32\n\n### PermG Forward/Reverse (FDR-corrected, n_perm=5000)\n\n| Direction | Sig count |\n|-----------|-----------|\n| **Forward** | **5/8** |\n| **Reverse** | **0/8** |\n\nForward PermG detail:\n\n| Pair | F-stat | p_raw | p_FDR | Sig |\n|------|--------|-------|-------|-----|\n| token_entropy→distinct_1 | 2087.73 | 0.0024 | 0.0048 | ✓ |\n| token_entropy→distinct_2 | 1009.79 | ~0.002 | ~0.004 | ✓ |\n| token_entropy→distinct_3 | 298.80 | — | — | ✗ |\n| token_entropy→mauve | N/A | N/A | N/A | ✗ |\n| ece→distinct_1 | 4974.46 | ~0.001 | ~0.002 | ✓ |\n| ece→distinct_2 | 4005.76 | ~0.001 | ~0.002 | ✓ |\n| ece→distinct_3 | 933.93 | ~0.002 | ~0.004 | ✓ |\n| ece→mauve | N/A | N/A | N/A | ✗ |\n\nReverse: all 0 significant (F-stats 2.8–7.4, all p > 0.05)\n\n### K≥3 Consensus (≥3/5 methods agree on forward causation)\n\n| Pair | Votes | Methods |\n|------|-------|---------|\n| token_entropy→distinct_1 | **3/5** | naive, diff, perm |\n| token_entropy→distinct_2 | **3/5** | naive, diff, perm |\n| token_entropy→distinct_3 | 2/5 | diff, ty |\n| token_entropy→mauve | 0/5 | — |\n| ece→distinct_1 | **4/5** | naive, diff, perm, ty |\n| ece→distinct_2 | **3/5** | naive, diff, perm |\n| ece→distinct_3 | **4/5** | naive, diff, perm, ty |\n| ece→mauve | 0/5 | — |\n\n**Robust pairs: 5/8**\n\n### Per-method forward significance\n\n| Method | Sig/8 |\n|--------|-------|\n| PermG (FDR) | 5/8 |\n| Diff XCorr (FDR) | 6/8 |\n| Threshold Onset | 0/8 |\n| TY Granger | 3/8 |\n\n### Drift metrics (gen_0 → gen_10)\n\n| Metric | Gen 0 | Gen 10 | Δ |\n|--------|-------|--------|---|\n| token_entropy | 2.973 | 1.968 | −1.005 (−33.8%) |\n| ece | 0.008 | 0.266 | +0.258 (×32.8) |\n| perplexity | 19.83 | 89.37 | +69.54 (×4.5) |\n| distinct_1 | 0.099 | 0.081 | −0.019 (−18.7%) |\n| distinct_2 | 0.522 | 0.407 | −0.115 (−22.1%) |\n| distinct_3 | 0.821 | 0.670 | −0.151 (−18.4%) |\n| mauve | null | 0.031 | — |\n\n### KEY DISCRIMINATOR verdict\n\n**1.4B α=0.75 → 5/8** (PermG fwd & K≥3 consensus both 5/8, reverse 0/8).\n\n410M at α=0.75 was 6/8. 1.4B is 5/8 — close but 1 pair below. The 2 failing pairs are both **mauve** pairs (token_entropy→mauve, ece→mauve), where mauve=null at gen_0 truncates the effective series. The 6 distinct_N pairs show 5/6 significant. Directionality is clean: 5/8 forward vs 0/8 reverse.\n\n**Output saved on server:**\n- `results/phase_diagram/t10_a075_s42_fp32_14b/analysis/5method_leadlag.json`\n- `results/phase_diagram/t10_a075_s42_fp32_14b/analysis/5method_summary.txt`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-t10a075-kill-d102.md"
+}

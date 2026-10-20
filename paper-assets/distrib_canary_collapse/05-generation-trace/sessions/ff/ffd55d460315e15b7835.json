@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ffd55d460315e15b7835",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "viz paper figures batch",
+  "task_key": "worker_viz_paper_figures_batch_20260516T162153",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_paper_figures_batch_20260516T162153_result.json",
+    "occurrence": 1,
+    "bytes": 817,
+    "sha256": "786b634fc54fc279c8b527b6a73062a1581034795bb7fa8f4d07af25faeab5d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 个 PDF 全部生成完毕：\n\n| 文件 | 大小 | 内容 |\n|------|------|------|\n| `differencing_dmax.pdf` | 20KB | d_max 分组柱状图 (α=0.75, 3 seeds) |\n| `consensus_heatmap.pdf` | 21KB | K-of-5 votes 热力图 (8 pairs × 3 seeds) |\n| `regime_map.pdf` | 29KB | α regime 分区概念图 |\n| `metric_trajectory.pdf` | 21KB | token_entropy + distinct_1 漂移折线图 |\n| `consensus_workflow.pdf` | 37KB | 5-method filtering pipeline 流程图 |\n\n数据说明：\n- `consensus_heatmap` 仅含 α=0.75 三个 seed（只有这三个有 5method_leadlag.json）\n- `metric_trajectory` 包含 α=0.00/0.25/0.50/0.75 四组，a025/a050 有多 seed 时画了 ±std band\n- `differencing_dmax` 显示 s42/s43 全部 d_max=1，s44 前 4 对为 d_max=2（token_entropy 对），后 4 对为 1"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-paper-figures-batch.md"
+}

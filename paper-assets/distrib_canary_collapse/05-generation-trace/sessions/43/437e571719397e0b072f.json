@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "437e571719397e0b072f",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops verify null seeds running",
+  "task_key": "worker_ops_verify_null_seeds_running_20260521T063444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_null_seeds_running_20260521T063444_result.json",
+    "occurrence": 1,
+    "bytes": 940,
+    "sha256": "978f72820f2e6fc2eabccf00097d835e3e174cfbb0976f643f051e6d0754ada2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇报\n\n### s45 (westd-17855, GPU 2) — 正常运行\n\n- GPU: 14260MiB, **95% util**\n- 进度: **gen_2 训练中**, step 3725/5000 (74%), ~7.70 it/s\n- gen_0, gen_1 已完成\n- loss@3700: 3.21, lr: 1.446e-05\n- 预计 gen_2 完成还需 ~2:45，整体 10 gen 预计还需数小时\n\n### s46 (westd-19828, GPU 1) — 刚启动，需观察\n\n- GPU: 12445MiB, **0% util**（模型已加载）\n- 进度: **gen_0 baseline 刚保存完**, 日志仅 9 行，gen_0 目录只有 `synthetic_data`，训练尚未开始\n- 可能原因: 快照时恰好在 baseline 保存和训练启动之间，GPU util 0% 是瞬时状态\n- config 确认: seed=46, synthetic_ratio=0.0, 10 gen, 5000 steps, pythia-410m — 参数正确\n\ns46 目前看起来刚刚启动，尚未进入训练循环。建议几分钟后再检查一次确认 GPU util 升上来、gen_0/trainer 目录出现。如果仍然 0% util 则需要排查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-null-seeds-running.md"
+}

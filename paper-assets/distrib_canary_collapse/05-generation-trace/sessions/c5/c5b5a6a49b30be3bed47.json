@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c5b5a6a49b30be3bed47",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis cascade theory empirical validation",
+  "task_key": "worker_analysis_cascade_theory_empirical_validation_20260520T185910",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cascade_theory_empirical_validation_20260520T185910_result.json",
+    "occurrence": 1,
+    "bytes": 1058,
+    "sha256": "8330bf48d231e0e534c72f3ca47d9363beb9638cf974de3a3af3ffdf974553ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Written both artifacts:\n- `artifacts/theory/cascade_empirical_validation.md` — full report with 3 query tables and analysis\n- `artifacts/theory/cascade_empirical_data.json` — structured data with all onset values\n\nKey findings:\n\n**Query 1 (α=1.0)**: Entropy still leads diversity (t_H=1, t_D=2). Condition (6) does not break even at maximal perturbation.\n\n**Query 2 (C4)**: Domain-normalized analysis (M3) confirms cascade ordering holds on C4 (t_H=1, t_D=2). Raw comparison is confounded by WikiText→C4 domain shift.\n\n**Query 3 (Low-α)**: This is the strongest result — at α≤0.25, entropy does NOT onset at all (gen1 deviation 0.004–0.011, far below threshold 0.121). Sharp phase transition at α~0.30 where gen1 deviation jumps 60× to 0.483. **Gen-1 artifact hypothesis refuted** by three independent tests: α-dependence, phase transition sharpness, and metric asymmetry (distinct-n never triggers at gen 1).\n\nInvariant across all 17 WikiText experiments: t_D = 2 regardless of α, seed, or entropy onset status."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cascade-theory-empirical-validation.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c0a04cc6b9a6250653af",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "investigate d105 5method diff",
+  "task_key": "worker_investigate_d105_5method_diff_20260519T162829",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_investigate_d105_5method_diff_20260519T162829_result.json",
+    "occurrence": 1,
+    "bytes": 802,
+    "sha256": "785f5683b60a0c29ee935ebf0fa72c2dd5c2e7eeb747b58842523c9bfe2a40ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存并注册。核心发现：\n\n**K≥4 差异根因：`d102_rerun_8pair.py` 的 leadlag consensus 对 naive_xcorr 的方向过滤器符号反转。** `peak_lag > 0` 在 method_ablation.py 的 lag 约定下 = downstream 领先 canary（错误方向）。6/8 pair 的 canary 领先证据（peak_lag=-1）被错误排除，2/8 pair 的 downstream 领先证据反而被计入。\n\n**论文应使用 `unified_5method.json`**（K≥4=8/8），不含方向 bug，有完整 FDR 三级显著性。\n\nTask 3 收尾：\n- (a) \"Rev 3/8\" claim 在当前 registry 102 条记录中不存在，无需操作\n- (b) `scale_14b_a100_s42_fp32` 不存在；14B s42 的 `5method_summary.txt` 确认用旧 →ppl 数据，但 `unified_5method.json` 已有正确 D102 数据，无需重生成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-d105-5method-diff.md"
+}

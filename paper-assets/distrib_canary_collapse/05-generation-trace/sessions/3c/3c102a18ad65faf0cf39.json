@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c102a18ad65faf0cf39",
+  "project": "distrib_canary_collapse",
+  "kind": "history",
+  "title": "agent / loop_4_1778822085.md",
+  "task_key": "loop_4_1778822085",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778822085.md",
+    "occurrence": 1,
+    "bytes": 4980,
+    "sha256": "abac11f8ad2437578cc1065153551df71c4fa01defffdd40815e02853a190fc4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-15T04:23:07+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 `cuda:0` 和 `cuda:1`（westd-19828），不存在其他可用卡\n- 服务器名是 `westd-19828`（不是 `autodl-rtx6000`，旧名已废弃），submit_training_job 必须用此名\n- HF 下载用 `HF_ENDPOINT=https://hf-mirror.com`，**不要用 network_turbo 代理**（会卡死）\n- kill_job 只杀 tmux session 不杀子进程——kill 后必须 `ps aux | grep python` 确认子进程全部死亡\n- canary→perplexity 已被差分 Granger **决定性证伪**（F→0, p→1），论文 claim 硬限只能声称 \"canary predicts diversity collapse\"，**禁止声称 predict perplexity**\n- mix_datasets 已修复双向 subsample，不要回退旧逻辑\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-19828，2× RTX PRO 6000 Blackwell 96GB\n- **工作目录**: `/root/autodl-tmp/distrib_canary_collapse`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境），激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **HF cache**: `/root/autodl-tmp/.hf_cache`\n- **模型**: EleutherAI/pythia-410m（从 HF mirror 下载，已缓存）\n- **数据**: `data/wikitext103_5k/`（5000 条，train split 取 prompt 前缀）；`data/wikitext103/`（完整 wikitext-103）\n- **活跃进程**:\n  - `plan_006_s42`: PID 68368, tmux session, cuda:0, 20-gen extended (α=1.0, 10k steps/gen)，预估总时长 ~8.7h，started 2026-05-14 23:41 UTC\n  - `alpha_sweep_a050_s42`: PID 73737, tmux session, cuda:1, 10-gen (α=0.50, 5k steps/gen)，started 2026-05-15 01:20 UTC\n- **Cron**: 两个 cron 监控上述两个实验，reconcile 确认均 still running\n- **W&B**: 未配置（metrics 从 all_metrics.json 读取）\n\n### 3. 📊 当前状态\n**刚完成**: alpha_sweep_a025_s42_v3 (success) 的分析和 D021-D023 决策记录。关键发现——α=0.25 下 diversity drift 仅 -40%~-60%（vs α=1.0 的 -90%+），token_entropy drift 仅 -4.1%（vs α=1.0 的 -62%），ECE drift +79.7% 但绝对值小。这支撑了 Claim 2（regime-dependent predictability）和 D021（ECE 只在高 α 可靠）。\n\n**Registry RUNNING**:\n- `plan_006_s42` — 20-gen extended run，验证 diversity lead 在更长序列下是否更稳健（Claim 1 加固）\n- `alpha_sweep_a050_s42` — α=0.50 中等污染，α-sweep Phase A 关键数据点\n\n**PREPARING 待提交**（等 GPU 空闲）:\n- `alpha_sweep_a075_s42` / `alpha_sweep_a060_s42` / `alpha_sweep_a010_s42` — α-sweep 剩余 3 点\n- `plan_006_s43` — 20-gen extended 第二个 seed\n\n**等待中**: 无 Worker 回调待处理。两个 cron 自动监控 RUNNING 实验。\n\n### 4. 📋 待办（条件触发式）\n- `alpha_sweep_a050_s42` cron 回调 DONE → spawn Worker 运行 `analyze_alpha_sweep.py`（含差分 Granger + BH FDR），与 a000/a025 对比 → 立即提交 `alpha_sweep_a075_s42` 到空出的 cuda:1\n- `alpha_sweep_a075_s42` 完成 → 提交 `alpha_sweep_a060_s42`；完成后提交 `alpha_sweep_a010_s42`（串行用 cuda:1）\n- `plan_006_s42` cron 回调 DONE → spawn Worker 执行 memory.md 中的 plan_006 分析 checklist（rolling-window, cross-corr max_lag=10, 与 MVP 10-gen 对比）→ 提交 `plan_006_s43` 到空出的 cuda:0\n- α-sweep 6 点全部完成 → plan_002 Phase 2: pooled panel regression + permutation Granger across α levels → 产出 regime map（phase boundary α*）\n- 任何实验 conclusion=negative → 按 red-section skill 产 Framing 调整提案，**禁止默默跑下一个**\n- α-sweep 完成后 → detrending analysis（detrending_utils.py 已就绪）+ 2σ onset threshold sensitivity\n\n### 5. 🎯 战略上下文\n**核心 narrative (D013-D023)**: 三个 claim 并行——(1) token_entropy Granger-causes diversity collapse with 1-2 gen lead（差分 Granger 24/24 FDR-sig），ECE 为 conditional secondary canary（高 α 可靠, D021）；(2) 可预测性 regime-dependent（α-sweep regime map, D022 升级为 \"不同 α 下不同指标进入不同 predictability regime\"）；(3) 方法选择决定结论——naive 100% sig 实为 75% 伪回归（D023 升级为 method × regime interaction）。\n\n**Target**: AAAI 2027（~Aug 2026 deadline），当前 Dream 评分 best 3/6。\n\n**易错点**:\n- α=0.25 的 ECE drift (+79.7%) 看着大但绝对值极小（0.011→0.019），不要误判为 \"ECE 在低 α 也有效\"——D021 已限定 ECE 仅高 α (≥0.50) 可靠\n- plan_006 的 perplexity channel **不会变显著**（差分已证伪为纯趋势驱动），focus 是 diversity lead 在 T=20 下的稳健性\n- 老 PREPARING 实验（mvp_rep44, mvp_v2_rep44, alpha_sweep_a025_s42, alpha_sweep_a025_s42_v2）是历史遗留，不要提交——它们的有效版本已在 DONE 中\n- TY 仅用于 Claim 3 方法敏感性展示，**不作为核心证据**（T=10 power 仅 5-20%, D016）\n- 累计 GPU ~8.4h，P0 预算 ~57h，资源充足但 α-sweep 6 点 + extended run 是当前瓶颈\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778822085.md"
+}

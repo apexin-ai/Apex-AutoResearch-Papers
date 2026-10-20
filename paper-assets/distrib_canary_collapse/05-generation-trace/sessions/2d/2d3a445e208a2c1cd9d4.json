@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d3a445e208a2c1cd9d4",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis c4 a050 s42 fp32",
+  "task_key": "worker_analysis_c4_a050_s42_fp32_20260519T182208",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_c4_a050_s42_fp32_20260519T182208_result.json",
+    "occurrence": 1,
+    "bytes": 635,
+    "sha256": "c126f5a39ed6efb6c232f4e2f4734dae78bd0784603b11b150506f20bc1fc407"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成，实验已推进到 DONE。\n\n## 结论：bf16 precision artifact 确认\n\n| | bf16 parent | fp32 (本实验) |\n|---|---|---|\n| **PermG fwd (D106)** | **0/8** | **8/8** |\n| PermG rev | 0/8 | 7/8 |\n| K≥4 (3σ) | 0/8 | 8/8 |\n| token_entropy Δ | -38.2% | -48.0% |\n| perplexity final | 122.8 | 727.95 |\n| mauve final | 0.078 | 0.379 |\n\nC4 α=0.50 **不是 blind zone**——bf16 精度完全抹杀了因果信号。fp32 下所有 8 对 canary→diversity 都呈现显著的前向因果领先（canary onset gen 1, downstream onset gen 2–3）。D079 (fp32 mandatory for ≤3B) 再次被验证。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-c4-a050-s42-fp32.md"
+}

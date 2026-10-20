@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "998a8ee4a61af3be06fa",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "monitor scale 14b progress check",
+  "task_key": "worker_monitor_scale_14b_progress_check_20260522T224823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_scale_14b_progress_check_20260522T224823_result.json",
+    "occurrence": 1,
+    "bytes": 1862,
+    "sha256": "7275e611c9690e075ff187437aa692925b86e405d555f454304bbb0e3b8597ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总完毕。\n\n## 1.4B Scale 实验进度汇总\n\n### westd-17855 (6× RTX PRO 6000 Blackwell 98GB)\n\n| GPU | exp_id | 进度 | 当前 Gen | 剩余 Gens | 预估剩余时间 |\n|-----|--------|------|----------|-----------|-------------|\n| cuda:0 | t15_a060_s42_fp32_v2 | 12/15 | gen_12 (training) | 3 | ~3h |\n| cuda:1 | t15_a050_s42_fp32_v3 | 12/15 | gen_12 (training) | 3 | ~3h |\n| cuda:2 | t10_a075_s43_fp32 | 2/10 | gen_2 (training) | 8 | ~9h |\n| cuda:3 | t10_a060_s43_fp32 | 2/10 | gen_2 (training) | 8 | ~9h |\n| cuda:4 | t10_a045_s42_fp32 | 9/10 | gen_9 (starting) | 1 | ~1h |\n| cuda:5 | t15_a045_s42_fp32 | 10/15 | gen_10 (training) | 5 | ~6h |\n\n**GPU 利用率:**\n\n| GPU | Util | VRAM |\n|-----|------|------|\n| cuda:0 | 99% | 31.5/95.6 GB |\n| cuda:1 | 99% | 31.5/95.6 GB |\n| cuda:2 | 97% | 27.1/95.6 GB |\n| cuda:3 | 97% | 27.1/95.6 GB |\n| cuda:4 | 89% | 30.4/95.6 GB |\n| cuda:5 | 99% | 31.5/95.6 GB |\n\n**磁盘:** 319G/350G used (91%) — **剩余 32G，需关注**\n\n---\n\n### westd-19828 (2× RTX PRO 6000 Blackwell 98GB)\n\n| GPU | exp_id | 进度 | 当前 Gen | 剩余 Gens | 预估剩余时间 |\n|-----|--------|------|----------|-----------|-------------|\n| cuda:0 | t15_a075_s42_fp32 | 9/15 | gen_9 (starting) | 6 | ~7h |\n| cuda:1 | t10_a050_s43_fp32 | 2/10 | gen_2 (training) | 8 | ~9h |\n\n**GPU 利用率:**\n\n| GPU | Util | VRAM |\n|-----|------|------|\n| cuda:0 | 89% | 30.4/95.6 GB |\n| cuda:1 | 96% | 27.1/95.6 GB |\n\n**磁盘:** 141G/250G used (57%) — 剩余 110G，充足\n\n---\n\n**备注:**\n- 每 gen 耗时约 ~67min（基于 gen 间时间戳差值估算）\n- \"training\" = 已有 `synthetic_data` + `trainer` 但无 `metrics.json`；\"starting\" = gen 目录已创建但为空\n- **17855 磁盘 91%**，8 个实验中 4 个还有 7-8 gens 要跑，可能不够用（C007 约束）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-scale-14b-progress-check.md"
+}

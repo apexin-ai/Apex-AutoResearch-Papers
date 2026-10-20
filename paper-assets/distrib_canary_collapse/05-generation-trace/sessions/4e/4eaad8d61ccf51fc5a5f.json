@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4eaad8d61ccf51fc5a5f",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis a050 s43 5method",
+  "task_key": "worker_analysis_a050_s43_5method_20260516T195658",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_a050_s43_5method_20260516T195658_result.json",
+    "occurrence": 1,
+    "bytes": 1862,
+    "sha256": "b69cb37e5d3dd5538910d212d26331be0ef0ebfed00dc7d15a0cb0e25741eee2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果摘要：\n\n## α=0.50 seed=43 — 5-Method Lead-Lag 结果\n\n| Pair | Naive | Diff FDR | Perm FDR | TY | Onset | Votes | Robust |\n|------|-------|----------|----------|-----|-------|-------|--------|\n| token_entropy→distinct_1 | ✓ | ✓ (0.015) | ✓ (0.042) | ✗ | ✗ | **3/5** | **✓** |\n| token_entropy→distinct_2 | ✓ | ✓ (0.010) | ✗ (0.055) | ✗ | ✗ | 2/5 | ✗ |\n| token_entropy→distinct_3 | ✓ | ✗ (0.051) | ✓ (0.042) | ✗ | ✗ | 2/5 | ✗ |\n| token_entropy→perplexity | ✓ | ✓ (0.002) | ✗ (0.063) | ✗ | ✗ | 2/5 | ✗ |\n| ece→distinct_1 | ✗ | ✓ (0.000) | ✓ (0.029) | ✗ | ✗ | 2/5 | ✗ |\n| ece→distinct_2 | ✗ | ✓ (0.015) | ✓ (0.042) | ✗ | ✗ | 2/5 | ✗ |\n| ece→distinct_3 | ✗ | ✗ (0.051) | ✓ (0.042) | ✗ | ✗ | 1/5 | ✗ |\n| ece→perplexity | ✗ | ✓ (0.002) | ✓ (0.042) | ✗ | ✗ | 2/5 | ✗ |\n\n### 汇总\n\n- **Perm Granger FDR**: 6/8 显著\n- **Diff XCorr FDR**: 5/8 显著\n- **Naive XCorr**: 4/8（token_entropy 的 4 对，lag=1 方向正确）\n- **TY Granger**: 0/8（与 C003 约束一致——α≤0.50 下 TY 不可靠）\n- **Threshold Onset**: 0/8（None——α=0.50 退化不足以触发阈值）\n- **Robust consensus (≥3/5)**: **1/8** — 仅 `token_entropy→distinct_1`\n\n### 关键观察\n\n1. Perm Granger 是最敏感的方法（6/8），但 reverse 方向全部不显著（0/8），证实前向因果方向\n2. α=0.50 下信号较弱，多数 pair 只有 2 个方法达到显著——相比 α=0.75/1.0 的 robust pairs 数量明显少\n3. TY Granger 全军覆没，印证 C003 约束（低 α 下 T=11 样本不足 + ADF 积分阶数不稳定）\n\n产出已保存至：\n- `results/alpha_sweep/a050_s43/analysis/5method_leadlag.json`\n- `results/alpha_sweep/a050_s43/analysis/5method_summary.txt`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-a050-s43-5method.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d63b73b9538b68986e79",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis d102 t20a075 s43",
+  "task_key": "worker_analysis_d102-t20a075-s43_20260522T123100",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d102-t20a075-s43_20260522T123100_result.json",
+    "occurrence": 1,
+    "bytes": 665,
+    "sha256": "b8bb423e55dc62fb311e0ea503be1772d1a01d721ed0a4210e492d594a5c768b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D102 分析完成，registry 已更新为 DONE (success)。\n\n## 结果汇总\n\n| 指标 | s43 | s42 | 一致性 |\n|------|-----|-----|--------|\n| **PermG forward (FDR)** | **6/8** | 6/8 | ✓ 完全一致 |\n| PermG reverse | 0/8 | 0/8 | ✓ |\n| Robust pairs (≥3/5) | 7/8 | - | - |\n| Threshold onset | 6/8 | - | - |\n| TY forward | 5/8 | - | - |\n\n**显著 pairs (6/8):** te→d1, te→d2, te→d3, ece→d1, ece→d2, ece→d3\n\n**非显著 pairs (2/8):** te→mauve, ece→mauve（mauve 系列在 T=20 下信号不足以通过 PermG FDR 校正）\n\nCross-seed validation 确认：T=20 α=0.75 的 6/8 ceiling 是 seed-independent 的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d102-t20a075-s43.md"
+}

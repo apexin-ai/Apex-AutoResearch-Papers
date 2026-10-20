@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6f0ee58b8a7d642bc2fa",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "figure dual track dose response",
+  "task_key": "worker_figure_dual_track_dose_response_20260519T042604",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_dual_track_dose_response_20260519T042604_result.json",
+    "occurrence": 1,
+    "bytes": 826,
+    "sha256": "753209546f9f9d232478d7c3bbe56a8f89365acabf9188b0f1d51ec16074cde3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**产出清单**：\n\n| 文件 | 大小 | 路径 |\n|------|------|------|\n| `dual_track_data.csv` | 271B | `artifacts/dual_track_figure/` |\n| `dual_track_dose_response.pdf` | 29KB | `artifacts/dual_track_figure/` |\n| `dual_track_dose_response.png` | 198KB | `artifacts/dual_track_figure/` |\n\n**图表特性**：\n- 左 panel: PermG bar chart，清晰展示 α=0.50→0.75 的 step transition（0%→8.3%→83.3%），含 Wilson CI error bars\n- 右 panel: MMCT line+scatter，展示从 α=0.10 开始的 gradual onset（0%→12.5%→43.8%→...→81.3%），含 CI shaded band\n- α=1.00 标注了 cross-architecture variance（75% vs 83.3%）\n- α=0.05 和 α=0.60 用灰色虚线 + \"?\" 标记 pending 实验\n- Okabe-Ito 色盲友好配色，300 DPI，字号 ≥ 8pt，无 em-dash"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-dual-track-dose-response.md"
+}

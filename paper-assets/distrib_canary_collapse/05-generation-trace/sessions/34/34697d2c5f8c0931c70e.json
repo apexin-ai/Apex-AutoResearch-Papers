@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34697d2c5f8c0931c70e",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops restart 14b t15a060v2 17855c0",
+  "task_key": "worker_ops_restart-14b-t15a060v2-17855c0_20260522T130655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_restart-14b-t15a060v2-17855c0_20260522T130655_result.json",
+    "occurrence": 1,
+    "bytes": 281,
+    "sha256": "441d13db65b7a99cdf51a4af5c72f97c6928f8e38ddec4ff434d8a9106fcea96"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **PID**: 679656，**GPU**: cuda:0 (westd-17855)\n- **tmux session**: `scale_14b_t15_a060_s42`\n- 从 gen_3 checkpoint 恢复，正在执行 Generation 4/15\n- **日志**: `/tmp/train_scale_14b_t15_a060_s42_fp32_v2.log`\n- Registry 已更新为 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-restart-14b-t15a060v2-17855c0.md"
+}

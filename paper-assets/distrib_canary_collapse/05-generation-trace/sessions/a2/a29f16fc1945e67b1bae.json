@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a29f16fc1945e67b1bae",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops stale registry cleanup 17855",
+  "task_key": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_stale_registry_cleanup_17855_20260520T085329_result.json",
+    "occurrence": 1,
+    "bytes": 1384,
+    "sha256": "e1d2b43a69e61e2f4dc78f7e188076dff26f9dd1c49a2e55e437fc0cb27fb30e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the summary:\n\n---\n\n## 结果汇报\n\n### 1. interv_pred_14b_s42_fp32 (PID 191999)\n- **进程**: DEAD\n- **结果**: **完整** — gen_0 到 gen_10 全部完成，all_metrics.json 存在，EXIT_CODE=0\n- **Registry**: 已经是 `DONE/success`，无需更新\n\n### 2. interv_pred_a075_s42_fp32 (PID unknown)\n- **进程**: DEAD，无存活进程\n- **结果**: **失败** — 仅完成 gen_0，EXIT_CODE=1（`CUDA error: device-side assert triggered`）\n- **Registry**: 以 `interv_pred_a075_s42` 名称存在，已标记 `DONE/killed`，无需更新\n\n### 3. alpha_sweep_a005_s42 (PID unknown)\n- **进程**: DEAD，无存活进程\n- **结果**: **失败** — 仅完成 gen_0 + gen_1，EXIT_CODE=1（`Eigenvalues did not converge`）\n- **Registry**: 此 ID 不存在。已被 `alpha_sweep_a005_s42_v3`（DONE/success）取代，无需更新\n\n### 4. alpha_sweep_a060_s42_fp32 (PID unknown)\n- **进程**: DEAD，无存活进程\n- **结果**: **失败** — 仅完成 gen_0 + gen_1，EXIT_CODE=1（`Eigenvalues did not converge`）\n- **Registry**: 此 ID 不存在。已被 v3（DONE/success）和 v4（**当前 RUNNING，PID 295535 存活中**）取代，无需更新\n\n---\n\n**结论**: 4 个实验均非 stale RUNNING — 要么已标记 DONE，要么从未注册（被后续版本取代）。Registry 无需清理操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-stale-registry-cleanup-17855.md"
+}

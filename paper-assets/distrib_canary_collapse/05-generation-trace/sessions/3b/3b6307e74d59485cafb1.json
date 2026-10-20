@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b6307e74d59485cafb1",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops kill stale tmux resubmit a050",
+  "task_key": "worker_ops_kill_stale_tmux_resubmit_a050_20260519T055147",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_stale_tmux_resubmit_a050_20260519T055147_result.json",
+    "occurrence": 1,
+    "bytes": 353,
+    "sha256": "a59554c995ee4c1a2ed2a72b2f5d9215cfd1a7c2f05d723c3e9b18dcc65bdfbd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前进度：seed 42 已完成 gen_0 和 gen_1，正在执行中（log 显示 gen_2 的 generation 阶段）。三个实验已运行约 1 小时，状态健康。\n\n**结论：不执行任何操作。** 实验在正常跑，kill 会浪费 ~3 GPU-hours。如果你有其他信息表明这些确实需要重启，请提供具体依据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-stale-tmux-resubmit-a050.md"
+}

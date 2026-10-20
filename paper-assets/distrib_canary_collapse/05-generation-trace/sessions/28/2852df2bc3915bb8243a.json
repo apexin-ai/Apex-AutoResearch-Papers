@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2852df2bc3915bb8243a",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "audit paper step5 status",
+  "task_key": "worker_audit_paper_step5_status_20260516T031303",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_paper_step5_status_20260516T031303_result.json",
+    "occurrence": 1,
+    "bytes": 3561,
+    "sha256": "35088b93408165b7a0440b5eb8e47b2fc770bf502634784fb5bb9e89617b329c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已收集。以下是逐项审计结果：\n\n---\n\n## Paper Step 5 审计报告\n\n### 文件概况\n论文在**本地** `docs/paper/` 目录（不在服务器上）。最近修改：\n- `experiments.tex` — May 16 02:39 (最新)\n- `discussion.tex` — May 16 02:27\n- `method.tex` — May 16 00:08\n- 其余文件 — May 15\n\n### GPT-2m cross-arch 结果整合：**已写入，但标注为 preliminary**\n\n| 位置 | 状态 |\n|------|------|\n| `experiments.tex:72` | 提到 GPT-2-medium 12 pairs, Fleiss κ=0.091 |\n| `discussion.tex:15` | \"Preliminary cross-architecture validation on GPT-2-medium (single seed, α=1.0)\" — Tier 3 共识, 6/6 canary→diversity pairs 显著 |\n| `discussion.tex:41` | batch size 差异 (32 vs 4) 已讨论 |\n| `discussion.tex:51` | 标注需要 multi-seed 验证 |\n\n**无 Table 行包含 GPT-2m 数值**（没有独立的 GPT-2m 结果表格）。\n\n### W1 — T notation 修复：**已完成**\n\n论文统一使用 `$T{=}10$ generation cycles`，`experiments.tex:13` 明确定义 \"T=10 generations (11 time points including the generation-0 baseline)\"。T+1 约定在各文件中一致。\n\n### W2 — batch_size 差异注释：**已完成**\n\n`discussion.tex:41` — \"GPT-2-medium uses batch size 32 (versus 4 for Pythia) for GPU efficiency, exposing 8× more data per training step, which may accelerate collapse dynamics without altering the qualitative pattern\"\n\n### W3 — claim 措辞天花板（避免 architecture-agnostic / scale-independent 过度声称）：**已完成**\n\n- abstract、conclusion 中**无** \"architecture-agnostic\"、\"scale-independent\"、\"universal\"、\"generalizable\" 等过度声称\n- abstract: 仅说 \"Applied to Pythia-410M\"，GPT-2m 标注为 \"preliminary single-seed evidence\"\n- conclusion:11 — \"This result is deliberately scoped to lexical diversity, not model collapse broadly\"\n- conclusion:14 — 方法论迁移性声称限于框架本身，而非实验结论\n- discussion:12 — 明确说 \"Generalization to other model architectures...requires independent validation\"\n- discussion:51 — \"Cross-architecture validation beyond our preliminary single-seed GPT-2-medium result requires multi-seed replication\"\n\n### W4 — FNR=0 独立证据：**已完成**\n\n- `experiments.tex:176` — 6 ground-truth pairs \"validated independently by the first-differencing diagnostic\"\n- `experiments.tex:186` (Table caption) — 明确标注 FNR 基于独立验证的 ground truth\n- `method.tex:111-113` — 专门段落 \"Independent validation of ground truth\"，解释 first-differencing 检验的独立性\n- FNR=0 声称限定于 Tier 3 (K≥4/5, S≥3/4)，Tier 4 明确标注 FNR=50%\n\n### α=0.25 GPT-2m 结果：**无占位符**（正确）\n\nα=0.25 的所有提及都是 Pythia-410M 的结果（3-seed 均值±std），未发现 GPT-2m + α=0.25 的占位符或未完成内容。\n\n---\n\n### 总结\n\n| 项目 | 状态 |\n|------|------|\n| GPT-2m 整合 | ✅ 已写入（narrative 形式，无独立 Table） |\n| W1 T notation | ✅ 已修复 |\n| W2 batch_size 注释 | ✅ 已修复 |\n| W3 claim 天花板 | ✅ 措辞已收敛，无过度声称 |\n| W4 FNR=0 独立证据 | ✅ 已修复 |\n| α=0.25 GPT-2m 占位符 | ✅ 无（正确行为） |\n\n**Step 5 的 W1-W4 修复 + GPT-2m 整合均已完成。** 论文当前将 GPT-2m 结果定位为 \"preliminary single-seed\" 证据，写在 discussion 中而非主实验表格——这与只有 single-seed α=1.0 数据的现状一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-paper-step5-status.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f16442526efd061fee95",
+  "project": "distrib_canary_collapse",
+  "kind": "history",
+  "title": "agent / loop_17_1779582224.md",
+  "task_key": "loop_17_1779582224",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_17_1779582224.md",
+    "occurrence": 1,
+    "bytes": 5294,
+    "sha256": "b6e66e03574f44b374e76df8882f1b555c4b1a118aa730a2a1e852aca8cc31ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 17\nreason: idle_timeout\nupdated: '2026-05-23T02:07:27+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-17855:cuda:0-5 + westd-19828:cuda:0-1，共 8 张，禁用其他\n- 1.4B 模型路径不同：17855 用 `/root/autodl-tmp/.ms_cache/EleutherAI/pythia-1.4b-deduped`，19828 用 `/root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b-deduped`——搞混会 FileNotFoundError\n- 410M = `pythia-410m`（non-deduped），1.4B = `pythia-1.4b-deduped`——跨 scale 比较措辞必须用 \"consistent across\" 而非 \"scale-invariant\"（D189）\n- 精度：≤3B 强制 fp32（D079）\n- D102 标准：downstream=mauve, threshold=true_3sigma_d105, n_perm=5000——所有实验完成后必须走 D102 5-method 评估\n- `scale_14b_t10_a050_s43_fp32` 有 cron false alarm 历史（旧 PID 821294），当前实际 PID=822048，已修复 cron。下次回调正常处理即可\n\n### 2. 🖥️ 基础设施快照\n- **westd-17855**（6× RTX PRO 6000 Blackwell 98GB）：工作目录 `/root/autodl-tmp/distrib_canary_collapse/`，Python `/root/miniconda3/bin/python`，conda base，`TRANSFORMERS_OFFLINE=1`，磁盘 816GB free\n- **westd-19828**（2× RTX PRO 6000 Blackwell 98GB）：同上路径和 conda 环境，磁盘 817GB free\n- 活跃进程（8/8 满载）：\n\n| exp_id | 服务器:GPU | PID | tmux |\n|--------|-----------|-----|------|\n| scale_14b_t15_a060_s42_fp32_v2 | 17855:cuda:0 | 679656 | scale_14b_t15_a060_s42 |\n| scale_14b_t15_a050_s42_fp32_v3 | 17855:cuda:1 | 680095 | scale_14b_a050_s42 |\n| scale_14b_t10_a075_s43_fp32 | 17855:cuda:2 | 719178 | 14b_t10_a075_s43 |\n| scale_14b_t10_a060_s43_fp32 | 17855:cuda:3 | 719252 | 14b_t10_a060_s43 |\n| scale_14b_t10_a045_s43_fp32 | 17855:cuda:4 | 738796 | 14b_t10_a045_s43 |\n| scale_14b_t15_a045_s42_fp32 | 17855:cuda:5 | 680608 | scale_14b_t15_a045_s42_fp32 |\n| scale_14b_t15_a075_s42_fp32 | 19828:cuda:0 | 793171 | scale_14b_t15_a075 |\n| scale_14b_t10_a050_s43_fp32 | 19828:cuda:1 | 822048 | 14b_t10_a050_s43 |\n\n- Cron：8 个活跃，1:1 对应上述实验，reconcile 确认全部存活\n- PREPARING 中有 5 个 stale 条目（14b_t10_a060_s43 / a075_s43 / a050_s43 是已运行实验的旧占位；t15_a050_s42_fp32 是 v3 的旧版；qwen35_dryrun_launch 是未来计划），可忽略\n\n### 3. 📊 当前状态\n**刚完成**：1.4B T=10 s42 行全部 D102 完成（4/4），核心结论：\n- α=0.45: 0/8（C2 PASS, D203）\n- α=0.50: 4/8（onset boundary, scale attenuation）\n- α=0.60: 4/8（**sync-dip 在 1.4B 消失**，D197）\n- α=0.75: 5/8（Scenario B confirmed, D198）\n\n**正在跑**：两批 1.4B 实验并行\n1. **T=10 s43 cross-seed**（4 个）：验证 1.4B 结果的 seed robustness。预计 ~05:20-08:00 UTC 完成\n2. **T=15 s42 行**（4 个）：将 1.4B 检测扩展到更长训练 horizon。预计 ~01:20-03:50 UTC 完成（T=15 实验先完成）\n\n**等待中**：\n- 8 个 cron 回调——任一完成即触发 D102 评估 + 汇报\n- Paper Agent Discussion 章节填充（进行中，等 s43 cross-seed 结果才能写 seed variance 段落）\n- R10 审稿结果尚未返回\n\n**410M phase diagram**：20/20 ✅ 全部完成\n\n### 4. 📋 待办（条件触发式）\n- T=15 任一实验完成 → spawn Worker 跑 D102 5-method 评估 → 更新 registry → 汇报 Director\n- T=10 s43 任一完成 → 同上 D102 → 与 s42 对比 seed variance → 如果一致，claim 可升级\n- T=15 四格全完成 → 汇报 Director 1.4B T=15 行全景（sync-dip 是否在 1.4B T=15 也消失？α=0.45 是否在 T=15 被检测到？）\n- s43 cross-seed 全完成 → 更新 memory.md 1.4B seed variance 结论 → Discussion 章节可以最终定稿\n- GPU 释放后 → 部署 t10_a045_s43（最后一个 T=10 cross-seed 格）如果 cuda:4 先空出\n- 所有 1.4B 实验完成 → 汇总 Scenario B 全证据链 → 论文 Discussion + Limitations 定稿 → R10 投稿前 final check\n\n### 5. 🎯 战略上下文\n**项目核心**：α×T 2D 相图 + binary detection pattern + metric structure + 检测下界理论。从\"方法论文\"转为\"现象发现论文\"（D192）。目标 EMNLP 2026 ARR June（DDL ~06-15，距今 24 天）。\n\n**决策链关键节点**：\n- D192: γ-comparison 废弃，shape comparison 唯一路线\n- D198: Scenario B strongly supported（1.4B 定性一致但有 PermG attenuation）\n- D197: sync-dip 是 410M 特有现象，1.4B 消除\n- D202: 之前报告的 s43=0/8 outlier 是 start_gen=6 artifact，已 invalidate。410M onset 3/3 seeds 一致 6/8\n- D203: C2 PASS，1.4B below-threshold 与 410M 一致\n\n**易错点**：\n1. 不要把 PREPARING 中的 stale 条目当作待提交实验——它们是旧占位，对应的真实实验已在 RUNNING\n2. `scale_14b_t10_a050_s43_fp32` 有过 cron false alarm 历史，如果看到 conclusion=failed 先检查 notes 字段\n3. 1.4B 模型在两台服务器路径不同（.ms_cache vs .hf_cache），复制命令时必须匹配服务器\n4. T=15 实验中 a045/a050/a060 都是从中间 gen restart 的（tmux server 被 kill 过），这不影响结果但 log 可能不完整——分析时看 output_dir 下的 checkpoint 而非单一 log 文件\n5. 论文 claim 强度必须与证据匹配：1.4B 目前只有 T=10 s42 + 部分 s43 数据，T=15 还没出结果。不要在 T=15 结果出来前写 \"across horizons\" 的 claim\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-17-1779582224.md"
+}

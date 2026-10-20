@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4469a403a7714eeda38e",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis d127 wasserstein distance",
+  "task_key": "worker_analysis_d127_wasserstein_distance_20260520T095447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d127_wasserstein_distance_20260520T095447_result.json",
+    "occurrence": 1,
+    "bytes": 1669,
+    "sha256": "1c9f68fa727713b235e5f5f825a4c7c9282619b16c100aa9c3db13af47306dda"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已在远程服务器。汇总结果。\n\n## D127 Track F 结果\n\n**脚本**: `/root/autodl-tmp/distrib_canary_collapse/scripts/d127_wasserstein.py`\n**JSON**: `/root/autodl-tmp/distrib_canary_collapse/artifacts/d127_wasserstein/d127_wasserstein.json`\n**PNG**: `/root/autodl-tmp/distrib_canary_collapse/artifacts/d127_wasserstein/wasserstein_canary.png`\n\n### Blind Zone 检测汇总 (FDR-significant pairs)\n\n| Canary | α=0.10 | α=0.25 | α=0.30 | α=0.35 | α=0.40 | α=0.45 | α=0.50 | α=0.75 |\n|---|---|---|---|---|---|---|---|---|\n| **W-1** | 2/4 | 2/4 | 2/4 | 2/4 | 2/4 | 2/4 | 2/4 | 2/4 |\n| **entropy** | 1/4 | 2/4 | 0/4 | 0/4 | 0/4 | 0/4 | 3/4 | 3/4 |\n| **eff_rank** | 3/4 | 3/4 | 3/4 | 3/4 | 1/4 | 3/4 | 3/4 | 3/4 |\n\n**Blind Zone (α≤0.45) 总计**:\n- W-1: **12/24**\n- entropy: **3/24**\n- eff_rank: **16/24**\n\n### 关键发现\n\n1. **W-1 无 blind zone** — 在所有 α 下一致检测 2/4 对（distinct_1 + distinct_2），包括 entropy 完全失败的 α=0.30–0.45 区间\n2. **W-1 比 entropy 好 4×**（blind zone 内 12/24 vs 3/24）\n3. **eff_rank 仍是最强 canary**（16/24），但在 α=0.40 有凹陷（1/4）；W-1 更稳定，无凹陷\n4. **W-1 选择性检测 distinct_1 和 distinct_2**，对 distinct_3 和 mauve 不敏感 — 与 eff_rank 互补\n5. **Entropy blind zone 确认**: [0.30, 0.45]，该区间内 0/16 pairs detected\n\n### Blind zone 缩小对比\n- Entropy: blind zone = [0, 0.45]（完全失败于 α=0.30–0.45）\n- Effective_rank (D126): blind zone ≈ [0, 0.25)\n- **W-1: 无 blind zone** — 从 α=0.10 起一致有信号，但检测深度有限（2/4 而非 3-4/4）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d127-wasserstein-distance.md"
+}

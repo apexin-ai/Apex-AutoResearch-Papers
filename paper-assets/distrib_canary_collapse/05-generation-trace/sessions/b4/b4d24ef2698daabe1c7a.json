@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "b4d24ef2698daabe1c7a",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "analysis a050 fp32 3seed 5method",
+  "task_key": "worker_analysis_a050_fp32_3seed_5method_20260519T095613",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_a050_fp32_3seed_5method_20260519T095613.log",
+    "occurrence": 1,
+    "bytes": 692498,
+    "sha256": "78e5a68f27504a85ad234e3b2aca9bad9c189ac1286f250e4c2dd48e488f300b"
+  },
+  "statistics": {
+    "messages": 227,
+    "user_turns": 0,
+    "tool_calls": 82,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 59,
+      "tool_call": 82,
+      "tool_result": 82,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 227,
+      "chunks": [
+        {
+          "path": "b4d24ef2698daabe1c7a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b4d24ef2698daabe1c7a-part-0002.json",
+          "message_count": 47
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-a050-fp32-3seed-5method.md"
+}

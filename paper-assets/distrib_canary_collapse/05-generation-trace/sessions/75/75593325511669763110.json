@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "75593325511669763110",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "analysis alpha sweep a060 s42 fp32 v4",
+  "task_key": "worker_analysis_alpha_sweep_a060_s42_fp32_v4_20260520T114641",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_alpha_sweep_a060_s42_fp32_v4_20260520T114641.log",
+    "occurrence": 1,
+    "bytes": 797487,
+    "sha256": "2250f0ec0f6137ec6e17627b4b6d2ab2747299038664ab07df59c66c011c9403"
+  },
+  "statistics": {
+    "messages": 248,
+    "user_turns": 1,
+    "tool_calls": 82,
+    "roles": {
+      "log": 1,
+      "system": 47,
+      "record": 1,
+      "assistant": 33,
+      "tool_call": 82,
+      "tool_result": 82,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 33,
+      "chunks": [
+        {
+          "path": "75593325511669763110-part-0001.json",
+          "message_count": 33
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 215,
+      "chunks": [
+        {
+          "path": "75593325511669763110-part-0001.json",
+          "message_count": 147
+        },
+        {
+          "path": "75593325511669763110-part-0002.json",
+          "message_count": 68
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-alpha-sweep-a060-s42-fp32-v4.md"
+}

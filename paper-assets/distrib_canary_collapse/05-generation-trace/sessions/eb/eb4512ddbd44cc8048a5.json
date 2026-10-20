@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb4512ddbd44cc8048a5",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "monitor status and analyze 17855",
+  "task_key": "worker_monitor_status-and-analyze-17855_20260521T222404",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_status-and-analyze-17855_20260521T222404_result.json",
+    "occurrence": 1,
+    "bytes": 529,
+    "sha256": "f2dcffdf283c01fc1552c6b699dec9e2eada5b11a8ee1aed72b7949fcce2c1a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 6 个实验均在运行，无已完成实验，无法跑 d102。\n\n```\nt25_a045_s42_fp32: gen 23/25 | RUNNING  ← 最接近完成，估计 ~1-2h\nt15_a060_s43_fp32: gen 10/15 | RUNNING\nt15_a045_s43_fp32: gen  9/15 | RUNNING\nt25_a060_s42_fp32: gen  8/25 | RUNNING\nt25_a050_s42_fp32: gen  8/25 | RUNNING\nt20_a060_s43_fp32: gen  8/20 | RUNNING\n```\n\nt25_a045 距完成最近（差 2 gen），按 ~50min/gen 估算约 1.5-2h 后完成。其余 5 个还需较长时间。需要等完成后再跑 d102。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-status-and-analyze-17855.md"
+}

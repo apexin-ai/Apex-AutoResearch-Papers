@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd2f06fff7ac74ecff86",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis c4 a075 s42 fp32",
+  "task_key": "worker_analysis_c4_a075_s42_fp32_20260519T182301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_c4_a075_s42_fp32_20260519T182301_result.json",
+    "occurrence": 1,
+    "bytes": 594,
+    "sha256": "2a22105bee19fe4582ed8115282f9dab40d0b490fdd268c9b4f150b61df19f62"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n**c4_a075_s42_fp32 — SUCCESS**\n\n| 指标 | 结果 |\n|------|------|\n| PermG_fwd | **8/8** (parent WikiText: 6/8, ↑2) |\n| PermG_rev | 0/8 (完美非对称) |\n| K≥4 (3σ) | **8/8** (parent: 6/8, ↑2) |\n| K≥3 (3σ) | 8/8 |\n| threshold_onset (3σ) | 8/8 |\n| naive_xcorr | 8/8 |\n| diff_xcorr | 8/8 |\n| TY_granger | 6/8 (distinct_1 pairs miss, d_max=1 df_resid=4) |\n\n关键 drift: entropy -35.32%, ece +2809%, ppl +2152%, mauve -42.26%\n\nC4 跨域验证比 WikiText parent 信号更强。Registry 已更新为 DONE/success，报告已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-c4-a075-s42-fp32.md"
+}

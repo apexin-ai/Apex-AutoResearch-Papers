@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c236e00fb5b1860b8fa",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "knowledge literature map sync 5papers",
+  "task_key": "worker_knowledge_literature-map-sync-5papers_20260515T044455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_literature-map-sync-5papers_20260515T044455_result.json",
+    "occurrence": 1,
+    "bytes": 497,
+    "sha256": "620b345917ecffd85d9e57360195203191ee59bfc276d020d9aed8fa96719534"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 篇全部添加完成，从 31 篇增加到 36 篇。\n\n- `du2026geometric` — core-collapse / background\n- `gauthier2026alignment` — core-collapse / **complementary**，relevance_to_us 包含 RLHF iterative feedback loop 与 iterative synthetic data loop 的结构类似性说明\n- `shi2026pruning` — core-collapse / background\n- `tubingen2026diffusion` — core-collapse / background\n- `bergsma2026scaling` — canary-metrics / background\n\nYAML 语法验证通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-literature-map-sync-5papers.md"
+}

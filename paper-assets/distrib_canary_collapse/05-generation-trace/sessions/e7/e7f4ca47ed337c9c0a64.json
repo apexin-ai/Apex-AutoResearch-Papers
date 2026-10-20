@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e7f4ca47ed337c9c0a64",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "submit interv react s43 fp32",
+  "task_key": "worker_submit_interv_react_s43_fp32_20260519T134108",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_interv_react_s43_fp32_20260519T134108_result.json",
+    "occurrence": 1,
+    "bytes": 355,
+    "sha256": "8e7f8fd3b99175fbe184e203dc9eb0f125d5c5c76b081cea14bfd666d1f180a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动完成。\n\n**状态汇总：**\n- **PID**: 143073（子进程 143075 占用 cuda:1）\n- **显存**: 6516 MiB / 97251 MiB\n- **进度**: 模型加载完成，已进入 Generation 0 (baseline) 训练\n- **日志**: `~/runs/distrib_canary_collapse/interv_react_s43_fp32.log`\n- **Registry**: RUNNING，parent=intervention_reactive_s42"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-interv-react-s43-fp32.md"
+}

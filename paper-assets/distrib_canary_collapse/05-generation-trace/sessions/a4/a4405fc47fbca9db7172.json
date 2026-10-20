@@ -1,0 +1,1212 @@
+{
+  "schema_version": "1.0",
+  "id": "a4405fc47fbca9db7172",
+  "project": "distrib_canary_collapse",
+  "kind": "conversation",
+  "title": "prep cross alpha v4 audit",
+  "task_key": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_prep_cross_alpha_v4_audit_20260515T113914.jsonl",
+    "occurrence": 1,
+    "bytes": 51698,
+    "sha256": "f684d113b5e4cfb4419eeb6162daeb712acf829b041344d39097b82682b856fd"
+  },
+  "statistics": {
+    "messages": 59,
+    "user_turns": 0,
+    "tool_calls": 29,
+    "roles": {
+      "tool_call": 29,
+      "tool_result": 29,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T11:43:27.401363+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T11:43:27.401644+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T11:43:27.401799+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "find /root/autodl-tmp/distrib_canary_collapse/ -name \"*cross_alpha*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T11:43:27.401945+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/__pycache__/cross_alpha_analysis_v4.cpython-312.pyc\\\\n/root/autodl-tmp/distrib_canary_collapse/results/analysis/cross_alpha_analysis.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/analysis/cross_alpha_analysis.md\\\\n/root/autodl-tmp/distrib_canary_collapse/results/analysis/cross_alpha_v3_full.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/analysis/cross_alpha_v4.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/analysis/cross_alpha_v4_report.md\\\\n/root/autodl-tmp/distrib_canary_collapse/cross_alpha_analysis.py\\\\n/root/autodl-tmp/distrib_canary_collapse/cross_alpha_v3_analysis.py\\\\n/root/autodl-tmp/distrib_canary_collapse/cross_alpha_analysis_v4.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T11:43:27.402092+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "wc -l /root/autodl-tmp/distrib_canary_collapse/cross_alpha_analysis_v4.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T11:43:27.402219+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"873 /root/autodl-tmp/distrib_canary_collapse/cross_alpha_analysis_v4.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T11:43:27.402445+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "head -300 /root/autodl-tmp/distrib_canary_collapse/cross_alpha_analysis_v4.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T11:43:27.402771+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Cross-alpha analysis v4 with per-alpha consensus classification.\\\\n\\\\nExtends v3 with:\\\\n  5. Per-alpha multi-method consensus classification (regime-dependent validity)\\\\n  6. Markdown report output\\\\n\\\\nHandles mixed data paths:\\\\n  - alpha-sweep: results/alpha_sweep/a{NNN}_s42/all_metrics.json (single seed)\\\\n  - alpha=1.0:   results/mvp/rep_{42..45}/all_metrics.json (4 seeds)\\\\n  - alpha=1.0 consensus loads existing method_ablation.json\\\\n  - Single-seed alpha points: seed_threshold=1, method agreement only\\\\n\\\\nDependencies: numpy, scipy, statsmodels\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport glob\\\\nimport json\\\\nimport os\\\\nimport re\\\\nimport sys\\\\nimport warnings\\\\nfrom datetime import datetime\\\\n\\\\nimport numpy as np\\\\nfrom statsmodels.stats.multitest import multipletests\\\\n\\\\nwarnings.filterwarnings(\\\\\\\"ignore\\\\\\\")\\\\n\\\\nBASE_DIR = os.path.dirname(os.path.abspath(__file__))\\\\nsys.path.insert(0, BASE_DIR)\\\\n\\\\nfrom method_ablation import (\\\\n    CANARY, DOWNSTREAM,\\\\n    extract as ma_extract,\\\\n    naive_pearson, diff_xcorr, threshold_lead, toda_yamamoto, perm_granger,\\\\n)\\\\nfrom consensus_framework import classify_robust, load_sig_matrix, NumpyEncoder\\\\n\\\\nSWEEP_DIR = os.path.join(BASE_DIR, \\\\\\\"results\\\\\\\", \\\\\\\"alpha_sweep\\\\\\\")\\\\nMVP_DIR = os.path.join(BASE_DIR, \\\\\\\"results\\\\\\\", \\\\\\\"mvp\\\\\\\")\\\\nANALYSIS_DIR = os.path.join(BASE_DIR, \\\\\\\"results\\\\\\\", \\\\\\\"analysis\\\\\\\")\\\\n\\\\nMETRICS = [\\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\", \\\\\\\"token_entropy\\\\\\\", \\\\\\\"ece\\\\\\\", \\\\\\\"perplexity\\\\\\\"]\\\\n\\\\nGRANGER_PAIRS = [\\\\n    (\\\\\\\"token_entropy\\\\\\\", \\\\\\\"distinct_1\\\\\\\", \\\\\\\"entropy->d1\\\\\\\"),\\\\n    (\\\\\\\"ece\\\\\\\",           \\\\\\\"distinct_1\\\\\\\", \\\\\\\"ECE->d1\\\\\\\"),\\\\n    (\\\\\\\"token_entropy\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"entropy->d2\\\\\\\"),\\\\n    (\\\\\\\"ece\\\\\\\",           \\\\\\\"distinct_2\\\\\\\", \\\\\\\"ECE->d2\\\\\\\"),\\\\n    (\\\\\\\"distinct_1\\\\\\\", \\\\\\\"token_entropy\\\\\\\", \\\\\\\"d1->entropy\\\\\\\"),\\\\n    (\\\\\\\"distinct_1\\\\\\\",\n…[truncated 7272 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T11:43:27.402962+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "tail -n +301 /root/autodl-tmp/distrib_canary_collapse/cross_alpha_analysis_v4.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T11:43:27.403226+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"                std_a, std_b = np.std(a, ddof=1), np.std(b, ddof=1)\\\\n                if std_a < 1e-15 or std_b < 1e-15:\\\\n                    r = 0.0\\\\n                else:\\\\n                    r = float(np.corrcoef(a, b)[0, 1])\\\\n                lags[str(lag)] = round(r, 4)\\\\n                if abs(r) > abs(best_r):\\\\n                    best_lag, best_r = lag, r\\\\n            entry[pair_label] = {\\\\n                \\\\\\\"peak_lag\\\\\\\": best_lag,\\\\n                \\\\\\\"peak_r\\\\\\\": round(best_r, 4),\\\\n                \\\\\\\"lags\\\\\\\": lags,\\\\n            }\\\\n        result[alpha_key] = entry\\\\n    return result\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# 4. Per-gen velocity\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef per_gen_velocity(all_data):\\\\n    result = {}\\\\n    for alpha_key, alpha_val, metrics_list in all_data:\\\\n        vals = extract_series(metrics_list, \\\\\\\"distinct_1\\\\\\\")\\\\n        deltas = np.diff(vals)\\\\n        n = len(deltas)\\\\n        mid = n // 2\\\\n        early_mean = float(np.mean(deltas[:mid])) if mid > 0 else None\\\\n        late_mean = float(np.mean(deltas[mid:])) if mid < n else None\\\\n        max_drop_idx = int(np.argmin(deltas))\\\\n        result[alpha_key] = {\\\\n            \\\\\\\"alpha\\\\\\\": alpha_val,\\\\n            \\\\\\\"d1_values\\\\\\\": [round(float(v), 6) for v in vals],\\\\n            \\\\\\\"d1_deltas\\\\\\\": [round(float(d), 6) for d in deltas],\\\\n            \\\\\\\"cumulative_drift_pct\\\\\\\": round((vals[-1] - vals[0]) / abs(vals[0]) * 100, 2),\\\\n            \\\\\\\"mean_velocity\\\\\\\": round(float(np.mean(deltas)), 6),\\\\n            \\\\\\\"max_drop_gen\\\\\\\": max_drop_idx,\\\\n            \\\\\\\"max_drop_value\\\\\\\": round(float(deltas[max_drop_idx]), 6),\\\\n            \\\\\\\"early_mean_velocity\\\\\\\": round(early_mean, 6) if early_mean is not None else None,\\\\n            \\\\\\\"late_mean_velocity\\\\\\\": round(late_mean, 6) if late_mean is \n…[truncated 7137 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T11:43:27.403521+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "head -200 /root/autodl-tmp/distrib_canary_collapse/cross_alpha_analysis_v4.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T11:43:27.403870+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Cross-alpha analysis v4 with per-alpha consensus classification.\\\\n\\\\nExtends v3 with:\\\\n  5. Per-alpha multi-method consensus classification (regime-dependent validity)\\\\n  6. Markdown report output\\\\n\\\\nHandles mixed data paths:\\\\n  - alpha-sweep: results/alpha_sweep/a{NNN}_s42/all_metrics.json (single seed)\\\\n  - alpha=1.0:   results/mvp/rep_{42..45}/all_metrics.json (4 seeds)\\\\n  - alpha=1.0 consensus loads existing method_ablation.json\\\\n  - Single-seed alpha points: seed_threshold=1, method agreement only\\\\n\\\\nDependencies: numpy, scipy, statsmodels\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport glob\\\\nimport json\\\\nimport os\\\\nimport re\\\\nimport sys\\\\nimport warnings\\\\nfrom datetime import datetime\\\\n\\\\nimport numpy as np\\\\nfrom statsmodels.stats.multitest import multipletests\\\\n\\\\nwarnings.filterwarnings(\\\\\\\"ignore\\\\\\\")\\\\n\\\\nBASE_DIR = os.path.dirname(os.path.abspath(__file__))\\\\nsys.path.insert(0, BASE_DIR)\\\\n\\\\nfrom method_ablation import (\\\\n    CANARY, DOWNSTREAM,\\\\n    extract as ma_extract,\\\\n    naive_pearson, diff_xcorr, threshold_lead, toda_yamamoto, perm_granger,\\\\n)\\\\nfrom consensus_framework import classify_robust, load_sig_matrix, NumpyEncoder\\\\n\\\\nSWEEP_DIR = os.path.join(BASE_DIR, \\\\\\\"results\\\\\\\", \\\\\\\"alpha_sweep\\\\\\\")\\\\nMVP_DIR = os.path.join(BASE_DIR, \\\\\\\"results\\\\\\\", \\\\\\\"mvp\\\\\\\")\\\\nANALYSIS_DIR = os.path.join(BASE_DIR, \\\\\\\"results\\\\\\\", \\\\\\\"analysis\\\\\\\")\\\\n\\\\nMETRICS = [\\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\", \\\\\\\"token_entropy\\\\\\\", \\\\\\\"ece\\\\\\\", \\\\\\\"perplexity\\\\\\\"]\\\\n\\\\nGRANGER_PAIRS = [\\\\n    (\\\\\\\"token_entropy\\\\\\\", \\\\\\\"distinct_1\\\\\\\", \\\\\\\"entropy->d1\\\\\\\"),\\\\n    (\\\\\\\"ece\\\\\\\",           \\\\\\\"distinct_1\\\\\\\", \\\\\\\"ECE->d1\\\\\\\"),\\\\n    (\\\\\\\"token_entropy\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"entropy->d2\\\\\\\"),\\\\n    (\\\\\\\"ece\\\\\\\",           \\\\\\\"distinct_2\\\\\\\", \\\\\\\"ECE->d2\\\\\\\"),\\\\n    (\\\\\\\"distinct_1\\\\\\\", \\\\\\\"token_entropy\\\\\\\", \\\\\\\"d1->entropy\\\\\\\"),\\\\n    (\\\\\\\"distinct_1\\\\\\\",\n…[truncated 5837 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T11:43:27.404133+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "grep -n \"def \" /root/autodl-tmp/distrib_canary_collapse/cross_alpha_analysis_v4.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T11:43:27.404364+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"77:def _find_mvp_seeds():\\\\n88:def discover_alpha_dirs(explicit=None, include_mvp=True):\\\\n127:def load_metrics(alpha_dir):\\\\n134:def load_all_seeds_metrics(alpha_val, primary_dir, seeds):\\\\n148:def extract_series(metrics_list, key):\\\\n156:def compute_dose_response(all_data):\\\\n177:def _build_lag_matrix(y, x, max_lag):\\\\n190:def _granger_f_stat(y, x, max_lag):\\\\n208:def permutation_granger_test(x, y, max_lag=1, n_perm=5000, seed=42, difference=True):\\\\n243:def run_granger_all(all_data, max_lag=1, n_perms=5000):\\\\n261:def apply_fdr(granger_results):\\\\n283:def cross_correlation(all_data, max_lag=3):\\\\n322:def per_gen_velocity(all_data):\\\\n351:def run_consensus_per_alpha(alpha_dirs, mvp_ablation_path=None, consensus_n_perm=1000):\\\\n463:def consensus_regime_comparison(consensus_results):\\\\n508:def generate_markdown_report(output, out_path):\\\\n639:def auto_version():\\\\n650:def print_summary(output):\\\\n763:def main():\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T11:43:27.404567+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "head -462 /root/autodl-tmp/distrib_canary_collapse/cross_alpha_analysis_v4.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T11:43:27.404950+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Cross-alpha analysis v4 with per-alpha consensus classification.\\\\n\\\\nExtends v3 with:\\\\n  5. Per-alpha multi-method consensus classification (regime-dependent validity)\\\\n  6. Markdown report output\\\\n\\\\nHandles mixed data paths:\\\\n  - alpha-sweep: results/alpha_sweep/a{NNN}_s42/all_metrics.json (single seed)\\\\n  - alpha=1.0:   results/mvp/rep_{42..45}/all_metrics.json (4 seeds)\\\\n  - alpha=1.0 consensus loads existing method_ablation.json\\\\n  - Single-seed alpha points: seed_threshold=1, method agreement only\\\\n\\\\nDependencies: numpy, scipy, statsmodels\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport glob\\\\nimport json\\\\nimport os\\\\nimport re\\\\nimport sys\\\\nimport warnings\\\\nfrom datetime import datetime\\\\n\\\\nimport numpy as np\\\\nfrom statsmodels.stats.multitest import multipletests\\\\n\\\\nwarnings.filterwarnings(\\\\\\\"ignore\\\\\\\")\\\\n\\\\nBASE_DIR = os.path.dirname(os.path.abspath(__file__))\\\\nsys.path.insert(0, BASE_DIR)\\\\n\\\\nfrom method_ablation import (\\\\n    CANARY, DOWNSTREAM,\\\\n    extract as ma_extract,\\\\n    naive_pearson, diff_xcorr, threshold_lead, toda_yamamoto, perm_granger,\\\\n)\\\\nfrom consensus_framework import classify_robust, load_sig_matrix, NumpyEncoder\\\\n\\\\nSWEEP_DIR = os.path.join(BASE_DIR, \\\\\\\"results\\\\\\\", \\\\\\\"alpha_sweep\\\\\\\")\\\\nMVP_DIR = os.path.join(BASE_DIR, \\\\\\\"results\\\\\\\", \\\\\\\"mvp\\\\\\\")\\\\nANALYSIS_DIR = os.path.join(BASE_DIR, \\\\\\\"results\\\\\\\", \\\\\\\"analysis\\\\\\\")\\\\n\\\\nMETRICS = [\\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\", \\\\\\\"token_entropy\\\\\\\", \\\\\\\"ece\\\\\\\", \\\\\\\"perplexity\\\\\\\"]\\\\n\\\\nGRANGER_PAIRS = [\\\\n    (\\\\\\\"token_entropy\\\\\\\", \\\\\\\"distinct_1\\\\\\\", \\\\\\\"entropy->d1\\\\\\\"),\\\\n    (\\\\\\\"ece\\\\\\\",           \\\\\\\"distinct_1\\\\\\\", \\\\\\\"ECE->d1\\\\\\\"),\\\\n    (\\\\\\\"token_entropy\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"entropy->d2\\\\\\\"),\\\\n    (\\\\\\\"ece\\\\\\\",           \\\\\\\"distinct_2\\\\\\\", \\\\\\\"ECE->d2\\\\\\\"),\\\\n    (\\\\\\\"distinct_1\\\\\\\", \\\\\\\"token_entropy\\\\\\\", \\\\\\\"d1->entropy\\\\\\\"),\\\\n    (\\\\\\\"distinct_1\\\\\\\",\n…[truncated 7349 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T11:43:27.405240+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "grep -n \"def threshold_lead\" /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T11:43:27.405439+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"142:def threshold_lead(c, d, cn, dn):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T11:43:27.405568+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "grep -n \"def load_sig_matrix\\|def classify_robust\\|significant_fdr\\|significant\" /root/autodl-tmp/distrib_canary_collapse/consensus_framework.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T11:43:27.405686+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T11:43:27.405801+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "grep -n \"def threshold_lead\\|return\\|significant\\|p_value\\|p_raw\" /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T11:43:27.405919+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T11:43:27.406031+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "grep -n \"def load_sig_matrix\" /root/autodl-tmp/distrib_canary_collapse/consensus_framework.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T11:43:27.406144+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"53:def load_sig_matrix(ablation_path, apply_fdr=True):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T11:43:27.406266+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "grep -n \"significant_fdr\" /root/autodl-tmp/distrib_canary_collapse/consensus_framework.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T11:43:27.406409+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"89:                            sig[mi, pi, si] = seed_rec[method].get(\\\\\\\"significant_fdr\\\\\\\", False)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T11:43:27.406547+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "head -120 /root/autodl-tmp/distrib_canary_collapse/consensus_framework.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T11:43:27.406732+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nMulti-method consensus framework for canary→downstream association robustness.\\\\n\\\\nFormalizes \\\\\\\"robust association\\\\\\\": a pair is robust only when ≥method_threshold\\\\nindependent statistical methods agree (each requiring ≥seed_threshold seeds\\\\nsignificant). Two-stage aggregation: seed→method verdict, then method→consensus.\\\\n\\\\nInput:  results/mvp/analysis/method_ablation.json\\\\nOutput: consensus classification, sensitivity heatmap, FPR/FNR table (JSON)\\\\n\\\\nDependencies: numpy, json (stdlib)\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport os\\\\n\\\\nimport numpy as np\\\\n\\\\nMETHOD_NAMES = [\\\\n    \\\\\\\"naive_pearson\\\\\\\",\\\\n    \\\\\\\"differenced_xcorr\\\\\\\",\\\\n    \\\\\\\"threshold_onset\\\\\\\",\\\\n    \\\\\\\"toda_yamamoto\\\\\\\",\\\\n    \\\\\\\"permutation_granger\\\\\\\",\\\\n]\\\\n\\\\n# Primary FPR ground truth: alpha=0.0 null control; differenced_xcorr retained for legacy\\\\nDIFF_INDEX = 1\\\\n\\\\n\\\\ndef _to_native(obj):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Convert numpy types to Python native for JSON serialization.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if isinstance(obj, (np.integer,)):\\\\n        return int(obj)\\\\n    if isinstance(obj, (np.floating,)):\\\\n        return float(obj)\\\\n    if isinstance(obj, (np.bool_,)):\\\\n        return bool(obj)\\\\n    if isinstance(obj, np.ndarray):\\\\n        return obj.tolist()\\\\n    return obj\\\\n\\\\n\\\\nclass NumpyEncoder(json.JSONEncoder):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"JSON encoder that handles numpy types.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    def default(self, obj):\\\\n        native = _to_native(obj)\\\\n        if native is not obj:\\\\n            return native\\\\n        return super().default(obj)\\\\n\\\\n\\\\ndef load_sig_matrix(ablation_path, apply_fdr=True):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Load method_ablation.json into a boolean significance tensor.\\\\n\\\\n    Args:\\\\n        ablation_path: path to method_ablation.json\\\\n\\\\n    Returns:\\\\n        sig_matrix: np.ndarray, shape (5, 16, 4), dtype bool\\\\n                    axes = (method, pair, seed)\\\\n        pair_names: list of (\n…[truncated 2539 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T11:43:27.406882+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "tail -n +142 /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T11:43:27.407130+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def threshold_lead(c, d, cn, dn):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Lead time based on 2σ signal-onset detection.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    co = _onset_gen(c, cn)\\\\n    do = _onset_gen(d, dn)\\\\n    if co is None or do is None:\\\\n        missing = []\\\\n        if co is None:\\\\n            missing.append(\\\\\\\"canary\\\\\\\")\\\\n        if do is None:\\\\n            missing.append(\\\\\\\"downstream\\\\\\\")\\\\n        return {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n            \\\\\\\"canary_onset\\\\\\\": None if co is None else int(co),\\\\n            \\\\\\\"downstream_onset\\\\\\\": None if do is None else int(do),\\\\n            \\\\\\\"lead_time\\\\\\\": None,\\\\n            \\\\\\\"significant\\\\\\\": False,\\\\n            \\\\\\\"note\\\\\\\": f\\\\\\\"onset not detected for: {', '.join(missing)}\\\\\\\",\\\\n        }\\\\n    lt = do - co\\\\n    return {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n        \\\\\\\"canary_onset\\\\\\\": int(co),\\\\n        \\\\\\\"downstream_onset\\\\\\\": int(do),\\\\n        \\\\\\\"lead_time\\\\\\\": int(lt),\\\\n        \\\\\\\"significant\\\\\\\": bool(lt > 0),\\\\n    }\\\\n\\\\n\\\\n# ─── Method 4: Toda-Yamamoto augmented-lag Granger causality ─────────────────\\\\n# Fits VAR(p + d_max) where d_max = max integration order of the two\\\\n# series, but the Wald test is restricted to the first p lag coefficients.\\\\n# This bypasses unit-root pre-testing bias (Toda & Yamamoto 1995).\\\\n# With T=10, only p=1 is feasible; the F-test has very few residual df,\\\\n# so power is low — significant results here are highly credible.\\\\n\\\\ndef _adf_order(series, max_d=2):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Integration order via iterated ADF (maxlag=1 for short series).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    for d in range(max_d + 1):\\\\n        s = series.copy()\\\\n        for _ in range(d):\\\\n            s = np.diff(s)\\\\n        if len(s) < 5:\\\\n            return d\\\\n        try:\\\\n            if adfuller(s, maxlag=1, autolag=None)[1] < 0.05:\\\\n                return d\\\\n        except Exception:\\\\n            pass\\\\n    return max_d\\\\n\n…[truncated 7417 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T11:43:27.407373+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T11:43:27.407521+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "grep -n \"def perm_granger\" /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T11:43:27.407649+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"a000_s42\\\\na025_s42\\\\na050_s42\\\\na075_s42\\\\nalpha_monotonicity.png\\\\nanalysis\\\\nanalysis_summary.json\\\\npooled_panel_results.json\\\\npooled_panel_summary.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T11:43:27.407766+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"375:def perm_granger(c, d, cn, dn, max_lag=1, n_perm=1000):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T11:43:27.407878+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "grep -n \"consensus_regime_comparison\\|print_summary\\|generate_markdown\" /root/autodl-tmp/distrib_canary_collapse/cross_alpha_analysis_v4.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T11:43:27.408030+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T11:43:27.408164+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "head -420 /root/autodl-tmp/distrib_canary_collapse/method_ablation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T11:43:27.408486+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Method ablation: compare four lead-lag estimation methods.\\\\n\\\\nCompares naive vs robust approaches to detect canary->downstream lead-lag,\\\\nquantifying the spurious regression rate when non-stationary series are\\\\ncorrelated without proper detrending.\\\\n\\\\nInput:  results/mvp/rep_{seed}/all_metrics.json (seeds 42-45)\\\\nOutput: results/mvp/analysis/method_ablation.json\\\\n        (with BH FDR correction and effect sizes)\\\\n\\\\nMethods:\\\\n  1. Naive Pearson lag-correlation (raw levels)\\\\n  2. Differenced cross-correlation (first-differenced series)\\\\n  3. Threshold-based lead time (2-sigma onset detection)\\\\n  4. Toda-Yamamoto augmented-lag Granger causality\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport warnings\\\\nfrom itertools import product\\\\n\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\nfrom statsmodels.stats.multitest import multipletests\\\\nfrom statsmodels.tsa.stattools import adfuller\\\\nfrom permutation_granger import permutation_granger_test\\\\n\\\\nwarnings.filterwarnings(\\\\\\\"ignore\\\\\\\")\\\\n\\\\nCANARY = [\\\\\\\"token_entropy\\\\\\\", \\\\\\\"self_bleu\\\\\\\", \\\\\\\"ece\\\\\\\", \\\\\\\"effective_rank\\\\\\\"]\\\\nDOWNSTREAM = [\\\\\\\"perplexity\\\\\\\", \\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\"]\\\\n\\\\n# Sign conventions: \\\\\\\"higher is worse\\\\\\\" kept as-is; \\\\\\\"lower is worse\\\\\\\" negated\\\\n# so that degradation = positive direction in all analyses.\\\\nHIGHER_IS_WORSE = {\\\\\\\"self_bleu\\\\\\\", \\\\\\\"ece\\\\\\\", \\\\\\\"perplexity\\\\\\\"}\\\\nLOWER_IS_WORSE = {\\\\\\\"token_entropy\\\\\\\", \\\\\\\"effective_rank\\\\\\\",\\\\n                   \\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\"}\\\\n\\\\nALPHA = 0.05\\\\n\\\\n\\\\ndef load_metrics(data_dir, seeds):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load all_metrics.json for each seed.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    data = {}\\\\n    for s in seeds:\\\\n        path = os.path.join(data_dir, f\\\\\\\"rep_{s}\\\\\\\", \\\\\\\"all_metrics.json\\\\\\\")\\\\n        with open(path) as f:\\\\n            data[s] = json.load(f)\\\\n    return \n…[truncated 7372 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T11:43:27.408660+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "head -510 /root/autodl-tmp/distrib_canary_collapse/cross_alpha_analysis_v4.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T11:43:27.408936+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Cross-alpha analysis v4 with per-alpha consensus classification.\\\\n\\\\nExtends v3 with:\\\\n  5. Per-alpha multi-method consensus classification (regime-dependent validity)\\\\n  6. Markdown report output\\\\n\\\\nHandles mixed data paths:\\\\n  - alpha-sweep: results/alpha_sweep/a{NNN}_s42/all_metrics.json (single seed)\\\\n  - alpha=1.0:   results/mvp/rep_{42..45}/all_metrics.json (4 seeds)\\\\n  - alpha=1.0 consensus loads existing method_ablation.json\\\\n  - Single-seed alpha points: seed_threshold=1, method agreement only\\\\n\\\\nDependencies: numpy, scipy, statsmodels\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport glob\\\\nimport json\\\\nimport os\\\\nimport re\\\\nimport sys\\\\nimport warnings\\\\nfrom datetime import datetime\\\\n\\\\nimport numpy as np\\\\nfrom statsmodels.stats.multitest import multipletests\\\\n\\\\nwarnings.filterwarnings(\\\\\\\"ignore\\\\\\\")\\\\n\\\\nBASE_DIR = os.path.dirname(os.path.abspath(__file__))\\\\nsys.path.insert(0, BASE_DIR)\\\\n\\\\nfrom method_ablation import (\\\\n    CANARY, DOWNSTREAM,\\\\n    extract as ma_extract,\\\\n    naive_pearson, diff_xcorr, threshold_lead, toda_yamamoto, perm_granger,\\\\n)\\\\nfrom consensus_framework import classify_robust, load_sig_matrix, NumpyEncoder\\\\n\\\\nSWEEP_DIR = os.path.join(BASE_DIR, \\\\\\\"results\\\\\\\", \\\\\\\"alpha_sweep\\\\\\\")\\\\nMVP_DIR = os.path.join(BASE_DIR, \\\\\\\"results\\\\\\\", \\\\\\\"mvp\\\\\\\")\\\\nANALYSIS_DIR = os.path.join(BASE_DIR, \\\\\\\"results\\\\\\\", \\\\\\\"analysis\\\\\\\")\\\\n\\\\nMETRICS = [\\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\", \\\\\\\"token_entropy\\\\\\\", \\\\\\\"ece\\\\\\\", \\\\\\\"perplexity\\\\\\\"]\\\\n\\\\nGRANGER_PAIRS = [\\\\n    (\\\\\\\"token_entropy\\\\\\\", \\\\\\\"distinct_1\\\\\\\", \\\\\\\"entropy->d1\\\\\\\"),\\\\n    (\\\\\\\"ece\\\\\\\",           \\\\\\\"distinct_1\\\\\\\", \\\\\\\"ECE->d1\\\\\\\"),\\\\n    (\\\\\\\"token_entropy\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"entropy->d2\\\\\\\"),\\\\n    (\\\\\\\"ece\\\\\\\",           \\\\\\\"distinct_2\\\\\\\", \\\\\\\"ECE->d2\\\\\\\"),\\\\n    (\\\\\\\"distinct_1\\\\\\\", \\\\\\\"token_entropy\\\\\\\", \\\\\\\"d1->entropy\\\\\\\"),\\\\n    (\\\\\\\"distinct_1\\\\\\\",\n…[truncated 7442 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T11:43:27.409136+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "tail -n +639 /root/autodl-tmp/distrib_canary_collapse/cross_alpha_analysis_v4.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T11:43:27.409444+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def auto_version():\\\\n    os.makedirs(ANALYSIS_DIR, exist_ok=True)\\\\n    existing = glob.glob(os.path.join(ANALYSIS_DIR, \\\\\\\"cross_alpha_v*.json\\\\\\\"))\\\\n    max_v = 0\\\\n    for f in existing:\\\\n        m = re.search(r\\\\\\\"cross_alpha_v(\\\\\\\\d+)\\\\\\\", f)\\\\n        if m:\\\\n            max_v = max(max_v, int(m.group(1)))\\\\n    return max_v + 1\\\\n\\\\n\\\\ndef print_summary(output):\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 80)\\\\n    print(\\\\\\\"CROSS-ALPHA ANALYSIS SUMMARY (v4)\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 80)\\\\n\\\\n    dr = output[\\\\\\\"dose_response\\\\\\\"]\\\\n    alphas = sorted(dr.keys())\\\\n    print(f\\\\\\\"\\\\\\\\nDOSE-RESPONSE (drift %)\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 80)\\\\n    header = f\\\\\\\"{'Metric':<16}\\\\\\\"\\\\n    for ak in alphas:\\\\n        header += f\\\\\\\" | a={dr[ak]['alpha']:<5}\\\\\\\"\\\\n    print(header)\\\\n    print(\\\\\\\"-\\\\\\\" * 80)\\\\n    for metric in METRICS:\\\\n        line = f\\\\\\\"{metric:<16}\\\\\\\"\\\\n        for ak in alphas:\\\\n            d = dr[ak][metric][\\\\\\\"drift_pct\\\\\\\"]\\\\n            line += f\\\\\\\" | {d:>+7.1f}%\\\\\\\"\\\\n        print(line)\\\\n\\\\n    gc = output[\\\\\\\"granger_causality\\\\\\\"]\\\\n    print(f\\\\\\\"\\\\\\\\nGRANGER CAUSALITY (bidirectional, differenced, permutation)\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 80)\\\\n    header = f\\\\\\\"{'Direction':<20}\\\\\\\"\\\\n    alpha_keys = sorted(set(r[\\\\\\\"alpha_key\\\\\\\"] for r in gc))\\\\n    for ak in alpha_keys:\\\\n        header += f\\\\\\\" | a={[r for r in gc if r['alpha_key']==ak][0]['alpha']:<4} p_raw   p_fdr\\\\\\\"\\\\n    print(header)\\\\n    print(\\\\\\\"-\\\\\\\" * 80)\\\\n\\\\n    directions = list(dict.fromkeys(r[\\\\\\\"direction\\\\\\\"] for r in gc))\\\\n    for d in directions:\\\\n        line = f\\\\\\\"{d:<20}\\\\\\\"\\\\n        for ak in alpha_keys:\\\\n            match = [r for r in gc if r[\\\\\\\"alpha_key\\\\\\\"] == ak and r[\\\\\\\"direction\\\\\\\"] == d]\\\\n            if match:\\\\n                r = match[0]\\\\n                p_raw = f\\\\\\\"{r['p_raw']:.4f}\\\\\\\" if r.get(\\\\\\\"p_raw\\\\\\\") is not None else \\\\\\\"  N/A \\\\\\\"\\\\n                p_fdr =\n…[truncated 7404 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T11:43:27.409663+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "tail -n +763 /root/autodl-tmp/distrib_canary_collapse/cross_alpha_analysis_v4.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T11:43:27.409860+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def main():\\\\n    parser = argparse.ArgumentParser(\\\\n        description=\\\\\\\"Cross-alpha analysis v4 with per-alpha consensus classification.\\\\\\\"\\\\n    )\\\\n    parser.add_argument(\\\\\\\"--alpha-dirs\\\\\\\", nargs=\\\\\\\"*\\\\\\\", default=None,\\\\n                        help=\\\\\\\"Specific alpha dirs (e.g. a000_s42 a025_s42 mvp). Default: auto-discover all.\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--n-perms\\\\\\\", type=int, default=5000,\\\\n                        help=\\\\\\\"Permutations for Granger test (default: 5000)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--consensus-n-perms\\\\\\\", type=int, default=1000,\\\\n                        help=\\\\\\\"Permutations for consensus perm_granger method (default: 1000)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--max-lag\\\\\\\", type=int, default=1,\\\\n                        help=\\\\\\\"Max lag for Granger test (default: 1)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--no-mvp\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"Exclude MVP (alpha=1.0) from auto-discovery\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--no-consensus\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"Skip consensus classification (faster)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--version\\\\\\\", type=int, default=None,\\\\n                        help=\\\\\\\"Output version number (default: auto-increment)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--update-registry\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"Print registry update commands after analysis\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    alpha_dirs = discover_alpha_dirs(args.alpha_dirs, include_mvp=not args.no_mvp)\\\\n    if not alpha_dirs:\\\\n        print(\\\\\\\"ERROR: No alpha directories found.\\\\\\\", file=sys.stderr)\\\\n        sys.exit(1)\\\\n\\\\n    print(f\\\\\\\"Found {len(alpha_dirs)} alpha points: \\\\\\\"\\\\n          f\\\\\\\"{[(a[0], f'seeds={a[3]}') for a in alpha_dirs]}\\\\\\\")\\\\n\\\\n    all_data = []\\\\n    for alpha_key, alpha_val, path, seeds in alpha_dirs:\\\\n        metrics\n…[truncated 3637 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T11:43:27.410013+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "tail -n +508 /root/autodl-tmp/distrib_canary_collapse/cross_alpha_analysis_v4.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T11:43:27.410286+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def generate_markdown_report(output, out_path):\\\\n    lines = []\\\\n    lines.append(f\\\\\\\"# Cross-Alpha Analysis Report ({output['version']})\\\\\\\")\\\\n    lines.append(\\\\\\\"\\\\\\\")\\\\n    lines.append(f\\\\\\\"**Date:** {output['date']}\\\\\\\")\\\\n    lines.append(f\\\\\\\"**Alpha points:** {output['alpha_points']}\\\\\\\")\\\\n    lines.append(f\\\\\\\"**Generations:** {output['gen_range']}\\\\\\\")\\\\n    lines.append(\\\\\\\"\\\\\\\")\\\\n\\\\n    # 1. Dose-response\\\\n    lines.append(\\\\\\\"## 1. Dose-Response (gen0 to genN drift %)\\\\\\\")\\\\n    lines.append(\\\\\\\"\\\\\\\")\\\\n    dr = output[\\\\\\\"dose_response\\\\\\\"]\\\\n    alphas = sorted(dr.keys())\\\\n    header = \\\\\\\"| Metric |\\\\\\\"\\\\n    sep = \\\\\\\"|--------|\\\\\\\"\\\\n    for ak in alphas:\\\\n        header += f\\\\\\\" α={dr[ak]['alpha']:.2f} |\\\\\\\"\\\\n        sep += \\\\\\\"--------:|\\\\\\\"\\\\n    lines.append(header)\\\\n    lines.append(sep)\\\\n    for metric in METRICS:\\\\n        row = f\\\\\\\"| {metric} |\\\\\\\"\\\\n        for ak in alphas:\\\\n            d = dr[ak][metric][\\\\\\\"drift_pct\\\\\\\"]\\\\n            row += f\\\\\\\" {d:+.1f}% |\\\\\\\"\\\\n        lines.append(row)\\\\n    lines.append(\\\\\\\"\\\\\\\")\\\\n\\\\n    # 2. Granger\\\\n    lines.append(\\\\\\\"## 2. Granger Causality (bidirectional, permutation, FDR-corrected)\\\\\\\")\\\\n    lines.append(\\\\\\\"\\\\\\\")\\\\n    gc = output[\\\\\\\"granger_causality\\\\\\\"]\\\\n    ak_list = sorted(set(r[\\\\\\\"alpha_key\\\\\\\"] for r in gc))\\\\n    header = \\\\\\\"| Direction |\\\\\\\"\\\\n    sep = \\\\\\\"|-----------|\\\\\\\"\\\\n    for ak in ak_list:\\\\n        a = [r for r in gc if r[\\\\\\\"alpha_key\\\\\\\"] == ak][0][\\\\\\\"alpha\\\\\\\"]\\\\n        header += f\\\\\\\" α={a:.2f} p_raw | p_fdr |\\\\\\\"\\\\n        sep += \\\\\\\"--------:|--------:|\\\\\\\"\\\\n    lines.append(header)\\\\n    lines.append(sep)\\\\n    directions = list(dict.fromkeys(r[\\\\\\\"direction\\\\\\\"] for r in gc))\\\\n    for d in directions:\\\\n        row = f\\\\\\\"| {d} |\\\\\\\"\\\\n        for ak in ak_list:\\\\n            match = [r for r in gc if r[\\\\\\\"alpha_key\\\\\\\"] == ak and r[\\\\\\\"direction\\\\\\\"] == d]\\\\n            if match\n…[truncated 7412 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T11:43:27.410482+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s42/all_metrics.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T11:43:27.410607+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/method_ablation.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T11:43:27.410737+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s42/all_metrics.json': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-15T11:43:27.410864+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/method_ablation.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-15T11:43:27.410978+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s42/",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-15T11:43:27.411092+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"config.json\\\\ngen_0\\\\ngen_1\\\\ngen_2\\\\ngen_3\\\\ngen_4\\\\ngen_5\\\\ngen_6\\\\ngen_7\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-15T11:43:27.411221+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/all_metrics.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-15T11:43:27.411355+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s42/",
+              "account": "root"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-15T11:43:27.411469+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/all_metrics.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-15T11:43:27.411579+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"config.json\\\\ngen_0\\\\ngen_1\\\\ngen_2\\\\ngen_3\\\\ngen_4\\\\ngen_5\\\\ngen_6\\\\ngen_7\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-15T11:43:27.411698+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/",
+              "account": "root"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-15T11:43:27.411812+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"EXIT_CODE\\\\nall_metrics.json\\\\nconfig.json\\\\ngen_0\\\\ngen_1\\\\ngen_10\\\\ngen_2\\\\ngen_3\\\\ngen_4\\\\ngen_5\\\\ngen_6\\\\ngen_7\\\\ngen_8\\\\ngen_9\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-15T11:43:27.412000+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。以下是完整报告。\n\n---\n\n## 审计结果：✅ Ready（代码无 bug，等数据就绪即可运行）\n\n### 1. FDR 混合策略 — ✅ 正确\n\n**alpha=1.0 路径**（加载已有 method_ablation.json）：\n- `consensus_framework.py:86-89`：`threshold_onset` 读 `significant`，其余 4 方法读 `significant_fdr`\n- 完全符合 D029 要求\n\n**非 alpha=1.0 路径**（从头跑 5 个方法）：\n- `threshold_lead()` 只返回 `significant`（无 p_value）→ 直接写入 sig_matrix\n- 其余 4 方法返回 `p_value` → 存入 `p_raw_matrix` → 经 BH FDR 校正后覆盖 sig_matrix\n- FDR 循环只处理 `p_raw_matrix` 中有效值的位置 → threshold_onset 天然免于 FDR\n- BH FDR q=0.05：`multipletests(pvals[valid], alpha=0.05, method=\"fdr_bh\")` ✅\n\n**permG / TY 列互换**：`MA_METHODS` 列表和 `MA_METHOD_FN` 字典映射一致，`enumerate` 遍历保证 method index 对应正确函数。✅ 无互换。\n\n### 2. 5-α-point 兼容性 — ✅\n\n- **α 列表不是硬编码**：`discover_alpha_dirs()` 用 `glob(a*_s42)` 动态发现 + 自动纳入 MVP(α=1.0)\n- 数据目录现状：`a000_s42` ✅ / `a025_s42` ✅ / `a050_s42` ✅ / `a075_s42` ⚠️ / MVP ✅\n- **`--n-perms 5000`**：已支持，default=5000 ✅\n- **`--consensus-n-perms 1000`**：已支持，default=1000 ✅\n- **`--update-registry`**：存在，打印每个 α 的 drift 统计 ✅\n- **输出路径**：`results/analysis/cross_alpha_v{N}.json` + `cross_alpha_v{N}_report.md`\n\n### 3. α=0.25 单 seed 处理 — ✅\n\nLine ~450：`st = 1 if n_seeds == 1 else 3`\n- 所有 sweep α 点（0.0, 0.25, 0.50, 0.75）均为 seed=[42]，n_seeds=1 → seed_threshold=1\n- method_threshold = 4（≥4/5 方法一致）\n- mode = `\"method_agreement_only\"` for single-seed\n\n### 4. 输出格式 — ✅\n\n- `print_summary`：Granger 表显示每个方向×每个 α 的 p_raw / p_fdr，汇总行 `N/M raw-sig -> K/M FDR-sig`\n- Consensus 区：每个 α 的 robust/non-robust counts + regime comparison（stable vs regime-dependent）\n- Markdown report 包含同样的信息以格式化表格呈现\n\n### 5. ⚠️ 唯一阻塞：α=0.75 数据未完成\n\n`a075_s42` 目录存在但只有 gen_0 到 gen_7（8/11 代），**无 `all_metrics.json`**。完整实验需 gen_0–gen_10。脚本会在 `load_metrics(a075_s42)` 时报 FileNotFoundError。\n\n等实验完成 + 生成 `all_metrics.json` 后即可运行。\n\n### 建议运行命令\n\n```bash\ncd /root/autodl-tmp/distrib_canary_collapse\npython cross_alpha_analysis_v4.py --n-perms 5000 --consensus-n-perms 1000 --update-registry\n```\n\n无需指定 `--alpha-dirs`，auto-discovery 会自动找到全部 5 个 α 点。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_cross_alpha_v4_audit_20260515T113914"
+          },
+          "id": "event-000059"
+        }
+      ],
+      "message_count": 59
+    }
+  ],
+  "readable_path": "readable/conversations/prep-cross-alpha-v4-audit.md"
+}

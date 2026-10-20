@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a3a027fd24a656813ea",
+  "project": "distrib_canary_collapse",
+  "kind": "history",
+  "title": "director / loop_4.md",
+  "task_key": "loop_4",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_4.md",
+    "occurrence": 1,
+    "bytes": 4763,
+    "sha256": "d1988743a1c93073203dcc3a1e8af166022999c27e218ddb79faf4848bcbe1a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: max_messages\nupdated: '2026-05-14T23:44:16+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westd-19828 的 cuda:0 / cuda:1（2× RTX PRO 6000 Blackwell 96GB）\n- submit_training_job 服务器名必须写 `westd-19828`（不是 autodl-rtx6000）\n- canary→perplexity 通道已被差分 Granger 确认为伪回归（F→0），论文 claim 硬限：只能声称 \"canary predicts diversity collapse\"，**绝不能**声称 \"canary predicts perplexity\"\n- TY（Toda-Yamamoto）已正式降级为辅助指标（D015），核心分析框架是 cross-corr + permutation Granger（差分版）+ BH FDR\n- HF 下载用 `HF_ENDPOINT=https://hf-mirror.com`，不用 network_turbo 代理（会卡死）\n- kill_job 只杀 tmux session 不杀子进程，kill 后必须 `ps aux | grep python` 确认进程全部死亡\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19828 (connect.westd.seetacloud.com)，账户 root\n- 工作目录：/root/autodl-tmp/distrib_canary_collapse\n- Python：conda base, Python 3.12.3, PyTorch 2.10.0+cu128（绝对路径 /root/miniconda3/bin/python）\n- GPU：2× RTX PRO 6000 Blackwell 96GB (cuda:0, cuda:1)\n- 关键脚本路径：`iterative_train.py`（主训练）、`analyze_mvp.py`（MVP 分析）、`permutation_granger.py`（差分 Granger）、`method_ablation.py`（5-method ablation）、`analyze_alpha_sweep.py`（α-sweep 分析）、`detrending_utils.py`（待用）\n- 结果路径：`results/mvp/analysis/`（MVP 分析产物）、`results/bootstrap_ty_results.json`（plan_009）\n- 活跃进程：plan_006_s42 + alpha_sweep_a025_s42_v3（各占一张卡）\n- W&B / 弹性 GPU / Git：均未配置\n\n### 3. 📊 当前状态\n**刚做完**：\n- D017-D020 一连串决策——差分 Granger 确认 perplexity 伪回归、ECE 升级 co-primary、BH FDR 零翻转、Claim 1 措辞升级为 \"Granger-causal precedence\"\n- plan_009 bootstrap TY power analysis 完成（T=10 power 仅 5-20%，TY 正式降级）\n- 5-method ablation 完成排序：naive 100% > diff 88% > threshold 56% > permG 38% > TY 25%\n- α-sweep a000 (α=0.0 null control) 完成（success）\n- mix_datasets 双向 subsample bug 修复已部署\n\n**RUNNING**：\n- `plan_006_s42`：Pythia-410M × α=1.0 × 20 gen extended run，验证 diversity lead 在更长序列下的稳健性\n- `alpha_sweep_a025_s42_v3`：α=0.25 第一个 seed\n\n**PREPARING（9 个排队）**：plan_006_s43、alpha_sweep 剩余 4 个 α 点（a010/a050/a060/a075）、alpha_sweep_a025 旧版本 v1/v2、mvp_rep44/v2_rep44\n\n**Agent 队列**：空闲（depth=0）\n\n**审稿阶段**：已进入 Review，Group C 团队并行处理论文评审（review_chat_id 已配置）\n\n### 4. 📋 待办（条件触发式）\n- plan_006_s42 完成 → 用 `analyze_extended.py` 做 full series cross-corr (max_lag=10) + rolling-window + permutation Granger，对比 MVP 10-gen 结果。**预期 perplexity 不会变显著**，focus 是 diversity lead 稳健性\n- alpha_sweep_a025_s42_v3 完成 → 启动下一个 α 点（优先 a050/a075 极端点），确保两张卡始终满载\n- α-sweep 6 点全完成 → 绘制 predictability regime map + 启动 plan_002 Phase 2 (pooled panel + permutation Granger)\n- α-sweep 首批结果出来 → 运行 detrending_utils.py + 2σ onset threshold sensitivity + α* uncertainty interval（Dream 观察项）\n- α-sweep 确认 canary→perplexity lead 在 α=0.50 存在 → 启动 plan_004 (C4 跨域验证)\n- PREPARING 中的 alpha_sweep_a025_s42/v2 和 mvp_rep44/v2_rep44 是历史残留，不需要再跑，可以清理\n\n### 5. 🎯 战略上下文\n**核心结论链**：MVP STRONG PASS (D009) → token_entropy+ECE lead diversity 1-2 代 → perplexity channel 是伪回归 (D017/D018) → 方法选择决定 75% 的结论 (D011) → 论文 framing = \"delineating predictability boundaries\"，三个 claim 并行：(1) Granger-causal precedence of canary→diversity, (2) regime-dependent predictability (α-sweep), (3) 方法论陷阱是文献空白\n\n**Dream 评分现状**：best 3/6, median 3/6, worst 2.5/6。5 项结构性修复中 4 项已完成（BH FDR、effect size、TY power analysis、permutation Granger），最后一项是 α-sweep 数据（正在跑）\n\n**最容易判断错的事**：\n- 不要期望 plan_006 的 perplexity channel 会突破——差分后 F→0 是决定性证据，更长序列不改变伪回归本质\n- PREPARING 队列里有历史残留实验（mvp_rep44 等早期版本），不要盲目启动\n- ECE 的地位取决于用哪种方法：TY 下只有 3/4 seed pass，permutation Granger 下 4/4 pass。论文需要同时报告两者，不能只挑好看的\n- 目标 AAAI 2027 (~Aug 2026)，还有 ~2.5 个月，P0 实验预计 ~57 GPU·h，当前累计 ~8.4h，节奏合理但不能空卡\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4.md"
+}

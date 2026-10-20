@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7c4da648c49fbb470a7",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code fp32 support westd17855",
+  "task_key": "worker_code_fp32_support_westd17855_20260518T213730",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fp32_support_westd17855_20260518T213730_result.json",
+    "occurrence": 1,
+    "bytes": 1351,
+    "sha256": "3e31b7426946bfd01e2f9b652e50fe7a7354c698c44b77353eed4b9df06f41fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Gen 1 生成约 24% 完成。让我先给你当前状态总结，dry-run 继续在后台运行。\n\n---\n\n## 当前状态\n\n### 已完成\n1. **代码修改** (两台服务器均已应用, md5 一致: `cb9507ca9d3653a687b4412239ed738e`)\n   - Line 180: `fp16=(not args.bf16) and torch.cuda.is_available()` → `fp16=False`\n   - Line 180 上方加注释: `# Blackwell GPUs crash with fp16 GradScaler; bf16 stochastic rounding confounds collapse signal`\n   - Line 79: help text 从 `\"Use bf16 mixed precision instead of fp16\"` → `\"Use bf16 mixed precision (default: pure fp32)\"`\n\n2. **westd-19828 同步完成** — md5 一致\n\n3. **dry-run 进展** (westd-17855, cuda:4, fp32, 无 --bf16)\n   - Gen 0 baseline 生成 (5000 prompts) ✅ 完成，无 crash\n   - Gen 0 metrics ✅ `ppl=26.95, entropy=3.2325, eff_rank=46.6`\n   - Gen 1 合成数据生成：进行中 (~24%)\n   - Gen 1 训练 (关键测试)：尚未开始，等生成完成\n\n### 还在运行\n- PID 52764 on westd-17855\n- 日志: `/tmp/fp32_dryrun.log`\n- 预计还需 ~15 分钟完成（gen 1 生成 + 2 steps 训练 + metrics）\n\n**gen 0 的成功已经证明 fp32 模型加载和推理在 Blackwell 上正常工作。** 训练阶段（gen 1）是最终验证 Trainer 不再触发 GradScaler 的关键。\n\n继续监控还是你要去做其他事？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fp32-support-westd17855.md"
+}

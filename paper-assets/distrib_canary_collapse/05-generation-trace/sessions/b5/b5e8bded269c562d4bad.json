@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5e8bded269c562d4bad",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops 17855 disk cleanup then deploy s44",
+  "task_key": "worker_ops_17855-disk-cleanup-then-deploy-s44_20260523T090248",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_17855-disk-cleanup-then-deploy-s44_20260523T090248_result.json",
+    "occurrence": 1,
+    "bytes": 1048,
+    "sha256": "550d4860496fbc405a5c8ec5dbecc1835800616c6929c3ac8040375576f3d3e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都已启动并在训练。\n\n---\n\n### 结果汇总\n\n**Phase 1 - 磁盘清理**：\n\n| 指标 | 清理前 | 清理后 |\n|------|--------|--------|\n| 已用 | 345G (99%) | 287G (82%) |\n| 可用 | 5.8G | 64G |\n| 释放 | — | **~58G** |\n\n清理了 8 个实验（t10_a050_s42 仅 4K 跳过）的 checkpoint 目录，保留了 all_metrics.json、analysis/、synthetic_data/。\n\n**Phase 2 - s44 部署**：\n\n| 实验 | GPU | PID | 状态 |\n|------|-----|-----|------|\n| t10_a050_s44_fp32 | cuda:2 | 781724 (wrapper) | gen_0 训练中 |\n| t10_a060_s44_fp32 | cuda:3 | 780912 | 已在运行 (6min, 其他 session 部署) |\n\n**nvidia-smi 全卡状态** — 6/6 GPU 活跃：\n\n| GPU | 显存 | 利用率 | 实验 |\n|-----|------|--------|------|\n| 0 | 31G/98G | 87% | t15_a060_s43 |\n| 1 | 28G/98G | 88% | t15_a050_s43 |\n| 2 | 10G/98G | 89% | **t10_a050_s44** (新部署) |\n| 3 | 11G/98G | 88% | **t10_a060_s44** (已在跑) |\n| 4 | 31G/98G | 90% | t10_a045_s43 |\n| 5 | 28G/98G | 89% | t15_a045_s43 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-17855-disk-cleanup-then-deploy-s44.md"
+}

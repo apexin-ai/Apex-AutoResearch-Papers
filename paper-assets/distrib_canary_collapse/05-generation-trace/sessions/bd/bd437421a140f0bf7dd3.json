@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd437421a140f0bf7dd3",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code d120 threshold fix",
+  "task_key": "worker_code_d120_threshold_fix_20260520T050549",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d120_threshold_fix_20260520T050549_result.json",
+    "occurrence": 1,
+    "bytes": 938,
+    "sha256": "6738905e532c5e0623f769c7a44e729fc6f2d0eb79849d59832c1726c51730eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D120 修复完成。总结：\n\n**修改内容**：`run_5method_analysis_d102.py` 中 `_onset_gen` 函数从 `3x_sigma_drift`（std(前3点)，双向检测）改为 D105 true 3σ（std(全序列)，单向检测）。三处标签同步更新。\n\n**验证结果**：在 `alpha_sweep_a050_s42_fp32` 上运行，threshold_onset = 0/8，与 `recompute_3sigma_d105.py` 参考实现逐对完全一致。\n\n**关于预期值差异**：任务描述中 \"threshold 3σ 后应为 8/8\" 不准确。8/8 是旧 `3x_sigma_drift` 的结果（前3点 std 极小导致阈值极低）。D105 true 3σ 用全序列 std，阈值更高，α=0.50 的 downstream 指标 drift 不够越过 → 0/8。这与 M037 审计中所有实验的 thr3s=0-2/8 一致。\n\n**服务器同步**：westd-19828（原地修改+备份）、westd-17855（base64 传输）均已更新。\n\n**状态**：D120 fix validated，等 Agent 协调启动全量重算。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d120-threshold-fix.md"
+}

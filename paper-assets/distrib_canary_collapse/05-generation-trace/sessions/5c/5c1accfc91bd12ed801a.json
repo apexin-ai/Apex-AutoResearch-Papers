@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c1accfc91bd12ed801a",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code prepare fp32 wave2 configs",
+  "task_key": "worker_code_prepare_fp32_wave2_configs_20260519T061923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare_fp32_wave2_configs_20260519T061923_result.json",
+    "occurrence": 1,
+    "bytes": 659,
+    "sha256": "de5d62c9daaf148965e4cadd731fd9965b54da0f8b3a41cbe91d8f90f74feeb1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact 已写入并注册。总结：\n\n**产出**: `artifacts/fp32_wave2_configs.md`，包含 4 个实验的完整 tmux 启动命令。\n\n**关键发现**:\n1. `iterative_train.py` 没有 `--torch_dtype` 参数，fp32 通过不传 `--bf16` 实现（默认行为）\n2. **阻塞项**: westd-17855 的代码缺少 padding_side 修复（westd-19828 已修复），需先同步才能启动\n3. westd-17855 磁盘充足（223 GB），但 6 个 GPU 当前全部在用（a050 fp32 ×3 + a010 fp32 + scale_69b + qwen35），需等当前实验完成后替换\n4. 预估 4 实验共 ~12 GPU-hours（并行 wall time ~3h），每实验 ~1.6 GB 磁盘"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-fp32-wave2-configs.md"
+}

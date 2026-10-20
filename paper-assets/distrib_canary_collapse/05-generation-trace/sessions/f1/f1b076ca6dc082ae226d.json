@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1b076ca6dc082ae226d",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops monitor t10a050 gen10 rerun d102",
+  "task_key": "worker_ops_monitor-t10a050-gen10-rerun-d102_20260522T175443",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_monitor-t10a050-gen10-rerun-d102_20260522T175443_result.json",
+    "occurrence": 1,
+    "bytes": 213,
+    "sha256": "4a02be0eb7bd6069072739e7dfc3bb0079fd1b45a18e4a8583f4d064c1bb2141"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已设置定时监控。35 分钟后（~18:33 UTC）首次检查 gen_10 完成状态。如果未完成会继续以 3 分钟间隔轮询，完成后立即执行 D102 5-method 分析并汇报结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-monitor-t10a050-gen10-rerun-d102.md"
+}

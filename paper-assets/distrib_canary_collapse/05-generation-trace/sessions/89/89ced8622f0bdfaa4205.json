@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "id": "89ced8622f0bdfaa4205",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "writing abstract",
+  "task_key": "worker_writing_abstract_20260515T202033",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_abstract_20260515T202033_result.json",
+    "occurrence": 1,
+    "bytes": 1731,
+    "sha256": "f92fd9865bbfc6e37917790f8c4a70469a4511257aa85344f6395ab0497a5f92"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\n  \"section\": \"Abstract\",\n  \"word_count\": 166,\n  \"files\": [\n    \"docs/paper/abstract.tex\",\n    \"artifacts/_project/paper/abstract.tex\"\n  ],\n  \"artifact_id\": \"art_20260515_8c6c62\",\n  \"notes\": [\n    \"Sentence 1: method sensitivity claim (100% → 25%, κ=0.185)\",\n    \"Sentence 2: three pitfalls + 75% spurious rate\",\n    \"Sentence 3: consensus framework (K≥4/5, FPR=0%, FNR=0%)\",\n    \"Sentence 4: regime map (α≥0.75) + canary result (|r|>0.99, 24/24, lag=+1)\",\n    \"Sentence 5: differencing robustness (8/8→0/8 perplexity, 24/24 diversity preserved)\",\n    \"All key numbers verified against registry\",\n    \"Keywords covered: model collapse, lead-lag analysis, Granger causality, consensus framework, canary metric, diversity collapse\",\n    \"No TY cross-α trend cited (respects constraint C001)\"\n  ]\n}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "section": "Abstract",
+              "word_count": 166,
+              "files": [
+                "docs/paper/abstract.tex",
+                "artifacts/_project/paper/abstract.tex"
+              ],
+              "artifact_id": "art_20260515_8c6c62",
+              "notes": [
+                "Sentence 1: method sensitivity claim (100% → 25%, κ=0.185)",
+                "Sentence 2: three pitfalls + 75% spurious rate",
+                "Sentence 3: consensus framework (K≥4/5, FPR=0%, FNR=0%)",
+                "Sentence 4: regime map (α≥0.75) + canary result (|r|>0.99, 24/24, lag=+1)",
+                "Sentence 5: differencing robustness (8/8→0/8 perplexity, 24/24 diversity preserved)",
+                "All key numbers verified against registry",
+                "Keywords covered: model collapse, lead-lag analysis, Granger causality, consensus framework, canary metric, diversity collapse",
+                "No TY cross-α trend cited (respects constraint C001)"
+              ]
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-abstract.md"
+}

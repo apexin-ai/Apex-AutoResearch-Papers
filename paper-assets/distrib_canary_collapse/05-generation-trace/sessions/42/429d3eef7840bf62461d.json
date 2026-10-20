@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "429d3eef7840bf62461d",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis t20 a100 s42 fp32",
+  "task_key": "worker_analysis_t20_a100_s42_fp32_20260520T165519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_t20_a100_s42_fp32_20260520T165519_result.json",
+    "occurrence": 1,
+    "bytes": 2242,
+    "sha256": "17ebb516ccfd521e7729b16ccb9798980cb21c187d316127338a2801ab47d3f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结果：\n\n## T=20 α=1.0 s42 fp32 — 结果摘要\n\n```json\n{\n  \"alpha\": 1.0, \"seed\": 42, \"T\": 20, \"n_generations\": 21,\n  \"observed_permg_count\": 6, \"observed_rate\": 0.75,\n  \"predicted_permg_count\": 7, \"predicted_rate\": 0.832,\n  \"predicted_rate_95ci\": [0.76, 0.96],\n  \"within_ci\": false, \"within_range\": true,\n  \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 6,\n  \"permg_rev_fdr\": 0, \"ty_fwd_fdr\": 1,\n  \"final_ppl\": 2041.50, \"final_entropy\": 1.2052,\n  \"exit_code\": 0,\n  \"conclusion\": \"NEGATIVE_MARGINAL\"\n}\n```\n\n### 5-Method Forward Significance\n\n| Method | Count /8 |\n|--------|----------|\n| Naive XCorr | 8 |\n| Diff XCorr FDR | 6 |\n| Threshold Onset | 6 |\n| PermG FDR | 6 |\n| TY Granger | 1 |\n\n### Robust Pairs 详情\n\n| Pair | Votes | Methods |\n|------|-------|---------|\n| token_entropy → distinct_1 | 4/5 | naive, diff, threshold, perm |\n| token_entropy → distinct_2 | 4/5 | naive, diff, threshold, perm |\n| token_entropy → distinct_3 | 4/5 | naive, diff, threshold, perm |\n| token_entropy → mauve | 1/5 | naive |\n| ece → distinct_1 | **5/5** | naive, diff, threshold, perm, ty |\n| ece → distinct_2 | 4/5 | naive, diff, threshold, perm |\n| ece → distinct_3 | 4/5 | naive, diff, threshold, perm |\n| ece → mauve | 1/5 | naive |\n\n### 预测验证\n\n- **observed_rate = 0.75，略低于 CI 下界 0.76** — within_ci = false\n- PermG count = 6 在 predicted_range [6, 8] 内 — within_range = true\n- **T=20 vs T=10 均为 6/8，√T Power Theory 未产生额外统计功效**\n- 失败的 2 pairs 均为 mauve 相关，与 T=10 pattern 完全一致\n- Reverse PermG = 0/8，方向性干净"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "alpha": 1.0,
+              "seed": 42,
+              "T": 20,
+              "n_generations": 21,
+              "observed_permg_count": 6,
+              "observed_rate": 0.75,
+              "predicted_permg_count": 7,
+              "predicted_rate": 0.832,
+              "predicted_rate_95ci": [
+                0.76,
+                0.96
+              ],
+              "within_ci": false,
+              "within_range": true,
+              "robust_pairs_K3": 6,
+              "robust_pairs_K4": 6,
+              "permg_rev_fdr": 0,
+              "ty_fwd_fdr": 1,
+              "final_ppl": 2041.5,
+              "final_entropy": 1.2052,
+              "exit_code": 0,
+              "conclusion": "NEGATIVE_MARGINAL"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-t20-a100-s42-fp32.md"
+}

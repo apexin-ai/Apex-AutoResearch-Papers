@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "71c5015cb80ce2aa1ac2",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops check t10 a075 s44 d102",
+  "task_key": "worker_ops_check-t10-a075-s44-d102_20260523T210307",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-t10-a075-s44-d102_20260523T210307_result.json",
+    "occurrence": 1,
+    "bytes": 576,
+    "sha256": "1543765728e855c1ddf447d2fde4bbb1bd594d194c4b9825b6d97bcd26e28812"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**已完成的实验：**\n- **t10_a075_s44** (19828): DONE → D102 distinct_3: 2/2 robust pairs (token_entropy→d3: 3/5 [diff,perm,ty], ece→d3: 3/5 [naive,diff,perm])，PermG FDR fwd=2/2 rev=0/2。Registry 已更新，artifact 已注册。\n\n**仍在运行：**\n| 实验 | 服务器 | 已完成 gen | 预估剩余 |\n|------|--------|-----------|---------|\n| t15_a075_s43 | 19828 | 14/16 | ~2h |\n| t10_a045_s44 | 17855 | 9/11 | ~2h |\n| t15_a045_s43 | 17855 | 15/16 | <1h |\n\n总结写入 `artifacts/_project/batch_check_3_20260523.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-t10-a075-s44-d102.md"
+}

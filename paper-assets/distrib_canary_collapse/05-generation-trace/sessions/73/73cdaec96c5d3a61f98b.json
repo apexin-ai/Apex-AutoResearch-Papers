@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73cdaec96c5d3a61f98b",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code checkpoint auto cleanup",
+  "task_key": "worker_code_checkpoint_auto_cleanup_20260518T071535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_checkpoint_auto_cleanup_20260518T071535_result.json",
+    "occurrence": 1,
+    "bytes": 1035,
+    "sha256": "c2b0c50d8a9c48fd9dd57ca5c25a6f48dbbfcf30631cde03ddbe24ae184e13ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**Diff 摘要（相对 .bak）：**\n\n1. **L28**: 添加 `import shutil`\n2. **L277-283**: checkpoint 保存后插入清理逻辑：\n```python\n        # Auto-cleanup: keep gen_0 + last 2 checkpoints\n        if gen >= 3:\n            old_gen_dir = os.path.join(args.output_dir, f\"gen_{gen - 2}\")\n            old_ckpt = os.path.join(old_gen_dir, \"checkpoint\")\n            if os.path.isdir(old_ckpt):\n                shutil.rmtree(old_ckpt)\n                print(f\"  Cleaned up old checkpoint: {old_ckpt}\")\n```\n\n**语法验证**: `OK`\n\n**保留策略验证**（10 gen 为例）：\n- gen 0-2: 不触发清理\n- gen 3: 删 gen_1/checkpoint\n- gen 4: 删 gen_2/checkpoint\n- ...\n- gen 10: 删 gen_8/checkpoint\n- **最终保留**: gen_0, gen_9, gen_10 的 checkpoint + 所有 gen 的 metrics.json 和 synthetic_data\n\n注：diff 中还包含 .bak 之前已有的 `gradient_checkpointing` 和 `optim` 参数差异，这些是 .bak 备份时点之后的已有改动，不是本次引入的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-checkpoint-auto-cleanup.md"
+}

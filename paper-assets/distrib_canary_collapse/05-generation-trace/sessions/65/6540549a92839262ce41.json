@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "6540549a92839262ce41",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "analysis d150 p11 permg power analysis",
+  "task_key": "worker_analysis_d150_p11_permg_power_analysis_20260520T134046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d150_p11_permg_power_analysis_20260520T134046.log",
+    "occurrence": 1,
+    "bytes": 986736,
+    "sha256": "7189c040e50472dfcb31076963264fada73b0d17bf0c60147c62c60538257189"
+  },
+  "statistics": {
+    "messages": 638,
+    "user_turns": 1,
+    "tool_calls": 274,
+    "roles": {
+      "log": 1,
+      "system": 23,
+      "record": 4,
+      "assistant": 60,
+      "tool_call": 274,
+      "user": 1,
+      "tool_result": 274,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "6540549a92839262ce41-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 631,
+      "chunks": [
+        {
+          "path": "6540549a92839262ce41-part-0001.json",
+          "message_count": 173
+        },
+        {
+          "path": "6540549a92839262ce41-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "6540549a92839262ce41-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "6540549a92839262ce41-part-0004.json",
+          "message_count": 98
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-d150-p11-permg-power-analysis.md"
+}

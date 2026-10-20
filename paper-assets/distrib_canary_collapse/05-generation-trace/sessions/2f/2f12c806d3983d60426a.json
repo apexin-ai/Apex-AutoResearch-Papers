@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f12c806d3983d60426a",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "submit interv pred 14b s42 fp32",
+  "task_key": "worker_submit_interv_pred_14b_s42_fp32_20260519T203701",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_interv_pred_14b_s42_fp32_20260519T203701_result.json",
+    "occurrence": 1,
+    "bytes": 611,
+    "sha256": "79de70be0167593863555c8ac33b70750d7fc219bdb088fac270b1990916adc0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "plan_037 已提交并运行中。\n\n**状态汇总**:\n- **exp_id**: `interv_pred_14b_s42_fp32`\n- **PID**: 191999, 运行 1分30秒, 184% CPU, ~1.9GB RSS\n- **GPU**: cuda:0 @ westd-17855, 24.8GB/97.9GB VRAM\n- **模型**: EleutherAI/pythia-1.4b (fp32, HF cache 离线加载)\n- **进度**: Generation 0 训练中\n- **Registry**: RUNNING, hypothesis + spec 已填写\n- **experiment_plan.yaml**: plan_037 已添加 `registry_id: interv_pred_14b_s42_fp32`\n\n注意: tee 写 log 失败（输出目录在脚本启动后才创建），训练输出仅在 tmux session `interv_pred_14b` 中可见。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-interv-pred-14b-s42-fp32.md"
+}

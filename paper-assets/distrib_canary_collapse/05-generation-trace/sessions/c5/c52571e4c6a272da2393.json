@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c52571e4c6a272da2393",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "monitor phase diagram progress check",
+  "task_key": "worker_monitor_phase_diagram_progress_check_20260521T212017",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_phase_diagram_progress_check_20260521T212017_result.json",
+    "occurrence": 1,
+    "bytes": 797,
+    "sha256": "64cde8610be18ba871be9d6983f30615408ef31ba51a03b50b8a715b335d5156"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/report_progress.md`。\n\n**关键发现：**\n\n| 实验 | 进度 | 预计完成 |\n|------|------|---------|\n| t25_a075_s42_fp32 | 21/25 (84%) | ~06:55 最先完成 |\n| t25_a045_s42_fp32_v2 | 19/25 (76%) | ~07:45 |\n| t15_a060_s43_fp32 | 7/15 (47%) | ~08:10 |\n| t15_a045_s43_fp32 | 5/15 (33%) | ~08:55 |\n| t20_a045_s43_fp32 | 10/20 (50%) | ~09:05 |\n| t20_a060_s43_fp32_v2 | 5/20 (25%) | ~11:20 |\n| t25_a050_s42_fp32_v2 | 5/25 (20%) | ~13:15 |\n| **t25_a060_s42_fp32_v2 ★** | **5/25 (20%)** | **~13:15 最晚** |\n\n- 8/8 GPU 全部活跃，无 OOM 或异常\n- T=15 两个实验并非最先完成——它们启动较晚，反而是更早启动的 T=25 a075 和 a045 会先跑完\n- ★关键格 t25_a060 进度最慢（20%），预计还需 ~8h"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-phase-diagram-progress-check.md"
+}

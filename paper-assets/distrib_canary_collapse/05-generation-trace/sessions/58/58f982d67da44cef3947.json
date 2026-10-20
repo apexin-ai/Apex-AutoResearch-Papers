@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "58f982d67da44cef3947",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ssh final sync compile",
+  "task_key": "worker_ssh_final_sync_compile_20260517T065229",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_final_sync_compile_20260517T065229_result.json",
+    "occurrence": 1,
+    "bytes": 278,
+    "sha256": "c4dd803a42bb6ecf553ab7001019d47239cc1930442216248ea1c0c1ccc1b592"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n| 项目 | 结果 |\n|------|------|\n| 同步文件数 | **13** (12 .tex + 1 .bib) |\n| 编译 Errors | **0** |\n| Undefined citations | **0** |\n| Warnings | 1 (overfull hbox，不影响提交) |\n| 总页数 | **22** |\n| **可提交** | **Yes** |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-final-sync-compile.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d1fe62c7a471abf0a0f",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis interv react s43",
+  "task_key": "worker_analysis_interv_react_s43_20260521T003501",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_interv_react_s43_20260521T003501_result.json",
+    "occurrence": 1,
+    "bytes": 1173,
+    "sha256": "a5008f404c10a8515282fd94ef234a6b6ec20a4a94b091e7d91899dfdfd8f43e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== METRICS ===\ntrigger_gen: 2\ntrigger_distinct1_drop_pct: -15.83\ngen0_distinct_1: 0.0983\ngen0_ppl: 26.95\ngen0_entropy: 3.234\ngen_last_distinct_1: 0.0834\ngen_last_ppl: 21.39\ngen_last_entropy: 3.088\ngen_last_ece: 0.0147\ngen_last_mauve: 0.0276\nrecovery_complete_by_gen: 3\nconverges_to_alpha0_baseline: true\ncheckpoint_path: /root/autodl-tmp/distrib_canary_collapse/results/intervention/reactive_d1_s43_fp32\n\n=== COMPARISON vs s42 ===\ntrigger_gen: match (both Gen 2)\ntrigger_drop: match (-15.83% vs -15.58%)\ngen2_ppl: match (158.22 vs 157.09)\nrecovery: match (Gen 3 vs Gen 4, s43 slightly faster)\nfinal_metrics: match (ppl 21.39 vs 21.24, d1 0.0834 vs 0.0844)\n\n=== CONCLUSION ===\nconclusion: success\nreason: s43 reproduces s42 — identical trigger point (Gen 2, ~-15.8% distinct_1 drop), PPL spike to ~158, recovery within 1 gen post-intervention (Gen 3), and convergence to α=0 baseline (~21.4 ppl). Cross-seed consistency confirmed.\n```\n\n注意：此次运行与已有 interv_react_s43_fp32 共享 output_dir 且数值完全一致（trigger_drop -15.83%、gen2_ppl 158.22、recovery_ppl 21.98），是同一组实验数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-interv-react-s43.md"
+}

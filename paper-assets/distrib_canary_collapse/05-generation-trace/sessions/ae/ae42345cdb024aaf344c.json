@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae42345cdb024aaf344c",
+  "project": "distrib_canary_collapse",
+  "kind": "history",
+  "title": "agent / loop_16_1779398248.md",
+  "task_key": "loop_16_1779398248",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1779398248.md",
+    "occurrence": 1,
+    "bytes": 4268,
+    "sha256": "9070921148599a5c4a3914a529a1168cbac3dd8a9e2890c09d3360ee6ce2f7e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-21T21:03:49+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单必须查 `get_project_status` 的 `execution.gpu_ids`，不能用白名单外的 GPU\n- D079: ≤3B 模型必须 fp32，>3B 允许 bf16\n- D157: GPT-2m failure 是 precision-dependent（fp32 6/8, bf16 0/8），论文中必须标注为 \"precision-dependent\"，不能简单说 \"failure\"\n- α=0.60 是 sync dip 非单调区域，预测/分析时必须特殊处理（不纳入 sigmoid fit）\n- 论文 8 页硬限（EMNLP 2026 ARR），DDL 2026-05-25\n\n### 2. 🖥️ 基础设施快照\n- **westd-17855**: 6× RTX PRO 6000 Blackwell (98GB)，工作目录 `/root/autodl-tmp/distrib_canary_collapse`，Python: `/root/miniconda3/bin/python`，conda base env，磁盘 816G/879G 可用\n- **westd-19828**: 2× RTX PRO 6000 Blackwell (98GB)，同上路径布局，磁盘 817G/879G 可用\n- 模型: HF cache `/root/autodl-tmp/.hf_cache`，`TRANSFORMERS_OFFLINE=1` 已设\n- 数据: `data/wikitext103_5k` (5000 samples)\n- 活跃进程（7 个 cron 监控中）:\n  - westd-17855: a048_s42(cuda:0), a070_s42(cuda:2), scale_69b_s43_bf16(cuda:3), a052_s42(cuda:4), a046_s42(cuda:5)\n  - westd-19828: a048_s43(cuda:0), pythia1b_c4_v2(cuda:1)\n- **westd-17855:cuda:1 已空闲**（t20_a025 刚完成）\n\n### 3. 📊 当前状态\n- **刚做的事**: 收到 t20_a025_s42_fp32 完成回调，已派 Worker `worker_analysis_t20_a025_s42_fp32_20260521T050105` 去 westd-17855 分析结果（读 log + 跑 5-method PermG 分析 + update_registry）\n- **等待中的 Worker 回调**: 上述分析 Worker，完成后需要：更新 report.md、向 Director 汇报、处理 cuda:1 释放后的下一个实验\n- **RUNNING 实验**:\n  - `alpha_sweep_a048_s42_fp32` — Phase transition boundary α=0.48 s42\n  - `alpha_sweep_a046_s42_fp32` — Phase transition lower bound α=0.46 s42\n  - `alpha_sweep_a052_s42_fp32` — Transition microstructure α=0.52 s42\n  - `alpha_sweep_a070_s42_fp32` — α=0.70 s42\n  - `alpha_sweep_a048_s43_fp32` — Multi-seed validation α=0.48 s43\n  - `scale_69b_a100_s43_bf16` — Pythia-6.9B scale validation\n  - `generalize_pythia1b_c4_a100_s43_v2` — Pythia-1B C4 cross-domain\n- **PREPARING**: qwen35_dryrun_launch\n- **Paper**: Round 6 Phase 2 进行中，Patch 3 (C3 power) / Patch 4 (C4 first-diff) / Patch 5 (CI 表) 待完成\n\n### 4. 📋 待办（条件触发式）\n- Worker `analysis_t20_a025_s42_fp32` 回调 → 读结果，更新 registry/report.md，向 Director 汇报（预期 PermG=0/8 确认 blind zone fundamental limit）\n- t20_a025 分析完成 → cuda:1 空闲 → ROADMAP 说启动 gpt2m_s43_fp32（但 `gen_gpt2m_a100_s43_fp32` 已 DONE/success，需确认 Director 是否有新的 cuda:1 任务安排）\n- a046/a048/a052/a070 任一完成 → 分析 + 更新 alpha sweep dose-response 曲线，精化 α_c 估计\n- a048_s42 + a048_s43 都完成 → 跨 seed 对比，判断 phase boundary sharpness 是否 seed-robust\n- scale_69b 完成 → 6.9B scale 验证结果，更新论文 Table\n- 所有 alpha sweep 完成 → 汇总产出 T=11 完整 dose-response sigmoid + 更新 t20_predictions 对比\n\n### 5. 🎯 战略上下文\n- **核心结论**: PermG 在 α_c≈0.475 存在 sharp phase transition（sigmoid, k≈200），T=20 的 √T power scaling 能 left-shift boundary（α=0.45: T=11 0/8 → T=20 5/8）\n- **论文状态**: Round 5 评分 3.0 (Findings)，Round 6 目标 3.5+ (Borderline Conference)。标题已改为 \"Detection Phase Transitions\"，T=20 升格主文，Method Sensitivity 升为 subsection\n- **关键决策链**: D154 (T=20 Model B confirmed) → D157 (GPT-2m precision-dependent) → D158 (C4 FPR φ=0.87) → D159 (Round 6 reframe)\n- **易错点**:\n  1. gpt2m_s43_fp32 看起来已完成（`gen_gpt2m_a100_s43_fp32` DONE/success），ROADMAP 的 GPU 释放队列可能过时——先查 registry 确认再决定 cuda:1 下一个任务\n  2. α=0.60 sync dip 是已知非单调区域，不要纳入 sigmoid fit 或用它推翻 phase transition 结论\n  3. 当前跑的 alpha_sweep 系列（a046/a048/a052/a070）是精化 phase boundary 的微结构实验，结果直接影响论文 α_c 估计的精度——不是 optional\n  4. Paper Phase 2 Patch 3-5 还未完成，DDL 是 2026-05-25，只剩 4 天\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1779398248.md"
+}

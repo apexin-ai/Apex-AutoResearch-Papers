@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "35c1f3f2a957a439bff7",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "audit table7 fdr methodology",
+  "task_key": "worker_audit_table7_fdr_methodology_20260518T002359",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_table7_fdr_methodology_20260518T002359_result.json",
+    "occurrence": 1,
+    "bytes": 4418,
+    "sha256": "d3f4743b7ea2b67c1ea12eaa48f441479c5ace56470fc6a934b914449571513e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。以下是完整报告。\n\n---\n\n## Table 7 (tab:generalization) FDR 方法论审计报告\n\n### 论文声明\n\n| 参数 | 声明位置 | 声明值 |\n|------|---------|--------|\n| FDR 方法 | experiments.tex:25 | Benjamini-Hochberg (BH) at q=0.05 |\n| FDR scope | experiments.tex:342 caption | \"reaching BH-corrected FDR significance\" |\n| n_perm | method.tex:55, experiments.tex:26 | 5,000 |\n| max_lag (xcorr) | method.tex:53 | 5 |\n| max_lag (granger) | method.tex:55 | 1 (隐含，first-differenced series) |\n\n---\n\n### 各行实际来源与参数\n\n| Row | 来源脚本 → 结果文件 | n_perm | max_lag_xcorr | FDR scope |\n|-----|---------------------|--------|---------------|-----------|\n| **Baseline (Pythia-410M)** | 无可追溯的分析 JSON | **不确定 (推测1000)** | 不确定 | 不确定 |\n| **GPT-2-medium** | `leadlag_gpt2m_s42.py` | 5000 ✓ | 5 ✓ | per-direction (6 pairs/pool) |\n| **OPT-1.3B** | `analyze_opt1b_full.py` → `opt1b_6method_full.json` | **1000 ✗** | **1 ✗** | per-method |\n| **Scale (Pythia-1.4B)** | `pythia14b_8pair_analysis.py` → `pythia14b_8pair_6method_analysis.json` | 5000 ✓ | 5 (params) / 3 (code default) | per-method |\n| **Domain (C4)** | `c4_full_8pair_analysis.py` → `c4_8pair_6method_analysis.json` | **1000 ✗** | **3 ✗** (not 5) | pooled (all methods+pairs) |\n\n---\n\n### 严重问题 1：n_perm 不一致\n\n论文声明 5000 permutations，但：\n- **OPT-1.3B**: n_perm=1000 (confirmed `opt1b_6method_full.json` → `\"n_perm\": 1000`)\n- **C4**: n_perm=1000 (confirmed `c4_8pair_6method_analysis.json` → `\"n_perm\": 1000`)\n- **Baseline**: `reverse_permg_results.json` 用 n_perm=1000，无 5000 perm 分析存在\n\n---\n\n### 严重问题 2：Scale 行 PermG 使用 RAW p-values 而非 FDR\n\n**证据链**：\n- `pythia14b_8pair_6method_analysis.json` (`method_sig_counts`):\n  - **PG_fwd = 2** (FDR-corrected, per-method BH)\n  - Naive = 4\n- `run_unified_generalize.py` 输出 (`unified_5method.json`):\n  - PermG: raw_sig = **5/8**, fdr_permethod_sig = **2/8**\n  - Naive: raw_sig = 7/8, fdr_permethod_sig = 7/8\n- **论文 Table 7 报告 PermG_fwd = 5/8** → 匹配 RAW，不匹配 FDR\n\n结论：**Scale 行的 PermG(fwd) 和 K≥4 列使用了 raw p-values，与 caption 声称的 \"BH-corrected FDR\" 矛盾。**\n\n---\n\n### 问题 3：FDR scope 跨脚本不一致\n\n| 脚本 | FDR scope |\n|------|-----------|\n| `run_5method_analysis.py` (alpha sweep) | per-method + per-direction (8 pairs/pool) |\n| `method_ablation.py` (Phase 1) | per-method across pair×seed |\n| `analyze_opt1b_full.py` | per-method (8 pairs per method) |\n| `c4_full_8pair_analysis.py` | **pooled across ALL methods** (most conservative) |\n| `leadlag_gpt2m_s42.py` | per-direction (6 fwd/6 rev) |\n| `run_unified_generalize.py` (audit) | reports both per-method and pooled |\n\n论文未明确声明 scope 是 per-method 还是 pooled。不同 scope 对 borderline p-values 有实质影响。\n\n---\n\n### 问题 4：xcorr max_lag 不一致\n\n| 脚本 | xcorr max_lag | 论文声明 |\n|------|---------------|---------|\n| OPT-1.3B (`analyze_opt1b_full.py`) | **1** | 5 |\n| C4 (`c4_full_8pair_analysis.py`) | **3** | 5 |\n| Pythia-1.4B (result params) | 5 ✓ (code default=3, discrepancy) | 5 |\n| GPT-2-medium | 5 ✓ | 5 |\n\n---\n\n### 风险评估\n\n| Row | 受影响列 | 当前值 → 纠正后最坏情况 |\n|-----|---------|------------------------|\n| **Scale (Pythia-1.4B)** | PermG_fwd, K≥4 | **5/8 → 2/8** (FDR per-method), K≥4 也会下降 |\n| **OPT-1.3B** | 全部 | n_perm 5000 重跑: PermG 仍为 6/8 (stable); 但 xcorr max_lag=5 会改变 Naive/Diff |\n| **C4** | 全部 | n_perm 5000 + max_lag_xcorr=5 重跑: PermG 仍 8/8 (stable); Naive/Thresh 可能变 |\n| **Baseline** | 全部 | 不可验证——无源文件 |\n\n---\n\n### 最关键风险\n\n**Scale 行 PermG_fwd**: 论文报 5/8（raw），实际 FDR 应为 2/8。这直接影响 K≥4 consensus 列（paper 报 5/8，纠正后可能降到 2-3/8）。如果审稿人要求复现，此不一致会被发现。\n\n**OPT + C4 的 n_perm=1000**：permutation test 在 1000 perms 下 p-value resolution 为 0.001，而 5000 perms 下为 0.0002。对于 borderline cases（p≈0.04-0.06），perm 数量差异可能翻转 significance。但对于 strong signals（OPT PermG p<0.01），影响可能有限。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-table7-fdr-methodology.md"
+}

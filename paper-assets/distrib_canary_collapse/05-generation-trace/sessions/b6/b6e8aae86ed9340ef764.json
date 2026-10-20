@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "b6e8aae86ed9340ef764",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "reanalyze d105 global 3sigma",
+  "task_key": "worker_reanalyze_d105_global_3sigma_20260519T162816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_reanalyze_d105_global_3sigma_20260519T162816.log",
+    "occurrence": 1,
+    "bytes": 906637,
+    "sha256": "b31b3e8b09c62a7adce81971e4fc3643773c0386557497aaacaca9a482c07337"
+  },
+  "statistics": {
+    "messages": 206,
+    "user_turns": 1,
+    "tool_calls": 77,
+    "roles": {
+      "log": 1,
+      "system": 10,
+      "record": 1,
+      "assistant": 38,
+      "tool_call": 77,
+      "tool_result": 77,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 19,
+      "chunks": [
+        {
+          "path": "b6e8aae86ed9340ef764-part-0001.json",
+          "message_count": 19
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 187,
+      "chunks": [
+        {
+          "path": "b6e8aae86ed9340ef764-part-0001.json",
+          "message_count": 108
+        },
+        {
+          "path": "b6e8aae86ed9340ef764-part-0002.json",
+          "message_count": 79
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/reanalyze-d105-global-3sigma.md"
+}

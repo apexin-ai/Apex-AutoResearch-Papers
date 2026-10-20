@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7129669bdcb7ad2d39ee",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diagnose interv pred 14b s42 fp32",
+  "task_key": "worker_diagnose_interv_pred_14b_s42_fp32_20260520T054221",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_interv_pred_14b_s42_fp32_20260520T054221_result.json",
+    "occurrence": 1,
+    "bytes": 786,
+    "sha256": "227eeff778bd365f209e429a111fa9e411446528155b3d9437d726aaf01322cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**`interv_pred_14b_s42_fp32` — 成功 (DONE/success)**\n\n| 指标 | Gen 0 (baseline) | Gen 1 (trigger) | Gen 2 (recovery) | Gen 10 (final) |\n|------|----------|---------|----------|--------|\n| token_entropy | 2.946 | **1.418** (↓51.9%) | 2.892 | 2.832 |\n| perplexity | 19.68 | 65.37 | 17.44 | 17.60 |\n| ECE | 0.007 | 0.281 | 0.017 | 0.026 |\n| effective_rank | 50.76 | 90.17 | 58.29 | 51.53 |\n\n- Intervention 在 gen_1 触发（token_entropy 下降 51.9%，远超 15% 阈值），gen_2 起 α=0.0\n- Gen_2 即完成恢复，gen_2-10 所有指标稳定\n- **与 410M 实验模式完全一致**：gen_1 触发 → gen_2 恢复 → 稳定至 gen_10，验证 Claim 4（scale-independence）\n- Registry 已更新为 DONE/success，cron 已删除"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-interv-pred-14b-s42-fp32.md"
+}

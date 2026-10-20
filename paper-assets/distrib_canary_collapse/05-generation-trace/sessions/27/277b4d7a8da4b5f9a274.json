@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "277b4d7a8da4b5f9a274",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis alpha sweep a030 s42 fp32",
+  "task_key": "worker_analysis_alpha_sweep_a030_s42_fp32_20260519T203048",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_alpha_sweep_a030_s42_fp32_20260519T203048_result.json",
+    "occurrence": 1,
+    "bytes": 734,
+    "sha256": "a6394a02b8fbf81e2e64955bbc0ad2e92ac623fe6cfef76fbd87e9a7007f36ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n## 结果摘要\n\n**α=0.30 确认在 blind zone，PermG=0/8。**\n\n| 指标 | 值 |\n|------|-----|\n| PermG fwd | **0/8** |\n| PermG rev | 0/8 |\n| K≥3 | 6/8 |\n| K≥4 | 3/8 |\n| naive_xcorr | 8/8 |\n| diff_xcorr | 4/8 |\n| threshold_onset | 8/8 |\n\n尽管 drift 显著（entropy -17%，d1/d2/d3 -37~50%，mauve -26%），PermG 在 T=11 下无法检测。PermG raw p-values 范围 0.053–0.128，全部 BH FDR 不显著。\n\nTY Granger 5/8 显著但 4/5 有 d_max=2, df_resid=1（per C003 不可用作证据）。\n\n**Onset boundary 更新**：α=0.25/0.30/0.35/0.40 均 PermG=0/8，α=0.50 PermG=6/8 → onset ∈ (0.40, 0.50]。\n\nRegistry 已更新为 DONE/success，报告已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-alpha-sweep-a030-s42-fp32.md"
+}

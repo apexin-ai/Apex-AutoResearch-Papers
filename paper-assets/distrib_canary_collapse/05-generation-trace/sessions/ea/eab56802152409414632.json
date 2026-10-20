@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eab56802152409414632",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analyze padding robustness a100 s42 fp32",
+  "task_key": "worker_analyze_padding_robustness_a100_s42_fp32_20260519T144238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_padding_robustness_a100_s42_fp32_20260519T144238_result.json",
+    "occurrence": 1,
+    "bytes": 1543,
+    "sha256": "d4978ecf6a50abd7a72577dde691c29b1cdabc6790961be58aefddf64afcc043"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 分析结果摘要\n\n**Conclusion: SUCCESS** — padding_side 不影响定性结论。\n\n### Lead-Lag 对比\n\n| Method | left-padding (D093) | right-padding (a100_s42 参考) | 一致 |\n|--------|---------------------|-------------------------------|------|\n| PermG_fwd | 6/8 | 6/8 | ✓ |\n| PermG_rev | 0/8 | 0/8 | ✓ |\n| K≥4 consensus | 6/8 | — (mvp无5method) | — |\n| MMCT detection | 0.75 | — | — |\n| threshold_onset | 8/8 | — | — |\n| TY Granger | 6/8 | — | — |\n\nPermG 不对称性完美保持：fwd=6/8 显著，rev=0/8 → 单向因果 (canary→downstream) 不受 padding 影响。6 个 distinct pair 全部 5/5 unanimous consensus。\n\n### 绝对值差异 (left vs right padding)\n\n| Metric | gen0 差异 | gen10 差异 | 说明 |\n|--------|----------|-----------|------|\n| distinct_1 | -0.03% | +12.8% | left-pad collapse 更轻 |\n| perplexity | 0.0% | -6.2% | left-pad blowup 更小 |\n| token_entropy | +0.01% | -7.7% | 噪声范围 |\n| ece | -1.8% | +1.6% | 噪声范围 |\n\n**gen0 完全一致**（d1 差异 <0.03%）；gen10 差异在 ~10% 以内。right-padding 引入了额外 ~10pp 的 diversity 损失 artifact，但 drift 方向全部一致。\n\n### 对论文 claims 的影响\n\nD093 padding fix 不影响任何核心 claim：\n1. Canary (entropy/ECE) 领先 downstream (diversity) 的因果方向完全稳健\n2. Right-padding 产生的额外 d1 collapse (~10pp) 意味着论文中的 drift 数字可能偏保守（left-pad 下 collapse 更轻），不削弱结论"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-padding-robustness-a100-s42-fp32.md"
+}

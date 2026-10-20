@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "411a9389c66fc95934e7",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis alpha sweep a075 s42 fp32",
+  "task_key": "worker_analysis_alpha_sweep_a075_s42_fp32_20260519T142135",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_alpha_sweep_a075_s42_fp32_20260519T142135_result.json",
+    "occurrence": 1,
+    "bytes": 861,
+    "sha256": "5daf44cdfc5a912fbd094054f1f3e7489bd621141f201bfc9915e41ddb119eb7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。汇总：\n\n## alpha_sweep_a075_s42_fp32 — SUCCESS\n\n**Drift (gen_0→gen_10):**\n| Metric | Drift |\n|--------|-------|\n| token_entropy | −29.4% |\n| ECE | +1885% |\n| perplexity | +188% |\n| distinct_1/2/3 | −25~31% |\n| effective_rank | +67.5% |\n| mauve | −3.7% (near-flat) |\n\n**Lead-Lag:**\n- **PermG: 6/8 fwd, 0/8 rev** — perfect asymmetry\n- **K≥4 consensus: 6/8** — 6 pairs with 5/5 unanimous agreement (all canary→distinct-n)\n- **MMCT detection: 75%**\n- TY Granger: 8/8 (C003 compliant, α=0.75 > 0.50)\n\n**Dose-response:** α=0.75 fits high regime。PermG=75% 略低于预期的 ~83% 但在单 seed 方差范围内。唯二未通过 K≥4 的 pair 都是 →mauve（MAUVE 仅 −3.73% drift，信号不足）。\n\nRegistry 已更新为 DONE/success，artifact 已注册 (`art_20260519_7d0a70`)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-alpha-sweep-a075-s42-fp32.md"
+}

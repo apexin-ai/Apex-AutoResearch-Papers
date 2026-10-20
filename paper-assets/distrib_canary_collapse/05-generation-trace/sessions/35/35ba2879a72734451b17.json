@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "35ba2879a72734451b17",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diagnosis pythia1b c4 failure",
+  "task_key": "worker_diagnosis_pythia1b_c4_failure_20260517T123326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_pythia1b_c4_failure_20260517T123326_result.json",
+    "occurrence": 1,
+    "bytes": 1173,
+    "sha256": "19108a826f1664effb9d400bc058b0d9825c70b7d9ac73025abb867fbdcaf4cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n## 诊断结果\n\n**失败根因**：下载 Pythia-1B 模型时网络连接中断。\n\nEXIT_CODE 内容：\n```\n1\n('Connection broken: IncompleteRead(145523872 bytes read, 1945177656 more expected)', IncompleteRead(...))\n```\n\n即下载了 ~138MB 后断开，还有 ~1.85GB 未完成。这是 HuggingFace Hub 下载 `EleutherAI/pythia-1b` 权重文件时的网络超时/断连错误。\n\n**已完成进度**：零。实验目录下只有 `config.json` 和 `EXIT_CODE`，没有任何 generation 数据产出。模型下载失败在第一步就中止了。\n\n**C4 数据状态**：`data/c4_5k/` 完整存在（14MB，train/eval/prompts 三个 split 齐全），数据不是问题。\n\n**修复建议**：\n1. 先手动确认 HF 模型缓存中是否有部分下载残留：`ls ~/.cache/huggingface/hub/models--EleutherAI--pythia-1b/`\n2. 直接重跑即可，无需改代码。如果服务器到 HF Hub 的连接不稳定，可以：\n   - 设置 `HF_HUB_DOWNLOAD_TIMEOUT=600` 环境变量增加超时\n   - 或用 `huggingface-cli download EleutherAI/pythia-1b --resume-download` 预先下载模型到缓存，然后再启动实验"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-pythia1b-c4-failure.md"
+}

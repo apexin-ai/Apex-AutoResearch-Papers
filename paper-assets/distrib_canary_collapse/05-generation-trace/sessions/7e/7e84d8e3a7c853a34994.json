@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e84d8e3a7c853a34994",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis a060 v4 d120 canonical",
+  "task_key": "worker_analysis_a060_v4_d120_canonical_20260520T115048",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_a060_v4_d120_canonical_20260520T115048_result.json",
+    "occurrence": 1,
+    "bytes": 581,
+    "sha256": "7f45e6b70e83fcbd77367b9f93e08891c412913fb87d58daf710fefc33d35176"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D120 分析完成。\n\n**alpha_sweep_a060_s42_fp32_v4 → negative**\n\n| Method | Fwd | Rev |\n|--------|-----|-----|\n| PermG (FDR) | 0/8 | 0/8 |\n| TY Granger | 0/8 | — |\n| diff_xcorr (FDR) | 6/8 | 6/8 |\n| naive_xcorr | 2/8 | — |\n| threshold_onset_3sigma | 0/8 | — |\n| **K≥3** | **0/8** | |\n| **K≥4** | **0/8** | |\n\nRegistry 已更新至 DONE(negative)，报告已注册。α=0.60 T=10 的 non-monotonic sync dip 确认——PermG 全军覆没，仅 diff_xcorr 有单方法信号（6/8），不足以形成共识。可作为 T=20 对比基线。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-a060-v4-d120-canonical.md"
+}

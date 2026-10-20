@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ac577b91046bad05853",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis 19828 wiki m035 verify",
+  "task_key": "worker_analysis_19828_wiki_m035_verify_20260520T035427",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_19828_wiki_m035_verify_20260520T035427_result.json",
+    "occurrence": 1,
+    "bytes": 2667,
+    "sha256": "88bac295e110c34ec3173f11377a3ada44a852541ab36be0f84cac4fe60e43e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 19828 WikiText 验证结果\n\n### a075_s43\n- **config.json data_dir**: `data/wikitext103_5k` (WikiText 确认)\n- **5method_leadlag.json**: 存在但为 pre-M035 版本，已用 M035 脚本重跑\n- **M035 兼容**: 重跑（旧版 consensus 用 `peak_lag > 0`，计入了 positive lag 的 naive，K≥3 虚高 4/8→2/8）\n- **PermG_fwd (FDR)**: 5/8\n- **naive_fwd (M035 peak_lag<0)**: 1/8（仅 ece→distinct_1, lag=-1）\n- **diff_fwd (FDR)**: 8/8\n- **ThreshOnset**: 0/8\n- **TY**: 1/8\n- **K≥3 (M035 consensus)**: 2/8（ece→distinct_1: 3/5, ece→distinct_3: 3/5）\n- **K≥3(3σ)**: 2/8（threshold_onset=0/8，3sigma 也是 0/8，不影响投票）\n\n### a050_s43\n- **config.json data_dir**: `data/wikitext103_5k` (WikiText 确认)\n- **5method_leadlag.json**: 存在但为 pre-M035 版本，已用 M035 脚本重跑\n- **M035 兼容**: 重跑（旧版 naive 方向反转导致 K≥3=1/8，修正后 ece pairs 被正确计入）\n- **PermG_fwd (FDR)**: 6/8\n- **naive_fwd (M035 peak_lag<0)**: 4/8（ece 全部 4 pair: lag=-1/-5/-5/-1）\n- **diff_fwd (FDR)**: 6/8\n- **ThreshOnset**: 0/8\n- **TY**: 0/8\n- **K≥3 (M035 consensus)**: 3/8（ece→distinct_1: 3/5, ece→distinct_2: 3/5, ece→perplexity: 3/5）\n- **K≥3(3σ)**: 3/8\n\n### M035 修正前后对比\n\n| 实验 | K≥3 旧 (pre-M035) | K≥3 新 (M035) | 变化原因 |\n|------|-------------------|---------------|---------|\n| a075_s43 | 4/8 | 2/8 | token_entropy 4 pair 的 naive_lag 全为正(3-5)，旧版错误计入 |\n| a050_s43 | 1/8 | 3/8 | ece 4 pair 的 naive_lag 全为负(-1/-5)，旧版错误排除 |\n\n### Registry 更新需求\n\n两个实验（`alpha_sweep_a075_s43`、`alpha_sweep_a050_s43`）当前 registry 无 5method 分析指标，需更新：\n\n**alpha_sweep_a075_s43**:\n- `metrics.perm_granger_fdr_forward_sig`: \"5/8\"\n- `metrics.diff_xcorr_fdr_forward_sig`: \"8/8\"\n- `metrics.naive_fwd_m035`: \"1/8\"\n- `metrics.threshold_onset_forward_sig`: \"0/8\"\n- `metrics.threshold_onset_3sigma`: \"0/8\"\n- `metrics.ty_forward_sig`: \"1/8\"\n- `metrics.K_ge3_m035`: \"2/8\"\n- `metrics.dataset`: \"wikitext\"\n- `notes`: 追加 M035 re-run 信息\n\n**alpha_sweep_a050_s43**:\n- `metrics.perm_granger_fdr_forward_sig`: \"6/8\"\n- `metrics.diff_xcorr_fdr_forward_sig`: \"6/8\"\n- `metrics.naive_fwd_m035`: \"4/8\"\n- `metrics.threshold_onset_forward_sig`: \"0/8\"\n- `metrics.threshold_onset_3sigma`: \"0/8\"\n- `metrics.ty_forward_sig`: \"0/8\"\n- `metrics.K_ge3_m035`: \"3/8\"\n- `metrics.dataset`: \"wikitext\"\n\n注：`alpha_sweep_a050_s43_fp32` 是 17855 上的独立 fp32 重跑，与 19828 上的原始 `a050_s43` 是不同实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-19828-wiki-m035-verify.md"
+}

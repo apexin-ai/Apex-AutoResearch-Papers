@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e49e25e5fb56e8d0b590",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "research boettiger literature add",
+  "task_key": "worker_research_boettiger_literature_add_20260515T083951",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_boettiger_literature_add_20260515T083951_result.json",
+    "occurrence": 1,
+    "bytes": 423,
+    "sha256": "978de193c7ee7c1ec50f69a32b229c00b66fed50001443667a65cd2d2fd7889f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "YAML 语法正确，41 篇论文（原 40 + 新增 1），gaps 和 novelty_assessment 完整。`boettiger2012limits` 已添加到 `early-warning-signals` 区块，位于两篇 Scheffer 之后。\n\nSources:\n- [PubMed entry](https://pubmed.ncbi.nlm.nih.gov/22593100/)\n- [Royal Society Interface](https://royalsocietypublishing.org/rsif/article/9/75/2527/278/Quantifying-limits-to-detection-of-early-warning)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-boettiger-literature-add.md"
+}

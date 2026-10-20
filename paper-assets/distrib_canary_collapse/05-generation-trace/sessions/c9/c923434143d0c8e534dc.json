@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c923434143d0c8e534dc",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code fix window sensitivity bugs",
+  "task_key": "worker_code_fix_window_sensitivity_bugs_20260516T001053",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_window_sensitivity_bugs_20260516T001053_result.json",
+    "occurrence": 1,
+    "bytes": 879,
+    "sha256": "891bc0951f4debc03ca3c14165364385d46d9ff6e62707d2c2b4939cad275e7a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**修复内容**：\n1. **Off-by-one** (line 193): `[:T]` → `[:T+1]`，T=10 现在取 11 个数据点 (gen_0–gen_10)\n2. **TY 实现统一**: 删除本地 `toda_yamamoto` / `toda_yamamoto_v2`（79 行），改为从 `method_ablation.py` 导入canonical实现（ADF d_max + fixed p=1 + F-test）\n\n**关键变化**：\n- 旧 TY 在 T=10 返回 `p=nan`（0/6 sig），因 VAR `test_causality` 在短序列上静默失败\n- 修复后 T=10 TY = **4/6 sig**（TE→d1/d2/d3 全 4/4，ECE→d1 3/4）\n\n**验证通过**：T=10 TY 结果与 ty_audit Method A 11-point 表格一致（TE 4/4，ECE→d1 3/4）\n\n**4/5 consensus 结论不受影响**：所有 6 对在 T=5–10 全窗口均保持 robust（≥4/5 methods），因 NX/DX/TH/PG 四法已足够。\n\n报告已写入 `artifacts/window_sensitivity_t11/window_sensitivity_fixed.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-window-sensitivity-bugs.md"
+}

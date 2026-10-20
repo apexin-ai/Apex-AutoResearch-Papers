@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "819e323ac3999edf3de2",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ssh check generalize status",
+  "task_key": "worker_ssh_check_generalize_status_20260517T081615",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_generalize_status_20260517T081615_result.json",
+    "occurrence": 1,
+    "bytes": 578,
+    "sha256": "54b49ff20855ee9cf91124dbe6eb818e2caa9260b922b91d8fe3b64980b3a8d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验状态汇报：**\n\n两个泛化实验均在运行中，均未完成。\n\n| 实验 | GPU | 已完成 gen | 当前状态 | 预估剩余 |\n|------|-----|-----------|---------|---------|\n| Pythia-410M wiki | cuda:0 (PID 247554) | gen_0, gen_1, gen_2 (3/11) | gen_3 合成数据生成中 | ~2.5h |\n| OPT-1.3B wiki | cuda:1 (PID 249384) | gen_0 (1/11) | gen_1 训练中 step 4000/5000 (80%) | ~3.5h |\n\n- **5-method 分析**：无法运行，两个实验均未完成（需 11 个 gen 目录）\n- **第三实验**：两个 GPU 均被占用，暂不启动"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-generalize-status.md"
+}

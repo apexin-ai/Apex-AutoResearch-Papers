@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ef1118697c3800a986a",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "check a040 v2 exit",
+  "task_key": "worker_check_a040_v2_exit_20260519T182329",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_a040_v2_exit_20260519T182329_result.json",
+    "occurrence": 1,
+    "bytes": 974,
+    "sha256": "361906c46f81daf2f203bea7ef6b0543ff8885ba8bac6db41c67bd9cb8425778"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## 诊断结论\n\n**实验成功**：EXIT_CODE=0，10 generations 全部完成（gen_0-gen_10），wall_clock 4.26 GPU-hours。\n\n## D105 MMCT 分析结果（α=0.40, Pythia-410M, WikiText, s42, fp32）\n\n**Lead-lag 方法汇总：**\n| 方法 | 显著/总计 |\n|------|----------|\n| PermG fwd | **0/8** |\n| PermG rev | 0/8 |\n| K≥4(3σ) | 1/8 |\n| K≥3(3σ) | 6/8 |\n| threshold_onset(3σ) | 8/8 |\n| naive_xcorr | 8/8 |\n| diff_xcorr | 3/8 |\n| TY Granger | 4/8 |\n\n**Onset boundary 含义：**\n- α=0.25 → PermG=0/8, α=0.40 → PermG=0/8, α=0.50 → PermG=6/8\n- **PermG onset 在 (0.40, 0.50) 区间**\n- 但 α=0.40 已有明显 degradation drift（distinct 指标 -35%~-48%），K≥3=6/8 说明弱方法检测到信号，只是 PermG（最严格方法）尚未触发\n\n**K≥4 唯一达标 pair：** ece→distinct_1（naive + diff + thresh + TY 共 4 票）\n\nRegistry 已更新为 DONE(success)，cron 已删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-a040-v2-exit.md"
+}

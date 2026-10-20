@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "id": "bf7e7e3a205b278b6b6f",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "infra env setup westd17855",
+  "task_key": "worker_infra_env_setup_westd17855_20260518T154535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_env_setup_westd17855_20260518T154535.log",
+    "occurrence": 1,
+    "bytes": 1562924,
+    "sha256": "86db3db8dde54b223beec5bce783f02fbc575fd1b5f6d2221834782da7364bc6"
+  },
+  "statistics": {
+    "messages": 940,
+    "user_turns": 2,
+    "tool_calls": 361,
+    "roles": {
+      "log": 1,
+      "system": 24,
+      "record": 1,
+      "assistant": 189,
+      "tool_call": 361,
+      "tool_result": 361,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 109,
+      "chunks": [
+        {
+          "path": "bf7e7e3a205b278b6b6f-part-0001.json",
+          "message_count": 109
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 155,
+      "chunks": [
+        {
+          "path": "bf7e7e3a205b278b6b6f-part-0001.json",
+          "message_count": 71
+        },
+        {
+          "path": "bf7e7e3a205b278b6b6f-part-0002.json",
+          "message_count": 84
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 676,
+      "chunks": [
+        {
+          "path": "bf7e7e3a205b278b6b6f-part-0002.json",
+          "message_count": 96
+        },
+        {
+          "path": "bf7e7e3a205b278b6b6f-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "bf7e7e3a205b278b6b6f-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "bf7e7e3a205b278b6b6f-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "bf7e7e3a205b278b6b6f-part-0006.json",
+          "message_count": 40
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-env-setup-westd17855.md"
+}

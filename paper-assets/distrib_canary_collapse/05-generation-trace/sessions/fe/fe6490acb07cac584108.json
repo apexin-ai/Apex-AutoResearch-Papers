@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe6490acb07cac584108",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code d028 fpr null control",
+  "task_key": "worker_code_d028_fpr_null_control_20260515T095308",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d028_fpr_null_control_20260515T095308_result.json",
+    "occurrence": 1,
+    "bytes": 1051,
+    "sha256": "5d5a538269041fbf9df7c6c1530d99b78ee6d830409b5ce81013aab54a359089"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D028 完成。\n\n**产出汇总**：\n\n### 服务器端\n- `consensus_framework.py` 已更新（494 -> 644 行），新增 4 个函数：`_bh_fdr`、`load_null_control_data`、`compute_fpr_null_control`、`compute_phase2_fdr_sig_rates`。旧 `compute_fpr_fnr` 重命名为 `compute_fpr_fnr_diff`（deprecated）\n- `results/analysis/d028_fpr_null_control.json` 和 `d028_fpr_null_control_full.json` 已生成\n\n### 本地\n- `consensus_framework.py` 已同步\n- 报告写入 `artifacts/analysis/consensus_framework/d028_fpr_update.md`\n\n### 关键结果\n\n**alpha=0.0 Null Control FPR**：\n\n| Method | FPR (raw) | FPR (BH) |\n|--------|:-:|:-:|\n| naive | 100% | 100% |\n| differenced | 50% | 37.5% |\n| threshold | 62.5% | 62.5% |\n| **permG** | **0%** | **0%** |\n| **TY** | **0%** | **0%** |\n\n**Phase 2 FDR 关键变化**：permG 在 alpha=0.25/0.5 从 25% 降至 **0%**（BH 杀掉了边缘 p-values），进一步强化 permG 的特异性。TY 在 alpha=0.25 从 62% 降至 38%（C001 约束仍有效，不入论文）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d028-fpr-null-control.md"
+}

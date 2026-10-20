@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5e185210d15602758cc",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis d150 dose response csv v2 fdr fix",
+  "task_key": "worker_analysis_d150_dose_response_csv_v2_fdr_fix_20260520T140303",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d150_dose_response_csv_v2_fdr_fix_20260520T140303_result.json",
+    "occurrence": 1,
+    "bytes": 599,
+    "sha256": "5b2a5b82783e51060397e210c8ff3a2becd5daf4a3d44a9ff704f1bc869f77ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果汇总**:\n- CSV 49 行（与 v1 同），覆盖 7 个 category\n- 12 个实验的 `permg_count` 因 FDR 校正发生变化，其中 11 个降至 0/8\n- 只有 `diff_xcorr` 和 `perm_granger` 有 `significant_fdr` 字段，其余 3 个方法 JSON 中无 FDR 字段，沿用 `significant`\n\n**验证全部通过**:\n- α=0.45 s42: 3→0 ✓\n- α=0.55 s42: 5→0 ✓\n- α=0.50 s42: 6（不变）✓\n- α=0.00 all seeds: 0 ✓\n\n**核心发现**: FDR 校正后，α≤0.45 的 PermG 全部归零，dose-response 阈值更清晰地落在 α=0.45–0.50 之间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d150-dose-response-csv-v2-fdr-fix.md"
+}

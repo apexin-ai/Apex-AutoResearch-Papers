@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e07c312d9d8b0ebefd61",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "research mvp eval criteria",
+  "task_key": "worker_research_mvp-eval-criteria_20260514T082626",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_mvp-eval-criteria_20260514T082626_result.json",
+    "occurrence": 1,
+    "bytes": 818,
+    "sha256": "df099d5721cf227499dc380355c2af901589b202f832e3d66e3ad2020479d941"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **文件**: `artifacts/mvp_evaluation_criteria.md`\n- **manifest.yaml**: 已注册为 `art_20260514_8c1d3e` (type: report)\n\n文档覆盖全部 6 项要求：\n1. **显著性阈值** — permutation test (B=10000), p<0.10 + |r|≥0.60 双重门槛，含小样本效力讨论\n2. **3/3 一致性** — 严格负 lag 规则，lag=0 不算 lead，附具体示例表\n3. **非单调指标** — Gen 4–9 OLS 斜率法，含三种结果（一致下降/一致上升/混合）的处理路径\n4. **MAUVE 地板效应** — Gen 0 < 0.10 且 CV < 0.50 则降级为补充指标，perplexity + distinct-n 替代\n5. **分级判定** — STRONG PASS / PASS / CONDITIONAL PASS / FAIL 四级，2/3 一致明确判 NO LEAD\n6. **决策总表** — 6 步检查流程 + 各判定对应的后续行动"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-mvp-eval-criteria.md"
+}

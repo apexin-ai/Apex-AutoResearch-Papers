@@ -1,0 +1,653 @@
+{
+  "schema_version": "1.0",
+  "id": "f9549a02dccfd8da37bb",
+  "project": "distrib_canary_collapse",
+  "kind": "conversation",
+  "title": "analysis pythia14b persist json",
+  "task_key": "worker_analysis_pythia14b_persist_json_20260517T235150",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_pythia14b_persist_json_20260517T235150.jsonl",
+    "occurrence": 1,
+    "bytes": 36279,
+    "sha256": "8696a8547b399efe3c56e4c0433e7978b5e6c67afff9caf733423a93707d1ee5"
+  },
+  "statistics": {
+    "messages": 31,
+    "user_turns": 0,
+    "tool_calls": 15,
+    "roles": {
+      "tool_call": 15,
+      "tool_result": 15,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T23:54:00.037444+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pythia14b_persist_json_20260517T235150",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T23:54:00.037938+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pythia14b_persist_json_20260517T235150",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T23:54:00.038166+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pythia14b_persist_json_20260517T235150",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "ls -la /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T23:54:00.038355+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pythia14b_persist_json_20260517T235150",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "find /root/autodl-tmp/distrib_canary_collapse/ -name \"analyze_generalize*\" -o -name \"*analysis*.py\" | head -20",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T23:54:00.038528+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 20\\\\ndrwxr-xr-x 13 root root 4096 May 18 06:02 .\\\\ndrwxr-xr-x  8 root root 4096 May 18 04:07 ..\\\\n-rw-r--r--  1 root root    2 May 18 06:02 EXIT_CODE\\\\n-rw-r--r--  1 root root 3991 May 18 06:02 all_metrics.json\\\\n-rw-r--r--  1 root root  453 May 18 04:14 config.json\\\\ndrwxr-xr-x  3 root root   60 May 17 22:55 gen_0\\\\ndrwxr-xr-x  2 root root   34 May 18 03:26 gen_1\\\\ndrwxr-xr-x  5 root root  101 May 18 06:02 gen_10\\\\ndrwxr-xr-x  2 root root   34 May 18 03:26 gen_2\\\\ndrwxr-xr-x  2 root root   34 May 18 03:26 gen_3\\\\ndrwxr-xr-x  2 root root   34 May 18 03:26 gen_4\\\\ndrwxr-xr-x  2 root root   34 May 18 03:26 gen_5\\\\ndrwxr-xr-x  5 root root  101 May 18 02:31 gen_6\\\\ndrwxr-xr-x  5 root root  101 May 18 04:14 gen_7\\\\ndrwxr-xr-x  5 root root  101 May 18 04:50 gen_8\\\\ndrwxr-xr-x  5 root root  101 May 18 05:26 gen_9\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.04}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pythia14b_persist_json_20260517T235150",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T23:54:00.038675+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/pooled_panel_analysis.py\\\\n/root/autodl-tmp/distrib_canary_collapse/cross_alpha_analysis.py\\\\n/root/autodl-tmp/distrib_canary_collapse/cross_alpha_v3_analysis.py\\\\n/root/autodl-tmp/distrib_canary_collapse/cross_alpha_analysis_v4.py\\\\n/root/autodl-tmp/distrib_canary_collapse/gpt2m_a025_analysis.py\\\\n/root/autodl-tmp/distrib_canary_collapse/run_5method_analysis.py\\\\n/root/autodl-tmp/distrib_canary_collapse/analyze_generalize.py\\\\n/root/autodl-tmp/distrib_canary_collapse/mauve_supplement_analysis.py\\\\n/root/autodl-tmp/distrib_canary_collapse/c4_full_8pair_analysis.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pythia14b_persist_json_20260517T235150",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T23:54:00.038827+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pythia14b_persist_json_20260517T235150",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/analysis/c4_8pair_6method_analysis.json 2>/dev/null | head -100",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T23:54:00.039024+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"pythia1b_c4_a100_s42\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"pythia-1b\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"c4\\\\\\\",\\\\n  \\\\\\\"alpha\\\\\\\": 1.0,\\\\n  \\\\\\\"seed\\\\\\\": 42,\\\\n  \\\\\\\"n_generations\\\\\\\": 11,\\\\n  \\\\\\\"canonical_pairs\\\\\\\": [\\\\n    \\\\\\\"token_entropy->distinct_1\\\\\\\",\\\\n    \\\\\\\"token_entropy->distinct_2\\\\\\\",\\\\n    \\\\\\\"token_entropy->distinct_3\\\\\\\",\\\\n    \\\\\\\"token_entropy->mauve\\\\\\\",\\\\n    \\\\\\\"ece->distinct_1\\\\\\\",\\\\n    \\\\\\\"ece->distinct_2\\\\\\\",\\\\n    \\\\\\\"ece->distinct_3\\\\\\\",\\\\n    \\\\\\\"ece->mauve\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"methods\\\\\\\": [\\\\n    \\\\\\\"Naive\\\\\\\",\\\\n    \\\\\\\"Diff\\\\\\\",\\\\n    \\\\\\\"Thresh\\\\\\\",\\\\n    \\\\\\\"PG_fwd\\\\\\\",\\\\n    \\\\\\\"PG_rev\\\\\\\",\\\\n    \\\\\\\"TY\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"parameters\\\\\\\": {\\\\n    \\\\\\\"max_lag\\\\\\\": 1,\\\\n    \\\\\\\"n_perm\\\\\\\": 1000,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"fdr_q\\\\\\\": 0.05\\\\n  },\\\\n  \\\\\\\"trajectory\\\\\\\": {\\\\n    \\\\\\\"token_entropy\\\\\\\": {\\\\n      \\\\\\\"gen0\\\\\\\": 2.9558974092184305,\\\\n      \\\\\\\"gen10\\\\\\\": 1.2557813227357177,\\\\n      \\\\\\\"drift_pct\\\\\\\": -57.52\\\\n    },\\\\n    \\\\\\\"ece\\\\\\\": {\\\\n      \\\\\\\"gen0\\\\\\\": 0.012435645992664009,\\\\n      \\\\\\\"gen10\\\\\\\": 0.4555010316961996,\\\\n      \\\\\\\"drift_pct\\\\\\\": 3562.87\\\\n    },\\\\n    \\\\\\\"perplexity\\\\\\\": {\\\\n      \\\\\\\"gen0\\\\\\\": 20.598383638593724,\\\\n      \\\\\\\"gen10\\\\\\\": 1682.6079637095913,\\\\n      \\\\\\\"drift_pct\\\\\\\": 8068.64\\\\n    },\\\\n    \\\\\\\"distinct_1\\\\\\\": {\\\\n      \\\\\\\"gen0\\\\\\\": 0.11433895431310172,\\\\n      \\\\\\\"gen10\\\\\\\": 0.088984375,\\\\n      \\\\\\\"drift_pct\\\\\\\": -22.17\\\\n    },\\\\n    \\\\\\\"distinct_2\\\\\\\": {\\\\n      \\\\\\\"gen0\\\\\\\": 0.5557598039215687,\\\\n      \\\\\\\"gen10\\\\\\\": 0.3942062047359745,\\\\n      \\\\\\\"drift_pct\\\\\\\": -29.07\\\\n    },\\\\n    \\\\\\\"distinct_3\\\\\\\": {\\\\n      \\\\\\\"gen0\\\\\\\": 0.8361438703991271,\\\\n      \\\\\\\"gen10\\\\\\\": 0.6037828716073689,\\\\n      \\\\\\\"drift_pct\\\\\\\": -27.79\\\\n    },\\\\n    \\\\\\\"mauve\\\\\\\": {\\\\n      \\\\\\\"gen0\\\\\\\": 0.729908181454594,\\\\n      \\\\\\\"gen10\\\\\\\": 0.2960214788008485,\\\\n      \\\\\\\"drift_pct\\\\\\\": -59.44\\\\n    }\\\\n  },\\\\n  \\\\\\\"per_pair\\\\\\\": \n…[truncated 1215 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pythia14b_persist_json_20260517T235150",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T23:54:00.039247+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pythia14b_persist_json_20260517T235150",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "head -80 /root/autodl-tmp/distrib_canary_collapse/analyze_generalize.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T23:54:00.039440+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pythia14b_persist_json_20260517T235150",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/all_metrics.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T23:54:00.039616+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"5-method causal analysis for generalize experiments.\\\\n\\\\nReuses the same statistical methods as cross_alpha_analysis_v4.py\\\\nbut targets results/generalize/{experiment}/all_metrics.json.\\\\n\\\\nUsage:\\\\n    python analyze_generalize.py --exp pythia410m_wiki_a100_s42\\\\n    python analyze_generalize.py --exp opt1b_wiki_a100_s42\\\\n    python analyze_generalize.py  # all experiments in results/generalize/\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport warnings\\\\nfrom datetime import datetime\\\\n\\\\nimport numpy as np\\\\nfrom statsmodels.stats.multitest import multipletests\\\\n\\\\nwarnings.filterwarnings(\\\\\\\"ignore\\\\\\\")\\\\n\\\\nBASE_DIR = os.path.dirname(os.path.abspath(__file__))\\\\nsys.path.insert(0, BASE_DIR)\\\\n\\\\nfrom method_ablation import (\\\\n    CANARY, DOWNSTREAM,\\\\n    extract as ma_extract,\\\\n    naive_pearson, diff_xcorr, threshold_lead, toda_yamamoto, perm_granger,\\\\n)\\\\n\\\\nGENERALIZE_DIR = os.path.join(BASE_DIR, \\\\\\\"results\\\\\\\", \\\\\\\"generalize\\\\\\\")\\\\n\\\\nMA_METHODS = {\\\\n    \\\\\\\"naive_pearson\\\\\\\": naive_pearson,\\\\n    \\\\\\\"differenced_xcorr\\\\\\\": diff_xcorr,\\\\n    \\\\\\\"threshold_onset\\\\\\\": threshold_lead,\\\\n    \\\\\\\"toda_yamamoto\\\\\\\": toda_yamamoto,\\\\n    \\\\\\\"permutation_granger\\\\\\\": perm_granger,\\\\n}\\\\n\\\\nMETRICS = [\\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\",\\\\n           \\\\\\\"token_entropy\\\\\\\", \\\\\\\"ece\\\\\\\", \\\\\\\"perplexity\\\\\\\"]\\\\n\\\\nclass NumpyEncoder(json.JSONEncoder):\\\\n    def default(self, obj):\\\\n        if isinstance(obj, (np.integer,)):\\\\n            return int(obj)\\\\n        if isinstance(obj, (np.floating,)):\\\\n            return float(obj)\\\\n        if isinstance(obj, np.ndarray):\\\\n            return obj.tolist()\\\\n        return super().default(obj)\\\\n\\\\n\\\\ndef assemble_all_metrics(exp_dir):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Assemble all_metrics.json from per-gen metrics.json if needed.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    all_path = os.path.join(exp_dir, \\\\\\\"all_metrics.json\\\n…[truncated 735 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pythia14b_persist_json_20260517T235150",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T23:54:00.039847+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.9456511797301514,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.010308383282247554,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0993112259522854,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.5208026208026209,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.8129468709817443,\\\\n    \\\\\\\"ece\\\\\\\": 0.00709667140970812,\\\\n    \\\\\\\"effective_rank\\\\\\\": 50.76320796339814,\\\\n    \\\\\\\"perplexity\\\\\\\": 19.683371386666668,\\\\n    \\\\\\\"mauve\\\\\\\": 0.03298144128361465,\\\\n    \\\\\\\"generation\\\\\\\": 0\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 1.5269347268797067,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.010351686624608914,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.09984500981054922,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.5204827819319522,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.8072071626434507,\\\\n    \\\\\\\"ece\\\\\\\": 0.2636542668772705,\\\\n    \\\\\\\"effective_rank\\\\\\\": 86.64758098829786,\\\\n    \\\\\\\"perplexity\\\\\\\": 62.04837053792579,\\\\n    \\\\\\\"mauve\\\\\\\": 0.03405082205885783,\\\\n    \\\\\\\"generation\\\\\\\": 1\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 1.2838699337890036,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011379615523580185,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0824453125,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.4226048641005008,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.6918076844950702,\\\\n    \\\\\\\"ece\\\\\\\": 0.3403641084907979,\\\\n    \\\\\\\"effective_rank\\\\\\\": 103.58956135032051,\\\\n    \\\\\\\"perplexity\\\\\\\": 141.74978216523738,\\\\n    \\\\\\\"mauve\\\\\\\": 0.03315244042285245,\\\\n    \\\\\\\"generation\\\\\\\": 2\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 1.2466961563259795,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.012273210264824943,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0785234375,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.3863702060172345,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.6332989577962156,\\\\n    \\\\\\\"ece\\\\\\\": 0.3617818417476097,\\\\n    \\\\\\\"effective_rank\\\\\\\": 98.5840046846175,\\\\n    \\\\\\\"perplexity\\\\\\\": 211.12504962020887,\\\\n    \\\\\\\"mauve\\\\\\\": 0.033923691893446,\\\\n    \\\\\\\"generation\\\\\\\": 3\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 1.3222485356250944,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.012482239576992044,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0757890625,\\\\n    \\\\\\\n…[truncated 3077 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pythia14b_persist_json_20260517T235150",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T23:54:00.040035+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pythia14b_persist_json_20260517T235150",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cat /root/autodl-tmp/distrib_canary_collapse/analyze_generalize.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T23:54:00.040292+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"5-method causal analysis for generalize experiments.\\\\n\\\\nReuses the same statistical methods as cross_alpha_analysis_v4.py\\\\nbut targets results/generalize/{experiment}/all_metrics.json.\\\\n\\\\nUsage:\\\\n    python analyze_generalize.py --exp pythia410m_wiki_a100_s42\\\\n    python analyze_generalize.py --exp opt1b_wiki_a100_s42\\\\n    python analyze_generalize.py  # all experiments in results/generalize/\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport warnings\\\\nfrom datetime import datetime\\\\n\\\\nimport numpy as np\\\\nfrom statsmodels.stats.multitest import multipletests\\\\n\\\\nwarnings.filterwarnings(\\\\\\\"ignore\\\\\\\")\\\\n\\\\nBASE_DIR = os.path.dirname(os.path.abspath(__file__))\\\\nsys.path.insert(0, BASE_DIR)\\\\n\\\\nfrom method_ablation import (\\\\n    CANARY, DOWNSTREAM,\\\\n    extract as ma_extract,\\\\n    naive_pearson, diff_xcorr, threshold_lead, toda_yamamoto, perm_granger,\\\\n)\\\\n\\\\nGENERALIZE_DIR = os.path.join(BASE_DIR, \\\\\\\"results\\\\\\\", \\\\\\\"generalize\\\\\\\")\\\\n\\\\nMA_METHODS = {\\\\n    \\\\\\\"naive_pearson\\\\\\\": naive_pearson,\\\\n    \\\\\\\"differenced_xcorr\\\\\\\": diff_xcorr,\\\\n    \\\\\\\"threshold_onset\\\\\\\": threshold_lead,\\\\n    \\\\\\\"toda_yamamoto\\\\\\\": toda_yamamoto,\\\\n    \\\\\\\"permutation_granger\\\\\\\": perm_granger,\\\\n}\\\\n\\\\nMETRICS = [\\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\",\\\\n           \\\\\\\"token_entropy\\\\\\\", \\\\\\\"ece\\\\\\\", \\\\\\\"perplexity\\\\\\\"]\\\\n\\\\nclass NumpyEncoder(json.JSONEncoder):\\\\n    def default(self, obj):\\\\n        if isinstance(obj, (np.integer,)):\\\\n            return int(obj)\\\\n        if isinstance(obj, (np.floating,)):\\\\n            return float(obj)\\\\n        if isinstance(obj, np.ndarray):\\\\n            return obj.tolist()\\\\n        return super().default(obj)\\\\n\\\\n\\\\ndef assemble_all_metrics(exp_dir):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Assemble all_metrics.json from per-gen metrics.json if needed.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    all_path = os.path.join(exp_dir, \\\\\\\"all_metrics.json\\\n…[truncated 6768 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pythia14b_persist_json_20260517T235150",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T23:54:00.040493+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pythia14b_persist_json_20260517T235150",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cat /root/autodl-tmp/distrib_canary_collapse/c4_full_8pair_analysis.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T23:54:00.040786+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Complete 8-pair 6-method analysis for Pythia-1B C4 experiment.\\\\n\\\\n8 pairs: {token_entropy, ece} x {distinct_1, distinct_2, distinct_3, mauve}\\\\n6 methods: Naive XCorr, Diff XCorr, Threshold Onset, PermG forward, PermG reverse, TY Granger\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport warnings\\\\nimport numpy as np\\\\nfrom statsmodels.stats.multitest import multipletests\\\\nfrom statsmodels.tsa.stattools import adfuller\\\\n\\\\nwarnings.filterwarnings(\\\\\\\"ignore\\\\\\\")\\\\n\\\\nBASE_DIR = \\\\\\\"/root/autodl-tmp/distrib_canary_collapse\\\\\\\"\\\\nsys.path.insert(0, BASE_DIR)\\\\nfrom permutation_granger import permutation_granger_test\\\\n\\\\nDATA_PATH = os.path.join(BASE_DIR, \\\\\\\"results\\\\\\\", \\\\\\\"generalize\\\\\\\",\\\\n                         \\\\\\\"pythia1b_c4_a100_s42\\\\\\\", \\\\\\\"all_metrics.json\\\\\\\")\\\\nOUT_DIR = os.path.join(BASE_DIR, \\\\\\\"results\\\\\\\", \\\\\\\"generalize\\\\\\\",\\\\n                       \\\\\\\"pythia1b_c4_a100_s42\\\\\\\", \\\\\\\"analysis\\\\\\\")\\\\n\\\\nCANARY = [\\\\\\\"token_entropy\\\\\\\", \\\\\\\"ece\\\\\\\"]\\\\nDOWNSTREAM = [\\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\", \\\\\\\"mauve\\\\\\\"]\\\\n\\\\nHIGHER_IS_WORSE = {\\\\\\\"self_bleu\\\\\\\", \\\\\\\"ece\\\\\\\", \\\\\\\"perplexity\\\\\\\"}\\\\nLOWER_IS_WORSE = {\\\\\\\"token_entropy\\\\\\\", \\\\\\\"effective_rank\\\\\\\",\\\\n                  \\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\", \\\\\\\"mauve\\\\\\\"}\\\\n\\\\nMAX_LAG = 1\\\\nN_PERM = 1000\\\\nSEED = 42\\\\nFDR_Q = 0.05\\\\n\\\\n\\\\ndef orient(series, name):\\\\n    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\\\n\\\\n\\\\ndef extract(metrics_list, name):\\\\n    return np.array([m[name] for m in sorted(metrics_list,\\\\n                                              key=lambda x: x[\\\\\\\"generation\\\\\\\"])])\\\\n\\\\n\\\\ndef _onset_gen(series, name):\\\\n    s = orient(series, name)\\\\n    base, sigma = s[0], np.std(s)\\\\n    if sigma < 1e-12:\\\\n        return None\\\\n    thresh = base + 2 * sigma\\\\n    for i in range(1, len(s)):\\\\n        if s[i] > thresh:\\\\n    \n…[truncated 7428 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pythia14b_persist_json_20260517T235150",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T23:54:00.040955+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pythia14b_persist_json_20260517T235150",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/analysis/c4_8pair_6method_analysis.json | python3 -c \"import sys,json; d=json.load(sys.stdin); print(json.dumps({k:v for k,v in d.items() if k != 'per_pair'}, indent=2)); print('--- per_pair keys:', list(d.get('per_pair',{}).keys())); pp=d.get('per_pair',{}); first_key=list(pp.keys())[0] if pp else None; print('--- first pair methods:', list(pp[first_key].keys()) if first_key else 'none')\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-17T23:54:00.041151+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"pythia1b_c4_a100_s42\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"pythia-1b\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"c4\\\\\\\",\\\\n  \\\\\\\"alpha\\\\\\\": 1.0,\\\\n  \\\\\\\"seed\\\\\\\": 42,\\\\n  \\\\\\\"n_generations\\\\\\\": 11,\\\\n  \\\\\\\"canonical_pairs\\\\\\\": [\\\\n    \\\\\\\"token_entropy->distinct_1\\\\\\\",\\\\n    \\\\\\\"token_entropy->distinct_2\\\\\\\",\\\\n    \\\\\\\"token_entropy->distinct_3\\\\\\\",\\\\n    \\\\\\\"token_entropy->mauve\\\\\\\",\\\\n    \\\\\\\"ece->distinct_1\\\\\\\",\\\\n    \\\\\\\"ece->distinct_2\\\\\\\",\\\\n    \\\\\\\"ece->distinct_3\\\\\\\",\\\\n    \\\\\\\"ece->mauve\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"methods\\\\\\\": [\\\\n    \\\\\\\"Naive\\\\\\\",\\\\n    \\\\\\\"Diff\\\\\\\",\\\\n    \\\\\\\"Thresh\\\\\\\",\\\\n    \\\\\\\"PG_fwd\\\\\\\",\\\\n    \\\\\\\"PG_rev\\\\\\\",\\\\n    \\\\\\\"TY\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"parameters\\\\\\\": {\\\\n    \\\\\\\"max_lag\\\\\\\": 1,\\\\n    \\\\\\\"n_perm\\\\\\\": 1000,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"fdr_q\\\\\\\": 0.05\\\\n  },\\\\n  \\\\\\\"trajectory\\\\\\\": {\\\\n    \\\\\\\"token_entropy\\\\\\\": {\\\\n      \\\\\\\"gen0\\\\\\\": 2.9558974092184305,\\\\n      \\\\\\\"gen10\\\\\\\": 1.2557813227357177,\\\\n      \\\\\\\"drift_pct\\\\\\\": -57.52\\\\n    },\\\\n    \\\\\\\"ece\\\\\\\": {\\\\n      \\\\\\\"gen0\\\\\\\": 0.012435645992664009,\\\\n      \\\\\\\"gen10\\\\\\\": 0.4555010316961996,\\\\n      \\\\\\\"drift_pct\\\\\\\": 3562.87\\\\n    },\\\\n    \\\\\\\"perplexity\\\\\\\": {\\\\n      \\\\\\\"gen0\\\\\\\": 20.598383638593724,\\\\n      \\\\\\\"gen10\\\\\\\": 1682.6079637095913,\\\\n      \\\\\\\"drift_pct\\\\\\\": 8068.64\\\\n    },\\\\n    \\\\\\\"distinct_1\\\\\\\": {\\\\n      \\\\\\\"gen0\\\\\\\": 0.11433895431310172,\\\\n      \\\\\\\"gen10\\\\\\\": 0.088984375,\\\\n      \\\\\\\"drift_pct\\\\\\\": -22.17\\\\n    },\\\\n    \\\\\\\"distinct_2\\\\\\\": {\\\\n      \\\\\\\"gen0\\\\\\\": 0.5557598039215687,\\\\n      \\\\\\\"gen10\\\\\\\": 0.3942062047359745,\\\\n      \\\\\\\"drift_pct\\\\\\\": -29.07\\\\n    },\\\\n    \\\\\\\"distinct_3\\\\\\\": {\\\\n      \\\\\\\"gen0\\\\\\\": 0.8361438703991271,\\\\n      \\\\\\\"gen10\\\\\\\": 0.6037828716073689,\\\\n      \\\\\\\"drift_pct\\\\\\\": -27.79\\\\n    },\\\\n    \\\\\\\"mauve\\\\\\\": {\\\\n      \\\\\\\"gen0\\\\\\\": 0.729908181454594,\\\\n      \\\\\\\"gen10\\\\\\\": 0.2960214788008485,\\\\n      \\\\\\\"drift_pct\\\\\\\": -59.44\\\\n    }\\\\n  },\\\\n  \\\\\\\"pair_votes\\\\\\\"\n…[truncated 941 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pythia14b_persist_json_20260517T235150",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T23:54:00.041430+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pythia14b_persist_json_20260517T235150",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "wc -l /root/autodl-tmp/distrib_canary_collapse/c4_full_8pair_analysis.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-17T23:54:00.041586+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pythia14b_persist_json_20260517T235150",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "sed -n '100,200p' /root/autodl-tmp/distrib_canary_collapse/c4_full_8pair_analysis.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-17T23:54:00.041730+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"470 /root/autodl-tmp/distrib_canary_collapse/c4_full_8pair_analysis.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pythia14b_persist_json_20260517T235150",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-17T23:54:00.041909+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    dx, dy = np.diff(xo), np.diff(yo)\\\\n    best_r, best_lag, best_p = 0.0, 0, 1.0\\\\n    for lag in range(-max_lag, max_lag + 1):\\\\n        if lag > 0:\\\\n            xx, yy = dx[:-lag], dy[lag:]\\\\n        elif lag < 0:\\\\n            xx, yy = dx[-lag:], dy[:lag]\\\\n        else:\\\\n            xx, yy = dx, dy\\\\n        if len(xx) < 4:\\\\n            continue\\\\n        r, p = stats_pearsonr(xx, yy)\\\\n        if abs(r) > abs(best_r):\\\\n            best_r, best_lag, best_p = r, lag, p\\\\n    return {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"differenced_xcorr\\\\\\\",\\\\n        \\\\\\\"r\\\\\\\": float(best_r), \\\\\\\"lag\\\\\\\": int(best_lag),\\\\n        \\\\\\\"p_value\\\\\\\": float(best_p),\\\\n        \\\\\\\"significant\\\\\\\": bool(best_p < 0.05),\\\\n    }\\\\n\\\\n\\\\ndef threshold_lead(c, d, cn, dn):\\\\n    co = _onset_gen(c, cn)\\\\n    do = _onset_gen(d, dn)\\\\n    if co is None or do is None:\\\\n        return {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n            \\\\\\\"canary_onset\\\\\\\": None if co is None else int(co),\\\\n            \\\\\\\"downstream_onset\\\\\\\": None if do is None else int(do),\\\\n            \\\\\\\"lead_time\\\\\\\": None,\\\\n            \\\\\\\"significant\\\\\\\": False,\\\\n        }\\\\n    lt = do - co\\\\n    return {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n        \\\\\\\"canary_onset\\\\\\\": int(co),\\\\n        \\\\\\\"downstream_onset\\\\\\\": int(do),\\\\n        \\\\\\\"lead_time\\\\\\\": int(lt),\\\\n        \\\\\\\"significant\\\\\\\": bool(lt > 0),\\\\n    }\\\\n\\\\n\\\\ndef toda_yamamoto(c, d, cn, dn):\\\\n    x, y = orient(c, cn), orient(d, dn)\\\\n    n = len(x)\\\\n    dc, dd = _adf_order(x), _adf_order(y)\\\\n    d_max = max(dc, dd)\\\\n    p = 1\\\\n    k = p + d_max\\\\n    T_eff = n - k\\\\n    n_params = 1 + 2 * k\\\\n    df_resid = T_eff - n_params\\\\n\\\\n    if df_resid < 1:\\\\n        return {\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"toda_yamamoto\\\\\\\", \\\\\\\"p\\\\\\\": p, \\\\\\\"d_max\\\\\\\": d_max,\\\\n            \\\\\\\"wald_F\\\\\\\": None, \\\\\\\"p_value\\\\\\\": None, \\\\\\\"significant\\\\\\\": False,\\\\n            \\\\\\\n…[truncated 1758 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pythia14b_persist_json_20260517T235150",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-17T23:54:00.042067+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pythia14b_persist_json_20260517T235150",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "sed -n '200,300p' /root/autodl-tmp/distrib_canary_collapse/c4_full_8pair_analysis.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-17T23:54:00.042269+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    p_val = float(1 - sp_stats.f.cdf(wald, p, df_resid))\\\\n    return {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"toda_yamamoto\\\\\\\", \\\\\\\"p\\\\\\\": p, \\\\\\\"d_max\\\\\\\": d_max,\\\\n        \\\\\\\"wald_F\\\\\\\": round(wald, 4), \\\\\\\"p_value\\\\\\\": round(p_val, 6),\\\\n        \\\\\\\"significant\\\\\\\": bool(p_val < 0.05),\\\\n        \\\\\\\"d_canary\\\\\\\": dc, \\\\\\\"d_downstream\\\\\\\": dd, \\\\\\\"df_resid\\\\\\\": df_resid,\\\\n    }\\\\n\\\\n\\\\ndef perm_granger_fwd(c, d, cn, dn):\\\\n    xo, yo = orient(c, cn), orient(d, dn)\\\\n    res = permutation_granger_test(xo, yo, max_lag=MAX_LAG,\\\\n                                   n_perm=N_PERM, seed=SEED, difference=True)\\\\n    return {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger_fwd\\\\\\\",\\\\n        \\\\\\\"f_stat\\\\\\\": round(float(res[\\\\\\\"f_stat\\\\\\\"]), 4),\\\\n        \\\\\\\"p_value\\\\\\\": round(float(res[\\\\\\\"p_value\\\\\\\"]), 4),\\\\n        \\\\\\\"significant\\\\\\\": bool(res[\\\\\\\"significant\\\\\\\"]),\\\\n    }\\\\n\\\\n\\\\ndef perm_granger_rev(c, d, cn, dn):\\\\n    xo, yo = orient(c, cn), orient(d, dn)\\\\n    res = permutation_granger_test(yo, xo, max_lag=MAX_LAG,\\\\n                                   n_perm=N_PERM, seed=SEED, difference=True)\\\\n    return {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger_rev\\\\\\\",\\\\n        \\\\\\\"f_stat\\\\\\\": round(float(res[\\\\\\\"f_stat\\\\\\\"]), 4),\\\\n        \\\\\\\"p_value\\\\\\\": round(float(res[\\\\\\\"p_value\\\\\\\"]), 4),\\\\n        \\\\\\\"significant\\\\\\\": bool(res[\\\\\\\"significant\\\\\\\"]),\\\\n    }\\\\n\\\\n\\\\nfrom scipy import stats as scipy_stats\\\\nstats_pearsonr = scipy_stats.pearsonr\\\\n\\\\n\\\\ndef main():\\\\n    with open(DATA_PATH) as f:\\\\n        metrics_list = json.load(f)\\\\n\\\\n    n_gens = len(metrics_list)\\\\n    print(f\\\\\\\"Loaded {n_gens} generations from C4 experiment\\\\\\\")\\\\n    print(f\\\\\\\"Parameters: max_lag={MAX_LAG}, n_perm={N_PERM}, seed={SEED}\\\\\\\")\\\\n    print()\\\\n\\\\n    # Collapse trajectory\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"COLLAPSE TRAJECTORY\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 70)\\\\n    all_metrics_names = [\\\\\\\"token_entropy\\\\\\\", \\\\\\\"ece\\\\\\\", \n…[truncated 2049 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pythia14b_persist_json_20260517T235150",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-17T23:54:00.042474+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pythia14b_persist_json_20260517T235150",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cd /root/autodl-tmp/distrib_canary_collapse && cp c4_full_8pair_analysis.py pythia14b_8pair_analysis.py && sed -i 's|pythia1b_c4_a100_s42|pythia14b_wiki_a100_s42|g; s|\"pythia-1b\"|\"pythia-1.4b\"|g; s|\"c4\"|\"wikitext\"|g; s|c4_8pair_6method_analysis.json|pythia14b_8pair_6method_analysis.json|g; s|from C4 experiment|from Pythia-1.4B WikiText experiment|g' pythia14b_8pair_analysis.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-17T23:54:00.042615+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pythia14b_persist_json_20260517T235150",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-17T23:54:00.042737+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pythia14b_persist_json_20260517T235150",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_ENDPOINT=https://hf-mirror.com && export HF_HOME=/root/autodl-tmp/.hf_cache && python pythia14b_8pair_analysis.py",
+              "account": "root",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-17T23:54:00.043088+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 11 generations from Pythia-1.4B WikiText experiment\\\\nParameters: max_lag=1, n_perm=1000, seed=42\\\\n\\\\n======================================================================\\\\nCOLLAPSE TRAJECTORY\\\\n----------------------------------------------------------------------\\\\n     token_entropy: gen0=2.945651  gen10=1.333576  drift=-54.7%\\\\n               ece: gen0=0.007097  gen10=0.403529  drift=+5586.2%\\\\n        perplexity: gen0=19.683371  gen10=677.237501  drift=+3340.7%\\\\n        distinct_1: gen0=0.099311  gen10=0.068375  drift=-31.2%\\\\n        distinct_2: gen0=0.520803  gen10=0.302377  drift=-41.9%\\\\n        distinct_3: gen0=0.812947  gen10=0.481164  drift=-40.8%\\\\n             mauve: gen0=0.032981  gen10=0.028003  drift=-15.1%\\\\n\\\\n======================================================================\\\\nPER-PAIR DETAIL (8 canonical pairs × 6 methods)\\\\n----------------------------------------------------------------------\\\\nPair                           Naive    Diff  Thresh  PG_fwd  PG_rev      TY  votes\\\\n--------------------------------------------------------------------------------\\\\ntoken_entropy->distinct_1          Y       Y       Y       N       N       N  3/6\\\\ntoken_entropy->distinct_2          Y       Y       Y       N       N       N  3/6\\\\ntoken_entropy->distinct_3          Y       Y       Y       N       N       N  3/6\\\\ntoken_entropy->mauve               Y       N       Y       N       N       N  2/6\\\\nece->distinct_1                    Y       Y       Y       Y       N       N  4/6\\\\nece->distinct_2                    N       Y       Y       Y       N       N  3/6\\\\nece->distinct_3                    N       Y       Y       N       N       N  2/6\\\\nece->mauve                         Y       N       Y       N       N       N  2/6\\\\n\\\\n======================================================================\\\\nMETHOD SUMMARY (Table 5 Row)\\\\n--------------------------------------------------\n…[truncated 4674 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pythia14b_persist_json_20260517T235150",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-17T23:54:00.043345+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pythia14b_persist_json_20260517T235150",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cd /root/autodl-tmp/distrib_canary_collapse && python3 -c \"\nimport json\nwith open('results/generalize/pythia14b_wiki_a100_s42/analysis/pythia14b_8pair_6method_analysis.json') as f:\n    d = json.load(f)\nprint('Top-level keys:', list(d.keys()))\nprint('Experiment:', d['experiment'])\nprint('Model:', d['model'])\nprint('Dataset:', d['dataset'])\nprint('N_generations:', d['n_generations'])\nprint('Methods:', d['methods'])\nprint('Pairs:', d['canonical_pairs'])\nprint('Method sig counts:', d['method_sig_counts'])\nprint('Pair votes:', d['pair_votes'])\nprint('Per_pair keys count:', len(d['per_pair']))\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-17T23:54:00.043515+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Top-level keys: ['experiment', 'model', 'dataset', 'alpha', 'seed', 'n_generations', 'canonical_pairs', 'methods', 'parameters', 'trajectory', 'per_pair', 'pair_votes', 'method_sig_counts']\\\\nExperiment: pythia14b_wiki_a100_s42\\\\nModel: pythia-1.4b\\\\nDataset: wikitext\\\\nN_generations: 11\\\\nMethods: ['Naive', 'Diff', 'Thresh', 'PG_fwd', 'PG_rev', 'TY']\\\\nPairs: ['token_entropy->distinct_1', 'token_entropy->distinct_2', 'token_entropy->distinct_3', 'token_entropy->mauve', 'ece->distinct_1', 'ece->distinct_2', 'ece->distinct_3', 'ece->mauve']\\\\nMethod sig counts: {'Naive': 6, 'Diff': 6, 'Thresh': 8, 'PG_fwd': 2, 'PG_rev': 0, 'TY': 0}\\\\nPair votes: {'token_entropy->distinct_1': 3, 'token_entropy->distinct_2': 3, 'token_entropy->distinct_3': 3, 'token_entropy->mauve': 2, 'ece->distinct_1': 4, 'ece->distinct_2': 3, 'ece->distinct_3': 2, 'ece->mauve': 2}\\\\nPer_pair keys count: 8\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pythia14b_persist_json_20260517T235150",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-17T23:54:00.043689+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 已保存，格式与 C4 版本一致（相同 top-level keys、8 pairs、6 methods）。\n\n结果与任务中的预期值有差异：\n\n| 方法 | 实际 | 预期 |\n|------|------|------|\n| Naive | 6/8 | 7/8 |\n| Diff | 6/8 | 6/8 |\n| Thresh | 8/8 | 8/8 |\n| PG_fwd | 2/8 | 5/8 |\n| PG_rev | 0/8 | 0/8 |\n| TY | 0/8 | 0/8 |\n| Consensus>=4 | 1/8 | 5/8 |\n\nNaive 差异原因：`ece->distinct_2` 和 `ece->distinct_3` 的 best lag 为 -3（downstream leads canary），naive_pearson 要求 `lag > 0` 才算显著，但 FDR 校正后的 `sig_fdr` 只看 p 值不看 lag 方向。显示逻辑优先使用 `sig_fdr`，导致 lag=-3 的 pair 被标为 SIG（output 显示 6/8），但底层 `significant` 字段为 False。\n\nPG_fwd 差异可能源于 FDR 校正后 p_fdr 超过 0.05 阈值（如 `token_entropy->distinct_1` raw p=0.041 → p_fdr=0.084）。预期值可能来自 raw p 而非 FDR 校正。\n\nJSON 文件路径：`results/generalize/pythia14b_wiki_a100_s42/analysis/pythia14b_8pair_6method_analysis.json`"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pythia14b_persist_json_20260517T235150"
+          },
+          "id": "event-000031"
+        }
+      ],
+      "message_count": 31
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-pythia14b-persist-json.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b537fe9a232ab3df347a",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "env pythia69b prep",
+  "task_key": "worker_env_pythia69b_prep_20260518T064729",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_env_pythia69b_prep_20260518T064729_result.json",
+    "occurrence": 1,
+    "bytes": 1141,
+    "sha256": "824a540d59f11303e40ec5b6ce8dfb5af5d77f37165b410a7ed1b850e68ef530"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载 6.1GB/~14GB，运行 7 分钟，预计还需 ~8 分钟。\n\n## D060 完成总结\n\n**已完成:**\n\n1. **模型下载**: 进行中 (6.1/14GB)，后台 PID 327619，路径 `/root/autodl-tmp/.hf_cache/pythia-6.9b-local/`\n\n2. **显存预估**: 标准训练需 ~112GB → OOM (单 GPU 98GB)。方案: `gradient_checkpointing` + `adamw_bnb_8bit` → ~72GB，26GB 余量\n\n3. **脚本修改**: `iterative_train.py` 已添加 `--gradient_checkpointing` 和 `--optim` 参数，不影响已有实验（默认值与原行为一致）\n\n4. **4 组实验配置**: 已写入 artifact，关键参数:\n   - `--gradient_checkpointing --optim adamw_bnb_8bit --gen_batch_size 4`\n   - Phase 1: wiki α=1.0 s42/s43 并行\n   - Phase 2: wiki α=0.75 s42 + C4 α=1.0 s42 并行\n\n5. **训练时间预估**: ~4.5-5h/gen，~45-50h/experiment。建议先跑 1 gen 测实际速度\n\n6. **磁盘风险**: 95GB free，6.9B checkpoint ~28GB/gen。需训练中清理旧 checkpoint\n\n**阻塞项**: 两个 GPU 当前被 gpt2m 和 pythia-1.4b s43 占用，需等完成后启动 6.9B 实验。\n\n产出: `artifacts/d060_pythia69b_prep.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/env-pythia69b-prep.md"
+}

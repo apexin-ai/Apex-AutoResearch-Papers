@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d08a1e8ba3c41728b21",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops t10a060 kill d102",
+  "task_key": "worker_ops_t10a060-kill-d102_20260522T191507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_t10a060-kill-d102_20260522T191507_result.json",
+    "occurrence": 1,
+    "bytes": 1548,
+    "sha256": "663dbe80de41a71d8d9b210e7cb6cd3eea967f404e10a13e45092bb524d48d82"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Phase 5 skipped (no gen_11+ to restore). Phase 6 — results:\n\n---\n\n## 1.4B T=10 α=0.60 s42 — D102 5-Method Analysis\n\n**11 generations (gen_0–gen_10)**\n\n### PermG Forward vs Reverse\n| | Forward (canary→downstream) | Reverse (downstream→canary) |\n|---|---|---|\n| FDR sig | **4/8** | **0/8** |\n\nClear asymmetry: canary leads downstream, not vice versa. **No sync-dip at 1.4B.**\n\n### K≥3 Consensus (robust pairs)\n**3/8** — all ECE-based:\n- `ece→distinct_1`: 3/5 [naive, diff, perm]\n- `ece→distinct_2`: 3/5 [naive, diff, perm]\n- `ece→distinct_3`: 3/5 [naive, diff, perm]\n\nToken_entropy pairs max out at 2/5.\n\n### FDR p-values (PermG forward)\n| Pair | F-stat | p_fdr | sig |\n|---|---|---|---|\n| token_entropy→distinct_1 | 1996.8 | 0.040 | * |\n| token_entropy→distinct_2 | 834.6 | N/A | |\n| token_entropy→distinct_3 | 270.8 | N/A | |\n| ece→distinct_1 | 1177.7 | N/A | * |\n| ece→distinct_2 | 1308.1 | N/A | * |\n| ece→distinct_3 | 511.3 | N/A | * |\n| *→mauve | N/A | N/A | (insufficient data) |\n\n### Drift\n- Threshold onset: **0/8** pairs significant (no pair crosses true_3sigma_d105 threshold in both canary and downstream within 11 gens)\n- TY Granger: **0/8** (SVD convergence issues due to short series)\n\n### Key Finding\n**1.4B does NOT show the sync-dip seen in 410M at α=0.60 T=10.** The 410M had PermG=0/8; the 1.4B has PermG=4/8 fwd, 0/8 rev — a clear canary-leads-downstream signal. Scale appears to suppress the sync-dip phenomenon at this operating point."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-t10a060-kill-d102.md"
+}

@@ -1,0 +1,1530 @@
+{
+  "schema_version": "1.0",
+  "id": "5b39c288e0ce40ff5e0f",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "diagnose alpha sweep a050 postd093 s42 fp32",
+  "task_key": "worker_diagnose_alpha_sweep_a050_postd093_s42_fp32_20260520T033207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_alpha_sweep_a050_postd093_s42_fp32_20260520T033207.log",
+    "occurrence": 1,
+    "bytes": 89438,
+    "sha256": "bff9f51adb167f0b97c4d2843a87591dcc5751adbe475f730a98b78d164dc935"
+  },
+  "statistics": {
+    "messages": 36,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 10,
+      "tool_call": 11,
+      "tool_result": 11,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+                "session_id": "5521cb4a-a33a-420e-83e1-4939de6281da",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "b3583982-3847-40f5-8dae-91827a6c5259",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779255000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "cfb14879-2d42-4747-b505-be82edca74cc",
+                "session_id": "5521cb4a-a33a-420e-83e1-4939de6281da"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by checking the experiment logs on westd-17855.",
+              "signature": "EvcBClkIDRgCKkA5RL2nbVeooPLVx4P+rBeAA74qEirtBhNb6PM8Td43c+zkjN8XSnGu5X8d6MzwyF9ptJ/jsgPJkl/GqSgC4AxWMg9jbGF1ZGUtb3B1cy00LTY4ABIMDc4YG8dtYpY5bOVWGgyvd1nPTNEYYucwmSQiMPD7FQgpyWCYStJSrwvaCpxJQOltxM+FleOjNlcV+QjOQNvRHbs7oMsfNNmCrdpRRSpMQUsXucONIItOI6g9x8BAGWBNxG1lhoLGWw5iFn+8IJRUuxBUuLrlyTuDa89RE+Jh+GDNnKKwlK2ZdfjNlrnlAc1mJN3l12ilz4gpWhgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5521cb4a-a33a-420e-83e1-4939de6281da",
+            "uuid": "5bfed042-641c-4ef6-bcca-1d5f9d362813",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HupvLqX5vFBqMuWHkJb7HK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13147,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13147
+                },
+                "output_tokens": 31,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TYC6Tp8bzmurBAVPs2ARSy",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5521cb4a-a33a-420e-83e1-4939de6281da",
+            "uuid": "cc802393-4265-492f-8900-d7d75ae8fe49",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HupvLqX5vFBqMuWHkJb7HK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13147,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13147
+                },
+                "output_tokens": 31,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T03:32:21.349Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01TYC6Tp8bzmurBAVPs2ARSy",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__update_registry"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5521cb4a-a33a-420e-83e1-4939de6281da",
+            "uuid": "62a93df5-47a9-4558-954a-c208e5cf3b63",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__update_registry"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by checking the experiment directory and logs on westd-17855.",
+              "signature": "EoUCClkIDRgCKkCBKunqPZWyg4/An7Q48+gdjuyaZwTiLAhAzoabR8c208r5tv6EA4rKqWEKmy+Ez5yjvz7vpcxnZiLwRBDgOp95Mg9jbGF1ZGUtb3B1cy00LTY4ABIMyy4pF/ZGiNgZ+do2Ggw2m9O3fdhueY8aR2AiMLb4bP9YgApx2y3Gw6nGSQZPEROLwMkySDKBvfkXn9HsD+DkWOu1UgZDz5khk1FyDipaWXAT4h/5o164WoyCq1+pW5Xt3lF9lW+jg3/eCp7Ti5D7VcyUVNLLiQIlvlKRZJWDRtza209LtZ+eO12BmFxyDXhug19FrbjPbBhg5UXLB7fR90Xj2gUn2oixGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5521cb4a-a33a-420e-83e1-4939de6281da",
+            "uuid": "40d08e76-20cd-47cd-b12e-072da946e200",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AJy7pwtb79fT49yBvcSoJi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 947,
+                "cache_read_input_tokens": 24988,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 947
+                },
+                "output_tokens": 34,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "检查实验目录和日志。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5521cb4a-a33a-420e-83e1-4939de6281da",
+            "uuid": "9d025b6a-a34c-45c9-847d-d02704a9c661",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AJy7pwtb79fT49yBvcSoJi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 947,
+                "cache_read_input_tokens": 24988,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 947
+                },
+                "output_tokens": 34,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01S8HzUGv8Aq34AkpebCCB6J",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-17855",
+                "command": "ls -la /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5521cb4a-a33a-420e-83e1-4939de6281da",
+            "uuid": "c95b73b3-642d-48ea-aaef-74a16dea697c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AJy7pwtb79fT49yBvcSoJi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 947,
+                "cache_read_input_tokens": 24988,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 947
+                },
+                "output_tokens": 34,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012F3EQgrdcicGH2FGuX1qEb",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-17855",
+                "command": "ls ~/runs/distrib_canary_collapse/ 2>/dev/null",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5521cb4a-a33a-420e-83e1-4939de6281da",
+            "uuid": "004cca78-8c83-44f7-aec0-b90448461a5f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AJy7pwtb79fT49yBvcSoJi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 947,
+                "cache_read_input_tokens": 24988,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 947
+                },
+                "output_tokens": 34,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T03:32:26.990Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01S8HzUGv8Aq34AkpebCCB6J",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 3528\\\\ndrwxr-xr-x 14 root root    4096 May 20 11:09 .\\\\ndrwxr-xr-x 33 root root    4096 May 20 06:56 ..\\\\n-rw-r--r--  1 root root       2 May 20 11:02 EXIT_CODE\\\\n-rw-r--r--  1 root root    4979 May 20 11:02 all_metrics.json\\\\ndrwxr-xr-x  2 root root      34 May 20 11:09 analysis\\\\n-rw-r--r--  1 root root   13742 May 20 11:08 analysis_results.json\\\\n-rw-r--r--  1 root root     645 May 20 06:56 config.json\\\\ndrwxr-xr-x  3 root root      60 May 20 07:08 gen_0\\\\ndrwxr-xr-x  4 root root      79 May 20 08:17 gen_1\\\\ndrwxr-xr-x  5 root root     101 May 20 11:02 gen_10\\\\ndrwxr-xr-x  4 root root      79 May 20 08:40 gen_2\\\\ndrwxr-xr-x  4 root root      79 May 20 09:04 gen_3\\\\ndrwxr-xr-x  4 root root      79 May 20 09:27 gen_4\\\\ndrwxr-xr-x  4 root root      79 May 20 09:50 gen_5\\\\ndrwxr-xr-x  4 root root      79 May 20 10:13 gen_6\\\\ndrwxr-xr-x  4 root root      79 May 20 10:37 gen_7\\\\ndrwxr-xr-x  4 root root      79 May 20 11:00 gen_8\\\\ndrwxr-xr-x  5 root root     101 May 20 10:38 gen_9\\\\n-rw-r--r--  1 root root 3568505 May 20 11:02 train.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.03}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5521cb4a-a33a-420e-83e1-4939de6281da",
+            "uuid": "3c211add-7765-42e5-9a4e-57b8fe9abfd8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 3528\\\\ndrwxr-xr-x 14 root root    4096 May 20 11:09 .\\\\ndrwxr-xr-x 33 root root    4096 May 20 06:56 ..\\\\n-rw-r--r--  1 root root       2 May 20 11:02 EXIT_CODE\\\\n-rw-r--r--  1 root root    4979 May 20 11:02 all_metrics.json\\\\ndrwxr-xr-x  2 root root      34 May 20 11:09 analysis\\\\n-rw-r--r--  1 root root   13742 May 20 11:08 analysis_results.json\\\\n-rw-r--r--  1 root root     645 May 20 06:56 config.json\\\\ndrwxr-xr-x  3 root root      60 May 20 07:08 gen_0\\\\ndrwxr-xr-x  4 root root      79 May 20 08:17 gen_1\\\\ndrwxr-xr-x  5 root root     101 May 20 11:02 gen_10\\\\ndrwxr-xr-x  4 root root      79 May 20 08:40 gen_2\\\\ndrwxr-xr-x  4 root root      79 May 20 09:04 gen_3\\\\ndrwxr-xr-x  4 root root      79 May 20 09:27 gen_4\\\\ndrwxr-xr-x  4 root root      79 May 20 09:50 gen_5\\\\ndrwxr-xr-x  4 root root      79 May 20 10:13 gen_6\\\\ndrwxr-xr-x  4 root root      79 May 20 10:37 gen_7\\\\ndrwxr-xr-x  4 root root      79 May 20 11:00 gen_8\\\\ndrwxr-xr-x  5 root root     101 May 20 10:38 gen_9\\\\n-rw-r--r--  1 root root 3568505 May 20 11:02 train.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.03}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 3528\\ndrwxr-xr-x 14 root root    4096 May 20 11:09 .\\ndrwxr-xr-x 33 root root    4096 May 20 06:56 ..\\n-rw-r--r--  1 root root       2 May 20 11:02 EXIT_CODE\\n-rw-r--r--  1 root root    4979 May 20 11:02 all_metrics.json\\ndrwxr-xr-x  2 root root      34 May 20 11:09 analysis\\n-rw-r--r--  1 root root   13742 May 20 11:08 analysis_results.json\\n-rw-r--r--  1 root root     645 May 20 06:56 config.json\\ndrwxr-xr-x  3 root root      60 May 20 07:08 gen_0\\ndrwxr-xr-x  4 root root      79 May 20 08:17 gen_1\\ndrwxr-xr-x  5 root root     101 May 20 11:02 gen_10\\ndrwxr-xr-x  4 root root      79 May 20 08:40 gen_2\\ndrwxr-xr-x  4 root root      79 May 20 09:04 gen_3\\ndrwxr-xr-x  4 root root      79 May 20 09:27 gen_4\\ndrwxr-xr-x  4 root root      79 May 20 09:50 gen_5\\ndrwxr-xr-x  4 root root      79 May 20 10:13 gen_6\\ndrwxr-xr-x  4 root root      79 May 20 10:37 gen_7\\ndrwxr-xr-x  4 root root      79 May 20 11:00 gen_8\\ndrwxr-xr-x  5 root root     101 May 20 10:38 gen_9\\n-rw-r--r--  1 root root 3568505 May 20 11:02 train.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.03}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T03:32:27.005Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012F3EQgrdcicGH2FGuX1qEb",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5521cb4a-a33a-420e-83e1-4939de6281da",
+            "uuid": "d21da35d-6b17-4cc9-84c9-61453200fb8e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good - the experiment directory exists with gen_0 through gen_10 (11 generations total, 0-10), all_metrics.json, analysis_results.json, and train.log. Let me check the EXIT_CODE, tail the log, and check tmux logs.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5521cb4a-a33a-420e-83e1-4939de6281da",
+            "uuid": "ae367bf1-25a0-4d5a-9d8e-3f3ea3d318f4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WcxdbSvNuAbV8hvhvpV29X",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1087,
+                "cache_read_input_tokens": 25935,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1087
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "目录完整，gen_0 到 gen_10 共 11 个 generation。继续检查日志和 EXIT_CODE。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5521cb4a-a33a-420e-83e1-4939de6281da",
+            "uuid": "cec88f5a-40a1-496f-81b7-e8707c40805d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WcxdbSvNuAbV8hvhvpV29X",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1087,
+                "cache_read_input_tokens": 25935,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1087
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CD7Wn7cj6vfxzbT9zdFnvo",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-17855",
+                "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/EXIT_CODE",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5521cb4a-a33a-420e-83e1-4939de6281da",
+            "uuid": "f9848043-09e8-456a-b0da-8c6996c96237",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WcxdbSvNuAbV8hvhvpV29X",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1087,
+                "cache_read_input_tokens": 25935,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1087
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T03:32:33.898Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CD7Wn7cj6vfxzbT9zdFnvo",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5521cb4a-a33a-420e-83e1-4939de6281da",
+            "uuid": "6286c0af-1a02-4cd1-8334-41465e25f57b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AqWisWJpdd8Js7QvYDL9FV",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-17855",
+                "command": "tail -50 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/train.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5521cb4a-a33a-420e-83e1-4939de6281da",
+            "uuid": "94f36a1d-8ae7-45a2-8c4a-c4c2c111b655",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WcxdbSvNuAbV8hvhvpV29X",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1087,
+                "cache_read_input_tokens": 25935,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1087
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KqPvPTk8vrD9xdwnCtjGj4",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-17855",
+                "command": "find ~/runs/distrib_canary_collapse/ -name \"*postd093*\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5521cb4a-a33a-420e-83e1-4939de6281da",
+            "uuid": "d7735dd9-382e-4f4a-9de7-496f97406fa6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WcxdbSvNuAbV8hvhvpV29X",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1087,
+                "cache_read_input_tokens": 25935,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1087
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T03:32:35.223Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AqWisWJpdd8Js7QvYDL9FV",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r 26%|██▌       | 1300/5000 [02:49<08:01,  7.68it/s]\\\\r 26%|██▌       | 1301/5000 [02:49<08:02,  7.67it/s]\\\\r 26%|██▌       | 1302/5000 [02:49<08:02,  7.66it/s]\\\\r 26%|██▌       | 1303/5000 [02:49<08:01,  7.67it/s]\\\\r 26%|██▌       | 1304/5000 [02:49<08:01,  7.67it/s]\\\\r 26%|██▌       | 1305/5000 [02:49<08:01,  7.67it/s]\\\\r 26%|██▌       | 1306/5000 [02:50<08:01,  7.68it/s]\\\\r 26%|██▌       | 1307/5000 [02:50<08:01,  7.67it/s]\\\\r 26%|██▌       | 1308/5000 [02:50<08:01,  7.67it/s]\\\\r 26%|██▌       | 1309/5000 [02:50<08:01,  7.66it/s]\\\\r 26%|██▌       | 1310/5000 [02:50<08:00,  7.68it/s]\\\\r 26%|██▌       | 1311/5000 [02:50<07:59,  7.69it/s]\\\\r 26%|██▌       | 1312/5000 [02:50<08:00,  7.68it/s]\\\\r 26%|██▋       | 1313/5000 [02:50<08:00,  7.68it/s]\\\\r 26%|██▋       | 1314/5000 [02:51<08:00,  7.68it/s]\\\\r 26%|██▋       | 1315/5000 [02:51<08:00,  7.68it/s]\\\\r 26%|██▋       | 1316/5000 [02:51<07:59,  7.68it/s]\\\\r 26%|██��       | 1317/5000 [02:51<08:00,  7.67it/s]\\\\r 26%|██▋       | 1318/5000 [02:51<08:00,  7.67it/s]\\\\r 26%|██▋       | 1319/5000 [02:51<07:59,  7.67it/s]\\\\r 26%|██▋       | 1320/5000 [02:51<07:59,  7.68it/s]\\\\r 26%|██▋       | 1321/5000 [02:51<07:58,  7.68it/s]\\\\r 26%|██▋       | 1322/5000 [02:52<07:59,  7.67it/s]\\\\r 26%|██▋       | 1323/5000 [02:52<07:59,  7.66it/s]\\\\r 26%|██▋       | 1324/5000 [02:52<07:58,  7.67it/s]\\\\r 26%|██▋       | 1325/5000 [02:52<07:58,  7.68it/s]\\\\r 27%|██▋       | 1326/5000 [02:52<07:59,  7.66it/s]\\\\r 27%|██▋       | 1327/5000 [02:52<07:58,  7.68it/s]\\\\r 27%|██▋       | 1328/5000 [02:52<07:58,  7.68it/s]\\\\r 27%|██▋       | 1329/5000 [02:53<07:57,  7.68it/s]\\\\r 27%|██▋       | 1330/5000 [02:53<07:57,  7.69it/s]\\\\r 27%|██▋       | 1331/5000 [02:53<08:00,  7.63it/s]\\\\r 27%|██▋       | 1332/5000 [02:53<07:58,  7.66it/s]\\\\r 27%|██▋       | 1333/5000 [02:53<07:58,  7.67it/s]\\\\r 27%|██▋       | 1334/5000 [02:53<07:57,  7.67it/s]\\\\r 27%|██▋       | 1335/5000 [02:53<07:57,  7.68it/s]\\\\r 27%|██▋       | 1336/5000 [02:53<07:59,  7.64it/s]\\\\r 27%|██▋       | 1337/5000 [02:54<07:57,  7.67it/s]\\\\r 27%|██▋       | 1338/5000 [02:54<07:57,  7.67it/s]\\\\r 27%|██▋       | 1339/5000 [02:54<07:57,  7.67it/s]\\\\r 27%|██▋       | 1340/5000 [02:54<07:56,  7.67it/s]\\\\r 27%|██▋       | 1341/5000 [02:54<07:58,  7.65it/s]\\\\r 27%|██▋       | 1342/5000 [02:54<07:57,  7.66it/s]\\\\r 27%|██▋       | 1343/5000 [02:54<07:56,  7.68it/s]\\\\r 27%|██▋       | 1344/5000 [02:54<07:55,  7.68it/s]\\\\r 27%|██▋       | 1345/5000 [02:55<07:55,  7.69it/s]\\\\r 27%|██▋       | 1346/5000 [02:55<07:58,  7.64it/s]\\\\r 27%|██▋       | 1347/5000 [02:55<07:55,  7.68it/s]\\\\r 27%|██▋       | 1348/5000 [02:55<07:55,  7.69it/s]\\\\r 27%|██▋       | 1349/5000 [02:55<07:54,  7.69it/s]\\\\r 27%|██▋       | 1350/5000 [02:55<07:55,  7.67it/s]\\\\r 27%|██▋       | 1351/5000 [02:55<07:57,  7.65it/s]\\\\r 27%|██▋       | 1352/5000 [02:56<07:55,  7.68it/s]\\\\r 27%|██▋       | 1353/5000 [02:56<07:55,  7.68it/s]\\\\r 27%|██▋       | 1354/5000 [02:56<07:54,  7.68it/s]\\\\r 27%|██▋       | 1355/5000 [02:56<07:54,  7.68it/s]\\\\r 27%|██▋       | 1356/5000 [02:56<07:56,  7.65it/s]\\\\r 27%|██▋       | 1357/5000 [02:56<07:54,  7.68it/s]\\\\r 27%|██▋       | 1358/5000 [02:56<07:54,  7.68it/s]\\\\r 27%|██▋       | 1359/5000 [02:56<07:53,  7.68it/s]\\\\r 27%|██▋       | 1360/5000 [02:57<07:53,  7.68it/s]\\\\r 27%|██▋       | 1361/5000 [02:57<07:54,  7.68it/s]\\\\r 27%|██▋       | 1362/5000 [02:57<07:53,  7.68it/s]\\\\r 27%|██▋       | 1363/5000 [02:57<07:53,  7.68it/s]\\\\r 27%|██▋       | 1364/5000 [02:57<07:53,  7.68it/s]\\\\r 27%|██▋       | 1365/5000 [02:57<07:52,  7.69it/s]\\\\r 27%|██▋       | 1366/5000 [02:57<07:53,  7.68it/s]\\\\r 27%|██▋       | 1367/5000 [02:57<07:53,  7.68it/s]\\\\r 27%|██▋       | 1368/5000 [02:58<07:52,  7.68it/s]\\\\r 27%|██▋       | 1369/5000 [02:58<07:52,  7.68it/s]\\\\r 27%|██▋       | 1370/5000 [02:58<07:52,  7.68it/s]\\\\r 27%|██▋       | 1371/5000 [02:58<07:52,  7.67it/s]\\\\r 27%|██▋       | 1372/5000 [02:58<07:52,  7.67it/s]\\\\r 27%|██▋       | 1373/5000 [02:58<07:52,  7.68it/s]\\\\r 27%|██▋       | 1374/5000 [02:58<07:51,  7.68it/s]\\\\r 28%|██▊       | 1375/5000 [02:59<07:51,  7.68it/s]\\\\r 28%|██▊       | 1376/5000 [02:59<07:51,  7.68\\\\n\\\\n... [截断: 输出过长，省略 217144 字符] ...\\\\n\\\\n0.94it/s]\\\\rFeaturizing q:  73%|███████▎  | 1136/1564 [00:15<00:06, 70.94it/s]\\\\rFeaturizing q:  73%|███████▎  | 1144/1564 [00:16<00:05, 71.01it/s]\\\\rFeaturizing q:  74%|███████▎  | 1152/1564 [00:16<00:05, 71.01it/s]\\\\rFeaturizing q:  74%|███████▍  | 1160/1564 [00:16<00:05, 71.22it/s]\\\\rFeaturizing q:  75%|███████▍  | 1168/1564 [00:16<00:05, 71.07it/s]\\\\rFeaturizing q:  75%|███████▌  | 1176/1564 [00:16<00:05, 71.04it/s]\\\\rFeaturizing q:  76%|███████▌  | 1184/1564 [00:16<00:05, 70.92it/s]\\\\rFeaturizing q:  76%|███████▌  | 1192/1564 [00:16<00:05, 70.94it/s]\\\\rFeaturizing q:  77%|███████▋  | 1200/1564 [00:16<00:05, 70.96it/s]\\\\rFeaturizing q:  77%|███████▋  | 1208/1564 [00:16<00:05, 70.99it/s]\\\\rFeaturizing q:  78%|███████▊  | 1216/1564 [00:17<00:04, 70.98it/s]\\\\rFeaturizing q:  78%|███████▊  | 1224/1564 [00:17<00:04, 71.03it/s]\\\\rFeaturizing q:  79%|███████▉  | 1232/1564 [00:17<00:04, 70.89it/s]\\\\rFeaturizing q:  79%|███████▉  | 1240/1564 [00:17<00:04, 70.86it/s]\\\\rFeaturizing q:  80%|███████▉  | 1248/1564 [00:17<00:04, 70.85it/s]\\\\rFeaturizing q:  80%|████████  | 1256/1564 [00:17<00:04, 70.88it/s]\\\\rFeaturizing q:  81%|████████  | 1264/1564 [00:17<00:04, 70.96it/s]\\\\rFeaturizing q:  81%|████████▏ | 1272/1564 [00:17<00:04, 70.93it/s]\\\\rFeaturizing q:  82%|████████▏ | 1280/1564 [00:17<00:04, 70.84it/s]\\\\rFeaturizing q:  82%|████████▏ | 1288/1564 [00:18<00:03, 70.78it/s]\\\\rFeaturizing q:  83%|████████▎ | 1296/1564 [00:18<00:03, 70.81it/s]\\\\rFeaturizing q:  83%|████████▎ | 1304/1564 [00:18<00:03, 71.12it/s]\\\\rFeaturizing q:  84%|████████▍ | 1312/1564 [00:18<00:03, 71.02it/s]\\\\rFeaturizing q:  84%|████████▍ | 1320/1564 [00:18<00:03, 71.01it/s]\\\\rFeaturizing q:  85%|████████▍ | 1328/1564 [00:18<00:03, 70.98it/s]\\\\rFeaturizing q:  85%|████████▌ | 1336/1564 [00:18<00:03, 70.61it/s]\\\\rFeaturizing q:  86%|████████▌ | 1344/1564 [00:18<00:03, 70.70it/s]\\\\rFeaturizing q:  86%|████████▋ | 1352/1564 [00:19<00:02, 70.75it/s]\\\\rFeaturizing q:  87%|████████▋ | 1360/1564 [00:19<00:02, 70.77it/s]\\\\rFeaturizing q:  87%|████████▋ | 1368/1564 [00:19<00:02, 70.82it/s]\\\\rFeaturizing q:  88%|████████▊ | 1376/1564 [00:19<00:02, 70.80it/s]\\\\rFeaturizing q:  88%|████████▊ | 1384/1564 [00:19<00:02, 70.78it/s]\\\\rFeaturizing q:  89%|████████▉ | 1392/1564 [00:19<00:02, 70.81it/s]\\\\rFeaturizing q:  90%|████████▉ | 1400/1564 [00:19<00:02, 70.87it/s]\\\\rFeaturizing q:  90%|█████████ | 1408/1564 [00:19<00:02, 71.12it/s]\\\\rFeaturizing q:  91%|█████████ | 1416/1564 [00:19<00:02, 71.08it/s]\\\\rFeaturizing q:  91%|█████████ | 1424/1564 [00:20<00:01, 71.34it/s]\\\\rFeaturizing q:  92%|█████████��| 1432/1564 [00:20<00:01, 71.30it/s]\\\\rFeaturizing q:  92%|█████████▏| 1440/1564 [00:20<00:01, 71.21it/s]\\\\rFeaturizing q:  93%|█████████▎| 1448/1564 [00:20<00:01, 71.15it/s]\\\\rFeaturizing q:  93%|█████████▎| 1456/1564 [00:20<00:01, 71.18it/s]\\\\rFeaturizing q:  94%|█████████▎| 1464/1564 [00:20<00:01, 71.39it/s]\\\\rFeaturizing q:  94%|█████████▍| 1472/1564 [00:20<00:01, 71.27it/s]\\\\rFeaturizing q:  95%|█████████▍| 1480/1564 [00:20<00:01, 71.10it/s]\\\\rFeaturizing q:  95%|█████████▌| 1488/1564 [00:20<00:01, 71.08it/s]\\\\rFeaturizing q:  96%|█████████▌| 1496/1564 [00:21<00:00, 71.02it/s]\\\\rFeaturizing q:  96%|█████████▌| 1504/1564 [00:21<00:00, 70.96it/s]\\\\rFeaturizing q:  97%|█████████▋| 1512/1564 [00:21<00:00, 71.20it/s]\\\\rFeaturizing q:  97%|█████████▋| 1520/1564 [00:21<00:00, 71.14it/s]\\\\rFeaturizing q:  98%|█████████▊| 1528/1564 [00:21<00:00, 71.08it/s]\\\\rFeaturizing q:  98%|█████████▊| 1536/1564 [00:21<00:00, 71.41it/s]\\\\rFeaturizing q:  99%|█████████▊| 1544/1564 [00:21<00:00, 71.32it/s]\\\\rFeaturizing q:  99%|█████████▉| 1552/1564 [00:21<00:00, 71.19it/s]\\\\rFeaturizing q: 100%|█████████▉| 1560/1564 [00:21<00:00, 70.97it/s]\\\\rFeaturizing q: 100%|██████████| 1564/1564 [00:21<00:00, 71.13it/s]\\\\nWARNING clustering 3128 points to 156 centroids: please provide at least 6084 training points\\\\n  ppl=32.62, entropy=2.6206, eff_rank=59.7, mauve=0.0245\\\\n\\\\nAll metrics saved to results/alpha_sweep/a050_postd093_s42_fp32/all_metrics.json\\\\nSentinel written: results/alpha_sweep/a050_postd093_s42_fp32/EXIT_CODE\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5521cb4a-a33a-420e-83e1-4939de6281da",
+            "uuid": "53d74705-2004-4bab-80a0-acf8fa4c3bc6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r 26%|██▌       | 1300/5000 [02:49<08:01,  7.68it/s]\\\\r 26%|██▌       | 1301/5000 [02:49<08:02,  7.67it/s]\\\\r 26%|██▌       | 1302/5000 [02:49<08:02,  7.66it/s]\\\\r 26%|██▌       | 1303/5000 [02:49<08:01,  7.67it/s]\\\\r 26%|██▌       | 1304/5000 [02:49<08:01,  7.67it/s]\\\\r 26%|██▌       | 1305/5000 [02:49<08:01,  7.67it/s]\\\\r 26%|██▌       | 1306/5000 [02:50<08:01,  7.68it/s]\\\\r 26%|██▌       | 1307/5000 [02:50<08:01,  7.67it/s]\\\\r 26%|██▌       | 1308/5000 [02:50<08:01,  7.67it/s]\\\\r 26%|██▌       | 1309/5000 [02:50<08:01,  7.66it/s]\\\\r 26%|██▌       | 1310/5000 [02:50<08:00,  7.68it/s]\\\\r 26%|██▌       | 1311/5000 [02:50<07:59,  7.69it/s]\\\\r 26%|██▌       | 1312/5000 [02:50<08:00,  7.68it/s]\\\\r 26%|██▋       | 1313/5000 [02:50<08:00,  7.68it/s]\\\\r 26%|██▋       | 1314/5000 [02:51<08:00,  7.68it/s]\\\\r 26%|██▋       | 1315/5000 [02:51<08:00,  7.68it/s]\\\\r 26%|██▋       | 1316/5000 [02:51<07:59,  7.68it/s]\\\\r 26%|██��       | 1317/5000 [02:51<08:00,  7.67it/s]\\\\r 26%|██▋       | 1318/5000 [02:51<08:00,  7.67it/s]\\\\r 26%|██▋       | 1319/5000 [02:51<07:59,  7.67it/s]\\\\r 26%|██▋       | 1320/5000 [02:51<07:59,  7.68it/s]\\\\r 26%|██▋       | 1321/5000 [02:51<07:58,  7.68it/s]\\\\r 26%|██▋       | 1322/5000 [02:52<07:59,  7.67it/s]\\\\r 26%|██▋       | 1323/5000 [02:52<07:59,  7.66it/s]\\\\r 26%|██▋       | 1324/5000 [02:52<07:58,  7.67it/s]\\\\r 26%|██▋       | 1325/5000 [02:52<07:58,  7.68it/s]\\\\r 27%|██▋       | 1326/5000 [02:52<07:59,  7.66it/s]\\\\r 27%|██▋       | 1327/5000 [02:52<07:58,  7.68it/s]\\\\r 27%|██▋       | 1328/5000 [02:52<07:58,  7.68it/s]\\\\r 27%|██▋       | 1329/5000 [02:53<07:57,  7.68it/s]\\\\r 27%|██▋       | 1330/5000 [02:53<07:57,  7.69it/s]\\\\r 27%|██▋       | 1331/5000 [02:53<08:00,  7.63it/s]\\\\r 27%|██▋       | 1332/5000 [02:53<07:58,  7.66it/s]\\\\r 27%|██▋       | 1333/5000 [02:53<07:58,  7.67it/s]\\\\r 27%|██▋       | 1334/5000 [02:53<07:57,  7.67it/s]\\\\r 27%|██▋       | 1335/5000 [02:53<07:57,  7.68it/s]\\\\r 27%|██▋       | 1336/5000 [02:53<07:59,  7.64it/s]\\\\r 27%|██▋       | 1337/5000 [02:54<07:57,  7.67it/s]\\\\r 27%|██▋       | 1338/5000 [02:54<07:57,  7.67it/s]\\\\r 27%|██▋       | 1339/5000 [02:54<07:57,  7.67it/s]\\\\r 27%|██▋       | 1340/5000 [02:54<07:56,  7.67it/s]\\\\r 27%|██▋       | 1341/5000 [02:54<07:58,  7.65it/s]\\\\r 27%|██▋       | 1342/5000 [02:54<07:57,  7.66it/s]\\\\r 27%|██▋       | 1343/5000 [02:54<07:56,  7.68it/s]\\\\r 27%|██▋       | 1344/5000 [02:54<07:55,  7.68it/s]\\\\r 27%|██▋       | 1345/5000 [02:55<07:55,  7.69it/s]\\\\r 27%|██▋       | 1346/5000 [02:55<07:58,  7.64it/s]\\\\r 27%|██▋       | 1347/5000 [02:55<07:55,  7.68it/s]\\\\r 27%|██▋       | 1348/5000 [02:55<07:55,  7.69it/s]\\\\r 27%|██▋       | 1349/5000 [02:55<07:54,  7.69it/s]\\\\r 27%|██▋       | 1350/5000 [02:55<07:55,  7.67it/s]\\\\r 27%|██▋       | 1351/5000 [02:55<07:57,  7.65it/s]\\\\r 27%|██▋       | 1352/5000 [02:56<07:55,  7.68it/s]\\\\r 27%|██▋       | 1353/5000 [02:56<07:55,  7.68it/s]\\\\r 27%|██▋       | 1354/5000 [02:56<07:54,  7.68it/s]\\\\r 27%|██▋       | 1355/5000 [02:56<07:54,  7.68it/s]\\\\r 27%|██▋       | 1356/5000 [02:56<07:56,  7.65it/s]\\\\r 27%|██▋       | 1357/5000 [02:56<07:54,  7.68it/s]\\\\r 27%|██▋       | 1358/5000 [02:56<07:54,  7.68it/s]\\\\r 27%|██▋       | 1359/5000 [02:56<07:53,  7.68it/s]\\\\r 27%|██▋       | 1360/5000 [02:57<07:53,  7.68it/s]\\\\r 27%|██▋       | 1361/5000 [02:57<07:54,  7.68it/s]\\\\r 27%|██▋       | 1362/5000 [02:57<07:53,  7.68it/s]\\\\r 27%|██▋       | 1363/5000 [02:57<07:53,  7.68it/s]\\\\r 27%|██▋       | 1364/5000 [02:57<07:53,  7.68it/s]\\\\r 27%|██▋       | 1365/5000 [02:57<07:52,  7.69it/s]\\\\r 27%|██▋       | 1366/5000 [02:57<07:53,  7.68it/s]\\\\r 27%|██▋       | 1367/5000 [02:57<07:53,  7.68it/s]\\\\r 27%|██▋       | 1368/5000 [02:58<07:52,  7.68it/s]\\\\r 27%|██▋       | 1369/5000 [02:58<07:52,  7.68it/s]\\\\r 27%|██▋       | 1370/5000 [02:58<07:52,  7.68it/s]\\\\r 27%|██▋       | 1371/5000 [02:58<07:52,  7.67it/s]\\\\r 27%|██▋       | 1372/5000 [02:58<07:52,  7.67it/s]\\\\r 27%|██▋       | 1373/5000 [02:58<07:52,  7.68it/s]\\\\r 27%|██▋       | 1374/5000 [02:58<07:51,  7.68it/s]\\\\r 28%|██▊       | 1375/5000 [02:59<07:51,  7.68it/s]\\\\r 28%|██▊       | 1376/5000 [02:59<07:51,  7.68\\\\n\\\\n... [截断: 输出过长，省略 217144 字符] ...\\\\n\\\\n0.94it/s]\\\\rFeaturizing q:  73%|███████▎  | 1136/1564 [00:15<00:06, 70.94it/s]\\\\rFeaturizing q:  73%|███████▎  | 1144/1564 [00:16<00:05, 71.01it/s]\\\\rFeaturizing q:  74%|███████▎  | 1152/1564 [00:16<00:05, 71.01it/s]\\\\rFeaturizing q:  74%|███████▍  | 1160/1564 [00:16<00:05, 71.22it/s]\\\\rFeaturizing q:  75%|███████▍  | 1168/1564 [00:16<00:05, 71.07it/s]\\\\rFeaturizing q:  75%|███████▌  | 1176/1564 [00:16<00:05, 71.04it/s]\\\\rFeaturizing q:  76%|███████▌  | 1184/1564 [00:16<00:05, 70.92it/s]\\\\rFeaturizing q:  76%|███████▌  | 1192/1564 [00:16<00:05, 70.94it/s]\\\\rFeaturizing q:  77%|███████▋  | 1200/1564 [00:16<00:05, 70.96it/s]\\\\rFeaturizing q:  77%|███████▋  | 1208/1564 [00:16<00:05, 70.99it/s]\\\\rFeaturizing q:  78%|███████▊  | 1216/1564 [00:17<00:04, 70.98it/s]\\\\rFeaturizing q:  78%|███████▊  | 1224/1564 [00:17<00:04, 71.03it/s]\\\\rFeaturizing q:  79%|███████▉  | 1232/1564 [00:17<00:04, 70.89it/s]\\\\rFeaturizing q:  79%|███████▉  | 1240/1564 [00:17<00:04, 70.86it/s]\\\\rFeaturizing q:  80%|███████▉  | 1248/1564 [00:17<00:04, 70.85it/s]\\\\rFeaturizing q:  80%|████████  | 1256/1564 [00:17<00:04, 70.88it/s]\\\\rFeaturizing q:  81%|████████  | 1264/1564 [00:17<00:04, 70.96it/s]\\\\rFeaturizing q:  81%|████████▏ | 1272/1564 [00:17<00:04, 70.93it/s]\\\\rFeaturizing q:  82%|████████▏ | 1280/1564 [00:17<00:04, 70.84it/s]\\\\rFeaturizing q:  82%|████████▏ | 1288/1564 [00:18<00:03, 70.78it/s]\\\\rFeaturizing q:  83%|████████▎ | 1296/1564 [00:18<00:03, 70.81it/s]\\\\rFeaturizing q:  83%|████████▎ | 1304/1564 [00:18<00:03, 71.12it/s]\\\\rFeaturizing q:  84%|████████▍ | 1312/1564 [00:18<00:03, 71.02it/s]\\\\rFeaturizing q:  84%|████████▍ | 1320/1564 [00:18<00:03, 71.01it/s]\\\\rFeaturizing q:  85%|████████▍ | 1328/1564 [00:18<00:03, 70.98it/s]\\\\rFeaturizing q:  85%|████████▌ | 1336/1564 [00:18<00:03, 70.61it/s]\\\\rFeaturizing q:  86%|████████▌ | 1344/1564 [00:18<00:03, 70.70it/s]\\\\rFeaturizing q:  86%|████████▋ | 1352/1564 [00:19<00:02, 70.75it/s]\\\\rFeaturizing q:  87%|████████▋ | 1360/1564 [00:19<00:02, 70.77it/s]\\\\rFeaturizing q:  87%|████████▋ | 1368/1564 [00:19<00:02, 70.82it/s]\\\\rFeaturizing q:  88%|████████▊ | 1376/1564 [00:19<00:02, 70.80it/s]\\\\rFeaturizing q:  88%|████████▊ | 1384/1564 [00:19<00:02, 70.78it/s]\\\\rFeaturizing q:  89%|████████▉ | 1392/1564 [00:19<00:02, 70.81it/s]\\\\rFeaturizing q:  90%|████████▉ | 1400/1564 [00:19<00:02, 70.87it/s]\\\\rFeaturizing q:  90%|█████████ | 1408/1564 [00:19<00:02, 71.12it/s]\\\\rFeaturizing q:  91%|█████████ | 1416/1564 [00:19<00:02, 71.08it/s]\\\\rFeaturizing q:  91%|█████████ | 1424/1564 [00:20<00:01, 71.34it/s]\\\\rFeaturizing q:  92%|█████████��| 1432/1564 [00:20<00:01, 71.30it/s]\\\\rFeaturizing q:  92%|█████████▏| 1440/1564 [00:20<00:01, 71.21it/s]\\\\rFeaturizing q:  93%|█████████▎| 1448/1564 [00:20<00:01, 71.15it/s]\\\\rFeaturizing q:  93%|█████████▎| 1456/1564 [00:20<00:01, 71.18it/s]\\\\rFeaturizing q:  94%|█████████▎| 1464/1564 [00:20<00:01, 71.39it/s]\\\\rFeaturizing q:  94%|█████████▍| 1472/1564 [00:20<00:01, 71.27it/s]\\\\rFeaturizing q:  95%|█████████▍| 1480/1564 [00:20<00:01, 71.10it/s]\\\\rFeaturizing q:  95%|█████████▌| 1488/1564 [00:20<00:01, 71.08it/s]\\\\rFeaturizing q:  96%|█████████▌| 1496/1564 [00:21<00:00, 71.02it/s]\\\\rFeaturizing q:  96%|█████████▌| 1504/1564 [00:21<00:00, 70.96it/s]\\\\rFeaturizing q:  97%|█████████▋| 1512/1564 [00:21<00:00, 71.20it/s]\\\\rFeaturizing q:  97%|█████████▋| 1520/1564 [00:21<00:00, 71.14it/s]\\\\rFeaturizing q:  98%|█████████▊| 1528/1564 [00:21<00:00, 71.08it/s]\\\\rFeaturizing q:  98%|█████████▊| 1536/1564 [00:21<00:00, 71.41it/s]\\\\rFeaturizing q:  99%|█████████▊| 1544/1564 [00:21<00:00, 71.32it/s]\\\\rFeaturizing q:  99%|█████████▉| 1552/1564 [00:21<00:00, 71.19it/s]\\\\rFeaturizing q: 100%|█████████▉| 1560/1564 [00:21<00:00, 70.97it/s]\\\\rFeaturizing q: 100%|██████████| 1564/1564 [00:21<00:00, 71.13it/s]\\\\nWARNING clustering 3128 points to 156 centroids: please provide at least 6084 training points\\\\n  ppl=32.62, entropy=2.6206, eff_rank=59.7, mauve=0.0245\\\\n\\\\nAll metrics saved to results/alpha_sweep/a050_postd093_s42_fp32/all_metrics.json\\\\nSentinel written: results/alpha_sweep/a050_postd093_s42_fp32/EXIT_CODE\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\r 26%|██▌       | 1300/5000 [02:49<08:01,  7.68it/s]\\r 26%|██▌       | 1301/5000 [02:49<08:02,  7.67it/s]\\r 26%|██▌       | 1302/5000 [02:49<08:02,  7.66it/s]\\r 26%|██▌       | 1303/5000 [02:49<08:01,  7.67it/s]\\r 26%|██▌       | 1304/5000 [02:49<08:01,  7.67it/s]\\r 26%|██▌       | 1305/5000 [02:49<08:01,  7.67it/s]\\r 26%|██▌       | 1306/5000 [02:50<08:01,  7.68it/s]\\r 26%|██▌       | 1307/5000 [02:50<08:01,  7.67it/s]\\r 26%|██▌       | 1308/5000 [02:50<08:01,  7.67it/s]\\r 26%|██▌       | 1309/5000 [02:50<08:01,  7.66it/s]\\r 26%|██▌       | 1310/5000 [02:50<08:00,  7.68it/s]\\r 26%|██▌       | 1311/5000 [02:50<07:59,  7.69it/s]\\r 26%|██▌       | 1312/5000 [02:50<08:00,  7.68it/s]\\r 26%|██▋       | 1313/5000 [02:50<08:00,  7.68it/s]\\r 26%|██▋       | 1314/5000 [02:51<08:00,  7.68it/s]\\r 26%|██▋       | 1315/5000 [02:51<08:00,  7.68it/s]\\r 26%|██▋       | 1316/5000 [02:51<07:59,  7.68it/s]\\r 26%|██��       | 1317/5000 [02:51<08:00,  7.67it/s]\\r 26%|██▋       | 1318/5000 [02:51<08:00,  7.67it/s]\\r 26%|██▋       | 1319/5000 [02:51<07:59,  7.67it/s]\\r 26%|██▋       | 1320/5000 [02:51<07:59,  7.68it/s]\\r 26%|██▋       | 1321/5000 [02:51<07:58,  7.68it/s]\\r 26%|██▋       | 1322/5000 [02:52<07:59,  7.67it/s]\\r 26%|██▋       | 1323/5000 [02:52<07:59,  7.66it/s]\\r 26%|██▋       | 1324/5000 [02:52<07:58,  7.67it/s]\\r 26%|██▋       | 1325/5000 [02:52<07:58,  7.68it/s]\\r 27%|██▋       | 1326/5000 [02:52<07:59,  7.66it/s]\\r 27%|██▋       | 1327/5000 [02:52<07:58,  7.68it/s]\\r 27%|██▋       | 1328/5000 [02:52<07:58,  7.68it/s]\\r 27%|██▋       | 1329/5000 [02:53<07:57,  7.68it/s]\\r 27%|██▋       | 1330/5000 [02:53<07:57,  7.69it/s]\\r 27%|██▋       | 1331/5000 [02:53<08:00,  7.63it/s]\\r 27%|██▋       | 1332/5000 [02:53<07:58,  7.66it/s]\\r 27%|██▋       | 1333/5000 [02:53<07:58,  7.67it/s]\\r 27%|██▋       | 1334/5000 [02:53<07:57,  7.67it/s]\\r 27%|██▋       | 1335/5000 [02:53<07:57,  7.68it/s]\\r 27%|██▋       | 1336/5000 [02:53<07:59,  7.64it/s]\\r 27%|██▋       | 1337/5000 [02:54<07:57,  7.67it/s]\\r 27%|██▋       | 1338/5000 [02:54<07:57,  7.67it/s]\\r 27%|██▋       | 1339/5000 [02:54<07:57,  7.67it/s]\\r 27%|██▋       | 1340/5000 [02:54<07:56,  7.67it/s]\\r 27%|██▋       | 1341/5000 [02:54<07:58,  7.65it/s]\\r 27%|██▋       | 1342/5000 [02:54<07:57,  7.66it/s]\\r 27%|██▋       | 1343/5000 [02:54<07:56,  7.68it/s]\\r 27%|██▋       | 1344/5000 [02:54<07:55,  7.68it/s]\\r 27%|██▋       | 1345/5000 [02:55<07:55,  7.69it/s]\\r 27%|██▋       | 1346/5000 [02:55<07:58,  7.64it/s]\\r 27%|██▋       | 1347/5000 [02:55<07:55,  7.68it/s]\\r 27%|██▋       | 1348/5000 [02:55<07:55,  7.69it/s]\\r 27%|██▋       | 1349/5000 [02:55<07:54,  7.69it/s]\\r 27%|██▋       | 1350/5000 [02:55<07:55,  7.67it/s]\\r 27%|██▋       | 1351/5000 [02:55<07:57,  7.65it/s]\\r 27%|██▋       | 1352/5000 [02:56<07:55,  7.68it/s]\\r 27%|██▋       | 1353/5000 [02:56<07:55,  7.68it/s]\\r 27%|██▋       | 1354/5000 [02:56<07:54,  7.68it/s]\\r 27%|██▋       | 1355/5000 [02:56<07:54,  7.68it/s]\\r 27%|██▋       | 1356/5000 [02:56<07:56,  7.65it/s]\\r 27%|██▋       | 1357/5000 [02:56<07:54,  7.68it/s]\\r 27%|██▋       | 1358/5000 [02:56<07:54,  7.68it/s]\\r 27%|██▋       | 1359/5000 [02:56<07:53,  7.68it/s]\\r 27%|██▋       | 1360/5000 [02:57<07:53,  7.68it/s]\\r 27%|██▋       | 1361/5000 [02:57<07:54,  7.68it/s]\\r 27%|██▋       | 1362/5000 [02:57<07:53,  7.68it/s]\\r 27%|██▋       | 1363/5000 [02:57<07:53,  7.68it/s]\\r 27%|██▋       | 1364/5000 [02:57<07:53,  7.68it/s]\\r 27%|██▋       | 1365/5000 [02:57<07:52,  7.69it/s]\\r 27%|██▋       | 1366/5000 [02:57<07:53,  7.68it/s]\\r 27%|██▋       | 1367/5000 [02:57<07:53,  7.68it/s]\\r 27%|██▋       | 1368/5000 [02:58<07:52,  7.68it/s]\\r 27%|██▋       | 1369/5000 [02:58<07:52,  7.68it/s]\\r 27%|██▋       | 1370/5000 [02:58<07:52,  7.68it/s]\\r 27%|██▋       | 1371/5000 [02:58<07:52,  7.67it/s]\\r 27%|██▋       | 1372/5000 [02:58<07:52,  7.67it/s]\\r 27%|██▋       | 1373/5000 [02:58<07:52,  7.68it/s]\\r 27%|██▋       | 1374/5000 [02:58<07:51,  7.68it/s]\\r 28%|██▊       | 1375/5000 [02:59<07:51,  7.68it/s]\\r 28%|██▊       | 1376/5000 [02:59<07:51,  7.68\\n\\n... [截断: 输出过长，省略 217144 字符] ...\\n\\n0.94it/s]\\rFeaturizing q:  73%|███████▎  | 1136/1564 [00:15<00:06, 70.94it/s]\\rFeaturizing q:  73%|███████▎  | 1144/1564 [00:16<00:05, 71.01it/s]\\rFeaturizing q:  74%|███████▎  | 1152/1564 [00:16<00:05, 71.01it/s]\\rFeaturizing q:  74%|███████▍  | 1160/1564 [00:16<00:05, 71.22it/s]\\rFeaturizing q:  75%|███████▍  | 1168/1564 [00:16<00:05, 71.07it/s]\\rFeaturizing q:  75%|███████▌  | 1176/1564 [00:16<00:05, 71.04it/s]\\rFeaturizing q:  76%|███████▌  | 1184/1564 [00:16<00:05, 70.92it/s]\\rFeaturizing q:  76%|███████▌  | 1192/1564 [00:16<00:05, 70.94it/s]\\rFeaturizing q:  77%|███████▋  | 1200/1564 [00:16<00:05, 70.96it/s]\\rFeaturizing q:  77%|███████▋  | 1208/1564 [00:16<00:05, 70.99it/s]\\rFeaturizing q:  78%|███████▊  | 1216/1564 [00:17<00:04, 70.98it/s]\\rFeaturizing q:  78%|███████▊  | 1224/1564 [00:17<00:04, 71.03it/s]\\rFeaturizing q:  79%|███████▉  | 1232/1564 [00:17<00:04, 70.89it/s]\\rFeaturizing q:  79%|███████▉  | 1240/1564 [00:17<00:04, 70.86it/s]\\rFeaturizing q:  80%|███████▉  | 1248/1564 [00:17<00:04, 70.85it/s]\\rFeaturizing q:  80%|████████  | 1256/1564 [00:17<00:04, 70.88it/s]\\rFeaturizing q:  81%|████████  | 1264/1564 [00:17<00:04, 70.96it/s]\\rFeaturizing q:  81%|████████▏ | 1272/1564 [00:17<00:04, 70.93it/s]\\rFeaturizing q:  82%|████████▏ | 1280/1564 [00:17<00:04, 70.84it/s]\\rFeaturizing q:  82%|████████▏ | 1288/1564 [00:18<00:03, 70.78it/s]\\rFeaturizing q:  83%|████████▎ | 1296/1564 [00:18<00:03, 70.81it/s]\\rFeaturizing q:  83%|████████▎ | 1304/1564 [00:18<00:03, 71.12it/s]\\rFeaturizing q:  84%|████████▍ | 1312/1564 [00:18<00:03, 71.02it/s]\\rFeaturizing q:  84%|████████▍ | 1320/1564 [00:18<00:03, 71.01it/s]\\rFeaturizing q:  85%|████████▍ | 1328/1564 [00:18<00:03, 70.98it/s]\\rFeaturizing q:  85%|████████▌ | 1336/1564 [00:18<00:03, 70.61it/s]\\rFeaturizing q:  86%|████████▌ | 1344/1564 [00:18<00:03, 70.70it/s]\\rFeaturizing q:  86%|████████▋ | 1352/1564 [00:19<00:02, 70.75it/s]\\rFeaturizing q:  87%|████████▋ | 1360/1564 [00:19<00:02, 70.77it/s]\\rFeaturizing q:  87%|████████▋ | 1368/1564 [00:19<00:02, 70.82it/s]\\rFeaturizing q:  88%|████████▊ | 1376/1564 [00:19<00:02, 70.80it/s]\\rFeaturizing q:  88%|████████▊ | 1384/1564 [00:19<00:02, 70.78it/s]\\rFeaturizing q:  89%|████████▉ | 1392/1564 [00:19<00:02, 70.81it/s]\\rFeaturizing q:  90%|████████▉ | 1400/1564 [00:19<00:02, 70.87it/s]\\rFeaturizing q:  90%|█████████ | 1408/1564 [00:19<00:02, 71.12it/s]\\rFeaturizing q:  91%|█████████ | 1416/1564 [00:19<00:02, 71.08it/s]\\rFeaturizing q:  91%|█████████ | 1424/1564 [00:20<00:01, 71.34it/s]\\rFeaturizing q:  92%|█████████��| 1432/1564 [00:20<00:01, 71.30it/s]\\rFeaturizing q:  92%|█████████▏| 1440/1564 [00:20<00:01, 71.21it/s]\\rFeaturizing q:  93%|█████████▎| 1448/1564 [00:20<00:01, 71.15it/s]\\rFeaturizing q:  93%|█████████▎| 1456/1564 [00:20<00:01, 71.18it/s]\\rFeaturizing q:  94%|█████████▎| 1464/1564 [00:20<00:01, 71.39it/s]\\rFeaturizing q:  94%|█████████▍| 1472/1564 [00:20<00:01, 71.27it/s]\\rFeaturizing q:  95%|█████████▍| 1480/1564 [00:20<00:01, 71.10it/s]\\rFeaturizing q:  95%|█████████▌| 1488/1564 [00:20<00:01, 71.08it/s]\\rFeaturizing q:  96%|█████████▌| 1496/1564 [00:21<00:00, 71.02it/s]\\rFeaturizing q:  96%|█████████▌| 1504/1564 [00:21<00:00, 70.96it/s]\\rFeaturizing q:  97%|█████████▋| 1512/1564 [00:21<00:00, 71.20it/s]\\rFeaturizing q:  97%|█████████▋| 1520/1564 [00:21<00:00, 71.14it/s]\\rFeaturizing q:  98%|█████████▊| 1528/1564 [00:21<00:00, 71.08it/s]\\rFeaturizing q:  98%|█████████▊| 1536/1564 [00:21<00:00, 71.41it/s]\\rFeaturizing q:  99%|█████████▊| 1544/1564 [00:21<00:00, 71.32it/s]\\rFeaturizing q:  99%|█████████▉| 1552/1564 [00:21<00:00, 71.19it/s]\\rFeaturizing q: 100%|█████████▉| 1560/1564 [00:21<00:00, 70.97it/s]\\rFeaturizing q: 100%|██████████| 1564/1564 [00:21<00:00, 71.13it/s]\\nWARNING clustering 3128 points to 156 centroids: please provide at least 6084 training points\\n  ppl=32.62, entropy=2.6206, eff_rank=59.7, mauve=0.0245\\n\\nAll metrics saved to results/alpha_sweep/a050_postd093_s42_fp32/all_metrics.json\\nSentinel written: results/alpha_sweep/a050_postd093_s42_fp32/EXIT_CODE\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T03:32:35.689Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KqPvPTk8vrD9xdwnCtjGj4",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5521cb4a-a33a-420e-83e1-4939de6281da",
+            "uuid": "2679ed59-6e88-4488-8ca9-467120eb92ab",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The experiment completed successfully:\n- EXIT_CODE = 0\n- train.log ends with \"All metrics saved to results/alpha_sweep/a050_postd093_s42_fp32/all_metrics.json\" and \"Sentinel written: results/alpha_sweep/a050_postd093_s42_fp32/EXIT_CODE\"\n- All gen_0 through gen_10 directories exist\n- all_metrics.json and analysis_results.json are present\n\nNo tmux logs found at ~/runs/distrib_canary_collapse/.\n\nNow let me check for checkpoints and get the exact paths, and also look at the all_metrics.json.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5521cb4a-a33a-420e-83e1-4939de6281da",
+            "uuid": "e2f4592d-a4e1-4169-953c-2a5c46d81186",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P5peopp2nQPY1XGbKseNFR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5887,
+                "cache_read_input_tokens": 27022,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5887
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "EXIT_CODE=0，日志正常结束。检查 checkpoint 路径。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5521cb4a-a33a-420e-83e1-4939de6281da",
+            "uuid": "19685456-5b86-4305-addf-231949c4dda1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P5peopp2nQPY1XGbKseNFR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5887,
+                "cache_read_input_tokens": 27022,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5887
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018KguaQQLnDFr4R41vw4VV1",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-17855",
+                "command": "find /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/ -name \"checkpoint*\" -type d",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5521cb4a-a33a-420e-83e1-4939de6281da",
+            "uuid": "45e71b76-99b4-4c6e-ae6f-3ab6aed80339",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P5peopp2nQPY1XGbKseNFR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5887,
+                "cache_read_input_tokens": 27022,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5887
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T03:32:43.995Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018KguaQQLnDFr4R41vw4VV1",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/gen_9/checkpoint\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/gen_10/checkpoint\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5521cb4a-a33a-420e-83e1-4939de6281da",
+            "uuid": "12a25e83-2038-4e3b-8c99-f414dd8ee93a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/gen_9/checkpoint\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/gen_10/checkpoint\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/gen_9/checkpoint\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/gen_10/checkpoint\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01G5jhK7K3iDoKiY3syZmayL",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-17855",
+                "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/gen_10/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5521cb4a-a33a-420e-83e1-4939de6281da",
+            "uuid": "7e5edb02-9534-4a5f-bf1d-04680f0972e6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P5peopp2nQPY1XGbKseNFR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5887,
+                "cache_read_input_tokens": 27022,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5887
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NXymnMrVrdqirvqX4VLaDF",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-17855",
+                "command": "head -50 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/all_metrics.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5521cb4a-a33a-420e-83e1-4939de6281da",
+            "uuid": "794078d0-2ffe-4098-8e76-60c5beadd4aa",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P5peopp2nQPY1XGbKseNFR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5887,
+                "cache_read_input_tokens": 27022,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5887
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T03:32:45.303Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01G5jhK7K3iDoKiY3syZmayL",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"checkpoint\\\\nmetrics.json\\\\nsynthetic_data\\\\ntrainer\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5521cb4a-a33a-420e-83e1-4939de6281da",
+            "uuid": "5c471436-1d44-4e9c-9244-5daf18e40bcf",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"checkpoint\\\\nmetrics.json\\\\nsynthetic_data\\\\ntrainer\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"checkpoint\\nmetrics.json\\nsynthetic_data\\ntrainer\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T03:32:45.828Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NXymnMrVrdqirvqX4VLaDF",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.23419483150593,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011078699301381554,\\\\n    \\\\\\\"ece\\\\\\\": 0.010804557477709054,\\\\n    \\\\\\\"effective_rank\\\\\\\": 46.612774691899155,\\\\n    \\\\\\\"perplexity\\\\\\\": 26.948958972544652,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0979600146585773,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.5141374985748489,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.8127010497341054,\\\\n    \\\\\\\"mauve\\\\\\\": 0.031110582626136873,\\\\n    \\\\\\\"generation\\\\\\\": 0,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.500745799007679,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.01181542928801186,\\\\n    \\\\\\\"ece\\\\\\\": 0.06923721421227194,\\\\n    \\\\\\\"effective_rank\\\\\\\": 58.664278351426624,\\\\n    \\\\\\\"perplexity\\\\\\\": 22.906680552682573,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.09759209446336131,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.5124500211292787,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.8121673127402459,\\\\n    \\\\\\\"mauve\\\\\\\": 0.0314065242440103,\\\\n    \\\\\\\"generation\\\\\\\": 1,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.5279709900041323,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011853806854457662,\\\\n    \\\\\\\"ece\\\\\\\": 0.0814817014521384,\\\\n    \\\\\\\"effective_rank\\\\\\\": 63.1498418789002,\\\\n    \\\\\\\"perplexity\\\\\\\": 25.913836211243243,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0839296875,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.4421597043726904,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.7366443225675401,\\\\n    \\\\\\\"mauve\\\\\\\": 0.03198531125622274,\\\\n    \\\\\\\"generation\\\\\\\": 2,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.5705517679931194,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.01206434172162393,\\\\n    \\\\\\\"ece\\\\\\\": 0.08541292666745874,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5521cb4a-a33a-420e-83e1-4939de6281da",
+            "uuid": "865f3dc1-072c-4364-a2f9-d89942bc47ae",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.23419483150593,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011078699301381554,\\\\n    \\\\\\\"ece\\\\\\\": 0.010804557477709054,\\\\n    \\\\\\\"effective_rank\\\\\\\": 46.612774691899155,\\\\n    \\\\\\\"perplexity\\\\\\\": 26.948958972544652,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0979600146585773,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.5141374985748489,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.8127010497341054,\\\\n    \\\\\\\"mauve\\\\\\\": 0.031110582626136873,\\\\n    \\\\\\\"generation\\\\\\\": 0,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.500745799007679,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.01181542928801186,\\\\n    \\\\\\\"ece\\\\\\\": 0.06923721421227194,\\\\n    \\\\\\\"effective_rank\\\\\\\": 58.664278351426624,\\\\n    \\\\\\\"perplexity\\\\\\\": 22.906680552682573,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.09759209446336131,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.5124500211292787,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.8121673127402459,\\\\n    \\\\\\\"mauve\\\\\\\": 0.0314065242440103,\\\\n    \\\\\\\"generation\\\\\\\": 1,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.5279709900041323,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011853806854457662,\\\\n    \\\\\\\"ece\\\\\\\": 0.0814817014521384,\\\\n    \\\\\\\"effective_rank\\\\\\\": 63.1498418789002,\\\\n    \\\\\\\"perplexity\\\\\\\": 25.913836211243243,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0839296875,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.4421597043726904,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.7366443225675401,\\\\n    \\\\\\\"mauve\\\\\\\": 0.03198531125622274,\\\\n    \\\\\\\"generation\\\\\\\": 2,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.5705517679931194,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.01206434172162393,\\\\n    \\\\\\\"ece\\\\\\\": 0.08541292666745874,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"token_entropy\\\": 3.23419483150593,\\n    \\\"self_bleu\\\": 0.011078699301381554,\\n    \\\"ece\\\": 0.010804557477709054,\\n    \\\"effective_rank\\\": 46.612774691899155,\\n    \\\"perplexity\\\": 26.948958972544652,\\n    \\\"distinct_1\\\": 0.0979600146585773,\\n    \\\"distinct_2\\\": 0.5141374985748489,\\n    \\\"distinct_3\\\": 0.8127010497341054,\\n    \\\"mauve\\\": 0.031110582626136873,\\n    \\\"generation\\\": 0,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.500745799007679,\\n    \\\"self_bleu\\\": 0.01181542928801186,\\n    \\\"ece\\\": 0.06923721421227194,\\n    \\\"effective_rank\\\": 58.664278351426624,\\n    \\\"perplexity\\\": 22.906680552682573,\\n    \\\"distinct_1\\\": 0.09759209446336131,\\n    \\\"distinct_2\\\": 0.5124500211292787,\\n    \\\"distinct_3\\\": 0.8121673127402459,\\n    \\\"mauve\\\": 0.0314065242440103,\\n    \\\"generation\\\": 1,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.5279709900041323,\\n    \\\"self_bleu\\\": 0.011853806854457662,\\n    \\\"ece\\\": 0.0814817014521384,\\n    \\\"effective_rank\\\": 63.1498418789002,\\n    \\\"perplexity\\\": 25.913836211243243,\\n    \\\"distinct_1\\\": 0.0839296875,\\n    \\\"distinct_2\\\": 0.4421597043726904,\\n    \\\"distinct_3\\\": 0.7366443225675401,\\n    \\\"mauve\\\": 0.03198531125622274,\\n    \\\"generation\\\": 2,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.5\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.5705517679931194,\\n    \\\"self_bleu\\\": 0.01206434172162393,\\n    \\\"ece\\\": 0.08541292666745874,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good. The experiment completed successfully:\n- EXIT_CODE = 0\n- 11 generations (gen_0 to gen_10) all present\n- all_metrics.json exists with complete data\n- Checkpoints exist at gen_9/checkpoint and gen_10/checkpoint\n- Log ends with \"All metrics saved\" and \"Sentinel written\"\n\nNow I need to update the registry with:\n- checkpoint_path: `/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/gen_10/checkpoint`\n\n\n- log_path: `/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/train.log`\n\nLet me update both fields in the registry.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5521cb4a-a33a-420e-83e1-4939de6281da",
+            "uuid": "7ab4819f-c43d-4cae-bf36-51251862c26a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0168j4zMYa3whsNNqB63dtwT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1948,
+                "cache_read_input_tokens": 32909,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1948
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常完成：EXIT_CODE=0，gen_0-gen_10 完整，all_metrics.json 和 analysis_results.json 均存在。更新 registry。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5521cb4a-a33a-420e-83e1-4939de6281da",
+            "uuid": "d3421e46-6bcc-4aa8-951b-fd3fa544a3c4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0168j4zMYa3whsNNqB63dtwT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1948,
+                "cache_read_input_tokens": 32909,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1948
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Qx9QNowzbJobLYPEQewrmK",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "alpha_sweep_a050_postd093_s42_fp32",
+                "field": "checkpoint_path",
+                "value": "/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/gen_10/checkpoint",
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5521cb4a-a33a-420e-83e1-4939de6281da",
+            "uuid": "d69f49c5-2a49-4461-aba8-3a7cf2348136",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0168j4zMYa3whsNNqB63dtwT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1948,
+                "cache_read_input_tokens": 32909,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1948
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YM68QAQ7gvc3BgAvmnLGiF",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "alpha_sweep_a050_postd093_s42_fp32",
+                "field": "log_path",
+                "value": "/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/train.log",
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5521cb4a-a33a-420e-83e1-4939de6281da",
+            "uuid": "f5d16fe8-d5e6-4749-ae78-42089d3a4e34",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0168j4zMYa3whsNNqB63dtwT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1948,
+                "cache_read_input_tokens": 32909,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1948
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T03:32:57.151Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Qx9QNowzbJobLYPEQewrmK",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"alpha_sweep_a050_postd093_s42_fp32\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:57:33.388Z\\\", \\\"updated_at\\\": \\\"2026-05-20T03:32:56.869Z\\\", \\\"hypothesis\\\": \\\"验证 α=0.50 PermG≥6/8 是否独立于 D093 padding 变更。如果 post-D093 仍 PermG≥6/8 → onset [0.45, 0.50] 稳健；如果 PermG=0/8 → onset 依赖 padding side，需要全面重审\\\", \\\"parent\\\": \\\"alpha_sweep_a050_s42_fp32\\\", \\\"note\\\": \\\"D093 confound check: post-D093 right padding code\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=4 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_postd093_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\", \\\"server\\\": \\\"westd-17855\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": 205750, \\\"data_path\\\": \\\"data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"seed\\\": 42, \\\"precision\\\": \\\"fp32\\\", \\\"log_path\\\": \\\"results/alpha_sweep/a050_postd093_s42_fp32/train.log\\\", \\\"checkpoint_path\\\": \\\"results/alpha_sweep/a050_postd093_s42_fp32\\\", \\\"checkpoint_source\\\": \\\"N/A - derivation rerun not eval\\\", \\\"eval_data\\\": \\\"N/A - training experiment not eval\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T03:12:21.470Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T03:12:23.407Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T03:12:29.424454+00:00\\\"}]}, \\\"metrics\\\": {\\\"perm_granger_fdr_forward_sig\\\": \\\"6/8\\\", \\\"threshold_onset_forward_sig\\\": \\\"8/8\\\", \\\"naive_xcorr_forward_sig\\\": \\\"3/8\\\", \\\"diff_xcorr_forward_sig\\\": \\\"2/8\\\", \\\"ty_forward_sig\\\": \\\"4/8\\\", \\\"D093_confound\\\": \\\"excluded — PermG 6/8 = pre-D093, padding side change irrelevant\\\", \\\"mauve_pairs_not_sig\\\": \\\"consistent with pre-D093 pattern\\\", \\\"distinct_pairs_all_fwd_sig\\\": \\\"6/6\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/gen_10/checkpoint\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.662}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5521cb4a-a33a-420e-83e1-4939de6281da",
+            "uuid": "62ed8e07-e293-410e-abf9-22909dfeb572",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"alpha_sweep_a050_postd093_s42_fp32\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:57:33.388Z\\\", \\\"updated_at\\\": \\\"2026-05-20T03:32:56.869Z\\\", \\\"hypothesis\\\": \\\"验证 α=0.50 PermG≥6/8 是否独立于 D093 padding 变更。如果 post-D093 仍 PermG≥6/8 → onset [0.45, 0.50] 稳健；如果 PermG=0/8 → onset 依赖 padding side，需要全面重审\\\", \\\"parent\\\": \\\"alpha_sweep_a050_s42_fp32\\\", \\\"note\\\": \\\"D093 confound check: post-D093 right padding code\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=4 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_postd093_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\", \\\"server\\\": \\\"westd-17855\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": 205750, \\\"data_path\\\": \\\"data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"seed\\\": 42, \\\"precision\\\": \\\"fp32\\\", \\\"log_path\\\": \\\"results/alpha_sweep/a050_postd093_s42_fp32/train.log\\\", \\\"checkpoint_path\\\": \\\"results/alpha_sweep/a050_postd093_s42_fp32\\\", \\\"checkpoint_source\\\": \\\"N/A - derivation rerun not eval\\\", \\\"eval_data\\\": \\\"N/A - training experiment not eval\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T03:12:21.470Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T03:12:23.407Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T03:12:29.424454+00:00\\\"}]}, \\\"metrics\\\": {\\\"perm_granger_fdr_forward_sig\\\": \\\"6/8\\\", \\\"threshold_onset_forward_sig\\\": \\\"8/8\\\", \\\"naive_xcorr_forward_sig\\\": \\\"3/8\\\", \\\"diff_xcorr_forward_sig\\\": \\\"2/8\\\", \\\"ty_forward_sig\\\": \\\"4/8\\\", \\\"D093_confound\\\": \\\"excluded — PermG 6/8 = pre-D093, padding side change irrelevant\\\", \\\"mauve_pairs_not_sig\\\": \\\"consistent with pre-D093 pattern\\\", \\\"distinct_pairs_all_fwd_sig\\\": \\\"6/6\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/gen_10/checkpoint\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.662}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"alpha_sweep_a050_postd093_s42_fp32\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T22:57:33.388Z\", \"updated_at\": \"2026-05-20T03:32:56.869Z\", \"hypothesis\": \"验证 α=0.50 PermG≥6/8 是否独立于 D093 padding 变更。如果 post-D093 仍 PermG≥6/8 → onset [0.45, 0.50] 稳健；如果 PermG=0/8 → onset 依赖 padding side，需要全面重审\", \"parent\": \"alpha_sweep_a050_s42_fp32\", \"note\": \"D093 confound check: post-D093 right padding code\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=4 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_postd093_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:4\"], \"pid\": 205750, \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"precision\": \"fp32\", \"log_path\": \"results/alpha_sweep/a050_postd093_s42_fp32/train.log\", \"checkpoint_path\": \"results/alpha_sweep/a050_postd093_s42_fp32\", \"checkpoint_source\": \"N/A - derivation rerun not eval\", \"eval_data\": \"N/A - training experiment not eval\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T03:12:21.470Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T03:12:23.407Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-20T03:12:29.424454+00:00\"}]}, \"metrics\": {\"perm_granger_fdr_forward_sig\": \"6/8\", \"threshold_onset_forward_sig\": \"8/8\", \"naive_xcorr_forward_sig\": \"3/8\", \"diff_xcorr_forward_sig\": \"2/8\", \"ty_forward_sig\": \"4/8\", \"D093_confound\": \"excluded — PermG 6/8 = pre-D093, padding side change irrelevant\", \"mauve_pairs_not_sig\": \"consistent with pre-D093 pattern\", \"distinct_pairs_all_fwd_sig\": \"6/6\"}, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/gen_10/checkpoint\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.662}}"
+              }
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T03:32:57.795Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YM68QAQ7gvc3BgAvmnLGiF",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"alpha_sweep_a050_postd093_s42_fp32\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:57:33.388Z\\\", \\\"updated_at\\\": \\\"2026-05-20T03:32:57.550Z\\\", \\\"hypothesis\\\": \\\"验证 α=0.50 PermG≥6/8 是否独立于 D093 padding 变更。如果 post-D093 仍 PermG≥6/8 → onset [0.45, 0.50] 稳健；如果 PermG=0/8 → onset 依赖 padding side，需要全面重审\\\", \\\"parent\\\": \\\"alpha_sweep_a050_s42_fp32\\\", \\\"note\\\": \\\"D093 confound check: post-D093 right padding code\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=4 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_postd093_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\", \\\"server\\\": \\\"westd-17855\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": 205750, \\\"data_path\\\": \\\"data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"seed\\\": 42, \\\"precision\\\": \\\"fp32\\\", \\\"log_path\\\": \\\"results/alpha_sweep/a050_postd093_s42_fp32/train.log\\\", \\\"checkpoint_path\\\": \\\"results/alpha_sweep/a050_postd093_s42_fp32\\\", \\\"checkpoint_source\\\": \\\"N/A - derivation rerun not eval\\\", \\\"eval_data\\\": \\\"N/A - training experiment not eval\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T03:12:21.470Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T03:12:23.407Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T03:12:29.424454+00:00\\\"}]}, \\\"metrics\\\": {\\\"perm_granger_fdr_forward_sig\\\": \\\"6/8\\\", \\\"threshold_onset_forward_sig\\\": \\\"8/8\\\", \\\"naive_xcorr_forward_sig\\\": \\\"3/8\\\", \\\"diff_xcorr_forward_sig\\\": \\\"2/8\\\", \\\"ty_forward_sig\\\": \\\"4/8\\\", \\\"D093_confound\\\": \\\"excluded — PermG 6/8 = pre-D093, padding side change irrelevant\\\", \\\"mauve_pairs_not_sig\\\": \\\"consistent with pre-D093 pattern\\\", \\\"distinct_pairs_all_fwd_sig\\\": \\\"6/6\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/gen_10/checkpoint\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/train.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6342}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5521cb4a-a33a-420e-83e1-4939de6281da",
+            "uuid": "8b648808-71f1-4690-b9af-829d1f8fdff1",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"alpha_sweep_a050_postd093_s42_fp32\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:57:33.388Z\\\", \\\"updated_at\\\": \\\"2026-05-20T03:32:57.550Z\\\", \\\"hypothesis\\\": \\\"验证 α=0.50 PermG≥6/8 是否独立于 D093 padding 变更。如果 post-D093 仍 PermG≥6/8 → onset [0.45, 0.50] 稳健；如果 PermG=0/8 → onset 依赖 padding side，需要全面重审\\\", \\\"parent\\\": \\\"alpha_sweep_a050_s42_fp32\\\", \\\"note\\\": \\\"D093 confound check: post-D093 right padding code\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=4 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_postd093_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\", \\\"server\\\": \\\"westd-17855\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": 205750, \\\"data_path\\\": \\\"data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"seed\\\": 42, \\\"precision\\\": \\\"fp32\\\", \\\"log_path\\\": \\\"results/alpha_sweep/a050_postd093_s42_fp32/train.log\\\", \\\"checkpoint_path\\\": \\\"results/alpha_sweep/a050_postd093_s42_fp32\\\", \\\"checkpoint_source\\\": \\\"N/A - derivation rerun not eval\\\", \\\"eval_data\\\": \\\"N/A - training experiment not eval\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T03:12:21.470Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T03:12:23.407Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T03:12:29.424454+00:00\\\"}]}, \\\"metrics\\\": {\\\"perm_granger_fdr_forward_sig\\\": \\\"6/8\\\", \\\"threshold_onset_forward_sig\\\": \\\"8/8\\\", \\\"naive_xcorr_forward_sig\\\": \\\"3/8\\\", \\\"diff_xcorr_forward_sig\\\": \\\"2/8\\\", \\\"ty_forward_sig\\\": \\\"4/8\\\", \\\"D093_confound\\\": \\\"excluded — PermG 6/8 = pre-D093, padding side change irrelevant\\\", \\\"mauve_pairs_not_sig\\\": \\\"consistent with pre-D093 pattern\\\", \\\"distinct_pairs_all_fwd_sig\\\": \\\"6/6\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/gen_10/checkpoint\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/train.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6342}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"alpha_sweep_a050_postd093_s42_fp32\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T22:57:33.388Z\", \"updated_at\": \"2026-05-20T03:32:57.550Z\", \"hypothesis\": \"验证 α=0.50 PermG≥6/8 是否独立于 D093 padding 变更。如果 post-D093 仍 PermG≥6/8 → onset [0.45, 0.50] 稳健；如果 PermG=0/8 → onset 依赖 padding side，需要全面重审\", \"parent\": \"alpha_sweep_a050_s42_fp32\", \"note\": \"D093 confound check: post-D093 right padding code\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=4 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_postd093_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:4\"], \"pid\": 205750, \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"precision\": \"fp32\", \"log_path\": \"results/alpha_sweep/a050_postd093_s42_fp32/train.log\", \"checkpoint_path\": \"results/alpha_sweep/a050_postd093_s42_fp32\", \"checkpoint_source\": \"N/A - derivation rerun not eval\", \"eval_data\": \"N/A - training experiment not eval\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T03:12:21.470Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T03:12:23.407Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-20T03:12:29.424454+00:00\"}]}, \"metrics\": {\"perm_granger_fdr_forward_sig\": \"6/8\", \"threshold_onset_forward_sig\": \"8/8\", \"naive_xcorr_forward_sig\": \"3/8\", \"diff_xcorr_forward_sig\": \"2/8\", \"ty_forward_sig\": \"4/8\", \"D093_confound\": \"excluded — PermG 6/8 = pre-D093, padding side change irrelevant\", \"mauve_pairs_not_sig\": \"consistent with pre-D093 pattern\", \"distinct_pairs_all_fwd_sig\": \"6/6\"}, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/gen_10/checkpoint\", \"log_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/train.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6342}}"
+              }
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。\n\n**确认结果：**\n- EXIT_CODE=0，训练正常完成\n- gen_0 ~ gen_10 共 11 个 generation 目录完整，all_metrics.json 和 analysis_results.json 均存在\n- 日志末尾为 \"All metrics saved\" + \"Sentinel written\"，无 error\n- `checkpoint_path` → `/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/gen_10/checkpoint`\n- `log_path` → `/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/train.log`\n\n日志内容与 conclusion=success (PermG=6/8) 一致，无异常。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5521cb4a-a33a-420e-83e1-4939de6281da",
+            "uuid": "0e9e2ded-cd63-448d-a399-0b17b333e1c0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JSGtvN6tKMGm3rFPtqCogw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2715,
+                "cache_read_input_tokens": 34857,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2715
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。\n\n**确认结果：**\n- EXIT_CODE=0，训练正常完成\n- gen_0 ~ gen_10 共 11 个 generation 目录完整，all_metrics.json 和 analysis_results.json 均存在\n- 日志末尾为 \"All metrics saved\" + \"Sentinel written\"，无 error\n- `checkpoint_path` → `/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/gen_10/checkpoint`\n- `log_path` → `/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/train.log`\n\n日志内容与 conclusion=success (PermG=6/8) 一致，无异常。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 46796,
+            "duration_api_ms": 45737,
+            "num_turns": 12,
+            "stop_reason": "end_turn",
+            "session_id": "5521cb4a-a33a-420e-83e1-4939de6281da",
+            "total_cost_usd": 0.29961375,
+            "usage": {
+              "input_tokens": 9,
+              "cache_creation_input_tokens": 25731,
+              "cache_read_input_tokens": 157552,
+              "output_tokens": 2293,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 25731,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 223,
+                  "cache_read_input_tokens": 34857,
+                  "cache_creation_input_tokens": 2715,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 2715
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2494,
+                "outputTokens": 31,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0026490000000000003,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 9,
+                "outputTokens": 2293,
+                "cacheReadInputTokens": 157552,
+                "cacheCreationInputTokens": 25731,
+                "webSearchRequests": 0,
+                "costUSD": 0.29696475,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "a61f65b5-5918-4f96-a860-977932fc7cfa"
+          },
+          "id": "event-000036"
+        }
+      ],
+      "message_count": 36
+    }
+  ],
+  "readable_path": "readable/worker-executions/diagnose-alpha-sweep-a050-postd093-s42-fp32.md"
+}

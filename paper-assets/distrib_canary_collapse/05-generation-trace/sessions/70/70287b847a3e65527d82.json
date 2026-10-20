@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70287b847a3e65527d82",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis check westd17855 experiments",
+  "task_key": "worker_analysis_check_westd17855_experiments_20260519T051151",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_check_westd17855_experiments_20260519T051151_result.json",
+    "occurrence": 1,
+    "bytes": 668,
+    "sha256": "b4af3498c87ec078167cf73df027cb0f441ceea857a625963e1868ce25a6c662"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/westd17855_status_check.md`。\n\n**摘要：**\n\n| 实验 | 状态 |\n|------|------|\n| interv_pred_a075_s42_fp32_v4 | 已完成 (exit 0, 11/11 gen) |\n| alpha_sweep_a060_s42_fp32_v3 | 已完成 (exit 0, 11/11 gen) |\n| alpha_sweep_a005_s42_v3 | 已完成 (exit 0, 11/11 gen) |\n| qwen35_08b_wiki_a100_s42_v2 | 运行中 (GPU 1, gen_5 训练 23%, 预计 ~4-5h 后完成) |\n| smollm3_3b_wiki_a100_s42_v3 | **未找到** — 服务器上无任何痕迹（无进程/tmux/exit file/输出目录/log），可能从未成功提交 |\n\nGPU 2-5 空闲，可用于重新提交 smollm3。GPU 0 另有 `scale_69b_a100_s42` 在跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-check-westd17855-experiments.md"
+}

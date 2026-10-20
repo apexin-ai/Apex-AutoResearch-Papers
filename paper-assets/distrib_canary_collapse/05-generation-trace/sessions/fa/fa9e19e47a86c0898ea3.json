@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa9e19e47a86c0898ea3",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis d213 integrity check",
+  "task_key": "worker_analysis_d213_integrity_check_20260524T005725",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d213_integrity_check_20260524T005725_result.json",
+    "occurrence": 1,
+    "bytes": 2409,
+    "sha256": "0f90daa44bdb9e84a1f1972247511a54217f77de491b1f223729cae047e225f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the report:\n\n---\n\n## 子任务 1: T=15 α=0.75 s42 1.4B 数据\n\n- **找到** — 在 westd-19828 上\n- **实际路径**: \n  - 原始输出: `/root/autodl-tmp/distrib_canary_collapse/outputs/scale_14b_t15_a075_s42_fp32/`\n  - 已转移至: `/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t15_a075_s42_fp32_14b/`\n- **之前找不到的原因**: Worker 在 `results/phase_diagram/` 搜索 `*t15_a075_s42_fp32_14b*` 但原始输出在 `outputs/` 目录下且命名为 `scale_14b_t15_a075_s42_fp32`（前缀式 vs 后缀式 14b）。数据后来已被复制到 `results/phase_diagram/t15_a075_s42_fp32_14b/`\n- **完整性**: gen_0 ~ gen_15（16 个目录，T=15 正确），EXIT_CODE=0，all_metrics.json 完整含全部 16 代\n- **D102 分析**: 已于 2026-05-24 08:42 CST 在 19828 上运行完成，用 `run_5method_analysis_d102.py`\n- **已下载到本地**: `artifacts/D102_14b_t15_a075_s42_fp32_14b_6pair.json`\n\n**D102 结果:**\n| 指标 | 值 |\n|---|---|\n| PermG_fwd | 6/6 |\n| PermG_rev | 0/6 |\n| DiffXcorr_fwd | 6/6 |\n| Threshold_fwd | 6/6 |\n| TY_fwd | 5/6 |\n| Robust (K≥3) | 6/6 |\n\n所有 6 pair 的 consensus votes ≥ 4（token_entropy<distinct_1 和 ece<distinct_2 为 5/5 全票）。\n\n---\n\n## 子任务 2: 管线确认\n\n**使用的脚本:**\n- **s42 全系列**: `run_5method_analysis_d102.py`（项目根目录），输出详细格式（44KB，含完整 lag 数据、所有方法 FDR 计数）\n- **s43 T=15 全系列**: `batch_d102_6pair.py`（scripts/ 目录），输出精简格式（~5KB，含 summary + consensus + metrics_trajectory）\n- **s44 T=10 全系列**: `batch_d102_6pair.py`，同上精简格式（~4KB）\n\n**区分依据**: 文件大小差异 10x（44KB vs 4-5KB）、s42 有 `diff_xcorr_fdr_*` / `threshold_forward_sig` / `ty_forward_sig` 字段而 s43/s44 没有、s43/s44 有 `T` / `note` / `total_pairs` 字段而 s42 没有\n\n**BH FDR**: 全部包含 — 所有文件的 summary 都使用 `perm_granger_fdr_forward_sig` 命名（fdr 后缀）\n\n**D111 方向滤波**: 隐式包含 — 所有文件按 `forward` / `reverse` 分析，consensus 仅统计 forward 方向。peak_lag 值在 s42 详细输出中可见（forward 分析中 peak_lag < 0 = canary leads downstream，符合 C009 修正后的约定）\n\n**threshold_criterion**: 全部使用 `true_3sigma_d105`（符合 C008）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d213-integrity-check.md"
+}

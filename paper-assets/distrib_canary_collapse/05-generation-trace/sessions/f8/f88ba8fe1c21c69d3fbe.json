@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f88ba8fe1c21c69d3fbe",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code a025 analysis prep",
+  "task_key": "worker_code_a025-analysis-prep_20260515T002306",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_a025-analysis-prep_20260515T002306_result.json",
+    "occurrence": 1,
+    "bytes": 3272,
+    "sha256": "58d79b2f6959bf1d487e18ee8e57299d7c47d435957b271103cd29a701057871"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集完毕。\n\n---\n\n## 分析 Pipeline 就绪状态报告\n\n### 1. 使用方式\n\n```bash\ncd /root/autodl-tmp/distrib_canary_collapse\npython analyze_alpha_sweep.py --results_dir results/alpha_sweep --max_lag 3 --n_permutations 5000\n```\n\n参数：\n- `--results_dir`：默认 `results/alpha_sweep`，自动发现所有 `a\\d{3}_s\\d+(_v\\d+)?` 目录\n- `--output_dir`：默认 `{results_dir}/analysis/`\n- `--max_lag`：默认 3\n- `--n_permutations`：默认 5000\n- **不支持指定单个 α**，自动扫描全部匹配目录\n\n输出：\n- `results/alpha_sweep/analysis/alpha_sweep_analysis.json`\n- `results/alpha_sweep/analysis/summary.txt`\n\n### 2. 数据状态\n\n| Run | Gens (目录) | metrics.json | all_metrics.json | 状态 |\n|-----|------------|--------------|------------------|------|\n| a000_s42 | gen_0~gen_10 (11) | 11 | 有 | **完成** |\n| a025_s42 | gen_0~gen_8 (9目录) | 8 (gen_0~7) | 无 | **运行中** |\n\nPipeline 读 `gen_N/metrics.json`，不依赖 `all_metrics.json`，所以 a025 完成后直接可用。MIN_GENERATIONS=4，当前 8 gen 已满足。\n\n### 3. Metric 字段覆盖\n\na025_s42 的 metrics.json 包含：`token_entropy, self_bleu, distinct_1, distinct_2, distinct_3, ece, effective_rank, perplexity, mauve, generation`\n\nPipeline 需要的字段全部存在：\n- Canary: `token_entropy`, `ece` ✅\n- Downstream: `distinct_1`, `distinct_2`, `distinct_3`, `perplexity` ✅\n\n### 4. 覆盖度 Checklist\n\n| 分析模块 | 状态 |\n|----------|------|\n| Metric extraction（时间序列） | ✅ `extract()` + `orient()` |\n| Naive cross-correlation (max_lag=3) | ✅ `naive_xcorr()` |\n| Differenced cross-correlation | ✅ `diff_xcorr()` |\n| Toda-Yamamoto Granger | ✅ `toda_yamamoto()` + ADF order detection |\n| Permutation Granger | ✅ `perm_granger()` → 调用 `permutation_granger.py` |\n| BH FDR 多重比较校正 | ✅ `apply_bh_fdr()` via `multipletests(method='fdr_bh')` |\n| Effect size (Cohen's r / f²) | ✅ `_cohen_r_label()` / `_f2_label()` |\n| Method consistency matrix | ✅ `build_consistency()` (≥2 consensus, ≥3 strong) |\n| `permutation_granger.py` 可导入 | ✅ 文件存在 |\n| 已有 analysis/ 历史输出 | ✅ 上次 a000 单点分析的结果已在 |\n\n**缺失项**：\n- **Threshold-based onset 检测**：❌ 代码中未实现独立 onset detection 函数\n- **Cohen's f² df<20 suppress 分类**：⚠️ `_f2_label()` 不检查 df，但 `toda_yamamoto()` 返回 `df_resid`，summary 中未做 df<20 suppress 逻辑\n\n### 5. 分析命令（a025 完成后直接运行）\n\n```bash\ncd /root/autodl-tmp/distrib_canary_collapse\npython analyze_alpha_sweep.py --results_dir results/alpha_sweep --max_lag 3 --n_permutations 5000\n```\n\n将同时分析 a000_s42 + a025_s42 两个 α 点，输出覆盖 `results/alpha_sweep/analysis/`。\n\n### 6. 需要的后处理步骤\n\n1. **等 a025 训练完成**（gen_8+ 产出 metrics.json）\n2. 运行上述命令\n3. 检查 `summary.txt` 中 α=0.25 vs α=0.0 的 significance rate 差异\n4. 如需 onset detection，需另写脚本或手动从时间序列判断拐点\n5. 如需 df<20 时 suppress effect size 分类，需修改 `write_summary()` 中的 effect size 输出逻辑"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-a025-analysis-prep.md"
+}

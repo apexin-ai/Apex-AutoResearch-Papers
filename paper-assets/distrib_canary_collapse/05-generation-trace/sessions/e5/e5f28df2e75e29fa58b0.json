@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5f28df2e75e29fa58b0",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "audit table7 pair config",
+  "task_key": "worker_audit_table7_pair_config_20260519T154340",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_table7_pair_config_20260519T154340_result.json",
+    "occurrence": 1,
+    "bytes": 3588,
+    "sha256": "feeb0378f065713d3291dfd04ce4cf20576d95ce304bceb384a937299da9639e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "westd-19828 的完整结果已出。westd-17855 的 pair 数据已从之前 grep 结果获得。以下是完整审计报告。\n\n---\n\n## D102 Table 7 Pair 配置审计报告\n\n### 标准配置\n- Canary (2): `token_entropy`, `ece`\n- Downstream (4): `distinct_1`, `distinct_2`, `distinct_3`, `mauve`\n- 共 8 对: `{token_entropy, ece} × {distinct_1, distinct_2, distinct_3, mauve}`\n\n---\n\n### 主分析文件 (5method_leadlag.json) — westd-19828\n\n| exp_id | 结果路径 | pair 数 | 包含 ppl? | 包含 mauve? | 标记 |\n|--------|---------|---------|----------|------------|------|\n| Pythia-410M s42 | `generalize/pythia410m_wiki_a100_s42/analysis/5method_leadlag.json` | 8 | **YES** | NO | **NON-STANDARD** |\n| OPT-1.3B s42 | `generalize/opt1b_wiki_a100_s42/analysis/5method_leadlag.json` | 8 | **YES** | NO | **NON-STANDARD** |\n| Pythia-1.4B s42 | `generalize/pythia14b_wiki_a100_s42/analysis/5method_leadlag.json` | 8 | **YES** | NO | **NON-STANDARD** |\n| Pythia-1B C4 s42 | `generalize/pythia1b_c4_a100_s42/analysis/5method_leadlag.json` | 8 | **YES** | NO | **NON-STANDARD** |\n| GPT-2m s42 | `generalize/gpt2m_wiki_a100_s42/analysis/5method_leadlag.json` | 8 | NO | YES | STANDARD |\n| GPT-2m s43 | `gen_wiki_gpt2m_a100_s43/analysis/5method_leadlag.json` | 8 | NO | YES | STANDARD |\n\n### westd-17855 (analysis_results.json)\n\n| exp_id | 结果路径 | pair 数 | 包含 ppl? | 包含 mauve? | 标记 |\n|--------|---------|---------|----------|------------|------|\n| Qwen3.5-0.8B s42 | `generalize/qwen35_08b_wiki_a100_s42_fp32_v2/analysis_results.json` | 8 | NO | YES | STANDARD |\n| Pythia-6.9B s42 | `scale_check/pythia69b_wiki_a100_s42/analysis_results.json` | 8 | NO | YES | STANDARD |\n\n---\n\n### 辅助分析文件对比\n\n| 文件 | 状态 | 备注 |\n|------|------|------|\n| `pythia410m_8pair_5method_analysis.json` | **NON-STANDARD** | canonical_pairs 明确标注 `['token_entropy', 'ece'] x ['perplexity', 'distinct_1', 'distinct_2', 'distinct_3']` |\n| `opt1b_unified_5method.json` | **NON-STANDARD** | 仍用 perplexity |\n| `pythia14b_unified_5method.json` | **NON-STANDARD** | 仍用 perplexity |\n| `pythia1b_c4_unified_5method.json` | **STANDARD** | **已修正**为 mauve（唯一一个修正过的） |\n| `gpt2m_8pair_table7.json` | STANDARD | 使用 mauve |\n\n### table7_3cond_nperm5000.json（合并文件）— 问题更严重\n\n| 子实验 | pair 数 | 问题 |\n|--------|---------|------|\n| pythia1b_c4_a100_s42 | **16** | 用了 `{te, ece, effective_rank, self_bleu}` × `{distinct_1/2/3, perplexity}` — 多了 effective_rank/self_bleu 做 canary，ppl 做 downstream |\n| pythia1b_c4_a100_s43 | **16** | 同上 |\n| pythia14b_wiki_a100_s43 | **16** | 同上 |\n\n---\n\n### 汇总\n\n**STANDARD（4个）**: GPT-2m s42, GPT-2m s43, Qwen3.5-0.8B, Pythia-6.9B\n\n**NON-STANDARD（4个）**: Pythia-410M, OPT-1.3B, Pythia-1.4B, Pythia-1B C4\n- 共同问题：用 `perplexity` 替代了 `mauve` 作为 downstream\n- 配置为 `{token_entropy, ece} × {distinct_1, distinct_2, distinct_3, perplexity}`\n- C4 的 `unified_5method.json` 已单独修正过，但主分析文件 `5method_leadlag.json` 仍是旧版\n\n**合并 table7 文件额外问题**: 3 个子实验使用了 16 对（加入 effective_rank 和 self_bleu 作为 canary），完全偏离标准配置。\n\n**结论**: 问题不仅限于 D101 发现的 GPT-2m，实际上 **一半的 Table 7 实验**（4/8）的主分析文件用了错误的 pair 配置（→ppl 代替 →mauve）。这些实验的分析需要用标准 8-pair 配置重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-table7-pair-config.md"
+}

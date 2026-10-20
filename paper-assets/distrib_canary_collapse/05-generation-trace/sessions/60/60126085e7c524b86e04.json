@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60126085e7c524b86e04",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diagnose phase diagram t20 a060 s43 fp32",
+  "task_key": "worker_diagnose_phase_diagram_t20_a060_s43_fp32_20260521T192541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_phase_diagram_t20_a060_s43_fp32_20260521T192541_result.json",
+    "occurrence": 1,
+    "bytes": 519,
+    "sha256": "629279542030291296219b17628ac932d1c3f4d0fd21ec5a84427ae1ad23483a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**失败原因**: 磁盘满 (`No space left on device`, os error 28)。westd-17855 数据盘 350G 已 100% 占满，仅剩 1.2M。gen_3 训练跑完了 5000/5000 steps 但 `model.save_pretrained()` 写 safetensors 时失败。\n\n**进度**: gen_0–gen_2 完整可用，gen_3 checkpoint 损坏（36KB/~800MB），gen_4–gen_19 未开始。\n\n**重试方案**: 需先在 westd-17855 释放 ≥34GB 空间（或迁移到其他服务器），删除损坏的 gen_3，从 gen_2 续跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-phase-diagram-t20-a060-s43-fp32.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2172353a640bb789bf2",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "monitor status check all 8",
+  "task_key": "worker_monitor_status-check-all-8_20260521T231255",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_status-check-all-8_20260521T231255_result.json",
+    "occurrence": 1,
+    "bytes": 734,
+    "sha256": "673e9ab10a4120248b10ebb524369db358133ada60b22cd19188b2d2799c6309"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n1. t25_a075_s42_fp32 (19828): gen 26/25 | STILL_RUNNING  (gen_0..gen_25 exist, process alive)\n2. t20_a045_s43_fp32 (19828): gen 16/20 | STILL_RUNNING\n3. t25_a050_s42_fp32 (17855): gen 10/25 | STILL_RUNNING\n4. t15_a060_s43_fp32 (17855): gen 12/15 | STILL_RUNNING\n5. t15_a045_s43_fp32 (17855): gen 11/15 | STILL_RUNNING\n6. t25_a060_s42_fp32 (17855): gen 10/25 | STILL_RUNNING\n7. t20_a060_s43_fp32 (17855): gen 10/20 | STILL_RUNNING\n8. t25_a045_s42_fp32 (17855): gen 25/25 | STILL_RUNNING  (gen_0..gen_24 exist, process alive — likely finishing)\n```\n\n备注：19828 上还跑着 `generalize_pythia410m_wiki_a100_s42`（非 phase_diagram）；17855 上还跑着 `interv_react_s43`（非 phase_diagram）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-status-check-all-8.md"
+}

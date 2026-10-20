@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e94622c3ca3d65bf4d6d",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis dose response gap",
+  "task_key": "worker_analysis_dose-response-gap_20260519T071655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_dose-response-gap_20260519T071655_result.json",
+    "occurrence": 1,
+    "bytes": 1262,
+    "sha256": "1b09335b839377eb2cd5a44393cd1a4a4778da6db871b56b67268a76b065e541"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## 汇总\n\n### 报告已注册\n`art_20260519_4b0a1a` → `artifacts/_project/report/report_dose_response_gaps.md`\n\n### Dose-Response Map fp32 状态\n- **✅ fp32 完成**: α=0.05, 0.60, 1.00（3/8 点）\n- **部分 fp32**: α=0.10（s43 done, s42 RUNNING）\n- **RUNNING**: α=0.50（3 seeds fp32, ~10:30 UTC 完成）\n- **fp16 缺口**: α=0.00（3 seeds）、α=0.25（3 seeds）、α=0.75（低优先）\n\n### experiment_plan.yaml 6 条过期指针已修复\n| Plan ID | 修复 |\n|---------|------|\n| plan_001 (α=0.25 s42) | `alpha_sweep_a025_s42_v3` → `null`（待 fp32 重跑）|\n| plan_001b (α=0.00 s42) | `alpha_sweep_a000_s42` → `null`（待 fp32 重跑）|\n| plan_001c (α=0.50 s42) | `alpha_sweep_a050_s42` → `alpha_sweep_a050_s42_fp32`（RUNNING）|\n| plan_001d (α=0.75 s42) | `alpha_sweep_a075_s42` → `null`（低优先）|\n| plan_010 (GPT-2m) | `gen_wiki_gpt2m_a100_s42_v3` → `gen_wiki_gpt2m_a100_s42_v4`（success）|\n| plan_030 (OPT-1.3B s43) | `gen_opt13b_a100_s43_bf16` → `null`（killed，需重排）|\n\n### 下一步\nα=0.00 + α=0.25 共 6 seeds fp32 重跑，最早 ~10:30 UTC（a050 完成释放 GPU 后）启动，~15:30 UTC 完成。完成后 map 达 7/8 fp32 覆盖。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-dose-response-gap.md"
+}

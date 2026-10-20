@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc33615224f120787113",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "train generalize pythia14b wiki a100 s43 retry",
+  "task_key": "worker_train_generalize_pythia14b_wiki_a100_s43_retry_20260518T024807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_generalize_pythia14b_wiki_a100_s43_retry_20260518T024807_result.json",
+    "occurrence": 1,
+    "bytes": 530,
+    "sha256": "beab042c701261ea6a5da54de5eabd41b5b1aadac9fbd7dc33b23a4eabb63141"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**无需重新提交。** 训练正在正常运行：\n\n- **PID 314396** (bash wrapper) → **PID 314401** (python) 均存活\n- **cuda:1**: 24847MiB 显存占用，79% GPU 利用率\n- **tmux session** `generalize_pythia14b_wiki_a100_s43` 存在（创建于 10:46:35）\n- **进度**: Generation 0 (baseline)，正在做 synthetic data generation（padding 警告是正常的 generation 输出）\n- 启动仅 ~2 分钟，刚开始跑\n\nRegistry 中该 exp_id 未查到记录，需要更新 registry 状态吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-generalize-pythia14b-wiki-a100-s43-retry.md"
+}

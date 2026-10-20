@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "36bb6aa99d52c1324f6d",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis d127 specification curve",
+  "task_key": "worker_analysis_d127_specification_curve_20260520T095423",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d127_specification_curve_20260520T095423_result.json",
+    "occurrence": 1,
+    "bytes": 1182,
+    "sha256": "c69e2c0f6ef4411ea9936abc7445139825b1b056268119da0db62e8e28048f8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D127 complete. Summary:\n\n**Specification Curve: 1160 specs across 29 experiments, 536 significant (46.2%)**\n\n### Key findings\n\n| Method | Positive Rate | FP at α=0.00 |\n|--------|-------------|--------------|\n| Naive XCorr | 94.8% | **100%** |\n| Diff XCorr (FDR) | 68.1% | 50% |\n| Perm Granger (FDR) | 40.1% | **0%** |\n| TY Granger | 19.8% | 12.5% |\n| Threshold Onset | 8.2% | 37.5% |\n\n**Perm Granger phase transition** (best-calibrated method, 0% FP at null):\n- α < 0.50: ~0% detection (0/32 at α=0.25, 0/8 at α=0.30–0.45)\n- α = 0.50: 81.2% detection\n- α = 0.75: 87.5%\n- α = 1.00: 65.3%\n\n**Other contrasts**:\n- α ≥ 0.50 vs < 0.50: 53.5% vs 35.8%\n- Distinct vs Mauve downstream: 51.4% vs 30.7% (confirms mauve's known weakness)\n- Token entropy vs ECE canary: 47.4% vs 45.0% (negligible difference)\n\n### Outputs on westd-17855\n- `artifacts/d127_spec_curve/d127_spec_curve.json` — full matrix + stats (391 KB)\n- `artifacts/d127_spec_curve/spec_curve.png` — 5-method spec curve\n- `artifacts/d127_spec_curve/spec_curve_calibrated.png` — 4-method curve excluding Naive XCorr\n- `scripts/d127_spec_curve.py` — analysis script"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d127-specification-curve.md"
+}

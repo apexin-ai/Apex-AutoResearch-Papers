@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aec6a82adc18688f78ed",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "viz regime map v2",
+  "task_key": "worker_viz_regime_map_v2_20260516T204318",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_regime_map_v2_20260516T204318_result.json",
+    "occurrence": 1,
+    "bytes": 226,
+    "sha256": "d9dd9d04501d491ff0d5cdbbda2237e0c7351d410f65cc1ea30590cedbd4a543"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`regime_map.pdf` (36KB) 已更新到本地和服务器，α=0.50 区域已标记为 \"Boundary (seed-dependent onset)\"，使用黄橙渐变 + \"?\" 标记 + 4-seed scatter dots 展示种子间变异。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-regime-map-v2.md"
+}

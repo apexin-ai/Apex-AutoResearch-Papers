@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d4d8bcbaf18fbd51cf0",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis scale 14b effective rank",
+  "task_key": "worker_analysis_scale_14b_effective_rank_20260519T020933",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_scale_14b_effective_rank_20260519T020933_result.json",
+    "occurrence": 1,
+    "bytes": 1384,
+    "sha256": "32a001347dca2599b98782353f9c7a10bd8e83485d092474b3dd6460a13d4d46"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/scale_14b_effrank_analysis/analysis_report.md`。\n\n核心发现总结：\n\n**Q1 轨迹**：不是渐进上升，是 gen_0→1 的阶跃式跳变（+48.9%），随后 gen_2→10 在 82 附近稳定。一次性 regime shift。\n\n**Q2 剪刀差**：确认存在三层剪刀差：\n- effective_rank 在 gen_0→1 跳升，distinct_n 从 gen_1 开始持续下滑（d3: 0.81→0.41）\n- token_entropy 与 effective_rank 在 gen_0→1 同步剧变但方向相反（entropy 降，rank 升）\n- perplexity 持续线性上升，而 effective_rank 已锁定不动\n\n**Q3 对比 410M**：410M 也有 effective_rank 上升但模式完全不同——倒 U 型（+27%，gen_4 峰值后回落），而 1.4B 是阶跃函数（+62%，plateau 不回落）。是 scale-amplified 现象，非 scale-specific。2048-dim 空间提供更多扩散自由度，更大参数量带来更锐利的 phase transition。\n\n**Q4 机制**：\"Confident diffusion\" 假说——collapse 使模型进入\"自信但失焦\"状态：token 层面更确定、更重复（low entropy, low distinct_n），但这些重复模式在 embedding 空间中分散投射到更多正交维度（high effective_rank）。α=1.00 数据进一步佐证（rank 峰值 106，perplexity 达 677）。\n\nPaper-ready explanation 在报告末尾，两段，可直接用于 Results/Discussion。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-scale-14b-effective-rank.md"
+}

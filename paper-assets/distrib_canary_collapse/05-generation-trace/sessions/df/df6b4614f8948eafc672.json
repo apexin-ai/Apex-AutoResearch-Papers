@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df6b4614f8948eafc672",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "figure fix differencing dmax fval v2",
+  "task_key": "worker_figure_fix-differencing-dmax-fval-v2_20260515T180921",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fix-differencing-dmax-fval-v2_20260515T180921_result.json",
+    "occurrence": 1,
+    "bytes": 676,
+    "sha256": "1867752065d0f79aa86e89fc6170440ce3c8bf67a5af8f3d7019682269bc77c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修改汇总：\n\n**数据验证（与上次审计一致）：**\n| pair | differenced F | undifferenced F |\n|------|--------------|-----------------|\n| token_entropy→d1 | 612–2615 | 200–501 |\n| token_entropy→d2 | 226–1798 | 114–550 |\n| token_entropy→d3 | 95–738 | 101–232 |\n| ece→d1 | 567–6124 | 84–3370 |\n| ece→d2 | 171–7643 | 124–249 |\n| ece→d3 | 71–921 | 74–236 |\n\n**修正内容（`gen_fig_differencing_dmax.py` 第47行）：**\n- Undifferenced: `F = 200–501` → `F = 74–3370`\n- Differenced: `F = 612–2615` → `F = 71–7643`\n\nPDF/PNG 已重新生成并注册（`art_20260515_2e7869`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fix-differencing-dmax-fval-v2.md"
+}

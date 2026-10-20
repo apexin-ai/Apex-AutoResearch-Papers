@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "id": "9fb860dee8b4f346c29a",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "ops t10a075 kill d102",
+  "task_key": "worker_ops_t10a075-kill-d102_20260522T191455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_t10a075-kill-d102_20260522T191455.log",
+    "occurrence": 1,
+    "bytes": 1421738,
+    "sha256": "b205265e66164b25bbe7dafef017c3f52177e9638fea011b42f6b8da4c1c8be3"
+  },
+  "statistics": {
+    "messages": 1176,
+    "user_turns": 1,
+    "tool_calls": 535,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "assistant": 98,
+      "tool_call": 535,
+      "tool_result": 535,
+      "record": 1,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1010,
+      "chunks": [
+        {
+          "path": "9fb860dee8b4f346c29a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9fb860dee8b4f346c29a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "9fb860dee8b4f346c29a-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "9fb860dee8b4f346c29a-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "9fb860dee8b4f346c29a-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "9fb860dee8b4f346c29a-part-0006.json",
+          "message_count": 110
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 166,
+      "chunks": [
+        {
+          "path": "9fb860dee8b4f346c29a-part-0006.json",
+          "message_count": 70
+        },
+        {
+          "path": "9fb860dee8b4f346c29a-part-0007.json",
+          "message_count": 96
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-t10a075-kill-d102.md"
+}

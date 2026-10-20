@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f0c162a5ed44a2ee8fe8",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "infra diagnose crash",
+  "task_key": "worker_infra_diagnose-crash_20260514T083835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_diagnose-crash_20260514T083835_result.json",
+    "occurrence": 1,
+    "bytes": 1578,
+    "sha256": "90d238427a6f8423a0bef0d822d337ef5a2e2f715d2d2a0c03095001b45173e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 结论：进程还活着，没有消失\n\n**`pgrep -a iterative_train` 返回空是因为进程名显示为 `python`，不是 `iterative_train`。**\n\nnvidia-smi 确认两个进程正在运行：\n\n| 实验 | 原始 PID | 实际 PID | GPU | 显存占用 | GPU 利用率 |\n|------|---------|---------|-----|---------|-----------|\n| rep_42 | 13678 | 13683 | cuda:0 | 14380MiB / 97887MiB | 44% |\n| rep_43 | 13758 | 13763 | cuda:1 | 14380MiB / 97887MiB | 52% |\n\nPID 差异（13678→13683, 13758→13763）说明原始启动脚本 fork 出了 python 子进程。\n\n### 当前进度\n\n两个实验都完成了 gen_0 和 gen_1，**正在跑 gen_2/10（合成数据生成阶段）**：\n- `gen_2/` 目录已创建但为空，日志末尾均显示 `Generation 2/10 → Generating synthetic data …`\n\n### Gen 1 指标\n\n| 指标 | rep_42 | rep_43 |\n|------|--------|--------|\n| perplexity | 55.95 | 55.45 |\n| entropy | 1.9085 | 1.9092 |\n| effective_rank | 79.6 | 78.4 |\n| mauve | 0.0323 | 0.0299 |\n| ece | 0.204 | 0.205 |\n| distinct_2 | 0.514 | 0.518 |\n\n### 注意事项\n\n1. **MAUVE 极低（~0.03）**：FAISS 发出警告 `clustering 3128 points to 156 centroids: please provide at least 6084 training points`，数据点不足导致 MAUVE 计算不可靠。\n2. **日志被淹没**：海量 `right-padding was detected` 警告（>32万字符），建议代码中加 `transformers.logging.set_verbosity_error()` 抑制。\n3. **系统健康**：GPU 温度正常（39°C / 41°C），磁盘 8.8G/250G（4%），无异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-diagnose-crash.md"
+}

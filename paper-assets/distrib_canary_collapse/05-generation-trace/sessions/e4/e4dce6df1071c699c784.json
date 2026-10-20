@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e4dce6df1071c699c784",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis alpha sweep a075 s42 fp32",
+  "task_key": "worker_analysis_alpha_sweep_a075_s42_fp32_20260519T114254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_alpha_sweep_a075_s42_fp32_20260519T114254_result.json",
+    "occurrence": 1,
+    "bytes": 1162,
+    "sha256": "fe75dfd7b49b59106650fe8fe0f7605a0da12ffdeb85405672e3b678d85ab0c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新 partial metrics。\n\n续跑命令（等 GPU 空出后执行）:\n\n```bash\ncd /root/autodl-tmp/distrib_canary_collapse && \\\nexport HF_ENDPOINT=https://hf-mirror.com && \\\nexport HF_HUB_DISABLE_XET=1 && \\\nexport HF_HOME=/root/autodl-tmp/.hf_cache && \\\nexport TRANSFORMERS_OFFLINE=1 && \\\nexport HF_HUB_OFFLINE=1 && \\\nCUDA_VISIBLE_DEVICES=5 python -u iterative_train.py \\\n  --model_name EleutherAI/pythia-410m \\\n  --seed 42 --data_dir data/wikitext103_5k \\\n  --synthetic_ratio 0.75 --num_generations 10 \\\n  --steps_per_gen 5000 --start_gen 4 \\\n  --output_dir results/alpha_sweep/a075_s42_fp32 \\\n  --batch_size 4 --max_length 512 --lr 5e-5 \\\n  --gen_max_new_tokens 256 --gen_batch_size 16 \\\n  --top_p 0.95 --optim adamw_torch\n```\n\n**总结**: α=0.75 fp32 仅完成 4/10 gen。Drift 幅度在 gen_3 已超过 α=0.50/0.60 的 10-gen 终值（entropy -35% vs -16%/-23%, ppl +88% vs +17%/+69%），定性确认 high regime。但 T=4 致 PermG/TY/MMCT 全部不可用，无法出 conclusion。需从 gen_4 续跑（加 `TRANSFORMERS_OFFLINE=1` 修复 HF config 加载问题），完成后重新分析。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-alpha-sweep-a075-s42-fp32-copy-2.md"
+}

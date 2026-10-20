@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77504829f0ec815b6beb",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops 19828 scan",
+  "task_key": "worker_ops_19828-scan_20260523T022524",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_19828-scan_20260523T022524_result.json",
+    "occurrence": 1,
+    "bytes": 555,
+    "sha256": "3e0530d491fa9dd9387ac1f4e77ad1656256fa1cace547abc00d9739d0afb755"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验状态汇总：\n\n| 实验 | PID | GPU | 进度 | 目标 |\n|------|-----|-----|------|------|\n| **scale_14b_t15_a075_s42_fp32** | 793171 | cuda:0 (98%, 30.9G) | gen_0–gen_12 完成，正在跑 gen_13 | 需 gen_0–gen_14 |\n| **scale_14b_t10_a050_s43_fp32** | 822048 | cuda:1 (98%, 27.7G) | gen_0–gen_5 完成，正在跑 gen_6 | 需 gen_0–gen_9 |\n\n两个 PID 都 **ALIVE**，GPU 利用率 98%。\n\n- t15_a075: **13/15 gen 完成**，还差 gen_13 + gen_14\n- t10_a050_s43: **6/10 gen 完成**，还差 gen_6–gen_9"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-19828-scan.md"
+}

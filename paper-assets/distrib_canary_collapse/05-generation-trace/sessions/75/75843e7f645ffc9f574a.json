@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75843e7f645ffc9f574a",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "research track d transfer entropy",
+  "task_key": "worker_research_track-d-transfer-entropy_20260522T041958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_track-d-transfer-entropy_20260522T041958_result.json",
+    "occurrence": 1,
+    "bytes": 748,
+    "sha256": "68fb6de15d6db9db9b5388f85981efa8921fabe3beb84d12cdb79d26a6100ec5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n**核心发现：Symbolic TE（ordinal patterns）在 sync-dip 格（α=0.60, PermG=0/8）检测到显著的 forward information flow（4/6 pairs, p<0.001），但在 PermG 正对照格（6/8）和 baseline 格均未检出。**\n\n这意味着：\n- α=0.60 的 sync-dip **不是**信息流缺失，而是 PermG 的线性假设盲区\n- 耦合机制是**非线性的**（rank-order pattern 传播），Granger 无法捕获\n- Symbolic TE 和 DiffXCorr 互相验证：都在 sync-dip 格检出，形成方法论互补\n\n三个输出已保存到 `westd-17855:/root/autodl-tmp/distrib_canary_collapse/artifacts/`:\n- `transfer_entropy_analysis.py`\n- `transfer_entropy_results.pdf`\n- `transfer_entropy_summary.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-track-d-transfer-entropy.md"
+}

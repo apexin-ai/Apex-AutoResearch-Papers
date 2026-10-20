@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "beda1e71ef6daf1044bc",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "research literature scan",
+  "task_key": "worker_research_literature-scan_20260515T210127",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature-scan_20260515T210127_result.json",
+    "occurrence": 1,
+    "bytes": 1198,
+    "sha256": "3d1f408291dc62ceee87d1cf0dd60efbbf73ede4565a500c55f924f9ce587628"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "扫描完成。核心结论：\n\n**三个 Claims 均保持 novel。** 未发现直接竞争者做 calibration-diversity 的 lead-lag 分析。\n\n**3 篇必须引用的新论文：**\n\n1. **Causal-Audit** (Ruiz et al., April 2026) — 提出因果方法假设前置检验框架，62% FP reduction。与 Claim 3 互补：他们做 pre-screening，我们做 post-hoc consensus。必须在方法论部分明确区分。\n\n2. **CausalCompass** (Yi et al., Feb/April 2026) — 因果发现方法鲁棒性 benchmark，证实无单一方法普适，支持我们 Claim 3 的多方法必要性论证。\n\n3. **Cao et al. — On the Entropy Calibration of LMs** (Nov 2025, revised Jan 2026) — 证明 calibration-diversity tradeoff 是 LM 的基本属性。为 Claim 1（ECE leads diversity）提供理论基础。\n\n**2 篇建议引用：** Sahoo 2026（ECE 对 RLHF 扰动敏感）、Falahati et al. ICML 2026（pluralistic curation 避免 collapse，motivates \"when to intervene\"）。\n\nchen2025scales 仍为最近的竞争者，自 2025.10 以来未更新，且没有扩展到 lead-lag 分析。\n\n报告已写入 `artifacts/literature_scan_20260515/scan_report.md` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-scan-copy-2.md"
+}

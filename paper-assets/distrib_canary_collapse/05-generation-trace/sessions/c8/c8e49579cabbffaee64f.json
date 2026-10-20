@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c8e49579cabbffaee64f",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops check gpu45 and prep t5",
+  "task_key": "worker_ops_check_gpu45_and_prep_t5_20260521T091927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_gpu45_and_prep_t5_20260521T091927_result.json",
+    "occurrence": 1,
+    "bytes": 742,
+    "sha256": "f9641280275771af5f0ca9952f5eb911bad0f57b303de650d774718c800f5844"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**两个实验仍在运行，不做任何修改。**\n\n| 实验 | GPU | 已完成 Gen | 当前进度 | 预估剩余 |\n|------|-----|-----------|---------|---------|\n| a052_s43_fp32 | cuda:4 (95%, 14GB) | gen_0–gen_5 (6/10) | gen_6: step 4789/5000 (96%) | ~45 min |\n| a046_s43_fp32 | cuda:5 (95%, 14GB) | gen_0–gen_6 (7/10*) | gen_6: step 952/5000 (19%) | ~55 min |\n\n*a046 的 gen_6 目录已创建但训练刚开始（19%），实质完成 6 gen。\n\n**关键数字**：\n- 速度稳定 ~7.65 it/s，每 gen 训练 ~11 min + 数据生成 ~3-5 min\n- 两者均约在 ~1h 内完成，之后 cuda:4/cuda:5 可用于 T=5 Phase Diagram 实验\n- 6 张 GPU 全部占用（GPU 0-5 均有显存占用，utilization 73-95%）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-gpu45-and-prep-t5.md"
+}

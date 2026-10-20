@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42c10a96742dd0fa40c4",
+  "project": "distrib_canary_collapse",
+  "kind": "history",
+  "title": "reviewer / loop_9.md",
+  "task_key": "loop_9",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_9.md",
+    "occurrence": 1,
+    "bytes": 3582,
+    "sha256": "1781e6f7a3e45c4a3e73fac3b8eae80db4a742bba90b450af37ea49162d85ffa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: max_wall_time\nupdated: '2026-05-16T10:10:11+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 服务器 westd-19828 仅两张 GPU (cuda:0, cuda:1)，均属本项目，无越界风险\n- C003: 禁止引用 α≤0.50 的 TY Granger 显著率作为支撑证据（TY 在短 T 下 seed 不稳定）\n- C002: 论文真源为 `docs/paper/`，禁止直接编辑 `artifacts/_project/paper/`\n- GPT-2m 原始训练数据已从服务器删除（磁盘清理），metrics 保存在 registry + 本地 artifacts，如需重跑 gpt2m 实验需重新生成数据\n- experiments.tex:188 TY power range 写了 \"0.09-0.21\"，应为 \"0.05-0.21\"（含 adaptive d_max=0.050）——尚未修复，Paper Agent 下轮应修\n\n### 2. 🖥️ 基础设施快照\n- 服务器: westd-19828 (root), host=connect.westd.seetacloud.com:19828\n- 工作目录: `/root/autodl-tmp/distrib_canary_collapse`\n- Python: `/root/miniconda3/bin/python` (conda base)\n- 数据集: `data/wikitext103_5k/` (train/eval/prompts)\n- HF cache: `/root/autodl-tmp/.hf_cache`\n- 磁盘: 250GB total, 28GB used (May 16 18:00)\n- 活跃进程 (May 16 17:57 启动):\n  - a075_s43: PID 184031, CUDA:1\n  - a075_s44: PID 184347, CUDA:0\n- 无 wandb 配置（本项目不用 wandb）\n- 关键分析文件仍在服务器: `results/alpha_sweep/analysis/pooled_panel_results.json`, `ty_3seed_a025_results.json`\n\n### 3. 📊 当前状态\n刚完成 disk cleanup worker 审查，确认实验正在运行。\n\nRegistry RUNNING:\n- alpha_sweep_a075_s43 — Pythia-410M α=0.75 seed 43，Gen 0（第三次从头启动，前两次因磁盘满/未知原因丢失）\n- alpha_sweep_a075_s44 — Pythia-410M α=0.75 seed 44，Gen 0（同上）\n\n预计完成: ~May 17 04:00-06:00 CST\n\n等待中:\n- a075_s43/s44 完成回调 → 需做 5-method lead-lag 审计（α=0.75 multi-seed 是 paper 核心证据 R1-N3）\n- 完成后 Batch 2: a000_s43/s44（FPR multi-seed 验证）\n- Director 曾发 \"Claim 强度 + 叙事调整\" 5 问评估请求，未被明确要求回复\n\n### 4. 📋 待办\n- a075_s43 完成 cron → 审查: (1) metrics 是否与 s42 一致（已有 Tier 3+ 6/6 pairs），(2) permutation Granger p<0.05 FDR，(3) 4-seed pooled consensus 是否达 24/24 forward 0/24 reverse\n- a075_s44 完成 cron → 同上，两个 seed 齐后可确认 α=0.75 multi-seed 结论\n- a000_s43/s44 完成 → 验证 FPR=0%（null control multi-seed），确认 abstract \"FPR=0% (single seed)\" 可升级为 \"multi-seed\"\n- Paper Agent 提交下轮修改 → 检查 experiments.tex:188 TY power range 修复\n- paper_provenance rebuild → 所有实验完成后提醒 Director 调用 auto_build_provenance\n\n### 5. 🎯 战略上下文\n- 核心结论: token_entropy 是 diversity collapse 的 1-gen-ahead canary（α≥0.75），24/24 forward 0/24 reverse，4 methods × 4 seeds\n- GPT-2m α=0.25 cross-arch 验证 SUCCESS：regime match（low collapse），canary pattern preserved（1-gen lead），但 PermG non-significant（0/8）——正确支持 regime-dependence claim\n- Effective rank 方向是 model-dependent（GPT-2m 增、Pythia 减）——不能用作 universal canary，paper 应加 caveat 或降级为 supporting evidence\n- 易错点: Agent 分析报告中的 \"tier: 3\" 含义是 \"3 methods significant\"，但 paper 定义 Tier 3 = K≥4/5。看到 Agent 写 \"Tier 2\" 不一定是坏结果——需核对原始 method count\n- 易错点: 之前 Agent 把 Pythia-410M 误称 \"GPT-2 small\"（已修复），如出现旧报告引用需警惕\n- 第三次重启原因未记录，Agent 应补 registry notes。这不影响结果但属于 traceability gap\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-copy-3.md"
+}

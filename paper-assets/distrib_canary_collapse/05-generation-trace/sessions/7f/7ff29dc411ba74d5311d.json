@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ff29dc411ba74d5311d",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis d028 directive28 alpha c",
+  "task_key": "worker_analysis_d028_directive28_alpha_c_20260520T122910",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d028_directive28_alpha_c_20260520T122910_result.json",
+    "occurrence": 1,
+    "bytes": 591,
+    "sha256": "4b5d8bccae258f53fe70c3710d062d93add469ea0b3498379363b773496d5d97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`register_artifact` 不在当前 MCP 工具列表中，跳过注册。\n\n**结果摘要：**\n\n| 统计量 | 值 |\n|--------|-----|\n| **Δα transition width** | median=0.013, 95% CI [0.009, 0.060], N=9207/10000 |\n| **Δp(0.50 vs 0.45)** | median=0.392, 95% CI [0.001, 0.750], 100% positive |\n| **Fisher exact** | p=1.65×10⁻¹³, OR=∞ |\n| **CI_width/Δα ratio** | 10.38 |\n\nα_c CI width (0.133) 是位置估计不确定性；Δα (~0.013) 是转变本身的陡峭度。两者比值 10.38×，确认是完全不同的量——转变远比位置不确定性窄。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d028-directive28-alpha-c.md"
+}

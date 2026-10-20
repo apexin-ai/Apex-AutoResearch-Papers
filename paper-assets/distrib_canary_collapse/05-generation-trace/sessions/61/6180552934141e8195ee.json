@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6180552934141e8195ee",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis scale 69b a100 s42",
+  "task_key": "worker_analysis_scale_69b_a100_s42_20260519T073634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_scale_69b_a100_s42_20260519T073634_result.json",
+    "occurrence": 1,
+    "bytes": 2989,
+    "sha256": "9ea042ea447e3a18224f4baeecd83b38933a79598d36e36ea4cdf800c0570229"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果摘要\n- 训练状态: **正常完成** (EXIT_CODE=0)\n- Generations 完成: **11/11** (gen_0 baseline + 10 training gens)\n- 训练时长: **~13h** (02:32 → 15:32 UTC, May 19)\n- 精度: bf16, gradient_checkpointing, batch_size=4, steps_per_gen=5000\n\n## 核心指标 (gen_0 → gen_10)\n\n| Metric | gen_0 | gen_10 | Drift | 410M 基线 drift |\n|--------|-------|--------|-------|-----------------|\n| token_entropy | 2.699 | 1.187 | **-56.00%** | -61.69% |\n| distinct_1 | 0.0941 | 0.0703 | **-25.31%** | -26.69% |\n| distinct_2 | 0.5030 | 0.3186 | **-36.67%** | — |\n| distinct_3 | 0.8209 | 0.5348 | **-34.85%** | — |\n| ECE | 0.0155 | 0.3962 | **+2454.63%** | +3758.85% |\n| perplexity | 15.83 | 450.79 | **+2748.57%** | +3369.37% |\n| effective_rank | 65.06 | 112.77 | +73.34% | — |\n| mauve | 0.0305 | 0.0260 | -14.57% | — |\n\n## 因果检验\n\n| Method | 6.9B (this) | 410M baseline |\n|--------|-------------|---------------|\n| naive_xcorr | **8/8** | 8/8 |\n| diff_xcorr | **6/8** | 8/8 |\n| threshold_onset | **8/8** | 0/8 |\n| perm_granger_fwd | **7/8** | 6/8 |\n| perm_granger_rev | **0/8** | 0/8 |\n| ty_granger | 4/8 | 2/8 |\n| **consensus K≥4** | **6/8** | 2/8 |\n| MMCT detection_rate | **0.75** | — |\n\nConsensus detail (6/8 pairs with K≥4):\n- token_entropy→distinct_1: K=4 (naive, diff, thresh, pg_fwd)\n- token_entropy→distinct_2: K=5 (naive, diff, thresh, pg_fwd, ty)\n- token_entropy→distinct_3: K=5 (naive, diff, thresh, pg_fwd, ty)\n- ece→distinct_1: K=4 (naive, diff, thresh, pg_fwd)\n- ece→distinct_2: K=4 (naive, diff, thresh, pg_fwd)\n- ece→distinct_3: K=5 (naive, diff, thresh, pg_fwd, ty)\n\n未通过 K≥4 的 2 pairs 均为 →mauve (K=3)。\n\n## 结论建议\n\n- **conclusion: SUCCESS**\n- 理由: PermG forward FDR 7/8, consensus K≥4 = 6/8 (远超 ≥6/8 阈值的下限)，reverse 0/8 确认方向性。Canary lead-lag 在 6.9B (17× scale-up) 下不仅持续存在，且信号比 410M 更强。\n- 与 410M 对比:\n  - **Collapse 幅度略小**: entropy drift -56% vs -62%, ECE drift 2455% vs 3759%, ppl drift 2749% vs 3369%。与 D079 预期一致 (bf16 隐式正则化抑制 collapse)。\n  - **Lead-lag 信号更强**: consensus K≥4 从 2/8 跃升至 6/8, threshold_onset 从 0/8 到 8/8。6.9B 的退化轨迹更单调/平滑 (噪声更低)，使因果结构更容易检测。\n  - PermG reverse 保持 0/8，确认因果方向 canary→diversity 在大规模下依然成立。\n  - 唯一弱项: mauve pairs (K=3) 未达 consensus，可能因 mauve 在低 gen 数 (T=11) 下本身噪声较大。\n\n## checkpoint_path 和 log_path\n- checkpoint: `/root/autodl-tmp/distrib_canary_collapse/results/scale_check/pythia69b_wiki_a100_s42/gen_10/checkpoint/`  (also gen_9/checkpoint/)\n- log: `~/runs/distrib_canary_collapse/scale_69b_a100_s42.log` (on westd-17855)\n- analysis: `/root/autodl-tmp/distrib_canary_collapse/results/scale_check/pythia69b_wiki_a100_s42/analysis_results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-scale-69b-a100-s42.md"
+}

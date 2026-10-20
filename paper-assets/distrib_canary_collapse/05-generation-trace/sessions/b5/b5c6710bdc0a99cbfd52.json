@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5c6710bdc0a99cbfd52",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "check opt1b progress",
+  "task_key": "worker_check_opt1b_progress_20260517T124537",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_opt1b_progress_20260517T124537_result.json",
+    "occurrence": 1,
+    "bytes": 798,
+    "sha256": "5545206011a2023b0973c5f9c2e6f4876f75aa4d05f375f496af799e777ca19b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**OPT-1.3B 实验已完成。**\n\n```\nOPT-1.3B Progress:\n- Status: COMPLETED (EXIT_CODE=0)\n- Generations: 11/11 (gen_0 ~ gen_10, 即 10 轮迭代 + 初始)\n- Started: ~15:32 UTC (May 17)\n- Finished: ~20:39 UTC (May 17)\n- Total time: ~5h 7min\n- Per-gen time: ~28 min\n\nKey metrics (collapse trajectory):\n  gen_0: ppl=24.9, entropy=3.05, ECE=0.02\n  gen_5: ppl=356.6, entropy=1.16, ECE=0.39\n  gen_10: ppl=647.4, entropy=1.16, ECE=0.42\n\nFiles completed: gen_0 through gen_10 + all_metrics.json\n```\n\ncollapse 模式清晰：perplexity 从 24.9 飙升至 647.4（26x），token entropy 从 3.05 降至 1.16，ECE 从 0.02 升至 0.42。与 Pythia 系列一致，确认了泛化性。\n\n注：当前 `iterative_train` 进程仅剩 Pythia-410M 实验在 cuda:0 运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-opt1b-progress.md"
+}

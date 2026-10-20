@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "51e416bb6051946beedb",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops kill v2 and verify 17855",
+  "task_key": "worker_ops_kill-v2-and-verify-17855_20260522T023028",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-v2-and-verify-17855_20260522T023028_result.json",
+    "occurrence": 1,
+    "bytes": 1601,
+    "sha256": "f0190d9a45a5c7b4f044ac16abf6419597b77206be2d2c54c97f58d278064c95"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "v3 进程正常运行中（已运行 1h32m）。汇总：\n\n---\n\n## 执行结果\n\n### 1. v2 进程 kill 确认\n| PID | 实验 | 状态 |\n|-----|------|------|\n| 552609 | t25_a060_s42_fp32 (v2, 无 --start_gen) | **已 kill** |\n| 552687 | t25_a050_s42_fp32 (v2, 无 --start_gen) | **已 kill** |\n\n残留：无 v2 tmux session 对应这两个实验。`phase_diagram_t20_a060_s43_fp32_v2` 是另一个实验 (t20, seed43)，不在冲突范围内，未动。\n\n### 2. GPU 显存\n6 块 GPU 均 ~14.5G/97G — 符合预期（v2 释放后只剩 v3 + 其他实验）。\n\n### 3. Gen 目录完整性\n\n**两个实验结构一致：**\n| Gen | 来源 | 文件/大小 | 状态 |\n|-----|------|-----------|------|\n| 0-13 | v2 写入 | 2-3 files, 6.6-7.0M | 完整，metrics.json 一致 |\n| 14-15 | v3 写入 | 4 items, 1.6G (含 checkpoint/) | 完整，checkpoint 含 model.safetensors 1.5G |\n| 16 | v3 创建中 | 空目录 | v3 正在处理 |\n| 17-25 | — | MISSING | 尚未到达 |\n\n### 4. all_metrics.json\n两个实验均**不存在** all_metrics.json — 应为实验结束时生成，当前不影响。\n\n### 5. 数据完整性判定\n\n**可继续等 v3 完成，无需重跑。** 理由：\n- metrics.json 在 v2→v3 边界处（gen_12→13→14→15）数值连续无跳变，perplexity 单调递增符合预期\n- v3 的 gen_14-15 含完整 checkpoint（model.safetensors 1.5G + config + tokenizer），v2 的 gen_0-13 不含 checkpoint（只有 metrics + synthetic_data），两者模式清晰区分\n- v3 进程已运行 1h32m，当前在 gen_16，正常推进"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-v2-and-verify-17855.md"
+}

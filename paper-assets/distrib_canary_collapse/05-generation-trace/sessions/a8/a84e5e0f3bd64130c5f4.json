@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a84e5e0f3bd64130c5f4",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis detection lower bound v2",
+  "task_key": "worker_analysis_detection_lower_bound_v2_20260521T091810",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_detection_lower_bound_v2_20260521T091810_result.json",
+    "occurrence": 1,
+    "bytes": 1024,
+    "sha256": "1eb6a78a8e89a1da9d3ece48a49270464805fc5747997c37d9470c89744fa295"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n### 修复结果\n\n**v1 错误** → **v2 修正**（全部从 JSON 实时读取）:\n\n| α | v1 (硬编码) | v2 (JSON) | 来源 |\n|---|---|---|---|\n| 0.50 | 0/8 | **6/8** | a050_s42/s43/s44_fp32 |\n| 0.52 | 0/8 | **3/8** | a052_s42_fp32 |\n| 0.10 s43 | 0/8 | **3/8** | a010_s43_fp32 |\n\n**Spot-check 全部通过**：α=0.50→6/8, α=0.52→3/8, α=0.00→0/8, α=0.75≥6/8\n\n### Proposition 1 重拟合\n\n- **Joint model**: `rate(α,T) = 0.70 / (1 + exp(-100·(α - α_c(T))))`, R²=0.883\n- **α_c(T) = 0.193 + 75.68·T^(-2.41)**\n  - α_c(10) = **0.487**（旧版 ~0.67）\n  - α_c(20) = **0.248**\n- Sigmoid k=100 反映数据中 α=0.48→0.50 的 sharp phase transition\n\n### 产出文件（westd-17855）\n- 脚本: `scripts/detection_lower_bound_v2.py`\n- 输出目录: `artifacts/detection_bound_v2/`\n  - `detection_bound_results_v2.json`\n  - `fig_delta_min_vs_T.pdf/png`\n  - `fig_signal_strength.pdf/png`\n  - `fig_phase_boundary.pdf/png`\n  - `proposition.tex`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-detection-lower-bound-v2.md"
+}

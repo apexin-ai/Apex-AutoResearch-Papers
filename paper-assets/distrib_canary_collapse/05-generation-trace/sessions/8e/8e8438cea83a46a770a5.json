@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8e8438cea83a46a770a5",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code mauve backfill script",
+  "task_key": "worker_code_mauve-backfill-script_20260523T172558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mauve-backfill-script_20260523T172558_result.json",
+    "occurrence": 1,
+    "bytes": 591,
+    "sha256": "a4e360c2857d954116caf5d67c94826d8171e210dae6b0e5f2269f705139daeb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**脚本** `scripts/backfill_mauve.py` 已写入本地和远程 westd-17855。\n\n**Dry-run 结果：**\n- `t15_a050_s43_fp32_14b`：13 个 gen (gen_0–gen_12) mauve 为 null 需补算，gen_13 无 metrics.json\n- `t15_a060_s43_fp32_14b`：0 个需补算，所有 gen 正确跳过\n\n**HF_HOME 环境变量检查：**\n- PID 749427 (t15_a060_s43)：已设置 `HF_HOME=/root/autodl-tmp/.hf_cache`\n- PID 796624 (t10_a045_s44)：**未设置** — 确认了 mauve 缺失的根因\n\n验证结果写入 `artifacts/_project/mauve_backfill_dryrun_20260523.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mauve-backfill-script.md"
+}

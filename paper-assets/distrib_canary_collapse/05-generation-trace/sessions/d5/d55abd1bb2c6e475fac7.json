@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d55abd1bb2c6e475fac7",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "cleanup delete cron interv pred a075",
+  "task_key": "worker_cleanup_delete_cron_interv_pred_a075_20260520T055240",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cleanup_delete_cron_interv_pred_a075_20260520T055240_result.json",
+    "occurrence": 1,
+    "bytes": 66,
+    "sha256": "814e1df7e2a09df33e29fb0e2606d9beb8eef46f374596132fec27b4c1ec2414"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已删除 `interv_pred_a075_s42` 的 cron 监控。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cleanup-delete-cron-interv-pred-a075.md"
+}

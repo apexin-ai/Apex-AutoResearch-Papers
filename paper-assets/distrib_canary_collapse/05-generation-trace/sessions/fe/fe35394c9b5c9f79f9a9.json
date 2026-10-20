@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe35394c9b5c9f79f9a9",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "paper writing related work",
+  "task_key": "worker_paper_writing_related_work_20260515T195157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_related_work_20260515T195157_result.json",
+    "occurrence": 1,
+    "bytes": 501,
+    "sha256": "72730590c9b92b2a25adbf6741581b61dc8805cb7dd59e39dfeb400878cddcd7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks pass:\n\n1. `\\label{sec:related_work}` present\n2. All 22 `\\cite` keys verified in `references.bib` — zero missing\n3. No forbidden phrases (\"consistently outperforms\", \"state-of-the-art\", bare \"significantly\")\n4. Du et al. 4-point distinction (i)–(iv) all present\n5. Word count: 900\n6. 13 new citations introduced (not already in Introduction), well within budget\n\nSection written to `docs/paper/related_work.tex` with 4 `\\paragraph{}` blocks as specified."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-related-work.md"
+}

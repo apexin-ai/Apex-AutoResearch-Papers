@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "38de17da141d71840aa1",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis csmp gradual eval",
+  "task_key": "worker_analysis_csmp_gradual_eval_20260518T173728",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_csmp_gradual_eval_20260518T173728_result.json",
+    "occurrence": 1,
+    "bytes": 1282,
+    "sha256": "e8ca589daa73e91cddad13c413441989b1e52f80ca23188c974f91ac8486e515"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估完成。核心结果：\n\n**α=0.50 (3 seeds)**\n| k | Alarm Gen | EDD | 备注 |\n|---|-----------|-----|------|\n| 0.05 | 3 | 2.0 | h=1.53 延迟检测 |\n| 0.10 | 2 | 1.0 | h=1.00 延迟检测 |\n| 0.25 | **1** | **0.0** | 即时检测，3 seed 一致 |\n| 0.50 | **1** | **0.0** | 即时检测 |\n| 1.0 | **None** | N/A | 完全失败，k 过大吃掉信号 |\n\n**α=0.75 (3 seeds)**\n| k | Alarm Gen | EDD |\n|---|-----------|-----|\n| 0.05 | 2 | 1.0 |\n| 0.10 | 2 | 1.0 |\n| 0.25 | **1** | **0.0** |\n| 0.50 | **1** | **0.0** |\n| 1.0 | **1** | **0.0** |\n\n**vs 简单阈值 (mean-2σ)**：CUSUM k=0.25 与 threshold n=1 在 alarm gen 上完全一致（都是 gen 1）。原因是 gen 0→1 的 drop 太大（α=0.50: 0.72, α=0.75: 1.04），任何合理检测器都会立刻报警。\n\n**关键发现**：\n1. k=0.25 在所有 α (0.50/0.75/1.0) 上 EDD=0，推荐值不变\n2. k=1.0 在 α=0.50 彻底失败（S_t 永远为 0），sensitivity 丧失\n3. CUSUM 与简单阈值 alarm gen 相同，但 CUSUM 有 FAR 保证（h 从 null data 校准）、S_max 提供 shift 严重度信息（α=0.75 S_max=7.7 >> α=0.50 S_max=4.0 >> α=1.0 intervention S_max=1.1）\n4. 渐变型不需要不同的 k 参数——gen-0-to-gen-1 的 drop 已经足够大"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-csmp-gradual-eval.md"
+}

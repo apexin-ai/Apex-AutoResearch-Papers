@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cee3c8851f35d1941b83",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "research dpo rlhf permg detection",
+  "task_key": "worker_research_dpo_rlhf_permg_detection_20260521T053545",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_dpo_rlhf_permg_detection_20260521T053545_result.json",
+    "occurrence": 1,
+    "bytes": 2006,
+    "sha256": "8591a9e9f0a7e7c2366274fc2310b59ad61c1bb2c8ecf26aeb2834c99bdbfc4d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 artifact 已注册。总结：\n\n## 结果\n\n**可行性：确认可行，公开 checkpoints 充足。**\n\n### 最佳候选\n\n| 排名 | 模型 | 参数量 | 阶段数 | CPU 可行 |\n|------|------|--------|--------|----------|\n| 1 | **OLMo-2-0425-1B** | 1B | 4 (Base→SFT→DPO→Instruct) | 是 |\n| 2 | **SmolLM3-3B** | 3B | 4 (Midtrain→SFT→APO→LC) | int8 量化后可行 |\n| 3 | Tulu-3-8B | 8B | 3 (SFT→DPO→RLVR) | 需 GPU |\n\nOLMo-2-1B 是首选：Apache-2.0、4 个对齐阶段分别有独立 HF repo、RLVR 阶段还有 per-20-step checkpoints、1B 参数 CPU 可推理。\n\n### 文献支撑\n\nDPO/RLHF 导致 diversity collapse 已是共识：\n- Kirk et al. (ICLR 2024): RLHF 显著降低多样性，across-input mode collapse\n- Karouzos et al. (2026): 用 OLMo 追踪 collapse 发生在哪个阶段（SFT 或 DPO，取决于数据）\n- Guo et al. (DivPO): 证明标准 DPO 目标函数本身允许退化最优解（所有概率集中到一个 response）\n- Tomihari (2026): NTK 分析证明 entropy 在 RL post-training 中单调下降\n\n### 实验方案\n\n- WikiText-103 test 前 200 句作为 eval set\n- 对 OLMo-2-1B 的 4 个阶段各生成 5 个 continuation（T=1.0）\n- 计算 token_entropy、distinct-1/2/3、ECE、perplexity、self-BLEU\n- 对 4-stage 序列跑 PermG cross-correlation 检测 entropy→distinct lead-lag\n- CPU 预估：200 prompts × 4 stages ≈ 14-20 小时；GPU 则 2-4 小时\n\n### Falsifiable prediction\n\n> If DPO compresses the output distribution before lexical diversity visibly declines, PermG should detect a significant entropy → distinct-n lead at the DPO stage, with cross-correlation peak at negative lag.\n\n### 产出文件\n\n- `artifacts/dpo_application/dpo_permg_detection.json` — 完整搜索结果 + 可行性评估 + 实验方案 + 文献综述\n- `artifacts/dpo_application/paper_snippet_dpo_generalizability.tex` — 论文 Discussion 段落（2 段英文，含 falsifiable prediction）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-dpo-rlhf-permg-detection.md"
+}

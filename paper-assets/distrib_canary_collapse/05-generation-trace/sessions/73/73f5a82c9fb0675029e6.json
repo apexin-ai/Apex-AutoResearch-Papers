@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73f5a82c9fb0675029e6",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis alpha sweep a050 s44",
+  "task_key": "worker_analysis_alpha_sweep_a050_s44_20260517T063620",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_alpha_sweep_a050_s44_20260517T063620_result.json",
+    "occurrence": 1,
+    "bytes": 1029,
+    "sha256": "719c16d29748f09c0f2bd3258696453612ce849933fe42ef7585bbf2049a8496"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结果：\n\n**s44 PermG: 4/8 significant**\n- ECE 通道 4/4 全部显著 (p=0.004-0.027)\n- token_entropy 通道 0/4 全部 marginal (p=0.056-0.092)\n\n**Cross-seed 汇总 (一致参数 n_perm=5000)**：\n\n| Seed | PermG sig | ECE channels | entropy channels |\n|------|-----------|-------------|-----------------|\n| s42 | 4/8 | 4/4 | 0/4 |\n| s43 | 7/8 | 4/4 | 3/4 |\n| s44 | 4/8 | 4/4 | 0/4 |\n\n**注意**：与先前报告的 s42=0/8、s43=6/8 有差异，因本次使用统一参数重新计算。\n\n**关键发现**：\n1. **Drift 跨 seed 高度一致** (distinct_1 drift: -37.3/-36.5/-37.4%，std<0.5%)，collapse 是 deterministic 的\n2. **ECE -> downstream Granger 信号完全 robust** (12/12 across 3 seeds)\n3. **token_entropy -> downstream 信号 borderline** (3/12，仅 s43 有部分显著)\n4. alpha=0.50 不是 null boundary，而是 transitional zone：ECE 检测可靠，entropy 检测不可靠\n\n报告已写入 `artifacts/alpha_sweep_a050_s44/report/` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-alpha-sweep-a050-s44.md"
+}

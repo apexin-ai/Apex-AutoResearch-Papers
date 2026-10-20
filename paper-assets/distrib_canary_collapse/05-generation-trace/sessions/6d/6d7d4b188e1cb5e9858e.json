@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6d7d4b188e1cb5e9858e",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis alpha sweep a055 s42 fp32",
+  "task_key": "worker_analysis_alpha_sweep_a055_s42_fp32_20260520T134300",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_alpha_sweep_a055_s42_fp32_20260520T134300_result.json",
+    "occurrence": 1,
+    "bytes": 938,
+    "sha256": "023ce37c19d056d27bf70bc9b0bf80852e5c064c2621bfec92931507f0778708"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n## 结果摘要\n\n**alpha_sweep_a055_s42_fp32: PermG = 0/8, K≥3 = 0/8**\n\n| Alpha | PermG | Zone |\n|-------|-------|------|\n| 0.45 | 0/8 | Blind zone |\n| **0.50** | **6/8** | **Onset** |\n| **0.55** | **0/8** | **Sync collapse** |\n| 0.60 | 0/8 | Sync collapse |\n| 0.75 | 6/8 | Detection regime |\n\nα=0.55 与 α=0.60 一致（PermG=0/8），sync-collapse dip 起始点在 **α∈(0.50, 0.55)** 区间内。0.50→0.55 之间 PermG 从 6/8 骤降至 0/8，过渡非常陡峭（Δα=0.05）。\n\n值得注意的是 PermG 的 p_FDR 全部集中在 0.072——距离 0.05 阈值很近。F-stat 在 forward 方向极大（38–362），reverse 极小（0.03–0.76），方向不对称性非常强，信号存在但在 T=11 下统计功效不足以过 FDR 校正。DiffXcorr 8/8 forward significant 进一步佐证了这点。\n\nRegistry 已更新至 DONE(success)，两个 artifacts 已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-alpha-sweep-a055-s42-fp32.md"
+}

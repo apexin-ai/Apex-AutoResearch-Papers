@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cbee5ff9fb04f761d6d3",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diag three failed bf16",
+  "task_key": "worker_diag_three_failed_bf16_20260518T210453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_three_failed_bf16_20260518T210453_result.json",
+    "occurrence": 1,
+    "bytes": 850,
+    "sha256": "a1a96a92a005bee6316a39cd92f75ebad3d2aede096e8e461c24fd931120eb00"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个全是 EXIT_CODE=129 假警报，Python 均正常完成。\n\n| 实验 | 状态 | gen 完成数 | 最后输出 |\n|---|---|---|---|\n| **gen_gpt2m_a100_s43_bf16** | **complete** | 11/11 (gen_0~gen_10) | `ppl=55.49, entropy=3.0035, eff_rank=3.2, mauve=0.0227` → `all_metrics.json` 已写入 |\n| **alpha_sweep_a060_s42_bf16** | **complete** | 11/11 (gen_0~gen_10) | `ppl=20.27, entropy=2.6404, eff_rank=65.9, mauve=0.0146` → `all_metrics.json` 已写入 |\n| **interv_react_s43_bf16** | **complete** | 11/11 (gen_0~gen_10) | `ppl=16.51, entropy=2.8169, eff_rank=59.9, mauve=0.0336` → `all_metrics.json` 已写入 |\n\n三个实验都是 tmux session 被 kill 导致 SIGHUP→129，但 Python 进程在收到信号前已正常完成全部 10 代训练 + metrics 计算 + `all_metrics.json` 写入。可安全标记为成功。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-three-failed-bf16.md"
+}

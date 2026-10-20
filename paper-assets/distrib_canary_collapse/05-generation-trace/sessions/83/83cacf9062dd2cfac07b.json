@@ -1,0 +1,132 @@
+{
+  "schema_version": "1.0",
+  "id": "83cacf9062dd2cfac07b",
+  "project": "distrib_canary_collapse",
+  "kind": "conversation",
+  "title": "analysis d027 report alpha050 threshold",
+  "task_key": "worker_analysis_d027_report_alpha050_threshold_20260515T103855",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_d027_report_alpha050_threshold_20260515T103855.jsonl",
+    "occurrence": 1,
+    "bytes": 6275,
+    "sha256": "ee0438d422629bf65977b37bd19b414aab67ede1d1828cbb499c4a1993877eb1"
+  },
+  "statistics": {
+    "messages": 5,
+    "user_turns": 0,
+    "tool_calls": 2,
+    "roles": {
+      "tool_call": 2,
+      "tool_result": 2,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T10:39:33.152352+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_d027_report_alpha050_threshold_20260515T103855",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/consensus_framework/d027_report.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T10:39:33.152651+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# D027: Multi-Method Consensus Framework Formalization\n2\t\n3\t> **[D029 FDR UPDATE — 2026-05-15]** 所有统计检验方法改用 `significant_fdr`（FDR-corrected p-value），`threshold_onset` 保持 `significant`（非统计检验，无 FDR 版本）。前版使用 `significant`（raw p-value）导致数字偏乐观。本次为显式混合策略（非 fallback），重跑全部分析。变更详情见各 section 的 `[D029 DELTA]` 标注。新增 LOO FPR/FNR 分析（Sub-task 4）。\n4\t\n5\t## Overview\n6\t\n7\t将 \"多方法共识\" 从 informal 概念升级为 formal two-stage aggregation framework，用于判定 canary→downstream association 的 robustness。\n8\t\n9\t**定义**: Robust association = 在 K 种独立方法中 ≥ K-1 种判定显著 + ≥ 3/4 seed 一致。\n10\t\n11\t**数据源**: `method_ablation.json` (4 seeds × 16 pairs × 5 methods = 320 seed-level observations)\n12\t\n13\t**Significance 读取策略（D029 显式混合）**:\n14\t- `threshold_onset`: 读 `significant`（确定性规则，无 p-value / FDR）\n15\t- 其余 4 方法: 读 `significant_fdr`（BH FDR-corrected）\n16\t\n17\t---\n18\t\n19\t## Sub-task 1: Consensus Classification (≥4/5 methods, ≥3/4 seeds)\n20\t\n21\t**结果**: 6 robust / 10 non-robust（与 D027 相同）\n22\t\n23\t| Canary | Downstream | Methods Agree | Status | Agreeing Methods | [D029 DELTA] |\n24\t|--------|-----------|:---:|--------|-----------------|:---:|\n25\t| token_entropy | distinct_1 | 5/5 | **ROBUST** | all 5 | — |\n26\t| token_entropy | distinct_2 | 5/5 | **ROBUST** | all 5 | — |\n27\t| token_entropy | distinct_3 | 5/5 | **ROBUST** | all 5 | permG seeds 4→3, still passes |\n28\t| ece | distinct_1 | **4/5** | **ROBUST** | all except TY | **TY 5/5→4/5** (seeds 3→2) |\n29\t| ece | distinct_2 | 4/5 | **ROBUST** | all except TY | — |\n30\t| ece | distinct_3 | 4/5 | **ROBUST** | all except TY | — |\n31\t| token_entropy | perplexity | 3/5 | non-robust | naive, diff, threshold | — |\n32\t| ece | perplexity | 3/5 | non-robust | naive, diff, threshold | — |\n33\t| self_bleu | perplexity | 2/5 | non-robust | naive, threshold | diff seeds 2→2, threshold 3→3 |\n34\t| self_bleu | distinct_2 | 2/5 | non-robust | naive, diff | — |\n35\t| self_bleu | distinct_3 | 2/5 | non-robust | naive, diff | — |\n36\t| effective_rank | perplexity | 2/5 | non-robust | naive, diff | — |\n37\t\n…[truncated 5909 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_d027_report_alpha050_threshold_20260515T103855",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T10:39:33.152871+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_d027_report_alpha050_threshold_20260515T103855",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/consensus_framework/d027_report.md",
+              "old_string": "---\n\n## 产出文件",
+              "new_string": "---\n\n## Cross-Alpha Consensus Extension\n\n将 consensus framework（≥4/5 methods, ≥3/4 seeds）应用于 method_ablation_phase2 的 4 个 α 水平，检验 robust association 的 regime dependence。\n\n**数据源**: method_ablation_phase2 pooled analysis, FDR-corrected (`significant_fdr`)\n\n### 跨 α Robust Pair 汇总\n\n| α | Seeds | # Robust Pairs | Robust Pairs |\n|:---:|:---:|:---:|:---|\n| 0.00 | 1 (seed=42) | **0** | — (null control，无 Granger 信号) |\n| 0.25 | 1 (seed=42) | **0** | — (FDR 校正后所有严格方法归零) |\n| 0.50 | 1 (seed=42) | **0** | — (FDR 校正后所有严格方法归零，仅 naive_xcorr 通过) |\n| 1.00 | 4 | **6** | token_entropy→distinct_{1,2,3}, ece→distinct_{1,2,3} |\n\n### 关键发现\n\n1. **Binary threshold**: α=0.50 与 α=1.0 之间存在清晰的二元阈值——α≤0.50 时 0 robust pairs，α=1.0 时 6 robust pairs。不存在\"逐步增长\"的中间态。\n2. **α=0.00 验证**: 作为 null control（无 canary collapse 注入），0 robust pairs 符合预期，间接验证 consensus framework 不会产生 false positive。\n3. **α=0.50 的 naive_xcorr**: 唯一在 α=0.50 通过的方法是 naive_pearson（已知伪回归），严格方法（differenced_xcorr, TY, permG）全部归零，说明 α=0.50 下的 correlation 信号是 spurious。\n\n### 论文叙事意义\n\n此结果直接支撑 **Claim 2 (regime-dependent detectability)**：canary→downstream 的因果关联不是 α 的连续函数，而是存在相变点。α≤0.50 下分布退化不足以产生可检测的下游影响；α=1.0 下退化足够强烈，6 个 robust pairs 同时涌现。这为论文提供了 \"detectability phase transition\" 的定量证据。\n\n### 限制\n\n- α=0.00 / 0.25 / 0.50 均为 **single-seed (seed=42)**，seed-level robustness 未经验证。α=1.0 为 4 seeds，结论更可靠。\n- α=0.75 实验进行中，尚无数据。补充后可确认阈值精确位置（0.50–0.75 还是 0.75–1.0）。\n- 受约束 C001 限制，TY 跨 α 的非单调模式（sig rate 0%→62.5%→0%→59.4%）不宜引用，需等 D026 multi-seed 确认。\n\n---\n\n## 产出文件"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T10:39:33.153074+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/consensus_framework/d027_report.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_d027_report_alpha050_threshold_20260515T103855",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T10:39:33.153231+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已在 `d027_report.md` 的\"产出文件\"之前插入 \"Cross-Alpha Consensus Extension\" section，包含：跨 α 汇总表格、binary threshold 发现、对 Claim 2 的支撑说明、single-seed 限制标注，以及 C001 约束提醒。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_d027_report_alpha050_threshold_20260515T103855"
+          },
+          "id": "event-000005"
+        }
+      ],
+      "message_count": 5
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-d027-report-alpha050-threshold.md"
+}

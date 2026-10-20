@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5da79dcf6085239446f",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis alpha sweep a010 s43",
+  "task_key": "worker_analysis_alpha_sweep_a010_s43_20260519T003747",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_alpha_sweep_a010_s43_20260519T003747_result.json",
+    "occurrence": 1,
+    "bytes": 1604,
+    "sha256": "5a9b2188e06a41d7dcd48c52a4b86bfcfb93c1484b913524329f79089221f174"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## alpha_sweep_a010_s43 分析结果\n\n### 训练状态\n- 正常完成 (EXIT_CODE=0), 11 generations (gen0-gen10)\n\n### Drift (gen0 → gen10)\n\n| Metric | Drift% |\n|--------|--------|\n| token_entropy | **-13.1%** |\n| ece | -61.1% |\n| perplexity | -38.9% |\n| distinct_1 | **-29.1%** |\n| distinct_2 | -40.3% |\n| distinct_3 | -31.9% |\n| effective_rank | +23.5% |\n| mauve | -46.3% |\n\n### 5-Method Lead-Lag\n\n| Method | Score |\n|--------|-------|\n| naive_xcorr | 7/8 |\n| diff_xcorr (BH-FDR) | 8/8 |\n| threshold_onset | 3/8 |\n| **perm_granger fwd** | **0/8** |\n| perm_granger rev | 0/8 |\n| **ty_granger** | **0/8** |\n| **K>=4/5** | **0/8** |\n\n### 对比\n\n**vs fp32 s42 (a010_s42):**\n- Diversity collapse 缓解: d1 -29.1% (bf16) vs -39.7% (fp32), d3 -31.9% vs -58.9% → D079 confirmed, bf16 抑制 collapse 27-46%\n- ECE 方向逆转: bf16 -61.1% (改善) vs fp32 +57.4% (恶化)\n- Effective rank 方向逆转: bf16 +23.5% vs fp32 -3.1%\n- Causal signal 不变: 两者 PermG/TY 均 0/8\n\n**vs null a000_s43:**\n- Drift 幅度可区分 (d1 2.1x, d2 4.1x, d3 6.7x, entropy 3.0x)\n- 但 causal lead-lag 不存在 → 盲区复现\n\n**D078 精度桥梁:** bf16 不消除盲区，只减小 collapse 幅度。ECE/eff_rank 在 bf16 下行为模式与 fp32 完全不同。\n\n### Conclusion: **success**\n\nD075 盲区验证通过。α=0.10 存在实质性 diversity collapse 但 canary 无因果先导信号 (PermG 0/8, TY 0/8, K>=4 0/8)。Correlation methods (naive 7/8, diff 8/8) 检出 co-movement 但非 temporal precedence。Registry 已更新为 DONE(success)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-alpha-sweep-a010-s43.md"
+}

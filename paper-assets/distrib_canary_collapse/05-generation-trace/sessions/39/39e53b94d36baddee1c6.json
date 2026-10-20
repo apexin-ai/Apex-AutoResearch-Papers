@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "39e53b94d36baddee1c6",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diag verify training kill orphan",
+  "task_key": "worker_diag_verify_training_kill_orphan_20260518T222058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_verify_training_kill_orphan_20260518T222058_result.json",
+    "occurrence": 1,
+    "bytes": 1362,
+    "sha256": "c15c28b196decfabbc38eb42d461ac2bd9b23435578b8dc242a956a9f5f8e7aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 1. 四个新实验状态\n\n| Session | 状态 | 当前进度 |\n|---------|------|----------|\n| `qwen35_08b_fp32` | 运行中 | 生成阶段（输出 padding_side 警告，GPU 0 利用率 99%） |\n| `a060_s42_fp32` | 运行中 | Featurizing q: 37% (p 已完成) |\n| `a005_s42_fp32` | 运行中 | Featurizing q: 5% (p 已完成) |\n| `interv_pred_fp32` | 运行中 | Featurizing p: 65% |\n\n四个实验均在正常运行，未出现启动后退出的情况。\n\n### 2. 孤儿进程\n\nPID 44889 (OPT-1.3B, seed 43) 已 kill。GPU 5 显存从 28480 MiB 降至 9719 MiB，释放约 **18.7 GiB**。现在 GPU 5 上只剩 alpha_sweep_a010_s43 (PID 45289)。\n\n### 3. GPU 全局状态\n\n| GPU | 显存占用 | 总显存 | 利用率 | 备注 |\n|-----|---------|--------|--------|------|\n| 0 | 70761 MiB | 97887 MiB | 99% | qwen35_08b_fp32 |\n| 1 | 2885 MiB | 97887 MiB | 40% | 新实验（featurizing 阶段） |\n| 2 | 7083 MiB | 97887 MiB | 0% | 新实验（featurizing，CPU 密集） |\n| 3 | 7083 MiB | 97887 MiB | 0% | 新实验（featurizing，CPU 密集） |\n| 4 | 7083 MiB | 97887 MiB | 91% | 新实验 |\n| 5 | 9719 MiB | 97887 MiB | 39% | alpha_sweep_a010_s43（孤儿已清除） |\n\n6 张 GPU 均有进程。GPU 2/3 利用率暂时 0% 是因为 featurizing 阶段主要吃 CPU，进入训练后会上去。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-verify-training-kill-orphan.md"
+}

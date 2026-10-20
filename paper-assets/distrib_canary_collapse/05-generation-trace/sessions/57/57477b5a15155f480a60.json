@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57477b5a15155f480a60",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis intervention leadlag",
+  "task_key": "worker_analysis_intervention_leadlag_20260519T044711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_intervention_leadlag_20260519T044711_result.json",
+    "occurrence": 1,
+    "bytes": 1198,
+    "sha256": "6c03fc9b3fda3d8dc916e3587e69759138ba35bc65f797968728a252e16ab2e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n## 分析 1: 5-method lead-lag\n\n| 实验 | K>=3/5 | PermG (FDR) | 最强方法 |\n|------|--------|-------------|---------|\n| Predictive s42 (fp32) | 0/8 | 0/8 | diff_xcorr (8/8) |\n| Reactive s42 (fp32) | **8/8** | **8/8** | diff/perm/ty 均 8/8 |\n| Predictive s43 (bf16) | **8/8** | **8/8** | naive/pg 均 8/8 |\n| Reactive s43 (bf16) | **8/8** | 5/8 | diff_xcorr (8/8) |\n\nPredictive s42 信号最弱（gen 1 即干预截断了单调 collapse 轨迹），但 diff_xcorr 仍全部显著。Reactive s42 信号最强（全方法一致）。\n\n## 分析 2: 效果量对比 + Bootstrap 95% CI\n\n| 指标 | 中位数 | 95% CI |\n|------|--------|--------|\n| Peak PPL reduction (predictive vs reactive) | 56.8% | [28.5%, 63.7%] |\n| Recovery speed gain | 1 gen | [1, 1] |\n| Cumulative excess PPL reduction | 72.0% | [52.4%, 76.7%] |\n| Final PPL difference | +0.11 (n.s.) | 两种策略收敛到相同水平 |\n\nReviewer 提到的 \"63% ppl 降低\" 在 s42 fp32 得到确认 (63.7%)，跨 seed pooled 估计为 58.3%。bf16 精度本身降低了 collapse 严重程度，使得 s43 的差异较小 (36.3%)。\n\n三个产出文件已注册到 artifacts。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-intervention-leadlag.md"
+}

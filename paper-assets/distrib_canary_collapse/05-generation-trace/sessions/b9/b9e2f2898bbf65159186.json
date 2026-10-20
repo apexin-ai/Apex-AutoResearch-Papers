@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b9e2f2898bbf65159186",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis c4 a025 s42 fp32",
+  "task_key": "worker_analysis_c4_a025_s42_fp32_20260519T221710",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_c4_a025_s42_fp32_20260519T221710_result.json",
+    "occurrence": 1,
+    "bytes": 1050,
+    "sha256": "de72cfd0dfb9006612f8c25665c545735fba388c0b0076ae0164697216121a26"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结果：\n\n**c4_a025_s42_fp32 — PermG=0/8, K≥3=8/8, K≥4=3/8**\n\n| 指标 | 结果 |\n|------|------|\n| permg_fwd_fdr | **0/8** |\n| permg_rev_fdr | **0/8** |\n| consensus_K3_3sigma | **8/8** |\n| consensus_K4_3sigma | **3/8** |\n| threshold_onset | 8/8 |\n| naive_xcorr | 8/8 |\n| diff_xcorr | 8/8 |\n| ty_granger | 3/8 |\n\n**Drift:** token_entropy -53.01%, mauve -52.08%, perplexity +3617%, distinct_1 -4.10%\n\n**与 parent α=0.50 对比：** PermG 从 8/8 骤降到 0/8，相关/阈值方法仍为 8/8。PermG 的 raw p-values 在 0.03–0.09 范围，部分 nominally significant 但全部无法通过 BH FDR 校正。\n\n**Onset 结论：** C4 PermG onset ∈ (0.25, 0.50]，与 WikiText onset ∈ (0.40, 0.50] 重叠。PermG 在 α=0.25 未检测到 → 不能证明 C4 onset 严格低于 WikiText。需要 C4 α=0.30/0.35/0.40 的实验才能分离两个域的 onset。\n\n报告已注册：`artifacts/c4_a025_s42_fp32/report/c4_a025_s42_fp32_analysis.md`\nRegistry 已更新为 DONE(success)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-c4-a025-s42-fp32.md"
+}

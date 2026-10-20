@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2dfcf985dec02fe6a178",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analyze check and d102 19828 loop17",
+  "task_key": "worker_analyze_check-and-d102-19828-loop17_20260522T004805",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_check-and-d102-19828-loop17_20260522T004805_result.json",
+    "occurrence": 1,
+    "bytes": 1204,
+    "sha256": "b1475d566536d85b63c3f65d9d88f88f41c012aa4c653cab9f78746651f0dadf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### 实验状态\n\n| 实验 | T | α | seed | 进度 | 状态 |\n|------|---|---|------|------|------|\n| t15_a045_s42_fp32 | 15 | 0.45 | 42 | 16/16 gen | **DONE** |\n| t25_a075_s42_fp32 | 25 | 0.75 | 42 | 26/26 gen | **DONE** |\n| t20_a045_s43_fp32 | 20 | 0.45 | 43 | gen 19/19 training (step ~2014/5000, ~40%) | RUNNING, ~7min 训练完 |\n| t25_a075_s43_fp32 | 25 | 0.75 | 43 | gen 1/24 training (step ~3690/5000, 74%) | RUNNING, 刚开始，预计还需 ~10h |\n\n### D102 5-method 分析结果（已完成实验）\n\n**t15_a045_s42_fp32** (T=15, α=0.45, s42):\n- PermG fwd: **6/8**, rev: **0/8**\n- Robust pairs (K≥3): **5/8**\n- mauve pairs 全不显著 (token_entropy→mauve 0/5, ece→mauve 1/5)\n\n**t25_a075_s42_fp32** (T=25, α=0.75, s42):\n- PermG fwd: **6/8**, rev: **0/8**\n- Robust pairs (K≥3): **6/8**\n- 4 个方法在 distinct 上一致 (4-5/5)，mauve 仍弱 (0-1/5)\n\nD102 分析文件已复制到：\n- `artifacts/phase_diagram_t15_a045_s42_fp32/data/5method_leadlag.json`\n- `artifacts/phase_diagram_t25_a075_s42_fp32/data/5method_leadlag.json`\n\nt20_a045_s43 预计 ~15min 内完成（训练 + gen + metrics），届时可执行 D102 分析。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-check-and-d102-19828-loop17.md"
+}

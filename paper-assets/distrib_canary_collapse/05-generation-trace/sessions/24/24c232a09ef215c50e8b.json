@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24c232a09ef215c50e8b",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "audit table7 d105 d111 unified",
+  "task_key": "worker_audit_table7_d105_d111_unified_20260520T012835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_table7_d105_d111_unified_20260520T012835_result.json",
+    "occurrence": 1,
+    "bytes": 1552,
+    "sha256": "0ccc36ca6de094a96072ae68ea483d718a585a0a7e8c3493fa03def13b375d36"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/table7_d105_d111_unified_audit.md`。\n\n核心结果：\n\n**K≥3 变化 (old→new):**\n\n| Model | Seed | K≥3 | K≥4 | flags |\n|-------|------|------|------|-------|\n| Pythia-6.9B | s42 | 8/8→5/8 | 3/8→1/8 | MISSING_3SIGMA |\n| Qwen3.5-0.8B | s42 | 8/8→8/8 | 6/8→3/8 | MISSING_3SIGMA |\n| GPT-2m | s42 | 6/8→**0/8** | 2/8→0/8 | |\n| GPT-2m | s43 | 6/8→**1/8** | 4/8→0/8 | |\n| OPT-1.3B | s42 | 6/8→**0/8** | 2/8→0/8 | |\n| Padding-410M | s42 | 6/8→6/8 | 6/8→**0/8** | MISSING_3SIGMA |\n| SmolLM3-3B | s42 | 0/8→0/8 | 0/8→0/8 | |\n| Pythia-410M | s43 | 6/8→6/8 | 0/8→0/8 | MISSING_3SIGMA |\n| C4 Pythia-1B | s42 | 8/8→5/8 | 4/8→1/8 | |\n| C4 Pythia-1B | s43 | 8/8→5/8 | 5/8→2/8 | |\n| Pythia-1.4B | s42 | 2/8→1/8 | 0/8→0/8 | |\n| Pythia-1.4B | s43 | 6/8→7/8 ↑ | 3/8→4/8 ↑ | K_INCREASED |\n| OPT-1.3B | s43 | 0/8→0/8 ✓ | — | verification ✓ |\n\n**两个最大冲击源：**\n1. **D111**: diff_xcorr 的 peak_lag 几乎全部 ≤ 0，diff_fwd 跨所有实验最高仅 2/8。这是 K≥4 暴跌的主因。\n2. **D105**: 3σ threshold 在 GPT-2m/OPT/SmolLM3 全部为 False，直接把这些实验的 K≥3 打到 0-1。\n\n**高风险项：** 4 个 17855 实验 (Pythia-6.9B, Qwen, Padding-410M, Pythia-410M s43) 缺少 `significant_3sigma` 字段，使用了 2σ fallback。如果重跑 3σ analysis，Padding-410M 和 Pythia-410M s43 的 K≥3=6/8 可能进一步降为 0/8（当前 K=3 的 6 个 pair 都依赖 thresh+permG+TY 恰好=3）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-table7-d105-d111-unified.md"
+}

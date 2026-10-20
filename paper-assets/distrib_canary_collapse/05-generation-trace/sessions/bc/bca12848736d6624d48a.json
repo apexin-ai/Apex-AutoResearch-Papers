@@ -1,0 +1,360 @@
+{
+  "schema_version": "1.0",
+  "id": "bca12848736d6624d48a",
+  "project": "distrib_canary_collapse",
+  "kind": "conversation",
+  "title": "paper writing related work",
+  "task_key": "worker_paper_writing_related_work_20260515T195157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_related_work_20260515T195157.jsonl",
+    "occurrence": 1,
+    "bytes": 27003,
+    "sha256": "804314dd3dcd131de3d01d44eaaa90c24849459445f2898579cfdc0282699092"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "tool_call": 8,
+      "tool_result": 8,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T19:54:33.078429+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T195157",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T19:54:33.078925+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认\n…[truncated 7201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T195157",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T19:54:33.079108+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T195157",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/red-section.skill.md"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T19:54:33.079423+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: red-section\n3\tdescription: \"当实验结论为 negative / 审稿人指出 core claim 不成立 / 你要写或修改任何 paper/**/*.md 或 .tex 文件时,立即使用本 skill。提供 Framing 调整提案模板、写作规范、审稿攻击面预演。违反即被 Reviewer critical 打回。\"\n4\talways: true\n5\troles:\n6\t  - agent\n7\t---\n8\t\n9\t# Red Section — Narrative Re-framing\n10\t\n11\t## 什么时候用\n12\t- 实验 conclusion = negative\n13\t- 审稿人指出 core claim 不成立\n14\t- 写论文前（作为通用写作规范）\n15\t\n16\t## Negative 结果的正确心态\n17\t\"不是失败，是发现了 X\"。你的输出应该是 framing 调整提案，而不是 failure report。\n18\t\n19\t## 产出格式\n20\t\n21\t### Framing 调整提案模板\n22\t1. 原 claim：什么\n23\t2. 实验结果：什么（客观数字，不加修饰）\n24\t3. 重新审视：\n25\t   - 这个结果挑战了哪个 hypothesis？\n26\t   - 是否暴露了被忽略的变量？\n27\t   - 在新的 framing 下，哪些已做实验依然有效？哪些要补？\n28\t4. 新的 narrative 骨架（3 种备选，供 Director 选）\n29\t5. 对论文各章节的影响（abstract / intro / method / experiments / discussion / conclusion 逐一评估）\n30\t6. 建议下一步实验（必须至少 3 组备选，填新 framing 下的矩阵空格）\n31\t\n32\t### 写作规范（所有写作场景通用）\n33\t- 禁止 cherry-picking\n34\t- 所有数字必须追溯到 registry\n35\t- 强度与 evidence 匹配（1 个数据集 → 不能说 \"consistently\"）\n36\t- 每个定量 claim 必须附 exp_id\n37\t- 限制强度词（\"significantly\" 必须有统计检验）\n38\t\n39\t### 审稿攻击面预演\n40\t- 这个 section 最容易被审稿人攻击的点\n41\t- 预写 rebuttal 要点\n42\t\n43\t## 输出给谁\n44\t- Framing 调整提案 → Main Agent 向 Director 汇报\n45\t- 写作 skill 合规检查 → Reviewer 审查时验证\n46\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T195157",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T19:54:33.079579+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T195157",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/references.bib"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T19:54:33.079793+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% ============================================================\n2\t% CORE MODEL COLLAPSE\n3\t% ============================================================\n4\t\n5\t@article{shumailov2024curse,\n6\t  title     = {The Curse of Recursion: Training on Generated Data Makes Models Forget},\n7\t  author    = {Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Gal, Yarin and Papernot, Nicolas and Anderson, Ross},\n8\t  journal   = {Nature},\n9\t  year      = {2024},\n10\t  url       = {https://arxiv.org/abs/2305.17493},\n11\t}\n12\t\n13\t@inproceedings{alemohammad2024mad,\n14\t  title     = {Self-Consuming Generative Models Go {MAD}},\n15\t  author    = {Alemohammad, Sina and Casco-Rodriguez, Josue and Luzi, Lorenzo and Humayun, Ahmed Imtiaz and Babaei, Hossein and LeJeune, Daniel and Siahkoohi, Ali and Baraniuk, Richard},\n16\t  booktitle = {International Conference on Learning Representations},\n17\t  year      = {2024},\n18\t  url       = {https://arxiv.org/abs/2307.01850},\n19\t}\n20\t\n21\t@inproceedings{dohmatob2024tale,\n22\t  title     = {A Tale of Tails: Model Collapse as a Change of Scaling Laws},\n23\t  author    = {Dohmatob, Elvis and Feng, Yunzhen and others},\n24\t  booktitle = {International Conference on Machine Learning},\n25\t  year      = {2024},\n26\t  url       = {https://arxiv.org/abs/2402.07043},\n27\t}\n28\t\n29\t@inproceedings{dohmatob2025strong,\n30\t  title     = {Strong Model Collapse},\n31\t  author    = {Dohmatob, Elvis and Feng, Yunzhen and Subramonian, Arjun and Kempe, Julia},\n32\t  booktitle = {International Conference on Learning Representations},\n33\t  year      = {2025},\n34\t  url       = {https://arxiv.org/abs/2410.04840},\n35\t}\n36\t\n37\t@inproceedings{guo2024linguistic,\n38\t  title     = {The Curious Decline of Linguistic Diversity: Training Language Models on Synthetic Text},\n39\t  author    = {Guo, Yanzhu and Shang, Guokan and others},\n40\t  booktitle = {Findings of the Association for Computational Linguistics: {NAACL}},\n41\t  year      = {2024},\n42\t  url       = {https://arxiv.org/abs/2311.0\n…[truncated 16384 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T195157",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T19:54:33.079942+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T195157",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T19:54:33.080104+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tTraining language models on their own output across successive generations leads to progressive distribution degradation, a phenomenon variously termed model collapse~\\cite{shumailov2024curse} or Model Autophagy Disorder~\\cite{alemohammad2024mad}.\n5\tTail modes vanish, lexical diversity narrows, and calibration deteriorates as each generation's output becomes the next generation's training data.\n6\tAs large language models become ubiquitous content generators, the fraction of machine-generated text on the web grows steadily, making iterative training collapse---where models are unwittingly trained on the output of earlier model generations---a practical concern for the long-term stability of language model ecosystems.\n7\t\n8\tA natural follow-up question is whether cheap-to-compute statistics---\\emph{canary metrics}---can provide early warning of impending collapse, analogous to early-warning signals for critical transitions in ecological and climate systems~\\cite{scheffer2009early,scheffer2012anticipating}.\n9\tSeveral recent studies have pursued this direction: \\citet{du2026geometric} informally observe that expected calibration error rises before accuracy degrades; SIGMA~\\cite{sigma2026spectral} proposes spectral indicators of distributional shift; and DCES~\\cite{dces2026counter} uses center-edge sampling dynamics as a collapse signal.\n10\tYet the statistical methodology underlying these lead-lag claims---whether a canary metric genuinely \\emph{precedes} downstream degradation, or merely correlates with it under shared non-stationary trends---has received little scrutiny.\n11\t\n12\tWe identify four methodological deficiencies that pervade existing lead-lag analyses of iterative training collapse:\n13\t(1)~no differencing tests to rule out spurious regression arising from shared non-stationary trends---a well-known hazard when correlating co-trending time series;\n14\t(2)~no multi-method cross-validation---conclusions rest\n…[truncated 6228 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T195157",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T19:54:33.080243+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T195157",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/literature_map.yaml"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T19:54:33.080644+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tpapers:\n2\t  # ============================================================\n3\t  # CORE MODEL COLLAPSE\n4\t  # ============================================================\n5\t  - id: \"shumailov2024curse\"\n6\t    title: \"The Curse of Recursion: Training on Generated Data Makes Models Forget\"\n7\t    authors: \"Ilia Shumailov, Zakhar Shumaylov, Yiren Zhao, Yarin Gal, Nicolas Papernot, Ross Anderson\"\n8\t    venue: \"Nature\"\n9\t    year: 2024\n10\t    url: \"https://arxiv.org/abs/2305.17493\"\n11\t    category: \"core-collapse\"\n12\t    role: \"foundation\"\n13\t    key_findings:\n14\t      - \"定义 model collapse 现象：迭代用合成数据替换真实数据训练会导致分布尾部消失\"\n15\t      - \"区分 early model collapse（尾部信息丢失）和 late model collapse（分布完全收敛）\"\n16\t      - \"三类误差来源：statistical approximation, functional expressivity, functional approximation，跨代复合\"\n17\t      - \"在 VAE、GMM、LLM 上均验证了 collapse 的普遍性\"\n18\t    relevance_to_us: \"奠基论文，定义了我们研究的核心现象。我们的 canary 指标旨在提前检测其描述的 early collapse 阶段\"\n19\t    metrics_studied: [\"perplexity\", \"distributional tail mass\"]\n20\t\n21\t  - id: \"alemohammad2024mad\"\n22\t    title: \"Self-Consuming Generative Models Go MAD\"\n23\t    authors: \"Sina Alemohammad, Josue Casco-Rodriguez, Lorenzo Luzi, Ahmed Imtiaz Humayun, Hossein Babaei, Daniel LeJeune, Ali Siahkoohi, Richard Baraniuk\"\n24\t    venue: \"ICLR 2024\"\n25\t    year: 2024\n26\t    url: \"https://arxiv.org/abs/2307.01850\"\n27\t    category: \"core-collapse\"\n28\t    role: \"foundation\"\n29\t    key_findings:\n30\t      - \"提出 Model Autophagy Disorder (MAD) 概念\"\n31\t      - \"autophagous loop 中没有足够新鲜真实数据时，质量或多样性必然渐进下降\"\n32\t      - \"在图像生成领域验证 self-consuming loop 的退化效应\"\n33\t    relevance_to_us: \"MAD 框架与我们的 iterative loop 设置直接对应；其 quality vs diversity tradeoff 可能反映在不同 canary 指标上\"\n34\t    metrics_studied: [\"FID\", \"precision\", \"recall\", \"diversity\"]\n35\t\n36\t  - id: \"dohmatob2024tale\"\n37\t    title: \"A Tale of Tails: Model Collapse as a Change of Scaling Laws\"\n38\t    authors: \"Elvis Dohmatob, Yunzhen Feng, et al.\"\n39\t    venue: \"ICML 2024\"\n40\t    year: 2024\n41\t    url: \"https://arxiv.org/abs/2402.07\n…[truncated 33336 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T195157",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T19:54:33.080848+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T195157",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/related_work.tex 2>/dev/null; echo \"---\"; ls /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/",
+              "description": "Check if related_work.tex exists and list paper directory"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T19:54:33.080979+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nbackground.tex\nexperiments.tex\nintroduction.tex\nmethod.tex\nreferences.bib"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T195157",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T19:54:33.081179+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T195157",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/related_work.tex",
+              "content": "\\section{Related Work}\n\\label{sec:related_work}\n\n\\paragraph{Model collapse in iterative training.}\n\nThe phenomenon of iterative training collapse was formalized by \\citet{shumailov2024curse}, who showed that recursively replacing real data with model-generated text causes progressive tail erosion across VAEs, GMMs, and language models, and by \\citet{alemohammad2024mad}, who demonstrated quality--diversity tradeoffs in self-consuming generative loops for image models.\nTheoretical analyses have since sharpened these results: \\citet{dohmatob2024tale} recast collapse as a change in scaling-law exponents, showing that even small fractions of synthetic data alter effective scaling behavior, while \\citet{dohmatob2025strong} proved that collapse can occur even when synthetic data constitutes a vanishingly small fraction of the training set.\nThe role of data accumulation has been a central theme.\n\\citet{dey2024breaking} proved that accumulating data across generations---rather than replacing it---prevents divergence of population risk in GMMs, HMMs, and language models.\n\\citet{kazdan2025collapse} systematically compared replace and accumulate regimes, finding that synthetic data value depends on the absolute quantity of co-present real data.\n\\citet{fu2025selfconsuming} provided generalization bounds for self-consuming loops, establishing that a constant fraction of real data suffices for convergence under accumulation.\nOn the calibration side, \\citet{he2025golden} showed that optimal real-data weighting converges to the golden-ratio inverse ($1/\\varphi \\approx 0.618$) in Gaussian and GLM settings, and that the risk landscape is non-monotone in mixing ratio---a theoretical prediction with implications for regime-dependent canary behavior.\nBeyond distributional statistics, \\citet{guo2024linguistic} documented progressive decline in lexical, syntactic, and semantic diversity across iterative fine-tuning generations, providing the multi-level diversity metrics that serve as downstream targets in our lead-lag analysis.\n\\citet{schaeffer2025position} catalogued eight distinct and sometimes contradictory definitions of ``model collapse'' in the literature, underscoring the importance of explicit operational definitions---a concern our framework addresses by scoping canary prediction to diversity metrics specifically.\n\n\\paragraph{Canary metrics and collapse monitoring.}\n\nSeveral recent works have proposed monitoring metrics that precede or accompany distributional degradation during iterative training.\n\\citet{du2026geometric} observe that calibration error rises before accuracy degrades in iteratively trained language models, interpreting this through a geometric-regulation lens.\n\\citet{chen2025scales} report a similar pattern across model scales and mixing ratios, noting that ECE increases of 75\\% appear at 30\\% synthetic contamination before accuracy drops become visible.\nBeyond calibration, SIGMA~\\cite{sigma2026spectral} introduces a dual-track spectral framework based on embedding Gram matrices, where divergence between deterministic and stochastic spectral bounds serves as an early collapse diagnostic.\n\\citet{kalinowski2026topology} proposes a topological monitoring approach using persistent homology features to detect multi-scale structural loss in representation space.\nDCES~\\cite{dces2026counter} uses center-edge sampling dynamics as a collapse signal and reports improvements in ECE and entropy preservation.\n\\citet{gambetta2024surplexity} introduces surplexity---a surprise-based metric that simultaneously detects collapse and filters training data---demonstrating that high-surplexity selection matches human-data baselines in maintaining distributional balance.\n\nThese works collectively demonstrate growing interest in collapse monitoring, yet they share methodological limitations that weaken their lead-lag claims.\nNone apply differencing tests to distinguish genuine temporal precedence from spurious co-trending; none cross-validate findings across multiple statistical methods; and none apply false discovery rate correction when testing multiple metric pairs.\nOur work differs from the closest predecessor, \\citet{du2026geometric}, in four respects:\n(i)~we compare an entire family of canary metrics rather than a single metric pair;\n(ii)~we cross-validate each lead-lag relationship across five independent statistical methods and quantify sensitivity to method choice via $d_{\\max}$;\n(iii)~we map detectability as a function of contamination regime rather than reporting a single aggregate result; and\n(iv)~we treat method-selection sensitivity itself as a primary finding, showing that it is the dominant source of variation in existing lead-lag conclusions.\n\n\\paragraph{Early-warning signals and critical transitions.}\n\nThe theoretical foundation for canary-based prediction of system failure originates in ecology and climate science.\n\\citet{scheffer2009early} established that complex systems approaching tipping points exhibit generic early-warning signals---rising autocorrelation and variance due to critical slowing down---independent of system-specific mechanisms.\n\\citet{scheffer2012anticipating} extended this framework by combining empirical warning indicators with network-architecture analysis, arguing that structural and statistical signals together improve anticipatory power.\nCrucially, \\citet{boettiger2012limits} quantified the statistical detection limits of these signals, showing that early-warning power is often negligible in short time series---a constraint directly relevant to iterative training, where the number of generations (typically 5--20) is far smaller than typical ecological datasets.\n\\citet{truong2025entropy} connects entropy collapse to critical transitions, characterizing it as a first-order phase transition with universality classes that determine whether classical early-warning signals retain predictive power.\nThe model collapse literature has not yet imported these methodological tools: existing canary studies neither frame their claims in terms of detection power under finite samples nor test whether observed lead-lag patterns survive the short-series constraints that \\citet{boettiger2012limits} identified as fundamental.\n\n\\paragraph{Lead-lag methodology.}\n\nGranger causality~\\cite{granger1969investigating} provides the standard econometric framework for testing whether one time series improves prediction of another beyond its own history.\n\\citet{shojaie2022granger} review classical and modern extensions, including VAR-based tests, kernel methods, and neural approaches for nonlinear dependencies.\nA key practical issue is non-stationarity: standard Granger tests applied to integrated (unit-root) series produce inflated rejection rates.\nThe Toda--Yamamoto procedure addresses this by augmenting the VAR lag order by the integration order and testing only the original lags, yielding valid asymptotic inference regardless of cointegration structure.\nDespite wide use in economics and neuroscience, these methods are largely absent from the machine learning literature on iterative training.\nExisting canary studies rely on visual inspection or naive cross-correlation, which cannot distinguish genuine temporal precedence from shared non-stationary trends.\nOur framework applies five complementary methods---cross-correlation, standard Granger, Toda--Yamamoto, permutation Granger, and first-differenced regression---and requires multi-method consensus before classifying a lead-lag relationship as robust, directly addressing the method-sensitivity problem that arises when any single test is taken in isolation.\n"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T19:54:33.081398+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/related_work.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T195157",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T19:54:33.081536+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T195157",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper && echo \"=== 1. label check ===\" && grep -c 'label{sec:related_work}' related_work.tex && echo \"=== 2. all cite keys ===\" && grep -oP '\\\\cite[tp]?\\{[^}]+\\}' related_work.tex | tr ',' '\\n' | sed 's/.*{//;s/}.*//' | sort -u && echo \"=== 3. verify keys in bib ===\" && for key in $(grep -oP '\\\\cite[tp]?\\{[^}]+\\}' related_work.tex | tr ',' '\\n' | sed 's/.*{//;s/}.*//'); do grep -q \"$key\" references.bib && echo \"OK: $key\" || echo \"MISSING: $key\"; done && echo \"=== 4. forbidden phrases ===\" && grep -iE 'consistently outperforms|state-of-the-art|state of the art' related_work.tex || echo \"None found\" && grep -P '\\bsignificantly\\b' related_work.tex || echo \"No bare 'significantly'\" && echo \"=== 5. Du et al. 4 distinctions ===\" && grep -c '(i)' related_work.tex && grep -c '(ii)' related_work.tex && grep -c '(iii)' related_work.tex && grep -c '(iv)' related_work.tex && echo \"=== 6. word count ===\" && wc -w related_work.tex && echo \"=== 7. unique new cites (not in intro) ===\" && comm -23 <(grep -oP '\\\\cite[tp]?\\{[^}]+\\}' related_work.tex | tr ',' '\\n' | sed 's/.*{//;s/}.*//' | sort -u) <(grep -oP '\\\\cite[tp]?\\{[^}]+\\}' introduction.tex | tr ',' '\\n' | sed 's/.*{//;s/}.*//' | sort -u)",
+              "description": "Verify related_work.tex against all checklist items"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T19:54:33.081678+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== 1. label check ===\n1\n=== 2. all cite keys ===\nalemohammad2024mad\nboettiger2012limits\nchen2025scales\ndces2026counter\ndey2024breaking\ndohmatob2024tale\ndohmatob2025strong\ndu2026geometric\nfu2025selfconsuming\ngambetta2024surplexity\ngranger1969investigating\nguo2024linguistic\nhe2025golden\nkalinowski2026topology\nkazdan2025collapse\nschaeffer2025position\nscheffer2009early\nscheffer2012anticipating\nshojaie2022granger\nshumailov2024curse\nsigma2026spectral\ntruong2025entropy\n=== 3. verify keys in bib ===\nOK: shumailov2024curse\nOK: alemohammad2024mad\nOK: dohmatob2024tale\nOK: dohmatob2025strong\nOK: dey2024breaking\nOK: kazdan2025collapse\nOK: fu2025selfconsuming\nOK: he2025golden\nOK: guo2024linguistic\nOK: schaeffer2025position\nOK: du2026geometric\nOK: chen2025scales\nOK: sigma2026spectral\nOK: kalinowski2026topology\nOK: dces2026counter\nOK: gambetta2024surplexity\nOK: du2026geometric\nOK: scheffer2009early\nOK: scheffer2012anticipating\nOK: boettiger2012limits\nOK: truong2025entropy\nOK: boettiger2012limits\nOK: granger1969investigating\nOK: shojaie2022granger\n=== 4. forbidden phrases ===\nNone found\nNo bare 'significantly'\n=== 5. Du et al. 4 distinctions ===\n1\n1\n1\n1\n=== 6. word count ===\n900 related_work.tex\n=== 7. unique new cites (not in intro) ===\nchen2025scales\ndey2024breaking\ndohmatob2024tale\ndohmatob2025strong\nfu2025selfconsuming\ngambetta2024surplexity\ngranger1969investigating\nguo2024linguistic\nhe2025golden\nkalinowski2026topology\nkazdan2025collapse\nschaeffer2025position\ntruong2025entropy"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T195157",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T19:54:33.081837+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks pass:\n\n1. `\\label{sec:related_work}` present\n2. All 22 `\\cite` keys verified in `references.bib` — zero missing\n3. No forbidden phrases (\"consistently outperforms\", \"state-of-the-art\", bare \"significantly\")\n4. Du et al. 4-point distinction (i)–(iv) all present\n5. Word count: 900\n6. 13 new citations introduced (not already in Introduction), well within budget\n\nSection written to `docs/paper/related_work.tex` with 4 `\\paragraph{}` blocks as specified."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T195157"
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing-related-work.md"
+}

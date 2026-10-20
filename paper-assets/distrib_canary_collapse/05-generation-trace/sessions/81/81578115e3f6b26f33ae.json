@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "81578115e3f6b26f33ae",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis metric structure mauve",
+  "task_key": "worker_analysis_metric-structure-mauve_20260522T115912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_metric-structure-mauve_20260522T115912_result.json",
+    "occurrence": 1,
+    "bytes": 1271,
+    "sha256": "e32353b54444c893aa64000938b2a6ec59e147cac53469051dbf9ee2297a73ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All artifacts registered. PDF also generated alongside the PNG.\n\n---\n\n## 结果汇总\n\n### Part 1: Mauve Pair 归因\n\nRegistry 中 3 个有 `non_robust_pairs` 数据的实验，**100% 的 non-robust pairs 涉及 mauve 作为 downstream**：\n- 仅出现 2 种 pair：`token_entropy<mauve` 和 `ece<mauve`（consensus 0–2/5）\n- 6 个 diversity pairs（`*<distinct_1/2/3`）全部通过 K≥3 consensus\n- Wiki 域：PermG_fwd=6/8 + K3=6（mauve pairs 失败）\n- C4 域：可达 PermG_fwd=8/8 + K3=8（mauve pairs 在 C4 可通过）\n- 无例外\n\n### Part 2: Shape Comparison\n\n**形状指标**（核心判别器）：\n\n| 模型 | 中间态 cells (0.1–0.7) / 25 |\n|------|----------------------------|\n| H0 linear | 12 (48%) |\n| H0' concave | 13 (52%) |\n| H1 step | 4 (16%) |\n| **Observed** | **2 (8%)** |\n\nH0/H0' 预测近半数 cells 处于中间检测率——平滑过渡。Observed 数据是二值的：23/25 cells 为 0.0 或 ≥0.625。\n\n**RMSE**：H0=0.315, H0'=0.287, H1=0.371。H1 的 RMSE 偏高源于 T=10 阈值误判（H1 在 T=10 不预测检测但 observed 已有 0.75）及 α=0.60 异常，而非形状错误。\n\n**图表**：4-panel figure 清晰展示 H0/H0' 平滑曲线 vs observed 二值点的对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-metric-structure-mauve.md"
+}

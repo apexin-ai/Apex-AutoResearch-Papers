@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7bdbf5d896054cc0c02b",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis alpha sweep a000 s42",
+  "task_key": "worker_analysis_alpha_sweep_a000_s42_20260514T233755",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_alpha_sweep_a000_s42_20260514T233755_result.json",
+    "occurrence": 1,
+    "bytes": 801,
+    "sha256": "4397598ccba8d35717c69cb956913621a53fbfcb1d5233ab804fedf9cdb87f32"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。无 wandb run。\n\n## 分析总结\n\n**Conclusion: success** — null control 验证通过。\n\nα=0.0 纯 real data 迭代训练 10 代，**无 collapse 发生**：\n- **PPL**: 26.95 → 21.11，轻微下降后稳定在 ~21，符合纯 real data 持续微调的预期。对比 α=1.0 的 26.9 → 1000+，差距两个数量级。\n- **Entropy**: 3.234 → 3.069，10 代仅降 5.1%，几乎无漂移。α=1.0 降至 1.25（-61%）。\n- **ECE**: 0.011 → 0.016，始终在低位，无 calibration 退化。α=1.0 升至 0.42（38x）。\n- **Distinct-n**: 小幅收窄但稳定（D3: 0.813 → 0.776），无多样性坍缩。\n\n**结论**：迭代再训练本身不导致 collapse，collapse signal 完全源于合成数据污染，hypothesis 得到验证。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-alpha-sweep-a000-s42.md"
+}

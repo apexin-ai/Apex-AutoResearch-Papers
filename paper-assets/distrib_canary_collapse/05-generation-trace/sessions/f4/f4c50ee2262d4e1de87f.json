@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f4c50ee2262d4e1de87f",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis m004 persist batch1",
+  "task_key": "worker_analysis_m004_persist_batch1_20260518T111739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_m004_persist_batch1_20260518T111739_result.json",
+    "occurrence": 1,
+    "bytes": 2757,
+    "sha256": "d650b1e342fed1806bb52c54fbd210186e911f1bab0e6b5f740eff5429cbf1db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## **⚠️ FLIP DETECTED: OPT-1.3B Diff 8/8 → 6/8**\n\n注意：Diff (differenced_xcorr) 不使用 n_perm，此变化并非由 n_perm 1000→5000 导致，而是代码或数据版本差异。PG 相关值全部稳定。\n\n---\n\n## 条件 1: Baseline Pythia-410M s42\n| Pair | PG_fwd_p | PG_rev_p | fwd_sig | rev_sig |\n|------|----------|----------|---------|---------|\n| ent→d1 | 0.0002 | 0.4921 | ✓ | ✗ |\n| ent→d2 | 0.0012 | 0.4805 | ✓ | ✗ |\n| ent→d3 | 0.0012 | 0.5047 | ✓ | ✗ |\n| ent→ppl | 0.5841 | 0.9658 | ✗ | ✗ |\n| ece→d1 | 0.0002 | 0.0274 | ✓ | ✓ |\n| ece→d2 | 0.0006 | 0.0286 | ✓ | ✓ |\n| ece→d3 | 0.0006 | 0.0306 | ✓ | ✓ |\n| ece→ppl | 0.8040 | 0.1418 | ✗ | ✗ |\n\nSummary (8 canonical pairs):\n  Naive=8/8, Diff=8/8, Thresh=8/8, PG_fwd=6/8, PG_rev=3/8, TY=4/8, K≥4=6/8\nOld:\n  Naive=8/8, Diff=8/8, Thresh=8/8, PG_fwd=6/8, PG_rev=3/8, TY=4/8, K≥4=6/8\nFlip: 无\n\n---\n\n## 条件 2: OPT-1.3B s42\n| Pair | PG_fwd_p | PG_rev_p | fwd_sig | rev_sig |\n|------|----------|----------|---------|---------|\n| ent→d1 | 0.0012 | 0.8778 | ✓ | ✗ |\n| ent→d2 | 0.0034 | 0.9622 | ✓ | ✗ |\n| ent→d3 | 0.0128 | 0.9880 | ✓ | ✗ |\n| ent→ppl | 0.8540 | 0.8982 | ✗ | ✗ |\n| ece→d1 | 0.0012 | 0.0276 | ✓ | ✓ |\n| ece→d2 | 0.0046 | 0.0448 | ✓ | ✓ |\n| ece→d3 | 0.0126 | 0.0728 | ✓ | ✗ |\n| ece→ppl | 0.6275 | 0.1886 | ✗ | ✗ |\n\nSummary (8 canonical pairs):\n  Naive=8/8, Diff=6/8, Thresh=8/8, PG_fwd=6/8, PG_rev=2/8, TY=6/8, K≥4=6/8\nOld:\n  Naive=8/8, Diff=8/8, Thresh=8/8, PG_fwd=6/8, PG_rev=2/8, TY=6/8, K≥4=6/8\nFlip: ⚠️ Diff: 8/8 → 6/8（非 n_perm 引起）\n\n---\n\n## 条件 3: Scale Pythia-1.4B s42\n| Pair | PG_fwd_p | PG_rev_p | fwd_sig | rev_sig |\n|------|----------|----------|---------|---------|\n| ent→d1 | 0.0274 | 0.8826 | ✓ | ✗ |\n| ent→d2 | 0.0346 | 0.7942 | ✓ | ✗ |\n| ent→d3 | 0.0532 | 0.7359 | ✗ | ✗ |\n| ent→ppl | 0.7163 | 0.9670 | ✗ | ✗ |\n| ece→d1 | 0.0042 | 0.5153 | ✓ | ✗ |\n| ece→d2 | 0.0086 | 0.5123 | ✓ | ✗ |\n| ece→d3 | 0.0216 | 0.5165 | ✓ | ✗ |\n| ece→ppl | 0.5739 | 0.3177 | ✗ | ✗ |\n\nSummary (8 canonical pairs):\n  Naive=7/8, Diff=6/8, Thresh=8/8, PG_fwd=5/8, PG_rev=0/8, TY=0/8, K≥4=5/8\nOld:\n  Naive=7/8, Diff=6/8, Thresh=8/8, PG_fwd=5/8, PG_rev=0/8, TY=0/8, K≥4=5/8\nFlip: 无\n\n---\n\n**结论**：n_perm 1000→5000 对 PG significance 无影响（PG_fwd 和 PG_rev 在 3 个条件中全部一致）。唯一变化是 OPT Diff 从 8/8 降至 6/8，但 `diff_xcorr` 不使用 permutation，说明此差异来自代码/数据版本变更而非本次重跑。\n\n产出已保存至 `artifacts/M004_nperm5000/` 下各子目录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-m004-persist-batch1.md"
+}

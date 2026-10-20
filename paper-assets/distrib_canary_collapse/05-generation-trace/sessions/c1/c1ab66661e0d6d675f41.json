@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c1ab66661e0d6d675f41",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops training progress check all",
+  "task_key": "worker_ops_training_progress_check_all_20260519T125120",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_training_progress_check_all_20260519T125120_result.json",
+    "occurrence": 1,
+    "bytes": 1626,
+    "sha256": "3d13fd0ff66289283850442f99d31332241df5d3c917e50cf75919c5122bcdf8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验进度汇总\n\n### westd-17855 (磁盘: 200G 剩余, 44%)\n\n| GPU | 实验 | VRAM | GPU利用率 | 进度 | 当前状态 |\n|-----|------|------|----------|------|---------|\n| 0 | alpha_sweep_a060_s43_fp32 | 7.5/98G | 70% | gen 0/10 | 刚启动11min，gen_0 featurizing 22% |\n| 1 | qwen35_08b_wiki_a100_s42_v2 | 34.8/98G | 69% | gen 10/10 | 最后一代训练中，step 2088/5000 (42%) |\n| 2 | padding_robustness_a100_s42_fp32 | 14.5/98G | 67% | gen 7/10 | 训练中 step 2041/5000 (40%) |\n| 3 | alpha_sweep_a025_s43_fp32 | 14.5/98G | 60% | gen 7→8/10 | gen 7 生成合成数据中 |\n| 4 | alpha_sweep_a025_s44_fp32 | 14.5/98G | 73% | gen 7→8/10 | gen 7 生成合成数据中 |\n| 5 | alpha_sweep_a075_s42_fp32 | 14.5/98G | 73% | gen 7/10 | 训练刚开始 step 106/5000 (2%) |\n\n### westd-19828 (磁盘: 27G 剩余, 90%) ⚠️\n\n| GPU | 实验 | VRAM | GPU利用率 | 进度 | 当前状态 |\n|-----|------|------|----------|------|---------|\n| 0 | gen_gpt2m_a100_s43_fp32 | 62.7/98G | 100% | gen 9/10 | 训练中 step 3022/5000 (60%) |\n| 1 | smollm3_3b_wiki_a100_s42_v3 | 64.4/98G | 100% | gen 7/10 | 训练中 step 2088/5000 (42%) |\n\n### 状态总结\n\n- **全部 8 个实验正常运行**，无 crash/hang/OOM\n- **qwen35** 接近完成（最后一代 42%），预计 ~1h 内跑完\n- **gen_gpt2m** 也接近尾声（gen 9/10, 60%），预计 ~2-3h\n- **a025_s43/s44** 进度同步，均在 gen 7 数据生成阶段\n- **a060_s43** 刚启动，还在 gen 0\n- ⚠️ **westd-19828 磁盘 90%（仅剩 27G）**，需关注，gen_gpt2m 和 smollm3 完成后输出可能继续增长"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-training-progress-check-all.md"
+}

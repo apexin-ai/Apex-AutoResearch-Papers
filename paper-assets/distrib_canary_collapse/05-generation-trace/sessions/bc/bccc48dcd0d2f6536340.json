@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bccc48dcd0d2f6536340",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops d102 t10 a050 s43",
+  "task_key": "worker_ops_d102-t10-a050-s43_20260523T081320",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d102-t10-a050-s43_20260523T081320_result.json",
+    "occurrence": 1,
+    "bytes": 492,
+    "sha256": "223c485e5c89a8f827dcb266ba82181e0d2e3398153fe0e01e6c2e02d629f8f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact 注册成功：`art_20260523_a23d4d`。\n\nD102 分析 `scale_14b_t10_a050_s43_fp32` 全部 5 步已完成：\n1. 训练确认（11 gen, EXIT_CODE=0）\n2. MAUVE 重算 + 5-method 分析完成\n3. 关键指标：PermG_fwd=6/8, DiffXCorr_fwd=5/8, Threshold=0/8, TY=0/8, K≥3=1/8 (ece<distinct_1)\n4. Registry 已更新 DONE/success，artifact 已注册\n5. 与 s42 对比：不一致（s42: PermG=4/8, K≥3=4/8），符合 α=0.50 onset boundary 的种子方差预期"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d102-t10-a050-s43.md"
+}

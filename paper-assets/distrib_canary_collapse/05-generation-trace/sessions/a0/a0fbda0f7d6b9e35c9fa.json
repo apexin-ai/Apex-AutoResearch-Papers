@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0fbda0f7d6b9e35c9fa",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis method ablation phase2 pooled",
+  "task_key": "worker_analysis_method_ablation_phase2_pooled_20260515T085042",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_method_ablation_phase2_pooled_20260515T085042_result.json",
+    "occurrence": 1,
+    "bytes": 1614,
+    "sha256": "87b6b2e5e558a901ec41bb01a15fe3b5fe5e55a7f320fa6f4707c368e5afde6d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Phase 2 完成。\n\n## 核心结果\n\n**Method × Alpha Sig Rates (test-level)**:\n\n| α | naive | differenced | threshold | perm_granger | TY |\n|---|-------|-------------|-----------|-------------|-----|\n| 0.00 | 8/8 (100%) | 4/8 (50%) | 5/8 (62%) | **0/8 (0%)** | **0/8 (0%)** |\n| 0.25 | 8/8 (100%) | 2/8 (25%) | 3/8 (38%) | 2/8 (25%) | 5/8 (62%) |\n| 0.50 | 8/8 (100%) | 8/8 (100%) | 8/8 (100%) | 2/8 (25%) | 0/8 (0%) |\n| 1.00 | 32/32 (100%) | 32/32 (100%) | 32/32 (100%) | 24/32 (75%) | 19/32 (59%) |\n\n**Claim 3 关键证据**:\n\n1. **Naive 全域 100%** — 即使 α=0.0（无污染 null control）也全部 significant，确认 raw-level 方法不可靠\n2. **Null control 验证** — perm_granger 和 TY 在 α=0.0 均为 0%，无 false positive\n3. **perm_granger dose-response** — 0% → 25% → 25% → 75%，随 α 单调增长\n4. **Mean Cohen's κ = 0.185**（poor agreement）— 方法间严重分歧\n5. **Decision flips** — naive vs perm_granger: **50%** 结论翻转；naive vs TY: **57%** 翻转\n6. **α=0.0 极端案例** — naive vs perm_granger 翻转率 **100%**（naive 全说 sig，perm_granger 全说 n.s.）\n7. **entropy→diversity 在 α=1.0 所有 5 种方法一致 SIG** — 唯一跨方法 robust 的通道\n\n**TY 注意事项**: α=0.25 出现 62% sig（高于 α=0.50 的 0%），单 seed 下 TY 非单调，需多 seed 确认后解读。\n\n**产出文件**:\n- `results/method_ablation_phase2_panel.json` (94KB) — 完整 panel 数据\n- `results/method_ablation_phase2_report.md` — 分析报告\n- Registry: `method_ablation_phase2` (DONE)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-method-ablation-phase2-pooled.md"
+}

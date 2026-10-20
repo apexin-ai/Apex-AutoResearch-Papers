@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "b39f17649581934a9f15",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "infra restart westd17855 bf16",
+  "task_key": "worker_infra_restart_westd17855_bf16_20260518T172057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_restart_westd17855_bf16_20260518T172057.log",
+    "occurrence": 1,
+    "bytes": 1118900,
+    "sha256": "ac27ec273a7eab9c363d93ad24fab5033ea3b47e1880d25f5a01e35435738468"
+  },
+  "statistics": {
+    "messages": 511,
+    "user_turns": 1,
+    "tool_calls": 157,
+    "roles": {
+      "log": 1,
+      "system": 30,
+      "record": 1,
+      "assistant": 158,
+      "tool_call": 157,
+      "tool_result": 157,
+      "result": 6,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 452,
+      "chunks": [
+        {
+          "path": "b39f17649581934a9f15-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b39f17649581934a9f15-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "b39f17649581934a9f15-part-0003.json",
+          "message_count": 92
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 59,
+      "chunks": [
+        {
+          "path": "b39f17649581934a9f15-part-0003.json",
+          "message_count": 59
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-restart-westd17855-bf16.md"
+}

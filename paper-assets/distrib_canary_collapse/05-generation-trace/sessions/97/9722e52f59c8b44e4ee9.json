@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9722e52f59c8b44e4ee9",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "exp smollm3 dryrun launch",
+  "task_key": "worker_exp_smollm3_dryrun_launch_20260518T210507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_smollm3_dryrun_launch_20260518T210507_result.json",
+    "occurrence": 1,
+    "bytes": 125,
+    "sha256": "71ae868725086c996bdd3383c580fc208e07ba7f98f8dd63f5531a6e7e2fa49e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "之前的 10 分钟等待 timer 已完成，但训练已经正式提交并在运行中，不需要再处理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-smollm3-dryrun-launch.md"
+}

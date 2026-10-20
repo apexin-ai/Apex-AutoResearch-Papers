@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "db0e60d6313a0ce5a8e4",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "infra mvp param fix",
+  "task_key": "worker_infra_mvp-param-fix_20260514T053749",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_mvp-param-fix_20260514T053749_result.json",
+    "occurrence": 1,
+    "bytes": 739,
+    "sha256": "c0f9c92ed59150f50b4fada0e0e062d7551045fb07c6fb2c0880f971ea64c969"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n| 项目 | 结果 |\n|------|------|\n| `prepare_data.py` | `n_prompts` default → 5000 ✓；prompt 来源改为 `train_raw`（test set 仅 ~1500 条满足 ≥64 words，不够 5000） |\n| `iterative_train.py` | `steps_per_gen` default → 5000 ✓ |\n| 新 Prompts 数量 | 5000 ✓ |\n| 旧数据/结果清理 | `data/wikitext103/prompts` 已重建，`results/mvp/` 已删除不存在 ✓ |\n\n额外修改说明：WikiText-103 test split 过滤后仅约 1500 条 ≥64 words 的段落，无法满足 5000 prompts 需求，因此将 prompt 来源从 `test_raw` 改为 `train_raw`（716K 条）。Prompts 仅用作生成前缀种子，不参与损失计算，不影响评估数据完整性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-mvp-param-fix.md"
+}

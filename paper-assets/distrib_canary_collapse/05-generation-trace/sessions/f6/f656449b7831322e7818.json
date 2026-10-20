@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f656449b7831322e7818",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "paper scale paragraph",
+  "task_key": "worker_paper_scale_paragraph_20260517T235203",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_scale_paragraph_20260517T235203_result.json",
+    "occurrence": 1,
+    "bytes": 184,
+    "sha256": "084478f3b8074e977f6a1b1804f9d35ce79999e0c515b633a980bf4863685444"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Scale generalization paragraph inserted between Architecture and Domain generalization (lines 369–374). Compilation successful: 0 errors, PDF output on 25 pages."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-scale-paragraph.md"
+}

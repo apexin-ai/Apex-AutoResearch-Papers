@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d40ed60e3947c157e60",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "writing r13 scope calibration",
+  "task_key": "worker_writing_r13_scope_calibration_20260524T161030",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_r13_scope_calibration_20260524T161030_result.json",
+    "occurrence": 1,
+    "bytes": 1119,
+    "sha256": "a3b40b6baf98c65762884cf0266ddb95f3d284454ff13942a5d52bac4dbb920d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Paper compiles successfully. The one undefined reference (`tab:mmct_k_operating`) is the intentional placeholder per task instructions.\n\nSummary of all edits:\n\n1. **introduction.tex W2**: Added \"empirically\" to \"We empirically map this landscape on Pythia-410M\"\n2. **introduction.tex W9**: Changed C3 from \"We formalize cascade ordering\" + \"Design Principles\" to \"We empirically validate a cascade ordering\" + \"Principles\"\n3. **abstract.tex W5/W10**: \"substantially reduces peak perplexity\" → \"reduces peak perplexity by 64\\%\" (~180 words, under 200 limit)\n4. **experiments.tex W9**: Downgraded both \"Design Principle~\\ref{...}\" references to \"Principle~\\ref{...}\"\n5. **experiments.tex R13-VIS1**: Added summary detection table (Table `tab:summary_detection`) after intervention figure\n6. **method.tex W7**: Added \"Consensus threshold\" paragraph with K=3 FPR-TPR trade-off and placeholder table reference\n7. **experiments.tex Fig 2 caption W3**: Added \"(empirical trend;\" and \"The sigmoid is a descriptive fit to observed detection rates, not a predictive model.\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-r13-scope-calibration.md"
+}

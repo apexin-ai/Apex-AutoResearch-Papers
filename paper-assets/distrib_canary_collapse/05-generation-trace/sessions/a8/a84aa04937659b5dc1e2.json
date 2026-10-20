@@ -1,0 +1,920 @@
+{
+  "schema_version": "1.0",
+  "id": "a84aa04937659b5dc1e2",
+  "project": "distrib_canary_collapse",
+  "kind": "conversation",
+  "title": "analysis t20 predictions locked",
+  "task_key": "worker_analysis_t20_predictions_locked_20260520T104710",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_t20_predictions_locked_20260520T104710.jsonl",
+    "occurrence": 1,
+    "bytes": 54539,
+    "sha256": "1753060bdc3aff498c6185a493d0ffaa6b1d55e0954a14949289bef25c4a7177"
+  },
+  "statistics": {
+    "messages": 45,
+    "user_turns": 0,
+    "tool_calls": 22,
+    "roles": {
+      "tool_call": 22,
+      "tool_result": 22,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T10:51:23.981522+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T10:51:23.982030+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T10:51:23.982523+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "distrib_canary_collapse",
+              "filters": "{'status': 'DONE'}",
+              "fields": "['exp_id', 'config', 'metrics', 'conclusion', 'threshold_onset_3sigma']",
+              "limit": "0"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T10:51:23.983137+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (53,735 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/072e6bc2-96e4-4e06-871a-00b086f82e95/tool-results/mcp-agent-ml-research-read_registry-1779274048859.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/072e6bc2-96e4-4e06-871a-00b086f82e95/tool-results/mcp-agent-ml-research-read_registry-1779274048859.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/072e6bc2-96e4-4e06-871a-00b086f82e95/tool-results/mcp-agent-ml-research-read_registry-1779274048859.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T10:51:23.983507+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Extract T=10 PermG data from registry",
+              "prompt": "I need to extract T=10 PermG dose-response data from a registry JSON file. The file is at:\n/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/072e6bc2-96e4-4e06-871a-00b086f82e95/tool-results/mcp-agent-ml-research-read_registry-1779274048859.txt\n\nThe file has schema: {result: string} where result is a JSON string that needs to be parsed.\n\nI need to find all DONE experiments for project distrib_canary_collapse that are:\n- seed=42, fp32, WikiText, Pythia-410M (or pythia-410m), alpha_sweep type\n- T=10 (num_generations=10 or similar)\n\nFor each, extract:\n- exp_id\n- alpha value (from config)\n- Any PermG-related metrics (look for fields like permg_fwd_sig_count, permg_fwd_fdr_sig_count, or similar in metrics)\n- threshold_onset_3sigma field if present\n\nAlso look for any fields that indicate the number of significant PermG pairs out of 8.\n\nReport ALL matching experiments sorted by alpha, with their full metrics. Be thorough - dump all metric keys for the first matching experiment so I can see what's available. Quote values exactly.",
+              "subagent_type": "general-purpose"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T10:51:23.983760+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/072e6bc2-96e4-4e06-871a-00b086f82e95/tool-results/mcp-agent-ml-research-read_registry-1779274048859.txt",
+              "limit": "100"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T10:51:23.983904+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (25549 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T10:51:23.984037+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/072e6bc2-96e4-4e06-871a-00b086f82e95/tool-results/mcp-agent-ml-research-read_registry-1779274048859.txt",
+              "limit": "200",
+              "offset": "0"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T10:51:23.984159+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (25549 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T10:51:23.984304+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -l /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/072e6bc2-96e4-4e06-871a-00b086f82e95/tool-results/mcp-agent-ml-research-read_registry-1779274048859.txt",
+              "description": "Count lines in registry file"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T10:51:23.984432+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0 /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/072e6bc2-96e4-4e06-871a-00b086f82e95/tool-results/mcp-agent-ml-research-read_registry-1779274048859.txt"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T10:51:23.984559+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/072e6bc2-96e4-4e06-871a-00b086f82e95/tool-results/mcp-agent-ml-research-read_registry-1779274048859.txt', 'r') as f:\n    raw = f.read()\n\n# Parse outer JSON\nouter = json.loads(raw)\n# result is a JSON string\nregistry = json.loads(outer['result'])\n\n# Check structure\nif isinstance(registry, dict):\n    print('Keys:', list(registry.keys())[:20])\n    if 'experiments' in registry:\n        exps = registry['experiments']\n        print(f'Total experiments: {len(exps)}')\n        if isinstance(exps, list) and len(exps) > 0:\n            print('First exp keys:', list(exps[0].keys()))\n    elif 'entries' in registry:\n        entries = registry['entries']\n        print(f'Total entries: {len(entries)}')\nelif isinstance(registry, list):\n    print(f'Registry is a list with {len(registry)} items')\n    if len(registry) > 0:\n        print('First item keys:', list(registry[0].keys()))\n\" 2>&1\n",
+              "description": "Parse registry JSON structure"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T10:51:23.984702+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Keys: ['success', 'data', 'error', 'metadata']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T10:51:23.984841+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/072e6bc2-96e4-4e06-871a-00b086f82e95/tool-results/mcp-agent-ml-research-read_registry-1779274048859.txt', 'r') as f:\n    raw = f.read()\n\nouter = json.loads(raw)\nregistry = json.loads(outer['result'])\n\ndata = registry['data']\nprint('data type:', type(data).__name__)\nif isinstance(data, dict):\n    print('data keys:', list(data.keys())[:20])\nelif isinstance(data, list):\n    print(f'data is list with {len(data)} items')\n    if len(data) > 0:\n        print('first item type:', type(data[0]).__name__)\n        if isinstance(data[0], dict):\n            print('first item keys:', list(data[0].keys()))\n\" 2>&1\n",
+              "description": "Inspect registry data structure"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T10:51:23.985349+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "data type: dict\ndata keys: ['experiments', 'count', 'total', 'baseline']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T10:51:23.985520+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/072e6bc2-96e4-4e06-871a-00b086f82e95/tool-results/mcp-agent-ml-research-read_registry-1779274048859.txt', 'r') as f:\n    raw = f.read()\n\nouter = json.loads(raw)\nregistry = json.loads(outer['result'])\n\ndata = registry['data']\nexps = data['experiments']\nprint(f'Total experiments: {len(exps)}')\nprint(f'Count: {data[\\\"count\\\"]}, Total: {data[\\\"total\\\"]}')\n\n# Look at first experiment structure\nif len(exps) > 0:\n    print()\n    print('=== First experiment keys ===')\n    print(list(exps[0].keys()))\n    print()\n    print('=== First experiment (truncated) ===')\n    for k, v in exps[0].items():\n        val_str = json.dumps(v) if isinstance(v, (dict, list)) else str(v)\n        if len(val_str) > 200:\n            val_str = val_str[:200] + '...'\n        print(f'  {k}: {val_str}')\n\" 2>&1\n",
+              "description": "Inspect experiments structure and first entry"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T10:51:23.985655+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 19, in <module>\n    print(list(exps[0].keys()))\n               ~~~~^^^\nKeyError: 0\nTotal experiments: 109\nCount: 109, Total: 109\n\n=== First experiment keys ==="
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T10:51:23.985783+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/072e6bc2-96e4-4e06-871a-00b086f82e95/tool-results/mcp-agent-ml-research-read_registry-1779274048859.txt', 'r') as f:\n    raw = f.read()\n\nouter = json.loads(raw)\nregistry = json.loads(outer['result'])\n\ndata = registry['data']\nexps = data['experiments']\nprint(f'experiments type: {type(exps).__name__}')\n\n# It's a dict keyed by exp_id\nexp_ids = list(exps.keys())\nprint(f'Total experiments: {len(exp_ids)}')\nprint(f'First 5 exp_ids: {exp_ids[:5]}')\n\n# Look at first experiment\nfirst_id = exp_ids[0]\nfirst = exps[first_id]\nprint(f'\\\\nFirst exp keys: {list(first.keys())}')\n\" 2>&1\n",
+              "description": "Inspect experiments as dict"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T10:51:23.985903+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "experiments type: dict\nTotal experiments: 109\nFirst 5 exp_ids: ['alpha_sweep_a045_s43_fp32', 'gen_gpt2m_a100_s43_bf16', 'generalize_pythia14b_wiki_a100_s43', 'generalize_pythia14b_wiki_a100_s42', 'data_strategy_ablation_s42']\n\nFirst exp keys: ['metrics', 'conclusion']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T10:51:23.986037+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/072e6bc2-96e4-4e06-871a-00b086f82e95/tool-results/mcp-agent-ml-research-read_registry-1779274048859.txt', 'r') as f:\n    raw = f.read()\n\nouter = json.loads(raw)\nregistry = json.loads(outer['result'])\n\ndata = registry['data']\nexps = data['experiments']\n\n# Look at a few experiment structures more carefully\n# First look at what fields exist\nfirst_id = list(exps.keys())[0]\nfirst = exps[first_id]\nprint(f'=== {first_id} ===')\nprint(json.dumps(first, indent=2)[:2000])\n\" 2>&1\n",
+              "description": "Inspect first experiment details"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T10:51:23.986503+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== alpha_sweep_a045_s43_fp32 ===\n{\n  \"metrics\": {\n    \"PermG_fwd\": \"0/8\",\n    \"PermG_rev\": \"0/8\",\n    \"K_ge_3\": \"2/8\",\n    \"K_ge_4\": \"0/8\",\n    \"naive_xcorr\": \"1/8\",\n    \"diff_xcorr\": \"1/8\",\n    \"threshold_onset\": \"8/8\",\n    \"ty_granger\": \"7/8\",\n    \"drift_entropy_pct\": -19.61,\n    \"drift_ece_pct\": 800,\n    \"drift_perplexity_pct\": 12.37,\n    \"drift_distinct1_pct\": -34.69,\n    \"drift_distinct2_pct\": -47.24,\n    \"drift_distinct3_pct\": -47.55,\n    \"drift_mauve_pct\": -18.78,\n    \"drift_effrank_pct\": 26.45,\n    \"gen0_token_entropy\": 3.2342,\n    \"gen0_ece\": 0.0108,\n    \"gen0_distinct_1\": 0.0983,\n    \"gen0_perplexity\": 26.95,\n    \"gen0_mauve\": 0.0315,\n    \"gen10_token_entropy\": 2.5999,\n    \"gen10_ece\": 0.0972,\n    \"gen10_distinct_1\": 0.0642,\n    \"gen10_perplexity\": 30.28,\n    \"gen10_mauve\": 0.0256\n  },\n  \"conclusion\": \"success\"\n}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T10:51:23.986701+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/072e6bc2-96e4-4e06-871a-00b086f82e95/tool-results/mcp-agent-ml-research-read_registry-1779274048859.txt', 'r') as f:\n    raw = f.read()\n\nouter = json.loads(raw)\nregistry = json.loads(outer['result'])\n\ndata = registry['data']\nexps = data['experiments']\n\n# The exp structure is minimal - metrics and conclusion only\n# The exp_id contains the config info (alpha, seed, precision)\n# Let's find all alpha_sweep experiments that match criteria\n\n# Pattern: alpha_sweep, seed 42, fp32\n# Also need to identify which are Pythia-410M, WikiText, T=10\n\n# List all alpha_sweep experiments\nalpha_sweep_exps = {k: v for k, v in exps.items() if 'alpha_sweep' in k}\nprint(f'Alpha sweep experiments: {len(alpha_sweep_exps)}')\nfor k in sorted(alpha_sweep_exps.keys()):\n    v = alpha_sweep_exps[k]\n    print(f'  {k}: conclusion={v.get(\\\"conclusion\\\")}, metrics_keys_count={len(v.get(\\\"metrics\\\", {}))}')\n\" 2>&1\n",
+              "description": "List all alpha_sweep experiments"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T10:51:23.986876+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Alpha sweep experiments: 44\n  alpha_sweep_a000_s42: conclusion=success, metrics_keys_count=17\n  alpha_sweep_a000_s43: conclusion=success, metrics_keys_count=4\n  alpha_sweep_a000_s44: conclusion=success, metrics_keys_count=4\n  alpha_sweep_a005_s42: conclusion=failed, metrics_keys_count=0\n  alpha_sweep_a005_s42_v3: conclusion=success, metrics_keys_count=17\n  alpha_sweep_a010_s42: conclusion=killed, metrics_keys_count=0\n  alpha_sweep_a010_s42_fp32: conclusion=success, metrics_keys_count=16\n  alpha_sweep_a010_s42_v2: conclusion=negative, metrics_keys_count=0\n  alpha_sweep_a010_s43: conclusion=success, metrics_keys_count=15\n  alpha_sweep_a010_s43_fp32: conclusion=success, metrics_keys_count=13\n  alpha_sweep_a025_s42: conclusion=killed, metrics_keys_count=0\n  alpha_sweep_a025_s42_fp32: conclusion=success, metrics_keys_count=24\n  alpha_sweep_a025_s42_v2: conclusion=killed, metrics_keys_count=0\n  alpha_sweep_a025_s42_v3: conclusion=success, metrics_keys_count=18\n  alpha_sweep_a025_s43: conclusion=success, metrics_keys_count=3\n  alpha_sweep_a025_s43_fp32: conclusion=success, metrics_keys_count=7\n  alpha_sweep_a025_s44: conclusion=success, metrics_keys_count=612\n  alpha_sweep_a025_s44_fp32: conclusion=success, metrics_keys_count=5\n  alpha_sweep_a030_s42_fp32: conclusion=success, metrics_keys_count=17\n  alpha_sweep_a035_s42_fp32: conclusion=success, metrics_keys_count=16\n  alpha_sweep_a040_s42_fp32: conclusion=failed, metrics_keys_count=0\n  alpha_sweep_a040_s42_fp32_v2: conclusion=success, metrics_keys_count=16\n  alpha_sweep_a045_s42_fp32: conclusion=success, metrics_keys_count=28\n  alpha_sweep_a045_s43_fp32: conclusion=success, metrics_keys_count=26\n  alpha_sweep_a050_postd093_s42_fp32: conclusion=success, metrics_keys_count=3\n  alpha_sweep_a050_s42: conclusion=success, metrics_keys_count=26\n  alpha_sweep_a050_s42_fp32: conclusion=success, metrics_keys_count=20\n  alpha_sweep_a050_s43: conclusion=success, metrics_keys_count=19\n  alpha_sweep_a050_s43_fp32: conclusion=success, m\n…[truncated 1052 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T10:51:23.987090+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/072e6bc2-96e4-4e06-871a-00b086f82e95/tool-results/mcp-agent-ml-research-read_registry-1779274048859.txt', 'r') as f:\n    raw = f.read()\n\nouter = json.loads(raw)\nregistry = json.loads(outer['result'])\n\ndata = registry['data']\nexps = data['experiments']\n\n# Filter: alpha_sweep, s42, fp32, successful (DONE)\n# The naming pattern is alpha_sweep_a{NNN}_s42_fp32\n# Some have _v2, _v3 suffixes (use latest version)\n\nmatches = {}\nfor exp_id, exp in exps.items():\n    if not exp_id.startswith('alpha_sweep_a'):\n        continue\n    if '_s42' not in exp_id:\n        continue\n    if '_fp32' not in exp_id:\n        continue\n    if exp.get('conclusion') != 'success':\n        continue\n    # Skip non-WikiText (c4 variants)\n    if '_c4_' in exp_id:\n        continue\n    # Skip postd variants\n    if '_postd' in exp_id:\n        continue\n    \n    # Extract alpha value from exp_id\n    # Pattern: alpha_sweep_a{NNN}_...\n    parts = exp_id.split('_')\n    alpha_part = None\n    for p in parts:\n        if p.startswith('a') and len(p) >= 3 and p[1:].isdigit():\n            alpha_part = p\n            break\n    \n    if alpha_part:\n        alpha_val = int(alpha_part[1:]) / 100.0\n        # Check if there's a version suffix - keep latest\n        base_key = f'a{alpha_part[1:]}_s42_fp32'\n        version = 1\n        if '_v2' in exp_id:\n            version = 2\n        elif '_v3' in exp_id:\n            version = 3\n        \n        if base_key not in matches or matches[base_key][2] < version:\n            matches[base_key] = (exp_id, exp, version, alpha_val)\n\n# Sort by alpha\nsorted_matches = sorted(matches.values(), key=lambda x: x[3])\n\nprint(f'Found {len(sorted_matches)} matching experiments')\nprint()\n\n# First, dump ALL metric keys for the first match\nif sorted_matches:\n    first_id, first_exp, _, first_alpha = sorted_matches[0]\n    print(f'=== ALL METRIC KEYS for {first_id} (alpha={first_alpha}) ===')\n    metrics = first_exp.get('metrics', {})\n    for k in sorted(metrics.keys()):\n        print(f'  {k}: {metrics[k]}')\n    print()\n\n# Now dump all matches\nprint('=== ALL MATCHING EXPERIMENTS ===')\nfor exp_id, exp, version, alpha_val in sorted_matches:\n    metrics = exp.get('metrics', {})\n    print(f'\\\\n--- {exp_id} (alpha={alpha_val}) ---')\n    print(f'  conclusion: {exp[\\\"conclusion\\\"]}')\n    print(f'  metrics ({len(metrics)} keys):')\n    for k in sorted(metrics.keys()):\n        print(f'    {k}: {metrics[k]}')\n\" 2>&1\n",
+              "description": "Extract all matching T=10 PermG dose-response experiments"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T10:51:23.987331+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 9 matching experiments\n\n=== ALL METRIC KEYS for alpha_sweep_a010_s42_fp32 (alpha=0.1) ===\n  blind_zone_confirmed: True\n  consensus_k4: 2/8\n  cross_seed_permg_stable: True\n  distinct_1_drift_pct: -23.8\n  distinct_2_drift_pct: -27.15\n  distinct_3_drift_pct: -19.36\n  mmct_detection_rate: 0.25\n  mmct_wpair_fwd: 2/8\n  padding_side_fix: D093 applied\n  perm_granger_fwd: 0/8\n  perm_granger_rev: 0/8\n  perplexity_drift_pct: -18.94\n  precision: fp32\n  threshold_onset_fwd: 5/8\n  token_entropy_drift_pct: -4.59\n  ty_granger_fwd: 3/8\n\n=== ALL MATCHING EXPERIMENTS ===\n\n--- alpha_sweep_a010_s42_fp32 (alpha=0.1) ---\n  conclusion: success\n  metrics (16 keys):\n    blind_zone_confirmed: True\n    consensus_k4: 2/8\n    cross_seed_permg_stable: True\n    distinct_1_drift_pct: -23.8\n    distinct_2_drift_pct: -27.15\n    distinct_3_drift_pct: -19.36\n    mmct_detection_rate: 0.25\n    mmct_wpair_fwd: 2/8\n    padding_side_fix: D093 applied\n    perm_granger_fwd: 0/8\n    perm_granger_rev: 0/8\n    perplexity_drift_pct: -18.94\n    precision: fp32\n    threshold_onset_fwd: 5/8\n    token_entropy_drift_pct: -4.59\n    ty_granger_fwd: 3/8\n\n--- alpha_sweep_a025_s42_fp32 (alpha=0.25) ---\n  conclusion: success\n  metrics (24 keys):\n    K_ge_4: 0/8\n    MMCT: 0/8\n    MMCT_detection_rate: 0\n    PermG_fwd: 0/8\n    PermG_rev: 0/8\n    consensus_detail_max_votes: 3\n    d1_by_gen: [0.098, 0.0976, 0.0815, 0.0737, 0.0688, 0.0657, 0.0635, 0.0614, 0.061, 0.0601, 0.0596]\n    d1_drift_pct: -39.15\n    d2_drift_pct: -54.75\n    d3_drift_pct: -56.98\n    diff_xcorr_fwd: 3/8\n    ece_drift_pct: 79.17\n    eff_rank_drift_pct: -3.78\n    entropy_by_gen: [3.234, 2.983, 3.015, 3.039, 3.051, 3.034, 3.049, 3.067, 3.063, 3.104, 3.079]\n    entropy_drift_pct: -4.79\n    hypothesis_validated: True\n    mauve_by_gen: [0.0311, 0.0314, 0.0326, 0.0318, 0.0314, 0.0272, 0.0242, 0.0221, 0.0207, 0.0207, 0.0181]\n    mauve_drift_pct: -41.86\n    naive_xcorr_fwd: 8/8\n    note: PermG=0/8 confirms α=0.25 is below phase transition. d1_drift=-39.15% is s\n…[truncated 5516 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T10:51:23.987674+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here are all 9 matching experiments (alpha_sweep, seed=42, fp32, WikiText, Pythia-410M, T=10) sorted by alpha, with full metrics.\n\n## Summary of PermG dose-response data (T=10, seed=42, fp32)\n\n| exp_id | alpha | PermG_fwd | PermG_rev | threshold_onset | notes |\n|--------|-------|-----------|-----------|-----------------|-------|\n| `alpha_sweep_a010_s42_fp32` | 0.10 | `0/8` | `0/8` | `5/8` | |\n| `alpha_sweep_a025_s42_fp32` | 0.25 | `0/8` | `0/8` | `5/8` | borderline raw p=0.007 but FDR p=0.053 |\n| `alpha_sweep_a030_s42_fp32` | 0.30 | `0/8` | `0/8` | `8/8` | |\n| `alpha_sweep_a035_s42_fp32` | 0.35 | `0/8` | `0/8` | `8/8` | |\n| `alpha_sweep_a040_s42_fp32_v2` | 0.40 | `0/8` | `0/8` | `8/8` (3sigma) | |\n| `alpha_sweep_a045_s42_fp32` | 0.45 | `0` | `0` | `8` | note: values stored as integers not \"X/8\" |\n| `alpha_sweep_a050_s42_fp32` | 0.50 | `6/8` | `0/8` | n/a | **phase transition** |\n| `alpha_sweep_a060_s42_fp32_v3` | 0.60 | `3/8` | `0/8` | `8/8` | |\n| `alpha_sweep_a075_s42_fp32` | 0.75 | `6/8` (in `lead_lag`) | `0/8` (in `lead_lag`) | `8/8` (in `lead_lag`) | metrics nested in `lead_lag` dict |\n\n## Key observations\n\n**PermG field naming is inconsistent across experiments:**\n- `perm_granger_fwd` / `perm_granger_rev` (a010, a050, a060)\n- `PermG_fwd` / `PermG_rev` (a025, a035)\n- `permg_fwd` / `permg_rev` (a030, a045)\n- Nested inside `lead_lag.PermG_fwd` / `lead_lag.PermG_rev` (a075)\n\n**Value format is also inconsistent:**\n- Most use string `\"X/8\"` format\n- a045 uses bare integers (`0` instead of `\"0/8\"`, `8` instead of `\"8/8\"`)\n\n**threshold_onset naming variants:**\n- `threshold_onset_fwd` (a010, a060)\n- `threshold_onset` (a025, a030, a035, a045)\n- `threshold_onset_3sigma` (a040)\n- Nested `lead_lag.threshold_onset` (a075)\n\n**The PermG phase transition:** PermG_fwd is 0/8 for all alpha <= 0.45, then jumps to 6/8 at alpha=0.50. Drops to 3/8 at 0.60, back to 6/8 at 0.75. PermG_rev is consistently 0/8 across all alphas, confirming strong causal asymmetry.\n\n**Additional PermG-adj\n…[truncated 1060 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Agent",
+            "elapsed_ms": 4
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T10:51:23.987895+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/072e6bc2-96e4-4e06-871a-00b086f82e95/tool-results && python3 -c \"\nimport json\nwith open('mcp-agent-ml-research-read_registry-1779274048859.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\n\n# Search for alpha=0.00, alpha=1.00, alpha=0.55\nfor exp in result:\n    eid = exp.get('exp_id','')\n    cfg = exp.get('config',{})\n    alpha = cfg.get('alpha', cfg.get('noise_alpha', None))\n    if alpha in [0.0, 1.0, 0.55] or 'a000' in eid or 'a100' in eid or 'a055' in eid or 'null' in eid.lower():\n        metrics = exp.get('metrics',{})\n        print(f'exp_id={eid}, alpha={alpha}, metrics_keys={list(metrics.keys()) if isinstance(metrics,dict) else \\\"N/A\\\"}')\n        # Print PermG related\n        for k,v in (metrics.items() if isinstance(metrics,dict) else []):\n            kl = k.lower()\n            if 'perm' in kl or 'granger' in kl or 'permg' in kl:\n                print(f'  {k}: {v}')\n        print()\n\"\n",
+              "description": "Search registry for alpha=0.00, 1.00, 0.55 experiments"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T10:51:23.988048+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 9, in <module>\n    eid = exp.get('exp_id','')\n          ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T10:51:23.988181+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/072e6bc2-96e4-4e06-871a-00b086f82e95/tool-results && python3 -c \"\nimport json\nwith open('mcp-agent-ml-research-read_registry-1779274048859.txt') as f:\n    data = json.load(f)\nresult_str = data['result']\n# Check what type result is\nresult = json.loads(result_str) if isinstance(result_str, str) else result_str\nprint(type(result))\nif isinstance(result, list):\n    print(f'len={len(result)}')\n    if len(result) > 0:\n        print(f'first type: {type(result[0])}')\n        if isinstance(result[0], str):\n            # maybe it's double-encoded\n            inner = json.loads(result[0])\n            print(f'inner type: {type(inner)}')\n            print(f'inner keys: {list(inner.keys())[:10]}')\n        elif isinstance(result[0], dict):\n            print(f'keys: {list(result[0].keys())[:10]}')\nelif isinstance(result, dict):\n    print(f'keys: {list(result.keys())[:10]}')\n\"\n",
+              "description": "Probe registry JSON structure"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T10:51:23.988350+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<class 'dict'>\nkeys: ['success', 'data', 'error', 'metadata']\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T10:51:23.988488+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "FPATH=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/072e6bc2-96e4-4e06-871a-00b086f82e95/tool-results/mcp-agent-ml-research-read_registry-1779274048859.txt\" && python3 -c \"\nimport json\nwith open('$FPATH') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']\nprint(f'Total experiments: {len(exps)}')\n\nfor exp in exps:\n    eid = exp.get('exp_id','')\n    cfg = exp.get('config',{}) or {}\n    alpha = cfg.get('alpha', cfg.get('noise_alpha', None))\n    # Search for alpha 0.00, 1.00, 0.55 or null baseline\n    match = False\n    if alpha in [0.0, 1.0, 0.55]:\n        match = True\n    for tag in ['a000', 'a100', 'a055', 'null']:\n        if tag in eid.lower():\n            match = True\n    if match:\n        metrics = exp.get('metrics',{}) or {}\n        print(f'exp_id={eid}, alpha={alpha}')\n        for k,v in (metrics.items() if isinstance(metrics,dict) else []):\n            kl = k.lower()\n            if 'perm' in kl or 'granger' in kl or 'permg' in kl:\n                print(f'  {k}: {v}')\n        print()\n\"\n",
+              "description": "Search for alpha 0.00, 1.00, 0.55 experiments"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T10:51:23.988624+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 10, in <module>\n    eid = exp.get('exp_id','')\n          ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'\nTotal experiments: 4"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T10:51:23.988749+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "FPATH=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/072e6bc2-96e4-4e06-871a-00b086f82e95/tool-results/mcp-agent-ml-research-read_registry-1779274048859.txt\" && python3 -c \"\nimport json\nwith open('$FPATH') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']\nprint(f'Total: {len(exps)}, types: {[type(e).__name__ for e in exps[:3]]}')\nfor i, exp in enumerate(exps[:4]):\n    if isinstance(exp, str):\n        print(f'  [{i}] str: {exp[:200]}')\n    elif isinstance(exp, dict):\n        print(f'  [{i}] dict keys: {list(exp.keys())[:10]}')\n\"\n",
+              "description": "Check experiment data structure"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T10:51:23.988877+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 7, in <module>\n    print(f'Total: {len(exps)}, types: {[type(e).__name__ for e in exps[:3]]}')\n                                                                   ~~~~^^^^\nKeyError: slice(None, 3, None)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-20T10:51:23.989003+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "FPATH=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/072e6bc2-96e4-4e06-871a-00b086f82e95/tool-results/mcp-agent-ml-research-read_registry-1779274048859.txt\" && python3 -c \"\nimport json\nwith open('$FPATH') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']\nprint(f'Type of data: {type(exps)}')\nif isinstance(exps, dict):\n    keys = list(exps.keys())\n    print(f'Num keys: {len(keys)}')\n    print(f'First 5 keys: {keys[:5]}')\n    # Each key is an exp_id\n    for k in keys:\n        kl = k.lower()\n        if any(t in kl for t in ['a000', 'a100', 'a055', 'null']):\n            v = exps[k]\n            cfg = v.get('config',{}) or {}\n            metrics = v.get('metrics',{}) or {}\n            alpha = cfg.get('alpha', None)\n            print(f'\\nexp_id={k}, alpha={alpha}')\n            for mk, mv in (metrics.items() if isinstance(metrics, dict) else []):\n                mkl = mk.lower()\n                if 'perm' in mkl or 'granger' in mkl:\n                    print(f'  {mk}: {mv}')\n\"\n",
+              "description": "Explore registry dict structure for missing alphas"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-20T10:51:23.989152+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Type of data: <class 'dict'>\nNum keys: 4\nFirst 5 keys: ['experiments', 'count', 'total', 'baseline']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-20T10:51:23.989342+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "FPATH=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/072e6bc2-96e4-4e06-871a-00b086f82e95/tool-results/mcp-agent-ml-research-read_registry-1779274048859.txt\" && python3 -c \"\nimport json\nwith open('$FPATH') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps_data = result['data']\nexperiments = exps_data['experiments']\nprint(f'Type: {type(experiments)}, len={len(experiments) if hasattr(experiments,\\\"__len__\\\") else \\\"N/A\\\"}')\n\nif isinstance(experiments, dict):\n    for eid, exp in experiments.items():\n        eid_l = eid.lower()\n        if any(t in eid_l for t in ['a000', 'a100', 'a055', 'null']):\n            cfg = exp.get('config',{}) or {}\n            metrics = exp.get('metrics',{}) or {}\n            alpha = cfg.get('alpha', None)\n            print(f'\\nexp_id={eid}, alpha={alpha}')\n            for mk, mv in (metrics.items() if isinstance(metrics, dict) else []):\n                mkl = mk.lower()\n                if 'perm' in mkl or 'granger' in mkl:\n                    print(f'  {mk}: {mv}')\nelif isinstance(experiments, list):\n    for exp in experiments:\n        eid = exp.get('exp_id','')\n        eid_l = eid.lower()\n        if any(t in eid_l for t in ['a000', 'a100', 'a055', 'null']):\n            cfg = exp.get('config',{}) or {}\n            metrics = exp.get('metrics',{}) or {}\n            alpha = cfg.get('alpha', None)\n            print(f'\\nexp_id={eid}, alpha={alpha}')\n            for mk, mv in (metrics.items() if isinstance(metrics, dict) else []):\n                mkl = mk.lower()\n                if 'perm' in mkl or 'granger' in mkl:\n                    print(f'  {mk}: {mv}')\n\"\n",
+              "description": "Find alpha=0.00, 1.00, 0.55 experiments"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-20T10:51:23.989544+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Type: <class 'dict'>, len=109\n\nexp_id=gen_gpt2m_a100_s43_bf16, alpha=None\n\nexp_id=generalize_pythia14b_wiki_a100_s43, alpha=None\n\nexp_id=generalize_pythia14b_wiki_a100_s42, alpha=None\n\nexp_id=qwen35_08b_wiki_a100_s43_fp32, alpha=None\n  PermG_fwd: 6/8\n  PermG_rev: 0/8\n  TY_granger: 6/8\n\nexp_id=scale_69b_a100_s43, alpha=None\n  PermG_fwd: 6/8\n  PermG_rev: 0/8\n  TY_granger: 0/8\n\nexp_id=qwen35_08b_wiki_a100_s42_v2, alpha=None\n  PermG_fwd: 8/8\n  PermG_rev: 0/8\n  TY_granger: 6/8\n\nexp_id=scale_69b_a100_s42, alpha=None\n  PermG_fwd: 7/8\n  PermG_rev: 0/8\n  TY_granger: 1/8\n\nexp_id=padding_robustness_a100_s42_fp32, alpha=None\n  PermG_fwd: 6/8\n  PermG_rev: 0/8\n  TY_granger: N/A (signonly API error on 17855)\n  n_perm: 5000\n\nexp_id=pythia410m_wiki_a100_s43_fp32, alpha=None\n\nexp_id=generalize_pythia1b_c4_a100_s43, alpha=None\n\nexp_id=opt13b_wiki_a100_s43_fp32, alpha=None\n\nexp_id=generalize_opt1b_wiki_a100_s42, alpha=None\n\nexp_id=gen_gpt2m_a100_s43_fp32, alpha=None\n\nexp_id=generalize_pythia410m_wiki_a100_s42, alpha=None\n\nexp_id=generalize_pythia1b_c4_a100_s42, alpha=None\n  n_perm: 5000\n  perm_granger_fdr_forward_sig: 8/8\n\nexp_id=alpha_sweep_a000_s42, alpha=None\n\nexp_id=smollm3_3b_wiki_a100_s42_v3, alpha=None\n  PermG_fwd: 3/8\n  PermG_rev: 0/8\n  ty_granger: 0/8\n\nexp_id=generalize_pythia1b_c4_a100_s42_v2, alpha=None\n\nexp_id=gen_wiki_gpt2m_a100_s42_v4, alpha=None\n\nexp_id=qwen35_08b_wiki_a100_s42, alpha=None\n\nexp_id=smollm3_3b_wiki_a100_s42_v2, alpha=None\n\nexp_id=smollm3_3b_wiki_a100_s42, alpha=None\n\nexp_id=gen_opt13b_a100_s43_bf16, alpha=None\n\nexp_id=alpha_sweep_a000_s44, alpha=None\n\nexp_id=alpha_sweep_a000_s43, alpha=None\n\nexp_id=gen_wiki_gpt2m_a100_s42_v3, alpha=None\n  perm_granger_forward: p_fdr=0.003, BH corrected\n  ty_granger_forward: 0/6 sig (df_resid=1-4, underpowered, consistent with Pythia C001)\n\nexp_id=gen_wiki_gpt2m_a100_s42_v2, alpha=None\n\nexp_id=gen_wiki_gpt2m_a100_s42, alpha=None"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-20T10:51:23.990014+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "FPATH=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/072e6bc2-96e4-4e06-871a-00b086f82e95/tool-results/mcp-agent-ml-research-read_registry-1779274048859.txt\" && python3 -c \"\nimport json\nwith open('$FPATH') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Get alpha_sweep_a000_s42 full details\nfor eid in ['alpha_sweep_a000_s42', 'alpha_sweep_a000_s43', 'alpha_sweep_a000_s44']:\n    if eid in experiments:\n        exp = experiments[eid]\n        print(f'=== {eid} ===')\n        print(f'config: {json.dumps(exp.get(\\\"config\\\",{}), indent=2)[:500]}')\n        print(f'metrics: {json.dumps(exp.get(\\\"metrics\\\",{}), indent=2)[:500]}')\n        print(f'conclusion: {exp.get(\\\"conclusion\\\",\\\"\\\")}')\n        print()\n\n# Find alpha_sweep experiments with alpha=1.00 or generalize_pythia410m that serves as baseline\nprint('\\\\n=== All alpha_sweep experiments ===')\nfor eid, exp in experiments.items():\n    if 'alpha_sweep' in eid:\n        cfg = exp.get('config',{}) or {}\n        metrics = exp.get('metrics',{}) or {}\n        alpha = cfg.get('alpha', None)\n        status = exp.get('status','')\n        permg = None\n        for mk, mv in (metrics.items() if isinstance(metrics,dict) else []):\n            if 'perm' in mk.lower() and 'fwd' in mk.lower():\n                permg = f'{mk}={mv}'\n        print(f'{eid}: alpha={alpha}, status={status}, permg={permg}')\n\n# Also check generalize_pythia410m_wiki_a100_s42 (alpha=1.0 baseline)\nprint('\\\\n=== generalize_pythia410m_wiki_a100_s42 ===')\nexp = experiments.get('generalize_pythia410m_wiki_a100_s42',{})\nprint(f'config: {json.dumps(exp.get(\\\"config\\\",{}), indent=2)[:300]}')\nprint(f'metrics: {json.dumps(exp.get(\\\"metrics\\\",{}), indent=2)[:500]}')\n\"\n",
+              "description": "Get details on alpha=0 and alpha=1 experiments"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-20T10:51:23.990239+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== alpha_sweep_a000_s42 ===\nconfig: {}\nmetrics: {\n  \"gen0_token_entropy\": 3.2342,\n  \"gen10_token_entropy\": 3.0693,\n  \"gen0_ece\": 0.0108,\n  \"gen10_ece\": 0.0164,\n  \"gen0_perplexity\": 26.95,\n  \"gen10_perplexity\": 21.11,\n  \"gen0_distinct_1\": 0.0982,\n  \"gen10_distinct_1\": 0.0847,\n  \"token_entropy_drift_pct\": -5.1,\n  \"ece_drift_pct\": 51.7,\n  \"perplexity_drift_pct\": -21.7,\n  \"distinct_1_drift_pct\": -13.8,\n  \"distinct_2_drift_pct\": -9.8,\n  \"distinct_3_drift_pct\": -4.5,\n  \"gen1_10_perplexity_drift_pct\": 9.4,\n  \"gen1_10_distinct_1_drift_pct\": -13.1,\n  \nconclusion: success\n\n=== alpha_sweep_a000_s43 ===\nconfig: {}\nmetrics: {\n  \"gen0\": {\n    \"token_entropy\": 3.2342,\n    \"ece\": 0.0108,\n    \"perplexity\": 26.949,\n    \"distinct_1\": 0.0983,\n    \"distinct_2\": 0.5132,\n    \"distinct_3\": 0.8057,\n    \"effective_rank\": 46.613\n  },\n  \"gen10\": {\n    \"token_entropy\": 3.0907,\n    \"ece\": 0.0148,\n    \"perplexity\": 21.469,\n    \"distinct_1\": 0.0847,\n    \"distinct_2\": 0.4631,\n    \"distinct_3\": 0.7672,\n    \"effective_rank\": 43.72\n  },\n  \"drift_pct\": {\n    \"token_entropy\": -4.4,\n    \"ece\": 37.2,\n    \"perplexity\": -20.3,\n    \"distinct_1\"\nconclusion: success\n\n=== alpha_sweep_a000_s44 ===\nconfig: {}\nmetrics: {\n  \"gen0\": {\n    \"token_entropy\": 3.2342,\n    \"ece\": 0.0108,\n    \"perplexity\": 26.949,\n    \"distinct_1\": 0.0981,\n    \"distinct_2\": 0.5132,\n    \"distinct_3\": 0.8058,\n    \"effective_rank\": 46.613\n  },\n  \"gen10\": {\n    \"token_entropy\": 3.0957,\n    \"ece\": 0.0134,\n    \"perplexity\": 21.616,\n    \"distinct_1\": 0.0838,\n    \"distinct_2\": 0.4665,\n    \"distinct_3\": 0.7749,\n    \"effective_rank\": 44.498\n  },\n  \"drift_pct\": {\n    \"token_entropy\": -4.3,\n    \"ece\": 24,\n    \"perplexity\": -19.8,\n    \"distinct_1\":\nconclusion: success\n\n\n=== All alpha_sweep experiments ===\nalpha_sweep_a045_s43_fp32: alpha=None, status=, permg=PermG_fwd=0/8\nalpha_sweep_a060_s42_fp32: alpha=None, status=, permg=None\nalpha_sweep_a005_s42: alpha=None, status=, permg=None\nalpha_sweep_a050_postd093_s42_fp32: alpha=None, status=, permg=None\na\n…[truncated 2749 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-20T10:51:23.990500+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport numpy as np\nfrom scipy.optimize import curve_fit\nfrom scipy.stats import norm\nimport json\nfrom datetime import datetime, timezone\n\n# ===== T=10 PermG dose-response data (seed=42, fp32, WikiText, Pythia-410M) =====\n# Confirmed from registry\ndata = {\n    0.00: 0,   # null baseline\n    0.05: 0,   # alpha_sweep_a005_s42_v3\n    0.10: 0,   # alpha_sweep_a010_s42_fp32\n    0.25: 0,   # alpha_sweep_a025_s42_fp32 (borderline fdr_p=0.053)\n    0.30: 0,   # alpha_sweep_a030_s42_fp32\n    0.35: 0,   # alpha_sweep_a035_s42_fp32\n    0.40: 0,   # alpha_sweep_a040_s42_fp32_v2\n    0.45: 0,   # alpha_sweep_a045_s42_fp32\n    0.50: 6,   # alpha_sweep_a050_s42_fp32 — phase transition\n    0.60: 3,   # alpha_sweep_a060_s42_fp32_v3 — sync dip (EXCLUDED from fit)\n    0.75: 6,   # alpha_sweep_a075_s42_fp32 (lead_lag.PermG_fwd)\n    1.00: 6,   # generalize_pythia410m_wiki_a100_s42 (K3 detail pg=6/8)\n}\n\nn_pairs = 8\n\n# Exclude alpha=0.60 sync dip from sigmoid fit\nexcluded = [0.60]\nfit_alphas = np.array([a for a in sorted(data.keys()) if a not in excluded])\nfit_counts = np.array([data[a] for a in fit_alphas])\nfit_rates = fit_counts / n_pairs\n\nprint(\"=== T=10 Data (for sigmoid fit, excl. α=0.60) ===\")\nfor a, c, r in zip(fit_alphas, fit_counts, fit_rates):\n    print(f\"  α={a:.2f}: {c}/8 = {r:.3f}\")\n\n# ===== Step 2: Fit sigmoid =====\ndef sigmoid(alpha, k, alpha_c, y_max):\n    return y_max / (1 + np.exp(-k * (alpha - alpha_c)))\n\n# Initial guess: sharp transition around 0.47, y_max ~0.75\np0 = [30.0, 0.47, 0.75]\nbounds = ([1.0, 0.0, 0.5], [200.0, 1.0, 1.0])\n\npopt, pcov = curve_fit(sigmoid, fit_alphas, fit_rates, p0=p0, bounds=bounds, maxfev=10000)\nk_fit, alpha_c_fit, y_max_fit = popt\nperr = np.sqrt(np.diag(pcov))\n\nprint(f\"\\n=== Sigmoid Fit: rate = {y_max_fit:.4f} / (1 + exp(-{k_fit:.2f} * (α - {alpha_c_fit:.4f}))) ===\")\nprint(f\"  k = {k_fit:.4f} ± {perr[0]:.4f}\")\nprint(f\"  α_c = {alpha_c_fit:.4f} ± {perr[1]:.4f}\")\nprint(f\"  y_max = {y_max_fit:.4f} ± {perr[2]:.4f}\")\n\n# Check fit quality\nprint(\"\\n=== Fit vs Data ===\")\nfor a, r in zip(fit_alphas, fit_rates):\n    pred = sigmoid(a, *popt)\n    print(f\"  α={a:.2f}: data={r:.3f}, fit={pred:.3f}\")\n\n# ===== Step 3: Power Theory √T extrapolation =====\n# For T=20 predictions, we use probit transform\n# z_T10 = Φ^{-1}(rate_T10)\n# z_T20 = z_T10 × √(T20/T10) = z_T10 × √2\n# rate_T20 = Φ(z_T20)\n\n# Use the FITTED sigmoid to get smooth T=10 rates for prediction points\npred_alphas = [0.45, 0.50, 0.60, 0.75, 1.00]\n\nprint(\"\\n=== Power Theory √T Extrapolation: T=10 → T=20 ===\")\nprint(f\"  Scaling factor: √(20/10) = √2 = {np.sqrt(2):.4f}\")\n\n# Continuity correction for rate=0: use 1/(2*n_pairs) = 0.0625\nCONT_CORR = 1.0 / (2 * n_pairs)  # 0.0625\n# Cap for rate approaching 1: use 1 - 1/(2*n_pairs) = 0.9375\nUPPER_CAP = 1.0 - CONT_CORR\n\npredictions = {}\nfor alpha in pred_alphas:\n    # Get T=10 rate from sigmoid fit (smooth)\n    rate_t10_fit = sigmoid(alpha, *popt)\n    \n    # For α=0.60, use actual data (sync dip, not well captured by sigmoid)\n    if alpha == 0.60:\n        rate_t10_actual = data[0.60] / n_pairs  # 3/8 = 0.375\n        rate_t10_use = rate_t10_actual\n        source = \"actual (sync dip)\"\n    else:\n        rate_t10_use = rate_t10_fit\n        source = \"sigmoid fit\"\n    \n    # Apply continuity correction if needed\n    if rate_t10_use <= 0:\n        rate_t10_probit = CONT_CORR\n        note = f\"continuity correction applied (rate=0 → {CONT_CORR})\"\n    elif rate_t10_use >= 1:\n        rate_t10_probit = UPPER_CAP\n        note = f\"upper cap applied\"\n    else:\n        rate_t10_probit = rate_t10_use\n        note = \"\"\n    \n    # Probit transform\n    z_t10 = norm.ppf(rate_t10_probit)\n    z_t20 = z_t10 * np.sqrt(2)\n    rate_t20 = norm.cdf(z_t20)\n    count_t20 = round(n_pairs * rate_t20)\n    \n    # Confidence assessment\n    if alpha == 0.60:\n        confidence = \"low — sync dip regime, S×R non-monotonic\"\n    elif alpha == 0.45:\n        confidence = \"medium — near phase transition, key falsifiable test\"\n    elif rate_t10_use > 0.5:\n        confidence = \"high — already above threshold at T=10\"\n    else:\n        confidence = \"medium\"\n    \n    predictions[f\"t20_a{int(alpha*100):03d}\"] = {\n        \"predicted_permg_count\": count_t20,\n        \"predicted_rate\": round(rate_t20, 4),\n        \"confidence\": confidence,\n        \"t10_rate_used\": round(rate_t10_use, 4),\n        \"t10_source\": source,\n        \"z_t10\": round(z_t10, 4),\n        \"z_t20\": round(z_t20, 4)\n    }\n    \n    print(f\"\\n  α={alpha:.2f}:\")\n    print(f\"    T=10 rate = {rate_t10_use:.4f} ({source})\")\n    if note:\n        print(f\"    {note}\")\n    print(f\"    z_T10 = {z_t10:.4f}, z_T20 = {z_t20:.4f}\")\n    print(f\"    T=20 predicted rate = {rate_t20:.4f}\")\n    print(f\"    T=20 predicted count = {count_t20}/8\")\n    print(f\"    Confidence: {confidence}\")\n\n# ===== Step 5: Generate output JSON =====\noutput = {\n    \"generated_at\": datetime.now(timezone.utc).strftime(\"%Y-%m-%dT%H:%M:%SZ\"),\n    \"method\": \"Power Theory √T scaling from T=10 sigmoid fit\",\n    \"t10_data\": {\n        \"alpha_values\": sorted(data.keys()),\n        \"permg_counts\": [data[a] for a in sorted(data.keys())],\n        \"n_pairs\": n_pairs,\n        \"excluded\": [\"alpha=0.60 (sync dip, S×R non-monotonic regime)\"]\n    },\n    \"t10_sigmoid_params\": {\n        \"k\": round(k_fit, 4),\n        \"alpha_c\": round(alpha_c_fit, 4),\n        \"y_max\": round(y_max_fit, 4),\n        \"formula\": \"rate = y_max / (1 + exp(-k * (alpha - alpha_c)))\",\n        \"fit_std_errors\": {\n            \"k\": round(perr[0], 4),\n            \"alpha_c\": round(perr[1], 4),\n            \"y_max\": round(perr[2], 4)\n        }\n    },\n    \"power_theory\": {\n        \"assumption\": \"S(α)×R(α) invariant to T at first order; effect size scales as √T\",\n        \"formula\": \"z_T20 = z_T10 × √(T20/T10); rate_T20 = Φ(z_T20)\",\n        \"scaling_factor\": round(np.sqrt(2), 4),\n        \"continuity_correction\": f\"rate=0 mapped to {CONT_CORR} for probit transform\"\n    },\n    \"predictions\": predictions,\n    \"notes\": \"α=0.60 prediction uncertain due to S×R non-monotonic regime (sync dip). Probit continuity correction 1/(2n)=0.0625 applied for rate=0 points. α=0.45 is the key falsifiable test: >0 at T=20 means left-shift of phase boundary confirmed.\"\n}\n\noutpath = \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/t20_predictions_locked.json\"\nwith open(outpath, 'w') as f:\n    json.dump(output, f, indent=2)\n\nprint(f\"\\n=== Written to {outpath} ===\")\nprint(json.dumps(output, indent=2))\nPYEOF\n",
+              "description": "Sigmoid fit + Power Theory extrapolation for T=20 predictions",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-20T10:51:23.990783+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== T=10 Data (for sigmoid fit, excl. α=0.60) ===\n  α=0.00: 0/8 = 0.000\n  α=0.05: 0/8 = 0.000\n  α=0.10: 0/8 = 0.000\n  α=0.25: 0/8 = 0.000\n  α=0.30: 0/8 = 0.000\n  α=0.35: 0/8 = 0.000\n  α=0.40: 0/8 = 0.000\n  α=0.45: 0/8 = 0.000\n  α=0.50: 6/8 = 0.750\n  α=0.75: 6/8 = 0.750\n  α=1.00: 6/8 = 0.750\n\n=== Sigmoid Fit: rate = 0.7518 / (1 + exp(-200.00 * (α - 0.4755))) ===\n  k = 200.0000 ± 14.2031\n  α_c = 0.4755 ± 0.0018\n  y_max = 0.7518 ± 0.0016\n\n=== Fit vs Data ===\n  α=0.00: data=0.000, fit=0.000\n  α=0.05: data=0.000, fit=0.000\n  α=0.10: data=0.000, fit=0.000\n  α=0.25: data=0.000, fit=0.000\n  α=0.30: data=0.000, fit=0.000\n  α=0.35: data=0.000, fit=0.000\n  α=0.40: data=0.000, fit=0.000\n  α=0.45: data=0.000, fit=0.005\n  α=0.50: data=0.750, fit=0.746\n  α=0.75: data=0.750, fit=0.752\n  α=1.00: data=0.750, fit=0.752\n\n=== Power Theory √T Extrapolation: T=10 → T=20 ===\n  Scaling factor: √(20/10) = √2 = 1.4142\n\n  α=0.45:\n    T=10 rate = 0.0046 (sigmoid fit)\n    z_T10 = -2.6082, z_T20 = -3.6886\n    T=20 predicted rate = 0.0001\n    T=20 predicted count = 0/8\n    Confidence: medium — near phase transition, key falsifiable test\n\n  α=0.50:\n    T=10 rate = 0.7463 (sigmoid fit)\n    z_T10 = 0.6628, z_T20 = 0.9373\n    T=20 predicted rate = 0.8257\n    T=20 predicted count = 7/8\n    Confidence: high — already above threshold at T=10\n\n  α=0.60:\n    T=10 rate = 0.3750 (actual (sync dip))\n    z_T10 = -0.3186, z_T20 = -0.4506\n    T=20 predicted rate = 0.3261\n    T=20 predicted count = 3/8\n    Confidence: low — sync dip regime, S×R non-monotonic\n\n  α=0.75:\n    T=10 rate = 0.7518 (sigmoid fit)\n    z_T10 = 0.6803, z_T20 = 0.9621\n    T=20 predicted rate = 0.8320\n    T=20 predicted count = 7/8\n    Confidence: high — already above threshold at T=10\n\n  α=1.00:\n    T=10 rate = 0.7518 (sigmoid fit)\n    z_T10 = 0.6803, z_T20 = 0.9621\n    T=20 predicted rate = 0.8320\n    T=20 predicted count = 7/8\n    Confidence: high — already above threshold at T=10\n\n=== Written to /home/ubuntu/.agent-ml-research-idea_gen_05\n…[truncated 2849 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-20T10:51:23.990989+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "t20_predictions_locked",
+              "type": "data",
+              "description": "Pre-registered T=20 PermG predictions from Power Theory √T scaling of T=10 sigmoid fit. Falsifiable: timestamp proves prediction precedes T=20 observation. Key test: α=0.45 predicted 0/8, α=0.50 predicted 7/8.",
+              "project": "distrib_canary_collapse",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/t20_predictions_locked.json",
+              "tags": "['D135', 'Power-Theory', 'C2', 'predict-verify']"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-20T10:51:23.991158+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_aa9d51\\\", \\\"name\\\": \\\"t20_predictions_locked\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Pre-registered T=20 PermG predictions from Power Theory √T scaling of T=10 sigmoid fit. Falsifiable: timestamp proves prediction precedes T=20 observation. Key test: α=0.45 predicted 0/8, α=0.50 predicted 7/8.\\\", \\\"path\\\": \\\"projects/distrib_canary_collapse/artifacts/_project/data/t20_predictions_locked.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"distrib_canary_collapse\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T10:51:15.212735+00:00\\\", \\\"tags\\\": [\\\"D135\\\", \\\"Power-Theory\\\", \\\"C2\\\", \\\"predict-verify\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-20T10:51:23.991442+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact registered: `art_20260520_aa9d51`.\n\n## T=20 Locked Predictions Summary\n\n**Sigmoid fit** (T=10, excl. α=0.60 sync dip): step-function at α_c = 0.4755, y_max = 0.752 (k=200, essentially binary transition).\n\n| α | T=10 actual | T=20 predicted | Confidence |\n|------|-------------|----------------|------------|\n| 0.45 | 0/8 | **0/8** | medium — key falsifiable test |\n| 0.50 | 6/8 | **7/8** | high |\n| 0.60 | 3/8 | **3/8** | low — sync dip |\n| 0.75 | 6/8 | **7/8** | high |\n| 1.00 | 6/8 | **7/8** | high |\n\n**Interpretation**: The T=10 transition is so sharp (0/8 → 6/8 between α=0.45 and α=0.50) that the sigmoid is effectively a step function. Power theory predicts α≥0.50 should gain ~1 pair (6→7/8) at T=20, while α=0.45 stays at 0/8. If T=20 observation shows α=0.45 > 0/8, that falsifies the step-function model and confirms left-shift of the phase boundary with increasing T."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_t20_predictions_locked_20260520T104710"
+          },
+          "id": "event-000045"
+        }
+      ],
+      "message_count": 45
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-t20-predictions-locked.md"
+}

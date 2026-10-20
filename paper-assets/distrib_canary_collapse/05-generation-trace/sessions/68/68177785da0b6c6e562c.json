@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68177785da0b6c6e562c",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "paper writing results reframe",
+  "task_key": "worker_paper_writing_results_reframe_20260520T105818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_results_reframe_20260520T105818_result.json",
+    "occurrence": 1,
+    "bytes": 698,
+    "sha256": "67008ea30c1a41f803e41f7285b658b06c38451bfbd6542dcd57621457ea3875"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All constraints pass. The \"confirms\" on line 10 refers to the spec curve confirming the phase transition is specification-invariant (empirical data, not Power Theory), so D141 is satisfied.\n\nWritten to `docs/paper/experiments_reframe.tex`: 127 lines total (4 subsections, ~70 lines of prose, 2 figure floats, 2 compact tables). All active constraints verified clean: no em-dashes, no -ing clause endings, no forbidden words, no CSD data, no TY=7/8, no K>=3 in Table 2, \"consistent with\" for all theory references, \"steep onset\"/\"detection phase transition\" throughout, all $\\alpha_c$ mentions include \"at $T{=}10$\", fp32 main axis with bf16 only in Pythia-6.9B footnote."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-results-reframe.md"
+}

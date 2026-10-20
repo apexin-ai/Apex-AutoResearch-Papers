@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df9adf73a41982faaf50",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code t20 analysis script prep",
+  "task_key": "worker_code_t20_analysis_script_prep_20260520T151115",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_t20_analysis_script_prep_20260520T151115_result.json",
+    "occurrence": 1,
+    "bytes": 1186,
+    "sha256": "ff1cf53f7caecd286ac57205635fc8580acc885241b2772e7639021b1b4538c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本已写好：\n\n**`scripts/t20_post_analysis.py`** — 单实验分析+验证：\n- 先检查 gen_0..gen_20 的 metrics.json 完整性\n- 调用服务器上的 `run_5method_analysis_d102.py` 跑 D120 5-method lead-lag\n- 从输出 JSON 提取 `perm_granger_fdr_forward_sig` 作为 observed PermG count\n- 与 `t20_predictions_locked.json` 对应 α 的 `predicted_permg_count` / `rate_95ci` 对比\n- 输出验证 JSON 到 `artifacts/t20_verify_a{alpha}_s{seed}.json`\n\n**`scripts/t20_batch_verify.sh`** — 批量运行所有 5 个 α：\n- 遍历 α∈{0.45, 0.50, 0.60, 0.75, 1.00}\n- 检查 `results/t20/a{alpha}_s42_fp32/gen_20/metrics.json` 存在才运行（跳过未完成的）\n- 汇总 PASS/FAIL/SKIP 计数\n\n关键路径映射：\n- 实验数据：`/root/autodl-tmp/distrib_canary_collapse/results/t20/a{XXX}_s42_fp32/`\n- 分析脚本：`/root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py`（在项目根目录，不在 scripts/ 下）\n- 5method 输出：`{exp_dir}/analysis/5method_leadlag.json`\n\n使用时需要先把这两个脚本同步到 17855 的 `$PROJ/scripts/` 下，然后 `bash scripts/t20_batch_verify.sh`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-t20-analysis-script-prep.md"
+}

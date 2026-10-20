@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fbcaf7805c337db3e146",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "research track d te robustness",
+  "task_key": "worker_research_track-d-te-robustness_20260522T043828",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_track-d-te-robustness_20260522T043828_result.json",
+    "occurrence": 1,
+    "bytes": 1059,
+    "sha256": "da80aa7e60eebf58a97705a1f1b320cd19dc345bf45ac3f41a3b72fe2f5755d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n**Original 复现成功**: sync-dip 4/6 显著, 正对照 0/6 — 与原结果一致\n\n**去趋势 (一阶差分)**: sync-dip **0/6** 显著 — 全部显著性消失。原始 TE 信号是共享单调下降趋势的 artifact，不是真正的非线性信息传递。m=2 ordinal patterns 只编码升/降，被共享趋势主导。\n\n**m=3**: 0/6 显著 — 方向一致，但 T=10-20 下有效序列太短（8-18 个 pattern），统计功效不足也是原因之一。\n\n**High surrogates (2000)**: 4/6 显著 — 与 500 surrogates 完全一致，p 值已充分解析。\n\n**结论**: Symbolic TE 的 sync-dip 显著性不鲁棒，经不起去趋势检验。建议论文中不以此为非线性因果证据，而将负面去趋势结果重新定位为「确认 sync-dip 耦合是线性共享趋势驱动」的诊断证据，反而加强 PermG 解释框架。\n\n产出文件：\n- 远程: `artifacts/transfer_entropy_robustness.{py,json,pdf,png}`\n- 本地: `artifacts/alpha_c_theory/te_robustness_summary.txt`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-track-d-te-robustness.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b65b7a454d049df6f75",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis 4method kappa",
+  "task_key": "worker_analysis_4method_kappa_20260525T085442",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_4method_kappa_20260525T085442_result.json",
+    "occurrence": 1,
+    "bytes": 1253,
+    "sha256": "595b2fe9cc7c697d5fd1ff572ee8fc006de2eb05635815939921de621ed6efcc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n**Reference dataset (α=1.0 GPT-2M, 16 pairs, 复现 paper κ=0.185):**\n\n| | 5-method | 4-method (−NaiveXCor) | Δ |\n|---|---|---|---|\n| Fleiss' κ | **0.187** | **0.167** | **−0.02** |\n\n排除 NaiveXCor 后 κ **略降**而非改善。原因：在 α=1.0 下 NaiveXCor 与 PermG/DiffXCorr 高度一致（pairwise Cohen κ=0.47），去掉它减少了同质投票。低 κ 的根因是 Threshold（0/16=0%）和 TY（8/16=50%）与 DiffXCorr/PermG cluster（12/16=75%）之间的系统性分歧。\n\n**Voting 对比 (alpha sweep, 5 null seeds + 3×detection seeds):**\n\n| Threshold | FPR (null) | TPR (α=0.50) | TPR (α=0.75) |\n|---|---|---|---|\n| K≥3/5 (paper) | **5.0%** | 20.8% | **29.2%** |\n| K≥2/4 (majority) | 17.5% | 29.2% | 54.2% |\n| K≥3/4 (supermajority) | **2.5%** | 4.2% | 8.3% |\n\n- K≥3/4 FPR 极好 (2.5%) 但 TPR 不可用 (4-8%)\n- K≥2/4 TPR 有改善但 FPR 膨胀至 17.5%\n- 两种 4-method threshold 都无法 dominate paper 的 K≥3/5\n\n**结论**: MMCT K≥3/5 已自然边缘化 NaiveXCor（最多贡献 1/5 票，单独不能造成 false positive）。移除它不改善 κ，反而损失 voting 自由度。artifact 已保存到 `artifacts/4method_kappa_analysis.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-4method-kappa.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d9e2a690d55839da5a87",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diagnose phase diagram failures",
+  "task_key": "worker_diagnose_phase_diagram_failures_20260521T192522",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_phase_diagram_failures_20260521T192522_result.json",
+    "occurrence": 1,
+    "bytes": 831,
+    "sha256": "97015ee21cdcb4266f03b04c10750d7900efdb15c5763f93dd52064c29bb4155"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**两个实验同一根因：磁盘满（os error 28）**\n\nwestd-17855 的 `/root/autodl-tmp/` 磁盘 350G 已 100% 占满（剩余 1.2M），两个实验均在 `model.save_pretrained()` 写 safetensors checkpoint 时崩溃。\n\n| 实验 | 目标 gen | 已完成 gen | 失败位置 |\n|------|---------|-----------|---------|\n| t25_a050_s42_fp32 | 25 | 14 (gen_0~13) | gen_14 checkpoint 写入 |\n| t20_a060_s43_fp32 | 20 | 3 (gen_0~2) | gen_3 checkpoint 写入 |\n\n两个实验的训练步骤本身都正常完成（5000/5000 steps），仅在写 checkpoint 文件时因磁盘无空间失败。命令参数无问题，不需要修改。\n\n**重试前提**：必须先清理 17855 磁盘，或转移到有空间的服务器。报告已写入 `artifacts/diagnose_phase_diagram_failures.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-phase-diagram-failures.md"
+}

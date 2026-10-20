@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95ecf8699b829193ad21",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "infra download smollm3 w17",
+  "task_key": "worker_infra_download_smollm3_w17_20260518T185054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_download_smollm3_w17_20260518T185054_result.json",
+    "occurrence": 1,
+    "bytes": 732,
+    "sha256": "4152d7f0b7148e1aa35efb92ac1a4f0130c4e89b07393c1f95151c5070b4445c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n**文件列表**\n```\n-rw-r--r-- 4.7G model-00001-of-00002.safetensors\n-rw-r--r-- 1.2G model-00002-of-00002.safetensors\n-rw-r--r--  943 config.json\n-rw-r--r--  126 generation_config.json\n-rw-r--r--  27K model.safetensors.index.json\n-rw-r--r--  17M tokenizer.json\n-rw-r--r--  50K tokenizer_config.json\n-rw-r--r--  151 special_tokens_map.json\n-rw-r--r--  13K README.md\n-rw-r--r-- 311K notebook.ipynb\n```\n\n**目录总大小**: 5.8G（排除了 ONNX 文件）\n\n**模型验证**\n- Model class: `SmolLM3ForCausalLM`\n- Vocab size: 128,000\n- Params: **3.08B**\n- Generate output: \"The meaning of life is a question that has puzzled philosophers, scientists, and\"\n- **SUCCESS**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-download-smollm3-w17.md"
+}

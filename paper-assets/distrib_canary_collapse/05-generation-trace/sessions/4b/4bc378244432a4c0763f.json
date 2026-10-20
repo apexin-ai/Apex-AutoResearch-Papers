@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4bc378244432a4c0763f",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops kill zombie 94952",
+  "task_key": "worker_ops_kill-zombie-94952_20260515T115110",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-zombie-94952_20260515T115110_result.json",
+    "occurrence": 1,
+    "bytes": 413,
+    "sha256": "f9e3c1a55c1e7939d8a9edf26d135fcb384edd3a6493c158b849a6a5ec8a8393"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程已成功 kill。\n\n**Kill 前状态**：\n- PID 94952，PPID 1（孤儿进程），状态 `Rl`\n- 运行时间 4h50min，CPU 4104%，内存 0.8%，GPU 0%\n- 命令：`python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 10 --num_generations 1 --synthetic_ratio 0.25 --output_dir /tmp/dryrun_a025_s43`\n\n**结果**：SIGTERM 即终止，未需要 SIGKILL。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-zombie-94952.md"
+}

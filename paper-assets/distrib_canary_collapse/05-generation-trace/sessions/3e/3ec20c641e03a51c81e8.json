@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ec20c641e03a51c81e8",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops t25 a045 s43 analysis and 14b t15a045",
+  "task_key": "worker_ops_t25-a045-s43-analysis-and-14b-t15a045_20260522T102656",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_t25-a045-s43-analysis-and-14b-t15a045_20260522T102656_result.json",
+    "occurrence": 1,
+    "bytes": 680,
+    "sha256": "ff8271c3bfc866a0999ad6feef0c3ab1a2222da8c1c82605da941cfba50081e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两件事都完成：\n\n**任务 1 — t25_a045_s43 D102 分析**\n- PermG fwd = **6/8**, rev = 0/8\n- Robust pairs (≥3/5 methods) = **6/8**\n- 与 s42 完全一致 → **seed-robust 确认**\n- 强 pairs: ece→distinct_1 (5/5), token_entropy→distinct_3 (4/5)，其余 distinct pairs 3/5\n- 弱 pairs: mauve 相关 (1/5, 2/5)\n- Registry → DONE (success), 10.16 GPU-hours\n\n**任务 2 — scale_14b_t15_a045_s42_fp32 (最后一个 1.4B)**\n- westd-17855:cuda:5, PID 667187\n- 模型已加载 (10284 MiB), 正在训练 gen_0\n- HF_HOME + HF_HUB_CACHE + TRANSFORMERS_OFFLINE 三件套已设置\n- Registry → RUNNING\n- 这是 6/6 1.4B 实验的最后一个"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-t25-a045-s43-analysis-and-14b-t15a045.md"
+}

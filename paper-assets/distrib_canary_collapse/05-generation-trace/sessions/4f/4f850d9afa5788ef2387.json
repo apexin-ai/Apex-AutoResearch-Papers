@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f850d9afa5788ef2387",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis alpha sweep a000 s44",
+  "task_key": "worker_analysis_alpha_sweep_a000_s44_20260516T185105",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_alpha_sweep_a000_s44_20260516T185105_result.json",
+    "occurrence": 1,
+    "bytes": 744,
+    "sha256": "a194d1c9ccc9948eb7824f64759cbef6cc61a03a2100ce6a66dddd34de55689b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`alpha_sweep_a000_s44` 分析结果：\n\n**FPR 控制：成功** — 所有检测方法在 null 条件下均不产生 false positive。\n\n| 指标 | Perm Granger FDR | TY Granger | Robust pairs (≥3/5) |\n|------|-----------------|-----------|---------------------|\n| 显著数 | 0/8 | 0/8 | 0/8 |\n\n**Drift (gen0→gen10)**:\n| Metric | gen0 | gen10 | drift% |\n|--------|------|-------|--------|\n| token_entropy | 3.234 | 3.096 | -4.3% |\n| perplexity | 26.95 | 21.62 | -19.8% |\n| distinct_1 | 0.098 | 0.084 | -14.6% |\n| effective_rank | 46.61 | 44.50 | -4.5% |\n\n与 s43 高度一致，drift 模式相同（自然漂移，无合成污染信号）。Registry 已更新为 DONE/success，artifacts 已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-alpha-sweep-a000-s44.md"
+}

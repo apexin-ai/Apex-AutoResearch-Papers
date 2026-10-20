@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44b2f6fc43b853ac96bf",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops monitor t10a050 rerun d102",
+  "task_key": "worker_ops_monitor-t10a050-rerun-d102_20260522T175636",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_monitor-t10a050-rerun-d102_20260522T175636_result.json",
+    "occurrence": 1,
+    "bytes": 174,
+    "sha256": "13e669c0be2efa3c763a683c26513477e91d9099d73d8d2b3c51af0ae41a0ef0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已设置 60 分钟后自动检查。到时会验证 gen_10/metrics.json 是否就绪、PID 是否退出，然后决定是运行 D102 还是继续等 gen_11。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-monitor-t10a050-rerun-d102.md"
+}

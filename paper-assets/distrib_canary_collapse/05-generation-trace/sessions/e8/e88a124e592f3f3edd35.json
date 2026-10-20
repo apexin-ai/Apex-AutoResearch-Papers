@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e88a124e592f3f3edd35",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis 4 seed verdict",
+  "task_key": "worker_analysis_4-seed-verdict_20260514T183646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_4-seed-verdict_20260514T183646_result.json",
+    "occurrence": 1,
+    "bytes": 2924,
+    "sha256": "7a89c5bcedafd1e4158cc8053c32b0f3e3daf68591c02715a20c7ada36503900"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 4-Seed MVP 正式分析 — 完整 Verdict\n\n### 🏆 Overall Verdict: **STRONG PASS**\n\n2 个 canary 家族（**token_entropy**, **ece**）各自对 ≥1 个非降级 downstream 指标有 SIGNIFICANT LEAD。\n\n---\n\n### Pre-Analysis Decisions\n\n- **MAUVE**: demoted（floor_effect，Gen 0 < 0.10 且 CV < 0.50）\n- **effective_rank**: inconclusive（Gen 4–9 slopes 方向不一致：seed42=+0.81, seed43=-1.90, seed44=-2.11, seed45=+1.56）\n\n---\n\n### SIGNIFICANT LEAD — 6 对\n\n| Canary | Downstream | Mean Lag | Lag Std | |r| Range | p Range |\n|--------|-----------|----------|---------|-----------|---------|\n| token_entropy | distinct_1 | **-1.0** | 0.0 | 0.993–0.998 | 0.0006–0.0036 |\n| token_entropy | distinct_2 | -1.25 | 0.43 | 0.968–0.999 | 0.0001–0.0231 |\n| token_entropy | distinct_3 | -2.25 | 1.64 | 0.941–0.998 | 0.0001–0.0392 |\n| ece | distinct_1 | -2.25 | 1.09 | 0.995–0.998 | 0.0000–0.0010 |\n| ece | distinct_2 | **-1.0** | 0.0 | 0.995–0.997 | 0.0001–0.0023 |\n| ece | distinct_3 | -2.0 | 1.73 | 0.986–0.998 | 0.0002–0.0023 |\n\n最强结果：**token_entropy→distinct_1** 和 **ece→distinct_2**，4/4 seed 完全一致 lag=-1，std=0。\n\n### WEAK LEAD — 1 对\n\n| Canary | Downstream | Mean Lag | Lag Std | |r| Range | p Range |\n|--------|-----------|----------|---------|-----------|---------|\n| token_entropy | perplexity | **-5.0** | 0.0 | 0.812–0.838 | 0.058–0.120 |\n\nLag 完全一致（全为-5），但 p 值 borderline——seed 42 p=0.12 不达标。4-seed 趋势表明更多数据可能推至显著。\n\n### NO LEAD — 9 对\n\n- **self_bleu → 所有**: 方向不一致，lag 为正（canary 反而滞后 downstream）\n- **ece → perplexity**: lag=+4.75（ECE 滞后 perplexity！）\n- **effective_rank**: 全部排除（inconclusive）\n\n---\n\n### 与 2-Seed 预分析对比\n\n| 结论 | 2-Seed | 4-Seed | 变化 |\n|------|--------|--------|------|\n| Overall verdict | STRONG PASS | STRONG PASS | 确认+加强 |\n| token_entropy/ece lead diversity | ✅ | ✅ (所有 p<0.04) | 加强 |\n| Canary lead perplexity? | 否（仅 diversity） | 否（仅 diversity） | 不变 |\n| distinct_3 lag 收敛? | 高离散 | 仍较高（std~1.6–1.7），seed42 outlier | 轻微改善 |\n| effective_rank | Inconclusive | Inconclusive（更差：2+/2-） | 恶化 |\n| self_bleu 方向 | 不一致 | 不一致 | 不变 |\n\n### 核心洞察\n\n1. **Canary 只领先 diversity collapse，不领先 perplexity degradation**——多样性丧失和质量下降可能在不同时间尺度上发生\n2. **token_entropy 和 ece 双重确认**——两个独立 canary 家族均可靠领先 1-2 代\n3. **self_bleu 不是有效 canary**——4 seed 一致确认\n4. **effective_rank 在 MVP 设置下不可靠**——方向随 seed 变化\n\n### Rep44 Gen 10 Token Entropy\n\n**1.2205**（已更新至 registry）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-4-seed-verdict.md"
+}

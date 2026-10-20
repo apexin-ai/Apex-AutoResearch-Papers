@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c7646fca00478948f77",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis a060 bf16 leadlag",
+  "task_key": "worker_analysis_a060_bf16_leadlag_20260518T211552",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_a060_bf16_leadlag_20260518T211552_result.json",
+    "occurrence": 1,
+    "bytes": 1431,
+    "sha256": "063cda01d8b895b1880a227d583ad193878d1857d6ab848a0d476639dff84284"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n## α=0.60 s42 bf16 完整分析结果\n\n### Metrics Drift (gen_0 → gen_10)\n| 指标 | gen_0 | gen_10 | Drift |\n|------|-------|--------|-------|\n| d1 | 0.0914 | 0.0663 | **-27.5%** |\n| d2 | 0.5043 | 0.3157 | **-37.4%** |\n| d3 | 0.8329 | 0.5707 | **-31.5%** |\n| entropy | 3.2574 | 2.6404 | -18.9% |\n| ece | 0.0123 | 0.0426 | +246.5% |\n| ppl | 27.68 | 20.27 | -26.8% (bf16) |\n\n### 5-Method Lead-Lag (Unified 2σ)\n| Method | Fwd | Rev |\n|--------|-----|-----|\n| naive_xcorr | 8/8 | 8/8 |\n| diff_xcorr | 8/8 | 8/8 |\n| threshold_onset | **6/8** | 0/8 |\n| perm_granger | **8/8** | **0/8** |\n| ty_granger | 0/8 | 1/8 |\n| **K≥4** | **6/8** | |\n\nPerm Granger 完美方向性不对称 (8/8 fwd vs 0/8 rev)。TY 0/8 符合 C003。\n\n### MMCT Detection\n| Mode | Sig |\n|------|-----|\n| uniform_forward | 0/8 |\n| weighted_pair_forward | **6/8** |\n| weighted_global_forward | 0/8 |\n\n### Table 7 格式行\n`naive: 8/8, diff: 8/8, thresh: 6/8, pg_fwd: 8/8, pg_rev: 0/8, ty: 0/8, K≥4: 6/8`\n\n### Regime Map 定位\nα=0.60 是 **method-dependent detectability** 区域：perm_granger 和 threshold_onset 可靠检测到 forward 方向性，MMCT 仅在 weighted_pair 模式下检出（6/8），uniform 和 global 模式不检出。位于 α=0.50 (boundary) 和 α=0.75 (broadly detectable) 之间，weighted_pair_forward 的检出率可以精确定位 detectability threshold。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-a060-bf16-leadlag.md"
+}

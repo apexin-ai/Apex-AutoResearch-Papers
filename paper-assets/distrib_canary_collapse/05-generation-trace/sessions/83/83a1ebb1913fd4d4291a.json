@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "83a1ebb1913fd4d4291a",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis r3 t20 predictions fdr fix",
+  "task_key": "worker_analysis_r3_t20_predictions_fdr_fix_20260520T163325",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r3_t20_predictions_fdr_fix_20260520T163325_result.json",
+    "occurrence": 1,
+    "bytes": 515,
+    "sha256": "1d87da20478fd8649b3903d3e90087d4383b3b93f10944d3f9855786ec788ab5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`t20_predictions_locked_v2.json` 已生成，α=0.60 修正摘要：\n\n| 字段 | v1 (pre-FDR) | v2 (FDR-corrected) |\n|------|-------------|-------------------|\n| t10_rate_used | 0.375 | 0.0 |\n| z_t10 | -0.3186 | -1.5341 |\n| z_t20 | -0.4506 | -2.1696 |\n| predicted_rate | 0.3261 | 0.0150 |\n| predicted_permg_count | 3 | 0 |\n\n其他 α 值（0.45/0.50/0.75/1.00）均基于 sigmoid fit，不受 FDR 修正影响，未变动。`t10_data.permg_counts[9]` 也从 3 → 0 同步修正。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r3-t20-predictions-fdr-fix-copy-2.md"
+}

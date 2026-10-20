@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a6dce6bf7212039a39e",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "writing d170 narrative review",
+  "task_key": "worker_writing_d170_narrative_review_20260521T212039",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_d170_narrative_review_20260521T212039_result.json",
+    "occurrence": 1,
+    "bytes": 1421,
+    "sha256": "2a09f258b52777a1c5e0c11579a43263fb8d2e8b361a54b13557b70db78b7173"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/D170_t25_absorption_plan.md`。内容概要：\n\n**A. 叙事状态评估**：D170 草稿 10 个段落/位置中，4 个无 T=25 依赖（T=5/T=15 段落），6 个需要 T=25 数据后改写（Abstract、Intro 末句、Results sync-dip 段、综合段、场景选择）。\n\n**B. 场景化吸收模板**：\n- **场景 A（dissolution）**：6 个位置的句子级改写模板，含完全恢复(≥6/8)和部分恢复(2-4/8)两个子分支。C2 S×R 升级为 \"quantitative predictive framework\"，sync-dip 降级为 transient。\n- **场景 B（permanence）**：6 个位置的替代模板。C3 升级为与 C1 并列的核心贡献，sync-dip 确认为 structural invariant。\n- **场景 D（α=0.45=0/8, 低概率）**：紧急诊断流程 + 措辞退化方案。\n\n**C. α=0.60 专项**：near-miss p_fdr=0.064 趋势分析 + dissolution/permanence 对 C2/C3 的差异化影响 + 边界情况（1/8 marginal dissolution、0/8 但 near-miss 比 T=20 更近）处理。\n\n**D. Cross-seed 整合**：4 个 running 实验的优先级排序 + 论文整合位置（主表 s42 + Appendix dual-seed）+ ±1/8 vs ≥2/8 差异的不同处理策略。\n\n**E. 执行清单**：数据验证→场景判定→叙事更新→predict-then-verify scoreboard，含 T=25 √T 预测值预计算。\n\n**F. 措辞红线**：6 条硬约束，防止 T=25 数据到达后的措辞 over-claim。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-d170-narrative-review.md"
+}

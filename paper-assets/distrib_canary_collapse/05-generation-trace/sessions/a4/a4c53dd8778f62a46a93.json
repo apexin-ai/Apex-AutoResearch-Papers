@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a4c53dd8778f62a46a93",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis observation window sensitivity",
+  "task_key": "worker_analysis_observation_window_sensitivity_20260515T230611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_observation_window_sensitivity_20260515T230611_result.json",
+    "occurrence": 1,
+    "bytes": 776,
+    "sha256": "2ffc3267cf9348a7f271498a50e7105288c0a1f58b7a4d6d5fc92e7ceaa092fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已生成并注册 (`art_20260515_0d5c1a`)。核心发现：\n\n**Table 1** — 4-method 共识在 **T=6 即完全稳定**（6/6 robust pairs），T=6–10 结论完全一致。T=5 时 Perm Granger 尚未达标（差分后仅 4 点，排列分布不够可靠），导致 robust=0/6。\n\n**方法敏感度排序**：\n- Naive xcorr, Diff xcorr, Threshold：T=5 起全部稳定，对窗口完全不敏感\n- Perm Granger：T≥6 稳定\n- TY：T≤8 全部 insufficient_df（0/24 feasible）；T=9–10 才可计算，且大多数 pair 不显著（符合 C001 预期）\n\n**审稿人回应要点**：4/5 方法从 T=6 起结论锁定，TY 的不稳定是 VAR 参数开销导致的 df 不足，不是信号弱。T=10 提供了远超必要的观测窗口。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-observation-window-sensitivity.md"
+}

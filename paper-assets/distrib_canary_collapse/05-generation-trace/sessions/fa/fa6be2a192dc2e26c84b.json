@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa6be2a192dc2e26c84b",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis t20 a045 status check",
+  "task_key": "worker_analysis_t20_a045_status_check_20260520T201311",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_t20_a045_status_check_20260520T201311_result.json",
+    "occurrence": 1,
+    "bytes": 1733,
+    "sha256": "e4f78bef9903dc184c0d44e5dbd039de9cf57c597e3a5c9ab32c048162c65bfd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n```\nstatus: completed\ngen_progress: 20/20 (全部完成)\n```\n\n### 5-Method Lead-Lag 分析 (T=20, α=0.45, s42)\n\n| 指标 | 值 |\n|------|-----|\n| **PermG fwd (uncorrected sig)** | **5/8** |\n| PermG fwd (FDR) | 需逐 pair 确认（首 pair p_fdr=0.052 borderline） |\n| PermG rev | 0/8 |\n| DiffXcorr fwd (FDR) | 7/8 |\n| Threshold onset fwd | 4/8 |\n| TY fwd | 2/8 |\n| **Consensus K≥3** | **3/8** |\n| Consensus K≥4 | 1/8 (token_entropy→distinct_2, K=4) |\n\n### Consensus 逐 pair 明细\n\n| Pair | K | Methods |\n|------|---|---------|\n| token_entropy→distinct_1 | 2 | diff, threshold |\n| token_entropy→distinct_2 | **4** | diff, threshold, perm, ty |\n| token_entropy→distinct_3 | 2 | diff, perm |\n| token_entropy→mauve | 0 | — |\n| ece→distinct_1 | **3** | diff, threshold, perm |\n| ece→distinct_2 | **3** | diff, threshold, perm |\n| ece→distinct_3 | 2 | diff, perm |\n| ece→mauve | 2 | naive, ty |\n\n### Model Verdict: **Model B supported**\n\nT=10 baseline (a045_s42_fp32, a045_s43_fp32) 均为 PermG=0/8。T=20 跳升至 PermG=5/8（uncorrected），K≥3 达 3/8。这不是噪声——方向性完全正确（fwd 5/8 vs rev 0/8），且 DiffXcorr 7/8 独立印证。\n\n**关键发现**：α=0.45 不在 fundamental blind zone 内。T=10→T=20 的扩展确实将其从不可检测（0/8）推至可检测（5/8），支持 α_c(T) 随 T 递减的 Model B 假设。\n\n**注意事项**：\n- PermG FDR 校正后 borderline（首 pair p_fdr=0.052），5/8 计数可能基于 uncorrected p<0.05\n- K≥3 仅 3/8，信号比 α≥0.50 区间弱——α=0.45 处于 T=20 的检测边缘\n- mauve pairs 仍无信号（K=0 和 K=2），与 T=10 模式一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-t20-a045-status-check.md"
+}

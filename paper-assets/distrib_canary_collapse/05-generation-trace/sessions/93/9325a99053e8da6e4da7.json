@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9325a99053e8da6e4da7",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "fix a060 s43 metrics backfill",
+  "task_key": "worker_fix_a060_s43_metrics_backfill_20260519T185811",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_a060_s43_metrics_backfill_20260519T185811_result.json",
+    "occurrence": 1,
+    "bytes": 485,
+    "sha256": "0835daf10efef19d27eae5e9dbb9024ca07bf42f8b7ec85f86994ecd2b1196a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验 metrics 均已回填成功：\n\n**alpha_sweep_a060_s43_fp32** — PermG FDR 0/8 (fwd+rev), K≥4=3/8, K≥3=7/8, threshold_onset=8/8, naive_xcorr=7/8, diff_xcorr=6/8, TY=4/8, 含全部 drift_pct + gen0/gen9 绝对值 + D108 non-monotonicity note。\n\n**interv_react_s43_fp32** — trigger_gen=2, d1 drop=-15.83%, gen2_ppl=158.22, recovery_ppl=21.98 (gen3), recovery_complete_by_gen=3, 含 gen0/gen9/gen10 绝对值 + intervention config + recovery note。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-a060-s43-metrics-backfill.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c52485100639c2839822",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "paper reviewer d057 supplements",
+  "task_key": "worker_paper_reviewer_d057_supplements_20260518T005735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_reviewer_d057_supplements_20260518T005735_result.json",
+    "occurrence": 1,
+    "bytes": 698,
+    "sha256": "acb2ab959bcdf02ab66068959486f7ff3d349de48862e95024c18d1f2a24457a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n**修改总结：**\n\n1. **experiments.tex L27-28**：替换了旧的 multiplicity control 段落为 Director 指定的精确措辞，引用 `\\ref{tab:fpr_fnr}`\n2. **appendix.tex 末尾**：新增 `\\section{FDR Sensitivity Analysis}` (`\\label{sec:fdr_sensitivity}`)，含 BH correction sensitivity table + 2 句解释段落。旧的 `tab:fdr_sensitivity` 已重命名为 `tab:threshold_sensitivity` 避免冲突\n3. **experiments.tex L343 Table 7 caption**：已加入 `see Appendix~\\ref{sec:fdr_sensitivity} for sensitivity analysis`\n\n编译结果：0 errors，0 undefined references，无破折号。Baseline 行 TBD 待 Director 确认后补填。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-reviewer-d057-supplements.md"
+}

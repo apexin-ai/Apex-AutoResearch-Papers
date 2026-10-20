@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a65ee4ae9828fea6ba11",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code recompile push l526",
+  "task_key": "worker_code_recompile_push_l526_20260524T024317",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_recompile_push_l526_20260524T024317_result.json",
+    "occurrence": 1,
+    "bytes": 402,
+    "sha256": "3bd7029f8fc2a7f997b15250490f1262d3a48717880ef5f3270712f6f58a8418"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "匿名仓库已完全同步且已 push。\n\n## 结果\n- **L526 修复确认**: 是 — \"3/4 α conditions achieving K≥3≥2/6 (onset α=0.50 seed-dependent: s42 1/6, s43 3/6)\"\n- **编译**: 0 errors, 27 pages (817KB)\n- **PDF 验证**: 包含修复文本 (\"3/4\", \"seed-dependent\")\n- **匿名仓库**: commit `1e08a84`, 已 push，所有文件与源一致，无需额外操作"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-recompile-push-l526.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "acf884601f0e669fe7a3",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code generalization c4 gpt2 prep",
+  "task_key": "worker_code_generalization_c4_gpt2_prep_20260515T083604",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_generalization_c4_gpt2_prep_20260515T083604_result.json",
+    "occurrence": 1,
+    "bytes": 1014,
+    "sha256": "65021b7b456db14bce0ef07b8006f0be2c053097d38cbde2cb5cd9863848a05c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。总结：\n\n**环境准备结果：**\n- **C4 数据集** — 已下载并准备好 `data/c4_5k/`（train:4500, eval:500, prompts:500），从 allenai/c4 第一个 json.gz 分片提取\n- **GPT-2-medium** — 已缓存（355M params, vocab 50257）\n- **脚本兼容性** — `iterative_train.py` 已完全支持 `--model_name` 和 `--data_dir` 参数，**无需任何修改**\n\n**关键发现：**\n- wikitext103_5k/train 实际包含完整 WikiText-103 训练集（~1.8M 样本），而 C4 子集仅 4500 样本。每代训练 5000 steps × bs=4 = 20k 访问时，C4 样本会被遍历 ~4.4 次 vs WikiText 仅覆盖 ~1.1%。这可能影响对比公平性，已在报告中标注。\n\n**产出文件：** `artifacts/generalization_prep.md`，包含：\n- 4 个完整训练命令（2 数据 × 2 α）\n- 时间估算：每个实验 ~3.5-4.5h，串行 2 组 ~8h\n- 推荐先跑 B 组（WikiText + GPT-2-medium），因为与现有 Pythia baseline 直接可比且模型更小更快"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-generalization-c4-gpt2-prep.md"
+}

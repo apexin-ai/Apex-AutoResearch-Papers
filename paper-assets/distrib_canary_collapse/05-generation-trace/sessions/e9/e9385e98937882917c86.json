@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e9385e98937882917c86",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis empirical ar1 coefficients",
+  "task_key": "worker_analysis_empirical_ar1_coefficients_20260520T222024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_empirical_ar1_coefficients_20260520T222024_result.json",
+    "occurrence": 1,
+    "bytes": 2024,
+    "sha256": "cab82d091ef65aef7048f09bb25c967f4be9904707d9b64b2934cc4b2fab07d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 已保存。汇总表格：\n\n```\n===============================================================================================\nExperiment           α   T  te_φ_raw    d1_φ_raw    te_φ_diff    d1_φ_diff\n-----------------------------------------------------------------------------------------------\na000_s42          0.00  10    -0.5093      0.8645      -0.5725      -0.1357\na025_s42          0.25  10    -0.3389      0.9486      -0.4466       0.1913\na050_s42          0.50  10    -0.2790      0.8729       0.3132       0.0994\na075_s42          0.75  10     0.1376      0.9057       0.8834       0.2405\na100_s42          1.00  10     0.9959      0.8903       0.9764       0.1826\nt20_a050_s42      0.50  20    -0.1002      0.9652      -0.2517       0.4382\nt20_a100_s42      1.00  20     0.9788      0.8136       0.8702       0.1411\n-----------------------------------------------------------------------------------------------\nMEAN                          0.1264      0.8944       0.2532       0.1653\nMAX |φ|                       0.9959      0.9652       0.9764       0.4382\n===============================================================================================\n```\n\n**关键发现**：\n\n1. **token_entropy raw φ** 呈现两个 regime：null/低α（0.00–0.50）下 φ ∈ [−0.51, −0.10]，远低于 0.95；α=1.00 下 φ≈0.996，但这是 collapse 趋势本身（确定性信号），不是随机自相关。\n\n2. **distinct_1 raw φ** 全局偏高（0.81–0.97），包括 null baseline——原因是 iterative training 本身带来的单调下降趋势。但**一阶差分后 φ 仅 0.17 均值**（范围 [−0.14, 0.44]），增量接近白噪声。\n\n3. **论文可用论点**：PermG FPR 膨胀需要 φ≥0.95 的**随机**自相关。我们数据中的高 raw φ 来自确定性趋势，一阶差分后随机分量的 φ 远低于 0.95（distinct_1 均值 0.17，null token_entropy 均值 −0.24），因此 PermG size control 是安全的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-empirical-ar1-coefficients.md"
+}

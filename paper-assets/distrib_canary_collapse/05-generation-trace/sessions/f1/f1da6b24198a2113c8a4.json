@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1da6b24198a2113c8a4",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops check 14b progress all",
+  "task_key": "worker_ops_check-14b-progress-all_20260522T132424",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-14b-progress-all_20260522T132424_result.json",
+    "occurrence": 1,
+    "bytes": 1786,
+    "sha256": "ea2bec29de05cee51c32b2f82f6e1d9d479dc72675040d27fe737af40d86b65b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据收集完毕，汇总如下：\n\n## 1.4B 实验进度总览（截至 ~21:26 CST）\n\n| exp_id | 服务器 | GPU | 已完成/总 gen | 训练中 | 每 gen 耗时 | 预计剩余 | 预计完成 | 状态 |\n|--------|--------|-----|--------------|--------|------------|---------|---------|------|\n| **t10_a050** | 19828 | cuda:1 | **6/10** | gen_6 | ~65 min | **~4.3h** | ~01:45 | 运行中 |\n| **t10_a075** | 17855 | cuda:2 | **5/10** | gen_5 | ~61 min | **~4.8h** | ~02:15 | 运行中 |\n| **t10_a060** | 17855 | cuda:3 | **5/10** | gen_5 | ~61 min | **~4.8h** | ~02:15 | 运行中 |\n| t10_a045 | 17855 | cuda:4 | **0/10** | gen_0 | ~61 min | **~9.9h** | ~07:20 | 刚启动 |\n| t15_a060 | 17855 | cuda:0 | **4/15** | gen_4 | ~61 min | **~10.9h** | ~08:20 | 运行中 |\n| t15_a050 | 17855 | cuda:1 | **4/15** | gen_4 | ~61 min | **~10.9h** | ~08:20 | 运行中 |\n| t15_a045 | 17855 | cuda:5 | **2/15** | gen_2 | ~61 min | **~12.9h** | ~10:20 | 运行中 |\n| t15_a075 | 19828 | cuda:0 | **1/15** | gen_1 | ~65 min | **~15.1h** | ~12:32 | 运行中 |\n\n## 重点\n\n- **最快完成（T=10 系列）**：t10_a050、t10_a075、t10_a060 三个实验预计今晚 01:45-02:15 完成\n- **已完成**：无\n- **异常**：\n  - **t10_a045 晚启动**：21:06 才从 gen_0 开始（其他 17855 实验已跑到 gen_4-5），比同 target=10 的兄弟实验落后 ~5h\n  - 17855 上 6 个实验在 21:08 附近**全部重启过**（ps 显示 START=21:08，带 `--start_gen` 从 checkpoint 恢复）。有 wget 进程正在下载 pythia-1.4b-deduped safetensors，说明之前可能模型文件缺失导致了重启\n  - 19828 两个实验正常运行，无重启痕迹\n\nGPU 利用率全部正常：17855 六卡 85-90%（11.2GB/卡），19828 两卡 83-84%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-14b-progress-all.md"
+}

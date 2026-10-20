@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6673b60a558edc400be8",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diagnose check experiments status 0517b",
+  "task_key": "worker_diagnose_check_experiments_status_0517b_20260517T200330",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_check_experiments_status_0517b_20260517T200330_result.json",
+    "occurrence": 1,
+    "bytes": 1103,
+    "sha256": "fb6214c794bc6a403956543ffa28b3601e6ad5006548ab6b081905f3c3199625"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### C4 seed-43 (`pythia1b_c4_a100_s43`) — 崩溃\n\n- **PID 288678 已退出**，cuda:0 空闲（0MiB, 0%）\n- **退出码**: 1\n- **崩溃点**: gen_0 baseline 阶段，生成 synthetic_data 后，在 MAUVE 评估时崩溃\n- **根因**: MAUVE 库内部调用 `AutoTokenizer.from_pretrained(\"gpt2\")` 直连 `huggingface.co`，服务器无法访问。`HF_ENDPOINT=hf-mirror.com` 环境变量对 MAUVE 内部调用不生效。\n- **进度**: 仅 `gen_0/synthetic_data`，无评估指标，无法运行分析\n\n### Pythia-1.4B (`pythia14b_wiki_a100_s42`) — 正常运行\n\n- **PID 289216** 在 cuda:1 运行，GPU 利用率 98%，28427MiB 显存\n- 已完成 gen_7（checkpoint 已保存）\n- **当前**: 训练 gen_8，进度 4875/5000 步（~98%），约 2 分钟完成当前 gen\n- **剩余**: gen_8（即将完成）+ gen_9 + gen_10，预计 ~30-45 分钟全部完成\n\n### C4 seed-43 修复方案\n\n需要预下载 GPT-2 tokenizer 到本地缓存，或在 MAUVE 调用前 patch `HF_ENDPOINT`。是否要我立即修复并在 cuda:0 上重启 C4 seed-43？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-check-experiments-status-0517b.md"
+}

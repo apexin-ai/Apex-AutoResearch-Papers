@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80f6769c1869e6ab455f",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "prep cross alpha 5pt script",
+  "task_key": "worker_prep_cross-alpha-5pt-script_20260515T120307",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_cross-alpha-5pt-script_20260515T120307_result.json",
+    "occurrence": 1,
+    "bytes": 1411,
+    "sha256": "cc8659089b29cfbff1478ae1c09e45c590faa39422e2771d2242ad7f77d6c277"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部检查完成，汇总如下：\n\n## 检查结果\n\n### 1. 脚本状态\n`cross_alpha_analysis_v4.py` — 34714 bytes, 最后更新 2026-05-15 17:16 ✅\n\n### 2. 数据完整性\n\n| α 点 | all_metrics.json | 状态 |\n|------|-----------------|------|\n| a000_s42 (α=0.0) | ✅ | 完整 |\n| a025_s42 (α=0.25) | ✅ | 完整 |\n| a050_s42 (α=0.5) | ✅ | 完整 |\n| a075_s42 (α=0.75) | ❌ | **未完成** |\n| MVP (α=1.0) | ✅ 4 seeds (rep_42..45) | 完整 |\n\n### 3. a075 进度\n- 9 个 generation 目录 (gen_0..gen_8)\n- 8/9 有 `metrics.json` (gen_0..gen_7 完成)\n- **gen_8 目录为空** — 正在运行或待运行\n- 训练日志显示 padding warnings（仍在推理阶段）\n- 阻塞项：gen_8 完成后还需生成 `all_metrics.json`\n\n### 4. Dry-run 结果\nImport 成功 ✅。Auto-discovery 正确识别全部 5 个 α 点（含 a075）。注意：a075 虽然被 discover 了，但因缺少 `all_metrics.json`，实际运行时会在加载阶段失败。\n\n### 5. 最终执行命令\na075 数据就绪后执行：\n```bash\ncd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python cross_alpha_analysis_v4.py --n-perms 5000 --consensus-n-perms 1000 --update-registry\n```\n\n**结论**：脚本就绪，4/5 α 点数据完整，唯一阻塞是 a075_s42 的 gen_8 + all_metrics 聚合。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-cross-alpha-5pt-script.md"
+}

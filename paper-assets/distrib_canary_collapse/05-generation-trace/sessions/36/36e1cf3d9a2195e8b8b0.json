@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "36e1cf3d9a2195e8b8b0",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code ty signonly bugfix",
+  "task_key": "worker_code_ty_signonly_bugfix_20260520T060407",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ty_signonly_bugfix_20260520T060407_result.json",
+    "occurrence": 1,
+    "bytes": 884,
+    "sha256": "18a8b2134c389ddd8f07bfb8aacfc15e7b8c79ef988170237e228de88ca6921a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。汇总：\n\n**Bug**: `run_5method_analysis_d102.py:223` 调用 `test_causality(signonly=False)` — `signonly` 不是 statsmodels 0.14.6 的合法参数，导致所有 TY 检验异常，静默返回 0/8。\n\n**Fix**: 移除 `signonly`，改用 `kind=\"f\"`；结果提取从 `summary().data` 改为直接访问 `test_result.test_statistic` / `test_result.pvalue`。\n\n**验证结果**:\n\n| 实验 | α | TY 修复前 | TY 修复后 | K≥3 变化 |\n|------|---|----------|----------|---------|\n| a050_s42 | 0.50 | 0/8 | **3/8** | 5→**6**/8 |\n| a075_s42 | 0.75 | 0/8 | **3/8** | 6/8 不变 |\n| pythia410m | 1.0 | 0/8 | **4/8** | 6/8 不变 |\n\n**19828 不受影响** — 它使用手动 OLS+Wald 实现，不调用 `test_causality()`。\n\n**附带发现**: 表格打印有列对齐 bug（TY_F 列误显示 PermFDR 值），JSON 数据正确。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ty-signonly-bugfix.md"
+}

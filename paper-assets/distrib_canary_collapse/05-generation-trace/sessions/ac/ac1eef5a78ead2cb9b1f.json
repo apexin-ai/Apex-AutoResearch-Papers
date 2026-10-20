@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ac1eef5a78ead2cb9b1f",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops verify gpt2m v3 gpu",
+  "task_key": "worker_ops_verify-gpt2m-v3-gpu_20260515T120745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-gpt2m-v3-gpu_20260515T120745_result.json",
+    "occurrence": 1,
+    "bytes": 467,
+    "sha256": "04f1d6dc612275b79a9085305ff07b079cff38464861154ee11d484e7d846cd5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**训练已开始。**\n\n- **进程**: PID 117632 存活，其子进程 PID 117637 在 GPU 0 上占用 **6048 MiB**\n- **GPU 0**: 90% 利用率，12110/97887 MiB 已用，259W 功耗 — 正在活跃计算\n- **日志**: 模型 `gpt2-medium` 加载成功，数据 `wikitext103_5k` 已加载，**Generation 0 (baseline) 已开始运行**\n\npadding_side 警告是无害的（decoder-only 模型 generate 时的标准警告，不影响训练流程）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-gpt2m-v3-gpu.md"
+}

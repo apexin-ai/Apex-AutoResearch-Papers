@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62f8e634f04e12a18f25",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis alpha sweep a050 s43 fp32",
+  "task_key": "worker_analysis_alpha_sweep_a050_s43_fp32_20260519T094833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_alpha_sweep_a050_s43_fp32_20260519T094833_result.json",
+    "occurrence": 1,
+    "bytes": 1776,
+    "sha256": "eba8f26814c0464c78dd93d2af4fbde9b49c6f0486d09eb5dbfe6517440c64ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。\n\n## 分析总结：alpha_sweep_a050_s43_fp32\n\n**模型**: Pythia-410m, seed=43, α=0.50, fp32, 11 代（gen0-gen10）\n\n### 关键 Metrics\n\n| 指标 | gen0 | gen10 | drift% |\n|------|------|-------|--------|\n| token_entropy | 3.234 | 2.723 | **-15.81%** |\n| ece | 0.011 | 0.084 | **+679.56%** |\n| perplexity | 26.95 | 31.58 | +17.17% |\n| distinct_1 | 0.093 | 0.066 | -29.0% |\n| distinct_2 | 0.507 | 0.323 | -36.25% |\n| distinct_3 | 0.835 | 0.565 | -32.38% |\n| effective_rank | 46.61 | 58.47 | +25.44% |\n| mauve | 0.030 | 0.023 | -23.54% |\n\n### 因果检验\n\n| 方法 | 结果 |\n|------|------|\n| perm_granger_fwd | **6/8** |\n| perm_granger_rev | 0/8 |\n| ty_granger_fwd | 5/8 |\n| naive_xcorr_fwd | 8/8 |\n| diff_xcorr_fwd | 6/8 |\n| threshold_onset_fwd | 8/8 |\n| consensus_k4 | **6/8** |\n| mmct_wpair_fwd | **0.75** |\n\n### Boundary Regime 判断\n\n**PermG = 6/8，α=0.50 fp32 已明确跨过 step function 阈值。** 这与 pre-D080 fp16 数据中 α=0.50 PermG 不确定的结果形成对比。fp32 精度下，boundary regime 的因果信号显著增强：\n- 6/8 pairs 通过 PermG 前向检验（BH FDR 校正后显著），反向 0/8 确认方向性\n- consensus_k4 = 6/8，MMCT = 0.75，信号强度接近高 α 区间\n- canary metrics（token_entropy、ece）对 downstream（distinct_1/2/3）的因果关系在多数方法下一致显著，mauve 对因果信号较弱（仅 naive_xcorr + threshold_onset 通过）\n\n**Conclusion: success** — fp32 下 α=0.50 不再是 step function 下方的\"安全区\"，而是已产生强因果信号。这将 PermG step function 的有效下界从之前 fp16 估计的 ~0.50 下移，需结合 s42/s44 的结果进一步确认 boundary 的精确位置。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-alpha-sweep-a050-s43-fp32.md"
+}

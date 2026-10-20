@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "faad63df9460b831cb4c",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis d102 t25 a050 v3",
+  "task_key": "worker_analysis_d102_t25_a050_v3_20260522T071226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d102_t25_a050_v3_20260522T071226_result.json",
+    "occurrence": 1,
+    "bytes": 946,
+    "sha256": "d9fbb1feb9c1b885bec07f2d53c8ff4e168d510bf4296537b216fdd5f23574c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D102 分析完成。\n\n**结果：PermG FDR = 6/8 forward, 0/8 reverse**\n\n| Method | Forward | Reverse |\n|--------|---------|---------|\n| PermG FDR | 6/8 | 0/8 |\n| Diff xcorr FDR | 6/8 | 6/8 |\n| Threshold onset | 6/8 | — |\n| TY Granger | 6/8 | — |\n| Robust (≥3/5) | 6/8 | — |\n\n6/8 ceiling 在 T=25 保持一致，与 T=10/15/20 的 α=0.50 结果完全匹配。失败的 2 对均为 mauve downstream（0/5 和 2/5），符合已知 pattern。\n\n**关键路径：**\n- 结果目录：`/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t25_a050_s42_fp32`\n- 最终 checkpoint：`.../t25_a050_s42_fp32/gen_25/checkpoint`\n- 分析 JSON：`.../t25_a050_s42_fp32/analysis/5method_leadlag.json`\n- 本地 JSON：`artifacts/phase_diagram_t25_a050_s42_fp32_v3/data/d102_t25_a050_s42_fp32_v3.json`\n- 本地报告：`artifacts/phase_diagram_t25_a050_s42_fp32_v3/report/D102_t25_a050_s42_fp32_v3_analysis.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d102-t25-a050-v3-copy-2.md"
+}

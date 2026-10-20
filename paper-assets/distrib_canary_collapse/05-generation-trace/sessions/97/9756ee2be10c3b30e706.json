@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9756ee2be10c3b30e706",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops resubmit a025 s44 fp32 v2",
+  "task_key": "worker_ops_resubmit_a025_s44_fp32_v2_20260519T100638",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_resubmit_a025_s44_fp32_v2_20260519T100638_result.json",
+    "occurrence": 1,
+    "bytes": 69,
+    "sha256": "990063671c1d8e99753a1250526bad2702cf8c8eff3747bfff7e95594a5f54cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "（验证已在上面完成，实验运行正常。）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-resubmit-a025-s44-fp32-v2.md"
+}

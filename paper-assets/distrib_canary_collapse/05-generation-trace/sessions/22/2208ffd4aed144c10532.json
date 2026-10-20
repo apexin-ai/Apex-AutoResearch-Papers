@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "2208ffd4aed144c10532",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "ops deploy 14b t10a045 17855c4",
+  "task_key": "worker_ops_deploy-14b-t10a045-17855c4_20260522T123042",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_deploy-14b-t10a045-17855c4_20260522T123042.log",
+    "occurrence": 1,
+    "bytes": 743427,
+    "sha256": "df73a14374c2ba016407bf7731a2076dc82e15119bfbd0c6debcc0580c08cb2c"
+  },
+  "statistics": {
+    "messages": 540,
+    "user_turns": 0,
+    "tool_calls": 211,
+    "roles": {
+      "log": 1,
+      "system": 2,
+      "record": 4,
+      "assistant": 110,
+      "tool_call": 211,
+      "tool_result": 211,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 540,
+      "chunks": [
+        {
+          "path": "2208ffd4aed144c10532-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "2208ffd4aed144c10532-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "2208ffd4aed144c10532-part-0003.json",
+          "message_count": 180
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-deploy-14b-t10a045-17855c4.md"
+}

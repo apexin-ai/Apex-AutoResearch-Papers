@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56ebe5a32e7f2abe8f9f",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops check null t15 s43 log",
+  "task_key": "worker_ops_check_null_t15_s43_log_20260524T093652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_null_t15_s43_log_20260524T093652_result.json",
+    "occurrence": 1,
+    "bytes": 430,
+    "sha256": "f671815821c31d38666c0fef8607ef4854e7676837f4d6e580c175227a0df206"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n| exp_id | conclusion | 关键 metrics |\n|--------|-----------|-------------|\n| **null_t15_s43_fp32** | success | 16 gen 完成, EXIT_CODE=0. final: ppl=20.91, entropy=3.08, eff_rank=45.72, mauve=0.029. 无 intervention（α=0 null）. registry→DONE, cron 已删除 |\n| **null_t15_s42_fp32** | **仍在运行** | 日志显示 ~61%（3053/5000 steps），尚未完成。cron 保留，不做处理 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-null-t15-s43-log.md"
+}

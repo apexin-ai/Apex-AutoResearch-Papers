@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "adab4a19c4a370c43079",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diagnose a075 s43 completion check",
+  "task_key": "worker_diagnose_a075_s43_completion_check_20260516T141554",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_a075_s43_completion_check_20260516T141554_result.json",
+    "occurrence": 1,
+    "bytes": 951,
+    "sha256": "e631d3c7a57f230bced3cf4dea9cf67925b1cbad416fe4e5cf0d442c1daf9015"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### a075_s43：未完成，仍在运行\n- PID 184026 存活，运行 4h18m\n- 训练已完成：gen_0 ~ gen_10 全部 checkpoint 完成\n- 当前阶段：正在计算 post-training metrics（Featurizing q ~41%）\n- 预计还需若干分钟完成 metrics 计算\n\n### a075_s44：已完成，完整 metrics\n\n| 指标 | gen_0 | gen_10 | 变化 |\n|------|-------|--------|------|\n| perplexity | 26.95 | 76.35 | +183% |\n| token_entropy | 3.234 | 2.336 | -27.8% |\n| ece | 0.0108 | 0.206 | +1807% |\n| effective_rank | 46.61 | 77.84 | +67.0% |\n| distinct_1 | 0.0981 | 0.0669 | -31.8% |\n| distinct_2 | 0.513 | 0.309 | -39.9% |\n| distinct_3 | 0.806 | 0.508 | -37.0% |\n| self_bleu | 0.0110 | 0.0143 | +30.0% |\n| mauve | 0.0295 | 0.0291 | -1.4% |\n\na075_s43 的 gen_0 baseline 已出（ppl=26.95, entropy=3.234, eff_rank=46.6），与 s44 一致（同模型不同 seed）。等 metrics 计算完即可更新 registry。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-a075-s43-completion-check.md"
+}

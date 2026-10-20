@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65264262dce33fe012c0",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code fix d111 direction m035",
+  "task_key": "worker_code_fix_d111_direction_m035_20260520T024329",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_d111_direction_m035_20260520T024329_result.json",
+    "occurrence": 1,
+    "bytes": 977,
+    "sha256": "266caa7e261966ad8287e7c6a6042ec95a1ba2a079717102f1855e34f5159a55"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修改完成，无遗漏。\n\n## 修改汇总\n\n### westd-17855: `batch_analysis.py` (4 处)\n\n| 行号 | 修改前 | 修改后 | 位置 |\n|------|--------|--------|------|\n| 376 | `(r[\"naive_xcorr\"].get(\"peak_lag\") or 0) > 0` | `< 0` | `compute_consensus()` |\n| 379 | `(r[\"diff_xcorr\"].get(\"peak_lag\") or 0) > 0` | `< 0` | `compute_consensus()` |\n| 453 | `(p[\"results\"].get(\"naive_xcorr\", {}).get(\"peak_lag\") or 0) > 0` | `< 0` | `analyze()` naive_fwd 计数 |\n| 457 | `(p[\"results\"].get(\"diff_xcorr\", {}).get(\"peak_lag\") or 0) > 0` | `< 0` | `analyze()` diff_fwd 计数 |\n\n### westd-19828: `run_5method_analysis.py` (1 处)\n\n| 行号 | 修改前 | 修改后 | 位置 |\n|------|--------|--------|------|\n| 436 | `f[\"naive_xcorr\"][\"peak_lag\"] > 0` | `< 0` | consensus 投票 |\n\n### 未修改\n- `method_ablation.py` (19828) — 仅有 `peak_lag` 赋值，无方向判断\n- 两台服务器备份文件：`*.bak_m035`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-d111-direction-m035.md"
+}

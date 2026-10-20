@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4a40d61b218909f8362",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops check t15 a075 progress",
+  "task_key": "worker_ops_check-t15-a075-progress_20260523T053823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-t15-a075-progress_20260523T053823_result.json",
+    "occurrence": 1,
+    "bytes": 531,
+    "sha256": "2071b2f7b0750a31f9d46e147d98ba17823188374ae833d0c8a0c5b6de8c99fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**状态：仍在运行，接近完成。**\n\n- PID 793171 运行中，已 17h+\n- gen_0 ~ gen_14：全部完成（15/16 有 metrics.json）\n- **gen_15/15 正在训练**：step 438/5000（9%），2.18 it/s\n- all_metrics.json 尚未生成\n- 数据实际路径：`/root/autodl-tmp/distrib_canary_collapse/outputs/scale_14b_t15_a075_s42_fp32/`\n\n**预估剩余时间**：(5000 - 438) / 2.18 ≈ 2093 秒 ≈ **35 分钟**完成 gen_15 训练，加上生成和评估时间，预计 **40-50 分钟后**可跑 D102。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-t15-a075-progress.md"
+}

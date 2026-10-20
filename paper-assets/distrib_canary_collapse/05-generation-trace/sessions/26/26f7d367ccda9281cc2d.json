@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "26f7d367ccda9281cc2d",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "ssh launch generalize phase2",
+  "task_key": "worker_ssh_launch_generalize_phase2_20260517T071108",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_launch_generalize_phase2_20260517T071108.log",
+    "occurrence": 1,
+    "bytes": 752515,
+    "sha256": "b8d30f19d3c74ff53dd380dc90cf74a5155b8ec3ccb723170a313489f0958526"
+  },
+  "statistics": {
+    "messages": 467,
+    "user_turns": 0,
+    "tool_calls": 178,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 107,
+      "tool_call": 178,
+      "tool_result": 178,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 467,
+      "chunks": [
+        {
+          "path": "26f7d367ccda9281cc2d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "26f7d367ccda9281cc2d-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "26f7d367ccda9281cc2d-part-0003.json",
+          "message_count": 107
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-launch-generalize-phase2.md"
+}

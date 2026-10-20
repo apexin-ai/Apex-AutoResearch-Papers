@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "452f62806d9f1724ecfc",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diagnose null gpt2m failed",
+  "task_key": "worker_diagnose_null_gpt2m_failed_20260524T080609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_null_gpt2m_failed_20260524T080609_result.json",
+    "occurrence": 1,
+    "bytes": 1114,
+    "sha256": "dadf9b624b0de6a91134d8fc44d7b72abe051685e027d0b7905f5c4cb7170170"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**两个实验都已成功完成，不是真正的失败。** 这是监控系统的误报。\n\n诊断结果：\n\n| 项目 | s42 | s43 |\n|------|-----|-----|\n| EXIT_CODE | 0 (成功) | 0 (成功) |\n| Generations | gen_0 → gen_10 (全部 11 个) | gen_0 → gen_10 (全部 11 个) |\n| all_metrics.json | ✓ 存在 (5.0KB) | ✓ 存在 (4.9KB) |\n| 完成时间 | 2026-05-24 15:42 | 2026-05-24 15:43 |\n| 末行指标 | ppl=17.27, entropy=2.84, eff_rank=24.0, mauve=0.014 | ppl=17.26, entropy=2.84, eff_rank=25.2, mauve=0.013 |\n\n**根因**：实验实际正常完成，\"process dead 5× with no sentinel/W&B\" 是监控系统在实验运行期间多次检测不到进程/sentinel 而触发的误判。sentinel 文件和 all_metrics.json 都在最终时刻才写入（15:42-15:43），监控窗口可能在此之前就已经放弃。\n\n**服务器状态正常**：\n- GPU: 6× NVIDIA RTX PRO 6000 (98GB)，全部空闲，0% 利用率\n- 磁盘: 根分区 42% (18G 可用)，数据盘 3% (816G 可用)\n- 无 OOM / CUDA 错误 / 异常\n\n**无需修复**，数据已就绪可直接使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-null-gpt2m-failed.md"
+}

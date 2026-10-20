@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "687e61c70b3516886790",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "paper fill table7 domain",
+  "task_key": "worker_paper_fill_table7_domain_20260517T182125",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fill_table7_domain_20260517T182125_result.json",
+    "occurrence": 1,
+    "bytes": 587,
+    "sha256": "2f6b9690b9ccdd33e2a114cdcd51b1940da7c69c9920345f4cd9efe50c7beaad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，0 errors，输出 25 页 PDF。\n\n完成状态：\n- **修改 1** (Table 7 Domain 行)：已是正确数据 `7/8 & 8/8 & 8/8 & 8/8 & 3/8 & 4/8 & 8/8`，`$^\\dagger$` 脚注在 line 356 已存在\n- **修改 2** (perplexity 平稳性 + Domain 解读)：替换了 line 369 起的注释 placeholder，写入了完整的 `\\paragraph{Domain generalization.}` 段落，包含 perplexity 排除理由（ADF +1.07）、8/8 consensus 解读、PermG fwd 8/8 最强信号、ECE bidirectionality 诊断能力说明\n- Scale 行保持 `[TBD]` 未动\n- 编译无 error"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fill-table7-domain-copy-2.md"
+}

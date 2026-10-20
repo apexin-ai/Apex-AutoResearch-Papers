@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fef0d5a14ad1b4dc09e5",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis phase diagram t25 a075 s42 fp32",
+  "task_key": "worker_analysis_phase_diagram_t25_a075_s42_fp32_20260521T231853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_phase_diagram_t25_a075_s42_fp32_20260521T231853_result.json",
+    "occurrence": 1,
+    "bytes": 1185,
+    "sha256": "267d663c21c253ceaa3861fc5d8824a29467eec8c4f6c8834e01980ea50f6186"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n---\n\n## 结果报告\n\n### PermG 结果\n| 指标 | 值 |\n|------|-----|\n| **PermG fwd (FDR)** | **8/8** |\n| PermG rev (FDR) | 0/8 |\n| Diff XCorr fwd | 8/8 |\n| Threshold onset | 0/8 |\n| TY Granger fwd | 2/8 |\n| Robust pairs (≥3/5) | 4/8 |\n\n### 与理论预测和历史对比\n| T | α=0.75 PermG | 备注 |\n|---|---|---|\n| 5 | 0/8 | 信号不足 |\n| 10 | 6/8 | mauve pair 失败 |\n| 15 | 6/8 | mauve pair 失败 |\n| 20 | 6/8 | mauve pair 失败 |\n| **25** | **8/8** | downstreams=distinct+perplexity |\n\n### Conclusion: **SUCCESS**\n\nα=0.75 >> α_c(25)≈0.232，PermG 8/8 确认高污染下的强健检测。不对称性完美（fwd=8, rev=0）。\n\n**注意**：T=25 的 downstreams 为 `[distinct_1, distinct_2, distinct_3, perplexity]`，而 T=10/15/20 使用的是 `[distinct_1, distinct_2, distinct_3, mauve]`。8/8 vs 6/8 的差异部分由 perplexity 替换 mauve 引起（mauve 是已知的 bottleneck）。直接跨 T 对比需标注此差异。\n\n### Phase Diagram T=25 行进度\n| α=0.45 | α=0.50 | α=0.60 | α=0.75 |\n|--------|--------|--------|--------|\n| RUNNING | RUNNING | RUNNING | **DONE ✓ (8/8)** |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-phase-diagram-t25-a075-s42-fp32.md"
+}

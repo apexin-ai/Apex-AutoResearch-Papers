@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "81ef00f04b9e97d59266",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis d32 scaling law meta analysis",
+  "task_key": "worker_analysis_d32_scaling_law_meta_analysis_20260520T165550",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d32_scaling_law_meta_analysis_20260520T165550_result.json",
+    "occurrence": 1,
+    "bytes": 1368,
+    "sha256": "5870eb79d737db69f5fb15bab5bbe234f2d0c4086b77ff70254bc15b9e21a5ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。关键发现：\n\n**Step 1 — Sigmoid 验证**: FDR-corrected 数据 refit 得到 α_c=0.467 vs 既有 0.476，差距在 bootstrap CI 内。但 k、α_c 的标准误巨大（step function 不可辨识），确认 dose-response 本质上是 α≈0.47 处的阶跃函数。\n\n**Step 2 — S(N) 反推**: 7 个模型在 α=1.0 的 PermG detection rate 大部分聚集在 0.75（6/8），只有 Qwen2.5-0.8B 偏高（0.875）、Pythia-1.4B 偏低（0.50，seed 方差极大）、SmolLM3-3B 接近 0（架构不兼容）。\n\n**Step 3 — Power law**: **S(N) 与模型大小无显著幂律关系**（β≈0, R²≈0）。跨架构变异主导了大小效应。Pythia family 内 β=0.08 但 R²=0.05，不可靠。\n\n**Step 4 — 两个竞争模型**:\n| | Model A (Probit-√T) | Model B (Linear-threshold) |\n|---|---|---|\n| α_c(T=10) | 0.465 | 0.467 |\n| α_c(T=20) | **0.465 (固定)** | **0.330** |\n| 物理含义 | T 只改变转变陡度 | T 降低检测阈值 |\n\n**关键可证伪检验**: α=0.40–0.45 在 T=20 的实验将区分两模型——Model B 预测可检测，Model A 预测不可检测。\n\n输出文件:\n- `artifacts/scaling_law/alpha_c_scaling.json`\n- `artifacts/scaling_law/fig_s_vs_n.{pdf,png}`\n- `artifacts/scaling_law/fig_alpha_c_vs_t.{pdf,png}`\n- `artifacts/scaling_law/fig_alpha_c_heatmap.{pdf,png}`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d32-scaling-law-meta-analysis.md"
+}

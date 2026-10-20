@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d1061fa69e7c1e3298b8",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "submit a030 s42 fp32 cuda0",
+  "task_key": "worker_submit_a030_s42_fp32_cuda0_20260519T141541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_a030_s42_fp32_cuda0_20260519T141541_result.json",
+    "occurrence": 1,
+    "bytes": 246,
+    "sha256": "f02db12980fb481e578080dc652a088ada4c888783eb41bd0d0af6bfcfe1920a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:0 确认两个 python 进程共存：\n- PID 137279（a060_s43_fp32）：14494MiB\n- PID 148710（a030_s42_fp32）：6516MiB（正在加载，会升到 ~14GB）\n\n总使用 21024MiB / 97887MiB，充裕。所有步骤完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-a030-s42-fp32-cuda0.md"
+}

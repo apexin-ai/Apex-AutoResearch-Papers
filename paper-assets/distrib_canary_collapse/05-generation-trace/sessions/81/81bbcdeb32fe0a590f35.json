@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "81bbcdeb32fe0a590f35",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "paper figure fig differencing dmax",
+  "task_key": "worker_paper_figure_fig_differencing_dmax_20260515T173321",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig_differencing_dmax_20260515T173321_result.json",
+    "occurrence": 1,
+    "bytes": 308,
+    "sha256": "ef09ca81918e3d1570355c449b0a1a3d782ff9f9284e16d74e22c73398c341bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已生成并注册。\n\n**输出文件**:\n- PDF: `figures/paper/fig_differencing_dmax.pdf` (31KB, 矢量)\n- PNG: `figures/paper/fig_differencing_dmax.png` (141KB, 300 DPI)\n- Artifact ID: `art_20260515_9168af`\n\n**生成脚本**: `figures/paper/gen_fig_differencing_dmax.py`（可复现）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig-differencing-dmax.md"
+}

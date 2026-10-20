@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6bf2ca2003d5b2616127",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis gpt2m kappa",
+  "task_key": "worker_analysis_gpt2m_kappa_20260515T230642",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gpt2m_kappa_20260515T230642_result.json",
+    "occurrence": 1,
+    "bytes": 699,
+    "sha256": "07fbf98b2118645ec7e754ad4be792d7a0e1ff1c107e5d1c8250c0a0412c2c22"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n| | Pythia-410M | GPT-2m |\n|---|---|---|\n| Fleiss' κ (all 12 pairs) | 0.185 | **0.091** |\n| Mean Cohen's κ (all pairwise) | — | 0.200 |\n| Interpretation | Slight | Slight |\n\n两个架构都在 \"slight agreement\" 范围（κ < 0.20），确认低一致性是 5 方法面板在短时间序列下的结构性属性，非 Pythia 特定。\n\n根因：Naive xcorr 永远判 sig（12/12），TY Granger 永远判 not-sig（0/12），这两个极端方法拉低了整体 κ。排除退化对后，3 个信息性方法（Diff、Onset、Perm.G）的平均 κ = 0.667（substantial agreement）。\n\n报告已写入 `artifacts/gpt2m_kappa/kappa_report.md` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gpt2m-kappa.md"
+}

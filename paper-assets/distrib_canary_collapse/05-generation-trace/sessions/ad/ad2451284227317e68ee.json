@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad2451284227317e68ee",
+  "project": "distrib_canary_collapse",
+  "kind": "history",
+  "title": "agent / loop_17_1779501977.md",
+  "task_key": "loop_17_1779501977",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_17_1779501977.md",
+    "occurrence": 1,
+    "bytes": 4602,
+    "sha256": "58713dae4bbf2fe24c5d44a88f14383c974dcb39ca6f30809b333458ac6bee97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 17\nreason: idle_timeout\nupdated: '2026-05-23T02:06:12+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- westd-17855 GPU 白名单: cuda:0~5（6卡）; westd-19828 GPU 白名单: cuda:0~1（2卡）\n- 17855↔19828 SSH 不通，不能跨服务器操作\n- ≤3B 模型必须 fp32，>3B 才可 bf16（D079）\n- d102 分析脚本唯一有效组合: downstream=mauve, threshold=true_3sigma_d105（M063/M064/M066）\n- HF_HOME 三件套必带: HF_HUB_CACHE + TRANSFORMERS_OFFLINE + HF_HUB_OFFLINE（M060）\n- FPR \"near-zero\"（D167）; R²=0.883（D168）; cascade ordering 14/15（D169）\n- scale_14b 系列反复因 MAUVE=None 和 OOM 崩溃——必须检查 iterative_train.py 是否有 v2 修复版（resume 参数 --start_gen）\n\n### 2. 🖥️ 基础设施快照\n- **westd-17855**: 6× RTX PRO 6000 Blackwell (98GB)\n  - 工作目录: `/root/autodl-tmp/distrib_canary_collapse`\n  - Python: `/root/miniconda3/bin/python`（conda base 环境，非 venv）\n  - 激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n  - HF cache: `/root/autodl-tmp/.hf_cache`\n  - 模型: EleutherAI/pythia-410m-deduped, EleutherAI/pythia-1.4b-deduped（本地缓存）\n  - 数据: `data/wikitext103_5k`\n  - 结果输出: `results/phase_diagram/`\n  - 日志: `~/runs/distrib_canary_collapse/`\n- **westd-19828**: 2× RTX PRO 6000 Blackwell (98GB)，同样目录结构\n- **磁盘**: 17855 ~816GB 可用 (3%), 19828 ~817GB 可用 (2%)——充裕\n\n### 3. 📊 当前状态\n**刚发生的事**: 收到 `scale_14b_t15_a060_s42_fp32` 失败 CRON 回调（EXIT_CODE=143, SIGTERM）。`scale_14b_t15_a050_s42_fp32` 也同时被 SIGTERM 杀死。已派 Worker `worker_diagnose_scale_14b_t15_a060_fail_20260522T093109` 去 17855 读日志诊断根因，**尚未回调**。\n\n**RUNNING 实验**（5个）:\n| exp_id | server:gpu | 摘要 |\n|--------|-----------|------|\n| phase_diagram_t25_a045_s43_fp32 | 17855:cuda:5 | cross-seed T=25 α=0.45 |\n| phase_diagram_t20_a075_s43_fp32 | 17855:cuda:4 | cross-seed T=20 α=0.75 |\n| phase_diagram_t25_a075_s43_fp32_v3 | 19828:cuda:0 | cross-seed T=25 α=0.75 (v3, start_gen=9) |\n| scale_14b_t10_a060_s42_fp32_v2 | 17855:cuda:3 | 1.4B T=10 α=0.60 (resume gen 2) |\n| scale_14b_t10_a075_s42_fp32_v2 | 17855:cuda:2 | 1.4B T=10 α=0.75 (resume gen 2) |\n\n**空闲 GPU**: 17855:cuda:0, 17855:cuda:1（刚被 SIGTERM 释放）; 19828:cuda:1\n\n**PREPARING**: scale_14b_t15_a045_s42_fp32, t15_a050_s42_fp32, qwen35_dryrun_launch\n\n**等待中**:\n- Worker 诊断回调（scale_14b_t15_a060 失败原因）\n- 3 组 cross-seed 实验完成回调\n- 2 个 scale_14b_t10 v2 实验完成回调\n\n### 4. 📋 待办（条件触发式）\n- **诊断 Worker 回调到达** → 根据根因决定：OOM 则降 batch_size 重试；系统 kill 则直接重提交 scale_14b_t15_a060 和 t15_a050 到 17855:cuda:0/1\n- **scale_14b_t10_a060_v2 / t10_a075_v2 完成** → 按 on-experiment-done 流程分析 PermG 结果，与 410M baseline 对比（α=0.60 at 410M=0/8 sync-dip，α=0.75 at 410M=6/8）\n- **cross-seed 3 组全部完成** → 汇总 seed robustness 表，更新 report.md\n- **GPU 空出（17855:cuda:0/1）** → 重试 T=15 scale_14b 两个失败实验 + 排队 scale_14b_t15_a045（第 6 个 1.4B 点）\n- **5×1.4B scale verification 全部完成** → 派 Worker 跑 D102 分析脚本（downstream=mauve, threshold=true_3sigma_d105），产出 scale invariance 结论\n- **所有实验就绪** → Heatmap 定稿 → D170 叙事升级（Scenario A 版本）→ submit_paper_to_review\n\n### 5. 🎯 战略上下文\n- **核心发现**: α×T 2D 相图 20/20 格已填满。关键现象：(1) α=0.60 sync-dip（T=10~20 PermG=0/8，T=25 溶解为 5/8 = Scenario A）(2) α_c left-shift（α=0.45 onset 从 T=15 开始）(3) 6/8 ceiling 跨全 T/α 一致（MAUVE bottleneck）\n- **当前阶段**: Phase Diagram 完成后进入 scale verification（Pythia-1.4B 复现 410M 模式）+ cross-seed validation。目标 EMNLP 2026 ARR June（DDL ~2026-06-15）\n- **scale_14b 系列反复失败**: 已有 ~8 次失败记录（TypeError/MAUVE=None/SIGTERM），v2 版本加了 --start_gen resume 机制。易踩坑：(1) 1.4B 模型 MAUVE 计算可能 OOM (2) iterative_train.py 的 effective_rank 字段有 TypeError bug（v2 已修）\n- **C2 sync-dip 叙事已修订**: 从 \"PermG blind spot\" → \"T-dependent transient dip\"（D186/D188）\n- **易错判断**: 不要把 sync-dip（α=0.60 特有的非单调现象）和 onset boundary（α_c 附近的 0→6/8 跳变）混淆。sync-dip 是 detected→undetected→detected 的 U 形，onset 是 undetected→detected 的 step function\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-17-1779501977.md"
+}

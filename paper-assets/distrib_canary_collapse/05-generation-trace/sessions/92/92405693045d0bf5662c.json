@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92405693045d0bf5662c",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "paper writing introduction",
+  "task_key": "worker_paper_writing_introduction_20260515T193353",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_introduction_20260515T193353_result.json",
+    "occurrence": 1,
+    "bytes": 509,
+    "sha256": "e0f61f9d2755bf8b6e11f203ef2a7ee4efe2d65c84736245e91929266e3bb15a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 10 verification criteria pass. Introduction written to `docs/paper/introduction.tex` with:\n\n- 3 contributions in `enumerate`, matching D042 (pitfalls → consensus framework → token entropy canary)\n- All 9 `\\cite{}` keys verified against `references.bib`\n- Numbers exactly match `experiments.tex` (100%→25%, κ=0.185, 75% spurious rate, 24/24 vs 0/8, FPR=0%/FNR=0%, etc.)\n- PC07/PC11/PC14/C001 constraints all respected\n- Section navigation paragraph at end referencing §2–§7"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-introduction.md"
+}

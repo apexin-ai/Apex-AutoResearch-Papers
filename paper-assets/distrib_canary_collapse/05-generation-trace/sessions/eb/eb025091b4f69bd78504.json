@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb025091b4f69bd78504",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "research paper framing alignment check",
+  "task_key": "worker_research_paper_framing_alignment_check_20260515T081452",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_paper_framing_alignment_check_20260515T081452_result.json",
+    "occurrence": 1,
+    "bytes": 714,
+    "sha256": "d972718209e42339dcfb638060ceb16dd92f7bb69e5d8ee0e4c9182ae71f981e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/framing_alignment_check.md` 并注册。\n\n核心结论：\n\n- **Claim 3（method sensitivity）证据最强**，无重大缺口\n- **Claim 1（Granger precedence）证据在 α=1.0 坚实但 scope 极窄**，α=0.75（在跑，数小时内出）是 scope 扩展的唯一机会\n- **Claim 2（regime-dependent）最薄弱**——非单调 dose-response 仅 3pp 差值、单 seed，multi-seed 全部 QUEUED 未跑，这是 Weak Accept → Accept 的首要瓶颈\n- **literature_map.yaml 缺 Scheffer et al. 2009/2012**，paper_framing.md 约束 #13 标注为必引但未收录\n- Headline result template 和 regime map 措辞需要加限定词以匹配当前证据强度"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-paper-framing-alignment-check.md"
+}

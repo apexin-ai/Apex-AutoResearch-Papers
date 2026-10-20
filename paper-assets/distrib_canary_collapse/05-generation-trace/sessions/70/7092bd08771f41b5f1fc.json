@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7092bd08771f41b5f1fc",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis c4 perplexity stationarity",
+  "task_key": "worker_analysis_c4_perplexity_stationarity_20260517T175916",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_c4_perplexity_stationarity_20260517T175916_result.json",
+    "occurrence": 1,
+    "bytes": 3230,
+    "sha256": "c39cf488799601b7dd464505a2158414aca2410fea67ee9f2dfac5f83cfc33fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Stationarity Report — C4 Pythia-1B (+ WikiText OPT-1B 对比)\n\n### ADF Test (H0: 非平稳; p<0.05 拒绝 → 平稳)\n\n| Series | ADF stat | p-value | Stationary? |\n|---|---|---|---|\n| **C4 ppl_raw** | **1.0697** | **0.9949** | **N** |\n| C4 ppl_diff | -0.0689 | 0.9524 | N |\n| C4 ppl_log | -1.6292 | 0.4679 | N |\n| **C4 ppl_logdiff** | **-3.0403** | **0.0313** | **Y** |\n| C4 entropy_raw | -0.2383 | 0.9338 | N |\n| C4 entropy_diff | -2.9149 | 0.0436 | Y |\n| C4 ece_raw | -2.8012 | 0.0581 | N (borderline) |\n| C4 ece_diff | -3.0348 | 0.0318 | Y |\n| Wiki ppl_raw | -1.5624 | 0.5024 | N |\n| Wiki ppl_diff | -2.2544 | 0.1871 | N |\n| **Wiki ppl_logdiff** | **-5.1817** | **0.0000** | **Y** |\n\n### KPSS Test (H0: 平稳; p>0.05 不拒绝 → 平稳) — 交叉验证\n\n| Series | KPSS stat | p-value | Stationary? |\n|---|---|---|---|\n| C4 ppl_raw | 0.6414 | 0.0189 | N |\n| C4 ppl_diff | 0.4228 | 0.0673 | Y (borderline) |\n| C4 ppl_logdiff | 0.4328 | 0.0630 | Y (borderline) |\n| C4 entropy_raw | 0.3713 | 0.0895 | Y |\n| C4 ece_raw | 0.4496 | 0.0558 | Y (borderline) |\n| Wiki ppl_logdiff | 0.4567 | 0.0527 | Y (borderline) |\n\n### 诊断细节\n\n**C4 ppl 的严重性**：ADF stat = +1.07（正值！），说明序列是**爆炸性过程**(explosive)，不仅是单位根，而是比单位根更强的非平稳。\n\n**log-diff 是唯一可行的变换**：\n- 一阶差分无效（ADF p=0.95）：因为 raw diffs 的方差不稳定（gen0→1 跳 123.6，gen9→10 跳 230.0）\n- log 变换无效（ADF p=0.47）：仍保留趋势\n- log-diff 有效（ADF p=0.031, KPSS p=0.063）：**两个检验方向一致**\n\n**但 log-diff 仍有衰减趋势**：\n- 前半段 mean = 0.7267，后半段 mean = 0.1539\n- 说明增长率本身在递减（指数增长在减速），log-diff 只是\"勉强\"平稳\n\n**entropy 和 ECE 的特征**：\n- 两者都有 gen0→gen1 的剧烈跳变（entropy 2.96→1.43, ECE 0.01→0.33）\n- gen1 之后趋于平台期（entropy 1.19-1.43, ECE 0.33-0.46）\n- 这种\"level shift + 缓慢收敛\"模式使 ADF 拒绝不了单位根，但 KPSS 认为是平稳的 → **结构性断点**问题，不是经典的单位根\n\n### 结论\n\n| 问题 | 答案 |\n|---|---|\n| perplexity 是否违反平稳性假设 | **是，严重违反**（爆炸性过程，ADF stat 为正） |\n| 差分能否修复 | **不能**（一阶差分仍不平稳） |\n| log-transform 能否修复 | **单独不能**，但 **log-diff 可以** (p=0.031) |\n| entropy/ECE 是否平稳 | **边界情况**：ADF 不拒绝单位根，KPSS 不拒绝平稳 → 结构断点 |\n\n### 建议\n\n1. **perplexity 不能直接用于 VAR**，必须做 log-diff 变换（即 Δlog(ppl)，对应增长率）\n2. **entropy 和 ECE** 建议也用一阶差分进入 VAR（差分后 ADF 均显著）\n3. **T=11 下所有检验 power 极低**（ADF critical sample ~50+），log-diff 的 p=0.031 在边界。如实报告这个局限\n4. **结构断点**（gen0→gen1 剧变）是所有指标的共性问题，可考虑从 gen1 开始建模（T=10），但样本会更短\n5. WikiText 表现相同模式：raw 非平稳，log-diff 平稳（且 p<0.0001 更显著，因为 OPT-1B 增长更规律）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-c4-perplexity-stationarity.md"
+}

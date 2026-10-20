@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "54ce623c748d61e60bc1",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "ops fix 19828 14b model",
+  "task_key": "worker_ops_fix-19828-14b-model_20260522T070352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-19828-14b-model_20260522T070352.log",
+    "occurrence": 1,
+    "bytes": 858698,
+    "sha256": "dc5bb73ac169014b03c2e4ac5a8ec2ff97636b00bd31175fab23d16a80d962e3"
+  },
+  "statistics": {
+    "messages": 733,
+    "user_turns": 0,
+    "tool_calls": 250,
+    "roles": {
+      "log": 1,
+      "system": 25,
+      "record": 1,
+      "assistant": 205,
+      "tool_call": 250,
+      "tool_result": 250,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 733,
+      "chunks": [
+        {
+          "path": "54ce623c748d61e60bc1-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "54ce623c748d61e60bc1-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "54ce623c748d61e60bc1-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "54ce623c748d61e60bc1-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "54ce623c748d61e60bc1-part-0005.json",
+          "message_count": 13
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-fix-19828-14b-model.md"
+}

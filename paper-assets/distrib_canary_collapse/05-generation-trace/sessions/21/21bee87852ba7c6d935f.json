@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "21bee87852ba7c6d935f",
+  "project": "distrib_canary_collapse",
+  "kind": "history",
+  "title": "director / loop_16.md",
+  "task_key": "loop_16",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_16.md",
+    "occurrence": 1,
+    "bytes": 4735,
+    "sha256": "eeb57bed3404bb05032214a61982253e6f2f799d1a289401349e9bc400e767fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: max_messages\nupdated: '2026-05-21T18:01:14+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-17855 cuda:0-5, westd-19828 cuda:0-1（共 8 卡），严禁使用其他 GPU\n- ≤3B 模型用 fp32，>3B 用 bf16（D079）\n- 所有训练命令必须含 `export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1`（M060，已失败 2 次）\n- 5method 分析必须使用 `run_5method_analysis_d102.py`（M063），禁止旧版 `run_5method_analysis.py`（downstream=mauve 非 perplexity, threshold=true_3sigma_d105 非 3x_sigma_drift）\n- T=20 α=0.60 PermG=0/8（非 6/8！M061 已修正）；T=20 α=0.50 PermG=6/8（非 8/8！M062 已修正）\n- predict-then-verify: v1 committed score=3/5 为 primary，v2 未 commit=4/5 仅 sensitivity analysis（M057）\n- 17855↔19828 SSH 不通\n- PermG 数据必须从 registry 原文验证，不信任 handoff/Agent 概括（M061/M062/M063 教训）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-17855 (6×RTX PRO 6000 Blackwell 98GB) + westd-19828 (2×RTX PRO 6000 Blackwell 98GB)\n- SSH: connect.westd.seetacloud.com（端口见 ~/.ssh/config）\n- 工作目录：/root/autodl-tmp/distrib_canary_collapse/\n- Python：/root/miniconda3/bin/python（conda base，不用 venv）\n- HF_HOME=/root/autodl-tmp/.hf_cache, TRANSFORMERS_OFFLINE=1\n- 本地 artifacts：/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/\n- Phase Diagram heatmap：artifacts/phase_diagram_draft.{py,pdf,png}（12 格数据已生成，T=15 α=0.45/0.50 已填入）\n- D170 叙事草稿：artifacts/D170_narrative_drafts.md\n\n### 3. 📊 当前状态\n**已完成本轮**：\n- M063 修正（T=15 α=0.45 从 8/8 降为 6/8，旧脚本问题）\n- D177 Reviewer Report 27 综合评估纳入\n- D178 T=15 α=0.45 结果分析 + non-monotonicity 排除（Reviewer Report 32 确认是 artifact）\n- T=15 α=0.50 = 6/8 PASS（Reviewer Report 33 确认 d102 正确使用）\n- ROADMAP 更新 + 四场景叙事预案写入\n\n**RUNNING 实验**（Agent 最后报告时）：\n- 17855:1 t15_a060 (~60%) — T=15 sync-dip 中间态，2-3h\n- 17855:2 t15_a075_v2 (~45%) — T=15 高α，3-4h\n- 17855:0 t25_a050 (~25%) — T=25 行，6-8h\n- 17855:3 t25_a060★ (~25%) — **最关键单格**，6-8h\n- 17855:5 t25_a045_v2 (~25%) — T=25 行，6-8h\n- 19828:0 t25_a075 (~30%) — T=25 行，6-8h\n- 19828:1 t20_a045_s43 — 最脆弱 cell cross-seed，刚提交\n\n**可能空闲 GPU**：系统催促提示 17855 有 1 张卡空闲 >5min（可能 t15_a050 已完成释放 17855:4）。已派 Agent 检查并启动 t20_a060_s43，但 Agent 又因 idle 16h 被 reset 了——**新 Agent 需要立即检查 GPU 状态**。\n\n**PREPARING**：t20_a060_s43（P1 desync cross-seed，registry 已建）\n\n### 4. 📋 待办（条件触发式）\n- Agent reset 就绪 → **立即** SSH 检查 17855 GPU 状态，如有空闲卡启动 t20_a060_s43\n- t15_a060 完成 → 5method d102 分析，汇报 PermG。**关键**：如果 >0/8 且 T=20 α=0.60=0/8，这是 non-monotonic anomaly 需报 Reviewer\n- t15_a075_v2 完成 → 5method d102 分析，预期 6/8\n- T=15 四格全部出齐 → 更新 heatmap + ROADMAP T=15 行\n- T=25 α=0.60 完成 → **Phase Diagram 最关键单格**：>0/8 = sync-dip dissolution confirmed；0/8 = permanent structural feature（两种叙事预案已在 ROADMAP）\n- t20_a045_s43 完成 → cross-seed 验证（s42=5/8，如果 s43 差异大需报告）\n- Phase Diagram 20/20 全部填充 → heatmap 定稿 + D170 叙事升级 → Paper Agent R8 patch → submit_paper_to_review\n- 历史实验 d102 审计未完成（上轮派了但 Agent idle 被 reset）→ 新 Agent 需完成\n\n### 5. 🎯 战略上下文\n- **核心转型**：从\"方法论文\"(3.0 Findings) 转为\"现象发现论文\"(Mapping the Detectability Landscape)。Phase Diagram 是核心 figure\n- **D177 Reviewer 评估**：12 格足以支撑核心叙事（blind zone + left-shift + sync-dip）。T=15/T=25 是 bonus 非前提。D176 净正面（predict counterintuitive > predict intuitive）\n- **Phase Diagram verified data**：T=5 全暗(0/8×4), T=10(0/6/0/6), T=15(6/6/?/?), T=20(5/6/0/6)。PermG 6/8 ceiling 跨 T 一致（MAUVE bottleneck）\n- **最容易判断错的事**：(1) PermG 数据不可信任 Agent/handoff 概括，必须 registry 验证（已 3 次数据错误 M061/M062/M063）；(2) T=15 α=0.60 如果 >0/8 但 T=20 α=0.60=0/8，Reviewer 已确认这种 non-monotonicity 需要 VAR lag 检查而非直接报告；(3) 5method 只能用 d102 版本；(4) α=0.60 predict-then-verify predicted=0 observed=0=PASS 是理论最强验证\n- **178 个决策记录**在 decisions.yaml，**63 个错题本**在 mistakes.yaml\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16.md"
+}

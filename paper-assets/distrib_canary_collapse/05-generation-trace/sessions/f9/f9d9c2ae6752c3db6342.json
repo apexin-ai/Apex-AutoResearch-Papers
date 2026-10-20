@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9d9c2ae6752c3db6342",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis mvp v4 rep45",
+  "task_key": "worker_analysis_mvp_v4_rep45_20260514T175643",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mvp_v4_rep45_20260514T175643_result.json",
+    "occurrence": 1,
+    "bytes": 996,
+    "sha256": "fa2d95f76af9b62ea48d2f7b659fc6e3efa6325615568cd23293e75a02676f06"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。汇总如下：\n\n## mvp_v4_rep45 结果\n\n**状态**: 成功完成，10 代全部跑完 (EXIT_CODE=0)\n\n**关键指标对比 (gen0 → gen10)**:\n\n| 指标 | gen0 | gen10 | 变化 |\n|------|------|-------|------|\n| perplexity | 26.9 | 1016.2 | ×37.7 ↑ |\n| token_entropy | 3.234 | 1.315 | -59% ↓ |\n| ECE | 0.011 | 0.417 | ×38 ↑ |\n| distinct-1 | 0.099 | 0.070 | -29% ↓ |\n| distinct-2 | 0.515 | 0.330 | -36% ↓ |\n| distinct-3 | 0.808 | 0.544 | -33% ↓ |\n| MAUVE | 0.033 | 0.028 | -16% ↓ |\n\n**与前两个 rep 一致性**:\n\n| | rep42 | rep43 | rep45 |\n|--|-------|-------|-------|\n| gen10_ppl | 1003.7 | 1014.7 | 1016.2 |\n| gen10_entropy | 1.276 | 1.26 | 1.315 |\n| gen10_ece | 0.417 | 0.42 | 0.417 |\n\n三个 rep 高度一致，均显示明确的 model collapse 趋势。\n\n**Registry 已更新**: status=DONE, conclusion=success, checkpoint_path, metrics, metrics_summary, wall_clock_seconds=15212s, gpu_hours=4.23h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mvp-v4-rep45.md"
+}

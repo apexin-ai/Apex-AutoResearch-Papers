@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e85792d74102f2d5c558",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code script fixes d019 d038",
+  "task_key": "worker_code_script-fixes-d019-d038_20260515T145232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_script-fixes-d019-d038_20260515T145232_result.json",
+    "occurrence": 1,
+    "bytes": 1261,
+    "sha256": "a5d65f97301791ddb08d4bb7a9312247ebf04e5d59ebb74f16d6d8fa76ff223a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n### Task 1: `plot_regime_map.py` 改为程序化读取 JSON — 完成\n\n- 添加 `json`/`os`/`warnings` 导入\n- 新增 `load_pfdr_from_json()` 函数，从 `cross_alpha_v6.json` 的 `granger_causality` 列表按 `direction` + `alpha` 提取 `p_fdr`\n- JSON 路径搜索：远程路径 → 本地相对路径，均不可用时 fallback 到 `HARDCODED_DATA` 并打印 WARNING\n- 服务器验证：JSON 加载的值与原硬编码值完全一致\n- 本地语法检查通过；本地无 matplotlib 故不生成 PDF（符合要求）\n\n### Task 2: `analyze_extended.py` 的 `cohen_f2_label` — D019 违规已修复\n\n- **发现违规**：`analyze_extended.py:56` 的 `cohen_f2_label(f2)` 无 `df_resid` 参数，不检查 `df_resid < 20`，直接返回 Cohen 分类\n- **调用路径**：line 218 的 TY Granger 结果（plan_006 T=18 分析调用）会触发此函数，而 T=18 时 `df_resid` 极低\n- **已修复**：\n  - 函数签名改为 `cohen_f2_label(f2, df_resid=None)`\n  - 添加 guard：`df_resid is not None and df_resid < 20` → 返回 `\"df_too_low\"`\n  - 调用处改为 `cohen_f2_label(f2, df_resid=df_resid)`\n- 与 `analyze_alpha_sweep.py` 的 `_f2_label` 和 `permutation_granger.py` 的 guard 逻辑一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-script-fixes-d019-d038.md"
+}

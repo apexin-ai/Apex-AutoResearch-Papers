@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa81a2f668ed77730ac2",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops gpt2m dryrun and cleanup",
+  "task_key": "worker_ops_gpt2m-dryrun-and-cleanup_20260515T120520",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpt2m-dryrun-and-cleanup_20260515T120520_result.json",
+    "occurrence": 1,
+    "bytes": 336,
+    "sha256": "9eaed75136bca0d3642817ad8704d7967f6bc7c0e7c1767763c5823e1208be78"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**PASS**。结果汇总：\n\n- 断裂 symlink `/root/autodl-tmp/models/gpt2-medium/` 已清理\n- HF cache 完整（snapshot `6dcaa7a`, 1.5G）\n- dry-run 通过：tokenizer vocab=50257, params=354,823,168\n- 可以用 `--model_name gpt2-medium` + `HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1` 提交训练"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpt2m-dryrun-and-cleanup.md"
+}

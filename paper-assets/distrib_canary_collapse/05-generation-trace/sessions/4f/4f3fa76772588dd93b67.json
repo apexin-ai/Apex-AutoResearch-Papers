@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f3fa76772588dd93b67",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis lag sensitivity",
+  "task_key": "worker_analysis_lag_sensitivity_20260519T042654",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_lag_sensitivity_20260519T042654_result.json",
+    "occurrence": 1,
+    "bytes": 1052,
+    "sha256": "00906f6f3524773253cbdfe62a103c88e192ef44d7435bf9d5cb8c78485eb0c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。三个产出文件：\n\n**核心结论：**\n\n| alpha | lag=1 | lag=2 | lag=3 |\n|-------|-------|-------|-------|\n| 0.00 | 0.0% | 0.0% | infeasible |\n| 0.25 | 0.0% | 0.0% | infeasible |\n| 0.50 | 8.3% (2/24) | 12.5% (3/24) | infeasible |\n| **0.75** | **83.3% (20/24)** | 0.0% | infeasible |\n| **1.00** | **75.0% (6/8)** | 12.5% (1/8) | infeasible |\n\n**三点发现：**\n\n1. **Step function 仅存在于 lag=1**：α=0.75 在 lag=1 时 sig_rate=83.3%，lag=2 直接降为 0%。因果信号是单代传播：generation t 的 canary 退化预测 generation t+1 的多样性下降，无更深时间结构。\n\n2. **lag=3 完全不可行**：T=11 差分后 T=10，lag=3 模型有 7 个参数 vs 7 个观测点，df_resid=0，F-statistic 无定义。\n\n3. **Perplexity 对始终非显著**：即使 α=1.00 lag=1，canary→perplexity 的 raw_p=0.58/0.80，确认 perplexity divergence 遵循不同的时间动力学。\n\n报告含 paper-ready 1-2 句结论，见 `artifacts/lag_sensitivity/lag_sensitivity_report.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-lag-sensitivity.md"
+}

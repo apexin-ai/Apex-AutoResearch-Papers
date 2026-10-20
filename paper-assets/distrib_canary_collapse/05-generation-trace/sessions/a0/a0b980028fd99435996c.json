@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0b980028fd99435996c",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "paper d150 p03 bib cleanup",
+  "task_key": "worker_paper_d150_p03_bib_cleanup_20260520T132043",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d150_p03_bib_cleanup_20260520T132043_result.json",
+    "occurrence": 1,
+    "bytes": 600,
+    "sha256": "2c8ff82daca0471b7f2f68a1e461e8960527a2d175754517d45c8762a364122a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果**:\n- 删除 17 个 orphan bib entries（从 50 减至 35）\n- 新增 2 个 bib entries：`drayson2025detection`（arXiv:2502.15654）、`phipson2010permutation`（Phipson & Smyth 2010）\n- 在 `related_work.tex` 插入 5 处 `\\cite`（schaeffer2025position、drayson2025detection、dakos2012methods、marcinkevics2022neural、kazdan2025collapse）\n- 在 `method.tex` 插入 1 处 `\\citep`（phipson2010permutation）\n- 在 `appendix.tex` 插入 1 处 `\\citealp`（schreiber2000measuring）\n- 验证：35 bib entries = 35 cite keys，0 orphans，0 missing"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-d150-p03-bib-cleanup.md"
+}

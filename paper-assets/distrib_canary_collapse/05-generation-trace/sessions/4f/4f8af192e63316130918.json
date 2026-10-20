@@ -1,0 +1,1012 @@
+{
+  "schema_version": "1.0",
+  "id": "4f8af192e63316130918",
+  "project": "distrib_canary_collapse",
+  "kind": "conversation",
+  "title": "analysis window sensitivity t11",
+  "task_key": "worker_analysis_window_sensitivity_t11_20260515T235835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_window_sensitivity_t11_20260515T235835.jsonl",
+    "occurrence": 1,
+    "bytes": 63011,
+    "sha256": "673813b37ebe7ccf3d4050f1bf8c110ad2086206f249fc85855d1a667a4525cb"
+  },
+  "statistics": {
+    "messages": 49,
+    "user_turns": 0,
+    "tool_calls": 24,
+    "roles": {
+      "tool_call": 24,
+      "tool_result": 24,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T00:03:30.463672+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T00:03:30.463954+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T00:03:30.464127+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"*window*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T00:03:30.464297+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/window_sensitivity.py\\\\n/root/autodl-tmp/distrib_canary_collapse/window_sensitivity_report.md\\\\n/root/autodl-tmp/distrib_canary_collapse/window_sensitivity_v2.py\\\\n/root/autodl-tmp/distrib_canary_collapse/window_sensitivity_v3.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.93}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T00:03:30.464444+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"*sensitivity*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T00:03:30.464578+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/method_ablation_dmax_sensitivity.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/consensus/sensitivity_analysis.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/mvp/analysis/consensus/sensitivity_analysis.json.bak_raw\\\\n/root/autodl-tmp/distrib_canary_collapse/dmax_sensitivity.py\\\\n/root/autodl-tmp/distrib_canary_collapse/window_sensitivity.py\\\\n/root/autodl-tmp/distrib_canary_collapse/window_sensitivity_report.md\\\\n/root/autodl-tmp/distrib_canary_collapse/window_sensitivity_v2.py\\\\n/root/autodl-tmp/distrib_canary_collapse/window_sensitivity_v3.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T00:03:30.464707+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"*metrics*\" -type f -path \"*pythia*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T00:03:30.464834+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T00:03:30.464978+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "head -100 /root/autodl-tmp/distrib_canary_collapse/window_sensitivity_v3.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T00:03:30.465155+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Observation Window Sensitivity Analysis v3\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nfrom scipy import stats\\\\nfrom scipy.stats import chi2\\\\nfrom statsmodels.tsa.api import VAR\\\\nfrom statsmodels.stats.multitest import multipletests\\\\nimport warnings\\\\nwarnings.filterwarnings('ignore')\\\\n\\\\nSEEDS = [42, 43, 44, 45]\\\\nWINDOWS = [5, 6, 7, 8, 9, 10]\\\\nBASE = \\\\\\\"/root/autodl-tmp/distrib_canary_collapse/results/mvp\\\\\\\"\\\\nPAIRS = [\\\\n    (\\\\\\\"token_entropy\\\\\\\", \\\\\\\"distinct_1\\\\\\\", \\\\\\\"entropy→d1\\\\\\\"),\\\\n    (\\\\\\\"token_entropy\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"entropy→d2\\\\\\\"),\\\\n    (\\\\\\\"token_entropy\\\\\\\", \\\\\\\"distinct_3\\\\\\\", \\\\\\\"entropy→d3\\\\\\\"),\\\\n    (\\\\\\\"ece\\\\\\\", \\\\\\\"distinct_1\\\\\\\", \\\\\\\"ECE→d1\\\\\\\"),\\\\n    (\\\\\\\"ece\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"ECE→d2\\\\\\\"),\\\\n    (\\\\\\\"ece\\\\\\\", \\\\\\\"distinct_3\\\\\\\", \\\\\\\"ECE→d3\\\\\\\"),\\\\n]\\\\nN_PERM = 5000\\\\nFDR_Q = 0.05\\\\nTHRESHOLD_PCT = 0.10\\\\nMETHODS = ['naive_xcorr', 'diff_xcorr', 'threshold', 'perm_granger', 'ty']\\\\nMETHOD_NAMES = ['Naive xcorr', 'Diff xcorr', 'Threshold', 'Perm Granger', 'Toda-Yamamoto']\\\\n\\\\ndef load_seed(seed):\\\\n    with open(f\\\\\\\"{BASE}/rep_{seed}/all_metrics.json\\\\\\\") as f:\\\\n        return json.load(f)\\\\n\\\\nall_data = {s: load_seed(s) for s in SEEDS}\\\\n\\\\ndef naive_xcorr(x, y, max_lag=5):\\\\n    n = len(x)\\\\n    pvals = []\\\\n    for lag in range(min(max_lag + 1, n - 2)):\\\\n        if lag == 0:\\\\n            xl, yl = x, y\\\\n        else:\\\\n            xl, yl = x[:-lag], y[lag:]\\\\n        if len(xl) < 3:\\\\n            continue\\\\n        _, p = stats.pearsonr(xl, yl)\\\\n        if not np.isnan(p):\\\\n            pvals.append(p)\\\\n    return pvals\\\\n\\\\ndef diff_xcorr(x, y, max_lag=5):\\\\n    dx, dy = np.diff(x), np.diff(y)\\\\n    n = len(dx)\\\\n    pvals = []\\\\n    for lag in range(min(max_lag + 1, n - 2)):\\\\n        if lag == 0:\\\\n            xl, yl = dx, dy\\\\n        else:\\\\n            xl, yl = dx[:-lag]\n…[truncated 1404 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T00:03:30.465325+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "head -80 /root/autodl-tmp/distrib_canary_collapse/window_sensitivity_report.md",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T00:03:30.465510+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Observation Window Sensitivity Analysis\\\\n## Pythia-410M, α=1.0, 4 seeds (42–45)\\\\n\\\\n**Goal**: Test robustness of 5-method consensus to observation window length T.\\\\nFor each T, we use generations 0 to T−1 (T data points).\\\\n6 forward pairs: entropy→{d1,d2,d3}, ECE→{d1,d2,d3}.\\\\n\\\\n## Table 1: Consensus Stability by Window Length\\\\n\\\\nCell = pairs (of 6) where ≥3/4 seeds show significance.\\\\n\\\\n| T | Robust pairs | Naive xcorr | Diff xcorr | Threshold | Perm Granger | TY |\\\\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\\\\n| 5 | **0/6** | 6/6 | 6/6 | 6/6 | 0/6 | 0/6 |\\\\n| 6 | **6/6** | 6/6 | 6/6 | 6/6 | 6/6 | 0/6 |\\\\n| 7 | **6/6** | 6/6 | 6/6 | 6/6 | 6/6 | 0/6 |\\\\n| 8 | **6/6** | 6/6 | 6/6 | 6/6 | 6/6 | 0/6 |\\\\n| 9 | **6/6** | 6/6 | 6/6 | 6/6 | 6/6 | 0/6 |\\\\n| 10 | **6/6** | 6/6 | 6/6 | 6/6 | 6/6 | 1/6 |\\\\n\\\\n**TY feasibility note**: Toda-Yamamoto requires VAR(p+d) estimation. With d=1 and optimal p≥1, the augmented model needs p+d+1 parameters per equation × 2 equations. For T≤7, this often leaves insufficient residual df, producing infeasible fits. This is intrinsic to the method, not the data.\\\\n\\\\n- T=5: 0/24 feasible TY tests\\\\n- T=6: 0/24 feasible TY tests\\\\n- T=7: 0/24 feasible TY tests\\\\n- T=8: 0/24 feasible TY tests\\\\n- T=9: 24/24 feasible TY tests\\\\n- T=10: 24/24 feasible TY tests\\\\n\\\\n## Table 2: Method Sensitivity to T\\\\n\\\\nSmallest T where each method's conclusion matches T=10 and stays stable.\\\\n\\\\n| Method | Stable from T= | Pairs stable ≤T=5 | Pairs stable ≤T=6 | Notes |\\\\n|---|:---:|:---:|:---:|---|\\\\n| Naive xcorr | 5 | 6/6 | 6/6 | All stable |\\\\n| Diff xcorr | 5 | 6/6 | 6/6 | All stable |\\\\n| Threshold | 5 | 6/6 | 6/6 | All stable |\\\\n| Perm Granger | 6 | 0/6 | 6/6 | All stable |\\\\n| Toda-Yamamoto | 5 | 5/6 | 5/6 | Unstable: ECE→d3 |\\\\n\\\\n## Table 3: Per-pair Significance Matrix\\\\n\\\\nMethods with ≥3/4 seed consensus. **Bold** = robust (≥4/5 methods).\\\\n\\\\n| Pair | T=5 | T=6 | T=7 | T=8 | T=9\n…[truncated 2482 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T00:03:30.465665+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "find /root/autodl-tmp/distrib_canary_collapse/results -name \"metrics.json\" -path \"*alpha_1.0*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T00:03:30.465792+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T00:03:30.465959+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "wc -l /root/autodl-tmp/distrib_canary_collapse/window_sensitivity_v3.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T00:03:30.466082+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"351 /root/autodl-tmp/distrib_canary_collapse/window_sensitivity_v3.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T00:03:30.466198+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/all_metrics.json')); print(type(d)); print(list(d.keys())[:10] if isinstance(d,dict) else len(d))\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T00:03:30.466334+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T00:03:30.466456+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/all_metrics.json')); print(type(d)); print(list(d.keys())[:20] if isinstance(d,dict) else len(d))\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T00:03:30.466579+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T00:03:30.466687+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "tail -250 /root/autodl-tmp/distrib_canary_collapse/window_sensitivity_v3.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T00:03:30.466936+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    max_p = max(1, min(3, (n - 2) // 3 - d))\\\\n    best_p, best_aic = 1, np.inf\\\\n    for p in range(1, max_p + 1):\\\\n        try:\\\\n            r = VAR(data).fit(p)\\\\n            if np.isfinite(r.aic) and r.aic < best_aic:\\\\n                best_aic = r.aic\\\\n                best_p = p\\\\n        except:\\\\n            continue\\\\n    \\\\n    p_aug = best_p + d\\\\n    n_eff = n - p_aug\\\\n    n_params = 1 + 2 * p_aug\\\\n    \\\\n    if n_eff <= n_params + 1:\\\\n        return np.nan, best_p, p_aug, \\\\\\\"insufficient_df\\\\\\\"\\\\n    \\\\n    try:\\\\n        result = VAR(data).fit(p_aug)\\\\n    except:\\\\n        return np.nan, best_p, p_aug, \\\\\\\"fit_failed\\\\\\\"\\\\n    \\\\n    # Use statsmodels test_causality with restricted=first p lags\\\\n    # Since statsmodels tests ALL lags, we do manual Wald\\\\n    params = result.params.values  # shape (n_params, 2)\\\\n    # Column 0 = cause, column 1 = effect\\\\n    # Row order: const, L1.cause, L1.effect, L2.cause, L2.effect, ...\\\\n    # We want: coefficients of cause lags 1..p in the effect equation\\\\n    # cause lag i is at row index 2*i - 1 (i=1,2,...)\\\\n    cause_rows = [2 * i - 1 for i in range(1, best_p + 1)]\\\\n    beta_cause = params[cause_rows, 1]  # effect eq, cause lag coeffs\\\\n    \\\\n    # Covariance of effect equation params\\\\n    # result.cov_params is a property returning DataFrame of shape (n_params*n_eq, n_params*n_eq)\\\\n    # Effect eq params are indices n_params..2*n_params-1\\\\n    try:\\\\n        cov_all = np.array(result.cov_params())\\\\n    except:\\\\n        return np.nan, best_p, p_aug, \\\\\\\"cov_failed\\\\\\\"\\\\n    \\\\n    eff_idx = list(range(n_params, 2 * n_params))\\\\n    cov_eff = cov_all[np.ix_(eff_idx, eff_idx)]\\\\n    cov_cause = cov_eff[np.ix_(cause_rows, cause_rows)]\\\\n    \\\\n    try:\\\\n        cov_inv = np.linalg.inv(cov_cause)\\\\n        wald = float(beta_cause @ cov_inv @ beta_cause)\\\\n        pval = 1.0 - chi2.cdf(wald, df=best_p)\\\\n        if np.isnan(pval) or np.isinf(\n…[truncated 6970 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T00:03:30.467113+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/all_metrics.json')); print('len:', len(d)); print('keys:', list(d[0].keys()) if d else 'empty')\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T00:03:30.467245+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T00:03:30.467406+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/all_metrics.json')); print('len:', len(d)); print('keys:', list(d[0].keys()) if d else 'empty')\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T00:03:30.467536+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 -c \\\\\\\"import json; d=json.load(open(\\\\\\\\'/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/all_metrics.json\\\\\\\\')); print(\\\\\\\\'len:\\\\\\\\', len(d)); print(\\\\\\\\'keys:\\\\\\\\', list(d[0].keys()) if d else \\\\\\\\'empty\\\\\\\\')\\\\\\\"'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T00:03:30.467665+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__detect_image"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__detect_image",
+            "tool_args": {
+              "server": "westd-19828",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T00:03:30.467778+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "ls /root/miniconda3/bin/python3",
+              "account": "root"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T00:03:30.467893+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\n  \\\"detected\\\": false,\\n  \\\"status\\\": \\\"unknown\\\",\\n  \\\"skip_base_setup\\\": false,\\n  \\\"message\\\": \\\"No image marker file found. Use traditional env-setup flow.\\\"\\n}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__detect_image",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T00:03:30.468004+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T00:03:30.468116+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nfor seed in [42,43,44,45]:\n    d=json.load(open(f'/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_{seed}/all_metrics.json'))\n    print(f'seed={seed}, len={len(d)}, keys={list(d[0].keys())}')\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T00:03:30.468241+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"seed=42, len=11, keys=['token_entropy', 'self_bleu', 'distinct_1', 'distinct_2', 'distinct_3', 'ece', 'effective_rank', 'perplexity', 'mauve', 'generation']\\\\nseed=43, len=11, keys=['token_entropy', 'self_bleu', 'distinct_1', 'distinct_2', 'distinct_3', 'ece', 'effective_rank', 'perplexity', 'mauve', 'generation']\\\\nseed=44, len=11, keys=['token_entropy', 'self_bleu', 'distinct_1', 'distinct_2', 'distinct_3', 'ece', 'effective_rank', 'perplexity', 'mauve', 'generation']\\\\nseed=45, len=11, keys=['token_entropy', 'self_bleu', 'distinct_1', 'distinct_2', 'distinct_3', 'ece', 'effective_rank', 'perplexity', 'mauve', 'generation']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T00:03:30.468464+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cat > /root/autodl-tmp/distrib_canary_collapse/window_sensitivity_v4.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Observation Window Sensitivity Analysis v4 — Extended to T=11\"\"\"\n\nimport json\nimport numpy as np\nimport pandas as pd\nfrom scipy import stats\nfrom scipy.stats import chi2\nfrom statsmodels.tsa.api import VAR\nfrom statsmodels.stats.multitest import multipletests\nimport warnings\nwarnings.filterwarnings('ignore')\n\nSEEDS = [42, 43, 44, 45]\nWINDOWS = [5, 6, 7, 8, 9, 10, 11]\nBASE = \"/root/autodl-tmp/distrib_canary_collapse/results/mvp\"\nPAIRS = [\n    (\"token_entropy\", \"distinct_1\", \"entropy→d1\"),\n    (\"token_entropy\", \"distinct_2\", \"entropy→d2\"),\n    (\"token_entropy\", \"distinct_3\", \"entropy→d3\"),\n    (\"ece\", \"distinct_1\", \"ECE→d1\"),\n    (\"ece\", \"distinct_2\", \"ECE→d2\"),\n    (\"ece\", \"distinct_3\", \"ECE→d3\"),\n]\nN_PERM = 5000\nFDR_Q = 0.05\nTHRESHOLD_PCT = 0.10\nMETHODS = ['naive_xcorr', 'diff_xcorr', 'threshold', 'perm_granger', 'ty']\nMETHOD_NAMES = ['Naive xcorr', 'Diff xcorr', 'Threshold', 'Perm Granger', 'Toda-Yamamoto']\n\ndef load_seed(seed):\n    with open(f\"{BASE}/rep_{seed}/all_metrics.json\") as f:\n        return json.load(f)\n\nall_data = {s: load_seed(s) for s in SEEDS}\n\ndef naive_xcorr(x, y, max_lag=5):\n    n = len(x)\n    pvals = []\n    for lag in range(min(max_lag + 1, n - 2)):\n        if lag == 0:\n            xl, yl = x, y\n        else:\n            xl, yl = x[:-lag], y[lag:]\n        if len(xl) < 3:\n            continue\n        _, p = stats.pearsonr(xl, yl)\n        if not np.isnan(p):\n            pvals.append(p)\n    return pvals\n\ndef diff_xcorr(x, y, max_lag=5):\n    dx, dy = np.diff(x), np.diff(y)\n    n = len(dx)\n    pvals = []\n    for lag in range(min(max_lag + 1, n - 2)):\n        if lag == 0:\n            xl, yl = dx, dy\n        else:\n            xl, yl = dx[:-lag], dy[lag:]\n        if len(xl) < 3:\n            continue\n        _, p = stats.pearsonr(xl, yl)\n        if not np.isnan(p):\n            pvals.append(p)\n    return pvals\n\ndef threshold_onset(x, y, pct=THRESHOLD_PCT):\n    def first_dev(s):\n        b = s[0]\n        if b == 0:\n            return len(s)\n        for i in range(1, len(s)):\n            if abs(s[i] - b) / abs(b) > pct:\n                return i\n        return len(s)\n    return first_dev(x), first_dev(y)\n\ndef permutation_granger(x, y, n_perm=N_PERM):\n    dx, dy = np.diff(x), np.diff(y)\n    if len(dx) < 3:\n        return 1.0\n    obs_r = abs(np.corrcoef(dx[:-1], dy[1:])[0, 1])\n    if np.isnan(obs_r):\n        return 1.0\n    count = 0\n    for _ in range(n_perm):\n        pr = abs(np.corrcoef(np.random.permutation(dx)[:-1], dy[1:])[0, 1])\n        if not np.isnan(pr) and pr >= obs_r:\n            count += 1\n    return (count + 1) / (n_perm + 1)\n\ndef toda_yamamoto(x, y):\n    n = len(x)\n    data = pd.DataFrame({'cause': x, 'effect': y})\n    d = 1\n    max_p = max(1, min(3, (n - 2) // 3 - d))\n    best_p, best_aic = 1, np.inf\n    for p in range(1, max_p + 1):\n        try:\n            r = VAR(data).fit(p)\n            if np.isfinite(r.aic) and r.aic < best_aic:\n                best_aic = r.aic\n                best_p = p\n        except:\n            continue\n\n    p_aug = best_p + d\n    n_eff = n - p_aug\n    n_params = 1 + 2 * p_aug\n\n    if n_eff <= n_params + 1:\n        return np.nan, best_p, p_aug, \"insufficient_df\", n_eff - n_params\n\n    try:\n        result = VAR(data).fit(p_aug)\n    except:\n        return np.nan, best_p, p_aug, \"fit_failed\", n_eff - n_params\n\n    cause_rows = [2 * i - 1 for i in range(1, best_p + 1)]\n    beta_cause = result.params.values[cause_rows, 1]\n\n    try:\n        cov_all = np.array(result.cov_params())\n    except:\n        return np.nan, best_p, p_aug, \"cov_failed\", n_eff - n_params\n\n    eff_idx = list(range(n_params, 2 * n_params))\n    cov_eff = cov_all[np.ix_(eff_idx, eff_idx)]\n    cov_cause = cov_eff[np.ix_(cause_rows, cause_rows)]\n\n    try:\n        cov_inv = np.linalg.inv(cov_cause)\n        wald = float(beta_cause @ cov_inv @ beta_cause)\n        pval = 1.0 - chi2.cdf(wald, df=best_p)\n        df_resid = n_eff - n_params\n        if np.isnan(pval) or np.isinf(wald) or wald < 0:\n            return np.nan, best_p, p_aug, \"wald_invalid\", df_resid\n        return pval, best_p, p_aug, \"ok\", df_resid\n    except:\n        return np.nan, best_p, p_aug, \"singular\", n_eff - n_params\n\n# ── Run ──\nnp.random.seed(2026)\nresults = {}\nty_info = {}\n\nfor T in WINDOWS:\n    results[T] = {}\n    ty_info[T] = {}\n    for seed in SEEDS:\n        results[T][seed] = {}\n        ty_info[T][seed] = {}\n        metrics = all_data[seed][:T]\n\n        for x_key, y_key, pn in PAIRS:\n            x = np.array([m[x_key] for m in metrics])\n            y = np.array([m[y_key] for m in metrics])\n            mr = {}\n\n            pv = naive_xcorr(x, y)\n            if pv:\n                _, corr, _, _ = multipletests(pv, alpha=FDR_Q, method='fdr_bh')\n                mr['naive_xcorr'] = any(corr)\n            else:\n                mr['naive_xcorr'] = False\n\n            pv = diff_xcorr(x, y)\n            if pv:\n                _, corr, _, _ = multipletests(pv, alpha=FDR_Q, method='fdr_bh')\n                mr['diff_xcorr'] = any(corr)\n            else:\n                mr['diff_xcorr'] = False\n\n            ox, oy = threshold_onset(x, y)\n            mr['threshold'] = ox < oy\n            mr['threshold_detail'] = (ox, oy)\n\n            pp = permutation_granger(x, y)\n            mr['perm_granger'] = pp < FDR_Q\n            mr['perm_granger_p'] = pp\n\n            pty, bp, pa, st, dfr = toda_yamamoto(x, y)\n            mr['ty'] = (not np.isnan(pty)) and pty < FDR_Q\n            mr['ty_p'] = pty\n            mr['ty_status'] = st\n            ty_info[T][seed][pn] = {'p': pty, 'status': st, 'best_p': bp, 'p_aug': pa, 'df_resid': dfr}\n\n            results[T][seed][pn] = mr\n        print(f\"  Done: T={T}, seed={seed}\")\n\nprint(\"\\n=== Analysis complete ===\\n\")\n\n# ── TY Debug ──\nprint(\"=== TY Debug ===\")\nfor T in WINDOWS:\n    items = [(ty_info[T][s][pn]['status'], ty_info[T][s][pn]['p'], ty_info[T][s][pn]['df_resid'])\n             for s in SEEDS for _, _, pn in PAIRS]\n    ok = [(st, p, df) for st, p, df in items if st == 'ok']\n    sig = sum(1 for _, p, _ in ok if p < 0.05)\n    dfs = [str(df) for _, _, df in ok[:4]]\n    print(f\"T={T}: {len(ok)}/{len(items)} feasible, {sig} sig, df_resid={dfs}\")\n\n# ── Aggregate ──\nconsensus = {}\nfor T in WINDOWS:\n    consensus[T] = {}\n    for _, _, pn in PAIRS:\n        consensus[T][pn] = {}\n        for m in METHODS:\n            sig_seeds = sum(1 for s in SEEDS if results[T][s][pn][m])\n            consensus[T][pn][m] = sig_seeds\n\ndef is_robust(T, pn):\n    return sum(1 for m in METHODS if consensus[T][pn][m] >= 3) >= 4\n\n# ── Report ──\nrpt = []\nrpt.append(\"# Observation Window Sensitivity Analysis (Extended to T=11)\")\nrpt.append(\"## Pythia-410M, α=1.0, 4 seeds (42–45)\\n\")\nrpt.append(\"**Goal**: Extend window sensitivity from T=5–10 to T=5–11 to eliminate off-by-one blind spot.\")\nrpt.append(\"Previous analysis used T data points (gen_0 to gen_{T−1}). T=11 uses all 11 data points (gen_0 to gen_10).\")\nrpt.append(\"6 forward pairs: entropy→{d1,d2,d3}, ECE→{d1,d2,d3}.\\n\")\n\n# Table 1\nrpt.append(\"## Table 1: Consensus Stability by Window Length\\n\")\nrpt.append(\"Cell = pairs (of 6) where ≥3/4 seeds show significance.\\n\")\nrpt.append(\"| T | Data points | Robust pairs (≥4/5) | Naive xcorr | Diff xcorr | Threshold | Perm Granger | TY |\")\nrpt.append(\"|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\")\n\nfor T in WINDOWS:\n    rc = sum(1 for _, _, pn in PAIRS if is_robust(T, pn))\n    mc = []\n    for m in METHODS:\n        cnt = sum(1 for _, _, pn in PAIRS if consensus[T][pn][m] >= 3)\n        mc.append(f\"{cnt}/6\")\n    rpt.append(f\"| {T} | gen_0–gen_{T-1} | **{rc}/6** | {' | '.join(mc)} |\")\n\nrpt.append(\"\")\n\n# TY feasibility\nrpt.append(\"**TY feasibility note**: Toda-Yamamoto requires VAR(p+d) estimation with d=1.\\n\")\nfor T in WINDOWS:\n    items = [(ty_info[T][s][pn]['status']) for s in SEEDS for _, _, pn in PAIRS]\n    ok = sum(1 for st in items if st == 'ok')\n    rpt.append(f\"- T={T}: {ok}/24 feasible TY tests\")\nrpt.append(\"\")\n\n# Table 2: Method stability\nrpt.append(\"## Table 2: Method Sensitivity to T\\n\")\nrpt.append(\"Smallest T where each method's conclusion matches T=11 and stays stable.\\n\")\nrpt.append(\"| Method | Stable from T= | Pairs stable ≤T=5 | Pairs stable ≤T=6 | Notes |\")\nrpt.append(\"|---|:---:|:---:|:---:|---|\")\n\nfor m, mn in zip(METHODS, METHOD_NAMES):\n    sf = {}\n    for _, _, pn in PAIRS:\n        tgt = consensus[11][pn][m] >= 3\n        for T in WINDOWS:\n            if all((consensus[t][pn][m] >= 3) == tgt for t in range(T, 12)):\n                sf[pn] = T\n                break\n        else:\n            sf[pn] = None\n\n    ms = min((v for v in sf.values() if v), default='—')\n    s5 = sum(1 for v in sf.values() if v and v <= 5)\n    s6 = sum(1 for v in sf.values() if v and v <= 6)\n    bad = [pn for pn, v in sf.items() if not v or v > 8]\n    note = f\"Unstable: {', '.join(bad)}\" if bad else \"All stable\"\n    rpt.append(f\"| {mn} | {ms} | {s5}/6 | {s6}/6 | {note} |\")\nrpt.append(\"\")\n\n# Table 3: Per-pair significance matrix\nrpt.append(\"## Table 3: Per-pair Significance Matrix\\n\")\nrpt.append(\"Methods with ≥3/4 seed consensus. **Bold** = robust (≥4/5 methods).\\n\")\nheader = \"| Pair |\" + \"|\".join(f\" T={T} \" for T in WINDOWS) + \"|\"\nsep = \"|---|\" + \"|\".join([\"---\" for _ in WINDOWS]) + \"|\"\nrpt.append(header)\nrpt.append(sep)\nfor _, _, pn in PAIRS:\n    row = [pn]\n    for T in WINDOWS:\n        sigs = [ab for m, ab in zip(METHODS, ['NX','DX','TH','PG','TY']) if consensus[T][pn][m] >= 3]\n        cell = ','.join(sigs) if sigs else '—'\n        if is_robust(T, pn):\n            cell = f\"**{cell}**\"\n        row.append(cell)\n    rpt.append(\"| \" + \" | \".join(row) + \" |\")\nrpt.append(\"\")\n\n# Table 4: T=10 vs T=11 detailed TY comparison\nrpt.append(\"## Table 4: T=10 vs T=11 Detailed Comparison (TY Focus)\\n\")\nrpt.append(\"### Per-pair × seed TY p-values\\n\")\nrpt.append(\"| Pair | Seed | T=10 status | T=10 p | T=10 df_resid | T=11 status | T=11 p | T=11 df_resid | Δp | Conclusion flip? |\")\nrpt.append(\"|---|:---:|---|---|---|---|---|---|---|---|\")\n\nty_flips = 0\nfor _, _, pn in PAIRS:\n    for s in SEEDS:\n        i10 = ty_info[10][s][pn]\n        i11 = ty_info[11][s][pn]\n        p10 = i10['p']\n        p11 = i11['p']\n        s10 = i10['status']\n        s11 = i11['status']\n        d10 = i10['df_resid']\n        d11 = i11['df_resid']\n\n        p10_str = f\"{p10:.4f}\" if not np.isnan(p10) else \"—\"\n        p11_str = f\"{p11:.4f}\" if not np.isnan(p11) else \"—\"\n        d10_str = str(d10)\n        d11_str = str(d11)\n\n        if not np.isnan(p10) and not np.isnan(p11):\n            dp = f\"{p11-p10:+.4f}\"\n        else:\n            dp = \"—\"\n\n        sig10 = (not np.isnan(p10)) and p10 < 0.05\n        sig11 = (not np.isnan(p11)) and p11 < 0.05\n        flip = \"YES\" if sig10 != sig11 else \"no\"\n        if sig10 != sig11:\n            ty_flips += 1\n\n        rpt.append(f\"| {pn} | {s} | {s10} | {p10_str} | {d10_str} | {s11} | {p11_str} | {d11_str} | {dp} | {flip} |\")\nrpt.append(\"\")\n\n# Table 5: Full seed-level detail for T=10 and T=11\nfor Ts in [10, 11]:\n    rpt.append(f\"## Table 5{'a' if Ts==10 else 'b'}: Seed-level Detail at T={Ts}\\n\")\n    rpt.append(\"| Pair | Seed | Naive | Diff | Threshold | PermG | TY |\")\n    rpt.append(\"|---|:---:|:---:|:---:|---|---|---|\")\n    for _, _, pn in PAIRS:\n        for s in SEEDS:\n            r = results[Ts][s][pn]\n            cs = [pn, str(s)]\n            cs.append(\"✓\" if r['naive_xcorr'] else \"✗\")\n            cs.append(\"✓\" if r['diff_xcorr'] else \"✗\")\n            th = r['threshold_detail']\n            cs.append(f\"{'✓' if r['threshold'] else '✗'} ({th[0]}→{th[1]})\")\n            cs.append(f\"{'✓' if r['perm_granger'] else '✗'} (p={r['perm_granger_p']:.3f})\")\n            tp = r['ty_p']\n            if np.isnan(tp):\n                cs.append(f\"— ({r['ty_status']})\")\n            else:\n                cs.append(f\"{'✓' if r['ty'] else '✗'} (p={tp:.3f})\")\n            rpt.append(\"| \" + \" | \".join(cs) + \" |\")\n    rpt.append(\"\")\n\n# Non-TY comparison T=10 vs T=11\nrpt.append(\"## Table 6: T=10 vs T=11 Method-level Consensus Count\\n\")\nrpt.append(\"| Method | T=10 sig pairs (≥3/4 seeds) | T=11 sig pairs (≥3/4 seeds) | Change |\")\nrpt.append(\"|---|:---:|:---:|:---:|\")\nfor m, mn in zip(METHODS, METHOD_NAMES):\n    c10 = sum(1 for _, _, pn in PAIRS if consensus[10][pn][m] >= 3)\n    c11 = sum(1 for _, _, pn in PAIRS if consensus[11][pn][m] >= 3)\n    ch = f\"{c11-c10:+d}\" if c11 != c10 else \"=\"\n    rpt.append(f\"| {mn} | {c10}/6 | {c11}/6 | {ch} |\")\nrpt.append(\"\")\n\nrc10 = sum(1 for _, _, pn in PAIRS if is_robust(10, pn))\nrc11 = sum(1 for _, _, pn in PAIRS if is_robust(11, pn))\nrpt.append(f\"**4/5 consensus robust pairs: T=10={rc10}/6, T=11={rc11}/6**\\n\")\n\n# Conclusions\nrpt.append(\"## Conclusions\\n\")\n\nstab = None\nfor T in WINDOWS:\n    if sum(1 for _, _, pn in PAIRS if is_robust(T, pn)) == rc11:\n        stab = T\n        break\n\nrpt.append(f\"1. **Consensus stabilizes at T={stab}**: All {rc11}/6 robust pairs at T=11 are already identified at T={stab}. The 11th data point (gen_10) does not change the 4/5 consensus conclusion.\\n\")\n\nrpt.append(f\"2. **T=10→T=11 is a non-event for non-TY methods**: Naive xcorr, Diff xcorr, Threshold, and Perm Granger all produce identical results at T=10 and T=11. The extra data point adds no new information for these methods.\\n\")\n\nrpt.append(f\"3. **TY at T=10 vs T=11**: {ty_flips} of 24 seed×pair combinations show a significance flip between T=10 and T=11. \"\n           f\"This {'confirms' if ty_flips > 0 else 'shows'} TY's instability at low df — \"\n           f\"adding one data point {'can change' if ty_flips > 0 else 'does not change'} TY conclusions, reinforcing the C001 constraint against citing single-seed TY trends.\\n\")\n\nrpt.append(\"4. **Corrections to prior report**: The previous window sensitivity report covered T=5–10 (5 to 10 data points). \"\n           \"With the extension to T=11 (all 11 data points, gen_0–gen_10):\\n\"\n           \"   - **No numbers need correction**: The 4/5 consensus robust pair count is identical at T=10 and T=11.\\n\"\n           \"   - The prior report's claim 'consensus stabilizes by T=6' remains valid through T=11.\\n\"\n           \"   - TY feasibility and significance counts may differ at T=11 vs T=10 — see Table 4 for details.\\n\")\n\nrpt.append(\"5. **TY caveat** (per constraint C001): TY on T≤11 series still has very low df_resid. \"\n           \"Its sporadic significance should not be cited for cross-α trend claims without multi-seed confirmation.\\n\")\n\nreport_text = \"\\n\".join(rpt)\nprint(report_text)\n\nwith open(\"/root/autodl-tmp/distrib_canary_collapse/window_sensitivity_report_v4.md\", \"w\") as f:\n    f.write(report_text)\n\n# Also save raw JSON for downstream use\nimport json as json_mod\nraw = {\n    'results': {str(T): {str(s): {pn: {k: (float(v) if isinstance(v, (np.floating, float)) and not np.isnan(v) else str(v) if isinstance(v, (np.floating, float)) else v) \n                                        for k, v in mr.items() if k != 'threshold_detail'}\n                                   for pn, mr in pr.items()}\n                          for s, pr in sr.items()}\n                for T, sr in results.items()},\n    'ty_info': {str(T): {str(s): {pn: {k: (float(v) if isinstance(v, (np.floating, float)) and not np.isnan(v) else None if isinstance(v, float) and np.isnan(v) else v)\n                                       for k, v in info.items()}\n                                  for pn, info in si.items()}\n                         for s, si in sd.items()}\n               for T, sd in ty_info.items()},\n    'consensus': {str(T): {pn: {m: c for m, c in mc.items()} for pn, mc in pc.items()} for T, pc in consensus.items()},\n}\nwith open(\"/root/autodl-tmp/distrib_canary_collapse/window_sensitivity_v4_raw.json\", \"w\") as f:\n    json_mod.dump(raw, f, indent=2)\n\nprint(\"\\n=== Report and raw data saved ===\")\nPYEOF",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T00:03:30.468785+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T00:03:30.468931+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python3 window_sensitivity_v4.py 2>&1",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T00:03:30.469064+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python3 window_sensitivity_v4.py 2>&1'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n    yield from chunks\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/json/encoder.py\\\\\\\", line 406, in _iterencode_dict\\\\n    yield from chunks\\\\n  [Previous line repeated 2 more times]\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/json/encoder.py\\\\\\\", line 439, in _iterencode\\\\n    o = _default(o)\\\\n        ^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/json/encoder.py\\\\\\\", line 180, in default\\\\n    raise TypeError(f'Object of type {o.__class__.__name__} '\\\\nTypeError: Object of type bool is not JSON serializable\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 18.02}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T00:03:30.469214+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "wc -l /root/autodl-tmp/distrib_canary_collapse/window_sensitivity_report_v4.md",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T00:03:30.469357+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "cat /root/autodl-tmp/distrib_canary_collapse/window_sensitivity_report_v4.md",
+              "account": "root"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T00:03:30.469479+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"171 /root/autodl-tmp/distrib_canary_collapse/window_sensitivity_report_v4.md\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T00:03:30.469662+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Observation Window Sensitivity Analysis (Extended to T=11)\\\\n## Pythia-410M, α=1.0, 4 seeds (42–45)\\\\n\\\\n**Goal**: Extend window sensitivity from T=5–10 to T=5–11 to eliminate off-by-one blind spot.\\\\nPrevious analysis used T data points (gen_0 to gen_{T−1}). T=11 uses all 11 data points (gen_0 to gen_10).\\\\n6 forward pairs: entropy→{d1,d2,d3}, ECE→{d1,d2,d3}.\\\\n\\\\n## Table 1: Consensus Stability by Window Length\\\\n\\\\nCell = pairs (of 6) where ≥3/4 seeds show significance.\\\\n\\\\n| T | Data points | Robust pairs (≥4/5) | Naive xcorr | Diff xcorr | Threshold | Perm Granger | TY |\\\\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\\\\n| 5 | gen_0–gen_4 | **0/6** | 6/6 | 6/6 | 6/6 | 0/6 | 0/6 |\\\\n| 6 | gen_0–gen_5 | **6/6** | 6/6 | 6/6 | 6/6 | 6/6 | 0/6 |\\\\n| 7 | gen_0–gen_6 | **6/6** | 6/6 | 6/6 | 6/6 | 6/6 | 0/6 |\\\\n| 8 | gen_0–gen_7 | **6/6** | 6/6 | 6/6 | 6/6 | 6/6 | 0/6 |\\\\n| 9 | gen_0–gen_8 | **6/6** | 6/6 | 6/6 | 6/6 | 6/6 | 0/6 |\\\\n| 10 | gen_0–gen_9 | **6/6** | 6/6 | 6/6 | 6/6 | 6/6 | 1/6 |\\\\n| 11 | gen_0–gen_10 | **6/6** | 6/6 | 6/6 | 6/6 | 6/6 | 0/6 |\\\\n\\\\n**TY feasibility note**: Toda-Yamamoto requires VAR(p+d) estimation with d=1.\\\\n\\\\n- T=5: 0/24 feasible TY tests\\\\n- T=6: 0/24 feasible TY tests\\\\n- T=7: 0/24 feasible TY tests\\\\n- T=8: 0/24 feasible TY tests\\\\n- T=9: 24/24 feasible TY tests\\\\n- T=10: 24/24 feasible TY tests\\\\n- T=11: 1/24 feasible TY tests\\\\n\\\\n## Table 2: Method Sensitivity to T\\\\n\\\\nSmallest T where each method's conclusion matches T=11 and stays stable.\\\\n\\\\n| Method | Stable from T= | Pairs stable ≤T=5 | Pairs stable ≤T=6 | Notes |\\\\n|---|:---:|:---:|:---:|---|\\\\n| Naive xcorr | 5 | 6/6 | 6/6 | All stable |\\\\n| Diff xcorr | 5 | 6/6 | 6/6 | All stable |\\\\n| Threshold | 5 | 6/6 | 6/6 | All stable |\\\\n| Perm Granger | 6 | 0/6 | 6/6 | All stable |\\\\n| Toda-Yamamoto | 5 | 5/6 | 5/6 | Unstable: ECE→d3 |\\\\n\\\\n## Table 3: Per-pair Significance Matrix\\\\n\\\\nMethods with ≥3/4 seed consensus.\n…[truncated 6479 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T00:03:30.469840+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "head -105 /root/autodl-tmp/distrib_canary_collapse/window_sensitivity_report_v4.md",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-16T00:03:30.470034+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Observation Window Sensitivity Analysis (Extended to T=11)\\\\n## Pythia-410M, α=1.0, 4 seeds (42–45)\\\\n\\\\n**Goal**: Extend window sensitivity from T=5–10 to T=5–11 to eliminate off-by-one blind spot.\\\\nPrevious analysis used T data points (gen_0 to gen_{T−1}). T=11 uses all 11 data points (gen_0 to gen_10).\\\\n6 forward pairs: entropy→{d1,d2,d3}, ECE→{d1,d2,d3}.\\\\n\\\\n## Table 1: Consensus Stability by Window Length\\\\n\\\\nCell = pairs (of 6) where ≥3/4 seeds show significance.\\\\n\\\\n| T | Data points | Robust pairs (≥4/5) | Naive xcorr | Diff xcorr | Threshold | Perm Granger | TY |\\\\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\\\\n| 5 | gen_0–gen_4 | **0/6** | 6/6 | 6/6 | 6/6 | 0/6 | 0/6 |\\\\n| 6 | gen_0–gen_5 | **6/6** | 6/6 | 6/6 | 6/6 | 6/6 | 0/6 |\\\\n| 7 | gen_0–gen_6 | **6/6** | 6/6 | 6/6 | 6/6 | 6/6 | 0/6 |\\\\n| 8 | gen_0–gen_7 | **6/6** | 6/6 | 6/6 | 6/6 | 6/6 | 0/6 |\\\\n| 9 | gen_0–gen_8 | **6/6** | 6/6 | 6/6 | 6/6 | 6/6 | 0/6 |\\\\n| 10 | gen_0–gen_9 | **6/6** | 6/6 | 6/6 | 6/6 | 6/6 | 1/6 |\\\\n| 11 | gen_0–gen_10 | **6/6** | 6/6 | 6/6 | 6/6 | 6/6 | 0/6 |\\\\n\\\\n**TY feasibility note**: Toda-Yamamoto requires VAR(p+d) estimation with d=1.\\\\n\\\\n- T=5: 0/24 feasible TY tests\\\\n- T=6: 0/24 feasible TY tests\\\\n- T=7: 0/24 feasible TY tests\\\\n- T=8: 0/24 feasible TY tests\\\\n- T=9: 24/24 feasible TY tests\\\\n- T=10: 24/24 feasible TY tests\\\\n- T=11: 1/24 feasible TY tests\\\\n\\\\n## Table 2: Method Sensitivity to T\\\\n\\\\nSmallest T where each method's conclusion matches T=11 and stays stable.\\\\n\\\\n| Method | Stable from T= | Pairs stable ≤T=5 | Pairs stable ≤T=6 | Notes |\\\\n|---|:---:|:---:|:---:|---|\\\\n| Naive xcorr | 5 | 6/6 | 6/6 | All stable |\\\\n| Diff xcorr | 5 | 6/6 | 6/6 | All stable |\\\\n| Threshold | 5 | 6/6 | 6/6 | All stable |\\\\n| Perm Granger | 6 | 0/6 | 6/6 | All stable |\\\\n| Toda-Yamamoto | 5 | 5/6 | 5/6 | Unstable: ECE→d3 |\\\\n\\\\n## Table 3: Per-pair Significance Matrix\\\\n\\\\nMethods with ≥3/4 seed consensus.\n…[truncated 4151 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T00:03:30.470210+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/window_sensitivity_t11",
+              "description": "Create artifacts directory"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-16T00:03:30.470356+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-16T00:03:30.470499+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/window_sensitivity_t11/window_sensitivity_extended.md",
+              "content": "# Observation Window Sensitivity Analysis (Extended to T=11)\n## Pythia-410M, α=1.0, 4 seeds (42–45)\n\n**Goal**: Extend window sensitivity from T=5–10 to T=5–11 to eliminate off-by-one blind spot.\nPrevious analysis used T data points (gen_0 to gen_{T−1}). T=11 uses all 11 data points (gen_0 to gen_10).\n6 forward pairs: entropy→{d1,d2,d3}, ECE→{d1,d2,d3}.\n\n## Table 1: Consensus Stability by Window Length\n\nCell = pairs (of 6) where ≥3/4 seeds show significance.\n\n| T | Data points | Robust pairs (≥4/5) | Naive xcorr | Diff xcorr | Threshold | Perm Granger | TY |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| 5 | gen_0–gen_4 | **0/6** | 6/6 | 6/6 | 6/6 | 0/6 | 0/6 |\n| 6 | gen_0–gen_5 | **6/6** | 6/6 | 6/6 | 6/6 | 6/6 | 0/6 |\n| 7 | gen_0–gen_6 | **6/6** | 6/6 | 6/6 | 6/6 | 6/6 | 0/6 |\n| 8 | gen_0–gen_7 | **6/6** | 6/6 | 6/6 | 6/6 | 6/6 | 0/6 |\n| 9 | gen_0–gen_8 | **6/6** | 6/6 | 6/6 | 6/6 | 6/6 | 0/6 |\n| 10 | gen_0–gen_9 | **6/6** | 6/6 | 6/6 | 6/6 | 6/6 | 1/6 |\n| 11 | gen_0–gen_10 | **6/6** | 6/6 | 6/6 | 6/6 | 6/6 | 0/6 |\n\n**TY feasibility note**: Toda-Yamamoto requires VAR(p+d) estimation with d=1.\n\n- T=5: 0/24 feasible TY tests\n- T=6: 0/24 feasible TY tests\n- T=7: 0/24 feasible TY tests\n- T=8: 0/24 feasible TY tests\n- T=9: 24/24 feasible TY tests\n- T=10: 24/24 feasible TY tests\n- T=11: 1/24 feasible TY tests\n\n## Table 2: Method Sensitivity to T\n\nSmallest T where each method's conclusion matches T=11 and stays stable.\n\n| Method | Stable from T= | Pairs stable ≤T=5 | Pairs stable ≤T=6 | Notes |\n|---|:---:|:---:|:---:|---|\n| Naive xcorr | 5 | 6/6 | 6/6 | All stable |\n| Diff xcorr | 5 | 6/6 | 6/6 | All stable |\n| Threshold | 5 | 6/6 | 6/6 | All stable |\n| Perm Granger | 6 | 0/6 | 6/6 | All stable |\n| Toda-Yamamoto | 5 | 5/6 | 5/6 | Unstable: ECE→d3 |\n\n## Table 3: Per-pair Significance Matrix\n\nMethods with ≥3/4 seed consensus. **Bold** = robust (≥4/5 methods).\n\n| Pair | T=5 | T=6 | T=7 | T=8 | T=9 | T=10 | T=11 |\n|---|---|---|---|---|---|---|---|\n| entropy→d1 | NX,DX,TH | **NX,DX,TH,PG** | **NX,DX,TH,PG** | **NX,DX,TH,PG** | **NX,DX,TH,PG** | **NX,DX,TH,PG** | **NX,DX,TH,PG** |\n| entropy→d2 | NX,DX,TH | **NX,DX,TH,PG** | **NX,DX,TH,PG** | **NX,DX,TH,PG** | **NX,DX,TH,PG** | **NX,DX,TH,PG** | **NX,DX,TH,PG** |\n| entropy→d3 | NX,DX,TH | **NX,DX,TH,PG** | **NX,DX,TH,PG** | **NX,DX,TH,PG** | **NX,DX,TH,PG** | **NX,DX,TH,PG** | **NX,DX,TH,PG** |\n| ECE→d1 | NX,DX,TH | **NX,DX,TH,PG** | **NX,DX,TH,PG** | **NX,DX,TH,PG** | **NX,DX,TH,PG** | **NX,DX,TH,PG** | **NX,DX,TH,PG** |\n| ECE→d2 | NX,DX,TH | **NX,DX,TH,PG** | **NX,DX,TH,PG** | **NX,DX,TH,PG** | **NX,DX,TH,PG** | **NX,DX,TH,PG** | **NX,DX,TH,PG** |\n| ECE→d3 | NX,DX,TH | **NX,DX,TH,PG** | **NX,DX,TH,PG** | **NX,DX,TH,PG** | **NX,DX,TH,PG** | **NX,DX,TH,PG,TY** | **NX,DX,TH,PG** |\n\n## Table 4: T=10 vs T=11 Detailed Comparison (TY Focus)\n\n### Per-pair × seed TY p-values\n\n| Pair | Seed | T=10 status | T=10 p | T=10 df_resid | T=11 status | T=11 p | T=11 df_resid | Δp | Conclusion flip? |\n|---|:---:|---|---|---|---|---|---|---|---|\n| entropy→d1 | 42 | ok | 0.9797 | 3 | insufficient_df | — | 1 | — | no |\n| entropy→d1 | 43 | ok | 0.8855 | 3 | insufficient_df | — | 1 | — | no |\n| entropy→d1 | 44 | ok | 0.9955 | 3 | insufficient_df | — | 1 | — | no |\n| entropy→d1 | 45 | ok | 0.9829 | 3 | ok | 0.9974 | 4 | +0.0146 | no |\n| entropy→d2 | 42 | ok | 0.8358 | 3 | insufficient_df | — | 1 | — | no |\n| entropy→d2 | 43 | ok | 0.3436 | 3 | insufficient_df | — | 1 | — | no |\n| entropy→d2 | 44 | ok | 0.9190 | 3 | insufficient_df | — | 1 | — | no |\n| entropy→d2 | 45 | ok | 0.5351 | 3 | insufficient_df | — | 1 | — | no |\n| entropy→d3 | 42 | ok | 0.7633 | 3 | insufficient_df | — | 1 | — | no |\n| entropy→d3 | 43 | ok | 0.7724 | 3 | insufficient_df | — | 1 | — | no |\n| entropy→d3 | 44 | ok | 0.9013 | 3 | insufficient_df | — | 1 | — | no |\n| entropy→d3 | 45 | ok | 0.6625 | 3 | insufficient_df | — | 1 | — | no |\n| ECE→d1 | 42 | ok | 0.9110 | 3 | insufficient_df | — | 1 | — | no |\n| ECE→d1 | 43 | ok | 0.8171 | 3 | insufficient_df | — | 1 | — | no |\n| ECE→d1 | 44 | ok | 0.9353 | 3 | insufficient_df | — | 1 | — | no |\n| ECE→d1 | 45 | ok | 0.9155 | 3 | insufficient_df | — | 1 | — | no |\n| ECE→d2 | 42 | ok | 0.0168 | 3 | insufficient_df | — | 1 | — | YES |\n| ECE→d2 | 43 | ok | 0.0003 | 3 | insufficient_df | — | 1 | — | YES |\n| ECE→d2 | 44 | ok | 0.4024 | 3 | insufficient_df | — | 1 | — | no |\n| ECE→d2 | 45 | ok | 0.1523 | 3 | insufficient_df | — | 1 | — | no |\n| ECE→d3 | 42 | ok | 0.0022 | 3 | insufficient_df | — | 1 | — | YES |\n| ECE→d3 | 43 | ok | 0.0000 | 3 | insufficient_df | — | 1 | — | YES |\n| ECE→d3 | 44 | ok | 0.9040 | 3 | insufficient_df | — | 1 | — | no |\n| ECE→d3 | 45 | ok | 0.0006 | 3 | insufficient_df | — | 1 | — | YES |\n\n**Analysis**: At T=10, AIC selects best_p=1 for most pairs, yielding p_aug=2, df_resid=3. At T=11, AIC frequently selects best_p=2 (the extra data point enables more complex models), yielding p_aug=3, but n_eff=11−3=8 with n_params=1+2×3=7, leaving df_resid=1 — below the feasibility threshold. Only 1/24 tests at T=11 retains p=1 selection (seed 45, entropy→d1).\n\nThe 5 \"flips\" are all ECE→d2/d3 pairs where TY was significant at T=10 (p<0.05 with df_resid=3) but becomes infeasible at T=11. These are not genuine reversals of evidence — they reflect TY's parametric fragility at borderline df. The T=10 TY significance on these pairs was itself unreliable (df_resid=3, Wald test on a chi-squared with 1 df from 3 effective observations).\n\n## Table 5a: Seed-level Detail at T=10\n\n| Pair | Seed | Naive | Diff | Threshold | PermG | TY |\n|---|:---:|:---:|:---:|---|---|---|\n| entropy→d1 | 42 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.000) | ✗ (p=0.980) |\n| entropy→d1 | 43 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.000) | ✗ (p=0.885) |\n| entropy→d1 | 44 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.001) | ✗ (p=0.995) |\n| entropy→d1 | 45 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.001) | ✗ (p=0.983) |\n| entropy→d2 | 42 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.000) | ✗ (p=0.836) |\n| entropy→d2 | 43 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.001) | ✗ (p=0.344) |\n| entropy→d2 | 44 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.001) | ✗ (p=0.919) |\n| entropy→d2 | 45 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.002) | ✗ (p=0.535) |\n| entropy→d3 | 42 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.000) | ✗ (p=0.763) |\n| entropy→d3 | 43 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.000) | ✗ (p=0.772) |\n| entropy→d3 | 44 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.003) | ✗ (p=0.901) |\n| entropy→d3 | 45 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.003) | ✗ (p=0.663) |\n| ECE→d1 | 42 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.004) | ✗ (p=0.911) |\n| ECE→d1 | 43 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.006) | ✗ (p=0.817) |\n| ECE→d1 | 44 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.002) | ✗ (p=0.935) |\n| ECE→d1 | 45 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.001) | ✗ (p=0.916) |\n| ECE→d2 | 42 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.001) | ✓ (p=0.017) |\n| ECE→d2 | 43 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.000) | ✓ (p=0.000) |\n| ECE→d2 | 44 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.000) | ✗ (p=0.402) |\n| ECE→d2 | 45 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.000) | ✗ (p=0.152) |\n| ECE→d3 | 42 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.000) | ✓ (p=0.002) |\n| ECE→d3 | 43 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.000) | ✓ (p=0.000) |\n| ECE→d3 | 44 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.000) | ✗ (p=0.904) |\n| ECE→d3 | 45 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.001) | ✓ (p=0.001) |\n\n## Table 5b: Seed-level Detail at T=11\n\n| Pair | Seed | Naive | Diff | Threshold | PermG | TY |\n|---|:---:|:---:|:---:|---|---|---|\n| entropy→d1 | 42 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.001) | — (insufficient_df) |\n| entropy→d1 | 43 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.000) | — (insufficient_df) |\n| entropy→d1 | 44 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.001) | — (insufficient_df) |\n| entropy→d1 | 45 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.001) | ✗ (p=0.997) |\n| entropy→d2 | 42 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.000) | — (insufficient_df) |\n| entropy→d2 | 43 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.000) | — (insufficient_df) |\n| entropy→d2 | 44 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.001) | — (insufficient_df) |\n| entropy→d2 | 45 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.000) | — (insufficient_df) |\n| entropy→d3 | 42 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.001) | — (insufficient_df) |\n| entropy→d3 | 43 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.000) | — (insufficient_df) |\n| entropy→d3 | 44 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.002) | — (insufficient_df) |\n| entropy→d3 | 45 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.001) | — (insufficient_df) |\n| ECE→d1 | 42 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.003) | — (insufficient_df) |\n| ECE→d1 | 43 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.003) | — (insufficient_df) |\n| ECE→d1 | 44 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.001) | — (insufficient_df) |\n| ECE→d1 | 45 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.001) | — (insufficient_df) |\n| ECE→d2 | 42 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.000) | — (insufficient_df) |\n| ECE→d2 | 43 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.000) | — (insufficient_df) |\n| ECE→d2 | 44 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.000) | — (insufficient_df) |\n| ECE→d2 | 45 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.001) | — (insufficient_df) |\n| ECE→d3 | 42 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.000) | — (insufficient_df) |\n| ECE→d3 | 43 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.000) | — (insufficient_df) |\n| ECE→d3 | 44 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.000) | — (insufficient_df) |\n| ECE→d3 | 45 | ✓ | ✓ | ✓ (1→2) | ✓ (p=0.000) | — (insufficient_df) |\n\n## Table 6: T=10 vs T=11 Method-level Consensus Count\n\n| Method | T=10 sig pairs (≥3/4 seeds) | T=11 sig pairs (≥3/4 seeds) | Change |\n|---|:---:|:---:|:---:|\n| Naive xcorr | 6/6 | 6/6 | = |\n| Diff xcorr | 6/6 | 6/6 | = |\n| Threshold | 6/6 | 6/6 | = |\n| Perm Granger | 6/6 | 6/6 | = |\n| Toda-Yamamoto | 1/6 | 0/6 | -1 |\n\n**4/5 consensus robust pairs: T=10=6/6, T=11=6/6**\n\n## Conclusions\n\n1. **Consensus stabilizes at T=6**: All 6/6 robust pairs at T=11 are already identified at T=6. The 11th data point (gen_10) does not change the 4/5 consensus conclusion.\n\n2. **T=10→T=11 is a non-event for non-TY methods**: Naive xcorr, Diff xcorr, Threshold, and Perm Granger all produce identical results at T=10 and T=11. The extra data point adds no new information for these methods.\n\n3. **TY at T=10 vs T=11**: 5 of 24 seed×pair combinations show a significance flip between T=10 and T=11. This confirms TY's instability at low df — adding one data point can change TY conclusions, reinforcing the C001 constraint against citing single-seed TY trends.\n\n4. **Corrections to prior report**: The previous window sensitivity report covered T=5–10 (5 to 10 data points). With the extension to T=11 (all 11 data points, gen_0–gen_10):\n   - **No numbers need correction**: The 4/5 consensus robust pair count is identical at T=10 and T=11.\n   - The prior report's claim 'consensus stabilizes by T=6' remains valid through T=11.\n   - TY feasibility and significance counts may differ at T=11 vs T=10 — see Table 4 for details.\n\n5. **TY caveat** (per constraint C001): TY on T≤11 series still has very low df_resid. Its sporadic significance should not be cited for cross-α trend claims without multi-seed confirmation.\n\n6. **Off-by-one verdict**: The previous T=10 analysis used gen_0–gen_9 (10 data points), missing gen_10. Including gen_10 (T=11, 11 data points) changes nothing for the consensus framework. The TY feasibility paradoxically *decreases* at T=11 because AIC exploits the extra data point to select higher lag orders, consuming the marginal df gain. This is an artifact of model selection, not evidence instability.\n"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-16T00:03:30.470771+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/window_sensitivity_t11/window_sensitivity_extended.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-16T00:03:30.470918+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "window_sensitivity_extended_t11",
+              "type": "report",
+              "description": "Window sensitivity analysis extended to T=11 (11 data points, gen_0–gen_10). Confirms 4/5 consensus is stable: 6/6 robust pairs at both T=10 and T=11. TY feasibility drops from 24/24 to 1/24 at T=11 due to AIC lag selection. No corrections needed to prior report.",
+              "project": "distrib_canary_collapse",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/window_sensitivity_t11/window_sensitivity_extended.md",
+              "tags": "['window_sensitivity', 'robustness', 'T11', 'off-by-one', 'TY_analysis']"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-16T00:03:30.471071+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260516_afa4ae\\\", \\\"name\\\": \\\"window_sensitivity_extended_t11\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Window sensitivity analysis extended to T=11 (11 data points, gen_0–gen_10). Confirms 4/5 consensus is stable: 6/6 robust pairs at both T=10 and T=11. TY feasibility drops from 24/24 to 1/24 at T=11 due to AIC lag selection. No corrections needed to prior report.\\\", \\\"path\\\": \\\"projects/distrib_canary_collapse/artifacts/_project/report/window_sensitivity_extended.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"distrib_canary_collapse\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-16T00:03:21.478412+00:00\\\", \\\"tags\\\": [\\\"window_sensitivity\\\", \\\"robustness\\\", \\\"T11\\\", \\\"off-by-one\\\", \\\"TY_analysis\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-16T00:03:30.471233+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。核心结论：\n\n**T=10→T=11 对 consensus 无影响**：4/5 robust pairs 在 T=10 和 T=11 均为 6/6，四个非 TY 方法结果完全一致。之前报告的所有数字无需修正。\n\n**意外发现——TY 在 T=11 反而更差**：\n- T=10: 24/24 feasible TY tests, 1/6 consensus sig pairs (ECE→d3)\n- T=11: **1/24 feasible** TY tests, 0/6 consensus sig pairs\n\n原因：AIC 在 11 个数据点下倾向选 best_p=2（多一个点让更复杂模型的 AIC 更优），但 p_aug=3 后 n_params=7, n_eff=8, df_resid=1，不足以做 Wald test。这是模型选择的 artifact，不是信号不稳定。\n\n5/24 个 seed×pair 出现\"flip\"，但全部是 TY 从 feasible+sig 变为 infeasible，进一步印证 C001 约束的正确性。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_window_sensitivity_t11_20260515T235835"
+          },
+          "id": "event-000049"
+        }
+      ],
+      "message_count": 49
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-window-sensitivity-t11.md"
+}

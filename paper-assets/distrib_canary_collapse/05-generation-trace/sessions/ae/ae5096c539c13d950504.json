@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae5096c539c13d950504",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "monitor actual progress 17855",
+  "task_key": "worker_monitor_actual-progress-17855_20260521T221137",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_actual-progress-17855_20260521T221137_result.json",
+    "occurrence": 1,
+    "bytes": 64,
+    "sha256": "495f3fc1adfa1450f70d3a610b4ba5f54b0acbbf0fd362b9eda858c2e5f62dc7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 23, 7am (UTC)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-actual-progress-17855.md"
+}

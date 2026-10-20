@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b6df6609774ff2a51892",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diagnose smollm3 3b s43 17855",
+  "task_key": "worker_diagnose_smollm3_3b_s43_17855_20260520T183818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_smollm3_3b_s43_17855_20260520T183818_result.json",
+    "occurrence": 1,
+    "bytes": 1031,
+    "sha256": "2667599eeb71970b3040a4335736611b5da80c085ded64c24c19df7096b0e51c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验没有失败。** 结果如下：\n\n- **EXIT_CODE = 0**（成功）\n- **训练进度：全部 11 代完成**（gen_0 ~ gen_10），all_metrics.json 包含完整的 11 条记录\n- **完成时间：2026-05-21 02:28**\n- **总耗时：约 18.5 小时**（gen_0 始于 05-20 08:28，gen_10 完成于 05-21 02:28）\n\n### Metrics 摘要（α=1.0, seed=43, SmolLM3-3B）\n\n| Gen | PPL | Token Entropy | Eff Rank | MAUVE |\n|-----|-----|--------------|----------|-------|\n| 0 | 13.25 | 2.56 | 45.5 | 0.032 |\n| 1 | 81.83 | 0.96 | 84.3 | 0.033 |\n| 5 | 296.5 | 0.95 | 102.2 | 0.033 |\n| 10 | 449.3 | 1.17 | 78.7 | 0.034 |\n\nPPL 从 13→449 单调上升，token_entropy gen0→gen1 骤降（2.56→0.96 然后平稳），符合 α=1.0 的强 collapse 预期。\n\n**结论：westd-17855 上的实验已成功完成，不存在失败。** 如果之前的监控系统报告了失败，可能是因为 EXIT_CODE=129 (SIGHUP) 的误判（参考 C005 约束），或者是在实验仍在运行时检查了状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-smollm3-3b-s43-17855.md"
+}

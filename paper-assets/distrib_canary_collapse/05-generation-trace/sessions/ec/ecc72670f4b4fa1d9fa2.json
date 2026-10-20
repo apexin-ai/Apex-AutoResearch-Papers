@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ecc72670f4b4fa1d9fa2",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "paper discussion ece bidirectionality",
+  "task_key": "worker_paper_discussion_ece_bidirectionality_20260517T200348",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_discussion_ece_bidirectionality_20260517T200348_result.json",
+    "occurrence": 1,
+    "bytes": 1002,
+    "sha256": "611bccd507558b1b5af7c34622a705fcfd6fff4aa2afeaf55d7a79d0308c3c3a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。新段落插入在 line 82，位于 \"Token entropy versus perplexity\" 和 \"NLP-specific constraints on lead-lag analysis\" 之间。\n\n**插入位置**: discussion.tex 第 82 行，`\\paragraph{ECE bidirectionality in cross-domain transfer.}`\n\n**段落内容**（7 句，~220 words）：\n1. C4 域揭示 canary 信号方向性的质性差异（WikiText 中不可见）\n2. token_entropy 保持完美单向性（rev=0/4），ECE 双向耦合（rev=3/4，均为 diversity→ECE）\n3. 1000 次 permutation bootstrap 一致，排除统计噪声\n4. 机制：ECE 对输出分布形状敏感，diversity collapse 重塑 calibration bins 产生反向通道\n5. token_entropy 是 held-out 上的标量，不受模型自身输出分布反馈影响\n6. 实践建议：token_entropy 为首选 canary，ECE 为辅助（α=0.50 时互补但需谨慎解读）\n7. 框架价值：多方法框架独有的诊断能力，单指标系统无法区分干净信号与受反馈污染的信号"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-discussion-ece-bidirectionality.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0234aa03673a8d72e96",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis padding side check",
+  "task_key": "worker_analysis_padding_side_check_20260519T053226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_padding_side_check_20260519T053226_result.json",
+    "occurrence": 1,
+    "bytes": 801,
+    "sha256": "372ea9ebf31a626f1e680f289582e51ee75e5bf28b986c05f6e1f28a3ae4a023"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论\n\n**确认存在 right-padding bug，影响所有实验。**\n\n核心发现：\n1. **`iterative_train.py` 没有设置 `padding_side='left'`**，Pythia tokenizer 默认 right-padding\n2. **`gen_batch_size=16`**，6.9B 和小模型实验均如此\n3. **日志中有数千条 transformers 警告**：6.9B 有 3130 条，小模型有 3443 条\n4. 仅 generation 阶段受影响，training 和 metrics 计算不受影响\n\n**影响评估**：所有 alpha/seed/model 一致受影响，相对比较仍有效，不建议重跑。建议修复代码后在一个代表性配置上做 robustness check。\n\n修复方式：在 `generate_synthetic_data()` 内临时将 `tokenizer.padding_side = 'left'`，函数结束后恢复。\n\n报告已写入 `artifacts/padding_side_check.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-padding-side-check.md"
+}

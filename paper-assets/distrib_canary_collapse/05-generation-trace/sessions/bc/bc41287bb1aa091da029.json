@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc41287bb1aa091da029",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "check experiment status postd093 c4",
+  "task_key": "worker_check_experiment_status_postd093_c4_20260520T030356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_experiment_status_postd093_c4_20260520T030356_result.json",
+    "occurrence": 1,
+    "bytes": 1146,
+    "sha256": "7a6ac4f749784a2df9b9734bb0ac449a0cb2da0f5770878a73bf3a753fdfe299"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部查清。\n\n## 结果\n\n### 实验 1: alpha_sweep_a050_postd093_s42_fp32 (westd-17855)\n- **状态: COMPLETED (训练完成，分析未运行)**\n- EXIT_CODE = 0\n- gen_0 ~ gen_10 全部完成，`all_metrics.json` 已写入\n- 最后一代指标：ppl=32.62, entropy=2.6206, eff_rank=59.7, mauve=0.0245\n- **缺失：没有 `analysis/` 目录，`5method_leadlag.json` 不存在** — 需要单独跑 analysis 步骤\n- 结果路径：`/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/`\n\n### 实验 2: c4_a075_s43_fp32 (westd-19828)\n- **状态: COMPLETED**\n- `analysis/5method_leadlag.json` 存在\n- 结果路径：`/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s43/analysis/`\n\n### 实验 3: c4_a050_s43_fp32 (westd-19828)\n- **状态: COMPLETED**\n- `analysis/5method_leadlag.json` 存在\n- 结果路径：`/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43/analysis/`\n\n---\n\n**需要操作**: 实验 1 训练已成功完成但 analysis 管道未执行，需要对 `a050_postd093_s42_fp32` 补跑 analysis 生成 `5method_leadlag.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-experiment-status-postd093-c4.md"
+}

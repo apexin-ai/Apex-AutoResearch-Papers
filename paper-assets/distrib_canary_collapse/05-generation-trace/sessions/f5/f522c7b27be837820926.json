@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f522c7b27be837820926",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops check null gpt2m s42 log",
+  "task_key": "worker_ops_check_null_gpt2m_s42_log_20260524T081910",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_null_gpt2m_s42_log_20260524T081910_result.json",
+    "occurrence": 1,
+    "bytes": 513,
+    "sha256": "ed53bf11ddc71b63a7c6204c4b1a9ef7e845f86a7b2c373a1dc5caa5d7f97326"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能已被清除）。\n\n**结论：success**\n\n- EXIT_CODE=0，实验正常完成\n- 11 个 generation 目录（gen_0 base + gen_1~gen_10），每代含 checkpoint/metrics/synthetic_data\n- all_metrics.json 完整，11 条记录，全部 `effective_alpha=0.0`，`intervention_triggered=false`\n- 最后一代 (gen_10): ppl=17.27, entropy=2.84, eff_rank=24.0, mauve=0.014\n- 日志末尾为 metrics 计算（Featurizing q），无报错\n- Registry 已更新为 DONE/success"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-null-gpt2m-s42-log.md"
+}

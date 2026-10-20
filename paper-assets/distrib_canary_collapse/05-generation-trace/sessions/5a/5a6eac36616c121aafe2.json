@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a6eac36616c121aafe2",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis d150 p0b dose response csv",
+  "task_key": "worker_analysis_d150_p0b_dose_response_csv_20260520T134252",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d150_p0b_dose_response_csv_20260520T134252_result.json",
+    "occurrence": 1,
+    "bytes": 569,
+    "sha256": "878d46a863036f736ce058416b1f8b37f1a49709b09782e4ee72d91a379d8956"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**输出文件**:\n- `artifacts/dose_response_d120_compiled.csv` — 49 行, 跨两台服务器的 D120-compliant 数据\n- `artifacts/dose_response_d120_summary.md` — 含 dose-response 汇总\n\n**关键数据点 (wikitext, GPT-2, mean PermG rate)**:\n- α=0.00: 0.167 (3 seeds, 基线噪音)\n- α=0.25: 0.125 (3 seeds, 低信号)\n- α=0.50: **0.750** (3 seeds, 强信号跳跃)\n- α=0.75: 0.667 (3 seeds)\n\n**去重**: 8 个 19828 旧格式实验被 17855 fp32 重分析版本替代; 排除了 postd093 和 v3_d080 非标准变体。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d150-p0b-dose-response-csv.md"
+}

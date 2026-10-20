@@ -1,0 +1,2275 @@
+{
+  "schema_version": "1.0",
+  "id": "d3a27c0747473d3afb53",
+  "project": "distrib_canary_collapse",
+  "kind": "conversation",
+  "title": "cron hook alpha sweep a035 s42 fp32",
+  "task_key": "cron_hook_alpha_sweep_a035_s42_fp32",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/cron_hook_alpha_sweep_a035_s42_fp32.jsonl",
+    "occurrence": 1,
+    "bytes": 94375,
+    "sha256": "b698a0d2f6ca3d747bebda8d087889e20d13250b43e0867f7946977b1a31f619"
+  },
+  "statistics": {
+    "messages": 116,
+    "user_turns": 1,
+    "tool_calls": 57,
+    "roles": {
+      "user": 1,
+      "tool_call": 57,
+      "tool_result": 57,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T18:59:57.398731+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: alpha_sweep_a035_s42_fp32\n- project: distrib_canary_collapse\n- server: westd-17855\n- log_path: ~/runs/distrib_canary_collapse/alpha_sweep_a035_s42_fp32.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T19:00:10.719711+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__read_experiment_plan_with_status",
+              "max_results": "10"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T19:00:10.770389+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T19:00:15.843483+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "distrib_canary_collapse",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T19:00:15.843907+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T19:00:16.245594+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "distrib_canary_collapse",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T19:00:16.752793+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (198,635 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse--claude-sessions-agent-d40b65a5/19b47b9d-bece-4bc1-b5f3-3a132a692b45/tool-results/mcp-agent-ml-research-read_registry-1779217216590.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse--claude-sessions-agent-d40b65a5/19b47b9d-bece-4bc1-b5f3-3a132a692b45/tool-results/mcp-agent-ml-research-read_registry-1779217216590.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 909
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T19:00:16.753420+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "distrib_canary_collapse"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T19:00:17.207080+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "distrib_canary_collapse",
+              "status": "running"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T19:00:23.138184+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 3, \\\"results\\\": [{\\\"exp_id\\\": \\\"smollm3_3b_wiki_a100_s42_v3\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=408261)\\\"]}, {\\\"exp_id\\\": \\\"alpha_sweep_a030_s42_fp32\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=148710)\\\"]}, {\\\"exp_id\\\": \\\"opt13b_wiki_a100_s43_fp32\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=452614)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 7294
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T19:00:23.189339+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-19T18:59:55Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 106 个实验 — ANALYZING 1, DONE 91, PREPARING 7, RUNNING 7\\\\n**DONE 分布**: failed 9, killed 22, negative 1, success 59\\\\n\\\\n### GPU 占用\\\\n- **实际运行**: 7 张 — westd-19828:cuda:1(smollm3_3b_wiki_a100_s42_v3), westd-17855:cuda:0(alpha_sweep_a030_s42_fp32), westd-19828:cuda:0(opt13b_wiki_a100_s43_fp32), westd-17855:cuda:1(qwen35_08b_wiki_a100_s43_fp32), westd-17855:cuda:2(scale_69b_a100_s43), westd-17855:cuda:4(alpha_sweep_a045_s42_fp32), westd-17855:cuda:5(c4_a025_s42_fp32)\\\\n\\\\n### 💾 磁盘余量\\\\n- **westd-19828**:\\\\n  - `/init`: 150M/150M 可用（已用 0%）\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/usr/bin/nvidia-smi`: 817G/879G 可用（已用 3%）\\\\n- **westd-17855**:\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/init`: 150M/150M 可用（已用 0%）\\\\n  - `/usr/bin/nvidia-smi`: 816G/879G 可用（已用 3%）\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `smollm3_3b_wiki_a100_s42_v3` | westd-19828 | cuda:1 | 408261 | `…uns/distrib_canary_collapse/smollm3_3b_wiki_a100_s42_v3.log` |\\\\n| `alpha_sweep_a030_s42_fp32` | westd-17855 | cuda:0 | 148710 | `~/runs/distrib_canary_collapse/alpha_sweep_a030_s42_fp32.log` |\\\\n| `opt13b_wiki_a100_s43_fp32` | westd-19828 | cuda:0 | 452614 | `—` |\\\\n| `qwen35_08b_wiki_a100_s43_fp32` | westd-17855 | cuda:1 | 174458 | `—` |\\\\n| `scale_69b_a100_s43` | westd-17855 | cuda:2 | 177515 | `—` |\\\\n| `alpha_sweep_a045_s42_fp32` | westd-17855 | cuda:4 | 178545 | `—` |\\\\n| `c4_a025_s42_fp32` | westd-17855 | cuda:5 | 178625 | `—` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `alpha_sweep_a060_s43_fp32` [success] — 2026-05-19T18:59:49 — EXIT_CODE=124 (timeout — exceeded timeout_hours)\\\\n- `alpha_sweep_a040_s42_fp32_v2` [success\n…[truncated 4942 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 6943
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T19:00:23.190051+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/ROADMAP.md\\\", \\\"content\\\": \\\"# distrib_canary_collapse — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-19 17:06 UTC | 更新原因: D105/D106 complete, Table 7 finalized, Paper Agent patching, 8 experiments RUNNING\\\\n\\\\n> **阶段**: Research Day 2 — D105/D106 数据定稿 + Paper Agent patching + 8 实验 RUNNING\\\\n\\\\n## 核心方向\\\\n**D067 升级**: analysis → method paper。核心贡献：\\\\n1. **MMCT** — 5 方法框架，**PermG fwd 主指标**（6-8/8 跨所有架构），K≥3(3σ) 辅助（6-8/8）\\\\n2. **Regime map + 盲区 (D075/D098)** — onset α≈0.25–0.30, transition [0.25,0.50]\\\\n3. **Downstream 指标选择 (D085)** — perplexity 极端 collapse 下丧失 lag structure\\\\n4. **threshold_onset limitation (D105)** — T=11/3σ 下 ≈0/8，MMCT 实质 4 方法共识\\\\n\\\\n**Target**: EMNLP 2026 main track（ARR June cycle, DDL ~June 15, ~26 days）\\\\n\\\\n## 当前进展\\\\n- **D102**: 全部 Table 7 实验统一 8-pair 配置（D102），全局 3σ 重算（D105），registry 字段统一\\\\n- **D106**: Table 7 主指标 = PermG fwd + K≥3(3σ)；K≥4 降级 supplementary\\\\n- **paper_framing.md** 8 个 Diff 已写入（约束 #41-#45 更新）\\\\n- **Paper Agent** 已启动 Table 7 correction patch\\\\n- 55+ 成功 / 8-9 RUNNING (8/8 GPU)\\\\n\\\\n## Table 7 权威数据（D105 pipeline, 统一方法论）\\\\n\\\\n| 模型 | Seed | PermG↑ | K≥3(3σ) | K≥4(3σ) | Thr(3σ) |\\\\n|------|------|--------|---------|---------|---------|\\\\n| Pythia-6.9B | s42 | 7/8 | 8/8 | 3/8 | 2/8 |\\\\n| Qwen3.5-0.8B | s42 | 8/8 | 8/8 | 6/8 | 0/8 |\\\\n| Pythia-1.4B | s42 | **2/8** | 2/8 | 0/8 | 0/8 |\\\\n| Pythia-1.4B | s43 | 6/8 | 6/8 | 3/8 | 0/8 |\\\\n| Pythia-410M | s42 | 6/8 | 6/8 | 1/8 | 2/8 |\\\\n| GPT-2m | s42 | 6/8 | 6/8 | 2/8 | 0/8 |\\\\n| GPT-2m | s43 | 6/8 | 6/8 | 4/8 | 0/8 |\\\\n| OPT-1.3B | s42 | 6/8 | 6/8 | 2/8 | 2/8 |\\\\n| Padding-410M | s42 | 6/8 | 6/8 | 6/8 | 0/8 |\\\\n| C4 Pythia-1B | s42 | 8/8 | 8/8 | 4/8 | 0/8 |\\\\n| C4 Pythia-1B | s43 | 8/8 | 8/8 | 5/8 | 2/8 |\\\\n| SmolLM3-3B | s42 | — | — | — | RUNNING |\\\\n| OPT-1.3B | s43 | — | — | — | RUNNING |\\\\n\\\\n## PermG fwd Dose-Response（fp32 权威版）\\\\n| α | PermG fwd | 证据 |\\\\n|---|--\n…[truncated 3525 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 6436
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T19:00:23.240643+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 6033
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T19:00:28.663404+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "distrib_canary_collapse",
+              "filters": "{'exp_id': 'alpha_sweep_a035_s42_fp32'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T19:00:30.121239+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3136}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1457
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T19:00:30.121626+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__send_progress,mcp__agent-ml-research__load_project_config",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T19:00:30.172044+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T19:00:36.415636+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "alpha_sweep_a035",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T19:00:36.971425+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 25 files\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/chats/cron_hook_alpha_sweep_a035_s42_fp32.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/chats/feishu_group_oc_1f489e32588225ae3672d716b94662a8.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/chats/feishu_group_oc_1f489e32588225ae3672d716b94662a8_reviewer.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/registry.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/checkpoints/alpha_sweep_a035_s42_fp32_ANALYZING_20260519T185953.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/chats/feishu_group_oc_150c7ce908e05d7932315e0288cf5bfb_director.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/chats/cron_hook_alpha_sweep_a060_s43_fp32.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/chats/cron_hook_c4_a050_s42_fp32.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/chats/cron_hook_c4_a075_s42_fp32.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_code_scale_69b_s43_prepare_submit_20260519T180354.log\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/chats/worker_code_qwen35_s43_prepare_submit_20260519T174547.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_code_qwen35_s43_prepare_submit_20260519T174547.log\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_check_running_exp_progress_20260519T173023_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/chats/worker_check_running_exp_progress_20260519T173023.jsonl\n\n…[truncated 1638 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Grep",
+            "elapsed_ms": 555
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T19:00:37.122330+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "distrib_canary_collapse",
+              "filters": "{'status': 'ANALYZING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T19:00:37.475578+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"alpha_sweep_a035_s42_fp32\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T14:37:56.167Z\\\", \\\"updated_at\\\": \\\"2026-05-19T18:59:53.144Z\\\", \\\"hypothesis\\\": \\\"D098 onset boundary 精化：与 α=0.30/0.40 并行，3 点同时定位 onset 到 ±0.05。α=0.35 预期仍在 blind zone。如果 PermG=0/8 → onset ≥ 0.35；如果 PermG>0 → onset 在 [0.30, 0.35]。plan_048。\\\", \\\"parent\\\": \\\"alpha_sweep_a030_s42_fp32\\\", \\\"spec\\\": {\\\"data_path\\\": \\\"data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"seed\\\": 42, \\\"precision\\\": \\\"fp32\\\", \\\"padding_side_fix\\\": \\\"D093 applied\\\"}, \\\"server\\\": \\\"westd-17855\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": \\\"151917\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a035_s42_fp32.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.35 --output_dir results/alpha_sweep/a035_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-19T18:59:52.648Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T18:59:56.803817+00:00\\\"}]}}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3774}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 353
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T19:00:58.095833+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_resource_usage"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "tool_args": {
+              "project": "distrib_canary_collapse"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T19:00:58.398400+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/skills/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T19:00:58.549837+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"allocated_gpus\\\": [], \\\"actually_running_gpus\\\": [{\\\"server\\\": \\\"westd-19828\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"exp_id\\\": \\\"smollm3_3b_wiki_a100_s42_v3\\\"}, {\\\"server\\\": \\\"westd-17855\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"exp_id\\\": \\\"alpha_sweep_a030_s42_fp32\\\"}, {\\\"server\\\": \\\"westd-19828\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"exp_id\\\": \\\"opt13b_wiki_a100_s43_fp32\\\"}, {\\\"server\\\": \\\"westd-17855\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"exp_id\\\": \\\"qwen35_08b_wiki_a100_s43_fp32\\\"}, {\\\"server\\\": \\\"westd-17855\\\", \\\"gpu_id\\\": \\\"cuda:2\\\", \\\"exp_id\\\": \\\"scale_69b_a100_s43\\\"}, {\\\"server\\\": \\\"westd-17855\\\", \\\"gpu_id\\\": \\\"cuda:4\\\", \\\"exp_id\\\": \\\"alpha_sweep_a045_s42_fp32\\\"}, {\\\"server\\\": \\\"westd-17855\\\", \\\"gpu_id\\\": \\\"cuda:5\\\", \\\"exp_id\\\": \\\"c4_a025_s42_fp32\\\"}], \\\"allocated_but_idle\\\": [], \\\"registered_but_hw_idle\\\": [], \\\"unregistered_but_hw_active\\\": [], \\\"running_experiments\\\": [{\\\"exp_id\\\": \\\"smollm3_3b_wiki_a100_s42_v3\\\", \\\"gpus\\\": [\\\"cuda:1\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"alpha_sweep_a030_s42_fp32\\\", \\\"gpus\\\": [\\\"cuda:0\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"opt13b_wiki_a100_s43_fp32\\\", \\\"gpus\\\": [\\\"cuda:0\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"qwen35_08b_wiki_a100_s43_fp32\\\", \\\"gpus\\\": [\\\"cuda:1\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"scale_69b_a100_s43\\\", \\\"gpus\\\": [\\\"cuda:2\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"alpha_sweep_a045_s42_fp32\\\", \\\"gpus\\\": [\\\"cuda:4\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"c4_a025_s42_fp32\\\", \\\"gpus\\\": [\\\"cuda:5\\\"], \\\"util_avg\\\": null}], \\\"worker_pool\\\": {\\\"total\\\": 0, \\\"gpu_tasks\\\": 0, \\\"cpu_tasks\\\": 0, \\\"details\\\": []}, \\\"summary\\\": \\\"分配 0 张, 实际跑 7 张 | Worker 0 (GPU 0 / CPU 0)\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "elapsed_ms": 454
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T19:00:58.550315+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_d40b65a5."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T19:01:12.619515+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Find MMCT analysis script",
+              "subagent_type": "Explore",
+              "prompt": "In the project at /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/, find the MMCT analysis script or pipeline used to analyze experiment results. Look for:\n1. Files named like \"analyze*.py\" or \"mmct*.py\" \n2. Any analysis scripts in an artifacts directory\n3. Recent Worker logs that show how analysis was run for similar alpha_sweep experiments\n\nSearch breadth: medium. Report the exact script path and typical command used."
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T19:01:15.036742+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/analyze*.py",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T19:01:15.241439+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analyze_mvp.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analyze_extended.py"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Glob",
+            "elapsed_ms": 204
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T19:01:15.493473+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/mmct*.py",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T19:01:15.695470+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Glob",
+            "elapsed_ms": 201
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T19:01:15.746437+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*artifacts*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T19:01:15.949558+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_paper_fix_fnr_artifacts_20260516T002749.log\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_paper_fix_fnr_artifacts_20260516T002749_result.json"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Glob",
+            "elapsed_ms": 203
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T19:01:16.000489+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse -type f -name \"*.py\" | grep -E \"(analyze|mmct|analysis)\" | head -20"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-19T19:01:16.204535+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/cross_alpha_analysis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analyze_mvp.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/data/cross_alpha_analysis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/cross_alpha_analysis_v4.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analyze_extended.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/cross_alpha/cross_alpha_analysis_v4.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/consensus_framework/consensus_framework.py"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "elapsed_ms": 204
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-19T19:01:18.535432+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/cross_alpha_analysis.py"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-19T19:01:18.989983+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Cross-alpha analysis for distributional canary collapse experiments.\n2\t\n3\tScans results/alpha_sweep/a*_s42/ directories, computes:\n4\t  1. Dose-response table (gen0→genN drift% per metric per α)\n5\t  2. Bidirectional permutation Granger causality with BH FDR correction\n6\t  3. Cross-correlation lead-lag analysis (Δmetric pairs)\n7\t  4. Per-generation velocity analysis for distinct_1\n8\t\n9\tInput:  results/alpha_sweep/a{NNN}_s42/all_metrics.json\n10\tOutput: results/analysis/cross_alpha_v{VERSION}.json + terminal summary\n11\t\n12\tDependencies: numpy, scipy, pandas, statsmodels\n13\t\"\"\"\n14\t\n15\timport argparse\n16\timport glob\n17\timport json\n18\timport os\n19\timport re\n20\timport sys\n21\tfrom datetime import datetime\n22\t\n23\timport numpy as np\n24\tfrom statsmodels.stats.multitest import multipletests\n25\t\n26\t\n27\t# ---------------------------------------------------------------------------\n28\t# Data loading\n29\t# ---------------------------------------------------------------------------\n30\t\n31\tBASE_DIR = os.path.dirname(os.path.abspath(__file__))\n32\tSWEEP_DIR = os.path.join(BASE_DIR, \"results\", \"alpha_sweep\")\n33\tANALYSIS_DIR = os.path.join(BASE_DIR, \"results\", \"analysis\")\n34\t\n35\tMETRICS = [\"distinct_1\", \"distinct_2\", \"distinct_3\", \"token_entropy\", \"ece\", \"perplexity\"]\n36\t\n37\t# Granger test pairs: (cause, effect, label)\n38\tGRANGER_PAIRS = [\n39\t    (\"token_entropy\", \"distinct_1\", \"entropy→d1\"),\n40\t    (\"ece\",           \"distinct_1\", \"ECE→d1\"),\n41\t    (\"token_entropy\", \"distinct_2\", \"entropy→d2\"),\n42\t    (\"ece\",           \"distinct_2\", \"ECE→d2\"),\n43\t    (\"distinct_1\", \"token_entropy\", \"d1→entropy\"),\n44\t    (\"distinct_1\", \"ece\",           \"d1→ECE\"),\n45\t    (\"distinct_2\", \"token_entropy\", \"d2→entropy\"),\n46\t    (\"distinct_2\", \"ece\",           \"d2→ECE\"),\n47\t]\n48\t\n49\tXCORR_PAIRS = [\n50\t    (\"token_entropy\", \"distinct_1\", \"entropy_vs_d1\"),\n51\t    (\"ece\",           \"distinct_1\", \"ece_vs_d1\"),\n52\t]\n53\t\n54\t\n55\tdef discover_alpha_dirs(explicit=None):\n56\t    \"\"\"Find alpha experiment directories. Ret\n…[truncated 18580 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Read",
+            "elapsed_ms": 454
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-19T19:01:18.990519+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analyze_mvp.py"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-19T19:01:19.094649+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Analyze MVP experiment: metric trends, cross-correlation, lead time.\n2\t\n3\tReads all_metrics.json from each rep, produces:\n4\t  - metric_trends.png : canary + downstream metrics vs generation\n5\t  - cross_correlation.png : cross-correlation heatmap\n6\t  - lead_time_table.csv : lead time estimates per canary-downstream pair\n7\t  - analysis_summary.json : machine-readable summary with graded verdict\n8\t\n9\tEvaluation pipeline (per mvp_evaluation_criteria.md):\n10\t  1. MAUVE floor effect detection (§4) — demote if Gen 0 < 0.10 and CV < 0.50\n11\t  2. effective_rank monotonicity check (§3) — Gen 4-9 OLS slope consistency\n12\t  3. Permutation test (§1) — per-triplet significance via 10k permutations\n13\t  4. Per-seed significance filtering (§2) — 3/3 consistency requirement\n14\t  5. Graded verdict (§5) — STRONG PASS / PASS / CONDITIONAL PASS / FAIL\n15\t  6. Lag dispersion statistics — mean, std, min, max per consistent pair\n16\t\n17\tUsage:\n18\t    python analyze_mvp.py --results_dir results/mvp --seeds 42 43 44\n19\t    python analyze_mvp.py --results_dir results/mvp --n_permutations 5000\n20\t\"\"\"\n21\t\n22\timport argparse\n23\timport json\n24\timport os\n25\timport sys\n26\t\n27\timport matplotlib.pyplot as plt\n28\timport numpy as np\n29\timport pandas as pd\n30\t\n31\t\n32\tCANARY_METRICS = [\"token_entropy\", \"self_bleu\", \"ece\", \"effective_rank\"]\n33\tDOWNSTREAM_METRICS = [\"perplexity\", \"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\"]\n34\t\n35\tHIGHER_IS_WORSE = {\"self_bleu\", \"ece\", \"perplexity\"}\n36\tLOWER_IS_WORSE = {\"token_entropy\", \"effective_rank\", \"distinct_1\", \"distinct_2\",\n37\t                   \"distinct_3\", \"mauve\"}\n38\t\n39\t\n40\tdef load_metrics(results_dir, seeds):\n41\t    \"\"\"Load all_metrics.json from each rep, return dict {seed: [metrics_per_gen]}.\"\"\"\n42\t    data = {}\n43\t    for seed in seeds:\n44\t        path = os.path.join(results_dir, f\"rep_{seed}\", \"all_metrics.json\")\n45\t        with open(path) as f:\n46\t            data[seed] = json.load(f)\n47\t    return data\n48\t\n49\t\n50\tdef metrics_to_df(data):\n51\t  \n…[truncated 19885 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Read",
+            "elapsed_ms": 104
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-19T19:01:19.145792+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -ltr /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/ | tail -20"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-19T19:01:19.247751+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "-rw-r--r-- 1 ubuntu ubuntu    1858 May 19 17:51 worker_code_qwen35_s43_prepare_submit_20260519T174547_result.json\n-rw-r--r-- 1 ubuntu ubuntu   91697 May 19 18:04 worker_code_scale_69b_s43_prepare_20260519T180237.log\n-rw-r--r-- 1 ubuntu ubuntu    3361 May 19 18:04 worker_code_scale_69b_s43_prepare_20260519T180237_result.json\n-rw-r--r-- 1 ubuntu ubuntu   96680 May 19 18:05 worker_check_interv_react_s43_fp32_exit_20260519T180441.log\n-rw-r--r-- 1 ubuntu ubuntu     543 May 19 18:06 worker_check_interv_react_s43_fp32_exit_20260519T180441_result.json\n-rw-r--r-- 1 ubuntu ubuntu  197704 May 19 18:06 worker_code_scale_69b_s43_prepare_submit_20260519T180354.log\n-rw-r--r-- 1 ubuntu ubuntu  333661 May 19 18:26 worker_analysis_c4_a050_s42_fp32_20260519T182208.log\n-rw-r--r-- 1 ubuntu ubuntu     635 May 19 18:26 worker_analysis_c4_a050_s42_fp32_20260519T182208_result.json\n-rw-r--r-- 1 ubuntu ubuntu  391098 May 19 18:26 worker_analysis_c4_a075_s42_fp32_20260519T182301.log\n-rw-r--r-- 1 ubuntu ubuntu     594 May 19 18:26 worker_analysis_c4_a075_s42_fp32_20260519T182301_result.json\n-rw-r--r-- 1 ubuntu ubuntu  295400 May 19 18:26 worker_check_a040_v2_exit_20260519T182329.log\n-rw-r--r-- 1 ubuntu ubuntu     974 May 19 18:27 worker_check_a040_v2_exit_20260519T182329_result.json\n-rw-r--r-- 1 ubuntu ubuntu   94109 May 19 18:45 worker_diagnose_alpha_sweep_a060_s43_fp32_20260519T184402.log\n-rw-r--r-- 1 ubuntu ubuntu    1681 May 19 18:46 worker_diagnose_alpha_sweep_a060_s43_fp32_20260519T184402_result.json\n-rw-r--r-- 1 ubuntu ubuntu   31365 May 19 18:47 worker_check_verify_4gpu_and_resubmit_20260519T184652.log\n-rw-r--r-- 1 ubuntu ubuntu     671 May 19 18:47 worker_check_verify_4gpu_and_resubmit_20260519T184652_result.json\n-rw-r--r-- 1 ubuntu ubuntu  463720 May 19 18:51 worker_analysis_a060_s43_fp32_mmct_20260519T184441.log\n-rw-r--r-- 1 ubuntu ubuntu    2083 May 19 18:51 worker_analysis_a060_s43_fp32_mmct_20260519T184441_result.json\n-rw-r--r-- 1 ubuntu ubuntu  133600 May 19 19:00 worker_fix_a060\n…[truncated 154 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-19T19:01:22.319705+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_analysis_a060_s43_fp32_mmct_20260519T184441.log",
+              "limit": "100"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-19T19:01:22.471471+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_analysis_c4_a050_s42_fp32_20260519T182208.log",
+              "limit": "100"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-19T19:01:22.722831+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (149586 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Read",
+            "elapsed_ms": 403
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-19T19:01:23.225144+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (150225 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Read",
+            "elapsed_ms": 753
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-19T19:01:28.244335+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -i \"python.*analyze\\|python.*cross_alpha\" /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_analysis_a060_s43_fp32_mmct_20260519T184441.log | head -20"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-19T19:01:28.345198+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"type\":\"assistant\",\"message\":{\"model\":\"claude-opus-4-6\",\"id\":\"msg_015cd842SrHfCgkb4KXjvGqN\",\"type\":\"message\",\"role\":\"assistant\",\"content\":[{\"type\":\"tool_use\",\"id\":\"toolu_01WkkSc1xDxn5VMixhRbW4te\",\"name\":\"mcp__agent-ml-research__ssh_execute\",\"input\":{\"server\":\"westd-17855\",\"command\":\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python3 -c \\\"\\nimport json, os, numpy as np\\n\\nCANARIES = ['token_entropy', 'ece']\\nDOWNSTREAMS = ['distinct_1', 'distinct_2', 'distinct_3', 'mauve']\\nLOWER_IS_WORSE = {'token_entropy', 'distinct_1', 'distinct_2', 'distinct_3', 'mauve'}\\n\\ndef orient(s, n): return -s.copy() if n in LOWER_IS_WORSE else s.copy()\\ndef onset(s, n, ns=3):\\n    o = orient(s, n); b, sig = o[0], np.std(o)\\n    if sig < 1e-12: return None\\n    t = b + ns * sig\\n    for i in range(1, len(o)):\\n        if o[i] > t: return i\\n    return None\\n\\ndef analyze_exp(label, exp_dir):\\n    with open(os.path.join(exp_dir, 'all_metrics.json')) as f:\\n        data = sorted(json.load(f), key=lambda x: x['generation'])\\n    with open(os.path.join(exp_dir, 'analysis_results.json')) as f:\\n        analysis = json.load(f)\\n    \\n    T = len(data)\\n    extract = lambda n: np.array([d[n] for d in data])\\n    \\n    k4 = k3 = thr3s = 0\\n    pairs_info = []\\n    for pd_item in analysis['pair_details']:\\n        cn, dn = pd_item['canary'], pd_item['downstream']\\n        r = pd_item['results']\\n        naive = r['naive_xcorr'].get('significant', False)\\n        diff = r['diff_xcorr'].get('significant_fdr', r['diff_xcorr'].get('significant', False))\\n        pg = r['perm_granger_fwd'].get('significant_fdr', r['perm_granger_fwd'].get('significant', False))\\n        ty = r['ty_granger'].get('significant', False)\\n        co = onset(extract(cn), cn, 3)\\n        do = onset(extract(dn), dn, 3)\\n        t = False\\n        if co is not None and do is not None: t = (do - co) > 0\\n        if t: thr3s += 1\\n        v = sum([naive,\n…[truncated 1319 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-19T19:01:28.496396+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -i \"command\\|--\" /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_analysis_a060_s43_fp32_mmct_20260519T184441.log | head -30"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-19T19:01:28.547242+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (74.8KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse--claude-sessions-agent-d40b65a5/19b47b9d-bece-4bc1-b5f3-3a132a692b45/tool-results/bw6k96o80.txt\n\nPreview (first 2KB):\nWarning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.\n{\"type\":\"system\",\"subtype\":\"init\",\"cwd\":\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse\",\"session_id\":\"67c13f3e-b22f-4fc6-807c-6b98e96b6b80\",\"tools\":[\"Task\",\"AskUserQuestion\",\"Bash\",\"CronCreate\",\"CronDelete\",\"CronList\",\"Edit\",\"EnterPlanMode\",\"EnterWorktree\",\"ExitPlanMode\",\"ExitWorktree\",\"Glob\",\"Grep\",\"ListMcpResourcesTool\",\"Monitor\",\"NotebookEdit\",\"PushNotification\",\"Read\",\"ReadMcpResourceTool\",\"RemoteTrigger\",\"ScheduleWakeup\",\"Skill\",\"TaskOutput\",\"TaskStop\",\"TodoWrite\",\"ToolSearch\",\"WebFetch\",\"WebSearch\",\"Write\",\"mcp__agent-ml-research__detect_image\",\"mcp__agent-ml-research__kill_job\",\"mcp__agent-ml-research__read_registry\",\"mcp__agent-ml-research__register_artifact\",\"mcp__agent-ml-research__ssh_execute\",\"mcp__agent-ml-research__ssh_read_only\",\"mcp__agent-ml-research__update_registry\"],\"mcp_servers\":[{\"name\":\"agent-ml-research\",\"status\":\"connected\"}],\"model\":\"claude-opus-4-6\",\"permissionMode\":\"bypassPermissions\",\"slash_commands\":[\"update-config\",\"debug\",\"simplify\",\"batch\",\"fewer-permission-prompts\",\"loop\",\"schedule\",\"claude-api\",\"clear\",\"compact\",\"context\",\"heapdump\",\"init\",\"review\",\"security-review\",\"extra-usage\",\"usage\",\"insights\",\"team-onboarding\"],\"apiKeySource\":\"none\",\"claude_code_version\":\"2.1.126\",\"output_style\":\"default\",\"agents\":[\"claude\",\"Explore\",\"general-purpose\",\"Plan\",\"statusline-setup\"],\"skills\":[\"update-config\",\"debug\",\"simplify\",\"batch\",\"fewer-permission-prompts\",\"loop\",\"schedule\",\"claude-api\"],\"plugins\":[],\"analytics_disabled\":false,\"uuid\":\"7633f982-1f38-48db\n…[truncated 223 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-19T19:01:31.108491+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse -name \"analysis_results.json\" -o -name \"cross_alpha*.json\" | head -10"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-19T19:01:31.159128+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-19T19:01:35.198190+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/results -type f -name \"*.py\" 2>/dev/null | head -20"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-19T19:01:35.349203+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "elapsed_ms": 151
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-19T19:01:37.256670+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analyze_extended.py",
+              "limit": "150"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-19T19:01:37.407720+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# analyze_extended.py — Plan-006 extended 20-gen analysis\n2\t# Input:  results/extended_20gen/s{seed}/all_metrics.json\n3\t# Output: results/extended_20gen/analysis/{extended_analysis.json, summary.txt, mvp_comparison.json}\n4\t\n5\timport argparse\n6\timport json\n7\timport os\n8\timport sys\n9\timport warnings\n10\tfrom datetime import datetime\n11\t\n12\timport numpy as np\n13\tfrom scipy import stats\n14\tfrom statsmodels.stats.multitest import multipletests\n15\tfrom statsmodels.tsa.stattools import adfuller\n16\t\n17\tfrom permutation_granger import permutation_granger_test\n18\tfrom detrending_utils import detrend, cross_correlate, detrend_and_crosscorr\n19\t\n20\twarnings.filterwarnings(\"ignore\")\n21\t\n22\tCANARY_METRICS = [\"token_entropy\", \"ece\"]\n23\tDOWNSTREAM_METRICS = [\"distinct_1\", \"distinct_2\", \"distinct_3\", \"perplexity\"]\n24\tHIGHER_IS_WORSE = {\"self_bleu\", \"ece\", \"perplexity\"}\n25\tLOWER_IS_WORSE = {\"token_entropy\", \"effective_rank\", \"distinct_1\", \"distinct_2\",\n26\t                   \"distinct_3\", \"mauve\"}\n27\tALPHA_SIG = 0.05\n28\tN_PERM = 5000\n29\t\n30\t\n31\t# ── helpers ──────────────────────────────────────────────────────────────\n32\t\n33\tdef load_metrics(path):\n34\t    \"\"\"Load all_metrics.json, return sorted list of dicts.\"\"\"\n35\t    with open(path) as f:\n36\t        data = json.load(f)\n37\t    return sorted(data, key=lambda m: m[\"generation\"])\n38\t\n39\t\n40\tdef extract(metrics_list, name):\n41\t    return np.array([m[name] for m in metrics_list])\n42\t\n43\t\n44\tdef orient(series, name):\n45\t    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\n46\t\n47\t\n48\tdef cohen_r_label(r):\n49\t    r = abs(r)\n50\t    if r >= 0.5:   return \"large\"\n51\t    if r >= 0.3:   return \"medium\"\n52\t    if r >= 0.1:   return \"small\"\n53\t    return \"negligible\"\n54\t\n55\t\n56\tdef cohen_f2_label(f2):\n57\t    if f2 is None: return \"N/A\"\n58\t    if f2 >= 0.35: return \"large\"\n59\t    if f2 >= 0.15: return \"medium\"\n60\t    if f2 >= 0.02: return \"small\"\n61\t    return \"negligible\"\n62\t\n63\t\n64\tdef adf_order(series, max_d=2):\n65\t    for d in\n…[truncated 3307 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-19T19:01:37.408211+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-19T19:01:37.459159+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 28\ndrwxr-xr-x  4 ubuntu ubuntu 4096 May 15 11:28 .\ndrwxr-xr-x 59 ubuntu ubuntu 4096 May 19 18:25 ..\ndrwxr-xr-x  2 ubuntu ubuntu 4096 May 15 11:23 consensus_framework\ndrwxr-xr-x  2 ubuntu ubuntu 4096 May 15 09:17 cross_alpha\n-rw-r--r--  1 ubuntu ubuntu 8818 May 15 11:28 cross_alpha_fdr_4point.md"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-19T19:01:39.770845+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -lh /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/cross_alpha/"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-19T19:01:39.872243+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 36K\n-rw-r--r-- 1 ubuntu ubuntu 34K May 15 09:17 cross_alpha_analysis_v4.py"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-19T19:01:41.731617+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/cross_alpha/cross_alpha_analysis_v4.py",
+              "limit": "100"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-19T19:01:41.985489+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Cross-alpha analysis v4 with per-alpha consensus classification.\n2\t\n3\tExtends v3 with:\n4\t  5. Per-alpha multi-method consensus classification (regime-dependent validity)\n5\t  6. Markdown report output\n6\t\n7\tHandles mixed data paths:\n8\t  - alpha-sweep: results/alpha_sweep/a{NNN}_s42/all_metrics.json (single seed)\n9\t  - alpha=1.0:   results/mvp/rep_{42..45}/all_metrics.json (4 seeds)\n10\t  - alpha=1.0 consensus loads existing method_ablation.json\n11\t  - Single-seed alpha points: seed_threshold=1, method agreement only\n12\t\n13\tDependencies: numpy, scipy, statsmodels\n14\t\"\"\"\n15\t\n16\timport argparse\n17\timport glob\n18\timport json\n19\timport os\n20\timport re\n21\timport sys\n22\timport warnings\n23\tfrom datetime import datetime\n24\t\n25\timport numpy as np\n26\tfrom statsmodels.stats.multitest import multipletests\n27\t\n28\twarnings.filterwarnings(\"ignore\")\n29\t\n30\tBASE_DIR = os.path.dirname(os.path.abspath(__file__))\n31\tsys.path.insert(0, BASE_DIR)\n32\t\n33\tfrom method_ablation import (\n34\t    CANARY, DOWNSTREAM,\n35\t    extract as ma_extract,\n36\t    naive_pearson, diff_xcorr, threshold_lead, toda_yamamoto, perm_granger,\n37\t)\n38\tfrom consensus_framework import classify_robust, load_sig_matrix, NumpyEncoder\n39\t\n40\tSWEEP_DIR = os.path.join(BASE_DIR, \"results\", \"alpha_sweep\")\n41\tMVP_DIR = os.path.join(BASE_DIR, \"results\", \"mvp\")\n42\tANALYSIS_DIR = os.path.join(BASE_DIR, \"results\", \"analysis\")\n43\t\n44\tMETRICS = [\"distinct_1\", \"distinct_2\", \"distinct_3\", \"token_entropy\", \"ece\", \"perplexity\"]\n45\t\n46\tGRANGER_PAIRS = [\n47\t    (\"token_entropy\", \"distinct_1\", \"entropy->d1\"),\n48\t    (\"ece\",           \"distinct_1\", \"ECE->d1\"),\n49\t    (\"token_entropy\", \"distinct_2\", \"entropy->d2\"),\n50\t    (\"ece\",           \"distinct_2\", \"ECE->d2\"),\n51\t    (\"distinct_1\", \"token_entropy\", \"d1->entropy\"),\n52\t    (\"distinct_1\", \"ece\",           \"d1->ECE\"),\n53\t    (\"distinct_2\", \"token_entropy\", \"d2->entropy\"),\n54\t    (\"distinct_2\", \"ece\",           \"d2->ECE\"),\n55\t]\n56\t\n57\tXCORR_PAIRS = [\n58\t    (\"token_entropy\", \"distinct_1\", \n…[truncated 1496 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Read",
+            "elapsed_ms": 253
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-19T19:01:42.036212+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A5 \"if __name__\" /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/cross_alpha_analysis.py | tail -20"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-19T19:01:42.086801+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "if __name__ == \"__main__\":\n    main()"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-19T19:01:44.597109+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_analysis_a060_s43_fp32_mmct_20260519T184441_result.json"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-19T19:01:44.597621+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"Registry 已更新。以下是完整分析结果。\\n\\n---\\n\\n## D105 MMCT 5-method 分析: `alpha_sweep_a060_s43_fp32`\\n\\n**T=10 (gen_0-9), gen_10 timeout (EXIT_CODE=124)**\\n\\n### 方法级汇总\\n\\n| 方法 | s42 (α=0.60, T=11) | **s43 (α=0.60, T=10)** | α=0.50 s42 (T=11) |\\n|---|---|---|---|\\n| Naive xcorr | 7/8 | **7/8** | 8/8 |\\n| Diff xcorr (FDR) | 8/8 | **6/8** | 7/8 |\\n| Threshold (3σ) | 0/8 | **0/8** | 4/8 |\\n| PermG fwd (FDR) | 3/8 | **0/8** | 6/8 |\\n| PermG rev (FDR) | 0/8 | **0/8** | 0/8 |\\n| TY Granger | 8/8 | **4/8** | 4/8 |\\n| **K≥4 (3σ)** | **3/8** | **0/8** | **4/8** |\\n| **K≥3 (3σ)** | **7/8** | **3/8** | **6/8** |\\n\\n### Pair-level (s43)\\n\\n| Pair | K(3σ) | Naive | DiffX | Thr3σ | PermG | TY |\\n|---|---|---|---|---|---|---|\\n| te→d1 | 2 | Y | Y | n | n | n |\\n| te→d2 | 3 | Y | Y | n | n | Y |\\n| te→d3 | 3 | Y | Y | n | n | Y |\\n| te→mauve | 0 | n | n | n | n | n |\\n| ece→d1 | 3 | Y | Y | n | n | Y |\\n| ece→d2 | 2 | Y | Y | n | n | n |\\n| ece→d3 | 2 | Y | Y | n | n | n |\\n| ece→mauve | 2 | Y | n | n | n | Y |\\n\\nCanary onset (3σ): token_entropy=gen1, ece=gen3. Downstream onset: **全部未达 3σ**。\\n\\n### Drift (gen0→gen9)\\n\\n| Metric | Drift |\\n|---|---|\\n| token_entropy | -28.61% |\\n| ece | +1530.81% |\\n| perplexity | +85.11% |\\n| distinct_1 | -31.02% |\\n| distinct_2 | -39.02% |\\n| distinct_3 | -37.30% |\\n| effective_rank | +61.00% |\\n| mauve | -10.96% |\\n\\n### 非单调性判定\\n\\n**CONFIRMED — 系统性现象，非 seed 噪声。**\\n\\n- α=0.50 s42: PermG=6/8, K≥4=4/8, K≥3=6/8\\n- α=0.60 s42: PermG=3/8, K≥4=3/8, K≥3=7/8 (↓)\\n- α=0.60 s43: PermG=0/8, K≥4=0/8, K≥3=3/8 (↓↓)\\n\\ns43 不仅未能恢复 s42 的信号，反而进一步下降。PermG 和 K≥4 均为 0/8。两个 seed 一致表明 α=0.60 的 lead-lag 信号弱于 α=0.50，非单调下降是 α=0.60 的固有特征。\\n\\n注意：s43 比 s42 少 1 个时间点 (T=10 vs T=11)，对 Granger 类方法有功率损失，但 PermG 从 3/8 → 0/8、K≥3 从 7/8 → 3/8 的幅度无法仅由此解释。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-19T19:01:46.907575+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "head -200 /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/cross_alpha/cross_alpha_analysis_v4.py | tail -100"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-19T19:01:47.670458+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "                continue\n            path = os.path.join(SWEEP_DIR, name)\n            if not os.path.isdir(path):\n                print(f\"WARNING: {path} not found, skipping\", file=sys.stderr)\n                continue\n            m = re.match(r\"a(\\d{3})_s(\\d+)\", name)\n            if m:\n                alpha_val = int(m.group(1)) / 100.0\n                dirs.append((f\"a{m.group(1)}\", alpha_val, path, [int(m.group(2))]))\n    else:\n        pattern = os.path.join(SWEEP_DIR, \"a*_s42\")\n        for path in sorted(glob.glob(pattern)):\n            name = os.path.basename(path)\n            m = re.match(r\"a(\\d{3})_s42\", name)\n            if m:\n                alpha_val = int(m.group(1)) / 100.0\n                dirs.append((f\"a{m.group(1)}\", alpha_val, path, [42]))\n\n        if include_mvp and not any(d[1] == 1.0 for d in dirs):\n            rep42 = os.path.join(MVP_DIR, \"rep_42\")\n            if os.path.isdir(rep42):\n                dirs.append((\"a100\", 1.0, rep42, _find_mvp_seeds()))\n\n    return sorted(dirs, key=lambda x: x[1])\n\n\ndef load_metrics(alpha_dir):\n    path = os.path.join(alpha_dir, \"all_metrics.json\")\n    with open(path) as f:\n        data = json.load(f)\n    return sorted(data, key=lambda x: x[\"generation\"])\n\n\ndef load_all_seeds_metrics(alpha_val, primary_dir, seeds):\n    \"\"\"Load metrics for all seeds. Returns list of (seed, metrics_list).\"\"\"\n    results = []\n    for seed in seeds:\n        if alpha_val == 1.0:\n            path = os.path.join(MVP_DIR, f\"rep_{seed}\")\n        else:\n            path = primary_dir\n        mpath = os.path.join(path, \"all_metrics.json\")\n        if os.path.isfile(mpath):\n            results.append((seed, load_metrics(path)))\n    return results\n\n\ndef extract_series(metrics_list, key):\n    return np.array([m[key] for m in metrics_list], dtype=float)\n\n\n# ---------------------------------------------------------------------------\n# 1. Dose-response\n# ---------------------------------------------------------------------------\n\ndef compute_dose_res\n…[truncated 1555 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "elapsed_ms": 762
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-19T19:01:47.874455+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -E \"python|\\.py\" /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_analysis_a060_s43_fp32_mmct_20260519T184441.log | grep \"\\.py\" | head -5"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-19T19:01:48.040663+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"type\":\"assistant\",\"message\":{\"model\":\"claude-opus-4-6\",\"id\":\"msg_01GqSnkkhh8KxTZrEGGNWk1a\",\"type\":\"message\",\"role\":\"assistant\",\"content\":[{\"type\":\"tool_use\",\"id\":\"toolu_01DDudihmbWWVKmCfDrzk5dr\",\"name\":\"mcp__agent-ml-research__ssh_read_only\",\"input\":{\"server\":\"westd-17855\",\"command\":\"find /root/autodl-tmp/distrib_canary_collapse/ -name \\\"*.py\\\" -path \\\"*mmct*\\\"\",\"account\":\"root\"},\"caller\":{\"type\":\"direct\"}}],\"stop_reason\":null,\"stop_sequence\":null,\"stop_details\":null,\"usage\":{\"input_tokens\":3,\"cache_creation_input_tokens\":14792,\"cache_read_input_tokens\":11841,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":14792},\"output_tokens\":70,\"service_tier\":\"standard\",\"inference_geo\":\"not_available\"},\"diagnostics\":{\"cache_miss_reason\":{\"type\":\"previous_message_not_found\"}},\"context_management\":null},\"parent_tool_use_id\":null,\"session_id\":\"67c13f3e-b22f-4fc6-807c-6b98e96b6b80\",\"uuid\":\"a66b6501-eff6-4dbd-a672-41cea7be42ac\"}\n{\"type\":\"assistant\",\"message\":{\"model\":\"claude-opus-4-6\",\"id\":\"msg_01GqSnkkhh8KxTZrEGGNWk1a\",\"type\":\"message\",\"role\":\"assistant\",\"content\":[{\"type\":\"tool_use\",\"id\":\"toolu_01Q4ptKzaHRkv9j7r4kuvwAT\",\"name\":\"mcp__agent-ml-research__ssh_read_only\",\"input\":{\"server\":\"westd-17855\",\"command\":\"find /root/autodl-tmp/distrib_canary_collapse/ -name \\\"*.py\\\" -path \\\"*analyz*\\\"\",\"account\":\"root\"},\"caller\":{\"type\":\"direct\"}}],\"stop_reason\":null,\"stop_sequence\":null,\"stop_details\":null,\"usage\":{\"input_tokens\":3,\"cache_creation_input_tokens\":14792,\"cache_read_input_tokens\":11841,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":14792},\"output_tokens\":70,\"service_tier\":\"standard\",\"inference_geo\":\"not_available\"},\"diagnostics\":{\"cache_miss_reason\":{\"type\":\"previous_message_not_found\"}},\"context_management\":null},\"parent_tool_use_id\":null,\"session_id\":\"67c13f3e-b22f-4fc6-807c-6b98e96b6b80\",\"uuid\":\"c3b116f0-0e11-4870-9141-22705d3d7a09\"}\n{\"type\":\"user\",\"message\":{\"role\":\"user\",\"content\":[{\"tool_use_id\":\"toolu_01DDudihmbWWVKm\n…[truncated 3409 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "elapsed_ms": 166
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-19T19:01:50.286723+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse -name \"run_mmct.py\" -o -name \"mmct*\" -type d"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-19T19:01:50.488743+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "elapsed_ms": 202
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-19T19:01:50.639908+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/mmct/**/*.py",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-19T19:01:50.690497+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-19T19:01:52.850478+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse -maxdepth 3 -name \"*.py\" -type f | grep -E \"(run_|analyze|mmct)\" | head -20"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-19T19:01:52.901155+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analyze_mvp.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analyze_extended.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/lag_sensitivity/run_lag_sensitivity.py"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-19T19:01:53.003496+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/ | head -30"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-19T19:01:53.054131+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 708\ndrwxr-xr-x 11 ubuntu ubuntu   4096 May 19 18:59 .\ndrwxrwxr-x  5 ubuntu ubuntu   4096 May 15 12:52 ..\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 14 04:21 .claude\n-rw-r--r--  1 ubuntu ubuntu  14179 May 19 19:01 AGENTS.md\n-rw-r--r--  1 ubuntu ubuntu      0 May 14 04:23 ROADMAP.lock\n-rw-------  1 ubuntu ubuntu   5913 May 19 18:52 ROADMAP.md\ndrwxr-xr-x 59 ubuntu ubuntu   4096 May 19 18:25 artifacts\n-rw-r--r--  1 ubuntu ubuntu   8465 May 14 21:29 bootstrap_ty_validation.py\ndrwxr-xr-x  2 ubuntu ubuntu  65536 May 19 18:59 checkpoints\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 18 16:18 configs\n-rw-r--r--  1 ubuntu ubuntu  23204 May 15 10:06 consensus_framework.py\n-rw-r--r--  1 ubuntu ubuntu      0 May 15 09:51 constraints.lock\n-rw-------  1 ubuntu ubuntu   1572 May 18 20:58 constraints.yaml\n-rw-r--r--  1 ubuntu ubuntu  18765 May 15 06:43 cross_alpha_analysis.py\n-rw-r--r--  1 ubuntu ubuntu      0 May 14 04:23 decisions.lock\n-rw-------  1 ubuntu ubuntu 108239 May 19 18:52 decisions.yaml\ndrwxr-xr-x  4 ubuntu ubuntu   4096 May 15 05:26 docs\n-rwxr-xr-x  1 ubuntu ubuntu      0 May 14 18:49 dream_registry.lock\n-rw-------  1 ubuntu ubuntu    609 May 14 19:34 dream_registry.yaml\n-rw-r--r--  1 ubuntu ubuntu    614 May 14 19:34 dream_registry.yaml.bak\n-rw-r--r--  1 ubuntu ubuntu      0 May 14 19:01 experiment_plan.lock\n-rw-------  1 ubuntu ubuntu  15015 May 19 18:27 experiment_plan.yaml\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 15 17:33 figures\n-rw-r--r--  1 ubuntu ubuntu  41343 May 15 18:40 literature_map.yaml\ndrwxr-xr-x  4 ubuntu ubuntu   4096 May 14 05:13 logs\n-rw-r--r--  1 ubuntu ubuntu   6980 May 19 10:27 memory.md\n-rw-r--r--  1 ubuntu ubuntu      0 May 17 07:07 mistakes.lock\n-rw-------  1 ubuntu ubuntu  29594 May 19 16:18 mistakes.yaml\n-rw-r--r--  1 ubuntu ubuntu  41983 May 19 16:51 paper_framing.md"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-19T19:01:55.063911+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts -maxdepth 2 -type f -name \"*.py\" | sort"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-19T19:01:55.114595+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analyze_extended.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analyze_mvp.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/cross_alpha_analysis_v4.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/detrending_utils.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/figures/plot_regime_map.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/iterative_train.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/lag_sensitivity/run_lag_sensitivity.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/metrics.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/permutation_granger.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/prepare_data.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/test_alpha_sweep.py"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-19T19:01:57.123473+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse -name \"method_ablation.py\" -o -name \"consensus_framework.py\" -o -name \"permutation_granger.py\""
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-19T19:01:57.274697+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/data/consensus_framework.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/data/permutation_granger.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/permutation_granger.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analysis/consensus_framework/consensus_framework.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/consensus_framework.py"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "elapsed_ms": 151
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-19T19:01:57.275066+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/consensus_framework.py",
+              "limit": "150"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-19T19:01:57.325509+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"\n2\tMulti-method consensus framework for canary→downstream association robustness.\n3\t\n4\tFormalizes \"robust association\": a pair is robust only when ≥method_threshold\n5\tindependent statistical methods agree (each requiring ≥seed_threshold seeds\n6\tsignificant). Two-stage aggregation: seed→method verdict, then method→consensus.\n7\t\n8\tInput:  results/mvp/analysis/method_ablation.json\n9\tOutput: consensus classification, sensitivity heatmap, FPR/FNR table (JSON)\n10\t\n11\tDependencies: numpy, json (stdlib)\n12\t\"\"\"\n13\t\n14\timport json\n15\timport os\n16\t\n17\timport numpy as np\n18\t\n19\tMETHOD_NAMES = [\n20\t    \"naive_pearson\",\n21\t    \"differenced_xcorr\",\n22\t    \"threshold_onset\",\n23\t    \"toda_yamamoto\",\n24\t    \"permutation_granger\",\n25\t]\n26\t\n27\t# differenced_xcorr is the FP ground truth (index 1)\n28\tDIFF_INDEX = 1\n29\t\n30\t\n31\tdef _to_native(obj):\n32\t    \"\"\"Convert numpy types to Python native for JSON serialization.\"\"\"\n33\t    if isinstance(obj, (np.integer,)):\n34\t        return int(obj)\n35\t    if isinstance(obj, (np.floating,)):\n36\t        return float(obj)\n37\t    if isinstance(obj, (np.bool_,)):\n38\t        return bool(obj)\n39\t    if isinstance(obj, np.ndarray):\n40\t        return obj.tolist()\n41\t    return obj\n42\t\n43\t\n44\tclass NumpyEncoder(json.JSONEncoder):\n45\t    \"\"\"JSON encoder that handles numpy types.\"\"\"\n46\t    def default(self, obj):\n47\t        native = _to_native(obj)\n48\t        if native is not obj:\n49\t            return native\n50\t        return super().default(obj)\n51\t\n52\t\n53\tdef load_sig_matrix(ablation_path, apply_fdr=True):\n54\t    \"\"\"\n55\t    Load method_ablation.json into a boolean significance tensor.\n56\t\n57\t    Args:\n58\t        ablation_path: path to method_ablation.json\n59\t\n60\t    Returns:\n61\t        sig_matrix: np.ndarray, shape (5, 16, 4), dtype bool\n62\t                    axes = (method, pair, seed)\n63\t        pair_names: list of (canary, downstream) tuples, len 16\n64\t        method_names: list of str, len 5\n65\t        seeds: list of int, e.g. [42, 43, 44, 45]\n66\t \n…[truncated 3445 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-19T19:01:59.535499+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "tail -100 /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/cross_alpha_analysis.py"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-19T19:01:59.586203+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "        decel = f\"{v['deceleration_ratio']:.2f}\" if v.get(\"deceleration_ratio\") is not None else \"N/A\"\n        print(f\"  α={v['alpha']}: mean_vel={v['mean_velocity']:+.6f}  \"\n              f\"early={v['early_mean_velocity']:+.6f}  late={v['late_mean_velocity']:+.6f}  \"\n              f\"decel_ratio={decel}  max_drop=gen{v['max_drop_gen']}\")\n\n    print()\n\n\n# ---------------------------------------------------------------------------\n# Main\n# ---------------------------------------------------------------------------\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"Cross-alpha analysis for distributional canary collapse experiments.\"\n    )\n    parser.add_argument(\"--alpha-dirs\", nargs=\"*\", default=None,\n                        help=\"Specific alpha dirs (e.g. a000_s42 a025_s42). Default: auto-discover all.\")\n    parser.add_argument(\"--n-perms\", type=int, default=5000,\n                        help=\"Number of permutations for Granger test (default: 5000)\")\n    parser.add_argument(\"--max-lag\", type=int, default=1,\n                        help=\"Max lag for Granger test (default: 1)\")\n    parser.add_argument(\"--version\", type=int, default=None,\n                        help=\"Output version number (default: auto-increment)\")\n    parser.add_argument(\"--update-registry\", action=\"store_true\",\n                        help=\"Print registry update commands after analysis\")\n    args = parser.parse_args()\n\n    alpha_dirs = discover_alpha_dirs(args.alpha_dirs)\n    if not alpha_dirs:\n        print(\"ERROR: No alpha directories found.\", file=sys.stderr)\n        sys.exit(1)\n\n    print(f\"Found {len(alpha_dirs)} alpha points: {[a[0] for a in alpha_dirs]}\")\n\n    all_data = []\n    for alpha_key, alpha_val, path in alpha_dirs:\n        metrics = load_metrics(path)\n        print(f\"  {alpha_key} (α={alpha_val}): {len(metrics)} generations\")\n        all_data.append((alpha_key, alpha_val, metrics))\n\n    # 1. Dose-response\n    dose_resp = compute_dose_response(all_data)\n\n    # 2. \n…[truncated 2055 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-19T19:02:01.593970+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/memory.md"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-19T19:02:01.644717+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Memory\n2\t\n3\t## D079 精度规则（2026-05-18，替代旧 bf16 硬约束）\n4\t\n5\t### bf16 vs fp32 系统性差异（Reviewer critical 发现）\n6\tGPT-2m fp32 (s42) vs bf16 (s43) 在 α=1.0：entropy drift 差 5.2×（-86.6% vs -16.6%），ppl drift 差 ~730×（+50,527% vs +68.6%）。bf16 的 stochastic rounding 提供强隐式正则化，系统性抑制 collapse。\n7\t\n8\t### 精度规则\n9\t- **≤3B 模型一律 fp32**（不传 --bf16）\n10\t- **>3B 模型**（如 Pythia-6.9B）允许 bf16，论文中 framing 为\"bf16 条件下 pattern 是否持续\"\n11\t- Table 7 和 dose-response map 主轴只用 fp32 数据\n12\t- bf16 实验作为补充证据，论文中明确标注\n13\t\n14\t### westd-17855 fp32 支持\n15\t- 旧问题：不带 --bf16 时 fp16 GradScaler crash（Blackwell 不兼容）\n16\t- 已修复：iterative_train.py 修改为不带 --bf16 时使用纯 fp32（禁用 GradScaler + autocast）\n17\t- dry-run 通过：westd-17855 cuda:4 上 Pythia-410M fp32 训练成功\n18\t\n19\t## D080 torch_dtype bug 及修复（2026-05-19）\n20\t\n21\t### 根因\n22\titerative_train.py 中 `_DTYPE_KWARG: torch.bfloat16 if args.bf16 else None`。`torch_dtype=None` 导致模型以原生 dtype 加载：\n23\t- Pythia-410M/1.4B: 原生 float16 → 无 GradScaler → loss=0, grad_norm=nan\n24\t- SmolLM3-3B: 原生 bfloat16 → 训练正常但精度不是 D079 要求的 fp32\n25\t- Qwen3.5-0.8B: safetensors 存储为 bfloat16 → 同上\n26\t\n27\t### 修复（两轮）\n28\t1. `else None` → `else torch.float32`：对大多数模型有效（SmolLM3 确认 13.8GB = fp32）\n29\t2. 添加 `model.to(dtype=target_dtype)` 强制转换：Qwen3.5 的 safetensors 格式导致 transformers 5.8.1 忽略 `torch_dtype` 参数，必须显式 `.to()` 才能转 float32\n30\t\n31\t### iterative_train.py 当前版本\n32\t- md5: `5b37837e7a6378f42bcb740f8f5e4773`（两台服务器一致）\n33\t- 包含: fp16=False + `else torch.float32` + `.to(dtype=target_dtype)` 强制转换\n34\t\n35\t### 教训\n36\t- `torch_dtype` 参数在 transformers 中对不同模型行为不一致，`.to()` 是唯一可靠的 dtype 转换方式\n37\t- 内存用量可以验证 dtype：3B fp32 ≈ 12-14GB, 3B bf16 ≈ 6-7GB\n38\t\n39\t## westd-17855 环境提交规范（2026-05-18）\n40\t\n41\t### 问题\n42\twestd-17855 的 `.bashrc` 无 conda init 块且有 `[ -z \"$PS1\" ] && return` 导致非交互 shell 跳过所有配置。裸 `python` 命令和缺少 HF 环境变量均导致失败。\n43\t\n44\t### 完整提交命令模板\n45\t```\n46\tbash -c \"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && expo\n…[truncated 3484 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-19T19:02:05.156093+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -o \"python.*cross_alpha\\|python.*analyze\" /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_analysis_c4_a050_s42_fp32_20260519T182208.log 2>/dev/null | head -3"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-19T19:02:05.256866+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-19T19:02:07.265316+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "head -40 /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/cross_alpha_analysis_v4.py"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-19T19:02:07.417474+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "\"\"\"Cross-alpha analysis v4 with per-alpha consensus classification.\n\nExtends v3 with:\n  5. Per-alpha multi-method consensus classification (regime-dependent validity)\n  6. Markdown report output\n\nHandles mixed data paths:\n  - alpha-sweep: results/alpha_sweep/a{NNN}_s42/all_metrics.json (single seed)\n  - alpha=1.0:   results/mvp/rep_{42..45}/all_metrics.json (4 seeds)\n  - alpha=1.0 consensus loads existing method_ablation.json\n  - Single-seed alpha points: seed_threshold=1, method agreement only\n\nDependencies: numpy, scipy, statsmodels\n\"\"\"\n\nimport argparse\nimport glob\nimport json\nimport os\nimport re\nimport sys\nimport warnings\nfrom datetime import datetime\n\nimport numpy as np\nfrom statsmodels.stats.multitest import multipletests\n\nwarnings.filterwarnings(\"ignore\")\n\nBASE_DIR = os.path.dirname(os.path.abspath(__file__))\nsys.path.insert(0, BASE_DIR)\n\nfrom method_ablation import (\n    CANARY, DOWNSTREAM,\n    extract as ma_extract,\n    naive_pearson, diff_xcorr, threshold_lead, toda_yamamoto, perm_granger,\n)\nfrom consensus_framework import classify_robust, load_sig_matrix, NumpyEncoder\n\nSWEEP_DIR = os.path.join(BASE_DIR, \"results\", \"alpha_sweep\")"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "elapsed_ms": 152
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-19T19:02:07.417932+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -lh /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/*.py | head -10"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-19T19:02:07.468487+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "-rw-r--r-- 1 ubuntu ubuntu  23K May 14 21:55 /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analyze_extended.py\n-rw-r--r-- 1 ubuntu ubuntu  20K May 14 08:34 /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analyze_mvp.py\n-rw-r--r-- 1 ubuntu ubuntu  34K May 15 08:58 /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/cross_alpha_analysis_v4.py\n-rw-r--r-- 1 ubuntu ubuntu 4.5K May 14 21:40 /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/detrending_utils.py\n-rw-r--r-- 1 ubuntu ubuntu  12K May 19 06:21 /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/iterative_train.py\n-rw-r--r-- 1 ubuntu ubuntu  13K May 18 23:20 /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/metrics.py\n-rw-r--r-- 1 ubuntu ubuntu 6.9K May 14 21:51 /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/permutation_granger.py\n-rw-r--r-- 1 ubuntu ubuntu 2.4K May 14 05:41 /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/prepare_data.py\n-rw-r--r-- 1 ubuntu ubuntu  13K May 14 19:05 /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/test_alpha_sweep.py"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-19T19:02:17.815691+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now I have all the information I need. Let me compile the final report:\n\n## Summary\n\nI've found the MMCT analysis scripts and pipeline used in the distrib_canary_collapse project for analyzing alpha_sweep experiments. Here are the exact details:\n\n### Primary Analysis Scripts\n\n**1. Main Cross-Alpha Analysis Pipeline:**\n- **Path:** `/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/cross_alpha_analysis.py`\n- **Typical command:**\n  ```bash\n  python cross_alpha_analysis.py --alpha-dirs a050_s42 a060_s42 --n-perms 5000 --max-lag 1 --update-registry\n  ```\n- **Features:**\n  - Scans `results/alpha_sweep/a*_s42/` directories\n  - Computes dose-response tables (gen0→genN drift%)\n  - Runs bidirectional permutation Granger causality with BH FDR correction\n  - Cross-correlation lead-lag analysis\n  - Per-generation velocity analysis for distinct_1\n  - Outputs: `results/analysis/cross_alpha_v{VERSION}.json` + terminal summary\n\n**2. Extended/Advanced Analysis Scripts:**\n- **v4 Version:** `/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/cross_alpha_analysis_v4.py` (34 KB)\n  - Extends v3 with per-alpha multi-method consensus classification\n  - Handles mixed data paths (alpha-sweep single-seed and MVP multi-seed)\n  - Dependencies: numpy, scipy, statsmodels\n  \n- **MVP Analysis:** `/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analyze_mvp.py` (20 KB)\n  - Metric trends, cross-correlation, lead-time estimation\n  - Graded verdict system (STRONG PASS / PASS / CONDITIONAL PASS / FAIL)\n  - Permutation tests (10,000 permutations default)\n  - Usage: `python analyze_mvp.py --results_dir results/mvp --seeds 42 43 44`\n\n- **Extended Analysis:** `/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analyze_extended.py` (23 KB)\n  - 20-generation analysis with raw + detrended cross-correlation\n  - Permutation Granger, Toda-Yamamoto Granger\n…[truncated 1599 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Agent",
+            "elapsed_ms": 65196
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-19T19:02:23.975006+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_analysis_a060_s43_fp32_mmct_20260519T184441.log",
+              "limit": "100"
+            }
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-19T19:02:24.276929+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (149586 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Read",
+            "elapsed_ms": 301
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-19T19:02:27.698417+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "run_mmct|python.*mmct|PermG fwd|K≥3|conclusion",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_analysis_a060_s43_fp32_mmct_20260519T184441.log",
+              "output_mode": "content",
+              "head_limit": "40"
+            }
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-19T19:02:27.749023+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "12:[Omitted long matching line]\n14:[Omitted long matching line]\n15:[Omitted long matching line]\n23:[Omitted long matching line]\n30:[Omitted long matching line]\n36:[Omitted long matching line]\n44:[Omitted long matching line]\n51:[Omitted long matching line]\n62:[Omitted long matching line]\n63:[Omitted long matching line]\n68:[Omitted long matching line]\n72:[Omitted long matching line]\n73:[Omitted long matching line]\n76:[Omitted long matching line]\n83:[Omitted long matching line]\n88:[Omitted long matching line]\n89:[Omitted long matching line]\n92:[Omitted long matching line]\n104:[Omitted long matching line]\n108:[Omitted long matching line]\n116:[Omitted long matching line]\n117:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-19T19:02:31.370683+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_analysis_a060_s43_fp32_mmct_20260519T184441.log",
+              "offset": "0",
+              "limit": "30"
+            }
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-19T19:02:31.673588+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0\tWarning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.\n1\t{\"type\":\"system\",\"subtype\":\"init\",\"cwd\":\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse\",\"session_id\":\"67c13f3e-b22f-4fc6-807c-6b98e96b6b80\",\"tools\":[\"Task\",\"AskUserQuestion\",\"Bash\",\"CronCreate\",\"CronDelete\",\"CronList\",\"Edit\",\"EnterPlanMode\",\"EnterWorktree\",\"ExitPlanMode\",\"ExitWorktree\",\"Glob\",\"Grep\",\"ListMcpResourcesTool\",\"Monitor\",\"NotebookEdit\",\"PushNotification\",\"Read\",\"ReadMcpResourceTool\",\"RemoteTrigger\",\"ScheduleWakeup\",\"Skill\",\"TaskOutput\",\"TaskStop\",\"TodoWrite\",\"ToolSearch\",\"WebFetch\",\"WebSearch\",\"Write\",\"mcp__agent-ml-research__detect_image\",\"mcp__agent-ml-research__kill_job\",\"mcp__agent-ml-research__read_registry\",\"mcp__agent-ml-research__register_artifact\",\"mcp__agent-ml-research__ssh_execute\",\"mcp__agent-ml-research__ssh_read_only\",\"mcp__agent-ml-research__update_registry\"],\"mcp_servers\":[{\"name\":\"agent-ml-research\",\"status\":\"connected\"}],\"model\":\"claude-opus-4-6\",\"permissionMode\":\"bypassPermissions\",\"slash_commands\":[\"update-config\",\"debug\",\"simplify\",\"batch\",\"fewer-permission-prompts\",\"loop\",\"schedule\",\"claude-api\",\"clear\",\"compact\",\"context\",\"heapdump\",\"init\",\"review\",\"security-review\",\"extra-usage\",\"usage\",\"insights\",\"team-onboarding\"],\"apiKeySource\":\"none\",\"claude_code_version\":\"2.1.126\",\"output_style\":\"default\",\"agents\":[\"claude\",\"Explore\",\"general-purpose\",\"Plan\",\"statusline-setup\"],\"skills\":[\"update-config\",\"debug\",\"simplify\",\"batch\",\"fewer-permission-prompts\",\"loop\",\"schedule\",\"claude-api\"],\"plugins\":[],\"analytics_disabled\":false,\"uuid\":\"7633f982-1f38-48db-8ce1-9b8a7afcdf61\",\"memory_paths\":{\"auto\":\"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/memory/\"},\"fast_mode_state\":\"off\"}\n2\t{\"type\":\"rate_limit_event\",\"rate_limit_info\":{\"status\":\"allowed\",\"resetsAt\":1779231000,\"rateLimitType\n…[truncated 48919 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Read",
+            "elapsed_ms": 302
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-19T19:02:53.142082+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_analysis_a060_s43_fp32_mmct_20260519T184441.log",
+              "offset": "3580",
+              "limit": "50"
+            }
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-19T19:02:53.192699+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<system-reminder>Warning: the file exists but is shorter than the provided offset (3580). The file has 118 lines.</system-reminder>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-19T19:02:57.465288+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_analysis_a060_s43_fp32_mmct_20260519T184441.log",
+              "offset": "100",
+              "limit": "18"
+            }
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-19T19:02:57.967630+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (57156 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-19T19:03:01.836067+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "update_registry|conclusion|PermG|TaskOutput",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_analysis_a060_s43_fp32_mmct_20260519T184441.log",
+              "output_mode": "content",
+              "head_limit": "10"
+            }
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-19T19:03:01.936895+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2:[Omitted long matching line]\n6:[Omitted long matching line]\n7:[Omitted long matching line]\n36:[Omitted long matching line]\n51:[Omitted long matching line]\n62:[Omitted long matching line]\n63:[Omitted long matching line]\n68:[Omitted long matching line]\n71:[Omitted long matching line]\n74:[Omitted long matching line]\n\n[Showing results with pagination = limit: 10]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-19T19:03:05.607470+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/worker_analysis_a060_s43_fp32*result*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs"
+            }
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-19T19:03:05.658056+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_analysis_a060_s43_fp32_mmct_20260519T184441_result.json"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-19T19:03:08.318481+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_analysis_a060_s43_fp32_mmct_20260519T184441_result.json"
+            }
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-19T19:03:08.419328+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"Registry 已更新。以下是完整分析结果。\\n\\n---\\n\\n## D105 MMCT 5-method 分析: `alpha_sweep_a060_s43_fp32`\\n\\n**T=10 (gen_0-9), gen_10 timeout (EXIT_CODE=124)**\\n\\n### 方法级汇总\\n\\n| 方法 | s42 (α=0.60, T=11) | **s43 (α=0.60, T=10)** | α=0.50 s42 (T=11) |\\n|---|---|---|---|\\n| Naive xcorr | 7/8 | **7/8** | 8/8 |\\n| Diff xcorr (FDR) | 8/8 | **6/8** | 7/8 |\\n| Threshold (3σ) | 0/8 | **0/8** | 4/8 |\\n| PermG fwd (FDR) | 3/8 | **0/8** | 6/8 |\\n| PermG rev (FDR) | 0/8 | **0/8** | 0/8 |\\n| TY Granger | 8/8 | **4/8** | 4/8 |\\n| **K≥4 (3σ)** | **3/8** | **0/8** | **4/8** |\\n| **K≥3 (3σ)** | **7/8** | **3/8** | **6/8** |\\n\\n### Pair-level (s43)\\n\\n| Pair | K(3σ) | Naive | DiffX | Thr3σ | PermG | TY |\\n|---|---|---|---|---|---|---|\\n| te→d1 | 2 | Y | Y | n | n | n |\\n| te→d2 | 3 | Y | Y | n | n | Y |\\n| te→d3 | 3 | Y | Y | n | n | Y |\\n| te→mauve | 0 | n | n | n | n | n |\\n| ece→d1 | 3 | Y | Y | n | n | Y |\\n| ece→d2 | 2 | Y | Y | n | n | n |\\n| ece→d3 | 2 | Y | Y | n | n | n |\\n| ece→mauve | 2 | Y | n | n | n | Y |\\n\\nCanary onset (3σ): token_entropy=gen1, ece=gen3. Downstream onset: **全部未达 3σ**。\\n\\n### Drift (gen0→gen9)\\n\\n| Metric | Drift |\\n|---|---|\\n| token_entropy | -28.61% |\\n| ece | +1530.81% |\\n| perplexity | +85.11% |\\n| distinct_1 | -31.02% |\\n| distinct_2 | -39.02% |\\n| distinct_3 | -37.30% |\\n| effective_rank | +61.00% |\\n| mauve | -10.96% |\\n\\n### 非单调性判定\\n\\n**CONFIRMED — 系统性现象，非 seed 噪声。**\\n\\n- α=0.50 s42: PermG=6/8, K≥4=4/8, K≥3=6/8\\n- α=0.60 s42: PermG=3/8, K≥4=3/8, K≥3=7/8 (↓)\\n- α=0.60 s43: PermG=0/8, K≥4=0/8, K≥3=3/8 (↓↓)\\n\\ns43 不仅未能恢复 s42 的信号，反而进一步下降。PermG 和 K≥4 均为 0/8。两个 seed 一致表明 α=0.60 的 lead-lag 信号弱于 α=0.50，非单调下降是 α=0.60 的固有特征。\\n\\n注意：s43 比 s42 少 1 个时间点 (T=10 vs T=11)，对 Granger 类方法有功率损失，但 PermG 从 3/8 → 0/8、K≥3 从 7/8 → 3/8 的幅度无法仅由此解释。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-19T19:03:40.472442+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analysis:alpha_sweep_a035_s42_fp32_mmct",
+              "project": "distrib_canary_collapse",
+              "task_prompt": "## 任务：D105 MMCT 5-method 分析 alpha_sweep_a035_s42_fp32\n\n实验刚完成，状态 ANALYZING，需要跑完整 MMCT 分析管线并更新 registry。\n\n### 实验信息\n- exp_id: alpha_sweep_a035_s42_fp32\n- server: westd-17855\n- output_dir: /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a035_s42_fp32\n- model: Pythia-410M, seed=42, synthetic_ratio=0.35, fp32, WikiText\n- hypothesis: D098 onset boundary 精化：α=0.35 预期仍在 blind zone。如果 PermG=0/8 → onset ≥ 0.35；如果 PermG>0 → onset 在 [0.30, 0.35]\n- parent: alpha_sweep_a030_s42_fp32\n\n### 分析步骤\n\n1. **SSH 到 westd-17855 确认数据完整性**：\n   - `ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a035_s42_fp32/gen_*/` 确认 gen 目录完整\n   - 检查每个 gen 目录有 metrics.json\n   - 检查 log：`tail -20 ~/runs/distrib_canary_collapse/alpha_sweep_a035_s42_fp32.log`\n\n2. **运行 batch_analysis.py**（生成 5method_leadlag.json）：\n   ```bash\n   source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n   cd /root/autodl-tmp/distrib_canary_collapse\n   python batch_analysis.py --exp-dir results/alpha_sweep/a035_s42_fp32\n   ```\n   如果 batch_analysis.py 不支持 --exp-dir 参数，先检查其用法：`python batch_analysis.py --help`\n   如果不存在 batch_analysis.py 适合此用途，看 `python recompute_3sigma_d105.py --help`\n\n3. **检查 5method_leadlag.json 是否已生成**：\n   - `ls results/alpha_sweep/a035_s42_fp32/analysis/5method_leadlag.json`\n   - 如果存在，读取内容提取 metrics\n\n4. **运行 MMCT**：\n   ```bash\n   python -m mmct.run_mmct\n   ```\n   或直接 `python mmct/run_mmct.py`\n\n5. **提取关键指标**（D105/D106 标准）：\n   - PermG fwd (FDR): X/8\n   - PermG rev (FDR): X/8\n   - K≥3 (3σ): X/8\n   - K≥4 (3σ): X/8\n   - Threshold onset (3σ): X/8\n   - 各 pair 级别详情\n   - Drift 幅度（gen0→最后一代）\n\n6. **与邻近 α 对比**（从 registry 读或已知）：\n   - α=0.25 s42 fp32: PermG=0/8, K≥3=0/8\n   - α=0.30 s42 fp32: 还在跑\n   - α=0.40 s42 fp32: alpha_sweep_a040_s42_fp32_v2 刚完成\n   - α=0.50 s42 fp32: PermG=6/8, K≥3=6/8\n\n7. **更新 registry**：\n   - 用 update_registry 设置 metrics（PermG fwd, K≥3, K≥4, threshold_onset）\n   - 设置 conclusion: 如果 PermG=0/8 → \"success\"（验证了 onset ≥ 0.35）；如果 PermG>0 → \"success\"（缩窄了 onset range）\n   - 设置 checkpoint_path 和 log_path\n   - 设置 status=DONE\n\n8. **TaskOutput**：输出完整的分析报告（按上面 a060_s43 的格式），包含方法级汇总表、pair 级详情、drift 表、onset boundary 判定。\n\n### 环境\n- 服务器已有 conda base 环境\n- 激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 项目路径：`/root/autodl-tmp/distrib_canary_collapse`\n",
+              "tool_groups": "['ssh', 'registry']"
+            }
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": "2026-05-19T19:03:43.387714+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_alpha_sweep_a035_s42_fp32_mmct_20260519T190341\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/logs/workers/worker_analysis_alpha_sweep_a035_s42_fp32_mmct_20260519T190341.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analysis_alpha_sweep_a035_s42_fp32_mmct_20260519T190341 started. Use get_worker_status('worker_analysis_alpha_sweep_a035_s42_fp32_mmct_20260519T190341') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 2915
+          },
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": "2026-05-19T19:04:27.814415+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_experiment_plan_with_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "tool_args": {
+              "project": "distrib_canary_collapse"
+            }
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-19T19:04:28.270420+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "distrib_canary_collapse",
+              "filters": "{'exp_id': 'alpha_sweep_a040_s42_fp32_v2'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": "2026-05-19T19:04:28.372815+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_001\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"α-sweep anchor: Pythia-410M × WikiText-103 × α=0.25 × 10 gen × seed=42\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [], \\\"notes\\\": \\\"α-sweep 基准实验。D025 统一参数。\\\", \\\"registry_id\\\": \\\"alpha_sweep_a025_s42_fp32\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"PermG_fwd\\\": \\\"0/8\\\", \\\"PermG_rev\\\": \\\"0/8\\\", \\\"K_ge_4\\\": \\\"0/8\\\", \\\"MMCT\\\": \\\"0/8\\\", \\\"MMCT_detection_rate\\\": 0, \\\"d1_drift_pct\\\": -39.15, \\\"d2_drift_pct\\\": -54.75, \\\"d3_drift_pct\\\": -56.98, \\\"mauve_drift_pct\\\": -41.86, \\\"entropy_drift_pct\\\": -4.79, \\\"ece_drift_pct\\\": 79.17, \\\"ppl_drift_pct\\\": -18.09, \\\"eff_rank_drift_pct\\\": -3.78, \\\"ppl_by_gen\\\": [26.95, 19.39, 20.37, 20.75, 21.14, 21.3, 21.48, 21.88, 21.9, 22.25, 22.07], \\\"entropy_by_gen\\\": [3.234, 2.983, 3.015, 3.039, 3.051, 3.034, 3.049, 3.067, 3.063, 3.104, 3.079], \\\"d1_by_gen\\\": [0.098, 0.0976, 0.0815, 0.0737, 0.0688, 0.0657, 0.0635, 0.0614, 0.061, 0.0601, 0.0596], \\\"mauve_by_gen\\\": [0.0311, 0.0314, 0.0326, 0.0318, 0.0314, 0.0272, 0.0242, 0.0221, 0.0207, 0.0207, 0.0181], \\\"naive_xcorr_fwd\\\": \\\"8/8\\\", \\\"diff_xcorr_fwd\\\": \\\"3/8\\\", \\\"threshold_onset_fwd\\\": \\\"5/8\\\", \\\"ty_granger_sig\\\": \\\"3/8\\\", \\\"consensus_detail_max_votes\\\": 3, \\\"hypothesis_validated\\\": true, \\\"note\\\": \\\"PermG=0/8 confirms α=0.25 is below phase transition. d1_drift=-39.15% is surprisingly large (> α=0.50's -28.7%), suggesting diversity collapse proceeds without Granger-detectable lead-lag at this α. token_entropy→distinct_1 had raw PermG p=0.007 but FDR-corrected p=0.053 (borderline).\\\"}}, {\\\"id\\\": \\\"plan_001b\\\", \\\"claim\\\": 3, \\\"description\\\": \\\"α=0.0 null control: Pythia-410M × WikiText-103 × α=0.0 × 10 gen × seed=42。FPR ground truth\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [], \\\"notes\\\": \\\"D028: perm_granger/TY 0% FPR，naive 100% FPR\\\", \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_001c\\\", \\\"claim\\\": 2, \\\"des\n…[truncated 34637 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "elapsed_ms": 558
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": "2026-05-19T19:04:28.678864+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3477}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 408
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": "2026-05-19T19:05:21.682855+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "关键上下文已获取。当前 dose-response onset 图谱：\n\n| α | PermG fwd | 状态 |\n|---|-----------|------|\n| 0.25 | 0/8 | done |\n| 0.30 | TBD | RUNNING |\n| **0.35** | **TBD** | **ANALYZING (此实验)** |\n| 0.40 | 0/8, K≥3=6/8 | done |\n| 0.45 | TBD | RUNNING |\n| 0.50 | 6/8 | done |\n\nα=0.40 已确认 PermG=0/8，onset 至少 ≥ 0.40。如果 α=0.35 也是 0/8，符合预期（blind zone 延伸到 0.40）。α=0.45 将成为关键 tiebreaker。\n\n分析 Worker 已派出，等待 `[WORKER DONE]` 回调。westd-17855:cuda:3 目前空闲，待分析完成后在汇报 Director 时一并请示下一步分配。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:alpha_sweep_a035_s42_fp32"
+          },
+          "id": "event-000116"
+        }
+      ],
+      "message_count": 116
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-alpha-sweep-a035-s42-fp32.md"
+}

@@ -1,0 +1,116 @@
+{
+  "schema_version": "1.0",
+  "id": "6ab7f3f9bf503cd4191a",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "exp qwen35 dryrun launch",
+  "task_key": "worker_exp_qwen35_dryrun_launch_20260518T195738",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_qwen35_dryrun_launch_20260518T195738.log",
+    "occurrence": 1,
+    "bytes": 2701297,
+    "sha256": "2cc0ef5c568c3f5d9a412b31b88edceab51294db1c056371c3a411ab3afdddbe"
+  },
+  "statistics": {
+    "messages": 2234,
+    "user_turns": 2,
+    "tool_calls": 999,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 5,
+      "assistant": 220,
+      "tool_call": 999,
+      "tool_result": 999,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 943,
+      "chunks": [
+        {
+          "path": "6ab7f3f9bf503cd4191a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6ab7f3f9bf503cd4191a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "6ab7f3f9bf503cd4191a-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "6ab7f3f9bf503cd4191a-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "6ab7f3f9bf503cd4191a-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "6ab7f3f9bf503cd4191a-part-0006.json",
+          "message_count": 43
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 1133,
+      "chunks": [
+        {
+          "path": "6ab7f3f9bf503cd4191a-part-0006.json",
+          "message_count": 137
+        },
+        {
+          "path": "6ab7f3f9bf503cd4191a-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "6ab7f3f9bf503cd4191a-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "6ab7f3f9bf503cd4191a-part-0009.json",
+          "message_count": 180
+        },
+        {
+          "path": "6ab7f3f9bf503cd4191a-part-0010.json",
+          "message_count": 180
+        },
+        {
+          "path": "6ab7f3f9bf503cd4191a-part-0011.json",
+          "message_count": 180
+        },
+        {
+          "path": "6ab7f3f9bf503cd4191a-part-0012.json",
+          "message_count": 96
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 158,
+      "chunks": [
+        {
+          "path": "6ab7f3f9bf503cd4191a-part-0012.json",
+          "message_count": 84
+        },
+        {
+          "path": "6ab7f3f9bf503cd4191a-part-0013.json",
+          "message_count": 74
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-qwen35-dryrun-launch.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d269f61c1c0ac4c8167",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "figure consensus workflow d040",
+  "task_key": "worker_figure_consensus-workflow-d040_20260515T164308",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_consensus-workflow-d040_20260515T164308_result.json",
+    "occurrence": 1,
+    "bytes": 460,
+    "sha256": "19c6a30564927978104ecfb65b10038e3202a2caa0bfb832d3fd9550c85c8551"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。PDF 输出在 `artifacts/figures/consensus_workflow.pdf`，已注册为 `art_20260515_390d50`。\n\n数据验证：\n- FPR: `[1.0, 0.75, 0.375, 0.0, 0.0]` ✓\n- FNR (S≥3): `[0.0, 0.0, 0.0, 0.0, 0.5]` ✓\n- Panel (a) 4-stage funnel：8→4→0→0 sig pairs，FPR 100%→50%→0%→0%\n- Panel (b) sweet spot at K=4 标注，FPR cliff 和 FNR jump 箭头均在位\n- Panel (c) Publication-grade 行绿色高亮，4 级配置卡片"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-consensus-workflow-d040.md"
+}

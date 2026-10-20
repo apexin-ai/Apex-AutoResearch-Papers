@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc78e04ed88cf5733bda",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diagnose urgent status and analyze",
+  "task_key": "worker_diagnose_urgent_status_and_analyze_20260517T233942",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_urgent_status_and_analyze_20260517T233942_result.json",
+    "occurrence": 1,
+    "bytes": 1477,
+    "sha256": "64b91fc438c9a56d8b2fce8c78d33b064ebf66dd348cb231a6ad0e67d9501233"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 产出总结\n\n### 1. 实验状态\n\n| 实验 | 状态 |\n|------|------|\n| **Pythia-1.4B / Wiki (s42)** | 完成 (EXIT_CODE=0, gen_0~gen_10 全部完成) |\n| **Pythia-1B / C4 (s43)** | 运行中 — gen_9 training (1537/5000 steps, ~30%), 预计 ~25min 完成全部 |\n\n### 2. Pythia-1.4B 8-pair 分析结果\n\n8 canonical pairs: {token_entropy, ECE} → {perplexity, distinct_1, distinct_2, distinct_3}\n\n| Method | Significant pairs |\n|--------|------------------|\n| Naive | 7/8 |\n| Diff XCorr | 6/8 |\n| Threshold | 8/8 |\n| PermG (fwd) | 5/8 |\n| PermG (rev) | **0/8** |\n| TY | 0/8 |\n| K≥4/5 | **5/8** |\n\n**对比 410M baseline (K≥4=6/8, PermG=6/8, TY=6/8):**\n- K≥4 降低 (5/8 vs 6/8)，主要因为 token_entropy→perplexity (K=1) 和 token_entropy→distinct_3 (K=3) 两对未达阈值\n- TY 全部失效 (0/8) — 与 GPT-2-medium 相同，短时序 + 高积分阶数导致 df_resid 过低\n- PermG fwd 也有所下降 (5/8 vs 6/8)\n- 反向 PermG 保持 0/8 — 方向性完美，与所有其他实验一致\n- Threshold 表现最强 (8/8) — 与 OPT-1.3B 相同模式\n\n### 3. Table 7 已更新\n\n`docs/paper/experiments.tex` Scale 行已填入:\n```\nScale ($3.4\\times$) & Pythia-1.4B / Wiki & 7/8 & 6/8 & 8/8 & 5/8 & 0/8 & 0/8 & 5/8\n```\nCaption 中 `[TBD]` 注释已移除。\n\n### 4. C4 seed-43 进度\n\ngen_0~gen_8 完整，gen_9 正在训练 (30% done, ~8.63 it/s)。预计 ~25 分钟完成全部 10 代。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-urgent-status-and-analyze.md"
+}

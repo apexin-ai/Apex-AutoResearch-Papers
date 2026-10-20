@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73477d1bb3d9b87b0057",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis d102 prep for t15 s43",
+  "task_key": "worker_analysis_d102_prep_for_t15_s43_20260523T021140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d102_prep_for_t15_s43_20260523T021140_result.json",
+    "occurrence": 1,
+    "bytes": 1812,
+    "sha256": "ea4793c6e56bcbff8b49c6941e53b719a2e8960b3c9573a1ac9d58f5dcc44d98"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## D102 分析环境就绪性报告\n\n### westd-17855\n\n| 检查项 | 状态 | 详情 |\n|--------|------|------|\n| `run_5method_analysis_d102.py` | ✅ | 458 行，与 19828 一致 |\n| `permutation_granger.py` | ✅ | 355 行，与 19828 一致 |\n| D105 3sigma 阈值文件 | ✅ | `results/analysis/3sigma_recompute_d105_17855.json`（含 per_pair 数据） |\n| scipy | ✅ | 1.17.1 |\n| statsmodels | ✅ | 0.14.6 |\n| mauve-text | ✅ | 已安装（conda base） |\n| 磁盘空间 | ⚠️ | **21G 可用 / 350G（95% 已用）** — 分析脚本本身不需要大量磁盘，但非常紧张 |\n| T=15 实验目录 | ✅ | `t15_a045_s42_fp32_14b`, `t15_a050_s42_fp32_14b`, `t15_a060_s42_fp32_14b` 已存在 |\n| T=10 s43 实验目录 | ✅ | `14b_t10_a060_s43_fp32`, `14b_t10_a075_s43_fp32`, `t10_a045_s43_fp32_14b` 已存在 |\n\n### westd-19828\n\n| 检查项 | 状态 | 详情 |\n|--------|------|------|\n| `run_5method_analysis_d102.py` | ✅ | 458 行，与 17855 一致 |\n| `permutation_granger.py` | ✅ | 355 行，与 17855 一致 |\n| D105 3sigma 阈值文件 | ✅ | `results/analysis/3sigma_recompute_d105.json`（多实验覆盖） |\n| scipy | ✅ | 1.17.1 |\n| statsmodels | ✅ | 0.14.6 |\n| mauve-text | ✅ | 已安装（conda base） |\n| 磁盘空间 | ✅ | **105G 可用 / 250G（59% 已用）** |\n| T=10 s43 实验目录 | ✅ | `14b_t10_a050_s43_fp32` 已存在 |\n| 额外分析脚本 | ✅ | `d102_rerun_8pair.py` 也在此服务器 |\n\n### 总结\n\n两台服务器 D102 分析环境**均已就绪**，脚本版本一致（458 行），Python 依赖齐全。\n\n唯一关注点：**westd-17855 磁盘仅剩 21G（95%）**。D102 分析输出 JSON 较小（几百 KB），不会有问题。但如果有新实验要跑在 17855 上，需要先清理空间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d102-prep-for-t15-s43.md"
+}

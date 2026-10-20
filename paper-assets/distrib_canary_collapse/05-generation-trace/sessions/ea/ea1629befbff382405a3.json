@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "ea1629befbff382405a3",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "exp launch 69b a100 s42",
+  "task_key": "worker_exp_launch_69b_a100_s42_20260518T165726",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_launch_69b_a100_s42_20260518T165726.log",
+    "occurrence": 1,
+    "bytes": 713513,
+    "sha256": "dfd52c091ed7747e7d4d3c612d3bda080320a5bf7a99a2cd7f5506d143d8d91d"
+  },
+  "statistics": {
+    "messages": 570,
+    "user_turns": 0,
+    "tool_calls": 243,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 81,
+      "tool_call": 243,
+      "tool_result": 243,
+      "record": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 570,
+      "chunks": [
+        {
+          "path": "ea1629befbff382405a3-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ea1629befbff382405a3-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ea1629befbff382405a3-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "ea1629befbff382405a3-part-0004.json",
+          "message_count": 30
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-launch-69b-a100-s42.md"
+}

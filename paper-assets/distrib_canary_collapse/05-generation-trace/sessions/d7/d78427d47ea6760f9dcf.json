@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d78427d47ea6760f9dcf",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops disk cleanup d060",
+  "task_key": "worker_ops_disk_cleanup_d060_20260518T070223",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk_cleanup_d060_20260518T070223_result.json",
+    "occurrence": 1,
+    "bytes": 1634,
+    "sha256": "63bdb23b5548948810d18a1b57b272a6fe45c4182aa5dcd9245214a2be0b2eee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总如下：\n\n---\n\n## 1. 6.9B 模型下载状态：**完成**\n\n- `model-00001-of-00002.safetensors` (9.3G) + `model-00002-of-00002.safetensors` (3.7G) = 13G\n- Tokenizer 验证通过 (vocab=50277)\n- 路径：`/root/autodl-tmp/.hf_cache/pythia-6.9b-local/`\n\n## 2. 磁盘空间\n\n| | 清理前 | 清理后 |\n|---|---|---|\n| 可用空间 | 87G | 138G |\n| 已用 | 164G | 113G |\n| **释放** | | **~51G** |\n\n## 3. 清理明细\n\n| 目录 | 清理内容 | 释放空间 |\n|---|---|---|\n| `pythia14b_wiki_a100_s42` | gen_6-9 checkpoint (4×5.3G) + synthetic_data | ~21.2G |\n| `pythia1b_c4_a100_s43` | gen_1-9 checkpoint (9×3.8G) + synthetic_data | ~34.2G |\n| 其余 generalize + alpha_sweep | synthetic_data (均很小) | ~0.2G |\n| gpt2m v1/v2、a025、MVP | 不存在，无需清理 | 0 |\n\n保留完整：所有 `metrics.json`、`gen_10/checkpoint`、`all_metrics.json`、`analysis/` 目录。两个活跃实验（gpt2m cuda:0, pythia-1.4b s43 cuda:1）未触碰。\n\n## 4. Checkpoint 自动清理建议\n\n`iterative_train.py` 第 272-276 行每个 gen 结束时无条件保存 checkpoint，无自动清理逻辑。可在第 276 行后加：\n\n```python\n# Auto-cleanup: keep gen_0 + last 2 checkpoints\nif gen >= 3:\n    old_ckpt = os.path.join(args.output_dir, f\"gen_{gen-2}\", \"checkpoint\")\n    if os.path.isdir(old_ckpt):\n        shutil.rmtree(old_ckpt)\n```\n\n对于 6.9B (~14G/checkpoint)，这能在训练中自动节省 ~100G。改动简单（3 行），但由于当前两个实验正在跑，建议下次启动新实验前再加入，避免影响正在运行的进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-d060.md"
+}

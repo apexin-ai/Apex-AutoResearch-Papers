@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef1d79830544016933ce",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops deploy t10 a050 s44 cuda2 17855",
+  "task_key": "worker_ops_deploy-t10-a050-s44-cuda2-17855_20260523T081910",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_deploy-t10-a050-s44-cuda2-17855_20260523T081910_result.json",
+    "occurrence": 1,
+    "bytes": 716,
+    "sha256": "7ad4e838e88f42710cfd8d430e6c8bebe47a804c5b78c54890da75caabf11eff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**blocker: westd-17855 磁盘仅剩 5.8G/350G (99%)。**\n\n每个 14b T=10 实验 ~5.3G，部署 2 个 (a050_s44 + a060_s44) 需要 ~10.6G，C007 要求 2x 余量即 ≥21G。\n\nGPU 2 和 3 空闲可用，但磁盘不够。\n\n可选方案：\n1. **清理已完成实验** — 服务器上有大量已完成的 14b 实验（例如 `t10_a045_s42_fp32_14b` 5.3G, `t10_a045_s43_fp32_14b` 11G, `t15_a045_s42_fp32_14b` 11G 等），如果数据已分析并注册，可以清理腾出空间\n2. **部署到其他服务器** — 如果有其他磁盘充足的服务器\n3. **一次只部署一个** — 5.8G 刚好够一个 5.3G 的实验，但不满足 C007 的 2x 余量要求\n\n请指示如何处理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-deploy-t10-a050-s44-cuda2-17855.md"
+}

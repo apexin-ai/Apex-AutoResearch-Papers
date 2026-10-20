@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "903ecbac9d1db33e0a8d",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops gpt2m weights fix",
+  "task_key": "worker_ops_gpt2m-weights-fix_20260515T115129",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpt2m-weights-fix_20260515T115129_result.json",
+    "occurrence": 1,
+    "bytes": 649,
+    "sha256": "6ce5c693a6beb4c88984aedb00c5d7cbdeaada90da0a57f60272041fe7f80b66"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果**：\n- **权重路径**: `/root/autodl-tmp/models/gpt2-medium/`（symlinks → HF cache blobs）\n- **参数量**: 354,823,168 ✓\n- **vocab**: 50,257 ✓\n- **目录内容**: config.json, generation_config.json, merges.txt, model.safetensors (1.5GB FP32), tokenizer.json, tokenizer_config.json, vocab.json — 全部完整\n- **清理**: ModelScope `._____temp` 残留已删除\n\n问题根因：HF Hub 已经完整下载了 gpt2-medium 到 cache（`/root/autodl-tmp/.hf_cache/models--gpt2-medium/`），但 ModelScope 的并行下载卡在 temp 目录未 finalize。实际权重完好，无需重新下载。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpt2m-weights-fix.md"
+}

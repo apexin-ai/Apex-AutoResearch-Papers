@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e861fd7041ef62ec5589",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code a000 analysis script",
+  "task_key": "worker_code_a000_analysis_script_20260516T162214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_a000_analysis_script_20260516T162214_result.json",
+    "occurrence": 1,
+    "bytes": 684,
+    "sha256": "04ab267c79af022fab667938dc02a31416c13cd25260f7a259c35060ffbcecba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整管线在 a075_s43 上验证通过，结果与预期一致（4/8 robust pairs, 5/8 perm FDR sig）。\n\n**产出已就绪:**\n\n| 文件 | 说明 |\n|------|------|\n| `/root/autodl-tmp/distrib_canary_collapse/run_5method_analysis.py` | 通用 CLI 脚本，支持 `--data_dir`, `--alpha`, `--seed`, `--dry-run` |\n| `/root/autodl-tmp/distrib_canary_collapse/run_a000_batch_analysis.sh` | 一键跑 a000 两个 seed |\n\n**a000 当前状态:** s43 和 s44 各有 gen_0~gen_5（共 5 代），训练完成到 gen_10 后执行 `bash run_a000_batch_analysis.sh` 即可。脚本会自动从 `gen_X/metrics.json` 聚合数据，无需预先生成 `all_metrics.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-a000-analysis-script.md"
+}

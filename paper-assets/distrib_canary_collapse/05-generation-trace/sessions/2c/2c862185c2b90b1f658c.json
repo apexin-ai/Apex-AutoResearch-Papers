@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c862185c2b90b1f658c",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "bugfix csv scale check fdr",
+  "task_key": "worker_bugfix_csv_scale_check_fdr_20260520T171938",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_bugfix_csv_scale_check_fdr_20260520T171938_result.json",
+    "occurrence": 1,
+    "bytes": 1911,
+    "sha256": "b41cc9afbd71bb03e2553d309a3a0cc3b517d558f00b9f70a8722b28f186b6d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结论\n\n**CSV `dose_response_d120_compiled.csv` 的 PermG 字段已正确使用 FDR-corrected 值，无需修正。**\n\n### 详细证据\n\n**scale_check/pythia14b_a050_s42（Reviewer 质疑的行）：**\n\n逐 pair 验证 forward perm_granger：\n\n| Pair | p_value | significant (pre-FDR) | fdr_p | significant_fdr |\n|------|---------|----------------------|-------|----------------|\n| te→d1 | 0.0470 | true | 0.0921 | **false** |\n| te→d2 | 0.0768 | false | 0.1024 | false |\n| te→d3 | 0.0576 | false | 0.0921 | false |\n| te→mauve | 0.1156 | false | 0.1321 | false |\n| ece→d1 | 0.0142 | true | 0.0437 | **true** |\n| ece→d2 | 0.0164 | true | 0.0437 | **true** |\n| ece→d3 | 0.0124 | true | 0.0437 | **true** |\n| ece→mauve | 0.2158 | false | 0.2158 | false |\n\n- Pre-FDR count = 4/8, post-FDR count = **3/8**\n- CSV permg_count = **3** — 使用的是 FDR 校正后的值\n- JSON summary `perm_granger_fdr_forward_sig: 3` 一致\n\n**全面交叉验证（9 个实验，JSON summary vs CSV）：**\n\n| 实验 | JSON | CSV | 匹配 |\n|------|------|-----|------|\n| scale_check/pythia14b_a050_s42 | 3 | 3 | ✓ |\n| scale_check/pythia69b_a100_s42 | 7 | 7 | ✓ |\n| scale_check/pythia69b_a100_s43 | 6 | 6 | ✓ |\n| generalize/pythia14b_a100_s42 | 2 | 2 | ✓ |\n| generalize/pythia14b_a100_s43 | 6 | 6 | ✓ |\n| generalize/smollm3_3b_a100_s42 | 3 | 3 | ✓ |\n| generalize/gpt2m_a100_s43_bf16 | 0 | 0 | ✓ |\n| intervention/reactive_d1_s42 | 8 | 8 | ✓ |\n| scale/14b_c4_s42_fp32 | 8 | 8 | ✓ |\n\n**数据流确认：** `t20_post_analysis.py:74` 明确使用 `results[\"summary\"][\"perm_granger_fdr_forward_sig\"]`，即 FDR 校正后的计数。\n\n**Reviewer 的 \"0/8\" 判断有误。** pythia14b_a050_s42 的 FDR-corrected PermG 确实是 3/8（ece 相关的 3 对 pair 在 FDR 校正后仍显著，fdr_p ≈ 0.044 < 0.05）。CSV 无需修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/bugfix-csv-scale-check-fdr.md"
+}

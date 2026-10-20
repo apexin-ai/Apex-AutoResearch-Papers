@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8253a1016b7e315ad730",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "check verify fpr fix",
+  "task_key": "worker_check_verify_fpr_fix_20260517T173738",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_verify_fpr_fix_20260517T173738_result.json",
+    "occurrence": 1,
+    "bytes": 710,
+    "sha256": "0a314e26cb09a582eae24dddc90ff0ae30f3566ec54ad78e73278fd9cfb11357"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有修正已确认生效，汇总如下：\n\n### 各处当前实际值\n\n| 位置 | 内容 | 状态 |\n|------|------|------|\n| **Line 319** (`tab:fpr_fnr` Threshold 行) | `20.8\\% (12.5--37.5)` | 正确 |\n| **Line 114** (`tab:method_comparison` Threshold 行) | `20.8 & 0 & 0 & 33.3 & 100 & 20.8` | 正确 |\n| **Line 232** (正文 FPR 描述) | `20.8\\% (threshold)` | 正确 |\n| **Line 59** (62.5% 出现处) | 指 spurious-signal rate excluding TY，非 Threshold FPR，无需修改 | 正确 |\n\n- `grep \"29.2\"` 返回 exit code 1（零匹配），旧值已完全清除\n- 无需额外修复\n- 编译状态未重新验证（文件内容已正确，无变更需要触发编译）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-verify-fpr-fix.md"
+}

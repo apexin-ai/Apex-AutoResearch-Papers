@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3582b46ea8793ab10768",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "exp null s51 fp32",
+  "task_key": "worker_exp_null_s51_fp32_20260524T153657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_null_s51_fp32_20260524T153657_result.json",
+    "occurrence": 1,
+    "bytes": 316,
+    "sha256": "2f89fc1b8c1ce59148b7ae2994b0325528affaa02689ca8fa2b2312757cff195"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job is running — model loading successfully. \n\n**Summary**: Null-control experiment `null_fpr_s51_fp32` submitted on westd-19828 (cuda:0). Config matches previous null seeds (Pythia-410M, α=0.0, T=10, fp32, 5k steps/gen, wikitext103_5k). Registry updated to RUNNING. Cron will monitor completion."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-null-s51-fp32.md"
+}

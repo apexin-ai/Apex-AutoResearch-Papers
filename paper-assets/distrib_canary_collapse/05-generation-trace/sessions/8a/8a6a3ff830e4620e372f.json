@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a6a3ff830e4620e372f",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis alpha sweep a025 v3",
+  "task_key": "worker_analysis_alpha_sweep_a025_v3_20260515T012002",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_alpha_sweep_a025_v3_20260515T012002_result.json",
+    "occurrence": 1,
+    "bytes": 1600,
+    "sha256": "eb38b82c52ca60911610f3eea91220060622127075f16d681887d5ddaa713546"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据完整，分析结果如下：\n\n---\n\n## α=0.25 实验结果分析\n\n### conclusion: **success**\n\n### Metrics (gen0 → gen10)\n\n| 指标 | gen0 | gen10 | drift% | α=0.00 drift% | 对比 |\n|------|------|-------|--------|---------------|------|\n| token_entropy | 3.2342 | 3.1017 | **-4.1%** | -5.1% | 相近 |\n| ECE | 0.01080 | 0.01942 | **+79.7%** | +51.7% | **更强** |\n| perplexity | 26.95 | 22.32 | **-17.2%** | -21.7% | 相近 |\n| distinct_1 | 0.0982 | 0.0586 | **-40.3%** | -13.8% | **远更强** |\n| distinct_2 | 0.5178 | 0.2219 | **-57.1%** | — | — |\n| distinct_3 | 0.8127 | 0.3263 | **-59.9%** | — | — |\n| mauve | 0.0341 | 0.0163 | **-52.2%** | — | — |\n| effective_rank | 46.61 | 45.30 | -2.8% | — | — |\n\n### 分析要点\n\n1. **Diversity collapse 在 α=0.25 下剧烈加速**：distinct_1 下降 40.3%（α=0.00 仅 13.8%），distinct_2/3 均超过 57% 下降，确认合成数据污染率越高 collapse 越严重。\n2. **ECE canary 信号更强**：ECE drift +79.7% vs baseline +51.7%，ECE 作为早期预警指标在高 α 下响应更灵敏，支持 canary 假设。\n3. **Token entropy drift 大致持平**（-4.1% vs -5.1%），说明 token_entropy 对 α 变化不如 ECE 和 diversity 指标敏感。\n\n### 路径\n\n- **log_path**: `~/runs/distrib_canary_collapse/alpha_sweep_a025_s42_v3.log`\n- **checkpoint_path**: `/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s42/gen_10/checkpoint/`\n- **metrics_path**: `/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s42/all_metrics.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-alpha-sweep-a025-v3.md"
+}

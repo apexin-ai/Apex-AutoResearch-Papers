@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "962c6ab4c90d317304ee",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "check interv react s43 fp32 exit",
+  "task_key": "worker_check_interv_react_s43_fp32_exit_20260519T180441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_interv_react_s43_fp32_exit_20260519T180441_result.json",
+    "occurrence": 1,
+    "bytes": 543,
+    "sha256": "b042b595db50a5205bdbe1bcb5ad4021b52e190a4f3219787155d2f7b7a2b442"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**结论：interv_react_s43_fp32 实验成功完成。**\n\n| 项目 | 值 |\n|------|-----|\n| EXIT_CODE | 0 |\n| Generations | gen_0 – gen_10 全部完整 |\n| 干预触发 | Gen 2（distinct_1: 0.0983 → 0.0827，跌幅 15.8%） |\n| 干预效果 | perplexity 从 158.2 (Gen 2) 恢复到 ~21.4 (Gen 3+) |\n| 干预持续 | Gen 3-10 全程 α=0.0（未自动恢复到 α=1.0） |\n| 与 s42 一致性 | Gen 2 触发干预，与 s42 一致 |\n\nRegistry 已更新为 DONE/success，cron 监控已删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-interv-react-s43-fp32-exit.md"
+}

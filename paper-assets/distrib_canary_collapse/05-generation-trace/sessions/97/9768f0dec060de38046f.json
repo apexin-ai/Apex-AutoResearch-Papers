@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9768f0dec060de38046f",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "infra prep 5k prompts",
+  "task_key": "worker_infra_prep-5k-prompts_20260514T053849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_prep-5k-prompts_20260514T053849_result.json",
+    "occurrence": 1,
+    "bytes": 1053,
+    "sha256": "6bf64f58e71915f44d98fd4551e5a3fa86cd0a9a50626992ece86d60de50e4f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完毕。脚本只写入 `--output_dir` 指定的目录，我的命令没有覆盖旧数据。旧数据 `data/wikitext103/prompts` 本来就是 5000 条（脚本默认 `n_prompts=5000`），并非预期的 1000。\n\n汇报如下：\n\n---\n\n**新数据集 `data/wikitext103_5k/`** — 已生成并验证通过：\n- Train: 716,506 examples\n- Eval: 1,564 examples\n- Prompts: 5,000 ✓\n\n**旧数据 `data/wikitext103/`** — 未被本次操作修改（我的命令仅写入 `wikitext103_5k/`），但旧数据 prompts 数量是 **5000**，不是 1000。`prepare_data.py` 的默认值就是 `n_prompts=5000`，所以旧数据大概率当初也是按默认值生成的。如果 rep42/rep43 确实使用了 1000 prompts，可能是在训练脚本侧做的截断，而非数据集本身只有 1000 条。\n\n**rep42/rep43 运行状态** — **未在运行**：\n- GPU 无计算进程（`nvidia-smi` 返回空）\n- 日志文件 `mvp_rep42.log` / `mvp_rep43.log` 为空\n- Results 目录 `results/mvp/rep_42/` 和 `rep_43/` 不存在"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-prep-5k-prompts.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f45ef9e471576dfa3841",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code c2 opt13b a050 s43",
+  "task_key": "worker_code_c2_opt13b_a050_s43_20260525T003345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_c2_opt13b_a050_s43_20260525T003345_result.json",
+    "occurrence": 1,
+    "bytes": 143,
+    "sha256": "296ce2c7d8ad1f2dcb3e331232abcc2d55ed01a0fc6ae766ef2344ea1b866822"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`c2_opt13b_a050_s43_fp32` 已在 westd-19828:cuda:1 上运行，Generation 0 进行中。cuda:0 的 s42 未受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-c2-opt13b-a050-s43.md"
+}

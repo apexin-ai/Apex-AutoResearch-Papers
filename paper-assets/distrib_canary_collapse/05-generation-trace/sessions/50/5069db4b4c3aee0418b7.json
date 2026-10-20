@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5069db4b4c3aee0418b7",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis first diff montecarlo c4",
+  "task_key": "worker_analysis_first_diff_montecarlo_c4_20260521T022122",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_first_diff_montecarlo_c4_20260521T022122_result.json",
+    "occurrence": 1,
+    "bytes": 179,
+    "sha256": "2d7b455eb94aef3bc90adeb96261b8a6d41b4e2a0c1854e2d8f862b9fa20c40e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已在 westd-17855 后台运行 (PID 421289)。当前速度约 4min/condition，12 conditions 预计 ~48min 完成。已设置 4.5min 后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-first-diff-montecarlo-c4.md"
+}

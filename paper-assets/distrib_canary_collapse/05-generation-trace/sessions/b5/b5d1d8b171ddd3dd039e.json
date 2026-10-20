@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5d1d8b171ddd3dd039e",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops check t10 a050 s44 d102",
+  "task_key": "worker_ops_check-t10-a050-s44-d102_20260523T205305",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-t10-a050-s44-d102_20260523T205305_result.json",
+    "occurrence": 1,
+    "bytes": 646,
+    "sha256": "bef5ccb30c1f4fa3418fe0d31834d600cba3184a2a978dad5c1e0b69a142fade"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**t10_a050_s44_fp32_14b** — 已完成，registry 已更新为 DONE(success)\n- distinct_3: 0.819→0.503 (↓39%), ppl: 19.8→34.4 (↑74%)\n- D102 (d3): Robust pairs **0/2**，PermG 2/2，threshold_onset 0/2，TY 0/2\n- 与 s42(K≥3=TBD)、s43(K≥3=1/8) 一致：α=0.50 onset boundary 下 consensus 弱\n\n**仍在运行的 4 个实验：**\n\n| 实验 | 服务器 | 进度 | 预估剩余 |\n|---|---|---|---|\n| t10_a045_s44 | 17855 | 9/11 gen | ~2h |\n| t15_a045_s43 | 17855 | 15/16 gen | ~1h |\n| t15_a075_s43 | 19828 | 14/16 gen | ~2h |\n| t10_a075_s44 | 19828 | 11/11 gen (写 metrics 中) | <1h |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-t10-a050-s44-d102.md"
+}

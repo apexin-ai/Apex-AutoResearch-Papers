@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42fcb7aeab1ea60e1f47",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code cross alpha analysis script",
+  "task_key": "worker_code_cross_alpha_analysis_script_20260515T063902",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cross_alpha_analysis_script_20260515T063902_result.json",
+    "occurrence": 1,
+    "bytes": 755,
+    "sha256": "52590b4816252c0349d8551d0c9c18a8cd9c2c3ecb301474bdb16e41f9087b45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`cross_alpha_analysis.py` 已部署到 `/root/autodl-tmp/distrib_canary_collapse/`，验证通过：\n\n**验证结果对比 v3：**\n- dose-response drift%：完全一致（a025 d1=-40.3%, a050 d1=-37.3%）\n- entropy→d1 at α=0.25：p_raw=0.0152（v3: 0.0152）✓\n- ECE→d1 at α=0.50：p_raw=0.0208（v3: 0.0211，permutation 随机性内）✓\n- cross-correlation：entropy_vs_d1 peak lag=1 一致，r 值匹配\n- 0/24 FDR-sig，符合预期\n\n**用法：**\n```bash\n# 自动扫描所有 α 目录\npython cross_alpha_analysis.py\n\n# 指定目录 + 自定义参数\npython cross_alpha_analysis.py --alpha-dirs a000_s42 a025_s42 a050_s42 a075_s42 --n-perms 5000\n\n# a075 完成后直接跑\npython cross_alpha_analysis.py\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cross-alpha-analysis-script.md"
+}

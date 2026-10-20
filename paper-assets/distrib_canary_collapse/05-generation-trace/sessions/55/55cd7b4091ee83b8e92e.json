@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "55cd7b4091ee83b8e92e",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops d102 t15 a075 s42",
+  "task_key": "worker_ops_d102-t15-a075-s42_20260523T061655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d102-t15-a075-s42_20260523T061655_result.json",
+    "occurrence": 1,
+    "bytes": 1674,
+    "sha256": "01abe79dc4c9776ba14f31f76b1914264a3d41d304825d4f831199156567fbb3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## D102 分析结果: scale_14b_t15_a075_s42_fp32\n\n### 产出 1: D102 完整指标表\n\n| 指标 | 值 |\n|---|---|\n| **PermG FDR fwd** | **6/8** |\n| PermG FDR rev | 0/8 |\n| DiffXCorr FDR fwd | 8/8 |\n| DiffXCorr FDR rev | 8/8 |\n| Threshold fwd | 7/8 |\n| TY fwd | 5/8 |\n| **K≥3** | **6/8** |\n| **K≥4** | **6/8** |\n\nDrift: PPL +390.5%, entropy -29.5%, ECE +3091.2%, MAUVE -3.6%, distinct₁ -19.4%\n\nConsensus 明细: 6 pairs 达到 ≥4/5 方法一致，仅 mauve 两对失败（token_entropy→mauve 1/5, ece→mauve 0/5）。\n\n### 产出 2: 与 410M α=0.75 对比\n\n| 实验 | PermG fwd | K≥3 | K≥4 | PPL drift |\n|---|---|---|---|---|\n| **410M T=10** (alpha_sweep_a075_s42_fp32) | 6/8 | 6/8 | 0/8 | +188.3% |\n| **1.4B T=15** (scale_14b_t15_a075_s42_fp32) | 6/8 | 6/8 | 6/8 | +390.5% |\n\nPermG fwd 一致（6/8），但 1.4B 在 K≥4 上从 0→6，方法间一致性大幅提升。PPL drift 也翻倍（188→390%），说明 1.4B+T=15 下 collapse 更剧烈。\n\n### 产出 3: 1.4B T=15 完整行汇总\n\n| α | PermG fwd | PermG rev | K≥3 | K≥4 | Thresh fwd | DiffXCorr fwd | TY fwd | PPL drift |\n|---|---|---|---|---|---|---|---|---|\n| 0.45 | 3/8 | 0/8 | 4/8 | — | 2/8 | 6/8 | 6/8 | — |\n| 0.50 | 3/8 | 0/8 | 2/8 | — | 2/8 | 8/8 | 3/8 | — |\n| 0.60 | 6/8 | 0/8 | 6/8 | 3/8 | 6/8 | 7/8 | 1/8 | +246.5% |\n| **0.75** | **6/8** | **0/8** | **6/8** | **6/8** | **7/8** | **8/8** | **5/8** | **+390.5%** |\n\nα=0.60 是 PermG 跳跃点（3→6），α=0.75 进一步巩固——K≥4 从 3/8 跳至 6/8，所有方法高度一致。Forward asymmetry 在全部 α 下完美保持（reverse 全为 0/8）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d102-t15-a075-s42.md"
+}

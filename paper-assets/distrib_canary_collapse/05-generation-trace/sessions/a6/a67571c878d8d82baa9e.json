@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a67571c878d8d82baa9e",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis smollm3 3b wiki a100 s42 v3",
+  "task_key": "worker_analysis_smollm3_3b_wiki_a100_s42_v3_20260519T190816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_smollm3_3b_wiki_a100_s42_v3_20260519T190816_result.json",
+    "occurrence": 1,
+    "bytes": 1107,
+    "sha256": "20402c4964954cca34ad791b7c57b878cd910f140aa4a633d1feceedc76f477a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n## SmolLM3-3B fp32 (s42, α=1.0) — D102+D105 分析结果\n\n### Table 7 指标\n| 指标 | 值 |\n|------|-----|\n| **PermG fwd** | **3/8** (ece→d1, ece→d2, ece→d3) |\n| PermG rev | 0/8 |\n| K≥3(3σ) | 0/8 |\n| K≥4(3σ) | 0/8 |\n| Thr(3σ) | 0/8 |\n| DiffXCorr FDR | 6/8 |\n\n### 结论：**negative**（PermG 3/8 < 4/8 阈值）\n\n### 关键观察\n- **Collapse 确实发生**：PPL +4877%, ECE +8220%, entropy -33.5%, d1 -32.2%\n- **ECE canary 强**：PermG 3/3 distinct pairs 显著，但 0/1 mauve pair\n- **Entropy canary 弱**：PermG 0/4（全部 FDR 不显著）\n- **Mauve 全面弱**：baseline 极低（~0.025-0.030），几乎没有动态范围\n- **与旧分析差异大**：旧 2σ + perplexity 分析得 PermG=6/8（success）；切换到 D102 mauve + D105 3σ 后降至 3/8\n\n### 影响\nSmolLM3 在 D102+D105 标准下从 success 翻转为 negative，主要因为 (1) mauve 替代 perplexity 削弱了 2/8 pair，(2) 3σ threshold_onset 全部失效。可能需要 revisit 其他 Table 7 模型是否在 D102+D105 下也发生类似衰减。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-smollm3-3b-wiki-a100-s42-v3.md"
+}

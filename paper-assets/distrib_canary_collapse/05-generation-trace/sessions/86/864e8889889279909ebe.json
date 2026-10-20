@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "864e8889889279909ebe",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops final batch check and 6pair",
+  "task_key": "worker_ops_final-batch-check-and-6pair_20260524T000447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_final-batch-check-and-6pair_20260524T000447_result.json",
+    "occurrence": 1,
+    "bytes": 916,
+    "sha256": "0c733c119ccd804dea5c285f901625febea81061b2b7846aaecc03038185971d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 6 个步骤已完成：\n\n1. **实验完成确认** — t10_a045_s44 和 t15_a075_s43 均已完成，metrics 已导出，registry 已标记 DONE\n2. **D102 快速分析** — 两个新实验的 distinct_3 2-pair 初步分析完成\n3. **6-pair 统一 D102** — 全部 8 个实验的 5-method lead-lag 分析完成（mauve 排除）\n4. **本地 artifacts 复制** — 8 个 6-pair JSON 已写入 `artifacts/` 目录\n5. **汇总表** — `artifacts/_project/14b_6pair_summary_20260524.md` 已生成，含 phase diagram 分析\n6. **Registry 更新** — 全部 8 个实验的 `d102_6pair` metrics 已写入 registry\n\n关键发现：α=0.60 是 robust detection 的可靠边界（T=10 已 5/6, T=15 达 6/6）。α=0.45-0.50 是 transition/blind zone，ece 比 entropy 更灵敏。T=10 α=0.50 暴露了 PermG 单方法在短时序下的 false positive 风险（PermG 6/6 vs robust 0/6）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-final-batch-check-and-6pair.md"
+}

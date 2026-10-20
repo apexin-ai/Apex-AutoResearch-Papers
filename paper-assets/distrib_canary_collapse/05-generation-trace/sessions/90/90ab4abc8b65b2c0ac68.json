@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "90ab4abc8b65b2c0ac68",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ssh shapley bar chart",
+  "task_key": "worker_ssh_shapley_bar_chart_20260517T093022",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_shapley_bar_chart_20260517T093022_result.json",
+    "occurrence": 1,
+    "bytes": 860,
+    "sha256": "de1f06c9d44249488bf9711fd5e6431d8af45dc9ef6c1cfcc80fe1b0fb1fd80d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n### 产出\n\n1. **PDF/PNG**: `docs/paper/figures/shapley_method_contribution.pdf` (服务器) + 本地 artifacts 已注册\n\n2. **ΔFPR / ΔFNR 数值** (baseline FPR=25.0%, FNR=0.0%):\n\n| Method | ΔFPR | ΔFNR |\n|---|---|---|\n| Naive XCorr | **-25.0%** | +25.0% |\n| Diff XCorr | **-25.0%** | +25.0% |\n| Threshold Onset | -6.2% | +25.0% |\n| Perm Granger | -18.8% | **0.0%** |\n| TY Granger | 0.0% | 0.0% |\n\n3. **关键发现**:\n   - **Naive XCorr & Diff XCorr** 是双刃剑：同时驱动 FP 和 sensitivity，移除任一方法 FPR 降 25% 但 FNR 升 25%\n   - **Perm Granger** 是纯 FP 过滤器：移除后 FPR 降 18.8%，FNR 不受影响\n   - **Threshold Onset** 主要贡献 sensitivity（+25% ΔFNR），FPR 贡献较小（-6.2%）\n   - **TY Granger** 对 consensus 决策零边际贡献（移除无影响）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-shapley-bar-chart.md"
+}

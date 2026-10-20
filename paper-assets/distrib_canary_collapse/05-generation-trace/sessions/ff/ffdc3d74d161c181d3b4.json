@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ffdc3d74d161c181d3b4",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis gen wiki gpt2m a025 s42",
+  "task_key": "worker_analysis_gen_wiki_gpt2m_a025_s42_20260516T082739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gen_wiki_gpt2m_a025_s42_20260516T082739_result.json",
+    "occurrence": 1,
+    "bytes": 1070,
+    "sha256": "0f6e29cee1d546704b2aca47cc39f64572ae35a779ac151dc4ffda5771cdbbc4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结论：\n\n**SUCCESS — 跨架构验证支持 Claim 2 (regime-dependent validity)**\n\n关键发现：\n\n| | GPT-2 small α=0.25 | GPT-2 medium α=0.25 |\n|---|---|---|\n| PPL | 26.95→22.32 (-17%) | 32.63→18.12 (-45%), gen 1 后稳定 |\n| Distinct-1 | -40.3% | -23.5% |\n| Distinct-2 | -57.1% | -31.6% |\n| Token entropy | -4.1% | -32.8% |\n| ECE | +79.7% | +427.3% |\n| 定性 regime | Low collapse | Low collapse |\n\n- **6/7 指标方向一致**，唯一 mismatch 是 effective rank（架构差异导致基线和方向不同）\n- GPT-2m α=0.25 vs α=1.0 对比：α=1.0 PPL 爆炸至 14,617、entropy 崩至 0.48，α=0.25 完全无 runaway 迹象——同架构内 regime 边界清晰\n- **架构效应**：GPT-2m 在 diversity (distinct-n) 上更鲁棒（-24~32% vs -40~60%），但在分布度量 (entropy/ECE) 上更敏感——大模型有更多表征冗余保持词汇多样性\n\n**Regime 分类：Low collapse**\n\n报告已保存至 `artifacts/gen_wiki_gpt2m_a025_s42/report/analysis_gen_wiki_gpt2m_a025_s42.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gen-wiki-gpt2m-a025-s42.md"
+}

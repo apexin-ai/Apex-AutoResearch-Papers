@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f6255d92bec6849ee15c",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops deploy cross seed 14b",
+  "task_key": "worker_ops_deploy-cross-seed-14b_20260522T201139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_deploy-cross-seed-14b_20260522T201139_result.json",
+    "occurrence": 1,
+    "bytes": 843,
+    "sha256": "2dca5462875ce0c05c2aefc29ea7654b9be13ec34576be829c586c812f9a71fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个实验全部部署完毕，汇总：\n\n| 实验 | 服务器 | GPU | tmux session | PID | 状态 |\n|------|--------|-----|-------------|-----|------|\n| t10_a050_s43 | westd-19828 | cuda:1 | `14b_t10_a050_s43` | 821294 | Loading model |\n| t10_a075_s43 | westd-17855 | cuda:2 | `14b_t10_a075_s43` | 717612 | Loading model |\n| t10_a060_s43 | westd-17855 | cuda:3 | `14b_t10_a060_s43` | 717753 | Loading model |\n\n**操作记录**:\n- 已 kill PID 714525（17855 cuda:3 上的 `t10_a075_s42_fp32_14b --start_gen 10` 超 spec 进程，原始 gen_0-9 完整保留）\n- 3 个实验均正在加载 `EleutherAI/pythia-1.4b-deduped`，GPU 显存将在模型加载到 GPU 后占用\n\n**⚠️ 磁盘风险**: westd-17855 仅剩 27G，2 个实验预计各 ~11G，完成时可能触及磁盘上限。建议中期检查 `df -h`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-deploy-cross-seed-14b.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6fa41438ab49a6a0f71e",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis pythia14b 3sigma recompute",
+  "task_key": "worker_analysis_pythia14b_3sigma_recompute_20260520T041914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_pythia14b_3sigma_recompute_20260520T041914_result.json",
+    "occurrence": 1,
+    "bytes": 484,
+    "sha256": "f617973133153d53712c311d55f79091effbab026844b94e3ce3e6146942f86c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果汇总：**\n\n| | s42 | s43 |\n|---|---|---|\n| threshold_onset_3sigma | 0/8 | 0/8 |\n| K≥3 (3sigma) | **1/8** | **3/8** |\n| K≥4 (3sigma) | **0/8** | **0/8** |\n| naive_xcorr_D111 | 6/8 | 0/8 |\n| diff_xcorr_D111 | 6/8 | 6/8 |\n| perm_granger_fwd | 2/8 | 6/8 |\n| ty_granger (FDR) | 0/8 | 3/8 |\n\nRegistry 已更新，报告已保存并注册 (`art_20260520_49a7e4`)。分析 JSON 保存在服务器 `analysis/d105_d111_joint_3sigma.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-pythia14b-3sigma-recompute.md"
+}

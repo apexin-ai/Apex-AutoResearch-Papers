@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c25265ab305f61e5945e",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops check training progress",
+  "task_key": "worker_ops_check-training-progress_20260523T171330",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-training-progress_20260523T171330_result.json",
+    "occurrence": 1,
+    "bytes": 421,
+    "sha256": "c61e4c7caba2b4c4695676e2df862c8b33c7b2163cbe2b1a7266976adc41faf5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "状态报告已写入 `artifacts/_project/training_status_20260523.md`。\n\n**要点**：\n- 8/8 实验全部存活，GPU 利用率 97-100%\n- 最快完成的 2 个：t15_a060_s43 和 t15_a050_s43（~1-1.5h 后）\n- 最慢的 2 个：t10_a045_s44 和 t15_a075_s43（~4h 后）\n- mauve 指标在 t15_a050_s43 上因网络不可达失败（gpt2-large 下载不了），其他实验可能也有同样问题"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-training-progress.md"
+}

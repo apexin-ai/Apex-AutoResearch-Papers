@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f887c4d378116f6ac1f",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis post a075 analysis prep",
+  "task_key": "worker_analysis_post_a075_analysis_prep_20260515T075714",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_post_a075_analysis_prep_20260515T075714_result.json",
+    "occurrence": 1,
+    "bytes": 787,
+    "sha256": "65756408ec164d1fdb674c5c1d787c2e22f44df24225a73a7f1375438b19722e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "准备文档已写入 `artifacts/a075_analysis_prep.md`。\n\n汇总：\n- **已完成 α 点**：a000_s42, a025_s42, a050_s42 各有完整 gen_0–gen_10 + all_metrics.json\n- **a075 进度**：gen_0–gen_3 完成，gen_4 正在跑，约 36%（4/11 generations），还剩 7 个 generation\n- **分析脚本**：`cross_alpha_analysis.py` 存在，支持 `--alpha-dirs`, `--n-perms`, `--update-registry`\n- **完成后一键执行**：\n\n```bash\ncd /root/autodl-tmp/distrib_canary_collapse && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\npython cross_alpha_analysis.py \\\n  --alpha-dirs a000_s42 a025_s42 a050_s42 a075_s42 \\\n  --n-perms 5000 \\\n  --update-registry\n```\n\n产出写到 `results/analysis/cross_alpha_v{N}.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-post-a075-analysis-prep.md"
+}

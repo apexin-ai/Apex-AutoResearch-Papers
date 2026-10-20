@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f059175fd641d7607ea",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "registry update mvp v4 metrics",
+  "task_key": "worker_registry_update_mvp_v4_metrics_20260515T212850",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_registry_update_mvp_v4_metrics_20260515T212850_result.json",
+    "occurrence": 1,
+    "bytes": 617,
+    "sha256": "c88fc5752c903f52729f6dfe2d64f2fb989bd890425f2169d0f9a12710633c2b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部更新成功。每个 registry 条目现包含 12 个原始指标（gen0/gen10 × 6 metrics）和 6 个 drift_pct 字段：\n\n| exp_id | entropy_drift | ece_drift | ppl_drift | d1_drift | d2_drift | d3_drift |\n|--------|-------------|-----------|-----------|----------|----------|----------|\n| rep42 | -60.55% | +3762.5% | +3624.6% | -28.34% | -35.21% | -31.64% |\n| rep43 | -61.05% | +3782.6% | +3665.1% | -28.42% | -35.76% | -33.03% |\n| rep44 | -62.26% | +3821.2% | +3733.8% | -25.47% | -29.13% | -24.61% |\n| rep45 | -59.33% | +3755.1% | +3670.9% | -29.13% | -35.96% | -32.74% |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/registry-update-mvp-v4-metrics.md"
+}

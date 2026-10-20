@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d64b3a088ef63762941",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops verify running experiments",
+  "task_key": "worker_ops_verify_running_experiments_20260521T090138",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_running_experiments_20260521T090138_result.json",
+    "occurrence": 1,
+    "bytes": 1138,
+    "sha256": "577c309b6ee31608368dd2d6199dd59299d11b995e3c31dddd4f734e1fa8ea49"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**全部 8 个实验确认 RUNNING**，所有 GPU 都有活跃 python 进程和显存占用。\n\n### westd-17855 (6 GPU)\n\n| GPU | exp_id | PID | 进度 | 当前状态 |\n|-----|--------|-----|------|---------|\n| 0 | a000_s47_fp32 | 454255 | 5/10 | 生成 gen_5 合成数据 |\n| 1 | gen_gpt2m_s43_fp32 | 442662 | **9/10** | 训练最后一轮 gen_9 |\n| 2 | a000_s45_fp32 | 448950 | 8/10 | 生成 gen_8 合成数据 |\n| 3 | scale_69b | 400550 | 7/10 | 训练 gen_7 (97%) |\n| 4 | a052_s43_fp32 | 454331 | 5/10 | 生成 gen_5 合成数据 |\n| 5 | a046_s43_fp32 | 454886 | 5/10 | 训练 gen_5 (77%) |\n\n### westd-19828 (2 GPU)\n\n| GPU | exp_id | PID | 进度 | 当前状态 |\n|-----|--------|-----|------|---------|\n| 0 | a000_s48_fp32 | 656193 | 2/10 | 生成 gen_2 合成数据 |\n| 1 | a000_s46_fp32 | 647974 | 6/10 | 训练 gen_6 (6%) |\n\n### 需要的操作\n1. Registry 更新 6 个 pid=? 的实验 PID\n2. 7 个实验无 cron 监控（仅 scale_69b 有）\n3. 17855 上 `interv_react_s43` tmux session 可清理（实验已完成 gen_0-10）\n\n报告已写入 `artifacts/server_status_check_20260521.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-running-experiments.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d9a65671144b9689554",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code alpha sweep analysis prep",
+  "task_key": "worker_code_alpha-sweep-analysis-prep_20260514T210910",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_alpha-sweep-analysis-prep_20260514T210910_result.json",
+    "occurrence": 1,
+    "bytes": 841,
+    "sha256": "1bd9190bb8b4f23fe3039f180e08856c2767f640a68e1f0bd525f2cf95313005"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "TY 测试在 10+ gen 数据上正常工作（te→d1 显著，te→ppl 不显著——与 MVP 结果一致）。\n\n脚本完成，总结：\n\n- **位置**: `/root/autodl-tmp/distrib_canary_collapse/analyze_alpha_sweep.py`\n- **功能**: 自动发现 `results/alpha_sweep/a{NNN}_s{seed}*` 目录，对每个 run 做 Toda-Yamamoto 检验，跨 seed 聚合后输出 α vs. canary signal 汇总表 + JSON\n- **验证结果**:\n  - 当前 a000_s42 (5 gen) 可加载但 TY df 不足（d_max=1 时需 ≥7 gen），输出 N/A——预期行为\n  - a025_s42 (0 gen) 被跳过——空目录优雅处理\n  - MVP 10-gen 数据验证 TY 正常：token_entropy→distinct_1 显著 (F=311.7, p≈0)，token_entropy→perplexity 不显著 (p=0.32)\n- **等 10 gen 跑完后** re-run `python analyze_alpha_sweep.py` 即可出完整分析"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-alpha-sweep-analysis-prep.md"
+}

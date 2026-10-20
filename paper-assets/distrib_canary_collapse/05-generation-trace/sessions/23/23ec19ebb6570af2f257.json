@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23ec19ebb6570af2f257",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops restart 14b t15a050v3 17855c1",
+  "task_key": "worker_ops_restart-14b-t15a050v3-17855c1_20260522T130706",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_restart-14b-t15a050v3-17855c1_20260522T130706_result.json",
+    "occurrence": 1,
+    "bytes": 368,
+    "sha256": "3bd430edc3cac1f6927b50f04fdef2565991de822d8768d3cfc1aeea98472dba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n| 项目 | 值 |\n|------|-----|\n| exp_id | scale_14b_t15_a050_s42_fp32_v3 |\n| PID | 680095 |\n| GPU | cuda:1 (物理 GPU 1, 994MiB) |\n| server | westd-17855 |\n| start_gen | 4 (gen_3 已完成) |\n| tmux | `scale_14b_a050_s42` |\n| log | `results/phase_diagram/t15_a050_s42_fp32_14b/train_restart_gen4.log` |\n| registry | RUNNING ✓ |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-restart-14b-t15a050v3-17855c1.md"
+}

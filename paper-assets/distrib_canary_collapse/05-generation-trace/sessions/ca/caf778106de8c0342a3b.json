@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "caf778106de8c0342a3b",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops registry batch fix analyzing",
+  "task_key": "worker_ops_registry_batch_fix_analyzing_20260520T193905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_registry_batch_fix_analyzing_20260520T193905_result.json",
+    "occurrence": 1,
+    "bytes": 533,
+    "sha256": "7c929380e6d5027992035ecc1c1901fa1621550fd022d1ebadb9021b02ed110f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个实验全部更新完成 ANALYZING → DONE：\n\n| 实验 | conclusion | PermG FDR | K≥3 | K≥4 | 关键修正 |\n|------|-----------|-----------|------|------|---------|\n| **t20_a100_s42_fp32** | ~~negative~~ → **success** | 6/8 | 6/8 | 6/8 | conclusion 从错误的 negative 修正为 success |\n| **t20_a050_s42_fp32** | success（不变） | 6/8 | 6/8 | 2/8 | 补充完整 metrics |\n| **data_strategy_ablation_s43** | **negative** | 0/8 | 0/8 | 0/8 | accumulate 策略下检测失效，符合预期 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-registry-batch-fix-analyzing.md"
+}

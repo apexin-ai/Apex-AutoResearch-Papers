@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5a1310b86d51091e34b",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ssh check a050 s44",
+  "task_key": "worker_ssh_check_a050_s44_20260517T033832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_a050_s44_20260517T033832_result.json",
+    "occurrence": 1,
+    "bytes": 282,
+    "sha256": "663ddadc7396d93bb5cb2703c89eef88636aba4472c4ffac477686ed85fe3cc7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**a050_s44 仍在运行：5/11 generations completed**（gen_0 到 gen_4 已完成，当前正在训练 gen_5）。\n\n进程 PID 230324 已运行约 204 分钟（~3.4h），按线性估算还需约 ~3.4h 完成剩余 6 个 generation。预计总共约 6.8h 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-a050-s44.md"
+}

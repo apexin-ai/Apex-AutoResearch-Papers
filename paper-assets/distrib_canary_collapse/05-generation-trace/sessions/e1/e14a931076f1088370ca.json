@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e14a931076f1088370ca",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code prep a075 a010",
+  "task_key": "worker_code_prep-a075-a010_20260515T020601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep-a075-a010_20260515T020601_result.json",
+    "occurrence": 1,
+    "bytes": 1421,
+    "sha256": "f4a65835273e08840291030cdb2647d080a518af173a6e1db6458a76c32c4053"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过：\n\n| 检查项 | 结果 |\n|--------|------|\n| `a075_s42/` 目录 | 不存在 ✓ |\n| `a010_s42/` 目录 | 不存在 ✓ |\n| `data/wikitext103_5k/` | 存在（含 eval, prompts, train） ✓ |\n| `iterative_train.py` 参数 | `--synthetic_ratio`, `--seed`, `--steps_per_gen`, `--num_generations`, `--output_dir` 全部支持 ✓ |\n\n两条提交命令参数正确，输出目录干净，可以直接使用：\n\n**a075_s42** (α=0.75):\n```\nbash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/a075_s42\"\n```\n\n**a010_s42** (α=0.10):\n```\nbash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.10 --output_dir results/alpha_sweep/a010_s42\"\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-a075-a010.md"
+}

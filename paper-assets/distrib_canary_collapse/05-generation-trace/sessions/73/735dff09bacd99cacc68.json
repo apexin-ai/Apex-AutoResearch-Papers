@@ -1,0 +1,742 @@
+{
+  "schema_version": "1.0",
+  "id": "735dff09bacd99cacc68",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "paper d063 narrative update",
+  "task_key": "worker_paper_d063_narrative_update_20260518T130205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d063_narrative_update_20260518T130205.log",
+    "occurrence": 1,
+    "bytes": 92106,
+    "sha256": "24e7fd35b739ccecd790c12866df0303177663c34fa956498363719b0308b068"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 2,
+      "tool_call": 6,
+      "tool_result": 6
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+                "session_id": "0a1e2033-c006-4833-907b-1bd9af5df690",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "195297d6-f660-4a3c-99c2-269c9cfacac8",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779124800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "b510ea00-dbae-4822-89f9-207ffbef3d60",
+                "session_id": "0a1e2033-c006-4833-907b-1bd9af5df690"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the current state of the paper files to understand what needs to be changed.",
+              "signature": "Ep8CClkIDRgCKkApUXXXZai0wFWXTUdqciugrtviegswTGHWEbU04oGpInkSObHxVJsWHFWFAnmvZ/b1TeKF+V+hz1otXeb/x7MaMg9jbGF1ZGUtb3B1cy00LTY4ABIMJjPfM7f35+Iemb0uGgxK6PVIV975E9AR9JsiME12vljAp9i+YZCSo4eQQduqaq795iX7nXN1dRoXNRYlVZ6VWiiKEEByLydiEnry4yp0RR6FTXy6yyAGt/IvUYouOikodVF/bB1NiZBxOY9WItxIMMZmJboxJKbnJosLXOxHuDGf0F9S8XzJrwhafjACYQEw8esr8Zy0N9i2RDe4tWtvWwvMkocIY0ADrdZo+D/CRRbxHc1FiXniHsHibmxm9kIBceUYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a1e2033-c006-4833-907b-1bd9af5df690",
+            "uuid": "b35c9efd-8189-4c34-8ace-e6505e46b22d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015RW9o3vnNsq2wr6Hgw5MDd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14087,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14087
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "我先读取论文目录下所有相关 tex 文件的当前内容。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a1e2033-c006-4833-907b-1bd9af5df690",
+            "uuid": "6a8014c4-d7b3-487e-a58d-6984e1e6acee",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015RW9o3vnNsq2wr6Hgw5MDd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14087,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14087
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015JcaanorgQE9QxDkapaH31",
+              "name": "Glob",
+              "input": {
+                "pattern": "*.tex",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/paper"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a1e2033-c006-4833-907b-1bd9af5df690",
+            "uuid": "b8c9a713-f964-4ccf-a497-0bf9b5efebac",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015RW9o3vnNsq2wr6Hgw5MDd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14087,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14087
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T13:02:15.840Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015JcaanorgQE9QxDkapaH31",
+              "type": "tool_result",
+              "content": "artifacts/_project/paper/abstract.tex\nartifacts/_project/paper/background.tex\nartifacts/_project/paper/conclusion.tex\nartifacts/_project/paper/discussion.tex\nartifacts/_project/paper/experiments.tex\nartifacts/_project/paper/introduction.tex\nartifacts/_project/paper/method.tex\nartifacts/_project/paper/related_work.tex\nartifacts/_project/paper/single_method_errors.tex\nartifacts/_project/paper/single_method_errors_ae8937.tex\nartifacts/_project/paper/generalization_draft.tex"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a1e2033-c006-4833-907b-1bd9af5df690",
+            "uuid": "9ac448de-8d7a-4cc8-8e76-72881ee4e4f6",
+            "tool_use_result": {
+              "filenames": [
+                "artifacts/_project/paper/abstract.tex",
+                "artifacts/_project/paper/background.tex",
+                "artifacts/_project/paper/conclusion.tex",
+                "artifacts/_project/paper/discussion.tex",
+                "artifacts/_project/paper/experiments.tex",
+                "artifacts/_project/paper/introduction.tex",
+                "artifacts/_project/paper/method.tex",
+                "artifacts/_project/paper/related_work.tex",
+                "artifacts/_project/paper/single_method_errors.tex",
+                "artifacts/_project/paper/single_method_errors_ae8937.tex",
+                "artifacts/_project/paper/generalization_draft.tex"
+              ],
+              "durationMs": 7,
+              "numFiles": 11,
+              "truncated": false
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01F7yZNCsSUp6h5SUEHj34yS",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/paper/abstract.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a1e2033-c006-4833-907b-1bd9af5df690",
+            "uuid": "76963249-4c55-454d-84d8-f3d069b0f3c5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DjV2iQjG8V29RWWSQBfFrX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 304,
+                "cache_read_input_tokens": 25928,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 304
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T13:02:18.841Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01F7yZNCsSUp6h5SUEHj34yS",
+              "type": "tool_result",
+              "content": "1\t\\begin{abstract}\n2\tWe demonstrate that lead-lag conclusions in iterative model collapse are determined more by method choice than by the data: naive cross-correlation yields 100\\% significance (16/16 metric pairs), while Toda--Yamamoto Granger causality retains only 25\\% (4/16), with inter-method agreement of $\\kappa = 0.185$. We identify three methodological pitfalls---method sensitivity, spurious regression under shared trends, and regime dependence---that together inflate spurious-signal rates to 75\\%. To replace single-method reporting, we introduce a multi-method consensus framework requiring agreement across ${\\geq}4$ of 5 statistical tests with FDR correction, achieving 0\\% false-positive and 0\\% false-negative rates on reference extreme regimes. Applied to Pythia-410M across 4 seeds, 5 synthetic-data mixing ratios ($\\alpha$), and 10 iterative training generations on WikiText-103, the framework reveals a sharp regime boundary: significant lead-lag relationships emerge at $\\alpha{=}1.0$ (with preliminary single-seed evidence at $\\alpha{=}0.75$), where token entropy Granger-causes diversity collapse with a one-generation lead ($|r| > 0.99$, 24/24 pairs significant, 0/24 in the reverse direction). Differencing eliminates all perplexity leads ($8/8 \\to 0/8$) but preserves all diversity leads (24/24), confirming token entropy as a robust early-warning canary metric.\n3\t\\end{abstract}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a1e2033-c006-4833-907b-1bd9af5df690",
+            "uuid": "338baf4a-6e2e-4301-bd93-23fa1e7e19af",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/paper/abstract.tex",
+                "content": "\\begin{abstract}\nWe demonstrate that lead-lag conclusions in iterative model collapse are determined more by method choice than by the data: naive cross-correlation yields 100\\% significance (16/16 metric pairs), while Toda--Yamamoto Granger causality retains only 25\\% (4/16), with inter-method agreement of $\\kappa = 0.185$. We identify three methodological pitfalls---method sensitivity, spurious regression under shared trends, and regime dependence---that together inflate spurious-signal rates to 75\\%. To replace single-method reporting, we introduce a multi-method consensus framework requiring agreement across ${\\geq}4$ of 5 statistical tests with FDR correction, achieving 0\\% false-positive and 0\\% false-negative rates on reference extreme regimes. Applied to Pythia-410M across 4 seeds, 5 synthetic-data mixing ratios ($\\alpha$), and 10 iterative training generations on WikiText-103, the framework reveals a sharp regime boundary: significant lead-lag relationships emerge at $\\alpha{=}1.0$ (with preliminary single-seed evidence at $\\alpha{=}0.75$), where token entropy Granger-causes diversity collapse with a one-generation lead ($|r| > 0.99$, 24/24 pairs significant, 0/24 in the reverse direction). Differencing eliminates all perplexity leads ($8/8 \\to 0/8$) but preserves all diversity leads (24/24), confirming token entropy as a robust early-warning canary metric.\n\\end{abstract}",
+                "numLines": 3,
+                "startLine": 1,
+                "totalLines": 3
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012yJcHqegN9r6f7U1FQryMZ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/paper/introduction.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a1e2033-c006-4833-907b-1bd9af5df690",
+            "uuid": "ae86c4d9-c9df-46af-bf68-06bba983731a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DjV2iQjG8V29RWWSQBfFrX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 304,
+                "cache_read_input_tokens": 25928,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 304
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T13:02:19.337Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012yJcHqegN9r6f7U1FQryMZ",
+              "type": "tool_result",
+              "content": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tTraining language models on their own output across successive generations leads to progressive distribution degradation, a phenomenon variously termed model collapse~\\cite{shumailov2024curse} or Model Autophagy Disorder~\\cite{alemohammad2024mad}.\n5\tTail modes vanish, lexical diversity narrows, and calibration deteriorates as each generation's output becomes the next generation's training data.\n6\tAs large language models become ubiquitous content generators, the fraction of machine-generated text on the web grows steadily, making iterative training collapse---where models are unwittingly trained on the output of earlier model generations---a practical concern for the long-term stability of language model ecosystems.\n7\t\n8\tA natural follow-up question is whether cheap-to-compute statistics---\\emph{canary metrics}---can provide early warning of impending collapse, analogous to early-warning signals for critical transitions in ecological and climate systems~\\cite{scheffer2009early,scheffer2012anticipating}.\n9\tSeveral recent studies have pursued this direction: \\citet{du2026geometric} informally observe that expected calibration error rises before accuracy degrades; SIGMA~\\cite{sigma2026spectral} proposes spectral indicators of distributional shift; and DCES~\\cite{dces2026counter} uses center-edge sampling dynamics as a collapse signal.\n10\tYet the statistical methodology underlying these lead-lag claims---whether a canary metric genuinely \\emph{precedes} downstream degradation, or merely correlates with it under shared non-stationary trends---has received little scrutiny.\n11\t\n12\tWe identify several methodological deficiencies that pervade existing lead-lag analyses of iterative training collapse:\n13\t(1)~no differencing tests to rule out spurious regression arising from shared non-stationary trends---a well-known hazard when correlating co-trending time series;\n14\t(2)~no multi-method cross-validation---conclusions rest on a single statistical method whose implicit assumptions about stationarity and directionality are rarely examined;\n15\t(3)~no multiple comparison correction (e.g., Benjamini--Hochberg FDR control), increasing the risk of false discoveries when testing many metric pairs simultaneously; and\n16\t(4)~no regime-dependent analysis, despite the possibility that the same statistical test yields opposite conclusions at different contamination levels.\n17\tThe closest predecessor is \\citet{du2026geometric}, who observe that calibration error rises before accuracy degrades in iteratively trained language models.\n18\tTheir analysis, however, is limited to a single metric pair, spans only 1--3 generations, and reports informal visual comparisons without statistical tests---leaving open the question of whether the observed lead is genuine or an artifact of shared trends.\n19\tThe early-warning framework of \\citet{scheffer2009early,scheffer2012anticipating}---widely adopted in ecology for anticipating tipping points---provides the theoretical motivation for canary-based prediction, but has not been systematically applied to iterative training collapse with the methodological rigor that short, noisy time series demand~\\cite{boettiger2012limits}.\n20\t\n21\tWe address these gaps through a systematic case study of canary prediction of diversity collapse---the progressive loss of lexical diversity in model-generated text across training generations.\n22\tUsing Pythia-410M across five contamination levels ($\\alpha \\in \\{0.00, 0.25, 0.50, 0.75, 1.00\\}$) and up to four random seeds, we expose three methodological pitfalls that undermine naive lead-lag analysis:\n23\t\\begin{enumerate}\n24\t    \\item \\textbf{Method sensitivity.} Applied to the same data (16 candidate canary$\\to$downstream pairs, including candidates later excluded; \\S\\ref{sec:case_study}), five lead-lag detection methods yield FDR significance rates ranging from 100\\% (naive cross-correlation) to 25\\% (Toda--Yamamoto Granger causality), with inter-method agreement of Cohen's $\\kappa{=}0.185$ (poor agreement).\n25\t    \\item \\textbf{Spurious regression.} Canary$\\to$perplexity associations appear near-universal in undifferenced analysis but vanish entirely after first-differencing ($F{\\approx}0$, $p{=}0.99$), revealing them as artifacts of co-trending rather than genuine temporal precedence.\n26\t    \\item \\textbf{Regime dependence.} Permutation Granger tests find 24/24 canary$\\to$diversity pairs FDR-significant at full synthetic replacement ($\\alpha{=}1.0$) but 0/8 at $\\alpha{\\leq}0.50$, demonstrating that detectability depends sharply on the contamination level.\n27\t\\end{enumerate}\n28\tTo move beyond single-method analysis, we propose a multi-method consensus framework with empirically calibrated thresholds, requiring agreement across multiple independent statistical methods and random seeds before classifying a lead-lag relationship as robust.\n29\t\n30\tThe framework's utility is demonstrated by its calibration on built-in experimental controls.\n31\tNaive cross-correlation identifies 100\\% of canary--collapse metric pairs as FDR-significant; the consensus pipeline (requiring ${\\geq}4/5$ methods and ${\\geq}3/4$ seeds) retains only those pairs independently validated by the first-differencing diagnostic.\n32\tOn reference extremes, the framework achieves a false positive rate of 0\\% at the $\\alpha{=}0.0$ null control (where individual methods reach up to 100\\% FPR) and a false negative rate of 0\\% against six ground-truth pairs at $\\alpha{=}1.0$.\n33\tApplying the framework, we identify token entropy as a one-generation-ahead canary for diversity collapse at $\\alpha{=}1.0$, validated by the full consensus pipeline, with cross-correlation $|r|{>}0.99$ and directional asymmetry confirmed by 0/24 reverse-direction FDR-significant pairs; preliminary single-seed evidence at $\\alpha{=}0.75$ awaits multi-seed confirmation.\n34\tWe note that Granger precedence establishes temporal predictive improvement, not true causality~\\cite{shojaie2022granger}.\n35\t\n36\tOur contributions are:\n37\t\\begin{enumerate}\n38\t    \\item \\textbf{Systematic exposure of three methodological pitfalls} in lead-lag analysis of iterative training collapse.\n39\t    We quantify each pitfall: method choice alone swings significance from 100\\% to 25\\% with a spurious-signal rate of 75\\%; first-differencing eliminates canary$\\to$perplexity associations entirely; and the same Granger test shifts from 24/24 FDR-significant pairs to 0/8 across contamination levels.\n40\t    These results demonstrate that single-method, single-regime analyses---the current norm in this literature---are unreliable.\n41\t\n42\t    \\item \\textbf{A multi-method consensus framework} with empirically calibrated thresholds and four-tier practical guidance ranging from exploratory ($K{\\geq}1/5$) to conservative ($K{=}5/5$).\n43\t    The framework achieves FPR${=}$0\\% and FNR${=}$0\\% on reference extremes, providing robustness against miscalibration of any individual method.\n44\t\n45\t    \\item \\textbf{Application of the framework to identify token entropy} as a one-generation-ahead canary for diversity collapse at $\\alpha{=}1.0$ (with preliminary single-seed evidence at $\\alpha{=}0.75$), scoped precisely to diversity metrics (distinct-$n$) rather than model collapse broadly, with a tiered practical guide mapping contamination regimes to recommended analysis strategies.\n46\t\\end{enumerate}\n47\t\n48\tThe remainder of this paper is organized as follows.\n49\t\\S\\ref{sec:related_work} surveys related work on model collapse, early-warning signals, and lead-lag methodology.\n50\t\\S\\ref{sec:background} establishes the formal setup, notation, and the five detection methods used throughout.\n51\t\\S\\ref{sec:method} distills the three methodological pitfalls into a unified diagnostic framework, presents the multi-method consensus pipeline, and reports its empirical calibration.\n52\t\\S\\ref{sec:experiments} provides full experimental results: method sensitivity analysis (\\S\\ref{sec:method_sensitivity}), regime-dependent detectability (\\S\\ref{sec:regime}), a case study of canary prediction of diversity collapse (\\S\\ref{sec:case_study}), and consensus framework validation (\\S\\ref{sec:consensus_validation}).\n53\t\\S\\ref{sec:discussion} discusses limitations---including the short time-series constraint, single-model scope, and the distinction between Granger precedence and causality---and outlines directions for future work.\n54\t\\S\\ref{sec:conclusion} concludes."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a1e2033-c006-4833-907b-1bd9af5df690",
+            "uuid": "9287cbcf-da8e-450f-a833-f9d4a1e6eae4",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/paper/introduction.tex",
+                "content": "\\section{Introduction}\n\\label{sec:introduction}\n\nTraining language models on their own output across successive generations leads to progressive distribution degradation, a phenomenon variously termed model collapse~\\cite{shumailov2024curse} or Model Autophagy Disorder~\\cite{alemohammad2024mad}.\nTail modes vanish, lexical diversity narrows, and calibration deteriorates as each generation's output becomes the next generation's training data.\nAs large language models become ubiquitous content generators, the fraction of machine-generated text on the web grows steadily, making iterative training collapse---where models are unwittingly trained on the output of earlier model generations---a practical concern for the long-term stability of language model ecosystems.\n\nA natural follow-up question is whether cheap-to-compute statistics---\\emph{canary metrics}---can provide early warning of impending collapse, analogous to early-warning signals for critical transitions in ecological and climate systems~\\cite{scheffer2009early,scheffer2012anticipating}.\nSeveral recent studies have pursued this direction: \\citet{du2026geometric} informally observe that expected calibration error rises before accuracy degrades; SIGMA~\\cite{sigma2026spectral} proposes spectral indicators of distributional shift; and DCES~\\cite{dces2026counter} uses center-edge sampling dynamics as a collapse signal.\nYet the statistical methodology underlying these lead-lag claims---whether a canary metric genuinely \\emph{precedes} downstream degradation, or merely correlates with it under shared non-stationary trends---has received little scrutiny.\n\nWe identify several methodological deficiencies that pervade existing lead-lag analyses of iterative training collapse:\n(1)~no differencing tests to rule out spurious regression arising from shared non-stationary trends---a well-known hazard when correlating co-trending time series;\n(2)~no multi-method cross-validation---conclusions rest on a single statistical method whose implicit assumptions about stationarity and directionality are rarely examined;\n(3)~no multiple comparison correction (e.g., Benjamini--Hochberg FDR control), increasing the risk of false discoveries when testing many metric pairs simultaneously; and\n(4)~no regime-dependent analysis, despite the possibility that the same statistical test yields opposite conclusions at different contamination levels.\nThe closest predecessor is \\citet{du2026geometric}, who observe that calibration error rises before accuracy degrades in iteratively trained language models.\nTheir analysis, however, is limited to a single metric pair, spans only 1--3 generations, and reports informal visual comparisons without statistical tests---leaving open the question of whether the observed lead is genuine or an artifact of shared trends.\nThe early-warning framework of \\citet{scheffer2009early,scheffer2012anticipating}---widely adopted in ecology for anticipating tipping points---provides the theoretical motivation for canary-based prediction, but has not been systematically applied to iterative training collapse with the methodological rigor that short, noisy time series demand~\\cite{boettiger2012limits}.\n\nWe address these gaps through a systematic case study of canary prediction of diversity collapse---the progressive loss of lexical diversity in model-generated text across training generations.\nUsing Pythia-410M across five contamination levels ($\\alpha \\in \\{0.00, 0.25, 0.50, 0.75, 1.00\\}$) and up to four random seeds, we expose three methodological pitfalls that undermine naive lead-lag analysis:\n\\begin{enumerate}\n    \\item \\textbf{Method sensitivity.} Applied to the same data (16 candidate canary$\\to$downstream pairs, including candidates later excluded; \\S\\ref{sec:case_study}), five lead-lag detection methods yield FDR significance rates ranging from 100\\% (naive cross-correlation) to 25\\% (Toda--Yamamoto Granger causality), with inter-method agreement of Cohen's $\\kappa{=}0.185$ (poor agreement).\n    \\item \\textbf{Spurious regression.} Canary$\\to$perplexity associations appear near-universal in undifferenced analysis but vanish entirely after first-differencing ($F{\\approx}0$, $p{=}0.99$), revealing them as artifacts of co-trending rather than genuine temporal precedence.\n    \\item \\textbf{Regime dependence.} Permutation Granger tests find 24/24 canary$\\to$diversity pairs FDR-significant at full synthetic replacement ($\\alpha{=}1.0$) but 0/8 at $\\alpha{\\leq}0.50$, demonstrating that detectability depends sharply on the contamination level.\n\\end{enumerate}\nTo move beyond single-method analysis, we propose a multi-method consensus framework with empirically calibrated thresholds, requiring agreement across multiple independent statistical methods and random seeds before classifying a lead-lag relationship as robust.\n\nThe framework's utility is demonstrated by its calibration on built-in experimental controls.\nNaive cross-correlation identifies 100\\% of canary--collapse metric pairs as FDR-significant; the consensus pipeline (requiring ${\\geq}4/5$ methods and ${\\geq}3/4$ seeds) retains only those pairs independently validated by the first-differencing diagnostic.\nOn reference extremes, the framework achieves a false positive rate of 0\\% at the $\\alpha{=}0.0$ null control (where individual methods reach up to 100\\% FPR) and a false negative rate of 0\\% against six ground-truth pairs at $\\alpha{=}1.0$.\nApplying the framework, we identify token entropy as a one-generation-ahead canary for diversity collapse at $\\alpha{=}1.0$, validated by the full consensus pipeline, with cross-correlation $|r|{>}0.99$ and directional asymmetry confirmed by 0/24 reverse-direction FDR-significant pairs; preliminary single-seed evidence at $\\alpha{=}0.75$ awaits multi-seed confirmation.\nWe note that Granger precedence establishes temporal predictive improvement, not true causality~\\cite{shojaie2022granger}.\n\nOur contributions are:\n\\begin{enumerate}\n    \\item \\textbf{Systematic exposure of three methodological pitfalls} in lead-lag analysis of iterative training collapse.\n    We quantify each pitfall: method choice alone swings significance from 100\\% to 25\\% with a spurious-signal rate of 75\\%; first-differencing eliminates canary$\\to$perplexity associations entirely; and the same Granger test shifts from 24/24 FDR-significant pairs to 0/8 across contamination levels.\n    These results demonstrate that single-method, single-regime analyses---the current norm in this literature---are unreliable.\n\n    \\item \\textbf{A multi-method consensus framework} with empirically calibrated thresholds and four-tier practical guidance ranging from exploratory ($K{\\geq}1/5$) to conservative ($K{=}5/5$).\n    The framework achieves FPR${=}$0\\% and FNR${=}$0\\% on reference extremes, providing robustness against miscalibration of any individual method.\n\n    \\item \\textbf{Application of the framework to identify token entropy} as a one-generation-ahead canary for diversity collapse at $\\alpha{=}1.0$ (with preliminary single-seed evidence at $\\alpha{=}0.75$), scoped precisely to diversity metrics (distinct-$n$) rather than model collapse broadly, with a tiered practical guide mapping contamination regimes to recommended analysis strategies.\n\\end{enumerate}\n\nThe remainder of this paper is organized as follows.\n\\S\\ref{sec:related_work} surveys related work on model collapse, early-warning signals, and lead-lag methodology.\n\\S\\ref{sec:background} establishes the formal setup, notation, and the five detection methods used throughout.\n\\S\\ref{sec:method} distills the three methodological pitfalls into a unified diagnostic framework, presents the multi-method consensus pipeline, and reports its empirical calibration.\n\\S\\ref{sec:experiments} provides full experimental results: method sensitivity analysis (\\S\\ref{sec:method_sensitivity}), regime-dependent detectability (\\S\\ref{sec:regime}), a case study of canary prediction of diversity collapse (\\S\\ref{sec:case_study}), and consensus framework validation (\\S\\ref{sec:consensus_validation}).\n\\S\\ref{sec:discussion} discusses limitations---including the short time-series constraint, single-model scope, and the distinction between Granger precedence and causality---and outlines directions for future work.\n\\S\\ref{sec:conclusion} concludes.",
+                "numLines": 54,
+                "startLine": 1,
+                "totalLines": 54
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SvHEvCSe6D6NXZQQ8QmJtb",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/paper/experiments.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a1e2033-c006-4833-907b-1bd9af5df690",
+            "uuid": "7e1a721c-3e3b-41f6-9b89-4dc7b3cf50d4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DjV2iQjG8V29RWWSQBfFrX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 304,
+                "cache_read_input_tokens": 25928,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 304
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T13:02:19.780Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SvHEvCSe6D6NXZQQ8QmJtb",
+              "type": "tool_result",
+              "content": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\\label{sec:setup}\n6\t\n7\tWe study lead-lag analysis pitfalls in iterative training collapse using Pythia-410M \\cite{biderman2023pythia}, a 410M-parameter autoregressive language model.\n8\tPythia provides a controlled setting: small enough for multi-seed experiments across five contamination levels, yet large enough to exhibit meaningful generation-over-generation degradation.\n9\tTraining data is drawn from WikiText-103 \\cite{merity2017pointer}, using 5{,}000-sample subsets per generation.\n10\t\n11\tOur protocol follows the full-replacement paradigm of \\citet{shumailov2024curse}.\n12\tEach generation $t$ proceeds in three steps: (1)~fine-tune the generation-$(t{-}1)$ model for 5{,}000 steps on a mixture of $\\alpha$ fraction synthetic data and $(1{-}\\alpha)$ fraction real data; (2)~generate 5{,}000 synthetic samples from the fine-tuned model; (3)~fully replace the synthetic pool.\n13\tWe run $T{=}10$ generations (11 time points including the generation-0 baseline) across contamination levels $\\alpha \\in \\{0.00, 0.25, 0.50, 0.75, 1.00\\}$.\n14\tThe $\\alpha{=}1.0$ condition uses four random seeds $\\{42, 43, 44, 45\\}$; other conditions use seed~42, with multi-seed replication in progress.\n15\t\n16\tWe track two \\emph{canary metrics}---cheap-to-compute statistics hypothesized to precede downstream degradation, inspired by early-warning signals in dynamical systems \\cite{scheffer2009early}---and three \\emph{downstream metrics}.\n17\tCanary metrics are token entropy (next-token prediction entropy averaged over held-out samples) and expected calibration error (ECE).\n18\tDownstream metrics are distinct-1 and distinct-2 ($n$-gram diversity \\cite{li2016diversity}) and perplexity.\n19\tWe additionally evaluate effective rank and Self-BLEU as candidate canaries (\\S\\ref{sec:case_study}).\n20\tResults for distinct-3 are reported in Appendix~\\ref{app:distinct3}.\n21\t\n22\tAll hypothesis tests apply Benjamini--Hochberg (BH) FDR correction at $q{=}0.05$.\n23\tPermutation Granger causality tests use 5{,}000 permutations on first-differenced series \\cite{shojaie2022granger}.\n24\tCross-correlation analysis uses a maximum lag of 5 generations.\n25\tTable~\\ref{tab:drift_summary} summarizes raw metric drift from generation~0 to generation~10 across all five contamination levels.\n26\t\n27\t\\begin{table}[t]\n28\t\\centering\n29\t\\small\n30\t\\caption{Metric drift (\\%, generation~0$\\to$10) across contamination levels. $\\alpha{=}1.0$: 4-seed mean${\\pm}$std; other levels: single seed (seed=42). Non-monotonic distinct-1 pattern across $\\alpha \\in \\{0.25, 0.50\\}$ is observed at seed=42, pending multi-seed confirmation.}\n31\t\\label{tab:drift_summary}\n32\t\\begin{tabular}{lccccc}\n33\t\\toprule\n34\t$\\alpha$ & Entropy & ECE & Distinct-1 & Distinct-2 & Perplexity \\\\\n35\t\\midrule\n36\t0.00 & $-5.1$ & $+51.7$ & $-13.8$ & $-9.8$ & $-21.7$ \\\\\n37\t0.25 & $-4.1$ & $+79.7$ & $-40.3$ & $-57.1$ & $-17.2$ \\\\\n38\t0.50 & $-18.6$ & $+842.8$ & $-37.3$ & $-51.5$ & $+21.1$ \\\\\n39\t0.75 & $-27.7$ & $+1809.5$ & $-32.7$ & $-41.3$ & $+182.1$ \\\\\n40\t1.00 & $-60.8{\\pm}1.2$ & $+3782{\\pm}30$ & $-27.8{\\pm}1.6$ & $-34.0{\\pm}3.3$ & $+3673{\\pm}45$ \\\\\n41\t\\bottomrule\n42\t\\end{tabular}\n43\t\\end{table}\n44\t\n45\t\n46\t\\subsection{Method Sensitivity Analysis}\n47\t\\label{sec:method_sensitivity}\n48\t\n49\tWe open with Claim~3---method sensitivity---because it conditions the interpretation of all subsequent results.\n50\tIf different statistical methods yield contradictory conclusions on the same data, any single-method analysis is unreliable by construction.\n51\t\n52\t\\paragraph{Five-method ablation.}\n53\tWe apply five lead-lag detection methods to the $\\alpha{=}1.0$ condition (4~seeds, 16 canary$\\to$downstream pairs).\n54\tThe fraction of pairs reaching BH-corrected FDR significance varies dramatically by method: naive cross-correlation \\textbf{16/16} (100\\%), differenced cross-correlation \\textbf{14/16} (87.5\\%), threshold onset detection \\textbf{9/16} (56.3\\%), permutation Granger causality \\textbf{6/16} (37.5\\%), and Toda--Yamamoto Granger \\textbf{4/16} (25.0\\%).\n55\tMethod choice alone swings significance from \\textbf{100\\% to 25\\%}.\n56\tThe spurious-signal rate---the fraction of pairs detected by the most liberal method but not confirmed by the most conservative---is \\textbf{75\\%} across all five methods and \\textbf{62.5\\%} when excluding Toda--Yamamoto, whose low statistical power at $T{=}10$ inflates this rate (\\S\\ref{sec:consensus_validation}).\n57\tTable~\\ref{tab:method_comparison} reports significance rates restricted to 8 validated canary$\\to$downstream pairs (excluding failed candidates); the 16-pair rates above include effective rank and Self-BLEU to capture the full method-sensitivity landscape.\n58\t\n59\t\\paragraph{First-differencing diagnostic.}\n60\tA single preprocessing decision can eliminate an entire analysis channel.\n61\tFor canary$\\to$diversity pairs at $\\alpha{=}1.0$, all pairs retain unanimous FDR significance after first-differencing (24/24$\\to$24/24), confirming genuine temporal precedence rather than shared-trend confounding.\n62\tFor canary$\\to$perplexity, however, undifferenced tests find near-universal significance ($F{=}16$--$36$) while differenced tests find \\textbf{zero} significant pairs ($F{\\approx}0$, $p{=}0.99$; Figure~\\ref{fig:differencing_dmax}a).\n63\tThe apparent canary$\\to$perplexity relationship is entirely an artifact of co-trending.\n64\t\n65\t\\paragraph{Augmentation order sensitivity.}\n66\tToda--Yamamoto Granger tests show extreme sensitivity to the augmentation order $d_{\\max}$ (Figure~\\ref{fig:differencing_dmax}b).\n67\tAt $d_{\\max}{=}0$ (most permissive), approximately 6\\% of pairs are rejected; at adaptive $d_{\\max}$ determined by ADF unit-root tests, 75\\%; at $d_{\\max}{=}1$ (most conservative), \\textbf{94\\%}.\n68\tThis single hyperparameter swings conclusions from near-universal significance to near-universal non-significance.\n69\t\n70\t\\paragraph{Inter-method agreement.}\n71\tCohen's $\\kappa$, averaged over all method pairs, is \\textbf{0.185} (poor agreement); this value is consistent across contamination levels ($\\alpha{=}0.0$ through $\\alpha{=}1.0$), indicating that method disagreement is a structural property of the analysis rather than a regime-specific artifact.\n72\tCross-architecture validation on GPT-2-medium (12 canary$\\to$downstream pairs) yields Fleiss' $\\kappa{=}0.091$, also in the ``slight agreement'' range, confirming that low inter-method agreement is not architecture-specific.\n73\tRestricting to three informative methods (excluding naive cross-correlation and Toda--Yamamoto, which anchor the permissive and conservative extremes respectively) raises $\\kappa$ to 0.667 (substantial agreement), indicating that the low full-panel $\\kappa$ is driven by the deliberate inclusion of methods spanning the entire permissive-to-conservative spectrum rather than by fundamental incoherence among methods.\n74\tTable~\\ref{tab:method_comparison} extends the analysis across contamination levels.\n75\tAt $\\alpha{=}0.0$ (no synthetic data, serving as null control), naive cross-correlation finds \\textbf{100\\%} of pairs significant---a textbook spurious-regression outcome in trending time series.\n76\tPermutation Granger and Toda--Yamamoto correctly find 0\\%.\n77\tAt $\\alpha{=}0.50$, correlation-based methods (naive, differenced, threshold) unanimously find significance while causal methods unanimously find non-significance (Figure~\\ref{fig:consensus_heatmap}), the most extreme method$\\times$regime divergence in our experiments.\n78\t\n79\t\\paragraph{Method$\\times$regime interaction.}\n80\tTable~\\ref{tab:method_comparison} reveals that the correlation-versus-causal divergence is not uniform across contamination levels.\n81\tAt $\\alpha{=}0.25$, differenced cross-correlation drops to 25\\% and threshold onset to 37.5\\%, while naive cross-correlation remains at 100\\%---demonstrating that even partial detrending removes marginal associations at low contamination.\n82\tThe graded response across methods, combined with the block structure visible in Figure~\\ref{fig:consensus_heatmap}, motivates the regime-dependent analysis in \\S\\ref{sec:regime}.\n83\t\n84\t\\begin{table}[t]\n85\t\\centering\n86\t\\small\n87\t\\caption{FDR significance rates (\\%) for five lead-lag methods across contamination levels. Each cell reports the fraction of 8 primary canary$\\to$downstream pairs (token entropy and ECE $\\times$ 4 downstream metrics) reaching BH-corrected significance ($q{=}0.05$); failed candidates (effective rank, Self-BLEU) excluded per \\S\\ref{sec:case_study}. $\\alpha{=}0.75$ is analyzed separately as single-seed data (\\S\\ref{sec:regime}). FPR$_\\text{null}$: false positive rate at the $\\alpha{=}0.0$ null control.}\n88\t\\label{tab:method_comparison}\n89\t\\begin{tabular}{lcccccc}\n90\t\\toprule\n91\tMethod & $\\alpha{=}0.0$ & $\\alpha{=}0.25$ & $\\alpha{=}0.50$ & $\\alpha{=}0.75$ & $\\alpha{=}1.0$ & FPR$_\\text{null}$ \\\\\n92\t\\midrule\n93\tNaive XCorr     & 100   & 100  & 100  & ---  & 100   & 100  \\\\\n94\tDiff.\\ XCorr   & 37.5  & 25   & 100  & ---  & 100   & 37.5 \\\\\n95\tThreshold       & 62.5  & 37.5 & 100  & ---  & 100   & 62.5 \\\\\n96\tPerm.\\ Granger  & 0     & 0    & 0    & ---  & 75    & 0    \\\\\n97\tToda--Yamamoto  & 0     & 37.5 & 0    & ---  & 59.4  & 0    \\\\\n98\t\\bottomrule\n99\t\\end{tabular}\n100\t\\end{table}\n101\t\n102\t\n103\t\\subsection{Regime-Dependent Detectability}\n104\t\\label{sec:regime}\n105\t\n106\tBeyond method choice, the contamination level~$\\alpha$ determines whether a temporal lead exists to detect.\n107\tWe present regime effects at two levels: raw metric drift (method-independent) and Granger-causal detectability.\n108\t\n109\t\\paragraph{Raw drift.}\n110\tTable~\\ref{tab:drift_summary} shows that diversity collapse occurs at \\emph{all} contamination levels, not only under full synthetic replacement.\n111\tDistinct-1 declines by 13.8\\% even at $\\alpha{=}0.0$ (attributable to fine-tuning on repeated real-data subsets), and more steeply at intermediate contamination: $-40.3\\%$ ($\\alpha{=}0.25$), $-37.3\\%$ ($\\alpha{=}0.50$), $-32.7\\%$ ($\\alpha{=}0.75$), and $-27.8{\\pm}1.6\\%$ ($\\alpha{=}1.0$).\n112\tThe non-monotonic pattern---diversity declining \\emph{more} at moderate~$\\alpha$ than at extreme~$\\alpha$---is observed at seed=42 and requires multi-seed confirmation before drawing conclusions about the relationship between contamination level and collapse severity.\n113\t\n114\t\\paragraph{Granger-causal detectability.}\n115\tDespite ubiquitous drift, causal detectability is sharply regime-dependent (Figure~\\ref{fig:regime_map}).\n116\tPermutation Granger tests (first-differenced, BH-corrected) find 0/8 pairs FDR-significant at $\\alpha{=}0.00$, 0/8 at $\\alpha{=}0.25$, 0/8 at $\\alpha{=}0.50$, and \\textbf{6/8} at $\\alpha{=}1.0$ in the cross-$\\alpha$ pooled analysis.\n117\tAt $\\alpha{=}0.75$ (single seed, seed=42), 3/8 pairs reach FDR significance; this result requires multi-seed replication before serving as primary evidence.\n118\tWithin-$\\alpha$ multi-seed analysis at $\\alpha{=}1.0$ yields \\textbf{24/24} canary$\\to$diversity pairs FDR-significant across all four seeds, with 0/24 in the reverse direction, confirming temporal asymmetry.\n119\tThe detectability boundary---the regime below which canary metrics no longer develop sufficient temporal lead for causal inference---lies at $\\alpha \\approx 0.50$--$0.75$, consistent with theoretical expectations about signal-to-noise limits in short time series \\cite{boettiger2012limits}.\n120\tThis boundary is sharp rather than gradual: method-level consensus ($K{\\geq}4/5$) identifies 0--1 of 16 candidate pairs as robust at $\\alpha{\\leq}0.50$ but 11/16 at $\\alpha{=}0.75$ (single seed, pre-pipeline filtering; the stricter $K{\\geq}4/5$, $S{\\geq}3/4$ criterion at $\\alpha{=}1.0$ retains 6/16 after excluding failed candidates and spurious channels per \\S\\ref{sec:case_study}).\n121\tThe lower count at $\\alpha{=}1.0$ despite stronger contamination reflects the stricter validation standard: multi-seed replication ($S{\\geq}3/4$) filters seed-specific artifacts, and pipeline filtering removes the perplexity channel (spurious per \\S\\ref{sec:method_sensitivity}) and failed canary candidates (effective rank, Self-BLEU), both of which contribute to the $\\alpha{=}0.75$ single-seed count.\n122\t\n123\t\\paragraph{Synchronous collapse at $\\alpha{=}0.50$.}\n124\tThe $\\alpha{=}0.50$ regime provides particularly informative evidence.\n125\tCorrelation-based methods unanimously find significance (Table~\\ref{tab:method_comparison}) while causal methods unanimously find non-significance.\n126\tThis extreme method$\\times$regime interaction arises because canary and downstream metrics collapse \\emph{synchronously} at moderate contamination, preserving high correlation but eliminating the temporal lead required for Granger-causal inference.\n127\tWe highlight this as a \\emph{positive finding}: it delineates the regime boundary where naive analysis is most dangerous---high correlation coexists with zero causal precedence, maximizing the risk of spurious conclusions.\n128\tFigure~\\ref{fig:consensus_heatmap} visualizes this interaction across all method$\\times\\alpha$ combinations, revealing a clear block structure that separates correlation-based methods from causal methods as a function of regime.\n129\t\n130\t\n131\t\\subsection{Case Study: Canary Prediction of Diversity Collapse}\n132\t\\label{sec:case_study}\n133\t\n134\tHaving established method sensitivity (Claim~3) and regime dependence (Claim~2), we present the conditions under which canary prediction succeeds (Claim~1).\n135\tWe scope this claim precisely: canary metrics predict \\emph{diversity collapse} (declining distinct-$n$), not model collapse broadly.\n136\t\n137\t\\paragraph{Full synthetic replacement ($\\alpha{=}1.0$, 4 seeds).}\n138\tToken entropy Granger-causes distinct-1 and distinct-2 with a consistent one-generation lead.\n139\tCross-correlation peaks at lag$={+}1$ with $|r|{>}0.99$ (cross-seed standard deviation: 0.0).\n140\tFigure~\\ref{fig:metric_trajectory} illustrates the one-generation offset between token entropy decline and distinct-1 decline, visible across all four seeds.\n141\tPermutation Granger tests (first-differenced) confirm all canary$\\to$diversity pairs as FDR-significant across all four seeds, including distinct-3 (Appendix~\\ref{app:distinct3}).\n142\tReverse-direction tests (downstream$\\to$canary) find \\textbf{0/24} FDR-significant (all $p{>}0.49$), confirming directional asymmetry.\n143\t\n144\t\\paragraph{High contamination ($\\alpha{=}0.75$, single seed).}\n145\tAt $\\alpha{=}0.75$ (seed=42), three of four forward-direction pairs reach FDR significance: ECE$\\to$distinct-1 ($p_\\text{fdr}{=}0.046$), ECE$\\to$distinct-2 ($p_\\text{fdr}{=}0.046$), and token entropy$\\to$distinct-2 ($p_\\text{fdr}{=}0.048$).\n146\tToken entropy$\\to$distinct-1 is borderline ($p_\\text{fdr}{=}0.054$).\n147\tAll four reverse directions are non-significant ($p{>}0.49$).\n148\tThese single-seed results require multi-seed confirmation before serving as primary evidence.\n149\t\n150\t\\paragraph{ECE as a conditional secondary canary.}\n151\tECE performs equivalently to token entropy across four of five methods (naive, differenced, threshold, permutation Granger).\n152\tIts classification as ``secondary'' is driven entirely by Toda--Yamamoto Type~II errors at $T{=}10$, where bootstrap power analysis yields estimated power of 0.05--0.20 depending on $d_{\\max}$.\n153\tResolving ECE's true canary status requires longer time series.\n154\t\n155\t\\paragraph{Failed canary candidates.}\n156\tNot all metrics serve as canaries.\n157\tEffective rank and Self-BLEU show no detectable lead-lag relationship with any downstream metric under any method or contamination level, and are excluded from the consensus framework.\n158\t\n159\t\\paragraph{Consensus filtering.}\n160\tOf 16 canary$\\to$downstream pairs tested at $\\alpha{=}1.0$ (4 candidate canaries $\\times$ 4 downstream metrics), \\textbf{6 survive} the full consensus pipeline ($K{\\geq}4/5$ methods, $S{\\geq}3/4$ seeds): token entropy and ECE each predicting distinct-1 and distinct-2 (4 pairs; distinct-3 results in Appendix~\\ref{app:distinct3} bring the total to~6).\n161\tThe 10 eliminated pairs comprise all canary$\\to$perplexity relationships (identified as spurious by the first-differencing diagnostic) and all effective-rank and Self-BLEU pairs (failed canaries).\n162\tThe consensus framework reduces the naive 100\\% significance rate to the 37.5\\% rate supported by the most conservative individual methods (Figure~\\ref{fig:consensus_workflow}).\n163\t\n164\t\n165\t\\subsection{Consensus Framework Validation}\n166\t\\label{sec:consensus_validation}\n167\t\n168\tWe validate the consensus framework's calibration using built-in experimental controls.\n169\t\n170\t\\paragraph{False positive rate.}\n171\tAt $\\alpha{=}0.0$, no synthetic data is injected; any detected lead-lag association is a false positive.\n172\tIndividual-method FPR ranges from \\textbf{100\\%} (naive cross-correlation: 8/8 pairs) through 62.5\\% (threshold) and 37.5\\% (differenced) down to \\textbf{0\\%} (permutation Granger and Toda--Yamamoto).\n173\tThe consensus framework at $K{\\geq}4/5$ achieves \\textbf{FPR${=}$0\\%}, matching the best individual methods while providing robustness against miscalibration of any single method (Table~\\ref{tab:fpr_fnr}).\n174\t\n175\t\\paragraph{False negative rate.}\n176\tAt $\\alpha{=}1.0$, we define 6 ground-truth pairs (token entropy and ECE $\\to$ distinct-1/2/3), validated independently by the first-differencing diagnostic: all 6 pairs retain FDR significance after differencing, ruling out shared-trend confounding.\n177\tThe consensus framework ($K{\\geq}4/5$, $S{\\geq}3/4$) recovers all~6 (\\textbf{FNR${=}$0\\%}).\n178\tToda--Yamamoto alone yields FNR${=}$33.3\\% (2/6), missing ECE$\\to$distinct-2 and ECE$\\to$distinct-3 due to Type~II errors at $T{=}10$.\n179\tWe note a design asymmetry: FPR is validated on method-only data (single seed at $\\alpha{=}0.0$), while FNR uses method$\\times$seed joint data (4~seeds at $\\alpha{=}1.0$).\n180\tFull joint calibration---multi-seed null-control experiments---remains future work.\n181\tTable~\\ref{tab:fpr_fnr} reports the calibration results.\n182\t\n183\t\\begin{table}[t]\n184\t\\centering\n185\t\\small\n186\t\\caption{False positive and false negative rates for individual methods and the consensus framework. FPR: $\\alpha{=}0.0$ null control (single seed). FNR: $\\alpha{=}1.0$ against 6 ground-truth pairs independently validated by first-differencing. Note dimension asymmetry: FPR is method-only; FNR is method$\\times$seed joint (\\S\\ref{sec:consensus_validation}).}\n187\t\\label{tab:fpr_fnr}\n188\t\\begin{tabular}{lcc}\n189\t\\toprule\n190\tCriterion & FPR ($\\alpha{=}0.0$) & FNR ($\\alpha{=}1.0$) \\\\\n191\t\\midrule\n192\tNaive XCorr              & 100\\%  & 0\\%  \\\\\n193\tDifferenced XCorr        & 37.5\\% & 0\\%  \\\\\n194\tThreshold Onset          & 62.5\\% & 0\\%  \\\\\n195\tPermutation Granger      & 0\\%    & 0\\%  \\\\\n196\tToda--Yamamoto           & 0\\%    & 33.3\\% \\\\\n197\t\\midrule\n198\tConsensus ($K{\\geq}4/5$)              & 0\\%    & 0\\%  \\\\\n199\tConsensus ($K{\\geq}4/5$, $S{\\geq}3/4$) & 0\\%    & 0\\%  \\\\\n200\t\\bottomrule\n201\t\\end{tabular}\n202\t\\end{table}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a1e2033-c006-4833-907b-1bd9af5df690",
+            "uuid": "b88168f8-7a01-4fc8-83c2-766a588df510",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/paper/experiments.tex",
+                "content": "\\section{Experiments}\n\\label{sec:experiments}\n\n\\subsection{Experimental Setup}\n\\label{sec:setup}\n\nWe study lead-lag analysis pitfalls in iterative training collapse using Pythia-410M \\cite{biderman2023pythia}, a 410M-parameter autoregressive language model.\nPythia provides a controlled setting: small enough for multi-seed experiments across five contamination levels, yet large enough to exhibit meaningful generation-over-generation degradation.\nTraining data is drawn from WikiText-103 \\cite{merity2017pointer}, using 5{,}000-sample subsets per generation.\n\nOur protocol follows the full-replacement paradigm of \\citet{shumailov2024curse}.\nEach generation $t$ proceeds in three steps: (1)~fine-tune the generation-$(t{-}1)$ model for 5{,}000 steps on a mixture of $\\alpha$ fraction synthetic data and $(1{-}\\alpha)$ fraction real data; (2)~generate 5{,}000 synthetic samples from the fine-tuned model; (3)~fully replace the synthetic pool.\nWe run $T{=}10$ generations (11 time points including the generation-0 baseline) across contamination levels $\\alpha \\in \\{0.00, 0.25, 0.50, 0.75, 1.00\\}$.\nThe $\\alpha{=}1.0$ condition uses four random seeds $\\{42, 43, 44, 45\\}$; other conditions use seed~42, with multi-seed replication in progress.\n\nWe track two \\emph{canary metrics}---cheap-to-compute statistics hypothesized to precede downstream degradation, inspired by early-warning signals in dynamical systems \\cite{scheffer2009early}---and three \\emph{downstream metrics}.\nCanary metrics are token entropy (next-token prediction entropy averaged over held-out samples) and expected calibration error (ECE).\nDownstream metrics are distinct-1 and distinct-2 ($n$-gram diversity \\cite{li2016diversity}) and perplexity.\nWe additionally evaluate effective rank and Self-BLEU as candidate canaries (\\S\\ref{sec:case_study}).\nResults for distinct-3 are reported in Appendix~\\ref{app:distinct3}.\n\nAll hypothesis tests apply Benjamini--Hochberg (BH) FDR correction at $q{=}0.05$.\nPermutation Granger causality tests use 5{,}000 permutations on first-differenced series \\cite{shojaie2022granger}.\nCross-correlation analysis uses a maximum lag of 5 generations.\nTable~\\ref{tab:drift_summary} summarizes raw metric drift from generation~0 to generation~10 across all five contamination levels.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Metric drift (\\%, generation~0$\\to$10) across contamination levels. $\\alpha{=}1.0$: 4-seed mean${\\pm}$std; other levels: single seed (seed=42). Non-monotonic distinct-1 pattern across $\\alpha \\in \\{0.25, 0.50\\}$ is observed at seed=42, pending multi-seed confirmation.}\n\\label{tab:drift_summary}\n\\begin{tabular}{lccccc}\n\\toprule\n$\\alpha$ & Entropy & ECE & Distinct-1 & Distinct-2 & Perplexity \\\\\n\\midrule\n0.00 & $-5.1$ & $+51.7$ & $-13.8$ & $-9.8$ & $-21.7$ \\\\\n0.25 & $-4.1$ & $+79.7$ & $-40.3$ & $-57.1$ & $-17.2$ \\\\\n0.50 & $-18.6$ & $+842.8$ & $-37.3$ & $-51.5$ & $+21.1$ \\\\\n0.75 & $-27.7$ & $+1809.5$ & $-32.7$ & $-41.3$ & $+182.1$ \\\\\n1.00 & $-60.8{\\pm}1.2$ & $+3782{\\pm}30$ & $-27.8{\\pm}1.6$ & $-34.0{\\pm}3.3$ & $+3673{\\pm}45$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\subsection{Method Sensitivity Analysis}\n\\label{sec:method_sensitivity}\n\nWe open with Claim~3---method sensitivity---because it conditions the interpretation of all subsequent results.\nIf different statistical methods yield contradictory conclusions on the same data, any single-method analysis is unreliable by construction.\n\n\\paragraph{Five-method ablation.}\nWe apply five lead-lag detection methods to the $\\alpha{=}1.0$ condition (4~seeds, 16 canary$\\to$downstream pairs).\nThe fraction of pairs reaching BH-corrected FDR significance varies dramatically by method: naive cross-correlation \\textbf{16/16} (100\\%), differenced cross-correlation \\textbf{14/16} (87.5\\%), threshold onset detection \\textbf{9/16} (56.3\\%), permutation Granger causality \\textbf{6/16} (37.5\\%), and Toda--Yamamoto Granger \\textbf{4/16} (25.0\\%).\nMethod choice alone swings significance from \\textbf{100\\% to 25\\%}.\nThe spurious-signal rate---the fraction of pairs detected by the most liberal method but not confirmed by the most conservative---is \\textbf{75\\%} across all five methods and \\textbf{62.5\\%} when excluding Toda--Yamamoto, whose low statistical power at $T{=}10$ inflates this rate (\\S\\ref{sec:consensus_validation}).\nTable~\\ref{tab:method_comparison} reports significance rates restricted to 8 validated canary$\\to$downstream pairs (excluding failed candidates); the 16-pair rates above include effective rank and Self-BLEU to capture the full method-sensitivity landscape.\n\n\\paragraph{First-differencing diagnostic.}\nA single preprocessing decision can eliminate an entire analysis channel.\nFor canary$\\to$diversity pairs at $\\alpha{=}1.0$, all pairs retain unanimous FDR significance after first-differencing (24/24$\\to$24/24), confirming genuine temporal precedence rather than shared-trend confounding.\nFor canary$\\to$perplexity, however, undifferenced tests find near-universal significance ($F{=}16$--$36$) while differenced tests find \\textbf{zero} significant pairs ($F{\\approx}0$, $p{=}0.99$; Figure~\\ref{fig:differencing_dmax}a).\nThe apparent canary$\\to$perplexity relationship is entirely an artifact of co-trending.\n\n\\paragraph{Augmentation order sensitivity.}\nToda--Yamamoto Granger tests show extreme sensitivity to the augmentation order $d_{\\max}$ (Figure~\\ref{fig:differencing_dmax}b).\nAt $d_{\\max}{=}0$ (most permissive), approximately 6\\% of pairs are rejected; at adaptive $d_{\\max}$ determined by ADF unit-root tests, 75\\%; at $d_{\\max}{=}1$ (most conservative), \\textbf{94\\%}.\nThis single hyperparameter swings conclusions from near-universal significance to near-universal non-significance.\n\n\\paragraph{Inter-method agreement.}\nCohen's $\\kappa$, averaged over all method pairs, is \\textbf{0.185} (poor agreement); this value is consistent across contamination levels ($\\alpha{=}0.0$ through $\\alpha{=}1.0$), indicating that method disagreement is a structural property of the analysis rather than a regime-specific artifact.\nCross-architecture validation on GPT-2-medium (12 canary$\\to$downstream pairs) yields Fleiss' $\\kappa{=}0.091$, also in the ``slight agreement'' range, confirming that low inter-method agreement is not architecture-specific.\nRestricting to three informative methods (excluding naive cross-correlation and Toda--Yamamoto, which anchor the permissive and conservative extremes respectively) raises $\\kappa$ to 0.667 (substantial agreement), indicating that the low full-panel $\\kappa$ is driven by the deliberate inclusion of methods spanning the entire permissive-to-conservative spectrum rather than by fundamental incoherence among methods.\nTable~\\ref{tab:method_comparison} extends the analysis across contamination levels.\nAt $\\alpha{=}0.0$ (no synthetic data, serving as null control), naive cross-correlation finds \\textbf{100\\%} of pairs significant---a textbook spurious-regression outcome in trending time series.\nPermutation Granger and Toda--Yamamoto correctly find 0\\%.\nAt $\\alpha{=}0.50$, correlation-based methods (naive, differenced, threshold) unanimously find significance while causal methods unanimously find non-significance (Figure~\\ref{fig:consensus_heatmap}), the most extreme method$\\times$regime divergence in our experiments.\n\n\\paragraph{Method$\\times$regime interaction.}\nTable~\\ref{tab:method_comparison} reveals that the correlation-versus-causal divergence is not uniform across contamination levels.\nAt $\\alpha{=}0.25$, differenced cross-correlation drops to 25\\% and threshold onset to 37.5\\%, while naive cross-correlation remains at 100\\%---demonstrating that even partial detrending removes marginal associations at low contamination.\nThe graded response across methods, combined with the block structure visible in Figure~\\ref{fig:consensus_heatmap}, motivates the regime-dependent analysis in \\S\\ref{sec:regime}.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{FDR significance rates (\\%) for five lead-lag methods across contamination levels. Each cell reports the fraction of 8 primary canary$\\to$downstream pairs (token entropy and ECE $\\times$ 4 downstream metrics) reaching BH-corrected significance ($q{=}0.05$); failed candidates (effective rank, Self-BLEU) excluded per \\S\\ref{sec:case_study}. $\\alpha{=}0.75$ is analyzed separately as single-seed data (\\S\\ref{sec:regime}). FPR$_\\text{null}$: false positive rate at the $\\alpha{=}0.0$ null control.}\n\\label{tab:method_comparison}\n\\begin{tabular}{lcccccc}\n\\toprule\nMethod & $\\alpha{=}0.0$ & $\\alpha{=}0.25$ & $\\alpha{=}0.50$ & $\\alpha{=}0.75$ & $\\alpha{=}1.0$ & FPR$_\\text{null}$ \\\\\n\\midrule\nNaive XCorr     & 100   & 100  & 100  & ---  & 100   & 100  \\\\\nDiff.\\ XCorr   & 37.5  & 25   & 100  & ---  & 100   & 37.5 \\\\\nThreshold       & 62.5  & 37.5 & 100  & ---  & 100   & 62.5 \\\\\nPerm.\\ Granger  & 0     & 0    & 0    & ---  & 75    & 0    \\\\\nToda--Yamamoto  & 0     & 37.5 & 0    & ---  & 59.4  & 0    \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\subsection{Regime-Dependent Detectability}\n\\label{sec:regime}\n\nBeyond method choice, the contamination level~$\\alpha$ determines whether a temporal lead exists to detect.\nWe present regime effects at two levels: raw metric drift (method-independent) and Granger-causal detectability.\n\n\\paragraph{Raw drift.}\nTable~\\ref{tab:drift_summary} shows that diversity collapse occurs at \\emph{all} contamination levels, not only under full synthetic replacement.\nDistinct-1 declines by 13.8\\% even at $\\alpha{=}0.0$ (attributable to fine-tuning on repeated real-data subsets), and more steeply at intermediate contamination: $-40.3\\%$ ($\\alpha{=}0.25$), $-37.3\\%$ ($\\alpha{=}0.50$), $-32.7\\%$ ($\\alpha{=}0.75$), and $-27.8{\\pm}1.6\\%$ ($\\alpha{=}1.0$).\nThe non-monotonic pattern---diversity declining \\emph{more} at moderate~$\\alpha$ than at extreme~$\\alpha$---is observed at seed=42 and requires multi-seed confirmation before drawing conclusions about the relationship between contamination level and collapse severity.\n\n\\paragraph{Granger-causal detectability.}\nDespite ubiquitous drift, causal detectability is sharply regime-dependent (Figure~\\ref{fig:regime_map}).\nPermutation Granger tests (first-differenced, BH-corrected) find 0/8 pairs FDR-significant at $\\alpha{=}0.00$, 0/8 at $\\alpha{=}0.25$, 0/8 at $\\alpha{=}0.50$, and \\textbf{6/8} at $\\alpha{=}1.0$ in the cross-$\\alpha$ pooled analysis.\nAt $\\alpha{=}0.75$ (single seed, seed=42), 3/8 pairs reach FDR significance; this result requires multi-seed replication before serving as primary evidence.\nWithin-$\\alpha$ multi-seed analysis at $\\alpha{=}1.0$ yields \\textbf{24/24} canary$\\to$diversity pairs FDR-significant across all four seeds, with 0/24 in the reverse direction, confirming temporal asymmetry.\nThe detectability boundary---the regime below which canary metrics no longer develop sufficient temporal lead for causal inference---lies at $\\alpha \\approx 0.50$--$0.75$, consistent with theoretical expectations about signal-to-noise limits in short time series \\cite{boettiger2012limits}.\nThis boundary is sharp rather than gradual: method-level consensus ($K{\\geq}4/5$) identifies 0--1 of 16 candidate pairs as robust at $\\alpha{\\leq}0.50$ but 11/16 at $\\alpha{=}0.75$ (single seed, pre-pipeline filtering; the stricter $K{\\geq}4/5$, $S{\\geq}3/4$ criterion at $\\alpha{=}1.0$ retains 6/16 after excluding failed candidates and spurious channels per \\S\\ref{sec:case_study}).\nThe lower count at $\\alpha{=}1.0$ despite stronger contamination reflects the stricter validation standard: multi-seed replication ($S{\\geq}3/4$) filters seed-specific artifacts, and pipeline filtering removes the perplexity channel (spurious per \\S\\ref{sec:method_sensitivity}) and failed canary candidates (effective rank, Self-BLEU), both of which contribute to the $\\alpha{=}0.75$ single-seed count.\n\n\\paragraph{Synchronous collapse at $\\alpha{=}0.50$.}\nThe $\\alpha{=}0.50$ regime provides particularly informative evidence.\nCorrelation-based methods unanimously find significance (Table~\\ref{tab:method_comparison}) while causal methods unanimously find non-significance.\nThis extreme method$\\times$regime interaction arises because canary and downstream metrics collapse \\emph{synchronously} at moderate contamination, preserving high correlation but eliminating the temporal lead required for Granger-causal inference.\nWe highlight this as a \\emph{positive finding}: it delineates the regime boundary where naive analysis is most dangerous---high correlation coexists with zero causal precedence, maximizing the risk of spurious conclusions.\nFigure~\\ref{fig:consensus_heatmap} visualizes this interaction across all method$\\times\\alpha$ combinations, revealing a clear block structure that separates correlation-based methods from causal methods as a function of regime.\n\n\n\\subsection{Case Study: Canary Prediction of Diversity Collapse}\n\\label{sec:case_study}\n\nHaving established method sensitivity (Claim~3) and regime dependence (Claim~2), we present the conditions under which canary prediction succeeds (Claim~1).\nWe scope this claim precisely: canary metrics predict \\emph{diversity collapse} (declining distinct-$n$), not model collapse broadly.\n\n\\paragraph{Full synthetic replacement ($\\alpha{=}1.0$, 4 seeds).}\nToken entropy Granger-causes distinct-1 and distinct-2 with a consistent one-generation lead.\nCross-correlation peaks at lag$={+}1$ with $|r|{>}0.99$ (cross-seed standard deviation: 0.0).\nFigure~\\ref{fig:metric_trajectory} illustrates the one-generation offset between token entropy decline and distinct-1 decline, visible across all four seeds.\nPermutation Granger tests (first-differenced) confirm all canary$\\to$diversity pairs as FDR-significant across all four seeds, including distinct-3 (Appendix~\\ref{app:distinct3}).\nReverse-direction tests (downstream$\\to$canary) find \\textbf{0/24} FDR-significant (all $p{>}0.49$), confirming directional asymmetry.\n\n\\paragraph{High contamination ($\\alpha{=}0.75$, single seed).}\nAt $\\alpha{=}0.75$ (seed=42), three of four forward-direction pairs reach FDR significance: ECE$\\to$distinct-1 ($p_\\text{fdr}{=}0.046$), ECE$\\to$distinct-2 ($p_\\text{fdr}{=}0.046$), and token entropy$\\to$distinct-2 ($p_\\text{fdr}{=}0.048$).\nToken entropy$\\to$distinct-1 is borderline ($p_\\text{fdr}{=}0.054$).\nAll four reverse directions are non-significant ($p{>}0.49$).\nThese single-seed results require multi-seed confirmation before serving as primary evidence.\n\n\\paragraph{ECE as a conditional secondary canary.}\nECE performs equivalently to token entropy across four of five methods (naive, differenced, threshold, permutation Granger).\nIts classification as ``secondary'' is driven entirely by Toda--Yamamoto Type~II errors at $T{=}10$, where bootstrap power analysis yields estimated power of 0.05--0.20 depending on $d_{\\max}$.\nResolving ECE's true canary status requires longer time series.\n\n\\paragraph{Failed canary candidates.}\nNot all metrics serve as canaries.\nEffective rank and Self-BLEU show no detectable lead-lag relationship with any downstream metric under any method or contamination level, and are excluded from the consensus framework.\n\n\\paragraph{Consensus filtering.}\nOf 16 canary$\\to$downstream pairs tested at $\\alpha{=}1.0$ (4 candidate canaries $\\times$ 4 downstream metrics), \\textbf{6 survive} the full consensus pipeline ($K{\\geq}4/5$ methods, $S{\\geq}3/4$ seeds): token entropy and ECE each predicting distinct-1 and distinct-2 (4 pairs; distinct-3 results in Appendix~\\ref{app:distinct3} bring the total to~6).\nThe 10 eliminated pairs comprise all canary$\\to$perplexity relationships (identified as spurious by the first-differencing diagnostic) and all effective-rank and Self-BLEU pairs (failed canaries).\nThe consensus framework reduces the naive 100\\% significance rate to the 37.5\\% rate supported by the most conservative individual methods (Figure~\\ref{fig:consensus_workflow}).\n\n\n\\subsection{Consensus Framework Validation}\n\\label{sec:consensus_validation}\n\nWe validate the consensus framework's calibration using built-in experimental controls.\n\n\\paragraph{False positive rate.}\nAt $\\alpha{=}0.0$, no synthetic data is injected; any detected lead-lag association is a false positive.\nIndividual-method FPR ranges from \\textbf{100\\%} (naive cross-correlation: 8/8 pairs) through 62.5\\% (threshold) and 37.5\\% (differenced) down to \\textbf{0\\%} (permutation Granger and Toda--Yamamoto).\nThe consensus framework at $K{\\geq}4/5$ achieves \\textbf{FPR${=}$0\\%}, matching the best individual methods while providing robustness against miscalibration of any single method (Table~\\ref{tab:fpr_fnr}).\n\n\\paragraph{False negative rate.}\nAt $\\alpha{=}1.0$, we define 6 ground-truth pairs (token entropy and ECE $\\to$ distinct-1/2/3), validated independently by the first-differencing diagnostic: all 6 pairs retain FDR significance after differencing, ruling out shared-trend confounding.\nThe consensus framework ($K{\\geq}4/5$, $S{\\geq}3/4$) recovers all~6 (\\textbf{FNR${=}$0\\%}).\nToda--Yamamoto alone yields FNR${=}$33.3\\% (2/6), missing ECE$\\to$distinct-2 and ECE$\\to$distinct-3 due to Type~II errors at $T{=}10$.\nWe note a design asymmetry: FPR is validated on method-only data (single seed at $\\alpha{=}0.0$), while FNR uses method$\\times$seed joint data (4~seeds at $\\alpha{=}1.0$).\nFull joint calibration---multi-seed null-control experiments---remains future work.\nTable~\\ref{tab:fpr_fnr} reports the calibration results.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{False positive and false negative rates for individual methods and the consensus framework. FPR: $\\alpha{=}0.0$ null control (single seed). FNR: $\\alpha{=}1.0$ against 6 ground-truth pairs independently validated by first-differencing. Note dimension asymmetry: FPR is method-only; FNR is method$\\times$seed joint (\\S\\ref{sec:consensus_validation}).}\n\\label{tab:fpr_fnr}\n\\begin{tabular}{lcc}\n\\toprule\nCriterion & FPR ($\\alpha{=}0.0$) & FNR ($\\alpha{=}1.0$) \\\\\n\\midrule\nNaive XCorr              & 100\\%  & 0\\%  \\\\\nDifferenced XCorr        & 37.5\\% & 0\\%  \\\\\nThreshold Onset          & 62.5\\% & 0\\%  \\\\\nPermutation Granger      & 0\\%    & 0\\%  \\\\\nToda--Yamamoto           & 0\\%    & 33.3\\% \\\\\n\\midrule\nConsensus ($K{\\geq}4/5$)              & 0\\%    & 0\\%  \\\\\nConsensus ($K{\\geq}4/5$, $S{\\geq}3/4$) & 0\\%    & 0\\%  \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}",
+                "numLines": 202,
+                "startLine": 1,
+                "totalLines": 202
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SRaXCWFvhMb32qk5AVgcbq",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/paper/discussion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a1e2033-c006-4833-907b-1bd9af5df690",
+            "uuid": "96c09e0b-059b-4fc7-9b66-d5fbebd3cb21",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DjV2iQjG8V29RWWSQBfFrX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 304,
+                "cache_read_input_tokens": 25928,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 304
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T13:02:20.721Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SRaXCWFvhMb32qk5AVgcbq",
+              "type": "tool_result",
+              "content": "1\t\\section{Discussion}\\label{sec:discussion}\n2\t\n3\t\\paragraph{Granger precedence is not causation.}\n4\tGranger causality tests whether past values of one series improve prediction of another beyond its own history; it does not establish true causation~\\cite{granger1969investigating,shojaie2022granger}.\n5\tBivariate Granger tests cannot exclude confounders: an unobserved process---such as a latent distributional shift in the training data---could independently drive both token entropy and diversity metrics, producing spurious lead-lag associations even when no direct relationship exists.\n6\tOur multi-method consensus framework inherits this limitation in full.\n7\tThroughout this paper, ``Granger precedence'' denotes predictive improvement in a time-series forecasting sense, not a causal mechanism.\n8\tThis distinction is why we scope our central claim to ``token entropy Granger-precedes diversity collapse'' rather than asserting that token entropy \\emph{causes} diversity collapse.\n9\t\n10\t\\paragraph{Calibration scope and generalization.}\n11\tAll FPR and FNR calibration results reported in this work are specific to our experimental setup: Pythia-410M~\\cite{biderman2023pythia}, a WikiText-103 subset, $T{=}10$ generation cycles, and five contamination levels ($\\alpha \\in \\{0.0, 0.25, 0.50, 0.75, 1.0\\}$).\n12\tGeneralization to other model architectures, datasets, or training protocols requires independent validation.\n13\tThe consensus framework's structure---multi-method agreement combined with multi-seed replication---is intended to be applicable beyond this specific setting, but the operating thresholds ($K{\\geq}4/5$ methods, $S{\\geq}3/4$ seeds) are empirically calibrated and may require re-tuning under different conditions.\n14\tFor instance, architectures with different tokenizer granularity or training dynamics could shift the balance between false positive and false negative rates at these thresholds.\n15\tOur ongoing GPT-2-medium experiments represent a first step toward cross-architecture validation, though results are not yet available.\n16\t\n17\t\\paragraph{FPR/FNR calibration asymmetry.}\n18\tThe FPR and FNR estimates in our calibration analysis differ in their coverage of the seed dimension.\n19\tFPR is validated on the method dimension only, using a single seed at the null-control condition ($\\alpha{=}0.0$).\n20\tFNR is validated on the joint method${\\times}$seed dimension, aggregating across four seeds at full contamination ($\\alpha{=}1.0$).\n21\tThis asymmetry means our FPR estimate of 0\\% may be optimistic: if seed-level variance in false positive rates is non-negligible, the true FPR under the consensus rule could exceed zero.\n22\tFull joint calibration---requiring multi-seed null-control experiments at $\\alpha{=}0.0$---remains an open direction for future work.\n23\t\n24\t\\paragraph{Short time-series constraint.}\n25\tWith $T{=}10$ generation cycles (11 data points per series), our time-series analyses operate near the lower bound of what standard methods require.\n26\tThis series length is typical for iterative training studies, where each generation involves a complete training run, but it severely limits statistical power.\n27\tThe Toda--Yamamoto procedure's elevated FNR (33.3\\%, missing 2 of 6 directional pairs) is attributable to insufficient residual degrees of freedom at this series length, not to a fundamental deficiency in the method itself.\n28\tThis finding aligns with \\citet{boettiger2012limits}, who demonstrated that early-warning signals have limited detection power in short time series.\n29\tLonger generation chains would improve power for all methods but impose substantial computational cost; this trade-off between statistical power and compute budget is inherent to iterative training research and cannot be resolved by methodological improvements alone.\n30\tHowever, observation window sensitivity analysis provides reassurance: the $4/5$ consensus classification stabilizes at $T{\\geq}5$, well below our observation window of $T{=}10$, with identical results from $T{=}5$ through $T{=}10$.\n31\tThe Toda--Yamamoto procedure produces valid test statistics at all window lengths ($T \\in \\{5, \\ldots, 10\\}$), but with unstable sensitivity---3/6 to 6/6 pairs reach significance depending on window length---confirming that its elevated FNR reflects limited residual degrees of freedom rather than absence of signal.\n32\t\n33\t\\paragraph{Diversity--calibration dissociation.}\n34\tDiversity metrics and calibration metrics respond to synthetic contamination in qualitatively opposite directions across the $\\alpha$ spectrum.\n35\tDiversity collapse (distinct-$n$ decline) is most severe at low contamination ($\\alpha{=}0.25$: distinct-3 declines by 59.9\\%) and attenuates at higher levels ($\\alpha{=}1.0$: $-30.5\\%$), while calibration degradation (ECE) increases monotonically with $\\alpha$ ($+51.7\\%$ at $\\alpha{=}0.0$ to $+3782\\%$ at $\\alpha{=}1.0$).\n36\tThis dissociation underscores the need for multi-method consensus: the regime in which a metric degrades most severely ($\\alpha{=}0.25$ for diversity) does not coincide with the regime in which its temporal lead is most detectable ($\\alpha{\\geq}0.75$), and a single metric family cannot capture the full picture of iterative training degradation.\n37\t\n38\t\\paragraph{Limitations.}\n39\tSeveral limitations constrain the generalizability of our findings.\n40\tFirst, our primary experiments use Pythia-410M; preliminary cross-architecture validation with GPT-2-medium uses batch size~32 (versus~4 for Pythia) for GPU efficiency, exposing 8$\\times$ more data per training step, which may accelerate collapse dynamics without altering the qualitative pattern (token entropy leading diversity decline is observed in both architectures).\n41\tSecond, training data is drawn from a single domain (a WikiText-103 subset), and domain-specific distributional properties may influence the coupling between canary and downstream metrics.\n42\tThird, we lack an intervention experiment: we observe that token entropy Granger-precedes diversity collapse at $\\alpha{=}1.0$ (with preliminary single-seed evidence at $\\alpha{=}0.75$) but do not test whether acting on canary signals can prevent or delay collapse onset.\n43\tFourth, our experiments use replace-only data accumulation; accumulate-mode training~\\cite{dey2024breaking,kazdan2025collapse} may exhibit qualitatively different canary dynamics.\n44\tFinally, our canary claims are scoped to distinct-$n$ diversity metrics~\\cite{li2016diversity}---not to model collapse broadly~\\cite{schaeffer2025position}---as the perplexity channel proved spurious ($F{\\approx}0$, $p{=}0.99$ after differencing).\n45\tThis scoping is theoretically motivated: \\citet{cao2025entropycal} prove a fundamental calibration-diversity tradeoff in language models---all current calibration methods reduce entropy at the cost of diversity---suggesting that calibration and diversity are coupled but not identical, which may explain why token entropy can Granger-precede diversity collapse without leading perplexity.\n46\t\n47\t\\paragraph{Future work.}\n48\tSeveral directions extend this work.\n49\tMultivariate VAR models would enable testing for confounders and multi-directional Granger relationships beyond our current bivariate framework.\n50\tCross-architecture validation is needed: our GPT-2-medium experiments are in progress, and evaluation on larger-scale models would further test generalizability.\n51\tOnline monitoring---integrating canary metrics into training pipelines for real-time collapse detection---is a natural applied extension.\n52\tAccumulate-mode experiments~\\cite{dey2024breaking} would test whether canary dynamics differ from the replace-mode setting studied here.\n53\tFinally, connecting the empirically observed detectability boundary at $\\alpha{\\approx}0.50$--$0.75$ to theoretical phase transition analysis~\\cite{truong2025entropy} could yield a principled explanation for why canary signals emerge at this contamination regime rather than at lower contamination levels."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a1e2033-c006-4833-907b-1bd9af5df690",
+            "uuid": "c44d7694-7550-4971-8423-2cb7ae0c40b4",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/paper/discussion.tex",
+                "content": "\\section{Discussion}\\label{sec:discussion}\n\n\\paragraph{Granger precedence is not causation.}\nGranger causality tests whether past values of one series improve prediction of another beyond its own history; it does not establish true causation~\\cite{granger1969investigating,shojaie2022granger}.\nBivariate Granger tests cannot exclude confounders: an unobserved process---such as a latent distributional shift in the training data---could independently drive both token entropy and diversity metrics, producing spurious lead-lag associations even when no direct relationship exists.\nOur multi-method consensus framework inherits this limitation in full.\nThroughout this paper, ``Granger precedence'' denotes predictive improvement in a time-series forecasting sense, not a causal mechanism.\nThis distinction is why we scope our central claim to ``token entropy Granger-precedes diversity collapse'' rather than asserting that token entropy \\emph{causes} diversity collapse.\n\n\\paragraph{Calibration scope and generalization.}\nAll FPR and FNR calibration results reported in this work are specific to our experimental setup: Pythia-410M~\\cite{biderman2023pythia}, a WikiText-103 subset, $T{=}10$ generation cycles, and five contamination levels ($\\alpha \\in \\{0.0, 0.25, 0.50, 0.75, 1.0\\}$).\nGeneralization to other model architectures, datasets, or training protocols requires independent validation.\nThe consensus framework's structure---multi-method agreement combined with multi-seed replication---is intended to be applicable beyond this specific setting, but the operating thresholds ($K{\\geq}4/5$ methods, $S{\\geq}3/4$ seeds) are empirically calibrated and may require re-tuning under different conditions.\nFor instance, architectures with different tokenizer granularity or training dynamics could shift the balance between false positive and false negative rates at these thresholds.\nOur ongoing GPT-2-medium experiments represent a first step toward cross-architecture validation, though results are not yet available.\n\n\\paragraph{FPR/FNR calibration asymmetry.}\nThe FPR and FNR estimates in our calibration analysis differ in their coverage of the seed dimension.\nFPR is validated on the method dimension only, using a single seed at the null-control condition ($\\alpha{=}0.0$).\nFNR is validated on the joint method${\\times}$seed dimension, aggregating across four seeds at full contamination ($\\alpha{=}1.0$).\nThis asymmetry means our FPR estimate of 0\\% may be optimistic: if seed-level variance in false positive rates is non-negligible, the true FPR under the consensus rule could exceed zero.\nFull joint calibration---requiring multi-seed null-control experiments at $\\alpha{=}0.0$---remains an open direction for future work.\n\n\\paragraph{Short time-series constraint.}\nWith $T{=}10$ generation cycles (11 data points per series), our time-series analyses operate near the lower bound of what standard methods require.\nThis series length is typical for iterative training studies, where each generation involves a complete training run, but it severely limits statistical power.\nThe Toda--Yamamoto procedure's elevated FNR (33.3\\%, missing 2 of 6 directional pairs) is attributable to insufficient residual degrees of freedom at this series length, not to a fundamental deficiency in the method itself.\nThis finding aligns with \\citet{boettiger2012limits}, who demonstrated that early-warning signals have limited detection power in short time series.\nLonger generation chains would improve power for all methods but impose substantial computational cost; this trade-off between statistical power and compute budget is inherent to iterative training research and cannot be resolved by methodological improvements alone.\nHowever, observation window sensitivity analysis provides reassurance: the $4/5$ consensus classification stabilizes at $T{\\geq}5$, well below our observation window of $T{=}10$, with identical results from $T{=}5$ through $T{=}10$.\nThe Toda--Yamamoto procedure produces valid test statistics at all window lengths ($T \\in \\{5, \\ldots, 10\\}$), but with unstable sensitivity---3/6 to 6/6 pairs reach significance depending on window length---confirming that its elevated FNR reflects limited residual degrees of freedom rather than absence of signal.\n\n\\paragraph{Diversity--calibration dissociation.}\nDiversity metrics and calibration metrics respond to synthetic contamination in qualitatively opposite directions across the $\\alpha$ spectrum.\nDiversity collapse (distinct-$n$ decline) is most severe at low contamination ($\\alpha{=}0.25$: distinct-3 declines by 59.9\\%) and attenuates at higher levels ($\\alpha{=}1.0$: $-30.5\\%$), while calibration degradation (ECE) increases monotonically with $\\alpha$ ($+51.7\\%$ at $\\alpha{=}0.0$ to $+3782\\%$ at $\\alpha{=}1.0$).\nThis dissociation underscores the need for multi-method consensus: the regime in which a metric degrades most severely ($\\alpha{=}0.25$ for diversity) does not coincide with the regime in which its temporal lead is most detectable ($\\alpha{\\geq}0.75$), and a single metric family cannot capture the full picture of iterative training degradation.\n\n\\paragraph{Limitations.}\nSeveral limitations constrain the generalizability of our findings.\nFirst, our primary experiments use Pythia-410M; preliminary cross-architecture validation with GPT-2-medium uses batch size~32 (versus~4 for Pythia) for GPU efficiency, exposing 8$\\times$ more data per training step, which may accelerate collapse dynamics without altering the qualitative pattern (token entropy leading diversity decline is observed in both architectures).\nSecond, training data is drawn from a single domain (a WikiText-103 subset), and domain-specific distributional properties may influence the coupling between canary and downstream metrics.\nThird, we lack an intervention experiment: we observe that token entropy Granger-precedes diversity collapse at $\\alpha{=}1.0$ (with preliminary single-seed evidence at $\\alpha{=}0.75$) but do not test whether acting on canary signals can prevent or delay collapse onset.\nFourth, our experiments use replace-only data accumulation; accumulate-mode training~\\cite{dey2024breaking,kazdan2025collapse} may exhibit qualitatively different canary dynamics.\nFinally, our canary claims are scoped to distinct-$n$ diversity metrics~\\cite{li2016diversity}---not to model collapse broadly~\\cite{schaeffer2025position}---as the perplexity channel proved spurious ($F{\\approx}0$, $p{=}0.99$ after differencing).\nThis scoping is theoretically motivated: \\citet{cao2025entropycal} prove a fundamental calibration-diversity tradeoff in language models---all current calibration methods reduce entropy at the cost of diversity---suggesting that calibration and diversity are coupled but not identical, which may explain why token entropy can Granger-precede diversity collapse without leading perplexity.\n\n\\paragraph{Future work.}\nSeveral directions extend this work.\nMultivariate VAR models would enable testing for confounders and multi-directional Granger relationships beyond our current bivariate framework.\nCross-architecture validation is needed: our GPT-2-medium experiments are in progress, and evaluation on larger-scale models would further test generalizability.\nOnline monitoring---integrating canary metrics into training pipelines for real-time collapse detection---is a natural applied extension.\nAccumulate-mode experiments~\\cite{dey2024breaking} would test whether canary dynamics differ from the replace-mode setting studied here.\nFinally, connecting the empirically observed detectability boundary at $\\alpha{\\approx}0.50$--$0.75$ to theoretical phase transition analysis~\\cite{truong2025entropy} could yield a principled explanation for why canary signals emerge at this contamination regime rather than at lower contamination levels.",
+                "numLines": 53,
+                "startLine": 1,
+                "totalLines": 53
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0166JPw8zBbSWSPAyJWRgLqZ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/paper/conclusion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a1e2033-c006-4833-907b-1bd9af5df690",
+            "uuid": "1b1913d3-1fe9-4f53-85c5-f2120db7122d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DjV2iQjG8V29RWWSQBfFrX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 304,
+                "cache_read_input_tokens": 25928,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 304
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T13:02:20.824Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0166JPw8zBbSWSPAyJWRgLqZ",
+              "type": "tool_result",
+              "content": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tLead-lag analysis in iterative training collapse is far more fragile than the current literature assumes.\n5\tWe demonstrated three pitfalls that undermine standard approaches: method choice alone swings FDR significance from 100\\% to 25\\% ($\\kappa{=}0.185$), first-differencing exposes canary$\\to$perplexity associations as entirely spurious ($F{\\approx}0$, $p{=}0.99$), and regime dependence causes the same Granger test to shift from 24/24 to 0/8 significant pairs across contamination levels.\n6\tThese findings establish that single-method, single-regime analyses---the current default---cannot reliably distinguish genuine temporal precedence from statistical artifacts.\n7\t\n8\tOur multi-method consensus framework addresses this fragility by requiring convergent evidence across ${\\geq}4/5$ independent methods and ${\\geq}3/4$ random seeds.\n9\tCalibrated on built-in experimental controls, the framework achieves 0\\% false positive rate at the null control ($\\alpha{=}0.0$) and 0\\% false negative rate against ground-truth pairs at full contamination ($\\alpha{=}1.0$), with four tiers of practical guidance scaling from exploratory screening to publication-grade claims.\n10\t\n11\tApplying the framework yields a concrete finding: token entropy serves as a one-generation-ahead canary for diversity collapse at $\\alpha{=}1.0$ (with preliminary single-seed evidence at $\\alpha{=}0.75$), with $|r|{>}0.99$ and complete directional asymmetry (0/24 reverse-direction FDR-significant pairs).\n12\tThis result is deliberately scoped to lexical diversity, not model collapse broadly, since the perplexity channel proved entirely spurious under differencing.\n13\t\n14\tThe methodological pitfalls we expose are not specific to our experimental setting---they arise from generic properties of short, non-stationary time series---and the consensus framework transfers directly to any domain where multiple detection methods can be applied in parallel.\n15\tLimitations and remaining gaps are discussed in \\S\\ref{sec:discussion}."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a1e2033-c006-4833-907b-1bd9af5df690",
+            "uuid": "606b7af3-8b91-4dbc-8de9-2e116aec17a1",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/_project/paper/conclusion.tex",
+                "content": "\\section{Conclusion}\n\\label{sec:conclusion}\n\nLead-lag analysis in iterative training collapse is far more fragile than the current literature assumes.\nWe demonstrated three pitfalls that undermine standard approaches: method choice alone swings FDR significance from 100\\% to 25\\% ($\\kappa{=}0.185$), first-differencing exposes canary$\\to$perplexity associations as entirely spurious ($F{\\approx}0$, $p{=}0.99$), and regime dependence causes the same Granger test to shift from 24/24 to 0/8 significant pairs across contamination levels.\nThese findings establish that single-method, single-regime analyses---the current default---cannot reliably distinguish genuine temporal precedence from statistical artifacts.\n\nOur multi-method consensus framework addresses this fragility by requiring convergent evidence across ${\\geq}4/5$ independent methods and ${\\geq}3/4$ random seeds.\nCalibrated on built-in experimental controls, the framework achieves 0\\% false positive rate at the null control ($\\alpha{=}0.0$) and 0\\% false negative rate against ground-truth pairs at full contamination ($\\alpha{=}1.0$), with four tiers of practical guidance scaling from exploratory screening to publication-grade claims.\n\nApplying the framework yields a concrete finding: token entropy serves as a one-generation-ahead canary for diversity collapse at $\\alpha{=}1.0$ (with preliminary single-seed evidence at $\\alpha{=}0.75$), with $|r|{>}0.99$ and complete directional asymmetry (0/24 reverse-direction FDR-significant pairs).\nThis result is deliberately scoped to lexical diversity, not model collapse broadly, since the perplexity channel proved entirely spurious under differencing.\n\nThe methodological pitfalls we expose are not specific to our experimental setting---they arise from generic properties of short, non-stationary time series---and the consensus framework transfers directly to any domain where multiple detection methods can be applied in parallel.\nLimitations and remaining gaps are discussed in \\S\\ref{sec:discussion}.",
+                "numLines": 15,
+                "startLine": 1,
+                "totalLines": 15
+              }
+            }
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-d063-narrative-update.md"
+}

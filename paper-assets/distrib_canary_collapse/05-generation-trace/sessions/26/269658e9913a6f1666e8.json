@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "269658e9913a6f1666e8",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diagnose alpha sweep a060 s43 fp32",
+  "task_key": "worker_diagnose_alpha_sweep_a060_s43_fp32_20260519T184402",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_alpha_sweep_a060_s43_fp32_20260519T184402_result.json",
+    "occurrence": 1,
+    "bytes": 1681,
+    "sha256": "d0c97227e7de92a5703f4e4dbf82040de0086dbdfd878bf713c3ba29795b9305"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 完成进度：9/10 iterative generations\n\n- gen_0 (baseline) 至 gen_9 全部完成，metrics.json 均已保存\n- gen_10/10 刚进入 \"Generating synthetic data\" 阶段即被 timeout (EXIT_CODE=124) 杀掉\n- gen_10 目录已创建但为空\n\n### 各代 metrics（ppl 趋势）\n\n| Gen | PPL | Entropy | Eff Rank | MAUVE |\n|-----|-----|---------|----------|-------|\n| 0 (baseline) | 26.95 | 3.2342 | 46.6 | — |\n| 1 | 29.67 | 2.1945 | 68.2 | 0.0313 |\n| 2 | 35.22 | 2.1745 | 74.0 | 0.0323 |\n| 3 | 38.31 | 2.1749 | 75.6 | 0.0311 |\n| 4 | 41.09 | 2.2037 | 75.8 | 0.0302 |\n| 5 | 43.72 | 2.1951 | 76.5 | 0.0308 |\n| 6 | 46.07 | 2.2344 | 76.2 | 0.0289 |\n| 7 | 48.62 | 2.2237 | 76.1 | 0.0294 |\n| 8 | 50.40 | 2.2811 | 75.5 | 0.0284 |\n| 9 | 49.88 | 2.3089 | 75.0 | 0.0280 |\n\n### Checkpoint 状态\n\n- gen_0 ~ gen_9：完整（synthetic_data + metrics.json；gen_8/gen_9 还有 checkpoint 模型文件）\n- gen_10：空目录\n- **无 all_metrics.json**（运行未完成，未写入汇总文件）\n- **无 W&B**：日志中无任何 wandb 相关输出\n\n### 失败根因\n\n**Timeout 设置过紧。** 训练本身无异常（无 OOM、无 ERROR）。每个 generation 约 40-45 分钟，10 个 iterative generation + baseline ≈ 7h+，而 timeout 仅 ~6h。s42 在 ~4.92h 完成说明不同 seed 的训练耗时存在波动，s43 整体慢约 22%。\n\n### 重跑建议\n\n1. **加大 timeout 至 8h**（28800s），留足余量\n2. 可考虑从 gen_9 checkpoint 恢复（如果 `iterative_train.py` 支持 `--resume` 参数），只需跑最后 1 个 generation 即可完成\n3. 现有 gen_0-gen_9 数据完整，不要删除"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-alpha-sweep-a060-s43-fp32.md"
+}

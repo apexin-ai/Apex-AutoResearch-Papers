@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "8b61a60dfa138dc5b333",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "analysis method ablation phase2 pooled",
+  "task_key": "worker_analysis_method_ablation_phase2_pooled_20260515T085042",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_method_ablation_phase2_pooled_20260515T085042.log",
+    "occurrence": 1,
+    "bytes": 656810,
+    "sha256": "291475ad9dc4d32c0abf43c51c977f2b0ec8dfbcfeb26a4ea4958de554cd721b"
+  },
+  "statistics": {
+    "messages": 123,
+    "user_turns": 0,
+    "tool_calls": 46,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 27,
+      "tool_call": 46,
+      "tool_result": 46,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 123,
+      "chunks": [
+        {
+          "path": "8b61a60dfa138dc5b333-part-0001.json",
+          "message_count": 102
+        },
+        {
+          "path": "8b61a60dfa138dc5b333-part-0002.json",
+          "message_count": 21
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-method-ablation-phase2-pooled.md"
+}

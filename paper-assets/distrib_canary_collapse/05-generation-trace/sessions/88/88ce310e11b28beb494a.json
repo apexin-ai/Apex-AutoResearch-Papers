@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "88ce310e11b28beb494a",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops gpu zombie cleanup",
+  "task_key": "worker_ops_gpu_zombie_cleanup_20260521T021054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_zombie_cleanup_20260521T021054_result.json",
+    "occurrence": 1,
+    "bytes": 729,
+    "sha256": "589b2e5ebd79c837069b1d4951589f6f844f4ba2838b043d8535f9d0bd2c52ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个 zombie 全部清理完毕，GPU 显存已释放。\n\n```\nwestd-17855 (6x H800 97GB):\n- cuda:0: 27214 MiB, 92%  — alpha_sweep_a048_s42_fp32 + alpha_sweep_a070_s42_fp32\n- cuda:1: 14503 MiB, 75%  — (活跃实验)\n- cuda:2: 14535 MiB, 85%  — (活跃实验)\n- cuda:3: 70763 MiB, 99%  — scale_69b_a100_s43_bf16\n- cuda:4: 0 MiB, 0%       — FREED (was zombie gen_gpt2m_a100_s43)\n- cuda:5: 0 MiB, 0%       — FREED (was zombie alpha_sweep_a010_s42_bf16)\n\nwestd-19828 (2x H800 97GB):\n- cuda:0: 0 MiB, 0%       — FREED (was zombie scale_14b_a050_s42_bf16)\n- cuda:1: 24347 MiB, 97%  — generalize_pythia1b_c4_a100_s43_v2\n```\n\n释放了 3 块 GPU：17855 的 cuda:4/5 和 19828 的 cuda:0。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-zombie-cleanup.md"
+}

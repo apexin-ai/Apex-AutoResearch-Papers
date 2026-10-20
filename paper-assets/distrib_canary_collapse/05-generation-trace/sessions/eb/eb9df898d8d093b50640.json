@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb9df898d8d093b50640",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "submit a050 postd093 s42 fp32",
+  "task_key": "worker_submit_a050_postd093_s42_fp32_20260519T225520",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_a050_postd093_s42_fp32_20260519T225520_result.json",
+    "occurrence": 1,
+    "bytes": 452,
+    "sha256": "3955204980f5e57efa3030c1acfe77587f7e4c09ed1e06d7fa0346015cac81f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**实验已提交并确认运行中：**\n\n| 项目 | 值 |\n|------|-----|\n| exp_id | `alpha_sweep_a050_postd093_s42_fp32` |\n| Server | westd-17855, cuda:4 |\n| PID | 205750 |\n| GPU 占用 | 6525 MiB, 85% utilization |\n| 状态 | Generation 0 (baseline) 已开始 |\n| Registry | RUNNING，hypothesis/parent/spec/note 已写入 |\n| 代码版本 | post-D093（generation left-padding, training right-padding） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-a050-postd093-s42-fp32.md"
+}

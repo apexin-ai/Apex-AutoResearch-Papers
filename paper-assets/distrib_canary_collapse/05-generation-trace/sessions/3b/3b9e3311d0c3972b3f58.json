@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b9e3311d0c3972b3f58",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "paper conclusion update check",
+  "task_key": "worker_paper_conclusion_update_check_20260517T200404",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_conclusion_update_check_20260517T200404_result.json",
+    "occurrence": 1,
+    "bytes": 1442,
+    "sha256": "ceeca62cea07311ea4e07e63bfc54ddd0ff66f81f810f18d8067dce24d0c0738"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "写入成功。总结：\n\n## conclusion.tex 更新内容\n\n**旧版问题：** 只提 \"GPT-2-medium replication\"，缺 OPT-1.3B、C4 域转移、ECE vs token_entropy 信号质量差异；末段将跨架构泛化仅作为\"conjecture\"。\n\n**具体修改：**\n\n| 段落 | 旧 | 新 |\n|------|----|----|\n| Para 2 | \"scaling from exploratory screening...\" (-ing 分词) | \"provides four tiers ... from exploratory screening to publication-grade claims\" |\n| Para 3 (新增) | 仅提 GPT-2 medium replication | 三架构泛化 (Pythia-410M, GPT-2 Medium, OPT-1.3B) + C4 域转移 (Pythia-1B 8/8 consensus) + ECE vs token_entropy 信号质量差异 |\n| Para 4 | dose-response 内容散落在旧 Para 3 | 独立段落，完整 5-regime dose-response + detectability boundary |\n| Para 5 | \"we **conjecture** the consensus framework transfers\" | \"the consensus framework's successful **generalization** across architectures and data domains **supports** its transfer\" |\n\n## experiments.tex 中剩余 `[TBD]` 标记\n\n| 文件:行号 | 内容 |\n|-----------|------|\n| `experiments.tex:342` | Table caption: `\\textbf{[TBD]}: Scale experiment (Pythia-1.4B) in progress.` |\n| `experiments.tex:351` | Table row: `Scale ($3.4\\times$) & Pythia-1.4B / Wiki & \\multicolumn{7}{c}{\\textbf{[TBD]}}` |\n\n两处均为 Pythia-1.4B scale 实验，待该实验完成后填入数据。无其他 CONDITIONAL/TODO 标记。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-conclusion-update-check.md"
+}

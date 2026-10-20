@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d569b98ecda1192add2",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ssh a050 cleanup and sync",
+  "task_key": "worker_ssh_a050_cleanup_and_sync_20260517T064601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_a050_cleanup_and_sync_20260517T064601_result.json",
+    "occurrence": 1,
+    "bytes": 1105,
+    "sha256": "f7f85031d82af5ea011229a40723c949809c8592da4523d0b945a585d248dd16"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇报：\n\n---\n\n## 产出汇报\n\n### 1. 标记 INVALID 的文件\n**无**。a050_s44/analysis/ 目录仅含 `5method_leadlag.json` 和 `5method_summary.txt`，无 Worker B 产出的额外分析文件。\n\n### 2. 权威分析文件路径及 PermG sig 确认\n\n| Seed | 路径 | PermG forward sig | PermG reverse sig |\n|------|------|-------------------|-------------------|\n| s42 | `/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/analysis/5method_leadlag.json` | **4/8** | 0/8 |\n| s43 | `/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43/analysis/5method_leadlag.json` | **7/8** | 0/8 |\n| s44 | `/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44/analysis/5method_leadlag.json` | **4/8** | 0/8 |\n\n**注意：实际值与预期（0/8, 6/8, 3/8）不一致。** 论文中 Table 5 脚注写的 \"s42=0/8, s43=6/8, s44=3/8\" 需要核实/更新。实际 3-seed 结果是 4/8, 7/8, 4/8 (median 4/8)。\n\n### 3. 编译结果\n- Errors: **0**\n- Undefined citations: **0**\n- 页数: **22 pages** (423,658 bytes)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-a050-cleanup-and-sync.md"
+}

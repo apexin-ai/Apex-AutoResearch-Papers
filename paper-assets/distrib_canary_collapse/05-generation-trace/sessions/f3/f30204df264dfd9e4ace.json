@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f30204df264dfd9e4ace",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code c1 intervention prep",
+  "task_key": "worker_code_c1_intervention_prep_20260525T005818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_c1_intervention_prep_20260525T005818_result.json",
+    "occurrence": 1,
+    "bytes": 981,
+    "sha256": "206de53841a58d09a7506716c5941556bf3b7ea952993ff233427bd37908b571"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "计划已写入 `artifacts/c1_intervention_plan.json`。核心发现：\n\n**代码就绪**：服务器 `iterative_train.py` 已支持 `--intervention_mode predictive/reactive`，无需修改。\n\n**模型缓存**：\n- GPT-2-medium: 已缓存 (1.5G)\n- OPT-1.3B: 已缓存 (5.0G)\n- Qwen2.5-0.8B: **不存在**。Qwen2.5 系列没有 0.8B，只有 0.5B 和 1.5B。服务器上有 `Qwen3.5-0.8B-Base` 的 ref（但权重未下载）\n\n**已有 baseline**：GPT-2-medium 和 OPT-1.3B 的 no-intervention (α=1.0) 实验已完成（11 gen）。Qwen 无任何已有数据。\n\n**磁盘**：74G 可用，总需 ~25G，可行。\n\n**需要确认的问题**：\n1. Qwen 用哪个模型？`Qwen2.5-0.5B` / `Qwen2.5-1.5B` / `Qwen3.5-0.8B-Base`？\n2. 已有的 `predictive_te_a075_s42` 只跑到 gen_5 且无 `all_metrics.json`，是否需要重跑？\n3. 新架构是否需要多 seed (s42+s43)？\n\n**预计总 GPU 时间**：~16h（7 个实验，单 GPU 串行）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-c1-intervention-prep.md"
+}

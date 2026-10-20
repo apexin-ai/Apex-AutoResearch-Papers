@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ea0cfd7e1c793e948dd",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "monitor rep44 rep45 status",
+  "task_key": "worker_monitor_rep44_rep45_status_20260514T145801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_rep44_rep45_status_20260514T145801_result.json",
+    "occurrence": 1,
+    "bytes": 1404,
+    "sha256": "71f5a3edcc827bbbd4d10f57267a9a46a628d9cef6bb5812c29f31697fff8cfb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态\n\n### rep44: **RUNNING — Gen 4/10 (featurize/generation 阶段)**\n- **已完成**: Gen 0-3，3轮训练已完成\n- **当前**: Gen 4 文本生成中（right-padding warnings 表明正在 model.generate()）\n- **指标趋势** (分布坍缩明显):\n  | Gen | ppl | entropy | eff_rank | mauve |\n  |-----|-----|---------|----------|-------|\n  | 0 | 26.95 | 3.2342 | 46.6 | - |\n  | 1 | 56.37 | 1.8894 | 78.6 | 0.0319 |\n  | 2 | 161.76 | 1.5357 | 74.5 | 0.0325 |\n  | 3 | 281.75 | 1.3493 | 83.5 | 0.0340 |\n- **预估剩余**: ~3-3.5 小时 (Gen 4 featurize 剩余 + Gen 5-9 × ~35min/gen)\n\n### rep45: **RUNNING — Gen 3/10 (training 20%)**\n- **已完成**: Gen 0-2，2轮训练已完成\n- **当前**: Gen 3 训练中，step 992/5000 (20%), epoch 0.72, loss=0.82\n- **指标趋势**:\n  | Gen | ppl | entropy | eff_rank | mauve |\n  |-----|-----|---------|----------|-------|\n  | 0 | 26.95 | 3.2342 | 46.6 | - |\n  | 1 | 56.15 | 1.9000 | 78.9 | 0.0308 |\n  | 2 | 169.33 | 1.5541 | 74.4 | 0.0313 |\n- **预估剩余**: ~4 小时 (Gen 3 剩余 + Gen 4-9 × ~35min/gen)\n\n### GPU 状态\n- cuda:0 — 93% 利用率, 14391 MiB (rep44)\n- cuda:1 — 48% 利用率, 14391 MiB (rep45)\n\n两个实验均正常运行，指标一致显示分布坍缩：ppl 指数上升、entropy 持续下降。两个 rep 的轨迹高度一致（Gen 1-2 的 ppl/entropy 差异 <5%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-rep44-rep45-status.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "adb36494e5e5b7614364",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis nperm sensitivity",
+  "task_key": "worker_analysis_nperm_sensitivity_20260517T020808",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_nperm_sensitivity_20260517T020808_result.json",
+    "occurrence": 1,
+    "bytes": 647,
+    "sha256": "67f4d1a4c7553b72949002d25e833093686711732fddf47d425aca193bb18212"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果：\n\n**n_perm 稳定性分析结论：p 值高度稳定，n_perm=5000 足够。**\n\n| 指标 | 值 |\n|------|-----|\n| Max \\|p(5k) - p(10k)\\| | 0.0098 |\n| Mean \\|Δ\\| | 0.0016 |\n| 显著性翻转 | **0** |\n\n所有 forward 方向 p 值变化 < 0.002，reverse 方向最大变化 0.0098（出现在非显著的 ece→distinct_1 reverse, seed 44, p≈0.26→0.27）。没有任何 pair 在 5k 显著但 10k 不显著（或反之）。\n\n产出文件：\n- `results/rebuttal/nperm_10k/a075_s{42,43,44}_perm10k.json`\n- `results/rebuttal/nperm_stability.json`\n- `results/rebuttal/nperm_stability_summary.txt`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-nperm-sensitivity.md"
+}

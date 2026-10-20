@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d82ffb8b5fb68468e929",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis c2 opt13b a050 s42 fp32",
+  "task_key": "worker_analysis_c2_opt13b_a050_s42_fp32_20260525T104803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_c2_opt13b_a050_s42_fp32_20260525T104803_result.json",
+    "occurrence": 1,
+    "bytes": 1771,
+    "sha256": "3d8052f84e6bc9ea1013d7dda2c3cef4176f426dafaf14436d86527cff3cde4f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。汇总如下：\n\n---\n\n## c2_opt13b_a050_s42_fp32 分析摘要\n\n### 训练状态\n- **正常完成**，EXIT_CODE=0，gen_0 → gen_10 共 11 generations\n- 运行时间 ~10.7 GPU-hours\n\n### Diversity 轨迹（确实有 collapse）\n| Metric | Gen 0 | Gen 10 | 降幅 |\n|--------|-------|--------|------|\n| distinct_1 | 0.103 | 0.065 | -37% |\n| distinct_2 | 0.525 | 0.280 | -47% |\n| distinct_3 | 0.818 | 0.439 | -46% |\n| PPL | 24.88 | 24.94 | +0.2% (平稳) |\n\n### D102 5-method Forward Detection（6-pair basis）\n\n| Method | Forward sig | 备注 |\n|--------|------------|------|\n| **PermG (FDR)** | **0/6** | 最低 p_fdr=0.112 (token_entropy<distinct_1) |\n| Diff XCorr (FDR) | 2/6 | token_entropy<d1, ece<d1 |\n| Threshold onset (3sigma) | 0/6 | canary_onset 存在但 downstream_onset=null |\n| TY Granger | 1/6 | token_entropy<d1 仅此一对 |\n| Naive XCorr | 0/6 | peak_lag 方向全部为正（非 forward） |\n\n**Robust pairs (≥3/5 methods): 0/6**\n\n### 与 Pythia-410M α=0.50 对比\n| | Pythia-410M | OPT-1.3B |\n|--|------------|----------|\n| PermG fwd | **6/8** | **0/8** |\n| Robust pairs | (参考) | 0/8 |\n\n### 结论：**Negative**\n\nOPT-1.3B α=0.50 diversity collapse 确实发生（distinct 指标下降 37-47%），但 canary→downstream **temporal lead-lag 因果信号极弱**：PermG 0/6，threshold onset 0/6，robust pairs 0/6。与 Pythia-410M α=0.50 的 6/8 PermG 检测率形成鲜明对比。\n\n结合 s43 也是 failed，OPT-1.3B 在 transition region (α=0.50) 的 lead-lag 结构不复现 Pythia 的模式。这提示 phase diagram 的 transition boundary 可能是 **architecture-dependent** 的——OPT 在 α=0.50 处的因果结构更弱或需要更高 α 才能建立。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-c2-opt13b-a050-s42-fp32.md"
+}

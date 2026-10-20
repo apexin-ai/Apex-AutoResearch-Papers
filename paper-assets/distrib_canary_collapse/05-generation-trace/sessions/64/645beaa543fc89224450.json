@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "645beaa543fc89224450",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis cross alpha v3 full",
+  "task_key": "worker_analysis_cross_alpha_v3_full_20260515T054603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cross_alpha_v3_full_20260515T054603_result.json",
+    "occurrence": 1,
+    "bytes": 964,
+    "sha256": "115d47ded8fbf2a2cd258e7a0b28a192a2776a891641d1ac1b1c826a16f84da0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**v3 分析结果（gen_0–gen_10, 11 点, 12 对 Granger 检验）：**\n\n| 项目 | 结论 |\n|---|---|\n| **非单调 dose-response** | 确认。α=0.25 d1 drift -40.34% > α=0.50 -37.28%，d2/d3 同理 |\n| **Granger FDR** | 0/12 显著。α=0.00 entropy→d1 p_raw=0.058（v2 是 0.048，不再 borderline sig） |\n| **定性模式** | 不变：α=0.25 entropy 主导（p_raw=0.015），α=0.50 ECE 主导（p_raw=0.021） |\n| **α=0.25 双向信号** | d1→entropy p_raw=0.023，提示 feedback loop（但 FDR=0.093 n.s.）|\n| **Cross-corr** | entropy 一致 lag=+1 领先 d1；α=0.50 ECE lag=+1 r=-0.95 |\n| **Velocity** | α=0.25 全程快于 α=0.50，否定\"α=0.50 早期快后期饱和\"解释 |\n\n**已更新**：registry `alpha_sweep_a050_s42` metrics（含 gen_10 + p_raw/p_fdr 字段）、memory.md、artifact `art_20260515_b979dd`。服务器 JSON: `results/analysis/cross_alpha_v3_full.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cross-alpha-v3-full.md"
+}

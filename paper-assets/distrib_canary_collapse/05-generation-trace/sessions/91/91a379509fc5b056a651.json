@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91a379509fc5b056a651",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ssh launch generalize phase2",
+  "task_key": "worker_ssh_launch_generalize_phase2_20260517T071108",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_launch_generalize_phase2_20260517T071108_result.json",
+    "occurrence": 1,
+    "bytes": 1082,
+    "sha256": "d0bcbee69af26dfa9732d263bf2a4162def25ad2d7515ad4d43e96e84f64f12a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均在运行。汇报结果：\n\n---\n\n## 产出汇报\n\n### 1. OPT-1.3B 可用性\n- **加载成功**，参数量 1316M，从 hf-mirror.com 下载完成\n\n### 2. 两个实验启动状态\n\n| 实验 | GPU | PID | tmux session | 状态 |\n|------|-----|-----|-------------|------|\n| Pythia-410M | cuda:0 (12.8GB VRAM) | 247554 | `generalize_pythia410m_wiki_a100_s42` | Gen 1/10 数据生成中 |\n| OPT-1.3B | cuda:1 (20.2GB VRAM) | 249384 | `generalize_opt1b_wiki_a100_s42` | Gen 0 baseline 中 |\n\n### 3. 初始 log 输出\n- **Pythia-410M**: 已完成 Generation 0 baseline，`ppl=26.95, entropy=3.2342, eff_rank=46.6`，正在 Generation 1/10 生成 synthetic data\n- **OPT-1.3B**: 已加载模型和数据，正在运行 Generation 0 (baseline)\n\n### 4. 预估完成时间\n- Pythia-410M baseline 耗时 ~18min（Generation 0），10 代预计 **~6-8 小时**（含 5000 步训练 + 数据生成 + 指标计算/代）\n- OPT-1.3B 模型更大（3.2x参数），预计 **~10-15 小时**\n- 两个实验分别在 cuda:0 和 cuda:1，互不干扰"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-launch-generalize-phase2.md"
+}

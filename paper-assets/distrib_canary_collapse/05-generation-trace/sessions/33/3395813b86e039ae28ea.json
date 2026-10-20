@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3395813b86e039ae28ea",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops deploy 14b t15a075 19828",
+  "task_key": "worker_ops_deploy-14b-t15a075-19828_20260522T120214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_deploy-14b-t15a075-19828_20260522T120214_result.json",
+    "occurrence": 1,
+    "bytes": 750,
+    "sha256": "350d4a6f19a3533565b442d931ac43a5354ce16d64b7f896b30380a584bb7e6b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n**实验 `scale_14b_t15_a075_s42_fp32` 已在 westd-19828:cuda:0 上运行：**\n\n| 项目 | 值 |\n|---|---|\n| PID | 791123 (python), 791118 (bash wrapper) |\n| 模型 | EleutherAI/pythia-1.4b (本地缓存) |\n| 参数 | α=0.75, T=15 (num_generations=15), seed=42, fp32 |\n| GPU | cuda:0, 当前占用 10293 MiB / 72% |\n| 磁盘 | 127G 可用 (50%) |\n| 日志 | `/root/autodl-tmp/distrib_canary_collapse/outputs/scale_14b_t15_a075_s42_fp32.log` |\n| Registry | RUNNING |\n\n注意：原始命令中的 `EleutherAI/pythia-1.4b` 因网络不可达无法下载，已改用本地 HF hub 缓存的 snapshot 路径。训练参数对齐 cuda:1 上的 1.4B 实验（batch_size=4, steps_per_gen=5000, lr=5e-5 等）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-deploy-14b-t15a075-19828.md"
+}

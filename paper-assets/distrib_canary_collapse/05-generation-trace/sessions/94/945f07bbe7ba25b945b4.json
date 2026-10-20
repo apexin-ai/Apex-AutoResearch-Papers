@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "945f07bbe7ba25b945b4",
+  "project": "distrib_canary_collapse",
+  "kind": "history",
+  "title": "agent / loop_14_1779327497.md",
+  "task_key": "loop_14_1779327497",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_14_1779327497.md",
+    "occurrence": 1,
+    "bytes": 5038,
+    "sha256": "fb61d08bc9b65d39c4292081aa4f2b995d12da2d427fbaad7d5b51fd517243d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-19T11:38:13+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-19828:cuda:0/cuda:1, westd-17855:cuda:0~cuda:5（共 8 张），超出必须 push back Director\n- westd-19828 上 cuda:1 刚跑完 alpha_sweep_a010_s42_v2，现在空闲——下一个\"你\"可以立即填充\n- HF 镜像必须用 `HF_ENDPOINT=https://hf-mirror.com`（国内 AutoDL 服务器直连 HF 不通）\n- submit_training_job 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不能假设 .venv 存在\n- 6.9B 实验（scale_69b_a100_s42）预估 ~50h，不要因为跑得久就 kill 它\n\n### 2. 🖥️ 基础设施快照\n- **westd-19828**: 2× RTX PRO 6000 98GB, 工作目录 `/root/autodl-tmp/distrib_canary_collapse`\n  - Python: `/root/miniconda3/bin/python` (conda base)\n  - HF cache: `/root/autodl-tmp/.hf_cache`\n  - 磁盘: `/usr/bin/nvidia-smi` 816G/879G 可用 (3%)\n  - 活跃: scale_14b_a050_s42 (PID 369470, cuda:0, ~8h 预估)\n  - cuda:1 空闲（alpha_sweep_a010_s42_v2 刚完成）\n- **westd-17855**: 6× RTX PRO 6000 98GB, 同工作目录\n  - 活跃 6 个实验全卡占满:\n    - cuda:0: scale_69b_a100_s42 (PID 29028, ~50h)\n    - cuda:1: gen_gpt2m_a100_s43_bf16 (PID 16116)\n    - cuda:2: interv_pred_s43_bf16 (PID 29174)\n    - cuda:3: alpha_sweep_a060_s42_bf16 (PID 17523)\n    - cuda:4: interv_react_s43_bf16 (PID 17803)\n    - cuda:5: alpha_sweep_c4_a050_s42_bf16 (PID 18253)\n- W&B 项目名: distrib_canary_collapse\n- 数据: `/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k`（5000 条 WikiText-103）\n- Results: `/root/autodl-tmp/distrib_canary_collapse/results/`\n\n### 3. 📊 当前状态\n- **刚触发**: alpha_sweep_a010_s42_v2 (α=0.10, s42) cron 回调 → 已转 ANALYZING → 已 spawn Worker `worker_analyze_alpha_sweep_a010_s42_v2_20260518T193614` 分析日志+W&B+因果检验\n- **等待中**: 该 Worker 回调（分析结果、metrics dict、conclusion 判定）\n- **尚未完成**: registry update_registry(conclusion/metrics)、report.md 刷新、Director 汇报——全部等 Worker 回调后做\n- **RUNNING 实验** (7 个):\n  - scale_14b_a050_s42: 1.4B × α=0.50 scale spot-check (westd-19828:cuda:0)\n  - scale_69b_a100_s42: 6.9B × α=1.0 scale-up 验证 (westd-17855:cuda:0, 长跑 ~50h)\n  - gen_gpt2m_a100_s43_bf16: GPT-2m 跨架构 multi-seed (17855:cuda:1)\n  - interv_pred_s43_bf16: 干预 predictive multi-seed (17855:cuda:2)\n  - alpha_sweep_a060_s42_bf16: α=0.60 boundary gap (17855:cuda:3)\n  - interv_react_s43_bf16: 干预 reactive multi-seed (17855:cuda:4)\n  - alpha_sweep_c4_a050_s42_bf16: C4 跨域 α=0.50 (17855:cuda:5)\n- **PREPARING** (4 个): alpha_sweep_a010_s42_bf16, scale_14b_a050_s42_bf16, interv_react_s43, gen_gpt2m_a100_s43——均为 bf16 重跑或 multi-seed 补充\n- 项目总计: 62 实验，29 success，0 negative，4 failed，17 killed\n\n### 4. 📋 待办（条件触发式）\n- Worker `worker_analyze_alpha_sweep_a010_s42_v2` 回调 → 读分析产出 → update_registry(conclusion, metrics, checkpoint_path, log_path) → 刷新 report.md → 向 Director 汇报（带 [资源] 行 + dose-response map 更新）\n- α=0.10 结论出来后 → westd-19828:cuda:1 空闲 → 立即填充下一个实验（PREPARING 队列中 alpha_sweep_a010_s42_bf16 或 scale_14b_a050_s42_bf16 优先）\n- alpha_sweep_a060_s42_bf16 完成 → 分析 → 填入 Dose-Response Map α=0.60 格子 → 与 α=0.50/0.75 三角定位 detectability threshold\n- scale_69b_a100_s42 完成（约 Day 3）→ Table 7 最后一行 → scale claim 决策点（Director 关注）\n- interv_pred_s43_bf16 + interv_react_s43_bf16 完成 → 干预实验 multi-seed 汇总 → 验证 s42 结论可复现性\n- gen_gpt2m_a100_s43_bf16 完成 → GPT-2m 跨架构 multi-seed → 验证 architecture-independent claim\n\n### 5. 🎯 战略上下文\n- **核心方向 (D067)**: 从 analysis paper 升级为 method paper，核心贡献是 MMCT (Multi-Method Consensus Test)\n- **D070 叙事**: K≥4 启发式 p=0.16 不显著 → MMCT weighted_pair_forward (FPR=0, 79.2% detection at α=0.75) 是真正的方法贡献。K≥4 降为 descriptive baseline\n- **D072**: CSMP/CUSUM 已降级——CUSUM 在所有操作点等于或劣于 simple threshold\n- **Dose-Response Map 当前状态**: α=0.00 null ✓, α=0.10 刚完成待分析, α=0.25 sub-threshold ✓, α=0.50 boundary ✓, α=0.60 running, α=0.75 transitional ✓, α=1.0 confirmatory ✓\n- **Table 7**: 7/8 conditions done，只差 6.9B（正在跑）\n- **Target**: EMNLP 2026 ARR June cycle, DDL ~June 15\n- **易错点**:\n  - α=0.10 大概率行为接近 null（无 signal）→ 这是 success 不是 negative（确认 detection boundary 在 α>0.10 是有价值的结论）\n  - 不要把 killed 实验（v1 版本因 bf16 重跑而被 kill）和 failed 混淆——v1 killed 是计划内替换\n  - 6.9B 长跑不要误 kill，它是 Table 7 scale claim 的关键缺失格\n  - MMCT 的 null distribution 必须基于 α=0.00 数据（D067 硬约束）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14-1779327497.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20d5cce2c5be138183b1",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis scale 14b a050 s42 fp32",
+  "task_key": "worker_analysis_scale_14b_a050_s42_fp32_20260520T162250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_scale_14b_a050_s42_fp32_20260520T162250_result.json",
+    "occurrence": 1,
+    "bytes": 869,
+    "sha256": "bc12d51b196a632247aa81cb229cc1edf0a9de524304ee1e0aa4eaecd4c1aaed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。Registry 已更新为 DONE (negative)。\n\n**结果摘要**:\n\n| 方法 | 结果 |\n|------|------|\n| PermG fwd (FDR) | **0/8** |\n| PermG rev (FDR) | 0/8 (控制组正常) |\n| Diff XCorr (FDR+方向) | 3/8 |\n| Naive XCorr (方向) | 3/8 |\n| Threshold 3sigma | 2/8 |\n| TY Granger | 0/8 (obs不足) |\n| **K≥3** | **0/8** |\n| **K≥4** | **0/8** |\n\n**结论: NEGATIVE.** 1.4B 在 α=0.50 无法检测到 lead-lag 因果信号（0/8 pairs 达到 K≥3 共识），而 410M 在相同 α=0.50 下 PermG=6/8。**Onset boundary 随 model scale 上移**——更大的模型需要更高的 contamination ratio 才能产生可检测的 canary lead-lag 模式。\n\n模型坍塌本身很明显（perplexity +79%, distinct_1 -31%），但因果时序结构在此 contamination 水平下对 1.4B 规模模型太弱，无法统计检测。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-scale-14b-a050-s42-fp32.md"
+}

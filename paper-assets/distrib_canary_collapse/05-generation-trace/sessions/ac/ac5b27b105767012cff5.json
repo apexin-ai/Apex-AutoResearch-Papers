@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ac5b27b105767012cff5",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops scp figures to local",
+  "task_key": "worker_ops_scp_figures_to_local_20260516T185455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_scp_figures_to_local_20260516T185455_result.json",
+    "occurrence": 1,
+    "bytes": 255,
+    "sha256": "1c371fa1a021bbb37579b47a26edf41a7a2d51b0f3cfe070afcfccd7e1e7c558"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 个 PDF 全部下载成功：\n\n| 文件 | 大小 |\n|------|------|\n| differencing_dmax.pdf | 20 KB |\n| consensus_heatmap.pdf | 21 KB |\n| regime_map.pdf | 29 KB |\n| metric_trajectory.pdf | 21 KB |\n| consensus_workflow.pdf | 37 KB |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-scp-figures-to-local.md"
+}

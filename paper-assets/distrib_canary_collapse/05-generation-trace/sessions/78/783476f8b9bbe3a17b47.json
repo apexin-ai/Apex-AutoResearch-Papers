@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "783476f8b9bbe3a17b47",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code generalize analysis prep",
+  "task_key": "worker_code_generalize_analysis_prep_20260517T104130",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_generalize_analysis_prep_20260517T104130_result.json",
+    "occurrence": 1,
+    "bytes": 2073,
+    "sha256": "c1f10def4093e8107ff4da3b0ae12c9ae26b99021e38a9a0dc9f3a1b11841339"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Everything is working. Let me compile the final report.\n\n---\n\n## 结果汇总\n\n### 1. 磁盘空间\n- `/root/autodl-tmp`: 250G total, 146G used, **105G available (59%)**  — 充足\n\n### 2. 分析管线兼容性\n- **完全兼容，无需修改模型相关代码**。`method_ablation.py` 和 `cross_alpha_analysis_v4.py` 纯统计方法，不加载模型/tokenizer，只操作 `all_metrics.json` 中的数值序列\n- 已写新脚本 `analyze_generalize.py`，功能：\n  - 自动发现 `results/generalize/` 下所有实验\n  - 如果 `all_metrics.json` 不存在，从 per-gen `metrics.json` 自动拼接\n  - 运行完整 5-method 分析 (PermG, TY Granger, Naive Pearson, Diff XCorr, Threshold Onset)\n  - BH FDR 校正\n  - 输出到 `results/generalize/analysis/generalize_5method_results.json`\n- **Dry-run 验证通过**：在 partial data 上成功运行\n\n### 3. 泛化实验输出格式\n- 输出结构：`results/generalize/{experiment}/gen_{N}/metrics.json` (per-gen) + 训练完成后自动生成 `all_metrics.json`\n- 格式与 alpha_sweep 完全一致（相同 9 个 metric fields + generation index）\n\n### 4. C4 数据集\n- **已存在** `data/c4_5k/`，结构：train(4500) / eval(500) / prompts\n- **已修复** prompts：从 500 扩展到 **4214**（从 train 提取 first-64-words，与 WikiText prepare_data.py 方法一致）\n- WikiText prompts 为 5000，差异来自 C4 train 只有 4500 样本且部分 < 64 words。4214 prompts 足够\n\n### 5. 实验进度\n| 实验 | GPU | 当前进度 | 每代耗时 | 预计完成 |\n|------|-----|---------|---------|---------|\n| Pythia-410M (cuda:0) | 14.4GB, 51% util | gen_9/10 训练中 | ~24 min/gen | ~19:04 (约20分钟后) |\n| OPT-1.3B (cuda:1) | 27.2GB, 96% util | gen_6/10 完成, gen_7 开始 | ~29 min/gen | ~20:13 (约1.5h后) |\n\n### 待办\n- Pythia-410M 完成后，运行 `python3 analyze_generalize.py --exp pythia410m_wiki_a100_s42` 获取完整 10-gen 分析\n- OPT-1.3B 完成后同理\n- Phase 2c (Pythia-1B on C4) 可直接使用 `data/c4_5k/` 启动"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-generalize-analysis-prep.md"
+}

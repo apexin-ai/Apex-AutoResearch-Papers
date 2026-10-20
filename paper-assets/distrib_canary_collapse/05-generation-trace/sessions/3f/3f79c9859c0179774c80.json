@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f79c9859c0179774c80",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "figure d150 sr framework serif fix",
+  "task_key": "worker_figure_d150_sr_framework_serif_fix_20260520T151055",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_d150_sr_framework_serif_fix_20260520T151055_result.json",
+    "occurrence": 1,
+    "bytes": 260,
+    "sha256": "c629a09cea962ddea01a93f100034f6ca175f58088fd9d200b133ceb6b2c323b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。变更：\n\n- **字体**：DejaVu Serif → Liberation Serif（Times 度量兼容）\n- **嵌入类型**：Type 3 → CID TrueType (fonttype 42)，符合会议提交要求\n- **数学字体**：保持 Computer Modern，与 LaTeX 一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-d150-sr-framework-serif-fix.md"
+}

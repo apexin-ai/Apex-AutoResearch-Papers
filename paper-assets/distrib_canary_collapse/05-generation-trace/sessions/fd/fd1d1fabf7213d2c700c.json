@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd1d1fabf7213d2c700c",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "figure fix differencing dmax fval",
+  "task_key": "worker_figure_fix-differencing-dmax-fval_20260515T174348",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fix-differencing-dmax-fval_20260515T174348_result.json",
+    "occurrence": 1,
+    "bytes": 326,
+    "sha256": "f589e9463dd89bee7b68531842546527128743b78bf68948a00db00c117599ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`gen_fig_differencing_dmax.py` 第 47 行已修正，PDF/PNG 已重新生成并注册 (`art_20260515_d76124`)。\n\n修改内容：canary→diversity 行的 Undifferenced 列从 \"F = 612–2615\" 改为 \"F = 200–501\"，Differenced 列从 \"F increases\" 改为 \"F = 612–2615\"。其余不变。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fix-differencing-dmax-fval.md"
+}

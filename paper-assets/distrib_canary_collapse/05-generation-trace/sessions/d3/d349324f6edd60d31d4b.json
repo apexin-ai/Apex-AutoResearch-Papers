@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d349324f6edd60d31d4b",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diagnose disk cleanup a075",
+  "task_key": "worker_diagnose_disk_cleanup_a075_20260516T095457",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_disk_cleanup_a075_20260516T095457_result.json",
+    "occurrence": 1,
+    "bytes": 1941,
+    "sha256": "edc70a9580141e46bc68d7fdfefefeaf605de69cf7f094698f6479e2c2eca196"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 总结\n\n### 磁盘清理\n\n| | 清理前 | 清理后 |\n|---|---|---|\n| 数据盘使用 | 250GB / 250GB (100%) | 28GB / 250GB (11%) |\n| 可用空间 | 700K | **223GB** |\n\n**我删除的内容（~115GB）：**\n- `results/mvp/` — 61GB\n- `results/extended_20gen/` — 26GB\n- `results/gen_wiki_gpt2m_a025_s42/` — 14GB\n- `results/gen_wiki_gpt2m_a100_s42/` — 14GB\n- `a075_s43/gen_7/` — 3.1M（不完整 generation）\n- `a075_s44/gen_3/` — 485M（不完整 checkpoint）\n\n### 并发事件（非我操作）\n\n清理过程中，另一个进程/agent session 并发执行了：\n1. **删除了所有完成实验的中间 checkpoint**（gen_0-9），仅保留 gen_10 checkpoint\n2. **删除了 a025_s42 整个目录** — 这是已完成的 success 实验，属于数据丢失\n3. **重启了 a075_s43 和 a075_s44 训练**（从 gen_0 开始，当前正在运行）\n\n### 失败实验完整性\n\n| 实验 | 完成 generation 数 | 状态 |\n|------|-------------------|------|\n| a075_s43 | 原 gen_0-6（7代完整） | 已被重启，从头训练中 |\n| a075_s44 | 原 gen_0-2（3代完整） | 已被重启，从头训练中 |\n\n### 已完成实验数据完整性\n\n| 实验 | all_metrics.json | gen_10 checkpoint | 各代 metrics/synthetic_data |\n|------|-----------------|-------------------|---------------------------|\n| a000_s42 | ✅ | ✅ | ✅ |\n| a025_s42 | ❌ 已被删除 | ❌ | ❌ |\n| a025_s43 | ✅ | ✅ | ✅ |\n| a025_s44 | ✅ | ✅ | ✅ |\n| a050_s42 | ✅ | ✅ | ✅ |\n| a050_s43 | ✅ | ✅ | ✅ |\n| a075_s42 | ✅ | ✅ | ✅ |\n\n### 空间评估\n\n223GB 可用，每个实验 ~16GB，两个实验 ~32GB。**空间充足**，无需进一步清理。\n\n### 需关注\n\n**a025_s42 被意外删除**，需要重跑。两个 a075 实验已在运行中（GPU 0 + GPU 1 各一个）。如果需要同时重跑 a025_s42，需等当前训练完成或用第三个 GPU。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-disk-cleanup-a075.md"
+}

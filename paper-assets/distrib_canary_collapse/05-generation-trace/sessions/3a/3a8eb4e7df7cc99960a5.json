@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a8eb4e7df7cc99960a5",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis gpt2m s43 bf16 leadlag",
+  "task_key": "worker_analysis_gpt2m_s43_bf16_leadlag_20260518T211603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gpt2m_s43_bf16_leadlag_20260518T211603_result.json",
+    "occurrence": 1,
+    "bytes": 1117,
+    "sha256": "9232756b9906a976d081b68ce1b640cd5bd5f576ffdb37263cbd4d89bcc06f78"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n## Table 7 Row: GPT-2-medium / Wiki (s43, bf16)\n\n| | Naive | Diff. XCorr | Threshold | PermG (fwd) | PermG (rev) | TY | K≥4/5 | MMCT |\n|---|---|---|---|---|---|---|---|---|\n| **s43 bf16** | 8/8 | 7/8 | 8/8 | 1/8 | 0/8 | 0/8 | 1/8 | **6/8** |\n| s42 fp32 | 8/8 | 8/8 | 8/8 | 6/8 | 3/8 | 5/8 | 6/8 | 8/8 |\n\n**关键发现：**\n\n1. **K≥4 共识从 6/8 暴跌到 1/8**（唯一通过的是 ece→perplexity，属于 spurious channel）\n2. **MMCT 恢复到 6/8**，因为 FPR-inverse weighting 给予 naive+diff+thresh 三法共识足够权重\n3. **根因是 fp32 vs bf16 混淆因子**：s42(fp32) entropy drift=-86.6%, s43(bf16) entropy drift=-16.6%。bf16 将 collapse 严重程度降低约 5 倍，PG/TY 在弱信号下失去检验力\n4. 非 parametric 方法（naive, threshold）对信号强度不敏感，8/8 保持稳定\n5. **不建议直接纳入 Table 7 作为 cross-seed 行**，因为 fp32/bf16 是实验条件差异而非 seed variance\n\n数据已写入 registry（metrics 字段）并注册为 artifact。5method_leadlag.json 保存在 westd-17855 上。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gpt2m-s43-bf16-leadlag.md"
+}

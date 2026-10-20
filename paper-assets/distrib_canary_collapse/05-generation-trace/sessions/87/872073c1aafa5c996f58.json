@@ -1,0 +1,1750 @@
+{
+  "schema_version": "1.0",
+  "id": "872073c1aafa5c996f58",
+  "project": "distrib_canary_collapse",
+  "kind": "conversation",
+  "title": "analysis phase diagram t10 a075 s43 fp32",
+  "task_key": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055.jsonl",
+    "occurrence": 1,
+    "bytes": 72641,
+    "sha256": "95ff67e457f1c19a2d006f3a74e7bed00b857e86fc15f85a2469abab14f11576"
+  },
+  "statistics": {
+    "messages": 86,
+    "user_turns": 0,
+    "tool_calls": 42,
+    "roles": {
+      "tool_call": 42,
+      "tool_result": 42,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T06:44:48.809925+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_registry",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T06:44:48.810390+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T06:44:48.810655+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a075_s43_fp32/EXIT_CODE",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T06:44:48.810983+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T06:44:48.811241+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python scripts/d102_lead_lag_analysis.py --results_dir results/phase_diagram/t10_a075_s43_fp32 --downstream mauve --threshold true_3sigma_d105",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T06:44:48.811415+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python scripts/d102_lead_lag_analysis.py --results_dir results/phase_diagram/t10_a075_s43_fp32 --downstream mauve --threshold true_3sigma_d105'\\\\n\\\\nExit code: 2\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\npython: can't open file '/root/autodl-tmp/distrib_canary_collapse/scripts/d102_lead_lag_analysis.py': [Errno 2] No such file or directory\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T06:44:48.811755+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/d102*.py"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T06:44:48.812098+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T06:44:48.812421+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "ls /root/autodl-tmp/distrib_canary_collapse/scripts/",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T06:44:48.813052+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__pycache__\\\\nc3_posthoc_power.py\\\\nc3_posthoc_power_results.json\\\\nc4_first_diff_montecarlo.py\\\\nchange_point_analysis.py\\\\nchange_point_supplement.py\\\\nd127_csd_analysis.py\\\\nd127_multispatial_ccm.py\\\\nd127_spec_curve.py\\\\nd127_wasserstein.py\\\\ndetection_lower_bound_v2.py\\\\nequal_weight_comparison.py\\\\ngen_consensus_heatmap.py\\\\ngen_single_method_table.py\\\\nphase_diagram\\\\nt20_post_analysis.py\\\\ntail_sensitive_canary_analysis.py\\\\ntransfer_entropy_analysis.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.93}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T06:44:48.813284+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "ls /root/autodl-tmp/distrib_canary_collapse/scripts/",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T06:44:48.813442+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "scripts/**/*.py"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T06:44:48.813567+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/lead_lag*.py"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T06:44:48.813694+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__pycache__\\\\nchange_point_analysis.py\\\\nchange_point_supplement.py\\\\ndetection_lower_bound.py\\\\ngen_single_method_table.py\\\\nmoment_cascade_analysis.py\\\\npermg_power_analysis.py\\\\ntransfer_entropy_analysis.py\\\\nucs_analysis.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.88}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T06:44:48.813811+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T06:44:48.813926+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "scripts/plot_regime_map.py\nscripts/plot_consensus_workflow.py\nscripts/gen_single_method_table.py\nscripts/tail_sensitive_canary_analysis.py\nscripts/d127_multispatial_ccm.py\nscripts/d127_wasserstein.py\nscripts/d127_csd_analysis.py\nscripts/d127_spec_curve.py\nscripts/permg_power_analysis.py\nscripts/fig_sr_framework.py\nscripts/t20_post_analysis.py\nscripts/moment_cascade_analysis.py\nscripts/ucs_analysis.py\nscripts/ucs_postprocess.py\nscripts/detection_lower_bound.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T06:44:48.814074+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "artifacts/*d102*"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T06:44:48.814190+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/d102_audit_report.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T06:44:48.814321+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "d102",
+              "glob": "*.py",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T06:44:48.814439+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 3 files\nartifacts/alpha_c_theory/verify_theory_d102.py\nscripts/t20_post_analysis.py\nartifacts/alpha_sweep_a060_s42_fp32_v4/run_analysis.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T06:44:48.814552+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/d102_audit_report.md",
+              "limit": "80"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T06:44:48.814717+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# D102 5method Analysis Audit Report\n2\t\n3\t**Date**: 2026-05-21\n4\t**Audit scope**: All `5method_leadlag.json` files across westd-17855 and westd-19828\n5\t**Standard**: M063 — must use `run_5method_analysis_d102.py` with `downstream_metrics = [distinct_1, distinct_2, distinct_3, mauve]` and `threshold_criterion = true_3sigma_d105`\n6\t\n7\t## Summary\n8\t\n9\t| | Count |\n10\t|---|---|\n11\t| Total JSON files found | 93 |\n12\t| PASS | 89 |\n13\t| **FAIL** | **1** |\n14\t| LEGACY (superseded) | 3 |\n15\t\n16\t## FAIL Details\n17\t\n18\t| exp_id | server | JSON path | downstreams | threshold | status |\n19\t|---|---|---|---|---|---|\n20\t| gpt2m_wiki_a100_s43_fp32 | westd-17855 | generalize/gpt2m_wiki_a100_s43_fp32/analysis/5method_leadlag.json | distinct_1, distinct_2, distinct_3, **perplexity** | **3x_sigma_drift** | **FAIL** |\n21\t\n22\tThis file was generated by the old script: wrong threshold (`3x_sigma_drift` instead of `true_3sigma_d105`) AND wrong downstreams (`perplexity` instead of `mauve`).\n23\t\n24\t## LEGACY (superseded, not blocking)\n25\t\n26\tThese 3 files in `analysis_mauve/` directories on westd-19828 lack a `config` section entirely (no `threshold_criterion` field). They use correct downstreams (distinct_1/2/3 + mauve) but predate the d102 format. Each has a corresponding correct `analysis/` version with `true_3sigma_d105`.\n27\t\n28\t| exp_id | server | JSON path | downstreams | threshold | status |\n29\t|---|---|---|---|---|---|\n30\t| a000_s42 | westd-19828 | alpha_sweep/a000_s42/analysis_mauve/5method_leadlag.json | distinct_1/2/3+mauve | MISSING | LEGACY |\n31\t| a000_s43 | westd-19828 | alpha_sweep/a000_s43/analysis_mauve/5method_leadlag.json | distinct_1/2/3+mauve | MISSING | LEGACY |\n32\t| a000_s44 | westd-19828 | alpha_sweep/a000_s44/analysis_mauve/5method_leadlag.json | distinct_1/2/3+mauve | MISSING | LEGACY |\n33\t\n34\t## PASS — Phase Diagram Experiments (primary audit targets)\n35\t\n36\t| exp_id | server | JSON path | downstreams | threshold | status |\n37\t|---|---|---|---|---|---|\n38\t| t05_a0\n…[truncated 3611 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T06:44:48.815070+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "d102|lead.lag|PermG_fwd|permutation_granger",
+              "glob": "scripts/*.py",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T06:44:48.815358+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 6 files\nscripts/detection_lower_bound.py\nscripts/t20_post_analysis.py\nscripts/permg_power_analysis.py\nscripts/d127_spec_curve.py\nscripts/d127_wasserstein.py\nscripts/tail_sensitive_canary_analysis.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T06:44:48.815610+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/run_5method*.py"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T06:44:48.815796+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T06:44:48.815976+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "find /root/autodl-tmp/distrib_canary_collapse -name \"run_5method*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-22T06:44:48.816176+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/__pycache__/run_5method_s43.cpython-312.pyc\\\\n/root/autodl-tmp/distrib_canary_collapse/run_5method_s43.py\\\\n/root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py\\\\n/root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py.bak_pre_ty_fix\\\\n/root/autodl-tmp/distrib_canary_collapse/run_5method_a046.py\\\\n/root/autodl-tmp/distrib_canary_collapse/run_5method_s43_fp32.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-22T06:44:48.816428+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "head -80 /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-22T06:44:48.816689+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"5-method lead-lag analysis: generalized CLI version.\\\\n\\\\nUsage:\\\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43\\\\n    python run_5method_analysis.py --data_dir results/alpha_sweep/a000_s43 --alpha 0.0 --seed 43 --dry-run\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport glob as glob_module\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\nfrom statsmodels.tsa.stattools import adfuller\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/autodl-tmp/distrib_canary_collapse\\\\\\\")\\\\nfrom permutation_granger import permutation_granger_test\\\\n\\\\nN_PERM = 5000\\\\nALPHA = 0.05\\\\n\\\\nCANARIES = [\\\\\\\"token_entropy\\\\\\\", \\\\\\\"ece\\\\\\\"]\\\\nDOWNSTREAMS = [\\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\", \\\\\\\"mauve\\\\\\\"]\\\\n\\\\nHIGHER_IS_WORSE = {\\\\\\\"ece\\\\\\\"}\\\\nLOWER_IS_WORSE = {\\\\\\\"token_entropy\\\\\\\", \\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\", \\\\\\\"mauve\\\\\\\"}\\\\n\\\\n\\\\ndef load_series(data_dir):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load metrics - from all_metrics.json if available, else aggregate gen_X/metrics.json.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    all_path = os.path.join(data_dir, \\\\\\\"all_metrics.json\\\\\\\")\\\\n    if os.path.exists(all_path):\\\\n        with open(all_path) as f:\\\\n            data = json.load(f)\\\\n    else:\\\\n        # Aggregate from per-generation metrics\\\\n        gen_dirs = sorted(glob_module.glob(os.path.join(data_dir, \\\\\\\"gen_*\\\\\\\")),\\\\n                         key=lambda x: int(os.path.basename(x).split(\\\\\\\"_\\\\\\\")[1]))\\\\n        data = []\\\\n        for gd in gen_dirs:\\\\n            mp = os.path.join(gd, \\\\\\\"metrics.json\\\\\\\")\\\\n            if os.path.exists(mp):\\\\n                with open(mp) as f:\\\\n                    data.append(json.load(f))\\\\n        if not data:\\\\n            raise FileNotFoundError(f\\\\\\\"No metrics found in {data_dir}\\\\\\\")\\\\n    data.sort(key=lambda x: x[\\\\\\\"generation\\\\\\\"])\\\\n    out = {}\\\\n    for k in CANARIES + DOWNSTREA\n…[truncated 1117 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-22T06:44:48.816915+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "grep -n \"argparse\\|add_argument\\|--data_dir\\|--alpha\\|--seed\\|--threshold\\|--downstream\\|def main\\|if __name__\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-22T06:44:48.817113+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-22T06:44:48.817312+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "grep -n \"add_argument\" /root/autodl-tmp/distrib_canary_collapse/run_5method_analysis_d102.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-22T06:44:48.817519+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"453:    parser.add_argument(\\\\\\\"--data_dir\\\\\\\", required=True, help=\\\\\\\"Path to experiment directory (e.g. results/alpha_sweep/a000_s43)\\\\\\\")\\\\n454:    parser.add_argument(\\\\\\\"--alpha\\\\\\\", type=float, required=True, help=\\\\\\\"Alpha value (e.g. 0.0, 0.75)\\\\\\\")\\\\n455:    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, required=True, help=\\\\\\\"Random seed\\\\\\\")\\\\n456:    parser.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Check data availability without running analysis\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-22T06:44:48.817755+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python run_5method_analysis_d102.py --data_dir results/phase_diagram/t10_a075_s43_fp32 --alpha 0.75 --seed 43",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-22T06:44:48.818012+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"==== ================================================================================================\\\\n5-METHOD LEAD-LAG ANALYSIS | alpha=0.75 | seed=43\\\\nData: results/phase_diagram/t10_a075_s43_fp32\\\\n==== ================================================================================================\\\\nLoaded 11 generations\\\\n\\\\n====================================================================================================\\\\nFORWARD (canary ₆ downstream)\\\\n＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝\\\\nPair                       NaiveR  NLag   DiffR  DLag  DiffFDR  Onset   PermF  PermFDR  PermSig    TY_F    TY_p  dmax\\\\n----------------------------------------------------------------------------------------------------\\\\ntoken_entropy<distinct_1    0.915    -3   0.963    -3   0.0010   None 1431.977   0.4751        *   0.475  0.2277     1\\\\ntoken_entropy<distinct_2   -0.934     5   0.972    -4   0.0015   None 909.252   0.4751        *   0.475  0.6326     1\\\\ntoken_entropy<distinct_3   -0.958     5   0.973    -4   0.0015   None 235.148   0.4751        *   0.475  0.3072     1\\\\ntoken_entropy<mauve         0.403    -5   0.907    -5   0.0386   None   0.463   0.4751            0.475  0.8320     1\\\\nece<distinct_1              0.998    -3   0.991    -3   0.0001   None 536.150   0.4751        *   0.475  0.4430     1\\\\nece<distinct_2              0.994    -3   0.988    -4   0.0008   None 401.714   0.4751        *   0.475  0.4629     0\\\\nece<distinct_3              0.993    -3   0.985    -4   0.0009   None 199.230   0.4751        *   0.475  0.6341     0\\\\nece<mauve                  -0.365    -3   0.828    -5   0.0831   None   0.570   0.4751            0.475  0.1938     1\\\\n\\\\n====================================================================================================\\\\nREVERSE (downstream ₆ canary)\\\\n＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝\n…[truncated 2242 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-22T06:44:48.818286+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a075_s43_fp32/analysis/5method_leadlag.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-22T06:44:48.818826+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"meta\\\\\\\": {\\\\n    \\\\\\\"alpha\\\\\\\": 0.75,\\\\n    \\\\\\\"seed\\\\\\\": 43,\\\\n    \\\\\\\"n_gens\\\\\\\": 11,\\\\n    \\\\\\\"data_dir\\\\\\\": \\\\\\\"results/phase_diagram/t10_a075_s43_fp32\\\\\\\",\\\\n    \\\\\\\"methods\\\\\\\": [\\\\n      \\\\\\\"naive_xcorr\\\\\\\",\\\\n      \\\\\\\"diff_xcorr\\\\\\\",\\\\n      \\\\\\\"threshold_onset\\\\\\\",\\\\n      \\\\\\\"perm_granger\\\\\\\",\\\\n      \\\\\\\"ty_granger\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"n_perm\\\\\\\": 5000,\\\\n    \\\\\\\"canaries\\\\\\\": [\\\\n      \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"ece\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"downstreams\\\\\\\": [\\\\n      \\\\\\\"distinct_1\\\\\\\",\\\\n      \\\\\\\"distinct_2\\\\\\\",\\\\n      \\\\\\\"distinct_3\\\\\\\",\\\\n      \\\\\\\"mauve\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"threshold_criterion\\\\\\\": \\\\\\\"true_3sigma_d105\\\\\\\"\\\\n  },\\\\n  \\\\\\\"pairs\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_1\\\\\\\",\\\\n      \\\\\\\"forward\\\\\\\": {\\\\n        \\\\\\\"naive_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"naive_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -3,\\\\n          \\\\\\\"r\\\\\\\": 0.9153,\\\\n          \\\\\\\"p_value\\\\\\\": 0.001422,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"all_lags\\\\\\\": [\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -5,\\\\n              \\\\\\\"r\\\\\\\": 0.8159,\\\\n              \\\\\\\"p\\\\\\\": 0.047697\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -4,\\\\n              \\\\\\\"r\\\\\\\": 0.8694,\\\\n              \\\\\\\"p\\\\\\\": 0.011014\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -3,\\\\n              \\\\\\\"r\\\\\\\": 0.9153,\\\\n              \\\\\\\"p\\\\\\\": 0.001422\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -2,\\\\n              \\\\\\\"r\\\\\\\": 0.893,\\\\n              \\\\\\\"p\\\\\\\": 0.001188\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": -1,\\\\n              \\\\\\\"r\\\\\\\": 0.8671,\\\\n              \\\\\\\"p\\\\\\\": 0.001161\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\\\\\\\": 0,\\\\n              \\\\\\\"r\\\\\\\": 0.605,\\\\n              \\\\\\\"p\\\\\\\": 0.048584\\\\n            },\\\\n            {\\\\n              \\\\\\\"lag\n…[truncated 8584 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-22T06:44:48.819227+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/d102_t10_a075_s43_fp32.json",
+              "content": "{\n  \"exp_id\": \"phase_diagram_t10_a075_s43_fp32\",\n  \"analysis\": \"d102_5method_leadlag\",\n  \"config\": {\n    \"alpha\": 0.75,\n    \"seed\": 43,\n    \"T\": 10,\n    \"model\": \"pythia-410m\",\n    \"precision\": \"fp32\",\n    \"n_gens\": 11,\n    \"threshold_criterion\": \"true_3sigma_d105\",\n    \"downstreams\": [\"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\"],\n    \"canaries\": [\"token_entropy\", \"ece\"],\n    \"n_perm\": 5000\n  },\n  \"summary\": {\n    \"PermG_fwd\": 6,\n    \"PermG_rev\": 0,\n    \"total_pairs\": 8,\n    \"asymmetry\": \"strong\",\n    \"robust_pairs_ge3\": 4,\n    \"diff_xcorr_fdr_fwd\": 7,\n    \"diff_xcorr_fdr_rev\": 7,\n    \"threshold_fwd\": 0,\n    \"ty_fwd\": 0\n  },\n  \"consensus\": [\n    {\"pair\": \"token_entropy→distinct_1\", \"votes\": \"3/5\", \"methods\": [\"naive\", \"diff\", \"perm\"]},\n    {\"pair\": \"token_entropy→distinct_2\", \"votes\": \"2/5\", \"methods\": [\"diff\", \"perm\"]},\n    {\"pair\": \"token_entropy→distinct_3\", \"votes\": \"2/5\", \"methods\": [\"diff\", \"perm\"]},\n    {\"pair\": \"token_entropy→mauve\", \"votes\": \"1/5\", \"methods\": [\"diff\"]},\n    {\"pair\": \"ece→distinct_1\", \"votes\": \"3/5\", \"methods\": [\"naive\", \"diff\", \"perm\"]},\n    {\"pair\": \"ece→distinct_2\", \"votes\": \"3/5\", \"methods\": [\"naive\", \"diff\", \"perm\"]},\n    {\"pair\": \"ece→distinct_3\", \"votes\": \"3/5\", \"methods\": [\"naive\", \"diff\", \"perm\"]},\n    {\"pair\": \"ece→mauve\", \"votes\": \"0/5\", \"methods\": []}\n  ],\n  \"parent_comparison\": {\n    \"parent\": \"alpha_sweep_a075_s42_fp32\",\n    \"parent_PermG_fwd\": 6,\n    \"parent_PermG_rev\": 0,\n    \"match\": true,\n    \"seed_robust\": true\n  },\n  \"server\": \"westd-17855\",\n  \"output_dir\": \"/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a075_s43_fp32\",\n  \"analysis_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a075_s43_fp32/analysis/5method_leadlag.json\"\n}\n"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-22T06:44:48.819502+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/d102_t10_a075_s43_fp32.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-22T06:44:48.819665+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "phase_diagram_t10_a075_s43_fp32",
+              "field": "hypothesis",
+              "value": "T=10 α=0.75 cross-seed validation: if s43 also ~6/8 PermG_fwd (matching s42), confirms seed robustness of canary lead-lag detection at high α well above α_c(10)",
+              "project": "distrib_canary_collapse"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-22T06:44:48.819973+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "phase_diagram_t10_a075_s43_fp32",
+              "field": "parent",
+              "value": "alpha_sweep_a075_s42_fp32",
+              "project": "distrib_canary_collapse"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-22T06:44:48.820161+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phase_diagram_t10_a075_s43_fp32\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T01:26:16.599Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:42:54.730Z\\\", \\\"hypothesis\\\": \\\"T=10 α=0.75 cross-seed validation: if s43 also ~6/8 PermG_fwd (matching s42), confirms seed robustness of canary lead-lag detection at high α well above α_c(10)\\\", \\\"parent\\\": \\\"alpha_sweep_a075_s42_fp32\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.75 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a075_s43_fp32 --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\\\\\"\\\", \\\"server\\\": \\\"westd-17855\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"586115\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/phase_diagram_t10_a075_s43_fp32.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T01:26:37.183Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"alpha_sweep_a075_s42_fp32 (cross-seed, s42=6/8)\\\", \\\"eval_data\\\": \\\"data/wikitext103_5k\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T06:38:06.364Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T06:38:13.651767+00:00\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0804}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-22T06:44:48.820399+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phase_diagram_t10_a075_s43_fp32\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T01:26:16.599Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:42:55.765Z\\\", \\\"hypothesis\\\": \\\"T=10 α=0.75 cross-seed validation: if s43 also ~6/8 PermG_fwd (matching s42), confirms seed robustness of canary lead-lag detection at high α well above α_c(10)\\\", \\\"parent\\\": \\\"alpha_sweep_a075_s42_fp32\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.75 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a075_s43_fp32 --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\\\\\"\\\", \\\"server\\\": \\\"westd-17855\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"586115\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/phase_diagram_t10_a075_s43_fp32.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T01:26:37.183Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"alpha_sweep_a075_s42_fp32 (cross-seed, s42=6/8)\\\", \\\"eval_data\\\": \\\"data/wikitext103_5k\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T06:38:06.364Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T06:38:13.651767+00:00\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9933}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-22T06:44:48.820578+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "phase_diagram_t10_a075_s43_fp32",
+              "field": "checkpoint_path",
+              "value": "/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a075_s43_fp32",
+              "project": "distrib_canary_collapse"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-22T06:44:48.820747+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phase_diagram_t10_a075_s43_fp32\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T01:26:16.599Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:43:01.682Z\\\", \\\"hypothesis\\\": \\\"T=10 α=0.75 cross-seed validation: if s43 also ~6/8 PermG_fwd (matching s42), confirms seed robustness of canary lead-lag detection at high α well above α_c(10)\\\", \\\"parent\\\": \\\"alpha_sweep_a075_s42_fp32\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.75 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a075_s43_fp32 --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\\\\\"\\\", \\\"server\\\": \\\"westd-17855\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"586115\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/phase_diagram_t10_a075_s43_fp32.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T01:26:37.183Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"alpha_sweep_a075_s42_fp32 (cross-seed, s42=6/8)\\\", \\\"eval_data\\\": \\\"data/wikitext103_5k\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T06:38:06.364Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T06:38:13.651767+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a075_s43_fp32\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"e\n…[truncated 28 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-22T06:44:48.820902+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "phase_diagram_t10_a075_s43_fp32",
+              "field": "metrics",
+              "value": "{'PermG_fwd': 6, 'PermG_rev': 0, 'total_pairs': 8, 'asymmetry': 'strong', 'robust_pairs_ge3': 4, 'diff_xcorr_fdr_fwd': 7, 'diff_xcorr_fdr_rev': 7, 'threshold_fwd': 0, 'ty_fwd': 0, 'threshold_criterion': 'true_3sigma_d105', 'downstreams': ['distinct_1', 'distinct_2', 'distinct_3', 'mauve']}",
+              "project": "distrib_canary_collapse"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-22T06:44:48.821140+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phase_diagram_t10_a075_s43_fp32\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T01:26:16.599Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:43:03.456Z\\\", \\\"hypothesis\\\": \\\"T=10 α=0.75 cross-seed validation: if s43 also ~6/8 PermG_fwd (matching s42), confirms seed robustness of canary lead-lag detection at high α well above α_c(10)\\\", \\\"parent\\\": \\\"alpha_sweep_a075_s42_fp32\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.75 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a075_s43_fp32 --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\\\\\"\\\", \\\"server\\\": \\\"westd-17855\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"586115\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/phase_diagram_t10_a075_s43_fp32.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T01:26:37.183Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"alpha_sweep_a075_s42_fp32 (cross-seed, s42=6/8)\\\", \\\"eval_data\\\": \\\"data/wikitext103_5k\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T06:38:06.364Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T06:38:13.651767+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a075_s43_fp32\\\", \\\"metrics\\\": {\\\"PermG_fwd\\\": 6, \\\"Per\n…[truncated 366 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-22T06:44:48.821402+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "phase_diagram_t10_a075_s43_fp32",
+              "field": "conclusion",
+              "value": "success",
+              "project": "distrib_canary_collapse"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-22T06:44:48.821715+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phase_diagram_t10_a075_s43_fp32\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T01:26:16.599Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:43:10.434Z\\\", \\\"hypothesis\\\": \\\"T=10 α=0.75 cross-seed validation: if s43 also ~6/8 PermG_fwd (matching s42), confirms seed robustness of canary lead-lag detection at high α well above α_c(10)\\\", \\\"parent\\\": \\\"alpha_sweep_a075_s42_fp32\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.75 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a075_s43_fp32 --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\\\\\"\\\", \\\"server\\\": \\\"westd-17855\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"586115\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/phase_diagram_t10_a075_s43_fp32.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T01:26:37.183Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"alpha_sweep_a075_s42_fp32 (cross-seed, s42=6/8)\\\", \\\"eval_data\\\": \\\"data/wikitext103_5k\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T06:38:06.364Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T06:38:13.651767+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a075_s43_fp32\\\", \\\"metrics\\\": {\\\"PermG_fwd\\\": 6, \\\"Per\n…[truncated 396 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-22T06:44:48.821880+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "phase_diagram_t10_a075_s43_fp32",
+              "field": "status",
+              "value": "DONE",
+              "project": "distrib_canary_collapse"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-22T06:44:48.822089+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phase_diagram_t10_a075_s43_fp32\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T01:26:16.599Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:43:17.737Z\\\", \\\"hypothesis\\\": \\\"T=10 α=0.75 cross-seed validation: if s43 also ~6/8 PermG_fwd (matching s42), confirms seed robustness of canary lead-lag detection at high α well above α_c(10)\\\", \\\"parent\\\": \\\"alpha_sweep_a075_s42_fp32\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.75 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a075_s43_fp32 --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\\\\\"\\\", \\\"server\\\": \\\"westd-17855\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"586115\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/phase_diagram_t10_a075_s43_fp32.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T01:26:37.183Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"alpha_sweep_a075_s42_fp32 (cross-seed, s42=6/8)\\\", \\\"eval_data\\\": \\\"data/wikitext103_5k\\\", \\\"wall_clock_seconds\\\": 19000.6, \\\"gpu_hours\\\": 5.28}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T06:38:06.364Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T06:38:13.651767+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a075_\n…[truncated 544 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-22T06:44:48.822275+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "d102_t10_a075_s43_fp32",
+              "type": "data",
+              "description": "D102 5-method lead-lag analysis for T=10 α=0.75 s43: PermG_fwd=6/8, PermG_rev=0/8, seed-robust with s42",
+              "project": "distrib_canary_collapse",
+              "exp_id": "phase_diagram_t10_a075_s43_fp32",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/d102_t10_a075_s43_fp32.json",
+              "tags": "['d102', 'lead-lag', 'phase-diagram', 'cross-seed', 'T10']"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-22T06:44:48.822454+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260522_42cbff\\\", \\\"name\\\": \\\"d102_t10_a075_s43_fp32\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"D102 5-method lead-lag analysis for T=10 α=0.75 s43: PermG_fwd=6/8, PermG_rev=0/8, seed-robust with s42\\\", \\\"path\\\": \\\"projects/distrib_canary_collapse/artifacts/phase_diagram_t10_a075_s43_fp32/data/d102_t10_a075_s43_fp32.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"distrib_canary_collapse\\\", \\\"exp_id\\\": \\\"phase_diagram_t10_a075_s43_fp32\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-22T06:43:31.759514+00:00\\\", \\\"tags\\\": [\\\"d102\\\", \\\"lead-lag\\\", \\\"phase-diagram\\\", \\\"cross-seed\\\", \\\"T10\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-22T06:44:48.822637+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 分析完成\n\n### 结果\n\n| Metric | s43 (本次) | s42 (parent) | 一致性 |\n|--------|-----------|-------------|--------|\n| **PermG_fwd** | **6/8** | 6/8 | ✓ 完全匹配 |\n| **PermG_rev** | **0/8** | 0/8 | ✓ 完全匹配 |\n| asymmetry | strong | strong | ✓ |\n| robust_pairs (≥3/5) | 4/8 | — | — |\n| diff_xcorr_fdr_fwd | 7/8 | — | — |\n\n### Conclusion: **success**\n\nPermG_fwd=6/8 ≥ 4 阈值，且与 parent s42 完全一致（6/8 fwd, 0/8 rev, strong asymmetry）。确认 T=10 α=0.75 的 canary lead-lag 检测具备 **seed robustness**。\n\nPermG 显著的 6 个 pair 全部是 canary→distinct_1/2/3 方向（token_entropy 和 ece 各 3 个），mauve 两对均不显著（与 s42 行为一致——mauve 在 T=10 下信号较弱）。\n\n### Registry 已更新\n- status=DONE, conclusion=success\n- metrics、checkpoint_path、hypothesis、parent 均已设置"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055"
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-22T06:44:48.822818+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a075_s42_fp32/analysis/5method_summary.txt",
+              "account": "root"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-22T06:44:48.822956+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a075_s42_fp32/analysis/5method_summary.txt: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-22T06:44:48.823121+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "tail -5 /root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a075_s42_fp32/all_metrics.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-22T06:44:48.823275+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"tail: cannot open '/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a075_s42_fp32/all_metrics.json' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-22T06:44:48.823404+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "find /root/autodl-tmp/distrib_canary_collapse/results -path \"*t10*a075*s42*\" -name \"5method_summary.txt\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-22T06:44:48.823529+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-22T06:44:48.823646+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19828",
+              "command": "find /root/autodl-tmp/distrib_canary_collapse/results -path \"*t10*a075*s42*\" -name \"5method_summary.txt\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-22T06:44:48.823768+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-22T06:44:48.823991+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "distrib_canary_collapse",
+              "limit": "0",
+              "filters": "{'conclusion': 'success'}",
+              "fields": "['exp_id', 'status', 'conclusion', 'metrics']"
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-22T06:44:48.824789+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (82,794 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/32eacb55-564b-4a37-bef3-fb11ed971550/tool-results/mcp-agent-ml-research-read_registry-1779432172433.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/32eacb55-564b-4a37-bef3-fb11ed971550/tool-results/mcp-agent-ml-research-read_registry-1779432172433.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/32eacb55-564b-4a37-bef3-fb11ed971550/tool-results/mcp-agent-ml-research-read_registry-1779432172433.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-22T06:44:48.824988+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/32eacb55-564b-4a37-bef3-fb11ed971550/tool-results/mcp-agent-ml-research-read_registry-1779432172433.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nfor eid, v in exps.items():\n    if 't10' in eid and 'a075' in eid:\n        print(eid, json.dumps(v, indent=2))\n\"",
+              "description": "Extract t10_a075 experiments from registry"
+            }
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-22T06:44:48.825319+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-22T06:44:48.825471+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "distrib_canary_collapse",
+              "limit": "10",
+              "fields": "['exp_id', 'status', 'conclusion', 'metrics']"
+            }
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-22T06:44:48.825623+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"phase_diagram_t10_a075_s43_fp32\\\": {\\\"status\\\": \\\"ANALYZING\\\"}, \\\"scale_14b_t10_a050_s42_fp32\\\": {\\\"status\\\": \\\"ALLOCATED\\\"}, \\\"phase_diagram_t10_a050_s43_fp32_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"gen_10_token_entropy\\\": 2.635, \\\"gen_10_self_bleu\\\": 0.013, \\\"gen_10_ece\\\": 0.103, \\\"gen_10_effective_rank\\\": 59.645, \\\"gen_10_perplexity\\\": 33.214, \\\"gen_10_distinct_1\\\": 0.065, \\\"gen_10_distinct_2\\\": 0.278, \\\"gen_10_distinct_3\\\": 0.443, \\\"gen_10_mauve\\\": 0.026, \\\"total_gens\\\": 11, \\\"intervention_triggered\\\": false}}, \\\"phase_diagram_t25_a060_s42_fp32_v3\\\": {\\\"status\\\": \\\"ANALYZING\\\"}, \\\"scale_14b_t15_a060_s42_fp32\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"scale_14b_t15_a050_s42_fp32\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"scale_14b_t15_a045_s42_fp32\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"scale_14b_t10_a075_s42_fp32\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"scale_14b_t10_a060_s42_fp32\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"phase_diagram_t25_a075_s43_fp32_v3\\\": {\\\"status\\\": \\\"RUNNING\\\"}}, \\\"count\\\": 10, \\\"total\\\": 182, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2612}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-22T06:44:48.825782+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "t10.*a075.*s42.*PermG|t10.*a075.*s42.*6/8",
+              "output_mode": "content",
+              "head_limit": "20"
+            }
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-22T06:44:48.825944+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "logs/chats/cron_hook_phase_diagram_t25_a075_s43_fp32.jsonl:25:[Omitted long matching line]\nlogs/chats/feishu_group_oc_150c7ce908e05d7932315e0288cf5bfb_director.jsonl:384:[Omitted long matching line]\nlogs/chats/cron_hook_alpha_sweep_a010_s42_v2.jsonl:44:[Omitted long matching line]\nlogs/chats/cron_hook_alpha_sweep_a025_s43_fp32.jsonl:33:[Omitted long matching line]\nlogs/chats/worker_analysis_alpha_sweep_a075_s42_fp32_20260519T114254.jsonl:67:[Omitted long matching line]\nlogs/chats/cron_hook_alpha_sweep_a048_s42_fp32.jsonl:85:[Omitted long matching line]\nlogs/chats/cron_hook_alpha_sweep_a050_s44_fp32.jsonl:23:[Omitted long matching line]\nlogs/chats/feishu_dm_oc_2f4b9af3f748a4b8c1f5c291266e6c40_briefer.jsonl:51:[Omitted long matching line]\nlogs/chats/archive/cron_hook_t20_a050_s42_fp32_20260521T083758_165639.jsonl:78:[Omitted long matching line]\nlogs/chats/archive/feishu_group_oc_1f489e32588225ae3672d716b94662a8_reviewer_20260521T020341_437122.jsonl:3409:[Omitted long matching line]\nlogs/chats/archive/feishu_group_oc_1f489e32588225ae3672d716b94662a8_reviewer_20260521T020341_437122.jsonl:5844:[Omitted long matching line]\nlogs/chats/archive/cron_hook_alpha_sweep_a045_s43_fp32_20260521T184434_160999.jsonl:1:[Omitted long matching line]\nlogs/chats/archive/cron_hook_alpha_sweep_a045_s43_fp32_20260521T020313_542928.jsonl:26:[Omitted long matching line]\nlogs/chats/archive/feishu_group_oc_1f489e32588225ae3672d716b94662a8_reviewer_20260517T081447_180375.jsonl:1:[Omitted long matching line]\nlogs/chats/archive/feishu_group_oc_1f489e32588225ae3672d716b94662a8_reviewer_20260517T081447_180375.jsonl:44:[Omitted long matching line]\nlogs/chats/archive/cron_hook_t20_a075_s42_fp32_20260521T103211_989922.jsonl:25:[Omitted long matching line]\nlogs/chats/archive/feishu_group_oc_1f489e32588225ae3672d716b94662a8_20260521T180511_138639.jsonl:3532:[Omitted long matching line]\nlogs/chats/archive/feishu_group_oc_1f489e32588225ae3672d716b94662a8_20260521T180511_138639.jsonl:3745:[Omitted long matc\n…[truncated 319 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-22T06:44:48.826238+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "t10_a075_s42|t10.*a075.*s42",
+              "glob": "*.md",
+              "output_mode": "content",
+              "head_limit": "20"
+            }
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-22T06:44:48.826399+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "report.md:17:- scale_14b_t10_a075_s42_fp32: Scale verification: Pythia-1.4B T=10 α=0.75. At 410M, α=0.75 PermG=6/8 (well above α_c). Baseline control for 1.4B — expected 6/8 if detection scales. Confirms 6/8 ceiling is not model-size dependent.（准备中）"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-22T06:44:48.826550+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s42_fp32/analysis/5method_summary.txt",
+              "account": "root"
+            }
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-22T06:44:48.826690+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5-Method Lead-Lag Analysis Summary\\\\nAlpha=0.75, Seed=42, Generations=11\\\\n============================================================\\\\n\\\\nRobust pairs (>=3/5 methods agree): 6/8\\\\n\\\\nPer-method forward significance:\\\\n  Perm Granger (FDR): 6/8\\\\n  Diff XCorr (FDR):   6/8\\\\n  Threshold Onset:    0/8\\\\n  TY Granger:         2/8\\\\n\\\\nConsensus detail:\\\\n  token_entropy<distinct_1  3/5  [naive, diff, perm]\\\\n  token_entropy<distinct_2  3/5  [naive, diff, perm]\\\\n  token_entropy<distinct_3  3/5  [naive, diff, perm]\\\\n  token_entropy<mauve       1/5  [ty]\\\\n  ece<distinct_1            3/5  [naive, diff, perm]\\\\n  ece<distinct_2            3/5  [naive, diff, perm]\\\\n  ece<distinct_3            3/5  [naive, diff, perm]\\\\n  ece<mauve                 2/5  [naive, ty]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-22T06:44:48.827045+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a075_s43_fp32/config.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-22T06:44:48.827223+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_name\\\\\\\": \\\\\\\"EleutherAI/pythia-410m\\\\\\\",\\\\n  \\\\\\\"data_dir\\\\\\\": \\\\\\\"data/wikitext103_5k\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"wikitext-103-v1\\\\\\\",\\\\n  \\\\\\\"synthetic_ratio\\\\\\\": 0.75,\\\\n  \\\\\\\"num_generations\\\\\\\": 10,\\\\n  \\\\\\\"steps_per_gen\\\\\\\": 5000,\\\\n  \\\\\\\"output_dir\\\\\\\": \\\\\\\"results/phase_diagram/t10_a075_s43_fp32\\\\\\\",\\\\n  \\\\\\\"seed\\\\\\\": 43,\\\\n  \\\\\\\"batch_size\\\\\\\": 4,\\\\n  \\\\\\\"max_length\\\\\\\": 512,\\\\n  \\\\\\\"lr\\\\\\\": 5e-05,\\\\n  \\\\\\\"gen_max_new_tokens\\\\\\\": 256,\\\\n  \\\\\\\"gen_batch_size\\\\\\\": 16,\\\\n  \\\\\\\"top_p\\\\\\\": 0.95,\\\\n  \\\\\\\"accumulate\\\\\\\": false,\\\\n  \\\\\\\"start_gen\\\\\\\": 0,\\\\n  \\\\\\\"gradient_checkpointing\\\\\\\": false,\\\\n  \\\\\\\"bf16\\\\\\\": false,\\\\n  \\\\\\\"optim\\\\\\\": \\\\\\\"adamw_torch\\\\\\\",\\\\n  \\\\\\\"intervention_mode\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n  \\\\\\\"intervention_metric\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n  \\\\\\\"intervention_threshold\\\\\\\": 0.15,\\\\n  \\\\\\\"intervention_alpha\\\\\\\": 0.0\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-22T06:44:48.827383+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "grep -i \"loss\\|final\" ~/runs/distrib_canary_collapse/phase_diagram_t10_a075_s43_fp32.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-22T06:44:48.827512+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-22T06:44:48.827689+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "grep -i \"loss\" ~/runs/distrib_canary_collapse/phase_diagram_t10_a075_s43_fp32.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-22T06:44:48.828036+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r  0%|          | 0/5000 [00:00<?, ?it/s]\\\\r  0%|          | 1/5000 [00:00<16:09,  5.16it/s]\\\\r  0%|          | 2/5000 [00:00<12:13,  6.82it/s]\\\\r  0%|          | 3/5000 [00:00<11:34,  7.19it/s]\\\\r  0%|          | 4/5000 [00:00<11:16,  7.38it/s]\\\\r  0%|          | 5/5000 [00:00<11:07,  7.48it/s]\\\\r  0%|          | 6/5000 [00:00<11:01,  7.55it/s]\\\\r  0%|          | 7/5000 [00:00<10:56,  7.60it/s]\\\\r  0%|          | 8/5000 [00:01<10:54,  7.63it/s]\\\\r  0%|          | 9/5000 [00:01<10:52,  7.64it/s]\\\\r  0%|          | 10/5000 [00:01<10:51,  7.65it/s]\\\\r  0%|          | 11/5000 [00:01<10:50,  7.67it/s]\\\\r  0%|          | 12/5000 [00:01<10:49,  7.68it/s]\\\\r  0%|          | 13/5000 [00:01<10:49,  7.68it/s]\\\\r  0%|          | 14/5000 [00:01<10:49,  7.68it/s]\\\\r  0%|          | 15/5000 [00:01<10:48,  7.69it/s]\\\\r  0%|          | 16/5000 [00:02<10:48,  7.69it/s]\\\\r  0%|          | 17/5000 [00:02<10:48,  7.69it/s]\\\\r  0%|          | 18/5000 [00:02<10:48,  7.69it/s]\\\\r  0%|          | 19/5000 [00:02<10:48,  7.68it/s]\\\\r  0%|          | 20/5000 [00:02<10:47,  7.69it/s]\\\\r  0%|          | 21/5000 [00:02<10:47,  7.69it/s]\\\\r  0%|          | 22/5000 [00:02<10:47,  7.69it/s]\\\\r  0%|          | 23/5000 [00:03<10:47,  7.69it/s]\\\\r  0%|          | 24/5000 [00:03<10:47,  7.69it/s]\\\\r  0%|          | 25/5000 [00:03<10:47,  7.69it/s]\\\\r  1%|          | 26/5000 [00:03<10:46,  7.69it/s]\\\\r  1%|          | 27/5000 [00:03<10:46,  7.69it/s]\\\\r  1%|          | 28/5000 [00:03<10:46,  7.69it/s]\\\\r  1%|          | 29/5000 [00:03<10:46,  7.69it/s]\\\\r  1%|          | 30/5000 [00:03<10:46,  7.69it/s]\\\\r  1%|          | 31/5000 [00:04<10:45,  7.70it/s]\\\\r  1%|          | 32/5000 [00:04<10:45,  7.69it/s]\\\\r  1%|          | 33/5000 [00:04<10:45,  7.69it/s]\\\\r  1%|          | 34/5000 [00:04<10:45,  7.69it/s]\\\\r  1%|          | 35/5000 [00:04<10:45,  7.69it/s]\\\\r  1%|          | 36/5000 [00:04<10:45,  7.69it/s]\\\\r  1%|          | 37/5000 [00:04<10:\n…[truncated 6518 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-22T06:44:48.828554+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/D102_t10_a075_s43_analysis.md",
+              "content": "# D102 Analysis: phase_diagram_t10_a075_s43_fp32\n\n## Experiment Config\n- Model: Pythia-410M, Dataset: wikitext-103\n- T=10, α=0.75, seed=43, fp32\n- 5000 steps/gen, lr=5e-5, batch=4, gen_max_tokens=256\n- Server: westd-17855\n\n## Status\n- EXIT_CODE=0, gen_0–gen_10 complete (11 generations)\n- Final training loss: 0.1734 (last step), avg train_loss: 0.4142\n\n## 5-Method Lead-Lag Results\n\n```\nPermG_fwd (FDR):      6/8  ← KEY METRIC\nPermG_rev (FDR):      0/8\nDiffXCorr_fwd (FDR):  7/8\nDiffXCorr_rev (FDR):  7/8\nThreshold_3sigma:     0/8\nTY_Granger:           0/8\nRobust pairs (K≥3):   4/8\n```\n\n### Consensus Detail\n```\ntoken_entropy → distinct_1:  3/5  [naive, diff, perm]\ntoken_entropy → distinct_2:  2/5  [diff, perm]\ntoken_entropy → distinct_3:  2/5  [diff, perm]\ntoken_entropy → mauve:       1/5  [diff]\nece → distinct_1:            3/5  [naive, diff, perm]\nece → distinct_2:            3/5  [naive, diff, perm]\nece → distinct_3:            3/5  [naive, diff, perm]\nece → mauve:                 0/5  [none]\n```\n\n## Cross-Seed Comparison (s42 vs s43)\n\n| Metric | s42 | s43 | Match |\n|--------|-----|-----|-------|\n| **PermG (FDR) fwd** | **6/8** | **6/8** | **✓** |\n| PermG (FDR) rev | — | 0/8 | ✓ |\n| DiffXCorr (FDR) fwd | 6/8 | 7/8 | ≈ |\n| Threshold 3σ | 0/8 | 0/8 | ✓ |\n| TY Granger | 2/8 | 0/8 | (TY unstable at T=10, per C003) |\n| Robust K≥3 | 6/8 | 4/8 | ↓ |\n\n### K≥3 Drop Analysis (6/8 → 4/8)\ns43 lost 2 robust pairs vs s42:\n- **te→d2**: 3/5→2/5 (lost naive_xcorr vote)\n- **te→d3**: 3/5→2/5 (lost naive_xcorr vote)\n\nAdditionally ece→mauve dropped from 2/5→0/5 (but was already below K≥3 threshold in s42).\n\nAll ece→d1/d2/d3 remain stable at 3/5. te→d1 stable at 3/5. The K≥3 drop is driven by borderline te→d2/d3 pairs losing one vote — the core PermG signal is unaffected.\n\n## Gen-10 Downstream Metrics\n\n| Metric | Gen 0 | Gen 10 | Δ |\n|--------|-------|--------|---|\n| perplexity | 26.95 | 77.82 | +188.8% |\n| token_entropy | 3.234 | 2.287 | -29.3% |\n| ece | 0.011 | 0.213 | +1836% |\n| effective_rank | 46.61 | 79.04 | +69.6% |\n| distinct_1 | 0.098 | 0.073 | -26.0% |\n| distinct_2 | 0.515 | 0.347 | -32.7% |\n| distinct_3 | 0.814 | 0.574 | -29.5% |\n| mauve | 0.031 | 0.032 | +1.4% |\n| self_bleu | 0.012 | 0.013 | +12.6% |\n\n## Verdict\n\n**PermG=6/8 confirmed seed-robust at T=10, α=0.75.** s42 and s43 produce identical PermG counts. This confirms the 6/8 ceiling at T=10 is not seed-dependent for α well above α_c(10)≈0.487.\n\nK≥3 consensus dropped from 6/8→4/8 due to borderline te→downstream pairs, but the primary PermG metric (the one used for the phase diagram) is stable.\n"
+            }
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-22T06:44:48.828794+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/D102_t10_a075_s43_analysis.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-22T06:44:48.828936+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "D102_t10_a075_s43_analysis",
+              "type": "report",
+              "description": "D102 analysis for T=10 α=0.75 s43 cross-seed verification — PermG=6/8 matches s42, seed-robust",
+              "project": "distrib_canary_collapse",
+              "exp_id": "phase_diagram_t10_a075_s43_fp32",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/D102_t10_a075_s43_analysis.md",
+              "tags": "['D102', 'phase_diagram', 'cross-seed', 'T10', 'a075']"
+            }
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-22T06:44:48.829093+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260522_2e98a4\\\", \\\"name\\\": \\\"D102_t10_a075_s43_analysis\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"D102 analysis for T=10 α=0.75 s43 cross-seed verification — PermG=6/8 matches s42, seed-robust\\\", \\\"path\\\": \\\"projects/distrib_canary_collapse/artifacts/phase_diagram_t10_a075_s43_fp32/report/D102_t10_a075_s43_analysis.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"distrib_canary_collapse\\\", \\\"exp_id\\\": \\\"phase_diagram_t10_a075_s43_fp32\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-22T06:44:40.560805+00:00\\\", \\\"tags\\\": [\\\"D102\\\", \\\"phase_diagram\\\", \\\"cross-seed\\\", \\\"T10\\\", \\\"a075\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-22T06:44:48.829296+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "**PermG=6/8，与 s42 完全一致。**\n\n| | s42 | s43 |\n|---|---|---|\n| **PermG (FDR) fwd** | **6/8** | **6/8** |\n| DiffXCorr fwd | 6/8 | 7/8 |\n| Threshold 3σ | 0/8 | 0/8 |\n| TY Granger | 2/8 | 0/8 |\n| K≥3 robust | 6/8 | 4/8 |\n\n- 训练正常完成，EXIT_CODE=0，gen_0–gen_10 完整\n- Final loss=0.1734，gen_10 ppl=77.82\n- K≥3 从 6/8 降至 4/8，原因是 te→d2/d3 各丢一个 naive_xcorr vote（边界效应），核心 PermG 信号不受影响\n- **结论：T=10 α=0.75 的 6/8 ceiling 是 seed-robust 的**\n\n分析已写入 `artifacts/D102_t10_a075_s43_analysis.md` 并注册。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_phase_diagram_t10_a075_s43_fp32_20260522T064055"
+          },
+          "id": "event-000086"
+        }
+      ],
+      "message_count": 86
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-phase-diagram-t10-a075-s43-fp32.md"
+}

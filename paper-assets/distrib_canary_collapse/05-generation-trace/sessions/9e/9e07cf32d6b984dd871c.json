@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e07cf32d6b984dd871c",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ssh shapley v2 correct",
+  "task_key": "worker_ssh_shapley_v2_correct_20260517T094130",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_shapley_v2_correct_20260517T094130_result.json",
+    "occurrence": 1,
+    "bytes": 1193,
+    "sha256": "e53a648d27b851db99eb27052d02f3c95cbdcae05604ed1cb0653418b294b299"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n## 真 Shapley Values（K=ceil(0.8·|S|)，32 coalition 枚举）\n\n| 方法 | Shapley(FPR) | Shapley(FNR) |\n|---|---|---|\n| Naive XCorr | **+0.192** | -0.242 |\n| Diff XCorr (FDR) | +0.028 | -0.242 |\n| Threshold Onset | -0.034 | -0.242 |\n| Perm Granger (FDR) | **-0.110** | -0.242 |\n| TY Granger | -0.076 | **-0.033** |\n\n**数据范围**：\n- FPR: α=0.0, 3 seeds (s42/s43/s44), 8 pairs/seed = 24 obs\n- FNR: α=1.0, 4 seeds (s42/s43/s44/s45), 6 reference pairs/seed = 24 obs\n\n**与 method.tex 已有数字的对比**：\n- 论文中 PermG Shapley=+0.375, TY=-2.625 是 **LOO 值**（Leave-One-Out），不是真 Shapley\n- 真 Shapley 证实了相同定性结论：PermG 是 FPR 贡献最强的方法（最大幅度减少 FPR），TY 是 FNR 贡献最弱的（仅 -0.033，因为 ECE 通道的 Type II errors）\n- 量级差异大：LOO 过度放大了单方法的边际贡献，Shapley 给出跨所有 coalition 的加权平均\n\n**产出**：\n- PDF: `docs/paper/figures/shapley_method_contribution.pdf`（服务器）\n- JSON: `results/shapley_values.json`（含三种阈值策略的完整结果）\n- Artifact: `art_20260517_fbea27`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-shapley-v2-correct.md"
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "8614362a0ced786bb58d",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "analysis power sim fix conclusion",
+  "task_key": "worker_analysis_power-sim-fix-conclusion_20260522T111847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_power-sim-fix-conclusion_20260522T111847.log",
+    "occurrence": 1,
+    "bytes": 679565,
+    "sha256": "a5e593608a84315176b81a95d156851e2da14841c9666795f2277ee6e0f006aa"
+  },
+  "statistics": {
+    "messages": 258,
+    "user_turns": 1,
+    "tool_calls": 100,
+    "roles": {
+      "log": 1,
+      "system": 8,
+      "record": 1,
+      "assistant": 46,
+      "tool_call": 100,
+      "tool_result": 100,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 254,
+      "chunks": [
+        {
+          "path": "8614362a0ced786bb58d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "8614362a0ced786bb58d-part-0002.json",
+          "message_count": 74
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 4,
+      "chunks": [
+        {
+          "path": "8614362a0ced786bb58d-part-0002.json",
+          "message_count": 4
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-power-sim-fix-conclusion.md"
+}

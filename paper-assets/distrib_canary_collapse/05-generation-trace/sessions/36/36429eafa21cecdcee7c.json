@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "36429eafa21cecdcee7c",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis reverse permg pythia410m",
+  "task_key": "worker_analysis_reverse_permg_pythia410m_20260517T123236",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_reverse_permg_pythia410m_20260517T123236_result.json",
+    "occurrence": 1,
+    "bytes": 1390,
+    "sha256": "32f409ea703148ff9b7381968d46c2f739aba24f6929c32ecc16d63f3bc40238"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果完整。\n\n## 结果\n\n```\nReverse PermG (H0: downstream does NOT Granger-cause canary)\nPair                         |   F_stat |    p_raw |    p_fdr | sig\n----------------------------------------------------------------------\ntoken_entropy <- distinct_1  |   0.4907 |   0.4965 |   0.5777 | N\ntoken_entropy <- distinct_2  |   0.4953 |   0.4765 |   0.5777 | N\ntoken_entropy <- distinct_3  |   0.4193 |   0.5055 |   0.5777 | N\ntoken_entropy <- mauve       |   0.1121 |   0.7353 |   0.7353 | N\nece <- distinct_1            |  59.6706 |   0.0320 |   0.0959 | N\nece <- distinct_2            |  37.5922 |   0.0320 |   0.0959 | N\nece <- distinct_3            |  25.2940 |   0.0360 |   0.0959 | N\nece <- mauve                 |   0.7923 |   0.4026 |   0.5777 | N\n\nSummary: 0/8 significant (FDR q<0.05)\n```\n\n**对比：**\n- Forward: **6/8 significant** (entropy/ece → distinct_1/2/3 全显著，mauve 两对不显著)\n- Reverse: **0/8 significant**\n\n符合预期：因果方向是单向的 (canary → downstream)，reverse 方向无显著性。注意 ece ← distinct_1/2/3 的 raw p 在 0.032-0.036 边缘，但 FDR 校正后全部 >0.05，进一步确认 forward 方向的因果关系不是双向反馈。\n\n结果 JSON 已保存至 `/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/reverse_permg_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-reverse-permg-pythia410m.md"
+}

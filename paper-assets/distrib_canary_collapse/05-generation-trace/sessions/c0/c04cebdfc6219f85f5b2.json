@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "c04cebdfc6219f85f5b2",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "audit m037 threshold 3sigma",
+  "task_key": "worker_audit_m037_threshold_3sigma_20260520T041508",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_m037_threshold_3sigma_20260520T041508.log",
+    "occurrence": 1,
+    "bytes": 655418,
+    "sha256": "8ef318fa0054385a69e849b7951783f4b827e40f25da5f1674a661527215e80a"
+  },
+  "statistics": {
+    "messages": 152,
+    "user_turns": 0,
+    "tool_calls": 55,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 38,
+      "tool_call": 55,
+      "tool_result": 55,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 152,
+      "chunks": [
+        {
+          "path": "c04cebdfc6219f85f5b2-part-0001.json",
+          "message_count": 135
+        },
+        {
+          "path": "c04cebdfc6219f85f5b2-part-0002.json",
+          "message_count": 17
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-m037-threshold-3sigma.md"
+}

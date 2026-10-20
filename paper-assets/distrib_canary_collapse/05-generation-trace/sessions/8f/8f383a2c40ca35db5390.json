@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f383a2c40ca35db5390",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis method ablation phase3",
+  "task_key": "worker_analysis_method_ablation_phase3_20260518T225001",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_method_ablation_phase3_20260518T225001_result.json",
+    "occurrence": 1,
+    "bytes": 1454,
+    "sha256": "61b28250706e49e9ce5d0bbaabea6e5567de787d99f8913b9d5cc821a5a8274e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Phase 3 完成。7×5 BH FDR-corrected 矩阵：\n\n| alpha | n | naive | diff | threshold | permG | TY |\n|-------|---|-------|------|-----------|-------|-----|\n| 0.00 | 24 | 96% | 33% | 46% | 0% | 0% |\n| 0.10 | 8 | 100% | 12% | 38% | 0% | 0% |\n| 0.25 | 16 | 100% | 62% | 38% | 0% | 0% |\n| 0.50 | 24 | 100% | 88% | 83% | 0% | 0% |\n| 0.60 | 8 | 100% | 100% | 75% | 100% | 50% (bf16) |\n| 0.75 | 24 | 100% | 96% | 100% | 83% | 0% |\n| 1.00 | 32 | 100% | 100% | 100% | 75% | 59% |\n\n关键发现：\n\n1. **α=0.10 确认为盲区** — 和 α=0.00 一样，robust methods (permG/TY) 均为 0%\n\n2. **permG 在 α=0.50-0.60 之间存在阶跃跳变** — 从 0% (α≤0.50) 直接跳到 100% (α=0.60) / 83% (α=0.75)。α=0.50 的 50% raw significance 全部被 FDR 翻转（12 个 flip），说明 p-values 集中在临界附近\n\n3. **TY 在 α≤0.75 后全部为 0%（FDR 后）**，仅 α=1.00 有 59%，再次确认 C003\n\n4. **多 seed 修正了 Phase 2 的单 seed 估计** — α=0.25 diff 从 25%→62%（新 seed 影响大），α=0.25 TY 从 38%→0%（seed 不稳定）\n\n5. **α=0.60 bf16 单 seed 需谨慎解读** — permG=100%、TY=50% 可能受 bf16 精度和 seed 方差影响\n\n产出文件：\n- 服务器: `results/method_ablation_phase3_panel.json` + `results/method_ablation_phase3_report.md`\n- 本地: `artifacts/method_ablation_phase3/method_ablation_phase3_summary.md` (已注册 art_20260518_d2036c)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-method-ablation-phase3-copy-2.md"
+}

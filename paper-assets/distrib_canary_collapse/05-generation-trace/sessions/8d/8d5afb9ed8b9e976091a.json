@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "8d5afb9ed8b9e976091a",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "ops t10a060 kill d102 v2",
+  "task_key": "worker_ops_t10a060-kill-d102-v2_20260522T194943",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_t10a060-kill-d102-v2_20260522T194943.log",
+    "occurrence": 1,
+    "bytes": 659934,
+    "sha256": "86c0935d43786786874f52c138fd4ffcfe51a73d6190950d540ab9bf2d96028c"
+  },
+  "statistics": {
+    "messages": 184,
+    "user_turns": 0,
+    "tool_calls": 58,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 64,
+      "tool_call": 58,
+      "tool_result": 58,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 184,
+      "chunks": [
+        {
+          "path": "8d5afb9ed8b9e976091a-part-0001.json",
+          "message_count": 174
+        },
+        {
+          "path": "8d5afb9ed8b9e976091a-part-0002.json",
+          "message_count": 10
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-t10a060-kill-d102-v2.md"
+}

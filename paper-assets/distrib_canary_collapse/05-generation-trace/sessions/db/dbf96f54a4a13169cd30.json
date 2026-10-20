@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dbf96f54a4a13169cd30",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code plan006 prep",
+  "task_key": "worker_code_plan006-prep_20260514T215142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan006-prep_20260514T215142_result.json",
+    "occurrence": 1,
+    "bytes": 2304,
+    "sha256": "ee2ba80d438780a47b3cb4265b76cdf1115ac7c08a553d53f8aa087751c10855"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n---\n\n## Summary\n\n### Part 1: 训练命令（验证通过，可直接提交）\n\n**Seed 42:**\n```bash\ncd /root/autodl-tmp/distrib_canary_collapse && \\\nexport HF_HOME=/root/autodl-tmp/.hf_cache && \\\nexport HF_HUB_DISABLE_XET=1 && \\\nexport HF_ENDPOINT=https://hf-mirror.com && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nPYTHONUNBUFFERED=1 python -u iterative_train.py \\\n  --seed 42 \\\n  --data_dir data/wikitext103_5k \\\n  --steps_per_gen 5000 \\\n  --num_generations 20 \\\n  --synthetic_ratio 1.0 \\\n  --output_dir results/extended_20gen/s42\n```\n\n**Seed 43:**\n```bash\ncd /root/autodl-tmp/distrib_canary_collapse && \\\nexport HF_HOME=/root/autodl-tmp/.hf_cache && \\\nexport HF_HUB_DISABLE_XET=1 && \\\nexport HF_ENDPOINT=https://hf-mirror.com && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nPYTHONUNBUFFERED=1 python -u iterative_train.py \\\n  --seed 43 \\\n  --data_dir data/wikitext103_5k \\\n  --steps_per_gen 5000 \\\n  --num_generations 20 \\\n  --synthetic_ratio 1.0 \\\n  --output_dir results/extended_20gen/s43\n```\n\n### Part 2: analyze_extended.py\n\n已部署到 `/root/autodl-tmp/distrib_canary_collapse/analyze_extended.py`，包含 5 个分析模块：\n1. **Full cross-corr** (raw + first-diff, max_lag=10, 5000 permutation p-value)\n2. **Permutation Granger** + BH FDR 校正\n3. **Rolling window** (gen 5-end，排除 gen 0→1 跳变)\n4. **TY supplementary** (d_max=0,1,adaptive)\n5. **MVP 10-gen 对比** (lag 稳定性 + power gain 检测)\n\n运行方式：\n```bash\n# 20-gen 数据就绪后\npython analyze_extended.py --seeds 42 43 --max_lag 10\n```\n\n### Part 3: Dry-run 结果\n\nMVP seed_42 数据验证通过。输出格式正确，import 链无报错。关键发现（10-gen MVP baseline）：\n- `token_entropy→perplexity`: raw lag=-5, |r|=0.812 (large), Granger p=0.71 (n.s.)\n- `token_entropy→distinct_1`: raw lag=-1, |r|=0.993, Granger p=0.006 (FDR sig)\n- Rolling window (gen 5-10, N=6) 数据点太少，所有 pair 均不显著 — 20-gen 时 (gen 5-20, N=16) 将有足够统计功效\n\n### 训练时长估算\n\nMVP 10-gen (5000 steps/gen) 耗时 ~4.1 小时。20-gen 预估 **~8 小时/run**，两个 seed 串行 ~16 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan006-prep.md"
+}

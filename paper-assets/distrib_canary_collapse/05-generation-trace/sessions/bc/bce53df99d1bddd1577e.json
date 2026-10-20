@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bce53df99d1bddd1577e",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops kill restart s43 matched",
+  "task_key": "worker_ops_kill-restart-s43-matched_20260522T201845",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-restart-s43-matched_20260522T201845_result.json",
+    "occurrence": 1,
+    "bytes": 2478,
+    "sha256": "21a49c2f58751e77b1497ac64812f508a2600ee35be9cb133c42bd2926abbfd1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部确认完毕。\n\n## s42 实际参数（从 cmdline/config.json 提取）\n\n```\n--model_name <local_path>/EleutherAI/pythia-1.4b-deduped\n--data_dir data/wikitext103_5k\n--synthetic_ratio <varies>\n--num_generations 10\n--steps_per_gen 5000\n--seed 42\n--batch_size 4\n--max_length 512\n--lr 5e-5\n--gen_max_new_tokens 256\n--gen_batch_size 8          ← s43 旧版错用默认值 16\n--top_p 0.95\n--optim adamw_torch\n--gradient_checkpointing    ← s43 旧版缺失\n```\n\n## Kill 结果\n\n- PID 717612 (17855, a075_s43): 已自行退出（EXIT_CODE=1，模型路径缺失）\n- PID 717753 (17855, a060_s43): 已自行退出（同上）\n- PID 821294 (19828, a050_s43): 已自行退出（同上）\n\ns43 旧版根本没跑起来——用了裸 HF ID `EleutherAI/pythia-1.4b-deduped` 而非本地缓存路径。\n\n## 磁盘清理（待确认）\n\n**17855 剩余 27GB**，可删除的中间 checkpoint：\n\n| 目录 | gen | 大小 |\n|------|-----|------|\n| t10_a045_s42_fp32_14b | gen_5/checkpoint | 5.3G |\n| t10_a045_s42_fp32_14b | gen_6/checkpoint | 5.3G |\n| t15_a045_s42_fp32_14b | gen_6/checkpoint | 5.3G |\n| t15_a045_s42_fp32_14b | gen_7/checkpoint | 5.3G |\n| t15_a050_s42_fp32_14b | gen_8/checkpoint | 5.3G |\n| t15_a050_s42_fp32_14b | gen_9/checkpoint | 5.3G |\n| t15_a060_s42_fp32_14b | gen_8/checkpoint | 5.3G |\n| t15_a060_s42_fp32_14b | gen_9/checkpoint | 5.3G |\n| **合计** | | **~42G** |\n\n⚠️ t10_a045 和 t15 系列的 checkpoint 是它们最近的 resume 点。如果这些实验仍在运行或未完成，删除会影响断点续训。确认后再删。\n\n## 重启结果\n\n| 实验 | Server:GPU | New PID | cmdline 验证 | GPU 占用 |\n|------|-----------|---------|-------------|---------|\n| t10_a075_s43 | 17855:cuda:2 | 719178 | `--gen_batch_size 8 --gradient_checkpointing` ✓ | 10293 MiB ✓ |\n| t10_a060_s43 | 17855:cuda:3 | 719252 | `--gen_batch_size 8 --gradient_checkpointing` ✓ | 10293 MiB ✓ |\n| t10_a050_s43 | 19828:cuda:1 | 822048 | `--gen_batch_size 8 --gradient_checkpointing` ✓ | 10293 MiB ✓ |\n\n3 个实验均已进入 Generation 0 (baseline) 阶段。\n\n## 参数匹配确认\n\ns43 vs s42 diff（仅以下字段不同）：\n- `--seed`: 42 → 43\n- `--output_dir`: `results/phase_diagram/t10_aXXX_s42_fp32_14b` → `results/scale/14b_t10_aXXX_s43_fp32`\n- `--synthetic_ratio`: 各自对应（0.75/0.60/0.50）\n\n其余参数完全一致，包括关键的 `--gen_batch_size 8`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-restart-s43-matched.md"
+}

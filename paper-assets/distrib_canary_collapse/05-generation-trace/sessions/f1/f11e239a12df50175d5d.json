@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f11e239a12df50175d5d",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis alpha sweep a070 s42 fp32",
+  "task_key": "worker_analysis_alpha_sweep_a070_s42_fp32_20260521T054959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_alpha_sweep_a070_s42_fp32_20260521T054959_result.json",
+    "occurrence": 1,
+    "bytes": 1044,
+    "sha256": "ddf9575e250e245946cdd3f5e6c6b17f730011b3b029baae5163b0586c372510"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果汇总：\n\n## alpha_sweep_a070_s42_fp32 — 5-method 分析结果\n\n| 方法 | Forward | Reverse |\n|------|---------|---------|\n| PermG (FDR) | **5/8** | 0/8 |\n| DiffXCorr (FDR) | 6/8 | 6/8 |\n| ThresholdOnset (3σ) | 0/8 | — |\n| TY Granger | 1/8 | — |\n\n**K≥3 robust pairs: 3/8**\n- `token_entropy→distinct_1` (naive, diff, ty)\n- `ece→distinct_1` (naive, diff, perm)\n- `ece→distinct_2` (naive, diff, perm)\n\n**Drift**: ECE +1773%, perplexity +152%, distinct_1/2/3 -27~35%, token_entropy -29%, mauve flat (-0.7%)\n\n**结论: success** — PermG 从 α=0.55-0.65 的 0/8 恢复到 α=0.70 的 5/8，确认 sync collapse dip 边界在 **[0.65, 0.70)**。更新后的 dip profile：\n\n| α | PermG | 状态 |\n|---|-------|------|\n| 0.50 | 5/8 | detection |\n| 0.55 | 0/8 | dip 开始 |\n| 0.60 | 0/8 | dip |\n| 0.65 | 0/8 | dip 结束 |\n| **0.70** | **5/8** | **恢复** |\n| 0.75 | 6/8 | detection |\n\nMauve pairs 在所有 α 下均无信号（drift 接近 0%），符合预期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-alpha-sweep-a070-s42-fp32.md"
+}

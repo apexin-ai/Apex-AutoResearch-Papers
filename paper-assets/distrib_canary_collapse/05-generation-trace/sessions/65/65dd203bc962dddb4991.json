@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65dd203bc962dddb4991",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "monitor training progress check 20260523",
+  "task_key": "worker_monitor_training_progress_check_20260523_20260523T021128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_training_progress_check_20260523_20260523T021128_result.json",
+    "occurrence": 1,
+    "bytes": 1423,
+    "sha256": "3d90de44d548785cf2f182f240dbc78fc013e73abccc42056759e87a1b602e98"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 8 个 PID 存活，GPU 利用率 97-100%。\n\n| # | 实验 | 服务器 | GPU | 当前进度 | 剩余 | 预估完成 |\n|---|------|--------|-----|----------|------|----------|\n| 1 | t15_a045_s42 | 17855 | cuda:5 (99%) | gen 13/15, step 2496/5000 (50%) | ~2.5h | ~2.5h后 |\n| 2 | t15_a060_s42_v2 | 17855 | cuda:0 (97%) | **gen 15/15 (最后!)**, step 2654/5000 (53%) | ~18min | **即将完成** |\n| 3 | t15_a050_s42_v3 | 17855 | cuda:1 (100%) | **gen 15/15 (最后!)**, step 2346/5000 (47%) | ~20min | **即将完成** |\n| 4 | t10_a075_s43 | 17855 | cuda:2 (97%) | gen 5/10, step 3200/5000 (64%) | ~6.7h | ~6.7h后 |\n| 5 | t10_a060_s43 | 17855 | cuda:3 (97%) | gen 5/10, 训练中(~同#4) | ~6.7h | ~6.7h后 |\n| 6 | t10_a045_s43 | 17855 | cuda:4 (98%) | gen 1/10, step 3833/5000 (77%) | ~11.5h | ~11.5h后 |\n| 7 | t15_a075_s42 | 19828 | cuda:0 (99%) | gen 12/15, 正在生成合成数据 | ~4.6h | ~4.6h后 |\n| 8 | t10_a050_s43 | 19828 | cuda:1 (98%) | gen 5/10, 训练中(~同#4) | ~6.7h | ~6.7h后 |\n\n**关键发现：**\n- 实验 2、3 正在训练最后一个 gen，约 20 分钟内完成\n- 实验 6 启动最晚（仅 1h23m），还需 ~11.5h\n- 所有 GPU 利用率 97-100%，训练速度稳定 ~2.18 it/s\n- 每个 gen 周期（数据生成 + 5000 步训练）≈ 1.1-1.25h\n\nETA 计算基准：已完成 gen 数 / 总运行时间推算每 gen 周期耗时，乘以剩余 gen 数。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-training-progress-check-20260523.md"
+}

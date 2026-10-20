@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "8aeb408fc97587cbad4a",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "reanalyze gpt2m s43 s42 unified pairs",
+  "task_key": "worker_reanalyze_gpt2m_s43_s42_unified_pairs_20260519T153238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_reanalyze_gpt2m_s43_s42_unified_pairs_20260519T153238.log",
+    "occurrence": 1,
+    "bytes": 806544,
+    "sha256": "92767465b62e4098696015a6058626a97086d74e990eb0d1085cc843c8bb9d73"
+  },
+  "statistics": {
+    "messages": 164,
+    "user_turns": 0,
+    "tool_calls": 54,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 52,
+      "tool_call": 54,
+      "tool_result": 54,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 164,
+      "chunks": [
+        {
+          "path": "8aeb408fc97587cbad4a-part-0001.json",
+          "message_count": 144
+        },
+        {
+          "path": "8aeb408fc97587cbad4a-part-0002.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/reanalyze-gpt2m-s43-s42-unified-pairs.md"
+}

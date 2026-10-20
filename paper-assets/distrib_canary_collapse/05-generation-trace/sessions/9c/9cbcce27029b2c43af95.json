@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9cbcce27029b2c43af95",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "data table7 draft",
+  "task_key": "worker_data_table7_draft_20260519T025439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_table7_draft_20260519T025439_result.json",
+    "occurrence": 1,
+    "bytes": 676,
+    "sha256": "3b36a2a32609586e805cd3427bf7abdca38f0ba5546fce564c94c6b43af5d718"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "写入完成。\n\n**产出**: `artifacts/table7_draft.md`\n\n**核心数据**:\n- 39 个 success 实验中，19 个有 5method lead-lag 分析数据，5 个有 registry 部分数据，15 个缺失\n- 8 个实验 RUNNING (含 6 个 D080 fp32 修复重跑 + Qwen3.5 + SmolLM3 新架构)\n- 表格按 7 个分区组织：Main axis / Cross-arch / Cross-dataset / Scale / Intervention / bf16 supplementary / Analysis-only\n\n**关键 gaps**:\n1. α=0.25 s42 和 α=1.00 mvp×4 缺 lead-lag 分析\n2. 全部 4 个 intervention 实验缺分析\n3. scale_14b_a050_s42 缺分析\n4. MMCT 覆盖率极低（仅 2 个实验有数据）\n5. α=0.10 只有 s43 一个 seed"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-table7-draft.md"
+}

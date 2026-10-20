@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb019fe756d29beea7f6",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis t20 a045 fdr verify",
+  "task_key": "worker_analysis_t20_a045_fdr_verify_20260520T201650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_t20_a045_fdr_verify_20260520T201650_result.json",
+    "occurrence": 1,
+    "bytes": 2325,
+    "sha256": "be07a888d611f18eee0e66841784b2aa33a1c5f42ed65a1ebb816f99282fc7bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data extracted. Here are the results:\n\n---\n\n## t20_a045_s42_fp32 Final Results\n\n### PermG Forward (Per-Pair)\n| Pair | p_raw | p_fdr | sig | sig_fdr |\n|------|-------|-------|-----|---------|\n| te→d1 | 0.0390 | **0.0520** | Y | **N** (borderline) |\n| te→d2 | 0.0144 | 0.0288 | Y | Y |\n| te→d3 | 0.0112 | 0.0288 | Y | Y |\n| te→mauve | 0.3601 | 0.3741 | N | N |\n| ece→d1 | 0.0218 | 0.0349 | Y | Y |\n| ece→d2 | 0.0122 | 0.0288 | Y | Y |\n| ece→d3 | 0.0064 | 0.0288 | Y | Y |\n| ece→mauve | 0.3741 | 0.3741 | N | N |\n\n**PermG uncorrected: 6/8** (not 5/8 as previously stated)\n**PermG FDR: 5/8** (te→d1 drops out at p_fdr=0.052)\n**PermG reverse: 0/8** (both uncorrected and FDR)\n\n### Other Methods\n| Method | Forward Count |\n|--------|--------------|\n| DiffXcorr FDR | 7/8 |\n| ThresholdOnset | 4/8 |\n| TY Granger | 2/8 |\n\n### Consensus\n| Pair | K | Methods |\n|------|---|---------|\n| te→d1 | 2 | diff, threshold |\n| te→d2 | **4** | diff, threshold, perm, ty |\n| te→d3 | 2 | diff, perm |\n| te→mauve | 0 | — |\n| ece→d1 | **3** | diff, threshold, perm |\n| ece→d2 | **3** | diff, threshold, perm |\n| ece→d3 | 2 | diff, perm |\n| ece→mauve | 2 | naive, ty |\n\n**K≥3: 3/8, K≥4: 1/8**\n\n---\n\n## Predict-Verify\n\n```\n=== Locked Prediction (v2, Power Theory √T) ===\nt20_a045 PermG point prediction:  0/8  (rate=0.0001)\nt20_a045 PermG median prediction: 0.015 (~0/8)\nt20_a045 PermG 95% CI:           [0/8, 7/8]  (rate CI: [0.015, 0.828])\n\n=== Observed ===\nPermG FDR forward: 5/8  (rate=0.625)\n\n=== Verdict ===\nPoint prediction (0/8) FALSIFIED.\nObserved 5/8 within bootstrap 95% CI [0,7] but far above median.\n```\n\n**Interpretation:** √T Power Theory predicted α=0.45 stays sub-threshold at T=20 (z=-3.69, rate≈0). Observed 5/8 FDR-significant pairs. The phase boundary shifted left substantially more than the √T scaling predicted — the sigmoid's steep α_c=0.4755 estimate was too high, or the effective power gain exceeds √T. The wide CI ([0,7]) correctly captured the uncertainty near the phase transition, but the point estimate missed badly.\n\nNote: the user's prior belief of \"uncorrected 5/8\" was actually **6/8 uncorrected, 5/8 FDR** — the te→d1 pair is the one that flips (p=0.039 → p_fdr=0.052)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-t20-a045-fdr-verify.md"
+}

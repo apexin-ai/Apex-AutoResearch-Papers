@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d794219fdd8a36c8b428",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diag alpha sweep a060 s42 bf16",
+  "task_key": "worker_diag_alpha_sweep_a060_s42_bf16_20260518T205156",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_alpha_sweep_a060_s42_bf16_20260518T205156_result.json",
+    "occurrence": 1,
+    "bytes": 571,
+    "sha256": "8708f2746ce95d8812834b49e9a3de8ce745145f1b4ce467754feb64c4f77cea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。核心结论：\n\n**实验已成功完成，EXIT_CODE=129 是误报。** 10/10 generation 全部跑完，all_metrics.json 包含完整的 11 条记录（gen_0-gen_10），EXIT_CODE sentinel 文件内容为 `0`。\n\n129 (SIGHUP) 的来源是 tmux session 在脚本完成后被销毁，shell wrapper 捕获到的是 tmux 清理信号，不是脚本自身的退出码。cuda:3 当前空闲、无残留进程，验证了这一点。\n\n数据完好，无需重跑。报告已写入 `artifacts/alpha_sweep_a060_s42_bf16/failure_diagnosis.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-alpha-sweep-a060-s42-bf16.md"
+}

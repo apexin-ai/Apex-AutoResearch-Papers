@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ebbb72b2ce6d0e99ead8",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops launch gpt2m s43 fp32",
+  "task_key": "worker_ops_launch_gpt2m_s43_fp32_20260521T051456",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_launch_gpt2m_s43_fp32_20260521T051456_result.json",
+    "occurrence": 1,
+    "bytes": 381,
+    "sha256": "e01b54ef97138d1ad87f8875cb9c2252ebe46c15265c244a12561648fe63cd3c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验成功启动：\n\n- 模型加载完成（292 weights, 瞬间完成）\n- **cuda:1**: 90% utilization, 6031 MiB — Generation 0 (baseline) 训练中\n- 配置: GPT-2-medium, seed=43, fp32, α=1.0, 10 generations × 5000 steps\n\n之前阻塞原因是 HF Hub 网络请求（AutoDL 未开 network_turbo），加 `HF_HUB_OFFLINE=1` 后从本地缓存秒加载。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-launch-gpt2m-s43-fp32.md"
+}

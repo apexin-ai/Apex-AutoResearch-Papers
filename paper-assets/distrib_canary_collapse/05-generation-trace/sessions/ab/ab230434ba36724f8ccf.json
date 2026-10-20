@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab230434ba36724f8ccf",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "paper d219 fpr claim inventory",
+  "task_key": "worker_paper_d219_fpr_claim_inventory_20260524T073707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d219_fpr_claim_inventory_20260524T073707_result.json",
+    "occurrence": 1,
+    "bytes": 171,
+    "sha256": "8879a85456a14ee7514116f790cafbd71e26009eb54ba1063eac5c2fffccb36c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "19 处 A 类已改，6 处 TODO 已标记，LaTeX 编译通过。下一步需要 Shapley 重算（6-seed 数据）和 FDR threshold sensitivity 表重算。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-d219-fpr-claim-inventory.md"
+}

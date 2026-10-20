@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "46c9e4062d30087fc472",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis ty seed audit",
+  "task_key": "worker_analysis_ty_seed_audit_20260515T235823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_ty_seed_audit_20260515T235823_result.json",
+    "occurrence": 1,
+    "bytes": 1148,
+    "sha256": "0f8249325f923430fe11ea803db5fc12c256a2a8cdb66ad53a2f827e141289cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。核心发现：\n\n**两个 bug 导致三份报告互相矛盾：**\n\n1. **Off-by-one**（`window_sensitivity.py:193`）：`[:T]` 在 T=10 时只取 10 个点，少了 gen_10。ECE→d1 因此从 3/4 sig 掉到 2/4 sig（seed 45 从 p=0.028 变为 p=0.069）。\n\n2. **两套不兼容的 TY 实现**：\n   - `method_ablation.py`（论文用的）：ADF 测 d_max、固定 p=1、F-test → TE 系列被正确判为 I(0)，d_max=0，df_resid=7，F 值 100–500，全部显著\n   - `window_sensitivity.py`：硬编码 d=1、AIC 选 p=2、chi² → VAR(3) 吃光自由度，TE 全部 p>0.3\n\n**关键结论：**\n- **Paper FNR=33.3% (2/6) 正确** — ECE→d2 和 ECE→d3 各 2/4 sig，被 TY miss\n- **Paper ECE→d1 sig_seeds=3/4 正确** — s42✓ s43✓ s44✗ s45✓\n- **Window sensitivity 报告的 TE p>0.3 是错的** — 用了错误的 TY 实现（Bug #2），不是 off-by-one 导致的\n- ECE pairs 中 s44/s45 不显著的根因：ADF 将这两个 seed 的 ECE 判为 I(1)，d_max=1 导致 df_resid 只有 4，power 不足\n\n报告已写入 `artifacts/ty_seed_audit/ty_audit_report.md` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-ty-seed-audit.md"
+}

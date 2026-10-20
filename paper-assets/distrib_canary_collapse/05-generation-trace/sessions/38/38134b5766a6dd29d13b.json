@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "38134b5766a6dd29d13b",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops verify a075 s42 fp32 gpu",
+  "task_key": "worker_ops_verify_a075_s42_fp32_gpu_20260519T093419",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_a075_s42_fp32_gpu_20260519T093419_result.json",
+    "occurrence": 1,
+    "bytes": 657,
+    "sha256": "8b055ecce458d83bb288c7c3eecf5a6aa1cc3db069ce94148866087808ba9d4c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验未在运行。**\n\n- **GPU 5**: 空闲 — 0MiB 显存，0% 利用率，无 python 进程\n- **日志**: 仅 1 行 (`Loading model: EleutherAI/pythia-410m`)，38 bytes，最后修改 17:33（1 分钟前）\n- **tmux**: read-only 模式无法执行 `tmux ls`\n- **PID 118456**: 不在 `nvidia-smi` 进程列表中\n\n进程在模型加载阶段就挂了。对比同目录其他正常跑完的日志（如 `alpha_sweep_a050_s42_fp32.log` 3.8MB），这个 38 bytes 明显异常。\n\nGPU 0-4 各有 python 进程正常运行（PIDs: 109870, 74460, 96518, 96598, 96739），GPU 5 完全空闲。\n\n需要排查崩溃原因并重启。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-a075-s42-fp32-gpu.md"
+}

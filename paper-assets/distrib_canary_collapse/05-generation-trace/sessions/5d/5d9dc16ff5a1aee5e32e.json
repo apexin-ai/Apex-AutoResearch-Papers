@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d9dc16ff5a1aee5e32e",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops resubmit a025 s42 fp32",
+  "task_key": "worker_ops_resubmit_a025_s42_fp32_20260519T075734",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_resubmit_a025_s42_fp32_20260519T075734_result.json",
+    "occurrence": 1,
+    "bytes": 494,
+    "sha256": "21d8318bb7f66bffed10829be4f6c5640a3521621e2e8e9ca9148d841322dd6b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功启动：\n\n- **PID**: 109870（python 主进程）\n- **GPU 0 显存**: 6525 MiB / 97887 MiB\n- **状态**: 已加载 pythia-410m 模型，进入 Generation 0 (baseline)\n- **无 right-padding 警告**\n- **tmux session**: `alpha_sweep_a025_s42_fp32` 正常运行\n\n根因：之前直接调用 `python` 但未激活 conda 环境，导致 PATH 中找不到 python。修复方式：与其他实验一致，先 `source conda.sh && conda activate base` 再运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-resubmit-a025-s42-fp32.md"
+}

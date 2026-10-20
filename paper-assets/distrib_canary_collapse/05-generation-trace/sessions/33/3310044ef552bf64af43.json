@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3310044ef552bf64af43",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis ground truth strict onset fix",
+  "task_key": "worker_analysis_ground_truth_strict_onset_fix_20260516T065519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_ground_truth_strict_onset_fix_20260516T065519_result.json",
+    "occurrence": 1,
+    "bytes": 740,
+    "sha256": "a49b34e61741dfb846bf52958898fdabf578287dacb89bcff7a474b7afa465ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n**严格不等式修复验证全部通过：**\n\n| 验证项 | 结果 |\n|--------|------|\n| canary onset (token_entropy, ece) | gen 1 ✓ |\n| perplexity onset | gen 1（与 canary 相同）✓ |\n| distinct_1/2/3 onset | gen 9/3/3（晚于 canary）✓ |\n| 严格 `<` 排除 →perplexity | 2 pairs 排除 ✓ |\n| 新参考集 | 6 pairs（全部 canary→distinct_*）✓ |\n| FNR | 0%（6/6 全部 4/4 检出）✓ |\n| 阈值敏感性 2×/3×/5× | 完全一致，均为 6 pairs ✓ |\n\nArtifact 已注册：`art_20260516_091a25`，报告位于 `artifacts/_project/report/ground_truth_redefine_v2_analysis.md`，JSON 数据在服务器 `artifacts/ground_truth_redefine_v2_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-ground-truth-strict-onset-fix.md"
+}

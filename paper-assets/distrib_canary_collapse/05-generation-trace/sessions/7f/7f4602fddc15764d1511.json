@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f4602fddc15764d1511",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis pythia14b persist json",
+  "task_key": "worker_analysis_pythia14b_persist_json_20260517T235150",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_pythia14b_persist_json_20260517T235150_result.json",
+    "occurrence": 1,
+    "bytes": 1043,
+    "sha256": "786a6d5931903d7a93249a0e05dd242ef182e4bd783968e7aeb0d6f34675b542"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 已保存，格式与 C4 版本一致（相同 top-level keys、8 pairs、6 methods）。\n\n结果与任务中的预期值有差异：\n\n| 方法 | 实际 | 预期 |\n|------|------|------|\n| Naive | 6/8 | 7/8 |\n| Diff | 6/8 | 6/8 |\n| Thresh | 8/8 | 8/8 |\n| PG_fwd | 2/8 | 5/8 |\n| PG_rev | 0/8 | 0/8 |\n| TY | 0/8 | 0/8 |\n| Consensus>=4 | 1/8 | 5/8 |\n\nNaive 差异原因：`ece->distinct_2` 和 `ece->distinct_3` 的 best lag 为 -3（downstream leads canary），naive_pearson 要求 `lag > 0` 才算显著，但 FDR 校正后的 `sig_fdr` 只看 p 值不看 lag 方向。显示逻辑优先使用 `sig_fdr`，导致 lag=-3 的 pair 被标为 SIG（output 显示 6/8），但底层 `significant` 字段为 False。\n\nPG_fwd 差异可能源于 FDR 校正后 p_fdr 超过 0.05 阈值（如 `token_entropy->distinct_1` raw p=0.041 → p_fdr=0.084）。预期值可能来自 raw p 而非 FDR 校正。\n\nJSON 文件路径：`results/generalize/pythia14b_wiki_a100_s42/analysis/pythia14b_8pair_6method_analysis.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-pythia14b-persist-json.md"
+}

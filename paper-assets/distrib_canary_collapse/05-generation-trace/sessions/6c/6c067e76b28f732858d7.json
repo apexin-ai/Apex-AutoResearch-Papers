@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c067e76b28f732858d7",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops check null gpt2m s43 log",
+  "task_key": "worker_ops_check_null_gpt2m_s43_log_20260524T081950",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_null_gpt2m_s43_log_20260524T081950_result.json",
+    "occurrence": 1,
+    "bytes": 347,
+    "sha256": "f8d672da76dab8aa99994db5d25e906c283990a2b3d926faabea93b0ae6a7350"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：success**\n\n- EXIT_CODE=0，gen_0 ~ gen_10 共 11 代完整，all_metrics.json 含全部 11 条记录\n- α=0.0 null baseline 行为符合预期：ppl 从 32.6 (gen_0) 快速降至 ~17.3 后趋于稳定，entropy/diversity 指标平稳下降\n- Registry 已更新为 DONE/success，cron 此前已被清理（不存在）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-null-gpt2m-s43-log.md"
+}

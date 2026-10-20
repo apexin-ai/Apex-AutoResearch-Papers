@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4aee3853e8f6ac29c8dd",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "submit onset refinement batch",
+  "task_key": "worker_submit_onset_refinement_batch_20260519T140336",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_onset_refinement_batch_20260519T140336_result.json",
+    "occurrence": 1,
+    "bytes": 568,
+    "sha256": "1d17d557c4c9d7e029439915b353c837d9dcaf134695ffed26a2ee50c1c2c587"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**所有 6 张 GPU（cuda:0-5）均有活跃 python 进程，无空闲 GPU。**\n\n| GPU | PID | 显存占用 |\n|-----|-------|---------|\n| 0 | 137279 | 14228 MiB |\n| 1 | 143075 | 12706 MiB |\n| 2 | 122887 | 14494 MiB |\n| 3 | 123809 | 14494 MiB |\n| 4 | 124519 | 14494 MiB |\n| 5 | 121667 | 14494 MiB |\n\n按硬约束要求，**停止提交，不执行 Step 3**。\n\nC4 数据路径已确认：`data/c4_5k`，后续提交时可用。\n\n需要等当前实验完成释放 GPU 后再提交。要我检查 cuda:3/4/5 上运行的是什么实验吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-onset-refinement-batch.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57f97acbd550873ec7e1",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "audit m037 threshold 3sigma",
+  "task_key": "worker_audit_m037_threshold_3sigma_20260520T041508",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_m037_threshold_3sigma_20260520T041508_result.json",
+    "occurrence": 1,
+    "bytes": 1301,
+    "sha256": "a6d19676116fd22d5fd905c28a260c2ac56c13156a3ab3b19ab932e7548edf2d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## M037 审计完成\n\n### 结果汇总\n\n| 实验 | K≥3(3σ+D111) | 旧 threshold |\n|---|---|---|\n| Pythia-410M s42 | **6/8** | 3x_sigma_drift |\n| GPT-2m s43 | **6/8** | 3x_sigma_drift |\n| OPT-1.3B s42 | **6/8** | 3x_sigma_drift |\n| OPT-1.3B s43 | **6/8** | D105 3σ (已正确) |\n| C4 Pythia-1B s43 | **6/8** | 3x_sigma_drift |\n| Padding-410M s42 | **3/8** | unknown |\n| Pythia-410M s43 | **6/8** | unknown† |\n| Pythia-1.4B s42 | **1/8** | 3x_sigma_drift |\n| Pythia-1.4B s43 | **3/8** | 3x_sigma_drift |\n\n### 关键发现\n\n1. **6/9 实验用的是 `3x_sigma_drift`**（简单幅值检查），不是 D105 要求的 true 3σ。切换后 threshold_onset 显著率普遍降至 0-2/8。\n\n2. **D111 direction check 的影响**：大多数实验不受影响（naive peak_lag 已 < 0）。例外是 **Pythia-1.4B s43**（K≥3 从 6/8 降至 3/8，所有 naive peak_lag > 0）。\n\n3. **opt13b_s43 旧 registry 有误**：旧 note 声称 K≥3=0/8（基于错误的 `peak_lag ≤ 0 = not forward`），M037 修正为 6/8（所有 naive peak_lag 严格 < 0，M035 判定为 forward）。\n\n4. 产出文件: `artifacts/m037_audit/audit_report.md`，已 `register_artifact`。9 个实验的 registry 已更新 `threshold_onset_3sigma_m037` 和 `K3_3sigma_m037` 字段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-m037-threshold-3sigma.md"
+}

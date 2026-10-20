@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f6250676bd852ca4f615",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code qwen35 s43 prep",
+  "task_key": "worker_code_qwen35_s43_prep_20260519T171116",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qwen35_s43_prep_20260519T171116_result.json",
+    "occurrence": 1,
+    "bytes": 2040,
+    "sha256": "1f3e4e766bf2399904151b1d8c4d3c2b7b28051d2a081d3c62c3d881818e55fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总如下：\n\n---\n\n### 环境验证\n\n| 项目 | 状态 |\n|------|------|\n| 模型 `/root/autodl-tmp/models/Qwen3.5-0.8B-Base/` | ✅ 存在（safetensors, 752M params） |\n| 代码 `iterative_train.py` | ✅ 存在 |\n| 数据 `data/wikitext103_5k/` | ✅ 存在（train/eval/prompts） |\n| 磁盘 `/root/autodl-tmp/` | ✅ 175G 可用（51% 已用） |\n\n### Dry-run\n\n✅ 通过。模型 CPU 加载成功，752M params，tokenizer vocab 248077。\n\n### 训练命令（完整可复制）\n\n基于 s42_v2 的 `config.json` 精确复刻，仅改 seed 和 output_dir：\n\n```bash\nbash -c \"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && CUDA_VISIBLE_DEVICES=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/models/Qwen3.5-0.8B-Base --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch --output_dir results/generalize/qwen35_08b_wiki_a100_s43_fp32\"\n```\n\n注：`CUDA_VISIBLE_DEVICES=1` 与 s42 一致（s42 registry 记录 gpu=cuda:1）。\n\n### Registry\n\n- exp_id: `qwen35_08b_wiki_a100_s43_fp32`\n- status: PREPARING\n- parent: `qwen35_08b_wiki_a100_s42_v2`\n- hypothesis 已填写\n\n### 预估\n\n- GPU 时间：~12.8h（与 s42_v2 的 wall_clock 46094s / gpu_hours 12.8 一致）\n- 磁盘需求：~5-8G（10 gen checkpoints），当前 175G 可用，充足\n\n### 潜在问题\n\n- `torch_dtype` 已 deprecated，transformers 5.8.1 改用 `dtype`，但 s42_v2 日志显示 iterative_train.py 已有 explicit cast（`Casting model from torch.bfloat16 to torch.float32`），无需额外处理\n- flash-linear-attention 未装（warning），不影响正确性，只影响速度，s42 也是同样状态"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-qwen35-s43-prep.md"
+}

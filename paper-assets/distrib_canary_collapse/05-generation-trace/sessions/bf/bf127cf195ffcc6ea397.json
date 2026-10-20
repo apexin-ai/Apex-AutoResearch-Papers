@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf127cf195ffcc6ea397",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diagnose phase diagram t25 a050 s42 fp32",
+  "task_key": "worker_diagnose_phase_diagram_t25_a050_s42_fp32_20260521T192551",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_phase_diagram_t25_a050_s42_fp32_20260521T192551_result.json",
+    "occurrence": 1,
+    "bytes": 627,
+    "sha256": "0e80e7d921d83205ccb5a085d95eb03503bb4063906d785225904d9e240a4b77"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**失败原因**：磁盘满（350G/350G，100%）。gen_14 训练完成（5000/5000 steps）但 `model.save_pretrained()` 写 safetensors 时 `No space left on device`。\n\n**进度**：14/25 generations 完成（gen_0~gen_13 全部数据完整可用），gen_14 checkpoint 截断损坏（293MB vs 正常 1.6GB）。\n\n**重试前需要**：\n1. 释放磁盘空间（phase_diagram 目录占 36GB，剩余 11 gen checkpoint 还需 ~17.6GB）\n2. 删除 gen_14 损坏数据\n3. 补上 HF_HOME 三件套\n\n报告已保存到 `artifacts/phase_diagram_t25_a050_s42_fp32/failure_diagnosis.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-phase-diagram-t25-a050-s42-fp32.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e7901b1aad28bbad776",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops disk emergency 19828",
+  "task_key": "worker_ops_disk-emergency-19828_20260521T193932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk-emergency-19828_20260521T193932_result.json",
+    "occurrence": 1,
+    "bytes": 267,
+    "sha256": "aefd87a30aa24ad161c17ffa0677113770e54b300095fdaab882f2347dcfe97f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n- **释放 ~141G**：96% → 40%，可用空间从 11G → **152G**\n- 所有 checkpoint 目录已清除，零残留\n- `phase_diagram/` 运行中实验未触碰\n- all_metrics.json、synthetic_data/、log 等结果文件全部保留"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-emergency-19828.md"
+}

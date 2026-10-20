@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6febcf36758e4432f8c3",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis fpr fnr calibration d040",
+  "task_key": "worker_analysis_fpr-fnr-calibration-d040_20260515T155510",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_fpr-fnr-calibration-d040_20260515T155510_result.json",
+    "occurrence": 1,
+    "bytes": 779,
+    "sha256": "dc6601b96bbf0d18a8aa1514770186b25e6c16118cab49e210c1a74789ce656b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。产出摘要：\n\n**FPR 表（α=0.0 null control, 8 pairs, seed=42）**\n\n| K (method threshold) | FPR | 假阳性 pairs |\n|---|---|---|\n| ≥1/5 | 1.000 | 8/8 |\n| ≥2/5 | 0.750 | 6/8 |\n| ≥3/5 | 0.375 | 3/8 |\n| ≥4/5 | 0.000 | 0/8 |\n| ≥5/5 | 0.000 | 0/8 |\n\n**FNR 关键行（α=1.0, 对 6 个 ground truth ROBUST pairs）**\n- K=4, S=3（推荐配置）: FNR_robust = 0.0（6/6 全部检出）\n- K=5, S=3: FNR_robust = 0.5（只检出 3/6）\n- K=5, S=4: FNR_robust = 0.667（只检出 2/6）\n\n**推荐配置 4/5 methods, 3/4 seeds** 在可用数据上实现完美分离：FPR=0, FNR_robust=0。降至 3/5 会引入 FPR=0.375。\n\n文件已写入 `artifacts/D040/data/fpr_fnr_calibration.json` 并注册为 `art_20260515_e63a07`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-fpr-fnr-calibration-d040.md"
+}

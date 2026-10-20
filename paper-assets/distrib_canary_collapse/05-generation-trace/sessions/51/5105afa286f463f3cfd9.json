@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "5105afa286f463f3cfd9",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "analysis gpt2m s43 bf16 leadlag",
+  "task_key": "worker_analysis_gpt2m_s43_bf16_leadlag_20260518T211603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gpt2m_s43_bf16_leadlag_20260518T211603.log",
+    "occurrence": 1,
+    "bytes": 1090683,
+    "sha256": "b2675054b94ad0c67bba153967a310cfc5ecd24d36af84687ac754e21d232352"
+  },
+  "statistics": {
+    "messages": 285,
+    "user_turns": 2,
+    "tool_calls": 94,
+    "roles": {
+      "log": 1,
+      "system": 45,
+      "record": 1,
+      "assistant": 47,
+      "tool_call": 94,
+      "tool_result": 94,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 49,
+      "chunks": [
+        {
+          "path": "5105afa286f463f3cfd9-part-0001.json",
+          "message_count": 49
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 64,
+      "chunks": [
+        {
+          "path": "5105afa286f463f3cfd9-part-0001.json",
+          "message_count": 61
+        },
+        {
+          "path": "5105afa286f463f3cfd9-part-0002.json",
+          "message_count": 3
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 172,
+      "chunks": [
+        {
+          "path": "5105afa286f463f3cfd9-part-0002.json",
+          "message_count": 172
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-gpt2m-s43-bf16-leadlag.md"
+}

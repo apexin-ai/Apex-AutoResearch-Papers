@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "af4e97032d155e82fcd0",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "code fp32 support westd17855",
+  "task_key": "worker_code_fp32_support_westd17855_20260518T213730",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fp32_support_westd17855_20260518T213730.log",
+    "occurrence": 1,
+    "bytes": 997246,
+    "sha256": "bc66be9a5e347889b642e6157e81a46c4040ac6291f862908abd54eadd351f05"
+  },
+  "statistics": {
+    "messages": 640,
+    "user_turns": 0,
+    "tool_calls": 273,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 89,
+      "tool_call": 273,
+      "tool_result": 273,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 640,
+      "chunks": [
+        {
+          "path": "af4e97032d155e82fcd0-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "af4e97032d155e82fcd0-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "af4e97032d155e82fcd0-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "af4e97032d155e82fcd0-part-0004.json",
+          "message_count": 100
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fp32-support-westd17855.md"
+}

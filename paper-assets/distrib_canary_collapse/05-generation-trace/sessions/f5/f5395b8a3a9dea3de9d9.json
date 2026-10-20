@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5395b8a3a9dea3de9d9",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops predeploy d102 scripts",
+  "task_key": "worker_ops_predeploy-d102-scripts_20260522T140823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_predeploy-d102-scripts_20260522T140823_result.json",
+    "occurrence": 1,
+    "bytes": 1630,
+    "sha256": "d91a59bad736fef56dc43750dc114ca727db1d534383194f232fc34fc6de3916"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON structure and values are identical — old and new match exactly (same keys, same summary numbers). Both servers are ready.\n\n---\n\n## 汇报\n\n### A. westd-17855\n| 项目 | 状态 |\n|------|------|\n| 脚本 | `run_5method_analysis_d102.py` — 458行, 17930 bytes, md5 `ff55c629` |\n| 依赖 | scipy 1.17.1, numpy 2.3.2, pandas 3.0.3, statsmodels OK, mauve OK |\n| 依赖模块 | `permutation_granger.py` 存在 |\n| C008/C009 | `true_3sigma_d105` ✓ / `peak_lag < 0` ✓ |\n| dry-run | a075_s42_fp32 — 11 gens loaded ✓ |\n| live验证 | n_perm=5000 完整执行 ✓, 输出 JSON 与已有结果完全一致 (6/8 robust) |\n| 磁盘 | 350G, **44G 可用 (88%用)** — 偏紧，注意 C007 |\n\n### B. westd-19828\n| 项目 | 状态 |\n|------|------|\n| 脚本 | `run_5method_analysis_d102.py` — 458行, 17892 bytes, md5 `318853fa` |\n| 依赖 | scipy 1.17.1, numpy 2.2.6, pandas 3.0.2, statsmodels OK, mauve OK |\n| 依赖模块 | `permutation_granger.py` 存在 |\n| C008/C009 | `true_3sigma_d105` ✓ / `peak_lag < 0` ✓ |\n| dry-run | a075_s43 — 11 gens loaded ✓ |\n| 磁盘 | 250G, **127G 可用 (50%)** — 充裕 |\n\n### 差异说明\n两台服务器的 `run_5method_analysis_d102.py` 和 `permutation_granger.py` md5 不同（38 bytes差异），但关键逻辑段（threshold, direction filter, consensus, FDR）grep 输出完全一致，且 17855 live 验证结果与已有分析完全匹配。差异大概率是空白或注释。\n\n### 需关注\n- **17855 磁盘仅剩 44G** — 1.4B 实验输出较大，分析脚本本身占用小但如果还有训练写入需留意 C007。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-predeploy-d102-scripts.md"
+}

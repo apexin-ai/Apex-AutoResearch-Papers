@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e2f42b5cbfb85c805e1a",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis loocv 5t model comparison",
+  "task_key": "worker_analysis_loocv-5t-model-comparison_20260522T102815",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_loocv-5t-model-comparison_20260522T102815_result.json",
+    "occurrence": 1,
+    "bytes": 1299,
+    "sha256": "19c6ae647eb96d9e51dea29d0b1df831843de30fcab9ea3988b4c8c354279e55"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果汇总：\n\n### LOO-CV\n\n| 版本 | Cells | MAE | 95% CI Coverage |\n|------|-------|-----|-----------------|\n| A (excl sync-dip) | 15 | 0.037 | **15/15** |\n| B (含 sync-dip) | 20 | 0.203 | 16/20 |\n| Seed-averaged A | 15 | 0.024 | **15/15** |\n\nVersion B 的 4 个 CI miss：2 个 sync-dip α=0.60 cell，2 个 T=10 fold（去掉 T=10 训练数据后模型低估 T=10 的检测率）。\n\n### Model Comparison (AIC)\n\n| 数据集 | M0 (constant) | M1 (linear) | **M2 (probit)** | M3 (exp) |\n|--------|---------------|-------------|-----------------|----------|\n| 16-cell | ΔAIC=66.2 | **ΔAIC=0** | ΔAIC=2.4 | **ΔAIC=0** |\n| 20-cell | ΔAIC=92.5 | ΔAIC=4.2 | **ΔAIC=0** | ΔAIC=4.2 |\n\n16-cell 上 M1/M2/M3 均 competitive（ΔAIC<4），20-cell 上 M2 胜出。M0 (无 T 依赖) 被淘汰。\n\n### β Inference\n\n- **Profile likelihood 95% CI: [0.24, 0.78]** — 固定 β=0.24 在 CI 内（ΔNLL=1.81 < 1.92 阈值，刚好在边界内）\n- MLE: β=0.66, 对应 γ=0.76\n- Bootstrap 95% CI: [0.59, 0.68]（偏窄，参数相关性导致 bootstrap 低估不确定性）\n\n产出文件：\n- `artifacts/alpha_c_theory/loocv_5t_results.json`\n- `artifacts/alpha_c_theory/loocv_5t_analysis.py`\n- `artifacts/alpha_c_theory/loocv_5t_summary.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-loocv-5t-model-comparison.md"
+}

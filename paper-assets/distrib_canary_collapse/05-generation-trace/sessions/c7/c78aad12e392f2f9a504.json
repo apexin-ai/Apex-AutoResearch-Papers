@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c78aad12e392f2f9a504",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "check westd gpu status",
+  "task_key": "worker_check_westd_gpu_status_20260525T190231",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westd_gpu_status_20260525T190231_result.json",
+    "occurrence": 1,
+    "bytes": 559,
+    "sha256": "6317714c06d8a29e6b3e96cad4ae6253036592a023feeb7a8eccd25ca82495a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| 项目 | 详情 |\n|------|------|\n| **GPU 数量** | 1 张 |\n| **型号** | NVIDIA RTX PRO 6000 Blackwell Server Edition |\n| **显存** | 97,887 MiB (~96GB) |\n| **显存占用** | 0 MiB |\n| **GPU 利用率** | 0% |\n| **运行进程** | 无 |\n| **Driver** | 580.119.02 |\n| **CUDA** | 13.0 |\n\n**C2-s42 输出目录** (`a050_s42_fp32/`): 完整，gen_0 ~ gen_10 + `all_metrics.json` + `config.json` + `analysis/` + `EXIT_CODE` 均存在。\n\n`tmux ls` 被 read-only 白名单拦截，无法执行。GPU 当前完全空闲，可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westd-gpu-status.md"
+}

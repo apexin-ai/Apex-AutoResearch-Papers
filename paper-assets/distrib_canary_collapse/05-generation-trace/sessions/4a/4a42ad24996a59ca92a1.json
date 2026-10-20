@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "4a42ad24996a59ca92a1",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "analysis r3 mmct weight robustness",
+  "task_key": "worker_analysis_r3_mmct_weight_robustness_20260520T153326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r3_mmct_weight_robustness_20260520T153326.log",
+    "occurrence": 1,
+    "bytes": 817706,
+    "sha256": "5a0f2a6b8c1b649ae739ba420f353a86cad25a5c1197543e58f40653d1135b29"
+  },
+  "statistics": {
+    "messages": 191,
+    "user_turns": 0,
+    "tool_calls": 70,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 47,
+      "tool_call": 70,
+      "tool_result": 70,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 191,
+      "chunks": [
+        {
+          "path": "4a42ad24996a59ca92a1-part-0001.json",
+          "message_count": 151
+        },
+        {
+          "path": "4a42ad24996a59ca92a1-part-0002.json",
+          "message_count": 40
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-r3-mmct-weight-robustness.md"
+}

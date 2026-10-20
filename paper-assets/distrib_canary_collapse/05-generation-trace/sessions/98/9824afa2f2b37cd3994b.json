@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "9824afa2f2b37cd3994b",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "ops ty registry sync batch",
+  "task_key": "worker_ops_ty_registry_sync_batch_20260520T202351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_ty_registry_sync_batch_20260520T202351.log",
+    "occurrence": 1,
+    "bytes": 668799,
+    "sha256": "9df75d76c72569d1e2d45048520476d63c6e87dfb6b4cc32de87546ffc2912af"
+  },
+  "statistics": {
+    "messages": 271,
+    "user_turns": 0,
+    "tool_calls": 49,
+    "roles": {
+      "log": 1,
+      "system": 117,
+      "record": 7,
+      "assistant": 46,
+      "tool_call": 49,
+      "tool_result": 49,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 271,
+      "chunks": [
+        {
+          "path": "9824afa2f2b37cd3994b-part-0001.json",
+          "message_count": 156
+        },
+        {
+          "path": "9824afa2f2b37cd3994b-part-0002.json",
+          "message_count": 115
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-ty-registry-sync-batch.md"
+}

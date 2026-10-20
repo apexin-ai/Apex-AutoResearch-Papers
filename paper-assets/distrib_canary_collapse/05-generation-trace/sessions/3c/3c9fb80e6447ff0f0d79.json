@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c9fb80e6447ff0f0d79",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "monitor raw counts both servers",
+  "task_key": "worker_monitor_raw-counts-both-servers_20260521T231553",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_raw-counts-both-servers_20260521T231553_result.json",
+    "occurrence": 1,
+    "bytes": 799,
+    "sha256": "991e216b84f2e860f1f3d0134555788ee4bf9a96bdd716bd669e38e6ce3246b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nwestd-19828:\nt25_a075_s42_fp32 → 26/26 (gen_25) → COMPLETED | results/phase_diagram/\nt20_a045_s43_fp32 → 16/21 (gen_15) → RUNNING   | results/phase_diagram/\n\nwestd-17855:\nt25_a045_s42_fp32 → 25/26 (gen_24) → RUNNING   | results/phase_diagram/\nt25_a060_s42_fp32 → 10/26 (gen_9)  → RUNNING   | results/phase_diagram/\nt25_a050_s42_fp32 → 10/26 (gen_9)  → RUNNING   | results/phase_diagram/\nt20_a060_s43_fp32 → 10/21 (gen_9)  → RUNNING   | results/phase_diagram/\nt15_a060_s43_fp32 → 13/16 (gen_12) → RUNNING   | results/phase_diagram/\nt15_a045_s43_fp32 → 11/16 (gen_10) → RUNNING   | results/phase_diagram/\n```\n\n注：19828 还跑着 `generalize_pythia410m_wiki_a100_s42`（GPU0），t20_a045_s43 在 GPU1。17855 上 6 个实验并行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-raw-counts-both-servers.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73014c26394bb5f605d6",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops urgent 19828 full status",
+  "task_key": "worker_ops_urgent-19828-full-status_20260523T123733",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent-19828-full-status_20260523T123733_result.json",
+    "occurrence": 1,
+    "bytes": 1640,
+    "sha256": "d3a8c8c6515708aa7d9e367c348050a9d1a67ca968d2eb93d5076253468e92d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### GPU 状态\n| GPU | 显存占用 | 利用率 | PID | 实验 |\n|-----|---------|--------|-----|------|\n| 0 | 27727/97887 MiB | 98% | 857058 | t15_a075_s43_fp32_14b |\n| 1 | 27727/97887 MiB | 96% | 865472 | t10_a075_s44_fp32_14b |\n\n两张 GPU 满载运行中。\n\n### 运行中实验进度\n| 实验 | 已完成 gen | 当前 gen | 总 gen 数 | 进度 |\n|------|-----------|---------|----------|------|\n| t15_a075_s43_fp32_14b (cuda:0) | gen_0~4 | gen_5 训练中 | 16 (gen_0~15) | **5/16 ≈ 31%** |\n| t10_a075_s44_fp32_14b (cuda:1) | gen_0~2 | gen_3 训练中 | 11 (gen_0~10) | **3/11 ≈ 27%** |\n\n（gen_5 和 gen_3 目录已有 synthetic_data + trainer 但无 metrics.json，说明正在训练阶段）\n\n### 已完成实验（EXIT_CODE=0）\n| 实验 | gen 数 | all_metrics.json | 需 D102？ |\n|------|--------|-----------------|----------|\n| t15_a075_s42_fp32_14b | 16 (gen_0~15) | ✅ 有 | **需检查是否已 D102** |\n| t10_a050_s42_fp32_14b | 11 (gen_0~10) | ❌ 只有 .bak | **需检查是否已 D102** |\n| t15_a045_s42_fp32 | 有 top-level all_metrics | ✅ 有 | 需检查 |\n| t25_a075_s42_fp32 | 有 top-level all_metrics | ✅ 有 | 需检查 |\n| t20_a045_s43_fp32 | 有 top-level all_metrics | ✅ 有 | 需检查 |\n| t25_a075_s43_fp32 | 有 top-level all_metrics | ✅ 有 | 需检查 |\n| t10_a050_s43_fp32 | 有 top-level all_metrics | ✅ 有 | 需检查 |\n\n### 17855 迁移检查\n- t15_a050_s43、t15_a045_s43、t15_a060_s43 目录均**不存在**于 19828 上，未迁移。\n\n### 磁盘\n- **/root/autodl-tmp/**: 250G 总量，已用 167G，**剩余 84G (33%)**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-19828-full-status.md"
+}

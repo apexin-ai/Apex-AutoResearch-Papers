@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6775bb09a4883bdaecf5",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis d150 p01 spec curve audit",
+  "task_key": "worker_analysis_d150_p01_spec_curve_audit_20260520T132018",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d150_p01_spec_curve_audit_20260520T132018_result.json",
+    "occurrence": 1,
+    "bytes": 621,
+    "sha256": "ee1e91590f4f8c47a5f98fc736de634e4aa3f74a0e30a3e888baab9b228416ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。\n\n**D127 Spec Curve: PASS** — 脚本第 106 行硬过滤 `true_3sigma_d105`，8 canonical pairs 正确，无 perplexity，n_perm=5000，FDR 校正正确。\n\n**Shapley Values: FAIL** — 2026-05-17 09:41 计算时读到的 `a000_s42` 数据尚为 `3x_sigma_drift` 标准（该文件 17:34 才被替换为 `true_3sigma_d105`）。threshold_onset 的 Shapley 贡献基于错误 threshold 决策，需用 D120 合规数据重算。\n\n附加问题：FNR 仅用 6/8 pairs（排除 mauve），需决策是否恢复全 8 pairs。\n\n报告已写入 `artifacts/d150_p01_spec_curve_audit.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d150-p01-spec-curve-audit.md"
+}

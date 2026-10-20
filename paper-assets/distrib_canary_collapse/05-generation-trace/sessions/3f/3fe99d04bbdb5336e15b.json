@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3fe99d04bbdb5336e15b",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis batch 3 completed fp32",
+  "task_key": "worker_analysis_batch_3_completed_fp32_20260519T051730",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_batch_3_completed_fp32_20260519T051730_result.json",
+    "occurrence": 1,
+    "bytes": 511,
+    "sha256": "fb2c6cc647748b0d6c1af51c57b9fa1aa903fed43744fae0f885addac3e7485a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入并注册。核心结论：\n\n- **α=0.05**: 近 null baseline，MMCT=0.0，consensus_k4=0/8，canary drift 太弱无法检测\n- **α=0.60**: 强 collapse 信号，MMCT=0.875，consensus_k4=7/8，5 个 pair 达到 5-method 全票\n- **Intervention α=0.75**: gen1 触发，1 代完全恢复，MMCT=0.75，consensus_k4=6/8；threshold_onset=0/8 是干预成功的标志而非方法缺陷\n\nα=0.05 的 TY 3/8 显著结果均为 d_max=2/df_resid=1，按 C003 约束不可引用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-batch-3-completed-fp32.md"
+}

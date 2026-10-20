@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c6f60f1f3ecb982b2587",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "viz claim3 method variability",
+  "task_key": "worker_viz_claim3_method_variability_20260518T130333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_claim3_method_variability_20260518T130333_result.json",
+    "occurrence": 1,
+    "bytes": 892,
+    "sha256": "77a6e34e2f0e29fcebb7c3ff75ee728d1185df66eaf7c3ee8443b95961ced46e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF 和 PNG 均已生成：\n\n| 文件 | 大小 |\n|------|------|\n| `figures/claim3_method_variability.pdf` | 34K |\n| `figures/claim3_method_variability.png` | 154K |\n\n**视觉效果**：\n- **Dot-strip 层**：5 个方法的彩色散点在每个 condition 上展开，TY（vermillion 倒三角）波动最剧烈，从 0/8 跌到 6/8；Naive/Thresh 聚在顶部 7-8/8，Diff/PG_fwd 居中 5-6/8\n- **Consensus 层**：绿色粗线 + 浅绿色带横贯全图，锁定在 5/8-6/8 极窄区间，与散点的宽幅散布形成强烈反差\n- **标注**：TY range 双向箭头标出 0/8-6/8 跨度；右侧 \"stable: 5/8 to 6/8\" 强调共识稳定性\n- **标题**为 insight 句：\"Individual methods vary widely; multi-method consensus absorbs the variance\"\n\n核心 narrative 一目了然：单方法不可靠，共识阈值 K≥4 跨条件吸收了方法间方差。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-claim3-method-variability.md"
+}

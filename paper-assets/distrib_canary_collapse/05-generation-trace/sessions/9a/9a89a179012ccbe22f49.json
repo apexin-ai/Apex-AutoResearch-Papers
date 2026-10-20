@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a89a179012ccbe22f49",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "research track a alpha c theory",
+  "task_key": "worker_research_track-a-alpha-c-theory_20260522T041915",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_track-a-alpha-c-theory_20260522T041915_result.json",
+    "occurrence": 1,
+    "bytes": 1163,
+    "sha256": "17e760bf9abd18fb589f54f1749cd01245f749811e03b9f198cfe8ebb861c7b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "This work is already complete. Existing artifacts in `artifacts/alpha_c_theory/`:\n\n**Results summary** (`theory_verification.json`):\n\n| Model | R² | Key Parameters |\n|---|---|---|\n| Theory: α_∞ + A·T^{-1/(2β)} | **0.999997** | α_∞=0.193, γ=2.408, β=0.208 |\n| Pure power law: A·T^{-γ} | 0.950 | A=5.81, γ=1.05 |\n| Linear signal (γ=0.5 fixed) | 0.711 | A=1.46 |\n\n**Convergence**: Theory γ = 2.408 vs empirical γ = 2.41, delta = 0.0019 — converged.\n\n**Closed-form expression** (from `derivation.md`):\n\n$$\\alpha_c(T) = \\alpha_\\infty + A \\cdot T^{-1/(2\\beta)}$$\n\nwhere:\n- α_∞ = 0.193 — detection floor (contamination below ~19.3% is undetectable regardless of T)\n- β = 0.207 — sub-linear signal growth: S(α) ∝ (α − α_∞)^{0.207}\n- A = 75.38 — amplitude constant\n- γ = 1/(2β) = 2.408\n\n**Predictions**:\n\n| T | α_c (theory) |\n|---|---|\n| 5 | 1.0 (capped) |\n| 10 | 0.487 |\n| 15 | 0.304 |\n| 20 | 0.248 |\n| 25 | 0.225 |\n| 50 | 0.199 |\n\nAll deliverables already exist: `derivation.md`, `verify_theory.py`, `theory_verification.json`, `fig_theory_comparison.pdf`, `proposition2.tex`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-track-a-alpha-c-theory.md"
+}

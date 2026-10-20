@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d9a9878009b6f14f570f",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis d102 t15 a075 s43",
+  "task_key": "worker_analysis_d102_t15_a075_s43_20260522T071610",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d102_t15_a075_s43_20260522T071610_result.json",
+    "occurrence": 1,
+    "bytes": 767,
+    "sha256": "cd8c18ad6978ffbe5c4cd61cae3d5e3b988d60868ebb18a419175470fdbcdb73"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n## 结果摘要\n\n| 指标 | 值 |\n|------|------|\n| **PermG_fwd** | **6/8** |\n| **Robust pairs (≥3/5)** | **6/8** |\n| MAUVE pairs consensus | 1/5 (both token_entropy<mauve and ece<mauve) |\n\n### 逐代 MAUVE\nMAUVE 全程极低（0.028–0.034），无明显单调趋势，确认 MAUVE bottleneck。\n\n### Consensus 细节\n- 4/5: token_entropy→distinct_1, token_entropy→distinct_2, ece→distinct_1, ece→distinct_2\n- 3/5: token_entropy→distinct_3, ece→distinct_3\n- 1/5: token_entropy→mauve, ece→mauve（仅 diff_xcorr 显著）\n\n### Cross-seed 对比\n**s42=6/8, s43=6/8 — 完全一致。** α=0.75 远超 α_c(15)≈0.304，6/8 ceiling 在 T=15 下 seed-robust。Registry 已更新为 DONE(success)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d102-t15-a075-s43.md"
+}

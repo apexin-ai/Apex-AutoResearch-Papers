@@ -1,0 +1,810 @@
+{
+  "schema_version": "1.0",
+  "id": "da3003c2a71919bd6eaf",
+  "project": "distrib_canary_collapse",
+  "kind": "conversation",
+  "title": "ops stale registry cleanup 17855",
+  "task_key": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_stale_registry_cleanup_17855_20260520T085329.jsonl",
+    "occurrence": 1,
+    "bytes": 27775,
+    "sha256": "10182e8a90bfb6fc19c3bf548fdd6526c87c4869805986b242322990fec77ec4"
+  },
+  "statistics": {
+    "messages": 39,
+    "user_turns": 0,
+    "tool_calls": 19,
+    "roles": {
+      "tool_call": 19,
+      "tool_result": 19,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T08:55:17.424873+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T08:55:17.425397+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T08:55:17.425701+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "project": "distrib_canary_collapse",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T08:55:17.425919+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "ps -p 191999 -o pid,cmd,etime,stat 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T08:55:17.428810+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"t20_a050_s42_fp32\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T08:23:30.831Z\\\", \\\"updated_at\\\": \\\"2026-05-20T08:25:22.687Z\\\", \\\"hypothesis\\\": \\\"D126 战线1: T=20 extended generation 在 onset boundary α=0.50。T=10 下 PermG=6/8, K≥3=6/8。T=20 提供更多数据点：(1) PermG 统计功效提升 (2) 观察 onset 后 canary-downstream lag 是否随时间拉大或收敛。boundary regime 行为对 dose-response 精细刻画至关重要。\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 20 --synthetic_ratio 0.50 --output_dir results/t20/a050_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\", \\\"server\\\": \\\"westd-17855\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"302503\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/t20_a050_s42_fp32.log\\\", \\\"data_path\\\": \\\"data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"seed\\\": 42, \\\"precision\\\": \\\"fp32\\\", \\\"num_generations\\\": 20}, \\\"server\\\": \\\"westd-17855\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"pid\\\": \\\"302503\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/t20_a050_s42_fp32.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export TRANSFORMERS_OFFLINE=1 && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 20 --synthetic_ratio 0.50 --output_dir results/t20/a050_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\\\\\"\\\"}}, \\\"t20_a100_s42_fp32\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_a\n…[truncated 11275 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 3
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T08:55:17.429112+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 3
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T08:55:17.430428+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "ps aux | grep -E \"interv_pred_14b|interv_pred_a075|a005_s42|a060_s42_fp32\" | grep -v grep",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T08:55:17.430696+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T08:55:17.430899+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T08:55:17.431103+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ablation\\\\nalpha_sweep\\\\nalpha_sweep_c4\\\\nanalysis\\\\ndry_run\\\\ngeneralize\\\\nintervention\\\\nmethod_ablation_phase3\\\\npadding_robustness\\\\nscale\\\\nscale_check\\\\nt20\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.25}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T08:55:17.431385+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "distrib_canary_collapse",
+              "fields": "['*']",
+              "limit": "50"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T08:55:17.433669+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (113,224 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/1edb24d6-b4cd-4503-ad41-02df58b80c51/tool-results/mcp-agent-ml-research-read_registry-1779267242006.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/1edb24d6-b4cd-4503-ad41-02df58b80c51/tool-results/mcp-agent-ml-research-read_registry-1779267242006.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/1edb24d6-b4cd-4503-ad41-02df58b80c51/tool-results/mcp-agent-ml-research-read_registry-1779267242006.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 2
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T08:55:17.434054+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "ps -p 191999 -o pid,cmd,etime,stat 2>/dev/null || echo \"PID_191999_DEAD\"; ps aux | grep -E \"interv_pred_14b|interv_pred_a075|a005_s42|a060_s42_fp32\" | grep -v grep || echo \"NO_MATCHING_PROCESSES\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T08:55:17.434335+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID CMD                             ELAPSED STAT\\\\nPID_191999_DEAD\\\\nroot     295535  0.0  0.0   4496  3324 pts/4    Ss+  15:25   0:00 bash -c rm -f /tmp/agent-ml-exit/alpha_sweep_a060_s42_fp32_v4.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/distrib_canary_collapse/alpha_sweep_a060_s42_fp32_v4.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/alpha_sweep_a060_s42_fp32_v4.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/distrib_canary_collapse && export CUDA_VISIBLE_DEVICES=5 && timeout 28800 env bash -c 'bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export TRANSFORMERS_OFFLINE=1 && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.60 --output_dir results/alpha_sweep/a060_s42_fp32_v4 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\\\\\"'; } > ~/runs/distrib_canary_collapse/alpha_sweep_a060_s42_fp32_v4.log 2>&1\\\\nroot     295539  0.0  0.0   2800  1096 pts/4    S    15:25   0:00 timeout 28800 env bash -c bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export TRANSFORMERS_OFFLINE=1 && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.60 --output_dir results/alpha_sweep/a060_s42_fp32_v4 --batch_size 4 --max_length 512\n…[truncated 608 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T08:55:17.436621+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/intervention/",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T08:55:17.436871+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"interv_pred_fp32_v4_d080\\\\npredictive_te_14b_s42\\\\npredictive_te_a075_s42_fp32\\\\npredictive_te_a075_s42_fp32_v2\\\\npredictive_te_s43\\\\npredictive_te_s43_bf16\\\\nreactive_d1_s43\\\\nreactive_d1_s43_bf16\\\\nreactive_d1_s43_fp32\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T08:55:17.437074+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T08:55:17.437330+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"a000_s42_fp32\\\\na005_s42_fp32\\\\na005_s42_fp32_v2\\\\na005_s42_fp32_v3\\\\na005_s42_fp32_v3_d080\\\\na010_s42_bf16\\\\na010_s42_fp32\\\\na010_s43_bf16\\\\na010_s43_fp32\\\\na025_s42_fp32\\\\na025_s43_fp32\\\\na025_s44_fp32\\\\na030_s42_fp32\\\\na035_s42_fp32\\\\na040_s42_fp32\\\\na045_s42_fp32\\\\na045_s43_fp32\\\\na050_postd093_s42_fp32\\\\na050_s42_fp32\\\\na050_s43_fp32\\\\na050_s44_fp32\\\\na060_s42\\\\na060_s42_bf16\\\\na060_s42_fp32\\\\na060_s42_fp32_v2\\\\na060_s42_fp32_v3_d080\\\\na060_s42_fp32_v4\\\\na060_s43_fp32\\\\na075_s42_fp32\\\\na100_s42_fp32\\\\nc4_a025_s42_fp32\\\\nc4_a050_s42_fp32\\\\nc4_a075_s42_fp32\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T08:55:17.437619+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/1edb24d6-b4cd-4503-ad41-02df58b80c51/tool-results/mcp-agent-ml-research-read_registry-1779267242006.txt | python3 -c \"\nimport json, sys\nraw = json.load(sys.stdin)\ndata = json.loads(raw['result'])\nexps = data['data']['experiments']\ntargets = ['interv_pred_14b_s42_fp32', 'interv_pred_a075_s42_fp32', 'alpha_sweep_a005_s42', 'alpha_sweep_a060_s42_fp32']\nfor t in targets:\n    if t in exps:\n        e = exps[t]\n        print(f'=== {t} ===')\n        print(f'  status: {e.get(\\\"status\\\")}')\n        print(f'  hypothesis: {e.get(\\\"hypothesis\\\", \\\"N/A\\\")[:120]}')\n        print(f'  pid: {e.get(\\\"pid\\\", \\\"N/A\\\")}')\n        print(f'  server: {e.get(\\\"server\\\", \\\"N/A\\\")}')\n        print(f'  spec: {json.dumps({k:v for k,v in (e.get(\\\"spec\\\") or {}).items() if k in [\\\"command\\\",\\\"server\\\",\\\"gpu\\\",\\\"pid\\\",\\\"log_path\\\"]}, ensure_ascii=False)[:200]}')\n        print(f'  conclusion: {e.get(\\\"conclusion\\\", \\\"N/A\\\")}')\n        print(f'  metrics: {json.dumps(e.get(\\\"metrics\\\", {}), ensure_ascii=False)[:200]}')\n        print(f'  log_path: {e.get(\\\"log_path\\\", \\\"N/A\\\")}')\n        print(f'  checkpoint_path: {e.get(\\\"checkpoint_path\\\", \\\"N/A\\\")}')\n        print()\n    else:\n        print(f'=== {t} === NOT FOUND in registry')\n        print()\n\"\n",
+              "description": "Extract 4 target experiments from registry dump"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T08:55:17.437848+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== interv_pred_14b_s42_fp32 ===\n  status: DONE\n  hypothesis: Cross-scale intervention validation: Tests if canary-based predictive intervention (token_entropy >15% drop → α=0.0) is \n  pid: N/A\n  server: N/A\n  spec: {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -u iterative_train.py --model_name EleutherAI/pythia-1.4b --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_rati\n  conclusion: success\n  metrics: {}\n  log_path: results/intervention/predictive_te_14b_s42/all_metrics.json\n  checkpoint_path: results/intervention/predictive_te_14b_s42/gen_10/checkpoint\n\n=== interv_pred_a075_s42_fp32 === NOT FOUND in registry\n\n=== alpha_sweep_a005_s42 === NOT FOUND in registry\n\n=== alpha_sweep_a060_s42_fp32 === NOT FOUND in registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T08:55:17.438056+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "ls -la /root/autodl-tmp/distrib_canary_collapse/results/intervention/predictive_te_14b_s42/",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T08:55:17.438871+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 24\\\\ndrwxr-xr-x 13 root root 4096 May 20 13:40 .\\\\ndrwxr-xr-x 11 root root 4096 May 20 04:38 ..\\\\n-rw-r--r--  1 root root    2 May 20 13:40 EXIT_CODE\\\\n-rw-r--r--  1 root root 4988 May 20 13:40 all_metrics.json\\\\n-rw-r--r--  1 root root  651 May 20 04:38 config.json\\\\ndrwxr-xr-x  3 root root   60 May 20 04:58 gen_0\\\\ndrwxr-xr-x  4 root root   79 May 20 07:35 gen_1\\\\ndrwxr-xr-x  5 root root  101 May 20 13:40 gen_10\\\\ndrwxr-xr-x  4 root root   79 May 20 08:27 gen_2\\\\ndrwxr-xr-x  4 root root   79 May 20 09:19 gen_3\\\\ndrwxr-xr-x  4 root root   79 May 20 10:11 gen_4\\\\ndrwxr-xr-x  4 root root   79 May 20 11:03 gen_5\\\\ndrwxr-xr-x  4 root root   79 May 20 11:54 gen_6\\\\ndrwxr-xr-x  4 root root   79 May 20 12:46 gen_7\\\\ndrwxr-xr-x  4 root root   79 May 20 13:38 gen_8\\\\ndrwxr-xr-x  5 root root  101 May 20 12:48 gen_9\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T08:55:17.439146+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "ls -la /root/autodl-tmp/distrib_canary_collapse/results/intervention/predictive_te_a075_s42_fp32/",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T08:55:17.439405+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 12\\\\ndrwxr-xr-x  3 root root   71 May 19 08:21 .\\\\ndrwxr-xr-x 11 root root 4096 May 20 04:38 ..\\\\n-rw-r--r--  1 root root  286 May 19 07:54 EXIT_CODE\\\\n-rw-r--r--  1 root root  658 May 19 07:22 config.json\\\\ndrwxr-xr-x  3 root root   60 May 19 06:22 gen_0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T08:55:17.439618+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "ls -la /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a005_s42_fp32/",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T08:55:17.439826+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 12\\\\ndrwxr-xr-x  4 root root   88 May 19 06:39 .\\\\ndrwxr-xr-x 35 root root 4096 May 20 15:25 ..\\\\n-rw-r--r--  1 root root   31 May 19 06:39 EXIT_CODE\\\\n-rw-r--r--  1 root root  637 May 19 06:09 config.json\\\\ndrwxr-xr-x  3 root root   60 May 19 06:22 gen_0\\\\ndrwxr-xr-x  5 root root   77 May 19 06:39 gen_1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T08:55:17.440021+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "ls -la /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_fp32/",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T08:55:17.440237+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 12\\\\ndrwxr-xr-x  4 root root   88 May 19 06:38 .\\\\ndrwxr-xr-x 35 root root 4096 May 20 15:25 ..\\\\n-rw-r--r--  1 root root   31 May 19 06:38 EXIT_CODE\\\\n-rw-r--r--  1 root root  636 May 19 06:11 config.json\\\\ndrwxr-xr-x  3 root root   60 May 19 06:22 gen_0\\\\ndrwxr-xr-x  5 root root   77 May 19 06:38 gen_1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T08:55:17.440576+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/intervention/predictive_te_14b_s42/EXIT_CODE",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T08:55:17.440784+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/intervention/predictive_te_a075_s42_fp32/EXIT_CODE",
+              "account": "root"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T08:55:17.440984+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T08:55:17.441185+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1\\\\nCUDA error: device-side assert triggered\\\\nCUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.\\\\nFor debugging consider passing CUDA_LAUNCH_BLOCKING=1\\\\nCompile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T08:55:17.441408+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a005_s42_fp32/EXIT_CODE",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T08:55:17.441613+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1\\\\nEigenvalues did not converge\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-20T08:55:17.441806+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-17855",
+              "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_fp32/EXIT_CODE",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-20T08:55:17.442002+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1\\\\nEigenvalues did not converge\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-20T08:55:17.442211+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/1edb24d6-b4cd-4503-ad41-02df58b80c51/tool-results/mcp-agent-ml-research-read_registry-1779267242006.txt | python3 -c \"\nimport json, sys\nraw = json.load(sys.stdin)\ndata = json.loads(raw['result'])\nexps = data['data']['experiments']\n# Search for any key containing these substrings\ntargets = ['a075_s42', 'a005_s42', 'a060_s42']\nfor t in targets:\n    matches = [k for k in exps if t in k]\n    print(f'--- Keys matching \\\"{t}\\\": {matches}')\n    for m in matches:\n        e = exps[m]\n        print(f'  {m}: status={e.get(\\\"status\\\")}, conclusion={e.get(\\\"conclusion\\\",\\\"N/A\\\")}')\n\"\n",
+              "description": "Search registry for alternative experiment names"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-20T08:55:17.442448+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "--- Keys matching \"a075_s42\": ['c4_a075_s42_fp32', 'interv_pred_a075_s42', 'alpha_sweep_a075_s42_fp32']\n  c4_a075_s42_fp32: status=DONE, conclusion=success\n  interv_pred_a075_s42: status=DONE, conclusion=killed\n  alpha_sweep_a075_s42_fp32: status=DONE, conclusion=success\n--- Keys matching \"a005_s42\": ['alpha_sweep_a005_s42_v3']\n  alpha_sweep_a005_s42_v3: status=DONE, conclusion=success\n--- Keys matching \"a060_s42\": ['alpha_sweep_a060_s42_fp32_v4', 'alpha_sweep_a060_s42_fp32_v3']\n  alpha_sweep_a060_s42_fp32_v4: status=RUNNING, conclusion=N/A\n  alpha_sweep_a060_s42_fp32_v3: status=DONE, conclusion=success"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-20T08:55:17.442770+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the summary:\n\n---\n\n## 结果汇报\n\n### 1. interv_pred_14b_s42_fp32 (PID 191999)\n- **进程**: DEAD\n- **结果**: **完整** — gen_0 到 gen_10 全部完成，all_metrics.json 存在，EXIT_CODE=0\n- **Registry**: 已经是 `DONE/success`，无需更新\n\n### 2. interv_pred_a075_s42_fp32 (PID unknown)\n- **进程**: DEAD，无存活进程\n- **结果**: **失败** — 仅完成 gen_0，EXIT_CODE=1（`CUDA error: device-side assert triggered`）\n- **Registry**: 以 `interv_pred_a075_s42` 名称存在，已标记 `DONE/killed`，无需更新\n\n### 3. alpha_sweep_a005_s42 (PID unknown)\n- **进程**: DEAD，无存活进程\n- **结果**: **失败** — 仅完成 gen_0 + gen_1，EXIT_CODE=1（`Eigenvalues did not converge`）\n- **Registry**: 此 ID 不存在。已被 `alpha_sweep_a005_s42_v3`（DONE/success）取代，无需更新\n\n### 4. alpha_sweep_a060_s42_fp32 (PID unknown)\n- **进程**: DEAD，无存活进程\n- **结果**: **失败** — 仅完成 gen_0 + gen_1，EXIT_CODE=1（`Eigenvalues did not converge`）\n- **Registry**: 此 ID 不存在。已被 v3（DONE/success）和 v4（**当前 RUNNING，PID 295535 存活中**）取代，无需更新\n\n---\n\n**结论**: 4 个实验均非 stale RUNNING — 要么已标记 DONE，要么从未注册（被后续版本取代）。Registry 无需清理操作。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_stale_registry_cleanup_17855_20260520T085329"
+          },
+          "id": "event-000039"
+        }
+      ],
+      "message_count": 39
+    }
+  ],
+  "readable_path": "readable/conversations/ops-stale-registry-cleanup-17855.md"
+}

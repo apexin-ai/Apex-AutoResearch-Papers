@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "87ec7858726959ce2122",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis null t15 6pair recheck",
+  "task_key": "worker_analysis_null_t15_6pair_recheck_20260524T095105",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_null_t15_6pair_recheck_20260524T095105_result.json",
+    "occurrence": 1,
+    "bytes": 326,
+    "sha256": "a28a3ebe03540c52cf735bf215d49d46383cd9f4631757b7996aeb6fa4e482fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n```\nnull_t15_s42: 6-pair PermG fwd 0/6, rev 0/6, K≥3 0/6\nnull_t15_s43: 6-pair PermG fwd 0/6, rev 0/6, K≥3 1/6\n```\n\ns43 的 K≥3 FP pair 是 **ece→distinct_1**（naive+diff+threshold 三票），不涉及 mauve——从 8-pair 的 1/8 变成 6-pair 的 1/6，该 FP 保留。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-null-t15-6pair-recheck.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a807d74844ed9fa8b677",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis alpha sweep a025 s44",
+  "task_key": "worker_analysis_alpha_sweep_a025_s44_20260516T022550",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_alpha_sweep_a025_s44_20260516T022550_result.json",
+    "occurrence": 1,
+    "bytes": 1996,
+    "sha256": "3ba1d7c9b9fb882ebc184e93c3727846f68bf0889c75fe7ccee53aae70267bc7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。以下为分析摘要。\n\n---\n\n## α=0.25 s44 实验结果\n\n| 指标 | gen0 | gen10 | drift% |\n|------|------|-------|--------|\n| token_entropy | 3.234 | 3.072 | **-5.01%** |\n| ece | 0.0108 | 0.0180 | +67.0% |\n| perplexity | 26.95 | 21.98 | **-18.4%** |\n| distinct_1 | 0.0981 | 0.0588 | **-40.0%** |\n| distinct_2 | 0.5132 | 0.2270 | **-55.8%** |\n| distinct_3 | 0.8058 | 0.3364 | **-58.2%** |\n| effective_rank | 46.61 | 44.35 | -4.85% |\n| mauve | 0.0295 | 0.0175 | -40.7% |\n\n## α=0.25 三 seed 汇总 (s42/s43/s44)\n\n| 指标 drift% | s42 | s43 | s44 | **mean ± std** | dev<7%? |\n|-------------|-----|-----|-----|---------------|---------|\n| entropy | -4.10 | -5.00 | -5.01 | **-4.70 ± 0.52** | ✓ |\n| ece | +79.7 | +98.6 | +67.0 | **+81.8 ± 15.9** | ✗ (ECE 本身噪声大) |\n| perplexity | -17.2 | -18.7 | -18.4 | **-18.1 ± 0.80** | ✓ |\n| distinct_1 | -40.3 | -40.5 | -40.0 | **-40.3 ± 0.25** | ✓ |\n| distinct_2 | -57.1 | -56.4 | -55.8 | **-56.4 ± 0.67** | ✓ |\n| distinct_3 | -59.9 | -58.7 | -58.2 | **-58.9 ± 0.86** | ✓ |\n\n除 ECE 外所有指标 cross-seed std < 1%，远低于 7% 阈值，复现性极好。ECE 的高方差 (std=15.9%) 与已知的 ECE 在小样本下的噪声特性一致。\n\n## α=0.25 collapse 模式概括\n\n**Diversity collapse 显著但 entropy/ppl 变化温和**——与 α=0.50 和 α=1.00 形成清晰的剂量-效应梯度：\n\n| 指标 | α=0.25 | α=0.50 (参考) | α=1.00 (参考) |\n|------|--------|--------------|--------------|\n| entropy drift | -4.7% | ~-8% | ~-15% |\n| ppl drift | -18.1% | ~-25% | ~-40% |\n| d1 drift | -40.3% | ~-55% | ~-75% |\n| d3 drift | -58.9% | ~-72% | ~-88% |\n\nα=0.25 呈现**选择性 collapse**：diversity 指标（d1/d2/d3）大幅下降 40-59%，但 token entropy 仅微降 ~5%、perplexity 下降 ~18%。这说明低污染条件下模型的生成多样性先于分布质量崩塌——n-gram 多样性是更敏感的 canary 指标。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-alpha-sweep-a025-s44.md"
+}

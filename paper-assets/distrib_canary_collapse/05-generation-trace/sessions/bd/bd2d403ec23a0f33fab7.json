@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "id": "bd2d403ec23a0f33fab7",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "analysis conditional granger path fix",
+  "task_key": "worker_analysis_conditional_granger_path_fix_20260521T030332",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_conditional_granger_path_fix_20260521T030332.log",
+    "occurrence": 1,
+    "bytes": 2574930,
+    "sha256": "4523447bd55220c1c02bc669ba35f43bbe9c0a45b94ba97782d79f6dcabfff47"
+  },
+  "statistics": {
+    "messages": 781,
+    "user_turns": 2,
+    "tool_calls": 263,
+    "roles": {
+      "log": 1,
+      "system": 161,
+      "record": 5,
+      "assistant": 85,
+      "tool_call": 263,
+      "tool_result": 263,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 177,
+      "chunks": [
+        {
+          "path": "bd2d403ec23a0f33fab7-part-0001.json",
+          "message_count": 135
+        },
+        {
+          "path": "bd2d403ec23a0f33fab7-part-0002.json",
+          "message_count": 42
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 120,
+      "chunks": [
+        {
+          "path": "bd2d403ec23a0f33fab7-part-0002.json",
+          "message_count": 70
+        },
+        {
+          "path": "bd2d403ec23a0f33fab7-part-0003.json",
+          "message_count": 50
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 484,
+      "chunks": [
+        {
+          "path": "bd2d403ec23a0f33fab7-part-0003.json",
+          "message_count": 95
+        },
+        {
+          "path": "bd2d403ec23a0f33fab7-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "bd2d403ec23a0f33fab7-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "bd2d403ec23a0f33fab7-part-0006.json",
+          "message_count": 29
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-conditional-granger-path-fix.md"
+}

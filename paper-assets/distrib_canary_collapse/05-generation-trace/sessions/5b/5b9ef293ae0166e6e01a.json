@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b9ef293ae0166e6e01a",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diagnose alpha sweep a050 postd093 s42 fp32",
+  "task_key": "worker_diagnose_alpha_sweep_a050_postd093_s42_fp32_20260520T033207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_alpha_sweep_a050_postd093_s42_fp32_20260520T033207_result.json",
+    "occurrence": 1,
+    "bytes": 600,
+    "sha256": "f20649bff6dd439d66c0577b80d1c36b4d4f6eecddea38c939ba0cc00082217c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。\n\n**确认结果：**\n- EXIT_CODE=0，训练正常完成\n- gen_0 ~ gen_10 共 11 个 generation 目录完整，all_metrics.json 和 analysis_results.json 均存在\n- 日志末尾为 \"All metrics saved\" + \"Sentinel written\"，无 error\n- `checkpoint_path` → `/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/gen_10/checkpoint`\n- `log_path` → `/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/train.log`\n\n日志内容与 conclusion=success (PermG=6/8) 一致，无异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-alpha-sweep-a050-postd093-s42-fp32.md"
+}

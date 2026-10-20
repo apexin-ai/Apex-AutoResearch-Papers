@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b1d109fc59b656d0e7c",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "train gpt2m wiki a100 s42 v4",
+  "task_key": "worker_train_gpt2m_wiki_a100_s42_v4_20260518T012220",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_gpt2m_wiki_a100_s42_v4_20260518T012220_result.json",
+    "occurrence": 1,
+    "bytes": 366,
+    "sha256": "fc52212142fbd7222a820a758755eb57b0c9e8ba25fd2760d9c9ea997529582f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已正常启动，正在执行 Generation 0（baseline）。padding_side 警告无影响。\n\n**状态总结：**\n- 实验 `gen_wiki_gpt2m_a100_s42_v4` 已在 westd-19828 cuda:0 上运行\n- PID: 310460，tmux session: `gen_wiki_gpt2m_a100_s42_v4`\n- 日志: `~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v4.log`\n- 预计耗时 ~10h"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-gpt2m-wiki-a100-s42-v4.md"
+}

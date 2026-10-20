@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "840e98af87caa14f21ee",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "infra install tmux",
+  "task_key": "worker_infra_install-tmux_20260514T053322",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_install-tmux_20260514T053322_result.json",
+    "occurrence": 1,
+    "bytes": 74,
+    "sha256": "4a3f82d083d31f6587ee5eda32ecc7cf228804c7efc83a8ae0b2ff666e18f2cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "tmux 安装成功。版本 3.2a，路径 `/usr/bin/tmux`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-install-tmux.md"
+}

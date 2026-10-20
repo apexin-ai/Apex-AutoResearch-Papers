@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa5e05eee172859f9476",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code d37b mech interp analysis",
+  "task_key": "worker_code_d37b_mech_interp_analysis_20260521T065824",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d37b_mech_interp_analysis_20260521T065824_result.json",
+    "occurrence": 1,
+    "bytes": 2379,
+    "sha256": "6d442697ef40390f369ce1d1934724bad4098a0db4c99b9d3227a0fd1ae74e4f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D37-B 完成。\n\n## 结果\n\n### Step 1: 模型架构\n- **GPT-NeoX** (Pythia-410M), 24 layers, 16 heads, hidden=1024, vocab=50304\n\n### Step 2: 可用 checkpoints\n大多数实验只保留最后 2 代 checkpoint (gen_9/gen_10)。α=0.00 和 α=1.00 的 alpha_sweep 实验无 checkpoint（只有 metrics JSON）。\n\nalpha_sweep 中 s42_fp32 有 checkpoint 的实验：a005, a010, a025, a030, a035, a040, a045, a046, a048, a050, a052, a055, a060, a065, a070, a075（均 gen_9/gen_10）。\n\n### Step 3: 脚本\n`/root/autodl-tmp/distrib_canary_collapse/mech_interp_analysis.py`\n\n5 个指标：\n1. **Attention entropy per layer** — 每层每 head 的 attention 分布熵\n2. **Head diversity** — head 间 cosine similarity（趋同度）\n3. **Effective rank** — 最后一层 hidden states 的有效秩\n4. **Logit confidence** — top-1 概率均值\n5. **Activation norm** — 每层 hidden state L2 norm\n\n### Step 4: Dry-run 结果 (a050_s42_fp32, CPU, 5 samples)\n\n| 指标 | Gen 9 | Gen 10 | 趋势 |\n|------|-------|--------|------|\n| Logit confidence | 0.4573 | 0.4704 | ↑ 更自信 |\n| Effective rank | 355.1 | 351.7 | ↓ 表征塌缩 |\n| Mean attn entropy | 1.0230 | 1.0051 | ↓ attention 更集中 |\n| Head diversity (cos sim) | 0.7040 | 0.7057 | → 基本不变 |\n| Activation norm | 48.56 | 49.52 | ↑ 激活增长 |\n\n即使只有 2 代 + 5 samples，趋势已与 collapse 预期一致：confidence↑, effective rank↓, entropy↓。\n\n### Step 5: GPU 预估 & 建议\n\n**时间/显存**：\n- ~15-20s/checkpoint（GPU, 50 samples）→ 每实验 ~40s\n- 峰值显存 ~3GB（model 1.6GB + attention weights ~400MB + buffer）\n\n**建议运行的实验**（cross-alpha 对比，均 s42_fp32, gen_9/gen_10）：\n\n| 实验 | α值 | 角色 |\n|------|-----|------|\n| a005_s42_fp32_v3_d080 | 0.05 | 近 baseline（最低可用 α） |\n| a025_s42_fp32 | 0.25 | 低 collapse |\n| a050_s42_fp32 | 0.50 | boundary |\n| a075_s42_fp32 | 0.75 | 强 collapse |\n| padding_robustness/a100_s42_fp32 | 1.00 | full collapse（alpha_sweep 无 ckpt，此处有） |\n\nGPU 运行命令示例：\n```bash\npython mech_interp_analysis.py \\\n    --experiment_dir results/alpha_sweep/a050_s42_fp32 \\\n    --eval_data data/wikitext103_5k/eval \\\n    --num_samples 50 --device cuda:0\n```\n\n5 个实验总计 ~4 分钟 GPU 时间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d37b-mech-interp-analysis.md"
+}

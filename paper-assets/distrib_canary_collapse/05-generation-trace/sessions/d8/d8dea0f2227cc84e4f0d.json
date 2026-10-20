@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d8dea0f2227cc84e4f0d",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis method ablation phase3",
+  "task_key": "worker_analysis_method_ablation_phase3_20260519T193616",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_method_ablation_phase3_20260519T193616_result.json",
+    "occurrence": 1,
+    "bytes": 2314,
+    "sha256": "9f99fe26de2175d32c607eec449422cf767f9ccba5ab513927e7a8a82965ed5c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。以下是 Phase 3 完整结果。\n\n---\n\n## Method × Regime Matrix (10-α, 5-method, 8-pair)\n\n```\n     α | naive | diff  | thresh | PermG↑ | PermG↓ |   TY  | K≥3  | K≥4\n-------+-------+-------+--------+--------+--------+-------+------+------\n  0.00 |  8/8  |  4/8  |  4/8   |  0/8   |  0/8   |  2/8  | 3/8  | 0/8\n  0.05 |  7/8  |  3/8  |  5/8   |  0/8   |  0/8   |  3/8  | 3/8  | 0/8\n  0.10 |  7/8  |  6/8  |  5/8   |  0/8   |  0/8   |  3/8  | 4/8  | 2/8\n  0.25 |  8/8  |  3/8  |  5/8   |  0/8   |  0/8   |  3/8  | 4/8  | 0/8\n  0.35 |  8/8  |  4/8  |  8/8   |  0/8   |  0/8   |  4/8  | 6/8  | 2/8\n  0.40 |  8/8  |  3/8  |  8/8   |  0/8   |  0/8   |  4/8  | 6/8  | 1/8\n  0.50 |  8/8  |  7/8  |  8/8   |  6/8   |  0/8   |  4/8  | 7/8  | 6/8\n  0.60 |  7/8  |  8/8  |  8/8   |  3/8   |  0/8   |  8/8  | 8/8  | 7/8\n  0.75 |  7/8  |  6/8  |  8/8   |  6/8   |  0/8   |  8/8  | 7/8  | 6/8\n  1.00 |  8/8  |  6/8  |  8/8   |  6/8   |  0/8   |  3/8  | 6/8  | 6/8\n```\n\n## 关键发现\n\n**三相 regime 结构**:\n\n| Regime | α 范围 | 特征 |\n|--------|--------|------|\n| **Null** | ≤0.25 | 仅宽松方法(naive/diff/thresh)火，PermG=0%，K≥4=0% |\n| **Transition** | 0.35–0.40 | threshold saturates至100%，但PermG仍=0% |\n| **Signal** | ≥0.50 | PermG激活(≥37.5%)，K≥4跳至≥75% |\n\n**逐方法分析**:\n\n1. **Naive xcorr** — 无鉴别力。α=0.00（无污染）就 8/8 显著，全域87.5-100%。纯假阳。\n2. **Threshold onset (3σ)** — 有中等鉴别力。α≤0.25: 50-62.5% → α≥0.35: 100%。但在 null 下仍有50% FPR。\n3. **PermG forward** — **最干净的 regime discriminator**。α≤0.40 严格为 0%（零假阳），α≥0.50 跳至 75%。临界转变点 α≈0.50。\n4. **TY Granger** — 非单调。在α=0.60-0.75达100%，但α=1.00骤降至37.5%（与 C003 一致：短序列下 TY 不稳定）。\n5. **PermG reverse** — 全域 0%（正确：无反向因果性）。\n\n**Claim 3 支撑强度**: **强**。5 种方法在 10 个 regime 下表现差异巨大 — naive 在 null regime 下产生 100% 假阳，而 PermG 在同一 regime 下严格为 0%。方法选择直接决定了结论是否可信。K≥4 consensus 作为聚合指标，在 α<0.50 时正确拒绝，α≥0.50 时稳定检出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-method-ablation-phase3.md"
+}

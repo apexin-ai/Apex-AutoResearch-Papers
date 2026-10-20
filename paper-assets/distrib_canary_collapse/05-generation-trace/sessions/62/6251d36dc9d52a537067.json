@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6251d36dc9d52a537067",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diagnose scale 14b t15 a075 s42 fp32 completion",
+  "task_key": "worker_diagnose_scale_14b_t15_a075_s42_fp32_completion_20260523T005827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_scale_14b_t15_a075_s42_fp32_completion_20260523T005827_result.json",
+    "occurrence": 1,
+    "bytes": 539,
+    "sha256": "46edcae43a22f227cc34e7fc2f071301c5edc2af95ab1d27931a2ba9506679e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验状态：仍在运行**\n\n- **PID 793171**：状态 R（运行中），已运行 12h21m\n- **进度**：gen_0 ~ gen_10 完成，gen_11 正在训练，目标 gen_14（T=15）\n- **每 generation 耗时**：~67 min（gen_9→gen_10 间隔 4007s）\n- **预计剩余**：4 个 generation × 67 min ≈ **4.5 小时**\n- **磁盘**：146G/250G 已用，105G 可用，无风险\n- **cuda:0**：被占用，不可用\n\n实验正常运行中，无需干预。预计约 4.5 小时后完成，届时可运行 D102 分析。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-scale-14b-t15-a075-s42-fp32-completion.md"
+}

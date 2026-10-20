@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "956513f9320ba8857ef7",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diagnose phase diagram t25 a060 s42 fp32",
+  "task_key": "worker_diagnose_phase_diagram_t25_a060_s42_fp32_20260521T192819",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_phase_diagram_t25_a060_s42_fp32_20260521T192819_result.json",
+    "occurrence": 1,
+    "bytes": 476,
+    "sha256": "ae1b1681905fc2d64706987903418a6b61311d1a03ad65c959433a0621c9f411"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**根因**: 磁盘满 (ENOSPC)。`/dev/md0` 350G 数据盘被 3 个并发 T=25 实验耗尽，gen_15 训练跑完 5000 步后 `save_pretrained` 写 safetensors 时失败。三个实验同因倒下。\n\n**进度**: 15/25 代完成，~6.4 GPU 小时。\n\n**无法 Resume**: 诊断期间发现结果目录已被清空（03:32 被重置，只剩 config.json），必须从头重跑。\n\n报告已写入 `artifacts/diag_t25_a060_s42_fp32.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-phase-diagram-t25-a060-s42-fp32.md"
+}

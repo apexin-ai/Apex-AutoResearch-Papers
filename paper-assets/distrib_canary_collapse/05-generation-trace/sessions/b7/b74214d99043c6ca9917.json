@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b74214d99043c6ca9917",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis ty granger 3seed a025",
+  "task_key": "worker_analysis_ty_granger_3seed_a025_20260516T022731",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_ty_granger_3seed_a025_20260516T022731_result.json",
+    "occurrence": 1,
+    "bytes": 921,
+    "sha256": "f953dd5b94c51e8558e5cf6c8980882c85da1c1fc2b38332e5eb1d5d0c5e42f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结论：\n\n**C001 约束不能缓解，反而被强化。** 3-seed 数据暴露了 TY 在 T=11 下的系统性缺陷：\n\n| Seed | TY sig rate (FDR) | df_resid (entropy pairs) |\n|------|-------------------|--------------------------|\n| 42   | 38% (3/8)         | **7**                    |\n| 43   | 0% (0/8)          | 4                        |\n| 44   | 0% (0/8)          | **1**                    |\n\n**根因**：ADF 单位根检验在 T=11 下功效极低，不同 seed 给出不同的积分阶数 d_max（1/2/3），导致 df_resid 从 1 到 7 剧烈波动。s42 恰好获得最大 df_resid 所以显著，s43/s44 则完全无功效。这证实 C001 描述的非单调模式是方法学人工构件，不是真实信号。\n\n- 报告：`artifacts/ty_3seed_a025_analysis.md`（服务器 + 已注册 artifact）\n- 数据：`results/alpha_sweep/ty_3seed_a025_results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-ty-granger-3seed-a025.md"
+}

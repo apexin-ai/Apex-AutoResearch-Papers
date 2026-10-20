@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b1ba45a425f58644c9e3",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "paper gpt2m crossarch fpr appendix",
+  "task_key": "worker_paper_gpt2m_crossarch_fpr_appendix_20260524T085135",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_gpt2m_crossarch_fpr_appendix_20260524T085135_result.json",
+    "occurrence": 1,
+    "bytes": 978,
+    "sha256": "35f712d26fb6389a3c7ee438fb2f7a4c3482744e4b20e553bdedce4d1f1a8fed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 occurrences = 2 `\\label` + 1 `\\ref` (the ref to `tab:null_drift_comparison` in the text). No conflicts.\n\nSummary of changes:\n\n**appendix.tex** — New section \"Cross-Architecture FPR Sensitivity\" (`\\label{app:cross_arch_fpr}`) inserted before \"Use of AI Assistants\", containing:\n- Introductory paragraph marked \"preliminary\"\n- Table 1: GPT-2m null FPR by seed (s42: 100%, s43: 0%, pooled 50%; K≥3: 0/12)\n- Table 2: Null drift comparison (GPT-2m entropy -20.5% / distinct_3 -35.8% vs Pythia-410M -4.7% / -4.5%)\n- Analysis attributing FPR to architecture-specific null drift, not method deficiency\n- Cautious K≥3 discussion (max 2/5 votes, \"narrow margin\", \"preliminary evidence\")\n- Defense via Table `\\ref{tab:generalization}` (GPT-2m 6/8 at α=1.0)\n\n**limitations.tex** — One sentence added after the existing PermG FPR discussion, noting GPT-2m's 50% PermG FPR, the drift multiplier, and K≥3 maintaining 0% with narrow margin."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-gpt2m-crossarch-fpr-appendix.md"
+}

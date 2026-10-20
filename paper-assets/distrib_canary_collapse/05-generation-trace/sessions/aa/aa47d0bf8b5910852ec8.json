@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa47d0bf8b5910852ec8",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "check gpt2m s43 fp32 on 19828",
+  "task_key": "worker_check_gpt2m_s43_fp32_on_19828_20260520T093108",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gpt2m_s43_fp32_on_19828_20260520T093108_result.json",
+    "occurrence": 1,
+    "bytes": 713,
+    "sha256": "8e434cc9d19b9ad960a683860b6df0a11efb9bf29fe89f33e1f451a75814d787"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**服务器**: westd-19828  \n**路径**: `/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s43/analysis/5method_summary.txt`\n\n**关键数值**:\n- **PermG (FDR)**: 6/8\n- **K≥3 (robust pairs)**: 6/8\n- DiffXCorr: 6/8, TY Granger: 4/8, Threshold Onset: 0/8\n\n**D102 canonical 确认**: JSON 中 `threshold_criterion: \"true_3sigma_d105\"` 且使用 5 方法 (naive_xcorr, diff_xcorr, threshold_onset, perm_granger, ty_granger)，`n_perm: 5000`, `fdr_alpha: 0.05`——符合 D105+D111 canonical pipeline 配置。\n\n注意目录命名是 `gen_wiki_gpt2m_a100_s43`（无 `_fp32` 后缀），不在 `generalize/` 子目录下，而是直接在 `results/` 下。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gpt2m-s43-fp32-on-19828.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3afaab87ca3bfa772948",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis power sim fix conclusion",
+  "task_key": "worker_analysis_power-sim-fix-conclusion_20260522T111847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_power-sim-fix-conclusion_20260522T111847_result.json",
+    "occurrence": 1,
+    "bytes": 987,
+    "sha256": "caff353de4c3005f9f77c5060ce8c7dd6ddd5935d2e739c699639ff48a5010bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 5 steps are complete. Here's the final summary:\n\n**Power Simulation fix (Reviewer #73)**\n\n- **Conclusion logic**: Replaced γ-only comparison with shape comparison. H0' concave (k=0.5) matches γ≈1.87 ≈ observed 2.08, but shape MAE=0.2611 vs H1 MAE=0.1159 (2.3×). H0' predicts 14/40 intermediate cells; observed data is binary (0/8 or 6/8). Conclusion: `shape_mismatch`.\n\n- **Updated files**:\n  - `power_artifact_test.py` — new `compute_shape_comparison()`, updated conclusion logic, 2×2 plot layout\n  - `power_artifact_test.json` — `shape_comparison` section with per-model MAE, intermediate counts, key mismatches\n  - `power_artifact_analysis.md` — γ-insufficiency argument + shape comparison resolving argument\n  - `power_artifact_comparison.pdf/png` — 2×2 layout (H0' heatmap, observed binary, residual, onset scaling)\n\n- **3 artifacts registered**: `power_artifact_test_v2`, `power_artifact_analysis_v2`, `power_artifact_comparison_v2`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-power-sim-fix-conclusion.md"
+}

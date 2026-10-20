@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "59bdb4e83065dd5408de",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analyze cross seed data integrity check",
+  "task_key": "worker_analyze_cross-seed-data-integrity-check_20260522T020315",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_cross-seed-data-integrity-check_20260522T020315_result.json",
+    "occurrence": 1,
+    "bytes": 1595,
+    "sha256": "ed39488c818fdac82098d376ead1cc787effbbc62ec1abc4ed7c8275c49de54f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 数据完整性汇总\n\n### 1. t15_a045_s43 (westd-17855)\n\n| 项目 | 状态 |\n|------|------|\n| gen 目录 | 2/16 (仅 gen_14, gen_15 保留，gen_0-13 已清理) |\n| all_metrics.json | **完整** — 16 entries (gen_0 ~ gen_15) |\n| analysis/ | 有 `5method_leadlag.json` + `5method_summary.txt` |\n| 5method 结果 | PermG=6/8, DiffXCorr=6/8, Robust pairs=2/8 |\n\n### 2. t15_a060_s43 (westd-17855)\n\n| 项目 | 状态 |\n|------|------|\n| gen 目录 | **0** (全部清理) |\n| all_metrics.json | **完整** — 16 entries (gen_0 ~ gen_15) |\n| analysis/ | 有 `5method_leadlag.json` + `5method_summary.txt` |\n| 5method 结果 | PermG=0/8, DiffXCorr=7/8, Robust pairs=2/8 |\n\n### 3. t20_a045_s43 (westd-19828)\n\n| 项目 | 状态 |\n|------|------|\n| gen 目录 | **21/21** (gen_0 ~ gen_20 全部保留) |\n| all_metrics.json | **完整** — 21 entries (gen_0 ~ gen_20) |\n| analysis/ | 有 `5method_leadlag.json` + `5method_summary.txt` |\n| 5method 结果 | PermG=4/8, DiffXCorr=8/8, Robust pairs=5/8 |\n\n### 结论\n\n**三个实验的 all_metrics.json 均完整**，d102 分析基于 all_metrics.json 而非 gen 目录，因此：\n\n- **t15_a045_s43**: all_metrics.json 有完整 16 entries (gen_0-15)，PermG=6/8 结果有效，**无需重跑实验**。gen 目录清理不影响分析结论。\n- **t15_a060_s43**: all_metrics.json 完整 16 entries，分析有效。\n- **t20_a045_s43**: gen 目录和 all_metrics.json 均完整 (21 entries)，数据最完整。\n\n如需重跑 5method 分析（而非实验本身），all_metrics.json 足够支撑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-cross-seed-data-integrity-check.md"
+}

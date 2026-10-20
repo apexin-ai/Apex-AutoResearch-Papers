@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb03d48a23294f196dde",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops s43 fix restart final",
+  "task_key": "worker_ops_s43-fix-restart-final_20260522T202204",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_s43-fix-restart-final_20260522T202204_result.json",
+    "occurrence": 1,
+    "bytes": 1694,
+    "sha256": "6dd26f7d9b7c44b5d8e79f509fb53b1829da73945c720cbbe4987259fa5c3662"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。汇报结果：\n\n## s42 实际参数（从 PID 679204 cmdline 提取）\n```\n--model_name /root/autodl-tmp/.ms_cache/EleutherAI/pythia-1.4b-deduped\n--data_dir data/wikitext103_5k\n--synthetic_ratio <per-experiment>\n--num_generations 10\n--steps_per_gen 5000\n--seed 42\n--batch_size 4\n--max_length 512\n--lr 5e-5\n--gen_max_new_tokens 256\n--gen_batch_size 8\n--top_p 0.95\n--optim adamw_torch\n--gradient_checkpointing\n```\n\n## 磁盘清理\n- 17855 清理前: 88% (43GB 剩余)\n- 17855 清理后: 88% (43GB 剩余) — checkpoint 已被之前清理过，phase_diagram_14b 不存在\n- 19828: 54% (116GB 剩余) — 空间充足，无需清理\n\n## 模型路径确认\n- 17855: `/root/autodl-tmp/.ms_cache/EleutherAI/pythia-1.4b-deduped` ✓\n- 19828: `/root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b-deduped` ✓\n\n## 重启结果\n\ns43 实验已由另一个 Worker 在 04:23 UTC 正确启动，两个 bug 均已修复。\n\n| 实验 | Server:GPU | PID | gen_batch_size | local_model | GPU 占用 |\n|------|-----------|-----|---------------|-------------|---------|\n| t10_a075_s43 | 17855:cuda:2 | 719178 | ✓ OK | ✓ ms_cache | 11236 MiB |\n| t10_a060_s43 | 17855:cuda:3 | 719252 | ✓ OK | ✓ ms_cache | 11236 MiB |\n| t10_a050_s43 | 19828:cuda:1 | 822048 | ✓ OK | ✓ hf_cache | 11236 MiB |\n\n## s42 vs s43 参数 diff\n仅 `--seed`（42→43）、`--output_dir`（路径不同）、`--model_name` 路径（19828 用 hf_cache vs 17855 用 ms_cache）不同。其余参数完全一致。✓\n\n输出目录尚未创建（Gen 0 baseline 计算中），GPU 显存从 10293→11236 MiB 递增，进程状态 Rl+，一切正常运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-s43-fix-restart-final.md"
+}

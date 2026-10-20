@@ -1,0 +1,637 @@
+{
+  "schema_version": "1.0",
+  "id": "7c57dc47da6bc56ce4b0",
+  "project": "distrib_canary_collapse",
+  "kind": "conversation",
+  "title": "paper writing",
+  "task_key": "worker_paper_writing_20260519T042917",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_20260519T042917.jsonl",
+    "occurrence": 1,
+    "bytes": 39183,
+    "sha256": "1c1a183a77b806ac79f3f36433dedcebbd2bfcdf7f3365c8b2995f65cefed904"
+  },
+  "statistics": {
+    "messages": 31,
+    "user_turns": 0,
+    "tool_calls": 15,
+    "roles": {
+      "tool_call": 15,
+      "tool_result": 15,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T04:39:53.490917+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260519T042917",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T04:39:53.491417+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **\n…[truncated 4866 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260519T042917",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T04:39:53.491601+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260519T042917",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T04:39:53.491950+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认\n…[truncated 7201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260519T042917",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T04:39:53.492119+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260519T042917",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T04:39:53.492323+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tPractitioners monitoring iterative training pipelines face a diagnostic blind spot: the metrics most commonly used to detect distributional degradation can yield false positive rates of 62.5--100\\% when applied without proper statistical controls, yet no established protocol exists for distinguishing genuine early-warning signals from artifacts of shared non-stationary trends.\n5\tThis blind spot is consequential because iterative training collapse, where models are unwittingly trained on output from earlier generations, is increasingly likely as machine-generated text proliferates on the web~\\cite{shumailov2024curse,alemohammad2024mad}.\n6\tTail modes vanish, lexical diversity narrows, and calibration deteriorates across generations.\n7\tThese failure modes motivate the search for cheap-to-compute \\emph{canary metrics} that provide early warning, analogous to early-warning signals for critical transitions in ecological and climate systems~\\cite{scheffer2009early,scheffer2012anticipating}.\n8\t\n9\tSeveral recent studies have pursued this direction: \\citet{du2026geometric} informally observe that expected calibration error rises before accuracy degrades; SIGMA~\\cite{sigma2026spectral} proposes spectral indicators of distributional shift; and DCES~\\cite{dces2026counter} uses center-edge sampling dynamics as a collapse signal.\n10\tYet the statistical methodology underlying these lead-lag claims (whether a canary metric genuinely \\emph{precedes} downstream degradation, or merely correlates with it under shared non-stationary trends) has received little scrutiny.\n11\t\n12\tWe identify several methodological deficiencies that pervade existing lead-lag analyses of iterative training collapse:\n13\t(1)~no differencing tests to rule out spurious regression arising from shared non-stationary trends, a well-known hazard when correlating co-trending time series;\n14\t(2)~no multi-method cross-validation; conclusions rest on a single stati\n…[truncated 8255 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260519T042917",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T04:39:53.492532+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260519T042917",
+            "tool": "Agent",
+            "tool_args": {
+              "subagent_type": "Explore",
+              "description": "Find paper_framing and bib files",
+              "prompt": "I need to find two things in /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/:\n1. The paper_framing.md file (or similar framing document)\n2. The .bib file used by the paper\n\nSearch for these files and return their full paths and key content. For the bib file, just list the citation keys (the @article{KEY, or @inproceedings{KEY, etc.) so I know what citations are available. For the framing doc, return the full content."
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T04:39:53.492687+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260519T042917",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T04:39:53.492820+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/mvp_evaluation_criteria.md\ntask_context/history/reviewer/loop_1.md\ntask_context/history/director/loop_1.md\ntask_context/history/agent/loop_1.md\ntask_context/history/reviewer/loop_2.md\nartifacts/literature_scan_20260514.md\nartifacts/_project/report/mvp_4seed_verdict.md\ndocs/IDEA_BRIEF.md\ntask_context/history/director/loop_2.md\ntask_context/history/reviewer/loop_3.md\nartifacts/dream_reports/dream_20260514T184925/best/paper_framing.md\nartifacts/ccf_maxlag7_report.md\nartifacts/dream_reports/dream_20260514T184925/median/paper_framing.md\nartifacts/dream_reports/dream_20260514T184925/worst/paper_framing.md\nartifacts/dream_reports/dream_20260514T184925/best/review_report.md\nartifacts/dream_reports/dream_20260514T184925/median/review_report.md\nartifacts/dream_reports/dream_20260514T184925/worst/review_report.md\ntask_context/history/agent/loop_2.md\ntask_context/history/director/loop_3.md\ntask_context/history/agent/loop_2_1778805655.md\ntask_context/history/reviewer/loop_4.md\ntask_context/history/director/loop_4.md\ntask_context/history/agent/loop_3.md\ntask_context/history/agent/loop_4.md\n.claude/sessions/agent_4f7f7eac/CLAUDE.md\n.claude/sessions/agent_4f7f7eac/AGENTS.md\ntask_context/history/director/loop_5.md\ntask_context/history/agent/loop_4_1778822085.md\n.claude/sessions/agent_8bc724a9/CLAUDE.md\n.claude/sessions/agent_8bc724a9/AGENTS.md\ntask_context/history/reviewer/loop_5.md\ntask_context/history/agent/loop_3_1778822265.md\ntask_context/history/agent/loop_3_1778834841.md\n.claude/sessions/agent_926c705f/CLAUDE.md\n.claude/sessions/agent_926c705f/AGENTS.md\nartifacts/d024_literature_notes.md\nartifacts/_project/report/cross_alpha_analysis.md\nartifacts/alpha_sweep_a050_s42/report/alpha_sweep_a050_s42_final_analysis.md\nartifacts/_project/intermediate/a075_analysis_prep.md\nartifacts/a075_analysis_prep.md\nartifacts/_project/report/framing_alignment_check_b11471.md\nartifacts/_project/report/framing_alignment_check.md\nartifacts/framing_alignment_check.md\nartifacts/_project/inte\n…[truncated 2795 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260519T042917",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T04:39:53.492965+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260519T042917",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.bib",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T04:39:53.493078+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/references.bib"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260519T042917",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T04:39:53.493193+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260519T042917",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/references.bib"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T04:39:53.493375+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% ============================================================\n2\t% CORE MODEL COLLAPSE\n3\t% ============================================================\n4\t\n5\t@article{shumailov2024curse,\n6\t  title     = {The Curse of Recursion: Training on Generated Data Makes Models Forget},\n7\t  author    = {Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Gal, Yarin and Papernot, Nicolas and Anderson, Ross},\n8\t  journal   = {Nature},\n9\t  year      = {2024},\n10\t  url       = {https://arxiv.org/abs/2305.17493},\n11\t}\n12\t\n13\t@inproceedings{alemohammad2024mad,\n14\t  title     = {Self-Consuming Generative Models Go {MAD}},\n15\t  author    = {Alemohammad, Sina and Casco-Rodriguez, Josue and Luzi, Lorenzo and Humayun, Ahmed Imtiaz and Babaei, Hossein and LeJeune, Daniel and Siahkoohi, Ali and Baraniuk, Richard},\n16\t  booktitle = {International Conference on Learning Representations},\n17\t  year      = {2024},\n18\t  url       = {https://arxiv.org/abs/2307.01850},\n19\t}\n20\t\n21\t@inproceedings{dohmatob2024tale,\n22\t  title     = {A Tale of Tails: Model Collapse as a Change of Scaling Laws},\n23\t  author    = {Dohmatob, Elvis and Feng, Yunzhen and others},\n24\t  booktitle = {International Conference on Machine Learning},\n25\t  year      = {2024},\n26\t  url       = {https://arxiv.org/abs/2402.07043},\n27\t}\n28\t\n29\t@inproceedings{dohmatob2025strong,\n30\t  title     = {Strong Model Collapse},\n31\t  author    = {Dohmatob, Elvis and Feng, Yunzhen and Subramonian, Arjun and Kempe, Julia},\n32\t  booktitle = {International Conference on Learning Representations},\n33\t  year      = {2025},\n34\t  url       = {https://arxiv.org/abs/2410.04840},\n35\t}\n36\t\n37\t@inproceedings{guo2024linguistic,\n38\t  title     = {The Curious Decline of Linguistic Diversity: Training Language Models on Synthetic Text},\n39\t  author    = {Guo, Yanzhu and Shang, Guokan and others},\n40\t  booktitle = {Findings of the Association for Computational Linguistics: {NAACL}},\n41\t  year      = {2024},\n42\t  url       = {https://arxiv.org/abs/2311.0\n…[truncated 16770 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260519T042917",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T04:39:53.493528+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260519T042917",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/dream_reports/dream_20260514T184925/best/paper_framing.md"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T04:39:53.493657+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Paper Framing — distrib_canary_collapse\n2\t\n3\t## Target Venue\n4\t- Primary: AAAI 2027 (expected deadline ~August 2026)\n5\t- Fallback: EMNLP 2026 Findings (ARR October cycle if AAAI timeline tight)\n6\t- Note: EMNLP 2026 Main ARR May deadline已过；AAAI 2027 给出充足实验时间\n7\t\n8\t## Core Claims (3 条)\n9\t\n10\t1. **Canary→Diversity Lead**: 在迭代合成数据训练中，ECE 和 token entropy 作为廉价 canary 指标，稳定领先 diversity 退化（distinct_1/2）1-2 代——提供可量化的早期预警窗口。\n11\t2. **Regime-Dependent Predictability**: 可预测性取决于 contamination regime——100% self-consuming 下 perplexity 与 canary 同步崩溃（不可预测），低 α 条件下 collapse 更渐进、canary lead time 有望扩展到 quality 指标。Predictability phase diagram 划定可预测/不可预测边界。\n12\t3. **Methodological Rigor**: 朴素相关分析在非平稳训练指标上产生伪回归；Toda-Yamamoto panel temporal precedence 提供统计严谨的 lead-lag 量化，方法论 ablation 量化伪显著关联被推翻的比例。\n13\t\n14\t## Story Spine\n15\t\n16\t- **Problem**: Model collapse 的在线监控工具已存在（SIGMA 谱监控、DCES 反应式干预），但没有工作系统性回答\"哪些指标最早预测崩溃、领先多久、在什么 regime 下有效\"。Du et al. 非正式观察到 ECE 领先 accuracy，但仅限单指标对、1-3 代、无统计检验。\n17\t\n18\t- **Existing approaches & their gaps**: SIGMA 提供谱监控但无 lead-time 量化；DCES 反应式而非预测式；Du et al. 是最接近的经验前辈但方法论不足（无正式 time-series 检验、无多家族对比）；Kalinowski 拓扑 CI 针对表征坍缩非合成数据退化且计算昂贵。Truong & Truong 证明一阶相变下标准早期预警指标失效——但仅限特定 regime 和特定指标族。\n19\t\n20\t- **Our framing**: 我们不是提出\"通用 canary\"，而是**系统性映射可预测性的边界**——哪些 collapse 维度可预测（diversity）、哪些不可预测（perplexity in extreme regime）、在什么 contamination 条件下、用什么统计方法。Null results（canary 不 lead perplexity）不是失败，而是 phase diagram 中的一个 boundary data point。\n21\t\n22\t- **Headline result template**: \"ECE and token entropy predict diversity collapse 1-2 generations ahead (|r|>0.99, p<0.001, 4/4 seeds) in iterative synthetic data training, while a predictability phase diagram reveals regime-dependent boundaries where canary signals exist vs. where synchronous collapse precludes early warning.\"\n23\t\n24\t## Anticipated Reviewer Concerns & Responses\n25\t\n26\t| Concern | Response Strategy | Required Experiment |\n27\t|---------|-------------------|---------------------|\n28\t| \"Canary 不预测 perplexity，实用价值有限\" | \n…[truncated 1322 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260519T042917",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T04:39:53.493844+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I found both files. Here are my findings:\n\n## Files Located\n\n**1. Bibliography File:**\n- Full path: `/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/references.bib`\n\n**Citation Keys in the .bib file:**\n- `shumailov2024curse`\n- `alemohammad2024mad`\n- `dohmatob2024tale`\n- `dohmatob2025strong`\n- `guo2024linguistic`\n- `hataya2023will`\n- `seddik2024bad`\n- `truong2025entropy`\n- `du2026geometric`\n- `gao2021pile`\n- `du2025scales`\n- `gambetta2024surplexity`\n- `sigma2026spectral`\n- `kalinowski2026topology`\n- `cao2025entropycal`\n- `sahoo2026calibration`\n- `li2016diversity`\n- `kazdan2025collapse`\n- `dey2024breaking`\n- `fu2025selfconsuming`\n- `he2025golden`\n- `falahati2026curated`\n- `dces2026counter`\n- `bell2022modeling`\n- `kapoor2024reforms`\n- `coretta2023multidimensional`\n- `simonsohn2020specification`\n- `schaeffer2025position`\n- `granger1969investigating`\n- `shojaie2022granger`\n- `marcinkevics2022neural`\n- `granger1974spurious`\n- `toda1995statistical`\n- `ruiz2026causalaudit`\n- `yi2026causalcompass`\n- `scheffer2009early`\n- `scheffer2012anticipating`\n- `boettiger2012limits`\n- `biderman2023pythia`\n- `merity2017pointer`\n- `dohare2024plasticity`\n- `lyle2023plasticity`\n\n**2. Paper Framing Document:**\n- Full path: `/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/dream_reports/dream_20260514T184925/best/paper_framing.md`\n\n**Framing Content** (complete):\n\nThe paper frames a research contribution around **early warning signals for model collapse in iterative synthetic data training**. The three core claims are:\n\n1. **Canary→Diversity Lead**: Token entropy (ECE) and token entropy metrics lead diversity degradation by 1-2 generations in iterative synthetic data training, providing a quantifiable early warning window.\n\n2. **Regime-Dependent Predictability**: Predictability depends on contamination regime—under 100% self-consuming conditions, perplexity collapses synchronously with canary metric\n…[truncated 844 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260519T042917",
+            "tool": "Agent",
+            "elapsed_ms": 1
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T04:39:53.494386+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260519T042917",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/introduction.tex",
+              "content": "\\section{Introduction}\n\\label{sec:introduction}\n\nWhen language models train iteratively on their own output, the training distribution progressively loses its tail modes, a phenomenon termed model collapse~\\cite{shumailov2024curse,alemohammad2024mad}.\nLexical diversity narrows, calibration deteriorates, and each generation inherits the systematic biases of its predecessors.\nAs machine-generated text becomes prevalent on the web, such feedback loops pose a growing and often invisible risk to production training pipelines.\nBy the time standard quality metrics register degradation, the underlying distribution may have already shifted irreversibly.\nThis threat motivates the search for cheap-to-compute \\emph{canary metrics}: leading indicators that signal distributional degradation before expensive downstream measures reveal the full extent of collapse.\nThe concept parallels early-warning signals for critical transitions in ecological systems~\\cite{scheffer2009early,scheffer2012anticipating}, where proxy indicators allow intervention before a tipping point.\nSeveral recent studies have pursued this direction: \\citet{du2026geometric} observe that calibration error rises before accuracy degrades, SIGMA~\\cite{sigma2026spectral} proposes spectral indicators, and DCES~\\cite{dces2026counter} uses center-edge sampling dynamics as a collapse signal.\n\nYet the statistical methodology underlying these lead-lag claims has received little scrutiny.\nWhether a candidate canary genuinely \\emph{precedes} downstream degradation, or merely correlates with it under shared non-stationary trends, is a question that existing analyses leave unresolved.\nIterative training produces short, noisy time series (often fewer than 15 points per generation sequence), where detection power drops sharply and false positive rates can be high~\\cite{boettiger2012limits}.\nIn the absence of proper controls, the choice of statistical method alone can shift conclusions on the same data from universal significance to complete null.\nThis makes the validity of existing canary claims an open question with direct consequences for practitioners who rely on such signals to trigger training interventions.\n\nWe identify four specific deficiencies that pervade existing lead-lag analyses of iterative training collapse.\n(1)~No differencing tests rule out spurious regression from shared non-stationary trends, a well-documented hazard in analyses of co-trending time series~\\cite{granger1974spurious}.\n(2)~Conclusions rest on a single statistical method whose assumptions about stationarity and directionality are rarely examined; no multi-method cross-validation is conducted.\n(3)~No false discovery rate (FDR) correction (e.g., Benjamini--Hochberg) guards against spurious findings when testing many metric pairs simultaneously.\n(4)~No regime-dependent analysis is performed, despite the possibility that the same test yields opposite conclusions at different contamination levels.\nThe closest predecessor is \\citet{du2026geometric}, who report that calibration error rises before accuracy degrades in iteratively trained language models.\nTheir analysis, however, covers a single metric pair, spans only 1--3 generations, and relies on visual comparisons without statistical tests.\nThe early-warning framework of \\citet{scheffer2009early,scheffer2012anticipating} provides theoretical motivation but has not been applied to training collapse with the rigor that such short, non-stationary series require.\n\nWe address these gaps through a multiverse-style analysis~\\cite{bell2022modeling,kapoor2024reforms} of canary prediction of diversity collapse, the progressive loss of lexical diversity (as measured by distinct-$n$~\\cite{li2016diversity}) across training generations.\nUsing Pythia-410M~\\cite{biderman2023pythia} across six contamination levels ($\\alpha \\in \\{0.00, 0.10, 0.25, 0.50, 0.75, 1.00\\}$) and up to four random seeds, we apply five statistical methods to expose three methodological pitfalls (method sensitivity, spurious regression, and regime dependence) and propose the Multi-Method Consensus Test (MMCT), a formal FPR-inverse-weighted consensus framework inspired by specification curve analysis~\\cite{simonsohn2020specification}.\nAn extended eight-point regime map ($\\alpha \\in \\{0.00, 0.05, 0.10, 0.25, 0.50, 0.60, 0.75, 1.00\\}$) reveals a canary blind spot: at $\\alpha{=}0.10$, diversity has already collapsed measurably but canary metrics remain at null levels, which places a detection lower bound at $\\alpha{\\geq}0.25$.\nWe identify token entropy as a robust one-generation-ahead canary for diversity collapse and demonstrate that canary-triggered predictive intervention reduces peak perplexity by 63\\% and accelerates recovery by two generations compared to reactive approaches.\nCross-architecture validation on GPT-2-medium and OPT-1.3B confirms that these findings transfer beyond the primary experimental platform.\nGranger precedence in our framework establishes temporal predictive improvement, not true causality~\\cite{shojaie2022granger}; our canary claim is scoped to diversity metrics, not model collapse broadly.\nTo our knowledge, this constitutes the first multiverse-style analysis of lead-lag claims in model collapse: the same dataset, analyzed with five methods across six contamination regimes, yields conclusions that span the full spectrum from universal significance to complete null.\n\nOur contributions are:\n\\begin{enumerate}\n    \\item \\textbf{Systematic exposure of three methodological pitfalls and a consensus resolution} (\\S\\ref{sec:method}, \\S\\ref{sec:method_sensitivity}).\n    Method choice alone inflates spurious-signal rates to at least 62.5\\%, with five methods yielding FDR significance rates from 25\\% to 100\\% and inter-method agreement of $\\kappa{=}0.185$.\n    First-differencing eliminates canary$\\to$perplexity associations entirely ($F{\\approx}0$, $p{=}0.99$); they are artifacts of co-trending, not genuine temporal precedence.\n    The same Granger test shifts from 24/24 FDR-significant pairs to 0/8 across contamination levels.\n    To resolve these pitfalls, we propose MMCT: the standard $K{\\geq}4/5$ uniform threshold yields $p{=}0.16$ under null-calibrated testing, while MMCT's pair-level FPR-inverse weighting achieves FPR${=}$0\\% and 79.2\\% detection at $\\alpha{=}0.75$, a $9.5{\\times}$ improvement over the uniform threshold's 8.3\\%.\n    Shapley-value decomposition (exact 32-coalition enumeration) identifies naive cross-correlation as the sole FPR driver (Shapley(FPR)${=}{+}0.348$) and permutation Granger as the strongest suppressor (Shapley(FPR)${=}{-}0.194$).\n\n    \\item \\textbf{Regime-dependent detectability with a canary blind spot} (\\S\\ref{sec:regime}).\n    An eight-point regime map ($\\alpha \\in \\{0.00, 0.05, 0.10, 0.25, 0.50, 0.60, 0.75, 1.00\\}$) reveals that permutation Granger follows a step function (0/24 at $\\alpha{\\leq}0.25$, 24/24 at $\\alpha{=}1.0$), while MMCT exhibits gradual dose-response (43.8\\%$\\to$58.3\\%$\\to$79.2\\% detection at $\\alpha{=}0.25/0.50/0.75$).\n    At $\\alpha{=}0.10$, a canary blind spot emerges: diversity has already collapsed (distinct-1 drops 39.6\\%) but canary metrics remain indistinguishable from the null condition (entropy differs by less than one percentage point).\n    These results place a lower bound on reliable detection at $\\alpha{\\geq}0.25$.\n\n    \\item \\textbf{Token entropy as a one-generation-ahead canary for diversity collapse} (\\S\\ref{sec:case_study}, \\S\\ref{sec:generalization}).\n    At $\\alpha{=}1.0$, the full consensus pipeline confirms directional asymmetry: 24/24 forward-direction pairs are FDR-significant and 0/24 in the reverse direction, across four methods and four seeds.\n    Cross-architecture replication on GPT-2-medium and OPT-1.3B confirms the pattern.\n    At $\\alpha{=}0.75$, three-seed replication yields 19/24 forward and 0/24 reverse (permutation Granger), with transitional consensus (Tier~2--3).\n    This claim is scoped to diversity metrics (distinct-$n$); the perplexity channel is spurious.\n\n    \\item \\textbf{Canary-based early intervention} (\\S\\ref{sec:intervention}).\n    As a practical demonstration, we compare predictive intervention (triggered when token entropy drops ${>}15\\%$) against reactive intervention (triggered when distinct-1 drops ${>}10\\%$).\n    The predictive trigger fires one generation earlier, reduces peak perplexity by 63\\% (56.99 vs.\\ 157.09), and achieves full recovery two generations faster (Generation~2 vs.\\ Generation~4).\n    This result is validated at $\\alpha{=}1.0$ across two seeds (s42 fp32, s43 bf16).\n\\end{enumerate}\n\nThe remainder of this paper is organized as follows.\n\\S\\ref{sec:related_work} surveys related work on model collapse, early-warning signals, and lead-lag methodology.\n\\S\\ref{sec:background} establishes the formal setup, notation, and the five detection methods used throughout.\n\\S\\ref{sec:method} distills the three methodological pitfalls into a unified diagnostic framework, presents the multi-method consensus pipeline, and reports its empirical calibration.\n\\S\\ref{sec:experiments} provides full experimental results: method sensitivity analysis (\\S\\ref{sec:method_sensitivity}), regime-dependent detectability (\\S\\ref{sec:regime}), canary prediction of diversity collapse (\\S\\ref{sec:case_study}), consensus framework validation (\\S\\ref{sec:consensus_validation}), cross-architecture generalization (\\S\\ref{sec:generalization}), and canary-based early intervention (\\S\\ref{sec:intervention}).\n\\S\\ref{sec:discussion} discusses implications and future directions, and \\S\\ref{sec:conclusion} concludes, followed by a dedicated Limitations section (\\S\\ref{sec:limitations}).\n"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T04:39:53.494716+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260519T042917",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T04:39:53.494881+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260519T042917",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "—",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/introduction.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T04:39:53.495014+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260519T042917",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T04:39:53.495134+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260519T042917",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": " – ",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/introduction.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T04:39:53.495266+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260519T042917",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T04:39:53.495387+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260519T042917",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "ing,",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/introduction.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T04:39:53.495504+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "27:We address these gaps through a multiverse-style analysis~\\cite{bell2022modeling,kapoor2024reforms} of canary prediction of diversity collapse, the progressive loss of lexical diversity (as measured by distinct-$n$~\\cite{li2016diversity}) across training generations.\n39:    First-differencing eliminates canary$\\to$perplexity associations entirely ($F{\\approx}0$, $p{=}0.99$); they are artifacts of co-trending, not genuine temporal precedence.\n41:    To resolve these pitfalls, we propose MMCT: the standard $K{\\geq}4/5$ uniform threshold yields $p{=}0.16$ under null-calibrated testing, while MMCT's pair-level FPR-inverse weighting achieves FPR${=}$0\\% and 79.2\\% detection at $\\alpha{=}0.75$, a $9.5{\\times}$ improvement over the uniform threshold's 8.3\\%."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260519T042917",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T04:39:53.495620+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260519T042917",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "delve|leverage|utilize|facilitate|myriad|plethora|Notably|It is worth noting",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/introduction.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T04:39:53.495730+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260519T042917",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T04:39:53.495894+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260519T042917",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/introduction.tex | sed 's/\\\\[a-zA-Z]*{[^}]*}//g; s/\\\\[a-zA-Z]*//g; s/\\$[^$]*\\$//g; s/[{}~]//g; s/  */ /g' | wc -w",
+              "description": "Rough word count excluding LaTeX commands"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T04:39:53.496020+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1044"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260519T042917",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T04:39:53.496153+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260519T042917",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T04:39:53.496330+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tWhen language models train iteratively on their own output, the training distribution progressively loses its tail modes, a phenomenon termed model collapse~\\cite{shumailov2024curse,alemohammad2024mad}.\n5\tLexical diversity narrows, calibration deteriorates, and each generation inherits the systematic biases of its predecessors.\n6\tAs machine-generated text becomes prevalent on the web, such feedback loops pose a growing and often invisible risk to production training pipelines.\n7\tBy the time standard quality metrics register degradation, the underlying distribution may have already shifted irreversibly.\n8\tThis threat motivates the search for cheap-to-compute \\emph{canary metrics}: leading indicators that signal distributional degradation before expensive downstream measures reveal the full extent of collapse.\n9\tThe concept parallels early-warning signals for critical transitions in ecological systems~\\cite{scheffer2009early,scheffer2012anticipating}, where proxy indicators allow intervention before a tipping point.\n10\tSeveral recent studies have pursued this direction: \\citet{du2026geometric} observe that calibration error rises before accuracy degrades, SIGMA~\\cite{sigma2026spectral} proposes spectral indicators, and DCES~\\cite{dces2026counter} uses center-edge sampling dynamics as a collapse signal.\n11\t\n12\tYet the statistical methodology underlying these lead-lag claims has received little scrutiny.\n13\tWhether a candidate canary genuinely \\emph{precedes} downstream degradation, or merely correlates with it under shared non-stationary trends, is a question that existing analyses leave unresolved.\n14\tIterative training produces short, noisy time series (often fewer than 15 points per generation sequence), where detection power drops sharply and false positive rates can be high~\\cite{boettiger2012limits}.\n15\tIn the absence of proper controls, the choice of statistical method alone can shift conclusions on the sa\n…[truncated 7871 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260519T042917",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T04:39:53.496513+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Introduction 已重写完成。~1044 words，结构为：\n\n1. **P1 背景** (L4-10): model collapse + canary metrics 动机 + 现有尝试 (du2026geometric, SIGMA, DCES)\n2. **P2 问题重要性** (L12-16): 方法论缺乏审视，短时序 + 假阳性风险\n3. **P3 四项缺陷** (L18-25): 4 deficiencies + closest predecessor (du2026geometric) + ecological framework gap\n4. **P4 核心方案** (L27-33): multiverse analysis + 3 pitfalls + MMCT + blind spot + intervention + causality caveat + diversity-only scope\n5. **贡献列表** (L36-59): Claim 3→2→1→4 顺序，含 MMCT/Shapley/regime map/blind spot/canary/intervention 全部数字\n6. **Roadmap** (L61-66): 新增 `\\S{sec:intervention}`\n\n风格检查通过：无 em-dash，无解释性 en-dash，无 -ing phrase endings，无黑名单词，FDR 首次出现已展开定义。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260519T042917"
+          },
+          "id": "event-000031"
+        }
+      ],
+      "message_count": 31
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing.md"
+}

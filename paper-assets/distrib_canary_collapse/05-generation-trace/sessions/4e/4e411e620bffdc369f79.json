@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e411e620bffdc369f79",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis d102 14b t10a050",
+  "task_key": "worker_analysis_d102-14b-t10a050_20260522T174243",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d102-14b-t10a050_20260522T174243_result.json",
+    "occurrence": 1,
+    "bytes": 1545,
+    "sha256": "cd216f1c70dfd6b9407e57fe506ac892c7469ebf08a79de7af83d1fed19bc067"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果汇报：\n\n```\nPermG fwd: 3/8  (FDR-corrected)\nPermG rev: 0/8\nMethod comparison:\n  naive_xcorr_D111:     4/8\n  diff_xcorr_fdr:       0/8\n  threshold_onset:      0/8\n  PermG_fdr:            3/8\n  TY_granger:           1/8\nK≥3 consensus:          0/8\n```\n\n**PermG FDR p-values (forward):**\n\n| Pair | F-stat | p_raw | p_fdr | sig_fdr |\n|------|--------|-------|-------|---------|\n| token_entropy→distinct_1 | 367.36 | 0.0302 | 0.0604 | No |\n| token_entropy→distinct_2 | 107.64 | 0.0486 | 0.0604 | No |\n| token_entropy→distinct_3 | 22.02 | 0.0558 | — | No |\n| token_entropy→mauve | 0.22 | 0.6697 | — | No |\n| ece→distinct_1 | 448.69 | 0.0036 | **0.0144** | **Yes** |\n| ece→distinct_2 | 443.09 | 0.0044 | **0.0144** | **Yes** |\n| ece→distinct_3 | 69.41 | 0.0068 | **0.0144** | **Yes** |\n| ece→mauve | 0.19 | 0.7211 | — | No |\n\n**关键发现 — onset boundary 在 1.4B 不一致：**\n\n- **410M α=0.50 s42**: PermG fwd = **6/8**, K≥3 = robust\n- **1.4B α=0.50 s42**: PermG fwd = **3/8**, K≥3 = **0/8**\n\n仅 ece→distinct_{1,2,3} 通过 FDR 校正（全部来自 ece canary）。token_entropy 两个 pair 原始 p 值 <0.05 但 FDR 后失去显著性。threshold_onset 全部失败（downstream 均无 3σ 突破）。mauve pair 完全无信号。\n\n**解读**：1.4B 在 α=0.50 处信号显著弱于 410M——α_c(onset) 随 scale 上移。这意味着更大模型对 50% 合成数据混合更具抗性，onset boundary 不是 scale-invariant 的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d102-14b-t10a050.md"
+}

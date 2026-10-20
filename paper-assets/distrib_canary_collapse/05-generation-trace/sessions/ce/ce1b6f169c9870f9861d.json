@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ce1b6f169c9870f9861d",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis d111 direction check 69b qwen",
+  "task_key": "worker_analysis_d111_direction_check_69b_qwen_20260520T073057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d111_direction_check_69b_qwen_20260520T073057_result.json",
+    "occurrence": 1,
+    "bytes": 2766,
+    "sha256": "0e433a55a3b751952eddd2a65ea510c71886ecafccc01750f87fd0d3815dbecd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## D120 Canonical 分析结果\n\n### 1. Pythia-6.9B s42 (`scale_check/pythia69b_wiki_a100_s42`)\n\n| Method | /8 |\n|---|---|\n| PermG_fwd (FDR) | 7/8 |\n| PermG_rev | 0/8 |\n| Diff XCorr (FDR) | 6/8 |\n| Naive XCorr | 5/8 |\n| Threshold Onset | 2/8 |\n| TY Granger | 1/8 |\n| **K≥3** | **5/8** |\n| **K≥4** | **0/8** |\n\n```\n5-Method Lead-Lag Analysis Summary\nAlpha=1.0, Seed=42, Generations=11\n============================================================\n\nRobust pairs (>=3/5 methods agree): 5/8\n\nPer-method forward significance:\n  Perm Granger (FDR): 7/8\n  Diff XCorr (FDR):   6/8\n  Threshold Onset:    2/8\n  TY Granger:         1/8\n\nConsensus detail:\n  token_entropy<distinct_1  3/5  [naive, diff, perm]\n  token_entropy<distinct_2  3/5  [naive, diff, perm]\n  token_entropy<distinct_3  2/5  [diff, perm]\n  token_entropy<mauve       2/5  [threshold, ty]\n  ece<distinct_1            3/5  [naive, diff, perm]\n  ece<distinct_2            3/5  [naive, diff, perm]\n  ece<distinct_3            3/5  [naive, diff, perm]\n  ece<mauve                 2/5  [threshold, perm]\n```\n\n### 2. Qwen3.5-0.8B s42 (`generalize/qwen35_08b_wiki_a100_s42_fp32_v2`)\n\n| Method | /8 |\n|---|---|\n| PermG_fwd (FDR) | 8/8 |\n| PermG_rev | 0/8 |\n| Diff XCorr (FDR) | 8/8 |\n| Naive XCorr | 4/8 |\n| Threshold Onset | 0/8 |\n| TY Granger | 6/8 |\n| **K≥3** | **6/8** |\n| **K≥4** | **3/8** |\n\n```\n5-Method Lead-Lag Analysis Summary\nAlpha=1.0, Seed=42, Generations=11\n============================================================\n\nRobust pairs (>=3/5 methods agree): 6/8\n\nPer-method forward significance:\n  Perm Granger (FDR): 8/8\n  Diff XCorr (FDR):   8/8\n  Threshold Onset:    0/8\n  TY Granger:         6/8\n\nConsensus detail:\n  token_entropy<distinct_1  3/5  [diff, perm, ty]\n  token_entropy<distinct_2  3/5  [diff, perm, ty]\n  token_entropy<distinct_3  3/5  [diff, perm, ty]\n  token_entropy<mauve       2/5  [diff, perm]\n  ece<distinct_1            4/5  [naive, diff, perm, ty]\n  ece<distinct_2            4/5  [naive, diff, perm, ty]\n  ece<distinct_3            4/5  [naive, diff, perm, ty]\n  ece<mauve                 2/5  [naive, perm]\n```\n\n### 旧值 vs 新值对比\n\n| 实验 | 旧 K≥3 | 新 K≥3 (D120) | 变化 |\n|---|---|---|---|\n| Pythia-6.9B s42 | 8/8 | **5/8** | **-3** |\n| Qwen3.5-0.8B s42 | 8/8 | **6/8** | **-2** |\n\n**差异原因**: D111 direction fix（`peak_lag < 0` 才算 forward causation）过滤掉了 naive xcorr 中 lag>0 的伪正向显著。两个 mauve 对几乎全部失去 consensus（Threshold Onset 在 11 代数据上极少触发 3σ）。核心 distinct_1/2/3 对仍保持 K≥3，overall pattern 不变——canary 确实 lead downstream，只是 mauve 对信号偏弱。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d111-direction-check-69b-qwen.md"
+}

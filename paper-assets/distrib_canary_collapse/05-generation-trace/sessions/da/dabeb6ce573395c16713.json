@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dabeb6ce573395c16713",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "research alt small models 2025",
+  "task_key": "worker_research_alt_small_models_2025_20260518T182125",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_alt_small_models_2025_20260518T182125_result.json",
+    "occurrence": 1,
+    "bytes": 4289,
+    "sha256": "9489af02c2be7cac39484f6cea2731a6cf317495a3c18cac0eafb4e9a311b791"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "搜索完成。以下是按推荐度排序的候选列表。\n\n---\n\n## 候选模型列表\n\n### 1. Qwen3-1.7B-Base ⭐ 首选推荐\n\n| 项目 | 信息 |\n|------|------|\n| HuggingFace ID | `Qwen/Qwen3-1.7B-Base` |\n| 参数量 | 1.7B |\n| 发布日期 | 2025-04-28 |\n| 许可证 | Apache 2.0 |\n| 纯文本 decoder-only | 是 |\n| Base 版本 | 是 |\n| Tokenizer | Qwen 自研, vocab ~151K |\n| 训练数据 | 18T tokens (119 languages) |\n| 上下文 | 32K |\n\n**推荐理由**: 参数量适中(1.7B)，训练数据充足(18T tokens)，Apache 2.0 完全开源，性能超越 Qwen2.5-3B。对 iterative model collapse 实验来说，1.7B 训练迭代速度比 3B 快约 40%，是最佳平衡点。\n\n---\n\n### 2. Qwen3-0.6B-Base\n\n| 项目 | 信息 |\n|------|------|\n| HuggingFace ID | `Qwen/Qwen3-0.6B-Base` |\n| 参数量 | 0.6B |\n| 发布日期 | 2025-04-28 |\n| 许可证 | Apache 2.0 |\n| 纯文本 decoder-only | 是 |\n| Base 版本 | 是 |\n| Tokenizer | 同 Qwen3 系列, vocab ~151K |\n| 训练数据 | 18T tokens |\n| 上下文 | 32K |\n\n**适用场景**: 需要更快实验迭代速度的场景。作为 ablation 或 pilot 实验的低成本选择。\n\n---\n\n### 3. SmolLM3-3B-Base\n\n| 项目 | 信息 |\n|------|------|\n| HuggingFace ID | `HuggingFaceTB/SmolLM3-3B-Base` |\n| 参数量 | 3B |\n| 发布日期 | 2025-07-08 |\n| 许可证 | Apache 2.0 |\n| 纯文本 decoder-only | 是 (GQA + NoPE) |\n| Base 版本 | 是 |\n| Tokenizer | SentencePiece, vocab 128K |\n| 训练数据 | 11.2T tokens |\n| 上下文 | 64K (YARN 扩展至 128K) |\n\n**适用场景**: 如需接近 Gemma 4 E2B 的参数规模(~3B vs 5.1B)。缺点是 3B 在 iterative 实验中训练成本更高。\n\n---\n\n### 4. OLMo-2-0425-1B\n\n| 项目 | 信息 |\n|------|------|\n| HuggingFace ID | `allenai/OLMo-2-0425-1B` |\n| 参数量 | 1.1B |\n| 发布日期 | 2025-05-01 |\n| 许可证 | Apache 2.0 |\n| 纯文本 decoder-only | 是 |\n| Base 版本 | 是 |\n| Tokenizer | GPT-NeoX 系列 |\n| 训练数据 | 大规模 (OLMo-mix-1124, 5T+ family) |\n| 上下文 | 4K (默认) |\n\n**特点**: 完全开源（数据+代码+权重+中间 checkpoint），可复现性最强。缺点是上下文窗口较短，性能可能弱于 Qwen3 同规模。\n\n---\n\n### 5. Gemma 3 1B PT\n\n| 项目 | 信息 |\n|------|------|\n| HuggingFace ID | `google/gemma-3-1b-pt` |\n| 参数量 | 1B |\n| 发布日期 | 2025-03 |\n| 许可证 | **Gemma Terms of Use**（非 Apache 2.0，有商用限制） |\n| 纯文本 decoder-only | 是 (1B 版本为纯文本) |\n| Base 版本 | 是 (pt = pretrained) |\n| Tokenizer | SentencePiece, vocab 256K |\n| 训练数据 | 2T tokens |\n| 上下文 | 32K |\n\n**注意**: Gemma 3 仍使用 Google 自定义许可证（有商用限制和 MAU 门槛），Gemma 4 才切换到 Apache 2.0。如果许可证不是硬性要求，这个模型是 Gemma 家族内最佳替代。\n\n---\n\n## 排除的模型\n\n| 模型 | 排除原因 |\n|------|----------|\n| Gemma 4 E2B | 多模态 (text+vision+audio), 5.1B，无纯文本 base 版 |\n| Phi-4-mini | 3.8B 略超范围，**无 base 版本**（仅 instruct/reasoning） |\n| Llama 3.2 1B/3B | 2024-09 发布，早于 2025-01 截止线 |\n| Qwen3.5 小模型 | 尚未发布（目前仅有 27B+） |\n\n---\n\n## 建议\n\n对于 iterative model collapse 实验，**`Qwen/Qwen3-1.7B-Base`** 是最佳选择：\n- Apache 2.0 无限制\n- 1.7B 参数在单卡上训练迭代快\n- 18T tokens 预训练确保起始质量高\n- 纯文本 decoder-only base model，无 instruction tuning 干扰\n\n如需更小的 pilot 实验用 `Qwen3-0.6B-Base`，需更大模型用 `SmolLM3-3B-Base`。\n\nSources:\n- [Qwen3-0.6B-Base](https://huggingface.co/Qwen/Qwen3-0.6B-Base)\n- [Qwen3-1.7B](https://huggingface.co/Qwen/Qwen3-1.7B)\n- [Qwen3 Blog](https://qwenlm.github.io/blog/qwen3/)\n- [SmolLM3-3B-Base](https://huggingface.co/HuggingFaceTB/SmolLM3-3B-Base)\n- [SmolLM3 Blog](https://huggingface.co/blog/smollm3)\n- [OLMo-2-0425-1B](https://huggingface.co/allenai/OLMo-2-0425-1B)\n- [Gemma 3 1B PT](https://huggingface.co/google/gemma-3-1b-pt)\n- [Gemma 4 Apache 2.0 License](https://www.mindstudio.ai/blog/gemma-4-apache-2-license-commercial-use)\n- [Gemma 4 HuggingFace Blog](https://huggingface.co/blog/gemma4)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-alt-small-models-2025.md"
+}

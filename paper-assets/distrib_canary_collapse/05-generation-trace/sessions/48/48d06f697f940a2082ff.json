@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "48d06f697f940a2082ff",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diag westd19828 smollm3 check",
+  "task_key": "worker_diag_westd19828_smollm3_check_20260518T220442",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_westd19828_smollm3_check_20260518T220442_result.json",
+    "occurrence": 1,
+    "bytes": 675,
+    "sha256": "5dc7eea957fc4d5fa11f68e0c0e68360cb3f8ded38871ff6af382ac8ab84a1cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。两个实验状态汇总：\n\n### cuda:1 — SmolLM3-3B fp32 (`smollm3_3b_wiki_a100_s42_v2`)\n- **状态**: RUNNING（registry 已从 PREPARING 更新）\n- **进度**: Generation 0 (baseline)，正在生成合成数据\n- **GPU**: 45174 MiB / 95% 利用率\n- **输出目录**: 仅有 config.json，尚无 gen 目录\n\n### cuda:0 — Pythia-14B scale check (`scale_14b_a050_s42`)\n- **状态**: RUNNING\n- **进度**: Generation 8/10，刚完成 gen_7 metrics（ppl=32.04, entropy=2.2222, eff_rank=83.4, mauve=0.0261），正在生成 gen_8 合成数据\n- **GPU**: 37015 MiB / 77% 利用率\n- **输出目录**: gen_0 ~ gen_8 已创建"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-westd19828-smollm3-check.md"
+}

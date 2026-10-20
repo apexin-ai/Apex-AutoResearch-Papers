@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e9ed11d2686f2c11a760",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code d37g task degradation eval",
+  "task_key": "worker_code_d37g_task_degradation_eval_20260521T065805",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d37g_task_degradation_eval_20260521T065805_result.json",
+    "occurrence": 1,
+    "bytes": 1608,
+    "sha256": "2875c8207781b3afdba8f38940db16a3aadd71c0a76c79fbbe6919a92b43dfa2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both dry-runs passed. The degradation signal is already visible even on 2 samples:\n- **Baseline (pretrained)**: PPL=14.63, Acc=0.459, rep_2=0.089\n- **α=0.50 gen_10**: PPL=23.13, Acc=0.427, rep_2=0.142\n\n---\n\n## 汇报\n\n### 脚本\n`/root/autodl-tmp/distrib_canary_collapse/eval_task_degradation.py` — 190 行，三项指标（perplexity, next-token accuracy, repetition rate），支持 `--dry_run`。\n\n### 可用 Checkpoints（s42_fp32 主线，有 gen_10）\n| α | 实验目录 |\n|---|---------|\n| 0.05 | a005_s42_fp32_v3_d080 |\n| 0.10 | a010_s42_fp32 |\n| 0.25 | a025_s42_fp32 |\n| 0.30 | a030_s42_fp32 |\n| 0.35 | a035_s42_fp32 |\n| 0.40 | a040_s42_fp32 |\n| 0.45 | a045_s42_fp32 |\n| 0.46 | a046_s42_fp32 |\n| 0.48 | a048_s42_fp32 |\n| **0.50** | a050_s42_fp32 |\n| 0.52 | a052_s42_fp32 |\n| 0.60 | a060_s42_fp32_v4 |\n| 0.65 | a065_s42_fp32 |\n| 0.70 | a070_s42_fp32 |\n| 0.75 | a075_s42_fp32 |\n\n**+ 3 个 C4 实验** (c4_a025/a050/a075_s42_fp32)，**+ baseline** (results/baseline_pythia410m)。\n\n共 **19 个 checkpoint** 需评估（1 baseline + 15 wikitext α + 3 C4 α）。\n\n### 预估 GPU 时间\n基于 dry-run 外推（CPU 上 2 samples ≈ 14s，GPU 上 500 samples 考虑 batch 并行）：\n- **PPL+Acc (500 samples, batch=8)**: ~15-20s/checkpoint on GPU\n- **Generation (100 samples)**: ~2-3 min/checkpoint on GPU (sequential generation)\n- **总计每 checkpoint**: ~3-4 min\n- **19 checkpoints 总计**: **~60-75 min** on single GPU\n\n### 显存需求\nPythia-410M fp32 = 1.6GB，推理 overhead ~1GB → **~3GB VRAM**，6× 98GB GPU 完全够用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d37g-task-degradation-eval.md"
+}

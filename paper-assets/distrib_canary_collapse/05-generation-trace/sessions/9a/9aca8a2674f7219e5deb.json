@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9aca8a2674f7219e5deb",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops disk cleanup and prep",
+  "task_key": "worker_ops_disk_cleanup_and_prep_20260517T192312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk_cleanup_and_prep_20260517T192312_result.json",
+    "occurrence": 1,
+    "bytes": 2669,
+    "sha256": "a780520f899d35388c8fa5b54c33da855612ff877821e1481176eb8424a1360a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。最终报告：\n\n---\n\n## 磁盘清理报告\n\n### 1. 清理前后对比\n\n| | Size | Used | Avail | Use% |\n|---|---|---|---|---|\n| **清理前** | 250G | 250G | 484K | 100% |\n| **清理后** | 250G | 59G | 192G | 24% |\n\n**总释放：~191GB**\n\n### 2. 清理明细\n- generalize/ 3个 DONE 实验 gen_1~gen_9 的 checkpoint/synthetic_data/trainer/（~90GB）\n- alpha_sweep/ 11个 DONE 实验 gen_1~gen_9 同上（~80GB）\n- pythia14b gen_1~gen_5 大文件 + 不完整 gen_7（~27GB）\n- HF cache 中未使用的 gpt2-large + gpt2-medium（~4.6GB）\n- 所有 metrics.json、gen_0、gen_10 均保留\n\n### 3. Pythia-1.4B gen_6 checkpoint 状态\n**完整**。包含 `model-00001-of-00002.safetensors`、`model-00002-of-00002.safetensors`、config.json、tokenizer 文件。metrics.json 记录了 gen_6 指标（ppl=406.49, mauve=0.029, eff_rank=104.4）。\n\nEXIT_CODE 确认崩溃原因：`Error while serializing: I/O error: No space left on device (os error 28)`（gen_7 保存 checkpoint 时磁盘满）。\n\n### 4. iterative_train.py resume 支持\n**不支持自动 resume**。脚本从 gen_0 开始，无 `--start_gen` 参数。恢复需要修改脚本添加 resume 逻辑（检测已有 gen 并从 gen_6/checkpoint 加载模型继续 gen_7~10）。\n\n### 5. C4 数据目录\n`/root/autodl-tmp/distrib_canary_collapse/data/c4_5k/`（含 train/, eval/, prompts/）\n\n### 6. 模型本地路径\n- Pythia-1.4B: `/root/autodl-tmp/.hf_cache/pythia-1.4b-local/`（5.5GB）\n- Pythia-1B: `/root/autodl-tmp/.hf_cache/pythia-1b-local/`（2.0GB）\n\n### 7. 推荐启动命令\n\n**Pythia-1.4B 恢复**（需先给 iterative_train.py 添加 `--start_gen` 支持）：\n```bash\ncd /root/autodl-tmp/distrib_canary_collapse\npython iterative_train.py \\\n  --model_name results/generalize/pythia14b_wiki_a100_s42/gen_6/checkpoint \\\n  --data_dir data/wikitext103_5k \\\n  --output_dir results/generalize/pythia14b_wiki_a100_s42 \\\n  --num_generations 10 --steps_per_gen 5000 \\\n  --synthetic_ratio 1.0 --seed 42 --batch_size 4 \\\n  --start_gen 7\n```\n\n**C4 seed-43 新实验**：\n```bash\ncd /root/autodl-tmp/distrib_canary_collapse\npython iterative_train.py \\\n  --model_name /root/autodl-tmp/.hf_cache/pythia-1b-local \\\n  --data_dir data/c4_5k \\\n  --output_dir results/generalize/pythia1b_c4_a100_s43 \\\n  --num_generations 10 --steps_per_gen 5000 \\\n  --synthetic_ratio 1.0 --seed 43 --batch_size 4\n```\n\n> **注意**: Pythia-1.4B 恢复需要先修改 `iterative_train.py` 添加 `--start_gen` 参数，使其跳过已完成的 gen 并从指定 checkpoint 加载模型。当前脚本不支持此功能。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-and-prep.md"
+}

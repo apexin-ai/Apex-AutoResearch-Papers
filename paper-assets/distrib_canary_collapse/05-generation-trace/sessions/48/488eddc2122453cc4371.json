@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "488eddc2122453cc4371",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis null fpr batch d102",
+  "task_key": "worker_analysis_null_fpr_batch_d102_20260524T061916",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_null_fpr_batch_d102_20260524T061916_result.json",
+    "occurrence": 1,
+    "bytes": 944,
+    "sha256": "5ac0c047d124f301d98e85b0490e4a3b54c5976388d47c93a4bef9ff5ac417b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n## Null FPR D102 分析结果（α=0.00, pythia-410m, T=10）\n\n| Seed | PermG fwd | PermG rev | Robust K≥3 |\n|------|-----------|-----------|------------|\n| s46  | 0/6       | 0/6       | 1/6        |\n| s48  | 0/6       | 0/6       | 0/6        |\n| s49  | 0/6       | 0/6       | 0/6        |\n| s50  | **2/6**   | 0/6       | **2/6**    |\n\n**Pooled PermG forward FPR**: 2/24 = 8.3%（仅 s50 贡献，token_entropy→distinct_1 和 token_entropy→distinct_2 各 3/5 votes）\n\n**Pooled Robust K≥3 FPR**: 3/24 = 12.5%\n\ns50 是异常值——两对 token_entropy→distinct_{1,2} 在 perm+ty+naive 三法一致显著，可能值得进一步审视。\n\n## gpt2m 进度\n- s42: gen_0–gen_7（8/11）\n- s43: gen_0–gen_7（8/11）\n- 仍在训练中\n\n## 已完成\n- 4 个 JSON 已保存到本地 artifacts/\n- 4 个 artifact 已 register\n- Registry 4 条已更新为 DONE(success)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-null-fpr-batch-d102.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "35d321deb0447f750973",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "research verify cao venue",
+  "task_key": "worker_research_verify_cao_venue_20260515T213048",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_verify_cao_venue_20260515T213048_result.json",
+    "occurrence": 1,
+    "bytes": 650,
+    "sha256": "a1c1941eaa65e28d0a3bbe4713815a6efa963be4f2d963e6f0f8edb535f278a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Confirmed NeurIPS 2025.** NeurIPS 官方虚拟会议页面有该论文的 poster 页（poster #119303），OpenReview 也有对应条目。\n\n推荐 bib entry：\n\n```bibtex\n@inproceedings{cao2025entropycal,\n  title={On the Entropy Calibration of Language Models},\n  author={Cao, Steven and Valiant, Gregory and Liang, Percy},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2025}\n}\n```\n\nSources:\n- [NeurIPS Poster Page](https://neurips.cc/virtual/2025/loc/san-diego/poster/119303)\n- [OpenReview](https://openreview.net/forum?id=CGLoEvCllI)\n- [arXiv](https://arxiv.org/abs/2511.11966)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-verify-cao-venue.md"
+}

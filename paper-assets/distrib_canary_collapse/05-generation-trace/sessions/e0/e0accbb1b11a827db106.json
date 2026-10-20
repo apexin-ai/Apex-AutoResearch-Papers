@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "e0accbb1b11a827db106",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "analysis intervention leadlag",
+  "task_key": "worker_analysis_intervention_leadlag_20260519T044711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_intervention_leadlag_20260519T044711.log",
+    "occurrence": 1,
+    "bytes": 631358,
+    "sha256": "dee18e1930d860d0796d922e4301da21d16bcb20794d23c9e376f199a1e599fa"
+  },
+  "statistics": {
+    "messages": 200,
+    "user_turns": 0,
+    "tool_calls": 75,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 46,
+      "tool_call": 75,
+      "tool_result": 75,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 200,
+      "chunks": [
+        {
+          "path": "e0accbb1b11a827db106-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e0accbb1b11a827db106-part-0002.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-intervention-leadlag.md"
+}

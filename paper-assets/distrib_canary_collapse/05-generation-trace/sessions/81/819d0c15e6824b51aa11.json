@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "819d0c15e6824b51aa11",
+  "project": "distrib_canary_collapse",
+  "kind": "history",
+  "title": "agent / loop_17_1779490920.md",
+  "task_key": "loop_17_1779490920",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_17_1779490920.md",
+    "occurrence": 1,
+    "bytes": 4761,
+    "sha256": "c2d4028ad504fd1b337cd656dd74ca8e40f1aea1c04651bee9cd3cab4c1f3060"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 17\nreason: idle_timeout\nupdated: '2026-05-22T23:01:58+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-17855 cuda:0-5，westd-19828 cuda:0-1。白名单外的 GPU 即使 Director 指令也必须 push back\n- d102 分析脚本唯一有效参数组合：`--downstream mauve --threshold true_3sigma_d105`（M063/M064/M066）。用其他参数会得到错误结果\n- PermG 6/8 是 ceiling（MAUVE bottleneck），旧脚本报 8/8 的结果全部是 bug（M063 修正）\n- fp32 强制用于 ≤3B 模型（D079）\n- 17855 ↔ 19828 SSH 不通，不能跨服务器操作\n- HF_HOME 三件套必带：`HF_HOME=/root/autodl-tmp/.hf_cache && TRANSFORMERS_OFFLINE=1 && HF_HUB_OFFLINE=1`（M060）\n\n### 2. 🖥️ 基础设施快照\n- **westd-17855**（6× RTX PRO 6000 Blackwell 98GB）\n  - 工作目录：`/root/autodl-tmp/distrib_canary_collapse/`\n  - Python：`/root/miniconda3/bin/python`，conda base（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n  - HF cache：`/root/autodl-tmp/.hf_cache`\n  - 磁盘：~816GB/879GB 可用（3% 已用）\n- **westd-19828**（2× RTX PRO 6000 Blackwell 98GB）\n  - 同样路径布局，磁盘 ~817GB/879GB 可用\n- W&B：项目配置中有 entity/project，用 `load_project_config` 获取\n\n### 3. 📊 当前状态\n**刚做完**：收到 cron 回调，phase_diagram_t25_a060_s42_fp32_v3★ 和 phase_diagram_t10_a075_s43_fp32 两个实验进入 ANALYZING。已派出两个 Worker 并行跑 d102 分析，**尚未收到 Worker 回调**。\n\n**ANALYZING（2个，等 Worker 回调）**：\n| exp_id | 关键性 | 预期 |\n|--------|--------|------|\n| phase_diagram_t25_a060_s42_fp32_v3 ★ | **最关键格**：T=25 α=0.60 sync-dip dissolution | 0/8=Scenario B（permanent），>0/8=Scenario A（dissolution）|\n| phase_diagram_t10_a075_s43_fp32 | cross-seed | 期望 s43≈6/8（与 s42 一致）|\n\n**RUNNING（5个）**：\n| exp_id | 服务器:GPU | 摘要 |\n|--------|-----------|------|\n| phase_diagram_t25_a050_s42_fp32_v3 | 17855:0 | T=25 α=0.50，从 gen_13 resume，还需 12 gens |\n| phase_diagram_t15_a075_s43_fp32 | 17855:1 | T=15 α=0.75 cross-seed |\n| phase_diagram_t25_a045_s43_fp32 | 17855:5 | T=25 α=0.45 cross-seed |\n| phase_diagram_t20_a075_s43_fp32 | 17855:4 | T=20 α=0.75 cross-seed |\n| phase_diagram_t25_a075_s43_fp32_v3 | 19828:0 | T=25 α=0.75 cross-seed，从 gen_9 resume |\n\n**异常**：phase_diagram_t10_a050_s43_fp32_v2（19828）reconcile 报 \"Process gone, no sentinel, no W&B — miss 2/5\"——可能需要重启或标记 failed。\n\n**空闲 GPU**：17855:2, 17855:3（t25_a060_v3 刚完成释放），19828:1\n\n### 4. 📋 待办（条件触发式）\n- **Worker 回调 t25_a060_v3 分析完成** → 读 PermG 结果：\n  - PermG=0/8 → Scenario B 确认，update_registry(conclusion=success)，向 Director 汇报 sync-dip permanent + C3 升级叙事（参考 artifacts/D170_narrative_drafts.md）\n  - PermG>0/8 → Scenario A 确认，sync-dip dissolution，α_c 3-point fit 最强叙事\n- **Worker 回调 t10_a075_s43 分析完成** → 期望 6/8，update_registry，更新 Phase Diagram cross-seed 列\n- **t10_a050_s43_v2 miss 达 5/5** → 标记 failed，在 19828 上重新提交 v3（从已有 checkpoint resume）\n- **17855:2 和 17855:3 空闲** → 可安排 PREPARING 中的 scale_14b 系列实验（需 Director 批准 GPU 分配）或其他 cross-seed\n- **Phase Diagram 20/20 全部 DONE** → spawn Worker 生成 heatmap → D170 叙事定稿 → submit_paper_to_review\n\n### 5. 🎯 战略上下文\n- **核心方向**：\"Mapping the Detectability Landscape of Iterative Model Collapse\"——从方法论文转为现象发现论文\n- **Phase Diagram** 是论文核心图表：4×5 的 α×T 网格，每格跑 d102 得 PermG（x/8）\n- **α_c(T) 理论**：α_c(T) = 0.193 + 75.68·T^(-2.41)，R²=0.883，sigmoid k=100 反映 sharp phase transition\n- **Sync-dip**：α≈0.60 处 PermG 跌到 0/8 的非单调异常。T=10/15/20 三个 T 全部 0/8，T=25 是终极测试\n- **D184 重要**：t20_a060_s43 PermG=3/8 打破了 sync-dip 的 seed invariance（s42=0/8 vs s43=3/8）。这意味着 sync-dip 可能是 seed-dependent，叙事需要保守\n- **D186/D187**：C2 sync-dip 叙事已从 \"S×R resonance\" 降级为 \"PermG linearity gap\"，TE 结果确认为 artifact\n- **易错点**：\n  - 不要用旧版分析脚本（会报 8/8），只用 d102 + mauve + true_3sigma_d105\n  - Phase Diagram 中 v2/v3 是 resume 实验，output_dir 不带版本号（如 t25_a060_s42_fp32 不是 t25_a060_s42_fp32_v3）\n  - cross-seed 结果如果与 s42 不一致（如 D184 的 3/8 vs 0/8），不要急着标 negative——seed variance 本身是发现\n  - 6 个 scale_14b 实验在 PREPARING 但还没 GPU 分配，不要自行启动\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-17-1779490920.md"
+}

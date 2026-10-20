@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "993249504b37914ba881",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "infra fix conflict",
+  "task_key": "worker_infra_fix-conflict_20260514T062405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_fix-conflict_20260514T062405_result.json",
+    "occurrence": 1,
+    "bytes": 378,
+    "sha256": "87402614e6938d69d93b946475a2117834caa4821e273539210c5ad29b859fd9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成，汇报如下：\n\n| 项目 | 状态 |\n|------|------|\n| 训练进程 | 全部已 kill，无残留 Python 训练进程 |\n| GPU | 空闲，无 compute 进程占用 |\n| tmux | 已清理，无 sessions |\n| 输出目录 | `rep_42` → `rep_42_v1_partial`，`rep_43` → `rep_43_v1_partial`，原路径已空出 |\n\n可以安全重启 v2 实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-fix-conflict.md"
+}

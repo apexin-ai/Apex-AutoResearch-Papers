@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de68abc952d27f53a2e2",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "debug scale 14b mauve none",
+  "task_key": "worker_debug_scale_14b_mauve_none_20260522T083259",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_scale_14b_mauve_none_20260522T083259_result.json",
+    "occurrence": 1,
+    "bytes": 2373,
+    "sha256": "ba435e54b2e660bda333ec8a4bb7fa36dc08341f6df3f7ba09cda9c66dc52f86"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "19828 离线模式加载成功。\n\n---\n\n## 诊断与修复完成\n\n### 根因\n**MAUVE 库需要 `gpt2-large` 作为 featurizer，但两台 AutoDL 服务器无法连接 HuggingFace，且本地无缓存。** `compute_mauve()` 抛异常 → `compute_all_metrics()` 捕获后设 `metrics[\"mauve\"] = None` → `iterative_train.py` 的 `f\"mauve={metrics['mauve']:.4f}\"` 对 None 调用 `:.4f` 格式化导致 TypeError。\n\n410M 实验不受影响是因为它们之前跑的时候 gpt2-large 已经在缓存中（或者环境不同）。\n\n### 已执行的修复\n\n| 修复项 | westd-17855 | westd-19828 |\n|--------|-------------|-------------|\n| `metrics.py`: mauve 失败改为 `float(\"nan\")` | 已是（之前修过） | 已是（之前修过） |\n| `iterative_train.py`: None 防御 | `.get('mauve', float('nan'))` (之前修过，但有 bug — get 在 key 存在时不用 default；配合 metrics.py 改 nan 后可工作) | 新增 `_mauve_s` None 检查 |\n| 下载 gpt2-large 到 HF 缓存 | ✅ | ✅ |\n| 创建 `HF_HUB_CACHE` 路径 symlink | ✅ | ✅ |\n| 验证离线加载 | ✅ | ✅ |\n\n### 代码 diff\n\n**iterative_train.py (19828)** — line 357-361:\n```diff\n-              f\"mauve={metrics['mauve']:.4f}\")\n+        _mauve_s = f\"{metrics['mauve']:.4f}\" if metrics.get('mauve') is not None else 'N/A'\n+              f\"mauve={_mauve_s}\")\n```\n\n**metrics.py (两台)** — 无需改动，已使用 `float(\"nan\")`。\n\n**文件系统**:\n```\nln -s .hf_cache/hub/models--gpt2-large → .hf_cache/models--gpt2-large\n```\n\n### 运行中实验风险评估\n\n| 实验 | 服务器 | 状态 | 风险 |\n|------|--------|------|------|\n| `t15_a060_s42_fp32_14b` | 17855 | gen 1 训练中 | **低** — 内存中有防御代码 + gpt2-large 已缓存，gen 1+ MAUVE 应正常计算 |\n| `t15_a050_s42_fp32_14b` | 17855 | gen 1 训练中 | **低** — 同上 |\n| `t10_a050_s42_fp32_19828` | 19828 | gen 1 训练中 (~30%) | **中** — 内存中是旧代码（mauve=None 会 crash）。但 gpt2-large 现已缓存，如果 MAUVE 计算成功则不 crash。如果 tokenizer 加载时 hang（无 TRANSFORMERS_OFFLINE），可能卡住 |\n\n### 需要重启的实验\n- `scale_14b_t10_a075_s42_fp32` (17855) — gen 1 crash，checkpoint 已保存，可 `--start_gen 2`\n- `scale_14b_t10_a060_s42_fp32` (17855) — 同上"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-scale-14b-mauve-none.md"
+}

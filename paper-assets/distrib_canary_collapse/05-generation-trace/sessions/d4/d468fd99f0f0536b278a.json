@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d468fd99f0f0536b278a",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops check a050 completion",
+  "task_key": "worker_ops_check-a050-completion_20260515T051335",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-a050-completion_20260515T051335_result.json",
+    "occurrence": 1,
+    "bytes": 759,
+    "sha256": "4f54da8d3b022d60cce08c70e2a3c64249f5501d0e2fb51d55f579d6850b5157"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### a050_s42 (PID 73737, 运行 3h54m)\n- **未完成**，gen_9 正在训练中：**85% (4230/5000 steps)**，~50秒完成训练\n- 训练完还需跑评估生成 metrics，预计 **几分钟内完成**\n- 当前 loss: 0.9378 (step 4200)\n- 无 EXIT_CODE\n\n### plan_006_s42 (PID 68368, 运行 5h33m)\n- gen_0 ~ gen_11 已完成（12/20 代）\n- 当前训练 gen_12：**25% (2532/10000 steps)**，剩余 ~7m50s\n- 当前 loss: 0.0517\n- 按每代 ~10min 估算，还需 **~80 分钟**完成全部 20 代\n\n### GPU\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 89% | 12.5 / 95.6 GB |\n| 1 | 90% | 12.5 / 95.6 GB |\n\na050_s42 几分钟后应该就能拿到 gen_9 metrics，届时可计算 distinct_1 drift。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-a050-completion.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5c9f89d0c3467324b7c",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis c4 cross seed complete",
+  "task_key": "worker_analysis_c4_cross_seed_complete_20260520T041900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_c4_cross_seed_complete_20260520T041900_result.json",
+    "occurrence": 1,
+    "bytes": 933,
+    "sha256": "6a55e5f9ce0a966ff81b8edea09b39e67593acac2f1f6263935169637475f96d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n## 结果\n\n| | c4_a075_s43 | c4_a050_s43 |\n|---|---|---|\n| **PermG fwd** | **8/8** | **8/8** |\n| PermG rev | 0/8 | 1/8 |\n| K≥3 (3σ) | 8/8 | 3/8 |\n| Threshold (3σ) | 0/8 | 0/8 |\n| Naive xcorr (D111) | 8/8 | 4/8 |\n| Diff xcorr (D111) | 8/8 | 6/8 |\n| TY Granger | 1/8 | 0/8 |\n| GPU hours | 4.16h | 4.20h |\n| **Status** | DONE (success) | DONE (success) |\n\n## Cross-seed 对比 (s42 vs s43)\n\n- **PermG 完全 seed-robust**: 4/4 实验均 8/8 forward\n- α=0.75: K≥3 从 6/8 提升到 8/8\n- α=0.50: K≥3 从 6/8 降至 3/8（onset regime 信号弱，threshold 检测 seed 敏感）\n- Drift 幅度跨 seed 一致（±3pp 以内），collapse 轨迹确定性强\n- D105 true 3σ threshold 对 C4 域系统性为 0/8——C4 downstream drift 幅度不足以过 3σ\n\n已完成：Registry 更新为 DONE、分析报告已注册为 artifact、westd-19828 双卡已释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-c4-cross-seed-complete.md"
+}

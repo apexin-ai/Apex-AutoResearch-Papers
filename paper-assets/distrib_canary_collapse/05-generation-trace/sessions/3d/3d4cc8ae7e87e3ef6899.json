@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d4cc8ae7e87e3ef6899",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis d120 full rerun ty fixed",
+  "task_key": "worker_analysis_d120_full_rerun_ty_fixed_20260520T062434",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d120_full_rerun_ty_fixed_20260520T062434_result.json",
+    "occurrence": 1,
+    "bytes": 601,
+    "sha256": "eaee894e6a273f77cfe018f211d65152d0d6bf46b7ac540ca494f09fe233859c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。核心结果：\n\n**验证通过**: a050_s42_fp32 TY=3/8, K≥3=6/8 ✓\n\n**TY 修复影响**:\n- 13/17 实验 TY 非零（修复前全部 0/8）\n- K≥3 在 6/17 实验中升高（最大 +3 在 c4_a025）\n- K≥4 在 4/17 实验中升高（a075 和 c4_a075 各 +3）\n- **dose-response 定性结论不变**：低α弱信号 → 高α强信号的梯度模式保持\n- TY 种子波动大（α=0.50: s42→3/8, s43→0, s44→0），与 C003 约束一致——TY 适合作共识贡献者，不宜单独使用\n\n报告已注册: `artifacts/d120_ty_fixed_full_rerun/report.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d120-full-rerun-ty-fixed.md"
+}

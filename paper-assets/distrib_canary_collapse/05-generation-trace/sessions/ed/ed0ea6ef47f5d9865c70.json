@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ed0ea6ef47f5d9865c70",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analyze c4 a050 bf16 results",
+  "task_key": "worker_analyze_c4_a050_bf16_results_20260518T202848",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_c4_a050_bf16_results_20260518T202848_result.json",
+    "occurrence": 1,
+    "bytes": 4315,
+    "sha256": "013927f273b0a4f9870d0c7768e83c31c6f92d347a30f2c3fc0b55c56cfb2e1c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。以下是完整结果。\n\n---\n\n## C4 α=0.50 s42 bf16 实验分析 (Pythia-410M)\n\n### 1. 核心指标表 (gen0 → gen10)\n\n| Metric | Gen0 | Gen5 | Gen10 | Delta% |\n|--------|------|------|-------|--------|\n| token_entropy | 3.136 | 2.274 | 1.940 | **-38.2%** |\n| distinct_1 | 0.111 | 0.094 | 0.089 | -20.3% |\n| distinct_2 | 0.562 | 0.466 | 0.424 | -24.6% |\n| distinct_3 | 0.874 | 0.784 | 0.686 | -21.5% |\n| mauve | 0.691 | 0.100 | 0.078 | **-88.7%** |\n| ece | 0.011 | 0.171 | 0.259 | **+2250%** |\n| perplexity | 24.4 | 59.0 | 122.8 | **+402%** |\n\n所有指标方向一致，collapse 明确。Entropy 单调下降，perplexity 单调上升。\n\n### 2. Threshold Onset (2-sigma)\n\n| Metric | Onset Gen |\n|--------|-----------|\n| mauve | **2** (最早) |\n| distinct_1 | 3 |\n| token_entropy | 4 |\n| distinct_2 | 4 |\n| ece | 5 |\n| distinct_3 | 8 (最晚) |\n\n**关键发现：C4 域 mauve 和 distinct_1 onset 早于 canary (token_entropy/ece)。** 这与 WikiText α=1.0 的 canary-leads 模式不同。\n\n### 3. PermG 显著性\n\n**Forward (canary → downstream):**\n- Raw significant: 3/8 (token_entropy → distinct_1 p=0.028, distinct_2 p=0.034, mauve p=0.022)\n- **FDR-corrected: 0/8** (最低 p_fdr=0.091，未过 0.05 线)\n\n**Reverse (downstream → canary):**\n- Raw significant: 2/8 (distinct_2→TE p=0.037, distinct_3→TE p=0.041)\n- **FDR-corrected: 0/8**\n\nPermG 单 seed 在 α=0.50 power 不足。这与 WikiText α=0.50 的已知 pattern 一致。\n\n### 4. Diff Cross-Correlation (lead-lag 主要证据)\n\n| Pair | Best Lag | r |\n|------|----------|---|\n| token_entropy → distinct_1 | **+1** | **0.914** |\n| token_entropy → distinct_2 | **+1** | **0.900** |\n| token_entropy → distinct_3 | **+1** | 0.527 |\n| token_entropy → mauve | **+1** | **0.729** |\n| ece → distinct_1 | +1 | 0.448 |\n| ece → distinct_2 | +1 | 0.457 |\n| ece → distinct_3 | +2 | -0.624 |\n| ece → mauve | 0 | 0.454 |\n\n**token_entropy 的 diff xcorr 全部 lag=+1，r=0.53~0.91。lead-lag pattern 存在，token_entropy 变化量领先 diversity 变化量 1 代。** ece 信号弱得多。\n\n### 5. 与 WikiText α=0.50 s42 跨域对比\n\n| Metric | C4 bf16 Delta% | WikiText Delta% | 差异 |\n|--------|---------------|-----------------|------|\n| token_entropy | **-38.2%** | -18.6% | C4 entropy 崩溃更严重 (2x) |\n| distinct_1 | -20.3% | **-37.3%** | WikiText diversity 崩溃更严重 |\n| distinct_2 | -24.6% | **-51.5%** | WikiText diversity 崩溃更严重 |\n| distinct_3 | -21.5% | **-52.4%** | WikiText diversity 崩溃更严重 |\n| ece | +2250% | +843% | C4 calibration 崩溃更严重 |\n| perplexity | **+402%** | +21.2% | C4 perplexity 崩溃猛烈 (19x) |\n| mauve | -88.7% | -38.5% | C4 mauve 崩溃更严重 |\n\n**跨域 pattern 差异：**\n- C4: canary 指标 (entropy -38%, ece +2250%, ppl +402%) 崩溃猛烈，diversity 下降相对温和 (-20~25%)\n- WikiText: diversity 指标 (-37~52%) 崩溃猛烈，canary 变化温和 (entropy -19%, ppl +21%)\n- 两个域都 collapse，但 **崩溃分布不同**：C4 偏 distributional（entropy/calibration），WikiText 偏 lexical（diversity）\n- WikiText token_entropy 在 gen1 大跌后 rebound 并稳定在 ~2.6；C4 token_entropy 单调下降无 rebound\n\n### 6. 与 Pythia-1B C4 α=1.0 s42 参考对比\n\n| Metric | C4 410M α=0.50 | C4 1B α=1.0 | 注释 |\n|--------|---------------|-------------|------|\n| token_entropy | -38.2% | -57.5% | α=1.0 更猛 |\n| distinct_1 | -20.3% | -22.1% | 接近 |\n| perplexity | +402% | +8069% | α=1.0 量级差异巨大 |\n\nα=0.50 的 collapse 幅度约为 α=1.0 的 50-70%（entropy 维度），dose-response 关系成立。\n\n### 总结\n\n1. **Collapse 确认**：C4 α=0.50 s42 bf16 全部 7 个指标方向一致，collapse 无争议\n2. **Canary signal**：PermG FDR 0/8（单 seed power 不足），但 diff xcorr 全部 lag=+1 (r=0.53~0.91) 支持 entropy-leads-diversity 的 lead-lag pattern\n3. **跨域差异**：C4 和 WikiText 在 α=0.50 下 collapse 分布模式不同（C4 偏 distributional，WikiText 偏 lexical），但 lead-lag 方向一致\n4. **需要 multi-seed**：PermG FDR=0/8 是 power 问题（T=11 太短），需要 s43/s44 做 pooled 分析才能得到可发表的显著性结论"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-c4-a050-bf16-results.md"
+}

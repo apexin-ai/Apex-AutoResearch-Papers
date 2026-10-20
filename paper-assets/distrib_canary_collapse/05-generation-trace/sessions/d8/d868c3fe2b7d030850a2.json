@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d868c3fe2b7d030850a2",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ssh check pythia410m generalize",
+  "task_key": "worker_ssh_check_pythia410m_generalize_20260517T112721",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_pythia410m_generalize_20260517T112721_result.json",
+    "occurrence": 1,
+    "bytes": 717,
+    "sha256": "0a8d154fb4f1a6c801d2276c28fb0fdd451ed5680171c228e22a49d88dcd2dec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成，分析结果：\n\n**Drift**: 严重 model collapse — token_entropy -61.69%, distinct_1/2/3 下降 27-32%, ECE +3759%, perplexity +3369% (26.9 → 935.0)\n\n**5-Method 因果分析** (58/80 = 72.5% sig rate):\n- 7/16 pairs 达到 5/5 全票一致 (token_entropy→distinct_*, self_bleu→ppl, ece→distinct_*)\n- 13/16 pairs 达到 consensus ≥ 3\n- PermG: 10/16 pairs 显著 (62.5%)\n- differenced_xcorr: 16/16 全部显著\n- 最弱信号: effective_rank→perplexity (1/5)\n\nPythia-410M 在 WikiText-103 上确认了 GPT-2 Medium 实验中观察到的 canary collapse 模式，泛化性验证通过。\n\n报告已保存到 `artifacts/generalize_pythia410m/analysis_report.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-pythia410m-generalize.md"
+}

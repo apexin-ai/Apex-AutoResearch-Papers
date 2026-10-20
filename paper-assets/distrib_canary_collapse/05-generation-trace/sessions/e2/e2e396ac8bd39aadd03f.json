@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "e2e396ac8bd39aadd03f",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "exp qwen35 dryrun launch",
+  "task_key": "worker_exp_qwen35_dryrun_launch_20260518T195738",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_qwen35_dryrun_launch_20260518T195738_result.json",
+    "occurrence": 1,
+    "bytes": 2439359,
+    "sha256": "4b94566349394600a3db0fb61d46e71aac2665af9d1d88f6eaef17a5e36cc7d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "e2e396ac8bd39aadd03f-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/exp-qwen35-dryrun-launch.md"
+}

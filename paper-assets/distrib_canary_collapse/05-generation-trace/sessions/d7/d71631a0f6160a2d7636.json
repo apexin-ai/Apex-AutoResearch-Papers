@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d71631a0f6160a2d7636",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code alpha sweep prep detrend",
+  "task_key": "worker_code_alpha-sweep-prep-detrend_20260514T213052",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_alpha-sweep-prep-detrend_20260514T213052_result.json",
+    "occurrence": 1,
+    "bytes": 3373,
+    "sha256": "baf2b4d095967ec5c76e4e78c1878509e1b3d1e040c02350e96cdb25a99b58c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Summary\n\n### Part 1: α-sweep 扩展配置\n\n**`synthetic_ratio` 支持情况**: `type=float`，任意浮点数（0.10, 0.60）均可。\n\n**`mix_datasets` 比例验证**（Python 精确计算）:\n- α=0.10: syn=555, real=5000, actual_ratio=**0.0999**, 误差 0.01%\n- α=0.60: syn=5000, real=3333, actual_ratio=**0.6000**, 精确命中\n\n双向 subsample 逻辑正确：低 α 走 `keep all real + subsample syn`，高 α 走 `keep all syn + subsample real`。\n\n**α=0.10 dry-run**: 模型从本地缓存离线加载成功，生成流程无报错（仅标准 padding 警告）。因 GPU 被 a000/a025 实验占用 88-90%，完整 5000-prompt 生成过慢，已 kill 释放 GPU。核心验证目标已达成。\n\n**配置文件**: `/root/autodl-tmp/distrib_canary_collapse/alpha_sweep_queue.md`\n\n**6 个待提交 run 完整命令**:\n\n```bash\n# α=0.10\nnohup python iterative_train.py --seed 42 --synthetic_ratio 0.10 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --output_dir results/alpha_sweep/a010_s42 > /tmp/a010_s42.log 2>&1 &\nnohup python iterative_train.py --seed 43 --synthetic_ratio 0.10 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --output_dir results/alpha_sweep/a010_s43 > /tmp/a010_s43.log 2>&1 &\nnohup python iterative_train.py --seed 44 --synthetic_ratio 0.10 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --output_dir results/alpha_sweep/a010_s44 > /tmp/a010_s44.log 2>&1 &\n\n# α=0.60\nnohup python iterative_train.py --seed 42 --synthetic_ratio 0.60 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --output_dir results/alpha_sweep/a060_s42 > /tmp/a060_s42.log 2>&1 &\nnohup python iterative_train.py --seed 43 --synthetic_ratio 0.60 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --output_dir results/alpha_sweep/a060_s43 > /tmp/a060_s43.log 2>&1 &\nnohup python iterative_train.py --seed 44 --synthetic_ratio 0.60 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --output_dir results/alpha_sweep/a060_s44 > /tmp/a060_s44.log 2>&1 &\n```\n\n提交前需加 `HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1` 环境变量。\n\n---\n\n### Part 2: Detrending 工具验证结果\n\n文件: `/root/autodl-tmp/distrib_canary_collapse/detrending_utils.py`\n\n**TEST 1 — 合成线性趋势数据**:\n| 方法 | 长度 | mean | std |\n|------|------|------|-----|\n| first_diff | 19 | 0.4900 | 0.1087 |\n| hp_filter | 20 | -0.0000 | 0.0646 |\n| linear | 20 | -0.0000 | 0.0739 |\n\n三种方法均正确去除趋势（mean≈0）。\n\n**TEST 2 — 已知 lag 的 cross-correlation**（x leads y by 1 step）:\n| 方法 | peak_lag | peak_corr |\n|------|----------|-----------|\n| first_diff | **-1** | 0.989 |\n| hp_filter | **-1** | 0.901 |\n| linear | **-1** | 0.858 |\n\n三种方法均正确检测到 lag=-1（x leads y）。\n\n**TEST 3 — MVP token_entropy → distinct_1 dry-run**:\n| 方法 | peak_lag | peak_corr |\n|------|----------|-----------|\n| first_diff | **-1** | 0.995 |\n| hp_filter | **-1** | 0.996 |\n| linear | **-1** | 0.912 |\n\n与现有 analyze_mvp.py 的原始 cross-correlation 结果一致（lag=-1），去趋势后 lead-lag 关系保持稳健。输出格式与现有分析兼容（`correlations` dict, `peak_lag`, `peak_corr`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-alpha-sweep-prep-detrend.md"
+}

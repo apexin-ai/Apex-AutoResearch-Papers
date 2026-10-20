@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "aeb39c948c4eb23ed90a",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code scale 69b s43 prepare",
+  "task_key": "worker_code_scale_69b_s43_prepare_20260519T180237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_scale_69b_s43_prepare_20260519T180237_result.json",
+    "occurrence": 1,
+    "bytes": 3361,
+    "sha256": "b0f62d96bce5e69daee4099896dbeb39ba1bd39fe384292f528450887467006d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "无冲突目录。以下是完整结果。\n\n---\n\n## s42 实际参数（EXIT_CODE=0，成功完成 gen_0–gen_10）\n\n```json\n{\n  \"model_name\": \"EleutherAI/pythia-6.9b\",\n  \"seed\": 42,\n  \"data_dir\": \"data/wikitext103_5k\",\n  \"steps_per_gen\": 5000,\n  \"num_generations\": 10,\n  \"synthetic_ratio\": 1.0,\n  \"batch_size\": 4,\n  \"lr\": 5e-05,\n  \"gradient_checkpointing\": true,\n  \"bf16\": true,\n  \"optim\": \"adamw_torch\",\n  \"intervention_mode\": \"none\"\n}\n```\n\n## fp32 可行性评估：**不可行**\n\nPythia-6.9B fp32 内存需求：\n- 模型参数：6.9B × 4B = **27.6GB**\n- Adam momentum + variance：2 × 27.6GB = **55.2GB**\n- 梯度：**27.6GB**\n- **合计 ~110GB > 98GB VRAM**\n\n`--gradient_checkpointing` 仅节省 activation memory，不影响 param/optimizer/gradient 占用。**fp32 在单卡 98GB 上必然 OOM。**\n\n代码注释 (line 185) 也说明了背景：`\"bf16 stochastic rounding confounds collapse signal\"` — 说明团队意识到 bf16 对 collapse 信号有干扰，但物理显存限制下 6.9B fp32 单卡不可行。\n\n## GPU 状态\n\n| GPU | 已用 | 空闲 |\n|-----|------|------|\n| 0 | 28.7GB | 68.5GB |\n| **1** | **0GB** | **97.3GB** |\n| 2 | 14.6GB | 82.7GB |\n| 3 | 14.2GB | 83.0GB |\n| 4 | 14.5GB | 82.7GB |\n| 5 | 14.6GB | 82.7GB |\n\n**GPU 1 完全空闲**，推荐使用。\n\n## 准备好的命令\n\n### fp32 版（预期 OOM，仅供 Director 决策参考）\n\n```bash\ncd /root/autodl-tmp/distrib_canary_collapse && \\\nexport HF_HOME=/root/autodl-tmp/.hf_cache && \\\nexport HF_HUB_DISABLE_XET=1 && \\\nexport HF_ENDPOINT=https://hf-mirror.com && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && \\\nconda activate base && \\\nPYTHONUNBUFFERED=1 python -u iterative_train.py \\\n  --model_name EleutherAI/pythia-6.9b \\\n  --seed 43 \\\n  --data_dir data/wikitext103_5k \\\n  --steps_per_gen 5000 \\\n  --num_generations 10 \\\n  --synthetic_ratio 1.0 \\\n  --gradient_checkpointing \\\n  --output_dir results/scale_check/pythia69b_wiki_a100_s43_fp32\n```\n\n### bf16 备选版（与 s42 一致，已验证可跑通）\n\n```bash\ncd /root/autodl-tmp/distrib_canary_collapse && \\\nexport HF_HOME=/root/autodl-tmp/.hf_cache && \\\nexport HF_HUB_DISABLE_XET=1 && \\\nexport HF_ENDPOINT=https://hf-mirror.com && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && \\\nconda activate base && \\\nPYTHONUNBUFFERED=1 python -u iterative_train.py \\\n  --model_name EleutherAI/pythia-6.9b \\\n  --seed 43 \\\n  --bf16 \\\n  --data_dir data/wikitext103_5k \\\n  --steps_per_gen 5000 \\\n  --num_generations 10 \\\n  --synthetic_ratio 1.0 \\\n  --gradient_checkpointing \\\n  --output_dir results/scale_check/pythia69b_wiki_a100_s43\n```\n\n## 待 Director 决策\n\n- 模型已缓存本地（`/root/autodl-tmp/.hf_cache/`），无需重新下载\n- 输出目录无冲突\n- **建议用 bf16（与 s42 一致），fp32 单卡 98GB 物理上放不下 6.9B**\n- 目标 GPU: **cuda:1**（完全空闲）"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "model_name": "EleutherAI/pythia-6.9b",
+              "seed": 42,
+              "data_dir": "data/wikitext103_5k",
+              "steps_per_gen": 5000,
+              "num_generations": 10,
+              "synthetic_ratio": 1.0,
+              "batch_size": 4,
+              "lr": 5e-05,
+              "gradient_checkpointing": true,
+              "bf16": true,
+              "optim": "adamw_torch",
+              "intervention_mode": "none"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-scale-69b-s43-prepare.md"
+}

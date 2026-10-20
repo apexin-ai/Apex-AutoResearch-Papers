@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eaecef25f48c11f3708c",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis phase diagram t25 a060 s42 fp32 v3",
+  "task_key": "worker_analysis_phase_diagram_t25_a060_s42_fp32_v3_20260522T064047",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_phase_diagram_t25_a060_s42_fp32_v3_20260522T064047_result.json",
+    "occurrence": 1,
+    "bytes": 797,
+    "sha256": "4383de225e0e95039c6b8edea6df51156e29f678ecdf9bd57e845bf9e1af5718"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。总结：\n\n## T=25 α=0.60 结果：**Scenario A 确认**\n\n| 指标 | 结果 |\n|------|------|\n| **PermG (FDR forward)** | **5/8** |\n| Robust pairs (≥3/5 methods) | 6/8 |\n| Diff XCorr (FDR) | 8/8 |\n| Threshold Onset | 6/8 |\n| TY Granger | 4/8 |\n| Reverse PermG | 0/8（方向性确认） |\n| Final perplexity | 61.95 |\n| Final batch loss | 0.2753 |\n\n**关键发现**：α=0.60 的 sync-dip（T=10/15/20 均为 PermG=0/8）在 T=25 消解为 5/8。对比 v2（13 代 → 0/8）和 v3（26 代 → 5/8），sync-dip 是**统计功效不足的伪象**，而非结构性特征。α_c 3-point fit 成立。\n\n产出文件：\n- `artifacts/D102_t25_a060_v3_analysis.md` — 完整分析报告\n- `artifacts/D102_t25_a060_s42_fp32_v3.json` — 5method JSON"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-phase-diagram-t25-a060-s42-fp32-v3.md"
+}

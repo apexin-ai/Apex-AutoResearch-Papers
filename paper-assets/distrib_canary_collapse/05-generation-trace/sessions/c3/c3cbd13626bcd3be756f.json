@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c3cbd13626bcd3be756f",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "code analyze mvp upgrade",
+  "task_key": "worker_code_analyze-mvp-upgrade_20260514T083241",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_analyze-mvp-upgrade_20260514T083241_result.json",
+    "occurrence": 1,
+    "bytes": 1008,
+    "sha256": "42ace8203dc51868716f5a1033b2386c9b3d2a314938de0f2a0d1c37f017f0c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本 AST 解析通过，4 个 CLI 参数（`--results_dir`, `--seeds`, `--max_lag`, `--n_permutations`）均已注册。本地无 matplotlib 所以无法直接运行 `--help`，但语法和参数定义正确。\n\n实现的 6 项检查：\n\n1. **`permutation_test()`** — B=10000 次 shuffle downstream，计算 max|r| 的 p-value\n2. **Per-seed significance** — 每个 triplet 调 permutation_test，`classify_pair()` 按 3/3 seeds 规则判定 SIGNIFICANT/WEAK/NO LEAD\n3. **`check_mauve_floor()`** — Gen 0 MAUVE < 0.10 且 CV < 0.50 时 demote\n4. **`check_effective_rank_monotonicity()`** — Gen 4-9 OLS 斜率一致性检查\n5. **`compute_verdict()`** — STRONG PASS / PASS / CONDITIONAL PASS / FAIL，排除 inconclusive 的 effective_rank 和 demoted 的 MAUVE\n6. **`compute_lag_dispersion()`** — mean/std/min/max lag，std > 2.0 标记 high_dispersion\n\n所有现有功能（plots, CSV, console report）保留，`analysis_summary.json` 输出结构符合要求规格。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-analyze-mvp-upgrade.md"
+}

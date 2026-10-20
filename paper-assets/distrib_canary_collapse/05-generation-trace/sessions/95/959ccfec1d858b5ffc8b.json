@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "959ccfec1d858b5ffc8b",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "diagnose null gpt2m failure",
+  "task_key": "worker_diagnose_null_gpt2m_failure_20260524T080539",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_null_gpt2m_failure_20260524T080539_result.json",
+    "occurrence": 1,
+    "bytes": 569,
+    "sha256": "90c0ee9982f099f17ac398401bb98652760f2243d71bc899dd1f3778ba0a4517"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**诊断结果：Cron 误判（false positive），两个实验均已成功完成。**\n\n| 实验 | EXIT_CODE | all_metrics.json | 完成时间 | ppl | mauve |\n|------|-----------|-----------------|---------|-----|-------|\n| null_gpt2m_s42 | 0 | 4999B ✅ | 15:42 | 17.27 | 0.0138 |\n| null_gpt2m_s43 | 0 | 4974B ✅ | 15:43 | 17.26 | 0.0128 |\n\ngen_0 至 gen_10 全部完成，数据可直接使用。Cron 在实验运行期间连续 5 次轮询未发现 sentinel 文件，提前判定为 failed，但实验随后正常完成并写入了 sentinel。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-null-gpt2m-failure.md"
+}

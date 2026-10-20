@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d865e49f029c7faa2e6",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ssh sync bib and compile",
+  "task_key": "worker_ssh_sync_bib_and_compile_20260517T084544",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_sync_bib_and_compile_20260517T084544_result.json",
+    "occurrence": 1,
+    "bytes": 376,
+    "sha256": "839546db04eeed5f99cb696bda0a38f51e5395d29badee948c623cbf19515834"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译验证完成：\n\n| 项目 | 结果 |\n|---|---|\n| Errors | **0** |\n| Undefined citations | **None** |\n| gao2021pile | 正确 resolve，出现在 .bbl 中 |\n| 页数 | **23 pages** |\n\n注意：`references.bib` 中 `gao2021pile` 有重复定义（line 79 和 line 375），BibTeX 跳过了第二个。不影响编译结果，但建议后续清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-sync-bib-and-compile.md"
+}

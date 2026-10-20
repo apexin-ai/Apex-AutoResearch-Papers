@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "bdb0190a0adaf25f27dc",
+  "project": "distrib_canary_collapse",
+  "kind": "worker",
+  "title": "research track e 14b prep",
+  "task_key": "worker_research_track-e-14b-prep_20260522T042022",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_track-e-14b-prep_20260522T042022.log",
+    "occurrence": 1,
+    "bytes": 734711,
+    "sha256": "6500fba263c69b85659d66a68e5244c3bc20559fae523b9129bd67f111096729"
+  },
+  "statistics": {
+    "messages": 512,
+    "user_turns": 0,
+    "tool_calls": 208,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 92,
+      "tool_call": 208,
+      "tool_result": 208,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 512,
+      "chunks": [
+        {
+          "path": "bdb0190a0adaf25f27dc-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "bdb0190a0adaf25f27dc-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "bdb0190a0adaf25f27dc-part-0003.json",
+          "message_count": 152
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-track-e-14b-prep.md"
+}

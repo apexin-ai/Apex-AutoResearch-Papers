@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d01dc61e21eb8864b8e8",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "audit a030 a040 d111 direction",
+  "task_key": "worker_audit_a030_a040_d111_direction_20260519T225537",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_a030_a040_d111_direction_20260519T225537_result.json",
+    "occurrence": 1,
+    "bytes": 452,
+    "sha256": "0c3d0c23a23a0312c643875fa2343f97e7594b197b445f8f948f76d9b9d29a82"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "写入完成。`artifacts/d111_a030_a040_audit.md`\n\n核心发现：\n\n**α=0.30**: naive 8/8→**5/8**, diff 4/8→**3/8**, K≥3 6/8→**3/8**, K≥4 不变 3/8\n**α=0.40**: naive 8/8→**4/8**, diff 3/8→**0/8**, K≥3 6/8→**1/8**, K≥4 1/8→**0/8**\n\n两个 α 的 ece→* 4 对 naive_lag 全部 ≤0（反向），与 C4 audit 一致。α=0.40 的 diff 全部 peak_lag 为负，diff_fwd 归零，K≥3 从 6/8 塌到 1/8。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-a030-a040-d111-direction.md"
+}

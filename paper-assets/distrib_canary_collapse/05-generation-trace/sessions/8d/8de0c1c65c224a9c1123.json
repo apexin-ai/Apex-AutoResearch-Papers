@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8de0c1c65c224a9c1123",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis padding robustness a100 s42 fp32",
+  "task_key": "worker_analysis_padding_robustness_a100_s42_fp32_20260519T141915",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_padding_robustness_a100_s42_fp32_20260519T141915_result.json",
+    "occurrence": 1,
+    "bytes": 859,
+    "sha256": "4f631a03a6aaccc081f1e8138425aa05516b0e6e465447a36fec1f31bbdf9915"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== STRUCTURED RESULT ===\nconclusion: success\ncheckpoint_path: /root/autodl-tmp/distrib_canary_collapse/results/padding_robustness/a100_s42_fp32\nmetrics:\n  permg_fwd_fdr: 6/8\n  permg_rev_fdr: 0/8\n  consensus_ge4: 6/8\n  mmct_uniform_fwd: 6/8 (simple K≥4 proxy, no null distribution on this server)\n  d1_drift_pct: -18.97%\n  d2_drift_pct: -21.72%\n  d3_drift_pct: -18.31%\n  entropy_drift_pct: -63.57%\n  gen0_d1: 0.09796\n  gen10_d1: 0.07938\n  gen0_entropy: 3.2342\n  gen10_entropy: 1.1782\n  gen0_ppl: 26.95\n  gen10_ppl: 941.94\npadding_impact_summary: padding_side 对 gen0 无影响（d1 差异 <0.03%，D093 预测的 gen0_d1≈0.092 未确认）；right-padding 使 d1 collapse 加剧约 10pp（-28.3% vs -19.0%），但 lead-lag 因果信号完全稳健（PermG fwd 6/8, rev 0/8, K≥4 6/8），定性结论不变。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-padding-robustness-a100-s42-fp32.md"
+}

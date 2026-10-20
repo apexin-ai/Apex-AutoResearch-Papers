@@ -1,0 +1,1768 @@
+{
+  "schema_version": "1.0",
+  "session_id": "ece23b15d79b143b7768",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 1081,
+          "timestamp": "2026-05-21T08:55:43.634Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CTUu9XN74F5Tco7JpF1E4W",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d37g\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T08:55:43.301Z\\\", \\\"updated_at\\\": \\\"2026-05-21T08:55:43.301Z\\\", \\\"hypothesis\\\": \\\"Iterative model collapse exhibits a sharp phase transition in task-level metrics (PPL, accuracy, repetition rate) around α≈0.50, where synthetic data ratio crosses a critical threshold causing nonlinear degradation in generation quality.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8745}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "489ba875-f3c4-42e4-9753-43b725b0f5b8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d37g\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T08:55:43.301Z\\\", \\\"updated_at\\\": \\\"2026-05-21T08:55:43.301Z\\\", \\\"hypothesis\\\": \\\"Iterative model collapse exhibits a sharp phase transition in task-level metrics (PPL, accuracy, repetition rate) around α≈0.50, where synthetic data ratio crosses a critical threshold causing nonlinear degradation in generation quality.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8745}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"d37g\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T08:55:43.301Z\", \"updated_at\": \"2026-05-21T08:55:43.301Z\", \"hypothesis\": \"Iterative model collapse exhibits a sharp phase transition in task-level metrics (PPL, accuracy, repetition rate) around α≈0.50, where synthetic data ratio crosses a critical threshold causing nonlinear degradation in generation quality.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8745}}"
+              }
+            }
+          },
+          "id": "event-001081"
+        },
+        {
+          "source_line": 1082,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XSyz3e6Tedm3jrdBPkGCf1",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d37b",
+                "field": "hypothesis",
+                "value": "Higher synthetic data ratio (α) causes progressive collapse of internal model representations, measurable via decreasing attention entropy, reduced head diversity, increasing effective rank (dimensionality expansion), and rising logit confidence (overconfidence).",
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "a348e4ec-69f9-4bfe-a605-b1f48a770923",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GNpRLtTCc5MeVaigxzArSR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1271,
+                "cache_read_input_tokens": 39377,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1271
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-001082"
+        },
+        {
+          "source_line": 1083,
+          "timestamp": "2026-05-21T08:55:45.146Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XSyz3e6Tedm3jrdBPkGCf1",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d37b\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T08:55:44.808Z\\\", \\\"updated_at\\\": \\\"2026-05-21T08:55:44.808Z\\\", \\\"hypothesis\\\": \\\"Higher synthetic data ratio (α) causes progressive collapse of internal model representations, measurable via decreasing attention entropy, reduced head diversity, increasing effective rank (dimensionality expansion), and rising logit confidence (overconfidence).\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8375}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "66461391-1d22-4694-aa9a-020e0feb16c8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d37b\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T08:55:44.808Z\\\", \\\"updated_at\\\": \\\"2026-05-21T08:55:44.808Z\\\", \\\"hypothesis\\\": \\\"Higher synthetic data ratio (α) causes progressive collapse of internal model representations, measurable via decreasing attention entropy, reduced head diversity, increasing effective rank (dimensionality expansion), and rising logit confidence (overconfidence).\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8375}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"d37b\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T08:55:44.808Z\", \"updated_at\": \"2026-05-21T08:55:44.808Z\", \"hypothesis\": \"Higher synthetic data ratio (α) causes progressive collapse of internal model representations, measurable via decreasing attention entropy, reduced head diversity, increasing effective rank (dimensionality expansion), and rising logit confidence (overconfidence).\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8375}}"
+              }
+            }
+          },
+          "id": "event-001083"
+        },
+        {
+          "source_line": 1084,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018GHUs9synbCy3N7sya7sdE",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d37g",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "distrib_canary_collapse",
+                "spec": {
+                  "command": "bash run_d37g.sh (eval_task_degradation.py per checkpoint)",
+                  "server": "westd-17855",
+                  "data_path": "results/alpha_sweep/*/gen_10/checkpoint",
+                  "data_count": 13,
+                  "model_name": "pythia-410m",
+                  "seed": 42,
+                  "checkpoint_source": "alpha_sweep gen_10 checkpoints (baseline through pad_a100)",
+                  "eval_data": "data/eval_set.jsonl"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "2e8e27d2-98a3-4911-899c-885533e994c1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VJiH1dLqpvK8CJqcivFivF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 978,
+                "cache_read_input_tokens": 40648,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 978
+                },
+                "output_tokens": 60,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-001084"
+        },
+        {
+          "source_line": 1085,
+          "timestamp": "2026-05-21T08:55:52.324Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018GHUs9synbCy3N7sya7sdE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8829}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "f7308aca-24a3-40bd-8416-42c1030af1f1",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8829}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.8829}}"
+              }
+            }
+          },
+          "id": "event-001085"
+        },
+        {
+          "source_line": 1086,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HMCtXtEqu95ocCQo431n2j",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d37b",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "distrib_canary_collapse",
+                "spec": {
+                  "command": "bash run_d37b.sh (mech_interp_analysis.py per experiment)",
+                  "server": "westd-17855",
+                  "data_path": "results/alpha_sweep/*/gen_10/checkpoint",
+                  "data_count": 5,
+                  "model_name": "pythia-410m",
+                  "seed": 42,
+                  "checkpoint_source": "alpha_sweep gen_10 checkpoints (a005, a025, a050, a075, a100)",
+                  "eval_data": "data/eval_set.jsonl"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "0235f19c-7831-4411-add8-8b22ec8daf8d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VJiH1dLqpvK8CJqcivFivF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 978,
+                "cache_read_input_tokens": 40648,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 978
+                },
+                "output_tokens": 60,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-001086"
+        },
+        {
+          "source_line": 1087,
+          "timestamp": "2026-05-21T08:55:53.752Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HMCtXtEqu95ocCQo431n2j",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5583}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "d9bd6ad6-5de5-4ced-9c22-a46fa66939b5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5583}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.5583}}"
+              }
+            }
+          },
+          "id": "event-001087"
+        },
+        {
+          "source_line": 1088,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YTh8YFmXurHTjjvwXmaeER",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d37g",
+                "field": "status",
+                "value": "PENDING",
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "07ebdcf2-959c-4d33-814e-a87222a8efd6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019gGuTcH5jgdVLrXoEtTwXw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 713,
+                "cache_read_input_tokens": 41626,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 713
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-001088"
+        },
+        {
+          "source_line": 1089,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01G5A5KUgMTixiP6iwuRE8Yy",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d37b",
+                "field": "status",
+                "value": "PENDING",
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "433448f2-b909-4812-8c9b-258f3f7285f1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019gGuTcH5jgdVLrXoEtTwXw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 713,
+                "cache_read_input_tokens": 41626,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 713
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-001089"
+        },
+        {
+          "source_line": 1090,
+          "timestamp": "2026-05-21T08:55:59.261Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YTh8YFmXurHTjjvwXmaeER",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d37g\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T08:55:43.301Z\\\", \\\"updated_at\\\": \\\"2026-05-21T08:55:57.649Z\\\", \\\"hypothesis\\\": \\\"Iterative model collapse exhibits a sharp phase transition in task-level metrics (PPL, accuracy, repetition rate) around α≈0.50, where synthetic data ratio crosses a critical threshold causing nonlinear degradation in generation quality.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.1054}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "8a283993-63a8-498a-aa44-283c4cb1a026",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d37g\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T08:55:43.301Z\\\", \\\"updated_at\\\": \\\"2026-05-21T08:55:57.649Z\\\", \\\"hypothesis\\\": \\\"Iterative model collapse exhibits a sharp phase transition in task-level metrics (PPL, accuracy, repetition rate) around α≈0.50, where synthetic data ratio crosses a critical threshold causing nonlinear degradation in generation quality.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.1054}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"d37g\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T08:55:43.301Z\", \"updated_at\": \"2026-05-21T08:55:57.649Z\", \"hypothesis\": \"Iterative model collapse exhibits a sharp phase transition in task-level metrics (PPL, accuracy, repetition rate) around α≈0.50, where synthetic data ratio crosses a critical threshold causing nonlinear degradation in generation quality.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.1054}}"
+              }
+            }
+          },
+          "id": "event-001090"
+        },
+        {
+          "source_line": 1091,
+          "timestamp": "2026-05-21T08:56:01.385Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01G5A5KUgMTixiP6iwuRE8Yy",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d37b\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T08:55:44.808Z\\\", \\\"updated_at\\\": \\\"2026-05-21T08:55:59.759Z\\\", \\\"hypothesis\\\": \\\"Higher synthetic data ratio (α) causes progressive collapse of internal model representations, measurable via decreasing attention entropy, reduced head diversity, increasing effective rank (dimensionality expansion), and rising logit confidence (overconfidence).\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.1144}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "ad47a1cf-5fb2-4b6b-9762-fb58743c0f6f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d37b\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T08:55:44.808Z\\\", \\\"updated_at\\\": \\\"2026-05-21T08:55:59.759Z\\\", \\\"hypothesis\\\": \\\"Higher synthetic data ratio (α) causes progressive collapse of internal model representations, measurable via decreasing attention entropy, reduced head diversity, increasing effective rank (dimensionality expansion), and rising logit confidence (overconfidence).\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.1144}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"d37b\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T08:55:44.808Z\", \"updated_at\": \"2026-05-21T08:55:59.759Z\", \"hypothesis\": \"Higher synthetic data ratio (α) causes progressive collapse of internal model representations, measurable via decreasing attention entropy, reduced head diversity, increasing effective rank (dimensionality expansion), and rising logit confidence (overconfidence).\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.1144}}"
+              }
+            }
+          },
+          "id": "event-001091"
+        },
+        {
+          "source_line": 1092,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XN4XPvS1jmLWE5PJEt84Np",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d37g",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "distrib_canary_collapse",
+                "spec": {
+                  "command": "bash run_d37g.sh (eval_task_degradation.py per checkpoint)",
+                  "server": "westd-17855",
+                  "data_path": "results/alpha_sweep/*/gen_10/checkpoint",
+                  "data_count": 13,
+                  "model_name": "pythia-410m",
+                  "seed": 42,
+                  "checkpoint_source": "alpha_sweep gen_10 checkpoints (baseline through pad_a100)",
+                  "eval_data": "data/eval_set.jsonl"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "6ed32719-6702-4323-bd9c-1fad1ae12134",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018WNLt1xcSiQwwLU4fGkt8C",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 668,
+                "cache_read_input_tokens": 42339,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 668
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-001092"
+        },
+        {
+          "source_line": 1093,
+          "timestamp": "2026-05-21T08:56:06.127Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XN4XPvS1jmLWE5PJEt84Np",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PENDING → RUNNING. Allowed: ['DONE', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5453}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "b269ac62-cc28-4aaf-b99a-872069246323",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PENDING → RUNNING. Allowed: ['DONE', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5453}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PENDING → RUNNING. Allowed: ['DONE', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.5453}}"
+              }
+            }
+          },
+          "id": "event-001093"
+        },
+        {
+          "source_line": 1094,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011A6S7jLVUvfXfwxboyLXwt",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d37b",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "distrib_canary_collapse",
+                "spec": {
+                  "command": "bash run_d37b.sh (mech_interp_analysis.py per experiment)",
+                  "server": "westd-17855",
+                  "data_path": "results/alpha_sweep/*/gen_10/checkpoint",
+                  "data_count": 5,
+                  "model_name": "pythia-410m",
+                  "seed": 42,
+                  "checkpoint_source": "alpha_sweep gen_10 checkpoints (a005, a025, a050, a075, a100)",
+                  "eval_data": "data/eval_set.jsonl"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "84e9824c-e5bb-4622-aa0d-20b8b14fc5e1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018WNLt1xcSiQwwLU4fGkt8C",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 668,
+                "cache_read_input_tokens": 42339,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 668
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-001094"
+        },
+        {
+          "source_line": 1095,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed_warning",
+                  "resetsAt": 1779519600,
+                  "rateLimitType": "seven_day",
+                  "utilization": 0.94,
+                  "isUsingOverage": false,
+                  "surpassedThreshold": 0.75
+                },
+                "uuid": "5017efcd-f4a4-47bb-ba47-5562bc3843f0",
+                "session_id": "0a262593-62bf-4c98-a040-9b9de854f899"
+              }
+            }
+          ],
+          "id": "event-001095"
+        },
+        {
+          "source_line": 1096,
+          "timestamp": "2026-05-21T08:56:07.938Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011A6S7jLVUvfXfwxboyLXwt",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PENDING → RUNNING. Allowed: ['DONE', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5654}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "9924e7a6-03f1-4e55-9416-4ccd5d2034b9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PENDING → RUNNING. Allowed: ['DONE', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5654}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PENDING → RUNNING. Allowed: ['DONE', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.5654}}"
+              }
+            }
+          },
+          "id": "event-001096"
+        },
+        {
+          "source_line": 1097,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The state machine requires PENDING → QUEUED → RUNNING → DONE. Let me try going through QUEUED first, or just go straight to DONE since the experiments are already complete.\n\nActually wait, it says PENDING → DONE is allowed. Since both experiments are already complete, let me just go straight to DONE.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "7a7b0283-c028-43c7-b36f-823c228e7a5d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Dtczskn5ZrzX4UWzQfy98z",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 713,
+                "cache_read_input_tokens": 43007,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 713
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-001097"
+        },
+        {
+          "source_line": 1098,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Experiments are already complete — I'll transition directly to DONE."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "2fcb9776-cba0-4c5f-89d8-a70d0df53473",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Dtczskn5ZrzX4UWzQfy98z",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 713,
+                "cache_read_input_tokens": 43007,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 713
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-001098"
+        },
+        {
+          "source_line": 1099,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EA8ktyrwWvKQJ8iMNUEjan",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d37g",
+                "field": "log_path",
+                "value": "/tmp/d37g_run.log",
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "11fea2f8-3478-43a0-bf35-41d2e37c9327",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Dtczskn5ZrzX4UWzQfy98z",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 713,
+                "cache_read_input_tokens": 43007,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 713
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-001099"
+        },
+        {
+          "source_line": 1100,
+          "timestamp": "2026-05-21T08:56:14.504Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EA8ktyrwWvKQJ8iMNUEjan",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d37g\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T08:55:43.301Z\\\", \\\"updated_at\\\": \\\"2026-05-21T08:56:14.144Z\\\", \\\"hypothesis\\\": \\\"Iterative model collapse exhibits a sharp phase transition in task-level metrics (PPL, accuracy, repetition rate) around α≈0.50, where synthetic data ratio crosses a critical threshold causing nonlinear degradation in generation quality.\\\", \\\"log_path\\\": \\\"/tmp/d37g_run.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8515}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "457f0bfa-48d9-403f-94b1-57718991ed74",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d37g\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T08:55:43.301Z\\\", \\\"updated_at\\\": \\\"2026-05-21T08:56:14.144Z\\\", \\\"hypothesis\\\": \\\"Iterative model collapse exhibits a sharp phase transition in task-level metrics (PPL, accuracy, repetition rate) around α≈0.50, where synthetic data ratio crosses a critical threshold causing nonlinear degradation in generation quality.\\\", \\\"log_path\\\": \\\"/tmp/d37g_run.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8515}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"d37g\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T08:55:43.301Z\", \"updated_at\": \"2026-05-21T08:56:14.144Z\", \"hypothesis\": \"Iterative model collapse exhibits a sharp phase transition in task-level metrics (PPL, accuracy, repetition rate) around α≈0.50, where synthetic data ratio crosses a critical threshold causing nonlinear degradation in generation quality.\", \"log_path\": \"/tmp/d37g_run.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8515}}"
+              }
+            }
+          },
+          "id": "event-001100"
+        },
+        {
+          "source_line": 1101,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QtUG9TCcZRxPiefjapcToL",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d37g",
+                "field": "checkpoint_path",
+                "value": "results/d37g_task_degradation/summary.json",
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "c4986a7b-9c79-4299-9f26-18e01426f450",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Dtczskn5ZrzX4UWzQfy98z",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 713,
+                "cache_read_input_tokens": 43007,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 713
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-001101"
+        },
+        {
+          "source_line": 1102,
+          "timestamp": "2026-05-21T08:56:15.517Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QtUG9TCcZRxPiefjapcToL",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d37g\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T08:55:43.301Z\\\", \\\"updated_at\\\": \\\"2026-05-21T08:56:15.179Z\\\", \\\"hypothesis\\\": \\\"Iterative model collapse exhibits a sharp phase transition in task-level metrics (PPL, accuracy, repetition rate) around α≈0.50, where synthetic data ratio crosses a critical threshold causing nonlinear degradation in generation quality.\\\", \\\"log_path\\\": \\\"/tmp/d37g_run.log\\\", \\\"checkpoint_path\\\": \\\"results/d37g_task_degradation/summary.json\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9011}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "bcacd9bd-3b86-4fc1-8895-f48ebbc40f1a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d37g\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T08:55:43.301Z\\\", \\\"updated_at\\\": \\\"2026-05-21T08:56:15.179Z\\\", \\\"hypothesis\\\": \\\"Iterative model collapse exhibits a sharp phase transition in task-level metrics (PPL, accuracy, repetition rate) around α≈0.50, where synthetic data ratio crosses a critical threshold causing nonlinear degradation in generation quality.\\\", \\\"log_path\\\": \\\"/tmp/d37g_run.log\\\", \\\"checkpoint_path\\\": \\\"results/d37g_task_degradation/summary.json\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9011}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"d37g\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T08:55:43.301Z\", \"updated_at\": \"2026-05-21T08:56:15.179Z\", \"hypothesis\": \"Iterative model collapse exhibits a sharp phase transition in task-level metrics (PPL, accuracy, repetition rate) around α≈0.50, where synthetic data ratio crosses a critical threshold causing nonlinear degradation in generation quality.\", \"log_path\": \"/tmp/d37g_run.log\", \"checkpoint_path\": \"results/d37g_task_degradation/summary.json\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9011}}"
+              }
+            }
+          },
+          "id": "event-001102"
+        },
+        {
+          "source_line": 1103,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PtkkbBLSHPwb7ChwXX8Ra3",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d37b",
+                "field": "log_path",
+                "value": "/tmp/d37b_run.log",
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "5318d099-8711-4aba-8d52-66d1d269daf4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Dtczskn5ZrzX4UWzQfy98z",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 713,
+                "cache_read_input_tokens": 43007,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 713
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-001103"
+        },
+        {
+          "source_line": 1104,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DY5S147EbcXaBBoPkaqq8i",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d37b",
+                "field": "checkpoint_path",
+                "value": "results/d37b_mech_interp/summary.json",
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "62bfa6b8-2330-4d8e-a10a-223c465ae341",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Dtczskn5ZrzX4UWzQfy98z",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 713,
+                "cache_read_input_tokens": 43007,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 713
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-001104"
+        },
+        {
+          "source_line": 1105,
+          "timestamp": "2026-05-21T08:56:16.403Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PtkkbBLSHPwb7ChwXX8Ra3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d37b\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T08:55:44.808Z\\\", \\\"updated_at\\\": \\\"2026-05-21T08:56:16.045Z\\\", \\\"hypothesis\\\": \\\"Higher synthetic data ratio (α) causes progressive collapse of internal model representations, measurable via decreasing attention entropy, reduced head diversity, increasing effective rank (dimensionality expansion), and rising logit confidence (overconfidence).\\\", \\\"log_path\\\": \\\"/tmp/d37b_run.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8362}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "411a08cd-8e01-4029-9442-b79bed8cc72b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d37b\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T08:55:44.808Z\\\", \\\"updated_at\\\": \\\"2026-05-21T08:56:16.045Z\\\", \\\"hypothesis\\\": \\\"Higher synthetic data ratio (α) causes progressive collapse of internal model representations, measurable via decreasing attention entropy, reduced head diversity, increasing effective rank (dimensionality expansion), and rising logit confidence (overconfidence).\\\", \\\"log_path\\\": \\\"/tmp/d37b_run.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8362}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"d37b\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T08:55:44.808Z\", \"updated_at\": \"2026-05-21T08:56:16.045Z\", \"hypothesis\": \"Higher synthetic data ratio (α) causes progressive collapse of internal model representations, measurable via decreasing attention entropy, reduced head diversity, increasing effective rank (dimensionality expansion), and rising logit confidence (overconfidence).\", \"log_path\": \"/tmp/d37b_run.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8362}}"
+              }
+            }
+          },
+          "id": "event-001105"
+        },
+        {
+          "source_line": 1106,
+          "timestamp": "2026-05-21T08:56:17.248Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DY5S147EbcXaBBoPkaqq8i",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d37b\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T08:55:44.808Z\\\", \\\"updated_at\\\": \\\"2026-05-21T08:56:16.890Z\\\", \\\"hypothesis\\\": \\\"Higher synthetic data ratio (α) causes progressive collapse of internal model representations, measurable via decreasing attention entropy, reduced head diversity, increasing effective rank (dimensionality expansion), and rising logit confidence (overconfidence).\\\", \\\"log_path\\\": \\\"/tmp/d37b_run.log\\\", \\\"checkpoint_path\\\": \\\"results/d37b_mech_interp/summary.json\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8324}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "cc236a4e-332d-4b04-b04c-4c39df097601",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d37b\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T08:55:44.808Z\\\", \\\"updated_at\\\": \\\"2026-05-21T08:56:16.890Z\\\", \\\"hypothesis\\\": \\\"Higher synthetic data ratio (α) causes progressive collapse of internal model representations, measurable via decreasing attention entropy, reduced head diversity, increasing effective rank (dimensionality expansion), and rising logit confidence (overconfidence).\\\", \\\"log_path\\\": \\\"/tmp/d37b_run.log\\\", \\\"checkpoint_path\\\": \\\"results/d37b_mech_interp/summary.json\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8324}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"d37b\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T08:55:44.808Z\", \"updated_at\": \"2026-05-21T08:56:16.890Z\", \"hypothesis\": \"Higher synthetic data ratio (α) causes progressive collapse of internal model representations, measurable via decreasing attention entropy, reduced head diversity, increasing effective rank (dimensionality expansion), and rising logit confidence (overconfidence).\", \"log_path\": \"/tmp/d37b_run.log\", \"checkpoint_path\": \"results/d37b_mech_interp/summary.json\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8324}}"
+              }
+            }
+          },
+          "id": "event-001106"
+        },
+        {
+          "source_line": 1107,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SQSjnjycDtREf58vvEoQjL",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d37g",
+                "field": "status",
+                "value": "DONE",
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "bd3ed0a6-64e5-4865-83db-9b504ea4ee3b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016tNkFnrSMiQo6EwpY2eyd3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1786,
+                "cache_read_input_tokens": 43720,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1786
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-001107"
+        },
+        {
+          "source_line": 1108,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014WN834RZzHw14FnvsnePpH",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d37b",
+                "field": "status",
+                "value": "DONE",
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "ad76b94d-fbdd-457c-b716-196aaa367b09",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016tNkFnrSMiQo6EwpY2eyd3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1786,
+                "cache_read_input_tokens": 43720,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1786
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-001108"
+        },
+        {
+          "source_line": 1109,
+          "timestamp": "2026-05-21T08:56:22.652Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SQSjnjycDtREf58vvEoQjL",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.561}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "56f72be7-90ef-4e94-95f2-db06a29edc7f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.561}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.561}}"
+              }
+            }
+          },
+          "id": "event-001109"
+        },
+        {
+          "source_line": 1110,
+          "timestamp": "2026-05-21T08:56:23.234Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014WN834RZzHw14FnvsnePpH",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5677}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "48385882-2020-4e95-a8cc-ab8d98bc3c81",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5677}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.5677}}"
+              }
+            }
+          },
+          "id": "event-001110"
+        },
+        {
+          "source_line": 1111,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BPP7K2Wkd59xroQ5t2bera",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d37g",
+                "field": "conclusion",
+                "value": "SUCCESS. Phase transition confirmed: PPL jumps 31→41 between α=0.50 and α=0.52 (31% increase in 2pp of α). Low α (0.05) actually improves over baseline (PPL 20.8 vs 26.6). Degradation accelerates superlinearly beyond α=0.52, reaching PPL=80 at α=0.75. Extreme regimes (C4 α=0.75, padding α=1.0) show catastrophic collapse (PPL>997). Repetition rates peak at α=0.25 (rep_2=0.20) then partially recover, suggesting repetition and perplexity degradation have distinct dynamics.",
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "0ffe3b20-e467-4880-990f-518d4da08ad7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K3w7PJDPV1oQHSWrDXMm2w",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 425,
+                "cache_read_input_tokens": 45506,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 425
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-001111"
+        },
+        {
+          "source_line": 1112,
+          "timestamp": "2026-05-21T08:56:31.063Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BPP7K2Wkd59xroQ5t2bera",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion 'SUCCESS. Phase transition confirmed: PPL jumps 31→41 between α=0.50 and α=0.52 (31% increase in 2pp of α). Low α (0.05) actually improves over baseline (PPL 20.8 vs 26.6). Degradation accelerates superlinearly beyond α=0.52, reaching PPL=80 at α=0.75. Extreme regimes (C4 α=0.75, padding α=1.0) show catastrophic collapse (PPL>997). Repetition rates peak at α=0.25 (rep_2=0.20) then partially recover, suggesting repetition and perplexity degradation have distinct dynamics.'. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4635}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "0e7164e1-2d7f-43af-b134-e77001cf141f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion 'SUCCESS. Phase transition confirmed: PPL jumps 31→41 between α=0.50 and α=0.52 (31% increase in 2pp of α). Low α (0.05) actually improves over baseline (PPL 20.8 vs 26.6). Degradation accelerates superlinearly beyond α=0.52, reaching PPL=80 at α=0.75. Extreme regimes (C4 α=0.75, padding α=1.0) show catastrophic collapse (PPL>997). Repetition rates peak at α=0.25 (rep_2=0.20) then partially recover, suggesting repetition and perplexity degradation have distinct dynamics.'. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4635}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid conclusion 'SUCCESS. Phase transition confirmed: PPL jumps 31→41 between α=0.50 and α=0.52 (31% increase in 2pp of α). Low α (0.05) actually improves over baseline (PPL 20.8 vs 26.6). Degradation accelerates superlinearly beyond α=0.52, reaching PPL=80 at α=0.75. Extreme regimes (C4 α=0.75, padding α=1.0) show catastrophic collapse (PPL>997). Repetition rates peak at α=0.25 (rep_2=0.20) then partially recover, suggesting repetition and perplexity degradation have distinct dynamics.'. Valid: ['failed', 'killed', 'negative', 'success']\", \"metadata\": {\"elapsed_seconds\": 0.4635}}"
+              }
+            }
+          },
+          "id": "event-001112"
+        },
+        {
+          "source_line": 1113,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JpMxJ6qsNnfuP6BXSPGBJZ",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d37b",
+                "field": "conclusion",
+                "value": "SUCCESS. Two clear monotonic trends across α: (1) effective rank increases 732→905 from α=0.05 to α=1.0, indicating representational dimensionality expansion (model distributes variance more uniformly rather than concentrating on informative directions); (2) logit confidence rises 0.46→0.74, showing progressive overconfidence. Attention entropy and head diversity show mild non-monotonic patterns (slight dip at α=0.50-0.75, recovery at α=1.0) rather than monotonic decline. Activation norm peaks at α=0.25 (55.8) then drops, suggesting early collapse may increase rather than dampen internal activations.",
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "33408ed0-5f1c-48cf-84fa-19e046c5ea6c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K3w7PJDPV1oQHSWrDXMm2w",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 425,
+                "cache_read_input_tokens": 45506,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 425
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-001113"
+        },
+        {
+          "source_line": 1114,
+          "timestamp": "2026-05-21T08:56:37.246Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JpMxJ6qsNnfuP6BXSPGBJZ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion 'SUCCESS. Two clear monotonic trends across α: (1) effective rank increases 732→905 from α=0.05 to α=1.0, indicating representational dimensionality expansion (model distributes variance more uniformly rather than concentrating on informative directions); (2) logit confidence rises 0.46→0.74, showing progressive overconfidence. Attention entropy and head diversity show mild non-monotonic patterns (slight dip at α=0.50-0.75, recovery at α=1.0) rather than monotonic decline. Activation norm peaks at α=0.25 (55.8) then drops, suggesting early collapse may increase rather than dampen internal activations.'. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5631}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "04e7515e-4ada-4580-bad6-6877e4ac983f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion 'SUCCESS. Two clear monotonic trends across α: (1) effective rank increases 732→905 from α=0.05 to α=1.0, indicating representational dimensionality expansion (model distributes variance more uniformly rather than concentrating on informative directions); (2) logit confidence rises 0.46→0.74, showing progressive overconfidence. Attention entropy and head diversity show mild non-monotonic patterns (slight dip at α=0.50-0.75, recovery at α=1.0) rather than monotonic decline. Activation norm peaks at α=0.25 (55.8) then drops, suggesting early collapse may increase rather than dampen internal activations.'. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5631}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid conclusion 'SUCCESS. Two clear monotonic trends across α: (1) effective rank increases 732→905 from α=0.05 to α=1.0, indicating representational dimensionality expansion (model distributes variance more uniformly rather than concentrating on informative directions); (2) logit confidence rises 0.46→0.74, showing progressive overconfidence. Attention entropy and head diversity show mild non-monotonic patterns (slight dip at α=0.50-0.75, recovery at α=1.0) rather than monotonic decline. Activation norm peaks at α=0.25 (55.8) then drops, suggesting early collapse may increase rather than dampen internal activations.'. Valid: ['failed', 'killed', 'negative', 'success']\", \"metadata\": {\"elapsed_seconds\": 1.5631}}"
+              }
+            }
+          },
+          "id": "event-001114"
+        },
+        {
+          "source_line": 1115,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01115KyDFPzQgYbivZm4xu6y",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d37g",
+                "field": "conclusion",
+                "value": "success",
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "2274fc59-7c3e-4e0d-92ab-1a6c794d411e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016nevHfACe8ksBpSTkNYQmS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1070,
+                "cache_read_input_tokens": 45931,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1070
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-001115"
+        },
+        {
+          "source_line": 1116,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QbwJYW1N61VvRKzxKNNU7G",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d37b",
+                "field": "conclusion",
+                "value": "success",
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "dc86d635-0229-4d20-84be-7c6f6ef0c8ee",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016nevHfACe8ksBpSTkNYQmS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1070,
+                "cache_read_input_tokens": 45931,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1070
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-001116"
+        },
+        {
+          "source_line": 1117,
+          "timestamp": "2026-05-21T08:56:41.956Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01115KyDFPzQgYbivZm4xu6y",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d37g\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T08:55:43.301Z\\\", \\\"updated_at\\\": \\\"2026-05-21T08:56:41.572Z\\\", \\\"hypothesis\\\": \\\"Iterative model collapse exhibits a sharp phase transition in task-level metrics (PPL, accuracy, repetition rate) around α≈0.50, where synthetic data ratio crosses a critical threshold causing nonlinear degradation in generation quality.\\\", \\\"log_path\\\": \\\"/tmp/d37g_run.log\\\", \\\"checkpoint_path\\\": \\\"results/d37g_task_degradation/summary.json\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0272}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "c49a104f-9b0a-48bc-aeef-7fbfb7c4a0d2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d37g\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T08:55:43.301Z\\\", \\\"updated_at\\\": \\\"2026-05-21T08:56:41.572Z\\\", \\\"hypothesis\\\": \\\"Iterative model collapse exhibits a sharp phase transition in task-level metrics (PPL, accuracy, repetition rate) around α≈0.50, where synthetic data ratio crosses a critical threshold causing nonlinear degradation in generation quality.\\\", \\\"log_path\\\": \\\"/tmp/d37g_run.log\\\", \\\"checkpoint_path\\\": \\\"results/d37g_task_degradation/summary.json\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0272}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"d37g\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T08:55:43.301Z\", \"updated_at\": \"2026-05-21T08:56:41.572Z\", \"hypothesis\": \"Iterative model collapse exhibits a sharp phase transition in task-level metrics (PPL, accuracy, repetition rate) around α≈0.50, where synthetic data ratio crosses a critical threshold causing nonlinear degradation in generation quality.\", \"log_path\": \"/tmp/d37g_run.log\", \"checkpoint_path\": \"results/d37g_task_degradation/summary.json\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0272}}"
+              }
+            }
+          },
+          "id": "event-001117"
+        },
+        {
+          "source_line": 1118,
+          "timestamp": "2026-05-21T08:56:42.836Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QbwJYW1N61VvRKzxKNNU7G",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d37b\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T08:55:44.808Z\\\", \\\"updated_at\\\": \\\"2026-05-21T08:56:42.469Z\\\", \\\"hypothesis\\\": \\\"Higher synthetic data ratio (α) causes progressive collapse of internal model representations, measurable via decreasing attention entropy, reduced head diversity, increasing effective rank (dimensionality expansion), and rising logit confidence (overconfidence).\\\", \\\"log_path\\\": \\\"/tmp/d37b_run.log\\\", \\\"checkpoint_path\\\": \\\"results/d37b_mech_interp/summary.json\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8675}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "5b2033ad-84cf-4d85-8bcf-74ea5fbec6b5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d37b\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T08:55:44.808Z\\\", \\\"updated_at\\\": \\\"2026-05-21T08:56:42.469Z\\\", \\\"hypothesis\\\": \\\"Higher synthetic data ratio (α) causes progressive collapse of internal model representations, measurable via decreasing attention entropy, reduced head diversity, increasing effective rank (dimensionality expansion), and rising logit confidence (overconfidence).\\\", \\\"log_path\\\": \\\"/tmp/d37b_run.log\\\", \\\"checkpoint_path\\\": \\\"results/d37b_mech_interp/summary.json\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8675}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"d37b\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T08:55:44.808Z\", \"updated_at\": \"2026-05-21T08:56:42.469Z\", \"hypothesis\": \"Higher synthetic data ratio (α) causes progressive collapse of internal model representations, measurable via decreasing attention entropy, reduced head diversity, increasing effective rank (dimensionality expansion), and rising logit confidence (overconfidence).\", \"log_path\": \"/tmp/d37b_run.log\", \"checkpoint_path\": \"results/d37b_mech_interp/summary.json\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8675}}"
+              }
+            }
+          },
+          "id": "event-001118"
+        },
+        {
+          "source_line": 1119,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AbGmb5J9tZLoLQUhky3USw",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d37g",
+                "field": "status",
+                "value": "DONE",
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "b2acbe14-6033-4b2d-9b4e-07876a77386d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KysXCcU4WkevZ7CA6JPSPK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 767,
+                "cache_read_input_tokens": 47001,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 767
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-001119"
+        },
+        {
+          "source_line": 1120,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011JchGwAktrqBVmasBmK1Cw",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "d37b",
+                "field": "status",
+                "value": "DONE",
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "596c5b68-f4ca-4be8-adb8-55d7ad903604",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KysXCcU4WkevZ7CA6JPSPK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 767,
+                "cache_read_input_tokens": 47001,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 767
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-001120"
+        },
+        {
+          "source_line": 1121,
+          "timestamp": "2026-05-21T08:56:48.808Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AbGmb5J9tZLoLQUhky3USw",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d37g\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T08:55:43.301Z\\\", \\\"updated_at\\\": \\\"2026-05-21T08:56:47.064Z\\\", \\\"hypothesis\\\": \\\"Iterative model collapse exhibits a sharp phase transition in task-level metrics (PPL, accuracy, repetition rate) around α≈0.50, where synthetic data ratio crosses a critical threshold causing nonlinear degradation in generation quality.\\\", \\\"log_path\\\": \\\"/tmp/d37g_run.log\\\", \\\"checkpoint_path\\\": \\\"results/d37g_task_degradation/summary.json\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-21T08:56:47.064Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.4501}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "39e232d4-dc7c-4253-852b-f4fb4e1576a2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d37g\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T08:55:43.301Z\\\", \\\"updated_at\\\": \\\"2026-05-21T08:56:47.064Z\\\", \\\"hypothesis\\\": \\\"Iterative model collapse exhibits a sharp phase transition in task-level metrics (PPL, accuracy, repetition rate) around α≈0.50, where synthetic data ratio crosses a critical threshold causing nonlinear degradation in generation quality.\\\", \\\"log_path\\\": \\\"/tmp/d37g_run.log\\\", \\\"checkpoint_path\\\": \\\"results/d37g_task_degradation/summary.json\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-21T08:56:47.064Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.4501}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"d37g\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T08:55:43.301Z\", \"updated_at\": \"2026-05-21T08:56:47.064Z\", \"hypothesis\": \"Iterative model collapse exhibits a sharp phase transition in task-level metrics (PPL, accuracy, repetition rate) around α≈0.50, where synthetic data ratio crosses a critical threshold causing nonlinear degradation in generation quality.\", \"log_path\": \"/tmp/d37g_run.log\", \"checkpoint_path\": \"results/d37g_task_degradation/summary.json\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T08:56:47.064Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.4501}}"
+              }
+            }
+          },
+          "id": "event-001121"
+        },
+        {
+          "source_line": 1122,
+          "timestamp": "2026-05-21T08:56:50.984Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011JchGwAktrqBVmasBmK1Cw",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d37b\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T08:55:44.808Z\\\", \\\"updated_at\\\": \\\"2026-05-21T08:56:49.324Z\\\", \\\"hypothesis\\\": \\\"Higher synthetic data ratio (α) causes progressive collapse of internal model representations, measurable via decreasing attention entropy, reduced head diversity, increasing effective rank (dimensionality expansion), and rising logit confidence (overconfidence).\\\", \\\"log_path\\\": \\\"/tmp/d37b_run.log\\\", \\\"checkpoint_path\\\": \\\"results/d37b_mech_interp/summary.json\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-21T08:56:49.324Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.1667}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "3faa15c4-e647-4d4a-9b6b-1b98ec030f53",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d37b\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T08:55:44.808Z\\\", \\\"updated_at\\\": \\\"2026-05-21T08:56:49.324Z\\\", \\\"hypothesis\\\": \\\"Higher synthetic data ratio (α) causes progressive collapse of internal model representations, measurable via decreasing attention entropy, reduced head diversity, increasing effective rank (dimensionality expansion), and rising logit confidence (overconfidence).\\\", \\\"log_path\\\": \\\"/tmp/d37b_run.log\\\", \\\"checkpoint_path\\\": \\\"results/d37b_mech_interp/summary.json\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-21T08:56:49.324Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.1667}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"d37b\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T08:55:44.808Z\", \"updated_at\": \"2026-05-21T08:56:49.324Z\", \"hypothesis\": \"Higher synthetic data ratio (α) causes progressive collapse of internal model representations, measurable via decreasing attention entropy, reduced head diversity, increasing effective rank (dimensionality expansion), and rising logit confidence (overconfidence).\", \"log_path\": \"/tmp/d37b_run.log\", \"checkpoint_path\": \"results/d37b_mech_interp/summary.json\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T08:56:49.324Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.1667}}"
+              }
+            }
+          },
+          "id": "event-001122"
+        },
+        {
+          "source_line": 1123,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both experiments registered as DONE. Here are the results.\n\n---\n\n## D37-G: Task Degradation Results (13 checkpoints, gen_10)\n\n| α | PPL | Accuracy | Rep-2 | Rep-3 | Rep-4 |\n|---|-----|----------|-------|-------|-------|\n| baseline | 26.64 | 0.3904 | 0.079 | 0.028 | 0.013 |\n| **0.05** | **20.77** | **0.4312** | 0.140 | 0.062 | 0.032 |\n| 0.25 | 22.91 | 0.4242 | **0.200** | **0.118** | **0.085** |\n| 0.46 | 31.57 | 0.4004 | 0.164 | 0.090 | 0.061 |\n| 0.48 | 32.69 | 0.3985 | 0.160 | 0.089 | 0.063 |\n| 0.50 | 31.26 | 0.3991 | 0.128 | 0.051 | 0.025 |\n| **0.52** | **41.11** | 0.3890 | 0.143 | 0.075 | 0.047 |\n| 0.60 | 53.55 | 0.3749 | 0.154 | 0.083 | 0.054 |\n| 0.65 | 62.38 | 0.3669 | 0.163 | 0.082 | 0.049 |\n| 0.70 | 70.06 | 0.3603 | 0.134 | 0.064 | 0.039 |\n| 0.75 | 80.31 | 0.3540 | 0.126 | 0.055 | 0.031 |\n| C4 0.75 | 1421.31 | 0.2221 | 0.150 | 0.094 | 0.075 |\n| pad 1.0 | 997.39 | 0.3089 | 0.182 | 0.103 | 0.074 |\n\n## D37-B: Mechanistic Interpretability Results (5 α values, gen_10)\n\n| α | Attn Entropy | Head Diversity | Act Norm | Logit Conf | Eff Rank |\n|---|-------------|----------------|----------|------------|----------|\n| 0.05 | 1.174 | 0.710 | 51.64 | 0.459 | 731.9 |\n| 0.25 | 1.181 | 0.696 | 55.80 | 0.463 | 734.5 |\n| 0.50 | 1.127 | 0.696 | 47.67 | 0.496 | 788.5 |\n| 0.75 | 1.132 | 0.692 | 43.15 | 0.580 | 853.7 |\n| 1.00 | 1.182 | 0.700 | 47.89 | 0.738 | 904.7 |\n\n---\n\n## Key Findings\n\n**1. Phase transition at α≈0.50→0.52:** PPL jumps from 31.3 to 41.1 (31% increase in just 2pp of α). This is the sharpest inflection in the entire sweep, confirming a critical threshold.\n\n**2. Low α improves over baseline:** α=0.05 achieves the best PPL (20.8 vs 26.6 baseline) and accuracy (0.431 vs 0.390). Small synthetic data mixing is beneficial, consistent with data augmentation effects.\n\n**3. Repetition and PPL decouple:** Repetition peaks at α=0.25 (rep_2=0.20) then partially recovers, while PPL degrades monotonically. These are distinct failure modes with different critical thresholds.\n\n**4. Effective rank increases monotonically (732→905):** Collapsing models spread variance more uniformly across dimensions rather than concentrating on informative subspaces — a signature of distributional flattening.\n\n**5. Logit confidence rises sharply (0.46→0.74):** The model becomes progressively overconfident, with the steepest jump between α=0.75 and α=1.0. This correlates with the PPL explosion — the model assigns high probability to wrong tokens.\n\n**6. Attention entropy is non-monotonic:** Dips at α=0.50-0.75, recovers at α=1.0. The mid-range collapse sharpens attention patterns, but catastrophic collapse (α=1.0) reverts to diffuse attention.\n\n**7. Extreme regimes are catastrophic:** C4 α=0.75 (PPL=1421) is worse than padding α=1.0 (PPL=997), suggesting domain-shifted synthetic data is more damaging than pure synthetic padding."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "uuid": "db6c0459-f706-4027-aade-b9f7119c1faa",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PgzNRiTL1vMe9fxZRxY4YV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 817,
+                "cache_read_input_tokens": 47768,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 817
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-001123"
+        },
+        {
+          "source_line": 1124,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both experiments registered as DONE. Here are the results.\n\n---\n\n## D37-G: Task Degradation Results (13 checkpoints, gen_10)\n\n| α | PPL | Accuracy | Rep-2 | Rep-3 | Rep-4 |\n|---|-----|----------|-------|-------|-------|\n| baseline | 26.64 | 0.3904 | 0.079 | 0.028 | 0.013 |\n| **0.05** | **20.77** | **0.4312** | 0.140 | 0.062 | 0.032 |\n| 0.25 | 22.91 | 0.4242 | **0.200** | **0.118** | **0.085** |\n| 0.46 | 31.57 | 0.4004 | 0.164 | 0.090 | 0.061 |\n| 0.48 | 32.69 | 0.3985 | 0.160 | 0.089 | 0.063 |\n| 0.50 | 31.26 | 0.3991 | 0.128 | 0.051 | 0.025 |\n| **0.52** | **41.11** | 0.3890 | 0.143 | 0.075 | 0.047 |\n| 0.60 | 53.55 | 0.3749 | 0.154 | 0.083 | 0.054 |\n| 0.65 | 62.38 | 0.3669 | 0.163 | 0.082 | 0.049 |\n| 0.70 | 70.06 | 0.3603 | 0.134 | 0.064 | 0.039 |\n| 0.75 | 80.31 | 0.3540 | 0.126 | 0.055 | 0.031 |\n| C4 0.75 | 1421.31 | 0.2221 | 0.150 | 0.094 | 0.075 |\n| pad 1.0 | 997.39 | 0.3089 | 0.182 | 0.103 | 0.074 |\n\n## D37-B: Mechanistic Interpretability Results (5 α values, gen_10)\n\n| α | Attn Entropy | Head Diversity | Act Norm | Logit Conf | Eff Rank |\n|---|-------------|----------------|----------|------------|----------|\n| 0.05 | 1.174 | 0.710 | 51.64 | 0.459 | 731.9 |\n| 0.25 | 1.181 | 0.696 | 55.80 | 0.463 | 734.5 |\n| 0.50 | 1.127 | 0.696 | 47.67 | 0.496 | 788.5 |\n| 0.75 | 1.132 | 0.692 | 43.15 | 0.580 | 853.7 |\n| 1.00 | 1.182 | 0.700 | 47.89 | 0.738 | 904.7 |\n\n---\n\n## Key Findings\n\n**1. Phase transition at α≈0.50→0.52:** PPL jumps from 31.3 to 41.1 (31% increase in just 2pp of α). This is the sharpest inflection in the entire sweep, confirming a critical threshold.\n\n**2. Low α improves over baseline:** α=0.05 achieves the best PPL (20.8 vs 26.6 baseline) and accuracy (0.431 vs 0.390). Small synthetic data mixing is beneficial, consistent with data augmentation effects.\n\n**3. Repetition and PPL decouple:** Repetition peaks at α=0.25 (rep_2=0.20) then partially recovers, while PPL degrades monotonically. These are distinct failure modes with different critical thresholds.\n\n**4. Effective rank increases monotonically (732→905):** Collapsing models spread variance more uniformly across dimensions rather than concentrating on informative subspaces — a signature of distributional flattening.\n\n**5. Logit confidence rises sharply (0.46→0.74):** The model becomes progressively overconfident, with the steepest jump between α=0.75 and α=1.0. This correlates with the PPL explosion — the model assigns high probability to wrong tokens.\n\n**6. Attention entropy is non-monotonic:** Dips at α=0.50-0.75, recovers at α=1.0. The mid-range collapse sharpens attention patterns, but catastrophic collapse (α=1.0) reverts to diffuse attention.\n\n**7. Extreme regimes are catastrophic:** C4 α=0.75 (PPL=1421) is worse than padding α=1.0 (PPL=997), suggesting domain-shifted synthetic data is more damaging than pure synthetic padding."
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 2359209,
+            "duration_api_ms": 2102557,
+            "num_turns": 510,
+            "stop_reason": "end_turn",
+            "session_id": "0a262593-62bf-4c98-a040-9b9de854f899",
+            "total_cost_usd": 29.362403000000008,
+            "usage": {
+              "input_tokens": 487,
+              "cache_creation_input_tokens": 191841,
+              "cache_read_input_tokens": 51994583,
+              "output_tokens": 79275,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 191841,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 1277,
+                  "cache_read_input_tokens": 47768,
+                  "cache_creation_input_tokens": 817,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 817
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 3245,
+                "outputTokens": 23,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.00336,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 2034,
+                "outputTokens": 82731,
+                "cacheReadInputTokens": 52161521,
+                "cacheCreationInputTokens": 191974,
+                "webSearchRequests": 0,
+                "costUSD": 29.35904300000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "22155093-f72d-4982-90c2-c04293608f20"
+          },
+          "id": "event-001124"
+        }
+      ]
+    }
+  ]
+}

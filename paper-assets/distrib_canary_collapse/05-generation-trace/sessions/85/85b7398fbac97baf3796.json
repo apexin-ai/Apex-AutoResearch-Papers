@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "85b7398fbac97baf3796",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops check 17855 gpu status",
+  "task_key": "worker_ops_check-17855-gpu-status_20260522T200540",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-17855-gpu-status_20260522T200540_result.json",
+    "occurrence": 1,
+    "bytes": 1340,
+    "sha256": "b96a45f976fd5465241da54525461b8d6515a064dabff72e3236aa4d1d48143b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Here's the summary:\n\n## westd-17855 GPU Status\n\n| GPU | Util | VRAM | PID | Experiment | Status |\n|-----|------|------|-----|------------|--------|\n| cuda:0 | 87% | 31.8/97.9 GB | 679656 | t15_a060_v2 | RUNNING |\n| cuda:1 | 90% | 31.8/97.9 GB | 680095 | t15_a050_v3 | RUNNING |\n| cuda:2 | 0% | 0/97.9 GB | — | — | **空闲** |\n| cuda:3 | 88% | 11.2/97.9 GB | 714525 | t10_a075_v2 (--start_gen 10, 11min ago) | RUNNING (restarted) |\n| cuda:4 | 100% | 30.9/97.9 GB | 679204 | **t10_a045_s42_fp32_14b** | RUNNING (6h59m) |\n| cuda:5 | 89% | 31.8/97.9 GB | 680608 | t15_a045 | RUNNING |\n\n## t10_a045 处理结果\n\n实验**已经在跑**，PID 679204，运行 ~7 小时。gen_0–gen_5 完成，gen_6 训练中（10 代中第 7 代）。Log: `/tmp/train_scale_14b_t10_a045_s42.log`。Registry 此前无记录，已创建并更新为 RUNNING。\n\n## 磁盘\n\n`/root/autodl-tmp/`: **350G 总量，324G 已用，27G 剩余 (93%)**。偏紧，但当前实验应能完成（剩余 3 代 checkpoint 约需 ~15G）。需注意 cuda:3 的 t10_a075_v2 重启后也会写 checkpoint。\n\n## 注意事项\n- cuda:2 空闲，可调度新任务\n- cuda:3 上 t10_a075_v2 被另一个 Worker 重启（`--start_gen 10`），刚开始 11 分钟\n- 磁盘 93% 接近警戒线，后续提交任务前须复查"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-17855-gpu-status.md"
+}

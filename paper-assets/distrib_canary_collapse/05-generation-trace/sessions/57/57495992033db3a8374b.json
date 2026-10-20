@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57495992033db3a8374b",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "ops fix cuda1 redeploy t15 a050 s43",
+  "task_key": "worker_ops_fix-cuda1-redeploy-t15-a050-s43_20260523T030557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-cuda1-redeploy-t15-a050-s43_20260523T030557_result.json",
+    "occurrence": 1,
+    "bytes": 1182,
+    "sha256": "66daa623cb477462039d5ca45ddb019ade7534863bb895db472b4f84c47b3cb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 registry 条目均已更新为 RUNNING。\n\n## 汇报\n\n### 1. 进程存活状态\n- **PID 749427** (t15_a060_s43, cuda:0): **存活**，87% GPU, 11245 MiB, 306W\n- **PID 750075** (t15_a050_s43, cuda:1): **存活**，89% GPU, 11245 MiB, 285W\n\n### 2. 崩溃诊断\n**无崩溃。** Director 报告的 cuda:1 \"0%/0MiB\" 是进程刚启动时的快照（模型尚未加载到 GPU）。`ps` etime 格式为 MM:SS（约 20 分钟），不是 HH:MM（20 小时），两个进程均在正常运行。\n\n### 3. 无需重新部署\n两个实验都在正常推进：\n- **a060_s43** (cuda:0): gen_0 已完成（synthetic_data 11:12, metrics 11:14 CST），正在进入 gen_1\n- **a050_s43** (cuda:1): gen_0 生成中，预计很快完成\n\n### 4. 磁盘空间\n- 根分区: 30G, 用 13G, 剩余 18G (42%)\n- 数据盘 `/root/autodl-tmp`: **350G, 用 319G, 剩余 32G (92%)** ← 偏紧，但 T=15 两个实验预估 ~5-8GB 总占用，可以支撑\n\n### 5. Registry 最终状态\n- `scale_14b_t15_a060_s43_fp32`: **RUNNING** (新建, PID 749427, cuda:0, westd-17855)\n- `scale_14b_t15_a050_s43_fp32`: **RUNNING** (已更新 spec, PID 750075, cuda:1, westd-17855)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-cuda1-redeploy-t15-a050-s43.md"
+}

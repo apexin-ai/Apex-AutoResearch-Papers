@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dbb04a1952d57053ee1c",
+  "project": "distrib_canary_collapse",
+  "kind": "result",
+  "title": "analysis a050 a010 fp32 batch",
+  "task_key": "worker_analysis_a050_a010_fp32_batch_20260519T095037",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_a050_a010_fp32_batch_20260519T095037_result.json",
+    "occurrence": 1,
+    "bytes": 668,
+    "sha256": "158b73062df80db103d3dbb52387e970346f7e364aec27a9c29ac5443fe08248"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。报告写入 `artifacts/analysis_a050_a010_fp32_batch.md`。\n\n核心结论：\n\n**α=0.50 明确处于\"可检测\"区间**：PermG=6/8（s43, s44 完全一致），k4=6/8，MMCT=0.75。3-seed drift 高度一致（d1_drift: -28.70±0.55%）。\n\n**α=0.10 s42 确认盲区**：PermG=0/8，与已有 α=0.05 和 α=0.10 s43 一致。\n\n**Step function 跃迁在 [0.10, 0.50] 区间内**，需要 α=0.25 或 α=0.30 数据定位精确阈值。\n\n**待处理**：\n1. a050_s42 缺少 analysis_results.json（lead-lag 分析未运行），需补跑\n2. α=0.50 PermG(6/8) 高于 α=0.60(3/8)，后者是单 seed，建议多 seed 验证"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-a050-a010-fp32-batch.md"
+}
