@@ -1,0 +1,102 @@
+{
+  "schema_version": "1.0",
+  "id": "86b22adb9622dd9f6c68",
+  "project": "spectral_collapse_ews--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [HANDOFF] 你是 Research Reviewer，这是 Loop #3。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 服务器名已变更：`westd-18314` 不可用，当前可用服务器",
+  "task_key": "16594f4d-5ea7-4c31-a017-2648d15efd0b",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/16594f4d-5ea7-4c31-a017-2648d15efd0b.jsonl",
+    "occurrence": 1,
+    "bytes": 726837,
+    "sha256": "da5a051eebc758fe7650f8c6e72f51805e3cdef71de9573886ae0c6502a8ac39"
+  },
+  "statistics": {
+    "messages": 227,
+    "user_turns": 5,
+    "tool_calls": 61,
+    "roles": {
+      "record": 55,
+      "user": 5,
+      "assistant": 45,
+      "tool_call": 61,
+      "tool_result": 61
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "86b22adb9622dd9f6c68-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 170,
+      "chunks": [
+        {
+          "path": "86b22adb9622dd9f6c68-part-0001.json",
+          "message_count": 170
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "86b22adb9622dd9f6c68-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 41,
+      "chunks": [
+        {
+          "path": "86b22adb9622dd9f6c68-part-0001.json",
+          "message_count": 6
+        },
+        {
+          "path": "86b22adb9622dd9f6c68-part-0002.json",
+          "message_count": 35
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "86b22adb9622dd9f6c68-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 10,
+      "chunks": [
+        {
+          "path": "86b22adb9622dd9f6c68-part-0002.json",
+          "message_count": 10
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-handoff-research-reviewer-loop-3-task-context-1-westd-18314.md"
+}

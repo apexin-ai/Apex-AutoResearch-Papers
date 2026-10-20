@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "a7b7885f1c9c5f16426d",
+  "project": "spectral_collapse_ews--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: spectral_collapse_ews ## 运行环境 - 服务器名: rtx6000-diagprobe - SSH 账户: root（调用 ssh_execute / submit_t",
+  "task_key": "ce165bf3-479c-40df-b19c-07bbb9f09643",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/ce165bf3-479c-40df-b19c-07bbb9f09643.jsonl",
+    "occurrence": 1,
+    "bytes": 1006648,
+    "sha256": "c1d22f57206f7a060341cf4a42685bafc3128f5ccc40aa01f3e9ae35dceebf62"
+  },
+  "statistics": {
+    "messages": 339,
+    "user_turns": 1,
+    "tool_calls": 94,
+    "roles": {
+      "record": 70,
+      "user": 1,
+      "assistant": 80,
+      "tool_call": 94,
+      "tool_result": 94
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "a7b7885f1c9c5f16426d-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 337,
+      "chunks": [
+        {
+          "path": "a7b7885f1c9c5f16426d-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "a7b7885f1c9c5f16426d-part-0002.json",
+          "message_count": 159
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-spectral-collapse-ews-rtx6000-diagprobe-ssh-root-ssh-execute-s-copy-225.md"
+}

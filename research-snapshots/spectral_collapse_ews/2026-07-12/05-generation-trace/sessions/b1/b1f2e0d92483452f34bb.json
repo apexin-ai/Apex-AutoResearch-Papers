@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "b1f2e0d92483452f34bb",
+  "project": "spectral_collapse_ews--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> ## 环境信息 - GPU: 2× NVIDIA RTX PRO 6000 Blackwell Server Edition, 各 94GB - conda 激活: source /root/minicond",
+  "task_key": "48a7ccbe-bec6-4589-a19a-0ba449a86a52",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/48a7ccbe-bec6-4589-a19a-0ba449a86a52.jsonl",
+    "occurrence": 1,
+    "bytes": 568470,
+    "sha256": "7ad9f52e8a0a31faaba7b5d3747ec3c4bab755a84cc5ace4543ca7f5e5d7f330"
+  },
+  "statistics": {
+    "messages": 204,
+    "user_turns": 1,
+    "tool_calls": 62,
+    "roles": {
+      "record": 38,
+      "user": 1,
+      "assistant": 41,
+      "tool_call": 62,
+      "tool_result": 62
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "b1f2e0d92483452f34bb-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 202,
+      "chunks": [
+        {
+          "path": "b1f2e0d92483452f34bb-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "b1f2e0d92483452f34bb-part-0002.json",
+          "message_count": 24
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-gpu-2-nvidia-rtx-pro-6000-blackwell-server-edition-94gb-conda-so.md"
+}

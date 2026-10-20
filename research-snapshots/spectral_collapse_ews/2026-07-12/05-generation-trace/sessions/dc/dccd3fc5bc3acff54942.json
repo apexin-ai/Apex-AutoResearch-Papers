@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "dccd3fc5bc3acff54942",
+  "project": "spectral_collapse_ews--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: trace_distill_repair ## 运行环境 - 项目代码根目录: /root/trace_distill_repair ## 环境搭建 连接服务器后先调 `detect_imag",
+  "task_key": "d1c1f473-6cef-474a-b047-621fb8f97673",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-1/d1c1f473-6cef-474a-b047-621fb8f97673.jsonl",
+    "occurrence": 1,
+    "bytes": 936834,
+    "sha256": "1a602cd52e4223c57361aaaa001932a58aae7dc5c1fb361890f666974c53f740"
+  },
+  "statistics": {
+    "messages": 377,
+    "user_turns": 1,
+    "tool_calls": 105,
+    "roles": {
+      "record": 65,
+      "user": 1,
+      "assistant": 101,
+      "tool_call": 105,
+      "tool_result": 105
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "dccd3fc5bc3acff54942-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 375,
+      "chunks": [
+        {
+          "path": "dccd3fc5bc3acff54942-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "dccd3fc5bc3acff54942-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "dccd3fc5bc3acff54942-part-0003.json",
+          "message_count": 17
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-trace-distill-repair-root-trace-distill-repair-detect-imag-copy-26.md"
+}

@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "id": "668493a4a6abf9307e8e",
+  "project": "spectral_collapse_ews--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [HANDOFF] 你是 Research Reviewer，这是 Loop #5。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目 GPU 白名单：rtx6000-diagprobe 的 c",
+  "task_key": "a7be1b60-5f26-473c-969c-23949ed54ed3",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/a7be1b60-5f26-473c-969c-23949ed54ed3.jsonl",
+    "occurrence": 1,
+    "bytes": 901022,
+    "sha256": "861ddf38fbcaf231d1bc9414cdfe8a98c76d3ddd8cfd2923ba51d02632a9b4bd"
+  },
+  "statistics": {
+    "messages": 234,
+    "user_turns": 3,
+    "tool_calls": 66,
+    "roles": {
+      "record": 56,
+      "user": 3,
+      "assistant": 43,
+      "tool_call": 66,
+      "tool_result": 66
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "668493a4a6abf9307e8e-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 184,
+      "chunks": [
+        {
+          "path": "668493a4a6abf9307e8e-part-0001.json",
+          "message_count": 140
+        },
+        {
+          "path": "668493a4a6abf9307e8e-part-0002.json",
+          "message_count": 44
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "668493a4a6abf9307e8e-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 46,
+      "chunks": [
+        {
+          "path": "668493a4a6abf9307e8e-part-0002.json",
+          "message_count": 46
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-handoff-research-reviewer-loop-5-task-context-1-gpu-rtx6000-diagprobe-c-copy-2.md"
+}
