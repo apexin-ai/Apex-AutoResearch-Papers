@@ -188,6 +188,17 @@
           "paper_pdf": null,
           "code_count": 5,
           "trace_count": 1902
+        },
+        "contamcal-irt-calibration": {
+          "status": "uploaded",
+          "project": "contamcal-irt-calibration",
+          "collection": "contamcal-irt-calibration--export-20260712",
+          "snapshot": true,
+          "derived_archive_sha256": "77c1ce09144d23ab3c12c77101213eb5bae390a8e97072a0cf2436dd574dc904",
+          "indexed_members": 2246,
+          "paper_pdf": null,
+          "code_count": 5,
+          "trace_count": 2241
         }
       },
       "status": "in_progress",

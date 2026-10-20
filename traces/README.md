@@ -1,6 +1,6 @@
 # Research Trace Atlas
 
-Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **106 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
+Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **107 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
 
 [Offline preview](demo.html) · [Interactive browser](index.html) · [Format and provenance](FORMAT.md)
 
@@ -25,6 +25,7 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [collapse-aware-mixing](../paper-assets/collapse-aware-mixing/05-generation-trace/README.md) | 54 | 81 | 77 | 20 | 17,588 | [Read](../paper-assets/collapse-aware-mixing/05-generation-trace/readable/README.md) |
 | [collapse_aware_reward_rebalancing](../paper-assets/collapse_aware_reward_rebalancing/05-generation-trace/README.md) | 44 | 85 | 80 | 5 | 14,906 | [Read](../paper-assets/collapse_aware_reward_rebalancing/05-generation-trace/readable/README.md) |
 | [contamcal-irt-calibration](../paper-assets/contamcal-irt-calibration/05-generation-trace/README.md) | 1,010 | 1,906 | 1,825 | 262 | 356,899 | [Read](../paper-assets/contamcal-irt-calibration/05-generation-trace/readable/README.md) |
+| [contamcal-irt-calibration--export-20260712](../research-snapshots/contamcal-irt-calibration/2026-07-12/05-generation-trace/README.md) | 2,241 | 0 | 0 | 0 | 335,244 | [Read](../research-snapshots/contamcal-irt-calibration/2026-07-12/05-generation-trace/readable/README.md) |
 | [contrastive_entrain_calib](../paper-assets/contrastive_entrain_calib/05-generation-trace/README.md) | 250 | 663 | 634 | 26 | 119,612 | [Read](../paper-assets/contrastive_entrain_calib/05-generation-trace/readable/README.md) |
 | [contrastive_graph_jailbreak_detect](../paper-assets/contrastive_graph_jailbreak_detect/05-generation-trace/README.md) | 9 | 10 | 9 | 0 | 3,080 | [Read](../paper-assets/contrastive_graph_jailbreak_detect/05-generation-trace/readable/README.md) |
 | [contrastive_trace_safety](../paper-assets/contrastive_trace_safety/05-generation-trace/README.md) | 152 | 352 | 330 | 21 | 116,437 | [Read](../paper-assets/contrastive_trace_safety/05-generation-trace/readable/README.md) |
@@ -115,6 +116,6 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [xling_calab_direction](../paper-assets/xling_calab_direction/05-generation-trace/README.md) | 0 | 1 | 1 | 0 | 404 | [Read](../paper-assets/xling_calab_direction/05-generation-trace/readable/README.md) |
 | [xling_calib_direction](../paper-assets/xling_calib_direction/05-generation-trace/README.md) | 48 | 123 | 119 | 0 | 27,260 | [Read](../paper-assets/xling_calib_direction/05-generation-trace/readable/README.md) |
 
-**118,774 source records · 11,060,011 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
+**121,015 source records · 11,395,255 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
 
 Source language and order are retained. A user-role message can originate from another agent or system and does not identify a human author. Missing prompts and timestamps are not reconstructed. Credentials and embedded attachment payloads are redacted.

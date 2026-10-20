@@ -220,6 +220,19 @@
       }
     },
     {
+      "project": "contamcal-irt-calibration--export-20260712",
+      "title": "Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families (July export snapshot)",
+      "catalog": "../research-snapshots/contamcal-irt-calibration/2026-07-12/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 2241,
+        "messages": 335244,
+        "user_turns": 14326,
+        "tool_calls": 89476,
+        "unparsed_lines": 3,
+        "conversation": 2241
+      }
+    },
+    {
       "project": "contrastive_entrain_calib",
       "title": "The Probe Reward Trap: Behavioral Death Before Distributional Collapse in Sycophancy Calibration",
       "catalog": "../paper-assets/contrastive_entrain_calib/05-generation-trace/catalog.json",

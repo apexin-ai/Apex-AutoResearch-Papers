@@ -5,6 +5,7 @@ These snapshots preserve later project exports alongside the initial workspace r
 | Project | Snapshot | Manuscript | Assets and conversations |
 |---|---|---|---|
 | clkc_mech_interp | 2026-07-12 | No PDF in snapshot | [Assets](clkc_mech_interp/2026-07-12/README.md) · [Conversations](clkc_mech_interp/2026-07-12/05-generation-trace/readable/README.md) |
+| contamcal-irt-calibration | 2026-07-12 | No PDF in snapshot | [Assets](contamcal-irt-calibration/2026-07-12/README.md) · [Conversations](contamcal-irt-calibration/2026-07-12/05-generation-trace/readable/README.md) |
 | contrastive_trace_safety | 2026-07-12 | No PDF in snapshot | [Assets](contrastive_trace_safety/2026-07-12/README.md) · [Conversations](contrastive_trace_safety/2026-07-12/05-generation-trace/readable/README.md) |
 | cost-verify-agent-rl | 2026-07-12 | No PDF in snapshot | [Assets](cost-verify-agent-rl/2026-07-12/README.md) · [Conversations](cost-verify-agent-rl/2026-07-12/05-generation-trace/readable/README.md) |
 | distill_sparse_swiglu | 2026-07-12 | No PDF in snapshot | [Assets](distill_sparse_swiglu/2026-07-12/README.md) · [Conversations](distill_sparse_swiglu/2026-07-12/05-generation-trace/readable/README.md) |
