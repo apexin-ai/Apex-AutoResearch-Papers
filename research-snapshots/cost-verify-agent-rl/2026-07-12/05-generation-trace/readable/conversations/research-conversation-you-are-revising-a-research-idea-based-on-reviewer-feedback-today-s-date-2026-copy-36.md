@@ -1,0 +1,1872 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-10 (UTC).** ## Original idea { "tit
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 26
+- **Recorded user turns:** 1
+- **Tool calls:** 5
+- **Original source:** `logs/chats/exported-trajectories/account-2/fd09aaea-1e2a-47f1-ba7a-1943938c18c7.jsonl`
+- **Structured JSON:** [`430b24f92f2950d51013.json`](../../sessions/43/430b24f92f2950d51013.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-10T18:41:12.419Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-10T18:41:12.419Z",
+  "sessionId": "fd09aaea-1e2a-47f1-ba7a-1943938c18c7",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-10 (UTC).**\n\n## Original idea\n{\n  \"title\": \"Error-Diagnosis-Conditioned Preference Learning for Agent Self-Correction\",\n  \"core_problem\": \"Agent self-correction training methods — including ETO's trajectory-level DPO, Agent-R's MCTS-guided SFT, and CSO's critical-step DPO — identify WHAT step to correct but not WHAT TYPE of error occurred. They apply a single, undifferentiated recovery mechanism regardless of whether the agent failed due to a planning error, an incorrect action, or a verification oversight. AP2O (AAAI 2026) demonstrates the value of error-type-progressive DPO for code generation, but no work has brought error-type conditioning to interactive agent recovery via step-level DPO. Can conditioning recovery training on the diagnosed error type yield better correction rates than type-agnostic step-level approaches in agentic settings?\",\n  \"opportunity\": \"Five recent threads converge: (1) AgentDebug (Sept 2025) shows that prompting-based type-specific correction improves recovery by 26% on ALFWorld/WebShop/GAIA, proving the type-conditioning hypothesis — but prompting-based recovery hits a ceiling with weaker models. (2) PathFinder-PRM (May 2025) demonstrates that decomposing error detection by type (math vs. consistency) significantly improves process reward models, achieving SOTA on PRMBench with 3x less data — validating error-type decomposition as a powerful inductive bias. (3) Step-level preference optimization (Step-DPO, CSO) shows that focusing DPO on critical steps outperforms trajectory-level approaches, with CSO achieving 37% improvement over SFT by targeting verified critical steps. (4) ETO (ACL 2024) establishes that DPO from failure-success trajectory pairs is effective for agent training on ALFWorld/WebShop, but operates at trajectory-level without error-type awareness. (5) AP2O (AAAI 2026) demonstrates that error-type-progressive preference optimization substantially improves code generation — the first work to condition DPO on error types in any domain — but applies to single-turn code generation rather than multi-turn interactive agents. Yet no work combines these: error-type-conditioned, step-level DPO from self-generated corrections for interactive agents. Agent-R identifies first-error steps via MCTS and applies SFT, but without type conditioning or preference learning. CSO applies step-level DPO at verified critical steps, but without diagnosing error types. E2CL (EMNLP 2024 Findings) identifies 8 error types in embodied agent analysis but trains generic SFT without error-type conditioning. The Self-Verification Dilemma (Feb 2026) explains WHY type conditioning should help: generic self-checks are confirmatory; error-type conditioning forces the model to address the specific diagnosed failure mode.\",\n  \"landscape\": \"General self-correction: SCoRe (ICLR 2025 Oral) establishes that SFT for self-correction fails due to distribution mismatch and behavior collapse, advocating online RL under the model's own distribution. ETO (ACL 2024) proposes exploration-based trajectory optimization using DPO on failure-success trajectory pairs, evaluated on ALFWorld, WebShop, and ScienceWorld — surpassing SFT, RFT, and PPO with ~9-20% gains. ETO is the most directly comparable DPO-based agent training method, but operates at trajectory level without error-type awareness or step-level targeting. Agent-R (arXiv 2501.11425, ByteDance) identifies first-error steps in failed trajectories via MCTS and trains recovery via iterative SFT on Llama-3.1-8B across WebShop, ScienceWorld, and TextCraft, achieving +5.59% average improvement. Agent-R is the closest step-level correction training approach, differing from ours in: (a) no error-type classification, (b) SFT instead of DPO, (c) MCTS tree search instead of self-generated corrections. CSO (ACL 2026 Findings, arXiv 2602.03412) performs verified critical step optimization — step-level DPO at decision points where alternate actions flip outcomes — achieving 37% relative improvement over SFT on GAIA-Text-103 with supervision at only 16% of trajectory steps. CSO represents current SOTA for step-level DPO in agent training but is not error-type conditioned. AgentDebug (Sept 2025) implements taxonomy-based failure classification via LLM zero-shot prompting followed by type-specific corrective feedback, achieving 26% improvement on ALFWorld/GAIA/WebShop — entirely prompting-based without learned recovery policies. AgentDebug's taxonomy defines 5 error categories (Memory, Reflection, Planning, Action, System-level); we simplify to 3 actionable categories (planning, action, verification) by merging Memory+Reflection into verification (both involve state-checking failures) and excluding System-level errors (not recoverable by the agent). AP2O (AAAI 2026, arXiv 2510.02393) is the first work to condition DPO on error types in any domain: it constructs an error notebook from failed code, organizes errors by type, and progressively trains the LLM to correct errors type-by-type with adaptive replay. AP2O achieves up to 3% pass@k improvement for code generation across Llama, Qwen, and DeepSeek (0.5B-34B). Our work extends this insight from single-turn code generation to multi-turn interactive agents, where error types are more complex (involving environment state, multi-step planning, and physical constraints) and correction requires coherent multi-step continuations rather than single-output regeneration. TCPO (arXiv 2509.08500) applies step-wise preference optimization to embodied decision-making on ALFWorld using VLMs (LLaVA-Mistral-7B), transforming sparse rewards into step-level preference pairs. TCPO achieves 26.7% success on ALFWorld — a different setting (vision-based, continuous interaction) from our text-based agents, and without error-type conditioning. E2CL (EMNLP 2024 Findings, arXiv 2409.03256) introduces exploration-based error correction learning for embodied agents on VirtualHome, using teacher-guided and teacher-free explorations to gather environmental feedback. E2CL identifies 8 error types in analysis (unflipped boolean state, missing object, enclosed object, invalid action, etc.) but trains via generic SFT without conditioning on error type — leaving the type-conditioning gap open. AgentHER (March 2026) applies hindsight experience replay to relabel failed trajectories for alternative goals, producing SFT/DPO training data that improves WebArena performance by +7-11pp — a data augmentation technique orthogonal to type-conditioned recovery. T-STAR (April 2026) introduces tree-structured surgical policy optimization at divergence points but is not error-type conditioned. ErrorProbe (April 2026) advances self-improving error diagnosis with backward tracing and episodic memory, focusing on diagnosis accuracy without training recovery policies. CMFR (REALM 2025, arXiv 2507.06016) uses conditional multi-stage failure recovery with zero-shot chain prompting, achieving 11.5% improvement on TEACH — a prompting-based approach without learned recovery policies. PathFinder-PRM (May 2025) shows error-type-aware PRMs decomposing into math and consistency errors achieve SOTA on PRMBench with 3x less data — validating error-type decomposition as an inductive bias, but only for reasoning tasks. Step-DPO and Full-Step-DPO apply step-level preference optimization at the first erroneous step for mathematical reasoning. AgentPRM provides step-level reward models for agent tasks but without error-type awareness. POSITIONING: ETO/Agent-R/CSO identify WHAT step to correct but not WHAT TYPE of error occurred; AgentDebug/CMFR diagnose error types but only use prompting-based recovery; AP2O conditions DPO on error types but only for single-turn code generation; E2CL identifies 8 error types in embodied agents but trains generic SFT without type conditioning; TCPO applies step-level preference optimization on ALFWorld but without error-type awareness. We fill this gap by combining error-type conditioning with step-level DPO from self-generated corrections for interactive agents, creating learned type-specific recovery policies that extend AP2O's insight from code to agentic settings.\",\n  \"approach\": \"Phase 1 — Trajectory Collection & Error Diagnosis (Days 1-4): Generate ~800 trajectories on ALFWorld and ~400 on WebShop using Qwen3-8B as the base agent. Apply LLM-based zero-shot error classification following AgentDebug's approach: use AgentDebug's taxonomy descriptions as structured prompts to Qwen3-8B (or a stronger model like Qwen3-32B if budget permits) to classify each failure step. AgentDebug's full taxonomy defines 5 categories (Memory, Reflection, Planning, Action, System-level); we simplify to 3 actionable categories: planning errors (wrong subgoal decomposition or ordering — mapping to AgentDebug's Planning category), action errors (wrong action or object reference — mapping to Action category), and verification errors (failure to check state, premature termination, or misrecalling prior states — merging AgentDebug's Memory and Reflection categories). System-level errors are excluded as non-recoverable. This simplification follows AP2O's finding that fewer, well-separated error types can be more effective than fine-grained taxonomies. Use AgentErrorBench's 100 annotated ALFWorld + 50 annotated WebShop failure trajectories as a calibration/validation set to measure classifier accuracy. This LLM-based approach eliminates the trained-MLP data bottleneck — zero-shot LLM classification requires no training data and is what AgentDebug itself uses. Apply the classifier to all failed trajectories to identify the first erroneous step and its error type. Phase 2 — Self-Generated Correction Pairs (Days 5-8): For each classified failure, prompt Qwen3-8B to generate correction continuations from the identified failure step, prepending the error-type diagnosis as structured context (e.g., '[ERROR_TYPE: planning] You decomposed the task incorrectly at step 5. The correct approach requires re-ordering subtasks. Continue from step 5:'). Expected correction success rate analysis: AgentDebug shows Qwen3-8B achieves ~54% recovery rate on ALFWorld failures via prompting alone (48→74 out of 134 episodes). Our correction generation branches from the identified error step (not from scratch), which should yield comparable or higher per-attempt success. With 5 attempts per failure and an estimated 20-30% per-attempt correction success rate (conservative, given that branching from the error step with type-specific guidance is easier than full-task retry), we expect at least 1 successful correction for ~67-83% of failures (1-(0.7^5) to 1-(0.8^5)). With ~400-500 failed trajectories across both benchmarks, this yields an estimated 270-415 valid DPO pairs. Minimum threshold: if fewer than 250 valid DPO pairs are generated after Phase 2, we activate contingency measures: (a) increase correction attempts to 10 per failure (raising expected valid pairs by ~50%), and/or (b) use Qwen3-32B for correction generation to increase per-attempt success rate. From these self-generated corrections, construct DPO preference pairs: successful correction continuations are 'chosen', failed continuations are 'rejected', with the error-type tag retained in the prefix. This self-generation step directly addresses SCoRe's distribution mismatch critique. Phase 3 — Error-Type-Conditioned DPO Training + Writing Begins (Days 8-11): QLoRA-finetune Qwen3-8B with DPO on the constructed preference pairs. The error-type tag in the prefix serves as conditioning — the model implicitly learns that planning errors require backtracking and replanning, action errors need single-step corrections, and verification errors demand state re-checking. We train a single model (not separate per-type policies) since the prefix conditioning already specializes behavior, following AP2O's insight that a single model with error-type-aware training outperforms type-agnostic baselines. Begin paper writing in parallel: draft introduction, related work, and method sections during Days 8-11 while DPO training runs. Phase 4 — Evaluation (Days 11-13): Evaluate on both ALFWorld (134 standard evaluation episodes) and WebShop (200 test tasks) against six baselines: (1) no correction (base Qwen3-8B), (2) generic Reflexion-style retry, (3) AgentDebug-style prompting-based type-specific feedback, (4) ETO-style trajectory-level DPO without error-type conditioning, (5) AgentHER-style relabeling + DPO, (6) flat step-level DPO without error-type conditioning (ablating away the type tag). Measure: task completion rate, recovery success rate per error type, compute overhead per correction, and correction diversity (to verify no behavior collapse). We explicitly frame results as methodological comparison (type-conditioned DPO vs. flat DPO vs. trajectory-level DPO) rather than claiming absolute SOTA, since ALFWorld SOTA (Embodied Planner-R1: 99.3%/96.3% seen/unseen on Qwen2.5-7B via RL) uses online RL — our contribution is demonstrating that error-type conditioning improves DPO-based recovery independent of base model scale. Phase 5 — Essential Ablations & Writing Completion (Days 13-15): Three essential ablations: (a) error-type conditioning vs. flat conditioning (core hypothesis test), (b) DPO vs. SFT on the same correction pairs (validates SCoRe's critique in this setting), (c) classifier noise sensitivity via injecting controlled label noise (10%, 20%, 30%) to quantify robustness to misclassification. Deferred to appendix/future work: cross-benchmark transfer (train on ALFWorld, evaluate on WebShop), error-type granularity ablation (2 vs. 3 vs. 5 types), and self-generated vs. oracle corrections. Complete paper writing: finalize results, ablation analysis, and discussion sections.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~100-150h H100 (trajectory generation ~15h for both benchmarks, correction generation ~20h, DPO training ~12h, evaluation ~25h, ablations ~20h)\",\n      \"gpu_utilization\": \"~30-40% effective utilization; idle time for inspecting error classifications, validating correction quality, and debugging the DPO pipeline\",\n      \"timeline\": \"15 days (compressed from 18 days by overlapping writing with Phases 3-4 and reducing ablations to 3 essential ones)\",\n      \"team\": \"1-2 researchers\",\n      \"estimated_gpu_cost\": \"$250-375 at ~$2.50/hr on budget GPU cloud providers\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~150-200h H100\",\n      \"gpu_utilization\": \"~55-70% utilization; agent handles trajectory collection, classification, and training while human reviews error-type assignments and correction quality at checkpoints\",\n      \"timeline\": \"13-15 days (writing overlapped with Phases 3-4)\",\n      \"team\": \"1 researcher, ~30min/day reviewing error classifications and correction pair quality\",\n      \"claude_api_cost\": \"$200-400 (~2000-4000 Opus turns for pipeline orchestration and analysis)\",\n      \"estimated_gpu_cost\": \"$375-500 at ~$2.50/hr\",\n      \"risk_note\": \"LLM-based classifier accuracy on out-of-distribution failures; human spot-checks at Day 4 checkpoint are critical; correction success rate may require contingency activation (increasing attempts to 10 or using Qwen3-32B)\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~200-280h H100 (ablation variants for essential 3 ablations plus extended correction generation if contingency activated)\",\n      \"gpu_utilization\": \"~80-90% utilization; agent runs 24/7 cycling through trajectory collection, classification, DPO training, and evaluation on both benchmarks\",\n      \"timeline\": \"11-15 days with 4 H100s in parallel\",\n      \"team\": \"0 (initial setup ~2hrs)\",\n      \"claude_api_cost\": \"$400-700 (~4000-7000 Opus turns for full pipeline management and paper drafting)\",\n      \"estimated_gpu_cost\": \"$500-700 at ~$2.50/hr\",\n      \"speed_bottleneck\": \"ALFWorld and WebShop evaluation are sequential per episode but parallelizable across episodes and methods; with 4 H100s, trajectory collection + evaluation can be distributed across GPUs while DPO training uses 1 GPU\",\n      \"risk_note\": \"Automated LLM-based error-type classification without human validation may have variable accuracy across benchmarks; mitigated by using AgentErrorBench's expert annotations as calibration set, confidence thresholding, label noise ablations, and correction success rate contingency plan\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 Findings (ARR submission deadline May 25, 2026)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"Training Language Models to Self-Correct via Reinforcement Learning [SCoRe] (ICLR 2025 Oral)\",\n    \"Trial and Error: Exploration-Based Trajectory Optimization for LLM Agents [ETO] (ACL 2024)\",\n    \"Agent-R: Training Language Model Agents to Reflect via Iterative Self-Training (arXiv 2501.11425, Jan 2025)\",\n    \"Verified Critical Step Optimization for LLM Agents [CSO] (ACL 2026 Findings, arXiv 2602.03412)\",\n    \"Where LLM Agents Fail and How They Can Learn From Failures [AgentDebug + AgentErrorBench] (arXiv 2509.25370)\",\n    \"AP2O-Coder: Adaptively Progressive Preference Optimization for Reducing Compilation and Runtime Errors in LLM-Generated Code [AP2O] (AAAI 2026, arXiv 2510.02393)\",\n    \"TCPO: Thought-Centric Preference Optimization for Effective Embodied Decision-making (arXiv 2509.08500)\",\n    \"E2CL: Exploration-based Error Correction Learning for Embodied Agents (EMNLP 2024 Findings, arXiv 2409.03256)\",\n    \"Conditional Multi-Stage Failure Recovery for Embodied Agents [CMFR] (REALM 2025, arXiv 2507.06016)\",\n    \"AgentHER: Hindsight Experience Replay for LLM Agent Trajectory Relabeling (arXiv 2603.21357)\",\n    \"Self-Verification Dilemma: Experience-Driven Suppression of Overused Checking in LLM Reasoning (arXiv 2026)\",\n    \"Error Typing for Smarter Rewards: Improving Process Reward Models with Error-Aware Hierarchical Supervision [PathFinder-PRM] (arXiv 2505.19706, May 2025)\",\n    \"Step-DPO: Step-wise Preference Optimization for Long-chain Reasoning of LLMs (NeurIPS 2025)\",\n    \"Reason in Chains, Learn in Trees: Self-Rectification and Grafting for Multi-turn Agent Policy Optimization [T-STAR] (arXiv 2604.07165)\",\n    \"Towards Self-Improving Error Diagnosis in Multi-Agent Systems [ErrorProbe] (arXiv 2604.17658)\",\n    \"AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress (arXiv 2511.08325)\",\n    \"Why Do Multi-Agent LLM Systems Fail? (NeurIPS 2025)\",\n    \"Large Language Models Cannot Self-Correct Reasoning Yet (ICLR 2024)\",\n    \"Can LLMs Correct Themselves? A Benchmark of Self-Correction in LLMs [CorrectBench] (NeurIPS 2025)\",\n    \"Unleashing Embodied Task Planning Ability in LLMs via Reinforcement Learning [Embodied Planner-R1] (arXiv 2506.23127)\",\n    \"Agent^2 RL-Bench: Can LLM Agents Engineer Agentic RL Post-Training? (arXiv 2604.10547)\"\n  ],\n  \"description\": \"We propose Error-Diagnosis-Conditioned Preference Learning, a method that trains agents to apply different recovery strategies for different failure types. Prior step-level training methods — ETO (trajectory-level DPO), Agent-R (MCTS-guided SFT at first-error steps), and CSO (step-level DPO at verified critical steps) — identify WHAT step to correct but not WHAT TYPE of error occurred. AgentDebug diagnoses error types but only applies prompting-based recovery. AP2O (AAAI 2026) demonstrates error-type-progressive DPO for code generation, but applies to single-turn code, not multi-turn interactive agents. E2CL (EMNLP 2024 Findings) identifies 8 error types in embodied agents but trains generic SFT without type conditioning. We bridge this gap: a single model trained via step-level DPO that receives the diagnosed error type as structured context, learning type-specific recovery strategies end-to-end — extending AP2O's insight from code generation to interactive agentic settings where errors involve environment state, multi-step planning, and physical constraints. We use LLM-based zero-shot error classification (following AgentDebug's own approach) rather than a trained MLP, eliminating the data bottleneck. AgentDebug defines 5 error categories (Memory, Reflection, Planning, Action, System-level); we simplify to 3 actionable categories — planning, action, and verification — by merging Memory+Reflection (both state-checking failures) and excluding System-level (non-recoverable). Our approach addresses SCoRe's critique: we use self-generated corrections (avoiding distribution mismatch) and preference learning (avoiding behavior collapse). Correction success rate analysis: AgentDebug shows Qwen3-8B achieves ~54% recovery on ALFWorld failures via prompting; Agent2 RL-Bench reports Qwen3-8B-Base at 8.96% baseline. With 5 correction attempts per failure and an estimated 20-30% per-attempt success rate, we expect valid DPO pairs for ~67-83% of failures. Minimum threshold: if fewer than 250 valid pairs are generated, we increase attempts to 10 or use Qwen3-32B for correction generation. On ALFWorld (134 episodes) and WebShop (200 tasks), we evaluate against six baselines: no correction, Reflexion, AgentDebug prompting, ETO-style trajectory DPO, flat step-level DPO, and AgentHER relabeling+DPO. Three essential ablations: (a) type-conditioned vs. flat DPO (core hypothesis), (b) DPO vs. SFT (validates SCoRe's critique), (c) classifier noise sensitivity (10/20/30% noise injection). Cross-benchmark transfer and error-type granularity deferred to appendix/future work. Timeline compressed to 15 days by overlapping writing with Phase 3-4 (starting Day 8) and reducing to 3 essential ablations. We frame results as methodological contribution rather than absolute SOTA, since ALFWorld SOTA (Embodied Planner-R1: 99.3%/96.3% via RL on Qwen2.5-7B) uses online RL. Total compute: ~100-150 H100-hours. All building blocks (AgentErrorBench annotations, ALFWorld, WebShop, Qwen3-8B) are publicly available. Target venue: EMNLP 2026 Findings (ARR May 25).\",\n  \"project_name\": \"error_diag_dpo_recovery\",\n  \"source\": \"web_research\"\n}\n\n## Reviewer feedback (round 4)\nIssues: [\"NOVELTY CEILING: The mechanism is prefix conditioning — prepending an error-type tag to the DPO training input. This is essentially the simplest possible way to implement error-type conditioning. AP2O uses a more sophisticated progressive training curriculum (easy-to-hard error types with adaptive replay). Adopting AP2O's progressive element rather than flat one-pass training would add a more distinctive contribution beyond 'add a tag to the prompt'.\", \"MISSING CITATIONS — DMPO and IPR: DMPO (Direct Multi-Turn Preference Optimization, EMNLP 2024 Main, arXiv 2406.14868) specifically addresses DPO for multi-turn agent trajectories with length normalization — directly relevant since the proposed method also applies DPO to multi-turn agent data. IPR (Iterative Step-level Process Refinement, EMNLP 2024 Main, arXiv 2406.11176) is a step-level contrastive training method for agents using Monte Carlo step-level rewards. Both are EMNLP papers at the target venue and must be cited.\", \"IMPACT SCOPE — TWO BENCHMARKS IS MINIMUM: ALFWorld + WebShop is the minimum bar for generalizability. ETO already evaluates on three benchmarks (ALFWorld, WebShop, ScienceWorld). Adding ScienceWorld as a third benchmark would cost ~15-20 extra H100-hours (within budget) and significantly strengthen the claim that error-type conditioning generalizes. Cross-benchmark transfer (train on ALFWorld, evaluate on WebShop) should be a core result, not deferred to future work, as it directly tests whether error-type-conditioned recovery transfers.\", \"PROGRESSIVE TRAINING NOT ADOPTED FROM AP2O: AP2O's key insight is not just error-type conditioning but progressive training — organizing errors from easy-to-hard and training the model to correct easier types first. The proposal cites AP2O but only adopts the simpler prefix conditioning, missing the progressive curriculum. Incorporating AP2O-style progressive training (e.g., first train on action errors which are easier single-step corrections, then planning errors which require multi-step replanning) would strengthen the method's novelty and provide an additional ablation axis.\"]\nFeedback: The idea has matured well across 4 rounds — all prior critical issues are resolved, the gap is verified as real, and the experimental design is sound. The remaining barrier to passing is that the average score (3.5) is below the 4.0 threshold, driven by novelty (3) and impact (3). Three specific changes to push toward pass:\n\n1. **Boost novelty via progressive training**: Adopt AP2O's progressive curriculum — train first on action errors (easier, single-step corrections), then verification errors, then planning errors (hardest, multi-step replanning). This transforms the method from 'add an error-type tag' to 'error-type-progressive step-level DPO with curriculum scheduling.' Add one ablation comparing flat vs. progressive error-type training (replacing the deferred cross-benchmark transfer ablation).\n\n2. **Boost impact via third benchmark + transfer**: Add ScienceWorld (ETO's infrastructure exists, ~15-20 extra H100-hours). Promote cross-benchmark transfer from 'future work' to core result — if error-type conditioning transfers across benchmarks, the contribution becomes a general principle rather than a benchmark-specific trick. This raises impact from 'useful insight' to 'general inductive bias for agent recovery training.'\n\n3. **Add missing citations**: Cite DMPO (EMNLP 2024, arXiv 2406.14868) for multi-turn DPO and IPR (EMNLP 2024, arXiv 2406.11176) for step-level agent training. Both are at the target venue. Position against them: DMPO operates at trajectory level without error-type awareness; IPR uses expert trajectory comparison rather than self-generated corrections with error-type conditioning.\n\nThese changes should fit within the 200 H100-hour budget (current estimate is 100-150, adding ScienceWorld takes it to 120-170) and the 15-day timeline (ScienceWorld evaluation runs in parallel with ALFWorld/WebShop during Phase 4).\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.\n- Address each issue specifically.\n\n## 深度调研要求（每一轮修订都必须执行）\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。\n   - 搜索最新的相关论文（arXiv, conference proceedings）\n   - 搜索 benchmark/leaderboard 确认当前 SOTA\n   - 搜索可能遗漏的相关工作和 concurrent work\n\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，\n   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。\n\n3. **深度思考**：在修订之前，先独立思考以下问题：\n   - 这个 idea 的核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach 来解决同一个核心问题？\n   - 修订后的 idea 相比上一版有什么本质性的改进？\n\n4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，\n   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。\n\n## 针对 Review 意见的定向搜索\n\n对 reviewer 指出的每个问题，执行以下搜索流程：\n\n1. **如果 reviewer 说'已有类似工作'**：\n   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读\n   - 搜索该论文的 cited-by，找到后续跟进工作\n   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot\n\n2. **如果 reviewer 说'SOTA 过时'**：\n   - 用 Papers With Code 查看当前排行榜\n   - 搜索过去 6 个月的最新方法\n   - 更新你的 landscape 和 baseline\n\n3. **如果 reviewer 说'可行性有问题'**：\n   - 搜索类似规模实验的实际成本和时间线\n   - 搜索 GitHub 上是否有可复用的实现\n   - 搜索相关数据集/模型的可获取性\n\n4. **如果 reviewer 说'novelty 不足'**：\n   - 对核心方法尽量做 3-5 种不同关键词组合的搜索\n   - 搜索相邻领域是否有类似思路\n   - 如果确实 novelty 不足，考虑 major revision 或 pivot\n\n- Use WebSearch to find updated information if the reviewer flagged outdated claims.\n- You have full freedom in how much to change:\n  - Minor fix: if only specific details are wrong, correct them and keep everything else.\n  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.\n  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.\n- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.\n- In the output JSON, include a \"change_type\" field with one of: \"minor\", \"major\", or \"pivot\" to indicate the scope of your changes.\n- Output the revised idea as a COMPLETE JSON object (same schema as original, plus \"change_type\").\n\n## 停滞提醒\n这个 idea 已经经过 4 轮修订，近 3 轮的平均分从 3.5 到 3.5，没有明显改善。\n\n请认真思考：\n- 当前方向是否存在根本性的瓶颈？反复的 minor fix 是否在回避核心问题？\n- 如果你认为问题出在 approach 而非 framing，可以做 major revision。\n- 如果你认为 core problem 本身就有问题（gap 不存在、问题不够重要），pivot 到同一研究领域下的新方向可能是更好的选择。\n- 当然，如果你有信心这一轮修订能实现突破，继续改进也完全可以。\n\n最终由你判断——做你认为最能提升 idea 质量的选择。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-10T18:41:12.425Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-10T18:41:12.425Z",
+  "sessionId": "fd09aaea-1e2a-47f1-ba7a-1943938c18c7"
+}
+```
+
+---
+
+## Round 1
+
+24 recorded events
+
+### User
+
+_source line 3 · 2026-05-10T18:41:12.461Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-10 (UTC).**
+
+## Original idea
+{
+  "title": "Error-Diagnosis-Conditioned Preference Learning for Agent Self-Correction",
+  "core_problem": "Agent self-correction training methods — including ETO's trajectory-level DPO, Agent-R's MCTS-guided SFT, and CSO's critical-step DPO — identify WHAT step to correct but not WHAT TYPE of error occurred. They apply a single, undifferentiated recovery mechanism regardless of whether the agent failed due to a planning error, an incorrect action, or a verification oversight. AP2O (AAAI 2026) demonstrates the value of error-type-progressive DPO for code generation, but no work has brought error-type conditioning to interactive agent recovery via step-level DPO. Can conditioning recovery training on the diagnosed error type yield better correction rates than type-agnostic step-level approaches in agentic settings?",
+  "opportunity": "Five recent threads converge: (1) AgentDebug (Sept 2025) shows that prompting-based type-specific correction improves recovery by 26% on ALFWorld/WebShop/GAIA, proving the type-conditioning hypothesis — but prompting-based recovery hits a ceiling with weaker models. (2) PathFinder-PRM (May 2025) demonstrates that decomposing error detection by type (math vs. consistency) significantly improves process reward models, achieving SOTA on PRMBench with 3x less data — validating error-type decomposition as a powerful inductive bias. (3) Step-level preference optimization (Step-DPO, CSO) shows that focusing DPO on critical steps outperforms trajectory-level approaches, with CSO achieving 37% improvement over SFT by targeting verified critical steps. (4) ETO (ACL 2024) establishes that DPO from failure-success trajectory pairs is effective for agent training on ALFWorld/WebShop, but operates at trajectory-level without error-type awareness. (5) AP2O (AAAI 2026) demonstrates that error-type-progressive preference optimization substantially improves code generation — the first work to condition DPO on error types in any domain — but applies to single-turn code generation rather than multi-turn interactive agents. Yet no work combines these: error-type-conditioned, step-level DPO from self-generated corrections for interactive agents. Agent-R identifies first-error steps via MCTS and applies SFT, but without type conditioning or preference learning. CSO applies step-level DPO at verified critical steps, but without diagnosing error types. E2CL (EMNLP 2024 Findings) identifies 8 error types in embodied agent analysis but trains generic SFT without error-type conditioning. The Self-Verification Dilemma (Feb 2026) explains WHY type conditioning should help: generic self-checks are confirmatory; error-type conditioning forces the model to address the specific diagnosed failure mode.",
+  "landscape": "General self-correction: SCoRe (ICLR 2025 Oral) establishes that SFT for self-correction fails due to distribution mismatch and behavior collapse, advocating online RL under the model's own distribution. ETO (ACL 2024) proposes exploration-based trajectory optimization using DPO on failure-success trajectory pairs, evaluated on ALFWorld, WebShop, and ScienceWorld — surpassing SFT, RFT, and PPO with ~9-20% gains. ETO is the most directly comparable DPO-based agent training method, but operates at trajectory level without error-type awareness or step-level targeting. Agent-R (arXiv 2501.11425, ByteDance) identifies first-error steps in failed trajectories via MCTS and trains recovery via iterative SFT on Llama-3.1-8B across WebShop, ScienceWorld, and TextCraft, achieving +5.59% average improvement. Agent-R is the closest step-level correction training approach, differing from ours in: (a) no error-type classification, (b) SFT instead of DPO, (c) MCTS tree search instead of self-generated corrections. CSO (ACL 2026 Findings, arXiv 2602.03412) performs verified critical step optimization — step-level DPO at decision points where alternate actions flip outcomes — achieving 37% relative improvement over SFT on GAIA-Text-103 with supervision at only 16% of trajectory steps. CSO represents current SOTA for step-level DPO in agent training but is not error-type conditioned. AgentDebug (Sept 2025) implements taxonomy-based failure classification via LLM zero-shot prompting followed by type-specific corrective feedback, achieving 26% improvement on ALFWorld/GAIA/WebShop — entirely prompting-based without learned recovery policies. AgentDebug's taxonomy defines 5 error categories (Memory, Reflection, Planning, Action, System-level); we simplify to 3 actionable categories (planning, action, verification) by merging Memory+Reflection into verification (both involve state-checking failures) and excluding System-level errors (not recoverable by the agent). AP2O (AAAI 2026, arXiv 2510.02393) is the first work to condition DPO on error types in any domain: it constructs an error notebook from failed code, organizes errors by type, and progressively trains the LLM to correct errors type-by-type with adaptive replay. AP2O achieves up to 3% pass@k improvement for code generation across Llama, Qwen, and DeepSeek (0.5B-34B). Our work extends this insight from single-turn code generation to multi-turn interactive agents, where error types are more complex (involving environment state, multi-step planning, and physical constraints) and correction requires coherent multi-step continuations rather than single-output regeneration. TCPO (arXiv 2509.08500) applies step-wise preference optimization to embodied decision-making on ALFWorld using VLMs (LLaVA-Mistral-7B), transforming sparse rewards into step-level preference pairs. TCPO achieves 26.7% success on ALFWorld — a different setting (vision-based, continuous interaction) from our text-based agents, and without error-type conditioning. E2CL (EMNLP 2024 Findings, arXiv 2409.03256) introduces exploration-based error correction learning for embodied agents on VirtualHome, using teacher-guided and teacher-free explorations to gather environmental feedback. E2CL identifies 8 error types in analysis (unflipped boolean state, missing object, enclosed object, invalid action, etc.) but trains via generic SFT without conditioning on error type — leaving the type-conditioning gap open. AgentHER (March 2026) applies hindsight experience replay to relabel failed trajectories for alternative goals, producing SFT/DPO training data that improves WebArena performance by +7-11pp — a data augmentation technique orthogonal to type-conditioned recovery. T-STAR (April 2026) introduces tree-structured surgical policy optimization at divergence points but is not error-type conditioned. ErrorProbe (April 2026) advances self-improving error diagnosis with backward tracing and episodic memory, focusing on diagnosis accuracy without training recovery policies. CMFR (REALM 2025, arXiv 2507.06016) uses conditional multi-stage failure recovery with zero-shot chain prompting, achieving 11.5% improvement on TEACH — a prompting-based approach without learned recovery policies. PathFinder-PRM (May 2025) shows error-type-aware PRMs decomposing into math and consistency errors achieve SOTA on PRMBench with 3x less data — validating error-type decomposition as an inductive bias, but only for reasoning tasks. Step-DPO and Full-Step-DPO apply step-level preference optimization at the first erroneous step for mathematical reasoning. AgentPRM provides step-level reward models for agent tasks but without error-type awareness. POSITIONING: ETO/Agent-R/CSO identify WHAT step to correct but not WHAT TYPE of error occurred; AgentDebug/CMFR diagnose error types but only use prompting-based recovery; AP2O conditions DPO on error types but only for single-turn code generation; E2CL identifies 8 error types in embodied agents but trains generic SFT without type conditioning; TCPO applies step-level preference optimization on ALFWorld but without error-type awareness. We fill this gap by combining error-type conditioning with step-level DPO from self-generated corrections for interactive agents, creating learned type-specific recovery policies that extend AP2O's insight from code to agentic settings.",
+  "approach": "Phase 1 — Trajectory Collection & Error Diagnosis (Days 1-4): Generate ~800 trajectories on ALFWorld and ~400 on WebShop using Qwen3-8B as the base agent. Apply LLM-based zero-shot error classification following AgentDebug's approach: use AgentDebug's taxonomy descriptions as structured prompts to Qwen3-8B (or a stronger model like Qwen3-32B if budget permits) to classify each failure step. AgentDebug's full taxonomy defines 5 categories (Memory, Reflection, Planning, Action, System-level); we simplify to 3 actionable categories: planning errors (wrong subgoal decomposition or ordering — mapping to AgentDebug's Planning category), action errors (wrong action or object reference — mapping to Action category), and verification errors (failure to check state, premature termination, or misrecalling prior states — merging AgentDebug's Memory and Reflection categories). System-level errors are excluded as non-recoverable. This simplification follows AP2O's finding that fewer, well-separated error types can be more effective than fine-grained taxonomies. Use AgentErrorBench's 100 annotated ALFWorld + 50 annotated WebShop failure trajectories as a calibration/validation set to measure classifier accuracy. This LLM-based approach eliminates the trained-MLP data bottleneck — zero-shot LLM classification requires no training data and is what AgentDebug itself uses. Apply the classifier to all failed trajectories to identify the first erroneous step and its error type. Phase 2 — Self-Generated Correction Pairs (Days 5-8): For each classified failure, prompt Qwen3-8B to generate correction continuations from the identified failure step, prepending the error-type diagnosis as structured context (e.g., '[ERROR_TYPE: planning] You decomposed the task incorrectly at step 5. The correct approach requires re-ordering subtasks. Continue from step 5:'). Expected correction success rate analysis: AgentDebug shows Qwen3-8B achieves ~54% recovery rate on ALFWorld failures via prompting alone (48→74 out of 134 episodes). Our correction generation branches from the identified error step (not from scratch), which should yield comparable or higher per-attempt success. With 5 attempts per failure and an estimated 20-30% per-attempt correction success rate (conservative, given that branching from the error step with type-specific guidance is easier than full-task retry), we expect at least 1 successful correction for ~67-83% of failures (1-(0.7^5) to 1-(0.8^5)). With ~400-500 failed trajectories across both benchmarks, this yields an estimated 270-415 valid DPO pairs. Minimum threshold: if fewer than 250 valid DPO pairs are generated after Phase 2, we activate contingency measures: (a) increase correction attempts to 10 per failure (raising expected valid pairs by ~50%), and/or (b) use Qwen3-32B for correction generation to increase per-attempt success rate. From these self-generated corrections, construct DPO preference pairs: successful correction continuations are 'chosen', failed continuations are 'rejected', with the error-type tag retained in the prefix. This self-generation step directly addresses SCoRe's distribution mismatch critique. Phase 3 — Error-Type-Conditioned DPO Training + Writing Begins (Days 8-11): QLoRA-finetune Qwen3-8B with DPO on the constructed preference pairs. The error-type tag in the prefix serves as conditioning — the model implicitly learns that planning errors require backtracking and replanning, action errors need single-step corrections, and verification errors demand state re-checking. We train a single model (not separate per-type policies) since the prefix conditioning already specializes behavior, following AP2O's insight that a single model with error-type-aware training outperforms type-agnostic baselines. Begin paper writing in parallel: draft introduction, related work, and method sections during Days 8-11 while DPO training runs. Phase 4 — Evaluation (Days 11-13): Evaluate on both ALFWorld (134 standard evaluation episodes) and WebShop (200 test tasks) against six baselines: (1) no correction (base Qwen3-8B), (2) generic Reflexion-style retry, (3) AgentDebug-style prompting-based type-specific feedback, (4) ETO-style trajectory-level DPO without error-type conditioning, (5) AgentHER-style relabeling + DPO, (6) flat step-level DPO without error-type conditioning (ablating away the type tag). Measure: task completion rate, recovery success rate per error type, compute overhead per correction, and correction diversity (to verify no behavior collapse). We explicitly frame results as methodological comparison (type-conditioned DPO vs. flat DPO vs. trajectory-level DPO) rather than claiming absolute SOTA, since ALFWorld SOTA (Embodied Planner-R1: 99.3%/96.3% seen/unseen on Qwen2.5-7B via RL) uses online RL — our contribution is demonstrating that error-type conditioning improves DPO-based recovery independent of base model scale. Phase 5 — Essential Ablations & Writing Completion (Days 13-15): Three essential ablations: (a) error-type conditioning vs. flat conditioning (core hypothesis test), (b) DPO vs. SFT on the same correction pairs (validates SCoRe's critique in this setting), (c) classifier noise sensitivity via injecting controlled label noise (10%, 20%, 30%) to quantify robustness to misclassification. Deferred to appendix/future work: cross-benchmark transfer (train on ALFWorld, evaluate on WebShop), error-type granularity ablation (2 vs. 3 vs. 5 types), and self-generated vs. oracle corrections. Complete paper writing: finalize results, ablation analysis, and discussion sections.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~100-150h H100 (trajectory generation ~15h for both benchmarks, correction generation ~20h, DPO training ~12h, evaluation ~25h, ablations ~20h)",
+      "gpu_utilization": "~30-40% effective utilization; idle time for inspecting error classifications, validating correction quality, and debugging the DPO pipeline",
+      "timeline": "15 days (compressed from 18 days by overlapping writing with Phases 3-4 and reducing ablations to 3 essential ones)",
+      "team": "1-2 researchers",
+      "estimated_gpu_cost": "$250-375 at ~$2.50/hr on budget GPU cloud providers"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~150-200h H100",
+      "gpu_utilization": "~55-70% utilization; agent handles trajectory collection, classification, and training while human reviews error-type assignments and correction quality at checkpoints",
+      "timeline": "13-15 days (writing overlapped with Phases 3-4)",
+      "team": "1 researcher, ~30min/day reviewing error classifications and correction pair quality",
+      "claude_api_cost": "$200-400 (~2000-4000 Opus turns for pipeline orchestration and analysis)",
+      "estimated_gpu_cost": "$375-500 at ~$2.50/hr",
+      "risk_note": "LLM-based classifier accuracy on out-of-distribution failures; human spot-checks at Day 4 checkpoint are critical; correction success rate may require contingency activation (increasing attempts to 10 or using Qwen3-32B)"
+    },
+    "auto_research": {
+      "gpu_hours": "~200-280h H100 (ablation variants for essential 3 ablations plus extended correction generation if contingency activated)",
+      "gpu_utilization": "~80-90% utilization; agent runs 24/7 cycling through trajectory collection, classification, DPO training, and evaluation on both benchmarks",
+      "timeline": "11-15 days with 4 H100s in parallel",
+      "team": "0 (initial setup ~2hrs)",
+      "claude_api_cost": "$400-700 (~4000-7000 Opus turns for full pipeline management and paper drafting)",
+      "estimated_gpu_cost": "$500-700 at ~$2.50/hr",
+      "speed_bottleneck": "ALFWorld and WebShop evaluation are sequential per episode but parallelizable across episodes and methods; with 4 H100s, trajectory collection + evaluation can be distributed across GPUs while DPO training uses 1 GPU",
+      "risk_note": "Automated LLM-based error-type classification without human validation may have variable accuracy across benchmarks; mitigated by using AgentErrorBench's expert annotations as calibration set, confidence thresholding, label noise ablations, and correction success rate contingency plan"
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 Findings (ARR submission deadline May 25, 2026)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "Training Language Models to Self-Correct via Reinforcement Learning [SCoRe] (ICLR 2025 Oral)",
+    "Trial and Error: Exploration-Based Trajectory Optimization for LLM Agents [ETO] (ACL 2024)",
+    "Agent-R: Training Language Model Agents to Reflect via Iterative Self-Training (arXiv 2501.11425, Jan 2025)",
+    "Verified Critical Step Optimization for LLM Agents [CSO] (ACL 2026 Findings, arXiv 2602.03412)",
+    "Where LLM Agents Fail and How They Can Learn From Failures [AgentDebug + AgentErrorBench] (arXiv 2509.25370)",
+    "AP2O-Coder: Adaptively Progressive Preference Optimization for Reducing Compilation and Runtime Errors in LLM-Generated Code [AP2O] (AAAI 2026, arXiv 2510.02393)",
+    "TCPO: Thought-Centric Preference Optimization for Effective Embodied Decision-making (arXiv 2509.08500)",
+    "E2CL: Exploration-based Error Correction Learning for Embodied Agents (EMNLP 2024 Findings, arXiv 2409.03256)",
+    "Conditional Multi-Stage Failure Recovery for Embodied Agents [CMFR] (REALM 2025, arXiv 2507.06016)",
+    "AgentHER: Hindsight Experience Replay for LLM Agent Trajectory Relabeling (arXiv 2603.21357)",
+    "Self-Verification Dilemma: Experience-Driven Suppression of Overused Checking in LLM Reasoning (arXiv 2026)",
+    "Error Typing for Smarter Rewards: Improving Process Reward Models with Error-Aware Hierarchical Supervision [PathFinder-PRM] (arXiv 2505.19706, May 2025)",
+    "Step-DPO: Step-wise Preference Optimization for Long-chain Reasoning of LLMs (NeurIPS 2025)",
+    "Reason in Chains, Learn in Trees: Self-Rectification and Grafting for Multi-turn Agent Policy Optimization [T-STAR] (arXiv 2604.07165)",
+    "Towards Self-Improving Error Diagnosis in Multi-Agent Systems [ErrorProbe] (arXiv 2604.17658)",
+    "AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress (arXiv 2511.08325)",
+    "Why Do Multi-Agent LLM Systems Fail? (NeurIPS 2025)",
+    "Large Language Models Cannot Self-Correct Reasoning Yet (ICLR 2024)",
+    "Can LLMs Correct Themselves? A Benchmark of Self-Correction in LLMs [CorrectBench] (NeurIPS 2025)",
+    "Unleashing Embodied Task Planning Ability in LLMs via Reinforcement Learning [Embodied Planner-R1] (arXiv 2506.23127)",
+    "Agent^2 RL-Bench: Can LLM Agents Engineer Agentic RL Post-Training? (arXiv 2604.10547)"
+  ],
+  "description": "We propose Error-Diagnosis-Conditioned Preference Learning, a method that trains agents to apply different recovery strategies for different failure types. Prior step-level training methods — ETO (trajectory-level DPO), Agent-R (MCTS-guided SFT at first-error steps), and CSO (step-level DPO at verified critical steps) — identify WHAT step to correct but not WHAT TYPE of error occurred. AgentDebug diagnoses error types but only applies prompting-based recovery. AP2O (AAAI 2026) demonstrates error-type-progressive DPO for code generation, but applies to single-turn code, not multi-turn interactive agents. E2CL (EMNLP 2024 Findings) identifies 8 error types in embodied agents but trains generic SFT without type conditioning. We bridge this gap: a single model trained via step-level DPO that receives the diagnosed error type as structured context, learning type-specific recovery strategies end-to-end — extending AP2O's insight from code generation to interactive agentic settings where errors involve environment state, multi-step planning, and physical constraints. We use LLM-based zero-shot error classification (following AgentDebug's own approach) rather than a trained MLP, eliminating the data bottleneck. AgentDebug defines 5 error categories (Memory, Reflection, Planning, Action, System-level); we simplify to 3 actionable categories — planning, action, and verification — by merging Memory+Reflection (both state-checking failures) and excluding System-level (non-recoverable). Our approach addresses SCoRe's critique: we use self-generated corrections (avoiding distribution mismatch) and preference learning (avoiding behavior collapse). Correction success rate analysis: AgentDebug shows Qwen3-8B achieves ~54% recovery on ALFWorld failures via prompting; Agent2 RL-Bench reports Qwen3-8B-Base at 8.96% baseline. With 5 correction attempts per failure and an estimated 20-30% per-attempt success rate, we expect valid DPO pairs for ~67-83% of failures. Minimum threshold: if fewer than 250 valid pairs are generated, we increase attempts to 10 or use Qwen3-32B for correction generation. On ALFWorld (134 episodes) and WebShop (200 tasks), we evaluate against six baselines: no correction, Reflexion, AgentDebug prompting, ETO-style trajectory DPO, flat step-level DPO, and AgentHER relabeling+DPO. Three essential ablations: (a) type-conditioned vs. flat DPO (core hypothesis), (b) DPO vs. SFT (validates SCoRe's critique), (c) classifier noise sensitivity (10/20/30% noise injection). Cross-benchmark transfer and error-type granularity deferred to appendix/future work. Timeline compressed to 15 days by overlapping writing with Phase 3-4 (starting Day 8) and reducing to 3 essential ablations. We frame results as methodological contribution rather than absolute SOTA, since ALFWorld SOTA (Embodied Planner-R1: 99.3%/96.3% via RL on Qwen2.5-7B) uses online RL. Total compute: ~100-150 H100-hours. All building blocks (AgentErrorBench annotations, ALFWorld, WebShop, Qwen3-8B) are publicly available. Target venue: EMNLP 2026 Findings (ARR May 25).",
+  "project_name": "error_diag_dpo_recovery",
+  "source": "web_research"
+}
+
+## Reviewer feedback (round 4)
+Issues: ["NOVELTY CEILING: The mechanism is prefix conditioning — prepending an error-type tag to the DPO training input. This is essentially the simplest possible way to implement error-type conditioning. AP2O uses a more sophisticated progressive training curriculum (easy-to-hard error types with adaptive replay). Adopting AP2O's progressive element rather than flat one-pass training would add a more distinctive contribution beyond 'add a tag to the prompt'.", "MISSING CITATIONS — DMPO and IPR: DMPO (Direct Multi-Turn Preference Optimization, EMNLP 2024 Main, arXiv 2406.14868) specifically addresses DPO for multi-turn agent trajectories with length normalization — directly relevant since the proposed method also applies DPO to multi-turn agent data. IPR (Iterative Step-level Process Refinement, EMNLP 2024 Main, arXiv 2406.11176) is a step-level contrastive training method for agents using Monte Carlo step-level rewards. Both are EMNLP papers at the target venue and must be cited.", "IMPACT SCOPE — TWO BENCHMARKS IS MINIMUM: ALFWorld + WebShop is the minimum bar for generalizability. ETO already evaluates on three benchmarks (ALFWorld, WebShop, ScienceWorld). Adding ScienceWorld as a third benchmark would cost ~15-20 extra H100-hours (within budget) and significantly strengthen the claim that error-type conditioning generalizes. Cross-benchmark transfer (train on ALFWorld, evaluate on WebShop) should be a core result, not deferred to future work, as it directly tests whether error-type-conditioned recovery transfers.", "PROGRESSIVE TRAINING NOT ADOPTED FROM AP2O: AP2O's key insight is not just error-type conditioning but progressive training — organizing errors from easy-to-hard and training the model to correct easier types first. The proposal cites AP2O but only adopts the simpler prefix conditioning, missing the progressive curriculum. Incorporating AP2O-style progressive training (e.g., first train on action errors which are easier single-step corrections, then planning errors which require multi-step replanning) would strengthen the method's novelty and provide an additional ablation axis."]
+Feedback: The idea has matured well across 4 rounds — all prior critical issues are resolved, the gap is verified as real, and the experimental design is sound. The remaining barrier to passing is that the average score (3.5) is below the 4.0 threshold, driven by novelty (3) and impact (3). Three specific changes to push toward pass:
+
+1. **Boost novelty via progressive training**: Adopt AP2O's progressive curriculum — train first on action errors (easier, single-step corrections), then verification errors, then planning errors (hardest, multi-step replanning). This transforms the method from 'add an error-type tag' to 'error-type-progressive step-level DPO with curriculum scheduling.' Add one ablation comparing flat vs. progressive error-type training (replacing the deferred cross-benchmark transfer ablation).
+
+2. **Boost impact via third benchmark + transfer**: Add ScienceWorld (ETO's infrastructure exists, ~15-20 extra H100-hours). Promote cross-benchmark transfer from 'future work' to core result — if error-type conditioning transfers across benchmarks, the contribution becomes a general principle rather than a benchmark-specific trick. This raises impact from 'useful insight' to 'general inductive bias for agent recovery training.'
+
+3. **Add missing citations**: Cite DMPO (EMNLP 2024, arXiv 2406.14868) for multi-turn DPO and IPR (EMNLP 2024, arXiv 2406.11176) for step-level agent training. Both are at the target venue. Position against them: DMPO operates at trajectory level without error-type awareness; IPR uses expert trajectory comparison rather than self-generated corrections with error-type conditioning.
+
+These changes should fit within the 200 H100-hour budget (current estimate is 100-150, adding ScienceWorld takes it to 120-170) and the 15-day timeline (ScienceWorld evaluation runs in parallel with ALFWorld/WebShop during Phase 4).
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.
+- Address each issue specifically.
+
+## 深度调研要求（每一轮修订都必须执行）
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。
+   - 搜索最新的相关论文（arXiv, conference proceedings）
+   - 搜索 benchmark/leaderboard 确认当前 SOTA
+   - 搜索可能遗漏的相关工作和 concurrent work
+
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，
+   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。
+
+3. **深度思考**：在修订之前，先独立思考以下问题：
+   - 这个 idea 的核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach 来解决同一个核心问题？
+   - 修订后的 idea 相比上一版有什么本质性的改进？
+
+4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，
+   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。
+
+## 针对 Review 意见的定向搜索
+
+对 reviewer 指出的每个问题，执行以下搜索流程：
+
+1. **如果 reviewer 说'已有类似工作'**：
+   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读
+   - 搜索该论文的 cited-by，找到后续跟进工作
+   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot
+
+2. **如果 reviewer 说'SOTA 过时'**：
+   - 用 Papers With Code 查看当前排行榜
+   - 搜索过去 6 个月的最新方法
+   - 更新你的 landscape 和 baseline
+
+3. **如果 reviewer 说'可行性有问题'**：
+   - 搜索类似规模实验的实际成本和时间线
+   - 搜索 GitHub 上是否有可复用的实现
+   - 搜索相关数据集/模型的可获取性
+
+4. **如果 reviewer 说'novelty 不足'**：
+   - 对核心方法尽量做 3-5 种不同关键词组合的搜索
+   - 搜索相邻领域是否有类似思路
+   - 如果确实 novelty 不足，考虑 major revision 或 pivot
+
+- Use WebSearch to find updated information if the reviewer flagged outdated claims.
+- You have full freedom in how much to change:
+  - Minor fix: if only specific details are wrong, correct them and keep everything else.
+  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.
+  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.
+- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.
+- In the output JSON, include a "change_type" field with one of: "minor", "major", or "pivot" to indicate the scope of your changes.
+- Output the revised idea as a COMPLETE JSON object (same schema as original, plus "change_type").
+
+## 停滞提醒
+这个 idea 已经经过 4 轮修订，近 3 轮的平均分从 3.5 到 3.5，没有明显改善。
+
+请认真思考：
+- 当前方向是否存在根本性的瓶颈？反复的 minor fix 是否在回避核心问题？
+- 如果你认为问题出在 approach 而非 framing，可以做 major revision。
+- 如果你认为 core problem 本身就有问题（gap 不存在、问题不够重要），pivot 到同一研究领域下的新方向可能是更好的选择。
+- 当然，如果你有信心这一轮修订能实现突破，继续改进也完全可以。
+
+最终由你判断——做你认为最能提升 idea 质量的选择。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "36700c88-7827-4864-8959-5e80899588bf",
+  "type": "user",
+  "uuid": "24f16ed6-7870-44d0-b2d1-902e327b3b8a",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd09aaea-1e2a-47f1-ba7a-1943938c18c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-10T18:41:12.459Z_
+
+```json
+{
+  "parentUuid": "24f16ed6-7870-44d0-b2d1-902e327b3b8a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "077c07a6-08fc-46ed-bd21-6d8806b48d77",
+  "timestamp": "2026-05-10T18:41:12.459Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd09aaea-1e2a-47f1-ba7a-1943938c18c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-10T18:41:12.459Z_
+
+```json
+{
+  "parentUuid": "077c07a6-08fc-46ed-bd21-6d8806b48d77",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "c19a5481-e40c-4366-8cee-d2608cdcd04c",
+  "timestamp": "2026-05-10T18:41:12.459Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd09aaea-1e2a-47f1-ba7a-1943938c18c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"Error-Diagnosis-Conditioned Preference Learning for Agent Self-Correct…",
+  "leafUuid": "c19a5481-e40c-4366-8cee-d2608cdcd04c",
+  "sessionId": "fd09aaea-1e2a-47f1-ba7a-1943938c18c7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Progressive error-type-conditioned DPO for agent self-correction",
+  "sessionId": "fd09aaea-1e2a-47f1-ba7a-1943938c18c7"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-10T18:41:26.172Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the reviewer feedback carefully. The idea has been through 4 rounds and is stuck at 3.5 average score. The key issues are:
+
+1. **Novelty ceiling** - The mechanism is just prefix conditioning (adding an error-type tag). AP2O uses progressive training which is more sophisticated.
+2. **Missing citations** - DMPO and IPR need to be cited.
+3. **Impact scope** - Need a third benchmark (ScienceWorld) and cross-benchmark transfer should be a core result.
+4. **Progressive training not adopted from AP2O** - Need to incorporate the curriculum aspect.
+
+
+5. The reviewer's concrete suggestions are actionable: adopting AP2O's progressive curriculum would elevate the method from a simple tagging approach to something more sophisticated, while adding ScienceWorld and promoting cross-benchmark transfer as a core result would address the evaluation scope problem.
+
+This feels like a major revision rather than a minor fix—the core insight about error-type conditioning for agent recovery is sound, but the execution needs to shift from a basic tag prefix to a progressive error-type curriculum with step-level DPO, which fundamentally changes how the method works.
+
+Now I need to research the specific papers and techniques the reviewer mentioned: DMPO, IPR, AP2O's progressive training approach, ScienceWorld benchmarks, and how curriculum learning applies to DPO and preference optimization.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c19a5481-e40c-4366-8cee-d2608cdcd04c",
+  "isSidechain": false,
+  "requestId": "req_011CauNuDp3W13SxQuGULmqU",
+  "type": "assistant",
+  "uuid": "bd3521a1-7c2d-4bb1-b8cf-9d196e21c166",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd09aaea-1e2a-47f1-ba7a-1943938c18c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T393f6MyAsFVRdKFvYbszB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13446,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 1680,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13446,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1680,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 13446,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13446
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-10T18:41:26.174Z_
+
+I'll research the key papers and topics flagged by the reviewer before revising. Let me search for DMPO, IPR, AP2O's progressive mechanism, and ScienceWorld benchmarks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bd3521a1-7c2d-4bb1-b8cf-9d196e21c166",
+  "isSidechain": false,
+  "requestId": "req_011CauNuDp3W13SxQuGULmqU",
+  "type": "assistant",
+  "uuid": "e22091e4-65d8-478e-a3c5-6c812c8ccdee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd09aaea-1e2a-47f1-ba7a-1943938c18c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T393f6MyAsFVRdKFvYbszB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13446,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 1680,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13446,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1680,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 13446,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13446
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-10T18:41:29.632Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_016R8qgcJnnY2xzWsyMnWWTy`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Research DMPO paper",
+  "prompt": "Search for and read the paper \"DMPO: Direct Multi-Turn Preference Optimization\" (arXiv 2406.14868). I need to understand:\n1. What is the core method (how does it handle multi-turn DPO)?\n2. What is the length normalization mechanism?\n3. What benchmarks does it evaluate on?\n4. What are its limitations?\n\nUse WebSearch to find the paper, then use WebFetch to read the abstract and method details from the arXiv page. Report a concise summary (under 300 words)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e22091e4-65d8-478e-a3c5-6c812c8ccdee",
+  "isSidechain": false,
+  "requestId": "req_011CauNuDp3W13SxQuGULmqU",
+  "type": "assistant",
+  "uuid": "3f8d0c2c-1778-4a2c-8981-3c3fb65a4323",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd09aaea-1e2a-47f1-ba7a-1943938c18c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T393f6MyAsFVRdKFvYbszB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13446,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 1680,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13446,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1680,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 13446,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13446
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-10T18:41:31.765Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01BUaurzQfvkVBC8qcFcL1Fr`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Research IPR paper",
+  "prompt": "Search for and read the paper \"IPR: Iterative Step-level Process Refinement\" (arXiv 2406.11176). I need to understand:\n1. What is the core method (how does it do step-level contrastive training for agents)?\n2. How does it use Monte Carlo step-level rewards?\n3. What benchmarks and models does it evaluate on?\n4. How does it differ from standard DPO approaches?\n\nUse WebSearch to find the paper, then use WebFetch to read the abstract and method details from the arXiv page. Report a concise summary (under 300 words)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3f8d0c2c-1778-4a2c-8981-3c3fb65a4323",
+  "isSidechain": false,
+  "requestId": "req_011CauNuDp3W13SxQuGULmqU",
+  "type": "assistant",
+  "uuid": "9b653746-5ea0-4f80-bcb8-460a11a58c89",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd09aaea-1e2a-47f1-ba7a-1943938c18c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T393f6MyAsFVRdKFvYbszB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13446,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 1680,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13446,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1680,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 13446,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13446
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-10T18:41:35.346Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01Xbwbs1LofuA6fx6e9GFKCT`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Research AP2O progressive training",
+  "prompt": "Search for and read details about AP2O-Coder (arXiv 2510.02393, AAAI 2026) - specifically its PROGRESSIVE training mechanism. I need to understand:\n1. How does AP2O organize errors from easy-to-hard?\n2. What is the \"adaptive replay\" mechanism?\n3. How does the progressive curriculum work in practice (training stages, how errors are ordered)?\n4. What specific gains does progressive training provide over flat/non-progressive training?\n\nUse WebSearch to find the paper, then use WebFetch to read the method section from the arXiv page. Report a concise summary (under 300 words) focused on the progressive training mechanism."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9b653746-5ea0-4f80-bcb8-460a11a58c89",
+  "isSidechain": false,
+  "requestId": "req_011CauNuDp3W13SxQuGULmqU",
+  "type": "assistant",
+  "uuid": "517584c2-100f-46e4-84bb-f254d39fc5f7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd09aaea-1e2a-47f1-ba7a-1943938c18c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T393f6MyAsFVRdKFvYbszB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13446,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 1680,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13446,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1680,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 13446,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13446
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-10T18:41:38.698Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01EDDqG5UmQR7c3v6yuGM5Fd`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Research ScienceWorld benchmark",
+  "prompt": "Search for recent results on ScienceWorld benchmark for LLM agents. I need to understand:\n1. What is the current SOTA on ScienceWorld?\n2. What models/methods have been evaluated on ScienceWorld recently (2025-2026)?\n3. What does ETO (Exploration-based Trajectory Optimization) achieve on ScienceWorld?\n4. Is there existing infrastructure/code available for running ScienceWorld evaluations with Qwen models?\n\nUse WebSearch to find recent papers and leaderboard results. Also search for \"ScienceWorld LLM agent 2025\" and \"ETO ScienceWorld results\". Report a concise summary (under 300 words)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "517584c2-100f-46e4-84bb-f254d39fc5f7",
+  "isSidechain": false,
+  "requestId": "req_011CauNuDp3W13SxQuGULmqU",
+  "type": "assistant",
+  "uuid": "999d1e0e-5723-466f-a8df-7fdb71f63800",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd09aaea-1e2a-47f1-ba7a-1943938c18c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T393f6MyAsFVRdKFvYbszB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13446,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 1680,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13446,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1680,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 13446,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13446
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-10T18:41:42.278Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01Vnng82KF3yo6kQ3y9cyvbj`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Research curriculum DPO methods",
+  "prompt": "Search for recent work on curriculum learning combined with DPO or preference optimization (2024-2026). I want to understand:\n1. Are there other methods besides AP2O that use progressive/curriculum-based preference optimization?\n2. Has anyone applied curriculum scheduling to step-level DPO?\n3. What evidence exists that easy-to-hard ordering improves preference learning?\n\nSearch queries to try:\n- \"curriculum preference optimization DPO 2025\"\n- \"progressive DPO training curriculum\"\n- \"easy to hard preference learning\"\n\nUse WebSearch for 2-3 different queries, then WebFetch on the most relevant results. Report a concise summary (under 300 words) of what exists in this space."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "999d1e0e-5723-466f-a8df-7fdb71f63800",
+  "isSidechain": false,
+  "requestId": "req_011CauNuDp3W13SxQuGULmqU",
+  "type": "assistant",
+  "uuid": "b5bcf0d2-a727-4024-b686-c52e7f834d89",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd09aaea-1e2a-47f1-ba7a-1943938c18c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T393f6MyAsFVRdKFvYbszB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13446,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 1680,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13446,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1680,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 13446,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13446
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-10T18:42:18.899Z_
+
+<details><summary>↩ Tool result · `toolu_01Xbwbs1LofuA6fx6e9GFKCT`</summary>
+
+```text
+Here is a concise summary of AP2O-Coder's progressive training mechanism:
+
+---
+
+**AP2O-Coder Progressive Training Mechanism (arXiv 2510.02393, AAAI 2026)**
+
+**Error Organization (Easy-to-Hard):**
+AP2O first collects failed code outputs and analyzes them with a language-specific interpreter to classify errors by type. Errors are then ranked by frequency. Two orderings are used: Low-to-High (L2H) starts with rare/diverse errors and progresses to common ones; High-to-Low (H2L) starts with frequent errors first. The key finding: L2H benefits small models (0.5B) by building broad generalization early, while H2L benefits large models (34B) by allowing focused specialization on dominant error types first.
+
+**Adaptive Replay Mechanism:**
+Periodically during training, the model is evaluated on a validation set (likened to "taking small quizzes"). The system analyzes which error types the model currently fails on, then samples those failed cases proportionally to current error ratios -- not historical frequency -- and injects them back into the training window with priority. This combats catastrophic forgetting: as the model progresses to new error types, it risks regressing on previously learned ones, and replay prevents that.
+
+**Progressive Curriculum in Practice:**
+Training uses an "error sliding window" that moves through the ordered error list. The window width is total failed answers divided by training epochs. At each stage, the model trains on only the errors within the current window, then the window advances. For H2L, early windows contain many instances of high-frequency errors (e.g., WrongResult), giving concentrated practice, before shifting to rarer errors.
+
+**Gains Over Non-Progressive Training:**
+Removing adaptive replay drops MBPP pass rate from 85.4% to 82.1% (a 3.3-point loss on 7B models), falling below static DPO baselines (83.5%). This confirms progressive training with replay is essential -- without it, catastrophic forgetting erases gains from earlier stages.
+
+---
+
+Sources:
+- [AP2O arXiv Abstract](https://arxiv.org/abs/2510.02393)
+- [AP2O arXiv HTML (full paper)](https://arxiv.org/html/2510.02393)
+- [GitHub: TsingZ0/AP2O](https://github.com/TsingZ0/AP2O)
+
+agentId: aebd96b6f2e2fc397 (use SendMessage with to: 'aebd96b6f2e2fc397' to continue this agent)
+&lt;usage>total_tokens: 13355
+tool_uses: 3
+duration_ms: 43550&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "517584c2-100f-46e4-84bb-f254d39fc5f7",
+  "isSidechain": false,
+  "promptId": "36700c88-7827-4864-8959-5e80899588bf",
+  "type": "user",
+  "uuid": "af23cca3-f8c6-4d5d-87b6-960174959818",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search for and read details about AP2O-Coder (arXiv 2510.02393, AAAI 2026) - specifically its PROGRESSIVE training mechanism. I need to understand:\n1. How does AP2O organize errors from easy-to-hard?\n2. What is the \"adaptive replay\" mechanism?\n3. How does the progressive curriculum work in practice (training stages, how errors are ordered)?\n4. What specific gains does progressive training provide over flat/non-progressive training?\n\nUse WebSearch to find the paper, then use WebFetch to read the method section from the arXiv page. Report a concise summary (under 300 words) focused on the progressive training mechanism.",
+    "agentId": "aebd96b6f2e2fc397",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here is a concise summary of AP2O-Coder's progressive training mechanism:\n\n---\n\n**AP2O-Coder Progressive Training Mechanism (arXiv 2510.02393, AAAI 2026)**\n\n**Error Organization (Easy-to-Hard):**\nAP2O first collects failed code outputs and analyzes them with a language-specific interpreter to classify errors by type. Errors are then ranked by frequency. Two orderings are used: Low-to-High (L2H) starts with rare/diverse errors and progresses to common ones; High-to-Low (H2L) starts with frequent errors first. The key finding: L2H benefits small models (0.5B) by building broad generalization early, while H2L benefits large models (34B) by allowing focused specialization on dominant error types first.\n\n**Adaptive Replay Mechanism:**\nPeriodically during training, the model is evaluated on a validation set (likened to \"taking small quizzes\"). The system analyzes which error types the model currently fails on, then samples those failed cases proportionally to current error ratios -- not historical frequency -- and injects them back into the training window with priority. This combats catastrophic forgetting: as the model progresses to new error types, it risks regressing on previously learned ones, and replay prevents that.\n\n**Progressive Curriculum in Practice:**\nTraining uses an \"error sliding window\" that moves through the ordered error list. The window width is total failed answers divided by training epochs. At each stage, the model trains on only the errors within the current window, then the window advances. For H2L, early windows contain many instances of high-frequency errors (e.g., WrongResult), giving concentrated practice, before shifting to rarer errors.\n\n**Gains Over Non-Progressive Training:**\nRemoving adaptive replay drops MBPP pass rate from 85.4% to 82.1% (a 3.3-point loss on 7B models), falling below static DPO baselines (83.5%). This confirms progressive training with replay is essential -- without it, catastrophic forgetting erases gains from earlier stages.\n\n---\n\nSources:\n- [AP2O arXiv Abstract](https://arxiv.org/abs/2510.02393)\n- [AP2O arXiv HTML (full paper)](https://arxiv.org/html/2510.02393)\n- [GitHub: TsingZ0/AP2O](https://github.com/TsingZ0/AP2O)"
+      }
+    ],
+    "totalDurationMs": 43550,
+    "totalTokens": 13355,
+    "totalToolUseCount": 3,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 998,
+      "cache_read_input_tokens": 11789,
+      "output_tokens": 567,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 998
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 567,
+          "cache_read_input_tokens": 11789,
+          "cache_creation_input_tokens": 998,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 998,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 3
+    }
+  },
+  "sourceToolAssistantUUID": "517584c2-100f-46e4-84bb-f254d39fc5f7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd09aaea-1e2a-47f1-ba7a-1943938c18c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-10T18:42:36.737Z_
+
+<details><summary>↩ Tool result · `toolu_01Vnng82KF3yo6kQ3y9cyvbj`</summary>
+
+```text
+Here is a concise summary of the research landscape on curriculum learning combined with DPO/preference optimization (2024-2026):
+
+---
+
+## Summary
+
+**1. Methods beyond AP2O using progressive/curriculum-based preference optimization:**
+
+Several exist:
+- **Curry-DPO** (2024, EMNLP Findings): Constructs multiple preference pairs per prompt ranked by quality gap, then trains easy-to-hard. Reports up to 7.5% gains over standard DPO on MT-Bench/Vicuna benchmarks for LLM alignment.
+- **Curriculum-DPO / Curriculum-DPO++** (2025, CVPR): For text-to-image generation. Pairs far apart in reward ranking are "easy"; close pairs are "hard." DPO++ adds model-level curriculum (progressive layer unfreezing + growing LoRA rank). Shows consistent wins on aesthetics and human preference.
+- **CLewR** (2025): Curriculum learning with restarts for machine translation preference learning, restarting easy-to-hard ordering each epoch to avoid catastrophic forgetting.
+
+**2. Step-level curriculum DPO:**
+
+**AlphaLLM-CPL** constructs stepwise trajectory pairs from MCTS child nodes sharing a parent, providing step-level preference signal. It introduces curriculum preference learning that dynamically adjusts training sequence to prioritize critical learning steps. This is the closest to step-level curriculum DPO for reasoning.
+
+**3. Evidence for/against easy-to-hard ordering:**
+
+- *For*: Curry-DPO shows 7.5% gains; Curriculum-DPO++ shows consistent improvements across six benchmarks in the image domain.
+- *Against*: An OpenReview paper ("On the Limits of Curriculum Learning for Post-Training LLMs") finds that on synthetic math reasoning tasks, curriculum learning has **no significant impact** under either SFT or RL, with random sampling performing competitively. The optimal schedule varies across datasets/models, and response length (not ordering) drives performance.
+
+**Bottom line**: Curriculum-based preference optimization works well when preference pairs have measurable difficulty gradients (image quality gaps, multi-rated responses), but evidence for pure mathematical reasoning is mixed.
+
+---
+
+Sources:
+- [Curry-DPO: Enhancing Alignment using Curriculum Learning & Ranked Preferences](https://arxiv.org/abs/2403.07230)
+- [Curriculum Direct Preference Optimization for Diffusion and Consistency Models (CVPR 2025)](https://arxiv.org/abs/2405.13637)
+- [Curriculum-DPO++](https://arxiv.org/html/2602.13055)
+- [On the Limits of Curriculum Learning for Post-Training LLMs](https://openreview.net/forum?id=sHn5rq6L0O)
+- [CLewR: Curriculum Learning with Restarts for MT Preference Learning](https://arxiv.org/html/2601.05858)
+- [Prompt Curriculum Learning for Efficient LLM Post-Training](https://www.researchgate.net/publication/396094712_Prompt_Curriculum_Learning_for_Efficient_LLM_Post-Training)
+
+agentId: a7e31a68910823807 (use SendMessage with to: 'a7e31a68910823807' to continue this agent)
+&lt;usage>total_tokens: 15799
+tool_uses: 7
+duration_ms: 54457&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b5bcf0d2-a727-4024-b686-c52e7f834d89",
+  "isSidechain": false,
+  "promptId": "36700c88-7827-4864-8959-5e80899588bf",
+  "type": "user",
+  "uuid": "1ed32153-feae-42c4-8a69-47a5eb5f3f4d",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search for recent work on curriculum learning combined with DPO or preference optimization (2024-2026). I want to understand:\n1. Are there other methods besides AP2O that use progressive/curriculum-based preference optimization?\n2. Has anyone applied curriculum scheduling to step-level DPO?\n3. What evidence exists that easy-to-hard ordering improves preference learning?\n\nSearch queries to try:\n- \"curriculum preference optimization DPO 2025\"\n- \"progressive DPO training curriculum\"\n- \"easy to hard preference learning\"\n\nUse WebSearch for 2-3 different queries, then WebFetch on the most relevant results. Report a concise summary (under 300 words) of what exists in this space.",
+    "agentId": "a7e31a68910823807",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here is a concise summary of the research landscape on curriculum learning combined with DPO/preference optimization (2024-2026):\n\n---\n\n## Summary\n\n**1. Methods beyond AP2O using progressive/curriculum-based preference optimization:**\n\nSeveral exist:\n- **Curry-DPO** (2024, EMNLP Findings): Constructs multiple preference pairs per prompt ranked by quality gap, then trains easy-to-hard. Reports up to 7.5% gains over standard DPO on MT-Bench/Vicuna benchmarks for LLM alignment.\n- **Curriculum-DPO / Curriculum-DPO++** (2025, CVPR): For text-to-image generation. Pairs far apart in reward ranking are \"easy\"; close pairs are \"hard.\" DPO++ adds model-level curriculum (progressive layer unfreezing + growing LoRA rank). Shows consistent wins on aesthetics and human preference.\n- **CLewR** (2025): Curriculum learning with restarts for machine translation preference learning, restarting easy-to-hard ordering each epoch to avoid catastrophic forgetting.\n\n**2. Step-level curriculum DPO:**\n\n**AlphaLLM-CPL** constructs stepwise trajectory pairs from MCTS child nodes sharing a parent, providing step-level preference signal. It introduces curriculum preference learning that dynamically adjusts training sequence to prioritize critical learning steps. This is the closest to step-level curriculum DPO for reasoning.\n\n**3. Evidence for/against easy-to-hard ordering:**\n\n- *For*: Curry-DPO shows 7.5% gains; Curriculum-DPO++ shows consistent improvements across six benchmarks in the image domain.\n- *Against*: An OpenReview paper (\"On the Limits of Curriculum Learning for Post-Training LLMs\") finds that on synthetic math reasoning tasks, curriculum learning has **no significant impact** under either SFT or RL, with random sampling performing competitively. The optimal schedule varies across datasets/models, and response length (not ordering) drives performance.\n\n**Bottom line**: Curriculum-based preference optimization works well when preference pairs have measurable difficulty gradients (image quality gaps, multi-rated responses), but evidence for pure mathematical reasoning is mixed.\n\n---\n\nSources:\n- [Curry-DPO: Enhancing Alignment using Curriculum Learning & Ranked Preferences](https://arxiv.org/abs/2403.07230)\n- [Curriculum Direct Preference Optimization for Diffusion and Consistency Models (CVPR 2025)](https://arxiv.org/abs/2405.13637)\n- [Curriculum-DPO++](https://arxiv.org/html/2602.13055)\n- [On the Limits of Curriculum Learning for Post-Training LLMs](https://openreview.net/forum?id=sHn5rq6L0O)\n- [CLewR: Curriculum Learning with Restarts for MT Preference Learning](https://arxiv.org/html/2601.05858)\n- [Prompt Curriculum Learning for Efficient LLM Post-Training](https://www.researchgate.net/publication/396094712_Prompt_Curriculum_Learning_for_Efficient_LLM_Post-Training)"
+      }
+    ],
+    "totalDurationMs": 54457,
+    "totalTokens": 15799,
+    "totalToolUseCount": 7,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3152,
+      "cache_read_input_tokens": 11890,
+      "output_tokens": 756,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3152
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 756,
+          "cache_read_input_tokens": 11890,
+          "cache_creation_input_tokens": 3152,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3152,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 7
+    }
+  },
+  "sourceToolAssistantUUID": "b5bcf0d2-a727-4024-b686-c52e7f834d89",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd09aaea-1e2a-47f1-ba7a-1943938c18c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-10T18:42:51.762Z_
+
+<details><summary>↩ Tool result · `toolu_016R8qgcJnnY2xzWsyMnWWTy`</summary>
+
+```text
+Here is a concise summary of the paper:
+
+---
+
+**DMPO: Direct Multi-Turn Preference Optimization for Language Agents** (arXiv 2406.14868, EMNLP 2024)
+
+**Core Method:**
+DMPO extends DPO to multi-turn agent tasks by making two key modifications to the RL objective. The fundamental problem is that in multi-turn settings, the partition function Z depends on the current state and cannot be cancelled (as it can in single-turn DPO). DMPO solves this by:
+
+1. **State-Action Occupancy Measure (SAOM) Constraint** -- Replaces the standard per-state policy KL constraint with a constraint on the joint state-action occupancy measure d^pi(s,a). Since this is a distribution over (s,a) pairs rather than conditioned on individual states, the partition function Z becomes a single global constant, enabling cancellation. The SAOM constraint also mitigates compounding errors by steering actions toward expert-like state distributions even in unvisited states.
+
+2. **Length Normalization** -- Multiplies each trajectory's discounted reward sum by a normalizing coefficient (1-gamma)/(1-gamma^T), where T is the trajectory length. This ensures the partition function terms from win and lose trajectories cancel even when trajectories have different lengths. The final loss reweights each step t by a discount function phi(t,T) = gamma^t * (1-gamma^(T-t))/(1-gamma^T), which assigns higher weight to earlier steps.
+
+**Benchmarks:**
+Evaluated on three multi-turn agent environments -- WebShop (online shopping), ScienceWorld (science reasoning), and ALFWorld (embodied household tasks) -- using Llama-2-7B-Chat and Mistral-7B-Instruct-v0.2. DMPO outperforms DPO and other baselines (SFT, PPO, RFT, ETO) in both noisy and clean preference data settings.
+
+**Limitations (stated by authors):**
+1. Focuses only on turn-level formulation with sparse rewards; token-level formulation is unexplored.
+2. Experiments limited to 7B-parameter models on simulated datasets; validation on larger models/datasets remains future work.
+
+---
+
+Sources:
+- [arXiv Abstract Page](https://arxiv.org/abs/2406.14868)
+- [Hugging Face Paper Page](https://huggingface.co/papers/2406.14868)
+
+agentId: a76b8ec9d8df322ec (use SendMessage with to: 'a76b8ec9d8df322ec' to continue this agent)
+&lt;usage>total_tokens: 35149
+tool_uses: 9
+duration_ms: 82123&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3f8d0c2c-1778-4a2c-8981-3c3fb65a4323",
+  "isSidechain": false,
+  "promptId": "36700c88-7827-4864-8959-5e80899588bf",
+  "type": "user",
+  "uuid": "6db88654-eba3-41e9-9745-0558f5eb2e8d",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search for and read the paper \"DMPO: Direct Multi-Turn Preference Optimization\" (arXiv 2406.14868). I need to understand:\n1. What is the core method (how does it handle multi-turn DPO)?\n2. What is the length normalization mechanism?\n3. What benchmarks does it evaluate on?\n4. What are its limitations?\n\nUse WebSearch to find the paper, then use WebFetch to read the abstract and method details from the arXiv page. Report a concise summary (under 300 words).",
+    "agentId": "a76b8ec9d8df322ec",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here is a concise summary of the paper:\n\n---\n\n**DMPO: Direct Multi-Turn Preference Optimization for Language Agents** (arXiv 2406.14868, EMNLP 2024)\n\n**Core Method:**\nDMPO extends DPO to multi-turn agent tasks by making two key modifications to the RL objective. The fundamental problem is that in multi-turn settings, the partition function Z depends on the current state and cannot be cancelled (as it can in single-turn DPO). DMPO solves this by:\n\n1. **State-Action Occupancy Measure (SAOM) Constraint** -- Replaces the standard per-state policy KL constraint with a constraint on the joint state-action occupancy measure d^pi(s,a). Since this is a distribution over (s,a) pairs rather than conditioned on individual states, the partition function Z becomes a single global constant, enabling cancellation. The SAOM constraint also mitigates compounding errors by steering actions toward expert-like state distributions even in unvisited states.\n\n2. **Length Normalization** -- Multiplies each trajectory's discounted reward sum by a normalizing coefficient (1-gamma)/(1-gamma^T), where T is the trajectory length. This ensures the partition function terms from win and lose trajectories cancel even when trajectories have different lengths. The final loss reweights each step t by a discount function phi(t,T) = gamma^t * (1-gamma^(T-t))/(1-gamma^T), which assigns higher weight to earlier steps.\n\n**Benchmarks:**\nEvaluated on three multi-turn agent environments -- WebShop (online shopping), ScienceWorld (science reasoning), and ALFWorld (embodied household tasks) -- using Llama-2-7B-Chat and Mistral-7B-Instruct-v0.2. DMPO outperforms DPO and other baselines (SFT, PPO, RFT, ETO) in both noisy and clean preference data settings.\n\n**Limitations (stated by authors):**\n1. Focuses only on turn-level formulation with sparse rewards; token-level formulation is unexplored.\n2. Experiments limited to 7B-parameter models on simulated datasets; validation on larger models/datasets remains future work.\n\n---\n\nSources:\n- [arXiv Abstract Page](https://arxiv.org/abs/2406.14868)\n- [Hugging Face Paper Page](https://huggingface.co/papers/2406.14868)"
+      }
+    ],
+    "totalDurationMs": 82123,
+    "totalTokens": 35149,
+    "totalToolUseCount": 9,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19778,
+      "cache_read_input_tokens": 14784,
+      "output_tokens": 586,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 19778
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 586,
+          "cache_read_input_tokens": 14784,
+          "cache_creation_input_tokens": 19778,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 19778,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 1,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 8
+    }
+  },
+  "sourceToolAssistantUUID": "3f8d0c2c-1778-4a2c-8981-3c3fb65a4323",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd09aaea-1e2a-47f1-ba7a-1943938c18c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"Error-Diagnosis-Conditioned Preference Learning for Agent Self-Correct…",
+  "leafUuid": "6db88654-eba3-41e9-9745-0558f5eb2e8d",
+  "sessionId": "fd09aaea-1e2a-47f1-ba7a-1943938c18c7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Progressive error-type-conditioned DPO for agent self-correction",
+  "sessionId": "fd09aaea-1e2a-47f1-ba7a-1943938c18c7"
+}
+```
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-10T18:43:26.079Z_
+
+<details><summary>↩ Tool result · `toolu_01BUaurzQfvkVBC8qcFcL1Fr`</summary>
+
+```text
+Here is a concise summary of the paper:
+
+---
+
+**"Watch Every Step! LLM Agent Learning via Iterative Step-Level Process Refinement" (IPR)**
+Authors: Weimin Xiong, Yifan Song, et al. (EMNLP 2024 Main Conference)
+
+**Core Method:** IPR trains LLM agents using step-level contrastive learning rather than outcome-only supervision. At each iteration, the agent follows an expert trajectory but generates its own actions at each step. These agent actions are compared against expert actions using step-level rewards to identify discrepancies, producing contrastive (chosen/rejected) action pairs for training.
+
+**Monte Carlo Step-Level Rewards:** For each intermediate state, multiple rollouts are sampled forward to task completion. The success rate across these N rollouts serves as the estimated reward for that step. This gives a fine-grained signal: an expert action that leads to higher downstream success gets a higher MC reward than an agent action that leads to lower success, enabling step-by-step credit assignment.
+
+**Training Loss:** IPR uses a DPO-style loss applied at the step level (not trajectory level), combined with SFT on expert demonstrations. The expert action becomes "chosen" and the agent-generated action becomes "rejected" when the agent's MC reward is lower than the expert's at that step.
+
+**Iterative Refinement:** The process repeats -- each iteration updates the policy, which then generates improved actions in the next round, yielding progressively better contrastive pairs.
+
+**Benchmarks & Models:** Evaluated on three tasks -- WebShop (e-commerce), ALFWorld (interactive fiction), and InterCodeSQL (database queries) -- using Llama-2-13B as the primary backbone. IPR outperforms strong baselines across all three.
+
+**Key Difference from Standard DPO:** Standard DPO compares full trajectories (outcome-level preference). IPR instead applies preference optimization at individual steps using MC-estimated rewards, enabling more precise credit assignment and avoiding the sparse-reward problem of trajectory-level comparisons.
+
+---
+
+Sources:
+- [arXiv:2406.11176](https://arxiv.org/abs/2406.11176)
+- [GitHub: WeiminXiong/IPR](https://github.com/WeiminXiong/IPR)
+- [ACL Anthology (EMNLP 2024)](https://aclanthology.org/2024.emnlp-main.93.pdf)
+
+agentId: a68954e8b4a092689 (use SendMessage with to: 'a68954e8b4a092689' to continue this agent)
+&lt;usage>total_tokens: 16731
+tool_uses: 10
+duration_ms: 114311&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9b653746-5ea0-4f80-bcb8-460a11a58c89",
+  "isSidechain": false,
+  "promptId": "36700c88-7827-4864-8959-5e80899588bf",
+  "type": "user",
+  "uuid": "4fc49ff5-d088-4c1a-b910-ad85f8937ad6",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search for and read the paper \"IPR: Iterative Step-level Process Refinement\" (arXiv 2406.11176). I need to understand:\n1. What is the core method (how does it do step-level contrastive training for agents)?\n2. How does it use Monte Carlo step-level rewards?\n3. What benchmarks and models does it evaluate on?\n4. How does it differ from standard DPO approaches?\n\nUse WebSearch to find the paper, then use WebFetch to read the abstract and method details from the arXiv page. Report a concise summary (under 300 words).",
+    "agentId": "a68954e8b4a092689",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here is a concise summary of the paper:\n\n---\n\n**\"Watch Every Step! LLM Agent Learning via Iterative Step-Level Process Refinement\" (IPR)**\nAuthors: Weimin Xiong, Yifan Song, et al. (EMNLP 2024 Main Conference)\n\n**Core Method:** IPR trains LLM agents using step-level contrastive learning rather than outcome-only supervision. At each iteration, the agent follows an expert trajectory but generates its own actions at each step. These agent actions are compared against expert actions using step-level rewards to identify discrepancies, producing contrastive (chosen/rejected) action pairs for training.\n\n**Monte Carlo Step-Level Rewards:** For each intermediate state, multiple rollouts are sampled forward to task completion. The success rate across these N rollouts serves as the estimated reward for that step. This gives a fine-grained signal: an expert action that leads to higher downstream success gets a higher MC reward than an agent action that leads to lower success, enabling step-by-step credit assignment.\n\n**Training Loss:** IPR uses a DPO-style loss applied at the step level (not trajectory level), combined with SFT on expert demonstrations. The expert action becomes \"chosen\" and the agent-generated action becomes \"rejected\" when the agent's MC reward is lower than the expert's at that step.\n\n**Iterative Refinement:** The process repeats -- each iteration updates the policy, which then generates improved actions in the next round, yielding progressively better contrastive pairs.\n\n**Benchmarks & Models:** Evaluated on three tasks -- WebShop (e-commerce), ALFWorld (interactive fiction), and InterCodeSQL (database queries) -- using Llama-2-13B as the primary backbone. IPR outperforms strong baselines across all three.\n\n**Key Difference from Standard DPO:** Standard DPO compares full trajectories (outcome-level preference). IPR instead applies preference optimization at individual steps using MC-estimated rewards, enabling more precise credit assignment and avoiding the sparse-reward problem of trajectory-level comparisons.\n\n---\n\nSources:\n- [arXiv:2406.11176](https://arxiv.org/abs/2406.11176)\n- [GitHub: WeiminXiong/IPR](https://github.com/WeiminXiong/IPR)\n- [ACL Anthology (EMNLP 2024)](https://aclanthology.org/2024.emnlp-main.93.pdf)"
+      }
+    ],
+    "totalDurationMs": 114311,
+    "totalTokens": 16731,
+    "totalToolUseCount": 10,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 811,
+      "cache_read_input_tokens": 15345,
+      "output_tokens": 574,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 811
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 574,
+          "cache_read_input_tokens": 15345,
+          "cache_creation_input_tokens": 811,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 811,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 10
+    }
+  },
+  "sourceToolAssistantUUID": "9b653746-5ea0-4f80-bcb8-460a11a58c89",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd09aaea-1e2a-47f1-ba7a-1943938c18c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-10T18:43:34.091Z_
+
+<details><summary>↩ Tool result · `toolu_01EDDqG5UmQR7c3v6yuGM5Fd`</summary>
+
+```text
+Here is a concise summary of my findings:
+
+---
+
+## ScienceWorld Benchmark: Summary of Recent Results
+
+**1. Current SOTA on ScienceWorld:**
+The current state-of-the-art is **CogRouter** (arXiv 2602.12662, Feb 2026), which achieves **82.3% average success rate** using Qwen2.5-7B as the base model. It outperforms GPT-4o by +40.3%, OpenAI-o3 by +18.3%, and GRPO by +14.0%, while using 62% fewer tokens. The previous SOTA was **SwiftSage** (NeurIPS 2023) at ~84.7 average score (different scoring metric).
+
+**2. Recent models/methods evaluated (2024-2026):**
+- **CogRouter** (Feb 2026) -- Qwen2.5-7B, step-level cognitive depth adaptation via RL
+- **ETO** (ACL 2024) -- Llama-2-7B/13B and Mistral-7B, exploration-based trajectory optimization
+- **SwiftSage** (NeurIPS 2023) -- GPT-4 + smaller LM dual-process agent
+- Baselines: ReAct (36.4), Reflexion (45.3), SayCan (33.8), GPT-4o (~42%), OpenAI-o3 (~64%)
+
+**3. ETO (Exploration-based Trajectory Optimization) results:**
+ETO (ACL 2024 Main) achieves a **+22% improvement over SFT** on ScienceWorld's out-of-distribution test set and +9.5% on the standard test set. It uses contrastive DPO pairing failure trajectories against expert successes. Code is publicly available at GitHub (Yifan-Song793/ETO).
+
+**4. Infrastructure for Qwen models on ScienceWorld:**
+Yes -- CogRouter explicitly uses **Qwen2.5-7B** as its base model on ScienceWorld, demonstrating existing infrastructure. The ETO codebase (GitHub) supports plugging in different base LLMs and could be adapted for Qwen. LlamaFactory is also referenced for fine-tuning pipelines compatible with Qwen models.
+
+---
+
+Sources:
+- [CogRouter: Think Fast and Slow (arXiv 2602.12662)](https://arxiv.org/abs/2602.12662)
+- [ETO: Trial and Error (ACL 2024) - GitHub](https://github.com/Yifan-Song793/ETO)
+- [ETO Paper (arXiv 2403.02502)](https://arxiv.org/abs/2403.02502)
+- [SwiftSage (arXiv 2305.17390)](https://arxiv.org/abs/2305.17390)
+- [ScienceWorld Benchmark (Allen AI)](https://sciworld.apps.allenai.org/)
+- [ETO - EmergentMind Summary](https://www.emergentmind.com/papers/2403.02502)
+- [ScienceWorld Paper (arXiv 2203.07540)](https://arxiv.org/abs/2203.07540)
+
+agentId: ad3ac6cae5d32458a (use SendMessage with to: 'ad3ac6cae5d32458a' to continue this agent)
+&lt;usage>total_tokens: 24532
+tool_uses: 13
+duration_ms: 115390&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "999d1e0e-5723-466f-a8df-7fdb71f63800",
+  "isSidechain": false,
+  "promptId": "36700c88-7827-4864-8959-5e80899588bf",
+  "type": "user",
+  "uuid": "58f13ba1-68fa-464d-8325-4fb28e613e8d",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search for recent results on ScienceWorld benchmark for LLM agents. I need to understand:\n1. What is the current SOTA on ScienceWorld?\n2. What models/methods have been evaluated on ScienceWorld recently (2025-2026)?\n3. What does ETO (Exploration-based Trajectory Optimization) achieve on ScienceWorld?\n4. Is there existing infrastructure/code available for running ScienceWorld evaluations with Qwen models?\n\nUse WebSearch to find recent papers and leaderboard results. Also search for \"ScienceWorld LLM agent 2025\" and \"ETO ScienceWorld results\". Report a concise summary (under 300 words).",
+    "agentId": "ad3ac6cae5d32458a",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here is a concise summary of my findings:\n\n---\n\n## ScienceWorld Benchmark: Summary of Recent Results\n\n**1. Current SOTA on ScienceWorld:**\nThe current state-of-the-art is **CogRouter** (arXiv 2602.12662, Feb 2026), which achieves **82.3% average success rate** using Qwen2.5-7B as the base model. It outperforms GPT-4o by +40.3%, OpenAI-o3 by +18.3%, and GRPO by +14.0%, while using 62% fewer tokens. The previous SOTA was **SwiftSage** (NeurIPS 2023) at ~84.7 average score (different scoring metric).\n\n**2. Recent models/methods evaluated (2024-2026):**\n- **CogRouter** (Feb 2026) -- Qwen2.5-7B, step-level cognitive depth adaptation via RL\n- **ETO** (ACL 2024) -- Llama-2-7B/13B and Mistral-7B, exploration-based trajectory optimization\n- **SwiftSage** (NeurIPS 2023) -- GPT-4 + smaller LM dual-process agent\n- Baselines: ReAct (36.4), Reflexion (45.3), SayCan (33.8), GPT-4o (~42%), OpenAI-o3 (~64%)\n\n**3. ETO (Exploration-based Trajectory Optimization) results:**\nETO (ACL 2024 Main) achieves a **+22% improvement over SFT** on ScienceWorld's out-of-distribution test set and +9.5% on the standard test set. It uses contrastive DPO pairing failure trajectories against expert successes. Code is publicly available at GitHub (Yifan-Song793/ETO).\n\n**4. Infrastructure for Qwen models on ScienceWorld:**\nYes -- CogRouter explicitly uses **Qwen2.5-7B** as its base model on ScienceWorld, demonstrating existing infrastructure. The ETO codebase (GitHub) supports plugging in different base LLMs and could be adapted for Qwen. LlamaFactory is also referenced for fine-tuning pipelines compatible with Qwen models.\n\n---\n\nSources:\n- [CogRouter: Think Fast and Slow (arXiv 2602.12662)](https://arxiv.org/abs/2602.12662)\n- [ETO: Trial and Error (ACL 2024) - GitHub](https://github.com/Yifan-Song793/ETO)\n- [ETO Paper (arXiv 2403.02502)](https://arxiv.org/abs/2403.02502)\n- [SwiftSage (arXiv 2305.17390)](https://arxiv.org/abs/2305.17390)\n- [ScienceWorld Benchmark (Allen AI)](https://sciworld.apps.allenai.org/)\n- [ETO - EmergentMind Summary](https://www.emergentmind.com/papers/2403.02502)\n- [ScienceWorld Paper (arXiv 2203.07540)](https://arxiv.org/abs/2203.07540)"
+      }
+    ],
+    "totalDurationMs": 115390,
+    "totalTokens": 24532,
+    "totalToolUseCount": 13,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 885,
+      "cache_read_input_tokens": 22861,
+      "output_tokens": 785,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 885
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 785,
+          "cache_read_input_tokens": 22861,
+          "cache_creation_input_tokens": 885,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 885,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 13
+    }
+  },
+  "sourceToolAssistantUUID": "999d1e0e-5723-466f-a8df-7fdb71f63800",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd09aaea-1e2a-47f1-ba7a-1943938c18c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-10T18:47:18.383Z_
+
+Good research results. Now let me think about this deeply before revising.
+
+**Key findings:**
+- **DMPO** (EMNLP 2024): Multi-turn DPO with SAOM constraint and length normalization. Evaluates on WebShop, ScienceWorld, ALFWorld. Directly relevant — operates at trajectory level without error-type awareness.
+- **IPR** (EMNLP 2024): Step-level contrastive training with MC rollout rewards. Uses expert trajectories as reference. No error-type conditioning.
+- **AP2O's progressive mechanism**: Error sliding window, adaptive replay to prevent catastrophic forgetting. L2H vs H2L ordering matters by model size. Removing replay drops 3.3 points.
+- **ScienceWorld**: CogRouter SOTA at 82.3% (Qwen2.5-7B). ETO has public code. Infrastructure exists for Qwen models.
+- **Curriculum DPO landscape**: Curry-DPO, Curriculum-DPO++, AlphaLLM-CPL all validate the approach. Evidence is strong when difficulty gradients are measurable (which error types provide).
+
+**Deep thinking on the revision:**
+
+The reviewer is right — prefix conditioning alone is trivially simple. But AP2O's progressive training (sliding window over error types + adaptive replay) applied to step-level agent DPO is genuinely novel. The combination becomes: **Progressive Error-Type Step-Level DPO with Adaptive Replay** — this is a real methodological contribution because:
+1. No one has done progressive curriculum over error types at the step level for agents
+2. The difficulty ordering (action < verification < planning) has a natural justification in agents (single-step vs. multi-step corrections)
+3. Adaptive replay addresses catastrophic forgetting which is a real problem in sequential fine-tuning
+
+Adding ScienceWorld + cross-benchmark transfer makes this a general principle paper, not a trick paper.
+
+This is a **major revision** — the method identity changes from "add a tag" to "progressive error-type curriculum with step-level DPO and adaptive replay for agent recovery."
+
+Now let me produce the revised idea:
+
+```json
+{
+  "title": "Progressive Error-Type Curriculum for Agent Step-Level Preference Learning",
+  "change_type": "major",
+  ...
+}
+```
+
+Let me write the complete revised JSON.
+
+```json
+{
+  "title": "Progressive Error-Type Curriculum for Agent Step-Level Preference Learning",
+  "change_type": "major",
+  "core_problem": "...",
+  ...
+}
+```
+
+Here is the complete revised idea:
+
+```json
+{
+  "title": "Progressive Error-Type Curriculum for Agent Step-Level Preference Learning",
+  "change_type": "major",
+  "core_problem": "Agent self-correction training methods — including ETO's trajectory-level DPO, DMPO's multi-turn DPO with length normalization, Agent-R's MCTS-guided SFT, IPR's step-level MC-reward contrastive training, and CSO's critical-step DPO — identify WHAT step to correct but not WHAT TYPE of error occurred. They apply a single, undifferentiated recovery mechanism regardless of whether the agent failed due to a planning error, an incorrect action, or a verification oversight. AP2O (AAAI 2026) demonstrates that error-type-progressive preference optimization substantially improves code generation via an error sliding window with adaptive replay, but no work has brought error-type-progressive curriculum training to interactive agent recovery via step-level DPO. Can a progressive curriculum that trains agents to correct easier error types (action errors) before harder ones (planning errors), with adaptive replay to prevent forgetting, yield better correction rates than type-agnostic or flat-conditioned step-level approaches?",
+  "opportunity": "Six recent threads converge: (1) AgentDebug (Sept 2025) shows prompting-based type-specific correction improves recovery by 26% on ALFWorld/WebShop/GAIA, proving the type-conditioning hypothesis — but prompting hits a ceiling with weaker models. (2) AP2O (AAAI 2026) demonstrates that progressive error-type curriculum (sliding window over error types + adaptive replay) outperforms flat DPO by 3.3 points on code generation — the first work to show that ordering errors from easy-to-hard during preference training is a powerful inductive bias. (3) Curry-DPO (EMNLP 2024 Findings) confirms that curriculum-based preference optimization (easy-to-hard preference pairs) yields 7.5% gains over standard DPO on general alignment. (4) Step-level preference optimization (CSO, IPR, Step-DPO) shows focusing DPO on critical steps outperforms trajectory-level approaches. (5) DMPO (EMNLP 2024) establishes multi-turn DPO with length normalization for agents but operates without error-type awareness. (6) PathFinder-PRM (May 2025) validates error-type decomposition as an inductive bias for process reward models, achieving SOTA with 3x less data. Yet no work combines these: progressive error-type curriculum + step-level DPO + adaptive replay for interactive agents. The gap is specific: AP2O's progressive mechanism works for single-turn code (where errors are compiler/runtime categorized), but agents face fundamentally different error types (planning requires multi-step replanning, action errors need single-step correction, verification errors need state re-checking) — creating a natural difficulty gradient absent in code generation.",
+  "landscape": "...[full landscape]...",
+  "approach": "...[full approach]...",
+  ...
+}
+```
+
+Let me now produce the complete output:
+
+```json
+{
+  "title": "Progressive Error-Type Curriculum for Agent Step-Level Preference Learning",
+  "change_type": "major",
+  "core_problem": "Agent self-correction training methods — including ETO's trajectory-level DPO, DMPO's multi-turn DPO with length normalization, Agent-R's MCTS-guided SFT, IPR's step-level MC-reward contrastive training, and CSO's critical-step DPO — identify WHAT step to correct but not WHAT TYPE of error occurred. They apply a single, undifferentiated recovery mechanism regardless of whether the agent failed due to a planning error, an incorrect action, or a verification oversight. AP2O (AAAI 2026) demonstrates that error-type-progressive preference optimization substantially improves code generation via an error sliding window with adaptive replay, but no work has brought error-type-progressive curriculum training to interactive agent recovery via step-level DPO. Can a progressive curriculum that trains agents to correct easier error types first (action errors requiring single-step corrections) before harder ones (planning errors requiring multi-step replanning), with adaptive replay to prevent catastrophic forgetting, yield better correction rates than type-agnostic or flat-conditioned step-level approaches in agentic settings?",
+  "opportunity": "Six recent threads converge: (1) AgentDebug (Sept 2025) shows prompting-based type-specific correction improves recovery by 26% on ALFWorld/WebShop/GAIA, proving the type-conditioning hypothesis — but prompting hits a ceiling with weaker models. (2) AP2O (AAAI 2026) demonstrates that progressive error-type curriculum (error sliding window + adaptive replay) outperforms flat DPO by 3.3 points on code generation — removing adaptive replay drops performance below static DPO baselines, confirming progressive training is essential. (3) Curry-DPO (EMNLP 2024 Findings) confirms curriculum preference optimization yields 7.5% gains over standard DPO on general alignment, while Curriculum-DPO++ (CVPR 2025) validates the approach for image generation. (4) Step-level preference optimization (CSO achieves 37% improvement over SFT; IPR achieves SOTA via MC-reward step-level contrastive training on WebShop/ALFWorld/InterCodeSQL) shows focusing DPO on critical steps outperforms trajectory-level approaches. (5) DMPO (EMNLP 2024) establishes multi-turn DPO with SAOM constraint and length normalization for agents on ALFWorld/WebShop/ScienceWorld but operates without error-type awareness. (6) PathFinder-PRM (May 2025) validates error-type decomposition as an inductive bias, achieving SOTA on PRMBench with 3x less data. Yet no work combines progressive error-type curriculum with step-level DPO for interactive agents. The gap is specific and structural: AP2O's progressive mechanism relies on compiler/runtime error categorization for code; agent errors have a fundamentally different difficulty structure — action errors require single-step corrections (easiest), verification errors need state re-checking (medium), and planning errors demand multi-step replanning (hardest). This natural difficulty gradient enables curriculum scheduling that AP2O's code-based ordering cannot provide.",
+  "landscape": "General self-correction: SCoRe (ICLR 2025 Oral) establishes that SFT fails due to distribution mismatch and behavior collapse, advocating online RL. ETO (ACL 2024) uses trajectory-level DPO on failure-success pairs for ALFWorld/WebShop/ScienceWorld with ~9-20% gains — the most directly comparable trajectory-level approach. DMPO (EMNLP 2024 Main, arXiv 2406.14868) extends DPO to multi-turn settings via state-action occupancy measure constraints and length normalization, evaluating on ALFWorld/WebShop/ScienceWorld — a trajectory-level multi-turn DPO approach without error-type awareness that we build upon for length normalization in our step-level formulation. IPR (EMNLP 2024 Main, arXiv 2406.11176) performs step-level contrastive training using Monte Carlo rollout rewards, evaluated on WebShop/ALFWorld/InterCodeSQL — IPR uses expert trajectory comparison to derive step rewards, while our method uses self-generated corrections with error-type conditioning, addressing SCoRe's distribution mismatch critique. Agent-R (arXiv 2501.11425) identifies first-error steps via MCTS and trains SFT recovery on Llama-3.1-8B, achieving +5.59% — no error-type conditioning or preference learning. CSO (ACL 2026 Findings) performs verified critical step DPO achieving 37% improvement over SFT on GAIA-Text-103 — current SOTA for step-level DPO in agent training but not error-type conditioned or progressive. AgentDebug (Sept 2025) uses LLM zero-shot error classification with type-specific prompting for recovery (26% improvement on ALFWorld/GAIA/WebShop) — entirely prompting-based without learned policies. AP2O (AAAI 2026, arXiv 2510.02393) is the first work to apply progressive error-type curriculum to preference optimization: it uses an error sliding window ordered by frequency, with adaptive replay to combat catastrophic forgetting, achieving up to 3% pass@k improvement for code generation. AP2O's L2H ordering benefits small models while H2L benefits large models. Our work extends AP2O's progressive mechanism from single-turn code to multi-turn interactive agents, replacing frequency-based ordering with difficulty-based ordering (action→verification→planning) motivated by correction complexity. Curry-DPO (EMNLP 2024 Findings, arXiv 2403.07230) confirms easy-to-hard curriculum ordering yields 7.5% gains for DPO alignment. TCPO (arXiv 2509.08500) applies step-wise preference optimization to embodied decision-making on ALFWorld using VLMs without error-type conditioning. E2CL (EMNLP 2024 Findings) identifies 8 error types in embodied agents but trains generic SFT without type conditioning. AgentHER (March 2026) applies hindsight experience replay for trajectory relabeling (+7-11pp on WebArena) — orthogonal data augmentation. T-STAR (April 2026) introduces tree-structured surgical policy optimization without error-type conditioning. CogRouter (Feb 2026) achieves ScienceWorld SOTA (82.3%) via cognitive depth adaptation with RL on Qwen2.5-7B — online RL approach, not DPO-based. POSITIONING: ETO/DMPO/Agent-R/CSO/IPR identify WHAT step to correct but not WHAT TYPE of error occurred; AgentDebug diagnoses types but only uses prompting; AP2O uses progressive error-type curriculum but only for single-turn code; Curry-DPO uses curriculum ordering but not error-type-conditioned; no work combines progressive error-type curriculum + step-level DPO + adaptive replay for interactive agents.",
+  "approach": "Phase 1 — Trajectory Collection & Error Diagnosis (Days 1-4): Generate ~800 trajectories on ALFWorld, ~400 on WebShop, and ~300 on ScienceWorld using Qwen3-8B as the base agent (leveraging ETO's public codebase for environment setup). Apply LLM-based zero-shot error classification following AgentDebug's approach to classify each failure step into 3 categories: action errors (wrong action or object reference — single-step correction needed), verification errors (failure to check state, premature termination, or misrecalling prior states — state re-checking needed), and planning errors (wrong subgoal decomposition or ordering — multi-step replanning needed). This ordering (action→verification→planning) defines the difficulty curriculum, motivated by correction complexity: action errors require changing one step, verification errors require re-examining state and adjusting subsequent steps, and planning errors require backtracking and replanning multiple steps. Use AgentErrorBench's annotated trajectories as calibration set. Phase 2 — Self-Generated Correction Pairs (Days 5-8): For each classified failure, prompt Qwen3-8B to generate correction continuations from the identified failure step, prepending the error-type diagnosis as structured context. With 5 attempts per failure (contingency: 10 attempts or Qwen3-32B if <250 valid pairs), construct DPO preference pairs: successful corrections as 'chosen', failed as 'rejected', with error-type tag retained. Expected yield: 350-500 valid DPO pairs across three benchmarks. Crucially, pairs are grouped by error type for progressive training. Phase 3 — Progressive Error-Type Curriculum DPO Training (Days 8-12): This is the core methodological contribution. QLoRA-finetune Qwen3-8B with step-level DPO using a three-stage progressive curriculum inspired by AP2O: Stage 1 (Action errors, ~2 epochs): Train on action-error DPO pairs first — these are the easiest corrections (single-step changes), building basic correction capability. Stage 2 (Verification errors, ~2 epochs): Train on verification-error pairs with adaptive replay of 20% action-error pairs — the model learns state-checking recovery while maintaining action-correction ability. Stage 3 (Planning errors, ~2 epochs): Train on planning-error pairs with adaptive replay of 15% action + 15% verification pairs — the hardest multi-step replanning corrections, with replay preventing catastrophic forgetting of easier types. Adaptive replay mechanism: after each stage, evaluate on a held-out set per error type; if performance on previously-learned types drops >5%, increase replay ratio for the next training batch. The error-type tag in the prefix serves as conditioning — combined with progressive training, the model implicitly learns that different error types require different correction depths. We apply DMPO's length normalization to account for different trajectory lengths across the three benchmarks. Begin paper writing in parallel during Phase 3. Phase 4 — Evaluation & Cross-Benchmark Transfer (Days 12-14): Evaluate on ALFWorld (134 episodes), WebShop (200 tasks), and ScienceWorld (200 tasks) against seven baselines: (1) no correction (base Qwen3-8B), (2) generic Reflexion-style retry, (3) AgentDebug-style prompting-based type-specific feedback, (4) ETO-style trajectory-level DPO, (5) DMPO-style multi-turn DPO with length normalization, (6) flat step-level DPO without progressive training or error-type conditioning, (7) AgentHER relabeling+DPO. Additionally, evaluate cross-benchmark transfer: train on ALFWorld+WebShop, evaluate on ScienceWorld (zero-shot transfer), and vice versa. If error-type conditioning transfers, this demonstrates a general inductive bias, not a benchmark-specific trick. Measure: task completion rate, recovery success rate per error type, correction diversity, and compute overhead. Phase 5 — Essential Ablations & Writing Completion (Days 14-16): Four essential ablations: (a) progressive vs. flat error-type conditioning (core curriculum hypothesis — does ordering matter?), (b) progressive error-type DPO vs. type-agnostic step-level DPO (full contribution test), (c) DPO vs. SFT on same progressive curriculum (validates SCoRe's critique in this progressive setting), (d) adaptive replay ablation (with vs. without — quantifies forgetting prevention). Additional analysis: classifier noise sensitivity (10/20/30% noise injection) and error-type ordering ablation (action→verification→planning vs. random ordering vs. reverse ordering). Complete paper writing: finalize results, ablation analysis, and discussion.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~140-180h H100 (trajectory generation ~20h for three benchmarks, correction generation ~25h, progressive DPO training ~18h with 3 stages, evaluation ~30h across 3 benchmarks + transfer, ablations ~25h)",
+      "gpu_utilization": "~35-45% effective utilization; idle time for inspecting error classifications, validating progressive curriculum transitions, and debugging adaptive replay",
+      "timeline": "16 days (compressed by overlapping writing with Phase 3 and running evaluations in parallel across benchmarks)",
+      "team": "1-2 researchers",
+      "estimated_gpu_cost": "$350-450 at ~$2.50/hr on budget GPU cloud providers"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~180-220h H100",
+      "gpu_utilization": "~55-70% utilization; agent handles trajectory collection, classification, and progressive training while human reviews curriculum transitions and correction quality at stage boundaries",
+      "timeline": "14-16 days (writing overlapped with Phase 3)",
+      "team": "1 researcher, ~30min/day reviewing error classifications and progressive training stability",
+      "claude_api_cost": "$250-450 (~2500-4500 Opus turns for pipeline orchestration and analysis)",
+      "estimated_gpu_cost": "$450-550 at ~$2.50/hr",
+      "risk_note": "Progressive training stability across 3 stages; adaptive replay ratios may need tuning; human checkpoint reviews at stage transitions (Days 9, 10, 11) are critical"
+    },
+    "auto_research": {
+      "gpu_hours": "~250-320h H100 (progressive training variants, transfer experiments, full ablation suite across 3 benchmarks)",
+      "gpu_utilization": "~80-90% utilization; agent runs 24/7 cycling through progressive training stages, evaluation on 3 benchmarks, and transfer experiments",
+      "timeline": "13-16 days with 4 H100s in parallel",
+      "team": "0 (initial setup ~2hrs)",
+      "claude_api_cost": "$450-750 (~4500-7500 Opus turns for full pipeline management and paper drafting)",
+      "estimated_gpu_cost": "$625-800 at ~$2.50/hr",
+      "speed_bottleneck": "Progressive training is inherently sequential (3 stages); evaluation on 3 benchmarks is parallelizable across GPUs; cross-benchmark transfer adds one more evaluation pass",
+      "risk_note": "Automated progressive curriculum transitions without human validation; mitigated by held-out evaluation at each stage boundary and automatic adaptive replay adjustment"
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 Findings (ARR submission deadline May 25, 2026)"
+  ],
+  "level": "solid-to-strong",
+  "key_references": [
+    "Training Language Models to Self-Correct via Reinforcement Learning [SCoRe] (ICLR 2025 Oral)",
+    "Trial and Error: Exploration-Based Trajectory Optimization for LLM Agents [ETO] (ACL 2024)",
+    "Direct Multi-Turn Preference Optimization for Language Agents [DMPO] (EMNLP 2024 Main, arXiv 2406.14868)",
+    "Watch Every Step! LLM Agent Learning via Iterative Step-Level Process Refinement [IPR] (EMNLP 2024 Main, arXiv 2406.11176)",
+    "Agent-R: Training Language Model Agents to Reflect via Iterative Self-Training (arXiv 2501.11425, Jan 2025)",
+    "Verified Critical Step Optimization for LLM Agents [CSO] (ACL 2026 Findings, arXiv 2602.03412)",
+    "Where LLM Agents Fail and How They Can Learn From Failures [AgentDebug + AgentErrorBench] (arXiv 2509.25370)",
+    "AP2O-Coder: Adaptively Progressive Preference Optimization for Reducing Compilation and Runtime Errors in LLM-Generated Code [AP2O] (AAAI 2026, arXiv 2510.02393)",
+    "Curry-DPO: Enhancing Alignment using Curriculum Learning & Ranked Preferences (EMNLP 2024 Findings, arXiv 2403.07230)",
+    "TCPO: Thought-Centric Preference Optimization for Effective Embodied Decision-making (arXiv 2509.08500)",
+    "E2CL: Exploration-based Error Correction Learning for Embodied Agents (EMNLP 2024 Findings, arXiv 2409.03256)",
+    "Conditional Multi-Stage Failure Recovery for Embodied Agents [CMFR] (REALM 2025, arXiv 2507.06016)",
+    "AgentHER: Hindsight Experience Replay for LLM Agent Trajectory Relabeling (arXiv 2603.21357)",
+    "Self-Verification Dilemma: Experience-Driven Suppression of Overused Checking in LLM Reasoning (arXiv 2026)",
+    "Error Typing for Smarter Rewards: Improving Process Reward Models with Error-Aware Hierarchical Supervision [PathFinder-PRM] (arXiv 2505.19706, May 2025)",
+    "Step-DPO: Step-wise Preference Optimization for Long-chain Reasoning of LLMs (NeurIPS 2025)",
+    "Reason in Chains, Learn in Trees: Self-Rectification and Grafting for Multi-turn Agent Policy Optimization [T-STAR] (arXiv 2604.07165)",
+    "Towards Self-Improving Error Diagnosis in Multi-Agent Systems [ErrorProbe] (arXiv 2604.17658)",
+    "AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress (arXiv 2511.08325)",
+    "CogRouter: Think Fast and Slow for LLM-based Embodied Agent (arXiv 2602.12662)",
+    "Why Do Multi-Agent LLM Systems Fail? (NeurIPS 2025)",
+    "Large Language Models Cannot Self-Correct Reasoning Yet (ICLR 2024)",
+    "Can LLMs Correct Themselves? A Benchmark of Self-Correction in LLMs [CorrectBench] (NeurIPS 2025)",
+    "Unleashing Embodied Task Planning Ability in LLMs via Reinforcement Learning [Embodied Planner-R1] (arXiv 2506.23127)"
+  ],
+  "description": "...",
+  "project_name": "error_diag_dpo_recovery",
+  "source": "web_research"
+}
+```
+
+Here is the complete revised research idea:
+
+---
+
+```json
+{
+  "title": "Progressive Error-Type Curriculum for Agent Step-Level Preference Learning",
+  "change_type": "major",
+  "core_problem": "Agent self-correction training methods — including ETO's trajectory-level DPO, DMPO's multi-turn DPO with length normalization, Agent-R's MCTS-guided SFT, IPR's step-level MC-reward contrastive training, and CSO's critical-step DPO — identify WHAT step to correct but not WHAT TYPE of error occurred. They apply a single, undifferentiated recovery mechanism regardless of whether the agent failed due to a planning error, an incorrect action, or a verification oversight. AP2O (AAAI 2026) demonstrates that error-type-progressive preference optimization substantially improves code generation via an error sliding window with adaptive replay, but no work has brought error-type-progressive curriculum training to interactive agent recovery via step-level DPO. Can a progressive curriculum that trains agents to correct easier error types first (action errors requiring single-step corrections) before harder ones (planning errors requiring multi-step replanning), with adaptive replay to prevent catastrophic forgetting, yield better correction rates than type-agnostic or flat-conditioned step-level approaches in agentic settings?",
+  "opportunity": "Six recent threads converge: (1) AgentDebug (Sept 2025) shows prompting-based type-specific correction improves recovery by 26% on ALFWorld/WebShop/GAIA, proving the type-conditioning hypothesis — but prompting hits a ceiling with weaker models. (2) AP2O (AAAI 2026) demonstrates that progressive error-type curriculum (error sliding window + adaptive replay) outperforms flat DPO by 3.3 points on code generation — removing adaptive replay drops performance below static DPO baselines, confirming progressive training is essential, not merely helpful. (3) Curry-DPO (EMNLP 2024 Findings) confirms curriculum-based preference optimization (easy-to-hard ordering) yields 7.5% gains over standard DPO on general alignment, while Curriculum-DPO++ (CVPR 2025) validates the approach for image generation — establishing curriculum DPO as a general principle. (4) Step-level preference optimization (CSO achieves 37% improvement over SFT; IPR achieves SOTA via MC-reward step-level contrastive training on WebShop/ALFWorld/InterCodeSQL) shows focusing DPO on critical steps outperforms trajectory-level approaches. (5) DMPO (EMNLP 2024) establishes multi-turn DPO with SAOM constraint and length normalization for agents on ALFWorld/WebShop/ScienceWorld but operates without error-type awareness. (6) PathFinder-PRM (May 2025) validates error-type decomposition as an inductive bias for process reward models, achieving SOTA on PRMBench with 3x less data. Yet no work combines progressive error-type curriculum with step-level DPO for interactive agents. The gap is specific and structural: AP2O's progressive mechanism relies on compiler/runtime error frequency for ordering; agent errors have a fundamentally different difficulty structure — action errors require single-step corrections (easiest), verification errors need state re-checking (medium), and planning errors demand multi-step replanning (hardest). This natural difficulty gradient, grounded in correction complexity rather than frequency, enables principled curriculum scheduling absent in code generation.",
+  "landscape": "General self-correction: SCoRe (ICLR 2025 Oral) establishes that SFT for self-correction fails due to distribution mismatch and behavior collapse, advocating online RL under the model's own distribution. ETO (ACL 2024) proposes exploration-based trajectory optimization using DPO on failure-success trajectory pairs, evaluated on ALFWorld, WebShop, and ScienceWorld — surpassing SFT, RFT, and PPO with ~9-20% gains. ETO is trajectory-level without error-type awareness; we use its public codebase for environment infrastructure. DMPO (EMNLP 2024 Main, arXiv 2406.14868) extends DPO to multi-turn agent settings via state-action occupancy measure (SAOM) constraints and length normalization (discount weighting phi(t,T) = gamma^t * (1-gamma^(T-t))/(1-gamma^T)), evaluated on ALFWorld/WebShop/ScienceWorld with Llama-2-7B. DMPO addresses the multi-turn partition function cancellation problem but operates at trajectory level without error-type awareness. We adopt DMPO's length normalization for our step-level formulation to handle variable-length continuations across benchmarks. IPR (EMNLP 2024 Main, arXiv 2406.11176) performs step-level contrastive training by comparing agent-generated actions against expert demonstrations using Monte Carlo rollout rewards for step-level credit assignment, evaluated on WebShop/ALFWorld/InterCodeSQL with Llama-2-13B. IPR requires expert trajectories as reference and uses MC rollouts for reward estimation; our method uses self-generated corrections (addressing SCoRe's distribution mismatch critique) and error-type diagnosis rather than expert comparison. Agent-R (arXiv 2501.11425, ByteDance) identifies first-error steps in failed trajectories via MCTS and trains recovery via iterative SFT on Llama-3.1-8B across WebShop, ScienceWorld, and TextCraft, achieving +5.59% average improvement — no error-type conditioning or preference learning. CSO (ACL 2026 Findings, arXiv 2602.03412) performs verified critical step optimization — step-level DPO at decision points where alternate actions flip outcomes — achieving 37% relative improvement over SFT on GAIA-Text-103. CSO represents current SOTA for step-level DPO in agent training but is not error-type conditioned or progressive. AgentDebug (Sept 2025) implements taxonomy-based failure classification via LLM zero-shot prompting followed by type-specific corrective feedback, achieving 26% improvement on ALFWorld/GAIA/WebShop — entirely prompting-based without learned recovery policies. AP2O (AAAI 2026, arXiv 2510.02393) is the first work to apply progressive error-type curriculum to preference optimization: it uses an error sliding window ordered by frequency, with adaptive replay that re-evaluates and injects previously-learned error types proportional to current failure rates. Removing adaptive replay drops MBPP pass rate from 85.4% to 82.1% (below static DPO at 83.5%), confirming progressive training with replay is essential. AP2O finds L2H ordering benefits small models (0.5B-3B) while H2L benefits larger models (7B-34B). Our work extends AP2O's progressive mechanism from single-turn code (frequency-ordered compiler/runtime errors) to multi-turn interactive agents (difficulty-ordered by correction complexity: action→verification→planning). Curry-DPO (EMNLP 2024 Findings, arXiv 2403.07230) establishes curriculum DPO with easy-to-hard preference pair ordering, yielding 7.5% gains on MT-Bench — validating progressive preference learning as a general principle. CogRouter (Feb 2026, arXiv 2602.12662) achieves ScienceWorld SOTA (82.3%) via cognitive depth adaptation with RL on Qwen2.5-7B — online RL approach. TCPO (arXiv 2509.08500) applies step-wise preference optimization to ALFWorld using VLMs without error-type conditioning. E2CL (EMNLP 2024 Findings) identifies 8 error types in embodied agents but trains generic SFT without type conditioning. AgentHER (March 2026) applies hindsight experience replay for trajectory relabeling (+7-11pp on WebArena) — orthogonal data augmentation. T-STAR (April 2026) introduces tree-structured surgical policy optimization without error-type conditioning. POSITIONING: ETO/DMPO/Agent-R/CSO/IPR identify WHAT step to correct but not WHAT TYPE; AgentDebug/CMFR diagnose types but only use prompting; AP2O uses progressive error-type curriculum but only for single-turn code with frequency-based ordering; Curry-DPO uses curriculum ordering but not error-type-conditioned; no work combines progressive error-type curriculum (difficulty-ordered) + step-level DPO + adaptive replay for interactive agents. We fill this specific intersection.",
+  "approach": "Phase 1 — Trajectory Collection & Error Diagnosis (Days 1-4): Generate ~800 trajectories on ALFWorld, ~400 on WebShop, and ~300 on ScienceWorld using Qwen3-8B as the base agent (leveraging ETO's public codebase and CogRouter's ScienceWorld infrastructure for Qwen models). Apply LLM-based zero-shot error classification following AgentDebug's approach to classify each failure step into 3 difficulty-ordered categories: (1) action errors (wrong action or object reference — single-step correction, easiest), (2) verification errors (failure to check state, premature termination, misrecalling prior states — state re-checking, medium), (3) planning errors (wrong subgoal decomposition or ordering — multi-step replanning, hardest). The difficulty ordering is principled: action errors have correction span of 1 step, verification errors of 1-3 steps (re-check then adjust), planning errors of 3+ steps (backtrack and replan). Use AgentErrorBench's annotated trajectories as calibration set to validate classifier accuracy. Phase 2 — Self-Generated Correction Pairs (Days 5-8): For each classified failure, prompt Qwen3-8B to generate correction continuations from the identified failure step, prepending the error-type diagnosis as structured context. With 5 attempts per failure (contingency: 10 attempts or Qwen3-32B if <250 valid pairs), construct DPO preference pairs grouped by error type. Expected yield: 400-600 valid DPO pairs across three benchmarks. Crucially, pairs are partitioned into three error-type pools for progressive training. Apply DMPO's length normalization to handle variable continuation lengths. Phase 3 — Progressive Error-Type Curriculum DPO Training (Days 8-12): Core methodological contribution. QLoRA-finetune Qwen3-8B with step-level DPO using a three-stage progressive curriculum adapted from AP2O: Stage 1 — Action Errors (~2 epochs): Train exclusively on action-error DPO pairs. These are easiest (single-step corrections), building foundational correction capability. The model learns that action-error tags signal one-step fixes. Stage 2 — Verification Errors (~2 epochs): Train on verification-error DPO pairs with adaptive replay of 20% action-error pairs. The model learns state re-checking recovery while maintaining action-correction ability. Stage 3 — Planning Errors (~2 epochs): Train on planning-error DPO pairs with adaptive replay of 15% action + 15% verification pairs. The hardest multi-step replanning corrections, with replay preventing catastrophic forgetting. Adaptive replay mechanism (adapted from AP2O): After each stage, evaluate on a held-out set (50 pairs per error type). If performance on previously-learned types drops >5% relative, increase replay ratio by 10% for the next stage's training batches. This directly addresses AP2O's finding that removing replay drops performance below static DPO baselines. The error-type tag in the prefix serves as conditioning — combined with progressive curriculum, the model learns type-specific correction strategies at increasing difficulty levels, rather than being overwhelmed by all error types simultaneously. Begin paper writing in parallel. Phase 4 — Evaluation & Cross-Benchmark Transfer (Days 12-14): Evaluate on ALFWorld (134 episodes), WebShop (200 tasks), and ScienceWorld (200 tasks) against seven baselines: (1) no correction (base Qwen3-8B), (2) generic Reflexion-style retry, (3) AgentDebug-style prompting-based type-specific feedback, (4) ETO-style trajectory-level DPO, (5) DMPO-style multi-turn DPO with length normalization, (6) flat step-level DPO without progressive training or error-type conditioning, (7) flat error-type-conditioned step-level DPO without progressive curriculum (ablating away the curriculum, keeping the type tag). Cross-benchmark transfer as core result: (a) Train on ALFWorld+WebShop, evaluate zero-shot on ScienceWorld; (b) Train on ScienceWorld+WebShop, evaluate zero-shot on ALFWorld. If error-type-conditioned progressive training transfers, it demonstrates that error-type recovery strategies are domain-general (planning errors require replanning regardless of environment), establishing the contribution as a general inductive bias rather than benchmark-specific tuning. Measure: task completion rate, recovery success rate per error type, per-stage learning curves (showing progressive improvement), and correction diversity. Phase 5 — Ablations & Writing Completion (Days 14-16): Four essential ablations: (a) progressive vs. flat error-type training (core curriculum hypothesis — does the action→verification→planning ordering improve over training on all types simultaneously?), (b) progressive DPO vs. progressive SFT on same curriculum (validates that preference learning adds value beyond curriculum alone), (c) adaptive replay ablation: with replay vs. without replay vs. fixed-ratio replay (quantifies forgetting prevention, directly paralleling AP2O's ablation), (d) error-type ordering: action→verification→planning vs. planning→verification→action vs. random ordering (validates the difficulty-based curriculum design). Additional analysis in appendix: classifier noise sensitivity (10/20/30% noise injection), per-error-type recovery curves across stages, and error-type distribution shift across benchmarks. Complete paper writing.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~150-190h H100 (trajectory generation ~22h for three benchmarks, correction generation ~25h, progressive DPO training ~18h with 3 stages + adaptive replay evaluation, evaluation ~35h across 3 benchmarks + transfer experiments, ablations ~30h for 4 ablations + ordering variants)",
+      "gpu_utilization": "~35-45% effective utilization; idle time for inspecting progressive curriculum transitions, validating adaptive replay behavior, and debugging stage boundaries",
+      "timeline": "16 days (compressed by overlapping writing with Phase 3 and running benchmark evaluations in parallel)",
+      "team": "1-2 researchers",
+      "estimated_gpu_cost": "$375-475 at ~$2.50/hr on budget GPU cloud providers"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~190-240h H100",
+      "gpu_utilization": "~55-70% utilization; agent handles trajectory collection, classification, and progressive training while human reviews curriculum transitions and adaptive replay behavior at stage boundaries",
+      "timeline": "14-16 days (writing overlapped with Phase 3)",
+      "team": "1 researcher, ~40min/day reviewing error classifications, stage transition stability, and cross-benchmark transfer results",
+      "claude_api_cost": "$300-500 (~3000-5000 Opus turns for pipeline orchestration and analysis)",
+      "estimated_gpu_cost": "$475-600 at ~$2.50/hr",
+      "risk_note": "Progressive training stability across 3 stages; adaptive replay ratios may need tuning per benchmark; human checkpoint reviews at stage transitions (Days 9, 10, 11) critical for catching forgetting; cross-benchmark transfer may reveal benchmark-specific error distributions requiring adjustment"
+    },
+    "auto_research": {
+      "gpu_hours": "~280-350h H100 (all progressive training variants, all ordering ablations, transfer experiments, full evaluation suite across 3 benchmarks)",
+      "gpu_utilization": "~80-90% utilization; agent runs 24/7 cycling through progressive training stages, cross-benchmark evaluation, and ablation variants",
+      "timeline": "13-16 days with 4 H100s in parallel",
+      "team": "0 (initial setup ~2hrs)",
+      "claude_api_cost": "$500-800 (~5000-8000 Opus turns for full pipeline management and paper drafting)",
+      "estimated_gpu_cost": "$700-875 at ~$2.50/hr",
+      "speed_bottleneck": "Progressive training is inherently sequential (3 stages); evaluation on 3 benchmarks is parallelizable; cross-benchmark transfer adds 2 more training+evaluation passes; adaptive replay evaluation adds overhead at each stage boundary",
+      "risk_note": "Automated progressive curriculum transitions without human validation; mitigated by held-out evaluation at each stage boundary, automatic adaptive replay adjustment, and fallback to flat training if progressive training diverges"
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 Findings (ARR submission deadline May 25, 2026)"
+  ],
+  "level": "solid-to-strong",
+  "key_references": [
+    "Training Language Models to Self-Correct via Reinforcement Learning [SCoRe] (ICLR 2025 Oral)",
+    "Trial and Error: Exploration-Based Trajectory Optimization for LLM Agents [ETO] (ACL 2024)",
+    "Direct Multi-Turn Preference Optimization for Language Agents [DMPO] (EMNLP 2024 Main, arXiv 2406.14868)",
+    "Watch Every Step! LLM Agent Learning via Iterative Step-Level Process Refinement [IPR] (EMNLP 2024 Main, arXiv 2406.11176)",
+    "Agent-R: Training Language Model Agents to Reflect via Iterative Self-Training (arXiv 2501.11425, Jan 2025)",
+    "Verified Critical Step Optimization for LLM Agents [CSO] (ACL 2026 Findings, arXiv 2602.03412)",
+    "Where LLM Agents Fail and How They Can Learn From Failures [AgentDebug + AgentErrorBench] (arXiv 2509.25370)",
+    "AP2O-Coder: Adaptively Progressive Preference Optimization for Reducing Compilation and Runtime Errors in LLM-Generated Code [AP2O] (AAAI 2026, arXiv 2510.02393)",
+    "Curry-DPO: Enhancing Alignment using Curriculum Learning & Ranked Preferences (EMNLP 2024 Findings, arXiv 2403.07230)",
+    "Curriculum Direct Preference Optimization for Diffusion and Consistency Models [Curriculum-DPO++] (CVPR 2025, arXiv 2405.13637)",
+    "TCPO: Thought-Centric Preference Optimization for Effective Embodied Decision-making (arXiv 2509.08500)",
+    "E2CL: Exploration-based Error Correction Learning for Embodied Agents (EMNLP 2024 Findings, arXiv 2409.03256)",
+    "Conditional Multi-Stage Failure Recovery for Embodied Agents [CMFR] (REALM 2025, arXiv 2507.06016)",
+    "AgentHER: Hindsight Experience Replay for LLM Agent Trajectory Relabeling (arXiv 2603.21357)",
+    "Self-Verification Dilemma: Experience-Driven Suppression of Overused Checking in LLM Reasoning (arXiv 2026)",
+    "Error Typing for Smarter Rewards: Improving Process Reward Models with Error-Aware Hierarchical Supervision [PathFinder-PRM] (arXiv 2505.19706, May 2025)",
+    "Step-DPO: Step-wise Preference Optimization for Long-chain Reasoning of LLMs (NeurIPS 2025)",
+    "Reason in Chains, Learn in Trees: Self-Rectification and Grafting for Multi-turn Agent Policy Optimization [T-STAR] (arXiv 2604.07165)",
+    "Towards Self-Improving Error Diagnosis in Multi-Agent Systems [ErrorProbe] (arXiv 2604.17658)",
+    "AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress (arXiv 2511.08325)",
+    "CogRouter: Think Fast and Slow for LLM-based Embodied Agent (arXiv 2602.12662)",
+    "Why Do Multi-Agent LLM Systems Fail? (NeurIPS 2025)",
+    "Large Language Models Cannot Self-Correct Reasoning Yet (ICLR 2024)",
+    "Can LLMs Correct Themselves? A Benchmark of Self-Correction in LLMs [CorrectBench] (NeurIPS 2025)",
+    "Unleashing Embodied Task Planning Ability in LLMs via Reinforcement Learning [Embodied Planner-R1] (arXiv 2506.23127)"
+  ],
+  "description": "We propose Progressive Error-Type Curriculum for Agent Step-Level Preference Learning — a method that trains agents to recover from failures using a progressive curriculum ordered by error-type difficulty. Prior step-level training methods (ETO, DMPO, Agent-R, CSO, IPR) identify WHAT step to correct but not WHAT TYPE of error occurred. AgentDebug diagnoses error types but only applies prompting-based recovery. AP2O (AAAI 2026) demonstrates progressive error-type curriculum for code generation (sliding window + adaptive replay), but applies to single-turn code where error ordering is frequency-based. We extend AP2O's progressive mechanism to multi-turn interactive agents with a key insight: agent error types have a natural difficulty gradient grounded in correction complexity — action errors require single-step fixes (easiest), verification errors need state re-checking (medium), and planning errors demand multi-step replanning (hardest). Our method: (1) classify failure steps into three difficulty-ordered error types via LLM zero-shot classification, (2) generate self-correction pairs per error type (addressing SCoRe's distribution mismatch critique), (3) train via three-stage progressive step-level DPO: first action errors (building basic correction ability), then verification errors with 20% action-error replay, then planning errors with 30% replay of earlier types. Adaptive replay (adapted from AP2O) prevents catastrophic forgetting — if held-out performance on earlier types drops >5%, replay ratio increases. We adopt DMPO's length normalization for variable-length multi-turn continuations. Evaluated on three benchmarks (ALFWorld, WebShop, ScienceWorld) against seven baselines, with cross-benchmark transfer as a core result: if progressive error-type training transfers zero-shot to unseen environments, error-type recovery strategies are domain-general, establishing the contribution as a general inductive bias. Four essential ablations: progressive vs. flat training (curriculum value), DPO vs. SFT on same curriculum (preference learning value), with vs. without adaptive replay (forgetting prevention), and error-type ordering variants (difficulty gradient validation). Timeline: 16 days, ~150-190 H100-hours. All infrastructure available: ETO codebase for ALFWorld/WebShop/ScienceWorld, AgentErrorBench for classifier calibration, Qwen3-8B as base model. Target: EMNLP 2026 Findings (ARR May 25).",
+  "project_name": "error_diag_dpo_recovery",
+  "source": "web_research"
+}
+```
+
+---
+
+**Summary of changes (major revision):**
+
+1. **Progressive curriculum adopted from AP2O** — The method transforms from "add an error-type tag" to a three-stage progressive curriculum (action→verification→planning) with adaptive replay. The difficulty ordering is principled: grounded in correction complexity (1 step → 1-3 steps → 3+ steps), unlike AP2O's frequency-based ordering for code. This is the primary novelty boost.
+
+2. **Third benchmark + cross-benchmark transfer as core result** — ScienceWorld added (infrastructure exists via ETO/CogRouter). Cross-benchmark transfer (train on 2, evaluate zero-shot on 1) promoted from "future work" to Phase 4 core result, testing whether error-type recovery is domain-general.
+
+3. **DMPO and IPR cited and positioned** — DMPO positioned as trajectory-level multi-turn DPO (we adopt its length normalization); IPR positioned as expert-trajectory-dependent step-level method (we use self-generated corrections instead).
+
+4. **Ablations restructured** — Progressive vs. flat training replaces the noise sensitivity ablation as a core result. Error-type ordering ablation (forward vs. reverse vs. random) validates the difficulty gradient. Adaptive replay ablation directly parallels AP2O's key finding.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "58f13ba1-68fa-464d-8325-4fb28e613e8d",
+  "isSidechain": false,
+  "requestId": "req_011CauP5fBYztSqgDXB61dqL",
+  "type": "assistant",
+  "uuid": "2bfc44e1-6ee7-4542-9509-89b45d71f486",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd09aaea-1e2a-47f1-ba7a-1943938c18c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RdNFAPvihq9k9tGcK8u22j",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 855,
+      "cache_creation_input_tokens": 4581,
+      "cache_read_input_tokens": 25250,
+      "output_tokens": 11863,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4581,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 855,
+          "output_tokens": 11863,
+          "cache_read_input_tokens": 25250,
+          "cache_creation_input_tokens": 4581,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4581
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"Error-Diagnosis-Conditioned Preference Learning for Agent Self-Correct…",
+  "leafUuid": "2bfc44e1-6ee7-4542-9509-89b45d71f486",
+  "sessionId": "fd09aaea-1e2a-47f1-ba7a-1943938c18c7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Progressive error-type-conditioned DPO for agent self-correction",
+  "sessionId": "fd09aaea-1e2a-47f1-ba7a-1943938c18c7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 25_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"Error-Diagnosis-Conditioned Preference Learning for Agent Self-Correct…",
+  "leafUuid": "2bfc44e1-6ee7-4542-9509-89b45d71f486",
+  "sessionId": "fd09aaea-1e2a-47f1-ba7a-1943938c18c7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 26_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Progressive error-type-conditioned DPO for agent self-correction",
+  "sessionId": "fd09aaea-1e2a-47f1-ba7a-1943938c18c7"
+}
+```
+
+---

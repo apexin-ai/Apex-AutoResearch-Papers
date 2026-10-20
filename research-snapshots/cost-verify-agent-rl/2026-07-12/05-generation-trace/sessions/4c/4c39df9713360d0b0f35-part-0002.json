@@ -1,0 +1,778 @@
+{
+  "schema_version": "1.0",
+  "session_id": "4c39df9713360d0b0f35",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-23T11:15:44.541Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018aenVhn2YiRjPgZtYmR7F3",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_provenance_audit.md",
+                "content": "# Data Provenance Audit Report\n\n**Date**: 2026-05-23\n**Scope**: All numerical data points in experiments.tex and appendix.tex\n**Method**: Registry cross-reference + server log verification + statistical recalculation\n\n---\n\n## Summary\n\n| Category | Count | Details |\n|----------|-------|---------|\n| ✅ Fully traceable | 28 | Registry + log confirmed |\n| ⚠️ Partially traceable | 11 | Registry exists but log missing, or minor issues |\n| ❌ Not traceable / Mismatch | 8 | No source, value mismatch, or misattribution |\n\n---\n\n## CRITICAL ISSUES (❌)\n\n### 1. seed8 OOD: Paper 13.43% vs Registry 11.94%\n\n- **Paper**: Table 2, seed8 step 5, OOD 13.43% (18/134)\n- **Registry**: `exp029_seed8_ood_precollapse` → `ood_success_rate=0.1194` (16/134 = 11.94%)\n- **Concern**: 13.43% (18/134) matches EXACTLY the registry value for `exp029_seed7_high_kl_step7_ood` (seed7 high-KL step 7). Possible misattribution of seed7 result to seed8.\n- **Impact**: Table 2 row for seed8 may report the wrong experiment's result.\n\n### 2. seed2048 OOD 8.21%: No eval record exists\n\n- **Paper**: Table 2, seed2048 step 5, OOD 8.21% (11/134)\n- **Registry**: `exp029_new_seed_2048` shows collapse at step 1, no OOD eval registered.\n- **Concern**: 8.21% (11/134) matches the registry value for `exp029_seed7_high_kl_step5_ood_v2` (seed7 high-KL step 5). Config file exists at westd backup but no log or result. Possible misattribution of seed7 high-KL result to seed2048.\n- **Impact**: Table 2 row for seed2048 may report a different experiment's result.\n\n### 3. seed42 OOD 12.69%: No eval record exists\n\n- **Paper**: Table 2, seed42 step 5, OOD 12.69% (17/134)\n- **Registry**: `exp029_seed42_episode` has no OOD eval. Config exists at westd backup but no log.\n- **Concern**: 12.69% (17/134) is the same value as seed100 step 10 (`exp029_seed100_step10_ood_eval`). Could be coincidence (both 17/134) but cannot verify without log.\n- **Impact**: Table 2 row for seed42 is unverifiable.\n\n### 4. seed5 OOD 25.37%: Three conflicting values, source log not found\n\n- **Paper**: Table 2, seed5 step 10, OOD 25.37% (34/134)\n- **Registry**:\n  - `exp029_seed5_ood_eval` (westd): 29.10% (39/134)\n  - `exp029_seed5_step10_ood` (bjb1): 37.31% (50/134)\n  - `exp029_seed5_response_mask_check` (PREPARING, never completed): hypothesis text references \"baseline 25.37% with mask=false\"\n- **Server log**: bjb1 log confirms 37.31%, westd log confirms 29.10%. No log produces 25.37%.\n- **Decision D123**: Flagged as \"Eval 可复现性危机\" — same checkpoint yields 29.10%/37.31%/17.3% across three evals.\n- **Impact**: The reported 25.37% has no supporting log or completed registry record.\n\n### 5. seed2 OOD 15.67%: Checkpoint lost, no eval completed\n\n- **Paper**: Table 2, seed2 step 15, OOD 15.67% (21/134)\n- **Registry**: `exp029_seed2_ood_step15` status=PREPARING, conclusion=killed, metrics={}. Notes: \"全部 seed2 checkpoint 已丢失（M019）。Director 确认取消。\"\n- **Server log**: bjb1 log shows FileNotFoundError for the checkpoint. westd server inaccessible.\n- **Impact**: The 15.67% value may have been obtained on westd before checkpoint loss, but no log survives.\n\n### 6. Theoretical claim: 5.1% at p=5% is arithmetically wrong\n\n- **Paper**: theoretical_analysis.tex line 31: \"at p=5%, only 5.1% of updates are correct\"\n- **Formula**: P(correct|update) = p / [1 - (1-p)^K]\n- **At p=0.05, K=8**: 0.05 / [1 - 0.95^8] = 0.05 / 0.3366 = **14.85%**, not 5.1%\n- **At large-K limit**: P → p = 5.0%, not 5.1%\n- **Note**: The p=50% claim (50.2%) in the same sentence is correct at K=8.\n- **Impact**: Arithmetic error in theoretical section.\n\n### 7. Window sweep \"OOD\" labels for h=10, h=20 are actually ID val results\n\n- **Paper**: experiments.tex line 56: \"h=10: 6.25%, h=20: 15.6%\" labeled as \"OOD success\"\n- **Registry**: `hsweep_h20_seed1` notes explicitly: \"只需 step 5 val 数据做 cliff figure (in-dist val success vs h-value), 不需要 checkpoint, 不做 h=20 OOD eval。\"\n- **Server logs**: h-sweep training configs all use `val: env_groups: 32, tags: [\"AlfworldSG\"]` (in-distribution, 32 tasks). No OOD eval (134 tasks) was run for h=5, h=10, or h=20.\n- **Values**: h=20: 15.625% = 5/32 (ID); h=10: 6.25% = 2/32 (ID, or SFT baseline on subset)\n- **Impact**: Paper labels in-distribution validation results as \"OOD success\" in Figure 2(b) and the text.\n\n### 8. Fisher exact test seed2: p=0.02 vs computed p=0.032\n\n- **Paper**: Table 2, seed2 vs SFT: \"p=0.02\"\n- **Computed**: Two-sided Fisher exact test on [[21, 113], [9, 125]] gives p=0.0317\n- **Note**: p=0.02 matches chi-squared without Yates correction (p=0.0201) or one-sided Fisher (p=0.0158). The test used is inconsistent with the other seeds.\n- **Impact**: seed2 classification as \"borderline\" (p=0.02 near α=0.01) depends on which test was used.\n\n---\n\n## MODERATE ISSUES (⚠️)\n\n### 9. Wilson CI rounding: seed4, seed5, seed6\n\nThree seeds have CIs that cannot be reproduced by any consistent rounding convention:\n\n| Seed | Computed | Reported | Max error |\n|------|----------|----------|-----------|\n| seed4 | [23.43, 38.85] | [23.5, 38.7] | 0.15pp |\n| seed5 | [18.76, 33.36] | [18.8, 33.3] | 0.06pp |\n| seed6 | [22.08, 37.29] | [22.2, 37.1] | 0.19pp |\n\nNot material to conclusions but indicates inconsistent computation pipeline.\n\n### 10. Cell B 18.75% ID: Not in registry\n\n- **Paper**: Table 1, Cell B In-Dist 18.75%\n- **Registry**: `factorial_h2_episodeadv_seed1` records only OOD metrics (5.97% at step 5). No ID eval stored.\n- **Likely source**: RAGEN built-in validation on 32 ID tasks during training (6/32 = 18.75%), not separately recorded.\n- **Status**: Plausible but not directly verifiable from registry.\n\n### 11. |A_correct|/|A_wrong| ≈ 1.32: No registry record\n\n- **Paper**: theoretical_analysis.tex line 40: \"Empirical measurement from training logs confirms approximately comparable per-group advantage magnitudes (|A_correct|/|A_wrong| ≈ 1.32)\"\n- **Registry**: `hsweep_h2_seed2` has `adv_analysis` with sign_outcome_agreement=0.5207, point_biserial_r=0.068, but no magnitude ratio.\n- **Note**: This is an advantage magnitude ratio (not frequency), computed offline from training logs. 52.07/47.93 = 1.086 (frequency ratio), not 1.32.\n- **Status**: Claimed as empirical but source computation not preserved.\n\n### 12. SFT baseline OOD: Two protocol versions\n\n- **Paper**: 6.72% (9/134)\n- **Registry**: `sft_baseline_ood_eval_v2` = 5.97% (seed=42); `ood_eval_sft_baseline_v3` = 6.7% (D134 protocol, seed=321)\n- **Note**: 9/134 = 6.716...% → 6.72%. Matches v3 (D134 protocol). v2 used different eval protocol.\n- **Status**: Traceable to v3, but v2 gives a different value — protocol sensitivity noted.\n\n### 13. seed6 OOD: Minor westd/bjb1 discrepancy\n\n- **Paper**: 29.10% (39/134) — uses westd value\n- **bjb1 reproducibility run**: 29.85% (40/134)\n- **Status**: 1 task difference at T=0.4 is within stochastic variance. Not a provenance concern.\n\n### 14. h=5 sweep: 0% OOD with no dedicated eval\n\n- **Paper**: h=5: 0% labeled as OOD\n- **Registry**: No `hsweep_h5_seed1` entry. Gamma sweep at h=5 (`gsweep_g095_h5_seed1`) shows 0% val on ID tasks.\n- **Status**: Consistent (collapsed model = 0% everywhere) but no OOD-specific eval exists.\n\n---\n\n## CONFIRMED DATA POINTS (✅)\n\n### Table 1: Main Results\n\n| Data Point | Paper Value | Source | Verification |\n|-----------|------------|--------|--------------|\n| SFT baseline ID | 12.50% | val_step0 across multiple seeds (4/32) | ✅ Multiple seeds confirm |\n| SFT baseline OOD | 6.72% | `ood_eval_sft_baseline_v3` (9/134, D134 protocol) | ✅ 9/134 = 6.716% → 6.72% |\n| Cell A ID | 0% | `hsweep_h2_seed1`: val 0% all steps | ✅ |\n| Cell A OOD | 0% | `hsweep_h2_seed1`: collapsed to 0% | ✅ |\n| Cell B OOD | 5.97% | `factorial_h2_episodeadv_seed1`: best OOD step 5 = 5.97% | ✅ |\n| Cell D OOD mean | 17.16% | (23.88% + 10.45%) / 2 = 17.165% → 17.16% | ✅ Arithmetic verified |\n| Cell D ID mean | 34.38% | (28.125% + 40.625%) / 2 = 34.375% → 34.38% | ✅ Arithmetic verified |\n| Cell D OOD range | 10.4-23.9 | `exp029_seed3_ood_v2`: 10.45%; `exp029_episode_level`: 23.88% | ✅ |\n| Cell D ID range | 28.1-40.6 | 28.125% and 40.625% (9/32 and 13/32) | ✅ |\n| Dense reward | 0% | `exp013f`: success 0% throughout, action_valid 60%→97.5% | ✅ |\n| REINFORCE++ | 12.50% | `gae_baseline_seed1`: val step5=12.5% | ✅ |\n\n### Table 2: 11-Seed Evaluation (confirmed seeds)\n\n| Seed | Paper OOD% | Source exp_id | Registry value | Status |\n|------|-----------|---------------|---------------|--------|\n| seed1 | 23.88% | `exp029_episode_level` reeval | 23.88% (32/134) | ✅ Server log confirmed |\n| seed200 | 10.45% | `exp029_seed200_step5_ood_eval` | 10.45% (14/134) | ✅ Server log confirmed |\n| seed300 | 10.45% | `exp029_seed300_step5_ood_eval_v4` | 10.45% (14/134) | ✅ |\n| seed100 s5 | 11.19% | `exp029_seed100_step5_ood_eval` | 11.19% (15/134) | ✅ |\n| seed100 s10 | 12.69% | `exp029_seed100_step10_ood_eval` | 12.69% (17/134) | ✅ |\n| seed4 | 30.60% | `exp029_seed4_ood_eval_v2` | 30.6% (41/134) | ✅ |\n| seed6 | 29.10% | `exp029_seed6_ood_eval_v2` (westd) | 29.10% (39/134) | ✅ |\n\n### Table 3: 8B Results\n\n| Data Point | Paper Value | Source | Status |\n|-----------|------------|--------|--------|\n| SFT ID | 68.75% | `8b_det_eval_full`: 68.75% (22/32, T=0) | ✅ |\n| SFT OOD | 80.60% | `7b_sft_eval_ood`: 80.6% (108/134) | ✅ |\n| SFT h=2 | 31.25% | `8b_det_eval_h2`: 31.25% (10/32, T=0) | ✅ |\n| Cell A | 28.1→1.5% | `7b_cell_a_h2`: val_before_train=28.1%, step2=1.56% | ✅ |\n| Cell D ID | 96.88% | `8b_cell_c_episode_v9d`: val step10=96.875% | ✅ |\n| Cell D OOD | 90.30% | `8b_v9d_ood_eval_v5`: 90.3% (121/134) | ✅ |\n| Info loss gap | 37.5pp | 68.75% - 31.25% = 37.5pp | ✅ |\n\n### Section 4.4: Sign Verification\n\n| Data Point | Paper Value | Source | Status |\n|-----------|------------|--------|--------|\n| Credit agreement | 52.07% | `hsweep_h2_seed2`: sign_outcome_agreement=0.5207 | ✅ |\n| n=3000 | 3000 | `hsweep_h2_seed2`: adv_log_lines=3000 | ✅ |\n| 95% CI [50.3%, 53.9%] | [50.3%, 53.9%] | Wilson CI on k=1562, n=3000: [50.28%, 53.85%] | ✅ Exact match |\n| point biserial r | 0.068 | `hsweep_h2_seed2`: point_biserial_r=0.068 | ✅ |\n| r>0.99 (episode outcome) | r>0.99 | Not independently verified (requires raw data) | ⚠️ |\n\n### ScienceWorld\n\n| Data Point | Paper Value | Source | Status |\n|-----------|------------|--------|--------|\n| SFT baseline | 30.1% | `scienceworld_sft_eval_v2`: 30.1% (540/1796) | ✅ |\n| SFT T=0 | 34.8% | `sw_info_loss_bjb1`: full_context_success=34.8% | ✅ |\n| Cell A | 0% | `scienceworld_grpo_cell_a`: 0% throughout | ✅ |\n| h=2 SFT | 4.5% | `sw_info_loss_bjb1`: h2_success=4.5% | ✅ |\n| M1 gap | 30.3pp | 34.8% - 4.5% = 30.3pp | ✅ |\n\n### Statistical Tests (Wilson CI)\n\nAll 11 Wilson CIs verified within ±0.2pp. 8/11 match exactly under standard rounding. 3/11 (seed4, seed5, seed6) have minor inconsistencies (see ⚠️ #9).\n\n### Statistical Tests (Fisher exact)\n\n10/11 Fisher exact test results confirmed:\n- seed1, seed5, seed6, seed4: p<0.001 ✅\n- seed2048, seed42, seed8, seed200, seed300, seed100: NS at α=0.01 ✅\n- seed2: p=0.02 reported, p=0.032 computed (see ❌ #8)\n\n### Miscellaneous Arithmetic\n\n| Claim | Verification | Status |\n|-------|-------------|--------|\n| seed100 improvement 1.50pp | 12.69 - 11.19 = 1.50 | ✅ |\n| 3/11 collapsed (27%) | 3/11 = 27.27% | ✅ |\n| 4/11 stagnant (36%) | 4/11 = 36.36% | ✅ |\n| 4/11 generalized (36%) | 4/11 = 36.36% | ✅ |\n| Prop 2: 19.1% at p=12.5%, K=8 | 0.125/0.656 = 19.05% → 19.1% | ✅ |\n| (1-p)^K = 34.4% | 0.875^8 = 34.36% → 34.4% | ✅ |\n| p^K < 10^-7 | 0.125^8 = 5.96e-8 | ✅ |\n\n---\n\n## DATA POINT INVENTORY\n\n### Fully Traceable (28)\nSFT baseline ID, SFT baseline OOD, Cell A ID/OOD, Cell B OOD, Cell D OOD mean, Cell D ID mean, Cell D ranges (4 values), Dense reward, REINFORCE++, seed1/seed200/seed300/seed100(s5)/seed100(s10)/seed4/seed6 OOD, 8B SFT ID/OOD/h=2, 8B Cell A, 8B Cell D ID/OOD, ScienceWorld SFT/Cell A/h=2/gap, Credit agreement + CI\n\n### Partially Traceable (11)\nCell B ID 18.75%, h=2 OOD 0%, h=5 OOD 0%, SFT OOD protocol variants, seed6 westd/bjb1 gap, r>0.99, |A_correct|/|A_wrong|≈1.32, p=0.025 sign test, Wilson CI rounding (3 seeds)\n\n### Not Traceable / Mismatch (8)\nseed8 13.43% (registry: 11.94%), seed2048 8.21% (no eval), seed42 12.69% (no eval), seed5 25.37% (3 conflicting values), seed2 15.67% (checkpoint lost), 5.1% theoretical error, h=10/h=20 labeled OOD but are ID, Fisher seed2 p-value\n\n---\n\n## RECOMMENDATIONS\n\n1. **Immediate**: Verify seed8/seed2048/seed42 values by checking if westd-47453 server can be accessed and if eval logs survive there.\n2. **Immediate**: Fix 5.1% → 14.85% in theoretical_analysis.tex (arithmetic error).\n3. **Immediate**: Relabel h=10/h=20 values as \"In-Dist\" or run actual OOD evals for these checkpoints.\n4. **High priority**: Resolve seed5 value (25.37% vs 29.10% vs 37.31%) — determine which eval protocol is canonical and re-run if needed.\n5. **Medium**: Clarify Fisher test method for seed2 (two-sided vs one-sided vs chi-squared).\n6. **Medium**: Re-run or document the |A_correct|/|A_wrong| ≈ 1.32 computation with a reproducible script.\n7. **Low**: Standardize Wilson CI rounding convention.\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "693a6275-1106-4095-8dff-509ed974a337",
+            "isSidechain": false,
+            "requestId": "req_011CbKQJ2Hr85VHvBpsFoENw",
+            "type": "assistant",
+            "uuid": "ac7123cb-2974-4d57-8a2d-d48c23100b0a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+            "sessionId": "1390f184-119e-47ed-8548-8112c5dd5d97",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Gv5yjRJdGXXTEVwHddYsev",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1176,
+                "cache_read_input_tokens": 70243,
+                "output_tokens": 5550,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1176,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 5550,
+                    "cache_read_input_tokens": 70243,
+                    "cache_creation_input_tokens": 1176,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1176
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-23T11:15:44.560Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018aenVhn2YiRjPgZtYmR7F3",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_provenance_audit.md"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ac7123cb-2974-4d57-8a2d-d48c23100b0a",
+            "isSidechain": false,
+            "promptId": "afff7c49-bf16-4292-ab6f-bd4cc4cf5c21",
+            "type": "user",
+            "uuid": "bc143d28-4949-47b7-949b-adda8d189bf9",
+            "toolUseResult": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_provenance_audit.md",
+              "content": "# Data Provenance Audit Report\n\n**Date**: 2026-05-23\n**Scope**: All numerical data points in experiments.tex and appendix.tex\n**Method**: Registry cross-reference + server log verification + statistical recalculation\n\n---\n\n## Summary\n\n| Category | Count | Details |\n|----------|-------|---------|\n| ✅ Fully traceable | 28 | Registry + log confirmed |\n| ⚠️ Partially traceable | 11 | Registry exists but log missing, or minor issues |\n| ❌ Not traceable / Mismatch | 8 | No source, value mismatch, or misattribution |\n\n---\n\n## CRITICAL ISSUES (❌)\n\n### 1. seed8 OOD: Paper 13.43% vs Registry 11.94%\n\n- **Paper**: Table 2, seed8 step 5, OOD 13.43% (18/134)\n- **Registry**: `exp029_seed8_ood_precollapse` → `ood_success_rate=0.1194` (16/134 = 11.94%)\n- **Concern**: 13.43% (18/134) matches EXACTLY the registry value for `exp029_seed7_high_kl_step7_ood` (seed7 high-KL step 7). Possible misattribution of seed7 result to seed8.\n- **Impact**: Table 2 row for seed8 may report the wrong experiment's result.\n\n### 2. seed2048 OOD 8.21%: No eval record exists\n\n- **Paper**: Table 2, seed2048 step 5, OOD 8.21% (11/134)\n- **Registry**: `exp029_new_seed_2048` shows collapse at step 1, no OOD eval registered.\n- **Concern**: 8.21% (11/134) matches the registry value for `exp029_seed7_high_kl_step5_ood_v2` (seed7 high-KL step 5). Config file exists at westd backup but no log or result. Possible misattribution of seed7 high-KL result to seed2048.\n- **Impact**: Table 2 row for seed2048 may report a different experiment's result.\n\n### 3. seed42 OOD 12.69%: No eval record exists\n\n- **Paper**: Table 2, seed42 step 5, OOD 12.69% (17/134)\n- **Registry**: `exp029_seed42_episode` has no OOD eval. Config exists at westd backup but no log.\n- **Concern**: 12.69% (17/134) is the same value as seed100 step 10 (`exp029_seed100_step10_ood_eval`). Could be coincidence (both 17/134) but cannot verify without log.\n- **Impact**: Table 2 row for seed42 is unverifiable.\n\n### 4. seed5 OOD 25.37%: Three conflicting values, source log not found\n\n- **Paper**: Table 2, seed5 step 10, OOD 25.37% (34/134)\n- **Registry**:\n  - `exp029_seed5_ood_eval` (westd): 29.10% (39/134)\n  - `exp029_seed5_step10_ood` (bjb1): 37.31% (50/134)\n  - `exp029_seed5_response_mask_check` (PREPARING, never completed): hypothesis text references \"baseline 25.37% with mask=false\"\n- **Server log**: bjb1 log confirms 37.31%, westd log confirms 29.10%. No log produces 25.37%.\n- **Decision D123**: Flagged as \"Eval 可复现性危机\" — same checkpoint yields 29.10%/37.31%/17.3% across three evals.\n- **Impact**: The reported 25.37% has no supporting log or completed registry record.\n\n### 5. seed2 OOD 15.67%: Checkpoint lost, no eval completed\n\n- **Paper**: Table 2, seed2 step 15, OOD 15.67% (21/134)\n- **Registry**: `exp029_seed2_ood_step15` status=PREPARING, conclusion=killed, metrics={}. Notes: \"全部 seed2 checkpoint 已丢失（M019）。Director 确认取消。\"\n- **Server log**: bjb1 log shows FileNotFoundError for the checkpoint. westd server inaccessible.\n- **Impact**: The 15.67% value may have been obtained on westd before checkpoint loss, but no log survives.\n\n### 6. Theoretical claim: 5.1% at p=5% is arithmetically wrong\n\n- **Paper**: theoretical_analysis.tex line 31: \"at p=5%, only 5.1% of updates are correct\"\n- **Formula**: P(correct|update) = p / [1 - (1-p)^K]\n- **At p=0.05, K=8**: 0.05 / [1 - 0.95^8] = 0.05 / 0.3366 = **14.85%**, not 5.1%\n- **At large-K limit**: P → p = 5.0%, not 5.1%\n- **Note**: The p=50% claim (50.2%) in the same sentence is correct at K=8.\n- **Impact**: Arithmetic error in theoretical section.\n\n### 7. Window sweep \"OOD\" labels for h=10, h=20 are actually ID val results\n\n- **Paper**: experiments.tex line 56: \"h=10: 6.25%, h=20: 15.6%\" labeled as \"OOD success\"\n- **Registry**: `hsweep_h20_seed1` notes explicitly: \"只需 step 5 val 数据做 cliff figure (in-dist val success vs h-value), 不需要 checkpoint, 不做 h=20 OOD eval。\"\n- **Server logs**: h-sweep training configs all use `val: env_groups: 32, tags: [\"AlfworldSG\"]` (in-distribution, 32 tasks). No OOD eval (134 tasks) was run for h=5, h=10, or h=20.\n- **Values**: h=20: 15.625% = 5/32 (ID); h=10: 6.25% = 2/32 (ID, or SFT baseline on subset)\n- **Impact**: Paper labels in-distribution validation results as \"OOD success\" in Figure 2(b) and the text.\n\n### 8. Fisher exact test seed2: p=0.02 vs computed p=0.032\n\n- **Paper**: Table 2, seed2 vs SFT: \"p=0.02\"\n- **Computed**: Two-sided Fisher exact test on [[21, 113], [9, 125]] gives p=0.0317\n- **Note**: p=0.02 matches chi-squared without Yates correction (p=0.0201) or one-sided Fisher (p=0.0158). The test used is inconsistent with the other seeds.\n- **Impact**: seed2 classification as \"borderline\" (p=0.02 near α=0.01) depends on which test was used.\n\n---\n\n## MODERATE ISSUES (⚠️)\n\n### 9. Wilson CI rounding: seed4, seed5, seed6\n\nThree seeds have CIs that cannot be reproduced by any consistent rounding convention:\n\n| Seed | Computed | Reported | Max error |\n|------|----------|----------|-----------|\n| seed4 | [23.43, 38.85] | [23.5, 38.7] | 0.15pp |\n| seed5 | [18.76, 33.36] | [18.8, 33.3] | 0.06pp |\n| seed6 | [22.08, 37.29] | [22.2, 37.1] | 0.19pp |\n\nNot material to conclusions but indicates inconsistent computation pipeline.\n\n### 10. Cell B 18.75% ID: Not in registry\n\n- **Paper**: Table 1, Cell B In-Dist 18.75%\n- **Registry**: `factorial_h2_episodeadv_seed1` records only OOD metrics (5.97% at step 5). No ID eval stored.\n- **Likely source**: RAGEN built-in validation on 32 ID tasks during training (6/32 = 18.75%), not separately recorded.\n- **Status**: Plausible but not directly verifiable from registry.\n\n### 11. |A_correct|/|A_wrong| ≈ 1.32: No registry record\n\n- **Paper**: theoretical_analysis.tex line 40: \"Empirical measurement from training logs confirms approximately comparable per-group advantage magnitudes (|A_correct|/|A_wrong| ≈ 1.32)\"\n- **Registry**: `hsweep_h2_seed2` has `adv_analysis` with sign_outcome_agreement=0.5207, point_biserial_r=0.068, but no magnitude ratio.\n- **Note**: This is an advantage magnitude ratio (not frequency), computed offline from training logs. 52.07/47.93 = 1.086 (frequency ratio), not 1.32.\n- **Status**: Claimed as empirical but source computation not preserved.\n\n### 12. SFT baseline OOD: Two protocol versions\n\n- **Paper**: 6.72% (9/134)\n- **Registry**: `sft_baseline_ood_eval_v2` = 5.97% (seed=42); `ood_eval_sft_baseline_v3` = 6.7% (D134 protocol, seed=321)\n- **Note**: 9/134 = 6.716...% → 6.72%. Matches v3 (D134 protocol). v2 used different eval protocol.\n- **Status**: Traceable to v3, but v2 gives a different value — protocol sensitivity noted.\n\n### 13. seed6 OOD: Minor westd/bjb1 discrepancy\n\n- **Paper**: 29.10% (39/134) — uses westd value\n- **bjb1 reproducibility run**: 29.85% (40/134)\n- **Status**: 1 task difference at T=0.4 is within stochastic variance. Not a provenance concern.\n\n### 14. h=5 sweep: 0% OOD with no dedicated eval\n\n- **Paper**: h=5: 0% labeled as OOD\n- **Registry**: No `hsweep_h5_seed1` entry. Gamma sweep at h=5 (`gsweep_g095_h5_seed1`) shows 0% val on ID tasks.\n- **Status**: Consistent (collapsed model = 0% everywhere) but no OOD-specific eval exists.\n\n---\n\n## CONFIRMED DATA POINTS (✅)\n\n### Table 1: Main Results\n\n| Data Point | Paper Value | Source | Verification |\n|-----------|------------|--------|--------------|\n| SFT baseline ID | 12.50% | val_step0 across multiple seeds (4/32) | ✅ Multiple seeds confirm |\n| SFT baseline OOD | 6.72% | `ood_eval_sft_baseline_v3` (9/134, D134 protocol) | ✅ 9/134 = 6.716% → 6.72% |\n| Cell A ID | 0% | `hsweep_h2_seed1`: val 0% all steps | ✅ |\n| Cell A OOD | 0% | `hsweep_h2_seed1`: collapsed to 0% | ✅ |\n| Cell B OOD | 5.97% | `factorial_h2_episodeadv_seed1`: best OOD step 5 = 5.97% | ✅ |\n| Cell D OOD mean | 17.16% | (23.88% + 10.45%) / 2 = 17.165% → 17.16% | ✅ Arithmetic verified |\n| Cell D ID mean | 34.38% | (28.125% + 40.625%) / 2 = 34.375% → 34.38% | ✅ Arithmetic verified |\n| Cell D OOD range | 10.4-23.9 | `exp029_seed3_ood_v2`: 10.45%; `exp029_episode_level`: 23.88% | ✅ |\n| Cell D ID range | 28.1-40.6 | 28.125% and 40.625% (9/32 and 13/32) | ✅ |\n| Dense reward | 0% | `exp013f`: success 0% throughout, action_valid 60%→97.5% | ✅ |\n| REINFORCE++ | 12.50% | `gae_baseline_seed1`: val step5=12.5% | ✅ |\n\n### Table 2: 11-Seed Evaluation (confirmed seeds)\n\n| Seed | Paper OOD% | Source exp_id | Registry value | Status |\n|------|-----------|---------------|---------------|--------|\n| seed1 | 23.88% | `exp029_episode_level` reeval | 23.88% (32/134) | ✅ Server log confirmed |\n| seed200 | 10.45% | `exp029_seed200_step5_ood_eval` | 10.45% (14/134) | ✅ Server log confirmed |\n| seed300 | 10.45% | `exp029_seed300_step5_ood_eval_v4` | 10.45% (14/134) | ✅ |\n| seed100 s5 | 11.19% | `exp029_seed100_step5_ood_eval` | 11.19% (15/134) | ✅ |\n| seed100 s10 | 12.69% | `exp029_seed100_step10_ood_eval` | 12.69% (17/134) | ✅ |\n| seed4 | 30.60% | `exp029_seed4_ood_eval_v2` | 30.6% (41/134) | ✅ |\n| seed6 | 29.10% | `exp029_seed6_ood_eval_v2` (westd) | 29.10% (39/134) | ✅ |\n\n### Table 3: 8B Results\n\n| Data Point | Paper Value | Source | Status |\n|-----------|------------|--------|--------|\n| SFT ID | 68.75% | `8b_det_eval_full`: 68.75% (22/32, T=0) | ✅ |\n| SFT OOD | 80.60% | `7b_sft_eval_ood`: 80.6% (108/134) | ✅ |\n| SFT h=2 | 31.25% | `8b_det_eval_h2`: 31.25% (10/32, T=0) | ✅ |\n| Cell A | 28.1→1.5% | `7b_cell_a_h2`: val_before_train=28.1%, step2=1.56% | ✅ |\n| Cell D ID | 96.88% | `8b_cell_c_episode_v9d`: val step10=96.875% | ✅ |\n| Cell D OOD | 90.30% | `8b_v9d_ood_eval_v5`: 90.3% (121/134) | ✅ |\n| Info loss gap | 37.5pp | 68.75% - 31.25% = 37.5pp | ✅ |\n\n### Section 4.4: Sign Verification\n\n| Data Point | Paper Value | Source | Status |\n|-----------|------------|--------|--------|\n| Credit agreement | 52.07% | `hsweep_h2_seed2`: sign_outcome_agreement=0.5207 | ✅ |\n| n=3000 | 3000 | `hsweep_h2_seed2`: adv_log_lines=3000 | ✅ |\n| 95% CI [50.3%, 53.9%] | [50.3%, 53.9%] | Wilson CI on k=1562, n=3000: [50.28%, 53.85%] | ✅ Exact match |\n| point biserial r | 0.068 | `hsweep_h2_seed2`: point_biserial_r=0.068 | ✅ |\n| r>0.99 (episode outcome) | r>0.99 | Not independently verified (requires raw data) | ⚠️ |\n\n### ScienceWorld\n\n| Data Point | Paper Value | Source | Status |\n|-----------|------------|--------|--------|\n| SFT baseline | 30.1% | `scienceworld_sft_eval_v2`: 30.1% (540/1796) | ✅ |\n| SFT T=0 | 34.8% | `sw_info_loss_bjb1`: full_context_success=34.8% | ✅ |\n| Cell A | 0% | `scienceworld_grpo_cell_a`: 0% throughout | ✅ |\n| h=2 SFT | 4.5% | `sw_info_loss_bjb1`: h2_success=4.5% | ✅ |\n| M1 gap | 30.3pp | 34.8% - 4.5% = 30.3pp | ✅ |\n\n### Statistical Tests (Wilson CI)\n\nAll 11 Wilson CIs verified within ±0.2pp. 8/11 match exactly under standard rounding. 3/11 (seed4, seed5, seed6) have minor inconsistencies (see ⚠️ #9).\n\n### Statistical Tests (Fisher exact)\n\n10/11 Fisher exact test results confirmed:\n- seed1, seed5, seed6, seed4: p<0.001 ✅\n- seed2048, seed42, seed8, seed200, seed300, seed100: NS at α=0.01 ✅\n- seed2: p=0.02 reported, p=0.032 computed (see ❌ #8)\n\n### Miscellaneous Arithmetic\n\n| Claim | Verification | Status |\n|-------|-------------|--------|\n| seed100 improvement 1.50pp | 12.69 - 11.19 = 1.50 | ✅ |\n| 3/11 collapsed (27%) | 3/11 = 27.27% | ✅ |\n| 4/11 stagnant (36%) | 4/11 = 36.36% | ✅ |\n| 4/11 generalized (36%) | 4/11 = 36.36% | ✅ |\n| Prop 2: 19.1% at p=12.5%, K=8 | 0.125/0.656 = 19.05% → 19.1% | ✅ |\n| (1-p)^K = 34.4% | 0.875^8 = 34.36% → 34.4% | ✅ |\n| p^K < 10^-7 | 0.125^8 = 5.96e-8 | ✅ |\n\n---\n\n## DATA POINT INVENTORY\n\n### Fully Traceable (28)\nSFT baseline ID, SFT baseline OOD, Cell A ID/OOD, Cell B OOD, Cell D OOD mean, Cell D ID mean, Cell D ranges (4 values), Dense reward, REINFORCE++, seed1/seed200/seed300/seed100(s5)/seed100(s10)/seed4/seed6 OOD, 8B SFT ID/OOD/h=2, 8B Cell A, 8B Cell D ID/OOD, ScienceWorld SFT/Cell A/h=2/gap, Credit agreement + CI\n\n### Partially Traceable (11)\nCell B ID 18.75%, h=2 OOD 0%, h=5 OOD 0%, SFT OOD protocol variants, seed6 westd/bjb1 gap, r>0.99, |A_correct|/|A_wrong|≈1.32, p=0.025 sign test, Wilson CI rounding (3 seeds)\n\n### Not Traceable / Mismatch (8)\nseed8 13.43% (registry: 11.94%), seed2048 8.21% (no eval), seed42 12.69% (no eval), seed5 25.37% (3 conflicting values), seed2 15.67% (checkpoint lost), 5.1% theoretical error, h=10/h=20 labeled OOD but are ID, Fisher seed2 p-value\n\n---\n\n## RECOMMENDATIONS\n\n1. **Immediate**: Verify seed8/seed2048/seed42 values by checking if westd-47453 server can be accessed and if eval logs survive there.\n2. **Immediate**: Fix 5.1% → 14.85% in theoretical_analysis.tex (arithmetic error).\n3. **Immediate**: Relabel h=10/h=20 values as \"In-Dist\" or run actual OOD evals for these checkpoints.\n4. **High priority**: Resolve seed5 value (25.37% vs 29.10% vs 37.31%) — determine which eval protocol is canonical and re-run if needed.\n5. **Medium**: Clarify Fisher test method for seed2 (two-sided vs one-sided vs chi-squared).\n6. **Medium**: Re-run or document the |A_correct|/|A_wrong| ≈ 1.32 computation with a reproducible script.\n7. **Low**: Standardize Wilson CI rounding convention.\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            },
+            "sourceToolAssistantUUID": "ac7123cb-2974-4d57-8a2d-d48c23100b0a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+            "sessionId": "1390f184-119e-47ed-8548-8112c5dd5d97",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "bc143d28-4949-47b7-949b-adda8d189bf9",
+                "sessionId": "1390f184-119e-47ed-8548-8112c5dd5d97"
+              }
+            }
+          ],
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Audit paper experiment data provenance and correctness",
+                "sessionId": "1390f184-119e-47ed-8548-8112c5dd5d97"
+              }
+            }
+          ],
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-23T11:15:49.068Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CKx6EnkWF5LuzkUnaPjDrw",
+              "name": "TodoWrite",
+              "input": {
+                "todos": [
+                  {
+                    "content": "Compile all findings into audit report",
+                    "status": "completed",
+                    "activeForm": "Compiling audit report"
+                  },
+                  {
+                    "content": "Write audit report to artifacts/data_provenance_audit.md",
+                    "status": "completed",
+                    "activeForm": "Writing audit report file"
+                  },
+                  {
+                    "content": "Register artifact in project registry",
+                    "status": "in_progress",
+                    "activeForm": "Registering artifact"
+                  }
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bc143d28-4949-47b7-949b-adda8d189bf9",
+            "isSidechain": false,
+            "requestId": "req_011CbKQStyKB2FVrT8QXGtZJ",
+            "type": "assistant",
+            "uuid": "bdfe82c4-242c-4199-a9f7-c07f3631ea9d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+            "sessionId": "1390f184-119e-47ed-8548-8112c5dd5d97",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Wk9D9PX8wPMGCXvokGcV1J",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5608,
+                "cache_read_input_tokens": 71419,
+                "output_tokens": 147,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5608,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 147,
+                    "cache_read_input_tokens": 71419,
+                    "cache_creation_input_tokens": 5608,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5608
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-23T11:15:49.071Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CKx6EnkWF5LuzkUnaPjDrw",
+              "type": "tool_result",
+              "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bdfe82c4-242c-4199-a9f7-c07f3631ea9d",
+            "isSidechain": false,
+            "promptId": "afff7c49-bf16-4292-ab6f-bd4cc4cf5c21",
+            "type": "user",
+            "uuid": "71e9fb8c-1246-4ba8-841c-fa569d7d0a67",
+            "toolUseResult": {
+              "oldTodos": [
+                {
+                  "content": "Compile all findings into audit report",
+                  "status": "in_progress",
+                  "activeForm": "Compiling audit report"
+                },
+                {
+                  "content": "Write audit report to artifacts/data_provenance_audit.md",
+                  "status": "pending",
+                  "activeForm": "Writing audit report file"
+                }
+              ],
+              "newTodos": [
+                {
+                  "content": "Compile all findings into audit report",
+                  "status": "completed",
+                  "activeForm": "Compiling audit report"
+                },
+                {
+                  "content": "Write audit report to artifacts/data_provenance_audit.md",
+                  "status": "completed",
+                  "activeForm": "Writing audit report file"
+                },
+                {
+                  "content": "Register artifact in project registry",
+                  "status": "in_progress",
+                  "activeForm": "Registering artifact"
+                }
+              ],
+              "verificationNudgeNeeded": false
+            },
+            "sourceToolAssistantUUID": "bdfe82c4-242c-4199-a9f7-c07f3631ea9d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+            "sessionId": "1390f184-119e-47ed-8548-8112c5dd5d97",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-23T11:15:51.833Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0116J1nPRBtD74ytm9N1XQcr",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__register_artifact",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "71e9fb8c-1246-4ba8-841c-fa569d7d0a67",
+            "isSidechain": false,
+            "requestId": "req_011CbKQTE9jQGtXUUpU8Qi3g",
+            "type": "assistant",
+            "uuid": "9a9f07ee-66c9-4ad9-8ed7-399a99f91a26",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+            "sessionId": "1390f184-119e-47ed-8548-8112c5dd5d97",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Qb1yrNRQNJnoYToTYJHRo1",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 189,
+                "cache_read_input_tokens": 77027,
+                "output_tokens": 85,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 189,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 85,
+                    "cache_read_input_tokens": 77027,
+                    "cache_creation_input_tokens": 189,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 189
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-23T11:15:51.836Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_0116J1nPRBtD74ytm9N1XQcr",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9a9f07ee-66c9-4ad9-8ed7-399a99f91a26",
+            "isSidechain": false,
+            "promptId": "afff7c49-bf16-4292-ab6f-bd4cc4cf5c21",
+            "type": "user",
+            "uuid": "a2777b3f-4bc4-4232-8e3e-3ddf883a0cbf",
+            "toolUseResult": {
+              "matches": [
+                "mcp__agent-ml-research__register_artifact"
+              ],
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 29
+            },
+            "sourceToolAssistantUUID": "9a9f07ee-66c9-4ad9-8ed7-399a99f91a26",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+            "sessionId": "1390f184-119e-47ed-8548-8112c5dd5d97",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-23T11:16:04.147Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BFt45JS4kzSHnS1axxYnSp",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "data_provenance_audit",
+                "type": "report",
+                "description": "论文实验数据正确性与可追溯性全面核查报告。覆盖 experiments.tex 和 appendix.tex 中所有数据点，交叉验证 registry、服务器日志、统计计算。发现 8 个关键问题（含数值错配、不可追溯数据点、标签错误），11 个中等问题，28 个数据点完全可追溯。",
+                "project": "cost-verify-agent-rl",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_provenance_audit.md",
+                "tags": [
+                  "audit",
+                  "data-integrity",
+                  "paper"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a2777b3f-4bc4-4232-8e3e-3ddf883a0cbf",
+            "isSidechain": false,
+            "requestId": "req_011CbKQTT4ccVQxAsqyjW4fq",
+            "type": "assistant",
+            "uuid": "e35b83fe-40be-4b27-a95f-f7c036e83afd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+            "sessionId": "1390f184-119e-47ed-8548-8112c5dd5d97",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GKrmyTwh9DV2Zk6UJrnMq9",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 712,
+                "cache_read_input_tokens": 77216,
+                "output_tokens": 327,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 712,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 327,
+                    "cache_read_input_tokens": 77216,
+                    "cache_creation_input_tokens": 712,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 712
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-23T11:16:04.340Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BFt45JS4kzSHnS1axxYnSp",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260523_2bd86c\\\", \\\"name\\\": \\\"data_provenance_audit\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"论文实验数据正确性与可追溯性全面核查报告。覆盖 experiments.tex 和 appendix.tex 中所有数据点，交叉验证 registry、服务器日志、统计计算。发现 8 个关键问题（含数值错配、不可追溯数据点、标签错误），11 个中等问题，28 个数据点完全可追溯。\\\", \\\"path\\\": \\\"projects/cost-verify-agent-rl/artifacts/_project/report/data_provenance_audit.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-23T11:16:04.153181+00:00\\\", \\\"tags\\\": [\\\"audit\\\", \\\"data-integrity\\\", \\\"paper\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e35b83fe-40be-4b27-a95f-f7c036e83afd",
+            "isSidechain": false,
+            "promptId": "afff7c49-bf16-4292-ab6f-bd4cc4cf5c21",
+            "type": "user",
+            "uuid": "d8a136d0-4ca0-49c8-814c-22f07d199d4b",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260523_2bd86c\\\", \\\"name\\\": \\\"data_provenance_audit\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"论文实验数据正确性与可追溯性全面核查报告。覆盖 experiments.tex 和 appendix.tex 中所有数据点，交叉验证 registry、服务器日志、统计计算。发现 8 个关键问题（含数值错配、不可追溯数据点、标签错误），11 个中等问题，28 个数据点完全可追溯。\\\", \\\"path\\\": \\\"projects/cost-verify-agent-rl/artifacts/_project/report/data_provenance_audit.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-23T11:16:04.153181+00:00\\\", \\\"tags\\\": [\\\"audit\\\", \\\"data-integrity\\\", \\\"paper\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260523_2bd86c\", \"name\": \"data_provenance_audit\", \"type\": \"report\", \"description\": \"论文实验数据正确性与可追溯性全面核查报告。覆盖 experiments.tex 和 appendix.tex 中所有数据点，交叉验证 registry、服务器日志、统计计算。发现 8 个关键问题（含数值错配、不可追溯数据点、标签错误），11 个中等问题，28 个数据点完全可追溯。\", \"path\": \"projects/cost-verify-agent-rl/artifacts/_project/report/data_provenance_audit.md\", \"url\": null, \"project\": \"cost-verify-agent-rl\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-23T11:16:04.153181+00:00\", \"tags\": [\"audit\", \"data-integrity\", \"paper\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "e35b83fe-40be-4b27-a95f-f7c036e83afd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+            "sessionId": "1390f184-119e-47ed-8548-8112c5dd5d97",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-23T11:16:11.239Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UAwEHCUnAc752zpS2uZdYn",
+              "name": "TodoWrite",
+              "input": {
+                "todos": [
+                  {
+                    "content": "Compile all findings into audit report",
+                    "status": "completed",
+                    "activeForm": "Compiling audit report"
+                  },
+                  {
+                    "content": "Write audit report to artifacts/data_provenance_audit.md",
+                    "status": "completed",
+                    "activeForm": "Writing audit report file"
+                  },
+                  {
+                    "content": "Register artifact in project registry",
+                    "status": "completed",
+                    "activeForm": "Registering artifact"
+                  }
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d8a136d0-4ca0-49c8-814c-22f07d199d4b",
+            "isSidechain": false,
+            "requestId": "req_011CbKQUMMqzm9jHW1HjstB4",
+            "type": "assistant",
+            "uuid": "580e35b6-5019-4a1d-9126-d0cb3dbee78c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+            "sessionId": "1390f184-119e-47ed-8548-8112c5dd5d97",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PJDDSNvtN216ButuHHJoLP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 693,
+                "cache_read_input_tokens": 77928,
+                "output_tokens": 145,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 693,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 145,
+                    "cache_read_input_tokens": 77928,
+                    "cache_creation_input_tokens": 693,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 693
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-23T11:16:11.241Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UAwEHCUnAc752zpS2uZdYn",
+              "type": "tool_result",
+              "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "580e35b6-5019-4a1d-9126-d0cb3dbee78c",
+            "isSidechain": false,
+            "promptId": "afff7c49-bf16-4292-ab6f-bd4cc4cf5c21",
+            "type": "user",
+            "uuid": "42501f88-060d-4101-bcdc-fb0505cfe33f",
+            "toolUseResult": {
+              "oldTodos": [
+                {
+                  "content": "Compile all findings into audit report",
+                  "status": "completed",
+                  "activeForm": "Compiling audit report"
+                },
+                {
+                  "content": "Write audit report to artifacts/data_provenance_audit.md",
+                  "status": "completed",
+                  "activeForm": "Writing audit report file"
+                },
+                {
+                  "content": "Register artifact in project registry",
+                  "status": "in_progress",
+                  "activeForm": "Registering artifact"
+                }
+              ],
+              "newTodos": [
+                {
+                  "content": "Compile all findings into audit report",
+                  "status": "completed",
+                  "activeForm": "Compiling audit report"
+                },
+                {
+                  "content": "Write audit report to artifacts/data_provenance_audit.md",
+                  "status": "completed",
+                  "activeForm": "Writing audit report file"
+                },
+                {
+                  "content": "Register artifact in project registry",
+                  "status": "completed",
+                  "activeForm": "Registering artifact"
+                }
+              ],
+              "verificationNudgeNeeded": false
+            },
+            "sourceToolAssistantUUID": "580e35b6-5019-4a1d-9126-d0cb3dbee78c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+            "sessionId": "1390f184-119e-47ed-8548-8112c5dd5d97",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-23T11:16:25.257Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告已写入 `artifacts/data_provenance_audit.md`。\n\n**核查结果**：47 个数据点中，28 个完全可追溯，11 个部分可追溯，**8 个存在关键问题**：\n\n**最严重的 3 个问题：**\n\n1. **seed8 OOD 13.43% 疑似错配** — registry 中 seed8 实际为 11.94% (16/134)，而 13.43% (18/134) 精确匹配 seed7 high-KL step7 的结果。可能把 seed7 的数据误归到了 seed8。\n\n2. **seed2048 OOD 8.21% 无来源** — 无任何 OOD eval 记录，且 8.21% 精确匹配 seed7 high-KL step5 的结果。\n\n3. **seed5 OOD 25.37% 三个矛盾值** — 同一 checkpoint 产出 29.10% (westd)、37.31% (bjb1)、论文报 25.37%，但 25.37% 的 eval log 找不到。\n\n**其他关键问题：**\n- seed42 OOD 12.69% 无 eval 记录\n- seed2 OOD 15.67% checkpoint 已丢失、eval 未完成\n- theoretical_analysis.tex 中 \"p=5% → 5.1%\" 是算术错误（正确值 14.85%）\n- Window sweep h=10/h=20 标注为 \"OOD\" 但实际是 ID val 结果\n- seed2 Fisher exact test p=0.02 vs 计算值 p=0.032"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "42501f88-060d-4101-bcdc-fb0505cfe33f",
+            "isSidechain": false,
+            "requestId": "req_011CbKQUs6WW3v63vmn64gH1",
+            "type": "assistant",
+            "uuid": "e46030fa-1d61-4fd5-9208-5fae8c6c0a26",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+            "sessionId": "1390f184-119e-47ed-8548-8112c5dd5d97",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JVog9wnjXqmwLreDEntiFc",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 187,
+                "cache_read_input_tokens": 78621,
+                "output_tokens": 472,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 187,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 472,
+                    "cache_read_input_tokens": 78621,
+                    "cache_creation_input_tokens": 187,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 187
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "e46030fa-1d61-4fd5-9208-5fae8c6c0a26",
+                "sessionId": "1390f184-119e-47ed-8548-8112c5dd5d97"
+              }
+            }
+          ],
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Audit paper experiment data provenance and correctness",
+                "sessionId": "1390f184-119e-47ed-8548-8112c5dd5d97"
+              }
+            }
+          ],
+          "id": "event-000077"
+        }
+      ]
+    }
+  ]
+}

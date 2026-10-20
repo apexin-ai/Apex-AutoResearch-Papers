@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.0",
+  "id": "27836c27e1b65f3502d7",
+  "project": "cost-verify-agent-rl--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 项目 cost-verify-agent-rl。exp_002 崩溃：prompt 累积到 32768 tokens（50 turns × ~600 tokens/turn with self-guidanc",
+  "task_key": "90211b60-5bec-49bf-bc23-d923dd6b0ffb",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/90211b60-5bec-49bf-bc23-d923dd6b0ffb.jsonl",
+    "occurrence": 1,
+    "bytes": 1602448,
+    "sha256": "bdacb735b819ed643d8f8f198891ec3396f080671611b941b25dd75d64f37d77"
+  },
+  "statistics": {
+    "messages": 584,
+    "user_turns": 3,
+    "tool_calls": 149,
+    "roles": {
+      "record": 114,
+      "user": 3,
+      "assistant": 168,
+      "tool_call": 149,
+      "tool_result": 149,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "27836c27e1b65f3502d7-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 482,
+      "chunks": [
+        {
+          "path": "27836c27e1b65f3502d7-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "27836c27e1b65f3502d7-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "27836c27e1b65f3502d7-part-0003.json",
+          "message_count": 124
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 99,
+      "chunks": [
+        {
+          "path": "27836c27e1b65f3502d7-part-0003.json",
+          "message_count": 55
+        },
+        {
+          "path": "27836c27e1b65f3502d7-part-0004.json",
+          "message_count": 44
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "27836c27e1b65f3502d7-part-0004.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-cost-verify-agent-rlexp-002-prompt-32768-tokens-50-turns-600-tok.md"
+}

@@ -1,0 +1,2353 @@
+# Research conversation: [WRITE HANDOFF] 请立即写你的 handoff。 **格式硬约束**: - 整条回复**只能**是 <handoff>...</handoff> 标签包裹 - 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 40
+- **Recorded user turns:** 1
+- **Tool calls:** 12
+- **Original source:** `logs/chats/exported-trajectories/account-2/f8f3f20d-7faa-4c35-a3d5-9579173279b6.jsonl`
+- **Structured JSON:** [`3f7a32aa8d6ca35be1f0.json`](../../sessions/3f/3f7a32aa8d6ca35be1f0.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-16T03:04:31.584Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-16T03:04:31.584Z",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6",
+  "content": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n&lt;handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n&lt;/handoff>"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-16T03:04:31.588Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-16T03:04:31.588Z",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6"
+}
+```
+
+---
+
+## Round 1
+
+38 recorded events
+
+### User
+
+_source line 3 · 2026-05-16T03:04:31.631Z_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "f5681be2-9455-4955-ae40-1dc15e006c5a",
+  "type": "user",
+  "uuid": "1f67685e-42ea-47b8-9ac0-db72e5dbf879",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_3814f310",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-16T03:04:31.630Z_
+
+```json
+{
+  "parentUuid": "1f67685e-42ea-47b8-9ac0-db72e5dbf879",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "afee71cd-6bea-4fdc-9c13-e13176f531ca",
+  "timestamp": "2026-05-16T03:04:31.630Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_3814f310",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-16T03:04:31.630Z_
+
+```json
+{
+  "parentUuid": "afee71cd-6bea-4fdc-9c13-e13176f531ca",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "a375035e-13cb-4cc4-80ad-67d4044163f9",
+  "timestamp": "2026-05-16T03:04:31.630Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_3814f310",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-16T03:04:31.630Z_
+
+```json
+{
+  "parentUuid": "a375035e-13cb-4cc4-80ad-67d4044163f9",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "f4c4ead8-c542-41e2-89fe-a382740dded4",
+  "timestamp": "2026-05-16T03:04:31.630Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_3814f310",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Write handoff documentation for coding session",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-16T03:04:38.616Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user is asking me to write a handoff message. Before I can write a proper handoff, I need to gather the current state of the project. Let me follow the session-start protocol first to understand the current state, then write the handoff.
+
+Let me:
+1. Read the registry
+2. Reconcile crons
+3. Read report.md
+4. Read ROADMAP.md
+
+I need to do this quickly and then write the handoff.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f4c4ead8-c542-41e2-89fe-a382740dded4",
+  "isSidechain": false,
+  "requestId": "req_011Cb5WKuiugVT6JyFX4ZVvS",
+  "type": "assistant",
+  "uuid": "b8a3d983-ae6c-477e-94bb-f9b5966b12f2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_3814f310",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KCt7kSA4UKbexHcQA8BpnV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 24062,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 294,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 24062,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 294,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 24062,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 24062
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-16T03:04:39.051Z_
+
+Let me先收集项目当前状态，然后写 handoff。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b8a3d983-ae6c-477e-94bb-f9b5966b12f2",
+  "isSidechain": false,
+  "requestId": "req_011Cb5WKuiugVT6JyFX4ZVvS",
+  "type": "assistant",
+  "uuid": "d188f572-78c5-4f9a-8ab3-c6efc4467aea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_3814f310",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KCt7kSA4UKbexHcQA8BpnV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 24062,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 294,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 24062,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 294,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 24062,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 24062
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-16T03:04:41.103Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01F3W4jxspJu4HAY4C6s9Tz6`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__load_project_config",
+  "max_results": 6
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d188f572-78c5-4f9a-8ab3-c6efc4467aea",
+  "isSidechain": false,
+  "requestId": "req_011Cb5WKuiugVT6JyFX4ZVvS",
+  "type": "assistant",
+  "uuid": "cacd0098-c571-4310-981f-00fb89fd3507",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_3814f310",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KCt7kSA4UKbexHcQA8BpnV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 24062,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 294,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 24062,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 294,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 24062,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 24062
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T03:04:41.112Z_
+
+<details><summary>↩ Tool result · `toolu_01F3W4jxspJu4HAY4C6s9Tz6`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_roadmap"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__list_workers"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__load_project_config"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cacd0098-c571-4310-981f-00fb89fd3507",
+  "isSidechain": false,
+  "promptId": "f5681be2-9455-4955-ae40-1dc15e006c5a",
+  "type": "user",
+  "uuid": "9c93f32a-a43a-4dfa-81f1-26cb12c33d46",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__load_project_config",
+    "total_deferred_tools": 79
+  },
+  "sourceToolAssistantUUID": "cacd0098-c571-4310-981f-00fb89fd3507",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_3814f310",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-16T03:04:44.924Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01Fau6bLS559RyYUCE3KWDc5`</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "limit": 0,
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9c93f32a-a43a-4dfa-81f1-26cb12c33d46",
+  "isSidechain": false,
+  "requestId": "req_011Cb5WLczND9Gx7Z4o9n4Lr",
+  "type": "assistant",
+  "uuid": "55a96b09-5c97-4d5a-b864-d8ddeca2bc1d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_3814f310",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014sRB7HyG9JeD587YXFos6Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1589,
+      "cache_read_input_tokens": 35903,
+      "output_tokens": 424,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1589,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 424,
+          "cache_read_input_tokens": 35903,
+          "cache_creation_input_tokens": 1589,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1589
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-16T03:04:44.930Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons · `toolu_01RKCgkisBRoPz27wn1m33cy`</summary>
+
+```json
+{}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "55a96b09-5c97-4d5a-b864-d8ddeca2bc1d",
+  "isSidechain": false,
+  "requestId": "req_011Cb5WLczND9Gx7Z4o9n4Lr",
+  "type": "assistant",
+  "uuid": "12975198-a140-4984-bf96-55db6d2dc932",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_3814f310",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014sRB7HyG9JeD587YXFos6Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1589,
+      "cache_read_input_tokens": 35903,
+      "output_tokens": 424,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1589,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 424,
+          "cache_read_input_tokens": 35903,
+          "cache_creation_input_tokens": 1589,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1589
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T03:04:45.341Z_
+
+<details><summary>↩ Tool result · `toolu_01Fau6bLS559RyYUCE3KWDc5`</summary>
+
+```text
+Error: result (89,330 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-3814f310/f8f3f20d-7faa-4c35-a3d5-9579173279b6/tool-results/mcp-agent-ml-research-read_registry-1778900685320.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-3814f310/f8f3f20d-7faa-4c35-a3d5-9579173279b6/tool-results/mcp-agent-ml-research-read_registry-1778900685320.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-3814f310/f8f3f20d-7faa-4c35-a3d5-9579173279b6/tool-results/mcp-agent-ml-research-read_registry-1778900685320.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "55a96b09-5c97-4d5a-b864-d8ddeca2bc1d",
+  "isSidechain": false,
+  "promptId": "f5681be2-9455-4955-ae40-1dc15e006c5a",
+  "type": "user",
+  "uuid": "072a885a-5929-44f6-91e7-f79c398457ec",
+  "toolUseResult": "Error: result (89,330 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-3814f310/f8f3f20d-7faa-4c35-a3d5-9579173279b6/tool-results/mcp-agent-ml-research-read_registry-1778900685320.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-3814f310/f8f3f20d-7faa-4c35-a3d5-9579173279b6/tool-results/mcp-agent-ml-research-read_registry-1778900685320.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-3814f310/f8f3f20d-7faa-4c35-a3d5-9579173279b6/tool-results/mcp-agent-ml-research-read_registry-1778900685320.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp028c_selfguide_recipe\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:38:48.089Z\", \"updated_at\": \"2026-05-16T03:01:28.650Z\", \"wandb_run_id\": \"4yu6qz1m\", \"spec\": {\"command\": \"bash scripts/run_exp028c_selfguide_recipe.sh\", \"server\": \"bjb1-17606\", \"data_path\": \"AlfworldSG (env_configs)\", \"data_count\": 128, \"model_name\": \"qwen3_exp021_ragen_sft_v4 (SFT checkpoint)\", \"seed\": 10000}, \"notes\": \"Self-Guide recipe 对齐实验。9项改动 vs exp027: (1) ppo_mini_batch_size 32→128 (2) total_steps 50→100 (3) LR 5e-7→1e-6 (4) KL 0.005→0.01 (5) env_groups 8→16 (6) group_size 16→8 (7) entropy 0.01→0.001 (8) history_length 5→2 (9) loss_agg seq-mean-token-mean→token-mean. model_path=SFT checkpoint. PID=824675. step_1_train 三方交叉验证通过。step_2_train 待完成后验证（之前数据为脏数据已清除）。\", \"metrics\": {\"step_0_val\": {\"success\": 6.25, \"pass_at_1\": 6.25, \"action_is_valid\": 74.5, \"score_mean\": 0.119}, \"step_1_train\": {\"success\": 13.28, \"pass_at_8\": 37.5, \"action_is_valid\": 76.4, \"action_is_effective\": 96.37, \"entropy\": 0.2634, \"kl_loss\": 0.0128, \"ppo_kl\": 0.019, \"grad_norm\": 16.88, \"score_mean\": 0.843, \"time_s\": 3252, \"note\": \"三方交叉验证通过\"}, \"step_2_train\": {\"success\": 6.25, \"pass_at_8\": 25, \"action_is_valid\": 83.2, \"entropy\": 0.247, \"kl_loss\": 0.1706, \"pg_loss\": 0.007, \"grad_norm\": 17.3, \"score_mean\": 0.274, \"time_s\": 3120, \"note\": \"kl_loss修正为0.1706(原0.017为ppo_kl误录),补回pg_loss=0.007\"}, \"step_3_train\": {\"success\": 15.63, \"pass_at_8\": 68.75, \"action_is_valid\": 85.9, \"entropy\": 0.2488, \"kl_loss\": 0.1118, \"grad_norm\": 12.57, \"score_mean\": 0.661, \"time_s\": 2760, \"note\": \"日志验证\"}, \"step_4_train\": {\"success\": 18.75, \"pass_at_8\": 62.5, \"action_is_valid\": 87.94, \"entropy\": 0.234, \"kl_loss\": 0.031, \"ppo_kl\": 0.015, \"note\": \"kl_loss=0.031已确认正确\"}, \"step_5_train\": {\"success\": 9.4, \"pass_at_8\": 37.5, \"action_is_valid\": 89.6, \"entropy\": 0.236, \"kl_loss\": 0.824, \"grad_norm\": 13.1, \"note\": \"kl_loss飙升(0.031→0.824),需监控后续是否回落\"}, \"step_5_val\": {\"success\": 6.25, \"pass_at_1\": 6.25, \"action_is_valid\": 96.5, \"action_is_effective\": 100, \"num_actions\": 49.4, \"score_mean\": 0.518, \"note\": \"val success未提升,但action_is_valid +22pp(74.5→96.5),reward 4.4x提升\"}}}, \"exp028a_recipe_fix\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:08:53.131Z\", \"updated_at\": \"2026-05-15T21:25:46.006Z\", \"hypothesis\": \"invalid_action_penalty (-0.1) 为全失败 GRPO group 提供非零方差梯度信号。从 exp021 SFT checkpoint (6.25% success) 出发，仅增加 invalid_action_penalty_coef=0.1，其余参数与 exp027 完全一致。预期：penalty 让失败 trajectory 间有区分（invalid action 多=reward更低），解决 ~43% group 零梯度问题。Pass: success ≥20%（稳定，非瞬时 peak）。\", \"parent\": \"exp027_stable_grpo\", \"wandb_run_id\": \"lu42su82\", \"spec\": {\"command\": \"bash scripts/run_exp028a_recipe_fix.sh\", \"server\": \"bjb1-17606\", \"model_name\": \"qwen3_exp021_ragen_sft_v4\", \"seed\": 10000, \"data_path\": \"AlfworldSG\", \"data_count\": 128, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4\", \"eval_data\": \"AlfworldSG val 16 episodes\"}, \"conclusion\": \"killed\", \"notes\": \"与 exp027 功能等价（penalty getattr 默认值=0.1 在 exp027 中已生效）。Director 指令停止。\", \"completed_at\": \"2026-05-15T21:25:46.007Z\"}, \"exp028_prereq_zeroshot\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:11:06.120Z\", \"updated_at\": \"2026-05-15T21:11:42.141Z\", \"conclusion\": \"negative\", \"checkpoint_path\": \"N/A (zero-shot eval, no checkpoint)\", \"log_path\": \"wandb:qdvv09da\", \"completed_at\": \"2026-05-15T21:11:32.780Z\", \"wandb_run_id\": \"qdvv09da\", \"metrics\": {\"success\": 0, \"action_is_valid\": 0.75, \"num_actions\": 50, \"pass_at_1\": 0, \"response_length\": 75.07}, \"notes\": \"Qwen3-1.7B（本身就是 instruct 模型）零样本 ALFWorld eval = 0% success。证明 SFT 从 0%→6.25% 是有益的，D044 '不做SFT' 假设不成立。W&B run: qdvv09da\"}, \"exp028_prereq_zeroshot_instruct\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T20:59:57.529Z\", \"updated_at\": \"2026-05-15T21:06:09.982Z\", \"hypothesis\": \"Qwen3-1.7B-Instruct 零样本 ALFWorld eval，验证\\\"SFT是毒药\\\"假设。如果 Instruct ≥15% success（vs SFT checkpoint 6.25%），则确认 SFT 起点有害，exp028a 可跳过 SFT 直接 GRPO。\", \"parent\": \"exp027_stable_grpo\", \"notes\": \"Qwen3-1.7B 确认就是 instruct 模型（无独立 Instruct 变体）。零样本 eval 0% success / 0.75% valid（与之前结果一致）。关键结论：\\\"SFT是毒药\\\"假设(D044)不成立——SFT 实际提升了 0%→6.25%。62pp gap 根因排除 SFT，聚焦于 binary reward 零梯度 + mini-batch 过小 + 训练步数不足。\"}, \"exp027_stable_grpo\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T14:04:13.123Z\", \"updated_at\": \"2026-05-15T20:44:26.582Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl && bash scripts/run_exp027_stable_grpo.sh\\\"\", \"server\": \"bjb1-17606\", \"gpu\": \"cuda:0,cuda:1\", \"pid\": 789790, \"log_path\": \"~/runs/cost-verify-agent-rl/exp027_stable_grpo.log\", \"submitted_at\": \"2026-05-15T14:33:03.633Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"RAGEN expert data (same as exp021/026)\", \"data_count\": \"16 train / 128 val per epoch, env_groups=8: 128 rollouts per train step\", \"model_name\": \"Qwen3-1.7B (SFT checkpoint: /root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4)\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4\", \"eval_data\": \"ALFWorld train+val environments (RAGEN format, val env_groups=16, C003-compliant)\", \"framework\": \"RAGEN + cherry-picked step-independent rollout\", \"algorithm\": \"GRPO + step-independent rollout + discounted returns\", \"key_params\": {\"lr\": 5e-07, \"kl_loss_coef\": 0.005, \"entropy_coeff\": 0.01, \"save_freq\": 5, \"total_training_steps\": 50, \"test_freq\": 5, \"env_groups_train\": 8, \"env_groups_val\": 16, \"max_actor_ckpt_to_keep\": 10, \"context_window_mode\": \"step_independent\", \"step_independent_history_length\": 5, \"gamma\": 0.95, \"group_size\": 16, \"invalid_action_penalty_coef\": 0.1, \"max_turn\": 50, \"WANDB_MODE\": \"enabled\"}, \"wall_clock_seconds\": 22179.3, \"gpu_hours\": 6.16}, \"notes\": \"进程退出原因：Ray raylet 被异常终止（ActorUnavailableError: RPC error: Socket closed rpc_code: 14）。Raylet termination unexpected — 可能 SIGKILL by OOM killer 或内存访问错误。退出发生在 step 4 完成后、step 5 开始前。EXIT_CODE=1。D045 已判定 MVP 未通过（train success 13.28% < 20% 阈值）。Recipe Gap 诊断三大根因：(1) SFT 起点反效果 (2) Binary reward 零梯度 (3) Mini-batch 8× 过小。exp028 配置准备中（5 个 Worker 活跃）。\", \"hypothesis\": \"Stabilized step-independent GRPO: 针对 exp026 死亡螺旋根因（sparse reward + 小 env_groups 导致全零 batch），增加 rollouts（env_groups 4→8, 128 trajectories）、降低 LR（1e-6→5e-7）、降低 KL（0.01→0.005）、新增 entropy bonus（0.01）、save_freq 5 捕获峰值。50 步快速验证。Pass: success ≥20% 且无连续 2 步归零。\", \"parent\": \"exp026_step_independent_grpo\", \"wandb_run_id\": \"y7jiibqk\", \"metrics\": {\"step_0_val_before_train\": {\"success\": 6.25, \"action_is_valid\": 63.125, \"action_is_effective\": 87.875, \"num_actions\": 42.375, \"response_length\": 114.67, \"reward_mean\": 0.3226, \"val_generation_time_s\": 502.57}, \"step_1_train\": {\"success\": 35.94, \"kl_loss\": 0.058, \"batch_size\": 5152, \"training_time_s\": 4342}, \"step_2_train\": {\"success\": 10.16, \"kl_loss\": 0.413, \"batch_size\": 6144, \"training_time_s\": 5886}, \"step_3_train\": {\"success\": 10.16, \"kl_loss\": 0.248, \"entropy\": 0.385, \"pass_at_16\": 0.5, \"grad_norm\": 21.31, \"reward_mean\": 0.483, \"batch_size\": 6048, \"training_time_s\": 4689}, \"step_4_train\": {\"success\": 13.28, \"pass_at_16\": 0.375, \"note\": \"Director判定: 趋势确认, MVP未通过\"}}, \"conclusion\": \"failed\", \"reproduce\": {\"finished_at\": \"2026-05-15T20:42:41.686Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"completed_at\": \"2026-05-15T20:42:42.920Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T20:42:44.371995+00:00\"}]}}, \"exp026_step_independent_grpo\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-15T09:34:33.675Z\", \"updated_at\": \"2026-05-15T14:31:53.569Z\", \"server\": \"bjb1-17606\", \"gpu\": \"cuda:0,cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"bjb1-17606\", \"gpu\": \"cuda:0,cuda:1\", \"started_at\": \"2026-05-15T09:35:34.249Z\", \"finished_at\": \"2026-05-15T11:07:27.171Z\", \"training_hours\": 1.53}, \"notes\": \"exp026 negative: step-independent GRPO 在 step 2 达峰 train success=32.81% 后连续崩塌至 step 4 的 0%。Step 5 val eval 未完成即被 kill（val 生成阶段启动后进程被终止），无法对比 step 0 vs step 5 val。无 checkpoint（save_freq=25 未触发）。根因分析（Reviewer）：sparse reward + 小 env_groups(4=64 rollouts) 导致全零 batch 概率高，advantage 只有负信号把策略推回 reference。action_is_valid 在 step 2-4 保持 ~72% 但 success 归零，模型学会了\\\"看起来合理\\\"的 action 但丧失任务完成能力。教训：(1) save_freq 必须 ≤5 捕获早期峰值 (2) env_groups 需 ≥8 降低全零 batch 概率 (3) WANDB_MODE=disabled 导致 cron 误判 (4) cron 应监控 Ray TaskRunner PID 而非 shell wrapper PID。\", \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"completed_at\": \"2026-05-15T11:07:28.010Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T11:07:29.450586+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"metrics\": {\"val_before_train_success\": 0.0625, \"val_before_train_action_is_valid\": 0.631, \"val_before_train_action_is_effective\": 0.879, \"val_before_train_episodes\": 16, \"val_before_train_pass_at_1\": 0.0625, \"truncation_count_val\": 25, \"train_step1_success\": 0.2188, \"train_step1_action_is_valid\": 0.686, \"train_step1_entropy\": 0.2672, \"train_step1_pg_loss\": 0.00732, \"train_step1_kl_loss\": 0.1797, \"train_step1_ppo_kl\": 0.067, \"train_step1_grad_norm\": 14.43, \"train_step1_reward_mean\": 1.218, \"train_step1_pass_at_16\": 1, \"train_step2_success\": 0.3281, \"train_step2_action_is_valid\": 0.603, \"train_step2_entropy\": 0.317, \"train_step2_pg_loss\": 0.00571, \"train_step2_kl_loss\": 0.0974, \"train_step2_ppo_kl\": 0.0267, \"train_step2_grad_norm\": 15.62, \"train_step2_reward_mean\": 1.62, \"train_step2_pass_at_16\": 1}, \"notes\": \"⚠️ D029: CRON 误判 DONE(failed)，进程实际仍在运行。Train step 1-2 指标突破性：success 6.25% → 21.88% → 32.81%（已超 MVP 20%），entropy 0.267→0.317（无 collapse），grad_norm 14-16（稳定）。指标来源：Ray worker stdout logs。Step 5 val 是首个正式验证点。早停标准维持。后续实验硬规则：禁止 WANDB_MODE=disabled。\"}}, \"spec\": {\"command\": \"bash -c \\\"ray stop --force; pkill -9 -f ray; pkill -9 -f vllm; sleep 3; rm -rf /tmp/ray/session_*; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl && bash scripts/run_exp026_step_independent_grpo.sh\\\"\", \"server\": \"bjb1-17606\", \"gpu\": \"cuda:0,cuda:1\", \"pid\": 781795, \"log_path\": \"/root/autodl-tmp/tmp/ray/session_2026-05-15_18-38-45_487055_778562/logs/worker-f5a9c771de63c207b8db019edc7dedd89a425c2fe97314a2669cdd43-01000000-781795.out\", \"data_path\": \"RAGEN expert data (same as exp021)\", \"data_count\": \"16 train tasks / 128 val tasks per epoch\", \"model_name\": \"Qwen3-1.7B (SFT checkpoint: /root/autodl-tmp/checkpoints/exp021_ragen_sft_v4/final/)\", \"seed\": 0, \"framework\": \"RAGEN + cherry-picked step-independent rollout\", \"algorithm\": \"GRPO + step-independent rollout + discounted returns\", \"key_params\": {\"context_window_mode\": \"step_independent\", \"step_independent_history_length\": 5, \"kl_loss_coef\": 0.01, \"kl_loss_type\": \"low_var_kl\", \"lr\": 1e-06, \"group_size\": 8, \"gamma\": 0.95, \"invalid_action_penalty_coef\": 0.1, \"max_turn\": 50, \"total_training_steps\": 150, \"test_freq\": 5, \"save_freq\": 25, \"val_before_train\": true, \"use_turn_scores\": true}}, \"metrics\": {\"val_before_train_success\": 0.0625, \"val_before_train_action_is_valid\": 0.631, \"val_before_train_episodes\": 16, \"train_step1_success\": 0.2188, \"train_step1_action_is_valid\": 0.686, \"train_step1_entropy\": 0.2672, \"train_step1_kl_loss\": 0.1797, \"train_step1_grad_norm\": 14.43, \"train_step1_reward_mean\": 1.218, \"train_step1_pass_at_16\": 1, \"train_step2_success\": 0.3281, \"train_step2_action_is_valid\": 0.603, \"train_step2_entropy\": 0.317, \"train_step2_kl_loss\": 0.0974, \"train_step2_grad_norm\": 15.62, \"train_step2_reward_mean\": 1.62, \"train_step2_pass_at_16\": 1, \"train_step3_success\": 0.1719, \"train_step3_action_is_valid\": 0.641, \"train_step3_entropy\": 0.387, \"train_step3_kl_loss\": 0.2617, \"train_step3_grad_norm\": 15.65, \"train_step3_reward_mean\": 1.079, \"train_step3_pass_at_16\": 0.75, \"train_step4_success\": 0, \"train_step4_action_is_valid\": 0.717, \"train_step4_entropy\": 0.387, \"train_step4_kl_loss\": 0.054, \"train_step4_grad_norm\": 13.81, \"train_step4_pass_at_16\": 0}, \"conclusion\": \"negative\", \"log_path\": \"/root/autodl-tmp/tmp/ray/session_2026-05-15_18-38-45_487055_778562/logs/worker-*-781795.out\", \"checkpoint_path\": \"N/A (crashed at step 4, no checkpoint saved)\"}, \"exp025c\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:09:29.393Z\", \"updated_at\": \"2026-05-15T08:34:00.648Z\", \"spec\": {\"name\": \"verl-agent ALFWorld GRPO baseline — single GPU, thread-safe config\", \"hypothesis\": \"verl-agent GRPO with Qwen3-1.7B on single GPU (TP=1, enforce_eager, thread-limited) can train ALFWorld within cgroup pids.max=20480 limit. Degraded dry run validated: PIDs stable at 6575/20480 (32%). Target: success ≥20%.\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate /root/autodl-tmp/conda-envs/verl-agent && cd /root/autodl-tmp/verl-agent && bash examples/grpo_trainer/run_alfworld_exp025c.sh\\\"\", \"server\": \"bjb1-17606\", \"data_path\": \"$HOME/data/verl-agent/text/train.parquet\", \"data_count\": \"16 train / 128 val\", \"model_name\": \"Qwen3-1.7B (local: /root/autodl-tmp/models/Qwen/Qwen3-1___7B/)\", \"seed\": 0, \"framework\": \"verl-agent v0.3.1.dev\", \"algorithm\": \"GRPO\", \"gpus\": \"cuda:0 (1x RTX PRO 6000 Blackwell 98GB)\", \"key_params\": {\"train_batch_size\": 16, \"val_batch_size\": 128, \"group_size\": 8, \"lr\": 1e-06, \"total_epochs\": 150, \"max_steps\": 50, \"kl_loss_coef\": 0.01, \"invalid_action_penalty_coef\": 0.1, \"tensor_model_parallel_size\": 1, \"test_freq\": 5, \"val_before_train\": true, \"save_freq\": 25, \"enforce_eager\": true, \"env_rollout_n\": 2, \"ray_init_num_cpus\": 8, \"vllm_attention_backend\": \"FLASH_ATTN\", \"thread_limit\": \"OMP/MKL/OPENBLAS/NUMEXPR=1\"}}, \"notes\": \"D028: 停止 verl-agent 直接运行。cgroup pids.max=20480 硬限制无法调整，verl-agent 依赖 Ray 多进程架构在此服务器不可行（双 GPU dry run PID 安全但 Ray 调度 CPU 卡死，单 GPU rollout.n=2 GRPO group size 太小）。全力转向 Track B cherry-pick：将 step-independent rollout 移植到 RAGEN 框架。\", \"conclusion\": \"failed\"}, \"exp025b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T07:34:34.283Z\", \"updated_at\": \"2026-05-15T07:44:26.903Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate /root/autodl-tmp/conda-envs/verl-agent && cd /root/autodl-tmp/verl-agent && bash examples/grpo_trainer/run_alfworld_exp025.sh\\\"\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"615550\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp025b.log\", \"submitted_at\": \"2026-05-15T07:41:46.859Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"parent\": \"exp025\", \"notes\": \"三次提交均失败。第三次：pre-flight 清理后 Ray 主进程启动成功、数据加载成功（8810 train / 494 val），但 AlfworldWorker 进程初始化时线程创建失败（Resource temporarily unavailable, EAGAIN）。36+ 次 system:11 错误，43+ 次 Fatal Python error: Aborted。jemalloc arena background thread creation failed。根因：系统 nproc/线程上限不足，8 个 AlfworldWorker + Ray 内部线程总数超限。需排查 ulimit -u 和 /proc/sys/kernel/threads-max。\", \"server\": \"bjb1-17606\", \"gpu\": \"cuda:0,cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"bjb1-17606\", \"gpu\": \"cuda:0,cuda:1\", \"started_at\": \"2026-05-15T07:35:49.952Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate /root/autodl-tmp/conda-envs/verl-agent && cd /root/autodl-tmp/verl-agent && bash examples/grpo_trainer/run_alfworld_exp025.sh\\\"\", \"finished_at\": \"2026-05-15T07:38:59.743Z\", \"training_hours\": 0.05}, \"pid\": \"614229\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp025b.log\", \"conclusion\": \"failed\", \"failure_reason\": \"Traceback → /resource_tracker.py\\\", line 89, in _stop File \\\"/root/autodl-tmp/conda-envs/verl-agent/lib/python3.12/site-packages/multiprocess/resource_tracker.py\\\", line 102, in _stop_locked AttributeError: '_thread.RLock' object has no attribute '_recursion_count'\", \"completed_at\": \"2026-05-15T07:39:01.024Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T07:39:02.902074+00:00\"}]}}, \"exp025\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:52:48.190Z\", \"updated_at\": \"2026-05-15T07:34:25.374Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/verl-agent && bash examples/grpo_trainer/run_alfworld_exp025.sh\\\"\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"555182\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp025.log\", \"submitted_at\": \"2026-05-15T07:13:01.394Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 143.1, \"gpu_hours\": 0.08}, \"notes\": \"崩溃原因：(1) conda activate base 错误，应用 /root/autodl-tmp/conda-envs/verl-agent 环境 (2) save_freq=-1 未修改为 25。ModuleNotFoundError — base 环境缺 verl-agent 依赖。教训：提交前必须验证 which python 指向正确环境 + 关键参数在 config 中与预期一致。\", \"server\": \"bjb1-17606\", \"gpu\": \"cuda:0,cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"bjb1-17606\", \"gpu\": \"cuda:0,cuda:1\", \"started_at\": \"2026-05-15T07:11:50.984Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/verl-agent && bash examples/grpo_trainer/run_alfworld_exp025.sh\\\"\", \"finished_at\": \"2026-05-15T07:15:22.435Z\", \"training_hours\": 0.06}, \"pid\": \"555182\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp025.log\", \"failure_reason\": \"ModuleNotFoundError in ray::TaskRunner.run() — verl-agent ALFWorld 训练进程异常退出，缺少模块。诊断 Worker 已派出分析具体缺失模块。\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T07:15:24.448Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T07:15:25.976397+00:00\"}]}}, \"exp021_ragen_sft_v4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T02:09:31.719Z\", \"updated_at\": \"2026-05-15T06:24:16.570Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl && CUDA_VISIBLE_DEVICES=0 python scripts/sft_train_v2.py --model_path /root/autodl-tmp/checkpoints/exp008_sft/final --data_path /root/autodl-tmp/expert_sft_v4/expert_sft_train.jsonl --val_path /root/autodl-tmp/expert_sft_v4/expert_sft_val.jsonl --output_dir /root/autodl-tmp/checkpoints/exp021_ragen_sft_v4 --learning_rate 5e-6 --num_train_epochs 2 --per_device_train_batch_size 4 --gradient_accumulation_steps 4 --max_seq_length 4096 --warmup_ratio 0.1 2>&1 | tee /root/runs/cost-verify-agent-rl/exp021_ragen_sft_v4.log\\\"\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\"], \"pid\": \"406279\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp021_ragen_sft_v4.log\", \"submitted_at\": \"2026-05-15T02:09:31.617Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/expert_sft_v4/expert_sft_train.jsonl\", \"data_count\": 2546, \"model_name\": \"Qwen3-1.7B (exp008_sft checkpoint)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/exp008_sft/final\", \"eval_data\": \"RAGEN val_before_train (ALFWorld val environments, >=16 episodes)\", \"hyperparams\": {\"lr\": 5e-06, \"epochs\": 2, \"batch_size\": 4, \"grad_accum\": 4, \"max_seq_length\": 4096, \"warmup_ratio\": 0.1}, \"wall_clock_seconds\": 3938.7, \"gpu_hours\": 1.09}, \"hypothesis\": \"Two-stage SFT with RAGEN-format data (v4). From exp008_sft checkpoint, fine-tune with v4 data (RAGEN Turn/State/Reward structure, fixed system prompt with consistent &lt;answer&gt; tag instruction). LR=5e-6, 2 epochs. Validate via RAGEN val_before_train (not eval_sft_fast). Pass: RAGEN val success >= 10%, action_is_valid >= 85%.\", \"parent\": \"exp019b_expert_sft_v3\", \"reproduce\": {\"finished_at\": \"2026-05-15T02:57:51.981Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T02:57:53.576860+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"train_loss_final\": 0.038, \"train_token_accuracy\": 0.988, \"train_steps\": 320, \"train_epochs\": 2, \"train_time_min\": 47.8, \"ragen_val_success\": 0.25, \"ragen_val_action_is_valid\": 0.875, \"eval_sft_fast_success\": 0, \"eval_sft_fast_format_ok\": 1, \"eval_sft_fast_action_is_valid\": 0.71, \"checkpoint_size_gb\": 3.3, \"ragen_val_success_16ep\": 0.0625, \"ragen_val_action_is_valid_16ep\": 0.6875}, \"notes\": \"D024: conclusion 降级为 negative (原 success)。16ep eval 数据: success=6.25%, action_is_valid=68.75%。原 4ep eval 的 25%/87.5% 为 unreliable_small_sample，不作为决策依据。Registry 无 inconclusive 选项，用 negative 代替。\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp021_ragen_sft_v4/final/\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp021_ragen_sft_v4.log\", \"completed_at\": \"2026-05-15T03:15:10.310Z\"}, \"exp024_success_gated_grpo\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:03:10.298Z\", \"updated_at\": \"2026-05-15T06:04:06.454Z\", \"hypothesis\": \"Success-gated GRPO from exp021 checkpoint. D026 终止 RAGEN GRPO 后不再适用，success-gated 不解决 context 爆炸根因。关联 D027。\", \"spec\": {\"command\": \"success-gated GRPO (never actually ran, killed before start)\", \"server\": \"bjb1-17606\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"Qwen3-1.7B (exp021 checkpoint)\", \"seed\": 42}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T06:04:05.148Z\", \"notes\": \"D027: Kill exp024 — D026 终止 RAGEN GRPO 后 success-gated 变体不再适用，不解决 context 爆炸根因。关联 D025/D026/D027。\"}, \"exp023c_grpo_serial\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T04:20:22.909Z\", \"updated_at\": \"2026-05-15T05:11:22.083Z\", \"hypothesis\": \"GRPO from exp021 RAGEN-format SFT checkpoint. Serial mode (parallel_friendly=false, max_workers=1) to avoid tatsu race. reward scale=10.0, kl_loss_coef=0.5, LR=5e-7, val env_groups=16, gpu_memory_utilization=0.6, 30 steps. Pass: success ≥ 25%, step time baseline comparison with exp022 (~208s/step).\", \"parent\": \"exp023_grpo_parallel\", \"spec\": {\"command\": \"python train.py --config-name _alfworld_exp023_grpo_parallel (serial mode: parallel_friendly=false, max_workers=1)\", \"server\": \"bjb1-17606\", \"data_path\": \"/root/autodl-tmp/expert_sft_v4/\", \"data_count\": 2546, \"model_name\": \"Qwen3-1.7B (exp021 RAGEN SFT v4 checkpoint)\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4\", \"eval_data\": \"ALFWorld train+val environments (RAGEN format, val env_groups=16)\", \"hyperparams\": {\"lr\": 5e-07, \"kl_loss_coef\": 0.5, \"max_grad_norm\": 1, \"total_steps\": 30, \"reward_scale\": 10, \"gpu_memory_utilization\": 0.6, \"parallel_friendly\": false, \"max_workers\": 1, \"format_penalty\": 0}}, \"metrics\": {\"val_step0_success\": 0.0625, \"val_step0_action_is_valid\": 0.6875, \"val_step0_episodes\": 16, \"train_step1_success\": 0.297, \"train_step1_action_is_valid\": 0.791, \"train_step1_entropy\": 0.0652, \"train_step1_pass16\": 0.75, \"train_step1_kl\": 0.000156, \"train_step8_success\": 0.234, \"train_step8_action_is_valid\": 0.779, \"train_step8_entropy\": 0.0555, \"train_step8_pass16\": 0.5, \"train_step8_kl\": 0.000475, \"steps_completed\": 8, \"steps_planned\": 30, \"step_time_seconds_start\": 240, \"step_time_seconds_end\": 365}, \"notes\": \"磁盘满崩溃 (step 9, /root/autodl-tmp 94% 233G/250G, OSError Errno 28)。但 8 步 metrics 趋势已显示退化：train success 29.7%→23.4%↓, pass@16 75%→50%↓, entropy 0.065→0.056↓, KL 0.00016→0.00048↑, step time 240s→365s↓。GRPO 未能在 SFT baseline 上产生改善，反而在退化。注意 step 0 val success=6.25% 与 train step 1 success=29.7% 差异大（val 用不同 game set + 16 episodes vs train 64 trajectories）。Checkpoint: global_step_5 only (save_freq=5, 第二次保存在 step 10 未到)。\", \"conclusion\": \"failed\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp023c/global_step_5\", \"log_path\": \"/root/autodl-tmp/checkpoints/exp023c/train.log\", \"completed_at\": \"2026-05-15T05:09:48.692Z\"}, \"exp023_grpo_parallel\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T04:06:02.056Z\", \"updated_at\": \"2026-05-15T04:12:41.878Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ... && python train.py --config-name _alfworld_exp023_grpo_parallel ...\\\"\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"442593\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp023_grpo_parallel.log\", \"submitted_at\": \"2026-05-15T04:06:01.924Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/expert_sft_v4/\", \"data_count\": 2546, \"model_name\": \"Qwen3-1.7B (exp021 RAGEN SFT v4 checkpoint)\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4\", \"eval_data\": \"ALFWorld train+val environments (RAGEN format, val env_groups=16, n_groups=[16])\", \"hyperparams\": {\"lr\": 5e-07, \"kl_loss_coef\": 0.5, \"max_grad_norm\": 1, \"total_steps\": 30, \"reward_scale\": 1, \"gpu_memory_utilization\": 0.6, \"parallel_friendly\": true, \"max_workers\": 4, \"format_penalty\": 0}, \"wall_clock_seconds\": 287.6, \"gpu_hours\": 0.16}, \"hypothesis\": \"GRPO from exp021 RAGEN-format SFT checkpoint with 3 key fixes: (1) reward scale 10.0→1.0 (align with Self-Guide paper binary reward), (2) parallel rollout (max_workers=4, thread-safe env), (3) val env_groups=16 for reliable eval. kl_loss_coef=0.5, LR=5e-7, 30 steps. Pass: success ≥ 25% (maintain SFT baseline), step time < 200s (vs exp022 ~208s serial).\", \"parent\": \"exp022_grpo_from_sft_v4\", \"reproduce\": {\"finished_at\": \"2026-05-15T04:10:48.550Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T04:10:49.531Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T04:10:50.770477+00:00\"}]}, \"notes\": \"失败原因: textworld PDDL parser (tatsu) 在 val env reset 时崩溃 — tatsu.exceptions.FailedToken: expecting 'action', got template :: \\\"take {o} from {r}\\\". val env_groups=16 加载了更多 game files，触发了某个 game file 与当前 tatsu 版本不兼容的 PDDL grammar. | 已有成果: 无（val_before_train 阶段即崩溃，未开始训练） | 建议: 诊断具体哪个 game file 有问题，降低 val env_groups 或修复 game file/tatsu 兼容性\"}, \"exp022_grpo_from_sft_v4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T03:17:34.035Z\", \"updated_at\": \"2026-05-15T03:52:55.267Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p /root/autodl-tmp/tmp/ && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && export RAY_memory_monitor_refresh_ms=0 && export RAY_SYSTEM_MEMORY=210000000000 && export HYDRA_FULL_ERROR=1 && mkdir -p /root/autodl-tmp/checkpoints/exp022/ && cd /root/cost-verify-agent-rl/RAGEN && sed -i 's/kl_loss_coef: 0.1/kl_loss_coef: 0.5/g' config/_alfworld_exp022_grpo_from_sft_v4.yaml && python train.py --config-name _alfworld_exp022_grpo_from_sft_v4 model_path=/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4 trainer.experiment_name=exp022-alfworld-grpo-from-sft-v4 trainer.local_log_dir=/root/autodl-tmp/checkpoints/exp022/ trainer.default_local_dir=/root/autodl-tmp/checkpoints/exp022/ es_manager.val.env_groups=8 'es_manager.val.env_configs.n_groups=[8]'\\\"\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"434853\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp022_grpo_from_sft_v4.log\", \"submitted_at\": \"2026-05-15T03:17:33.945Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/expert_sft_v4/\", \"data_count\": 2546, \"model_name\": \"Qwen3-1.7B (exp021 RAGEN SFT checkpoint)\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4\", \"eval_data\": \"ALFWorld train+val environments (RAGEN format, val env_groups=8)\", \"hyperparams\": {\"lr\": 5e-07, \"kl_loss_coef\": 0.5, \"max_grad_norm\": 1, \"total_steps\": 30, \"format_penalty\": 0, \"success_reward\": 10}, \"wall_clock_seconds\": 2121.3, \"gpu_hours\": 1.18}, \"hypothesis\": \"GRPO from exp021 RAGEN-format SFT checkpoint (25% RAGEN val success baseline). Sparse reward (won=10.0), LR=5e-7, kl_loss_coef=0.5 (5x stronger than exp020b to prevent entropy collapse), max_grad_norm=1.0, 30 steps, val env_groups=8. Pass: success ≥ 25% (maintain SFT baseline).\", \"parent\": \"exp021_ragen_sft_v4\", \"notes\": \"Step 0 val: success=12.5% (1/8), action_is_valid=48.75%。Step 1 完成后 kill。action_is_valid 远低于 SFT eval 结果（87.5%/68.75%），说明 RAGEN GRPO 框架中模型表现显著退化。kl_loss_coef=0.5, env_groups=8 均已确认生效。训练速度 ~208s/step。Checkpoint: global_step_1 可能已保存。\", \"conclusion\": \"killed\", \"metrics\": {\"steps_completed\": 1, \"steps_planned\": 30, \"val_step0_success\": 0.125, \"val_step0_action_is_valid\": 0.4875, \"val_step0_action_is_effective\": 1, \"val_step0_reward_mean\": 1.25, \"val_step0_reward_best\": 6.61, \"val_step0_episodes\": 8, \"step_time_seconds\": 208}, \"completed_at\": \"2026-05-15T03:52:55.268Z\"}, \"exp021_sft_ragen_format\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:35:48.559Z\", \"updated_at\": \"2026-05-15T02:11:46.204Z\", \"hypothesis\": \"Two-stage SFT with RAGEN-format data (v4). From exp008_sft checkpoint, fine-tune with v4 data (RAGEN Turn/State/Reward structure, fixed system prompt with consistent &lt;answer> tag instruction). LR=5e-6, 2 epochs. Validate via RAGEN val_before_train (not eval_sft_fast). Pass: RAGEN val success >= 10%, action_is_valid >= 85%.\", \"parent\": \"exp019b_expert_sft_v3\", \"notes\": \"被 exp021_ragen_sft_v4 取代。\", \"conclusion\": \"killed\"}, \"exp020d_grpo_from_sft\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:19:30.993Z\", \"updated_at\": \"2026-05-15T02:01:10.192Z\", \"hypothesis\": \"GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Symlink fix for response_mask assertion (proven in exp020b). exp020c failed: Hydra key path wrong.\", \"parent\": \"exp019b_expert_sft_v3\", \"spec\": {\"command\": \"bash -c \\\"ray stop --force 2>/dev/null; sleep 5; ln -sfn /root/autodl-tmp/checkpoints/exp019b_expert_sft_v3/final /root/autodl-tmp/checkpoints/qwen3_exp019b_sft && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p /root/autodl-tmp/tmp/ && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && export RAY_memory_monitor_refresh_ms=0 && export RAY_SYSTEM_MEMORY=210000000000 && export HYDRA_FULL_ERROR=1 && mkdir -p /root/autodl-tmp/checkpoints/exp020d/ && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name _alfworld_exp018_sft_grpo model_path=/root/autodl-tmp/checkpoints/qwen3_exp019b_sft trainer.experiment_name=exp020d-alfworld-sft-grpo trainer.local_log_dir=/root/autodl-tmp/checkpoints/exp020d/ trainer.default_local_dir=/root/autodl-tmp/checkpoints/exp020d/ es_manager.val.env_groups=4 'es_manager.val.env_configs.n_groups=[4]'\\\"\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"390605\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp020d_grpo_from_sft.log\", \"submitted_at\": \"2026-05-14T22:19:42.442Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"failed\", \"notes\": \"D022 废弃。exp020b 确认 GRPO from SFT 因 RAGEN 格式不兼容导致 val success = 0%。exp020c/d 同样会遇到此问题。改走 exp021（RAGEN 格式 SFT 数据重训）。\"}, \"exp020c_grpo_from_sft\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:15:37.659Z\", \"updated_at\": \"2026-05-15T02:01:08.768Z\", \"hypothesis\": \"GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Fix: symlink + enable_response_mask=false (exp020/020b crashed on response_mask assertion).\", \"parent\": \"exp019b_expert_sft_v3\", \"spec\": {\"command\": \"bash -c \\\"ln -sfn /root/autodl-tmp/checkpoints/exp019b_expert_sft_v3/final /root/autodl-tmp/checkpoints/qwen3_exp019b_sft && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p /root/autodl-tmp/tmp/ && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && export RAY_memory_monitor_refresh_ms=0 && export RAY_SYSTEM_MEMORY=210000000000 && export HYDRA_FULL_ERROR=1 && mkdir -p /root/autodl-tmp/checkpoints/exp020c/ && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name _alfworld_exp018_sft_grpo model_path=/root/autodl-tmp/checkpoints/qwen3_exp019b_sft trainer.experiment_name=exp020c-alfworld-sft-grpo trainer.local_log_dir=/root/autodl-tmp/checkpoints/exp020c/ trainer.default_local_dir=/root/autodl-tmp/checkpoints/exp020c/ actor_rollout_ref.model.enable_response_mask=false es_manager.val.env_groups=4 'es_manager.val.env_configs.n_groups=[4]'\\\"\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"389983\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp020c_grpo_from_sft.log\", \"submitted_at\": \"2026-05-14T22:15:49.190Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"failed\", \"notes\": \"D022 废弃。exp020b 确认 GRPO from SFT 因 RAGEN 格式不兼容导致 val success = 0%。exp020c/d 同样会遇到此问题。改走 exp021（RAGEN 格式 SFT 数据重训）。\"}, \"exp020b_grpo_from_sft\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:12:38.928Z\", \"updated_at\": \"2026-05-15T02:00:56.016Z\", \"hypothesis\": \"GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Fix: symlink with \\\"qwen\\\" in path to pass response_mask assertion (exp020 crashed on this).\", \"parent\": \"exp019b_expert_sft_v3\", \"spec\": {\"command\": \"python train.py --config-name _alfworld_exp018_sft_grpo\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"385977\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp020b_grpo_from_sft.log\", \"submitted_at\": \"2026-05-14T22:12:49.413Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/expert_sft_v3/\", \"data_count\": 2460, \"model_name\": \"Qwen3-1.7B (exp019b SFT checkpoint)\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/qwen3_exp019b_sft\", \"eval_data\": \"ALFWorld train+val environments\", \"wall_clock_seconds\": 10144.0, \"gpu_hours\": 5.64}, \"conclusion\": \"negative\", \"metrics\": {\"steps_completed\": 22, \"steps_planned\": 30, \"hung_at_step\": 23, \"step1_train_success\": 0.1875, \"step10_train_success\": 0.1875, \"step20_train_success\": 0.125, \"step22_train_success\": 0.0469, \"val_success_step0\": 0, \"val_success_step20\": 0, \"entropy_initial\": 0.107, \"entropy_final\": 0.042, \"grad_norm_initial\": 2.78, \"grad_norm_step20\": 5.58, \"ppo_kl_final\": 0.00918, \"pass_at_16_step1\": 0.75, \"pass_at_16_step22\": 0.25, \"checkpoint_latest\": \"global_step_20\", \"training_status\": \"hung_at_step23_rollout\"}, \"notes\": \"Negative 结论：GRPO from SFT 导致策略坍缩。训练 22/30 步后卡死在 step 23 rollout（环境交互死锁，GPU 0% 利用率但显存仍占 40GB×2）。关键指标全线恶化：train success 18.75%→4.69%（远低于 SFT baseline 20%），val success 始终 0%，entropy 0.107→0.042（坍缩 61%），pass@16 从 75%降到 25%。GRPO 不仅未提升 SFT 性能，反而严重退化。根因分析：sparse reward（won=10.0）学习信号不足以维持 SFT 学到的 task knowledge，KL coef=0.1 不足以约束策略偏移。Checkpoint: /root/autodl-tmp/checkpoints/exp020b/global_step_20/\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp020b/global_step_20/\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp020b_grpo_from_sft.log\", \"completed_at\": \"2026-05-15T01:01:53.408Z\"}, \"exp020_grpo_from_sft\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:07:16.290Z\", \"updated_at\": \"2026-05-14T22:11:05.341Z\", \"hypothesis\": \"GRPO from exp019b SFT checkpoint (20% success baseline) can maintain or improve success rate. Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%.\", \"parent\": \"exp019b_expert_sft_v3\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p \\\\$TMPDIR && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && export RAY_memory_monitor_refresh_ms=0 && export RAY_SYSTEM_MEMORY=210000000000 && export HYDRA_FULL_ERROR=1 && export CUDA_VISIBLE_DEVICES=0,1 && mkdir -p /root/autodl-tmp/checkpoints/exp020/ && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name _alfworld_exp018_sft_grpo model_path=/root/autodl-tmp/checkpoints/exp019b_expert_sft_v3/final trainer.experiment_name=exp020-alfworld-sft-grpo trainer.local_log_dir=/root/autodl-tmp/checkpoints/exp020/ trainer.default_local_dir=/root/autodl-tmp/checkpoints/exp020/ es_manager.val.env_groups=4 'es_manager.val.env_configs.n_groups=[4]'\\\"\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"385383\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp020_grpo_from_sft.log\", \"submitted_at\": \"2026-05-14T22:08:41.040Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 41.7, \"gpu_hours\": 0.02}, \"reproduce\": {\"finished_at\": \"2026-05-14T22:09:21.956Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-14T22:09:22.710Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T22:09:23.776796+00:00\"}]}, \"notes\": \"失败原因: AssertionError at train.py:137 — model_path=/root/autodl-tmp/checkpoints/exp019b_expert_sft_v3/final 不含 \\\"qwen\\\" 字符串，enable_response_mask=true 断言失败。模型实际是 Qwen3-1.7B 微调 checkpoint，路径命名问题。error_type=infrastructure | 建议: 创建含 \\\"qwen\\\" 的 symlink 或添加 enable_response_mask=false override 后重提交\"}, \"exp019b_expert_sft_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:30:00.085Z\", \"updated_at\": \"2026-05-14T22:06:40.479Z\", \"spec\": {\"command\": \"nohup bash /root/cost-verify-agent-rl/scripts/run_exp019b.sh > /tmp/exp019b.log 2>&1\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\"], \"pid\": \"379367\", \"log_path\": \"/tmp/exp019b.log\", \"submitted_at\": \"2026-05-14T20:54:00.000Z\", \"submitted_via\": \"nohup\", \"backend\": \"nohup\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/expert_sft_v3/expert_sft_train.jsonl\", \"data_count\": 2546, \"model_name\": \"Qwen3-1.7B (from exp008_sft/final)\", \"seed\": 42, \"wall_clock_seconds\": 2964.6, \"gpu_hours\": 0.82}, \"server\": \"bjb1-17606\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"pid\": \"379367\", \"log_path\": \"/tmp/exp019b.log\", \"hypothesis\": \"Two-stage Expert SFT: exp008_sft checkpoint + v3 data (original move actions + admissible actions). LR=5e-6, 2 epochs, batch=4, grad_accum=4, max_seq=4096. Pass: success>=10%, format_ok>=90%, action_is_valid>=85%.\", \"notes\": \"训练成功完成 320/320 steps (2 epochs, 47:49)。Cron 多次误报 failed（监控错误 PID / 无法区分正常退出与崩溃）。Checkpoint: /root/autodl-tmp/checkpoints/exp019b_expert_sft_v3/final/\", \"reproduce\": {\"finished_at\": \"2026-05-14T21:43:23.788Z\"}, \"failure_reason\": \"\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T21:43:24.618Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T21:43:25.640262+00:00\"}]}, \"metrics\": {\"train_loss\": 0.0718, \"eval_loss\": 0.0428, \"eval_mean_token_accuracy\": 0.9869, \"train_runtime_seconds\": 2869.8, \"steps\": 320, \"epochs\": 2, \"eval_success_rate\": 0.2, \"eval_format_ok\": 1, \"eval_action_is_valid\": 0.8533, \"eval_episodes\": 20, \"eval_avg_steps\": 25.4, \"eval_time_seconds\": 146}}, \"exp019c_expert_sft_v3\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:03:02.685Z\", \"updated_at\": \"2026-05-14T21:05:37.494Z\", \"hypothesis\": \"Two-stage Expert SFT（重试）: 从 exp008_sft checkpoint 出发，用 v3 数据（保留原始 move actions + admissible actions augmentation）微调。LR=5e-6, 2 epochs, batch=4, grad_accum=4, max_seq=4096。Pass: success ≥ 10%, format_ok ≥ 90%, action_is_valid ≥ 85%。\", \"parent\": \"exp019b_expert_sft_v3\", \"spec\": {\"command\": \"bash -c \\\"rm -rf /root/autodl-tmp/checkpoints/exp019b_expert_sft_v3 && > /root/runs/cost-verify-agent-rl/exp019b_expert_sft_v3.log && cd /root/cost-verify-agent-rl && bash scripts/run_exp019b.sh\\\"\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp019c_expert_sft_v3.log\", \"submitted_at\": \"2026-05-14T21:03:15.877Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"notes\": \"废弃。submit_training_job 因 GPU 被占（exp019b nohup 进程仍在跑）EXIT_CODE=1 退出。实际训练由 exp019b 的 nohup 进程完成。\", \"conclusion\": \"killed\"}, \"exp019_expert_sft_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T16:38:05.515Z\", \"updated_at\": \"2026-05-14T17:11:09.024Z\", \"spec\": {\"hypothesis\": \"两阶段 SFT：从 exp008_sft checkpoint（format_ok=100%, action_is_valid=90%）出发，用格式修复后的 expert trajectory 数据微调。降低 LR=5e-6（防遗忘 format），2 epochs。目标：success ≥ 10% 且 format_ok ≥ 90%。\", \"parent\": \"exp008_sft\", \"model_name\": \"Qwen3-1.7B\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/exp008_sft/final\", \"command\": \"bash scripts/run_exp019.sh\", \"server\": \"bjb1-17606\", \"data_path\": \"/root/autodl-tmp/expert_sft_v2/expert_sft_train.jsonl\", \"data_count\": 2460, \"seed\": 42, \"description\": \"D018: B+C 方案 — move→put 修复 + 从 exp008_sft checkpoint 微调, LR=5e-6, 2 epochs\"}, \"server\": \"bjb1-17606\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"bjb1-17606\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-14T16:47:11.532Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl && bash scripts/run_exp019.sh\\\"\", \"finished_at\": \"2026-05-14T16:57:30.058Z\", \"training_hours\": 0.17}, \"pid\": \"366040\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp019_expert_sft_v2.log\", \"conclusion\": \"killed\", \"notes\": \"D019 kill：move→put 替换方向错误。ALFWorld admissible_commands 包含 move X to Y，不含 put。用 put 替换的数据会使 action_is_valid 更差。改用原始 expert data（保留 move）+ admissible actions augmentation。\", \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"completed_at\": \"2026-05-14T16:57:30.447Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T16:57:31.467540+00:00\"}]}, \"checkpoint_path\": \"INVALID — move→put 错误数据训练，已标记 _INVALID\"}, \"exp019b_expert_sft_v2\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T16:49:30.246Z\", \"updated_at\": \"2026-05-14T16:49:30.246Z\", \"spec\": {\"hypothesis\": \"两阶段 SFT：从 exp008_sft checkpoint（format_ok=100%, action_is_valid=90%）出发，用原始 expert data（保留 move X to Y）+ admissible actions augmentation 微调。LR=5e-6, 2 epochs。目标：success ≥ 10% 且 format_ok ≥ 90%。\", \"parent\": \"exp008_sft\", \"model_name\": \"Qwen3-1.7B\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/exp008_sft/final\", \"description\": \"D019: 修正版 — 原始 expert data (保留 move) + admissible actions + 从 exp008_sft checkpoint 微调\"}}, \"exp018_sft_grpo\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T15:43:08.545Z\", \"updated_at\": \"2026-05-14T16:45:33.314Z\", \"hypothesis\": \"Expert SFT → Sparse GRPO：从 exp017 SFT checkpoint 开始纯 sparse GRPO 训练。SFT 提升 baseline success rate（≥10%），使 GRPO 有足够非零 reward group 产生有效梯度。LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, won=10.0, 无 bonus/penalty, GRPO 30 步。Pass: success ≥ 20%。\", \"parent\": \"exp017_expert_sft\", \"conclusion\": \"killed\", \"notes\": \"D018 取消：exp017 eval 5% success 与 base 4.7% 差异太小，GRPO 大概率重蹈覆辙。等 exp019 v2 SFT（修复 move→put + admissible actions 数据增强）后再考虑 GRPO。\"}, \"exp017_expert_sft\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T15:36:28.291Z\", \"updated_at\": \"2026-05-14T16:36:17.637Z\", \"hypothesis\": \"Expert SFT: 用 PDDL expert trajectory 数据 SFT Qwen3-1.7B instruct 模型，提升 ALFWorld baseline success rate，为后续 GRPO 提供更好的冷启动点。LR=2e-5, 3 epochs, batch_size=4, grad_accum=4。Pass 标准: success ≥ 10%。\", \"parent\": \"exp008_sft\", \"spec\": {\"command\": \"bash scripts/run_expert_sft.sh\", \"server\": \"bjb1-17606\", \"data_path\": \"/root/autodl-tmp/expert_trajectories/sft_data/train.jsonl\", \"data_count\": 2460, \"model_name\": \"Qwen3-1.7B\", \"seed\": 42, \"checkpoint_source\": \"Qwen/Qwen3-1.7B (original instruct)\", \"eval_data\": \"ALFWorld 134 tasks eval after SFT\"}, \"conclusion\": \"success\", \"metrics\": {\"final_train_loss\": 0.1434, \"final_step_loss\": 0.04, \"final_token_accuracy\": 0.983, \"epochs\": 3, \"total_steps\": 462, \"training_time_min\": 26, \"data_count_train\": 2460, \"data_count_val\": 129, \"checkpoint_size_gb\": 3.44, \"eval_success_rate\": 0.05, \"eval_success\": \"1/20\", \"eval_action_is_valid\": 0.638, \"eval_format_ok\": 0.75, \"eval_avg_steps\": 22, \"eval_time_s\": 149.6, \"eval_per_task\": {\"put\": \"0/10\", \"clean\": \"0/4\", \"cool\": \"1/3\", \"heat\": \"0/2\", \"examine\": \"0/1\"}, \"eval_parse_failures\": \"5/20 episodes (EP 7/12/16/17/18)\"}, \"notes\": \"训练成功完成。Expert PDDL trajectory 2460 条 SFT Qwen3-1.7B，3 epochs 462 steps 26 min。Final loss=0.1434。Checkpoint: /root/autodl-tmp/checkpoints/exp017_expert_sft/final/ (3.44GB)。\\n\\nEval 结果（20 episodes, vLLM 推理, max_steps=30）：success=5% (1/20), action_is_valid=63.8%, format_ok=75%。唯一成功是 1 个 cool 任务（EP 8, 15 步）。5/20 episodes parse 失败（1 步即退出）。put 任务 0/10 全失败。\\n\\n对比 exp008_sft（1200 条普通 SFT）：action_is_valid 90%→63.8%（下降！）, format_ok 100%→75%（下降！）, success 0%→5%（略升）。Expert data SFT 提升了 success 但 format/valid 反而退步，可能因为 expert trajectory 格式与 RAGEN 的 &lt;think>/&lt;answer> 格式不完全匹配。\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp017_expert_sft/final/\", \"log_path\": \"/root/runs/cost-verify-agent-rl/exp017_expert_sft.log\", \"reproduce\": {\"finished_at\": \"2026-05-14T16:13:13.399Z\"}, \"failure_reason\": \"\", \"completed_at\": \"2026-05-14T16:13:13.805Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T16:13:17.574000+00:00\"}]}}, \"exp016\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:44:58.883Z\", \"updated_at\": \"2026-05-14T15:36:27.432Z\", \"hypothesis\": \"LR 折中方案：LR=5e-7（exp012b 1e-6 collapse vs exp015 1e-7 零梯度的中间值）。kl_loss_coef=0.1, max_grad_norm=1.0 保持。纯 sparse reward（won=10.0，无 bonus，无 format_penalty）。从 exp015/global_step_5 checkpoint 恢复，GRPO 30 步。\", \"parent\": \"exp015\", \"server\": \"bjb1-17606\", \"gpu\": \"cuda:0,cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"bjb1-17606\", \"gpu\": \"cuda:0,cuda:1\", \"started_at\": \"2026-05-14T13:52:42.492Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/cost-verify-agent-rl/scripts/run_exp016.sh\\\"\", \"finished_at\": \"2026-05-14T15:04:04.459Z\", \"training_hours\": 1.19}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/cost-verify-agent-rl/scripts/run_exp016.sh\\\"\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"343927\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp016.log\", \"submitted_at\": \"2026-05-14T13:53:45.002Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 4219.8, \"gpu_hours\": 2.34}, \"pid\": \"343927\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp016.log\", \"metrics\": {\"step\": 12, \"total_steps\": 30, \"elapsed_min\": 51, \"step6_success\": 0, \"step6_action_is_valid\": 0.521, \"step6_pg_loss\": 0, \"step6_grad_norm\": 0.841, \"step7_success\": 0.047, \"step7_pass_at16\": 0.5, \"step7_action_is_valid\": 0.655, \"step10_success\": 0, \"step10_action_is_valid\": 0.664, \"step10_pg_loss\": 0, \"step10_grad_norm\": 0.856, \"step10_entropy\": 0.1046, \"step10_ppo_kl\": -9.1e-05, \"all_raw_rewards\": 0, \"all_advantages\": 0, \"all_returns\": 0, \"reward_signal\": \"BROKEN — success episodes get reward=0\", \"action_is_valid_trend\": \"52.1%→65.5%→66.4%\", \"manager_invalid_action_trend\": \"13.5%→11.2%→9.6%\"}, \"conclusion\": \"failed\", \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"completed_at\": \"2026-05-14T15:04:04.809Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T15:04:05.813843+00:00\"}]}, \"notes\": \"D015 kill。训练 12 步，pg_loss 恒为 0。原因：base success ~4.7%（仅 val，train temperature=1.0 下接近 0%），纯 sparse reward 下 GRPO 无有效学习信号。raw_reward=0 是日志 artifact（info dict 缺 raw_reward 字段），实际训练 reward pipeline 正常（critic/score 正确传递，step 7 score/mean=0.46875=3/64×10.0）。NaiveRewardManager 是 pass-through，不覆盖 env reward。LR=5e-7 本身无问题，根因是 sparse reward 冷启动。\"}, \"exp015\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:48:38.065Z\", \"updated_at\": \"2026-05-14T13:44:57.940Z\", \"hypothesis\": \"Sparse GRPO + 训练稳定性修复。纯 sparse reward（won=10.0，无 valid_action_bonus，无 format_penalty）。针对 exp012b 的 step 7 catastrophic collapse（grad_norm 1.48→0.094），三项修复：LR 1e-7（降 10 倍防单步更新过激）、kl_loss_coef 0.1（增 10 倍约束策略偏移）、max_grad_norm=1.0（梯度裁剪）。从 exp008 step 5 checkpoint 恢复，GRPO 30 步。\", \"parent\": \"exp012b\", \"notes\": \"D014 kill。Steps 3-5 连续零梯度（pg_loss=0, grad_norm~0），LR=1e-7 过保守导致无有效学习。Step 0 val: action_is_valid=85.8%, success=0%。训练稳定性修复验证成功（无 catastrophic collapse），但学习率不足以产生有意义的 policy update。Checkpoint: global_step_5 已保存，供 exp016 恢复。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/cost-verify-agent-rl/scripts/run_exp015.sh\\\"\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"334692\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp015.log\", \"submitted_at\": \"2026-05-14T12:57:59.726Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 2818.2, \"gpu_hours\": 1.57}, \"server\": \"bjb1-17606\", \"gpu\": \"cuda:0,cuda:1\", \"pid\": \"334692\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp015.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/cost-verify-agent-rl/scripts/run_exp015.sh\\\"\", \"code_commit\": \"a6d0501af3c3936f11932b3735a7c9c85d2bc9ee\"}, \"metrics\": {\"step\": 1, \"total_steps\": 30, \"val_step0_success\": 0, \"val_step0_action_is_valid\": 0.858, \"val_step0_pass_at1\": 0, \"val_step0_episodic_return\": 0, \"val_step0_response_length\": 2797.5, \"val_train_transition\": \"passed\", \"estimated_total_time_min\": 163, \"time_per_step_min\": 5.6}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T13:44:57.940Z\"}, \"exp014b\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:45:27.876Z\", \"updated_at\": \"2026-05-14T12:48:37.433Z\", \"hypothesis\": \"极低 Dense Reward: valid_action_bonus=0.01（1:1000 比例），测试极弱 bonus 能否防 collapse 又不引发 gaming。如果 bonus 弱到不影响 GRPO reward ranking，模型不会被诱导走捷径。success_reward=10.0, format_penalty=0, 从 exp008 step 5 checkpoint 恢复, GRPO 30 步。\", \"parent\": \"exp013f\", \"conclusion\": \"killed\", \"notes\": \"D013 撤销：Director 修订决策，改为 exp015。exp014b 等 exp015 结果后再决定。\"}, \"exp014a\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:45:27.347Z\", \"updated_at\": \"2026-05-14T12:48:35.102Z\", \"hypothesis\": \"Success-Gated Dense Reward: valid_action_bonus=0.15 只在 group 内至少一条 trajectory success 时才给。消除 reward gaming 的独立最大化路径——没有 success 就没有 bonus，模型必须探索 success。success_reward=10.0, format_penalty=0, 从 exp008 step 5 checkpoint 恢复, GRPO 30 步。\", \"parent\": \"exp013f\", \"conclusion\": \"killed\", \"notes\": \"D013 撤销：Director 修订决策，success-gated bonus 有 bootstrap 问题（初始 success=0 时 bonus 永远为 0，退化为 sparse reward），改为 exp015 纯 sparse GRPO + 训练稳定性修复。\"}, \"exp014c\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:45:21.231Z\", \"updated_at\": \"2026-05-14T12:45:25.025Z\", \"hypothesis\": \"Success-gated valid_action_bonus：bonus 仅在 episode 成功时累加到 reward，消除独立最大化路径。valid_action_bonus=0.15, success_reward=10.0。解决 exp013f reward gaming（unconditional bonus 导致 agent 放弃 success 追求 valid action）。从 step 5 checkpoint 恢复 GRPO 30 步。\", \"parent\": \"exp013f\"}, \"exp013f\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T09:21:46.227Z\", \"updated_at\": \"2026-05-14T12:33:43.239Z\", \"hypothesis\": \"exp013e 崩溃修复。Director 诊断: (1) Ray MemoryMonitor 阈值 224GB > cgroup 220GB 导致资源管理错误 → RAY_memory_monitor_refresh_ms=0 禁用 (2) 15 个旧 Ray session 残留 → 全部清理 (3) RAY_SYSTEM_MEMORY=210GB 限制可见内存 (4) val env_groups 16→4 降低过渡压力 (5) HYDRA_FULL_ERROR=1 + Ray log 自动备份。Dense reward shaping (valid_action_bonus=0.15, kl_loss_coef=0.01), 从 step 5 checkpoint 恢复。\", \"parent\": \"exp013e\", \"spec\": {\"command\": \"bash /root/cost-verify-agent-rl/scripts/run_exp013f.sh\", \"server\": \"bjb1-17606\", \"data_path\": \"AlfworldSG_Dense (3553 train games)\", \"data_count\": 3553, \"model_name\": \"Qwen3-1.7B SFT (exp008_sft/final)\", \"seed\": 10000, \"pid\": 313810, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp013f/\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp013f.log\", \"description\": \"Dense reward GRPO with full Director fixes: RAY_memory_monitor_refresh_ms=0, RAY_SYSTEM_MEMORY=210GB, val env_groups 16→4, HYDRA_FULL_ERROR=1, Ray log auto-backup on crash. object_store_memory=30GB. From step 5 checkpoint.\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/exp008_grpo/global_step_5\", \"eval_data\": \"N/A - training experiment\"}, \"metrics\": {\"step\": 30, \"total_steps\": 30, \"completed\": true, \"exit_code\": 0, \"training_time_s\": 10683, \"step6_success\": 0.0156, \"step7_success\": 0.0781, \"step10_success\": 0, \"step17_success\": 0.0156, \"final_val_success\": 0, \"final_val_action_is_valid\": 0.975, \"final_val_action_is_effective\": 1, \"final_val_reward_mean_at4\": 4.388, \"final_val_reward_std_at4\": 0.195, \"final_val_reward_best_at4\": 4.499, \"final_val_pass_at1\": 0, \"action_is_valid_trend\": \"60%→65.9%→77.1%→97.5%\", \"success_trend\": \"0%→1.56%→7.81%→0%→1.56%→0%\", \"grad_norm_range\": \"1.7-2.9 (no collapse)\", \"conclusion_reason\": \"Dense reward gaming: model optimized valid_action_bonus (action_is_valid 60%→97.5%) but success stayed 0%. Reward ratio 1:67 too weak — cumulative valid_action_bonus (4.5) dominated learning signal vs sparse success_reward (10.0). GRPO collapse prevented but task completion not learned.\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T12:33:28.313Z\", \"notes\": \"30/30 步完成，EXIT_CODE=0。Dense reward shaping 成功解决了 exp012b 的 catastrophic collapse（grad_norm 稳定 1.7-2.9），但产生 reward gaming：模型最大化 valid_action_bonus 而非 success_reward。action_is_valid 60%→97.5%（学会合法命令），success 始终 0-8%（未学会完成任务）。final_val reward/mean@4=4.388 ≈ 29 valid_actions × 0.15，几乎无 success_reward 贡献。Disk warning: /root/autodl-tmp 95% full (4.1GB remaining)。Ray log 备份失败（脚本执行时 session 已清理）。Checkpoint: global_step_30 已保存。\"}, \"exp013e\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T09:02:52.837Z\", \"updated_at\": \"2026-05-14T09:21:08.911Z\", \"hypothesis\": \"exp013d 基础设施修复重试。Ray object_store_memory 改用 Hydra config override (ray_kwargs.ray_init.object_store_memory=32212254720) 替代无效的环境变量。其余同 exp013d: dense reward shaping (valid_action_bonus=0.15, kl_loss_coef=0.01, success_reward=10.0), env_groups=4, 从 step 5 checkpoint 恢复。\", \"parent\": \"exp013d\", \"spec\": {\"command\": \"python train.py --config-name _alfworld_exp013b_dense_reward trainer.experiment_name=exp013e-alfworld-dense-reward trainer.local_log_dir=/root/autodl-tmp/checkpoints/exp013e/ trainer.default_local_dir=/root/autodl-tmp/checkpoints/exp013e/\", \"server\": \"bjb1-17606\", \"data_path\": \"AlfworldSG_Dense (3553 train games)\", \"data_count\": 3553, \"model_name\": \"Qwen3-1.7B SFT (exp008_sft/final)\", \"seed\": 10000, \"pid\": 298696, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp013e/\", \"log_path\": \"/tmp/exp013e.log\", \"description\": \"Dense reward GRPO with Ray object_store_memory fix (30GB). Resume from exp008_grpo step 5. valid_action_bonus=0.15, kl_loss_coef=0.01, format_penalty=0, env_groups=4.\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/exp008_grpo/global_step_5\", \"eval_data\": \"N/A - training experiment\"}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-14T09:19:20.818Z\", \"notes\": \"ActorUnavailableError: RPC error: Socket closed rpc_code: 14。validation step 5 完成后向 training step 6 过渡时崩溃。诊断排除: cgroup OOM (oom_kill=0)、系统 OOM (dmesg 无记录)、CUDA OOM (无日志)、磁盘满 (118GB剩余)。Ray worker 日志被 ray stop --force 清除，最可能原因: vLLM worker 在 val→train 切换时的内存峰值或内部错误。object_store_memory=30GB 设置正确(train.py:203)。validation 指标: success=0, action_is_valid=0.656, reward_mean=2.953, reward_std=1.608。结论: 瞬态崩溃，可安全重提交。建议加 HYDRA_FULL_ERROR=1。\"}, \"exp013d\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T08:34:37.036Z\", \"updated_at\": \"2026-05-14T08:52:25.371Z\", \"hypothesis\": \"exp013b/c 内存修复重试。Dense reward shaping (valid_action_bonus=0.15) 已验证有效 (reward_std=1.608>0)。修复: env_groups 8→4 (64并发, 峰值~158GB < 220GB cgroup限制) + RAY_object_store_memory=30GB。\", \"parent\": \"exp013c\", \"notes\": \"RAY_object_store_memory env var 未生效，Ray 仍分配 70.36GB object store（默认值）。env_groups=4 生效但不够。Raylet 被 cgroup OOM killer SIGKILL。修复: 用 Hydra config override ray_kwargs.ray_init.object_store_memory=32212254720 显式传给 ray.init()。\", \"server\": \"bjb1-17606\", \"gpu\": \"cuda:0,cuda:1\", \"account\": \"root\", \"spec\": {\"command\": \"python train.py --config-name _alfworld_exp013b_dense_reward\", \"server\": \"bjb1-17606\", \"gpu\": \"cuda:0,cuda:1\", \"data_path\": \"/root/autodl-tmp/alfworld/\", \"data_count\": 3553, \"model_name\": \"Qwen3-1.7B (SFT warmup, resumed from GRPO step 5)\", \"seed\": 10000, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/exp008_grpo/global_step_5/\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp013d.log\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp013b_grpo/\", \"config\": \"_alfworld_exp013b_dense_reward.yaml\", \"hyperparams\": {\"valid_action_bonus\": 0.15, \"success_reward\": 10, \"format_penalty\": 0, \"kl_loss_coef\": 0.01, \"lr\": 1e-06, \"group_size\": 16, \"train_env_groups\": 4, \"RAY_object_store_memory\": \"30GB\"}}, \"pid\": \"272157\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp013d.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p \\\\$TMPDIR && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && export RAY_object_store_memory=30000000000 && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name _alfworld_exp013b_dense_reward\\\"\", \"finished_at\": \"2026-05-14T08:37:22.538Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-14T08:37:23.463Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T08:37:24.501932+00:00\"}]}}, \"exp013c\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T08:30:44.623Z\", \"updated_at\": \"2026-05-14T08:34:10.517Z\", \"hypothesis\": \"exp013b 基础设施重试。Dense reward shaping (valid_action_bonus=0.15 + success=10.0) 已验证有效 (reward_std=1.608>0)。exp013b 因 OOM/Ray 崩溃，非算法问题。\", \"parent\": \"exp013b\", \"notes\": \"预防性kill。诊断确认 exp013b 崩溃根因: cgroup 内存限制 220GB, Ray object_store 70GB + memory 164GB = 234GB 超限。128并发ALFWorld游戏(8 env_groups × 16 group_size)在 step 6 rollout 触发 Plasma mmap ENOMEM。exp013c 同配置会重现。修复: env_groups 8→4 + RAY_object_store_memory=30GB。\", \"server\": \"bjb1-17606\", \"gpu\": \"cuda:0,cuda:1\", \"account\": \"root\", \"spec\": {\"command\": \"python train.py --config-name _alfworld_exp013b_dense_reward\", \"server\": \"bjb1-17606\", \"gpu\": \"cuda:0,cuda:1\", \"data_path\": \"/root/autodl-tmp/alfworld/\", \"data_count\": 3553, \"model_name\": \"Qwen3-1.7B (SFT warmup, resumed from GRPO step 5)\", \"seed\": 10000, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/exp008_grpo/global_step_5/\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp013c.log\", \"checkpoint_path\": \"none\", \"config\": \"_alfworld_exp013b_dense_reward.yaml\", \"hyperparams\": {\"valid_action_bonus\": 0.15, \"success_reward\": 10, \"format_penalty\": 0, \"kl_loss_coef\": 0.01, \"lr\": 1e-06, \"group_size\": 16}}, \"pid\": \"264217\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp013c.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p \\\\$TMPDIR && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name _alfworld_exp013b_dense_reward\\\"\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T08:34:10.517Z\"}, \"exp013b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T08:15:44.247Z\", \"updated_at\": \"2026-05-14T08:27:21.850Z\", \"hypothesis\": \"Dense reward shaping: valid_action_bonus=0.15 per valid action + success_reward=10.0 + kl_loss_coef=0.01。每步有效动作获得 0.15 奖励提供持续 GRPO 学习信号（30步累计上限4.5 vs 终局10.0），KL 约束防止 policy 过激更新。format_penalty=0，从 step 5 checkpoint 恢复 GRPO 30 步。\", \"parent\": \"exp013\", \"notes\": \"Dense reward shaping 有效性已确认：val reward_mean=2.953, reward_std=1.608 (>0)。崩溃是基础设施问题（OOM/Ray），非算法问题。清理后重试。超参: valid_action_bonus=0.15, kl_loss_coef=0.01, success_reward=10.0, format_penalty=0, group_size=16。\", \"server\": \"bjb1-17606\", \"gpu\": \"cuda:0,cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"bjb1-17606\", \"gpu\": \"cuda:0,cuda:1\", \"started_at\": \"2026-05-14T08:17:09.149Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p \\\\$TMPDIR && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name _alfworld_exp013b_dense_reward\\\"\", \"finished_at\": \"2026-05-14T08:24:45.209Z\", \"training_hours\": 0.13}, \"spec\": {\"command\": \"python train.py --config-name _alfworld_exp013b_dense_reward\", \"server\": \"bjb1-17606\", \"gpu\": \"cuda:0,cuda:1\", \"data_path\": \"/root/autodl-tmp/alfworld/\", \"data_count\": 3553, \"model_name\": \"Qwen3-1.7B (SFT warmup, resumed from GRPO step 5)\", \"seed\": 10000, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/exp008_grpo/global_step_5/\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp013b.log\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp013b_grpo/\", \"config\": \"_alfworld_exp013b_dense_reward.yaml\", \"hyperparams\": {\"valid_action_bonus\": 0.15, \"success_reward\": 10, \"format_penalty\": 0, \"kl_loss_coef\": 0.01, \"lr\": 1e-06, \"group_size\": 16}}, \"pid\": \"258987\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp013b.log\", \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-14T08:24:46.177Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T08:24:47.218414+00:00\"}]}}, \"exp013\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T08:02:52.275Z\", \"updated_at\": \"2026-05-14T08:04:35.100Z\", \"hypothesis\": \"Dense reward shaping (valid_action_bonus=0.5 + success_reward=10.0) 解决 sparse binary reward 冷启动死锁。每步有效动作获得 0.5 奖励提供持续学习信号，终局 success 保留 10.0 大奖引导任务完成。\", \"parent\": \"exp012b\", \"notes\": \"D011驳回纯KL方案。Director要求dense reward shaping: valid_action_bonus=0.5 + success_reward=10.0 (1:20比值)。需改reward function代码（env.py或es_manager.py），不只是yaml config。format_penalty=0保持，从step 5恢复。\", \"conclusion\": \"killed\", \"spec\": {\"checkpoint_path\": \"none\", \"log_path\": \"none\"}, \"completed_at\": \"2026-05-14T08:04:35.100Z\"}, \"exp012b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T06:44:22.570Z\", \"updated_at\": \"2026-05-14T07:57:46.417Z\", \"hypothesis\": \"format_penalty=0 + group_size=16，从 step 5 checkpoint 恢复 GRPO 训练。纯 A2 实验（D010）：隔离 format penalty 对 success 崩塌的影响。exp012 的基础设施修复重试（vLLM 参数兼容已修复）。\", \"parent\": \"exp012\", \"notes\": \"D011 kill。step 6 success=8.59%（优于 exp010 的 4.7%），但 step 7 catastrophic collapse: success→0%, grad_norm 1.48→0.09, pg_loss→0。根因：GRPO 单步 policy update 过激，跳出有 success 的分布区域。Reward fix (format_penalty=0) 延缓了 1 步但未解决根因。下一步 exp013: 降 LR 1e-6 + kl_coef 0.05 稳定训练。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p \\\\$TMPDIR && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name _alfworld_exp012_reward_fix\\\"\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"233689\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp012b.log\", \"submitted_at\": \"2026-05-14T06:45:43.279Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp012_grpo/\", \"wall_clock_seconds\": 4293.6, \"gpu_hours\": 2.39}, \"server\": \"bjb1-17606\", \"gpu\": \"cuda:0,cuda:1\", \"account\": \"root\", \"pid\": \"233689\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp012b.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p \\\\$TMPDIR && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name _alfworld_exp012_reward_fix\\\"\", \"code_commit\": \"20daedc47558e000f7de912b060646bf2e8026bd\"}, \"metrics\": {\"step\": 8, \"total_steps\": 30, \"step6_success\": 0.0859, \"step6_action_is_valid\": 0.613, \"step6_pass_at_16\": 0.5, \"step6_ppo_kl\": 0.0039, \"step6_entropy\": 0.1006, \"step6_grad_norm\": 1.477, \"step7_success\": 0, \"step7_action_is_valid\": 0.685, \"step7_pass_at_16\": 0, \"step7_pg_loss\": 0, \"step7_ppo_kl\": 0.00439, \"step7_entropy\": 0.0904, \"step7_grad_norm\": 0.094, \"trend\": \"success 8.6%→0% collapse at step 7 (same pattern as exp010, delayed 1 step). grad_norm 1.477→0.094, pg_loss→0. Reward fix delayed but did not prevent collapse.\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T07:57:16.833Z\"}, \"exp012\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T06:24:24.322Z\", \"updated_at\": \"2026-05-14T06:32:18.431Z\", \"hypothesis\": \"format_penalty=0 + group_size=16 解决 exp010/011 中 format penalty 劫持 GRPO 梯度导致 success 崩塌的问题。从 step 5 checkpoint 恢复，预期 success rate 能持续上升而非崩塌。\", \"parent\": \"exp011\", \"notes\": \"D010指令：纯A2实验，隔离变量。format_penalty=0（非-0.01），不含valid-action bonus，env.py保持原始二值reward（won=10.0/otherwise 0）。group_size=16, resume from step 5。\\n\\n失败原因: vLLM 版本兼容问题。agent_proxy.py:69 传 `disable_mm_preprocessor_cache` 给 vLLM LLM()，但服务器安装的 vLLM 版本不支持此参数。TypeError at EngineArgs.__init__()。启动即崩溃，无训练数据。\\n\\n诊断 Worker: worker_diagnose_exp012_20260514T063149 正在修复。error_type=infrastructure。\", \"server\": \"bjb1-17606\", \"gpu\": \"cuda:0,cuda:1\", \"account\": \"root\", \"spec\": {\"command\": \"python -m ragen.llm_agent.agent_proxy --config-name _alfworld_exp012_reward_fix\", \"server\": \"bjb1-17606\", \"gpu\": \"cuda:0,cuda:1\", \"data_path\": \"/root/autodl-tmp/alfworld/\", \"data_count\": 3553, \"model_name\": \"Qwen3-1.7B (SFT warmup, resumed from GRPO step 5)\", \"seed\": 10000, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/exp008_grpo/global_step_5/\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp012.log\", \"checkpoint_path\": \"none\", \"config\": \"_alfworld_exp012_reward_fix.yaml\", \"changes_from_parent\": \"format_penalty: -0.1→0, group_size: 8→16, resume from step 5 instead of step 10\"}, \"pid\": \"221683\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp012.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p \\\\$TMPDIR && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && cd /root/cost-verify-agent-rl/RAGEN && python -m ragen.llm_agent.agent_proxy --config-name _alfworld_exp012_reward_fix\\\"\", \"finished_at\": \"2026-05-14T06:30:05.818Z\"}, \"failure_reason\": \"Traceback →  = LLM( ^^^^ File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/entrypoints/llm.py\\\", line 342, in __init__ engine_args = EngineArgs( ^^^^^^^^^^^ TypeError: EngineArgs.__init__() got an unexpected keyword argument 'disable_mm_preprocessor_cache'\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-14T06:30:06.373Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T06:30:07.545912+00:00\"}]}}, \"exp011\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:16:54.748Z\", \"updated_at\": \"2026-05-14T06:26:41.225Z\", \"spec\": {\"command\": \"python train.py --config-name=_alfworld_exp008_sft_grpo trainer.resume_mode=resume_path trainer.resume_from_path=/root/autodl-tmp/checkpoints/exp008_grpo/global_step_10 trainer.default_local_dir=/root/autodl-tmp/checkpoints/exp011_grpo/ trainer.local_log_dir=/root/autodl-tmp/checkpoints/exp011_grpo/ trainer.experiment_name=exp011-alfworld-sft-grpo-resume\", \"server\": \"bjb1-17606\", \"data_path\": \"/root/autodl-tmp/alfworld/\", \"data_count\": 3553, \"model_name\": \"Qwen3-1.7B (SFT warmup, resumed from step 10)\", \"seed\": 10000, \"hypothesis\": \"Resume GRPO from step 10 checkpoint with /tmp fix. Same hypothesis as exp010: GRPO with SFT-warmed Qwen3-1.7B achieves success_rate >= 76% on ALFWorld\", \"parent\": \"exp010\", \"log_path\": \"/root/autodl-tmp/exp011_grpo.log\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp011_grpo/\", \"gpu\": \"cuda:0, cuda:1\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T05:56:45.332Z\", \"notes\": \"D007决定kill: reward shaping问题导致success崩塌(format penalty劫持GRPO梯度)。D008确认A2(降format_penalty)为P0。下一步: exp012修改reward function后从step 5 checkpoint恢复。\"}, \"exp010\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T03:45:56.628Z\", \"updated_at\": \"2026-05-14T05:28:54.984Z\", \"spec\": {\"command\": \"python train.py --config-name=_alfworld_exp008_sft_grpo\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"199389\", \"log_path\": \"/root/autodl-tmp/exp010_grpo.log\", \"submitted_at\": \"2026-05-14T03:45:56.604Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"hypothesis\": \"GRPO with SFT-warmed Qwen3-1.7B can learn ALFWorld task-solving strategy from environment reward, achieving success_rate >= 76%\", \"model_name\": \"Qwen3-1.7B (SFT warmup)\", \"description\": \"Phase A GRPO with SFT checkpoint. Config: _alfworld_exp008_sft_grpo.yaml, symlink qwen3_sft_final, save_freq=5, RAY_TMPDIR explicit.\", \"decision\": \"D006\", \"data_path\": \"/root/autodl-tmp/alfworld/\", \"data_count\": 3553, \"seed\": 10000, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp008_grpo/\", \"wall_clock_seconds\": 4825.2, \"gpu_hours\": 2.68}, \"metrics\": {\"step\": 11, \"total_steps\": 30, \"crash_reason\": \"/tmp disk full (fast_downward libdownward.so)\", \"initial_val_action_is_valid\": 0.652, \"initial_val_success\": 0, \"step1_success\": 0.047, \"step1_pass_at_8\": 0.375, \"step1_action_is_valid\": 0.588, \"step10_success\": 0, \"step10_pass_at_8\": 0, \"step10_action_is_valid\": 0.683, \"step5_ppo_kl\": 0.00158, \"step5_entropy\": 0.1, \"trend\": \"action_is_valid improving (58.8%→68.3%) but success collapsing (4.7%→0%)\", \"checkpoint_saved\": \"global_step_10\"}, \"notes\": \"Step 11 崩溃: /tmp磁盘满(fast_downward libdownward.so, 与exp007相同根因)。TMPDIR已修复。关键问题: success 4.7%→0%, pass@8 37.5%→0% (学习信号问题), 但action_is_valid 58.8%→68.3% (模型在学合法命令但非任务完成)。Director要求先分析reward shaping再决定是否恢复训练。\", \"reproduce\": {\"finished_at\": \"2026-05-14T05:06:20.766Z\"}, \"failure_reason\": \"OSError: No space left on device - fast_downward copies libdownward.so to /tmp (root partition full, 30GB). Same root cause as exp007 but different trigger path. Fix: set TMPDIR=/root/autodl-tmp/tmp\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-14T05:06:21.848Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T05:06:22.885741+00:00\"}]}}, \"exp009\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-14T03:35:13.150Z\", \"updated_at\": \"2026-05-14T04:28:35.845Z\", \"reproduce\": {\"finished_at\": \"2026-05-14T03:39:35.514Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T03:39:36.501130+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"metrics\": {\"status\": \"training_never_started\", \"completed_steps\": 0, \"total_steps\": 30, \"error\": \"AssertionError: enable_response_mask path check failed for SFT checkpoint path\"}, \"notes\": \"第1次启动即失败: AssertionError response mask only supported for qwen/llama-3 — SFT checkpoint 路径 .../exp008_sft/final 不含 \\\"qwen\\\"。修复: 创建 symlink /root/autodl-tmp/checkpoints/qwen3_sft_final → final，保留 response_mask。\"}}, \"notes\": \"第1次: 启动即失败(response_mask断言)。第2次: 与exp010资源冲突(双GRPO同时跑cuda:0+1, 写同一checkpoint目录), 手动终止保留exp010。\", \"completed_at\": \"2026-05-14T03:42:46.557Z\", \"spec\": {\"hypothesis\": \"GRPO with SFT-warmed Qwen3-1.7B can learn ALFWorld task-solving strategy from environment reward, achieving success_rate >= 76%\", \"model_name\": \"Qwen3-1.7B (SFT warmup)\", \"description\": \"Phase A GRPO retry: symlink fix for response_mask, RAY_TMPDIR explicit in command, save_freq=5\", \"decision\": \"D006\", \"command\": \"python train.py --config-name=_alfworld_exp008_sft_grpo\", \"server\": \"bjb1-17606\", \"data_path\": \"/root/autodl-tmp/alfworld/\", \"data_count\": 3553, \"seed\": 10000, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp008_grpo/\", \"log_path\": \"/root/autodl-tmp/exp009_grpo.log\"}, \"conclusion\": \"failed\"}, \"exp008_sft\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T03:04:47.496Z\", \"updated_at\": \"2026-05-14T03:41:45.150Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python /root/cost-verify-agent-rl/scripts/sft_train.py\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\"], \"pid\": \"192546\", \"log_path\": \"/root/autodl-tmp/exp008_sft_v2.log\", \"submitted_at\": \"2026-05-14T03:21:15.615Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"hypothesis\": \"SFT warmup on ALFWorld trajectories teaches Qwen3-1.7B valid command semantics\", \"model_name\": \"Qwen3-1.7B\", \"data_path\": \"/root/autodl-tmp/sft_data/alfworld_sft_ragen.jsonl\", \"data_count\": 1200, \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp008_sft/final\", \"wall_clock_seconds\": 990.8, \"gpu_hours\": 0.28}, \"notes\": \"SFT 转换脚本修复后重跑成功。Eval 方法: 独立脚本 eval_sft_model.py, 4 episodes (seed=0,1,2,3), HF generate() + AlfredTXTEnv, cuda:1, max_steps=50。action_is_valid=90% (180/200 actions), format_ok=100%, success_rate=0%。完整 50-episode eval 未完成（为 GRPO 让出 GPU）。\", \"conclusion\": \"success\", \"metrics\": {\"action_is_valid\": 0.9, \"format_ok\": 1, \"success_rate\": 0, \"final_loss\": 0.069, \"final_token_accuracy\": 0.973, \"data_count\": 1200, \"epochs\": 3, \"total_steps\": 225, \"training_time_s\": 576}, \"completed_at\": \"2026-05-14T03:37:46.382Z\"}, \"exp008\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T03:01:53.741Z\", \"updated_at\": \"2026-05-14T03:04:43.138Z\", \"spec\": {\"hypothesis\": \"SFT warmup on ALFWorld trajectories teaches Qwen3-1.7B valid command semantics, enabling GRPO to bootstrap from non-sparse reward\", \"parent\": \"exp007\", \"model_name\": \"Qwen3-1.7B\", \"description\": \"Phase A retry: SFT warmup (public dataset, format conversion) → GRPO training. Two stages: (1) SFT on ALFWorld trajectories to learn command format+semantics, (2) GRPO with SFT checkpoint\"}, \"conclusion\": \"killed\", \"notes\": \"Director 撤回：LR 5e-6 方案不对，问题是命令语义缺失。改为 SFT warmup (D006)\"}, \"exp007\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T00:12:06.008Z\", \"updated_at\": \"2026-05-14T03:00:29.952Z\", \"spec\": {\"hypothesis\": \"Parser fix + prompt enhancement + speed optimization (collapse_detection off) enables GRPO learning signal with <50% invalid_action\", \"model_name\": \"Qwen3-1.7B\", \"server\": \"bjb1-17606\", \"data_path\": \"ALFWorld train split (3553 games)\", \"data_count\": 3553, \"seed\": 10000, \"description\": \"Phase A fixed: parser adapts Qwen3 format (fallback regex) + prompt enhancement (direct ALFWorld commands) + collapse_detection off + 30 steps + 64 traj/step + 30 max_turns\", \"parent\": \"exp003\", \"command\": \"python train.py (GRPO, Qwen3-1.7B, ALFWorld)\", \"checkpoint_path\": \"N/A (no checkpoint saved)\", \"log_path\": \"/root/autodl-tmp/exp007_formal.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T02:51:31.895Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T02:51:33.256865+00:00\"}]}, \"conclusion\": \"failed\", \"metrics\": {\"steps_completed\": 10, \"steps_planned\": 30, \"crash_reason\": \"OSError: No space left on device (/tmp)\", \"final_success_rate\": 0.0625, \"final_action_is_valid\": 0.0835, \"final_manager_invalid_action\": 0.0156, \"final_pass_at_8\": 0.375, \"final_pg_loss\": 0.00117, \"final_ppo_kl\": 0.00127, \"final_entropy\": 0.057, \"final_score_mean\": 0.578, \"dryrun_action_is_valid\": 0.054, \"dryrun_invalid_action\": 0.065, \"training_time_s\": 6739}, \"completed_at\": \"2026-05-14T02:58:07.012Z\", \"notes\": \"失败原因: (1) 基础设施: step 10时/tmp磁盘满(Ray session文件占满30GB根分区) (2) 学习信号: action_is_valid 8.4% < 10% kill阈值, GRPO无法从稀疏reward bootstrap有效ALFWorld命令 | 已有成果: parser fix验证成功(invalid_action 95%→1.6%), 速度优化验证成功(95min→12min/step) | 建议: SFT warmup教模型ALFWorld命令语义后再接GRPO\"}, \"exp007_dryrun\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T00:19:04.596Z\", \"updated_at\": \"2026-05-14T00:19:04.596Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name=_alfworld_exp007_dryrun 2>&1 | tee /root/autodl-tmp/exp007_dryrun.log\\\"\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"172463\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp007_dryrun.log\", \"submitted_at\": \"2026-05-14T00:19:04.582Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"exp003\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T21:39:20.081Z\", \"updated_at\": \"2026-05-14T00:08:23.334Z\", \"spec\": {\"hypothesis\": \"Always-on self-guidance via GRPO can achieve >=76% on ALFWorld with prompt truncation\", \"model_name\": \"Qwen3-1.7B\", \"server\": \"bjb1-17606\", \"data_path\": \"/root/autodl-tmp/alfworld/\", \"data_count\": \"3553 (train split)\", \"seed\": {\"train\": 10000, \"val\": 123}, \"description\": \"Phase A v3: prompt truncation + 128 traj/step + 100 steps + 50 max_turns\", \"command\": \"python train.py --config-name=_alfworld_exp003\", \"failure_reason\": \"Bootstrap failure: Qwen3-1.7B base不生成&lt;answer>标签，原生格式为&lt;think>...&lt;/think>+直接文本。RAGEN正则&lt;think>(.*?)&lt;/think>\\\\s*&lt;answer>(.*?)&lt;/answer>匹配失败→actions=[]→invalid_action=95.3%, pg_loss≈0。32/32样本确认。\", \"checkpoint_path\": \"N/A\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp003.log\", \"diagnosis_report\": \"artifacts/exp003/report/exp003_invalid_action_diagnosis.md\"}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-14T00:08:23.334Z\"}, \"exp005\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T23:23:20.655Z\", \"updated_at\": \"2026-05-13T23:23:20.655Z\", \"spec\": {\"hypothesis\": \"Fast config (30 steps, 64 traj/step, 30 max_turns) can show learning trend in ~12-20h\", \"model_name\": \"Qwen3-1.7B\", \"server\": \"bjb1-17606\", \"data_path\": \"/root/autodl-tmp/alfworld/\", \"data_count\": \"3553 (train split)\", \"seed\": {\"train\": 10000, \"val\": 123}, \"parent\": \"exp003\", \"description\": \"Phase A fast: reduced config for quicker iteration\"}}, \"exp_003\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T21:01:51.727Z\", \"updated_at\": \"2026-05-13T22:04:11.399Z\", \"spec\": {\"hypothesis\": \"Always-on self-guidance via GRPO can achieve ≥76% on ALFWorld with proper prompt truncation (max_prompt_length=4096)\", \"model_name\": \"Qwen3-1.7B\", \"server\": \"bjb1-17606\", \"data_path\": \"/root/autodl-tmp/alfworld/\", \"data_count\": 8810, \"seed\": 42, \"parent\": \"exp_002\", \"description\": \"Phase A v3: add prompt truncation (max_prompt_length=4096) matching Self-Guide paper\"}, \"conclusion\": \"failed\"}, \"exp_003_dryrun\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T21:07:02.905Z\", \"updated_at\": \"2026-05-13T21:44:30.297Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name=_alfworld_exp003_dryrun 2>&1 | tee /root/autodl-tmp/exp003_dryrun.log\\\"\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"132166\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp_003_dryrun.log\", \"submitted_at\": \"2026-05-13T21:09:26.351Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"failed\"}, \"exp_003_dryrun2\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T21:22:01.436Z\", \"updated_at\": \"2026-05-13T21:44:29.827Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && export RAY_DISABLE_DASHBOARD_AGENT=1 && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name=_alfworld_exp003_dryrun 2>&1 | tee /root/autodl-tmp/exp003_dryrun2.log\\\"\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"137760\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp_003_dryrun2.log\", \"submitted_at\": \"2026-05-13T21:22:01.428Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"failed\"}, \"exp003_dryrun3\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T21:26:41.066Z\", \"updated_at\": \"2026-05-13T21:44:28.884Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name=_alfworld_exp003_dryrun\\\"\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"149365\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp003_dryrun3.log\", \"submitted_at\": \"2026-05-13T21:26:41.056Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"failed\"}, \"exp_003_dryrun3\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T21:27:05.011Z\", \"updated_at\": \"2026-05-13T21:44:27.949Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && export RAY_DISABLE_DASHBOARD_AGENT=1 && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name=_alfworld_exp003_dryrun 2>&1 | tee /root/autodl-tmp/exp003_dryrun3.log\\\"\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"152820\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp_003_dryrun3.log\", \"submitted_at\": \"2026-05-13T21:27:05.002Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"failed\"}, \"exp_002\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T19:28:16.342Z\", \"updated_at\": \"2026-05-13T21:22:13.213Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && ALFWORLD_DATA=/root/autodl-tmp/alfworld CUDA_VISIBLE_DEVICES=0,1 python train.py --config-name _alfworld_exp002\\\"\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"138870\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp_002.log\", \"submitted_at\": \"2026-05-13T21:22:13.205Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T21:01:03.160Z\"}, \"exp_001b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T19:14:10.718Z\", \"updated_at\": \"2026-05-13T19:29:05.714Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && ALFWORLD_DATA=/root/autodl-tmp/alfworld CUDA_VISIBLE_DEVICES=0,1 python train.py --config-name _alfworld_exp001b\\\"\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"93789\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp_001b.log\", \"submitted_at\": \"2026-05-13T19:15:38.523Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"failure_reason\": \"Same bootstrap failure as exp_001: base model (Qwen3-1.7B) cannot produce &lt;think>/&lt;answer> format. pg_loss≈0, KL=0, 95.6% invalid actions. Killed at step 4/50.\", \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 807.2, \"gpu_hours\": 0.45}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T19:29:05.714Z\"}, \"exp_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T18:26:40.715Z\", \"updated_at\": \"2026-05-13T19:13:39.086Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && ALFWORLD_DATA=/root/autodl-tmp/alfworld CUDA_VISIBLE_DEVICES=0,1 python train.py --config-name _alfworld_exp001\\\"\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"87845\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp_001.log\", \"submitted_at\": \"2026-05-13T18:34:53.576Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A\", \"failure_reason\": \"ValueError: decoder prompt (4096 tokens) + output tokens > max_model_len (4096). Multi-turn rollout prompt exceeded limit at step 7.\", \"wall_clock_seconds\": 2325.5, \"gpu_hours\": 1.29}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T19:13:39.086Z\"}}, \"count\": 55, \"total\": 55, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1384}}"
+    }
+  },
+  "sourceToolAssistantUUID": "55a96b09-5c97-4d5a-b864-d8ddeca2bc1d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_3814f310",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-16T03:04:45.933Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01VCtSXmNnrYjsiXeZHp2UA2`</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "file": "report.md",
+  "max_chars": 12000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "072a885a-5929-44f6-91e7-f79c398457ec",
+  "isSidechain": false,
+  "requestId": "req_011Cb5WLczND9Gx7Z4o9n4Lr",
+  "type": "assistant",
+  "uuid": "5b646537-299a-43c7-83e9-1b904080d8cd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_3814f310",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014sRB7HyG9JeD587YXFos6Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1589,
+      "cache_read_input_tokens": 35903,
+      "output_tokens": 424,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1589,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 424,
+          "cache_read_input_tokens": 35903,
+          "cache_creation_input_tokens": 1589,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1589
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-16T03:04:46.387Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap · `toolu_01FjrYYgC8u2ToYMTZqawRe7`</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b646537-299a-43c7-83e9-1b904080d8cd",
+  "isSidechain": false,
+  "requestId": "req_011Cb5WLczND9Gx7Z4o9n4Lr",
+  "type": "assistant",
+  "uuid": "12a99955-c500-4cf6-9744-1368221646d9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_3814f310",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014sRB7HyG9JeD587YXFos6Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1589,
+      "cache_read_input_tokens": 35903,
+      "output_tokens": 424,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1589,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 424,
+          "cache_read_input_tokens": 35903,
+          "cache_creation_input_tokens": 1589,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1589
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-16T03:04:46.929Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers · `toolu_018LiR7tra5Bp9VnBj6hNLvp`</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "12a99955-c500-4cf6-9744-1368221646d9",
+  "isSidechain": false,
+  "requestId": "req_011Cb5WLczND9Gx7Z4o9n4Lr",
+  "type": "assistant",
+  "uuid": "f9df4ffc-34f2-4d84-a45a-d55b063ce2ec",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_3814f310",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014sRB7HyG9JeD587YXFos6Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1589,
+      "cache_read_input_tokens": 35903,
+      "output_tokens": 424,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1589,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 424,
+          "cache_read_input_tokens": 35903,
+          "cache_creation_input_tokens": 1589,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1589
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-16T03:04:47.181Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config · `toolu_01QTt79TvS1T7Z8qAseFXWVA`</summary>
+
+```json
+{
+  "project_name": "cost-verify-agent-rl",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f9df4ffc-34f2-4d84-a45a-d55b063ce2ec",
+  "isSidechain": false,
+  "requestId": "req_011Cb5WLczND9Gx7Z4o9n4Lr",
+  "type": "assistant",
+  "uuid": "ade7eb72-2d8b-4e83-a684-8813c137bc4e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_3814f310",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014sRB7HyG9JeD587YXFos6Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1589,
+      "cache_read_input_tokens": 35903,
+      "output_tokens": 424,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1589,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 424,
+          "cache_read_input_tokens": 35903,
+          "cache_creation_input_tokens": 1589,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1589
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T03:04:47.285Z_
+
+<details><summary>↩ Tool result · `toolu_01RKCgkisBRoPz27wn1m33cy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"exp028c_selfguide_recipe\", \"success\": true, \"actions\": [\"Job still running (pid=824675)\"]}]}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "12975198-a140-4984-bf96-55db6d2dc932",
+  "isSidechain": false,
+  "promptId": "f5681be2-9455-4955-ae40-1dc15e006c5a",
+  "type": "user",
+  "uuid": "69076510-b249-4db6-95f5-bf35d8f4d412",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 1, \\\"results\\\": [{\\\"exp_id\\\": \\\"exp028c_selfguide_recipe\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=824675)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"exp028c_selfguide_recipe\", \"success\": true, \"actions\": [\"Job still running (pid=824675)\"]}]}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "12975198-a140-4984-bf96-55db6d2dc932",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_3814f310",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T03:04:47.310Z_
+
+<details><summary>↩ Tool result · `toolu_01VCtSXmNnrYjsiXeZHp2UA2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/report.md\", \"content\": \"# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp028c_selfguide_recipe | — | — | — | [4yu6qz1m] |\\n\\n## 待处理\\n- exp025c（等待人工审批）\\n- exp028_prereq_zeroshot_instruct: Qwen3-1.7B-Instruct 零样本 ALFWorld eval，验证\\\"SFT是毒药\\\"假设。如果 Instruct ≥15% success（vs SFT checkpoint 6.25%），则确认 SFT 起点有害，exp028a 可跳过 SFT 直接 GRPO。（准备中）\\n- exp021_sft_ragen_format: Two-stage SFT with RAGEN-format data (v4). From exp008_sft checkpoint, fine-tune with v4 data (RAGEN Turn/State/Reward structure, fixed system prompt with consistent &lt;answer> tag instruction). LR=5e-6, 2 epochs. Validate via RAGEN val_before_train (not eval_sft_fast). Pass: RAGEN val success >= 10%, action_is_valid >= 85%.（准备中）\\n- exp020d_grpo_from_sft: GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Symlink fix for response_mask assertion (proven in exp020b). exp020c failed: Hydra key path wrong.（准备中）\\n- exp020c_grpo_from_sft: GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Fix: symlink + enable_response_mask=false (exp020/020b crashed on response_mask assertion).（准备中）\\n- exp019c_expert_sft_v3: Two-stage Expert SFT（重试）: 从 exp008_sft checkpoint 出发，用 v3 数据（保留原始 move actions + admissible actions augmentation）微调。LR=5e-6, 2 epochs, batch=4, grad_accum=4, max_seq=4096。Pass: success ≥ 10%, format_ok ≥ 90%, action_is_valid ≥ 85%。（准备中）\\n- exp019b_expert_sft_v2（准备中）\\n- exp018_sft_grpo: Expert SFT → Sparse GRPO：从 exp017 SFT checkpoint 开始纯 sparse GRPO 训练。SFT 提升 baseline success rate（≥10%），使 GRPO 有足够非零 reward group 产生有效梯度。LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, won=10.0, 无 bonus/penalty, GRPO 30 步。Pass: success ≥ 20%。（准备中）\\n- exp014b: 极低 Dense Reward: valid_action_bonus=0.01（1:1000 比例），测试极弱 bonus 能否防 collapse 又不引发 gaming。如果 bonus 弱到不影响 GRPO reward ranking，模型不会被诱导走捷径。success_reward=10.0, format_penalty=0, 从 exp008 step 5 checkpoint 恢复, GRPO 30 步。（准备中）\\n- exp014a: Success-Gated Dense Reward: valid_action_bonus=0.15 只在 group 内至少一条 trajectory success 时才给。消除 reward gaming 的独立最大化路径——没有 success 就没有 bonus，模型必须探索 success。success_reward=10.0, format_penalty=0, 从 exp008 step 5 checkpoint 恢复, GRPO 30 步。（准备中）\\n- …另有 9 项\\n\\n## 近期结论\\n- **exp028a_recipe_fix** (killed): invalid_action_penalty (-0.1) 为全失败 GRPO group 提供非零方差梯度信号。从 exp021 SFT checkpoint (6.25% success) 出发，仅增加 invalid_action_penalty_coef=0.1，其余参数与 exp027 完全一致。预期：penalty 让失败 trajectory 间有区分（invalid action 多=reward更低），解决 ~43% group 零梯度问题。Pass: success ≥20%（稳定，非瞬时 peak）。 ← 基于 exp027_stable_grpo\\n  [exp028a_config_diff](/api/workspace-files/projects/cost-verify-agent-rl/artifacts/exp028a_recipe_fix/intermediate/exp028a_config_diff.txt)\\n- **exp028_prereq_zeroshot** (negative): —\\n- **exp027_stable_grpo** (failed): Stabilized step-independent GRPO: 针对 exp026 死亡螺旋根因（sparse reward + 小 env_groups 导致全零 batch），增加 rollouts（env_groups 4→8, 128 trajectories）、降低 LR（1e-6→5e-7）、降低 KL（0.01→0.005）、新增 entropy bonus（0.01）、save_freq 5 捕获峰值。50 步快速验证。Pass: success ≥20% 且无连续 2 步归零。 ← 基于 exp026_step_independent_grpo\\n  [recipe_gap_analysis](/api/workspace-files/projects/cost-verify-agent-rl/artifacts/exp027_stable_grpo/report/recipe_gap_analysis.md)\\n\\n## 趋势\\n成功 3 / 负向 5 / 失败 18 / 共 35\\nepochs: 2 ↓（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nbjb1-17606: 无 GPU 信息\\n\\n## 告警\\n- exp_001: 训练失败 — unknown\\n- exp_001b: 训练失败 — unknown\\n- exp_002: 训练失败 — unknown\\n- exp003: 训练失败 — unknown\\n- exp007: 训练失败 — unknown\\n- exp009: 训练失败 — unknown\\n- exp010: 训练失败 — unknown\\n- exp011: 已被终止 — unknown\\n- exp012: 训练失败 — unknown\\n- exp012b: 已被终止 — unknown\\n- exp013: 已被终止 — unknown\\n- exp013b: 训练失败 — unknown\\n- exp013c: 已被终止 — unknown\\n- exp013d: 训练失败 — unknown\\n- exp013e: 训练失败 — unknown\\n- exp015: 已被终止 — unknown\\n- exp016: 训练失败 — unknown\\n- exp019_expert_sft_v2: 已被终止 — unknown\\n- exp020_grpo_from_sft: 训练失败 — unknown\\n- exp022_grpo_from_sft_v4: 已被终止 — unknown\\n- exp023_grpo_parallel: 训练失败 — unknown\\n- exp023c_grpo_serial: 训练失败 — unknown\\n- exp024_success_gated_grpo: 已被终止 — unknown\\n- exp025: 训练失败 — unknown\\n- exp025b: 训练失败 — unknown\\n- exp027_stable_grpo: 训练失败 — unknown\\n- exp028a_recipe_fix: 已被终止 — unknown\\n\", \"total_chars\": 4294, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5b646537-299a-43c7-83e9-1b904080d8cd",
+  "isSidechain": false,
+  "promptId": "f5681be2-9455-4955-ae40-1dc15e006c5a",
+  "type": "user",
+  "uuid": "3d6aedb1-f139-4c4a-af38-4d33470a7adb",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-15\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| exp028c_selfguide_recipe | — | — | — | [4yu6qz1m] |\\\\n\\\\n## 待处理\\\\n- exp025c（等待人工审批）\\\\n- exp028_prereq_zeroshot_instruct: Qwen3-1.7B-Instruct 零样本 ALFWorld eval，验证\\\\\\\"SFT是毒药\\\\\\\"假设。如果 Instruct ≥15% success（vs SFT checkpoint 6.25%），则确认 SFT 起点有害，exp028a 可跳过 SFT 直接 GRPO。（准备中）\\\\n- exp021_sft_ragen_format: Two-stage SFT with RAGEN-format data (v4). From exp008_sft checkpoint, fine-tune with v4 data (RAGEN Turn/State/Reward structure, fixed system prompt with consistent &lt;answer> tag instruction). LR=5e-6, 2 epochs. Validate via RAGEN val_before_train (not eval_sft_fast). Pass: RAGEN val success >= 10%, action_is_valid >= 85%.（准备中）\\\\n- exp020d_grpo_from_sft: GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Symlink fix for response_mask assertion (proven in exp020b). exp020c failed: Hydra key path wrong.（准备中）\\\\n- exp020c_grpo_from_sft: GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Fix: symlink + enable_response_mask=false (exp020/020b crashed on response_mask assertion).（准备中）\\\\n- exp019c_expert_sft_v3: Two-stage Expert SFT（重试）: 从 exp008_sft checkpoint 出发，用 v3 数据（保留原始 move actions + admissible actions augmentation）微调。LR=5e-6, 2 epochs, batch=4, grad_accum=4, max_seq=4096。Pass: success ≥ 10%, format_ok ≥ 90%, action_is_valid ≥ 85%。（准备中）\\\\n- exp019b_expert_sft_v2（准备中）\\\\n- exp018_sft_grpo: Expert SFT → Sparse GRPO：从 exp017 SFT checkpoint 开始纯 sparse GRPO 训练。SFT 提升 baseline success rate（≥10%），使 GRPO 有足够非零 reward group 产生有效梯度。LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, won=10.0, 无 bonus/penalty, GRPO 30 步。Pass: success ≥ 20%。（准备中）\\\\n- exp014b: 极低 Dense Reward: valid_action_bonus=0.01（1:1000 比例），测试极弱 bonus 能否防 collapse 又不引发 gaming。如果 bonus 弱到不影响 GRPO reward ranking，模型不会被诱导走捷径。success_reward=10.0, format_penalty=0, 从 exp008 step 5 checkpoint 恢复, GRPO 30 步。（准备中）\\\\n- exp014a: Success-Gated Dense Reward: valid_action_bonus=0.15 只在 group 内至少一条 trajectory success 时才给。消除 reward gaming 的独立最大化路径——没有 success 就没有 bonus，模型必须探索 success。success_reward=10.0, format_penalty=0, 从 exp008 step 5 checkpoint 恢复, GRPO 30 步。（准备中）\\\\n- …另有 9 项\\\\n\\\\n## 近期结论\\\\n- **exp028a_recipe_fix** (killed): invalid_action_penalty (-0.1) 为全失败 GRPO group 提供非零方差梯度信号。从 exp021 SFT checkpoint (6.25% success) 出发，仅增加 invalid_action_penalty_coef=0.1，其余参数与 exp027 完全一致。预期：penalty 让失败 trajectory 间有区分（invalid action 多=reward更低），解决 ~43% group 零梯度问题。Pass: success ≥20%（稳定，非瞬时 peak）。 ← 基于 exp027_stable_grpo\\\\n  [exp028a_config_diff](/api/workspace-files/projects/cost-verify-agent-rl/artifacts/exp028a_recipe_fix/intermediate/exp028a_config_diff.txt)\\\\n- **exp028_prereq_zeroshot** (negative): —\\\\n- **exp027_stable_grpo** (failed): Stabilized step-independent GRPO: 针对 exp026 死亡螺旋根因（sparse reward + 小 env_groups 导致全零 batch），增加 rollouts（env_groups 4→8, 128 trajectories）、降低 LR（1e-6→5e-7）、降低 KL（0.01→0.005）、新增 entropy bonus（0.01）、save_freq 5 捕获峰值。50 步快速验证。Pass: success ≥20% 且无连续 2 步归零。 ← 基于 exp026_step_independent_grpo\\\\n  [recipe_gap_analysis](/api/workspace-files/projects/cost-verify-agent-rl/artifacts/exp027_stable_grpo/report/recipe_gap_analysis.md)\\\\n\\\\n## 趋势\\\\n成功 3 / 负向 5 / 失败 18 / 共 35\\\\nepochs: 2 ↓（近 3 次 success）\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nbjb1-17606: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- exp_001: 训练失败 — unknown\\\\n- exp_001b: 训练失败 — unknown\\\\n- exp_002: 训练失败 — unknown\\\\n- exp003: 训练失败 — unknown\\\\n- exp007: 训练失败 — unknown\\\\n- exp009: 训练失败 — unknown\\\\n- exp010: 训练失败 — unknown\\\\n- exp011: 已被终止 — unknown\\\\n- exp012: 训练失败 — unknown\\\\n- exp012b: 已被终止 — unknown\\\\n- exp013: 已被终止 — unknown\\\\n- exp013b: 训练失败 — unknown\\\\n- exp013c: 已被终止 — unknown\\\\n- exp013d: 训练失败 — unknown\\\\n- exp013e: 训练失败 — unknown\\\\n- exp015: 已被终止 — unknown\\\\n- exp016: 训练失败 — unknown\\\\n- exp019_expert_sft_v2: 已被终止 — unknown\\\\n- exp020_grpo_from_sft: 训练失败 — unknown\\\\n- exp022_grpo_from_sft_v4: 已被终止 — unknown\\\\n- exp023_grpo_parallel: 训练失败 — unknown\\\\n- exp023c_grpo_serial: 训练失败 — unknown\\\\n- exp024_success_gated_grpo: 已被终止 — unknown\\\\n- exp025: 训练失败 — unknown\\\\n- exp025b: 训练失败 — unknown\\\\n- exp027_stable_grpo: 训练失败 — unknown\\\\n- exp028a_recipe_fix: 已被终止 — unknown\\\\n\\\", \\\"total_chars\\\": 4294, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/report.md\", \"content\": \"# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp028c_selfguide_recipe | — | — | — | [4yu6qz1m] |\\n\\n## 待处理\\n- exp025c（等待人工审批）\\n- exp028_prereq_zeroshot_instruct: Qwen3-1.7B-Instruct 零样本 ALFWorld eval，验证\\\"SFT是毒药\\\"假设。如果 Instruct ≥15% success（vs SFT checkpoint 6.25%），则确认 SFT 起点有害，exp028a 可跳过 SFT 直接 GRPO。（准备中）\\n- exp021_sft_ragen_format: Two-stage SFT with RAGEN-format data (v4). From exp008_sft checkpoint, fine-tune with v4 data (RAGEN Turn/State/Reward structure, fixed system prompt with consistent &lt;answer> tag instruction). LR=5e-6, 2 epochs. Validate via RAGEN val_before_train (not eval_sft_fast). Pass: RAGEN val success >= 10%, action_is_valid >= 85%.（准备中）\\n- exp020d_grpo_from_sft: GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Symlink fix for response_mask assertion (proven in exp020b). exp020c failed: Hydra key path wrong.（准备中）\\n- exp020c_grpo_from_sft: GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Fix: symlink + enable_response_mask=false (exp020/020b crashed on response_mask assertion).（准备中）\\n- exp019c_expert_sft_v3: Two-stage Expert SFT（重试）: 从 exp008_sft checkpoint 出发，用 v3 数据（保留原始 move actions + admissible actions augmentation）微调。LR=5e-6, 2 epochs, batch=4, grad_accum=4, max_seq=4096。Pass: success ≥ 10%, format_ok ≥ 90%, action_is_valid ≥ 85%。（准备中）\\n- exp019b_expert_sft_v2（准备中）\\n- exp018_sft_grpo: Expert SFT → Sparse GRPO：从 exp017 SFT checkpoint 开始纯 sparse GRPO 训练。SFT 提升 baseline success rate（≥10%），使 GRPO 有足够非零 reward group 产生有效梯度。LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, won=10.0, 无 bonus/penalty, GRPO 30 步。Pass: success ≥ 20%。（准备中）\\n- exp014b: 极低 Dense Reward: valid_action_bonus=0.01（1:1000 比例），测试极弱 bonus 能否防 collapse 又不引发 gaming。如果 bonus 弱到不影响 GRPO reward ranking，模型不会被诱导走捷径。success_reward=10.0, format_penalty=0, 从 exp008 step 5 checkpoint 恢复, GRPO 30 步。（准备中）\\n- exp014a: Success-Gated Dense Reward: valid_action_bonus=0.15 只在 group 内至少一条 trajectory success 时才给。消除 reward gaming 的独立最大化路径——没有 success 就没有 bonus，模型必须探索 success。success_reward=10.0, format_penalty=0, 从 exp008 step 5 checkpoint 恢复, GRPO 30 步。（准备中）\\n- …另有 9 项\\n\\n## 近期结论\\n- **exp028a_recipe_fix** (killed): invalid_action_penalty (-0.1) 为全失败 GRPO group 提供非零方差梯度信号。从 exp021 SFT checkpoint (6.25% success) 出发，仅增加 invalid_action_penalty_coef=0.1，其余参数与 exp027 完全一致。预期：penalty 让失败 trajectory 间有区分（invalid action 多=reward更低），解决 ~43% group 零梯度问题。Pass: success ≥20%（稳定，非瞬时 peak）。 ← 基于 exp027_stable_grpo\\n  [exp028a_config_diff](/api/workspace-files/projects/cost-verify-agent-rl/artifacts/exp028a_recipe_fix/intermediate/exp028a_config_diff.txt)\\n- **exp028_prereq_zeroshot** (negative): —\\n- **exp027_stable_grpo** (failed): Stabilized step-independent GRPO: 针对 exp026 死亡螺旋根因（sparse reward + 小 env_groups 导致全零 batch），增加 rollouts（env_groups 4→8, 128 trajectories）、降低 LR（1e-6→5e-7）、降低 KL（0.01→0.005）、新增 entropy bonus（0.01）、save_freq 5 捕获峰值。50 步快速验证。Pass: success ≥20% 且无连续 2 步归零。 ← 基于 exp026_step_independent_grpo\\n  [recipe_gap_analysis](/api/workspace-files/projects/cost-verify-agent-rl/artifacts/exp027_stable_grpo/report/recipe_gap_analysis.md)\\n\\n## 趋势\\n成功 3 / 负向 5 / 失败 18 / 共 35\\nepochs: 2 ↓（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nbjb1-17606: 无 GPU 信息\\n\\n## 告警\\n- exp_001: 训练失败 — unknown\\n- exp_001b: 训练失败 — unknown\\n- exp_002: 训练失败 — unknown\\n- exp003: 训练失败 — unknown\\n- exp007: 训练失败 — unknown\\n- exp009: 训练失败 — unknown\\n- exp010: 训练失败 — unknown\\n- exp011: 已被终止 — unknown\\n- exp012: 训练失败 — unknown\\n- exp012b: 已被终止 — unknown\\n- exp013: 已被终止 — unknown\\n- exp013b: 训练失败 — unknown\\n- exp013c: 已被终止 — unknown\\n- exp013d: 训练失败 — unknown\\n- exp013e: 训练失败 — unknown\\n- exp015: 已被终止 — unknown\\n- exp016: 训练失败 — unknown\\n- exp019_expert_sft_v2: 已被终止 — unknown\\n- exp020_grpo_from_sft: 训练失败 — unknown\\n- exp022_grpo_from_sft_v4: 已被终止 — unknown\\n- exp023_grpo_parallel: 训练失败 — unknown\\n- exp023c_grpo_serial: 训练失败 — unknown\\n- exp024_success_gated_grpo: 已被终止 — unknown\\n- exp025: 训练失败 — unknown\\n- exp025b: 训练失败 — unknown\\n- exp027_stable_grpo: 训练失败 — unknown\\n- exp028a_recipe_fix: 已被终止 — unknown\\n\", \"total_chars\": 4294, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "5b646537-299a-43c7-83e9-1b904080d8cd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_3814f310",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T03:04:47.326Z_
+
+<details><summary>↩ Tool result · `toolu_01FjrYYgC8u2ToYMTZqawRe7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/ROADMAP.md\", \"content\": \"# cost-verify-agent-rl — Research Dashboard\\n\\n> 最后更新: 2026-05-15 23:30 UTC | 更新原因: exp028c 替代 exp027 为当前活跃实验，更新并行任务和 GPU 累计\\n\\n## 核心方向\\nB-IAVR: 训练 interactive agent 选择性自我验证，基于行为改变信号（action change）作为 verification informativeness 的 reward。基于 Self-Guide (arXiv 2604.03098) 框架，Qwen3-1.7B + ALFWorld + verl-agent GRPO。\\n\\n**论文 framing（D039）**：cost-efficiency story，不走 performance story。ALFWorld SOTA 88-93%，Self-Guide 1.7B 72.7%，performance 竞争无意义。核心 claim：\\\"RL-trained selective verification 在接近 baseline 性能的前提下显著减少 verification 开销\\\"。与 ARES (2603.07915) 差异化：binary decision + action-change reward + interactive agent 场景。\\n\\n## 当前阶段\\n🧪 **MVP 验证 — Phase A: Always-On Self-Guidance baseline**\\n目标：ALFWorld success ≥ 20%（GRPO 训练后）\\n\\n### exp028c_selfguide_recipe（正在训练）\\n- D050 决策：全面对齐 Self-Guide recipe（9 项参数改动 vs exp027）\\n- 从 exp021 SFT checkpoint 出发\\n- PID 824675, W&B 4yu6qz1m, cuda:0+cuda:1\\n- 等待 cron 回调首批指标\\n\\n### 历史关键节点\\n- exp027: failed（train success 13.28% peak at step 4，MVP 未通过）\\n- D044: Recipe Gap 确认三大根因（SFT 起点差 + binary reward 零梯度 + 参数未对齐）\\n- D050: 停止 exp028a（与 exp027 功能等价），全面对齐 Self-Guide recipe → exp028c\\n\\n### MVP 判定（D037）\\n- < 20%: fail → 评估是否继续本项目\\n- 20-25%: weak pass（需更多证据）\\n- 30%+: strong pass → complete_mvp() → Phase B\\n\\n### SFT 基线（C003 compliant 16-episode eval）\\n- exp021: success=6.25%, action_is_valid=68.75%\\n\\n## 竞争格局（文献调研 2026-05-15）\\n| 竞争者 | 方法 | ALFWorld | 与我们的关系 |\\n|--------|------|----------|-------------|\\n| ReflAct (EMNLP'25) | Prompting GPT-4 | 93.3% | 不同赛道（大模型 prompting） |\\n| AgentPRM (ACM Web'26) | 3B trained PRM | 88-91% | 不同方向（process reward） |\\n| Self-Guide (2026) | Always-on verification | 72.7% (1.7B) | 直接基础框架，我们做 selective |\\n| ARES (2603.07915) | SFT router, continuous effort | 52.7% token↓ | 最近竞争者，需实验对比 |\\n| Thinkless (NeurIPS'25) | RL-trained control token | reasoning | 方法论最相近，不同场景 |\\n\\n**核心 novelty**：三条线交汇处——首个用 RL 训练 interactive agent 的 selective verification policy，action-change 作为 verification informativeness reward。\\n\\n## 并行任务（exp028c 等待期）\\n- 🔄 文献扫描 Worker（CPU）— 更新 literature_map.yaml\\n- 🔄 B-IAVR Phase B 前置分析 Worker（CPU）— &lt;VERIFY> token 注册方案 + a_pre 推理开销量化\\n- ✅ failure_taxonomy.md — 51 实验失败模式分类\\n- ✅ related_work_survey.md — 21 篇文献 + gap 分析\\n- ✅ D039 framing 方向决策\\n\\n## 近期任务\\n- [ ] exp028c 首批指标到达 → 按 D037/D040 三层阈值判定\\n- [ ] 如 exp028c pass → complete_mvp() → Phase B (B-IAVR)\\n- [ ] 如 exp028c fail → 评估项目可行性 / 考虑换框架或模型规模\\n- [ ] 文献扫描完成 → 更新竞争格局\\n- [ ] Phase B 前置分析完成 → 为 post-MVP 做准备\\n\\n## GPU 预算\\n- 分配：bjb1-17606 cuda:0,1（2× RTX PRO 6000 Blackwell 98GB）\\n- 当前：exp028c 训练中，双卡满载\\n- 累计使用：~120 GPU-h（含 exp027 ~84h + 之前实验）\\n- Post-MVP 预估：600-2000 GPU-h（B-IAVR ablations + multi-seed + 对比实验）\\n\\n## 关键风险\\n1. **exp028c 是否能复现 Self-Guide 级别性能**：recipe 全面对齐后仍 <20% 则说明框架/模型选择有根本问题\\n2. **baseline 性能 gap**：cost-efficiency story 前提是 baseline ≥50%，当前 SFT 仅 6.25%\\n3. **ARES 竞争**：需实验对比差异化\\n4. **GPU 预算缺口**：post-MVP 需 600+ GPU-h，当前仅 2 卡\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D050 | 2026-05-15 | 停止 exp028a（确认与 exp027 功能等价），根因 #2 也被否定，下一步全面对齐 Sel | exp027, exp028a |\\n| D049 | 2026-05-15 | D046: SFT必要性确认 + 下一步双GPU并行策略（D诊断→A+C并行） | exp021, exp027, D046 |\\n| D048 | 2026-05-15 | exp028a 采用 SFT checkpoint + invalid_action_penalty | exp028_prereq, exp021, exp027 |\\n| D047 | 2026-05-15 | 暂停 exp028a 最终定参，等零样本 eval 确认 Qwen3-1.7B base 能力后再决 | exp028a, exp027_stable_grpo, exp028_prereq_zeroshot_instruct |\\n| D046 | 2026-05-15 | 继续 Phase A：exp028a Instruct 冷启动 + invalid_action_p | exp027_stable_grpo, exp028_prereq_zeroshot_instruct, exp028a |\\n| D045 | 2026-05-15 | exp027 判定 MVP 未通过：train success 13.28%（step 4），pas | exp027_stable_grpo |\\n| D044 | 2026-05-15 | Recipe Gap 确认三大根因：SFT 毒药 + binary reward 零梯度 + min | exp027_stable_grpo, exp026_step_independent_grpo |\\n| D043 | 2026-05-15 | Reviewer 发现 recipe gap 是根本问题：参考论文 GRPO baseline 72 | exp027_stable_grpo, exp021_ragen_sft_v4 |\\n| D042 | 2026-05-15 | 采纳 Reviewer 建议：exp027 跑到 step 10 评估，同时并行准备 Plan D（ | exp027_stable_grpo, exp026_step_independent_grpo |\\n| D041 | 2026-05-15 | exp027 瓶颈诊断为 sparse reward 学习信号不足而非 KL 不稳定；Plan B( | exp027_stable_grpo, exp026_step_independent_grpo |\\n\\n\\n\", \"lines\": 86}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "12a99955-c500-4cf6-9744-1368221646d9",
+  "isSidechain": false,
+  "promptId": "f5681be2-9455-4955-ae40-1dc15e006c5a",
+  "type": "user",
+  "uuid": "781b5494-5134-4a30-9d42-b9eb95e5abc2",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/ROADMAP.md\\\", \\\"content\\\": \\\"# cost-verify-agent-rl — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 23:30 UTC | 更新原因: exp028c 替代 exp027 为当前活跃实验，更新并行任务和 GPU 累计\\\\n\\\\n## 核心方向\\\\nB-IAVR: 训练 interactive agent 选择性自我验证，基于行为改变信号（action change）作为 verification informativeness 的 reward。基于 Self-Guide (arXiv 2604.03098) 框架，Qwen3-1.7B + ALFWorld + verl-agent GRPO。\\\\n\\\\n**论文 framing（D039）**：cost-efficiency story，不走 performance story。ALFWorld SOTA 88-93%，Self-Guide 1.7B 72.7%，performance 竞争无意义。核心 claim：\\\\\\\"RL-trained selective verification 在接近 baseline 性能的前提下显著减少 verification 开销\\\\\\\"。与 ARES (2603.07915) 差异化：binary decision + action-change reward + interactive agent 场景。\\\\n\\\\n## 当前阶段\\\\n🧪 **MVP 验证 — Phase A: Always-On Self-Guidance baseline**\\\\n目标：ALFWorld success ≥ 20%（GRPO 训练后）\\\\n\\\\n### exp028c_selfguide_recipe（正在训练）\\\\n- D050 决策：全面对齐 Self-Guide recipe（9 项参数改动 vs exp027）\\\\n- 从 exp021 SFT checkpoint 出发\\\\n- PID 824675, W&B 4yu6qz1m, cuda:0+cuda:1\\\\n- 等待 cron 回调首批指标\\\\n\\\\n### 历史关键节点\\\\n- exp027: failed（train success 13.28% peak at step 4，MVP 未通过）\\\\n- D044: Recipe Gap 确认三大根因（SFT 起点差 + binary reward 零梯度 + 参数未对齐）\\\\n- D050: 停止 exp028a（与 exp027 功能等价），全面对齐 Self-Guide recipe → exp028c\\\\n\\\\n### MVP 判定（D037）\\\\n- < 20%: fail → 评估是否继续本项目\\\\n- 20-25%: weak pass（需更多证据）\\\\n- 30%+: strong pass → complete_mvp() → Phase B\\\\n\\\\n### SFT 基线（C003 compliant 16-episode eval）\\\\n- exp021: success=6.25%, action_is_valid=68.75%\\\\n\\\\n## 竞争格局（文献调研 2026-05-15）\\\\n| 竞争者 | 方法 | ALFWorld | 与我们的关系 |\\\\n|--------|------|----------|-------------|\\\\n| ReflAct (EMNLP'25) | Prompting GPT-4 | 93.3% | 不同赛道（大模型 prompting） |\\\\n| AgentPRM (ACM Web'26) | 3B trained PRM | 88-91% | 不同方向（process reward） |\\\\n| Self-Guide (2026) | Always-on verification | 72.7% (1.7B) | 直接基础框架，我们做 selective |\\\\n| ARES (2603.07915) | SFT router, continuous effort | 52.7% token↓ | 最近竞争者，需实验对比 |\\\\n| Thinkless (NeurIPS'25) | RL-trained control token | reasoning | 方法论最相近，不同场景 |\\\\n\\\\n**核心 novelty**：三条线交汇处——首个用 RL 训练 interactive agent 的 selective verification policy，action-change 作为 verification informativeness reward。\\\\n\\\\n## 并行任务（exp028c 等待期）\\\\n- 🔄 文献扫描 Worker（CPU）— 更新 literature_map.yaml\\\\n- 🔄 B-IAVR Phase B 前置分析 Worker（CPU）— &lt;VERIFY> token 注册方案 + a_pre 推理开销量化\\\\n- ✅ failure_taxonomy.md — 51 实验失败模式分类\\\\n- ✅ related_work_survey.md — 21 篇文献 + gap 分析\\\\n- ✅ D039 framing 方向决策\\\\n\\\\n## 近期任务\\\\n- [ ] exp028c 首批指标到达 → 按 D037/D040 三层阈值判定\\\\n- [ ] 如 exp028c pass → complete_mvp() → Phase B (B-IAVR)\\\\n- [ ] 如 exp028c fail → 评估项目可行性 / 考虑换框架或模型规模\\\\n- [ ] 文献扫描完成 → 更新竞争格局\\\\n- [ ] Phase B 前置分析完成 → 为 post-MVP 做准备\\\\n\\\\n## GPU 预算\\\\n- 分配：bjb1-17606 cuda:0,1（2× RTX PRO 6000 Blackwell 98GB）\\\\n- 当前：exp028c 训练中，双卡满载\\\\n- 累计使用：~120 GPU-h（含 exp027 ~84h + 之前实验）\\\\n- Post-MVP 预估：600-2000 GPU-h（B-IAVR ablations + multi-seed + 对比实验）\\\\n\\\\n## 关键风险\\\\n1. **exp028c 是否能复现 Self-Guide 级别性能**：recipe 全面对齐后仍 <20% 则说明框架/模型选择有根本问题\\\\n2. **baseline 性能 gap**：cost-efficiency story 前提是 baseline ≥50%，当前 SFT 仅 6.25%\\\\n3. **ARES 竞争**：需实验对比差异化\\\\n4. **GPU 预算缺口**：post-MVP 需 600+ GPU-h，当前仅 2 卡\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D050 | 2026-05-15 | 停止 exp028a（确认与 exp027 功能等价），根因 #2 也被否定，下一步全面对齐 Sel | exp027, exp028a |\\\\n| D049 | 2026-05-15 | D046: SFT必要性确认 + 下一步双GPU并行策略（D诊断→A+C并行） | exp021, exp027, D046 |\\\\n| D048 | 2026-05-15 | exp028a 采用 SFT checkpoint + invalid_action_penalty | exp028_prereq, exp021, exp027 |\\\\n| D047 | 2026-05-15 | 暂停 exp028a 最终定参，等零样本 eval 确认 Qwen3-1.7B base 能力后再决 | exp028a, exp027_stable_grpo, exp028_prereq_zeroshot_instruct |\\\\n| D046 | 2026-05-15 | 继续 Phase A：exp028a Instruct 冷启动 + invalid_action_p | exp027_stable_grpo, exp028_prereq_zeroshot_instruct, exp028a |\\\\n| D045 | 2026-05-15 | exp027 判定 MVP 未通过：train success 13.28%（step 4），pas | exp027_stable_grpo |\\\\n| D044 | 2026-05-15 | Recipe Gap 确认三大根因：SFT 毒药 + binary reward 零梯度 + min | exp027_stable_grpo, exp026_step_independent_grpo |\\\\n| D043 | 2026-05-15 | Reviewer 发现 recipe gap 是根本问题：参考论文 GRPO baseline 72 | exp027_stable_grpo, exp021_ragen_sft_v4 |\\\\n| D042 | 2026-05-15 | 采纳 Reviewer 建议：exp027 跑到 step 10 评估，同时并行准备 Plan D（ | exp027_stable_grpo, exp026_step_independent_grpo |\\\\n| D041 | 2026-05-15 | exp027 瓶颈诊断为 sparse reward 学习信号不足而非 KL 不稳定；Plan B( | exp027_stable_grpo, exp026_step_independent_grpo |\\\\n\\\\n\\\\n\\\", \\\"lines\\\": 86}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/ROADMAP.md\", \"content\": \"# cost-verify-agent-rl — Research Dashboard\\n\\n> 最后更新: 2026-05-15 23:30 UTC | 更新原因: exp028c 替代 exp027 为当前活跃实验，更新并行任务和 GPU 累计\\n\\n## 核心方向\\nB-IAVR: 训练 interactive agent 选择性自我验证，基于行为改变信号（action change）作为 verification informativeness 的 reward。基于 Self-Guide (arXiv 2604.03098) 框架，Qwen3-1.7B + ALFWorld + verl-agent GRPO。\\n\\n**论文 framing（D039）**：cost-efficiency story，不走 performance story。ALFWorld SOTA 88-93%，Self-Guide 1.7B 72.7%，performance 竞争无意义。核心 claim：\\\"RL-trained selective verification 在接近 baseline 性能的前提下显著减少 verification 开销\\\"。与 ARES (2603.07915) 差异化：binary decision + action-change reward + interactive agent 场景。\\n\\n## 当前阶段\\n🧪 **MVP 验证 — Phase A: Always-On Self-Guidance baseline**\\n目标：ALFWorld success ≥ 20%（GRPO 训练后）\\n\\n### exp028c_selfguide_recipe（正在训练）\\n- D050 决策：全面对齐 Self-Guide recipe（9 项参数改动 vs exp027）\\n- 从 exp021 SFT checkpoint 出发\\n- PID 824675, W&B 4yu6qz1m, cuda:0+cuda:1\\n- 等待 cron 回调首批指标\\n\\n### 历史关键节点\\n- exp027: failed（train success 13.28% peak at step 4，MVP 未通过）\\n- D044: Recipe Gap 确认三大根因（SFT 起点差 + binary reward 零梯度 + 参数未对齐）\\n- D050: 停止 exp028a（与 exp027 功能等价），全面对齐 Self-Guide recipe → exp028c\\n\\n### MVP 判定（D037）\\n- < 20%: fail → 评估是否继续本项目\\n- 20-25%: weak pass（需更多证据）\\n- 30%+: strong pass → complete_mvp() → Phase B\\n\\n### SFT 基线（C003 compliant 16-episode eval）\\n- exp021: success=6.25%, action_is_valid=68.75%\\n\\n## 竞争格局（文献调研 2026-05-15）\\n| 竞争者 | 方法 | ALFWorld | 与我们的关系 |\\n|--------|------|----------|-------------|\\n| ReflAct (EMNLP'25) | Prompting GPT-4 | 93.3% | 不同赛道（大模型 prompting） |\\n| AgentPRM (ACM Web'26) | 3B trained PRM | 88-91% | 不同方向（process reward） |\\n| Self-Guide (2026) | Always-on verification | 72.7% (1.7B) | 直接基础框架，我们做 selective |\\n| ARES (2603.07915) | SFT router, continuous effort | 52.7% token↓ | 最近竞争者，需实验对比 |\\n| Thinkless (NeurIPS'25) | RL-trained control token | reasoning | 方法论最相近，不同场景 |\\n\\n**核心 novelty**：三条线交汇处——首个用 RL 训练 interactive agent 的 selective verification policy，action-change 作为 verification informativeness reward。\\n\\n## 并行任务（exp028c 等待期）\\n- 🔄 文献扫描 Worker（CPU）— 更新 literature_map.yaml\\n- 🔄 B-IAVR Phase B 前置分析 Worker（CPU）— &lt;VERIFY> token 注册方案 + a_pre 推理开销量化\\n- ✅ failure_taxonomy.md — 51 实验失败模式分类\\n- ✅ related_work_survey.md — 21 篇文献 + gap 分析\\n- ✅ D039 framing 方向决策\\n\\n## 近期任务\\n- [ ] exp028c 首批指标到达 → 按 D037/D040 三层阈值判定\\n- [ ] 如 exp028c pass → complete_mvp() → Phase B (B-IAVR)\\n- [ ] 如 exp028c fail → 评估项目可行性 / 考虑换框架或模型规模\\n- [ ] 文献扫描完成 → 更新竞争格局\\n- [ ] Phase B 前置分析完成 → 为 post-MVP 做准备\\n\\n## GPU 预算\\n- 分配：bjb1-17606 cuda:0,1（2× RTX PRO 6000 Blackwell 98GB）\\n- 当前：exp028c 训练中，双卡满载\\n- 累计使用：~120 GPU-h（含 exp027 ~84h + 之前实验）\\n- Post-MVP 预估：600-2000 GPU-h（B-IAVR ablations + multi-seed + 对比实验）\\n\\n## 关键风险\\n1. **exp028c 是否能复现 Self-Guide 级别性能**：recipe 全面对齐后仍 <20% 则说明框架/模型选择有根本问题\\n2. **baseline 性能 gap**：cost-efficiency story 前提是 baseline ≥50%，当前 SFT 仅 6.25%\\n3. **ARES 竞争**：需实验对比差异化\\n4. **GPU 预算缺口**：post-MVP 需 600+ GPU-h，当前仅 2 卡\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D050 | 2026-05-15 | 停止 exp028a（确认与 exp027 功能等价），根因 #2 也被否定，下一步全面对齐 Sel | exp027, exp028a |\\n| D049 | 2026-05-15 | D046: SFT必要性确认 + 下一步双GPU并行策略（D诊断→A+C并行） | exp021, exp027, D046 |\\n| D048 | 2026-05-15 | exp028a 采用 SFT checkpoint + invalid_action_penalty | exp028_prereq, exp021, exp027 |\\n| D047 | 2026-05-15 | 暂停 exp028a 最终定参，等零样本 eval 确认 Qwen3-1.7B base 能力后再决 | exp028a, exp027_stable_grpo, exp028_prereq_zeroshot_instruct |\\n| D046 | 2026-05-15 | 继续 Phase A：exp028a Instruct 冷启动 + invalid_action_p | exp027_stable_grpo, exp028_prereq_zeroshot_instruct, exp028a |\\n| D045 | 2026-05-15 | exp027 判定 MVP 未通过：train success 13.28%（step 4），pas | exp027_stable_grpo |\\n| D044 | 2026-05-15 | Recipe Gap 确认三大根因：SFT 毒药 + binary reward 零梯度 + min | exp027_stable_grpo, exp026_step_independent_grpo |\\n| D043 | 2026-05-15 | Reviewer 发现 recipe gap 是根本问题：参考论文 GRPO baseline 72 | exp027_stable_grpo, exp021_ragen_sft_v4 |\\n| D042 | 2026-05-15 | 采纳 Reviewer 建议：exp027 跑到 step 10 评估，同时并行准备 Plan D（ | exp027_stable_grpo, exp026_step_independent_grpo |\\n| D041 | 2026-05-15 | exp027 瓶颈诊断为 sparse reward 学习信号不足而非 KL 不稳定；Plan B( | exp027_stable_grpo, exp026_step_independent_grpo |\\n\\n\\n\", \"lines\": 86}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "12a99955-c500-4cf6-9744-1368221646d9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_3814f310",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[WRITE HANDOFF] 请立即写你的 handoff。  **格式硬约束**: - 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹 - 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）  **必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:  ### 1. 🔴 硬约束 / 红线   本项目特定的不可…",
+  "leafUuid": "781b5494-5134-4a30-9d42-b9eb95e5abc2",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Write handoff documentation for coding session",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6"
+}
+```
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-16T03:04:47.390Z_
+
+<details><summary>↩ Tool result · `toolu_018LiR7tra5Bp9VnBj6hNLvp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f9df4ffc-34f2-4d84-a45a-d55b063ce2ec",
+  "isSidechain": false,
+  "promptId": "f5681be2-9455-4955-ae40-1dc15e006c5a",
+  "type": "user",
+  "uuid": "e9ebc3cc-7208-40fc-9163-79deee9bce38",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "f9df4ffc-34f2-4d84-a45a-d55b063ce2ec",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_3814f310",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-16T03:04:47.405Z_
+
+<details><summary>↩ Tool result · `toolu_01QTt79TvS1T7Z8qAseFXWVA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"project\": \"cost-verify-agent-rl\", \"section\": \"execution\", \"config\": {\"execution\": {\"project_path\": \"/root/cost-verify-agent-rl\", \"servers\": [{\"account\": \"root\", \"server\": \"bjb1-17606\"}]}}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ade7eb72-2d8b-4e83-a684-8813c137bc4e",
+  "isSidechain": false,
+  "promptId": "f5681be2-9455-4955-ae40-1dc15e006c5a",
+  "type": "user",
+  "uuid": "32d29098-4591-49b8-9812-116306719791",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"project_path\\\": \\\"/root/cost-verify-agent-rl\\\", \\\"servers\\\": [{\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"bjb1-17606\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"project\": \"cost-verify-agent-rl\", \"section\": \"execution\", \"config\": {\"execution\": {\"project_path\": \"/root/cost-verify-agent-rl\", \"servers\": [{\"account\": \"root\", \"server\": \"bjb1-17606\"}]}}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ade7eb72-2d8b-4e83-a684-8813c137bc4e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_3814f310",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-16T03:04:50.765Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now get more details from the registry about the running and recent experiments. Let me use a subagent to parse the large registry file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "32d29098-4591-49b8-9812-116306719791",
+  "isSidechain": false,
+  "requestId": "req_011Cb5WM57jxo8RANzKrYCUh",
+  "type": "assistant",
+  "uuid": "0e630220-3d37-443b-9421-ec933655b1b6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_3814f310",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UWY8HVYQozp9Fjvm9DRXET",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6203,
+      "cache_read_input_tokens": 37492,
+      "output_tokens": 638,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6203,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 638,
+          "cache_read_input_tokens": 37492,
+          "cache_creation_input_tokens": 6203,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6203
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27 · 2026-05-16T03:04:51.281Z_
+
+Let me get the registry details for the running experiment and read memory.md.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0e630220-3d37-443b-9421-ec933655b1b6",
+  "isSidechain": false,
+  "requestId": "req_011Cb5WM57jxo8RANzKrYCUh",
+  "type": "assistant",
+  "uuid": "62040519-8c4a-4557-90ea-1a3c1341dd35",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_3814f310",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UWY8HVYQozp9Fjvm9DRXET",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6203,
+      "cache_read_input_tokens": 37492,
+      "output_tokens": 638,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6203,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 638,
+          "cache_read_input_tokens": 37492,
+          "cache_creation_input_tokens": 6203,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6203
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-16T03:04:59.426Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0178W93W8hmNDk99SBNxp43z`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-3814f310/f8f3f20d-7faa-4c35-a3d5-9579173279b6/tool-results/mcp-agent-ml-research-read_registry-1778900685320.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nexps = json.loads(data['result'])['data']['experiments']\n# Show running and preparing experiments\nfor e in exps:\n    if e.get('status') in ('RUNNING', 'PREPARING', 'PENDING', 'ALLOCATED'):\n        print(f\\\"=== {e['exp_id']} === status={e['status']}\\\")\n        for k in ['hypothesis','server','spec','metrics','conclusion','wandb_run_id','cron_id']:\n            if e.get(k):\n                print(f'  {k}: {e[k]}')\n        print()\n# Also show last 3 completed\ndone = [e for e in exps if e.get('status') == 'DONE']\ndone.sort(key=lambda x: x.get('updated_at',''), reverse=True)\nfor e in done[:3]:\n    print(f\\\"=== {e['exp_id']} === status=DONE conclusion={e.get('conclusion')}\\\")\n    print(f\\\"  hypothesis: {e.get('hypothesis')}\\\")\n    print(f\\\"  metrics: {e.get('metrics')}\\\")\n    print()\n\"\n",
+  "description": "Parse registry for running and recent experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "62040519-8c4a-4557-90ea-1a3c1341dd35",
+  "isSidechain": false,
+  "requestId": "req_011Cb5WM57jxo8RANzKrYCUh",
+  "type": "assistant",
+  "uuid": "e1a6ea3d-a710-4969-9221-77f43c28cea9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_3814f310",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UWY8HVYQozp9Fjvm9DRXET",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6203,
+      "cache_read_input_tokens": 37492,
+      "output_tokens": 638,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6203,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 638,
+          "cache_read_input_tokens": 37492,
+          "cache_creation_input_tokens": 6203,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6203
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-16T03:04:59.960Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_0178W93W8hmNDk99SBNxp43z`</summary>
+
+```text
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 7, in &lt;module>
+    if e.get('status') in ('RUNNING', 'PREPARING', 'PENDING', 'ALLOCATED'):
+       ^^^^^
+AttributeError: 'str' object has no attribute 'get'
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e1a6ea3d-a710-4969-9221-77f43c28cea9",
+  "isSidechain": false,
+  "promptId": "f5681be2-9455-4955-ae40-1dc15e006c5a",
+  "type": "user",
+  "uuid": "659aa1be-d581-4de5-b734-13590356eaba",
+  "toolUseResult": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"&lt;string>\", line 7, in &lt;module>\n    if e.get('status') in ('RUNNING', 'PREPARING', 'PENDING', 'ALLOCATED'):\n       ^^^^^\nAttributeError: 'str' object has no attribute 'get'",
+  "sourceToolAssistantUUID": "e1a6ea3d-a710-4969-9221-77f43c28cea9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_3814f310",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-16T03:05:00.131Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01EMbd1G6Gfgus7deppBD63n`</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "file": "memory.md",
+  "max_chars": 12000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "659aa1be-d581-4de5-b734-13590356eaba",
+  "isSidechain": false,
+  "requestId": "req_011Cb5WM57jxo8RANzKrYCUh",
+  "type": "assistant",
+  "uuid": "98583eb3-2396-4674-bcfe-6d2b54e17abd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_3814f310",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UWY8HVYQozp9Fjvm9DRXET",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6203,
+      "cache_read_input_tokens": 37492,
+      "output_tokens": 638,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6203,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 638,
+          "cache_read_input_tokens": 37492,
+          "cache_creation_input_tokens": 6203,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6203
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-16T03:05:00.132Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01EMbd1G6Gfgus7deppBD63n`</summary>
+
+```text
+&lt;tool_use_error>Cancelled: parallel tool call Bash(cat /home/ubuntu/.claude-account-2/proje…) errored&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "98583eb3-2396-4674-bcfe-6d2b54e17abd",
+  "isSidechain": false,
+  "promptId": "f5681be2-9455-4955-ae40-1dc15e006c5a",
+  "type": "user",
+  "uuid": "e81d42b0-f1fe-4508-bc37-ad0884459284",
+  "toolUseResult": "Cancelled: parallel tool call Bash(cat /home/ubuntu/.claude-account-2/proje…) errored",
+  "sourceToolAssistantUUID": "98583eb3-2396-4674-bcfe-6d2b54e17abd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_3814f310",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32 · 2026-05-16T03:05:00.189Z_
+
+```json
+{
+  "parentUuid": "e81d42b0-f1fe-4508-bc37-ad0884459284",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "99b2d186-3218-4cbf-870f-f9fff567f344",
+  "timestamp": "2026-05-16T03:05:00.189Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_3814f310",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-16T03:05:05.541Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0132EZ5rKd9ZXdFXa4bUWM8R`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-3814f310/f8f3f20d-7faa-4c35-a3d5-9579173279b6/tool-results/mcp-agent-ml-research-read_registry-1778900685320.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nprint(type(exps), len(exps) if isinstance(exps, list) else 'not list')\nif isinstance(exps, dict):\n    for k in list(exps.keys())[:3]:\n        print(k, type(exps[k]))\nelif isinstance(exps, list):\n    print(type(exps[0]))\n    print(exps[0][:200] if isinstance(exps[0], str) else list(exps[0].keys())[:10])\n\"\n",
+  "description": "Probe registry data structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "99b2d186-3218-4cbf-870f-f9fff567f344",
+  "isSidechain": false,
+  "requestId": "req_011Cb5WN1n6dxJeX9ZSPSSsw",
+  "type": "assistant",
+  "uuid": "104c5bf4-5166-41ab-8b59-c85cfc1377a4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_3814f310",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LpXWEpYdU28WwFL51bMLGi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 933,
+      "cache_read_input_tokens": 43695,
+      "output_tokens": 438,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 933,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 438,
+          "cache_read_input_tokens": 43695,
+          "cache_creation_input_tokens": 933,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 933
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-16T03:05:05.654Z_
+
+<details><summary>↩ Tool result · `toolu_0132EZ5rKd9ZXdFXa4bUWM8R`</summary>
+
+```text
+&lt;class 'dict'> not list
+exp028c_selfguide_recipe &lt;class 'dict'>
+exp028a_recipe_fix &lt;class 'dict'>
+exp028_prereq_zeroshot &lt;class 'dict'>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "104c5bf4-5166-41ab-8b59-c85cfc1377a4",
+  "isSidechain": false,
+  "promptId": "f5681be2-9455-4955-ae40-1dc15e006c5a",
+  "type": "user",
+  "uuid": "8b8210df-f815-4582-9e01-520e19818427",
+  "toolUseResult": {
+    "stdout": "&lt;class 'dict'> not list\nexp028c_selfguide_recipe &lt;class 'dict'>\nexp028a_recipe_fix &lt;class 'dict'>\nexp028_prereq_zeroshot &lt;class 'dict'>",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "104c5bf4-5166-41ab-8b59-c85cfc1377a4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_3814f310",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-16T03:05:06.094Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_017d7fQ93A5fxFiZinzCxNhr`</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "file": "memory.md",
+  "max_chars": 12000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8b8210df-f815-4582-9e01-520e19818427",
+  "isSidechain": false,
+  "requestId": "req_011Cb5WN1n6dxJeX9ZSPSSsw",
+  "type": "assistant",
+  "uuid": "b148c008-7a88-4ee1-8b67-fb9e94fabcd6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_3814f310",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LpXWEpYdU28WwFL51bMLGi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 933,
+      "cache_read_input_tokens": 43695,
+      "output_tokens": 438,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 933,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 438,
+          "cache_read_input_tokens": 43695,
+          "cache_creation_input_tokens": 933,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 933
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-16T03:05:06.112Z_
+
+<details><summary>↩ Tool result · `toolu_017d7fQ93A5fxFiZinzCxNhr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/memory.md\", \"content\": \"# Citation Audit — 2026-05-15\\n\\n完整审计结果已写入 artifacts/citation_audit.md。\\n\\n## 审计摘要\\n\\n- 验证论文：27 篇（literature_map.yaml 全部条目）+ 1 篇额外（Thinkless）\\n- 验证通过：20 篇\\n- 需要修正：7 篇（3 个严重问题，2 个中等问题，2 个轻微问题）\\n- 关键发现：AgentPRM arXiv ID/作者/标题全错；Huang2024 作者不匹配；DAPO 标题错误；CFGM 会议和年份错误\\n\\n# Adaptive KL 可行性 — 2026-05-15\\n\\nverl 框架已内置 `AdaptiveKLController`（Ziegler 2019），RAGEN `agent_trainer.py` 已完整接入 reward-level KL adaptive 链路。**零代码修改，纯 YAML 配置切换**（~8 行）：\\n- `algorithm.use_kl_in_reward: True` + `kl_ctrl.type: adaptive`\\n- `actor.use_kl_loss: False`\\n- `target_kl: 0.1`, `kl_coef: 0.005`（初始值），`horizon: 10000`\\n\\n当前 exp027 用的是 loss-level KL（`use_kl_loss` + 静态 `kl_loss_coef`）。如需切换，实现 <1h，验证 2-4h。\\n\\n风险：reward-level KL 通过 advantage 间接影响梯度，与 loss-level 直接约束不同。如 reward-level 效果不理想，备选 Plan C（loss-level adaptive）需 ~30 行代码，半天可完成。\\n\\n# 失败模式记录\\n\\n- [失败模式] Ray raylet 异常终止：ActorUnavailableError RPC error Socket closed rpc_code: 14，Raylet 被 SIGKILL（OOM killer 或内存访问错误）。出现于 exp013e（val→train 过渡）和 exp027（step 4→5 过渡）。→ 修复方案：(1) 检查 cgroup 内存限制 vs Ray object_store + worker 内存总和 (2) 降低 env_groups 减少并发内存峰值 (3) 显式设置 ray_kwargs.ray_init.object_store_memory 限制 Ray 内存分配 (4) 用 RAY_memory_monitor_refresh_ms=0 禁用内存监控阈值冲突。\\n\", \"total_chars\": 1167, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b148c008-7a88-4ee1-8b67-fb9e94fabcd6",
+  "isSidechain": false,
+  "promptId": "f5681be2-9455-4955-ae40-1dc15e006c5a",
+  "type": "user",
+  "uuid": "56105633-c63e-4530-9f06-4100546015cf",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/memory.md\\\", \\\"content\\\": \\\"# Citation Audit — 2026-05-15\\\\n\\\\n完整审计结果已写入 artifacts/citation_audit.md。\\\\n\\\\n## 审计摘要\\\\n\\\\n- 验证论文：27 篇（literature_map.yaml 全部条目）+ 1 篇额外（Thinkless）\\\\n- 验证通过：20 篇\\\\n- 需要修正：7 篇（3 个严重问题，2 个中等问题，2 个轻微问题）\\\\n- 关键发现：AgentPRM arXiv ID/作者/标题全错；Huang2024 作者不匹配；DAPO 标题错误；CFGM 会议和年份错误\\\\n\\\\n# Adaptive KL 可行性 — 2026-05-15\\\\n\\\\nverl 框架已内置 `AdaptiveKLController`（Ziegler 2019），RAGEN `agent_trainer.py` 已完整接入 reward-level KL adaptive 链路。**零代码修改，纯 YAML 配置切换**（~8 行）：\\\\n- `algorithm.use_kl_in_reward: True` + `kl_ctrl.type: adaptive`\\\\n- `actor.use_kl_loss: False`\\\\n- `target_kl: 0.1`, `kl_coef: 0.005`（初始值），`horizon: 10000`\\\\n\\\\n当前 exp027 用的是 loss-level KL（`use_kl_loss` + 静态 `kl_loss_coef`）。如需切换，实现 <1h，验证 2-4h。\\\\n\\\\n风险：reward-level KL 通过 advantage 间接影响梯度，与 loss-level 直接约束不同。如 reward-level 效果不理想，备选 Plan C（loss-level adaptive）需 ~30 行代码，半天可完成。\\\\n\\\\n# 失败模式记录\\\\n\\\\n- [失败模式] Ray raylet 异常终止：ActorUnavailableError RPC error Socket closed rpc_code: 14，Raylet 被 SIGKILL（OOM killer 或内存访问错误）。出现于 exp013e（val→train 过渡）和 exp027（step 4→5 过渡）。→ 修复方案：(1) 检查 cgroup 内存限制 vs Ray object_store + worker 内存总和 (2) 降低 env_groups 减少并发内存峰值 (3) 显式设置 ray_kwargs.ray_init.object_store_memory 限制 Ray 内存分配 (4) 用 RAY_memory_monitor_refresh_ms=0 禁用内存监控阈值冲突。\\\\n\\\", \\\"total_chars\\\": 1167, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/memory.md\", \"content\": \"# Citation Audit — 2026-05-15\\n\\n完整审计结果已写入 artifacts/citation_audit.md。\\n\\n## 审计摘要\\n\\n- 验证论文：27 篇（literature_map.yaml 全部条目）+ 1 篇额外（Thinkless）\\n- 验证通过：20 篇\\n- 需要修正：7 篇（3 个严重问题，2 个中等问题，2 个轻微问题）\\n- 关键发现：AgentPRM arXiv ID/作者/标题全错；Huang2024 作者不匹配；DAPO 标题错误；CFGM 会议和年份错误\\n\\n# Adaptive KL 可行性 — 2026-05-15\\n\\nverl 框架已内置 `AdaptiveKLController`（Ziegler 2019），RAGEN `agent_trainer.py` 已完整接入 reward-level KL adaptive 链路。**零代码修改，纯 YAML 配置切换**（~8 行）：\\n- `algorithm.use_kl_in_reward: True` + `kl_ctrl.type: adaptive`\\n- `actor.use_kl_loss: False`\\n- `target_kl: 0.1`, `kl_coef: 0.005`（初始值），`horizon: 10000`\\n\\n当前 exp027 用的是 loss-level KL（`use_kl_loss` + 静态 `kl_loss_coef`）。如需切换，实现 <1h，验证 2-4h。\\n\\n风险：reward-level KL 通过 advantage 间接影响梯度，与 loss-level 直接约束不同。如 reward-level 效果不理想，备选 Plan C（loss-level adaptive）需 ~30 行代码，半天可完成。\\n\\n# 失败模式记录\\n\\n- [失败模式] Ray raylet 异常终止：ActorUnavailableError RPC error Socket closed rpc_code: 14，Raylet 被 SIGKILL（OOM killer 或内存访问错误）。出现于 exp013e（val→train 过渡）和 exp027（step 4→5 过渡）。→ 修复方案：(1) 检查 cgroup 内存限制 vs Ray object_store + worker 内存总和 (2) 降低 env_groups 减少并发内存峰值 (3) 显式设置 ray_kwargs.ray_init.object_store_memory 限制 Ray 内存分配 (4) 用 RAY_memory_monitor_refresh_ms=0 禁用内存监控阈值冲突。\\n\", \"total_chars\": 1167, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "b148c008-7a88-4ee1-8b67-fb9e94fabcd6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_3814f310",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-16T03:05:13.273Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01NgNy4N1XPTraQb67xaHNjv`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-3814f310/f8f3f20d-7faa-4c35-a3d5-9579173279b6/tool-results/mcp-agent-ml-research-read_registry-1778900685320.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# Show running/preparing/pending/allocated\nfor eid, e in exps.items():\n    if e.get('status') in ('RUNNING', 'PREPARING', 'PENDING', 'ALLOCATED'):\n        print(f'=== {eid} === status={e[\\\"status\\\"]}')\n        for k in ['hypothesis','server','spec','metrics','conclusion','wandb_run_id','cron_id','gpu_ids']:\n            if e.get(k):\n                print(f'  {k}: {e[k]}')\n        print()\n# Last 3 DONE\ndone = [(eid, e) for eid, e in exps.items() if e.get('status') == 'DONE']\ndone.sort(key=lambda x: x[1].get('updated_at',''), reverse=True)\nfor eid, e in done[:3]:\n    print(f'=== {eid} === DONE conclusion={e.get(\\\"conclusion\\\")}')\n    print(f'  metrics: {e.get(\\\"metrics\\\")}')\n    print()\n\"\n",
+  "description": "Parse registry for running and recent experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "56105633-c63e-4530-9f06-4100546015cf",
+  "isSidechain": false,
+  "requestId": "req_011Cb5WNTqWDn6bucT3sc9SQ",
+  "type": "assistant",
+  "uuid": "5bdb0968-1869-4c2e-b63f-b517b20e787d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_3814f310",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JFFBH2kySYS1xb4PsnBFu9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1413,
+      "cache_read_input_tokens": 44628,
+      "output_tokens": 488,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1413,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 488,
+          "cache_read_input_tokens": 44628,
+          "cache_creation_input_tokens": 1413,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1413
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-16T03:05:13.366Z_
+
+<details><summary>↩ Tool result · `toolu_01NgNy4N1XPTraQb67xaHNjv`</summary>
+
+```text
+=== exp028c_selfguide_recipe === status=RUNNING
+  spec: {'command': 'bash scripts/run_exp028c_selfguide_recipe.sh', 'server': 'bjb1-17606', 'data_path': 'AlfworldSG (env_configs)', 'data_count': 128, 'model_name': 'qwen3_exp021_ragen_sft_v4 (SFT checkpoint)', 'seed': 10000}
+  metrics: {'step_0_val': {'success': 6.25, 'pass_at_1': 6.25, 'action_is_valid': 74.5, 'score_mean': 0.119}, 'step_1_train': {'success': 13.28, 'pass_at_8': 37.5, 'action_is_valid': 76.4, 'action_is_effective': 96.37, 'entropy': 0.2634, 'kl_loss': 0.0128, 'ppo_kl': 0.019, 'grad_norm': 16.88, 'score_mean': 0.843, 'time_s': 3252, 'note': '三方交叉验证通过'}, 'step_2_train': {'success': 6.25, 'pass_at_8': 25, 'action_is_valid': 83.2, 'entropy': 0.247, 'kl_loss': 0.1706, 'pg_loss': 0.007, 'grad_norm': 17.3, 'score_mean': 0.274, 'time_s': 3120, 'note': 'kl_loss修正为0.1706(原0.017为ppo_kl误录),补回pg_loss=0.007'}, 'step_3_train': {'success': 15.63, 'pass_at_8': 68.75, 'action_is_valid': 85.9, 'entropy': 0.2488, 'kl_loss': 0.1118, 'grad_norm': 12.57, 'score_mean': 0.661, 'time_s': 2760, 'note': '日志验证'}, 'step_4_train': {'success': 18.75, 'pass_at_8': 62.5, 'action_is_valid': 87.94, 'entropy': 0.234, 'kl_loss': 0.031, 'ppo_kl': 0.015, 'note': 'kl_loss=0.031已确认正确'}, 'step_5_train': {'success': 9.4, 'pass_at_8': 37.5, 'action_is_valid': 89.6, 'entropy': 0.236, 'kl_loss': 0.824, 'grad_norm': 13.1, 'note': 'kl_loss飙升(0.031→0.824),需监控后续是否回落'}, 'step_5_val': {'success': 6.25, 'pass_at_1': 6.25, 'action_is_valid': 96.5, 'action_is_effective': 100, 'num_actions': 49.4, 'score_mean': 0.518, 'note': 'val success未提升,但action_is_valid +22pp(74.5→96.5),reward 4.4x提升'}}
+  wandb_run_id: 4yu6qz1m
+
+=== exp028_prereq_zeroshot_instruct === status=PREPARING
+  hypothesis: Qwen3-1.7B-Instruct 零样本 ALFWorld eval，验证"SFT是毒药"假设。如果 Instruct ≥15% success（vs SFT checkpoint 6.25%），则确认 SFT 起点有害，exp028a 可跳过 SFT 直接 GRPO。
+
+=== exp025c === status=PENDING
+  spec: {'name': 'verl-agent ALFWorld GRPO baseline — single GPU, thread-safe config', 'hypothesis': 'verl-agent GRPO with Qwen3-1.7B on single GPU (TP=1, enforce_eager, thread-limited) can train ALFWorld within cgroup pids.max=20480 limit. Degraded dry run validated: PIDs stable at 6575/20480 (32%). Target: success ≥20%.', 'command': 'bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate /root/autodl-tmp/conda-envs/verl-agent && cd /root/autodl-tmp/verl-agent && bash examples/grpo_trainer/run_alfworld_exp025c.sh"', 'server': 'bjb1-17606', 'data_path': '$HOME/data/verl-agent/text/train.parquet', 'data_count': '16 train / 128 val', 'model_name': 'Qwen3-1.7B (local: /root/autodl-tmp/models/Qwen/Qwen3-1___7B/)', 'seed': 0, 'framework': 'verl-agent v0.3.1.dev', 'algorithm': 'GRPO', 'gpus': 'cuda:0 (1x RTX PRO 6000 Blackwell 98GB)', 'key_params': {'train_batch_size': 16, 'val_batch_size': 128, 'group_size': 8, 'lr': 1e-06, 'total_epochs': 150, 'max_steps': 50, 'kl_loss_coef': 0.01, 'invalid_action_penalty_coef': 0.1, 'tensor_model_parallel_size': 1, 'test_freq': 5, 'val_before_train': True, 'save_freq': 25, 'enforce_eager': True, 'env_rollout_n': 2, 'ray_init_num_cpus': 8, 'vllm_attention_backend': 'FLASH_ATTN', 'thread_limit': 'OMP/MKL/OPENBLAS/NUMEXPR=1'}}
+  conclusion: failed
+
+=== exp021_sft_ragen_format === status=PREPARING
+  hypothesis: Two-stage SFT with RAGEN-format data (v4). From exp008_sft checkpoint, fine-tune with v4 data (RAGEN Turn/State/Reward structure, fixed system prompt with consistent &lt;answer> tag instruction). LR=5e-6, 2 epochs. Validate via RAGEN val_before_train (not eval_sft_fast). Pass: RAGEN val success >= 10%, action_is_valid >= 85%.
+  conclusion: killed
+
+=== exp020d_grpo_from_sft === status=PREPARING
+  hypothesis: GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Symlink fix for response_mask assertion (proven in exp020b). exp020c failed: Hydra key path wrong.
+  spec: {'command': 'bash -c "ray stop --force 2>/dev/null; sleep 5; ln -sfn /root/autodl-tmp/checkpoints/exp019b_expert_sft_v3/final /root/autodl-tmp/checkpoints/qwen3_exp019b_sft && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p /root/autodl-tmp/tmp/ && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && export RAY_memory_monitor_refresh_ms=0 && export RAY_SYSTEM_MEMORY=210000000000 && export HYDRA_FULL_ERROR=1 && mkdir -p /root/autodl-tmp/checkpoints/exp020d/ && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name _alfworld_exp018_sft_grpo model_path=/root/autodl-tmp/checkpoints/qwen3_exp019b_sft trainer.experiment_name=exp020d-alfworld-sft-grpo trainer.local_log_dir=/root/autodl-tmp/checkpoints/exp020d/ trainer.default_local_dir=/root/autodl-tmp/checkpoints/exp020d/ es_manager.val.env_groups=4 \'es_manager.val.env_configs.n_groups=[4]\'"', 'server': 'bjb1-17606', 'gpu': ['cuda:0', 'cuda:1'], 'pid': '390605', 'log_path': '~/runs/cost-verify-agent-rl/exp020d_grpo_from_sft.log', 'submitted_at': '2026-05-14T22:19:42.442Z', 'submitted_via': 'submit_training_job', 'backend': 'tmux', 'account': 'root'}
+  conclusion: failed
+
+=== exp020c_grpo_from_sft === status=PREPARING
+  hypothesis: GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Fix: symlink + enable_response_mask=false (exp020/020b crashed on response_mask assertion).
+  spec: {'command': 'bash -c "ln -sfn /root/autodl-tmp/checkpoints/exp019b_expert_sft_v3/final /root/autodl-tmp/checkpoints/qwen3_exp019b_sft && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p /root/autodl-tmp/tmp/ && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && export RAY_memory_monitor_refresh_ms=0 && export RAY_SYSTEM_MEMORY=210000000000 && export HYDRA_FULL_ERROR=1 && mkdir -p /root/autodl-tmp/checkpoints/exp020c/ && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name _alfworld_exp018_sft_grpo model_path=/root/autodl-tmp/checkpoints/qwen3_exp019b_sft trainer.experiment_name=exp020c-alfworld-sft-grpo trainer.local_log_dir=/root/autodl-tmp/checkpoints/exp020c/ trainer.default_local_dir=/root/autodl-tmp/checkpoints/exp020c/ actor_rollout_ref.model.enable_response_mask=false es_manager.val.env_groups=4 \'es_manager.val.env_configs.n_groups=[4]\'"', 'server': 'bjb1-17606', 'gpu': ['cuda:0', 'cuda:1'], 'pid': '389983', 'log_path': '~/runs/cost-verify-agent-rl/exp020c_grpo_from_sft.log', 'submitted_at': '2026-05-14T22:15:49.190Z', 'submitted_via': 'submit_training_job', 'backend': 'tmux', 'account': 'root'}
+  conclusion: failed
+
+=== exp019c_expert_sft_v3 === status=PREPARING
+  hypothesis: Two-stage Expert SFT（重试）: 从 exp008_sft checkpoint 出发，用 v3 数据（保留原始 move actions + admissible actions augmentation）微调。LR=5e-6, 2 epochs, batch=4, grad_accum=4, max_seq=4096。Pass: success ≥ 10%, format_ok ≥ 90%, action_is_valid ≥ 85%。
+  spec: {'command': 'bash -c "rm -rf /root/autodl-tmp/checkpoints/exp019b_expert_sft_v3 && > /root/runs/cost-verify-agent-rl/exp019b_expert_sft_v3.log && cd /root/cost-verify-agent-rl && bash scripts/run_exp019b.sh"', 'server': 'bjb1-17606', 'gpu': ['cuda:0'], 'pid': 'unknown', 'log_path': '~/runs/cost-verify-agent-rl/exp019c_expert_sft_v3.log', 'submitted_at': '2026-05-14T21:03:15.877Z', 'submitted_via': 'submit_training_job', 'backend': 'tmux', 'account': 'root'}
+  conclusion: killed
+
+=== exp019b_expert_sft_v2 === status=PREPARING
+  spec: {'hypothesis': '两阶段 SFT：从 exp008_sft checkpoint（format_ok=100%, action_is_valid=90%）出发，用原始 expert data（保留 move X to Y）+ admissible actions augmentation 微调。LR=5e-6, 2 epochs。目标：success ≥ 10% 且 format_ok ≥ 90%。', 'parent': 'exp008_sft', 'model_name': 'Qwen3-1.7B', 'checkpoint_source': '/root/autodl-tmp/checkpoints/exp008_sft/final', 'description': 'D019: 修正版 — 原始 expert data (保留 move) + admissible actions + 从 exp008_sft checkpoint 微调'}
+
+=== exp018_sft_grpo === status=PREPARING
+  hypothesis: Expert SFT → Sparse GRPO：从 exp017 SFT checkpoint 开始纯 sparse GRPO 训练。SFT 提升 baseline success rate（≥10%），使 GRPO 有足够非零 reward group 产生有效梯度。LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, won=10.0, 无 bonus/penalty, GRPO 30 步。Pass: success ≥ 20%。
+  conclusion: killed
+
+=== exp014b === status=PREPARING
+  hypothesis: 极低 Dense Reward: valid_action_bonus=0.01（1:1000 比例），测试极弱 bonus 能否防 collapse 又不引发 gaming。如果 bonus 弱到不影响 GRPO reward ranking，模型不会被诱导走捷径。success_reward=10.0, format_penalty=0, 从 exp008 step 5 checkpoint 恢复, GRPO 30 步。
+  conclusion: killed
+
+=== exp014a === status=PREPARING
+  hypothesis: Success-Gated Dense Reward: valid_action_bonus=0.15 只在 group 内至少一条 trajectory success 时才给。消除 reward gaming 的独立最大化路径——没有 success 就没有 bonus，模型必须探索 success。success_reward=10.0, format_penalty=0, 从 exp008 step 5 checkpoint 恢复, GRPO 30 步。
+  conclusion: killed
+
+=== exp014c === status=PREPARING
+  hypothesis: Success-gated valid_action_bonus：bonus 仅在 episode 成功时累加到 reward，消除独立最大化路径。valid_action_bonus=0.15, success_reward=10.0。解决 exp013f reward gaming（unconditional bonus 导致 agent 放弃 success 追求 valid action）。从 step 5 checkpoint 恢复 GRPO 30 步。
+
+=== exp008 === status=PREPARING
+  spec: {'hypothesis': 'SFT warmup on ALFWorld trajectories teaches Qwen3-1.7B valid command semantics, enabling GRPO to bootstrap from non-sparse reward', 'parent': 'exp007', 'model_name': 'Qwen3-1.7B', 'description': 'Phase A retry: SFT warmup (public dataset, format conversion) → GRPO training. Two stages: (1) SFT on ALFWorld trajectories to learn command format+semantics, (2) GRPO with SFT checkpoint'}
+  conclusion: killed
+
+=== exp007_dryrun === status=PREPARING
+  spec: {'command': 'bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name=_alfworld_exp007_dryrun 2>&1 | tee /root/autodl-tmp/exp007_dryrun.log"', 'server': 'bjb1-17606', 'gpu': ['cuda:0', 'cuda:1'], 'pid': '172463', 'log_path': '~/runs/cost-verify-agent-rl/exp007_dryrun.log', 'submitted_at': '2026-05-14T00:19:04.582Z', 'submitted_via': 'submit_training_job', 'backend': 'tmux', 'account': 'root'}
+
+=== exp005 === status=PREPARING
+  spec: {'hypothesis': 'Fast config (30 steps, 64 traj/step, 30 max_turns) can show learning trend in ~12-20h', 'model_name': 'Qwen3-1.7B', 'server': 'bjb1-17606', 'data_path': '/root/autodl-tmp/alfworld/', 'data_count': '3553 (train split)', 'seed': {'train': 10000, 'val': 123}, 'parent': 'exp003', 'description': 'Phase A fast: reduced config for quicker iteration'}
+
+=== exp_003 === status=PREPARING
+  spec: {'hypothesis': 'Always-on self-guidance via GRPO can achieve ≥76% on ALFWorld with proper prompt truncation (max_prompt_length=4096)', 'model_name': 'Qwen3-1.7B', 'server': 'bjb1-17606', 'data_path': '/root/autodl-tmp/alfworld/', 'data_count': 8810, 'seed': 42, 'parent': 'exp_002', 'description': 'Phase A v3: add prompt truncation (max_prompt_length=4096) matching Self-Guide paper'}
+  conclusion: failed
+
+=== exp_003_dryrun === status=PREPARING
+  spec: {'command': 'bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name=_alfworld_exp003_dryrun 2>&1 | tee /root/autodl-tmp/exp003_dryrun.log"', 'server': 'bjb1-17606', 'gpu': ['cuda:0', 'cuda:1'], 'pid': '132166', 'log_path': '~/runs/cost-verify-agent-rl/exp_003_dryrun.log', 'submitted_at': '2026-05-13T21:09:26.351Z', 'submitted_via': 'submit_training_job', 'backend': 'tmux', 'account': 'root'}
+  conclusion: failed
+
+=== exp_003_dryrun2 === status=PREPARING
+  spec: {'command': 'bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && export RAY_DISABLE_DASHBOARD_AGENT=1 && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name=_alfworld_exp003_dryrun 2>&1 | tee /root/autodl-tmp/exp003_dryrun2.log"', 'server': 'bjb1-17606', 'gpu': ['cuda:0', 'cuda:1'], 'pid': '137760', 'log_path': '~/runs/cost-verify-agent-rl/exp_003_dryrun2.log', 'submitted_at': '2026-05-13T21:22:01.428Z', 'submitted_via': 'submit_training_job', 'backend': 'tmux', 'account': 'root'}
+  conclusion: failed
+
+=== exp003_dryrun3 === status=PREPARING
+  spec: {'command': 'bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name=_alfworld_exp003_dryrun"', 'server': 'bjb1-17606', 'gpu': ['cuda:0', 'cuda:1'], 'pid': '149365', 'log_path': '~/runs/cost-verify-agent-rl/exp003_dryrun3.log', 'submitted_at': '2026-05-13T21:26:41.056Z', 'submitted_via': 'submit_training_job', 'backend': 'tmux', 'account': 'root'}
+  conclusion: failed
+
+=== exp_003_dryrun3 === status=PREPARING
+  spec: {'command': 'bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && export RAY_DISABLE_DASHBOARD_AGENT=1 && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name=_alfworld_exp003_dryrun 2>&1 | tee /root/autodl-tmp/exp003_dryrun3.log"', 'server': 'bjb1-17606', 'gpu': ['cuda:0', 'cuda:1'], 'pid': '152820', 'log_path': '~/runs/cost-verify-agent-rl/exp_003_dryrun3.log', 'submitted_at': '2026-05-13T21:27:05.002Z', 'submitted_via': 'submit_training_job', 'backend': 'tmux', 'account': 'root'}
+  conclusion: failed
+
+=== exp028a_recipe_fix === DONE conclusion=killed
+  metrics: None
+
+=== exp028_prereq_zeroshot === DONE conclusion=negative
+  metrics: {'success': 0, 'action_is_valid': 0.75, 'num_actions': 50, 'pass_at_1': 0, 'response_length': 75.07}
+
+=== exp027_stable_grpo === DONE conclusion=failed
+  metrics: {'step_0_val_before_train': {'success': 6.25, 'action_is_valid': 63.125, 'action_is_effective': 87.875, 'num_actions': 42.375, 'response_length': 114.67, 'reward_mean': 0.3226, 'val_generation_time_s': 502.57}, 'step_1_train': {'success': 35.94, 'kl_loss': 0.058, 'batch_size': 5152, 'training_time_s': 4342}, 'step_2_train': {'success': 10.16, 'kl_loss': 0.413, 'batch_size': 6144, 'training_time_s': 5886}, 'step_3_train': {'success': 10.16, 'kl_loss': 0.248, 'entropy': 0.385, 'pass_at_16': 0.5, 'grad_norm': 21.31, 'reward_mean': 0.483, 'batch_size': 6048, 'training_time_s': 4689}, 'step_4_train': {'success': 13.28, 'pass_at_16': 0.375, 'note': 'Director判定: 趋势确认, MVP未通过'}}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5bdb0968-1869-4c2e-b63f-b517b20e787d",
+  "isSidechain": false,
+  "promptId": "f5681be2-9455-4955-ae40-1dc15e006c5a",
+  "type": "user",
+  "uuid": "317916d6-c3b9-4564-b752-fffc1382ab92",
+  "toolUseResult": {
+    "stdout": "=== exp028c_selfguide_recipe === status=RUNNING\n  spec: {'command': 'bash scripts/run_exp028c_selfguide_recipe.sh', 'server': 'bjb1-17606', 'data_path': 'AlfworldSG (env_configs)', 'data_count': 128, 'model_name': 'qwen3_exp021_ragen_sft_v4 (SFT checkpoint)', 'seed': 10000}\n  metrics: {'step_0_val': {'success': 6.25, 'pass_at_1': 6.25, 'action_is_valid': 74.5, 'score_mean': 0.119}, 'step_1_train': {'success': 13.28, 'pass_at_8': 37.5, 'action_is_valid': 76.4, 'action_is_effective': 96.37, 'entropy': 0.2634, 'kl_loss': 0.0128, 'ppo_kl': 0.019, 'grad_norm': 16.88, 'score_mean': 0.843, 'time_s': 3252, 'note': '三方交叉验证通过'}, 'step_2_train': {'success': 6.25, 'pass_at_8': 25, 'action_is_valid': 83.2, 'entropy': 0.247, 'kl_loss': 0.1706, 'pg_loss': 0.007, 'grad_norm': 17.3, 'score_mean': 0.274, 'time_s': 3120, 'note': 'kl_loss修正为0.1706(原0.017为ppo_kl误录),补回pg_loss=0.007'}, 'step_3_train': {'success': 15.63, 'pass_at_8': 68.75, 'action_is_valid': 85.9, 'entropy': 0.2488, 'kl_loss': 0.1118, 'grad_norm': 12.57, 'score_mean': 0.661, 'time_s': 2760, 'note': '日志验证'}, 'step_4_train': {'success': 18.75, 'pass_at_8': 62.5, 'action_is_valid': 87.94, 'entropy': 0.234, 'kl_loss': 0.031, 'ppo_kl': 0.015, 'note': 'kl_loss=0.031已确认正确'}, 'step_5_train': {'success': 9.4, 'pass_at_8': 37.5, 'action_is_valid': 89.6, 'entropy': 0.236, 'kl_loss': 0.824, 'grad_norm': 13.1, 'note': 'kl_loss飙升(0.031→0.824),需监控后续是否回落'}, 'step_5_val': {'success': 6.25, 'pass_at_1': 6.25, 'action_is_valid': 96.5, 'action_is_effective': 100, 'num_actions': 49.4, 'score_mean': 0.518, 'note': 'val success未提升,但action_is_valid +22pp(74.5→96.5),reward 4.4x提升'}}\n  wandb_run_id: 4yu6qz1m\n\n=== exp028_prereq_zeroshot_instruct === status=PREPARING\n  hypothesis: Qwen3-1.7B-Instruct 零样本 ALFWorld eval，验证\"SFT是毒药\"假设。如果 Instruct ≥15% success（vs SFT checkpoint 6.25%），则确认 SFT 起点有害，exp028a 可跳过 SFT 直接 GRPO。\n\n=== exp025c === status=PENDING\n  spec: {'name': 'verl-agent ALFWorld GRPO baseline — single GPU, thread-safe config', 'hypothesis': 'verl-agent GRPO with Qwen3-1.7B on single GPU (TP=1, enforce_eager, thread-limited) can train ALFWorld within cgroup pids.max=20480 limit. Degraded dry run validated: PIDs stable at 6575/20480 (32%). Target: success ≥20%.', 'command': 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate /root/autodl-tmp/conda-envs/verl-agent && cd /root/autodl-tmp/verl-agent && bash examples/grpo_trainer/run_alfworld_exp025c.sh\"', 'server': 'bjb1-17606', 'data_path': '$HOME/data/verl-agent/text/train.parquet', 'data_count': '16 train / 128 val', 'model_name': 'Qwen3-1.7B (local: /root/autodl-tmp/models/Qwen/Qwen3-1___7B/)', 'seed': 0, 'framework': 'verl-agent v0.3.1.dev', 'algorithm': 'GRPO', 'gpus': 'cuda:0 (1x RTX PRO 6000 Blackwell 98GB)', 'key_params': {'train_batch_size': 16, 'val_batch_size': 128, 'group_size': 8, 'lr': 1e-06, 'total_epochs': 150, 'max_steps': 50, 'kl_loss_coef': 0.01, 'invalid_action_penalty_coef': 0.1, 'tensor_model_parallel_size': 1, 'test_freq': 5, 'val_before_train': True, 'save_freq': 25, 'enforce_eager': True, 'env_rollout_n': 2, 'ray_init_num_cpus': 8, 'vllm_attention_backend': 'FLASH_ATTN', 'thread_limit': 'OMP/MKL/OPENBLAS/NUMEXPR=1'}}\n  conclusion: failed\n\n=== exp021_sft_ragen_format === status=PREPARING\n  hypothesis: Two-stage SFT with RAGEN-format data (v4). From exp008_sft checkpoint, fine-tune with v4 data (RAGEN Turn/State/Reward structure, fixed system prompt with consistent &lt;answer> tag instruction). LR=5e-6, 2 epochs. Validate via RAGEN val_before_train (not eval_sft_fast). Pass: RAGEN val success >= 10%, action_is_valid >= 85%.\n  conclusion: killed\n\n=== exp020d_grpo_from_sft === status=PREPARING\n  hypothesis: GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Symlink fix for response_mask assertion (proven in exp020b). exp020c failed: Hydra key path wrong.\n  spec: {'command': 'bash -c \"ray stop --force 2>/dev/null; sleep 5; ln -sfn /root/autodl-tmp/checkpoints/exp019b_expert_sft_v3/final /root/autodl-tmp/checkpoints/qwen3_exp019b_sft && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p /root/autodl-tmp/tmp/ && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && export RAY_memory_monitor_refresh_ms=0 && export RAY_SYSTEM_MEMORY=210000000000 && export HYDRA_FULL_ERROR=1 && mkdir -p /root/autodl-tmp/checkpoints/exp020d/ && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name _alfworld_exp018_sft_grpo model_path=/root/autodl-tmp/checkpoints/qwen3_exp019b_sft trainer.experiment_name=exp020d-alfworld-sft-grpo trainer.local_log_dir=/root/autodl-tmp/checkpoints/exp020d/ trainer.default_local_dir=/root/autodl-tmp/checkpoints/exp020d/ es_manager.val.env_groups=4 \\'es_manager.val.env_configs.n_groups=[4]\\'\"', 'server': 'bjb1-17606', 'gpu': ['cuda:0', 'cuda:1'], 'pid': '390605', 'log_path': '~/runs/cost-verify-agent-rl/exp020d_grpo_from_sft.log', 'submitted_at': '2026-05-14T22:19:42.442Z', 'submitted_via': 'submit_training_job', 'backend': 'tmux', 'account': 'root'}\n  conclusion: failed\n\n=== exp020c_grpo_from_sft === status=PREPARING\n  hypothesis: GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Fix: symlink + enable_response_mask=false (exp020/020b crashed on response_mask assertion).\n  spec: {'command': 'bash -c \"ln -sfn /root/autodl-tmp/checkpoints/exp019b_expert_sft_v3/final /root/autodl-tmp/checkpoints/qwen3_exp019b_sft && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p /root/autodl-tmp/tmp/ && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && export RAY_memory_monitor_refresh_ms=0 && export RAY_SYSTEM_MEMORY=210000000000 && export HYDRA_FULL_ERROR=1 && mkdir -p /root/autodl-tmp/checkpoints/exp020c/ && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name _alfworld_exp018_sft_grpo model_path=/root/autodl-tmp/checkpoints/qwen3_exp019b_sft trainer.experiment_name=exp020c-alfworld-sft-grpo trainer.local_log_dir=/root/autodl-tmp/checkpoints/exp020c/ trainer.default_local_dir=/root/autodl-tmp/checkpoints/exp020c/ actor_rollout_ref.model.enable_response_mask=false es_manager.val.env_groups=4 \\'es_manager.val.env_configs.n_groups=[4]\\'\"', 'server': 'bjb1-17606', 'gpu': ['cuda:0', 'cuda:1'], 'pid': '389983', 'log_path': '~/runs/cost-verify-agent-rl/exp020c_grpo_from_sft.log', 'submitted_at': '2026-05-14T22:15:49.190Z', 'submitted_via': 'submit_training_job', 'backend': 'tmux', 'account': 'root'}\n  conclusion: failed\n\n=== exp019c_expert_sft_v3 === status=PREPARING\n  hypothesis: Two-stage Expert SFT（重试）: 从 exp008_sft checkpoint 出发，用 v3 数据（保留原始 move actions + admissible actions augmentation）微调。LR=5e-6, 2 epochs, batch=4, grad_accum=4, max_seq=4096。Pass: success ≥ 10%, format_ok ≥ 90%, action_is_valid ≥ 85%。\n  spec: {'command': 'bash -c \"rm -rf /root/autodl-tmp/checkpoints/exp019b_expert_sft_v3 && > /root/runs/cost-verify-agent-rl/exp019b_expert_sft_v3.log && cd /root/cost-verify-agent-rl && bash scripts/run_exp019b.sh\"', 'server': 'bjb1-17606', 'gpu': ['cuda:0'], 'pid': 'unknown', 'log_path': '~/runs/cost-verify-agent-rl/exp019c_expert_sft_v3.log', 'submitted_at': '2026-05-14T21:03:15.877Z', 'submitted_via': 'submit_training_job', 'backend': 'tmux', 'account': 'root'}\n  conclusion: killed\n\n=== exp019b_expert_sft_v2 === status=PREPARING\n  spec: {'hypothesis': '两阶段 SFT：从 exp008_sft checkpoint（format_ok=100%, action_is_valid=90%）出发，用原始 expert data（保留 move X to Y）+ admissible actions augmentation 微调。LR=5e-6, 2 epochs。目标：success ≥ 10% 且 format_ok ≥ 90%。', 'parent': 'exp008_sft', 'model_name': 'Qwen3-1.7B', 'checkpoint_source': '/root/autodl-tmp/checkpoints/exp008_sft/final', 'description': 'D019: 修正版 — 原始 expert data (保留 move) + admissible actions + 从 exp008_sft checkpoint 微调'}\n\n=== exp018_sft_grpo === status=PREPARING\n  hypothesis: Expert SFT → Sparse GRPO：从 exp017 SFT checkpoint 开始纯 sparse GRPO 训练。SFT 提升 baseline success rate（≥10%），使 GRPO 有足够非零 reward group 产生有效梯度。LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, won=10.0, 无 bonus/penalty, GRPO 30 步。Pass: success ≥ 20%。\n  conclusion: killed\n\n=== exp014b === status=PREPARING\n  hypothesis: 极低 Dense Reward: valid_action_bonus=0.01（1:1000 比例），测试极弱 bonus 能否防 collapse 又不引发 gaming。如果 bonus 弱到不影响 GRPO reward ranking，模型不会被诱导走捷径。success_reward=10.0, format_penalty=0, 从 exp008 step 5 checkpoint 恢复, GRPO 30 步。\n  conclusion: killed\n\n=== exp014a === status=PREPARING\n  hypothesis: Success-Gated Dense Reward: valid_action_bonus=0.15 只在 group 内至少一条 trajectory success 时才给。消除 reward gaming 的独立最大化路径——没有 success 就没有 bonus，模型必须探索 success。success_reward=10.0, format_penalty=0, 从 exp008 step 5 checkpoint 恢复, GRPO 30 步。\n  conclusion: killed\n\n=== exp014c === status=PREPARING\n  hypothesis: Success-gated valid_action_bonus：bonus 仅在 episode 成功时累加到 reward，消除独立最大化路径。valid_action_bonus=0.15, success_reward=10.0。解决 exp013f reward gaming（unconditional bonus 导致 agent 放弃 success 追求 valid action）。从 step 5 checkpoint 恢复 GRPO 30 步。\n\n=== exp008 === status=PREPARING\n  spec: {'hypothesis': 'SFT warmup on ALFWorld trajectories teaches Qwen3-1.7B valid command semantics, enabling GRPO to bootstrap from non-sparse reward', 'parent': 'exp007', 'model_name': 'Qwen3-1.7B', 'description': 'Phase A retry: SFT warmup (public dataset, format conversion) → GRPO training. Two stages: (1) SFT on ALFWorld trajectories to learn command format+semantics, (2) GRPO with SFT checkpoint'}\n  conclusion: killed\n\n=== exp007_dryrun === status=PREPARING\n  spec: {'command': 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name=_alfworld_exp007_dryrun 2>&1 | tee /root/autodl-tmp/exp007_dryrun.log\"', 'server': 'bjb1-17606', 'gpu': ['cuda:0', 'cuda:1'], 'pid': '172463', 'log_path': '~/runs/cost-verify-agent-rl/exp007_dryrun.log', 'submitted_at': '2026-05-14T00:19:04.582Z', 'submitted_via': 'submit_training_job', 'backend': 'tmux', 'account': 'root'}\n\n=== exp005 === status=PREPARING\n  spec: {'hypothesis': 'Fast config (30 steps, 64 traj/step, 30 max_turns) can show learning trend in ~12-20h', 'model_name': 'Qwen3-1.7B', 'server': 'bjb1-17606', 'data_path': '/root/autodl-tmp/alfworld/', 'data_count': '3553 (train split)', 'seed': {'train': 10000, 'val': 123}, 'parent': 'exp003', 'description': 'Phase A fast: reduced config for quicker iteration'}\n\n=== exp_003 === status=PREPARING\n  spec: {'hypothesis': 'Always-on self-guidance via GRPO can achieve ≥76% on ALFWorld with proper prompt truncation (max_prompt_length=4096)', 'model_name': 'Qwen3-1.7B', 'server': 'bjb1-17606', 'data_path': '/root/autodl-tmp/alfworld/', 'data_count': 8810, 'seed': 42, 'parent': 'exp_002', 'description': 'Phase A v3: add prompt truncation (max_prompt_length=4096) matching Self-Guide paper'}\n  conclusion: failed\n\n=== exp_003_dryrun === status=PREPARING\n  spec: {'command': 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name=_alfworld_exp003_dryrun 2>&1 | tee /root/autodl-tmp/exp003_dryrun.log\"', 'server': 'bjb1-17606', 'gpu': ['cuda:0', 'cuda:1'], 'pid': '132166', 'log_path': '~/runs/cost-verify-agent-rl/exp_003_dryrun.log', 'submitted_at': '2026-05-13T21:09:26.351Z', 'submitted_via': 'submit_training_job', 'backend': 'tmux', 'account': 'root'}\n  conclusion: failed\n\n=== exp_003_dryrun2 === status=PREPARING\n  spec: {'command': 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && export RAY_DISABLE_DASHBOARD_AGENT=1 && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name=_alfworld_exp003_dryrun 2>&1 | tee /root/autodl-tmp/exp003_dryrun2.log\"', 'server': 'bjb1-17606', 'gpu': ['cuda:0', 'cuda:1'], 'pid': '137760', 'log_path': '~/runs/cost-verify-agent-rl/exp_003_dryrun2.log', 'submitted_at': '2026-05-13T21:22:01.428Z', 'submitted_via': 'submit_training_job', 'backend': 'tmux', 'account': 'root'}\n  conclusion: failed\n\n=== exp003_dryrun3 === status=PREPARING\n  spec: {'command': 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name=_alfworld_exp003_dryrun\"', 'server': 'bjb1-17606', 'gpu': ['cuda:0', 'cuda:1'], 'pid': '149365', 'log_path': '~/runs/cost-verify-agent-rl/exp003_dryrun3.log', 'submitted_at': '2026-05-13T21:26:41.056Z', 'submitted_via': 'submit_training_job', 'backend': 'tmux', 'account': 'root'}\n  conclusion: failed\n\n=== exp_003_dryrun3 === status=PREPARING\n  spec: {'command': 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && export RAY_DISABLE_DASHBOARD_AGENT=1 && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name=_alfworld_exp003_dryrun 2>&1 | tee /root/autodl-tmp/exp003_dryrun3.log\"', 'server': 'bjb1-17606', 'gpu': ['cuda:0', 'cuda:1'], 'pid': '152820', 'log_path': '~/runs/cost-verify-agent-rl/exp_003_dryrun3.log', 'submitted_at': '2026-05-13T21:27:05.002Z', 'submitted_via': 'submit_training_job', 'backend': 'tmux', 'account': 'root'}\n  conclusion: failed\n\n=== exp028a_recipe_fix === DONE conclusion=killed\n  metrics: None\n\n=== exp028_prereq_zeroshot === DONE conclusion=negative\n  metrics: {'success': 0, 'action_is_valid': 0.75, 'num_actions': 50, 'pass_at_1': 0, 'response_length': 75.07}\n\n=== exp027_stable_grpo === DONE conclusion=failed\n  metrics: {'step_0_val_before_train': {'success': 6.25, 'action_is_valid': 63.125, 'action_is_effective': 87.875, 'num_actions': 42.375, 'response_length': 114.67, 'reward_mean': 0.3226, 'val_generation_time_s': 502.57}, 'step_1_train': {'success': 35.94, 'kl_loss': 0.058, 'batch_size': 5152, 'training_time_s': 4342}, 'step_2_train': {'success': 10.16, 'kl_loss': 0.413, 'batch_size': 6144, 'training_time_s': 5886}, 'step_3_train': {'success': 10.16, 'kl_loss': 0.248, 'entropy': 0.385, 'pass_at_16': 0.5, 'grad_norm': 21.31, 'reward_mean': 0.483, 'batch_size': 6048, 'training_time_s': 4689}, 'step_4_train': {'success': 13.28, 'pass_at_16': 0.375, 'note': 'Director判定: 趋势确认, MVP未通过'}}",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "5bdb0968-1869-4c2e-b63f-b517b20e787d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_3814f310",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 39_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[WRITE HANDOFF] 请立即写你的 handoff。  **格式硬约束**: - 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹 - 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）  **必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:  ### 1. 🔴 硬约束 / 红线   本项目特定的不可…",
+  "leafUuid": "317916d6-c3b9-4564-b752-fffc1382ab92",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 40_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Write handoff documentation for coding session",
+  "sessionId": "f8f3f20d-7faa-4c35-a3d5-9579173279b6"
+}
+```
+
+---

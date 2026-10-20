@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "227d7ce9b69dfe8f7ef0",
+  "project": "cost-verify-agent-rl--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 项目：rl-active-probe-fl。服务器 cqa1-21977，2×RTX 4090D。SeetaCloud 实例（类似 AutoDL），需 source /etc/network_turbo。预置",
+  "task_key": "5021c259-3540-451b-8a6f-7cc27519eba5",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/5021c259-3540-451b-8a6f-7cc27519eba5.jsonl",
+    "occurrence": 1,
+    "bytes": 626508,
+    "sha256": "b1f33fc2ad106aeda107f513ae50fbedb18d722dc39163823f30eab3e002b557"
+  },
+  "statistics": {
+    "messages": 398,
+    "user_turns": 1,
+    "tool_calls": 136,
+    "roles": {
+      "record": 61,
+      "user": 1,
+      "assistant": 64,
+      "tool_call": 136,
+      "tool_result": 136
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "227d7ce9b69dfe8f7ef0-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 396,
+      "chunks": [
+        {
+          "path": "227d7ce9b69dfe8f7ef0-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "227d7ce9b69dfe8f7ef0-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "227d7ce9b69dfe8f7ef0-part-0003.json",
+          "message_count": 38
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-rl-active-probe-fl-cqa1-21977-2rtx-4090dseetacloud-autodl-source.md"
+}

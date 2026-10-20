@@ -1,0 +1,2117 @@
+# Research conversation: <project_context> # 项目: cost-verify-agent-rl ## 运行环境 - 服务器名: bjb1-17606 - SSH 账户: root（调用 ssh_execute / submit_training_
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 30
+- **Recorded user turns:** 1
+- **Tool calls:** 6
+- **Original source:** `logs/chats/exported-trajectories/account-2/fb344fab-b668-49e6-9211-d7810677e348.jsonl`
+- **Structured JSON:** [`8802ce22176a9055c147.json`](../../sessions/88/8802ce22176a9055c147.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-20T14:40:28.145Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T14:40:28.145Z",
+  "sessionId": "fb344fab-b668-49e6-9211-d7810677e348",
+  "content": "&lt;project_context>\n# 项目: cost-verify-agent-rl\n\n## 运行环境\n- 服务器名: bjb1-17606\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.bjb1.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/cost-verify-agent-rl\n\n## ⚠️ 活跃约束（必须遵守）\n\n- **C002**: 实验启动前必须执行 pre-flight checklist：(1) 确认入口点与最近成功实验一致 (2) df -h 检查磁盘 (3) 验证 config 参数与 vLLM/框架版本兼容 (4) 确认 checkpoint 路径存在。未通过不得启动。（原因：18 个实验仅 1 成功，exp012 用错入口点、exp007 磁盘满、exp003 格式不兼容——均为 pre-flight 可拦截的问题。） [来自 D009]\n- **C003**: 所有实验的 val/eval 必须使用 ≥16 episodes，禁止基于 4-episode 结果做 pass/fail 判定（原因：exp021 两次 eval 矛盾（4-ep: 25% vs 16-ep: 6.25%）证明 4 episodes 方差过大，基于此做决策导致 exp022 在不可靠前提下启动。Reviewer 已三次警告此问题。）\n- **C004**: Worker 禁止覆盖 memory.md，文献调研输出写 artifacts/literature_*.md（原因：2026-05-17 deep-read-turn-ppo-v2 worker 覆盖了 memory.md 全部原有内容（Citation Audit、Adaptive KL 分析、Ray raylet 记录等丢失）。literature 类 worker 输出一律写 artifacts/ 目录。）\n- **C005**: 实验提交前必须完成环境验证：代码同步 + 依赖安装 + 数据模型就位 + dry-run 通过，确保 GPU 分配后零等待启动（原因：用户反馈效率问题：GPU 到位后还要等环境准备是浪费。所有准备工作必须在 GPU 分配前并行完成，实现无缝衔接。）\n- **C006**: GPU 白名单：bjb1-17606 cuda:0,1（共享服务器，仅限这 2 张）；westd-47453 cuda:0,1,2,3（项目独占，全部 4 张可用）。禁止使用白名单外的 GPU。（原因：替代原 C001（仅覆盖 bjb1）。westd-47453 由 Manager 于 2026-05-17 专门分配给本项目，4 张 RTX PRO 6000 96GB 全部归属。项目配置 execution.gpu_ids 已同步更新。）\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n&lt;/project_context>\n**任务**: 将 §5.5 Sign Verification 从 artifacts 版本迁移到 docs 版本的 experiments.tex。\n\n**步骤**:\n\n1. **读取源文件**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/paper/experiments.tex`\n   - 找到 §5.5 \"Empirical Verification of Sign Misattribution\"（或类似标题）的完整内容\n   - 包括 `\\label{sec:sign_verification}` 和所有子段落、公式、表格\n\n2. **读取目标文件**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex`\n   - 确定插入位置：应在 §5.7 \"Cross-Scale Verification\" (`\\subsection{Cross-Scale Verification}`) 之前\n   - 当前文件结构大约是：5.1 Environment → 5.2 Base Model → 5.3 RL Config → 5.4 Eval Protocol → 5.5 Factorial → 5.6 Additional Conditions → 5.7 Results → 5.x Cross-Scale Verification\n   - §5.5 Sign Verification 应插在 Results 和 Cross-Scale Verification 之间，或者 Additional Conditions 和 Results 之间——看源文件中它的位置\n\n3. **插入**: 将完整的 Sign Verification section 复制到目标文件的正确位置\n   - 确保 `\\label{sec:sign_verification}` 存在\n   - 不要修改任何内容，原样迁移\n\n4. **验证引用**:\n   - 读 `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/theoretical_analysis.tex`\n   - 确认 `\\label{prop:correct_sign}` 存在（应该在 Proposition 2 附近，大约 line 22）\n   - 读 `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/method.tex`\n   - 确认 `\\ref{sec:sign_verification}` 引用存在（line 36 附近）——这个引用之前是断的，迁移后应该自动修复\n\n5. **确认**: 读取修改后的 docs/paper/experiments.tex 确认 section 正确插入，label 存在\n\n**产出**: 确认迁移完成，列出插入位置（行号范围），确认所有交叉引用。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-20T14:40:28.149Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T14:40:28.149Z",
+  "sessionId": "fb344fab-b668-49e6-9211-d7810677e348"
+}
+```
+
+---
+
+## Round 1
+
+28 recorded events
+
+### User
+
+_source line 3 · 2026-05-20T14:40:28.196Z_
+
+&lt;project_context>
+# 项目: cost-verify-agent-rl
+
+## 运行环境
+- 服务器名: bjb1-17606
+- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account="root"）
+- SSH 连接命令: ssh connect.bjb1.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP
+- 项目代码根目录: /root/cost-verify-agent-rl
+
+## ⚠️ 活跃约束（必须遵守）
+
+- **C002**: 实验启动前必须执行 pre-flight checklist：(1) 确认入口点与最近成功实验一致 (2) df -h 检查磁盘 (3) 验证 config 参数与 vLLM/框架版本兼容 (4) 确认 checkpoint 路径存在。未通过不得启动。（原因：18 个实验仅 1 成功，exp012 用错入口点、exp007 磁盘满、exp003 格式不兼容——均为 pre-flight 可拦截的问题。） [来自 D009]
+- **C003**: 所有实验的 val/eval 必须使用 ≥16 episodes，禁止基于 4-episode 结果做 pass/fail 判定（原因：exp021 两次 eval 矛盾（4-ep: 25% vs 16-ep: 6.25%）证明 4 episodes 方差过大，基于此做决策导致 exp022 在不可靠前提下启动。Reviewer 已三次警告此问题。）
+- **C004**: Worker 禁止覆盖 memory.md，文献调研输出写 artifacts/literature_*.md（原因：2026-05-17 deep-read-turn-ppo-v2 worker 覆盖了 memory.md 全部原有内容（Citation Audit、Adaptive KL 分析、Ray raylet 记录等丢失）。literature 类 worker 输出一律写 artifacts/ 目录。）
+- **C005**: 实验提交前必须完成环境验证：代码同步 + 依赖安装 + 数据模型就位 + dry-run 通过，确保 GPU 分配后零等待启动（原因：用户反馈效率问题：GPU 到位后还要等环境准备是浪费。所有准备工作必须在 GPU 分配前并行完成，实现无缝衔接。）
+- **C006**: GPU 白名单：bjb1-17606 cuda:0,1（共享服务器，仅限这 2 张）；westd-47453 cuda:0,1,2,3（项目独占，全部 4 张可用）。禁止使用白名单外的 GPU。（原因：替代原 C001（仅覆盖 bjb1）。westd-47453 由 Manager 于 2026-05-17 专门分配给本项目，4 张 RTX PRO 6000 96GB 全部归属。项目配置 execution.gpu_ids 已同步更新。）
+
+
+## 环境搭建
+连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。
+
+## 输出风格
+回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。
+&lt;/project_context>
+**任务**: 将 §5.5 Sign Verification 从 artifacts 版本迁移到 docs 版本的 experiments.tex。
+
+**步骤**:
+
+1. **读取源文件**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/paper/experiments.tex`
+   - 找到 §5.5 "Empirical Verification of Sign Misattribution"（或类似标题）的完整内容
+   - 包括 `\label{sec:sign_verification}` 和所有子段落、公式、表格
+
+2. **读取目标文件**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex`
+   - 确定插入位置：应在 §5.7 "Cross-Scale Verification" (`\subsection{Cross-Scale Verification}`) 之前
+   - 当前文件结构大约是：5.1 Environment → 5.2 Base Model → 5.3 RL Config → 5.4 Eval Protocol → 5.5 Factorial → 5.6 Additional Conditions → 5.7 Results → 5.x Cross-Scale Verification
+   - §5.5 Sign Verification 应插在 Results 和 Cross-Scale Verification 之间，或者 Additional Conditions 和 Results 之间——看源文件中它的位置
+
+3. **插入**: 将完整的 Sign Verification section 复制到目标文件的正确位置
+   - 确保 `\label{sec:sign_verification}` 存在
+   - 不要修改任何内容，原样迁移
+
+4. **验证引用**:
+   - 读 `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/theoretical_analysis.tex`
+   - 确认 `\label{prop:correct_sign}` 存在（应该在 Proposition 2 附近，大约 line 22）
+   - 读 `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/method.tex`
+   - 确认 `\ref{sec:sign_verification}` 引用存在（line 36 附近）——这个引用之前是断的，迁移后应该自动修复
+
+5. **确认**: 读取修改后的 docs/paper/experiments.tex 确认 section 正确插入，label 存在
+
+**产出**: 确认迁移完成，列出插入位置（行号范围），确认所有交叉引用。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "b934c9d8-1289-4d59-9626-3ce373a2ebdc",
+  "type": "user",
+  "uuid": "c53c2e10-aa7c-4912-9b60-6849eb16cf4a",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "fb344fab-b668-49e6-9211-d7810677e348",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-20T14:40:28.195Z_
+
+```json
+{
+  "parentUuid": "c53c2e10-aa7c-4912-9b60-6849eb16cf4a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "4af76546-40e3-4a22-8919-86f3a9381754",
+  "timestamp": "2026-05-20T14:40:28.195Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "fb344fab-b668-49e6-9211-d7810677e348",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-20T14:40:28.195Z_
+
+```json
+{
+  "parentUuid": "4af76546-40e3-4a22-8919-86f3a9381754",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "23f89247-4796-4624-aef6-7960ad232d60",
+  "timestamp": "2026-05-20T14:40:28.195Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "fb344fab-b668-49e6-9211-d7810677e348",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-20T14:40:28.195Z_
+
+```json
+{
+  "parentUuid": "23f89247-4796-4624-aef6-7960ad232d60",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "5a8cb6c9-2181-48d3-85ce-dd2bf362c736",
+  "timestamp": "2026-05-20T14:40:28.195Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "fb344fab-b668-49e6-9211-d7810677e348",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Migrate Sign Verification section to docs",
+  "sessionId": "fb344fab-b668-49e6-9211-d7810677e348"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-20T14:40:31.563Z_
+
+Reading source and target files, plus the two files needed for reference verification.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5a8cb6c9-2181-48d3-85ce-dd2bf362c736",
+  "isSidechain": false,
+  "requestId": "req_011CbDzddQgck8bHPErQj4Jo",
+  "type": "assistant",
+  "uuid": "9142de76-0057-4e3b-adf8-7900640720cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "fb344fab-b668-49e6-9211-d7810677e348",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GwBa4i8WiUjXKPxG8uzLtf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12698,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 330,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12698,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 330,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12698,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12698
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-20T14:40:32.104Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_015ef8XMpdhgaoT9NcWyw3Ut`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/paper/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9142de76-0057-4e3b-adf8-7900640720cc",
+  "isSidechain": false,
+  "requestId": "req_011CbDzddQgck8bHPErQj4Jo",
+  "type": "assistant",
+  "uuid": "e3011dc4-7f68-4a8c-8188-fe51c5de54e1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "fb344fab-b668-49e6-9211-d7810677e348",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GwBa4i8WiUjXKPxG8uzLtf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12698,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 330,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12698,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 330,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12698,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12698
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T14:40:32.122Z_
+
+<details><summary>↩ Tool result · `toolu_015ef8XMpdhgaoT9NcWyw3Ut`</summary>
+
+```text
+1	\newcommand{\placeholder}[1]{\textcolor{red}{[#1]}}
+2	
+3	\section{Experiments}
+4	\label{sec:experiments}
+5	
+6	We design experiments to answer three questions. First, does step-independent training collapse as predicted by our dual mechanism analysis, and does episode-level training avoid this collapse? Second, how does the window size $h$ modulate the severity of failure, and is there a credit assignment cliff below some critical threshold? Third, can we directly measure advantage sign misattribution during training to validate the theoretical predictions of Section~\ref{sec:m2_sign_misattribution}?
+7	
+8	\subsection{Experimental Setup}
+9	\label{sec:experimental_setup}
+10	
+11	\paragraph{Environment.}
+12	We evaluate on ALFWorld~\cite{shridhar2021alfworld}, a text-based household environment where an agent interacts with a simulated kitchen, bedroom, and living room through natural language commands. % TODO: add shridhar2021alfworld to .bib
+13	ALFWorld provides six task types (pick, clean, heat, cool, examine, pick two) that require sequential reasoning over multiple interaction steps. The agent issues text commands (e.g., ``go to countertop 1'', ``take knife 2 from drawer 3'') and receives textual observations describing the environment state. Episodes terminate after task completion or a maximum of 50 interaction steps. The reward is binary: $R = 1$ for successful task completion and $R = 0$ for failure. This binary reward structure makes ALFWorld a particularly challenging testbed for credit assignment: the only learning signal arrives at episode termination, and intermediate steps receive no direct feedback.
+14	
+15	ALFWorld is well-suited for studying the step-independent failure because its tasks exhibit strong sequential dependencies. A typical task requires the agent to locate an object (steps 1--5), pick it up (step 6), navigate to a target receptacle (steps 7--10), and place the object (step 11). With step-independent windowing at $h = 2$, the window containing the placement action has no access to the exploration steps that determined which object to pick up.
+16	
+17	\paragraph{Base model.}
+18	We use Qwen3-1.7B (instruct variant) as the policy model. Before RL training, we perform supervised fine-tuning (SFT) on 2546 expert demonstrations collected from ALFWorld, training for 2 epochs with learning rate $5 \times 10^{-6}$. The resulting SFT checkpoint achieves approximately 6.25\% success rate on a held-out 32-episode validation set, providing a minimal but non-trivial starting point for RL. This low baseline success rate is important for our analysis: at $p = 0.0625$ with group size $K = 8$, Proposition 2 (Section~\ref{sec:formal_probability}) predicts that approximately 84.5\% of gradient updates carry incorrect sign under step-independent training.
+19	
+20	\paragraph{RL training configuration.}
+21	We train using the RAGEN framework~\cite{ragen2025} with the GRPO algorithm. The shared hyperparameters across all conditions are:
+22	\begin{itemize}
+23	    \item Group size $K = 8$ (8 rollouts per task instance for advantage estimation)
+24	    \item Learning rate: $1 \times 10^{-6}$
+25	    \item KL penalty coefficient: $\beta = 0.01$ (low-variance KL)
+26	    \item Discount factor: $\gamma = 0.95$ (applied in step-independent return computation via Equation~\ref{eq:step_return}; not applicable to episode-level mode)
+27	    \item Invalid action penalty coefficient: 0.1
+28	    \item Training data: 16 task instances per training step
+29	    \item Training steps: 15 (early-stopped based on convergence)
+30	\end{itemize}
+31	
+32	\paragraph{Evaluation protocol.}
+33	We evaluate on a fixed 32-episode validation set every 5 training steps. The primary metric is success rate (pass@1): the fraction of episodes where the agent completes the task within 50 steps. We also report pass@$k$ ($k \in \{2, 4, 8\}$), computed by sampling $k$ rollouts per episode and counting success if any rollout succeeds. As a diagnostic metric, we track \textit{action validity rate}: the fraction of agent outputs that are syntactically valid environment commands (as opposed to malformed text, repeated outputs, or empty responses). Action validity serves as a proxy for basic policy coherence, distinct from task-solving capability. All reported numbers are single-seed unless otherwise noted; multi-seed results (3 seeds per condition) are marked as pending where applicable.
+34	
+35	\subsection{Window-Size Ablation}
+36	\label{sec:window_ablation}
+37	
+38	To disentangle the effects of information loss (Mechanism 1) and sign misattribution (Mechanism 2) across different context lengths, we conduct a systematic ablation over window size $h$.
+39	
+40	\paragraph{Conditions.}
+41	We vary the step-independent history length $h \in \{2, 5, 10, 20\}$ and compare against episode-level training (equivalent to $h = T$, the full trajectory). Each condition uses the \texttt{step\_independent} training mode with \texttt{step\_independent\_history\_length} $= h$, except the episode-level condition which processes the complete trajectory as a single GRPO sample.
+42	
+43	\paragraph{Design rationale.}
+44	The five conditions span the spectrum from minimal context ($h = 2$, producing $N = 25$ windows per episode at $T = 50$) to full context ($h = T$, one sample per episode). Theory predicts two observable effects. Mechanism 1 (information loss) produces a performance ceiling that varies with $h$: smaller windows restrict the representable strategy space more severely, so step-1 performance should decrease monotonically with $h$. Mechanism 2 (sign misattribution) produces a training-time degradation that is present for all $h < T$: as long as windows exist, the advantage sign is determined by episode outcome rather than local action quality, so performance should decline over training steps regardless of window size. The combined prediction is a credit assignment cliff: performance drops sharply below a critical $h$ value, with smaller $h$ exhibiting both lower initial performance and faster collapse.
+45	
+46	\paragraph{Controls.}
+47	All conditions share the same GRPO hyperparameters (group size, learning rate, KL penalty, discount factor). Each condition runs for 15 training steps with validation every 5 steps. We plan 3 seeds per $h$ value to assess variance. All $h$-sweep conditions are currently single-seed. Multi-seed replication (3 seeds per $h$) is planned.% Sources: exp028c ($h=2$), exp029 (episode-level).
+48	
+49	\paragraph{Post-hoc evaluation.}
+50	To isolate the training-layer effect of sign misattribution from the inference-layer effect of context truncation, we conduct full-context evaluation of checkpoints trained with truncated windows. Concretely, a model trained with $h = 2$ is evaluated using the complete interaction history at inference time. If the trained model performs better under full-context evaluation than under $h = 2$ evaluation, the difference reflects pure inference-time information loss (Mechanism 1). If it still performs worse than the episode-level trained model even under full-context evaluation, the gap reflects training-layer damage from sign misattribution (Mechanism 2).
+51	
+52	\subsection{Results}
+53	\label{sec:results}
+54	
+55	\subsubsection{Episode-Level vs. Step-Independent Training}
+56	\label{sec:results_main}
+57	
+58	The central empirical finding is the contrast between episode-level and step-independent training. Episode-level GRPO achieves 28.125\% validation success at training step 15, a 4.5$\times$ improvement over the SFT baseline of approximately 6.25\%. Step-independent training with $h = 2$ collapses to 0\% validation success by step 10.
+59	
+60	Table~\ref{tab:main_results} summarizes the central comparison. All seed results are reported individually due to high inter-seed variance under step-independent conditions.
+61	
+62	\begin{table}[t]
+63	\centering
+64	\caption{1.7B ALFWorld results across credit assignment methods. OOD: held-out test tasks; In-Dist: 32-episode validation set. All seeds shown; no aggregation due to high inter-seed variance.}
+65	\label{tab:main_results}
+66	\small
+67	\begin{tabular}{@{}llcc@{}}
+68	\toprule
+69	\textbf{Method} & \textbf{Seed} & \textbf{OOD (\%)} & \textbf{In-Dist (\%)} \\
+70	\midrule
+71	Step-indep.\ ($h{=}2$, windowed) & 1 & 0 & 0 \\  % Cell A
+72	                                  & 2 & 3.73 & 9.375 \\  % Cell A seed2
+73	\midrule
+74	Step-indep.\ (factorial)          & 1 & 0.75 & 20 \\  % Cell B
+75	                                  & 2 & 0.75 & 55.5 \\  % Cell B seed2
+76	\midrule
+77	Episode-level (full context)      & 1 & 23.88 & 28.125 \\  % Cell D, exp029
+78	\bottomrule
+79	\end{tabular}
+80	\end{table}
+81	
+82	\placeholder{fig6\_training\_curves: Training curves showing episode-level vs step-independent $h=2$. Dual y-axis: success rate (left) and action validity (right). X-axis: training steps 0--15.}
+83	
+84	The collapse under step-independent training follows the two-phase pattern predicted by our analysis. In the first phase (steps 0--2), task success drops from 18.75\% to single digits while action validity remains high at approximately 89.3\%. The model retains basic command formatting but loses the ability to compose multi-step strategies. In the second phase (steps 2--4), action validity itself collapses from 89.3\% to 43.1\%. Accumulated wrong-sign gradient updates, which initially eroded only strategic capability, propagate to corrupt the action space representation. By step 10, the agent produces predominantly malformed outputs and achieves no task completions.
+85	
+86	Episode-level training exhibits no such collapse. Action validity remains above 95\% throughout training, and success rate increases monotonically. The single advantage shared across all steps in an episode preserves correct actions even within failed episodes (since all steps receive the same sign, no individual step is singled out for incorrect suppression). Cross-step dependencies are maintained through the full interaction history, so the model can learn conditional strategies that require information from early exploration steps.
+87	
+88	\subsubsection{Window-Size Ablation}
+89	\label{sec:results_hsweep}
+90	
+91	\begin{table}[t]
+92	\centering
+93	\caption{Window-size ablation (1.7B, single seed). OOD success rate at the final training step. $h = \text{full}$ denotes episode-level training (exp029).}
+94	\label{tab:h_sweep}
+95	\small
+96	\begin{tabular}{@{}lc@{}}
+97	\toprule
+98	\textbf{Window size $h$} & \textbf{OOD Success (\%)} \\
+99	\midrule
+100	$h = 2$  & 0 \\
+101	$h = 5$  & 0 \\
+102	$h = 10$ & 6.25 \\
+103	$h = 20$ & 15.6 \\
+104	$h = \text{full}$ (episode-level) & 23.88 \\
+105	\bottomrule
+106	\end{tabular}
+107	\end{table}
+108	
+109	\placeholder{fig5\_h\_sweep\_curve: $h$ vs. validation success at step 15. Error bars from 3 seeds. Shows credit assignment cliff. Horizontal dashed line at SFT baseline (6.25\%).}
+110	
+111	The ablation reveals a credit assignment cliff consistent with our theoretical predictions (Table~\ref{tab:h_sweep}). OOD success rate is 0\% for $h \leq 5$, rises to 6.25\% at $h = 10$ and 15.6\% at $h = 20$, and reaches 23.88\% under episode-level training ($h = T$). The transition between $h = 5$ and $h = 10$ marks the onset of non-trivial generalization. Results are single-seed; multi-seed replication is in progress.
+112	
+113	The dual mechanism theory predicts three observable signatures in the $h$-sweep. First, step-1 performance should vary across $h$ values, reflecting different information-loss ceilings (Mechanism 1). Second, for all $h < T$, performance should decline over training steps as sign misattribution accumulates (Mechanism 2). Third, the rate of decline should be approximately constant across $h$ values (since the sign correlation from Equation~\ref{eq:sign_correlation} depends on the success rate $p$ and group size $K$, not on $h$ directly), but the onset of visible collapse should be earlier for smaller $h$ because the lower ceiling leaves less room before reaching zero.
+114	
+115	From the single-seed data available, the two-phase collapse at $h = 2$ is confirmed. Action validity at step 2 is 89.3\%, dropping to 43.1\% by step 4. This pattern, strategic collapse preceding formatting collapse, is the empirical signature of sign misattribution operating on a model that initially retains valid action representations. The progressive nature distinguishes Mechanism 2 from Mechanism 1: information loss would produce a constant (low) performance from step 1, not a declining trajectory.
+116	
+117	\subsubsection{Dense Reward Baseline}
+118	\label{sec:results_dense}
+119	
+120	A natural hypothesis is that step-independent training fails due to sparse reward, and that providing dense per-step rewards might resolve the credit assignment problem. We test this with a dense reward configuration that adds $+0.15$ bonus for each syntactically valid action, applied under step-independent training with $h = 2$.
+121	
+122	The dense reward experiment (exp013f) produces a striking dissociation. Action validity increases from 60\% to 97.5\% over training. The per-step bonus successfully shapes low-level formatting behavior. However, task success remains at 0\% throughout training. The agent learns to produce perfectly formatted commands that satisfy the validity reward without solving any tasks.
+123	
+124	This result confirms that the failure of step-independent training is not a sparse reward problem. Dense reward shaping creates an optimization target that the agent can maximize (action formatting) without addressing the underlying credit assignment pathology. The sign of the task-level advantage still corrupts multi-step strategy learning, while the dense reward merely teaches the agent to produce syntactically correct (but strategically meaningless) outputs. Reward shaping and sign misattribution operate on different dimensions of behavior and cannot compensate for each other.
+125	
+126	\subsection{Empirical Verification of Sign Misattribution}
+127	\label{sec:sign_verification}
+128	
+129	The theoretical analysis of Section~\ref{sec:m2_sign_misattribution} predicts specific quantitative properties of the advantage signal under step-independent training. We design a direct measurement protocol to validate these predictions.
+130	
+131	\paragraph{Methodology.}
+132	During step-independent training, we log per-window advantage information for each training episode. For window $k$ in episode $i$, we record: (1) the advantage sign $\text{sign}(\hat{A}_k^{(i)})$, (2) the episode outcome $R_{\text{episode}}^{(i)} \in \{0, 1\}$, and (3) a local action quality proxy based on the fraction of valid actions within the window. We then compute three statistics across all training windows:
+133	\begin{itemize}
+134	    \item \textbf{Sign-outcome correlation}: the Pearson correlation between $\text{sign}(\hat{A}_k)$ and $R_{\text{episode}}$. Theory predicts this correlation approaches 1.0, since the advantage sign is determined almost entirely by whether the episode succeeded.
+135	    \item \textbf{Sign-quality correlation}: the Pearson correlation between $\text{sign}(\hat{A}_k)$ and local action quality. Theory predicts this correlation approaches 0, since the advantage sign carries no information about whether the window's actions were locally correct.
+136	    \item \textbf{Correct sign fraction}: $P(\text{correct sign} \mid \text{update})$, defined as the probability that a window with locally good actions receives a positive advantage and a window with locally bad actions receives a negative advantage. Proposition 2 (Section~\ref{sec:formal_probability}) predicts this equals approximately 15.5\% at $p = 6.25\%$, $K = 8$.
+137	\end{itemize}
+138	
+139	\paragraph{Predictions.}
+140	The sign misattribution mechanism makes three testable predictions:
+141	\begin{enumerate}
+142	    \item Sign-outcome correlation $\approx 1.0$ (advantage sign is a proxy for episode success, not local quality)
+143	    \item Sign-quality correlation $\approx 0$ (advantage sign is independent of whether local actions were good)
+144	    \item $P(\text{correct sign}) \approx 15.5\%$ (derived from Proposition 2 at the observed success rate)
+145	\end{enumerate}
+146	If all three predictions are confirmed empirically, the sign misattribution mechanism is validated as the causal driver of training collapse, rather than alternative explanations such as reward sparsity, KL divergence, or optimization instability.
+147	
+148	Table~\ref{tab:sign_verification} reports the empirical measurements. The credit agreement rate---the fraction of windows where the advantage sign matches local action quality---is 52.07\%, indistinguishable from the 50\% expected under random sign assignment. The point biserial correlation between advantage sign and local action quality is $r = 0.068$, confirming near-zero dependence. Additionally, a discount factor sweep reveals that \textit{all} $\gamma$ values produce collapse, including $\gamma = 1.0$ (no discounting). The $\gamma = 1.0$ result rules out temporal discounting as the failure cause and isolates sign misattribution as the root mechanism.
+149	
+150	\begin{table}[t]
+151	\centering
+152	\caption{Empirical verification of sign misattribution under step-independent training ($h{=}2$). Credit agreement rate measures the fraction of windows where advantage sign matches local action quality; 50\% indicates random assignment.}
+153	\label{tab:sign_verification}
+154	\small
+155	\begin{tabular}{@{}lcc@{}}
+156	\toprule
+157	\textbf{Metric} & \textbf{Measured} & \textbf{Predicted} \\
+158	\midrule
+159	Credit agreement rate & 52.07\% & $\approx$ 50\% (random) \\
+160	Point biserial $r$ (sign vs.\ quality) & 0.068 & $\approx$ 0 \\
+161	Collapse at $\gamma = 1.0$ (no discounting) & Yes & Yes \\
+162	\bottomrule
+163	\end{tabular}
+164	\end{table}
+165	
+166	\subsection{Additional Baselines}
+167	\label{sec:additional_baselines}
+168	
+169	\paragraph{GAE baselines.}
+170	To distinguish the effect of episode-level optimization from GRPO-specific design choices (group normalization, no value function), we compare against Generalized Advantage Estimation (GAE)~\cite{schulman2016gae} under two configurations. GAE($\lambda = 0.95$, $\gamma = 0.95$) provides standard TD-based advantage estimation with a learned value function, representing the conventional actor-critic approach to temporal credit assignment. GAE($\lambda = 1$, $\gamma = 1$) computes Monte Carlo returns equivalent to episode-level GRPO without group normalization, isolating the contribution of group-relative advantage computation. \placeholder{plan\_003b: GAE baseline execution. Columns: Method, Val Success (\%), Action Valid (\%), Training Stability (variance across steps).}
+171	
+172	\paragraph{Selective verification.}
+173	Building on the episode-level trained agent (Section~\ref{sec:selective_verification}), we train a selective verification policy that decides when self-checking is informative. This component is orthogonal to the credit assignment analysis and demonstrates a downstream application of the competent base agent produced by episode-level training. \placeholder{tab4\_selective\_comparison: Selective verification results. Columns: Method (Always-Verify, Never-Verify, Selective), Success (\%), Verify Rate (\%), Cost Reduction (\%). Pending Phase B experiments.}
+174	
+175	\subsection{Cross-Scale Verification}
+176	\label{sec:cross_scale}
+177	
+178	The 1.7B experiments establish that step-independent training collapses while episode-level training succeeds. Both mechanisms could in principle be scale-dependent: a larger model might compensate for information loss through greater capacity, or resist sign misattribution through more stable optimization. We test scale invariance by replicating the key factorial conditions on Qwen3-8B.
+179	
+180	\paragraph{Setup.}
+181	The 8B SFT baseline uses the same training protocol (2{,}546 demonstrations, 2 epochs, learning rate $5 \times 10^{-6}$). It achieves 68.75\% in-distribution success ($T{=}0$, deterministic) and 80.6\% OOD success ($T{=}0.4$, stochastic sampling), far above the 1.7B baseline of 12.5\%.% exp_id: 8b_det_eval_full (in-dist), 7b_sft_eval_ood (OOD)
+182	This higher starting point provides a stronger test: improvement over an already-competent baseline would confirm that episode-level RL adds value beyond what scale alone provides.
+183	
+184	\paragraph{Information loss.}
+185	Restricting the 8B model's observation window to $h{=}2$ at inference time drops in-distribution success from 68.75\% to 31.25\%, a 37.5 percentage point gap.% exp_id: 8b_info_loss_eval
+186	The relative magnitude is comparable to the 1.7B case. Larger models do not implicitly reconstruct missing context from a 2-step window.
+187	
+188	\paragraph{Cell A collapse.}
+189	Step-independent training on the 8B model collapses within two gradient steps: in-distribution success drops from 28.1\% (before training) to 12.5\% (step~1) to 1.5\% (step~2).% exp_id: 8b_cell_a_episode
+190	The collapse trajectory matches the 1.7B pattern, consistent with the sign misattribution rate predicted by Proposition~\ref{prop:correct_sign}.
+191	
+192	\paragraph{Cell D: episode-level training.}
+193	Episode-level GRPO reaches 96.9\% in-distribution success at step~10 and 90.3\% OOD success (134 tasks, $T{=}0.4$), a 9.7 percentage point improvement over the SFT baseline on OOD tasks.% exp_id: 8b_cell_c_episode_v9d, 8b_v9d_ood_eval_v5
+194	Training reward saturates to 100\% at step~12. The gain over an 80.6\% SFT baseline confirms that correct credit assignment enables RL to improve beyond supervised learning even from a strong initialization.
+195	
+196	Table~\ref{tab:8b_results} summarizes the 8B conditions.
+197	
+198	\begin{table}[t]
+199	\centering
+200	\caption{8B model results on ALFWorld. In-Dist: 32-task validation set; OOD: 134-task held-out test set. SFT in-distribution and SFT $h{=}2$ use deterministic decoding ($T{=}0$); all OOD results and RL evaluations use $T{=}0.4$. Cell~A reports the value at step~2 (post-collapse). Cell~D reports the best checkpoint (step~10).}
+201	\label{tab:8b_results}
+202	\small
+203	\begin{tabular}{@{}lcc@{}}
+204	\toprule
+205	\textbf{Method} & \textbf{In-Dist (\%)} & \textbf{OOD (\%)} \\
+206	\midrule
+207	SFT baseline & 68.75 & 80.60 \\  % exp_id: 8b_det_eval_full (in-dist T=0), 7b_sft_eval_ood (OOD T=0.4)
+208	SFT $h{=}2$ & 31.25 & --- \\  % exp_id: 8b_det_eval_h2 (T=0)
+209	Cell A: step-indep.\ ($h{=}2$) & 28.1 $\to$ 1.5 & --- \\  % exp_id: 8b_cell_a_episode
+210	Cell D: episode-level & \textbf{96.88} & \textbf{90.30} \\  % exp_id: 8b_cell_c_episode_v9d, 8b_v9d_ood_eval_v5
+211	\bottomrule
+212	\end{tabular}
+213	\end{table}
+214	
+215	Both the failure and the fix are scale-invariant. Step-independent training collapses within two steps at 8B, compared to 3--15 steps at 1.7B; episode-level training not only avoids collapse but exceeds the SFT ceiling by a substantial margin. Due to computational constraints of 8B-scale FSDP training, 8B results report single-seed runs.
+216	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e3011dc4-7f68-4a8c-8188-fe51c5de54e1",
+  "isSidechain": false,
+  "promptId": "b934c9d8-1289-4d59-9626-3ce373a2ebdc",
+  "type": "user",
+  "uuid": "ac941265-62ff-4e0d-90fd-55c9c4d9c9e3",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/paper/experiments.tex",
+      "content": "\\newcommand{\\placeholder}[1]{\\textcolor{red}{[#1]}}\n\n\\section{Experiments}\n\\label{sec:experiments}\n\nWe design experiments to answer three questions. First, does step-independent training collapse as predicted by our dual mechanism analysis, and does episode-level training avoid this collapse? Second, how does the window size $h$ modulate the severity of failure, and is there a credit assignment cliff below some critical threshold? Third, can we directly measure advantage sign misattribution during training to validate the theoretical predictions of Section~\\ref{sec:m2_sign_misattribution}?\n\n\\subsection{Experimental Setup}\n\\label{sec:experimental_setup}\n\n\\paragraph{Environment.}\nWe evaluate on ALFWorld~\\cite{shridhar2021alfworld}, a text-based household environment where an agent interacts with a simulated kitchen, bedroom, and living room through natural language commands. % TODO: add shridhar2021alfworld to .bib\nALFWorld provides six task types (pick, clean, heat, cool, examine, pick two) that require sequential reasoning over multiple interaction steps. The agent issues text commands (e.g., ``go to countertop 1'', ``take knife 2 from drawer 3'') and receives textual observations describing the environment state. Episodes terminate after task completion or a maximum of 50 interaction steps. The reward is binary: $R = 1$ for successful task completion and $R = 0$ for failure. This binary reward structure makes ALFWorld a particularly challenging testbed for credit assignment: the only learning signal arrives at episode termination, and intermediate steps receive no direct feedback.\n\nALFWorld is well-suited for studying the step-independent failure because its tasks exhibit strong sequential dependencies. A typical task requires the agent to locate an object (steps 1--5), pick it up (step 6), navigate to a target receptacle (steps 7--10), and place the object (step 11). With step-independent windowing at $h = 2$, the window containing the placement action has no access to the exploration steps that determined which object to pick up.\n\n\\paragraph{Base model.}\nWe use Qwen3-1.7B (instruct variant) as the policy model. Before RL training, we perform supervised fine-tuning (SFT) on 2546 expert demonstrations collected from ALFWorld, training for 2 epochs with learning rate $5 \\times 10^{-6}$. The resulting SFT checkpoint achieves approximately 6.25\\% success rate on a held-out 32-episode validation set, providing a minimal but non-trivial starting point for RL. This low baseline success rate is important for our analysis: at $p = 0.0625$ with group size $K = 8$, Proposition 2 (Section~\\ref{sec:formal_probability}) predicts that approximately 84.5\\% of gradient updates carry incorrect sign under step-independent training.\n\n\\paragraph{RL training configuration.}\nWe train using the RAGEN framework~\\cite{ragen2025} with the GRPO algorithm. The shared hyperparameters across all conditions are:\n\\begin{itemize}\n    \\item Group size $K = 8$ (8 rollouts per task instance for advantage estimation)\n    \\item Learning rate: $1 \\times 10^{-6}$\n    \\item KL penalty coefficient: $\\beta = 0.01$ (low-variance KL)\n    \\item Discount factor: $\\gamma = 0.95$ (applied in step-independent return computation via Equation~\\ref{eq:step_return}; not applicable to episode-level mode)\n    \\item Invalid action penalty coefficient: 0.1\n    \\item Training data: 16 task instances per training step\n    \\item Training steps: 15 (early-stopped based on convergence)\n\\end{itemize}\n\n\\paragraph{Evaluation protocol.}\nWe evaluate on a fixed 32-episode validation set every 5 training steps. The primary metric is success rate (pass@1): the fraction of episodes where the agent completes the task within 50 steps. We also report pass@$k$ ($k \\in \\{2, 4, 8\\}$), computed by sampling $k$ rollouts per episode and counting success if any rollout succeeds. As a diagnostic metric, we track \\textit{action validity rate}: the fraction of agent outputs that are syntactically valid environment commands (as opposed to malformed text, repeated outputs, or empty responses). Action validity serves as a proxy for basic policy coherence, distinct from task-solving capability. All reported numbers are single-seed unless otherwise noted; multi-seed results (3 seeds per condition) are marked as pending where applicable.\n\n\\subsection{Window-Size Ablation}\n\\label{sec:window_ablation}\n\nTo disentangle the effects of information loss (Mechanism 1) and sign misattribution (Mechanism 2) across different context lengths, we conduct a systematic ablation over window size $h$.\n\n\\paragraph{Conditions.}\nWe vary the step-independent history length $h \\in \\{2, 5, 10, 20\\}$ and compare against episode-level training (equivalent to $h = T$, the full trajectory). Each condition uses the \\texttt{step\\_independent} training mode with \\texttt{step\\_independent\\_history\\_length} $= h$, except the episode-level condition which processes the complete trajectory as a single GRPO sample.\n\n\\paragraph{Design rationale.}\nThe five conditions span the spectrum from minimal context ($h = 2$, producing $N = 25$ windows per episode at $T = 50$) to full context ($h = T$, one sample per episode). Theory predicts two observable effects. Mechanism 1 (information loss) produces a performance ceiling that varies with $h$: smaller windows restrict the representable strategy space more severely, so step-1 performance should decrease monotonically with $h$. Mechanism 2 (sign misattribution) produces a training-time degradation that is present for all $h < T$: as long as windows exist, the advantage sign is determined by episode outcome rather than local action quality, so performance should decline over training steps regardless of window size. The combined prediction is a credit assignment cliff: performance drops sharply below a critical $h$ value, with smaller $h$ exhibiting both lower initial performance and faster collapse.\n\n\\paragraph{Controls.}\nAll conditions share the same GRPO hyperparameters (group size, learning rate, KL penalty, discount factor). Each condition runs for 15 training steps with validation every 5 steps. We plan 3 seeds per $h$ value to assess variance. All $h$-sweep conditions are currently single-seed. Multi-seed replication (3 seeds per $h$) is planned.% Sources: exp028c ($h=2$), exp029 (episode-level).\n\n\\paragraph{Post-hoc evaluation.}\nTo isolate the training-layer effect of sign misattribution from the inference-layer effect of context truncation, we conduct full-context evaluation of checkpoints trained with truncated windows. Concretely, a model trained with $h = 2$ is evaluated using the complete interaction history at inference time. If the trained model performs better under full-context evaluation than under $h = 2$ evaluation, the difference reflects pure inference-time information loss (Mechanism 1). If it still performs worse than the episode-level trained model even under full-context evaluation, the gap reflects training-layer damage from sign misattribution (Mechanism 2).\n\n\\subsection{Results}\n\\label{sec:results}\n\n\\subsubsection{Episode-Level vs. Step-Independent Training}\n\\label{sec:results_main}\n\nThe central empirical finding is the contrast between episode-level and step-independent training. Episode-level GRPO achieves 28.125\\% validation success at training step 15, a 4.5$\\times$ improvement over the SFT baseline of approximately 6.25\\%. Step-independent training with $h = 2$ collapses to 0\\% validation success by step 10.\n\nTable~\\ref{tab:main_results} summarizes the central comparison. All seed results are reported individually due to high inter-seed variance under step-independent conditions.\n\n\\begin{table}[t]\n\\centering\n\\caption{1.7B ALFWorld results across credit assignment methods. OOD: held-out test tasks; In-Dist: 32-episode validation set. All seeds shown; no aggregation due to high inter-seed variance.}\n\\label{tab:main_results}\n\\small\n\\begin{tabular}{@{}llcc@{}}\n\\toprule\n\\textbf{Method} & \\textbf{Seed} & \\textbf{OOD (\\%)} & \\textbf{In-Dist (\\%)} \\\\\n\\midrule\nStep-indep.\\ ($h{=}2$, windowed) & 1 & 0 & 0 \\\\  % Cell A\n                                  & 2 & 3.73 & 9.375 \\\\  % Cell A seed2\n\\midrule\nStep-indep.\\ (factorial)          & 1 & 0.75 & 20 \\\\  % Cell B\n                                  & 2 & 0.75 & 55.5 \\\\  % Cell B seed2\n\\midrule\nEpisode-level (full context)      & 1 & 23.88 & 28.125 \\\\  % Cell D, exp029\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\placeholder{fig6\\_training\\_curves: Training curves showing episode-level vs step-independent $h=2$. Dual y-axis: success rate (left) and action validity (right). X-axis: training steps 0--15.}\n\nThe collapse under step-independent training follows the two-phase pattern predicted by our analysis. In the first phase (steps 0--2), task success drops from 18.75\\% to single digits while action validity remains high at approximately 89.3\\%. The model retains basic command formatting but loses the ability to compose multi-step strategies. In the second phase (steps 2--4), action validity itself collapses from 89.3\\% to 43.1\\%. Accumulated wrong-sign gradient updates, which initially eroded only strategic capability, propagate to corrupt the action space representation. By step 10, the agent produces predominantly malformed outputs and achieves no task completions.\n\nEpisode-level training exhibits no such collapse. Action validity remains above 95\\% throughout training, and success rate increases monotonically. The single advantage shared across all steps in an episode preserves correct actions even within failed episodes (since all steps receive the same sign, no individual step is singled out for incorrect suppression). Cross-step dependencies are maintained through the full interaction history, so the model can learn conditional strategies that require information from early exploration steps.\n\n\\subsubsection{Window-Size Ablation}\n\\label{sec:results_hsweep}\n\n\\begin{table}[t]\n\\centering\n\\caption{Window-size ablation (1.7B, single seed). OOD success rate at the final training step. $h = \\text{full}$ denotes episode-level training (exp029).}\n\\label{tab:h_sweep}\n\\small\n\\begin{tabular}{@{}lc@{}}\n\\toprule\n\\textbf{Window size $h$} & \\textbf{OOD Success (\\%)} \\\\\n\\midrule\n$h = 2$  & 0 \\\\\n$h = 5$  & 0 \\\\\n$h = 10$ & 6.25 \\\\\n$h = 20$ & 15.6 \\\\\n$h = \\text{full}$ (episode-level) & 23.88 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\placeholder{fig5\\_h\\_sweep\\_curve: $h$ vs. validation success at step 15. Error bars from 3 seeds. Shows credit assignment cliff. Horizontal dashed line at SFT baseline (6.25\\%).}\n\nThe ablation reveals a credit assignment cliff consistent with our theoretical predictions (Table~\\ref{tab:h_sweep}). OOD success rate is 0\\% for $h \\leq 5$, rises to 6.25\\% at $h = 10$ and 15.6\\% at $h = 20$, and reaches 23.88\\% under episode-level training ($h = T$). The transition between $h = 5$ and $h = 10$ marks the onset of non-trivial generalization. Results are single-seed; multi-seed replication is in progress.\n\nThe dual mechanism theory predicts three observable signatures in the $h$-sweep. First, step-1 performance should vary across $h$ values, reflecting different information-loss ceilings (Mechanism 1). Second, for all $h < T$, performance should decline over training steps as sign misattribution accumulates (Mechanism 2). Third, the rate of decline should be approximately constant across $h$ values (since the sign correlation from Equation~\\ref{eq:sign_correlation} depends on the success rate $p$ and group size $K$, not on $h$ directly), but the onset of visible collapse should be earlier for smaller $h$ because the lower ceiling leaves less room before reaching zero.\n\nFrom the single-seed data available, the two-phase collapse at $h = 2$ is confirmed. Action validity at step 2 is 89.3\\%, dropping to 43.1\\% by step 4. This pattern, strategic collapse preceding formatting collapse, is the empirical signature of sign misattribution operating on a model that initially retains valid action representations. The progressive nature distinguishes Mechanism 2 from Mechanism 1: information loss would produce a constant (low) performance from step 1, not a declining trajectory.\n\n\\subsubsection{Dense Reward Baseline}\n\\label{sec:results_dense}\n\nA natural hypothesis is that step-independent training fails due to sparse reward, and that providing dense per-step rewards might resolve the credit assignment problem. We test this with a dense reward configuration that adds $+0.15$ bonus for each syntactically valid action, applied under step-independent training with $h = 2$.\n\nThe dense reward experiment (exp013f) produces a striking dissociation. Action validity increases from 60\\% to 97.5\\% over training. The per-step bonus successfully shapes low-level formatting behavior. However, task success remains at 0\\% throughout training. The agent learns to produce perfectly formatted commands that satisfy the validity reward without solving any tasks.\n\nThis result confirms that the failure of step-independent training is not a sparse reward problem. Dense reward shaping creates an optimization target that the agent can maximize (action formatting) without addressing the underlying credit assignment pathology. The sign of the task-level advantage still corrupts multi-step strategy learning, while the dense reward merely teaches the agent to produce syntactically correct (but strategically meaningless) outputs. Reward shaping and sign misattribution operate on different dimensions of behavior and cannot compensate for each other.\n\n\\subsection{Empirical Verification of Sign Misattribution}\n\\label{sec:sign_verification}\n\nThe theoretical analysis of Section~\\ref{sec:m2_sign_misattribution} predicts specific quantitative properties of the advantage signal under step-independent training. We design a direct measurement protocol to validate these predictions.\n\n\\paragraph{Methodology.}\nDuring step-independent training, we log per-window advantage information for each training episode. For window $k$ in episode $i$, we record: (1) the advantage sign $\\text{sign}(\\hat{A}_k^{(i)})$, (2) the episode outcome $R_{\\text{episode}}^{(i)} \\in \\{0, 1\\}$, and (3) a local action quality proxy based on the fraction of valid actions within the window. We then compute three statistics across all training windows:\n\\begin{itemize}\n    \\item \\textbf{Sign-outcome correlation}: the Pearson correlation between $\\text{sign}(\\hat{A}_k)$ and $R_{\\text{episode}}$. Theory predicts this correlation approaches 1.0, since the advantage sign is determined almost entirely by whether the episode succeeded.\n    \\item \\textbf{Sign-quality correlation}: the Pearson correlation between $\\text{sign}(\\hat{A}_k)$ and local action quality. Theory predicts this correlation approaches 0, since the advantage sign carries no information about whether the window's actions were locally correct.\n    \\item \\textbf{Correct sign fraction}: $P(\\text{correct sign} \\mid \\text{update})$, defined as the probability that a window with locally good actions receives a positive advantage and a window with locally bad actions receives a negative advantage. Proposition 2 (Section~\\ref{sec:formal_probability}) predicts this equals approximately 15.5\\% at $p = 6.25\\%$, $K = 8$.\n\\end{itemize}\n\n\\paragraph{Predictions.}\nThe sign misattribution mechanism makes three testable predictions:\n\\begin{enumerate}\n    \\item Sign-outcome correlation $\\approx 1.0$ (advantage sign is a proxy for episode success, not local quality)\n    \\item Sign-quality correlation $\\approx 0$ (advantage sign is independent of whether local actions were good)\n    \\item $P(\\text{correct sign}) \\approx 15.5\\%$ (derived from Proposition 2 at the observed success rate)\n\\end{enumerate}\nIf all three predictions are confirmed empirically, the sign misattribution mechanism is validated as the causal driver of training collapse, rather than alternative explanations such as reward sparsity, KL divergence, or optimization instability.\n\nTable~\\ref{tab:sign_verification} reports the empirical measurements. The credit agreement rate---the fraction of windows where the advantage sign matches local action quality---is 52.07\\%, indistinguishable from the 50\\% expected under random sign assignment. The point biserial correlation between advantage sign and local action quality is $r = 0.068$, confirming near-zero dependence. Additionally, a discount factor sweep reveals that \\textit{all} $\\gamma$ values produce collapse, including $\\gamma = 1.0$ (no discounting). The $\\gamma = 1.0$ result rules out temporal discounting as the failure cause and isolates sign misattribution as the root mechanism.\n\n\\begin{table}[t]\n\\centering\n\\caption{Empirical verification of sign misattribution under step-independent training ($h{=}2$). Credit agreement rate measures the fraction of windows where advantage sign matches local action quality; 50\\% indicates random assignment.}\n\\label{tab:sign_verification}\n\\small\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\n\\textbf{Metric} & \\textbf{Measured} & \\textbf{Predicted} \\\\\n\\midrule\nCredit agreement rate & 52.07\\% & $\\approx$ 50\\% (random) \\\\\nPoint biserial $r$ (sign vs.\\ quality) & 0.068 & $\\approx$ 0 \\\\\nCollapse at $\\gamma = 1.0$ (no discounting) & Yes & Yes \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Additional Baselines}\n\\label{sec:additional_baselines}\n\n\\paragraph{GAE baselines.}\nTo distinguish the effect of episode-level optimization from GRPO-specific design choices (group normalization, no value function), we compare against Generalized Advantage Estimation (GAE)~\\cite{schulman2016gae} under two configurations. GAE($\\lambda = 0.95$, $\\gamma = 0.95$) provides standard TD-based advantage estimation with a learned value function, representing the conventional actor-critic approach to temporal credit assignment. GAE($\\lambda = 1$, $\\gamma = 1$) computes Monte Carlo returns equivalent to episode-level GRPO without group normalization, isolating the contribution of group-relative advantage computation. \\placeholder{plan\\_003b: GAE baseline execution. Columns: Method, Val Success (\\%), Action Valid (\\%), Training Stability (variance across steps).}\n\n\\paragraph{Selective verification.}\nBuilding on the episode-level trained agent (Section~\\ref{sec:selective_verification}), we train a selective verification policy that decides when self-checking is informative. This component is orthogonal to the credit assignment analysis and demonstrates a downstream application of the competent base agent produced by episode-level training. \\placeholder{tab4\\_selective\\_comparison: Selective verification results. Columns: Method (Always-Verify, Never-Verify, Selective), Success (\\%), Verify Rate (\\%), Cost Reduction (\\%). Pending Phase B experiments.}\n\n\\subsection{Cross-Scale Verification}\n\\label{sec:cross_scale}\n\nThe 1.7B experiments establish that step-independent training collapses while episode-level training succeeds. Both mechanisms could in principle be scale-dependent: a larger model might compensate for information loss through greater capacity, or resist sign misattribution through more stable optimization. We test scale invariance by replicating the key factorial conditions on Qwen3-8B.\n\n\\paragraph{Setup.}\nThe 8B SFT baseline uses the same training protocol (2{,}546 demonstrations, 2 epochs, learning rate $5 \\times 10^{-6}$). It achieves 68.75\\% in-distribution success ($T{=}0$, deterministic) and 80.6\\% OOD success ($T{=}0.4$, stochastic sampling), far above the 1.7B baseline of 12.5\\%.% exp_id: 8b_det_eval_full (in-dist), 7b_sft_eval_ood (OOD)\nThis higher starting point provides a stronger test: improvement over an already-competent baseline would confirm that episode-level RL adds value beyond what scale alone provides.\n\n\\paragraph{Information loss.}\nRestricting the 8B model's observation window to $h{=}2$ at inference time drops in-distribution success from 68.75\\% to 31.25\\%, a 37.5 percentage point gap.% exp_id: 8b_info_loss_eval\nThe relative magnitude is comparable to the 1.7B case. Larger models do not implicitly reconstruct missing context from a 2-step window.\n\n\\paragraph{Cell A collapse.}\nStep-independent training on the 8B model collapses within two gradient steps: in-distribution success drops from 28.1\\% (before training) to 12.5\\% (step~1) to 1.5\\% (step~2).% exp_id: 8b_cell_a_episode\nThe collapse trajectory matches the 1.7B pattern, consistent with the sign misattribution rate predicted by Proposition~\\ref{prop:correct_sign}.\n\n\\paragraph{Cell D: episode-level training.}\nEpisode-level GRPO reaches 96.9\\% in-distribution success at step~10 and 90.3\\% OOD success (134 tasks, $T{=}0.4$), a 9.7 percentage point improvement over the SFT baseline on OOD tasks.% exp_id: 8b_cell_c_episode_v9d, 8b_v9d_ood_eval_v5\nTraining reward saturates to 100\\% at step~12. The gain over an 80.6\\% SFT baseline confirms that correct credit assignment enables RL to improve beyond supervised learning even from a strong initialization.\n\nTable~\\ref{tab:8b_results} summarizes the 8B conditions.\n\n\\begin{table}[t]\n\\centering\n\\caption{8B model results on ALFWorld. In-Dist: 32-task validation set; OOD: 134-task held-out test set. SFT in-distribution and SFT $h{=}2$ use deterministic decoding ($T{=}0$); all OOD results and RL evaluations use $T{=}0.4$. Cell~A reports the value at step~2 (post-collapse). Cell~D reports the best checkpoint (step~10).}\n\\label{tab:8b_results}\n\\small\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\n\\textbf{Method} & \\textbf{In-Dist (\\%)} & \\textbf{OOD (\\%)} \\\\\n\\midrule\nSFT baseline & 68.75 & 80.60 \\\\  % exp_id: 8b_det_eval_full (in-dist T=0), 7b_sft_eval_ood (OOD T=0.4)\nSFT $h{=}2$ & 31.25 & --- \\\\  % exp_id: 8b_det_eval_h2 (T=0)\nCell A: step-indep.\\ ($h{=}2$) & 28.1 $\\to$ 1.5 & --- \\\\  % exp_id: 8b_cell_a_episode\nCell D: episode-level & \\textbf{96.88} & \\textbf{90.30} \\\\  % exp_id: 8b_cell_c_episode_v9d, 8b_v9d_ood_eval_v5\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nBoth the failure and the fix are scale-invariant. Step-independent training collapses within two steps at 8B, compared to 3--15 steps at 1.7B; episode-level training not only avoids collapse but exceeds the SFT ceiling by a substantial margin. Due to computational constraints of 8B-scale FSDP training, 8B results report single-seed runs.\n",
+      "numLines": 216,
+      "startLine": 1,
+      "totalLines": 216
+    }
+  },
+  "sourceToolAssistantUUID": "e3011dc4-7f68-4a8c-8188-fe51c5de54e1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "fb344fab-b668-49e6-9211-d7810677e348",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-20T14:40:33.545Z_
+
+<details><summary>↩ Tool result · `toolu_01Vs8nUwmaw2BUs3ijEDGe9g`</summary>
+
+```text
+1	\section{Method}
+2	\label{sec:method}
+3	
+4	\subsection{Problem Formulation}
+5	\label{sec:problem_formulation}
+6	
+7	We formalize the multi-turn interactive agent as a Partially Observable Markov Decision Process (POMDP) $\mathcal{M} = (\mathcal{S}, \mathcal{A}, \mathcal{O}, P, \Omega, R, \gamma)$, where $\mathcal{S}$ is the state space of the environment, $\mathcal{A}$ is the action space (natural language commands), $\mathcal{O}$ is the observation space (textual feedback from the environment), $P: \mathcal{S} \times \mathcal{A} \rightarrow \mathcal{S}$ is the transition function, $\Omega: \mathcal{S} \rightarrow \mathcal{O}$ is the observation function, $R$ is the reward function, and $\gamma \in [0,1]$ is a discount factor. The agent policy $\pi_\phi(a_t \mid h_t)$ generates actions conditioned on the interaction history $h_t = (o_1, a_1, o_2, a_2, \ldots, o_t)$, where $\phi$ denotes the policy parameters. An episode consists of $T$ interaction steps, terminating with a binary reward $R \in \{0, r_+\}$ that indicates task success or failure.
+8	
+9	In practice, multi-turn episodes can span 50 or more interaction steps, each containing hundreds of tokens. Training a language model policy on the full history $h_T$ is computationally expensive and often exceeds the model's context length. This motivates the \textbf{step-independent windowing} approach: the trajectory is partitioned into non-overlapping windows of $h$ consecutive steps, and each window is optimized independently with its own computed return. Concretely, window $k$ observes only $(o_{(k-1)h+1}, a_{(k-1)h+1}, \ldots, o_{kh})$ and receives a return $R_k$ derived from the episode outcome. This decomposition treats each window as a separate training sample, allowing standard context-length models to process the data. We show below that this seemingly practical choice introduces two failure mechanisms that cause systematic training failure.
+10	
+11	\subsection{GRPO for Language Agents}
+12	\label{sec:grpo}
+13	
+14	Group Relative Policy Optimization (GRPO)~\cite{shao2024deepseekmath} is a bandit-style policy gradient method designed for language model alignment. Unlike PPO~\cite{schulman2017ppo}, GRPO requires no critic network. For each task instance $x$, the algorithm samples $K$ rollouts $\{y_1, \ldots, y_K\}$ from the current policy $\pi_\phi$. The advantage of each rollout is computed relative to the group:
+15	\begin{equation}
+16	\hat{A}_k = \frac{R_k - \mu}{\sigma + \epsilon}, \quad \mu = \frac{1}{K}\sum_{j=1}^K R_j, \quad \sigma = \sqrt{\frac{1}{K}\sum_{j=1}^K (R_j - \mu)^2}
+17	\label{eq:grpo_advantage}
+18	\end{equation}
+19	where $R_k$ is the return of rollout $k$. The policy gradient is:
+20	\begin{equation}
+21	\mathcal{L}_{\text{GRPO}} = -\frac{1}{K}\sum_{k=1}^K \hat{A}_k \cdot \min\left(\rho_k, \text{clip}(\rho_k, 1\pm\epsilon_c)\right) + \beta \cdot D_{\text{KL}}[\pi_\phi \| \pi_{\text{ref}}]
+22	\label{eq:grpo_loss}
+23	\end{equation}
+24	where $\rho_k = \pi_\phi(y_k \mid x) / \pi_{\text{old}}(y_k \mid x)$ is the importance ratio and $\beta$ controls the KL penalty against a reference policy $\pi_{\text{ref}}$. GRPO is \textit{episode-level by design}: each rollout $y_k$ is a complete generation with a single return $R_k$ and a single advantage $\hat{A}_k$. There is no inherent temporal discounting within the algorithm.
+25	
+26	\subsection{Step-Independent Implementation in Multi-Turn Agents}
+27	\label{sec:step_independent}
+28	
+29	When adapting GRPO for multi-turn interactive tasks, agent training frameworks face a mismatch between GRPO's episode-level design and the practical constraints of long trajectories. The RAGEN framework~\cite{ragen2025} addresses this by introducing step-independent training: each $h$-step window becomes an independent GRPO sample with a discounted return derived from the episode outcome.
+30	
+31	Specifically, for an episode of $T$ steps with binary outcome $R_{\text{episode}} \in \{0, r_+\}$, the return assigned to window $k$ (covering steps $(k-1)h+1$ through $kh$) is computed as:
+32	\begin{equation}
+33	R_k = \gamma^{(N - k)} \cdot R_{\text{episode}}
+34	\label{eq:step_return}
+35	\end{equation}
+36	where $N = \lceil T/h \rceil$ is the total number of windows in the episode and $\gamma$ is a discount factor (typically 0.95). In practice, intermediate step penalties (e.g., invalid action penalties) contribute additional terms to $R_k$. Our analysis focuses on the dominant component: the discounted terminal reward. Section~\ref{sec:sign_verification} empirically validates that advantage sign remains episode-outcome-dominated even in the presence of per-step penalties. Each window is then treated as an independent sample in the GRPO optimization and receives its own group-normalized advantage $\hat{A}_k$ via Equation~\ref{eq:grpo_advantage}. The total number of training samples per episode increases from 1 to $N$.
+37	
+38	This design choice is motivated by three practical constraints. First, full trajectories of 50+ turns with hundreds of tokens per turn exceed typical context length limits (2048 or 4096 tokens for smaller models). Second, treating each window independently multiplies the effective batch size, improving GPU utilization. Third, the framework inherits the token-level training paradigm common in language model optimization, where shorter sequences are the default.\footnote{Implementation details are available in the open-source RAGEN codebase, specifically the step-discounted return computation module (\texttt{compute\_step\_discounted\_returns}).}
+39	
+40	Despite these practical motivations, step-independent training fundamentally alters the credit assignment structure. The following section analyzes two mechanisms through which this alteration causes training collapse.
+41	
+42	\subsection{Dual Mechanism Analysis}
+43	\label{sec:dual_mechanism}
+44	
+45	We identify two mechanisms operating at different layers that jointly cause training failure under step-independent optimization. The first operates at the inference layer: by restricting the model's observable context, it destroys the policy's ability to generalize to tasks that require cross-step reasoning. The second operates at the training layer: systematic gradient sign errors destabilize the optimization process, producing high-variance training dynamics that range from rapid collapse to erratic oscillation. Together, these mechanisms predict three distinct training regimes depending on which mechanism dominates: (a) monotonic collapse when both mechanisms are severe, (b) oscillation followed by degradation when sign misattribution is the primary driver, and (c) stable learning when episode-level training eliminates both. Section~\ref{sec:experiments} validates these predictions empirically.
+46	
+47	\subsubsection{Mechanism 1: Policy Information Loss}
+48	\label{sec:m1_information_loss}
+49	
+50	Step-independent training truncates context at both the inference and training layers. At inference time, the policy $\pi_\phi(a_t \mid h_{\text{window}_k})$ generates actions conditioned on only the local $h$-step history, losing access to observations and actions from earlier windows. At the training layer, the optimization target for each window is computed from this same truncated context, so cross-step strategies that require conditioning on earlier outcomes cannot be reinforced. Consider a household task requiring the agent to first explore a drawer (step 3), discover an object's location (step 4), then navigate to a countertop (step 8). With $h=2$, the window containing step 8 has no access to the exploration outcome from steps 3--4, neither at inference (the model cannot condition on it) nor at training (the gradient cannot credit it). The policy cannot learn the conditional strategy ``go to countertop \textit{only if} the object was found in the drawer.''
+51	
+52	This information loss destroys the policy's ability to generalize beyond local, single-window strategies. The model may learn to produce valid actions within its observable context, but it cannot acquire conditional strategies that depend on outcomes from earlier steps. The constraint is structural: no amount of training can recover information that is absent from the input. Different window sizes $h$ impose different degrees of information loss, with smaller $h$ restricting the representable strategy space more severely. In our h-sweep experiments (Section~\ref{sec:experiments}), initial evaluation performance varies across window sizes, reflecting the direct relationship between available context and the policy's generalization capacity.
+53	
+54	More formally, let $\pi^*$ denote the optimal policy for the full POMDP. The mutual information between $\pi^*$ and the full history, $I(\pi^*; h_T)$, captures the total information required for optimal decision-making. Under $h$-step windowing, each window's policy can access at most $I(\pi^*; h_{\text{window}_k})$. For tasks with sequential dependencies spanning more than $h$ steps, we have $I(\pi^*; h_T) \gg I(\pi^*; h_{\text{window}_k})$. The information gap grows with episode length $T$ and shrinks with window size $h$, predicting a generalization cliff as $h$ decreases relative to the task's dependency horizon.
+55	
+56	\subsubsection{Mechanism 2: Advantage Sign Misattribution}
+57	\label{sec:m2_sign_misattribution}
+58	
+59	The second mechanism operates at the training layer and, unlike Mechanism 1, directly disrupts the optimization process rather than constraining the representable strategy space. Under step-independent training, each window receives a return $R_k = \gamma^{(N-k)} \cdot R_{\text{episode}}$ (Equation~\ref{eq:step_return}). After group normalization, the advantage $\hat{A}_k$ has a \textit{sign} determined primarily by whether the episode succeeded or failed, not by whether window $k$'s actions were locally good or bad.
+60	
+61	In a failed episode ($R_{\text{episode}} = 0$), all windows receive $R_k = 0$. If the group mean $\mu > 0$ (due to other successful rollouts in the group), all windows in the failed episode receive negative advantages. This includes windows where the agent took locally correct actions (e.g., correctly identifying a target object). Conversely, in a successful episode, all windows receive positive advantages, including windows where the agent took suboptimal actions (e.g., unnecessary exploration steps that happened not to prevent eventual success).
+62	
+63	The gradient direction for each window is determined by the sign of $\hat{A}_k$:
+64	\begin{equation}
+65	\text{sign}(\hat{A}_k) \approx \text{sign}(R_{\text{episode}} - \mu)
+66	\label{eq:sign_correlation}
+67	\end{equation}
+68	This means the optimization either reinforces or suppresses \textit{all} actions within a window based on the episode outcome, regardless of local action quality. Good actions in failed episodes are actively suppressed; bad actions in successful episodes are actively reinforced. Over training, this systematic misattribution corrupts the optimization signal. Even when the policy begins with non-trivial task competence within its $h$-step window, wrong-sign gradient updates can suppress this competence in unpredictable ways. Mechanism 2 breaks training stability: the corrupted gradient signal produces volatile optimization dynamics that may manifest as monotonic collapse, erratic oscillation, or periods of apparent progress followed by sudden degradation. Section~\ref{sec:experiments} confirms these predictions across multiple experimental conditions.
+69	
+70	A secondary effect compounds this problem. The discount factor $\gamma^{(N-k)}$ introduces magnitude decay across window positions. For early windows in a long episode ($T=50$, $h=2$, $\gamma=0.95$), the first window ($k=1$) retains $\gamma^{N-1} = \gamma^{24} \approx 0.29$ of the terminal window's return. While this reduces the learning signal for early decisions, the sign error is fundamentally more harmful: magnitude decay merely slows convergence, while sign misattribution causes active divergence (Section~\ref{sec:sign_fundamental}).
+71	
+72	\subsection{Episode-Level Training}
+73	\label{sec:episode_level}
+74	
+75	Episode-level training resolves both failure mechanisms by treating the complete trajectory as a single GRPO sample. All tokens across all $T$ steps share one advantage $\hat{A}$, computed from the episode return $R_{\text{episode}}$ via group normalization over $K$ complete rollouts of the same task instance.
+76	
+77	This design directly addresses Mechanism 1. The policy $\pi_\phi(a_t \mid h_t)$ conditions on the full interaction history $h_t$ at every step $t$. Cross-step dependencies are preserved in the optimization target: the gradient for generating action $a_8$ (navigate to countertop) flows through the complete history including observations from steps 3--4 (drawer exploration outcome).
+78	
+79	Episode-level training also eliminates Mechanism 2. Because there is no window-level return assignment, there is no opportunity for sign misattribution between windows. The single advantage $\hat{A}$ applies uniformly to the entire trajectory. While this means per-step credit assignment remains coarse (all steps in a successful episode are equally reinforced), it avoids the worse failure mode of \textit{systematically incorrect} credit assignment. The distinction is critical: uniform reinforcement of a successful trajectory preserves good sub-strategies within it, whereas window-level sign errors actively destroy them.
+80	
+81	The trade-off is computational. Episode-level training requires processing the full sequence length ($T$ steps $\times$ tokens-per-step) in a single forward and backward pass. For $T=50$ and 100 tokens per step, this amounts to 5000-token sequences, which fits within the capacity of modern architectures but increases memory and compute relative to $h$-step windows. In our experiments (Section~\ref{sec:experiments}), this overhead is modest compared to the systematic training failure avoided.
+82	
+83	Episode-level training is, in fact, the natural application of GRPO to multi-turn settings. GRPO was designed as an episode-level algorithm where each rollout receives one return and one advantage. Step-independent training is the deviation from this design, introduced by framework implementation choices rather than algorithmic motivation. Our analysis reveals that this deviation carries hidden costs that produce systematic failure for long-horizon interactive tasks.
+84	
+85	\subsection{Factorial Experiment Design}
+86	\label{sec:factorial_design}
+87	
+88	The dual mechanism analysis yields testable predictions about how each mechanism independently affects training. To isolate their qualitative effects, we design a $2 \times 2$ factorial experiment that varies two factors: (1) the observation window, controlling whether policy information loss (Mechanism 1) is present, and (2) the advantage granularity, controlling whether sign misattribution (Mechanism 2) is present. The four conditions are:
+89	
+90	\begin{itemize}
+91	\item \textbf{Cell A} (truncated observation $+$ step-level advantage): Window size $h{=}2$ with per-window advantage computation. Both mechanisms are active. The policy suffers from information loss \textit{and} receives corrupted gradient signals.
+92	\item \textbf{Cell B} (truncated observation $+$ episode-level advantage): Window size $h{=}2$ with a single episode-level advantage shared across all windows. Only Mechanism 1 is active; sign misattribution is eliminated because all windows in an episode receive the same advantage sign.
+93	\item \textbf{Cell D} (full observation $+$ episode-level advantage): The complete trajectory is processed as a single sequence with episode-level advantage. Neither mechanism is active.
+94	\end{itemize}
+95	
+96	Comparing Cell A against Cell B isolates the effect of sign misattribution while holding information loss constant. If Cell B exhibits more stable training dynamics than Cell A, the difference is attributable to Mechanism 2. Comparing Cell B against Cell D isolates the effect of information loss while both conditions use episode-level advantage. The performance gap between these two cells reflects how truncated context limits the policy's generalization to tasks with cross-step dependencies.
+97	
+98	This factorial design tests qualitative predictions about training dynamics, not quantitative effect decomposition. We expect Cell A to exhibit the most unstable training (oscillation or collapse), Cell B to train more stably but plateau below Cell D due to the information constraint, and Cell D to achieve monotonic improvement. Section~\ref{sec:experiments} reports the results.
+99	
+100	\subsection{Selective Verification}
+101	\label{sec:selective_verification}
+102	
+103	We propose selective verification as a direction for future investigation. At each step, the agent would output a binary decision $v_t \in \{\texttt{VERIFY}, \texttt{SKIP}\}$ before generating its action, and the training signal would use an action-change indicator (whether verification actually altered the action) to reward informative verification. This component has not been implemented and is proposed as a direction for future investigation. Episode-level training serves as a prerequisite: training a selective verification policy requires a base agent with sufficient task competence, which step-independent training cannot produce.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "788eef83-0046-44b2-bb34-064046cadb33",
+  "isSidechain": false,
+  "promptId": "b934c9d8-1289-4d59-9626-3ce373a2ebdc",
+  "type": "user",
+  "uuid": "b52405a5-f40a-4dc7-b93f-7521407b602d",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/method.tex",
+      "content": "\\section{Method}\n\\label{sec:method}\n\n\\subsection{Problem Formulation}\n\\label{sec:problem_formulation}\n\nWe formalize the multi-turn interactive agent as a Partially Observable Markov Decision Process (POMDP) $\\mathcal{M} = (\\mathcal{S}, \\mathcal{A}, \\mathcal{O}, P, \\Omega, R, \\gamma)$, where $\\mathcal{S}$ is the state space of the environment, $\\mathcal{A}$ is the action space (natural language commands), $\\mathcal{O}$ is the observation space (textual feedback from the environment), $P: \\mathcal{S} \\times \\mathcal{A} \\rightarrow \\mathcal{S}$ is the transition function, $\\Omega: \\mathcal{S} \\rightarrow \\mathcal{O}$ is the observation function, $R$ is the reward function, and $\\gamma \\in [0,1]$ is a discount factor. The agent policy $\\pi_\\phi(a_t \\mid h_t)$ generates actions conditioned on the interaction history $h_t = (o_1, a_1, o_2, a_2, \\ldots, o_t)$, where $\\phi$ denotes the policy parameters. An episode consists of $T$ interaction steps, terminating with a binary reward $R \\in \\{0, r_+\\}$ that indicates task success or failure.\n\nIn practice, multi-turn episodes can span 50 or more interaction steps, each containing hundreds of tokens. Training a language model policy on the full history $h_T$ is computationally expensive and often exceeds the model's context length. This motivates the \\textbf{step-independent windowing} approach: the trajectory is partitioned into non-overlapping windows of $h$ consecutive steps, and each window is optimized independently with its own computed return. Concretely, window $k$ observes only $(o_{(k-1)h+1}, a_{(k-1)h+1}, \\ldots, o_{kh})$ and receives a return $R_k$ derived from the episode outcome. This decomposition treats each window as a separate training sample, allowing standard context-length models to process the data. We show below that this seemingly practical choice introduces two failure mechanisms that cause systematic training failure.\n\n\\subsection{GRPO for Language Agents}\n\\label{sec:grpo}\n\nGroup Relative Policy Optimization (GRPO)~\\cite{shao2024deepseekmath} is a bandit-style policy gradient method designed for language model alignment. Unlike PPO~\\cite{schulman2017ppo}, GRPO requires no critic network. For each task instance $x$, the algorithm samples $K$ rollouts $\\{y_1, \\ldots, y_K\\}$ from the current policy $\\pi_\\phi$. The advantage of each rollout is computed relative to the group:\n\\begin{equation}\n\\hat{A}_k = \\frac{R_k - \\mu}{\\sigma + \\epsilon}, \\quad \\mu = \\frac{1}{K}\\sum_{j=1}^K R_j, \\quad \\sigma = \\sqrt{\\frac{1}{K}\\sum_{j=1}^K (R_j - \\mu)^2}\n\\label{eq:grpo_advantage}\n\\end{equation}\nwhere $R_k$ is the return of rollout $k$. The policy gradient is:\n\\begin{equation}\n\\mathcal{L}_{\\text{GRPO}} = -\\frac{1}{K}\\sum_{k=1}^K \\hat{A}_k \\cdot \\min\\left(\\rho_k, \\text{clip}(\\rho_k, 1\\pm\\epsilon_c)\\right) + \\beta \\cdot D_{\\text{KL}}[\\pi_\\phi \\| \\pi_{\\text{ref}}]\n\\label{eq:grpo_loss}\n\\end{equation}\nwhere $\\rho_k = \\pi_\\phi(y_k \\mid x) / \\pi_{\\text{old}}(y_k \\mid x)$ is the importance ratio and $\\beta$ controls the KL penalty against a reference policy $\\pi_{\\text{ref}}$. GRPO is \\textit{episode-level by design}: each rollout $y_k$ is a complete generation with a single return $R_k$ and a single advantage $\\hat{A}_k$. There is no inherent temporal discounting within the algorithm.\n\n\\subsection{Step-Independent Implementation in Multi-Turn Agents}\n\\label{sec:step_independent}\n\nWhen adapting GRPO for multi-turn interactive tasks, agent training frameworks face a mismatch between GRPO's episode-level design and the practical constraints of long trajectories. The RAGEN framework~\\cite{ragen2025} addresses this by introducing step-independent training: each $h$-step window becomes an independent GRPO sample with a discounted return derived from the episode outcome.\n\nSpecifically, for an episode of $T$ steps with binary outcome $R_{\\text{episode}} \\in \\{0, r_+\\}$, the return assigned to window $k$ (covering steps $(k-1)h+1$ through $kh$) is computed as:\n\\begin{equation}\nR_k = \\gamma^{(N - k)} \\cdot R_{\\text{episode}}\n\\label{eq:step_return}\n\\end{equation}\nwhere $N = \\lceil T/h \\rceil$ is the total number of windows in the episode and $\\gamma$ is a discount factor (typically 0.95). In practice, intermediate step penalties (e.g., invalid action penalties) contribute additional terms to $R_k$. Our analysis focuses on the dominant component: the discounted terminal reward. Section~\\ref{sec:sign_verification} empirically validates that advantage sign remains episode-outcome-dominated even in the presence of per-step penalties. Each window is then treated as an independent sample in the GRPO optimization and receives its own group-normalized advantage $\\hat{A}_k$ via Equation~\\ref{eq:grpo_advantage}. The total number of training samples per episode increases from 1 to $N$.\n\nThis design choice is motivated by three practical constraints. First, full trajectories of 50+ turns with hundreds of tokens per turn exceed typical context length limits (2048 or 4096 tokens for smaller models). Second, treating each window independently multiplies the effective batch size, improving GPU utilization. Third, the framework inherits the token-level training paradigm common in language model optimization, where shorter sequences are the default.\\footnote{Implementation details are available in the open-source RAGEN codebase, specifically the step-discounted return computation module (\\texttt{compute\\_step\\_discounted\\_returns}).}\n\nDespite these practical motivations, step-independent training fundamentally alters the credit assignment structure. The following section analyzes two mechanisms through which this alteration causes training collapse.\n\n\\subsection{Dual Mechanism Analysis}\n\\label{sec:dual_mechanism}\n\nWe identify two mechanisms operating at different layers that jointly cause training failure under step-independent optimization. The first operates at the inference layer: by restricting the model's observable context, it destroys the policy's ability to generalize to tasks that require cross-step reasoning. The second operates at the training layer: systematic gradient sign errors destabilize the optimization process, producing high-variance training dynamics that range from rapid collapse to erratic oscillation. Together, these mechanisms predict three distinct training regimes depending on which mechanism dominates: (a) monotonic collapse when both mechanisms are severe, (b) oscillation followed by degradation when sign misattribution is the primary driver, and (c) stable learning when episode-level training eliminates both. Section~\\ref{sec:experiments} validates these predictions empirically.\n\n\\subsubsection{Mechanism 1: Policy Information Loss}\n\\label{sec:m1_information_loss}\n\nStep-independent training truncates context at both the inference and training layers. At inference time, the policy $\\pi_\\phi(a_t \\mid h_{\\text{window}_k})$ generates actions conditioned on only the local $h$-step history, losing access to observations and actions from earlier windows. At the training layer, the optimization target for each window is computed from this same truncated context, so cross-step strategies that require conditioning on earlier outcomes cannot be reinforced. Consider a household task requiring the agent to first explore a drawer (step 3), discover an object's location (step 4), then navigate to a countertop (step 8). With $h=2$, the window containing step 8 has no access to the exploration outcome from steps 3--4, neither at inference (the model cannot condition on it) nor at training (the gradient cannot credit it). The policy cannot learn the conditional strategy ``go to countertop \\textit{only if} the object was found in the drawer.''\n\nThis information loss destroys the policy's ability to generalize beyond local, single-window strategies. The model may learn to produce valid actions within its observable context, but it cannot acquire conditional strategies that depend on outcomes from earlier steps. The constraint is structural: no amount of training can recover information that is absent from the input. Different window sizes $h$ impose different degrees of information loss, with smaller $h$ restricting the representable strategy space more severely. In our h-sweep experiments (Section~\\ref{sec:experiments}), initial evaluation performance varies across window sizes, reflecting the direct relationship between available context and the policy's generalization capacity.\n\nMore formally, let $\\pi^*$ denote the optimal policy for the full POMDP. The mutual information between $\\pi^*$ and the full history, $I(\\pi^*; h_T)$, captures the total information required for optimal decision-making. Under $h$-step windowing, each window's policy can access at most $I(\\pi^*; h_{\\text{window}_k})$. For tasks with sequential dependencies spanning more than $h$ steps, we have $I(\\pi^*; h_T) \\gg I(\\pi^*; h_{\\text{window}_k})$. The information gap grows with episode length $T$ and shrinks with window size $h$, predicting a generalization cliff as $h$ decreases relative to the task's dependency horizon.\n\n\\subsubsection{Mechanism 2: Advantage Sign Misattribution}\n\\label{sec:m2_sign_misattribution}\n\nThe second mechanism operates at the training layer and, unlike Mechanism 1, directly disrupts the optimization process rather than constraining the representable strategy space. Under step-independent training, each window receives a return $R_k = \\gamma^{(N-k)} \\cdot R_{\\text{episode}}$ (Equation~\\ref{eq:step_return}). After group normalization, the advantage $\\hat{A}_k$ has a \\textit{sign} determined primarily by whether the episode succeeded or failed, not by whether window $k$'s actions were locally good or bad.\n\nIn a failed episode ($R_{\\text{episode}} = 0$), all windows receive $R_k = 0$. If the group mean $\\mu > 0$ (due to other successful rollouts in the group), all windows in the failed episode receive negative advantages. This includes windows where the agent took locally correct actions (e.g., correctly identifying a target object). Conversely, in a successful episode, all windows receive positive advantages, including windows where the agent took suboptimal actions (e.g., unnecessary exploration steps that happened not to prevent eventual success).\n\nThe gradient direction for each window is determined by the sign of $\\hat{A}_k$:\n\\begin{equation}\n\\text{sign}(\\hat{A}_k) \\approx \\text{sign}(R_{\\text{episode}} - \\mu)\n\\label{eq:sign_correlation}\n\\end{equation}\nThis means the optimization either reinforces or suppresses \\textit{all} actions within a window based on the episode outcome, regardless of local action quality. Good actions in failed episodes are actively suppressed; bad actions in successful episodes are actively reinforced. Over training, this systematic misattribution corrupts the optimization signal. Even when the policy begins with non-trivial task competence within its $h$-step window, wrong-sign gradient updates can suppress this competence in unpredictable ways. Mechanism 2 breaks training stability: the corrupted gradient signal produces volatile optimization dynamics that may manifest as monotonic collapse, erratic oscillation, or periods of apparent progress followed by sudden degradation. Section~\\ref{sec:experiments} confirms these predictions across multiple experimental conditions.\n\nA secondary effect compounds this problem. The discount factor $\\gamma^{(N-k)}$ introduces magnitude decay across window positions. For early windows in a long episode ($T=50$, $h=2$, $\\gamma=0.95$), the first window ($k=1$) retains $\\gamma^{N-1} = \\gamma^{24} \\approx 0.29$ of the terminal window's return. While this reduces the learning signal for early decisions, the sign error is fundamentally more harmful: magnitude decay merely slows convergence, while sign misattribution causes active divergence (Section~\\ref{sec:sign_fundamental}).\n\n\\subsection{Episode-Level Training}\n\\label{sec:episode_level}\n\nEpisode-level training resolves both failure mechanisms by treating the complete trajectory as a single GRPO sample. All tokens across all $T$ steps share one advantage $\\hat{A}$, computed from the episode return $R_{\\text{episode}}$ via group normalization over $K$ complete rollouts of the same task instance.\n\nThis design directly addresses Mechanism 1. The policy $\\pi_\\phi(a_t \\mid h_t)$ conditions on the full interaction history $h_t$ at every step $t$. Cross-step dependencies are preserved in the optimization target: the gradient for generating action $a_8$ (navigate to countertop) flows through the complete history including observations from steps 3--4 (drawer exploration outcome).\n\nEpisode-level training also eliminates Mechanism 2. Because there is no window-level return assignment, there is no opportunity for sign misattribution between windows. The single advantage $\\hat{A}$ applies uniformly to the entire trajectory. While this means per-step credit assignment remains coarse (all steps in a successful episode are equally reinforced), it avoids the worse failure mode of \\textit{systematically incorrect} credit assignment. The distinction is critical: uniform reinforcement of a successful trajectory preserves good sub-strategies within it, whereas window-level sign errors actively destroy them.\n\nThe trade-off is computational. Episode-level training requires processing the full sequence length ($T$ steps $\\times$ tokens-per-step) in a single forward and backward pass. For $T=50$ and 100 tokens per step, this amounts to 5000-token sequences, which fits within the capacity of modern architectures but increases memory and compute relative to $h$-step windows. In our experiments (Section~\\ref{sec:experiments}), this overhead is modest compared to the systematic training failure avoided.\n\nEpisode-level training is, in fact, the natural application of GRPO to multi-turn settings. GRPO was designed as an episode-level algorithm where each rollout receives one return and one advantage. Step-independent training is the deviation from this design, introduced by framework implementation choices rather than algorithmic motivation. Our analysis reveals that this deviation carries hidden costs that produce systematic failure for long-horizon interactive tasks.\n\n\\subsection{Factorial Experiment Design}\n\\label{sec:factorial_design}\n\nThe dual mechanism analysis yields testable predictions about how each mechanism independently affects training. To isolate their qualitative effects, we design a $2 \\times 2$ factorial experiment that varies two factors: (1) the observation window, controlling whether policy information loss (Mechanism 1) is present, and (2) the advantage granularity, controlling whether sign misattribution (Mechanism 2) is present. The four conditions are:\n\n\\begin{itemize}\n\\item \\textbf{Cell A} (truncated observation $+$ step-level advantage): Window size $h{=}2$ with per-window advantage computation. Both mechanisms are active. The policy suffers from information loss \\textit{and} receives corrupted gradient signals.\n\\item \\textbf{Cell B} (truncated observation $+$ episode-level advantage): Window size $h{=}2$ with a single episode-level advantage shared across all windows. Only Mechanism 1 is active; sign misattribution is eliminated because all windows in an episode receive the same advantage sign.\n\\item \\textbf{Cell D} (full observation $+$ episode-level advantage): The complete trajectory is processed as a single sequence with episode-level advantage. Neither mechanism is active.\n\\end{itemize}\n\nComparing Cell A against Cell B isolates the effect of sign misattribution while holding information loss constant. If Cell B exhibits more stable training dynamics than Cell A, the difference is attributable to Mechanism 2. Comparing Cell B against Cell D isolates the effect of information loss while both conditions use episode-level advantage. The performance gap between these two cells reflects how truncated context limits the policy's generalization to tasks with cross-step dependencies.\n\nThis factorial design tests qualitative predictions about training dynamics, not quantitative effect decomposition. We expect Cell A to exhibit the most unstable training (oscillation or collapse), Cell B to train more stably but plateau below Cell D due to the information constraint, and Cell D to achieve monotonic improvement. Section~\\ref{sec:experiments} reports the results.\n\n\\subsection{Selective Verification}\n\\label{sec:selective_verification}\n\nWe propose selective verification as a direction for future investigation. At each step, the agent would output a binary decision $v_t \\in \\{\\texttt{VERIFY}, \\texttt{SKIP}\\}$ before generating its action, and the training signal would use an action-change indicator (whether verification actually altered the action) to reward informative verification. This component has not been implemented and is proposed as a direction for future investigation. Episode-level training serves as a prerequisite: training a selective verification policy requires a base agent with sufficient task competence, which step-independent training cannot produce.",
+      "numLines": 103,
+      "startLine": 1,
+      "totalLines": 103
+    }
+  },
+  "sourceToolAssistantUUID": "788eef83-0046-44b2-bb34-064046cadb33",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "fb344fab-b668-49e6-9211-d7810677e348",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-20T14:40:32.524Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01RDrSUC72GWwuTcmm2ASWz2`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ac941265-62ff-4e0d-90fd-55c9c4d9c9e3",
+  "isSidechain": false,
+  "requestId": "req_011CbDzddQgck8bHPErQj4Jo",
+  "type": "assistant",
+  "uuid": "fec102c5-f738-4f0f-a87d-0d9333f80f83",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "fb344fab-b668-49e6-9211-d7810677e348",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GwBa4i8WiUjXKPxG8uzLtf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12698,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 330,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12698,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 330,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12698,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12698
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-20T14:40:32.529Z_
+
+<details><summary>↩ Tool result · `toolu_01RDrSUC72GWwuTcmm2ASWz2`</summary>
+
+```text
+1	\newcommand{\placeholder}[1]{\textcolor{red}{[#1]}}
+2	
+3	\section{Experiments}
+4	\label{sec:experiments}
+5	
+6	We design experiments to test three predictions of the dual-mechanism analysis. First, does step-independent training collapse while episode-level training avoids collapse? Second, can we separate the individual contributions of information loss (M1) and sign misattribution (M2) through factorial manipulation? Third, how does window size $h$ modulate the severity of both mechanisms?
+7	
+8	\subsection{Environment}
+9	\label{sec:environment}
+10	
+11	We evaluate on ALFWorld~\cite{shridhar2021alfworld}, a text-based household environment in which an agent interacts with simulated rooms through natural language commands. ALFWorld defines six task types (pick, clean, heat, cool, examine, pick two) that require sequential reasoning over multiple interaction steps. The agent issues text commands (e.g., \texttt{go to countertop 1}, \texttt{take knife 2 from drawer 3}) and receives textual observations of the environment state. Episodes terminate after task completion or a maximum of 50 steps. The reward is binary: $R \in \{0, r_+\}$, with $r_+$ awarded only upon successful task completion.
+12	
+13	ALFWorld tasks exhibit strong sequential dependencies. A typical task requires the agent to locate an object (steps 1--5), pick it up (step 6), navigate to a target receptacle (steps 7--10), and place it (step 11). Under step-independent windowing with $h = 2$, the window containing the placement action has no access to the exploration steps that determined the target object. Context truncation therefore directly impairs the policy's ability to condition late actions on early observations.
+14	
+15	\subsection{Base Model and Supervised Fine-Tuning}
+16	\label{sec:base_model}
+17	
+18	We use Qwen3-1.7B (instruct variant) as the base policy. Before RL training, we perform supervised fine-tuning (SFT) on 2{,}546 expert demonstrations from ALFWorld for 2 epochs with learning rate $5 \times 10^{-6}$. The resulting SFT checkpoint achieves 12.5\% success rate on a held-out 32-task in-distribution validation set (4 of 32 tasks). The pre-SFT model achieves 0\% success in zero-shot evaluation, so SFT provides a necessary initialization for RL.
+19	
+20	This low baseline is analytically significant. At success probability $p = 0.125$ with group size $K = 8$, Proposition~\ref{prop:correct_sign} predicts that approximately 80.9\% of gradient updates carry incorrect advantage sign under step-independent training. The SFT checkpoint therefore occupies the regime where sign misattribution is most severe.
+21	
+22	\subsection{RL Training Configuration}
+23	\label{sec:rl_config}
+24	
+25	All conditions use the RAGEN framework~\cite{ragen2025} with the GRPO algorithm~\cite{shao2024deepseekmath}. Table~\ref{tab:hyperparameters} lists the shared hyperparameters. The discount factor $\gamma$ applies only to step-independent return computation (Equation~\ref{eq:step_return}); episode-level conditions use undiscounted returns over the complete trajectory.
+26	
+27	\begin{table}[t]
+28	\centering
+29	\small
+30	\caption{Shared RL training hyperparameters across all conditions.}
+31	\label{tab:hyperparameters}
+32	\begin{tabular}{lc}
+33	\toprule
+34	Parameter & Value \\
+35	\midrule
+36	Group size $K$ & 8 \\
+37	Learning rate & $1 \times 10^{-6}$ \\
+38	KL penalty $\beta$ & 0.01 \\
+39	Discount $\gamma$ & 0.95 \\
+40	Invalid action penalty & 0.1 \\
+41	Tasks per training step & 16 \\
+42	Training steps & 15 \\
+43	\bottomrule
+44	\end{tabular}
+45	\end{table}
+46	
+47	\subsection{Evaluation Protocol}
+48	\label{sec:eval_protocol}
+49	
+50	We evaluate on two task sets: (1)~a 32-task in-distribution set from the original RAGEN validation split, and (2)~a 134-task out-of-distribution (OOD) set for generalization assessment. All main results report the 134-task OOD set; in-distribution numbers serve as secondary references. Evaluation runs every 5 training steps.
+51	
+52	The primary metric is success rate (pass@1): the fraction of episodes completed within 50 steps. We also report pass@$k$ for $k \in \{2, 4, 8\}$. As a diagnostic, we track \textit{action validity rate}, defined as the fraction of agent outputs that constitute syntactically valid environment commands (as opposed to malformed, empty, or repeated text). Action validity measures basic policy coherence, distinct from task completion. Results report single-seed or two-seed runs depending on availability; seed counts are noted per condition.
+53	
+54	\subsection{Factorial Mechanism Separation}
+55	\label{sec:factorial_experiments}
+56	
+57	The dual-mechanism analysis (Section~\ref{sec:dual_mechanism}) predicts that information loss (M1) and sign misattribution (M2) produce qualitatively different training failures. To separate their effects, we implement the $2 \times 2$ factorial design described in Section~\ref{sec:factorial_design}, varying two factors: observation scope (truncated window vs.\ full trajectory) and advantage scope (per-window vs.\ episode-level).
+58	
+59	\paragraph{Cell A: Truncated observation + step-level advantage.}
+60	Window size $h{=}2$ with per-window advantage computation. Both mechanisms are active: the policy observes only 2-step windows (M1) and each window receives an advantage whose sign is determined by the episode outcome rather than local action quality (M2). This is the default RAGEN configuration and represents the community standard for multi-turn agent RL. Two seeds.
+61	
+62	\paragraph{Cell B: Truncated observation + episode-level advantage.}
+63	Window size $h{=}2$, but all windows within an episode share a single episode-level advantage instead of independent per-window values. M1 remains active (observations are still truncated to 2-step windows), while M2 is eliminated (all windows receive the same advantage sign, so no individual window can be misattributed). The comparison of Cell~A against Cell~B isolates the contribution of sign misattribution: any difference in training stability is attributable to M2 alone. Two seeds.
+64	
+65	\paragraph{Cell D: Full observation + episode-level advantage.}
+66	The complete trajectory is processed as a single sequence with one shared advantage. Neither mechanism is active: the full context eliminates information loss, and the single advantage eliminates sign misattribution. The comparison of Cell~B against Cell~D isolates the contribution of information loss: any performance gap reflects how truncated context limits the policy's ability to learn cross-step strategies. Two seeds.
+67	
+68	The fourth cell (full observation + step-level advantage) is degenerate: with full context, only one window spans the entire episode, so per-window and episode-level advantage coincide. The factorial design therefore yields three distinct conditions that test qualitative predictions about training dynamics, not quantitative effect decomposition (Section~\ref{sec:factorial_design}).
+69	
+70	\subsection{Additional Experimental Conditions}
+71	\label{sec:additional_conditions}
+72	
+73	\paragraph{Dense reward baseline.}
+74	Step-independent $h{=}2$ with a per-step bonus of $+0.15$ for each syntactically valid action. This tests whether dense reward shaping can compensate for step-independent credit assignment failure. Training extends to 30 steps.
+75	
+76	\paragraph{REINFORCE++ baseline.}
+77	Episode-level training with a per-token running-mean baseline instead of GRPO group normalization. No value function is used.\footnote{This condition was originally planned as a GAE baseline with a learned value function. We substituted REINFORCE++ after TRL~1.1.0 removed the \texttt{AutoModelForCausalLMWithValueHead} class required for critic-based methods.}
+78	
+79	\paragraph{Discount factor sweep.}
+80	Step-independent $h{=}5$ with $\gamma \in \{0.50, 0.80, 0.95, 1.00\}$. This sweep isolates the role of magnitude decay in training collapse. At $\gamma = 1.0$, all windows receive identical return magnitude from the terminal reward; discount-induced magnitude variation vanishes entirely, but sign misattribution persists because each window still receives an independently normalized advantage. If collapse occurs at $\gamma = 1.0$, magnitude decay cannot be the primary cause.
+81	
+82	All four $\gamma$ values produce complete training collapse: validation success drops to 0\% within 5 training steps across the sweep ($\gamma = 0.50$: collapsed at step~1; $\gamma = 0.80$: 3.1\% at step~5 then 0\%; $\gamma = 0.95$: 0\% at step~5; $\gamma = 1.0$: collapsed). The uniformity of collapse across $\gamma$ values, including $\gamma = 1.0$ where no magnitude decay exists, confirms that sign misattribution is the operative failure mechanism. Magnitude decay modulates the speed of collapse but is neither necessary nor sufficient to cause it.
+83	
+84	\paragraph{Window-size sweep.}
+85	Step-independent training with $h \in \{2, 5, 10, 20\}$ compared against episode-level training ($h = T$, the full trajectory). Smaller $h$ increases M1 severity through reduced per-window context and produces more windows per episode. OOD success rates are: $h{=}2$: 0\%, $h{=}5$: 0\%, $h{=}10$: 6.25\%, $h{=}20$: 15.6\%, episode-level: 23.88\%.% exp_id: h_sweep_series, exp029_seed1
+86	The transition between $h{=}10$ and $h{=}20$ marks a cliff where sufficient context begins to offset information loss.
+87	
+88	\subsection{Results}
+89	\label{sec:results}
+90	
+91	Results are organized around three comparisons: (1)~episode-level vs.\ step-independent training dynamics (Section~\ref{sec:results_main}), (2)~factorial mechanism separation (Section~\ref{sec:results_factorial}), and (3)~window-size ablation (Section~\ref{sec:results_hsweep}).
+92	
+93	\subsection{Cross-Scale Verification}
+94	\label{sec:cross_scale}
+95	
+96	The 1.7B experiments establish that step-independent training collapses while episode-level training succeeds. Both mechanisms could in principle be scale-dependent: a larger model might compensate for information loss through greater capacity, or resist sign misattribution through more stable optimization. We test scale invariance by replicating the key factorial conditions on Qwen3-8B.
+97	
+98	\paragraph{Setup.}
+99	The 8B SFT baseline uses the same training protocol (2{,}546 demonstrations, 2 epochs, learning rate $5 \times 10^{-6}$). It achieves 68.75\% in-distribution success ($T{=}0$, deterministic) and 80.6\% OOD success ($T{=}0.4$, stochastic sampling), far above the 1.7B baseline of 12.5\%.% exp_id: 8b_sft_baseline, 8b_det_eval_full, 7b_sft_eval_ood
+100	This higher starting point provides a stronger test: improvement over an already-competent baseline would confirm that episode-level RL adds value beyond what scale alone provides.
+101	
+102	\paragraph{Information loss.}
+103	Restricting the 8B model's observation window to $h{=}2$ at inference time drops in-distribution success from 68.75\% to 31.25\%, a 37.5 percentage point gap.% exp_id: 8b_info_loss_eval
+104	The relative magnitude is comparable to the 1.7B case. Larger models do not implicitly reconstruct missing context from a 2-step window.
+105	
+106	\paragraph{Cell A collapse.}
+107	Step-independent training on the 8B model collapses within two gradient steps: in-distribution success drops from 28.1\% (before training) to 12.5\% (step~1) to 1.5\% (step~2).% exp_id: 8b_cell_a_episode
+108	The collapse trajectory matches the 1.7B pattern, consistent with the sign misattribution rate predicted by Proposition~\ref{prop:correct_sign}.
+109	
+110	\paragraph{Cell D: episode-level training.}
+111	Episode-level GRPO reaches 96.9\% in-distribution success at step~10 and 90.3\% OOD success (134 tasks, $T{=}0.4$), a 9.7 percentage point improvement over the SFT baseline on OOD tasks.% exp_id: 8b_cell_c_episode_v9d, 8b_v9d_ood_eval_v5
+112	Training reward saturates to 100\% at step~12. The gain over an 80.6\% SFT baseline confirms that correct credit assignment enables RL to improve beyond supervised learning even from a strong initialization.
+113	
+114	Table~\ref{tab:8b_results} summarizes the 8B conditions.
+115	
+116	\begin{table}[t]
+117	\centering
+118	\caption{8B model results on ALFWorld. In-Dist: 32-task validation set; OOD: 134-task held-out test set. SFT in-distribution and SFT $h{=}2$ use deterministic decoding ($T{=}0$); all OOD results and RL evaluations use $T{=}0.4$. Cell~A reports the value at step~2 (post-collapse). Cell~D reports the best checkpoint (step~10).}
+119	\label{tab:8b_results}
+120	\small
+121	\begin{tabular}{@{}lcc@{}}
+122	\toprule
+123	\textbf{Method} & \textbf{In-Dist (\%)} & \textbf{OOD (\%)} \\
+124	\midrule
+125	SFT baseline & 68.75 & 80.60 \\  % exp_id: 8b_det_eval_full (in-dist T=0), 7b_sft_eval_ood (OOD T=0.4)
+126	SFT $h{=}2$ & 31.25 & --- \\  % exp_id: 8b_det_eval_h2 (T=0)
+127	Cell A: step-indep.\ ($h{=}2$) & 28.1 $\to$ 1.5 & --- \\  % exp_id: 8b_cell_a_episode
+128	Cell D: episode-level & \textbf{96.88} & \textbf{90.30} \\  % exp_id: 8b_cell_c_episode_v9d, 8b_v9d_ood_eval_v5
+129	\bottomrule
+130	\end{tabular}
+131	\end{table}
+132	
+133	Both the failure and the fix are scale-invariant. Step-independent training collapses within two steps at 8B, compared to 3--15 steps at 1.7B; episode-level training not only avoids collapse but exceeds the SFT ceiling by a substantial margin. Due to computational constraints of 8B-scale FSDP training, 8B results report single-seed runs.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fec102c5-f738-4f0f-a87d-0d9333f80f83",
+  "isSidechain": false,
+  "promptId": "b934c9d8-1289-4d59-9626-3ce373a2ebdc",
+  "type": "user",
+  "uuid": "7041335c-96f6-471d-8a7e-55157cc74ece",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex",
+      "content": "\\newcommand{\\placeholder}[1]{\\textcolor{red}{[#1]}}\n\n\\section{Experiments}\n\\label{sec:experiments}\n\nWe design experiments to test three predictions of the dual-mechanism analysis. First, does step-independent training collapse while episode-level training avoids collapse? Second, can we separate the individual contributions of information loss (M1) and sign misattribution (M2) through factorial manipulation? Third, how does window size $h$ modulate the severity of both mechanisms?\n\n\\subsection{Environment}\n\\label{sec:environment}\n\nWe evaluate on ALFWorld~\\cite{shridhar2021alfworld}, a text-based household environment in which an agent interacts with simulated rooms through natural language commands. ALFWorld defines six task types (pick, clean, heat, cool, examine, pick two) that require sequential reasoning over multiple interaction steps. The agent issues text commands (e.g., \\texttt{go to countertop 1}, \\texttt{take knife 2 from drawer 3}) and receives textual observations of the environment state. Episodes terminate after task completion or a maximum of 50 steps. The reward is binary: $R \\in \\{0, r_+\\}$, with $r_+$ awarded only upon successful task completion.\n\nALFWorld tasks exhibit strong sequential dependencies. A typical task requires the agent to locate an object (steps 1--5), pick it up (step 6), navigate to a target receptacle (steps 7--10), and place it (step 11). Under step-independent windowing with $h = 2$, the window containing the placement action has no access to the exploration steps that determined the target object. Context truncation therefore directly impairs the policy's ability to condition late actions on early observations.\n\n\\subsection{Base Model and Supervised Fine-Tuning}\n\\label{sec:base_model}\n\nWe use Qwen3-1.7B (instruct variant) as the base policy. Before RL training, we perform supervised fine-tuning (SFT) on 2{,}546 expert demonstrations from ALFWorld for 2 epochs with learning rate $5 \\times 10^{-6}$. The resulting SFT checkpoint achieves 12.5\\% success rate on a held-out 32-task in-distribution validation set (4 of 32 tasks). The pre-SFT model achieves 0\\% success in zero-shot evaluation, so SFT provides a necessary initialization for RL.\n\nThis low baseline is analytically significant. At success probability $p = 0.125$ with group size $K = 8$, Proposition~\\ref{prop:correct_sign} predicts that approximately 80.9\\% of gradient updates carry incorrect advantage sign under step-independent training. The SFT checkpoint therefore occupies the regime where sign misattribution is most severe.\n\n\\subsection{RL Training Configuration}\n\\label{sec:rl_config}\n\nAll conditions use the RAGEN framework~\\cite{ragen2025} with the GRPO algorithm~\\cite{shao2024deepseekmath}. Table~\\ref{tab:hyperparameters} lists the shared hyperparameters. The discount factor $\\gamma$ applies only to step-independent return computation (Equation~\\ref{eq:step_return}); episode-level conditions use undiscounted returns over the complete trajectory.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Shared RL training hyperparameters across all conditions.}\n\\label{tab:hyperparameters}\n\\begin{tabular}{lc}\n\\toprule\nParameter & Value \\\\\n\\midrule\nGroup size $K$ & 8 \\\\\nLearning rate & $1 \\times 10^{-6}$ \\\\\nKL penalty $\\beta$ & 0.01 \\\\\nDiscount $\\gamma$ & 0.95 \\\\\nInvalid action penalty & 0.1 \\\\\nTasks per training step & 16 \\\\\nTraining steps & 15 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Evaluation Protocol}\n\\label{sec:eval_protocol}\n\nWe evaluate on two task sets: (1)~a 32-task in-distribution set from the original RAGEN validation split, and (2)~a 134-task out-of-distribution (OOD) set for generalization assessment. All main results report the 134-task OOD set; in-distribution numbers serve as secondary references. Evaluation runs every 5 training steps.\n\nThe primary metric is success rate (pass@1): the fraction of episodes completed within 50 steps. We also report pass@$k$ for $k \\in \\{2, 4, 8\\}$. As a diagnostic, we track \\textit{action validity rate}, defined as the fraction of agent outputs that constitute syntactically valid environment commands (as opposed to malformed, empty, or repeated text). Action validity measures basic policy coherence, distinct from task completion. Results report single-seed or two-seed runs depending on availability; seed counts are noted per condition.\n\n\\subsection{Factorial Mechanism Separation}\n\\label{sec:factorial_experiments}\n\nThe dual-mechanism analysis (Section~\\ref{sec:dual_mechanism}) predicts that information loss (M1) and sign misattribution (M2) produce qualitatively different training failures. To separate their effects, we implement the $2 \\times 2$ factorial design described in Section~\\ref{sec:factorial_design}, varying two factors: observation scope (truncated window vs.\\ full trajectory) and advantage scope (per-window vs.\\ episode-level).\n\n\\paragraph{Cell A: Truncated observation + step-level advantage.}\nWindow size $h{=}2$ with per-window advantage computation. Both mechanisms are active: the policy observes only 2-step windows (M1) and each window receives an advantage whose sign is determined by the episode outcome rather than local action quality (M2). This is the default RAGEN configuration and represents the community standard for multi-turn agent RL. Two seeds.\n\n\\paragraph{Cell B: Truncated observation + episode-level advantage.}\nWindow size $h{=}2$, but all windows within an episode share a single episode-level advantage instead of independent per-window values. M1 remains active (observations are still truncated to 2-step windows), while M2 is eliminated (all windows receive the same advantage sign, so no individual window can be misattributed). The comparison of Cell~A against Cell~B isolates the contribution of sign misattribution: any difference in training stability is attributable to M2 alone. Two seeds.\n\n\\paragraph{Cell D: Full observation + episode-level advantage.}\nThe complete trajectory is processed as a single sequence with one shared advantage. Neither mechanism is active: the full context eliminates information loss, and the single advantage eliminates sign misattribution. The comparison of Cell~B against Cell~D isolates the contribution of information loss: any performance gap reflects how truncated context limits the policy's ability to learn cross-step strategies. Two seeds.\n\nThe fourth cell (full observation + step-level advantage) is degenerate: with full context, only one window spans the entire episode, so per-window and episode-level advantage coincide. The factorial design therefore yields three distinct conditions that test qualitative predictions about training dynamics, not quantitative effect decomposition (Section~\\ref{sec:factorial_design}).\n\n\\subsection{Additional Experimental Conditions}\n\\label{sec:additional_conditions}\n\n\\paragraph{Dense reward baseline.}\nStep-independent $h{=}2$ with a per-step bonus of $+0.15$ for each syntactically valid action. This tests whether dense reward shaping can compensate for step-independent credit assignment failure. Training extends to 30 steps.\n\n\\paragraph{REINFORCE++ baseline.}\nEpisode-level training with a per-token running-mean baseline instead of GRPO group normalization. No value function is used.\\footnote{This condition was originally planned as a GAE baseline with a learned value function. We substituted REINFORCE++ after TRL~1.1.0 removed the \\texttt{AutoModelForCausalLMWithValueHead} class required for critic-based methods.}\n\n\\paragraph{Discount factor sweep.}\nStep-independent $h{=}5$ with $\\gamma \\in \\{0.50, 0.80, 0.95, 1.00\\}$. This sweep isolates the role of magnitude decay in training collapse. At $\\gamma = 1.0$, all windows receive identical return magnitude from the terminal reward; discount-induced magnitude variation vanishes entirely, but sign misattribution persists because each window still receives an independently normalized advantage. If collapse occurs at $\\gamma = 1.0$, magnitude decay cannot be the primary cause.\n\nAll four $\\gamma$ values produce complete training collapse: validation success drops to 0\\% within 5 training steps across the sweep ($\\gamma = 0.50$: collapsed at step~1; $\\gamma = 0.80$: 3.1\\% at step~5 then 0\\%; $\\gamma = 0.95$: 0\\% at step~5; $\\gamma = 1.0$: collapsed). The uniformity of collapse across $\\gamma$ values, including $\\gamma = 1.0$ where no magnitude decay exists, confirms that sign misattribution is the operative failure mechanism. Magnitude decay modulates the speed of collapse but is neither necessary nor sufficient to cause it.\n\n\\paragraph{Window-size sweep.}\nStep-independent training with $h \\in \\{2, 5, 10, 20\\}$ compared against episode-level training ($h = T$, the full trajectory). Smaller $h$ increases M1 severity through reduced per-window context and produces more windows per episode. OOD success rates are: $h{=}2$: 0\\%, $h{=}5$: 0\\%, $h{=}10$: 6.25\\%, $h{=}20$: 15.6\\%, episode-level: 23.88\\%.% exp_id: h_sweep_series, exp029_seed1\nThe transition between $h{=}10$ and $h{=}20$ marks a cliff where sufficient context begins to offset information loss.\n\n\\subsection{Results}\n\\label{sec:results}\n\nResults are organized around three comparisons: (1)~episode-level vs.\\ step-independent training dynamics (Section~\\ref{sec:results_main}), (2)~factorial mechanism separation (Section~\\ref{sec:results_factorial}), and (3)~window-size ablation (Section~\\ref{sec:results_hsweep}).\n\n\\subsection{Cross-Scale Verification}\n\\label{sec:cross_scale}\n\nThe 1.7B experiments establish that step-independent training collapses while episode-level training succeeds. Both mechanisms could in principle be scale-dependent: a larger model might compensate for information loss through greater capacity, or resist sign misattribution through more stable optimization. We test scale invariance by replicating the key factorial conditions on Qwen3-8B.\n\n\\paragraph{Setup.}\nThe 8B SFT baseline uses the same training protocol (2{,}546 demonstrations, 2 epochs, learning rate $5 \\times 10^{-6}$). It achieves 68.75\\% in-distribution success ($T{=}0$, deterministic) and 80.6\\% OOD success ($T{=}0.4$, stochastic sampling), far above the 1.7B baseline of 12.5\\%.% exp_id: 8b_sft_baseline, 8b_det_eval_full, 7b_sft_eval_ood\nThis higher starting point provides a stronger test: improvement over an already-competent baseline would confirm that episode-level RL adds value beyond what scale alone provides.\n\n\\paragraph{Information loss.}\nRestricting the 8B model's observation window to $h{=}2$ at inference time drops in-distribution success from 68.75\\% to 31.25\\%, a 37.5 percentage point gap.% exp_id: 8b_info_loss_eval\nThe relative magnitude is comparable to the 1.7B case. Larger models do not implicitly reconstruct missing context from a 2-step window.\n\n\\paragraph{Cell A collapse.}\nStep-independent training on the 8B model collapses within two gradient steps: in-distribution success drops from 28.1\\% (before training) to 12.5\\% (step~1) to 1.5\\% (step~2).% exp_id: 8b_cell_a_episode\nThe collapse trajectory matches the 1.7B pattern, consistent with the sign misattribution rate predicted by Proposition~\\ref{prop:correct_sign}.\n\n\\paragraph{Cell D: episode-level training.}\nEpisode-level GRPO reaches 96.9\\% in-distribution success at step~10 and 90.3\\% OOD success (134 tasks, $T{=}0.4$), a 9.7 percentage point improvement over the SFT baseline on OOD tasks.% exp_id: 8b_cell_c_episode_v9d, 8b_v9d_ood_eval_v5\nTraining reward saturates to 100\\% at step~12. The gain over an 80.6\\% SFT baseline confirms that correct credit assignment enables RL to improve beyond supervised learning even from a strong initialization.\n\nTable~\\ref{tab:8b_results} summarizes the 8B conditions.\n\n\\begin{table}[t]\n\\centering\n\\caption{8B model results on ALFWorld. In-Dist: 32-task validation set; OOD: 134-task held-out test set. SFT in-distribution and SFT $h{=}2$ use deterministic decoding ($T{=}0$); all OOD results and RL evaluations use $T{=}0.4$. Cell~A reports the value at step~2 (post-collapse). Cell~D reports the best checkpoint (step~10).}\n\\label{tab:8b_results}\n\\small\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\n\\textbf{Method} & \\textbf{In-Dist (\\%)} & \\textbf{OOD (\\%)} \\\\\n\\midrule\nSFT baseline & 68.75 & 80.60 \\\\  % exp_id: 8b_det_eval_full (in-dist T=0), 7b_sft_eval_ood (OOD T=0.4)\nSFT $h{=}2$ & 31.25 & --- \\\\  % exp_id: 8b_det_eval_h2 (T=0)\nCell A: step-indep.\\ ($h{=}2$) & 28.1 $\\to$ 1.5 & --- \\\\  % exp_id: 8b_cell_a_episode\nCell D: episode-level & \\textbf{96.88} & \\textbf{90.30} \\\\  % exp_id: 8b_cell_c_episode_v9d, 8b_v9d_ood_eval_v5\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nBoth the failure and the fix are scale-invariant. Step-independent training collapses within two steps at 8B, compared to 3--15 steps at 1.7B; episode-level training not only avoids collapse but exceeds the SFT ceiling by a substantial margin. Due to computational constraints of 8B-scale FSDP training, 8B results report single-seed runs.",
+      "numLines": 133,
+      "startLine": 1,
+      "totalLines": 133
+    }
+  },
+  "sourceToolAssistantUUID": "fec102c5-f738-4f0f-a87d-0d9333f80f83",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "fb344fab-b668-49e6-9211-d7810677e348",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-20T14:40:32.957Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Pus6u4N158kf5RX7X7Ss3W`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/theoretical_analysis.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7041335c-96f6-471d-8a7e-55157cc74ece",
+  "isSidechain": false,
+  "requestId": "req_011CbDzddQgck8bHPErQj4Jo",
+  "type": "assistant",
+  "uuid": "64ae2d6d-76c6-4ce5-87d2-7927a0113c4f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "fb344fab-b668-49e6-9211-d7810677e348",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GwBa4i8WiUjXKPxG8uzLtf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12698,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 330,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12698,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 330,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12698,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12698
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-20T14:40:32.962Z_
+
+<details><summary>↩ Tool result · `toolu_01Pus6u4N158kf5RX7X7Ss3W`</summary>
+
+```text
+1	\section{Theoretical Analysis}
+2	\label{sec:theory}
+3	
+4	Section~\ref{sec:dual_mechanism} identified two failure mechanisms of step-independent training: policy information loss and advantage sign misattribution. We now formalize why sign misattribution is the more fundamental failure, derive the probability of incorrect gradient direction as a function of task success rate, examine why the community has defaulted to step-independent training, and connect our findings to the classical credit assignment literature.
+5	
+6	\subsection{Why Sign Misattribution is Fundamental}
+7	\label{sec:sign_fundamental}
+8	
+9	The two mechanisms identified in Section~\ref{sec:dual_mechanism} operate at different layers and produce qualitatively different failures. Policy information loss (Mechanism 1) operates at the inference layer, restricting the observable context and establishing a structural performance ceiling that is constant across training. Sign misattribution (Mechanism 2) operates at the training layer, corrupting gradient directions and progressively degrading performance below this ceiling. We formalize this distinction below.
+10	
+11	\textbf{Proposition 1.} \textit{Under step-independent training with binary episode reward $R_{\text{episode}} \in \{0, r_+\}$, the probability that window $k$'s advantage $\hat{A}_k$ has the correct sign (aligned with local action quality) approaches the base success rate $p$ as the number of rollouts $K$ per group increases.}
+12	
+13	\textit{Argument.} Define ``correct sign'' as follows: for a window containing locally beneficial actions, the correct sign of $\hat{A}_k$ is positive (reinforcement); for a window containing locally detrimental actions, the correct sign is negative (suppression). Under binary reward, the return for window $k$ is $R_k = \gamma^{(N-k)} \cdot R_{\text{episode}}$ (Equation~\ref{eq:step_return}). In a failed episode ($R_{\text{episode}} = 0$), all windows receive $R_k = 0$ regardless of their local action quality. If the group contains at least one successful rollout, the group mean $\mu > 0$, and all windows in the failed episode receive negative advantages after normalization via Equation~\ref{eq:grpo_advantage}. This includes windows where the agent took locally correct actions, such as correctly identifying a target object in an exploration step. Now consider a window with good local actions. In a successful episode (probability $p$), the window receives positive $\hat{A}_k$, which is the correct sign. In a failed episode (probability $1 - p$), the window receives negative $\hat{A}_k$ whenever $\mu > 0$, which is the wrong sign. The probability that $\mu = 0$ (all $K$ rollouts in the group failed) is $(1-p)^K$, which shrinks exponentially with $K$. As $K$ grows, nearly every failed episode produces a non-zero group mean, and the window receives the wrong sign with probability approaching $1-p$. The probability of correct sign therefore approaches $p$. \qed
+14	
+15	The distinction between the two mechanisms can also be understood in terms of their temporal behavior. Mechanism 1 imposes a constant ceiling: the information loss is determined by the window size $h$ and does not change with training. Mechanism 2 is cumulative: each optimization step with wrong-sign gradients further erodes the policy's competence, progressively driving performance below the ceiling set by Mechanism 1. The distinction between sign error and magnitude error further clarifies why Mechanism 2 is catastrophic while Mechanism 1 is merely suboptimal. The discount factor $\gamma^{(N-k)}$ in Equation~\ref{eq:step_return} introduces magnitude decay across window positions: for an episode with $T=50$ steps and $h=2$, the first window ($k=1$) retains $\gamma^{N-1} = 0.95^{24} \approx 0.29$ of the terminal window's return. This attenuation reduces the gradient magnitude for early windows but preserves the gradient direction. A gradient with correct sign and reduced magnitude produces slow convergence, a condition recoverable through longer training. A gradient with wrong sign produces active divergence: the optimization pushes the policy away from good behaviors and toward bad ones. Consider a navigation analogy. Magnitude error corresponds to a compass that points correctly but displays a dimmed needle; the traveler moves slowly toward the destination. Sign error corresponds to a compass pointing in the opposite direction; the traveler walks away from the destination with full confidence. The first error is correctable by patience. The second is correctable only by replacing the compass.
+16	
+17	\subsection{Formal Probability Analysis}
+18	\label{sec:formal_probability}
+19	
+20	We derive a tighter bound on the probability of correct gradient direction as a function of task difficulty and group size.
+21	
+22	\textbf{Proposition 2.}\label{prop:correct_sign} \textit{Let $p$ denote the episode success rate and $K$ the number of rollouts per group. Under step-independent training with binary episode reward, the probability that a gradient update for a window with locally good actions has the correct sign satisfies:}
+23	\begin{equation}
+24	P(\text{correct sign or no update}) = p + (1-p)^{K}
+25	\label{eq:correct_bound}
+26	\end{equation}
+27	\textit{Among gradient updates that occur (non-zero advantage), the fraction with correct sign is:}
+28	\begin{equation}
+29	P(\text{correct} \mid \text{update}) = \frac{p}{1 - (1-p)^{K}}
+30	\label{eq:correct_conditional}
+31	\end{equation}
+32	
+33	\textit{Derivation.} For a window with locally good actions, the gradient direction depends on $\text{sign}(\hat{A}_k)$, which depends on whether the episode succeeded and whether the group contains any successful rollouts. Three mutually exclusive cases arise.
+34	
+35	\textit{Case 1: Episode succeeded} (probability $p$). The window receives $R_k = \gamma^{(N-k)} \cdot r_+ > 0$. With at least one failed rollout in the group, $R_k > \mu$ after normalization, producing $\hat{A}_k > 0$.\footnote{The edge case where all $K$ rollouts succeed (probability $p^K$) is negligible at the baseline success rates considered ($p^8 < 10^{-7}$ at $p = 12.5\%$).} The gradient reinforces the window's actions. For a window with good local actions, this is the correct direction.
+36	
+37	\textit{Case 2: Episode failed, group contains at least one success} (probability $(1-p)[1 - (1-p)^{K-1}]$). The window receives $R_k = 0 < \mu$, producing $\hat{A}_k < 0$. The gradient suppresses the window's actions. For a window with good local actions, this is the wrong direction.
+38	
+39	\textit{Case 3: Episode failed, entire group failed} (probability $(1-p) \cdot (1-p)^{K-1} = (1-p)^{K}$). All returns are zero, so $\mu = 0$ and $\sigma = 0$. The advantage is zero, producing no gradient update.
+40	
+41	Summing Cases~1 and~3 yields Equation~\ref{eq:correct_bound}. Since only Cases~1 and~2 produce non-zero gradients, the conditional probability follows as Equation~\ref{eq:correct_conditional}.
+42	
+43	\textit{Remark.} Proposition~2 assumes binary episode rewards for analytical tractability. Under non-binary rewards (e.g., with per-step penalties for invalid actions), the group mean $\mu$ is nonzero even when all episodes fail, but the qualitative conclusion is preserved: advantage sign is determined by relative episode performance within the group, not by local action quality within individual windows. Section~\ref{sec:sign_verification} validates this empirically using the full reward structure.
+44	
+45	We evaluate these expressions at the empirical baseline of our experiments. At $p = 12.5\%$ (the SFT checkpoint success rate on a 32-episode validation set) and $K = 8$ (the group size used in all experiments): $(1-p)^K = 0.875^8 \approx 0.344$, giving $P(\text{correct or no update}) \approx 0.469$. Of the 65.6\% of cases that produce a gradient update, only $P(\text{correct} \mid \text{update}) = 0.125 / 0.656 \approx 19.1\%$ have the correct sign. As $K$ increases to 16, $(1-p)^{K} \approx 0.118$, and $P(\text{correct} \mid \text{update}) \approx 14.2\%$. In the large-$K$ limit, $P(\text{correct} \mid \text{update}) \to p$, so approximately $1 - p = 87.5\%$ of all gradient updates for locally good windows point in the wrong direction. This is consistent with the empirical observation that step-independent training collapses to 0\% task success while episode-level training achieves stable improvement (28.125\% validation success at step 15, Section~\ref{sec:results_main}).
+46	
+47	\subsection{Why the Community Defaults to Step-Independent Training}
+48	\label{sec:why_defaults}
+49	
+50	If step-independent training is fundamentally flawed for multi-turn agents, why has it become the default? We identify six contributing factors.
+51	
+52	\textbf{1. Context length constraints.} Smaller language models (1B to 4B parameters) typically support context lengths of 2048 to 4096 tokens. Multi-turn episodes spanning 50 or more interaction steps easily exceed these limits. Step-independent windowing is a pragmatic response to a hardware constraint, not a deliberate algorithmic choice.
+53	
+54	\textbf{2. Token-level training inertia.} Language model training is organized around predicting the next token over fixed-length sequences. When multi-turn RL inherits this paradigm, the natural unit of optimization becomes a fixed-length window rather than a variable-length episode. The mismatch between token-level optimization and episode-level credit assignment goes unquestioned because it aligns with existing training infrastructure.
+55	
+56	\textbf{3. Framework design accident.} The RAGEN framework~\cite{ragen2025} implements step-independent mode as its default configuration, not as one option among alternatives. Users inherit this choice without an explicit decision point, and default configurations propagate silently through downstream projects.
+57	
+58	\textbf{4. Memory and compute constraints.} Episode-level training requires processing $O(T)$ tokens per sequence, incurring $O(T^2)$ attention cost with full self-attention. Step-independent training reduces this to $O(h)$ tokens and $O(h^2)$ attention cost per window. The computational savings are immediate and measurable, while the credit assignment failure is subtle and deferred until training collapse occurs.
+59	
+60	\textbf{5. Reward shaping as apparent fix.} Dense reward shaping (per-step bonuses for intermediate goals) appears to address sparse reward problems and has theoretical support in the single-agent RL literature. Our dense reward experiment under step-independent training (Section~\ref{sec:results_dense}) reveals a different failure mode: the agent learns to maximize format-level rewards (action validity rises from 60\% to 97.5\%) while task success remains at 0\%. Reward shaping does not resolve sign misattribution; it creates new optimization targets that the agent can game without solving the underlying task.
+61	
+62	\textbf{6. Absence of negative results.} When step-independent training fails, practitioners attribute the failure to insufficient hyperparameter tuning or the inherent difficulty of sparse rewards. Without published analyses that isolate the credit assignment mechanism as the root cause, the community cannot distinguish between ``this problem is hard'' and ``this training paradigm is broken for this class of problems.''
+63	
+64	\subsection{Connection to Classical Credit Assignment}
+65	\label{sec:classical_connection}
+66	
+67	Our findings connect to a long line of work on temporal credit assignment in reinforcement learning. We position the step-independent failure mode within this literature and clarify the contribution of our analysis.
+68	
+69	\textbf{Temporal difference learning and eligibility traces.} Sutton's TD($\lambda$)~\cite{sutton1988td} provides a spectrum of credit assignment strategies parameterized by $\lambda \in [0,1]$. At $\lambda = 0$, credit is assigned via one-step bootstrapped returns. At $\lambda = 1$, TD($\lambda$) reduces to Monte Carlo returns, where each state receives the full episode return. Step-independent training falls below this spectrum: windows are disconnected from each other, so temporal propagation of credit does not occur. Each window receives an independently computed advantage with no mechanism for information to flow across windows within the same episode.
+70	
+71	\textbf{Generalized Advantage Estimation.} GAE($\lambda, \gamma$)~\cite{schulman2016gae} extends TD($\lambda$) with a separate discount factor for the advantage estimator. GAE(0, $\gamma$) produces per-step advantages through a learned value function. GAE(1, 1) produces undiscounted Monte Carlo returns, and is equivalent to episode-level GRPO without a critic. The key difference is that GAE uses value function subtraction as the baseline for variance reduction, while GRPO uses group normalization. Episode-level GRPO can be viewed as GAE(1, 1) with a group-relative baseline replacing the learned value function. This substitution is effective when the group provides a representative reference distribution, but it does not address per-step credit assignment within an episode.
+72	
+73	\textbf{REINFORCE.} Williams' REINFORCE algorithm~\cite{williams1992reinforce} computes policy gradients from complete episode returns with a learned baseline $b(s)$. Episode-level GRPO is equivalent to REINFORCE where the group mean $\mu$ replaces $b(s)$ and the group standard deviation $\sigma$ provides normalization. The algorithmic structure is not new. Our contribution is the diagnosis: the community's standard adaptation of this algorithm for multi-turn LLM agents (step-independent windowing) silently breaks the credit assignment structure that REINFORCE assumes.
+74	
+75	\textbf{Multi-agent credit assignment analogy.} Step-independent windows can be understood through cooperative multi-agent games. Each window acts as an independent ``agent'' sharing a team reward (the episode outcome) but optimized without knowledge of other windows' actions. The sign misattribution problem parallels team reward credit assignment in cooperative multi-agent RL: when the team fails, all agents receive identical penalties regardless of individual contribution. In multi-agent RL, this is a recognized problem with known solutions such as counterfactual baselines. In multi-turn LLM agent training, the same structural problem arises from an implementation choice and has not been recognized as a credit assignment failure.
+76	
+77	To summarize our positioning: we do not propose a new credit assignment algorithm. Episode-level training is the standard approach, and GRPO was designed as an episode-level method. What we identify is that the community's adaptation of GRPO to multi-turn settings introduces a systematic sign error in gradient computation. This error is not a gradual performance degradation but a catastrophic failure mode, as confirmed by the contrast between step-independent collapse (0\% success) and episode-level stability (28.1\% validation success from a baseline of 12.5\%).
+78	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "64ae2d6d-76c6-4ce5-87d2-7927a0113c4f",
+  "isSidechain": false,
+  "promptId": "b934c9d8-1289-4d59-9626-3ce373a2ebdc",
+  "type": "user",
+  "uuid": "f429289b-5482-4cfe-a333-9053d4494a32",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/theoretical_analysis.tex",
+      "content": "\\section{Theoretical Analysis}\n\\label{sec:theory}\n\nSection~\\ref{sec:dual_mechanism} identified two failure mechanisms of step-independent training: policy information loss and advantage sign misattribution. We now formalize why sign misattribution is the more fundamental failure, derive the probability of incorrect gradient direction as a function of task success rate, examine why the community has defaulted to step-independent training, and connect our findings to the classical credit assignment literature.\n\n\\subsection{Why Sign Misattribution is Fundamental}\n\\label{sec:sign_fundamental}\n\nThe two mechanisms identified in Section~\\ref{sec:dual_mechanism} operate at different layers and produce qualitatively different failures. Policy information loss (Mechanism 1) operates at the inference layer, restricting the observable context and establishing a structural performance ceiling that is constant across training. Sign misattribution (Mechanism 2) operates at the training layer, corrupting gradient directions and progressively degrading performance below this ceiling. We formalize this distinction below.\n\n\\textbf{Proposition 1.} \\textit{Under step-independent training with binary episode reward $R_{\\text{episode}} \\in \\{0, r_+\\}$, the probability that window $k$'s advantage $\\hat{A}_k$ has the correct sign (aligned with local action quality) approaches the base success rate $p$ as the number of rollouts $K$ per group increases.}\n\n\\textit{Argument.} Define ``correct sign'' as follows: for a window containing locally beneficial actions, the correct sign of $\\hat{A}_k$ is positive (reinforcement); for a window containing locally detrimental actions, the correct sign is negative (suppression). Under binary reward, the return for window $k$ is $R_k = \\gamma^{(N-k)} \\cdot R_{\\text{episode}}$ (Equation~\\ref{eq:step_return}). In a failed episode ($R_{\\text{episode}} = 0$), all windows receive $R_k = 0$ regardless of their local action quality. If the group contains at least one successful rollout, the group mean $\\mu > 0$, and all windows in the failed episode receive negative advantages after normalization via Equation~\\ref{eq:grpo_advantage}. This includes windows where the agent took locally correct actions, such as correctly identifying a target object in an exploration step. Now consider a window with good local actions. In a successful episode (probability $p$), the window receives positive $\\hat{A}_k$, which is the correct sign. In a failed episode (probability $1 - p$), the window receives negative $\\hat{A}_k$ whenever $\\mu > 0$, which is the wrong sign. The probability that $\\mu = 0$ (all $K$ rollouts in the group failed) is $(1-p)^K$, which shrinks exponentially with $K$. As $K$ grows, nearly every failed episode produces a non-zero group mean, and the window receives the wrong sign with probability approaching $1-p$. The probability of correct sign therefore approaches $p$. \\qed\n\nThe distinction between the two mechanisms can also be understood in terms of their temporal behavior. Mechanism 1 imposes a constant ceiling: the information loss is determined by the window size $h$ and does not change with training. Mechanism 2 is cumulative: each optimization step with wrong-sign gradients further erodes the policy's competence, progressively driving performance below the ceiling set by Mechanism 1. The distinction between sign error and magnitude error further clarifies why Mechanism 2 is catastrophic while Mechanism 1 is merely suboptimal. The discount factor $\\gamma^{(N-k)}$ in Equation~\\ref{eq:step_return} introduces magnitude decay across window positions: for an episode with $T=50$ steps and $h=2$, the first window ($k=1$) retains $\\gamma^{N-1} = 0.95^{24} \\approx 0.29$ of the terminal window's return. This attenuation reduces the gradient magnitude for early windows but preserves the gradient direction. A gradient with correct sign and reduced magnitude produces slow convergence, a condition recoverable through longer training. A gradient with wrong sign produces active divergence: the optimization pushes the policy away from good behaviors and toward bad ones. Consider a navigation analogy. Magnitude error corresponds to a compass that points correctly but displays a dimmed needle; the traveler moves slowly toward the destination. Sign error corresponds to a compass pointing in the opposite direction; the traveler walks away from the destination with full confidence. The first error is correctable by patience. The second is correctable only by replacing the compass.\n\n\\subsection{Formal Probability Analysis}\n\\label{sec:formal_probability}\n\nWe derive a tighter bound on the probability of correct gradient direction as a function of task difficulty and group size.\n\n\\textbf{Proposition 2.}\\label{prop:correct_sign} \\textit{Let $p$ denote the episode success rate and $K$ the number of rollouts per group. Under step-independent training with binary episode reward, the probability that a gradient update for a window with locally good actions has the correct sign satisfies:}\n\\begin{equation}\nP(\\text{correct sign or no update}) = p + (1-p)^{K}\n\\label{eq:correct_bound}\n\\end{equation}\n\\textit{Among gradient updates that occur (non-zero advantage), the fraction with correct sign is:}\n\\begin{equation}\nP(\\text{correct} \\mid \\text{update}) = \\frac{p}{1 - (1-p)^{K}}\n\\label{eq:correct_conditional}\n\\end{equation}\n\n\\textit{Derivation.} For a window with locally good actions, the gradient direction depends on $\\text{sign}(\\hat{A}_k)$, which depends on whether the episode succeeded and whether the group contains any successful rollouts. Three mutually exclusive cases arise.\n\n\\textit{Case 1: Episode succeeded} (probability $p$). The window receives $R_k = \\gamma^{(N-k)} \\cdot r_+ > 0$. With at least one failed rollout in the group, $R_k > \\mu$ after normalization, producing $\\hat{A}_k > 0$.\\footnote{The edge case where all $K$ rollouts succeed (probability $p^K$) is negligible at the baseline success rates considered ($p^8 < 10^{-7}$ at $p = 12.5\\%$).} The gradient reinforces the window's actions. For a window with good local actions, this is the correct direction.\n\n\\textit{Case 2: Episode failed, group contains at least one success} (probability $(1-p)[1 - (1-p)^{K-1}]$). The window receives $R_k = 0 < \\mu$, producing $\\hat{A}_k < 0$. The gradient suppresses the window's actions. For a window with good local actions, this is the wrong direction.\n\n\\textit{Case 3: Episode failed, entire group failed} (probability $(1-p) \\cdot (1-p)^{K-1} = (1-p)^{K}$). All returns are zero, so $\\mu = 0$ and $\\sigma = 0$. The advantage is zero, producing no gradient update.\n\nSumming Cases~1 and~3 yields Equation~\\ref{eq:correct_bound}. Since only Cases~1 and~2 produce non-zero gradients, the conditional probability follows as Equation~\\ref{eq:correct_conditional}.\n\n\\textit{Remark.} Proposition~2 assumes binary episode rewards for analytical tractability. Under non-binary rewards (e.g., with per-step penalties for invalid actions), the group mean $\\mu$ is nonzero even when all episodes fail, but the qualitative conclusion is preserved: advantage sign is determined by relative episode performance within the group, not by local action quality within individual windows. Section~\\ref{sec:sign_verification} validates this empirically using the full reward structure.\n\nWe evaluate these expressions at the empirical baseline of our experiments. At $p = 12.5\\%$ (the SFT checkpoint success rate on a 32-episode validation set) and $K = 8$ (the group size used in all experiments): $(1-p)^K = 0.875^8 \\approx 0.344$, giving $P(\\text{correct or no update}) \\approx 0.469$. Of the 65.6\\% of cases that produce a gradient update, only $P(\\text{correct} \\mid \\text{update}) = 0.125 / 0.656 \\approx 19.1\\%$ have the correct sign. As $K$ increases to 16, $(1-p)^{K} \\approx 0.118$, and $P(\\text{correct} \\mid \\text{update}) \\approx 14.2\\%$. In the large-$K$ limit, $P(\\text{correct} \\mid \\text{update}) \\to p$, so approximately $1 - p = 87.5\\%$ of all gradient updates for locally good windows point in the wrong direction. This is consistent with the empirical observation that step-independent training collapses to 0\\% task success while episode-level training achieves stable improvement (28.125\\% validation success at step 15, Section~\\ref{sec:results_main}).\n\n\\subsection{Why the Community Defaults to Step-Independent Training}\n\\label{sec:why_defaults}\n\nIf step-independent training is fundamentally flawed for multi-turn agents, why has it become the default? We identify six contributing factors.\n\n\\textbf{1. Context length constraints.} Smaller language models (1B to 4B parameters) typically support context lengths of 2048 to 4096 tokens. Multi-turn episodes spanning 50 or more interaction steps easily exceed these limits. Step-independent windowing is a pragmatic response to a hardware constraint, not a deliberate algorithmic choice.\n\n\\textbf{2. Token-level training inertia.} Language model training is organized around predicting the next token over fixed-length sequences. When multi-turn RL inherits this paradigm, the natural unit of optimization becomes a fixed-length window rather than a variable-length episode. The mismatch between token-level optimization and episode-level credit assignment goes unquestioned because it aligns with existing training infrastructure.\n\n\\textbf{3. Framework design accident.} The RAGEN framework~\\cite{ragen2025} implements step-independent mode as its default configuration, not as one option among alternatives. Users inherit this choice without an explicit decision point, and default configurations propagate silently through downstream projects.\n\n\\textbf{4. Memory and compute constraints.} Episode-level training requires processing $O(T)$ tokens per sequence, incurring $O(T^2)$ attention cost with full self-attention. Step-independent training reduces this to $O(h)$ tokens and $O(h^2)$ attention cost per window. The computational savings are immediate and measurable, while the credit assignment failure is subtle and deferred until training collapse occurs.\n\n\\textbf{5. Reward shaping as apparent fix.} Dense reward shaping (per-step bonuses for intermediate goals) appears to address sparse reward problems and has theoretical support in the single-agent RL literature. Our dense reward experiment under step-independent training (Section~\\ref{sec:results_dense}) reveals a different failure mode: the agent learns to maximize format-level rewards (action validity rises from 60\\% to 97.5\\%) while task success remains at 0\\%. Reward shaping does not resolve sign misattribution; it creates new optimization targets that the agent can game without solving the underlying task.\n\n\\textbf{6. Absence of negative results.} When step-independent training fails, practitioners attribute the failure to insufficient hyperparameter tuning or the inherent difficulty of sparse rewards. Without published analyses that isolate the credit assignment mechanism as the root cause, the community cannot distinguish between ``this problem is hard'' and ``this training paradigm is broken for this class of problems.''\n\n\\subsection{Connection to Classical Credit Assignment}\n\\label{sec:classical_connection}\n\nOur findings connect to a long line of work on temporal credit assignment in reinforcement learning. We position the step-independent failure mode within this literature and clarify the contribution of our analysis.\n\n\\textbf{Temporal difference learning and eligibility traces.} Sutton's TD($\\lambda$)~\\cite{sutton1988td} provides a spectrum of credit assignment strategies parameterized by $\\lambda \\in [0,1]$. At $\\lambda = 0$, credit is assigned via one-step bootstrapped returns. At $\\lambda = 1$, TD($\\lambda$) reduces to Monte Carlo returns, where each state receives the full episode return. Step-independent training falls below this spectrum: windows are disconnected from each other, so temporal propagation of credit does not occur. Each window receives an independently computed advantage with no mechanism for information to flow across windows within the same episode.\n\n\\textbf{Generalized Advantage Estimation.} GAE($\\lambda, \\gamma$)~\\cite{schulman2016gae} extends TD($\\lambda$) with a separate discount factor for the advantage estimator. GAE(0, $\\gamma$) produces per-step advantages through a learned value function. GAE(1, 1) produces undiscounted Monte Carlo returns, and is equivalent to episode-level GRPO without a critic. The key difference is that GAE uses value function subtraction as the baseline for variance reduction, while GRPO uses group normalization. Episode-level GRPO can be viewed as GAE(1, 1) with a group-relative baseline replacing the learned value function. This substitution is effective when the group provides a representative reference distribution, but it does not address per-step credit assignment within an episode.\n\n\\textbf{REINFORCE.} Williams' REINFORCE algorithm~\\cite{williams1992reinforce} computes policy gradients from complete episode returns with a learned baseline $b(s)$. Episode-level GRPO is equivalent to REINFORCE where the group mean $\\mu$ replaces $b(s)$ and the group standard deviation $\\sigma$ provides normalization. The algorithmic structure is not new. Our contribution is the diagnosis: the community's standard adaptation of this algorithm for multi-turn LLM agents (step-independent windowing) silently breaks the credit assignment structure that REINFORCE assumes.\n\n\\textbf{Multi-agent credit assignment analogy.} Step-independent windows can be understood through cooperative multi-agent games. Each window acts as an independent ``agent'' sharing a team reward (the episode outcome) but optimized without knowledge of other windows' actions. The sign misattribution problem parallels team reward credit assignment in cooperative multi-agent RL: when the team fails, all agents receive identical penalties regardless of individual contribution. In multi-agent RL, this is a recognized problem with known solutions such as counterfactual baselines. In multi-turn LLM agent training, the same structural problem arises from an implementation choice and has not been recognized as a credit assignment failure.\n\nTo summarize our positioning: we do not propose a new credit assignment algorithm. Episode-level training is the standard approach, and GRPO was designed as an episode-level method. What we identify is that the community's adaptation of GRPO to multi-turn settings introduces a systematic sign error in gradient computation. This error is not a gradual performance degradation but a catastrophic failure mode, as confirmed by the contrast between step-independent collapse (0\\% success) and episode-level stability (28.1\\% validation success from a baseline of 12.5\\%).\n",
+      "numLines": 78,
+      "startLine": 1,
+      "totalLines": 78
+    }
+  },
+  "sourceToolAssistantUUID": "64ae2d6d-76c6-4ce5-87d2-7927a0113c4f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "fb344fab-b668-49e6-9211-d7810677e348",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-20T14:40:33.540Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Vs8nUwmaw2BUs3ijEDGe9g`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/method.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f429289b-5482-4cfe-a333-9053d4494a32",
+  "isSidechain": false,
+  "requestId": "req_011CbDzddQgck8bHPErQj4Jo",
+  "type": "assistant",
+  "uuid": "788eef83-0046-44b2-bb34-064046cadb33",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "fb344fab-b668-49e6-9211-d7810677e348",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GwBa4i8WiUjXKPxG8uzLtf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12698,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 330,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12698,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 330,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12698,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12698
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "b52405a5-f40a-4dc7-b93f-7521407b602d",
+  "sessionId": "fb344fab-b668-49e6-9211-d7810677e348"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Migrate Sign Verification section to docs",
+  "sessionId": "fb344fab-b668-49e6-9211-d7810677e348"
+}
+```
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-20T14:41:08.473Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me analyze:
+
+1. **Source**: The Sign Verification section is at lines 126-164 in the artifacts version (`artifacts/_project/paper/experiments.tex`), starting with `\subsection{Empirical Verification of Sign Misattribution}` and ending before `\subsection{Additional Baselines}`.
+
+2. **Target**: In `docs/paper/experiments.tex`, I need to find the right insertion point. The current structure is:
+   - 5.1 Environment (line 8)
+   - 5.2 Base Model (line 15)
+   - 5.3 RL Config (line 22)
+   - 5.4 Eval Protocol (line 47)
+   - 5.5 Factorial Mechanism Separation (line 54)
+   - 5.6 Additional Experimental Conditions (line 70)
+   - 5.7 Results (line 88)
+   - 5.8 Cross-Scale Verification (line 93)
+
+The Sign Verification section from the source should be inserted between Results and Cross-Scale Verification, which means it'll become the new 5.8 and push Cross-Scale Verification to 5.9.
+
+Now I'm checking the cross-references to make sure everything lines up. The theoretical analysis has the proposition label, and the methods section references the sign verification section correctly. I need to extract the empirical verification section from lines 126-164 and place it in the right spot in the target document.
+
+I'm setting up the methodology for validating the theoretical predictions about advantage signals during step-independent training. The approach involves logging advantage signs, episode outcomes, and action quality metrics during training, then computing correlation statistics to test whether the sign-outcome correlation approaches 1.0 as theory predicts. The misattribution mechanism predicts three specific outcomes: the advantage sign should correlate nearly perfectly with episode success rather than local action quality, show essentially zero correlation with whether individual actions were actually good, and produce correct signs only about 15.5% of the time based on the theoretical analysis. Validating all three predictions would confirm this mechanism as the root cause of training collapse rather than other factors like reward sparsity or optimization issues. Looking at the empirical results, the credit agreement rate—measuring how often the advantage sign matches local action quality—comes in at 52.07%, which is essentially indistinguishable from random chance.
+
+The point biserial correlation between advantage sign and local action quality is nearly zero at 0.068, confirming the predicted independence. Notably, when I sweep across different discount factors, every single value causes collapse, including γ = 1.0 where no discounting occurs at all—this definitively rules out temporal discounting as the culprit and points squarely to sign misattribution as the fundamental failure mechanism.
+
+Generating verification table... I'm looking at where to place this table in the document—it should go right after the Results section introduction and before the Cross-Scale Verification subsection begins.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b52405a5-f40a-4dc7-b93f-7521407b602d",
+  "isSidechain": false,
+  "requestId": "req_011CbDze2ahn9di7dHavV9zp",
+  "type": "assistant",
+  "uuid": "e9c8be7a-8026-4b65-926f-4701aa1f6973",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "fb344fab-b668-49e6-9211-d7810677e348",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018WuJhQEkoxR869twYo69GU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19411,
+      "cache_read_input_tokens": 24539,
+      "output_tokens": 2926,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19411,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2926,
+          "cache_read_input_tokens": 24539,
+          "cache_creation_input_tokens": 19411,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19411
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20 · 2026-05-20T14:41:08.480Z_
+
+Source section identified (artifacts lines 126–164). Inserting between `\subsection{Results}` and `\subsection{Cross-Scale Verification}` in the docs version.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e9c8be7a-8026-4b65-926f-4701aa1f6973",
+  "isSidechain": false,
+  "requestId": "req_011CbDze2ahn9di7dHavV9zp",
+  "type": "assistant",
+  "uuid": "060cb84b-1ff2-4b38-8587-f6c6489fc696",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "fb344fab-b668-49e6-9211-d7810677e348",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018WuJhQEkoxR869twYo69GU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19411,
+      "cache_read_input_tokens": 24539,
+      "output_tokens": 2926,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19411,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2926,
+          "cache_read_input_tokens": 24539,
+          "cache_creation_input_tokens": 19411,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19411
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-20T14:41:19.822Z_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01BozqvDNvkWEdjYpi1Tdc9R`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex",
+  "old_string": "Results are organized around three comparisons: (1)~episode-level vs.\\ step-independent training dynamics (Section~\\ref{sec:results_main}), (2)~factorial mechanism separation (Section~\\ref{sec:results_factorial}), and (3)~window-size ablation (Section~\\ref{sec:results_hsweep}).\n\n\\subsection{Cross-Scale Verification}",
+  "new_string": "Results are organized around three comparisons: (1)~episode-level vs.\\ step-independent training dynamics (Section~\\ref{sec:results_main}), (2)~factorial mechanism separation (Section~\\ref{sec:results_factorial}), and (3)~window-size ablation (Section~\\ref{sec:results_hsweep}).\n\n\\subsection{Empirical Verification of Sign Misattribution}\n\\label{sec:sign_verification}\n\nThe theoretical analysis of Section~\\ref{sec:m2_sign_misattribution} predicts specific quantitative properties of the advantage signal under step-independent training. We design a direct measurement protocol to validate these predictions.\n\n\\paragraph{Methodology.}\nDuring step-independent training, we log per-window advantage information for each training episode. For window $k$ in episode $i$, we record: (1) the advantage sign $\\text{sign}(\\hat{A}_k^{(i)})$, (2) the episode outcome $R_{\\text{episode}}^{(i)} \\in \\{0, 1\\}$, and (3) a local action quality proxy based on the fraction of valid actions within the window. We then compute three statistics across all training windows:\n\\begin{itemize}\n    \\item \\textbf{Sign-outcome correlation}: the Pearson correlation between $\\text{sign}(\\hat{A}_k)$ and $R_{\\text{episode}}$. Theory predicts this correlation approaches 1.0, since the advantage sign is determined almost entirely by whether the episode succeeded.\n    \\item \\textbf{Sign-quality correlation}: the Pearson correlation between $\\text{sign}(\\hat{A}_k)$ and local action quality. Theory predicts this correlation approaches 0, since the advantage sign carries no information about whether the window's actions were locally correct.\n    \\item \\textbf{Correct sign fraction}: $P(\\text{correct sign} \\mid \\text{update})$, defined as the probability that a window with locally good actions receives a positive advantage and a window with locally bad actions receives a negative advantage. Proposition 2 (Section~\\ref{sec:formal_probability}) predicts this equals approximately 15.5\\% at $p = 6.25\\%$, $K = 8$.\n\\end{itemize}\n\n\\paragraph{Predictions.}\nThe sign misattribution mechanism makes three testable predictions:\n\\begin{enumerate}\n    \\item Sign-outcome correlation $\\approx 1.0$ (advantage sign is a proxy for episode success, not local quality)\n    \\item Sign-quality correlation $\\approx 0$ (advantage sign is independent of whether local actions were good)\n    \\item $P(\\text{correct sign}) \\approx 15.5\\%$ (derived from Proposition 2 at the observed success rate)\n\\end{enumerate}\nIf all three predictions are confirmed empirically, the sign misattribution mechanism is validated as the causal driver of training collapse, rather than alternative explanations such as reward sparsity, KL divergence, or optimization instability.\n\nTable~\\ref{tab:sign_verification} reports the empirical measurements. The credit agreement rate---the fraction of windows where the advantage sign matches local action quality---is 52.07\\%, indistinguishable from the 50\\% expected under random sign assignment. The point biserial correlation between advantage sign and local action quality is $r = 0.068$, confirming near-zero dependence. Additionally, a discount factor sweep reveals that \\textit{all} $\\gamma$ values produce collapse, including $\\gamma = 1.0$ (no discounting). The $\\gamma = 1.0$ result rules out temporal discounting as the failure cause and isolates sign misattribution as the root mechanism.\n\n\\begin{table}[t]\n\\centering\n\\caption{Empirical verification of sign misattribution under step-independent training ($h{=}2$). Credit agreement rate measures the fraction of windows where advantage sign matches local action quality; 50\\% indicates random assignment.}\n\\label{tab:sign_verification}\n\\small\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\n\\textbf{Metric} & \\textbf{Measured} & \\textbf{Predicted} \\\\\n\\midrule\nCredit agreement rate & 52.07\\% & $\\approx$ 50\\% (random) \\\\\nPoint biserial $r$ (sign vs.\\ quality) & 0.068 & $\\approx$ 0 \\\\\nCollapse at $\\gamma = 1.0$ (no discounting) & Yes & Yes \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Cross-Scale Verification}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "060cb84b-1ff2-4b38-8587-f6c6489fc696",
+  "isSidechain": false,
+  "requestId": "req_011CbDze2ahn9di7dHavV9zp",
+  "type": "assistant",
+  "uuid": "79cce7ef-8667-4220-8375-07212f89fcb7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "fb344fab-b668-49e6-9211-d7810677e348",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018WuJhQEkoxR869twYo69GU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19411,
+      "cache_read_input_tokens": 24539,
+      "output_tokens": 2926,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19411,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2926,
+          "cache_read_input_tokens": 24539,
+          "cache_creation_input_tokens": 19411,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19411
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-20T14:41:19.844Z_
+
+<details><summary>↩ Tool result · `toolu_01BozqvDNvkWEdjYpi1Tdc9R`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "79cce7ef-8667-4220-8375-07212f89fcb7",
+  "isSidechain": false,
+  "promptId": "b934c9d8-1289-4d59-9626-3ce373a2ebdc",
+  "type": "user",
+  "uuid": "b3053dca-4712-4dbf-95b5-42c3eb62b252",
+  "toolUseResult": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex",
+    "oldString": "Results are organized around three comparisons: (1)~episode-level vs.\\ step-independent training dynamics (Section~\\ref{sec:results_main}), (2)~factorial mechanism separation (Section~\\ref{sec:results_factorial}), and (3)~window-size ablation (Section~\\ref{sec:results_hsweep}).\n\n\\subsection{Cross-Scale Verification}",
+    "newString": "Results are organized around three comparisons: (1)~episode-level vs.\\ step-independent training dynamics (Section~\\ref{sec:results_main}), (2)~factorial mechanism separation (Section~\\ref{sec:results_factorial}), and (3)~window-size ablation (Section~\\ref{sec:results_hsweep}).\n\n\\subsection{Empirical Verification of Sign Misattribution}\n\\label{sec:sign_verification}\n\nThe theoretical analysis of Section~\\ref{sec:m2_sign_misattribution} predicts specific quantitative properties of the advantage signal under step-independent training. We design a direct measurement protocol to validate these predictions.\n\n\\paragraph{Methodology.}\nDuring step-independent training, we log per-window advantage information for each training episode. For window $k$ in episode $i$, we record: (1) the advantage sign $\\text{sign}(\\hat{A}_k^{(i)})$, (2) the episode outcome $R_{\\text{episode}}^{(i)} \\in \\{0, 1\\}$, and (3) a local action quality proxy based on the fraction of valid actions within the window. We then compute three statistics across all training windows:\n\\begin{itemize}\n    \\item \\textbf{Sign-outcome correlation}: the Pearson correlation between $\\text{sign}(\\hat{A}_k)$ and $R_{\\text{episode}}$. Theory predicts this correlation approaches 1.0, since the advantage sign is determined almost entirely by whether the episode succeeded.\n    \\item \\textbf{Sign-quality correlation}: the Pearson correlation between $\\text{sign}(\\hat{A}_k)$ and local action quality. Theory predicts this correlation approaches 0, since the advantage sign carries no information about whether the window's actions were locally correct.\n    \\item \\textbf{Correct sign fraction}: $P(\\text{correct sign} \\mid \\text{update})$, defined as the probability that a window with locally good actions receives a positive advantage and a window with locally bad actions receives a negative advantage. Proposition 2 (Section~\\ref{sec:formal_probability}) predicts this equals approximately 15.5\\% at $p = 6.25\\%$, $K = 8$.\n\\end{itemize}\n\n\\paragraph{Predictions.}\nThe sign misattribution mechanism makes three testable predictions:\n\\begin{enumerate}\n    \\item Sign-outcome correlation $\\approx 1.0$ (advantage sign is a proxy for episode success, not local quality)\n    \\item Sign-quality correlation $\\approx 0$ (advantage sign is independent of whether local actions were good)\n    \\item $P(\\text{correct sign}) \\approx 15.5\\%$ (derived from Proposition 2 at the observed success rate)\n\\end{enumerate}\nIf all three predictions are confirmed empirically, the sign misattribution mechanism is validated as the causal driver of training collapse, rather than alternative explanations such as reward sparsity, KL divergence, or optimization instability.\n\nTable~\\ref{tab:sign_verification} reports the empirical measurements. The credit agreement rate---the fraction of windows where the advantage sign matches local action quality---is 52.07\\%, indistinguishable from the 50\\% expected under random sign assignment. The point biserial correlation between advantage sign and local action quality is $r = 0.068$, confirming near-zero dependence. Additionally, a discount factor sweep reveals that \\textit{all} $\\gamma$ values produce collapse, including $\\gamma = 1.0$ (no discounting). The $\\gamma = 1.0$ result rules out temporal discounting as the failure cause and isolates sign misattribution as the root mechanism.\n\n\\begin{table}[t]\n\\centering\n\\caption{Empirical verification of sign misattribution under step-independent training ($h{=}2$). Credit agreement rate measures the fraction of windows where advantage sign matches local action quality; 50\\% indicates random assignment.}\n\\label{tab:sign_verification}\n\\small\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\n\\textbf{Metric} & \\textbf{Measured} & \\textbf{Predicted} \\\\\n\\midrule\nCredit agreement rate & 52.07\\% & $\\approx$ 50\\% (random) \\\\\nPoint biserial $r$ (sign vs.\\ quality) & 0.068 & $\\approx$ 0 \\\\\nCollapse at $\\gamma = 1.0$ (no discounting) & Yes & Yes \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Cross-Scale Verification}",
+    "originalFile": null,
+    "structuredPatch": [
+      {
+        "oldStart": 90,
+        "oldLines": 6,
+        "newStart": 90,
+        "newLines": 46,
+        "lines": [
+          " ",
+          " Results are organized around three comparisons: (1)~episode-level vs.\\ step-independent training dynamics (Section~\\ref{sec:results_main}), (2)~factorial mechanism separation (Section~\\ref{sec:results_factorial}), and (3)~window-size ablation (Section~\\ref{sec:results_hsweep}).",
+          " ",
+          "+\\subsection{Empirical Verification of Sign Misattribution}",
+          "+\\label{sec:sign_verification}",
+          "+",
+          "+The theoretical analysis of Section~\\ref{sec:m2_sign_misattribution} predicts specific quantitative properties of the advantage signal under step-independent training. We design a direct measurement protocol to validate these predictions.",
+          "+",
+          "+\\paragraph{Methodology.}",
+          "+During step-independent training, we log per-window advantage information for each training episode. For window $k$ in episode $i$, we record: (1) the advantage sign $\\text{sign}(\\hat{A}_k^{(i)})$, (2) the episode outcome $R_{\\text{episode}}^{(i)} \\in \\{0, 1\\}$, and (3) a local action quality proxy based on the fraction of valid actions within the window. We then compute three statistics across all training windows:",
+          "+\\begin{itemize}",
+          "+    \\item \\textbf{Sign-outcome correlation}: the Pearson correlation between $\\text{sign}(\\hat{A}_k)$ and $R_{\\text{episode}}$. Theory predicts this correlation approaches 1.0, since the advantage sign is determined almost entirely by whether the episode succeeded.",
+          "+    \\item \\textbf{Sign-quality correlation}: the Pearson correlation between $\\text{sign}(\\hat{A}_k)$ and local action quality. Theory predicts this correlation approaches 0, since the advantage sign carries no information about whether the window's actions were locally correct.",
+          "+    \\item \\textbf{Correct sign fraction}: $P(\\text{correct sign} \\mid \\text{update})$, defined as the probability that a window with locally good actions receives a positive advantage and a window with locally bad actions receives a negative advantage. Proposition 2 (Section~\\ref{sec:formal_probability}) predicts this equals approximately 15.5\\% at $p = 6.25\\%$, $K = 8$.",
+          "+\\end{itemize}",
+          "+",
+          "+\\paragraph{Predictions.}",
+          "+The sign misattribution mechanism makes three testable predictions:",
+          "+\\begin{enumerate}",
+          "+    \\item Sign-outcome correlation $\\approx 1.0$ (advantage sign is a proxy for episode success, not local quality)",
+          "+    \\item Sign-quality correlation $\\approx 0$ (advantage sign is independent of whether local actions were good)",
+          "+    \\item $P(\\text{correct sign}) \\approx 15.5\\%$ (derived from Proposition 2 at the observed success rate)",
+          "+\\end{enumerate}",
+          "+If all three predictions are confirmed empirically, the sign misattribution mechanism is validated as the causal driver of training collapse, rather than alternative explanations such as reward sparsity, KL divergence, or optimization instability.",
+          "+",
+          "+Table~\\ref{tab:sign_verification} reports the empirical measurements. The credit agreement rate---the fraction of windows where the advantage sign matches local action quality---is 52.07\\%, indistinguishable from the 50\\% expected under random sign assignment. The point biserial correlation between advantage sign and local action quality is $r = 0.068$, confirming near-zero dependence. Additionally, a discount factor sweep reveals that \\textit{all} $\\gamma$ values produce collapse, including $\\gamma = 1.0$ (no discounting). The $\\gamma = 1.0$ result rules out temporal discounting as the failure cause and isolates sign misattribution as the root mechanism.",
+          "+",
+          "+\\begin{table}[t]",
+          "+\\centering",
+          "+\\caption{Empirical verification of sign misattribution under step-independent training ($h{=}2$). Credit agreement rate measures the fraction of windows where advantage sign matches local action quality; 50\\% indicates random assignment.}",
+          "+\\label{tab:sign_verification}",
+          "+\\small",
+          "+\\begin{tabular}{@{}lcc@{}}",
+          "+\\toprule",
+          "+\\textbf{Metric} & \\textbf{Measured} & \\textbf{Predicted} \\\\",
+          "+\\midrule",
+          "+Credit agreement rate & 52.07\\% & $\\approx$ 50\\% (random) \\\\",
+          "+Point biserial $r$ (sign vs.\\ quality) & 0.068 & $\\approx$ 0 \\\\",
+          "+Collapse at $\\gamma = 1.0$ (no discounting) & Yes & Yes \\\\",
+          "+\\bottomrule",
+          "+\\end{tabular}",
+          "+\\end{table}",
+          "+",
+          " \\subsection{Cross-Scale Verification}",
+          " \\label{sec:cross_scale}",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  },
+  "sourceToolAssistantUUID": "79cce7ef-8667-4220-8375-07212f89fcb7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "fb344fab-b668-49e6-9211-d7810677e348",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-20T14:41:23.533Z_
+
+验证插入结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b3053dca-4712-4dbf-95b5-42c3eb62b252",
+  "isSidechain": false,
+  "requestId": "req_011CbDzhSCrQwbeimTmNYc85",
+  "type": "assistant",
+  "uuid": "12db9c96-2466-48c3-bf34-73d459fa7e53",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "fb344fab-b668-49e6-9211-d7810677e348",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JJfa429XjR3rLsA4d9p1dx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2997,
+      "cache_read_input_tokens": 43950,
+      "output_tokens": 132,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2997,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 132,
+          "cache_read_input_tokens": 43950,
+          "cache_creation_input_tokens": 2997,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2997
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-20T14:41:24.194Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_015rrKjsfkxB2biw3zfU2Y1x`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex",
+  "offset": 88,
+  "limit": 60
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "12db9c96-2466-48c3-bf34-73d459fa7e53",
+  "isSidechain": false,
+  "requestId": "req_011CbDzhSCrQwbeimTmNYc85",
+  "type": "assistant",
+  "uuid": "30ff55bd-67e1-4638-a9f9-c78052308cb9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "fb344fab-b668-49e6-9211-d7810677e348",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JJfa429XjR3rLsA4d9p1dx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2997,
+      "cache_read_input_tokens": 43950,
+      "output_tokens": 132,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2997,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 132,
+          "cache_read_input_tokens": 43950,
+          "cache_creation_input_tokens": 2997,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2997
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-20T14:41:24.200Z_
+
+<details><summary>↩ Tool result · `toolu_015rrKjsfkxB2biw3zfU2Y1x`</summary>
+
+```text
+88	\subsection{Results}
+89	\label{sec:results}
+90	
+91	Results are organized around three comparisons: (1)~episode-level vs.\ step-independent training dynamics (Section~\ref{sec:results_main}), (2)~factorial mechanism separation (Section~\ref{sec:results_factorial}), and (3)~window-size ablation (Section~\ref{sec:results_hsweep}).
+92	
+93	\subsection{Empirical Verification of Sign Misattribution}
+94	\label{sec:sign_verification}
+95	
+96	The theoretical analysis of Section~\ref{sec:m2_sign_misattribution} predicts specific quantitative properties of the advantage signal under step-independent training. We design a direct measurement protocol to validate these predictions.
+97	
+98	\paragraph{Methodology.}
+99	During step-independent training, we log per-window advantage information for each training episode. For window $k$ in episode $i$, we record: (1) the advantage sign $\text{sign}(\hat{A}_k^{(i)})$, (2) the episode outcome $R_{\text{episode}}^{(i)} \in \{0, 1\}$, and (3) a local action quality proxy based on the fraction of valid actions within the window. We then compute three statistics across all training windows:
+100	\begin{itemize}
+101	    \item \textbf{Sign-outcome correlation}: the Pearson correlation between $\text{sign}(\hat{A}_k)$ and $R_{\text{episode}}$. Theory predicts this correlation approaches 1.0, since the advantage sign is determined almost entirely by whether the episode succeeded.
+102	    \item \textbf{Sign-quality correlation}: the Pearson correlation between $\text{sign}(\hat{A}_k)$ and local action quality. Theory predicts this correlation approaches 0, since the advantage sign carries no information about whether the window's actions were locally correct.
+103	    \item \textbf{Correct sign fraction}: $P(\text{correct sign} \mid \text{update})$, defined as the probability that a window with locally good actions receives a positive advantage and a window with locally bad actions receives a negative advantage. Proposition 2 (Section~\ref{sec:formal_probability}) predicts this equals approximately 15.5\% at $p = 6.25\%$, $K = 8$.
+104	\end{itemize}
+105	
+106	\paragraph{Predictions.}
+107	The sign misattribution mechanism makes three testable predictions:
+108	\begin{enumerate}
+109	    \item Sign-outcome correlation $\approx 1.0$ (advantage sign is a proxy for episode success, not local quality)
+110	    \item Sign-quality correlation $\approx 0$ (advantage sign is independent of whether local actions were good)
+111	    \item $P(\text{correct sign}) \approx 15.5\%$ (derived from Proposition 2 at the observed success rate)
+112	\end{enumerate}
+113	If all three predictions are confirmed empirically, the sign misattribution mechanism is validated as the causal driver of training collapse, rather than alternative explanations such as reward sparsity, KL divergence, or optimization instability.
+114	
+115	Table~\ref{tab:sign_verification} reports the empirical measurements. The credit agreement rate---the fraction of windows where the advantage sign matches local action quality---is 52.07\%, indistinguishable from the 50\% expected under random sign assignment. The point biserial correlation between advantage sign and local action quality is $r = 0.068$, confirming near-zero dependence. Additionally, a discount factor sweep reveals that \textit{all} $\gamma$ values produce collapse, including $\gamma = 1.0$ (no discounting). The $\gamma = 1.0$ result rules out temporal discounting as the failure cause and isolates sign misattribution as the root mechanism.
+116	
+117	\begin{table}[t]
+118	\centering
+119	\caption{Empirical verification of sign misattribution under step-independent training ($h{=}2$). Credit agreement rate measures the fraction of windows where advantage sign matches local action quality; 50\% indicates random assignment.}
+120	\label{tab:sign_verification}
+121	\small
+122	\begin{tabular}{@{}lcc@{}}
+123	\toprule
+124	\textbf{Metric} & \textbf{Measured} & \textbf{Predicted} \\
+125	\midrule
+126	Credit agreement rate & 52.07\% & $\approx$ 50\% (random) \\
+127	Point biserial $r$ (sign vs.\ quality) & 0.068 & $\approx$ 0 \\
+128	Collapse at $\gamma = 1.0$ (no discounting) & Yes & Yes \\
+129	\bottomrule
+130	\end{tabular}
+131	\end{table}
+132	
+133	\subsection{Cross-Scale Verification}
+134	\label{sec:cross_scale}
+135	
+136	The 1.7B experiments establish that step-independent training collapses while episode-level training succeeds. Both mechanisms could in principle be scale-dependent: a larger model might compensate for information loss through greater capacity, or resist sign misattribution through more stable optimization. We test scale invariance by replicating the key factorial conditions on Qwen3-8B.
+137	
+138	\paragraph{Setup.}
+139	The 8B SFT baseline uses the same training protocol (2{,}546 demonstrations, 2 epochs, learning rate $5 \times 10^{-6}$). It achieves 68.75\% in-distribution success ($T{=}0$, deterministic) and 80.6\% OOD success ($T{=}0.4$, stochastic sampling), far above the 1.7B baseline of 12.5\%.% exp_id: 8b_sft_baseline, 8b_det_eval_full, 7b_sft_eval_ood
+140	This higher starting point provides a stronger test: improvement over an already-competent baseline would confirm that episode-level RL adds value beyond what scale alone provides.
+141	
+142	\paragraph{Information loss.}
+143	Restricting the 8B model's observation window to $h{=}2$ at inference time drops in-distribution success from 68.75\% to 31.25\%, a 37.5 percentage point gap.% exp_id: 8b_info_loss_eval
+144	The relative magnitude is comparable to the 1.7B case. Larger models do not implicitly reconstruct missing context from a 2-step window.
+145	
+146	\paragraph{Cell A collapse.}
+147	Step-independent training on the 8B model collapses within two gradient steps: in-distribution success drops from 28.1\% (before training) to 12.5\% (step~1) to 1.5\% (step~2).% exp_id: 8b_cell_a_episode
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "30ff55bd-67e1-4638-a9f9-c78052308cb9",
+  "isSidechain": false,
+  "promptId": "b934c9d8-1289-4d59-9626-3ce373a2ebdc",
+  "type": "user",
+  "uuid": "30431b59-0e4c-4b83-88d6-c9b1c1b98ab4",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex",
+      "content": "\\subsection{Results}\n\\label{sec:results}\n\nResults are organized around three comparisons: (1)~episode-level vs.\\ step-independent training dynamics (Section~\\ref{sec:results_main}), (2)~factorial mechanism separation (Section~\\ref{sec:results_factorial}), and (3)~window-size ablation (Section~\\ref{sec:results_hsweep}).\n\n\\subsection{Empirical Verification of Sign Misattribution}\n\\label{sec:sign_verification}\n\nThe theoretical analysis of Section~\\ref{sec:m2_sign_misattribution} predicts specific quantitative properties of the advantage signal under step-independent training. We design a direct measurement protocol to validate these predictions.\n\n\\paragraph{Methodology.}\nDuring step-independent training, we log per-window advantage information for each training episode. For window $k$ in episode $i$, we record: (1) the advantage sign $\\text{sign}(\\hat{A}_k^{(i)})$, (2) the episode outcome $R_{\\text{episode}}^{(i)} \\in \\{0, 1\\}$, and (3) a local action quality proxy based on the fraction of valid actions within the window. We then compute three statistics across all training windows:\n\\begin{itemize}\n    \\item \\textbf{Sign-outcome correlation}: the Pearson correlation between $\\text{sign}(\\hat{A}_k)$ and $R_{\\text{episode}}$. Theory predicts this correlation approaches 1.0, since the advantage sign is determined almost entirely by whether the episode succeeded.\n    \\item \\textbf{Sign-quality correlation}: the Pearson correlation between $\\text{sign}(\\hat{A}_k)$ and local action quality. Theory predicts this correlation approaches 0, since the advantage sign carries no information about whether the window's actions were locally correct.\n    \\item \\textbf{Correct sign fraction}: $P(\\text{correct sign} \\mid \\text{update})$, defined as the probability that a window with locally good actions receives a positive advantage and a window with locally bad actions receives a negative advantage. Proposition 2 (Section~\\ref{sec:formal_probability}) predicts this equals approximately 15.5\\% at $p = 6.25\\%$, $K = 8$.\n\\end{itemize}\n\n\\paragraph{Predictions.}\nThe sign misattribution mechanism makes three testable predictions:\n\\begin{enumerate}\n    \\item Sign-outcome correlation $\\approx 1.0$ (advantage sign is a proxy for episode success, not local quality)\n    \\item Sign-quality correlation $\\approx 0$ (advantage sign is independent of whether local actions were good)\n    \\item $P(\\text{correct sign}) \\approx 15.5\\%$ (derived from Proposition 2 at the observed success rate)\n\\end{enumerate}\nIf all three predictions are confirmed empirically, the sign misattribution mechanism is validated as the causal driver of training collapse, rather than alternative explanations such as reward sparsity, KL divergence, or optimization instability.\n\nTable~\\ref{tab:sign_verification} reports the empirical measurements. The credit agreement rate---the fraction of windows where the advantage sign matches local action quality---is 52.07\\%, indistinguishable from the 50\\% expected under random sign assignment. The point biserial correlation between advantage sign and local action quality is $r = 0.068$, confirming near-zero dependence. Additionally, a discount factor sweep reveals that \\textit{all} $\\gamma$ values produce collapse, including $\\gamma = 1.0$ (no discounting). The $\\gamma = 1.0$ result rules out temporal discounting as the failure cause and isolates sign misattribution as the root mechanism.\n\n\\begin{table}[t]\n\\centering\n\\caption{Empirical verification of sign misattribution under step-independent training ($h{=}2$). Credit agreement rate measures the fraction of windows where advantage sign matches local action quality; 50\\% indicates random assignment.}\n\\label{tab:sign_verification}\n\\small\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\n\\textbf{Metric} & \\textbf{Measured} & \\textbf{Predicted} \\\\\n\\midrule\nCredit agreement rate & 52.07\\% & $\\approx$ 50\\% (random) \\\\\nPoint biserial $r$ (sign vs.\\ quality) & 0.068 & $\\approx$ 0 \\\\\nCollapse at $\\gamma = 1.0$ (no discounting) & Yes & Yes \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Cross-Scale Verification}\n\\label{sec:cross_scale}\n\nThe 1.7B experiments establish that step-independent training collapses while episode-level training succeeds. Both mechanisms could in principle be scale-dependent: a larger model might compensate for information loss through greater capacity, or resist sign misattribution through more stable optimization. We test scale invariance by replicating the key factorial conditions on Qwen3-8B.\n\n\\paragraph{Setup.}\nThe 8B SFT baseline uses the same training protocol (2{,}546 demonstrations, 2 epochs, learning rate $5 \\times 10^{-6}$). It achieves 68.75\\% in-distribution success ($T{=}0$, deterministic) and 80.6\\% OOD success ($T{=}0.4$, stochastic sampling), far above the 1.7B baseline of 12.5\\%.% exp_id: 8b_sft_baseline, 8b_det_eval_full, 7b_sft_eval_ood\nThis higher starting point provides a stronger test: improvement over an already-competent baseline would confirm that episode-level RL adds value beyond what scale alone provides.\n\n\\paragraph{Information loss.}\nRestricting the 8B model's observation window to $h{=}2$ at inference time drops in-distribution success from 68.75\\% to 31.25\\%, a 37.5 percentage point gap.% exp_id: 8b_info_loss_eval\nThe relative magnitude is comparable to the 1.7B case. Larger models do not implicitly reconstruct missing context from a 2-step window.\n\n\\paragraph{Cell A collapse.}\nStep-independent training on the 8B model collapses within two gradient steps: in-distribution success drops from 28.1\\% (before training) to 12.5\\% (step~1) to 1.5\\% (step~2).% exp_id: 8b_cell_a_episode",
+      "numLines": 60,
+      "startLine": 88,
+      "totalLines": 173
+    }
+  },
+  "sourceToolAssistantUUID": "30ff55bd-67e1-4638-a9f9-c78052308cb9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "fb344fab-b668-49e6-9211-d7810677e348",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 26_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "30431b59-0e4c-4b83-88d6-c9b1c1b98ab4",
+  "sessionId": "fb344fab-b668-49e6-9211-d7810677e348"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Migrate Sign Verification section to docs",
+  "sessionId": "fb344fab-b668-49e6-9211-d7810677e348"
+}
+```
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-20T14:41:32.430Z_
+
+迁移完成。
+
+- **插入位置**: docs/paper/experiments.tex 第 93–131 行（`\subsection{Results}` 之后，`\subsection{Cross-Scale Verification}` 之前）
+- **`\label{sec:sign_verification}`**: 第 94 行，已存在
+- **交叉引用验证**:
+  - `\label{prop:correct_sign}`: theoretical_analysis.tex 第 22 行 ✓
+  - `\ref{sec:sign_verification}`: method.tex 第 36 行 ✓（引用现在可以正确解析）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "30431b59-0e4c-4b83-88d6-c9b1c1b98ab4",
+  "isSidechain": false,
+  "requestId": "req_011CbDzhmNGhh2Kz89dawvvS",
+  "type": "assistant",
+  "uuid": "ef5bd63f-92ec-493d-9979-64c2766e01bf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "fb344fab-b668-49e6-9211-d7810677e348",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BJydFJoVstruYMQoZLWC7U",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1871,
+      "cache_read_input_tokens": 46947,
+      "output_tokens": 165,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1871,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 165,
+          "cache_read_input_tokens": 46947,
+          "cache_creation_input_tokens": 1871,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1871
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "ef5bd63f-92ec-493d-9979-64c2766e01bf",
+  "sessionId": "fb344fab-b668-49e6-9211-d7810677e348"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Migrate Sign Verification section to docs",
+  "sessionId": "fb344fab-b668-49e6-9211-d7810677e348"
+}
+```
+
+---

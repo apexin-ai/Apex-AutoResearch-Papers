@@ -1,0 +1,1984 @@
+# Research conversation: <project_context> # 项目: cost-verify-agent-rl ## 运行环境 - 服务器名: bjb1-17606 - SSH 账户: root（调用 ssh_execute / submit_training_
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 37
+- **Recorded user turns:** 1
+- **Tool calls:** 9
+- **Original source:** `logs/chats/exported-trajectories/account-2/19df3dc2-7622-4551-9441-abd9073d81ae.jsonl`
+- **Structured JSON:** [`f1586db0400bbb5f47b9.json`](../../sessions/f1/f1586db0400bbb5f47b9.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-16T12:25:38.032Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-16T12:25:38.032Z",
+  "sessionId": "19df3dc2-7622-4551-9441-abd9073d81ae",
+  "content": "&lt;project_context>\n# 项目: cost-verify-agent-rl\n\n## 运行环境\n- 服务器名: bjb1-17606\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.bjb1.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/cost-verify-agent-rl\n\n## ⚠️ 活跃约束（必须遵守）\n\n- **C001**: GPU 使用限定 cuda:0, cuda:1 @ bjb1-17606，禁止使用其他 GPU（原因：服务器为共享环境，存在其他项目残留。2× RTX PRO 6000 96GB 已分配给本项目。）\n- **C002**: 实验启动前必须执行 pre-flight checklist：(1) 确认入口点与最近成功实验一致 (2) df -h 检查磁盘 (3) 验证 config 参数与 vLLM/框架版本兼容 (4) 确认 checkpoint 路径存在。未通过不得启动。（原因：18 个实验仅 1 成功，exp012 用错入口点、exp007 磁盘满、exp003 格式不兼容——均为 pre-flight 可拦截的问题。） [来自 D009]\n- **C003**: 所有实验的 val/eval 必须使用 ≥16 episodes，禁止基于 4-episode 结果做 pass/fail 判定（原因：exp021 两次 eval 矛盾（4-ep: 25% vs 16-ep: 6.25%）证明 4 episodes 方差过大，基于此做决策导致 exp022 在不可靠前提下启动。Reviewer 已三次警告此问题。）\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n&lt;/project_context>\n## 任务：修复 exp029_episode_level vLLM OOM 配置\n\n### 背景\nexp029_episode_level 上次启动失败：vLLM 初始化要求 gpu_memory_utilization=0.5（47.49 GiB），但 FSDP actor 先加载后 cuda:0 仅剩 39 GiB。\n\ndry-run 时（GPU 完全空闲）峰值 52.7/97.9 GiB (54%) 通过了。crash 是因为有残留进程占显存。\n\n### 目标\n1. SSH 到 bjb1-17606 确认 GPU 完全空闲（nvidia-smi）\n2. 找到 exp029 的 Hydra 配置文件（搜索 `_alfworld_exp029_episode_level`），路径可能在 `/root/autodl-tmp/` 或 `/root/verl-agent/` 下\n3. 将 `gpu_memory_utilization` 从 0.5 降到 **0.35**（这样即使 FSDP 占了 55 GiB，vLLM 只需 0.35*95=33 GiB，39 GiB 仍够用）\n4. 确认配置文件中其他参数未被意外修改\n5. 报告：修改了什么文件的什么行、修改前后的值、以及最终训练命令\n\n### 环境\n- 服务器：bjb1-17606，root 用户\n- Python：`source /root/miniconda3/bin/activate`（conda base）\n- 项目可能路径：`/root/autodl-tmp/verl-agent/` 或 `/root/verl-agent/`\n- 训练命令：`python train.py --config-name _alfworld_exp029_episode_level`\n\n### 验证\n修改后不需要启动训练，只需确认配置文件语法正确（如 `python -c \"import yaml; yaml.safe_load(open('...'))\"` 或 hydra 的 dry-run `--cfg job`）。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-16T12:25:38.036Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-16T12:25:38.036Z",
+  "sessionId": "19df3dc2-7622-4551-9441-abd9073d81ae"
+}
+```
+
+---
+
+## Round 1
+
+35 recorded events
+
+### User
+
+_source line 3 · 2026-05-16T12:25:38.071Z_
+
+&lt;project_context>
+# 项目: cost-verify-agent-rl
+
+## 运行环境
+- 服务器名: bjb1-17606
+- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account="root"）
+- SSH 连接命令: ssh connect.bjb1.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP
+- 项目代码根目录: /root/cost-verify-agent-rl
+
+## ⚠️ 活跃约束（必须遵守）
+
+- **C001**: GPU 使用限定 cuda:0, cuda:1 @ bjb1-17606，禁止使用其他 GPU（原因：服务器为共享环境，存在其他项目残留。2× RTX PRO 6000 96GB 已分配给本项目。）
+- **C002**: 实验启动前必须执行 pre-flight checklist：(1) 确认入口点与最近成功实验一致 (2) df -h 检查磁盘 (3) 验证 config 参数与 vLLM/框架版本兼容 (4) 确认 checkpoint 路径存在。未通过不得启动。（原因：18 个实验仅 1 成功，exp012 用错入口点、exp007 磁盘满、exp003 格式不兼容——均为 pre-flight 可拦截的问题。） [来自 D009]
+- **C003**: 所有实验的 val/eval 必须使用 ≥16 episodes，禁止基于 4-episode 结果做 pass/fail 判定（原因：exp021 两次 eval 矛盾（4-ep: 25% vs 16-ep: 6.25%）证明 4 episodes 方差过大，基于此做决策导致 exp022 在不可靠前提下启动。Reviewer 已三次警告此问题。）
+
+
+## 环境搭建
+连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。
+
+## 输出风格
+回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。
+&lt;/project_context>
+## 任务：修复 exp029_episode_level vLLM OOM 配置
+
+### 背景
+exp029_episode_level 上次启动失败：vLLM 初始化要求 gpu_memory_utilization=0.5（47.49 GiB），但 FSDP actor 先加载后 cuda:0 仅剩 39 GiB。
+
+dry-run 时（GPU 完全空闲）峰值 52.7/97.9 GiB (54%) 通过了。crash 是因为有残留进程占显存。
+
+### 目标
+1. SSH 到 bjb1-17606 确认 GPU 完全空闲（nvidia-smi）
+2. 找到 exp029 的 Hydra 配置文件（搜索 `_alfworld_exp029_episode_level`），路径可能在 `/root/autodl-tmp/` 或 `/root/verl-agent/` 下
+3. 将 `gpu_memory_utilization` 从 0.5 降到 **0.35**（这样即使 FSDP 占了 55 GiB，vLLM 只需 0.35*95=33 GiB，39 GiB 仍够用）
+4. 确认配置文件中其他参数未被意外修改
+5. 报告：修改了什么文件的什么行、修改前后的值、以及最终训练命令
+
+### 环境
+- 服务器：bjb1-17606，root 用户
+- Python：`source /root/miniconda3/bin/activate`（conda base）
+- 项目可能路径：`/root/autodl-tmp/verl-agent/` 或 `/root/verl-agent/`
+- 训练命令：`python train.py --config-name _alfworld_exp029_episode_level`
+
+### 验证
+修改后不需要启动训练，只需确认配置文件语法正确（如 `python -c "import yaml; yaml.safe_load(open('...'))"` 或 hydra 的 dry-run `--cfg job`）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "dd6031a2-ce08-4676-8415-e3563f2f8484",
+  "type": "user",
+  "uuid": "299c946e-ce96-4476-93ef-862a4dacd87d",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "19df3dc2-7622-4551-9441-abd9073d81ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-16T12:25:38.070Z_
+
+```json
+{
+  "parentUuid": "299c946e-ce96-4476-93ef-862a4dacd87d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "316d5dc0-0cb3-4d43-9475-a577e87cc07d",
+  "timestamp": "2026-05-16T12:25:38.070Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "19df3dc2-7622-4551-9441-abd9073d81ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-16T12:25:38.070Z_
+
+```json
+{
+  "parentUuid": "316d5dc0-0cb3-4d43-9475-a577e87cc07d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "2250d6be-5568-4317-86d2-1b196c9c18d2",
+  "timestamp": "2026-05-16T12:25:38.070Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "19df3dc2-7622-4551-9441-abd9073d81ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-16T12:25:38.070Z_
+
+```json
+{
+  "parentUuid": "2250d6be-5568-4317-86d2-1b196c9c18d2",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "76c5eedc-0f84-4e57-8cab-cc4d4dfca883",
+  "timestamp": "2026-05-16T12:25:38.070Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "19df3dc2-7622-4551-9441-abd9073d81ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Fix vLLM OOM configuration for exp029",
+  "sessionId": "19df3dc2-7622-4551-9441-abd9073d81ae"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-16T12:25:40.814Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by checking the GPU status on the server and finding the exp029 configuration file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "76c5eedc-0f84-4e57-8cab-cc4d4dfca883",
+  "isSidechain": false,
+  "requestId": "req_011Cb6F7c9fKYqucHs1HMYm2",
+  "type": "assistant",
+  "uuid": "6efe5020-1814-421f-91b0-a63e22b7e797",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "19df3dc2-7622-4551-9441-abd9073d81ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015rtj15YxS9j3r7Jie1vHj9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11757,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 148,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11757,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 148,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11757,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11757
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-16T12:25:41.865Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_011wr3XxxcqwEk3rWGhxyr4o`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6efe5020-1814-421f-91b0-a63e22b7e797",
+  "isSidechain": false,
+  "requestId": "req_011Cb6F7c9fKYqucHs1HMYm2",
+  "type": "assistant",
+  "uuid": "28fa01fc-7076-4622-9c4b-656136ba264b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "19df3dc2-7622-4551-9441-abd9073d81ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015rtj15YxS9j3r7Jie1vHj9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11757,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 148,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11757,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 148,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11757,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11757
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T12:25:41.872Z_
+
+<details><summary>↩ Tool result · `toolu_011wr3XxxcqwEk3rWGhxyr4o`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "28fa01fc-7076-4622-9c4b-656136ba264b",
+  "isSidechain": false,
+  "promptId": "dd6031a2-ce08-4676-8415-e3563f2f8484",
+  "type": "user",
+  "uuid": "c9cce037-79be-4854-9c59-92ee7972065b",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 23
+  },
+  "sourceToolAssistantUUID": "28fa01fc-7076-4622-9c4b-656136ba264b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "19df3dc2-7622-4551-9441-abd9073d81ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-16T12:25:45.303Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check GPU status and find the config file in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c9cce037-79be-4854-9c59-92ee7972065b",
+  "isSidechain": false,
+  "requestId": "req_011Cb6F7tdr2Y52UFhMcTmno",
+  "type": "assistant",
+  "uuid": "1d8ba9fa-94e3-4ba3-b1b6-8b552c28289d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "19df3dc2-7622-4551-9441-abd9073d81ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0177iYWFHQMkLTYysJE5gLyV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 907,
+      "cache_read_input_tokens": 23598,
+      "output_tokens": 274,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 907,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 274,
+          "cache_read_input_tokens": 23598,
+          "cache_creation_input_tokens": 907,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 907
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-16T12:25:46.251Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TirD21FY432JWQ2TDKmKMA`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total,memory.free --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1d8ba9fa-94e3-4ba3-b1b6-8b552c28289d",
+  "isSidechain": false,
+  "requestId": "req_011Cb6F7tdr2Y52UFhMcTmno",
+  "type": "assistant",
+  "uuid": "ac2cb5d8-6cfa-4c83-94c5-b03beded6163",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "19df3dc2-7622-4551-9441-abd9073d81ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0177iYWFHQMkLTYysJE5gLyV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 907,
+      "cache_read_input_tokens": 23598,
+      "output_tokens": 274,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 907,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 274,
+          "cache_read_input_tokens": 23598,
+          "cache_creation_input_tokens": 907,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 907
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-16T12:25:46.958Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01W7z7NLczXnU6KcqvNZr6fx`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "find /root -name \"_alfworld_exp029_episode_level*\" -type f 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ac2cb5d8-6cfa-4c83-94c5-b03beded6163",
+  "isSidechain": false,
+  "requestId": "req_011Cb6F7tdr2Y52UFhMcTmno",
+  "type": "assistant",
+  "uuid": "a01c1eee-96dc-4d79-922c-db69aa8ad35e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "19df3dc2-7622-4551-9441-abd9073d81ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0177iYWFHQMkLTYysJE5gLyV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 907,
+      "cache_read_input_tokens": 23598,
+      "output_tokens": 274,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 907,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 274,
+          "cache_read_input_tokens": 23598,
+          "cache_creation_input_tokens": 907,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 907
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T12:25:47.423Z_
+
+<details><summary>↩ Tool result · `toolu_01TirD21FY432JWQ2TDKmKMA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 3 MiB, 97887 MiB, 97250 MiB\\n1, NVIDIA RTX PRO 6000 Blackwell Server Edition, 3 MiB, 97887 MiB, 97250 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.15}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ac2cb5d8-6cfa-4c83-94c5-b03beded6163",
+  "isSidechain": false,
+  "promptId": "dd6031a2-ce08-4676-8415-e3563f2f8484",
+  "type": "user",
+  "uuid": "1a1c8e2d-362d-49a9-8c73-253b4a7ea348",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 3 MiB, 97887 MiB, 97250 MiB\\\\n1, NVIDIA RTX PRO 6000 Blackwell Server Edition, 3 MiB, 97887 MiB, 97250 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.15}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 3 MiB, 97887 MiB, 97250 MiB\\n1, NVIDIA RTX PRO 6000 Blackwell Server Edition, 3 MiB, 97887 MiB, 97250 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.15}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ac2cb5d8-6cfa-4c83-94c5-b03beded6163",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "19df3dc2-7622-4551-9441-abd9073d81ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T12:25:47.435Z_
+
+<details><summary>↩ Tool result · `toolu_01W7z7NLczXnU6KcqvNZr6fx`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a01c1eee-96dc-4d79-922c-db69aa8ad35e",
+  "isSidechain": false,
+  "promptId": "dd6031a2-ce08-4676-8415-e3563f2f8484",
+  "type": "user",
+  "uuid": "7f612407-2ee7-46c3-8856-bac3a552be6c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "a01c1eee-96dc-4d79-922c-db69aa8ad35e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "19df3dc2-7622-4551-9441-abd9073d81ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16 · 2026-05-16T12:25:51.029Z_
+
+GPU 完全空闲（两块各仅 3 MiB 占用）。find 命令被拦截，换个方式搜索。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7f612407-2ee7-46c3-8856-bac3a552be6c",
+  "isSidechain": false,
+  "requestId": "req_011Cb6F8J7UmJnxrEHDnLbda",
+  "type": "assistant",
+  "uuid": "f03d5eb7-fd0c-463b-b246-7fdf479b952d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "19df3dc2-7622-4551-9441-abd9073d81ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017wc9t5NC6CukUz2D7SLkD8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 585,
+      "cache_read_input_tokens": 24505,
+      "output_tokens": 159,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 585,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 159,
+          "cache_read_input_tokens": 24505,
+          "cache_creation_input_tokens": 585,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 585
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-16T12:25:51.550Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EsSxfpf2Erj5QBWQa8YkLS`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "find /root -name \"*exp029_episode*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f03d5eb7-fd0c-463b-b246-7fdf479b952d",
+  "isSidechain": false,
+  "requestId": "req_011Cb6F8J7UmJnxrEHDnLbda",
+  "type": "assistant",
+  "uuid": "b94b9406-c68a-4bb0-ad9e-1e70986d93f1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "19df3dc2-7622-4551-9441-abd9073d81ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017wc9t5NC6CukUz2D7SLkD8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 585,
+      "cache_read_input_tokens": 24505,
+      "output_tokens": 159,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 585,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 159,
+          "cache_read_input_tokens": 24505,
+          "cache_creation_input_tokens": 585,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 585
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T12:25:52.323Z_
+
+<details><summary>↩ Tool result · `toolu_01EsSxfpf2Erj5QBWQa8YkLS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/runs/cost-verify-agent-rl/exp029_episode_level.log\\n/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_episode_level.yaml\\n/root/cost-verify-agent-rl/scripts/run_exp029_episode_level.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b94b9406-c68a-4bb0-ad9e-1e70986d93f1",
+  "isSidechain": false,
+  "promptId": "dd6031a2-ce08-4676-8415-e3563f2f8484",
+  "type": "user",
+  "uuid": "ee9e5213-c1c3-4478-99a6-d68d00ab4946",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/runs/cost-verify-agent-rl/exp029_episode_level.log\\\\n/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_episode_level.yaml\\\\n/root/cost-verify-agent-rl/scripts/run_exp029_episode_level.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/runs/cost-verify-agent-rl/exp029_episode_level.log\\n/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_episode_level.yaml\\n/root/cost-verify-agent-rl/scripts/run_exp029_episode_level.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"
+    }
+  },
+  "sourceToolAssistantUUID": "b94b9406-c68a-4bb0-ad9e-1e70986d93f1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "19df3dc2-7622-4551-9441-abd9073d81ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-16T12:25:55.310Z_
+
+找到配置文件：`/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_episode_level.yaml`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ee9e5213-c1c3-4478-99a6-d68d00ab4946",
+  "isSidechain": false,
+  "requestId": "req_011Cb6F8f7nJ7vJm59BckGFa",
+  "type": "assistant",
+  "uuid": "af0b773d-0d2d-4c2a-a969-d00a4f1e0b2e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "19df3dc2-7622-4551-9441-abd9073d81ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012GUj8VmhKetFQFQU568fDx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 313,
+      "cache_read_input_tokens": 25090,
+      "output_tokens": 171,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 313,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 171,
+          "cache_read_input_tokens": 25090,
+          "cache_creation_input_tokens": 313,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 313
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-16T12:25:55.527Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SoJVzMHdWRskqWPAioPSRK`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "cat /root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_episode_level.yaml",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "af0b773d-0d2d-4c2a-a969-d00a4f1e0b2e",
+  "isSidechain": false,
+  "requestId": "req_011Cb6F8f7nJ7vJm59BckGFa",
+  "type": "assistant",
+  "uuid": "c2d85cce-340e-4a01-a416-827b5694afbd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "19df3dc2-7622-4551-9441-abd9073d81ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012GUj8VmhKetFQFQU568fDx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 313,
+      "cache_read_input_tokens": 25090,
+      "output_tokens": 171,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 313,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 171,
+          "cache_read_input_tokens": 25090,
+          "cache_creation_input_tokens": 313,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 313
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T12:25:55.891Z_
+
+<details><summary>↩ Tool result · `toolu_01SoJVzMHdWRskqWPAioPSRK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# exp029: Episode-Level GRPO (full context window)\\n# 核心改动 vs exp028c: context_window_mode step_independent → full\\n# 其余参数完全一致（控制变量实验）\\n#\\n# 配套调整（因 full 模式产生更长序列）：\\n#   1. context_window_mode: step_independent → full\\n#   2. max_prompt_length: 4096 → 16384（容纳 50-turn episode）\\n#   3. max_model_len: 8192 → 16384\\n#   4. max_num_batched_tokens: 8192 → 16384\\n#   5. gpu_memory_utilization: 0.4 → 0.92（长序列需更多显存）\\n#   6. ppo_mini_batch_size: 128 → 32（full 模式样本数=episode数=128，mini_batch 不能等于总量）\\n#   7. 添加 ppo_max_token_len_per_gpu: 65536（适应长序列）\\n\\ndefaults:\\n  - base\\n\\nhydra:\\n  searchpath:\\n    - pkg://verl.trainer.config\\n\\nmodel_path: /root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4\\n\\nsystem:\\n  CUDA_VISIBLE_DEVICES: \\\"0,1\\\"\\n\\nmicro_batch_size_per_gpu: 1\\nppo_mini_batch_size: 32\\n\\ntrainer:\\n  project_name: cost-verify-agent-rl\\n  experiment_name: exp029-alfworld-episode-level\\n  total_training_steps: 100\\n  n_gpus_per_node: 2\\n  val_before_train: True\\n  test_freq: 5\\n  save_freq: 5\\n  local_log_dir: \\\"/root/autodl-tmp/checkpoints/exp029/\\\"\\n  default_local_dir: \\\"/root/autodl-tmp/checkpoints/exp029/\\\"\\n  logger: ['console', 'wandb']\\n  max_actor_ckpt_to_keep: 10\\n  resume_mode: \\\"disable\\\"\\n\\nactor_rollout_ref:\\n  model:\\n    override_config:\\n      attn_implementation: sdpa\\n  actor:\\n    use_ref: True\\n    use_torch_compile: False\\n    use_kl_loss: True\\n    kl_loss_coef: 0.01\\n    kl_loss_type: low_var_kl\\n    entropy_coeff: 0.001\\n    clip_ratio_low: 0.2\\n    clip_ratio_high: 0.28\\n    loss_agg_mode: \\\"token-mean\\\"\\n    grad_clip: 1.0\\n    ppo_max_token_len_per_gpu: 65536\\n    optim:\\n      lr: 1e-6\\n  ref:\\n    use_torch_compile: False\\n    log_prob_max_token_len_per_gpu: 65536\\n  rollout:\\n    response_length: 1024\\n    gpu_memory_utilization: 0.35\\n    enable_chunked_prefill: true\\n    max_model_len: 20480\\n    temperature: 1.0\\n    max_num_batched_tokens: 20480\\n    enforce_eager: True\\n    val_kwargs:\\n      do_sample: True\\n      temperature: 0.4\\n\\nalgorithm:\\n  adv_estimator: grpo\\n  gamma: 0.95\\n  high_level_gamma: 0.95\\n  norm_adv_by_std_in_grpo: True\\n\\nagent_proxy:\\n  context_window_mode: \\\"full\\\"\\n  max_context_window: -1\\n  step_independent_history_length: 2\\n  max_turn: 50\\n  max_actions_per_turn: 1\\n  max_prompt_length: 16384\\n  use_turn_scores: True\\n\\ncollapse_detection:\\n  multi_turn_enabled: false\\n\\nes_manager:\\n  format_penalty: 0\\n  train:\\n    env_groups: 16\\n    group_size: 8\\n    env_configs:\\n      tags: [\\\"AlfworldSG\\\"]\\n      n_groups: [16]\\n  val:\\n    env_groups: 140\\n    group_size: 1\\n    env_configs:\\n      tags: [\\\"AlfworldSG\\\"]\\n      n_groups: [140]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c2d85cce-340e-4a01-a416-827b5694afbd",
+  "isSidechain": false,
+  "promptId": "dd6031a2-ce08-4676-8415-e3563f2f8484",
+  "type": "user",
+  "uuid": "60424cc9-98f1-4252-a005-8f4cdb9be5aa",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# exp029: Episode-Level GRPO (full context window)\\\\n# 核心改动 vs exp028c: context_window_mode step_independent → full\\\\n# 其余参数完全一致（控制变量实验）\\\\n#\\\\n# 配套调整（因 full 模式产生更长序列）：\\\\n#   1. context_window_mode: step_independent → full\\\\n#   2. max_prompt_length: 4096 → 16384（容纳 50-turn episode）\\\\n#   3. max_model_len: 8192 → 16384\\\\n#   4. max_num_batched_tokens: 8192 → 16384\\\\n#   5. gpu_memory_utilization: 0.4 → 0.92（长序列需更多显存）\\\\n#   6. ppo_mini_batch_size: 128 → 32（full 模式样本数=episode数=128，mini_batch 不能等于总量）\\\\n#   7. 添加 ppo_max_token_len_per_gpu: 65536（适应长序列）\\\\n\\\\ndefaults:\\\\n  - base\\\\n\\\\nhydra:\\\\n  searchpath:\\\\n    - pkg://verl.trainer.config\\\\n\\\\nmodel_path: /root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4\\\\n\\\\nsystem:\\\\n  CUDA_VISIBLE_DEVICES: \\\\\\\"0,1\\\\\\\"\\\\n\\\\nmicro_batch_size_per_gpu: 1\\\\nppo_mini_batch_size: 32\\\\n\\\\ntrainer:\\\\n  project_name: cost-verify-agent-rl\\\\n  experiment_name: exp029-alfworld-episode-level\\\\n  total_training_steps: 100\\\\n  n_gpus_per_node: 2\\\\n  val_before_train: True\\\\n  test_freq: 5\\\\n  save_freq: 5\\\\n  local_log_dir: \\\\\\\"/root/autodl-tmp/checkpoints/exp029/\\\\\\\"\\\\n  default_local_dir: \\\\\\\"/root/autodl-tmp/checkpoints/exp029/\\\\\\\"\\\\n  logger: ['console', 'wandb']\\\\n  max_actor_ckpt_to_keep: 10\\\\n  resume_mode: \\\\\\\"disable\\\\\\\"\\\\n\\\\nactor_rollout_ref:\\\\n  model:\\\\n    override_config:\\\\n      attn_implementation: sdpa\\\\n  actor:\\\\n    use_ref: True\\\\n    use_torch_compile: False\\\\n    use_kl_loss: True\\\\n    kl_loss_coef: 0.01\\\\n    kl_loss_type: low_var_kl\\\\n    entropy_coeff: 0.001\\\\n    clip_ratio_low: 0.2\\\\n    clip_ratio_high: 0.28\\\\n    loss_agg_mode: \\\\\\\"token-mean\\\\\\\"\\\\n    grad_clip: 1.0\\\\n    ppo_max_token_len_per_gpu: 65536\\\\n    optim:\\\\n      lr: 1e-6\\\\n  ref:\\\\n    use_torch_compile: False\\\\n    log_prob_max_token_len_per_gpu: 65536\\\\n  rollout:\\\\n    response_length: 1024\\\\n    gpu_memory_utilization: 0.35\\\\n    enable_chunked_prefill: true\\\\n    max_model_len: 20480\\\\n    temperature: 1.0\\\\n    max_num_batched_tokens: 20480\\\\n    enforce_eager: True\\\\n    val_kwargs:\\\\n      do_sample: True\\\\n      temperature: 0.4\\\\n\\\\nalgorithm:\\\\n  adv_estimator: grpo\\\\n  gamma: 0.95\\\\n  high_level_gamma: 0.95\\\\n  norm_adv_by_std_in_grpo: True\\\\n\\\\nagent_proxy:\\\\n  context_window_mode: \\\\\\\"full\\\\\\\"\\\\n  max_context_window: -1\\\\n  step_independent_history_length: 2\\\\n  max_turn: 50\\\\n  max_actions_per_turn: 1\\\\n  max_prompt_length: 16384\\\\n  use_turn_scores: True\\\\n\\\\ncollapse_detection:\\\\n  multi_turn_enabled: false\\\\n\\\\nes_manager:\\\\n  format_penalty: 0\\\\n  train:\\\\n    env_groups: 16\\\\n    group_size: 8\\\\n    env_configs:\\\\n      tags: [\\\\\\\"AlfworldSG\\\\\\\"]\\\\n      n_groups: [16]\\\\n  val:\\\\n    env_groups: 140\\\\n    group_size: 1\\\\n    env_configs:\\\\n      tags: [\\\\\\\"AlfworldSG\\\\\\\"]\\\\n      n_groups: [140]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"# exp029: Episode-Level GRPO (full context window)\\n# 核心改动 vs exp028c: context_window_mode step_independent → full\\n# 其余参数完全一致（控制变量实验）\\n#\\n# 配套调整（因 full 模式产生更长序列）：\\n#   1. context_window_mode: step_independent → full\\n#   2. max_prompt_length: 4096 → 16384（容纳 50-turn episode）\\n#   3. max_model_len: 8192 → 16384\\n#   4. max_num_batched_tokens: 8192 → 16384\\n#   5. gpu_memory_utilization: 0.4 → 0.92（长序列需更多显存）\\n#   6. ppo_mini_batch_size: 128 → 32（full 模式样本数=episode数=128，mini_batch 不能等于总量）\\n#   7. 添加 ppo_max_token_len_per_gpu: 65536（适应长序列）\\n\\ndefaults:\\n  - base\\n\\nhydra:\\n  searchpath:\\n    - pkg://verl.trainer.config\\n\\nmodel_path: /root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4\\n\\nsystem:\\n  CUDA_VISIBLE_DEVICES: \\\"0,1\\\"\\n\\nmicro_batch_size_per_gpu: 1\\nppo_mini_batch_size: 32\\n\\ntrainer:\\n  project_name: cost-verify-agent-rl\\n  experiment_name: exp029-alfworld-episode-level\\n  total_training_steps: 100\\n  n_gpus_per_node: 2\\n  val_before_train: True\\n  test_freq: 5\\n  save_freq: 5\\n  local_log_dir: \\\"/root/autodl-tmp/checkpoints/exp029/\\\"\\n  default_local_dir: \\\"/root/autodl-tmp/checkpoints/exp029/\\\"\\n  logger: ['console', 'wandb']\\n  max_actor_ckpt_to_keep: 10\\n  resume_mode: \\\"disable\\\"\\n\\nactor_rollout_ref:\\n  model:\\n    override_config:\\n      attn_implementation: sdpa\\n  actor:\\n    use_ref: True\\n    use_torch_compile: False\\n    use_kl_loss: True\\n    kl_loss_coef: 0.01\\n    kl_loss_type: low_var_kl\\n    entropy_coeff: 0.001\\n    clip_ratio_low: 0.2\\n    clip_ratio_high: 0.28\\n    loss_agg_mode: \\\"token-mean\\\"\\n    grad_clip: 1.0\\n    ppo_max_token_len_per_gpu: 65536\\n    optim:\\n      lr: 1e-6\\n  ref:\\n    use_torch_compile: False\\n    log_prob_max_token_len_per_gpu: 65536\\n  rollout:\\n    response_length: 1024\\n    gpu_memory_utilization: 0.35\\n    enable_chunked_prefill: true\\n    max_model_len: 20480\\n    temperature: 1.0\\n    max_num_batched_tokens: 20480\\n    enforce_eager: True\\n    val_kwargs:\\n      do_sample: True\\n      temperature: 0.4\\n\\nalgorithm:\\n  adv_estimator: grpo\\n  gamma: 0.95\\n  high_level_gamma: 0.95\\n  norm_adv_by_std_in_grpo: True\\n\\nagent_proxy:\\n  context_window_mode: \\\"full\\\"\\n  max_context_window: -1\\n  step_independent_history_length: 2\\n  max_turn: 50\\n  max_actions_per_turn: 1\\n  max_prompt_length: 16384\\n  use_turn_scores: True\\n\\ncollapse_detection:\\n  multi_turn_enabled: false\\n\\nes_manager:\\n  format_penalty: 0\\n  train:\\n    env_groups: 16\\n    group_size: 8\\n    env_configs:\\n      tags: [\\\"AlfworldSG\\\"]\\n      n_groups: [16]\\n  val:\\n    env_groups: 140\\n    group_size: 1\\n    env_configs:\\n      tags: [\\\"AlfworldSG\\\"]\\n      n_groups: [140]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  },
+  "sourceToolAssistantUUID": "c2d85cce-340e-4a01-a416-827b5694afbd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "19df3dc2-7622-4551-9441-abd9073d81ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "60424cc9-98f1-4252-a005-8f4cdb9be5aa",
+  "sessionId": "19df3dc2-7622-4551-9441-abd9073d81ae"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Fix vLLM OOM configuration for exp029",
+  "sessionId": "19df3dc2-7622-4551-9441-abd9073d81ae"
+}
+```
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-16T12:26:01.293Z_
+
+配置文件中 `gpu_memory_utilization` **已经是 0.35**（在 `actor_rollout_ref.rollout` 下）。看起来之前已经修改过了。
+
+让我确认启动脚本内容以及是否有其他位置覆盖了这个值。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "60424cc9-98f1-4252-a005-8f4cdb9be5aa",
+  "isSidechain": false,
+  "requestId": "req_011Cb6F8vHbWShrE3UQpDJiQ",
+  "type": "assistant",
+  "uuid": "cb065533-0f3f-46d8-9c33-3680748139ba",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "19df3dc2-7622-4551-9441-abd9073d81ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QFn4X23YSm7SwD8tCsTNjg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1471,
+      "cache_read_input_tokens": 25403,
+      "output_tokens": 328,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1471,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 328,
+          "cache_read_input_tokens": 25403,
+          "cache_creation_input_tokens": 1471,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1471
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-16T12:26:01.339Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Ab3SzddnXGHGnSnndSZ7mk`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "cat /root/cost-verify-agent-rl/scripts/run_exp029_episode_level.sh",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cb065533-0f3f-46d8-9c33-3680748139ba",
+  "isSidechain": false,
+  "requestId": "req_011Cb6F8vHbWShrE3UQpDJiQ",
+  "type": "assistant",
+  "uuid": "ed1cfc24-a61d-4081-a5e7-24db20e45976",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "19df3dc2-7622-4551-9441-abd9073d81ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QFn4X23YSm7SwD8tCsTNjg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1471,
+      "cache_read_input_tokens": 25403,
+      "output_tokens": 328,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1471,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 328,
+          "cache_read_input_tokens": 25403,
+          "cache_creation_input_tokens": 1471,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1471
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-16T12:26:01.632Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019Hy3pYsqQKynmMHS8bxSQX`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "grep -r \"gpu_memory_utilization\" /root/cost-verify-agent-rl/RAGEN/config/base.yaml",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ed1cfc24-a61d-4081-a5e7-24db20e45976",
+  "isSidechain": false,
+  "requestId": "req_011Cb6F8vHbWShrE3UQpDJiQ",
+  "type": "assistant",
+  "uuid": "721dede2-c54f-43f3-b607-4e7a830f7079",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "19df3dc2-7622-4551-9441-abd9073d81ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QFn4X23YSm7SwD8tCsTNjg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1471,
+      "cache_read_input_tokens": 25403,
+      "output_tokens": 328,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1471,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 328,
+          "cache_read_input_tokens": 25403,
+          "cache_creation_input_tokens": 1471,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1471
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-16T12:26:01.727Z_
+
+<details><summary>↩ Tool result · `toolu_01Ab3SzddnXGHGnSnndSZ7mk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\nset -euo pipefail\\n\\n# exp029: Episode-Level GRPO (full context window)\\n# 核心改动 vs exp028c: context_window_mode step_independent → full\\n# 其余参数完全一致（控制变量实验）\\n\\necho \\\"=== [PRE-FLIGHT] exp029: episode-level GRPO ===\\\"\\n\\n# --- Model ---\\nMODEL=\\\"/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4\\\"\\nif [ ! -f \\\"$MODEL/config.json\\\" ]; then\\n    echo \\\"[ERROR] Model not found: $MODEL\\\"\\n    exit 1\\nfi\\necho \\\"[OK] Model: SFT checkpoint (qwen3_exp021_ragen_sft_v4)\\\"\\n\\n# --- Disk ---\\necho \\\"[PRE-FLIGHT] Disk space:\\\"\\ndf -h /root/autodl-tmp/ | tail -1\\nAVAIL=$(df --output=avail /root/autodl-tmp/ | tail -1 | tr -d ' ')\\nif [ \\\"$AVAIL\\\" -lt 52428800 ]; then\\n    echo \\\"[ERROR] Less than 50GB available on /root/autodl-tmp/\\\"\\n    exit 1\\nfi\\necho \\\"[OK] Disk space sufficient\\\"\\n\\n# --- GPU ---\\necho \\\"[PRE-FLIGHT] GPU status:\\\"\\nnvidia-smi --query-gpu=index,name,memory.total,memory.used --format=csv,noheader\\necho \\\"\\\"\\n\\n# --- Config file ---\\nCONFIG_FILE=\\\"/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_episode_level.yaml\\\"\\nif [ ! -f \\\"$CONFIG_FILE\\\" ]; then\\n    echo \\\"[ERROR] Config not found: $CONFIG_FILE\\\"\\n    exit 1\\nfi\\necho \\\"[OK] Config file exists\\\"\\n\\n# --- Environment ---\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\nexport TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p $TMPDIR\\nexport ALFWORLD_DATA=/root/autodl-tmp/alfworld\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\nexport RAY_memory_monitor_refresh_ms=0\\nexport RAY_SYSTEM_MEMORY=210000000000\\nexport HYDRA_FULL_ERROR=1\\nexport CUDA_VISIBLE_DEVICES=0,1\\nexport WANDB_PROJECT=cost-verify-agent-rl\\nexport WANDB_NAME=exp029_episode_level\\nexport WANDB_MODE=online\\n\\n# --- Output directory ---\\nmkdir -p /root/autodl-tmp/checkpoints/exp029/\\nmkdir -p ~/runs/cost-verify-agent-rl/\\n\\necho \\\"=== [PRE-FLIGHT] All checks passed. Starting training... ===\\\"\\n\\ncd /root/cost-verify-agent-rl/RAGEN\\npython train.py --config-name _alfworld_exp029_episode_level 2>&1 | tee ~/runs/cost-verify-agent-rl/exp029_episode_level.log\\n\\necho \\\"EXIT_CODE=$?\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ed1cfc24-a61d-4081-a5e7-24db20e45976",
+  "isSidechain": false,
+  "promptId": "dd6031a2-ce08-4676-8415-e3563f2f8484",
+  "type": "user",
+  "uuid": "fb5fb503-b31e-4697-950b-d0148bdbf3ed",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\nset -euo pipefail\\\\n\\\\n# exp029: Episode-Level GRPO (full context window)\\\\n# 核心改动 vs exp028c: context_window_mode step_independent → full\\\\n# 其余参数完全一致（控制变量实验）\\\\n\\\\necho \\\\\\\"=== [PRE-FLIGHT] exp029: episode-level GRPO ===\\\\\\\"\\\\n\\\\n# --- Model ---\\\\nMODEL=\\\\\\\"/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4\\\\\\\"\\\\nif [ ! -f \\\\\\\"$MODEL/config.json\\\\\\\" ]; then\\\\n    echo \\\\\\\"[ERROR] Model not found: $MODEL\\\\\\\"\\\\n    exit 1\\\\nfi\\\\necho \\\\\\\"[OK] Model: SFT checkpoint (qwen3_exp021_ragen_sft_v4)\\\\\\\"\\\\n\\\\n# --- Disk ---\\\\necho \\\\\\\"[PRE-FLIGHT] Disk space:\\\\\\\"\\\\ndf -h /root/autodl-tmp/ | tail -1\\\\nAVAIL=$(df --output=avail /root/autodl-tmp/ | tail -1 | tr -d ' ')\\\\nif [ \\\\\\\"$AVAIL\\\\\\\" -lt 52428800 ]; then\\\\n    echo \\\\\\\"[ERROR] Less than 50GB available on /root/autodl-tmp/\\\\\\\"\\\\n    exit 1\\\\nfi\\\\necho \\\\\\\"[OK] Disk space sufficient\\\\\\\"\\\\n\\\\n# --- GPU ---\\\\necho \\\\\\\"[PRE-FLIGHT] GPU status:\\\\\\\"\\\\nnvidia-smi --query-gpu=index,name,memory.total,memory.used --format=csv,noheader\\\\necho \\\\\\\"\\\\\\\"\\\\n\\\\n# --- Config file ---\\\\nCONFIG_FILE=\\\\\\\"/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_episode_level.yaml\\\\\\\"\\\\nif [ ! -f \\\\\\\"$CONFIG_FILE\\\\\\\" ]; then\\\\n    echo \\\\\\\"[ERROR] Config not found: $CONFIG_FILE\\\\\\\"\\\\n    exit 1\\\\nfi\\\\necho \\\\\\\"[OK] Config file exists\\\\\\\"\\\\n\\\\n# --- Environment ---\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\nexport TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p $TMPDIR\\\\nexport ALFWORLD_DATA=/root/autodl-tmp/alfworld\\\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\\\nexport RAY_memory_monitor_refresh_ms=0\\\\nexport RAY_SYSTEM_MEMORY=210000000000\\\\nexport HYDRA_FULL_ERROR=1\\\\nexport CUDA_VISIBLE_DEVICES=0,1\\\\nexport WANDB_PROJECT=cost-verify-agent-rl\\\\nexport WANDB_NAME=exp029_episode_level\\\\nexport WANDB_MODE=online\\\\n\\\\n# --- Output directory ---\\\\nmkdir -p /root/autodl-tmp/checkpoints/exp029/\\\\nmkdir -p ~/runs/cost-verify-agent-rl/\\\\n\\\\necho \\\\\\\"=== [PRE-FLIGHT] All checks passed. Starting training... ===\\\\\\\"\\\\n\\\\ncd /root/cost-verify-agent-rl/RAGEN\\\\npython train.py --config-name _alfworld_exp029_episode_level 2>&1 | tee ~/runs/cost-verify-agent-rl/exp029_episode_level.log\\\\n\\\\necho \\\\\\\"EXIT_CODE=$?\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\nset -euo pipefail\\n\\n# exp029: Episode-Level GRPO (full context window)\\n# 核心改动 vs exp028c: context_window_mode step_independent → full\\n# 其余参数完全一致（控制变量实验）\\n\\necho \\\"=== [PRE-FLIGHT] exp029: episode-level GRPO ===\\\"\\n\\n# --- Model ---\\nMODEL=\\\"/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4\\\"\\nif [ ! -f \\\"$MODEL/config.json\\\" ]; then\\n    echo \\\"[ERROR] Model not found: $MODEL\\\"\\n    exit 1\\nfi\\necho \\\"[OK] Model: SFT checkpoint (qwen3_exp021_ragen_sft_v4)\\\"\\n\\n# --- Disk ---\\necho \\\"[PRE-FLIGHT] Disk space:\\\"\\ndf -h /root/autodl-tmp/ | tail -1\\nAVAIL=$(df --output=avail /root/autodl-tmp/ | tail -1 | tr -d ' ')\\nif [ \\\"$AVAIL\\\" -lt 52428800 ]; then\\n    echo \\\"[ERROR] Less than 50GB available on /root/autodl-tmp/\\\"\\n    exit 1\\nfi\\necho \\\"[OK] Disk space sufficient\\\"\\n\\n# --- GPU ---\\necho \\\"[PRE-FLIGHT] GPU status:\\\"\\nnvidia-smi --query-gpu=index,name,memory.total,memory.used --format=csv,noheader\\necho \\\"\\\"\\n\\n# --- Config file ---\\nCONFIG_FILE=\\\"/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_episode_level.yaml\\\"\\nif [ ! -f \\\"$CONFIG_FILE\\\" ]; then\\n    echo \\\"[ERROR] Config not found: $CONFIG_FILE\\\"\\n    exit 1\\nfi\\necho \\\"[OK] Config file exists\\\"\\n\\n# --- Environment ---\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\nexport TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p $TMPDIR\\nexport ALFWORLD_DATA=/root/autodl-tmp/alfworld\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\nexport RAY_memory_monitor_refresh_ms=0\\nexport RAY_SYSTEM_MEMORY=210000000000\\nexport HYDRA_FULL_ERROR=1\\nexport CUDA_VISIBLE_DEVICES=0,1\\nexport WANDB_PROJECT=cost-verify-agent-rl\\nexport WANDB_NAME=exp029_episode_level\\nexport WANDB_MODE=online\\n\\n# --- Output directory ---\\nmkdir -p /root/autodl-tmp/checkpoints/exp029/\\nmkdir -p ~/runs/cost-verify-agent-rl/\\n\\necho \\\"=== [PRE-FLIGHT] All checks passed. Starting training... ===\\\"\\n\\ncd /root/cost-verify-agent-rl/RAGEN\\npython train.py --config-name _alfworld_exp029_episode_level 2>&1 | tee ~/runs/cost-verify-agent-rl/exp029_episode_level.log\\n\\necho \\\"EXIT_CODE=$?\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ed1cfc24-a61d-4081-a5e7-24db20e45976",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "19df3dc2-7622-4551-9441-abd9073d81ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-16T12:26:02.148Z_
+
+<details><summary>↩ Tool result · `toolu_019Hy3pYsqQKynmMHS8bxSQX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    gpu_memory_utilization: 0.3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "721dede2-c54f-43f3-b607-4e7a830f7079",
+  "isSidechain": false,
+  "promptId": "dd6031a2-ce08-4676-8415-e3563f2f8484",
+  "type": "user",
+  "uuid": "cf855c5b-9265-4132-aa52-423f17d1253f",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    gpu_memory_utilization: 0.3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    gpu_memory_utilization: 0.3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  },
+  "sourceToolAssistantUUID": "721dede2-c54f-43f3-b607-4e7a830f7079",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "19df3dc2-7622-4551-9441-abd9073d81ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29 · 2026-05-16T12:26:02.157Z_
+
+```json
+{
+  "parentUuid": "cf855c5b-9265-4132-aa52-423f17d1253f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "0141e54b-9389-4614-ad15-85d1e18f88f5",
+  "timestamp": "2026-05-16T12:26:02.157Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "19df3dc2-7622-4551-9441-abd9073d81ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-16T12:26:09.953Z_
+
+配置已经修改完成。当前状态：
+
+**文件**: `/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_episode_level.yaml`
+- `actor_rollout_ref.rollout.gpu_memory_utilization`: **已经是 0.35**
+
+**base.yaml 中的默认值**: `gpu_memory_utilization: 0.3`
+
+exp029 配置覆盖为 0.35，高于 base 的 0.3 但远低于之前注释中提到的 0.92。Hydra 会用 exp029 yaml 中的 0.35 覆盖 base 的 0.3。
+
+**结论**: 配置文件已经被修改为 0.35，无需再改。从注释历史看，原始设计是 0.92（为长序列准备），后来降到了 0.5（OOM 时的值），现在已经是 0.35。
+
+让我验证 YAML 语法正确性。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0141e54b-9389-4614-ad15-85d1e18f88f5",
+  "isSidechain": false,
+  "requestId": "req_011Cb6F9P5Qi7FwHnFj5rU3V",
+  "type": "assistant",
+  "uuid": "b55e8960-32ae-4cd0-885c-1cc6113dd476",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "19df3dc2-7622-4551-9441-abd9073d81ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013DrKfqLx9U9rtsi2AZvB5W",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1569,
+      "cache_read_input_tokens": 26874,
+      "output_tokens": 429,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1569,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 429,
+          "cache_read_input_tokens": 26874,
+          "cache_creation_input_tokens": 1569,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1569
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-16T12:26:11.126Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012EpYMRDjVoojNDR5WjL3Hz`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "python3 -c \"import yaml; yaml.safe_load(open('/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_episode_level.yaml')); print('YAML_OK')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b55e8960-32ae-4cd0-885c-1cc6113dd476",
+  "isSidechain": false,
+  "requestId": "req_011Cb6F9P5Qi7FwHnFj5rU3V",
+  "type": "assistant",
+  "uuid": "ac4f68bf-5786-44c9-a696-70698e124cf5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "19df3dc2-7622-4551-9441-abd9073d81ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013DrKfqLx9U9rtsi2AZvB5W",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1569,
+      "cache_read_input_tokens": 26874,
+      "output_tokens": 429,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1569,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 429,
+          "cache_read_input_tokens": 26874,
+          "cache_creation_input_tokens": 1569,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1569
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-16T12:26:11.140Z_
+
+<details><summary>↩ Tool result · `toolu_012EpYMRDjVoojNDR5WjL3Hz`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ac4f68bf-5786-44c9-a696-70698e124cf5",
+  "isSidechain": false,
+  "promptId": "dd6031a2-ce08-4676-8415-e3563f2f8484",
+  "type": "user",
+  "uuid": "c33c42ed-7862-4044-a43a-b71874393c6f",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ac4f68bf-5786-44c9-a696-70698e124cf5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "19df3dc2-7622-4551-9441-abd9073d81ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-16T12:26:18.291Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01CzCJwaUFyVVN7m6hVDHANu`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"import yaml; yaml.safe_load(open('/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_episode_level.yaml')); print('YAML_OK')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c33c42ed-7862-4044-a43a-b71874393c6f",
+  "isSidechain": false,
+  "requestId": "req_011Cb6FA3deGezREBHT19FKs",
+  "type": "assistant",
+  "uuid": "b503a49d-e398-4443-a721-7be2bc8ac366",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "19df3dc2-7622-4551-9441-abd9073d81ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PGXzSfaWUeavDfRL5R7xNj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 522,
+      "cache_read_input_tokens": 28443,
+      "output_tokens": 178,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 522,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 178,
+          "cache_read_input_tokens": 28443,
+          "cache_creation_input_tokens": 522,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 522
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-16T12:26:18.772Z_
+
+<details><summary>↩ Tool result · `toolu_01CzCJwaUFyVVN7m6hVDHANu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"YAML_OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b503a49d-e398-4443-a721-7be2bc8ac366",
+  "isSidechain": false,
+  "promptId": "dd6031a2-ce08-4676-8415-e3563f2f8484",
+  "type": "user",
+  "uuid": "64e5480e-3229-4975-9c94-0837b9a87e77",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"YAML_OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"YAML_OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  },
+  "sourceToolAssistantUUID": "b503a49d-e398-4443-a721-7be2bc8ac366",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "19df3dc2-7622-4551-9441-abd9073d81ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-16T12:26:27.737Z_
+
+## 结果
+
+**无需修改** — 配置已经是目标状态：
+
+| 项目 | 值 |
+|------|-----|
+| 文件 | `/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_episode_level.yaml` |
+| 字段 | `actor_rollout_ref.rollout.gpu_memory_utilization` |
+| 当前值 | **0.35** （已经是目标值）|
+| base.yaml 默认 | 0.3 |
+| YAML 验证 | 通过 |
+
+**GPU 状态**: 两块 RTX PRO 6000 完全空闲（各 3 MiB 占用 / 97.9 GiB 总量）。
+
+**训练命令**:
+```bash
+bash /root/cost-verify-agent-rl/scripts/run_exp029_episode_level.sh
+```
+脚本包含完整 pre-flight checklist（模型/磁盘/GPU/配置检查），最终执行 `python train.py --config-name _alfworld_exp029_episode_level`。
+
+0.35 × 95 GiB ≈ 33 GiB，即使 FSDP actor 占了 55 GiB，剩余 40 GiB 仍够 vLLM 使用。可以直接启动。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "64e5480e-3229-4975-9c94-0837b9a87e77",
+  "isSidechain": false,
+  "requestId": "req_011Cb6FAcFhKrC2Jths99Gzj",
+  "type": "assistant",
+  "uuid": "92fa0e96-cf5b-430d-b628-0751fca403f2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "19df3dc2-7622-4551-9441-abd9073d81ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CSiiY1wwXiNiTetjoJdkDH",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 257,
+      "cache_read_input_tokens": 28965,
+      "output_tokens": 374,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 257,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 374,
+          "cache_read_input_tokens": 28965,
+          "cache_creation_input_tokens": 257,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 257
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "92fa0e96-cf5b-430d-b628-0751fca403f2",
+  "sessionId": "19df3dc2-7622-4551-9441-abd9073d81ae"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Fix vLLM OOM configuration for exp029",
+  "sessionId": "19df3dc2-7622-4551-9441-abd9073d81ae"
+}
+```
+
+---

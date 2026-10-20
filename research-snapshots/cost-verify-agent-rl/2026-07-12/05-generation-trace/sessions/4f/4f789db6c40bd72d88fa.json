@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "4f789db6c40bd72d88fa",
+  "project": "cost-verify-agent-rl--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 项目 cost-verify-agent-rl：基于 Self-Guide + RAGEN 框架。exp_001 训练 step 2-6 advantage/pg_loss=0（16 episodes 全部 ",
+  "task_key": "d96ae929-2e6d-4196-bf72-c1b16b337194",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/d96ae929-2e6d-4196-bf72-c1b16b337194.jsonl",
+    "occurrence": 1,
+    "bytes": 755827,
+    "sha256": "4dec05c4c4a5d94b9c8dbc94be975979bf9539e57b2a504c9052ee8ffa571993"
+  },
+  "statistics": {
+    "messages": 265,
+    "user_turns": 1,
+    "tool_calls": 91,
+    "roles": {
+      "record": 47,
+      "user": 1,
+      "assistant": 35,
+      "tool_call": 91,
+      "tool_result": 91
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "4f789db6c40bd72d88fa-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 263,
+      "chunks": [
+        {
+          "path": "4f789db6c40bd72d88fa-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "4f789db6c40bd72d88fa-part-0002.json",
+          "message_count": 85
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-cost-verify-agent-rl-self-guide-ragen-exp-001-step-2-6-advantage.md"
+}

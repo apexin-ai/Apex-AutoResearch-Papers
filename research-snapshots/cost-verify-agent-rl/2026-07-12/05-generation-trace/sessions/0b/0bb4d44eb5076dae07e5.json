@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "0bb4d44eb5076dae07e5",
+  "project": "cost-verify-agent-rl--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 实验配置： - response_length: 512 (baseline是1024) - max_turn: 20 (baseline是50) - seed: 999 (Seed 7的崩溃种子) - to",
+  "task_key": "a0ea5409-c8fe-42d0-8502-6a350be22e9c",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/a0ea5409-c8fe-42d0-8502-6a350be22e9c.jsonl",
+    "occurrence": 1,
+    "bytes": 633301,
+    "sha256": "eaf16687f8c753893c13289d1c943c64ea6bd61369657bfcc8fd921ee8c6a11b"
+  },
+  "statistics": {
+    "messages": 126,
+    "user_turns": 1,
+    "tool_calls": 32,
+    "roles": {
+      "record": 35,
+      "user": 1,
+      "assistant": 26,
+      "tool_call": 32,
+      "tool_result": 32
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "0bb4d44eb5076dae07e5-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 124,
+      "chunks": [
+        {
+          "path": "0bb4d44eb5076dae07e5-part-0001.json",
+          "message_count": 110
+        },
+        {
+          "path": "0bb4d44eb5076dae07e5-part-0002.json",
+          "message_count": 14
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-response-length-512-baseline1024-max-turn-20-baseline50-seed-999.md"
+}

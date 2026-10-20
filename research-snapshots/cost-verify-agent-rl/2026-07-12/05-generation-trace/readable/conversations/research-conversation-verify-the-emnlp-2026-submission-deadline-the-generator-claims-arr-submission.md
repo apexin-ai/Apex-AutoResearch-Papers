@@ -1,0 +1,702 @@
+# Research conversation: Verify the EMNLP 2026 submission deadline. The generator claims ARR submission deadline is May 25, 2026. Search for: 1. 
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 11
+- **Recorded user turns:** 1
+- **Tool calls:** 4
+- **Original source:** `logs/chats/exported-trajectories/account-2/agent-a23bf97d809d654de.jsonl`
+- **Structured JSON:** [`dc754ced7eb9c3914dfd.json`](../../sessions/dc/dc754ced7eb9c3914dfd.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+11 recorded events
+
+### User
+
+_source line 1 · 2026-05-12T00:03:16.468Z_
+
+Verify the EMNLP 2026 submission deadline. The generator claims ARR submission deadline is May 25, 2026.
+
+Search for:
+1. "EMNLP 2026 submission deadline"
+2. "EMNLP 2026 ARR cycle"
+3. "ACL Rolling Review May 2026 deadline"
+4. "EMNLP 2026 call for papers"
+
+Report the exact deadline and whether a May 25 ARR submission can target EMNLP 2026.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "af9703b4-3bac-42ce-9cff-b8fc02975f65",
+  "agentId": "a23bf97d809d654de",
+  "type": "user",
+  "uuid": "83cb4c4c-ee33-4b41-b69e-e7669ac8de82",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "74f7aea8-32c7-4108-99f3-3a636c0291d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 2 · 2026-05-12T00:03:17.571Z_
+
+I'll search for information about the EMNLP 2026 submission deadline and ARR cycle details.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "83cb4c4c-ee33-4b41-b69e-e7669ac8de82",
+  "isSidechain": true,
+  "agentId": "a23bf97d809d654de",
+  "requestId": "req_011CawhGbA8GVtEgu24q7yKh",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "e9680c0b-47c4-41bd-9f3c-8f37153dfb53",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "74f7aea8-32c7-4108-99f3-3a636c0291d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01GsauoTnu2Czcy1tiGMMo6S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 550,
+      "cache_read_input_tokens": 16153,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 550,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-12T00:03:17.581Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MSvyfTBqAjNHph68gd3hV5`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 submission deadline"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e9680c0b-47c4-41bd-9f3c-8f37153dfb53",
+  "isSidechain": true,
+  "agentId": "a23bf97d809d654de",
+  "requestId": "req_011CawhGbA8GVtEgu24q7yKh",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "724ba408-f9ee-42a2-b748-abaf4b540236",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "74f7aea8-32c7-4108-99f3-3a636c0291d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01GsauoTnu2Czcy1tiGMMo6S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 550,
+      "cache_read_input_tokens": 16153,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 550,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-12T00:03:17.783Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HXjLzbq8AgWdmQn9RDkP1y`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 ARR cycle"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "724ba408-f9ee-42a2-b748-abaf4b540236",
+  "isSidechain": true,
+  "agentId": "a23bf97d809d654de",
+  "requestId": "req_011CawhGbA8GVtEgu24q7yKh",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "766c0e66-f822-4d45-9af3-6f808df85650",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "74f7aea8-32c7-4108-99f3-3a636c0291d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01GsauoTnu2Czcy1tiGMMo6S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 550,
+      "cache_read_input_tokens": 16153,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 550,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-12T00:03:17.962Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015gnt7S1jH4e7dKJSULW3R5`</summary>
+
+```json
+{
+  "query": "ACL Rolling Review May 2026 deadline"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "766c0e66-f822-4d45-9af3-6f808df85650",
+  "isSidechain": true,
+  "agentId": "a23bf97d809d654de",
+  "requestId": "req_011CawhGbA8GVtEgu24q7yKh",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "22f23058-48bb-46bd-8b6e-4544c8617e40",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "74f7aea8-32c7-4108-99f3-3a636c0291d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01GsauoTnu2Czcy1tiGMMo6S",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 550,
+      "cache_read_input_tokens": 16153,
+      "output_tokens": 223,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 550
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 223,
+          "cache_read_input_tokens": 16153,
+          "cache_creation_input_tokens": 550,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 550,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-12T00:03:17.964Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FcY1zVR1JGduHntbFzSjLc`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 call for papers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "22f23058-48bb-46bd-8b6e-4544c8617e40",
+  "isSidechain": true,
+  "agentId": "a23bf97d809d654de",
+  "requestId": "req_011CawhGbA8GVtEgu24q7yKh",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "c9c737cc-66a9-4c9f-9fd0-8897c446846a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "74f7aea8-32c7-4108-99f3-3a636c0291d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01GsauoTnu2Czcy1tiGMMo6S",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 550,
+      "cache_read_input_tokens": 16153,
+      "output_tokens": 223,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 550
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 223,
+          "cache_read_input_tokens": 16153,
+          "cache_creation_input_tokens": 550,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 550,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-12T00:03:22.155Z_
+
+<details><summary>↩ Tool result · `toolu_01MSvyfTBqAjNHph68gd3hV5`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 submission deadline"
+
+Links: [{"title":"The 2026 Conference on Empirical Methods in Natural Language Processing - EMNLP 2026","url":"https://2026.emnlp.org/"},{"title":"2026 *ACL Conference Dates | Computational Linguistics","url":"https://submissions.cljournal.org/index.php/cljournal/announcement/view/14"},{"title":"EMNLP 2026 Conference | OpenReview","url":"https://openreview.net/group?id=EMNLP%2F2026%2FConference"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"EMNLP 2026 (@emnlpmeeting) / Posts / X","url":"https://x.com/emnlpmeeting"},{"title":"Update EMNLP 2026 conference dates and deadlines · huggingface/ai-deadlines at 2754f67","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/2754f67c0550847973789522a0a082dd5443b5c0"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"Joint Call for Tutorial Proposals (EMNLP/AACL-IJCNLP 2026) | ACL Member Portal","url":"https://www.aclweb.org/portal/content/joint-call-tutorial-proposals-emnlpaacl-ijcnlp-2026"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"emnlp 2026 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=emnlp26"}]
+
+Based on the search results, here are the key submission deadlines for EMNLP 2026:
+
+The ARR (ACL Rolling Review) submission deadline for long and short papers is May 25, 2026. 
+
+EMNLP 2026 will be held in Budapest, Hungary from October 24th to October 29th, 2026.
+
+Additional important dates include:
+- Reviewer registration deadline for all authors: May 27, 2026
+- Author response and author-reviewer discussion: July 7-13, 2026
+- Meta review released: July 30, 2026
+- EMNLP commitment deadline: August 2, 2026
+- Notification of acceptance: August 20, 2026
+- Camera-ready papers due: September 20, 2026
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "724ba408-f9ee-42a2-b748-abaf4b540236",
+  "isSidechain": true,
+  "promptId": "af9703b4-3bac-42ce-9cff-b8fc02975f65",
+  "agentId": "a23bf97d809d654de",
+  "type": "user",
+  "uuid": "e69c6768-bb27-4608-ab3f-cc30da6c216f",
+  "sourceToolAssistantUUID": "724ba408-f9ee-42a2-b748-abaf4b540236",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "74f7aea8-32c7-4108-99f3-3a636c0291d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-12T00:03:23.906Z_
+
+<details><summary>↩ Tool result · `toolu_015gnt7S1jH4e7dKJSULW3R5`</summary>
+
+```text
+Web search results for query: "ACL Rolling Review May 2026 deadline"
+
+Links: [{"title":"Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/dates"},{"title":"Incentives 2026 – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/incentives2026"},{"title":"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"https://aclrollingreview.org/"},{"title":"Main Conference - ACL 2026","url":"https://2026.aclweb.org/calls/main_conference_papers/"},{"title":"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/cfp"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"How ARR works – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/reviewing"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"ACLRollingReview (@ReviewAcl) / Posts / X","url":"https://x.com/ReviewAcl"},{"title":"ACL ARR 2026 January | OpenReview","url":"https://openreview.net/group?id=aclweb.org%2FACL%2FARR%2F2026%2FJanuary"}]
+
+Based on the search results, I found information about ACL Rolling Review cycles, but I should clarify what is being requested. The search results show information about various ARR cycles, but there isn't a specific "May 2026 deadline" explicitly mentioned in the results.
+
+However, here's what I found about ACL Rolling Review in 2026:
+
+The ACL Rolling Review switched to 10-week cycles starting in May 2025, which changed the schedule from the previous 8-week cycles. This means there are generally 5 cycles per year instead of 6.
+
+For specific 2026 cycles, the search results mention:
+- Papers may be submitted to the ARR 2025 October cycle and ARR 2026 January cycle for ACL 2026
+- The submission deadline for papers to ARR is January 5, 2026
+
+If you're looking for a specific May 2026 submission deadline or other deadline, the search results don't contain explicit details about a May 2026 cycle. You may want to check the official ACL Rolling Review website at aclrollingreview.org for the complete schedule of all 2026 submission deadlines, or clarify which specific deadline or cycle you're interested in.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "22f23058-48bb-46bd-8b6e-4544c8617e40",
+  "isSidechain": true,
+  "promptId": "af9703b4-3bac-42ce-9cff-b8fc02975f65",
+  "agentId": "a23bf97d809d654de",
+  "type": "user",
+  "uuid": "5ebbc548-0629-40e8-92ca-7c0d9cd9d61d",
+  "sourceToolAssistantUUID": "22f23058-48bb-46bd-8b6e-4544c8617e40",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "74f7aea8-32c7-4108-99f3-3a636c0291d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-12T00:03:24.418Z_
+
+<details><summary>↩ Tool result · `toolu_01HXjLzbq8AgWdmQn9RDkP1y`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 ARR cycle"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"Jan. 2025 ACL Standing Committee on Peer Review (COPR) Report 1","url":"https://www.aclweb.org/adminwiki/images/9/9e/COPR-5-cycle-report-to-publish.pdf"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X","url":"https://x.com/emnlpmeeting/status/2047754845919031450"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"EMNLP 2026 (@emnlpmeeting) / Posts / X","url":"https://x.com/emnlpmeeting?lang=en"}]
+
+Based on the search results, here's the information about the EMNLP 2026 ARR cycle:
+
+## Key Dates and Details
+
+Papers must be submitted, at latest, by the ARR 2026 May cycle. The ARR submission deadline for long and short papers is May 25, 2026, with authors needing to complete the author registration form by May 27, 2026 EoD AoE.
+
+## Important Submission Requirements
+
+Since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time, and this choice will be binding.
+
+Papers that have received reviews and a meta-review from ARR (whether from the ARR 2026 May cycle or an earlier ARR cycle) may be committed to EMNLP via the commitment link.
+
+## Review Timeline
+
+If you receive assignments, your reviews must be completed by July 6, or your meta-reviews - by July 29. Author response and author-reviewer discussion occurs July 7 - July 13, 2026, with meta reviews released July 30.
+
+## Other Important Information
+
+The reviewing process will continue to be double-blind, with reviewers not seeing authors, nor will authors see reviewers and reviews on ARR will not be made publicly visible.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "766c0e66-f822-4d45-9af3-6f808df85650",
+  "isSidechain": true,
+  "promptId": "af9703b4-3bac-42ce-9cff-b8fc02975f65",
+  "agentId": "a23bf97d809d654de",
+  "type": "user",
+  "uuid": "1f337893-9c63-4c7b-8bbe-ecead3a2c43e",
+  "sourceToolAssistantUUID": "766c0e66-f822-4d45-9af3-6f808df85650",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "74f7aea8-32c7-4108-99f3-3a636c0291d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-12T00:03:25.755Z_
+
+<details><summary>↩ Tool result · `toolu_01FcY1zVR1JGduHntbFzSjLc`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 call for papers"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"Call for workshops: EMNLP & AACL","url":"https://groups.google.com/g/ml-news/c/W-fucfhVto4"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"Call for Bids to Host EMNLP 2025 or 2026 - SIGDAT","url":"https://sigdat.org/calls/bids2025"},{"title":"2026 *ACL Conference Dates | Computational Linguistics","url":"https://submissions.cljournal.org/index.php/cljournal/announcement/view/14"},{"title":"Joint Call for Tutorial Proposals (EMNLP/AACL-IJCNLP 2026) | ACL Member Portal","url":"https://www.aclweb.org/portal/content/joint-call-tutorial-proposals-emnlpaacl-ijcnlp-2026"},{"title":"EMNLP 2026 (@emnlpmeeting) / Posts / X","url":"https://x.com/emnlpmeeting?lang=en"},{"title":"emnlp 2026 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=emnlp26"},{"title":"EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X","url":"https://x.com/emnlpmeeting/status/2047754845919031450"}]
+
+I've found the EMNLP 2026 call for papers. Here are the key details:
+
+## Main Call for Papers
+
+EMNLP 2026 invites the submission of long and short papers featuring substantial, original, and unpublished research on empirical methods for Natural Language Processing.
+
+## Important Dates
+
+The ARR submission deadline for long and short papers is May 25, 2026, with a reviewer registration deadline for all authors on May 27, 2026. Author response and author-reviewer discussion takes place July 7-13, 2026, meta-reviews are released July 30, 2026, the EMNLP commitment deadline is August 2, 2026, and notification of acceptance is August 20, 2026. The conference will be held October 22-26, 2026.
+
+## Submission Process
+
+Papers must be submitted by the ARR 2026 May cycle, and papers that have received reviews and a meta-review from ARR may be committed to EMNLP via the commitment link. Authors submitting to the ARR 2026 May cycle (which is aligned with both EMNLP and AACL) must explicitly declare which conference they intend to commit to at submission time, and this choice is binding for EMNLP 2026.
+
+## Special Theme
+
+The EMNLP 2026 special theme invites papers that articulate, test, and advance visions for NLP in the era of large language models.
+
+## Requirements
+
+All authors are expected to sign up to review or serve as an Area Chair or Senior Area Chair, and must complete the author registration form by May 27, 2026.
+
+The full call for papers is available at https://2026.emnlp.org/calls/main_conference_papers/
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c9c737cc-66a9-4c9f-9fd0-8897c446846a",
+  "isSidechain": true,
+  "promptId": "af9703b4-3bac-42ce-9cff-b8fc02975f65",
+  "agentId": "a23bf97d809d654de",
+  "type": "user",
+  "uuid": "c69c93e3-7f0e-4f9a-a3e2-27dff1e33c76",
+  "sourceToolAssistantUUID": "c9c737cc-66a9-4c9f-9fd0-8897c446846a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "74f7aea8-32c7-4108-99f3-3a636c0291d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-12T00:03:31.730Z_
+
+## Verification Results
+
+**The generator's claim is CORRECT.**
+
+### Key Findings:
+
+**Exact EMNLP 2026 Submission Deadline:**
+- **ARR Submission Deadline: May 25, 2026**
+- Reviewer registration deadline: May 27, 2026
+
+**Regarding May 25 ARR Submission to EMNLP 2026:**
+
+Yes, a May 25, 2026 ARR submission **can** target EMNLP 2026, with critical requirements:
+
+1. **EMNLP-AACL Shared Cycle**: EMNLP and AACL share the ARR May 2026 cycle, so authors must **explicitly select EMNLP as the target conference at submission time**, and this choice is **binding**.
+
+2. **Important Timeline**: 
+   - Author response/discussion: July 7-13, 2026
+   - Meta-reviews released: July 30, 2026
+   - EMNLP commitment deadline: August 2, 2026
+   - Acceptance notification: August 20, 2026
+   - Conference dates: October 22-26, 2026 (in Budapest, Hungary)
+
+3. **Author Requirements**: All authors must complete the author registration form by May 27, 2026 and are expected to commit to reviewing or serving as Area Chair/Senior Area Chair.
+
+**Conclusion**: May 25, 2026 is the correct ARR submission deadline for EMNLP 2026, and papers submitted by this date with EMNLP selected as the target conference can proceed through the review process for EMNLP 2026.
+
+Sources:
+- [Call for Main Conference Papers - EMNLP 2026](https://2026.emnlp.org/calls/main_conference_papers/)
+- [EMNLP 2026 on X - CFP announcement](https://x.com/emnlpmeeting/status/2029508292637061462)
+- [EMNLP 2026 on X - Conference selection requirement](https://x.com/emnlpmeeting/status/2047754845919031450)
+- [Dates and Venues - ACL Rolling Review](http://aclrollingreview.org/dates)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c69c93e3-7f0e-4f9a-a3e2-27dff1e33c76",
+  "isSidechain": true,
+  "agentId": "a23bf97d809d654de",
+  "requestId": "req_011CawhHGtYvQuVppgE652va",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "add602c5-c9ca-4d3c-ab34-e49cc3f6b11f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "74f7aea8-32c7-4108-99f3-3a636c0291d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01SRnzahPdYdKtoRsz8ToyvW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 4585,
+      "cache_read_input_tokens": 16703,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4585,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,1909 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-09 (UTC).** Your job: indep
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 24
+- **Recorded user turns:** 1
+- **Tool calls:** 3
+- **Original source:** `logs/chats/exported-trajectories/account-2/6e242e24-2a19-48ee-ae0a-5c329de4a697.jsonl`
+- **Structured JSON:** [`b767bae5d9f413aefee5.json`](../../sessions/b7/b767bae5d9f413aefee5.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-09T19:59:56.891Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-09T19:59:56.891Z",
+  "sessionId": "6e242e24-2a19-48ee-ae0a-5c329de4a697",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-09 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: LLM Agents.\n\nDirection: LLM Agents — planning algorithms, memory architectures, tool use, multi-agent coordination, agent training (SFT/RL), self-correction in agentic loops, environment feedback exploitation.\n\nContribution type: METHOD ONLY. Must propose a concrete new algorithm, training procedure, or inference-time mechanism. Reject pure benchmark / dataset / analysis ideas. Method + analysis OK if analysis validates the method.\n\nHARD CONSTRAINTS:\n1. Compute: ≤200 H100-hours total (baselines + method + ablations). Show the math.\n2. Time: ≤16 days. Build on existing OSS agent codebases (AutoGen, LangGraph, OpenManus, etc.) — no from-scratch systems.\n3. Eval: existing benchmarks only — AgentBench, WebArena, SWE-bench Verified, GAIA, ToolBench, ALFWorld, Mind2Web, τ-bench.\n\nAvoid: generic ReAct variants, plain tool retrieval, naive memory summarization. Look for: agent training with minimal RL budget, structured planning beyond flat CoT, multi-agent communication protocols, agent self-verification mechanisms.\n\nTag: direction=agent, contribution_type=method. target_venues=[\"EMNLP 2026 Main\", \"EMNLP 2026 Findings\"].**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-09?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 8/10)\n{\n  \"title\": \"CascadeWatch: Cascade-Onset Detection with Targeted Rollback for Long-Horizon Agent Tasks\",\n  \"core_problem\": \"In long-horizon agent tasks, individual early-step errors produce cascading downstream failures that grow exponentially more costly to correct with each additional step. The core question is whether a lightweight trained monitor can prospectively detect cascade onset—predicting failure propagation before it fully manifests—to trigger targeted rollback rather than reactive reflection or full replanning. The challenge is not simply detecting failure: the Intervention Paradox (arXiv 2602.03338) establishes that generic critics with AUROC 0.94 cause up to 26 percentage point performance degradation by triggering on non-cascade failures that the agent would have self-corrected. The disruption-recovery tradeoff (Δ Success = p·r − (1−p)·d) only favors intervention on high-failure benchmarks like ALFWorld; it degrades GAIA and HotPotQA even with accurate critics. The solution is not a better generic critic but a cascade-specific one: targeting only the recoverability-degrading prefix patterns that precede confirmed cascades—detectable via recoverability proxy signals—to achieve the high precision (low d) and focused recall (high p conditional on cascade-onset) that shifts the threshold in favor of intervention. A natural alternative early-warning signal is canonical path deviation (arXiv 2602.19008): measuring Jaccard similarity of tool invocations against the convergent set shared across successful runs. This signal is empirically validated but requires aggregating tool invocation sequences from multiple successful runs per task, making it unavailable for novel tasks or low-success-rate settings. CascadeWatch uses ERR Efficiency Score recoverability deltas (arXiv 2601.22352) approximated as running prefix statistics over the agent's tool-call/result sequence without reference to other runs, enabling cascade detection in the absence of precomputed canonical paths. The rollback mechanism varies by environment affordance: for text-game environments (ALFWorld), full environment-state rollback is achieved via command-replay from env.reset(); for tool-augmented environments (WebShop, GAIA), context-only rollback rewinds the agent's context window. Neither mechanism requires a non-existent API; both are acknowledged to have environment-specific costs and limitations.\",\n  \"opportunity\": \"The cascade failure pattern is now well-characterized and trainable. AgentErrorBench (arXiv 2509.25370) provides the first systematically annotated failure taxonomy across ALFWorld, WebShop, and GAIA, with expert root-cause step annotations (critical_failure_step field, annotated by ten graduate students at Cohen's κ = 0.55) identifying where cascades originate; the dataset contains 100 ALFWorld, 50 GAIA, and 50 WebShop trajectories, all of which are failure trajectories by design (failures are deliberately oversampled). Memory and reflection errors at steps 5–15 are the most common cascade initiators, crucially occurring mid-trajectory rather than at the earliest steps where the Intervention Paradox shows all regressions occur. The ERR paper (arXiv 2601.22352) formalizes recoverability as Expected Recovery Regret and derives a measurable Efficiency Score proxy, empirically validated across five benchmarks to within δ ≤ 0.05 of observed post-failure regret—establishing that step-level recoverability is observable from trajectory prefixes and thus learnable as a predictive signal. This signal applies directly to tool-augmented agents (WebShop, GAIA) where structured tool-call/result pairs provide natural Efficiency Score observables as running prefix estimates; for text-game environments (ALFWorld), where failures are cognitive planning errors rather than tool execution failures, a domain-adapted proxy (step-level game score delta) is used instead, acknowledged as a heuristic extension. Canonical Path Deviation (arXiv 2602.19008) provides independent corroboration of the self-reinforcing cascade mechanism in long-horizon tool-use tasks: each off-canonical tool invocation raises the probability that the next invocation is also off-canonical by 22.7 percentage points, confirming that cascade propagation is empirically measurable and compounding. CascadeWatch uses recoverability signals rather than canonical path adherence specifically because recoverability deltas are approximable from a single trajectory prefix, enabling deployment where canonical paths from multiple successful runs are unavailable. BacktrackAgent (arXiv 2505.20660, EMNLP 2025) demonstrates that backtracking triggers improve GUI agent task completion on Mobile3M and Auto-UI benchmarks, but requires constructing a task-specific training dataset and fine-tuning the agent components—leaving a clear gap for an external, training-free cascade monitor that operates on any frozen agent in cognitive long-horizon tasks. The proactive detection landscape now includes TrajAD (arXiv 2602.06443) for general trajectory anomaly detection with rollback-and-retry on ALFWorld/GAIA/WebShop (no Intervention Paradox awareness, no step threshold, synthetic training labels), InferAct (arXiv 2407.11843, EMNLP 2025) for single-step action misalignment detection with human alerting on ALFWorld/WebArena, ProMAS (arXiv 2603.20260) for multi-agent error attribution, ProbGuard (arXiv 2508.00500) for physical safety monitoring, Trajectory Guard (arXiv 2601.00516) for general structural anomaly detection in agentic trajectories, and ErrorProbe (arXiv 2604.17658) for offline step-level cascade diagnosis in multi-agent systems, but none combines cascade-specific onset detection using recoverability signals with a step-threshold calibrated to the Intervention Paradox and automated targeted rollback. The labeled failure datasets, recoverability signals, and the Intervention Paradox's threshold formula together make a specific, testable hypothesis: a cascade-specific monitor using recoverability signals and a step ≥ 5 threshold will achieve sufficiently higher precision than generic critics and general anomaly detectors to make rollback net-positive on benchmarks where generic critics fail, for the first time.\",\n  \"landscape\": \"Proactive monitoring is an active and crowded area that must be navigated carefully.\\n\\nTrajAD (arXiv 2602.06443, February 2026) is the closest benchmark-level competitor and must be explicitly differentiated. TrajAD fine-tunes Qwen3-4B with QLoRA (affecting 1.8% of parameters) on TrajBench, a dataset synthesized via a 'Perturb-and-Complete' pipeline covering three anomaly types: Task Failure (reasoning errors, invalid tool parameters), Process Inefficiency (redundant loops and detours), and Unwarranted Continuation (failure to stop after task completion). TrajBench labels are generated synthetically through controlled perturbation injection, not expert cascade root-cause annotation. TrajAD frames detection as a joint classification-and-localization task, outputting both a binary verdict and the predicted first-error step index (Joint Exact Match: 53.75% vs. 5.81% for the best zero-shot baseline; Macro-F1: 81.81% vs. 70.43%). The paper explicitly states that rollback-and-retry is enabled by precise error localization, and evaluates on ALFWorld, GAIA, and WebShop—the same benchmark set as CascadeWatch. Four distinctions separate TrajAD from CascadeWatch. (1) Training labels: TrajAD's TrajBench uses synthetic perturbations; CascadeWatch trains on AgentErrorBench expert root-cause annotations with the confirmed-cascade criterion (trajectory fails AND root-cause step before midpoint), learning from real cascade failures with verified propagation, not synthetic deviations. (2) Anomaly target and Intervention Paradox awareness: TrajAD's 'Process Inefficiency' category—loops and detours that are semantically valid but suboptimal—is precisely the class of self-correctable deviations that the Intervention Paradox (arXiv 2602.03338) shows causes performance degradation when interrupted; triggering on these raises d in the disruption-recovery tradeoff (Δ Success = p·r − (1−p)·d) and explains why generic critics with AUROC 0.94 still degrade performance. CascadeWatch targets only recoverability-degrading cascade-onset prefixes (not process inefficiencies or unwarranted continuations), and imposes a step ≥ 5 minimum threshold specifically calibrated to the Intervention Paradox's empirical finding that all observed regressions occur at steps 0–1 (on HotPotQA and GAIA; ALFWorld is the exception where early intervention yields modest gains). TrajAD has no step threshold and does not reference or address the Intervention Paradox. (3) Architecture: TrajAD fine-tunes a 4B model via QLoRA, modifying model weights and requiring backbone-level training infrastructure. CascadeWatch trains a 2-layer MLP probe on frozen Qwen/Qwen3-32B embeddings combined with ERR recoverability deltas, requiring no modification to the base agent; deploying on a different backbone requires retraining only the MLP probe (~3–5 H100-hours). (4) Recoverability signal: TrajAD introduces no ERR-motivated recoverability channel; CascadeWatch's ERR Efficiency Score running prefix estimates specifically measure the compounding cost of cascade continuation, providing a principled signal for distinguishing cascade-onset from recoverable anomalies.\\n\\nInferAct (arXiv 2407.11843, EMNLP 2025 main track, pages 222–244) uses Theory-of-Mind reasoning grounded in LLM belief inference to detect single-step actions misaligned with user intent before execution on WebArena (web shopping), ALFWorld (household tasks), and HotpotQA (question answering), achieving up to 20% Marco-F1 improvement over baselines. When misalignment is detected, InferAct alerts users for timely correction. Three distinctions separate InferAct from CascadeWatch. (1) InferAct addresses the single-step mismatch between an upcoming action and user authorization—whether a specific action matches what the user intended to authorize (e.g., accidental 'buy-now' triggering); CascadeWatch addresses multi-step cascade propagation, where an early-step cognitive error (steps 5–15) compounds across subsequent trajectory steps independent of any user authorization issue. (2) InferAct's detection signal is ToM belief inference over user intent; CascadeWatch's detection signal is trajectory-prefix ERR Efficiency Score running estimates over cascade-onset patterns, a fundamentally different feature channel targeting compounding-cost propagation rather than intent alignment. (3) InferAct's intervention is human alerting, requiring a human in the loop to correct the misaligned action; CascadeWatch's intervention is automated targeted rollback with a false-positive circuit-breaker (max 2 rollbacks per episode), requiring no human involvement. Published at EMNLP 2025—the primary target venue for CascadeWatch—InferAct is a direct framing overlap that must be cited, but the single-step authorization framing vs. multi-step cascade propagation distinction is substantive.\\n\\nMASC (arXiv 2510.14319) detects cascading errors in multi-agent systems via Prototype-Guided Next-Execution Reconstruction: it forecasts subsequent step embeddings from query and interaction history (Next-Execution Reconstruction) and establishes a prototype prior over normal-step embeddings for stabilized anomaly scoring in sparse contexts (Prototype-Guided Enhancement). Anomaly scoring is unsupervised; when anomalies are flagged, a correction agent revises the acting agent's output before propagating downstream. MASC achieves up to 8.47% AUC-ROC improvement in step-level error detection on the Who&When multi-agent benchmark. Two distinctions separate MASC from CascadeWatch: (1) MASC operates on multi-agent systems where a correction agent revises another agent's output; CascadeWatch operates on single-agent long-horizon trajectories where there is no second agent to correct and the rollback must rewind the agent's own context or environment state. (2) MASC's anomaly scoring is unsupervised (reconstruction-based); CascadeWatch's cascade-onset detection is supervised using expert-annotated root-cause labels and ERR-motivated recoverability signals, enabling principled distinction between cascade-onset and recoverable anomalies.\\n\\nProMAS (arXiv 2603.20260, March 2026) uses Causal Delta Features mapped to a 30-prototype Vector Markov Space with a frozen Meta-Llama-3.1-8B extractor to predict failure onset in multi-agent collaborative reasoning systems, achieving 22.97% step-level accuracy on the Who&When benchmark (annotated multi-agent dialogues of math and logic puzzles) while processing only 27% of reasoning logs. Critically, ProMAS raises an alert but provides no corrective action—it is a detector only and evaluates exclusively on the Who&When multi-agent attribution benchmark, not on single-agent long-horizon tasks.\\n\\nErrorProbe (arXiv 2604.17658, April 2026) is a contemporaneous offline diagnostic for multi-agent systems that uses a three-stage pipeline: (1) failure taxonomy-based local anomaly detection, (2) symptom-driven backward tracing to prune irrelevant trajectory context, and (3) a specialized multi-agent verification team (Strategist, Investigator, Arbiter) that validates error hypotheses via tool-grounded execution. ErrorProbe maintains a verified episodic memory of confirmed error/patch patterns and is evaluated on TracerTraj and Who&When benchmarks. Two distinctions separate ErrorProbe from CascadeWatch: (1) ErrorProbe is a post-hoc offline diagnostic tool—its backward tracing and multi-agent verification pipeline is not compatible with real-time inference-time intervention; CascadeWatch is an online monitor that triggers rollback during episode execution. (2) ErrorProbe targets multi-agent systems; CascadeWatch targets single-agent long-horizon trajectory monitoring where no second agent is available for verification.\\n\\nProbGuard (arXiv 2508.00500) learns a Discrete-Time Markov Chain from symbolic agent-state abstractions with PAC-style guarantees and triggers prompt-injection interventions when P(unsafe state) exceeds a threshold; it predicts traffic violations up to 38.66 seconds ahead and reduces unsafe behavior by 65.37% in embodied agents, but operates on physical safety constraints using symbolic abstractions rather than frozen neural representations or recoverability signals.\\n\\nTrajectory Guard (arXiv 2601.00516, AAAI TrustAgent Workshop 2026) proposes a Siamese Recurrent Autoencoder with hybrid contrastive-reconstruction loss for real-time anomaly detection in agentic AI trajectories, achieving F1 0.88–0.94 on balanced sets and recall 0.86–0.92 on imbalanced external benchmarks while running 17–27× faster than LLM Judge baselines at 32ms inference. Three distinctions separate this from CascadeWatch: (1) Trajectory Guard detects general structural anomalies—contextual misalignment and sequential incoherence—via reconstruction error, not cascade-specific onset via recoverability-delta signals; (2) it evaluates on synthetic perturbations, security audit failures (RAS-Eval), and multi-agent attribution (Who&When), not on single-agent long-horizon cognitive tasks (ALFWorld, GAIA, WebShop); (3) it provides no rollback or correction mechanism—detection only.\\n\\nThe ORC auditing paper (ICLR Workshop 2026, arXiv 2603.13325) detects cascading risks in multi-agent systems via Ollivier-Ricci Curvature on completed interaction graphs—post-hoc auditing, not inference-time intervention.\\n\\nCanonical Path Deviation (arXiv 2602.19008, Feb 2026) is the closest theoretical neighbor to CascadeWatch's cascade-onset framing. Analyzing 515 model-task combinations on the Toolathlon benchmark (22 frontier models, 108 real-world tool-use tasks across 3 independent runs each), Wilson Y. Lee identifies stochastic drift from canonical solution paths—the convergent set of tool invocations shared across successful runs—as a causal mechanism of long-horizon failure. Path adherence is measured as Jaccard similarity between actual and canonical tool invocation sequences; adherence gaps are statistically indistinguishable from zero through the first half of trajectories but become significant and self-reinforcing thereafter, with each off-canonical tool call raising the probability that the next call is also off-canonical by 22.7 percentage points. An intervention restarting the bottom tercile of runs by mid-trajectory canonical adherence achieves +8.8pp success rate improvement. Three distinctions separate this from CascadeWatch: (1) Canonical path adherence requires aggregating tool invocation sequences across multiple successful runs per task—unavailable for novel tasks or low-success-rate settings; CascadeWatch's ERR Efficiency Score running prefix estimates are computable from a single trajectory without reference to other runs. (2) Canonical path deviation detects drift retrospectively via trajectory statistics that become significant only in the second half of execution; CascadeWatch proactively intervenes at steps 5–15 using a trained probe on prefix embeddings, before adherence divergence solidifies. (3) The CPD intervention is a full task restart of lowest-adherence runs; CascadeWatch performs targeted rollback to the pre-cascade checkpoint, preserving valid completed steps and avoiding full re-execution cost.\\n\\nFrom Spark to Fire (arXiv 2603.04474, March 2026) models cascade error propagation in LLM-based multi-agent collaboration using an individual-based mean-field framework over inter-agent communication graphs, and proposes a genealogy-graph governance layer that tracks atomic claim provenance via NLI-based verification (Green/Red/Yellow status using DeBERTa-v3-small) and blocks transmission of error-carrying messages; the Benign Infection Control Rate improves from 0.32 to 0.89 across Chain, Mesh, and Star multi-agent topologies. The cascade mechanism is specifically inter-agent. CascadeWatch addresses a structurally different failure mode—cognitive cascade failure within a single agent's sequential trajectory—where there are no inter-agent message dependencies.\\n\\nThe Intervention Paradox (arXiv 2602.03338) is the most important negative result in the space: ROLLBACK and APPEND interventions triggered by a generic LLM critic (AUROC 0.94) degrade performance on HotPotQA by −2.3 to −25.5pp and on GAIA by −4.4 to −30pp; only ALFWorld (high baseline failure rate: 5.8–14.7%) shows improvement (+0.5 to +2.8pp). All observed regressions occur with early-step (steps 0–1) interventions on HotPotQA and GAIA; the paper recommends a minimum-step constraint of min_step ≥ 2. ALFWorld is the exception where early intervention yields positive returns, consistent with the disruption-recovery tradeoff favoring intervention when baseline failure rate exceeds threshold.\\n\\nBacktrackAgent (arXiv 2505.20660, EMNLP 2025) trains a verifier-judger-reflector pipeline for GUI agents (Mobile3M, Auto-UI benchmarks) to detect individual action errors and trigger backtracking. Unlike CascadeWatch, BacktrackAgent requires constructing a task-specific training dataset and fine-tuning the agent's backtracking components; it targets GUI action-level errors rather than recoverability-degrading cascade onset in cognitive long-horizon tasks.\\n\\nSelf-Backtracking (arXiv 2502.04404) trains the base LLM to internalize when and where to backtrack during training and inference, achieving over 40% performance gains over optimal-path SFT baselines in general reasoning. This approach requires model retraining and modifies the agent's internal reasoning; CascadeWatch operates as a frozen external probe on any pre-trained agent.\\n\\nPrior work probes LLM hidden states for single-step answer correctness in mathematical reasoning (arXiv 2504.05419), achieving 24% token reduction via early exit. The mechanism is structurally similar to CascadeWatch's frozen embedding + MLP probe, but targets single-step correctness rather than multi-step cascade onset; it adds no recoverability signal channel.\\n\\nReactive self-correction methods share the same fundamental limitation: ExpeL and Contextual Experience Replay distill past trajectories for future improvement; self-verification (arXiv 2602.03485) confirms rechecks rarely identify errors; T-STAR (arXiv 2604.07165) achieves training-time divergence detection via Cognitive Trees but adds no inference-time mechanism.\\n\\nNo existing system combines (1) cascade-specific onset detection using ERR recoverability signals, (2) a step ≥ 5 threshold explicitly calibrated to the Intervention Paradox and AgentErrorBench's cascade-onset distribution, (3) expert-annotated cascade labels (not synthetic perturbations), and (4) environment-appropriate targeted rollback with a false-positive circuit-breaker—nor validates that cascade-specific precision avoids the disruption-recovery tradeoff that defeats all general-purpose critics and general anomaly detectors.\",\n  \"approach\": \"We train CascadeWatch to address the Intervention Paradox by targeting only the recoverability-degrading mid-trajectory patterns that precede confirmed cascades. Training data: AgentErrorBench's 200 expert-annotated trajectories (davide221/agenterrorbench on HuggingFace, spanning ALFWorld, WebShop, and GAIA; all 200 are failure trajectories by design, expert-annotated by ten graduate students at Cohen's κ = 0.55) augmented with ~2,000 synthetic rollouts from Qwen/Qwen3-32B (HuggingFace: Qwen/Qwen3-32B; 32B dense model; 64GB BF16; fits in 1× H100-80GB without quantization) sampled at two temperatures (0.7, 1.0) to increase failure-mode diversity.\\n\\nCascade label derivation differs between real and synthetic trajectories. For the 200 AgentErrorBench trajectories, the confirmed-cascade criterion is applied using the expert-annotated critical_failure_step field: step k is labeled cascade-onset if k equals the annotated root-cause step AND that step occurs before the trajectory midpoint (k ≤ ⌊total_steps / 2⌋). Since all 200 trajectories are failures by design, the midpoint filter is the only active criterion. Given AgentErrorBench's finding that cascade-initiating errors cluster at steps 5–15, and typical episode lengths of 20–40 steps, the majority of annotated root-cause steps fall before the midpoint. Estimated cascade-positive training examples: approximately 65–75 of 100 ALFWorld trajectories, 35–40 of 50 GAIA trajectories, and 35–40 of 50 WebShop trajectories, totaling approximately 135–155 cascade-positive examples before augmentation. For the ~2,000 synthetic rollouts, expert root-cause annotation is unavailable. Synthetic cascade labels use a trajectory-level failure proxy: a synthetic trajectory is labeled cascade-positive at step k if (1) the trajectory ultimately fails AND (2) k ≤ ⌊N/2⌋, where N is total episode length. This proxy is coarser than the confirmed-cascade criterion—it applies the cascade-positive label to all early-half steps of failed trajectories without identifying the specific root-cause step, including steps that precede any actual error. The training corpus is therefore a deliberate mixture of high-precision real labels (AgentErrorBench expert root-cause annotations, ~135–155 cascade-positive examples) and lower-precision synthetic labels (trajectory-level failure proxy). This methodological caveat is acknowledged explicitly; an additional ablation trains the probe on AgentErrorBench-only data to quantify the performance ceiling under expert labels alone versus the mixed corpus, and to estimate the noise contribution of the synthetic proxy.\\n\\nA minimum intervention threshold of step ≥ 5 is imposed at inference time, grounded in two complementary findings. First, AgentErrorBench's expert annotations show cascade-initiating errors occur primarily at steps 5–15, making cascade-onset detection at k < 5 both empirically impossible (no cascade has yet begun) and mechanistically unnecessary. Second, the Intervention Paradox (arXiv 2602.03338) finds that all regression-causing interventions occur at steps 0–1 on HotPotQA and GAIA, recommending min_step ≥ 2; CascadeWatch's step ≥ 5 threshold is more conservative than this recommendation, providing additional safety margin. Note that ALFWorld is the exception in the Intervention Paradox paper: early intervention yields positive gains on ALFWorld (+0.5 to +2.8pp), consistent with its high baseline failure rate. The step ≥ 5 threshold is therefore over-conservative for ALFWorld specifically—but is retained for consistency across benchmarks and because AgentErrorBench's cascade-onset distribution at steps 5–15 independently grounds the threshold as the earliest step where cascade-positive signal exists. The 50-task pilot test per benchmark will empirically verify whether the threshold is correctly calibrated for each of the three benchmarks.\\n\\nEach trajectory prefix at step k is represented by concatenating (a) frozen Qwen/Qwen3-32B hidden-state embeddings (mean-pooled last 4 transformer layers over the action–observation sequence) with (b) recoverability delta signals. For WebShop and GAIA (tool-augmented benchmarks with structured tool-call/result pairs), these are running prefix estimates of ERR Efficiency Score deltas as defined in arXiv 2601.22352. Critically, the full ERR Efficiency Score formula (ES = RR / (1 + λC/Cmax)) requires knowing the final trajectory outcome (recovery rate RR), making it not directly computable online. CascadeWatch approximates the recoverability delta at step k using observable prefix quantities: the running cumulative cost ratio C_k/Cmax (estimated from trajectory length against the benchmark's typical maximum) and the incremental milestone completion rate, which serves as a partial recovery rate proxy. These prefix-approximated deltas are the features fed to the probe; the approximation error is bounded by the ERR paper's empirical δ ≤ 0.05 validation result, which confirms that prefix statistics are predictive of final recoverability within this tolerance. For ALFWorld (a text-based game where failures are cognitive planning errors rather than tool execution failures, and which lacks structured tool-call pairs), the domain-adapted proxy is step-level delta in the normalized ALFWorld game score (Δ(info['score'] / info['max_score']) at each step), which tracks incremental subgoal-completion rate. This is an acknowledged heuristic extension of the ERR framework; whether the recoverability motivation holds for this proxy is explicitly tested in the ablation.\\n\\nA 2-layer MLP probe (with L2 weight decay 1e-4) outputs P(cascade | prefix_k), with Platt scaling applied on a stratified held-out validation split. Training data sparsity is addressed by (i) 3-fold cross-validation stratified by benchmark (ALFWorld / WebShop / GAIA) to estimate generalization without benchmark leakage, and (ii) a parallel logistic probe baseline to assess whether MLP complexity is justified over this small labeled set. The GAIA cascade probe operates near the minimum viable supervised learning regime (~27 training samples per fold in 3-fold CV across ~35–40 GAIA cascade-positive examples); GAIA results are consequently treated as preliminary evidence, with ALFWorld (~65–75 cascade-positive examples, ~43–50 per fold) providing the primary evidence base for the main cascade-avoidance claim.\\n\\nCascadeWatch requires no modification to the base agent and does not require retraining the agent backbone; deploying CascadeWatch with a different LLM backbone requires retraining only the lightweight MLP probe (~3–5 H100-hours) against that backbone's embedding space, not retraining the agent itself. This is a meaningful practical advantage over BacktrackAgent, which requires constructing a task-specific training dataset and fine-tuning agent components, and over TrajAD, which fine-tunes a 4B model via QLoRA and must be retrained per backbone.\\n\\nThe rollback mechanism is specified per benchmark. For ALFWorld, environment-state rollback is performed via command-replay from env.reset(): the TextWorld gym environment is reset to the initial observation, then the k−1 accepted actions from the checkpoint buffer are re-executed sequentially to reconstruct game state at step k−1. The ALFWorld game engine processes each text command in approximately 1–2ms; for typical episodes capped at 50 steps, rollback at step k incurs roughly 25–100ms wall-clock overhead—negligible relative to LLM inference time. A checkpoint buffer stores accepted action sequences at each step to enable replay without re-querying the LLM. Note that TextWorld's Python API does not expose a save/restore mechanism for Glulx-format (.ulx) games used in ALFWorld competition settings, so command-replay is the correct mechanism; the O(k) replay cost is in game-engine steps, not LLM compute. For WebShop and GAIA, context-only rollback rewinds the agent context window to step k_checkpoint, masks all subsequent actions and observations, and re-samples an alternative action with temperature +0.3. Context-only rollback does not undo irreversible WebShop web-state changes (e.g., submitted searches), which is explicitly noted as a limitation; the WebShop simulation environment resets between episodes, so irreversibility affects intra-episode recovery quality but not cross-episode evaluation validity.\\n\\nA false-positive circuit-breaker limits rollback to a maximum of 2 triggers per episode; after the second trigger, monitoring is suspended for the remainder of the episode to prevent compounding disruption. Before full evaluation, we run the Intervention Paradox's 50-task pilot test on each benchmark to empirically verify that CascadeWatch's cascade-specific intervention is net-positive (p > d/(r+d)) on that benchmark; benchmarks where the pilot test fails are reported as negative results, not omitted.\\n\\nWe include a pre-registered 4-way ablation: (a) frozen embeddings only → logistic probe, (b) recoverability-delta features only → logistic regression (no embeddings), (c) full CascadeWatch (embeddings + recoverability-delta) → 2-layer MLP, and (d) AgentErrorBench-only training (no synthetic augmentation) → 2-layer MLP, to quantify the noise contribution of the synthetic trajectory-level proxy labels versus high-precision expert labels. The primary empirical claim is that CascadeWatch achieves task success rate improvement over no-correction baselines on ALFWorld, GAIA, and WebShop while avoiding the performance degradation caused by generic critics observed in the Intervention Paradox—demonstrating for the first time that cascade-specific precision is sufficient to make rollback net-positive on benchmarks where generic critics fail. The recoverability-delta ablation serves as an internal validation gate: if recoverability-delta provides ≥3% F1 lift over frozen embeddings alone, the ERR-motivated feature design is empirically confirmed; if the lift is <3%, the theoretical ERR motivation weakens substantially and this is reported honestly as a negative result on the recoverability signal hypothesis. We evaluate task success rate, steps saved per episode, and false-positive intervention rate against no-correction, ExpeL-style reflection, self-verification, T-STAR offline, TrajAD-style general anomaly detection, and ProMAS-style detection-only baselines on ALFWorld, WebShop, and GAIA (subject to pilot test results). Including TrajAD as an explicit baseline tests whether cascade-specific detection (step ≥ 5 threshold + ERR signal + expert labels) outperforms general anomaly detection (no threshold + synthetic labels + process inefficiency triggering) in the Intervention Paradox regime.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~100-140 H100-hours total: rollout generation ~45 H100-hours (Qwen/Qwen3-32B runs in BF16 on 1× H100-80GB without quantization—32B × 2 bytes ≈ 64GB, within the 80GB VRAM budget; inference throughput roughly doubles relative to a 72B model; ~45h covers ~5K synthetic rollouts across three benchmarks at three temperatures, including environment interaction overhead and tool-call latency for GAIA tasks); probe training ~10 H100-hours (5-fold CV × 4-way ablation × logistic/MLP variants; these are small models, <1h each); evaluation runs ~45–85 H100-hours across three benchmarks + pilot tests (50 tasks × 3 benchmarks × 2 conditions per test). ALFWorld command-replay rollback adds <1 H100-hour overhead across all evaluation episodes.\",\n      \"gpu_utilization\": \"~30–40% effective utilization; high idle between human coding, debugging, and analysis cycles\",\n      \"timeline\": \"4–6 months\",\n      \"team\": \"2 researchers\",\n      \"estimated_gpu_cost\": \"~$200–$280 at ~$2/H100-hour\"\n    },\n    \"human_in_loop\": {\n      \"scope_note\": \"Compressed to satisfy the joint ≤16-day calendar / ≤200 H100-hour constraint. Primary benchmarks: ALFWorld + GAIA + WebShop (all three, matching TrajAD's evaluation surface). Synthetic rollouts: 2,000 total at 2 temperatures (T=0.7, T=1.0); 3-fold CV. Human gates: cascade label validation (including review of synthetic trajectory-level proxy labeling procedure), pilot test pass/fail judgment per benchmark, ablation design review, threshold decisions. Human engagement: 2–3 hours/day.\",\n      \"compute_breakdown\": \"Rollout generation (2K rollouts × 2 temperatures = 4K trajectories; ~1K ALFWorld + 1K GAIA + 1K WebShop per temperature): ~15–20 H100-hours (ALFWorld ~2–3h; GAIA ~8–12h including tool-call overhead; WebShop ~5–8h; Qwen/Qwen3-32B BF16 on 1× H100-80GB without quantization). Probe training (3-fold CV × 4-way ablation × logistic/MLP): ~4–6 H100-hours. Pilot tests (50 tasks × 3 benchmarks × 2 conditions × 2 seeds = 600 episodes): ~10–15 H100-hours. Full evaluation (post-pilot, 3 benchmarks × 4 baselines + CascadeWatch): ~35–50 H100-hours. Buffer/debugging: ~5–10 H100-hours. Total: ~69–101 H100-hours.\",\n      \"gpu_hours\": \"~69–101 H100-hours (well within ≤200 H100-hour constraint)\",\n      \"gpu_utilization\": \"~60–70% utilization; human approval gates reduce compute waste on dead-end ablations\",\n      \"timeline\": \"12–14 calendar days (rollout generation days 1–3, labeling + probe training days 2–5, pilot tests with human review days 5–9, full evaluation days 8–12 with GAIA and WebShop evaluations running in parallel, analysis and write-up days 10–14)\",\n      \"team\": \"1 researcher, ~2–3 hours/day check-in\",\n      \"claude_api_cost\": \"$150–$250\",\n      \"estimated_gpu_cost\": \"~$138–$202 at ~$2/H100-hour\",\n      \"risk_note\": \"Small labeled training set (200 trajectories, all failures) risks MLP overfitting; confirmed-cascade criterion and synthetic proxy labeling strategy are critical human-gate decisions. Synthetic trajectory-level proxy labels are coarser than expert annotations; the AgentErrorBench-only ablation (4-way ablation arm d) will quantify this noise. GAIA evaluation results should be treated as preliminary evidence (~27 cascade-positive training samples per fold in 3-fold CV) pending replication on a larger annotated set. ALFWorld ERR proxy (game score delta) is a domain adaptation—its F1 contribution must be validated in ablation before committing to full evaluation on ALFWorld. WebShop context-only rollback does not undo irreversible intra-episode web-state changes (submitted searches); this is a limitation of the intervention mechanism, not the detection mechanism, and is explicitly noted. Pilot test (50 tasks × 3 benchmarks) must be reviewed by human before committing to full evaluation on each benchmark.\"\n    },\n    \"auto_research\": {\n      \"note\": \"This mode exceeds the primary ≤200 H100-hour constraint and is presented as an extended evaluation scenario for teams with unrestricted compute, not a valid path within the joint 16-day/200 H100-hour constraint. Included for completeness only.\",\n      \"gpu_hours\": \"~300–450 H100-hours (3–5× more ablations across probe architectures, threshold strategies, feature combinations, augmentation volumes, rollback trigger policies, and minimum-step thresholds; reduced from prior estimates due to Qwen/Qwen3-32B being more compute-efficient than the previously specified 72B model)\",\n      \"gpu_utilization\": \"~85–95%; near-zero idle as agent continuously queues and launches experiments\",\n      \"timeline\": \"3–10 days with 4+ H100s in parallel\",\n      \"team\": \"0 (initial setup only)\",\n      \"claude_api_cost\": \"$350–$600\",\n      \"estimated_gpu_cost\": \"~$600–$900\",\n      \"speed_bottleneck\": \"Number of H100s available; rollout generation dominates throughput\",\n      \"risk_note\": \"Automated cascade label derivation for synthetic trajectories uses trajectory-level failure proxy (step k ≤ ⌊N/2⌋ in failed trajectories)—coarser than expert confirmed-cascade criterion. No human oversight to detect always-predict-cascade degenerate solutions or validate that the synthetic proxy is not systematically mis-labeling self-correcting trajectories. Pilot test pass/fail judgment and Intervention Paradox threshold calculation require human review—an agent may proceed to full evaluation on benchmarks where intervention is net-negative. ALFWorld ERR proxy domain adaptation requires human judgment to validate before scaling.\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 (ARR deadline May 25, 2026)\",\n    \"AAAI 2027 (abstract deadline expected ~August 2026)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"Where LLM Agents Fail and How They can Learn From Failures (arXiv 2509.25370, 2025)\",\n    \"Recoverability Has a Law: The ERR Measure for Tool-Augmented Agents (arXiv 2601.22352, 2026)\",\n    \"The Intervention Paradox: Accurate Failure Prediction in Agents Does Not Imply Effective Failure Prevention (arXiv 2602.03338, 2026)\",\n    \"Capable but Unreliable: Canonical Path Deviation as a Causal Mechanism of Agent Failure in Long-Horizon Tasks (arXiv 2602.19008, 2026)\",\n    \"TrajAD: Trajectory Anomaly Detection for Trustworthy LLM Agents (arXiv 2602.06443, 2026)\",\n    \"InferAct: Inferring Safe Actions for LLM-Based Agents Through Preemptive Evaluation and Human Feedback (arXiv 2407.11843, EMNLP 2025, pages 222–244)\",\n    \"MASC: Metacognitive Self-Correction for Multi-Agent Systems via Prototype-Guided Next-Execution Reconstruction (arXiv 2510.14319, 2025)\",\n    \"Trajectory Guard: A Lightweight, Sequence-Aware Model for Real-Time Anomaly Detection in Agentic AI (AAAI TrustAgent Workshop 2026, arXiv 2601.00516)\",\n    \"ProMAS: Proactive Error Forecasting for Multi-Agent Systems Using Markov Transition Dynamics (arXiv 2603.20260, 2026)\",\n    \"From Spark to Fire: Modeling and Mitigating Error Cascades in LLM-Based Multi-Agent Collaboration (arXiv 2603.04474, 2026)\",\n    \"ProbGuard: Probabilistic Runtime Monitoring for LLM Agent Safety (arXiv 2508.00500, 2025)\",\n    \"Auditing Cascading Risks in Multi-Agent Systems via Semantic–Geometric Co-evolution (ICLR Workshop 2026, arXiv 2603.13325)\",\n    \"Towards Self-Improving Error Diagnosis in Multi-Agent Systems (arXiv 2604.17658, 2026)\",\n    \"Crab: A Semantics-Aware Checkpoint/Restore Runtime for Agent Sandboxes (arXiv 2604.28138, 2026)\",\n    \"Reason in Chains, Learn in Trees: Self-Rectification and Grafting for Multi-turn Agent Policy Optimization (arXiv 2604.07165, 2026)\",\n    \"Self-Verification Dilemma: Experience-Driven Suppression of Overused Checking in LLM Reasoning (arXiv 2602.03485, 2026)\",\n    \"Beyond Fluency: Toward Reliable Trajectories in Agentic IR — position paper on failure modes, not empirical cascade measurement (arXiv 2604.04269, 2026)\",\n    \"BacktrackAgent: Enhancing GUI Agent with Error Detection and Backtracking Mechanism (EMNLP 2025, arXiv 2505.20660)\",\n    \"Step Back to Leap Forward: Self-Backtracking for Boosting Reasoning of Language Models (arXiv 2502.04404, 2025)\",\n    \"Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification (arXiv 2504.05419, 2025)\"\n  ],\n  \"description\": \"Long-horizon agent tasks suffer from cascade failures: a single early error propagates across subsequent steps, compounding recovery cost. The critical challenge is the Intervention Paradox (arXiv 2602.03338): a generic critic with AUROC 0.94 causes up to 26 percentage point degradation by disrupting self-correcting trajectories, with all observed regressions occurring at early intervention steps (steps 0–1) on HotPotQA and GAIA—ALFWorld is the exception where early intervention yields modest gains. The solution requires cascade-specific, high-precision detection rather than general failure prediction or general anomaly detection. We propose CascadeWatch, an inference-time monitor that targets cascade onset specifically using frozen Qwen/Qwen3-32B hidden-state embeddings (HuggingFace: Qwen/Qwen3-32B; 32B dense model; 64GB BF16; fits in 1× H100-80GB without quantization) combined with running prefix estimates of ERR Efficiency Score recoverability deltas to estimate P(cascade_failure | prefix_k) at each step, with a minimum trigger threshold of step ≥ 5. This threshold is doubly grounded: (1) AgentErrorBench shows cascade-initiating errors begin at step 5, so cascade-onset detection is mechanistically impossible before step 5; (2) the Intervention Paradox recommends min_step ≥ 2 to avoid regression-causing early interventions—step ≥ 5 is more conservative than this recommendation. For WebShop and GAIA (tool-augmented benchmarks), recoverability deltas are running prefix estimates of ERR Efficiency Score quantities (arXiv 2601.22352), approximated from observable cumulative cost ratios and incremental milestone completion rates without requiring final trajectory outcomes. For ALFWorld (text-based game with cognitive planning errors, not tool execution failures), a domain-adapted proxy is used: step-level delta in the normalized ALFWorld game score, acknowledged as a heuristic extension and isolated in the ablation.\\n\\nTraining uses AgentErrorBench's 200 expert-annotated trajectories (all failure trajectories by design; ALFWorld: 100, GAIA: 50, WebShop: 50) augmented with ~2,000 synthetic rollouts. Cascade label derivation differs by data source: AgentErrorBench trajectories use the confirmed-cascade criterion (root-cause step before trajectory midpoint per expert critical_failure_step annotation), yielding approximately 65–75 cascade-positive examples from ALFWorld, 35–40 from GAIA, and 35–40 from WebShop (~135–155 total). Synthetic trajectories use a trajectory-level failure proxy (cascade-positive = any step k ≤ ⌊N/2⌋ in a failed trajectory), which is coarser—it does not identify the specific root-cause step. The training corpus is an acknowledged mixture of high-precision real labels and lower-precision synthetic labels; a 4-way ablation includes an AgentErrorBench-only arm (no synthetic augmentation) to quantify the noise contribution of the synthetic proxy.\\n\\nCascadeWatch is positioned precisely among nine distinct neighboring systems. (1) TrajAD (arXiv 2602.06443) fine-tunes Qwen3-4B with QLoRA on TrajBench synthetic perturbation labels for general trajectory anomaly detection on ALFWorld, GAIA, and WebShop, explicitly enabling rollback-and-retry via error localization; TrajAD's three anomaly types include 'Process Inefficiency' (loops/detours) which is precisely the self-correctable deviation class that the Intervention Paradox shows causes regression when interrupted—TrajAD has no step threshold and does not address the Intervention Paradox tradeoff. CascadeWatch differs: trained on AgentErrorBench expert cascade root-cause annotations (not synthetic perturbations), targeting only recoverability-degrading cascade-onset prefixes (not process inefficiencies), imposing step ≥ 5 threshold calibrated to both the Intervention Paradox and AgentErrorBench's cascade-onset distribution, and requiring no model fine-tuning (frozen external probe). CascadeWatch evaluates on the same ALFWorld/GAIA/WebShop triple as TrajAD, enabling a direct head-to-head comparison. (2) InferAct (arXiv 2407.11843, EMNLP 2025) uses Theory-of-Mind reasoning to detect single-step actions misaligned with user intent on WebArena, ALFWorld, and HotpotQA, achieving up to 20% Marco-F1 improvement, alerting humans for correction; InferAct targets single-step authorization misalignment while CascadeWatch targets multi-step cascade propagation using ERR recoverability prefix estimates, with automated rollback rather than human alerting. (3) MASC (arXiv 2510.14319) detects cascading errors in multi-agent systems via unsupervised Prototype-Guided Next-Execution Reconstruction on Who&When; CascadeWatch targets single-agent cascade onset using supervised ERR-motivated recoverability labels on ALFWorld, GAIA, and WebShop. (4) Canonical Path Deviation (arXiv 2602.19008) identifies stochastic drift from canonical solution paths—aggregated from multiple successful runs per task—as a long-horizon failure mechanism, achieving +8.8pp improvement via restart of lowest-adherence runs; CascadeWatch uses single-trajectory recoverability prefix estimates (no canonical paths required) and performs targeted rollback rather than full restarts. (5) ErrorProbe (arXiv 2604.17658) is a contemporaneous offline diagnostic for multi-agent systems using backward tracing and multi-agent verification teams; CascadeWatch is an online single-agent monitor with automated rollback, not an offline diagnostic. (6) From Spark to Fire (arXiv 2603.04474) proposes a genealogy-graph governance layer for cascade mitigation in multi-agent collaboration; CascadeWatch addresses single-agent cognitive cascade failure where there are no inter-agent message dependencies. (7) ProMAS (arXiv 2603.20260) raises alerts in multi-agent reasoning but provides no corrective action and evaluates only on Who&When. (8) ProbGuard (arXiv 2508.00500) softly intervenes on physical safety constraints via symbolic DTMC. (9) Trajectory Guard (arXiv 2601.00516) uses a Siamese Recurrent Autoencoder for general structural anomaly detection at 32ms but targets reconstruction deviation on security audit and multi-agent benchmarks, provides no rollback.\\n\\nUnlike BacktrackAgent (arXiv 2505.20660, EMNLP 2025), which trains a verifier-judger-reflector pipeline for GUI action errors, CascadeWatch requires no modification to the base agent; unlike TrajAD, it requires no backbone fine-tuning—deploying on a different backbone requires retraining only the MLP probe (~3–5 H100-hours). Unlike Self-Backtracking (arXiv 2502.04404), which trains the LLM itself, CascadeWatch operates as a frozen external probe. Prior hidden-state probing (arXiv 2504.05419) targets single-step reasoning correctness for token reduction; CascadeWatch targets multi-step cascade onset with ERR recoverability prefix estimates as a second feature channel.\\n\\nRollback: for ALFWorld, command-replay from env.reset() (~25–100ms for 50-step episodes; TextWorld's Python API does not expose save/restore for Glulx-format .ulx games); for WebShop and GAIA, context-only rollback (does not undo irreversible intra-episode web-state changes—acknowledged as limitation; WebShop simulation resets between episodes so this affects recovery quality but not evaluation validity). Cascade-positive training examples: ~135–155 from AgentErrorBench expert annotations before synthetic augmentation. GAIA probe operates near minimum viable supervised learning regime; GAIA results are preliminary evidence. Primary empirical claim: CascadeWatch achieves task success rate improvement over no-correction baselines on ALFWorld, GAIA, and WebShop while avoiding the performance degradation caused by generic critics and general anomaly detectors—demonstrating that cascade-specific precision with Intervention Paradox–calibrated thresholding is sufficient to make rollback net-positive on benchmarks where generic critics fail. TrajAD is included as an explicit comparison baseline on the identical ALFWorld/GAIA/WebShop triple. Recoverability-delta ablation: ≥3% F1 lift confirms ERR-motivated design; <3% is reported as a negative result. Compressed HIL mode fits within ~69–101 H100-hours and 12–14 calendar days.\",\n  \"project_name\": \"cascade_monitor\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"CRITICAL MISSING RELATED WORK: ProMAS (arXiv 2603.20260, March 2026) — 'Proactive Error Forecasting for Multi-Agent Systems Using Markov Transition Dynamics' — directly pre-empts the core contribution. It proactively predicts failures from trajectory prefixes using semantic displacement features + MLP Proactive Prediction Head, achieving 22.97% step-level accuracy while processing only 27% of reasoning logs. Without citing and clearly differentiating from ProMAS, reviewers will reject on novelty grounds.\", \"CRITICAL MISSING RELATED WORK: ProbGuard (arXiv 2508.00500, August 2025) — 'Probabilistic Runtime Monitoring for LLM Agent Safety' — learns a DTMC from execution traces to estimate P(reaching unsafe states) at each step and triggers intervention when risk exceeds threshold. This is structurally isomorphic to CascadeWatch (P(cascade) > threshold → intervention). Though applied to physical safety, not cognitive-task cascades, it must be discussed in related work.\", \"Training data is critically sparse: ~200 labeled trajectories total (100 ALFWorld, 50 WebShop, 50 GAIA). Even with 5K synthetic augmentation, the distribution shift between synthetic (Qwen3-72B backbone rollouts) and the human-annotated test distribution may dominate. No cross-validation strategy or regularization design is specified to guard against overfitting the 2-layer MLP to this small set.\", \"Rollback mechanism underspecified for stateful environments: ALFWorld and WebShop are simulators with action-irreversible state (e.g., picking up an object, submitting a search). 'Targeted rollback to the last low-risk checkpoint' requires either full simulator state serialization at every step (not costed, adds significant engineering overhead) or is limited to context-only rollback (which does NOT undo executed actions). This is a core mechanism that must be precisely defined.\", \"Resource estimate does not explicitly convert A100-hours to H100-hours. Qwen3-72B requires 2× A100 80GB or 1× H100 80GB for FP16 inference, so the stated '~80h A100 for rollout generation' should read '~80h × 2 GPUs = ~160 A100-GPU-hours = ~80 H100-hours.' Total revised estimate: ~145-160 H100-hours (still within 200, but needs to be shown explicitly).\", \"Cascade label derivation from root-cause annotations introduces labeling noise: not all trajectories with a root-cause error at step k actually produce cascades — some errors are contained. The label = 'any step ≥ earliest root-cause error is cascade-onset' assumption will generate false cascade labels for trajectories where the agent partially recovers, inflating cascade-positive counts and degrading classifier reliability.\", \"No ablation is planned to isolate the contribution of ERR-delta features vs. hidden-state embeddings alone. Without this ablation, the paper cannot claim that integrating ERR adds value, which is the key technical differentiator from ProMAS. If ERR adds ≤1% over embeddings-only, the theoretical motivation weakens substantially.\", \"False-positive compounding is unaddressed: if the monitor fires at step k and the re-sampled action (with elevated temperature) is worse than the original, the agent is now at step k with a potentially worse trajectory prefix. There is no circuit-breaker to prevent repeated triggers, which could lead to worse outcomes than no correction at all.\", \"The 'Snowball Effect' paper (arXiv 2604.04269) is cited as quantifying 'exponential error amplification,' but from the abstract it is a position/analysis paper about agentic IR, not an empirical measurement of cascade amplification rates that can be cited as empirical support. The claim should be qualified.\"]\nFeedback: The core idea — a lightweight probe combining frozen LLM hidden-state features with ERR-derived recoverability signals to trigger early rollback — is technically coherent and the supporting evidence (AgentErrorBench, ERR paper) is well-chosen. The revision should focus on three surgical changes that would materially strengthen the paper for EMNLP:\n\n1. **Differentiate from ProMAS and ProbGuard explicitly.** Add both to related work. The differentiating argument should be: (a) ProMAS uses Markovian transition dynamics between quantized semantic clusters but has no corrective action mechanism; CascadeWatch is the first proactive monitor that triggers hard rollback rather than only raising an alert. (b) ProbGuard operates via prompt-injection intervention on physical safety constraints using a DTMC; CascadeWatch targets cognitive-task cascade failure using frozen neural representations + recoverability signals. Frame CascadeWatch as the first system that closes the loop: ProMAS detects, ProbGuard detects and softly intervenes — CascadeWatch detects and hard-rollbacks with empirically validated cascade labels.\n\n2. **Make rollback concrete.** For stateful environments (ALFWorld, WebShop), specify whether rollback restores full simulator state (requiring explicit checkpoint saving at each step) or is context-only (rewinding the prompt/observation history while leaving environment state unchanged). Context-only rollback is implementable in 16 days and sufficient to demonstrate the method; hard state rollback requires environment-specific engineering. Pick one, specify it, and note the limitation for the other case.\n\n3. **Add the ablation that proves ERR adds value.** The only new feature CascadeWatch contributes over ProMAS is the ERR-derived Efficiency Score delta signals. Budget 20-30 A100-hours for a 3-way ablation: (a) embeddings-only probe, (b) ERR-deltas-only logistic regression, (c) full CascadeWatch. If ERR provides ≥3% F1 lift over (a), this is the central empirical result of the paper and should be foregrounded.\n\nMinor: Fix the resource estimate to show explicit H100-hour conversion. Address label noise in cascade derivation by adding a 'cascade confirmed' criterion (e.g., task fails AND root-cause step is before the midpoint). Add a false-positive circuit-breaker (max 2 rollbacks per episode).\n\n### Round 2 review\nVerdict: revise\nIssues: [\"CRITICAL — TextWorld save_game/restore_game API is factually incorrect: TextWorld core.py has no save_game or restore_game methods (confirmed via GitHub); the Glulx interpreter's text-level save/restore commands exist but are documented as disabled for ALFWorld competition games (TextWorld GitHub issue #161); the only state-copy mechanism is env.copy(), which does not support .ulx Glulx games and incurs full environment duplication cost, not 5ms. The rollback implementation must be redesigned: either use command-replay from reset (O(k) cost, not 5ms — must be costed), use Jericho's RAM-save for .z8 format games (different game engine, not ALFWorld), or acknowledge ALFWorld rollback is also context-only. The title 'Hard Rollback' is misleading if ALFWorld's claimed mechanism doesn't exist.\", \"CRITICAL — Hard constraint incompatibility: the 16-day timeline and ≤200 H100-hour compute budget cannot be jointly satisfied. Manual mode: 135–175 H100-hours (within budget) but 4–6 months (violates 16 days). HIL mode: 180–220 H100-hours (within budget) but 4–8 weeks (violates 16 days). Auto-research mode: 3–10 days (within 16 days) but 480–600 H100-hours (2.4–3× the 200-hour limit). The paper must either restructure the HIL mode to be achievable in 16 days under 200 H100-hours (e.g., 3–4 benchmarks only, no ablation sweep, 2K rollouts instead of 5K), or honestly acknowledge that a 16-day execution requires either compute overage or reduced scope.\", \"MISSING RELATED WORK — BacktrackAgent (arXiv 2505.20660, May 2025): a framework for GUI agent error detection and backtracking with verifier, judger, and reflector modules. The conceptual overlap (error detection → backtracking trigger) must be acknowledged and differentiated. CascadeWatch's differentiator is cascade-specific detection using recoverability signals, not the backtracking trigger mechanism itself.\", \"MISSING RELATED WORK — 'Step Back to Leap Forward: Self-Backtracking for Boosting Reasoning of Language Models' (arXiv 2502.04404, Feb 2025): trains LLMs to internalize when and where to backtrack during both training and inference. Must be cited to clarify that CascadeWatch is an external monitor (does not require model retraining) and targets cascade failure specifically, not general reasoning dead-ends.\", \"MISSING RELATED WORK — 'Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification' (arXiv 2504.05419, Apr 2025): uses frozen LLM hidden-state probes for correctness prediction with 24% token reduction in reasoning tasks. The mechanism is structurally similar to CascadeWatch's frozen Qwen3-72B embedding + MLP probe. Must be cited; key differentiation is that CascadeWatch targets agent cascade failure (multi-step trajectory prefixes) rather than single-step answer correctness.\", \"ERR applicability gap: the ERR paper (arXiv 2601.22352) formalizes recoverability for tool-augmented agents recovering from tool execution failures (e.g., API errors, failed web actions). ALFWorld is a text-based game where failures are cognitive planning errors, not tool execution failures. The paper must explicitly address how the Efficiency Score observable is computed for ALFWorld trajectories that lack structured tool-call/result pairs, or qualify that ERR-delta features apply only to WebShop and GAIA (which involve tool use) and use a different recoverability proxy for ALFWorld.\", \"Title inconsistency: the paper is titled 'CascadeWatch: Cascade-Onset Detection with Hard Rollback' but WebShop and GAIA receive only context-only rollback (which explicitly does not undo executed web-state changes). If ALFWorld's save_game/restore_game API doesn't exist either, then no benchmark achieves hard rollback. Either fix the rollback mechanism for at least one benchmark to be genuinely hard, or rename to 'CascadeWatch: Cascade-Onset Detection with Targeted Rollback'.\", \"Resource estimate inconsistency: the auto-research mode (480–600 H100-hours) is presented as a valid execution mode but exceeds the stated hard constraint of ≤200 H100-hours by 2.4–3×. The auto-research section should be framed as 'extended evaluation beyond constraint' or the constraint should be explicitly re-evaluated for that mode.\"]\nFeedback: The Round 2 revision successfully addresses five of nine Round 1 issues: ProMAS and ProbGuard are now explicitly differentiated, the confirmed-cascade criterion fixes label noise, the 3-way ablation is pre-registered, the H100-hour conversion is shown, and the circuit-breaker is specified. The idea remains technically sound and well-motivated. Three surgical changes are needed for Round 3:\n\n1. **Fix the ALFWorld rollback claim (highest priority).** The save_game/restore_game methods do not exist in TextWorld's Python API, and the Glulx-level save commands are disabled for ALFWorld competition games. Replace with one of: (a) command-replay rollback from env.reset() — acknowledge the O(k) replay cost and add ~5–10 H100-hours to the compute estimate; (b) restrict to context-only rollback for all three benchmarks and retitle accordingly; (c) prototype with Jericho's .z8 RAM-save API, but note this uses a different game format from standard ALFWorld. Option (b) is achievable in 16 days; option (c) risks benchmark mismatch. Whatever you choose, the 5ms claim must be removed.\n\n2. **Add three missing citations with differentiation.** For BacktrackAgent (2505.20660): 'Unlike BacktrackAgent's trained verifier-judger-reflector pipeline for GUI actions, CascadeWatch uses a cascade-specific probe targeting recoverability-degrading prefix patterns, without modifying the base agent.' For Self-Backtracking (2502.04404): 'Self-Backtracking trains the base LLM to internalize rollback decisions; CascadeWatch requires no model retraining and operates as an external monitor on any frozen agent.' For hidden-state probes (2504.05419): 'Prior work probes hidden states for single-step answer correctness in reasoning tasks; CascadeWatch probes multi-step trajectory prefixes for cascade onset in long-horizon agent tasks, adding ERR-delta recoverability signals as a second feature channel.'\n\n3. **Resolve the 16-day/200 H100-hour joint constraint.** The only execution path within both constraints is a compressed HIL mode: reduce to 2 benchmarks (ALFWorld + GAIA), 2K synthetic rollouts at 2 temperatures, 3-fold CV instead of 5-fold, and daily human engagement of 2–3 hours rather than 30 minutes. This brings estimated compute to ~120–140 H100-hours and calendar time to 12–14 days. Show this math explicitly.\n\nMinor: Qualify ERR-delta applicability — note that for ALFWorld, Efficiency Score deltas are computed from step-level reward signals (ALFWorld provides intermediate rewards) rather than from tool-call success rates, and acknowledge this is a domain adaptation of the ERR framework.\n\n### Round 3 review\nVerdict: revise\nIssues: [\"UNACKNOWLEDGED COMPETITOR — arXiv 2602.19008 'Capable but Unreliable: Canonical Path Deviation as a Causal Mechanism of Agent Failure in Long-Horizon Tasks' (Feb 2026, Wilson Y. Lee) directly analyzes why long-horizon agents fail by measuring stochastic drift from canonical solution paths. The key finding—that adherence gaps become significant only at 75% trajectory completion and that drift is self-reinforcing—is structurally equivalent to cascade-onset propagation, using path adherence as the recoverability-degrading signal. CascadeWatch must cite this and explain why detecting recoverability-delta (ERR Efficiency Score) is preferable to detecting canonical path deviation as an early-warning signal.\", \"UNACKNOWLEDGED RELATED WORK — arXiv 2603.04474 'From Spark to Fire: Modeling and Mitigating Error Cascades in LLM-Based Multi-Agent Collaboration' (March 2026) explicitly models cascade error propagation in LLM-based systems and proposes a governance layer with rollback via message-layer blocking, achieving defense success rate from 0.32 to 0.89. Although this is multi-agent and uses genealogy graphs rather than trajectory-prefix probes, EMNLP reviewers will find it. CascadeWatch should explicitly state: this paper targets multi-agent distributed collaboration; CascadeWatch targets single-agent long-horizon cognitive failure in text-game and tool-augmented environments. The distinction is real but must be stated.\", \"AGENT-SPECIFICITY CLAIM IS MISLEADING: The paper claims CascadeWatch is 'deployable on any frozen agent without model retraining.' This is false as stated. The probe uses frozen Qwen3-72B hidden-state embeddings as features; deploying it with a different backbone (Claude, GPT-4o, Llama-3.3-70B) changes the embedding space entirely, requiring full probe retraining on that backbone's trajectories. The correct claim is: 'CascadeWatch requires no modification to the base agent and does not require retraining the base agent; deploying CascadeWatch with a different LLM backbone requires retraining only the lightweight MLP probe (~3–5 H100-hours), not the base agent.' This is still a meaningful practical advantage over BacktrackAgent but must be stated accurately.\", \"PRIMARY EMPIRICAL CLAIM FRAMING: The central empirical claim is stated as 'recoverability-delta provides ≥3% F1 lift over embeddings alone.' This is an ablation threshold, not a headline result. EMNLP reviewers will evaluate the paper primarily on the task success rate improvement over baselines (no-correction, ExpeL, self-verification) on ALFWorld and GAIA—especially whether CascadeWatch avoids the Intervention Paradox regression observed with generic critics. The ≥3% F1 ablation claim should be repositioned as an internal validation gate; the primary empirical claim should be the task success rate delta against baselines on pilot-test-passing benchmarks.\", \"MODEL VERSION STALENESS: The paper specifies 'frozen Qwen3-72B' as the backbone, but Qwen3.5 (released February 2026) and Qwen3.6-Plus supersede Qwen3-72B as of the submission date. This does not invalidate the method but creates a reproducibility question—which checkpoint is used? The paper should specify the exact model checkpoint (Qwen/Qwen3-72B on HuggingFace or equivalent) to ensure reproducibility, or update to Qwen3.5-72B-Instruct if that provides meaningfully better cascade signal separation.\", \"MINOR — Crab (arXiv 2604.28138) is cited in key references but its role is unclear in the paper. Crab provides semantics-aware checkpoint/restore for agent sandboxes, which is architecturally relevant to the rollback mechanism. The paper should clarify whether Crab was considered for ALFWorld rollback (and why command-replay was chosen instead) or should remove the citation if it has no direct bearing on the method.\"]\nFeedback: Round 3 has cleanly resolved all three surgical changes requested in Round 2: the ALFWorld rollback mechanism is now technically correct (command-replay from env.reset(), O(k) acknowledged, no false save_game claim), the joint 16-day/200 H100-hour constraint is satisfied in the HIL mode (80–110 H100-hours, 12–14 days), and all three requested citations are present with accurate differentiation. The idea is now coherent, well-specified, and positioned at the right level of novelty for EMNLP Findings. One more focused round is needed.\n\n**Four targeted changes for Round 4:**\n\n1. **Cite and differentiate arXiv 2602.19008 (Canonical Path Deviation).** This paper (Feb 2026) is the closest theoretical neighbor—it identifies stochastic drift from canonical solution paths as the causal mechanism of long-horizon failure, using path adherence as the early-warning signal. The differentiation argument: 'Canonical Path Deviation detects drift post-hoc using trajectory-completion statistics (significance emerges only at 75% completion); CascadeWatch targets cascade onset proactively at steps 5–15 using a trained probe on prefix embeddings + recoverability-delta, enabling intervention before the 75% threshold. Moreover, canonical path adherence requires knowing the canonical path—requiring either multiple successful runs or a verifier—while CascadeWatch's recoverability proxy is computable from single trajectories.'\n\n2. **Cite arXiv 2603.04474 (From Spark to Fire) in 1–2 sentences.** 'From Spark to Fire [citation] proposes a genealogy-graph governance layer for cascade mitigation in multi-agent collaboration; CascadeWatch addresses a structurally different failure mode—cognitive cascade failure in single-agent long-horizon tasks—using trajectory-prefix probes with recoverability signals rather than message-level graph analysis.'\n\n3. **Fix the 'any frozen agent' claim.** Change to: 'CascadeWatch requires no modification to the base agent; deploying it with a new LLM backbone requires retraining only the lightweight MLP probe (~3–5 H100-hours) against that backbone's embedding space, not retraining the agent itself.'\n\n4. **Reframe the primary empirical claim.** The headline result should be: 'CascadeWatch achieves [X]pp task success rate improvement over no-correction on ALFWorld and [Y]pp on GAIA, while avoiding the degradation caused by generic critics (Intervention Paradox) on both benchmarks.' The ≥3% F1 ablation threshold becomes the validation gate for including recoverability-delta features, not the primary claim.\n\n### Round 4 review\nVerdict: revise\nIssues: [\"MODERATE — Trajectory Guard (arXiv 2601.00516, AAAI TrustAgent Workshop 2026) is not cited despite direct framing overlap. The paper proposes a Siamese Recurrent Autoencoder with hybrid contrastive-reconstruction loss for real-time anomaly detection in agentic AI trajectories, achieving F1 0.88–0.94 while running 17–27× faster than LLM Judge baselines at 32ms inference. CascadeWatch must cite and differentiate: (a) Trajectory Guard detects general structural anomalies via reconstruction error, not cascade-specific onset via recoverability-delta signals; (b) it evaluates on security audit failures (RAS-Eval) and multi-agent systems (Who&When), not single-agent long-horizon tasks (ALFWorld, GAIA); (c) it provides no rollback or correction mechanism. These distinctions are clear and defensible, but leaving Trajectory Guard uncited risks a reviewer objection on related-work coverage.\", \"MODERATE — The claim 'Qwen/Qwen3-32B; the largest official open-weights model in the Qwen3 family' is factually incorrect. Qwen3-235B-A22B is an official open-weight MoE model published at Qwen/Qwen3-235B-A22B on HuggingFace under Apache 2.0 with 235B total parameters — larger than Qwen3-32B. The correct claim is 'the largest official open-weights dense model in the Qwen3 family' (the 32B is justified by fitting in 1× H100-80GB BF16 without quantization, not by being the absolute largest). Alternatively, drop the superlative entirely and state: 'We use Qwen/Qwen3-32B (32B dense model, 64GB BF16, fits in 1× H100-80GB without quantization).'\", \"MINOR — The GAIA training data regime (~27 samples per fold after 3-fold CV on 50 total trajectories) is acknowledged only in the resource_estimate risk_note, not in the methods or experiment design sections. The paper body should explicitly state that the GAIA cascade probe operates near the minimum viable supervised learning regime and frame GAIA results as preliminary evidence, with ALFWorld (100 trajectories, ~67 per fold) providing the primary evidence base for the main claim.\"]\nFeedback: Round 4 has cleanly addressed all four targeted issues from Round 3. Canonical Path Deviation is now extensively cited with technically precise differentiation (single-trajectory vs. multi-run signals, proactive vs. retrospective detection, targeted rollback vs. full restart). From Spark to Fire is differentiated on structural grounds (inter-agent vs. single-agent cascade). The 'any frozen agent' claim is corrected. The primary empirical claim is reframed as task success rate improvement. The ALFWorld rollback is technically correct (command-replay from env.reset(), Glulx API limitation acknowledged, Crab rationale clarified). Three short fixes will bring this to pass:\n\n1. **Add one Trajectory Guard sentence to §Related Work**: 'Trajectory Guard [arXiv 2601.00516] uses a Siamese Recurrent Autoencoder with hybrid contrastive-reconstruction loss to detect trajectory anomalies in agentic AI at 32ms, but targets general structural anomalies rather than cascade-specific onset via recoverability signals, evaluates on security audit and multi-agent benchmarks (not ALFWorld/GAIA), and provides no rollback mechanism.' This citation is necessary because its framing ('lightweight inference-time monitoring of agentic trajectories') directly overlaps with CascadeWatch's positioning.\n\n2. **Fix Qwen3-32B superlative**: Remove 'the largest official open-weights model in the Qwen3 family.' Replace with 'Qwen/Qwen3-32B (32B dense model; 64GB BF16; fits in 1× H100-80GB without quantization).' The 235B MoE model is also official and is larger; the superlative will draw reviewer scrutiny.\n\n3. **Disclose GAIA data regime in §Experiments**: Add one sentence: 'The GAIA subset (50 trajectories, ~27 training samples per fold) operates near the minimum viable supervised regime; GAIA results are treated as preliminary evidence, with ALFWorld (100 trajectories) providing the primary evidence base for the main cascade-avoidance claim.'\n\n### Round 5 review\nVerdict: revise\nIssues: [\"MODERATE — InferAct (arXiv 2407.11843, EMNLP 2025 main track, pages 222–244) is uncited despite being published at the exact target venue and explicitly framing its contribution as 'preemptive detection and correction of misaligned actions in LLM agents.' It uses Theory-of-Mind reasoning (Task Inference Unit + Task Verification Unit) to detect misaligned agent actions before execution and achieves up to 20% Marco-F1 improvement over baselines. EMNLP 2026 reviewers will know this paper and its absence will be a red flag. The distinction from CascadeWatch is real — InferAct targets single-step action misalignment with user intent (e.g., executing a buy action without user authorization) via ToM belief reasoning and requires human-in-loop correction via user alerts; CascadeWatch targets multi-step cascade propagation onset via trajectory-prefix ERR recoverability signals and triggers automated rollback — but these distinctions must be stated explicitly in related work.\", \"MINOR — MASC (arXiv 2510.14319, October 2025, revised January 2026) — 'Metacognitive Self-Correction for Multi-Agent System via Prototype-Guided Next-Execution Reconstruction' — explicitly targets cascading errors in agent systems using history-conditioned embedding anomaly scoring (Next-Execution Reconstruction + Prototype-Guided Enhancement) to trigger step-level correction, achieving +8.47% AUC-ROC on the Who&When benchmark. Though MASC is multi-agent (not single-agent), it uses an embedding-based cascade-targeting mechanism structurally related to CascadeWatch's frozen embedding probe, and its explicit 'cascading errors' framing partially occupies CascadeWatch's conceptual space. A 1–2 sentence mention with differentiation (multi-agent vs. single-agent; unsupervised reconstruction vs. supervised ERR-motivated cascade labels; Who&When vs. ALFWorld/GAIA) is needed to complete the landscape coverage.\"]\nFeedback: All three Round 4 fixes are cleanly implemented. The paper is close to pass-ready. Two targeted additions will close the remaining reviewer exposure:\n\n1. **Add InferAct to §Related Work (required):** 'InferAct [arXiv 2407.11843, EMNLP 2025] uses Theory-of-Mind reasoning to detect actions misaligned with user intent before execution and alerts users for correction, achieving up to 20% Marco-F1 improvement. InferAct addresses single-step action misalignment — whether a specific upcoming action matches user authorization — and relies on human-in-loop correction via user alerts. CascadeWatch addresses a structurally different failure mode: multi-step cascade propagation, where an early-step error compounds across subsequent trajectory steps regardless of user intent; our detection uses trajectory-prefix ERR recoverability signals rather than ToM belief inference, and our intervention is automated rollback rather than human alerting.' This distinction is accurate and defensible; the citation is necessary.\n\n2. **Add MASC to §Related Work (recommended, 1–2 sentences):** 'MASC [arXiv 2510.14319] proposes metacognitive self-correction for multi-agent systems via Prototype-Guided Next-Execution Reconstruction, detecting cascading errors at step level via history-conditioned embedding anomaly scoring and triggering correction agents; CascadeWatch differs in targeting single-agent long-horizon cognitive cascades using supervised ERR-motivated recoverability labels (not unsupervised reconstruction) and evaluating on ALFWorld/GAIA rather than the Who&When multi-agent benchmark.'\n\n### Round 6 review\nVerdict: revise\nIssues: [\"CRITICAL — TrajAD (arXiv 2602.06443, 'Trajectory Anomaly Detection for Trustworthy LLM Agents') is an uncited competitor that evaluates on ALFWorld, GAIA, AND WebShop — the exact same benchmark set as CascadeWatch — and explicitly states rollback-and-retry is essential for error recovery, using a specialized verifier trained with fine-grained process supervision. EMNLP reviewers will recognize this paper. The differentiation argument exists (TrajAD uses synthetic TrajBench perturbation labels for general anomaly detection; CascadeWatch uses AgentErrorBench's expert-annotated cascade root-causes with ERR recoverability deltas for cascade-specific onset detection; TrajAD's approach is retrospective error localization while CascadeWatch's step ≥ 5 threshold proactively targets the cascade-propagation window that the Intervention Paradox identifies as the high-risk regime), but it must be stated explicitly in §Related Work.\", \"CRITICAL — InferAct (arXiv 2407.11843, EMNLP 2025 main track, pages 222–244) remains uncited despite being flagged as required in Round 5. It evaluates on ALFWorld (among other benchmarks), is published at the exact target venue, and is preemptive detection with correction — a direct framing overlap. The absence of this citation after two review rounds of flagging will draw immediate reviewer scrutiny.\", \"MODERATE — MASC (arXiv 2510.14319) remains uncited despite being recommended in Round 5. Its history-conditioned embedding anomaly scoring for cascading errors in multi-agent systems partially occupies CascadeWatch's conceptual space and uses Who&When (not ALFWorld/GAIA) as its benchmark, making differentiation straightforward but necessary.\"]\nFeedback: Round 6 submission has made no additions relative to Round 5's required citations — InferAct and MASC are still absent. Additionally, a new high-priority competitor (TrajAD) has been independently identified that evaluates on the same benchmark triple (ALFWorld, GAIA, WebShop) with explicit rollback-and-retry. Three targeted additions are needed:\n\n1. **Add TrajAD to §Related Work (highest priority, newly identified):** 'TrajAD [arXiv 2602.06443] proposes a specialized verifier trained with fine-grained process supervision for trajectory anomaly detection on ALFWorld, GAIA, and WebShop, explicitly enabling rollback-and-retry on error localization. TrajAD is a general-purpose anomaly detector: it uses synthetic TrajBench perturbation labels covering diverse procedural deviations, not cascade-specific annotations tied to confirmed failure propagation. CascadeWatch differs in three ways: (1) detection is cascade-onset specific rather than general-anomaly — using ERR Efficiency Score recoverability deltas as the distinguishing signal for compounding-cost prefixes, not reconstruction deviation; (2) training labels come from AgentErrorBench expert root-cause annotations with the confirmed-cascade criterion (trajectory fails AND root-cause before midpoint), not synthetic perturbations; (3) the step ≥ 5 minimum intervention threshold is specifically calibrated to the Intervention Paradox finding that all observed regressions occur at step ≤ 2, a constraint TrajAD does not impose.'\n\n2. **Add InferAct to §Related Work (required, carried from Round 5):** 'InferAct [arXiv 2407.11843, EMNLP 2025] uses Theory-of-Mind reasoning to detect single-step actions misaligned with user intent before execution on WebArena, ALFWorld, and HotpotQA, achieving up to 20% Marco-F1 improvement. InferAct addresses misalignment between the upcoming action and user authorization — whether a specific action matches user intent — and relies on human-in-loop correction via alerts. CascadeWatch addresses a structurally different failure mode: multi-step cascade propagation, where an early-step cognitive error compounds across subsequent trajectory steps independent of user intent; our detection uses trajectory-prefix ERR recoverability signals rather than ToM belief inference, and our intervention is automated targeted rollback rather than human alerting.'\n\n3. **Add MASC in 1–2 sentences (recommended, carried from Round 5):** 'MASC [arXiv 2510.14319] detects cascading errors in multi-agent systems via Prototype-Guided Next-Execution Reconstruction with unsupervised embedding anomaly scoring on Who&When; CascadeWatch targets single-agent long-horizon cognitive cascades using supervised ERR-motivated recoverability labels (not unsupervised reconstruction) on ALFWorld and GAIA.'\n\n### Round 7 review\nVerdict: revise\nIssues: [\"MODERATE — Cascade label derivation for synthetic trajectories is unspecified: the confirmed-cascade criterion requires identifying the 'earliest annotated root-cause error step' for each trajectory, but the 5K synthetic rollouts from Qwen/Qwen3-32B have no expert annotations. If the automated label proxy for synthetic trajectories is 'trajectory fails AND some heuristic for early-step failure' (e.g., any step k before midpoint in a failed trajectory), this introduces systematic label noise that differs from the expert-annotated criterion used for the 200 real trajectories. The paper must explicitly state how cascade labels are derived for synthetic data — either the same confirmed-cascade criterion (which is impossible without root-cause annotation) or a degraded proxy (which must be acknowledged and its error rate estimated).\", \"MODERATE — WebShop omission weakens TrajAD comparison: TrajAD evaluates on ALFWorld, GAIA, AND WebShop; CascadeWatch's 'optional extension' framing for WebShop means the head-to-head comparison with the closest benchmark competitor is incomplete on a full third of its evaluation surface. EMNLP reviewers familiar with TrajAD will flag this. Either (a) commit to WebShop in the primary evaluation (adding ~15–25 H100-hours, which still fits within the 200-hour HIL constraint), or (b) explicitly acknowledge in the paper that the comparison is partial and that TrajAD's WebShop performance remains uncontested by CascadeWatch.\", \"MINOR — The expected number of cascade-positive examples from the 200 AgentErrorBench trajectories after applying the confirmed-cascade filter is never stated. ALFWorld has a baseline failure rate of 5.8–14.7% (per the Intervention Paradox paper), suggesting most trajectories succeed, but AgentErrorBench likely oversamples failures. Estimating that, say, 60–80 of 100 ALFWorld trajectories are failure trajectories and perhaps 40–60 pass the confirmed-cascade criterion (root-cause before midpoint) gives ~40–60 cascade-positive training examples before augmentation — this should be stated explicitly to give readers confidence in the probe's training signal without relying solely on the 5K synthetic expansion.\", \"MINOR — The Intervention Paradox's specific finding that 'all observed regressions occur at step ≤ 2' is stated as a key empirical fact grounding the step ≥ 5 threshold, but this claim is from a paper that evaluated specific benchmarks (HotPotQA, GAIA, ALFWorld) with a specific critic type. It would strengthen the paper to note whether this step-≤-2 regression finding applies uniformly across all benchmarks evaluated in that paper, or only to specific ones, to ensure the step ≥ 5 threshold is correctly calibrated for ALFWorld and GAIA specifically.\"]\nFeedback: The Round 7 submission cleanly addresses all three Round 6 critical issues — TrajAD is now extensively differentiated across four dimensions (training labels, anomaly target with Intervention Paradox awareness, architecture, recoverability signal); InferAct is cited with three substantive distinctions; MASC is differentiated on multi-agent vs. single-agent and supervised vs. unsupervised. Independent verification found no unaddressed competitor papers: the four papers I investigated (Failure is Feedback, Agent Banana, AgentEval, WebRollback) are either in different domains (multimodal retrieval, image editing), post-hoc evaluation frameworks, or web-specific rollback without cascade detection. Two targeted changes are needed for Round 8:\n\n1. **Specify the cascade label derivation procedure for synthetic trajectories (required).** The confirmed-cascade criterion requires expert-annotated root-cause steps, which don't exist for the 5K synthetic rollouts. Add one explicit paragraph: state whether synthetic trajectories are labeled using (a) an automated root-cause approximation (e.g., step where cumulative reward delta first becomes negative), (b) trajectory-level failure labels only (cascade-positive = any step k < ⌊N/2⌋ in a failed trajectory), or (c) held to the same confirmed-cascade standard (in which case, how?). If (b), acknowledge that synthetic labels are coarser than AgentErrorBench expert labels and the probe trains on a mixture of high-precision real labels and lower-precision synthetic labels — this is an important methodological caveat.\n\n2. **Resolve the WebShop evaluation gap (required for TrajAD comparison integrity).** The simplest resolution: add WebShop to the primary HIL evaluation plan. An additional ~15–25 H100-hours brings the total to ~65–100 H100-hours, still well within the 200-hour constraint and within the 12–14 day timeline (WebShop evaluation runs in parallel with GAIA evaluation). This makes the CascadeWatch vs. TrajAD comparison complete on the exact benchmark triple TrajAD uses. If WebShop is genuinely not feasible, change the framing from 'optional extension' to 'out-of-scope negative result: CascadeWatch's context-only rollback for WebShop (which cannot undo submitted searches) makes it a poor fit for this benchmark's action-irreversibility profile, unlike TrajAD's rollback-and-retry which is evaluated there.'\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-09T19:59:56.895Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-09T19:59:56.895Z",
+  "sessionId": "6e242e24-2a19-48ee-ae0a-5c329de4a697"
+}
+```
+
+---
+
+## Round 1
+
+22 recorded events
+
+### User
+
+_source line 3 · 2026-05-09T19:59:56.929Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-09 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: LLM Agents.
+
+Direction: LLM Agents — planning algorithms, memory architectures, tool use, multi-agent coordination, agent training (SFT/RL), self-correction in agentic loops, environment feedback exploitation.
+
+Contribution type: METHOD ONLY. Must propose a concrete new algorithm, training procedure, or inference-time mechanism. Reject pure benchmark / dataset / analysis ideas. Method + analysis OK if analysis validates the method.
+
+HARD CONSTRAINTS:
+1. Compute: ≤200 H100-hours total (baselines + method + ablations). Show the math.
+2. Time: ≤16 days. Build on existing OSS agent codebases (AutoGen, LangGraph, OpenManus, etc.) — no from-scratch systems.
+3. Eval: existing benchmarks only — AgentBench, WebArena, SWE-bench Verified, GAIA, ToolBench, ALFWorld, Mind2Web, τ-bench.
+
+Avoid: generic ReAct variants, plain tool retrieval, naive memory summarization. Look for: agent training with minimal RL budget, structured planning beyond flat CoT, multi-agent communication protocols, agent self-verification mechanisms.
+
+Tag: direction=agent, contribution_type=method. target_venues=["EMNLP 2026 Main", "EMNLP 2026 Findings"].**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-09?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 8/10)
+{
+  "title": "CascadeWatch: Cascade-Onset Detection with Targeted Rollback for Long-Horizon Agent Tasks",
+  "core_problem": "In long-horizon agent tasks, individual early-step errors produce cascading downstream failures that grow exponentially more costly to correct with each additional step. The core question is whether a lightweight trained monitor can prospectively detect cascade onset—predicting failure propagation before it fully manifests—to trigger targeted rollback rather than reactive reflection or full replanning. The challenge is not simply detecting failure: the Intervention Paradox (arXiv 2602.03338) establishes that generic critics with AUROC 0.94 cause up to 26 percentage point performance degradation by triggering on non-cascade failures that the agent would have self-corrected. The disruption-recovery tradeoff (Δ Success = p·r − (1−p)·d) only favors intervention on high-failure benchmarks like ALFWorld; it degrades GAIA and HotPotQA even with accurate critics. The solution is not a better generic critic but a cascade-specific one: targeting only the recoverability-degrading prefix patterns that precede confirmed cascades—detectable via recoverability proxy signals—to achieve the high precision (low d) and focused recall (high p conditional on cascade-onset) that shifts the threshold in favor of intervention. A natural alternative early-warning signal is canonical path deviation (arXiv 2602.19008): measuring Jaccard similarity of tool invocations against the convergent set shared across successful runs. This signal is empirically validated but requires aggregating tool invocation sequences from multiple successful runs per task, making it unavailable for novel tasks or low-success-rate settings. CascadeWatch uses ERR Efficiency Score recoverability deltas (arXiv 2601.22352) approximated as running prefix statistics over the agent's tool-call/result sequence without reference to other runs, enabling cascade detection in the absence of precomputed canonical paths. The rollback mechanism varies by environment affordance: for text-game environments (ALFWorld), full environment-state rollback is achieved via command-replay from env.reset(); for tool-augmented environments (WebShop, GAIA), context-only rollback rewinds the agent's context window. Neither mechanism requires a non-existent API; both are acknowledged to have environment-specific costs and limitations.",
+  "opportunity": "The cascade failure pattern is now well-characterized and trainable. AgentErrorBench (arXiv 2509.25370) provides the first systematically annotated failure taxonomy across ALFWorld, WebShop, and GAIA, with expert root-cause step annotations (critical_failure_step field, annotated by ten graduate students at Cohen's κ = 0.55) identifying where cascades originate; the dataset contains 100 ALFWorld, 50 GAIA, and 50 WebShop trajectories, all of which are failure trajectories by design (failures are deliberately oversampled). Memory and reflection errors at steps 5–15 are the most common cascade initiators, crucially occurring mid-trajectory rather than at the earliest steps where the Intervention Paradox shows all regressions occur. The ERR paper (arXiv 2601.22352) formalizes recoverability as Expected Recovery Regret and derives a measurable Efficiency Score proxy, empirically validated across five benchmarks to within δ ≤ 0.05 of observed post-failure regret—establishing that step-level recoverability is observable from trajectory prefixes and thus learnable as a predictive signal. This signal applies directly to tool-augmented agents (WebShop, GAIA) where structured tool-call/result pairs provide natural Efficiency Score observables as running prefix estimates; for text-game environments (ALFWorld), where failures are cognitive planning errors rather than tool execution failures, a domain-adapted proxy (step-level game score delta) is used instead, acknowledged as a heuristic extension. Canonical Path Deviation (arXiv 2602.19008) provides independent corroboration of the self-reinforcing cascade mechanism in long-horizon tool-use tasks: each off-canonical tool invocation raises the probability that the next invocation is also off-canonical by 22.7 percentage points, confirming that cascade propagation is empirically measurable and compounding. CascadeWatch uses recoverability signals rather than canonical path adherence specifically because recoverability deltas are approximable from a single trajectory prefix, enabling deployment where canonical paths from multiple successful runs are unavailable. BacktrackAgent (arXiv 2505.20660, EMNLP 2025) demonstrates that backtracking triggers improve GUI agent task completion on Mobile3M and Auto-UI benchmarks, but requires constructing a task-specific training dataset and fine-tuning the agent components—leaving a clear gap for an external, training-free cascade monitor that operates on any frozen agent in cognitive long-horizon tasks. The proactive detection landscape now includes TrajAD (arXiv 2602.06443) for general trajectory anomaly detection with rollback-and-retry on ALFWorld/GAIA/WebShop (no Intervention Paradox awareness, no step threshold, synthetic training labels), InferAct (arXiv 2407.11843, EMNLP 2025) for single-step action misalignment detection with human alerting on ALFWorld/WebArena, ProMAS (arXiv 2603.20260) for multi-agent error attribution, ProbGuard (arXiv 2508.00500) for physical safety monitoring, Trajectory Guard (arXiv 2601.00516) for general structural anomaly detection in agentic trajectories, and ErrorProbe (arXiv 2604.17658) for offline step-level cascade diagnosis in multi-agent systems, but none combines cascade-specific onset detection using recoverability signals with a step-threshold calibrated to the Intervention Paradox and automated targeted rollback. The labeled failure datasets, recoverability signals, and the Intervention Paradox's threshold formula together make a specific, testable hypothesis: a cascade-specific monitor using recoverability signals and a step ≥ 5 threshold will achieve sufficiently higher precision than generic critics and general anomaly detectors to make rollback net-positive on benchmarks where generic critics fail, for the first time.",
+  "landscape": "Proactive monitoring is an active and crowded area that must be navigated carefully.\n\nTrajAD (arXiv 2602.06443, February 2026) is the closest benchmark-level competitor and must be explicitly differentiated. TrajAD fine-tunes Qwen3-4B with QLoRA (affecting 1.8% of parameters) on TrajBench, a dataset synthesized via a 'Perturb-and-Complete' pipeline covering three anomaly types: Task Failure (reasoning errors, invalid tool parameters), Process Inefficiency (redundant loops and detours), and Unwarranted Continuation (failure to stop after task completion). TrajBench labels are generated synthetically through controlled perturbation injection, not expert cascade root-cause annotation. TrajAD frames detection as a joint classification-and-localization task, outputting both a binary verdict and the predicted first-error step index (Joint Exact Match: 53.75% vs. 5.81% for the best zero-shot baseline; Macro-F1: 81.81% vs. 70.43%). The paper explicitly states that rollback-and-retry is enabled by precise error localization, and evaluates on ALFWorld, GAIA, and WebShop—the same benchmark set as CascadeWatch. Four distinctions separate TrajAD from CascadeWatch. (1) Training labels: TrajAD's TrajBench uses synthetic perturbations; CascadeWatch trains on AgentErrorBench expert root-cause annotations with the confirmed-cascade criterion (trajectory fails AND root-cause step before midpoint), learning from real cascade failures with verified propagation, not synthetic deviations. (2) Anomaly target and Intervention Paradox awareness: TrajAD's 'Process Inefficiency' category—loops and detours that are semantically valid but suboptimal—is precisely the class of self-correctable deviations that the Intervention Paradox (arXiv 2602.03338) shows causes performance degradation when interrupted; triggering on these raises d in the disruption-recovery tradeoff (Δ Success = p·r − (1−p)·d) and explains why generic critics with AUROC 0.94 still degrade performance. CascadeWatch targets only recoverability-degrading cascade-onset prefixes (not process inefficiencies or unwarranted continuations), and imposes a step ≥ 5 minimum threshold specifically calibrated to the Intervention Paradox's empirical finding that all observed regressions occur at steps 0–1 (on HotPotQA and GAIA; ALFWorld is the exception where early intervention yields modest gains). TrajAD has no step threshold and does not reference or address the Intervention Paradox. (3) Architecture: TrajAD fine-tunes a 4B model via QLoRA, modifying model weights and requiring backbone-level training infrastructure. CascadeWatch trains a 2-layer MLP probe on frozen Qwen/Qwen3-32B embeddings combined with ERR recoverability deltas, requiring no modification to the base agent; deploying on a different backbone requires retraining only the MLP probe (~3–5 H100-hours). (4) Recoverability signal: TrajAD introduces no ERR-motivated recoverability channel; CascadeWatch's ERR Efficiency Score running prefix estimates specifically measure the compounding cost of cascade continuation, providing a principled signal for distinguishing cascade-onset from recoverable anomalies.\n\nInferAct (arXiv 2407.11843, EMNLP 2025 main track, pages 222–244) uses Theory-of-Mind reasoning grounded in LLM belief inference to detect single-step actions misaligned with user intent before execution on WebArena (web shopping), ALFWorld (household tasks), and HotpotQA (question answering), achieving up to 20% Marco-F1 improvement over baselines. When misalignment is detected, InferAct alerts users for timely correction. Three distinctions separate InferAct from CascadeWatch. (1) InferAct addresses the single-step mismatch between an upcoming action and user authorization—whether a specific action matches what the user intended to authorize (e.g., accidental 'buy-now' triggering); CascadeWatch addresses multi-step cascade propagation, where an early-step cognitive error (steps 5–15) compounds across subsequent trajectory steps independent of any user authorization issue. (2) InferAct's detection signal is ToM belief inference over user intent; CascadeWatch's detection signal is trajectory-prefix ERR Efficiency Score running estimates over cascade-onset patterns, a fundamentally different feature channel targeting compounding-cost propagation rather than intent alignment. (3) InferAct's intervention is human alerting, requiring a human in the loop to correct the misaligned action; CascadeWatch's intervention is automated targeted rollback with a false-positive circuit-breaker (max 2 rollbacks per episode), requiring no human involvement. Published at EMNLP 2025—the primary target venue for CascadeWatch—InferAct is a direct framing overlap that must be cited, but the single-step authorization framing vs. multi-step cascade propagation distinction is substantive.\n\nMASC (arXiv 2510.14319) detects cascading errors in multi-agent systems via Prototype-Guided Next-Execution Reconstruction: it forecasts subsequent step embeddings from query and interaction history (Next-Execution Reconstruction) and establishes a prototype prior over normal-step embeddings for stabilized anomaly scoring in sparse contexts (Prototype-Guided Enhancement). Anomaly scoring is unsupervised; when anomalies are flagged, a correction agent revises the acting agent's output before propagating downstream. MASC achieves up to 8.47% AUC-ROC improvement in step-level error detection on the Who&When multi-agent benchmark. Two distinctions separate MASC from CascadeWatch: (1) MASC operates on multi-agent systems where a correction agent revises another agent's output; CascadeWatch operates on single-agent long-horizon trajectories where there is no second agent to correct and the rollback must rewind the agent's own context or environment state. (2) MASC's anomaly scoring is unsupervised (reconstruction-based); CascadeWatch's cascade-onset detection is supervised using expert-annotated root-cause labels and ERR-motivated recoverability signals, enabling principled distinction between cascade-onset and recoverable anomalies.\n\nProMAS (arXiv 2603.20260, March 2026) uses Causal Delta Features mapped to a 30-prototype Vector Markov Space with a frozen Meta-Llama-3.1-8B extractor to predict failure onset in multi-agent collaborative reasoning systems, achieving 22.97% step-level accuracy on the Who&When benchmark (annotated multi-agent dialogues of math and logic puzzles) while processing only 27% of reasoning logs. Critically, ProMAS raises an alert but provides no corrective action—it is a detector only and evaluates exclusively on the Who&When multi-agent attribution benchmark, not on single-agent long-horizon tasks.\n\nErrorProbe (arXiv 2604.17658, April 2026) is a contemporaneous offline diagnostic for multi-agent systems that uses a three-stage pipeline: (1) failure taxonomy-based local anomaly detection, (2) symptom-driven backward tracing to prune irrelevant trajectory context, and (3) a specialized multi-agent verification team (Strategist, Investigator, Arbiter) that validates error hypotheses via tool-grounded execution. ErrorProbe maintains a verified episodic memory of confirmed error/patch patterns and is evaluated on TracerTraj and Who&When benchmarks. Two distinctions separate ErrorProbe from CascadeWatch: (1) ErrorProbe is a post-hoc offline diagnostic tool—its backward tracing and multi-agent verification pipeline is not compatible with real-time inference-time intervention; CascadeWatch is an online monitor that triggers rollback during episode execution. (2) ErrorProbe targets multi-agent systems; CascadeWatch targets single-agent long-horizon trajectory monitoring where no second agent is available for verification.\n\nProbGuard (arXiv 2508.00500) learns a Discrete-Time Markov Chain from symbolic agent-state abstractions with PAC-style guarantees and triggers prompt-injection interventions when P(unsafe state) exceeds a threshold; it predicts traffic violations up to 38.66 seconds ahead and reduces unsafe behavior by 65.37% in embodied agents, but operates on physical safety constraints using symbolic abstractions rather than frozen neural representations or recoverability signals.\n\nTrajectory Guard (arXiv 2601.00516, AAAI TrustAgent Workshop 2026) proposes a Siamese Recurrent Autoencoder with hybrid contrastive-reconstruction loss for real-time anomaly detection in agentic AI trajectories, achieving F1 0.88–0.94 on balanced sets and recall 0.86–0.92 on imbalanced external benchmarks while running 17–27× faster than LLM Judge baselines at 32ms inference. Three distinctions separate this from CascadeWatch: (1) Trajectory Guard detects general structural anomalies—contextual misalignment and sequential incoherence—via reconstruction error, not cascade-specific onset via recoverability-delta signals; (2) it evaluates on synthetic perturbations, security audit failures (RAS-Eval), and multi-agent attribution (Who&When), not on single-agent long-horizon cognitive tasks (ALFWorld, GAIA, WebShop); (3) it provides no rollback or correction mechanism—detection only.\n\nThe ORC auditing paper (ICLR Workshop 2026, arXiv 2603.13325) detects cascading risks in multi-agent systems via Ollivier-Ricci Curvature on completed interaction graphs—post-hoc auditing, not inference-time intervention.\n\nCanonical Path Deviation (arXiv 2602.19008, Feb 2026) is the closest theoretical neighbor to CascadeWatch's cascade-onset framing. Analyzing 515 model-task combinations on the Toolathlon benchmark (22 frontier models, 108 real-world tool-use tasks across 3 independent runs each), Wilson Y. Lee identifies stochastic drift from canonical solution paths—the convergent set of tool invocations shared across successful runs—as a causal mechanism of long-horizon failure. Path adherence is measured as Jaccard similarity between actual and canonical tool invocation sequences; adherence gaps are statistically indistinguishable from zero through the first half of trajectories but become significant and self-reinforcing thereafter, with each off-canonical tool call raising the probability that the next call is also off-canonical by 22.7 percentage points. An intervention restarting the bottom tercile of runs by mid-trajectory canonical adherence achieves +8.8pp success rate improvement. Three distinctions separate this from CascadeWatch: (1) Canonical path adherence requires aggregating tool invocation sequences across multiple successful runs per task—unavailable for novel tasks or low-success-rate settings; CascadeWatch's ERR Efficiency Score running prefix estimates are computable from a single trajectory without reference to other runs. (2) Canonical path deviation detects drift retrospectively via trajectory statistics that become significant only in the second half of execution; CascadeWatch proactively intervenes at steps 5–15 using a trained probe on prefix embeddings, before adherence divergence solidifies. (3) The CPD intervention is a full task restart of lowest-adherence runs; CascadeWatch performs targeted rollback to the pre-cascade checkpoint, preserving valid completed steps and avoiding full re-execution cost.\n\nFrom Spark to Fire (arXiv 2603.04474, March 2026) models cascade error propagation in LLM-based multi-agent collaboration using an individual-based mean-field framework over inter-agent communication graphs, and proposes a genealogy-graph governance layer that tracks atomic claim provenance via NLI-based verification (Green/Red/Yellow status using DeBERTa-v3-small) and blocks transmission of error-carrying messages; the Benign Infection Control Rate improves from 0.32 to 0.89 across Chain, Mesh, and Star multi-agent topologies. The cascade mechanism is specifically inter-agent. CascadeWatch addresses a structurally different failure mode—cognitive cascade failure within a single agent's sequential trajectory—where there are no inter-agent message dependencies.\n\nThe Intervention Paradox (arXiv 2602.03338) is the most important negative result in the space: ROLLBACK and APPEND interventions triggered by a generic LLM critic (AUROC 0.94) degrade performance on HotPotQA by −2.3 to −25.5pp and on GAIA by −4.4 to −30pp; only ALFWorld (high baseline failure rate: 5.8–14.7%) shows improvement (+0.5 to +2.8pp). All observed regressions occur with early-step (steps 0–1) interventions on HotPotQA and GAIA; the paper recommends a minimum-step constraint of min_step ≥ 2. ALFWorld is the exception where early intervention yields positive returns, consistent with the disruption-recovery tradeoff favoring intervention when baseline failure rate exceeds threshold.\n\nBacktrackAgent (arXiv 2505.20660, EMNLP 2025) trains a verifier-judger-reflector pipeline for GUI agents (Mobile3M, Auto-UI benchmarks) to detect individual action errors and trigger backtracking. Unlike CascadeWatch, BacktrackAgent requires constructing a task-specific training dataset and fine-tuning the agent's backtracking components; it targets GUI action-level errors rather than recoverability-degrading cascade onset in cognitive long-horizon tasks.\n\nSelf-Backtracking (arXiv 2502.04404) trains the base LLM to internalize when and where to backtrack during training and inference, achieving over 40% performance gains over optimal-path SFT baselines in general reasoning. This approach requires model retraining and modifies the agent's internal reasoning; CascadeWatch operates as a frozen external probe on any pre-trained agent.\n\nPrior work probes LLM hidden states for single-step answer correctness in mathematical reasoning (arXiv 2504.05419), achieving 24% token reduction via early exit. The mechanism is structurally similar to CascadeWatch's frozen embedding + MLP probe, but targets single-step correctness rather than multi-step cascade onset; it adds no recoverability signal channel.\n\nReactive self-correction methods share the same fundamental limitation: ExpeL and Contextual Experience Replay distill past trajectories for future improvement; self-verification (arXiv 2602.03485) confirms rechecks rarely identify errors; T-STAR (arXiv 2604.07165) achieves training-time divergence detection via Cognitive Trees but adds no inference-time mechanism.\n\nNo existing system combines (1) cascade-specific onset detection using ERR recoverability signals, (2) a step ≥ 5 threshold explicitly calibrated to the Intervention Paradox and AgentErrorBench's cascade-onset distribution, (3) expert-annotated cascade labels (not synthetic perturbations), and (4) environment-appropriate targeted rollback with a false-positive circuit-breaker—nor validates that cascade-specific precision avoids the disruption-recovery tradeoff that defeats all general-purpose critics and general anomaly detectors.",
+  "approach": "We train CascadeWatch to address the Intervention Paradox by targeting only the recoverability-degrading mid-trajectory patterns that precede confirmed cascades. Training data: AgentErrorBench's 200 expert-annotated trajectories (davide221/agenterrorbench on HuggingFace, spanning ALFWorld, WebShop, and GAIA; all 200 are failure trajectories by design, expert-annotated by ten graduate students at Cohen's κ = 0.55) augmented with ~2,000 synthetic rollouts from Qwen/Qwen3-32B (HuggingFace: Qwen/Qwen3-32B; 32B dense model; 64GB BF16; fits in 1× H100-80GB without quantization) sampled at two temperatures (0.7, 1.0) to increase failure-mode diversity.\n\nCascade label derivation differs between real and synthetic trajectories. For the 200 AgentErrorBench trajectories, the confirmed-cascade criterion is applied using the expert-annotated critical_failure_step field: step k is labeled cascade-onset if k equals the annotated root-cause step AND that step occurs before the trajectory midpoint (k ≤ ⌊total_steps / 2⌋). Since all 200 trajectories are failures by design, the midpoint filter is the only active criterion. Given AgentErrorBench's finding that cascade-initiating errors cluster at steps 5–15, and typical episode lengths of 20–40 steps, the majority of annotated root-cause steps fall before the midpoint. Estimated cascade-positive training examples: approximately 65–75 of 100 ALFWorld trajectories, 35–40 of 50 GAIA trajectories, and 35–40 of 50 WebShop trajectories, totaling approximately 135–155 cascade-positive examples before augmentation. For the ~2,000 synthetic rollouts, expert root-cause annotation is unavailable. Synthetic cascade labels use a trajectory-level failure proxy: a synthetic trajectory is labeled cascade-positive at step k if (1) the trajectory ultimately fails AND (2) k ≤ ⌊N/2⌋, where N is total episode length. This proxy is coarser than the confirmed-cascade criterion—it applies the cascade-positive label to all early-half steps of failed trajectories without identifying the specific root-cause step, including steps that precede any actual error. The training corpus is therefore a deliberate mixture of high-precision real labels (AgentErrorBench expert root-cause annotations, ~135–155 cascade-positive examples) and lower-precision synthetic labels (trajectory-level failure proxy). This methodological caveat is acknowledged explicitly; an additional ablation trains the probe on AgentErrorBench-only data to quantify the performance ceiling under expert labels alone versus the mixed corpus, and to estimate the noise contribution of the synthetic proxy.\n\nA minimum intervention threshold of step ≥ 5 is imposed at inference time, grounded in two complementary findings. First, AgentErrorBench's expert annotations show cascade-initiating errors occur primarily at steps 5–15, making cascade-onset detection at k < 5 both empirically impossible (no cascade has yet begun) and mechanistically unnecessary. Second, the Intervention Paradox (arXiv 2602.03338) finds that all regression-causing interventions occur at steps 0–1 on HotPotQA and GAIA, recommending min_step ≥ 2; CascadeWatch's step ≥ 5 threshold is more conservative than this recommendation, providing additional safety margin. Note that ALFWorld is the exception in the Intervention Paradox paper: early intervention yields positive gains on ALFWorld (+0.5 to +2.8pp), consistent with its high baseline failure rate. The step ≥ 5 threshold is therefore over-conservative for ALFWorld specifically—but is retained for consistency across benchmarks and because AgentErrorBench's cascade-onset distribution at steps 5–15 independently grounds the threshold as the earliest step where cascade-positive signal exists. The 50-task pilot test per benchmark will empirically verify whether the threshold is correctly calibrated for each of the three benchmarks.\n\nEach trajectory prefix at step k is represented by concatenating (a) frozen Qwen/Qwen3-32B hidden-state embeddings (mean-pooled last 4 transformer layers over the action–observation sequence) with (b) recoverability delta signals. For WebShop and GAIA (tool-augmented benchmarks with structured tool-call/result pairs), these are running prefix estimates of ERR Efficiency Score deltas as defined in arXiv 2601.22352. Critically, the full ERR Efficiency Score formula (ES = RR / (1 + λC/Cmax)) requires knowing the final trajectory outcome (recovery rate RR), making it not directly computable online. CascadeWatch approximates the recoverability delta at step k using observable prefix quantities: the running cumulative cost ratio C_k/Cmax (estimated from trajectory length against the benchmark's typical maximum) and the incremental milestone completion rate, which serves as a partial recovery rate proxy. These prefix-approximated deltas are the features fed to the probe; the approximation error is bounded by the ERR paper's empirical δ ≤ 0.05 validation result, which confirms that prefix statistics are predictive of final recoverability within this tolerance. For ALFWorld (a text-based game where failures are cognitive planning errors rather than tool execution failures, and which lacks structured tool-call pairs), the domain-adapted proxy is step-level delta in the normalized ALFWorld game score (Δ(info['score'] / info['max_score']) at each step), which tracks incremental subgoal-completion rate. This is an acknowledged heuristic extension of the ERR framework; whether the recoverability motivation holds for this proxy is explicitly tested in the ablation.\n\nA 2-layer MLP probe (with L2 weight decay 1e-4) outputs P(cascade | prefix_k), with Platt scaling applied on a stratified held-out validation split. Training data sparsity is addressed by (i) 3-fold cross-validation stratified by benchmark (ALFWorld / WebShop / GAIA) to estimate generalization without benchmark leakage, and (ii) a parallel logistic probe baseline to assess whether MLP complexity is justified over this small labeled set. The GAIA cascade probe operates near the minimum viable supervised learning regime (~27 training samples per fold in 3-fold CV across ~35–40 GAIA cascade-positive examples); GAIA results are consequently treated as preliminary evidence, with ALFWorld (~65–75 cascade-positive examples, ~43–50 per fold) providing the primary evidence base for the main cascade-avoidance claim.\n\nCascadeWatch requires no modification to the base agent and does not require retraining the agent backbone; deploying CascadeWatch with a different LLM backbone requires retraining only the lightweight MLP probe (~3–5 H100-hours) against that backbone's embedding space, not retraining the agent itself. This is a meaningful practical advantage over BacktrackAgent, which requires constructing a task-specific training dataset and fine-tuning agent components, and over TrajAD, which fine-tunes a 4B model via QLoRA and must be retrained per backbone.\n\nThe rollback mechanism is specified per benchmark. For ALFWorld, environment-state rollback is performed via command-replay from env.reset(): the TextWorld gym environment is reset to the initial observation, then the k−1 accepted actions from the checkpoint buffer are re-executed sequentially to reconstruct game state at step k−1. The ALFWorld game engine processes each text command in approximately 1–2ms; for typical episodes capped at 50 steps, rollback at step k incurs roughly 25–100ms wall-clock overhead—negligible relative to LLM inference time. A checkpoint buffer stores accepted action sequences at each step to enable replay without re-querying the LLM. Note that TextWorld's Python API does not expose a save/restore mechanism for Glulx-format (.ulx) games used in ALFWorld competition settings, so command-replay is the correct mechanism; the O(k) replay cost is in game-engine steps, not LLM compute. For WebShop and GAIA, context-only rollback rewinds the agent context window to step k_checkpoint, masks all subsequent actions and observations, and re-samples an alternative action with temperature +0.3. Context-only rollback does not undo irreversible WebShop web-state changes (e.g., submitted searches), which is explicitly noted as a limitation; the WebShop simulation environment resets between episodes, so irreversibility affects intra-episode recovery quality but not cross-episode evaluation validity.\n\nA false-positive circuit-breaker limits rollback to a maximum of 2 triggers per episode; after the second trigger, monitoring is suspended for the remainder of the episode to prevent compounding disruption. Before full evaluation, we run the Intervention Paradox's 50-task pilot test on each benchmark to empirically verify that CascadeWatch's cascade-specific intervention is net-positive (p > d/(r+d)) on that benchmark; benchmarks where the pilot test fails are reported as negative results, not omitted.\n\nWe include a pre-registered 4-way ablation: (a) frozen embeddings only → logistic probe, (b) recoverability-delta features only → logistic regression (no embeddings), (c) full CascadeWatch (embeddings + recoverability-delta) → 2-layer MLP, and (d) AgentErrorBench-only training (no synthetic augmentation) → 2-layer MLP, to quantify the noise contribution of the synthetic trajectory-level proxy labels versus high-precision expert labels. The primary empirical claim is that CascadeWatch achieves task success rate improvement over no-correction baselines on ALFWorld, GAIA, and WebShop while avoiding the performance degradation caused by generic critics observed in the Intervention Paradox—demonstrating for the first time that cascade-specific precision is sufficient to make rollback net-positive on benchmarks where generic critics fail. The recoverability-delta ablation serves as an internal validation gate: if recoverability-delta provides ≥3% F1 lift over frozen embeddings alone, the ERR-motivated feature design is empirically confirmed; if the lift is <3%, the theoretical ERR motivation weakens substantially and this is reported honestly as a negative result on the recoverability signal hypothesis. We evaluate task success rate, steps saved per episode, and false-positive intervention rate against no-correction, ExpeL-style reflection, self-verification, T-STAR offline, TrajAD-style general anomaly detection, and ProMAS-style detection-only baselines on ALFWorld, WebShop, and GAIA (subject to pilot test results). Including TrajAD as an explicit baseline tests whether cascade-specific detection (step ≥ 5 threshold + ERR signal + expert labels) outperforms general anomaly detection (no threshold + synthetic labels + process inefficiency triggering) in the Intervention Paradox regime.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~100-140 H100-hours total: rollout generation ~45 H100-hours (Qwen/Qwen3-32B runs in BF16 on 1× H100-80GB without quantization—32B × 2 bytes ≈ 64GB, within the 80GB VRAM budget; inference throughput roughly doubles relative to a 72B model; ~45h covers ~5K synthetic rollouts across three benchmarks at three temperatures, including environment interaction overhead and tool-call latency for GAIA tasks); probe training ~10 H100-hours (5-fold CV × 4-way ablation × logistic/MLP variants; these are small models, <1h each); evaluation runs ~45–85 H100-hours across three benchmarks + pilot tests (50 tasks × 3 benchmarks × 2 conditions per test). ALFWorld command-replay rollback adds <1 H100-hour overhead across all evaluation episodes.",
+      "gpu_utilization": "~30–40% effective utilization; high idle between human coding, debugging, and analysis cycles",
+      "timeline": "4–6 months",
+      "team": "2 researchers",
+      "estimated_gpu_cost": "~$200–$280 at ~$2/H100-hour"
+    },
+    "human_in_loop": {
+      "scope_note": "Compressed to satisfy the joint ≤16-day calendar / ≤200 H100-hour constraint. Primary benchmarks: ALFWorld + GAIA + WebShop (all three, matching TrajAD's evaluation surface). Synthetic rollouts: 2,000 total at 2 temperatures (T=0.7, T=1.0); 3-fold CV. Human gates: cascade label validation (including review of synthetic trajectory-level proxy labeling procedure), pilot test pass/fail judgment per benchmark, ablation design review, threshold decisions. Human engagement: 2–3 hours/day.",
+      "compute_breakdown": "Rollout generation (2K rollouts × 2 temperatures = 4K trajectories; ~1K ALFWorld + 1K GAIA + 1K WebShop per temperature): ~15–20 H100-hours (ALFWorld ~2–3h; GAIA ~8–12h including tool-call overhead; WebShop ~5–8h; Qwen/Qwen3-32B BF16 on 1× H100-80GB without quantization). Probe training (3-fold CV × 4-way ablation × logistic/MLP): ~4–6 H100-hours. Pilot tests (50 tasks × 3 benchmarks × 2 conditions × 2 seeds = 600 episodes): ~10–15 H100-hours. Full evaluation (post-pilot, 3 benchmarks × 4 baselines + CascadeWatch): ~35–50 H100-hours. Buffer/debugging: ~5–10 H100-hours. Total: ~69–101 H100-hours.",
+      "gpu_hours": "~69–101 H100-hours (well within ≤200 H100-hour constraint)",
+      "gpu_utilization": "~60–70% utilization; human approval gates reduce compute waste on dead-end ablations",
+      "timeline": "12–14 calendar days (rollout generation days 1–3, labeling + probe training days 2–5, pilot tests with human review days 5–9, full evaluation days 8–12 with GAIA and WebShop evaluations running in parallel, analysis and write-up days 10–14)",
+      "team": "1 researcher, ~2–3 hours/day check-in",
+      "claude_api_cost": "$150–$250",
+      "estimated_gpu_cost": "~$138–$202 at ~$2/H100-hour",
+      "risk_note": "Small labeled training set (200 trajectories, all failures) risks MLP overfitting; confirmed-cascade criterion and synthetic proxy labeling strategy are critical human-gate decisions. Synthetic trajectory-level proxy labels are coarser than expert annotations; the AgentErrorBench-only ablation (4-way ablation arm d) will quantify this noise. GAIA evaluation results should be treated as preliminary evidence (~27 cascade-positive training samples per fold in 3-fold CV) pending replication on a larger annotated set. ALFWorld ERR proxy (game score delta) is a domain adaptation—its F1 contribution must be validated in ablation before committing to full evaluation on ALFWorld. WebShop context-only rollback does not undo irreversible intra-episode web-state changes (submitted searches); this is a limitation of the intervention mechanism, not the detection mechanism, and is explicitly noted. Pilot test (50 tasks × 3 benchmarks) must be reviewed by human before committing to full evaluation on each benchmark."
+    },
+    "auto_research": {
+      "note": "This mode exceeds the primary ≤200 H100-hour constraint and is presented as an extended evaluation scenario for teams with unrestricted compute, not a valid path within the joint 16-day/200 H100-hour constraint. Included for completeness only.",
+      "gpu_hours": "~300–450 H100-hours (3–5× more ablations across probe architectures, threshold strategies, feature combinations, augmentation volumes, rollback trigger policies, and minimum-step thresholds; reduced from prior estimates due to Qwen/Qwen3-32B being more compute-efficient than the previously specified 72B model)",
+      "gpu_utilization": "~85–95%; near-zero idle as agent continuously queues and launches experiments",
+      "timeline": "3–10 days with 4+ H100s in parallel",
+      "team": "0 (initial setup only)",
+      "claude_api_cost": "$350–$600",
+      "estimated_gpu_cost": "~$600–$900",
+      "speed_bottleneck": "Number of H100s available; rollout generation dominates throughput",
+      "risk_note": "Automated cascade label derivation for synthetic trajectories uses trajectory-level failure proxy (step k ≤ ⌊N/2⌋ in failed trajectories)—coarser than expert confirmed-cascade criterion. No human oversight to detect always-predict-cascade degenerate solutions or validate that the synthetic proxy is not systematically mis-labeling self-correcting trajectories. Pilot test pass/fail judgment and Intervention Paradox threshold calculation require human review—an agent may proceed to full evaluation on benchmarks where intervention is net-negative. ALFWorld ERR proxy domain adaptation requires human judgment to validate before scaling."
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR deadline May 25, 2026)",
+    "AAAI 2027 (abstract deadline expected ~August 2026)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "Where LLM Agents Fail and How They can Learn From Failures (arXiv 2509.25370, 2025)",
+    "Recoverability Has a Law: The ERR Measure for Tool-Augmented Agents (arXiv 2601.22352, 2026)",
+    "The Intervention Paradox: Accurate Failure Prediction in Agents Does Not Imply Effective Failure Prevention (arXiv 2602.03338, 2026)",
+    "Capable but Unreliable: Canonical Path Deviation as a Causal Mechanism of Agent Failure in Long-Horizon Tasks (arXiv 2602.19008, 2026)",
+    "TrajAD: Trajectory Anomaly Detection for Trustworthy LLM Agents (arXiv 2602.06443, 2026)",
+    "InferAct: Inferring Safe Actions for LLM-Based Agents Through Preemptive Evaluation and Human Feedback (arXiv 2407.11843, EMNLP 2025, pages 222–244)",
+    "MASC: Metacognitive Self-Correction for Multi-Agent Systems via Prototype-Guided Next-Execution Reconstruction (arXiv 2510.14319, 2025)",
+    "Trajectory Guard: A Lightweight, Sequence-Aware Model for Real-Time Anomaly Detection in Agentic AI (AAAI TrustAgent Workshop 2026, arXiv 2601.00516)",
+    "ProMAS: Proactive Error Forecasting for Multi-Agent Systems Using Markov Transition Dynamics (arXiv 2603.20260, 2026)",
+    "From Spark to Fire: Modeling and Mitigating Error Cascades in LLM-Based Multi-Agent Collaboration (arXiv 2603.04474, 2026)",
+    "ProbGuard: Probabilistic Runtime Monitoring for LLM Agent Safety (arXiv 2508.00500, 2025)",
+    "Auditing Cascading Risks in Multi-Agent Systems via Semantic–Geometric Co-evolution (ICLR Workshop 2026, arXiv 2603.13325)",
+    "Towards Self-Improving Error Diagnosis in Multi-Agent Systems (arXiv 2604.17658, 2026)",
+    "Crab: A Semantics-Aware Checkpoint/Restore Runtime for Agent Sandboxes (arXiv 2604.28138, 2026)",
+    "Reason in Chains, Learn in Trees: Self-Rectification and Grafting for Multi-turn Agent Policy Optimization (arXiv 2604.07165, 2026)",
+    "Self-Verification Dilemma: Experience-Driven Suppression of Overused Checking in LLM Reasoning (arXiv 2602.03485, 2026)",
+    "Beyond Fluency: Toward Reliable Trajectories in Agentic IR — position paper on failure modes, not empirical cascade measurement (arXiv 2604.04269, 2026)",
+    "BacktrackAgent: Enhancing GUI Agent with Error Detection and Backtracking Mechanism (EMNLP 2025, arXiv 2505.20660)",
+    "Step Back to Leap Forward: Self-Backtracking for Boosting Reasoning of Language Models (arXiv 2502.04404, 2025)",
+    "Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification (arXiv 2504.05419, 2025)"
+  ],
+  "description": "Long-horizon agent tasks suffer from cascade failures: a single early error propagates across subsequent steps, compounding recovery cost. The critical challenge is the Intervention Paradox (arXiv 2602.03338): a generic critic with AUROC 0.94 causes up to 26 percentage point degradation by disrupting self-correcting trajectories, with all observed regressions occurring at early intervention steps (steps 0–1) on HotPotQA and GAIA—ALFWorld is the exception where early intervention yields modest gains. The solution requires cascade-specific, high-precision detection rather than general failure prediction or general anomaly detection. We propose CascadeWatch, an inference-time monitor that targets cascade onset specifically using frozen Qwen/Qwen3-32B hidden-state embeddings (HuggingFace: Qwen/Qwen3-32B; 32B dense model; 64GB BF16; fits in 1× H100-80GB without quantization) combined with running prefix estimates of ERR Efficiency Score recoverability deltas to estimate P(cascade_failure | prefix_k) at each step, with a minimum trigger threshold of step ≥ 5. This threshold is doubly grounded: (1) AgentErrorBench shows cascade-initiating errors begin at step 5, so cascade-onset detection is mechanistically impossible before step 5; (2) the Intervention Paradox recommends min_step ≥ 2 to avoid regression-causing early interventions—step ≥ 5 is more conservative than this recommendation. For WebShop and GAIA (tool-augmented benchmarks), recoverability deltas are running prefix estimates of ERR Efficiency Score quantities (arXiv 2601.22352), approximated from observable cumulative cost ratios and incremental milestone completion rates without requiring final trajectory outcomes. For ALFWorld (text-based game with cognitive planning errors, not tool execution failures), a domain-adapted proxy is used: step-level delta in the normalized ALFWorld game score, acknowledged as a heuristic extension and isolated in the ablation.\n\nTraining uses AgentErrorBench's 200 expert-annotated trajectories (all failure trajectories by design; ALFWorld: 100, GAIA: 50, WebShop: 50) augmented with ~2,000 synthetic rollouts. Cascade label derivation differs by data source: AgentErrorBench trajectories use the confirmed-cascade criterion (root-cause step before trajectory midpoint per expert critical_failure_step annotation), yielding approximately 65–75 cascade-positive examples from ALFWorld, 35–40 from GAIA, and 35–40 from WebShop (~135–155 total). Synthetic trajectories use a trajectory-level failure proxy (cascade-positive = any step k ≤ ⌊N/2⌋ in a failed trajectory), which is coarser—it does not identify the specific root-cause step. The training corpus is an acknowledged mixture of high-precision real labels and lower-precision synthetic labels; a 4-way ablation includes an AgentErrorBench-only arm (no synthetic augmentation) to quantify the noise contribution of the synthetic proxy.\n\nCascadeWatch is positioned precisely among nine distinct neighboring systems. (1) TrajAD (arXiv 2602.06443) fine-tunes Qwen3-4B with QLoRA on TrajBench synthetic perturbation labels for general trajectory anomaly detection on ALFWorld, GAIA, and WebShop, explicitly enabling rollback-and-retry via error localization; TrajAD's three anomaly types include 'Process Inefficiency' (loops/detours) which is precisely the self-correctable deviation class that the Intervention Paradox shows causes regression when interrupted—TrajAD has no step threshold and does not address the Intervention Paradox tradeoff. CascadeWatch differs: trained on AgentErrorBench expert cascade root-cause annotations (not synthetic perturbations), targeting only recoverability-degrading cascade-onset prefixes (not process inefficiencies), imposing step ≥ 5 threshold calibrated to both the Intervention Paradox and AgentErrorBench's cascade-onset distribution, and requiring no model fine-tuning (frozen external probe). CascadeWatch evaluates on the same ALFWorld/GAIA/WebShop triple as TrajAD, enabling a direct head-to-head comparison. (2) InferAct (arXiv 2407.11843, EMNLP 2025) uses Theory-of-Mind reasoning to detect single-step actions misaligned with user intent on WebArena, ALFWorld, and HotpotQA, achieving up to 20% Marco-F1 improvement, alerting humans for correction; InferAct targets single-step authorization misalignment while CascadeWatch targets multi-step cascade propagation using ERR recoverability prefix estimates, with automated rollback rather than human alerting. (3) MASC (arXiv 2510.14319) detects cascading errors in multi-agent systems via unsupervised Prototype-Guided Next-Execution Reconstruction on Who&When; CascadeWatch targets single-agent cascade onset using supervised ERR-motivated recoverability labels on ALFWorld, GAIA, and WebShop. (4) Canonical Path Deviation (arXiv 2602.19008) identifies stochastic drift from canonical solution paths—aggregated from multiple successful runs per task—as a long-horizon failure mechanism, achieving +8.8pp improvement via restart of lowest-adherence runs; CascadeWatch uses single-trajectory recoverability prefix estimates (no canonical paths required) and performs targeted rollback rather than full restarts. (5) ErrorProbe (arXiv 2604.17658) is a contemporaneous offline diagnostic for multi-agent systems using backward tracing and multi-agent verification teams; CascadeWatch is an online single-agent monitor with automated rollback, not an offline diagnostic. (6) From Spark to Fire (arXiv 2603.04474) proposes a genealogy-graph governance layer for cascade mitigation in multi-agent collaboration; CascadeWatch addresses single-agent cognitive cascade failure where there are no inter-agent message dependencies. (7) ProMAS (arXiv 2603.20260) raises alerts in multi-agent reasoning but provides no corrective action and evaluates only on Who&When. (8) ProbGuard (arXiv 2508.00500) softly intervenes on physical safety constraints via symbolic DTMC. (9) Trajectory Guard (arXiv 2601.00516) uses a Siamese Recurrent Autoencoder for general structural anomaly detection at 32ms but targets reconstruction deviation on security audit and multi-agent benchmarks, provides no rollback.\n\nUnlike BacktrackAgent (arXiv 2505.20660, EMNLP 2025), which trains a verifier-judger-reflector pipeline for GUI action errors, CascadeWatch requires no modification to the base agent; unlike TrajAD, it requires no backbone fine-tuning—deploying on a different backbone requires retraining only the MLP probe (~3–5 H100-hours). Unlike Self-Backtracking (arXiv 2502.04404), which trains the LLM itself, CascadeWatch operates as a frozen external probe. Prior hidden-state probing (arXiv 2504.05419) targets single-step reasoning correctness for token reduction; CascadeWatch targets multi-step cascade onset with ERR recoverability prefix estimates as a second feature channel.\n\nRollback: for ALFWorld, command-replay from env.reset() (~25–100ms for 50-step episodes; TextWorld's Python API does not expose save/restore for Glulx-format .ulx games); for WebShop and GAIA, context-only rollback (does not undo irreversible intra-episode web-state changes—acknowledged as limitation; WebShop simulation resets between episodes so this affects recovery quality but not evaluation validity). Cascade-positive training examples: ~135–155 from AgentErrorBench expert annotations before synthetic augmentation. GAIA probe operates near minimum viable supervised learning regime; GAIA results are preliminary evidence. Primary empirical claim: CascadeWatch achieves task success rate improvement over no-correction baselines on ALFWorld, GAIA, and WebShop while avoiding the performance degradation caused by generic critics and general anomaly detectors—demonstrating that cascade-specific precision with Intervention Paradox–calibrated thresholding is sufficient to make rollback net-positive on benchmarks where generic critics fail. TrajAD is included as an explicit comparison baseline on the identical ALFWorld/GAIA/WebShop triple. Recoverability-delta ablation: ≥3% F1 lift confirms ERR-motivated design; <3% is reported as a negative result. Compressed HIL mode fits within ~69–101 H100-hours and 12–14 calendar days.",
+  "project_name": "cascade_monitor",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["CRITICAL MISSING RELATED WORK: ProMAS (arXiv 2603.20260, March 2026) — 'Proactive Error Forecasting for Multi-Agent Systems Using Markov Transition Dynamics' — directly pre-empts the core contribution. It proactively predicts failures from trajectory prefixes using semantic displacement features + MLP Proactive Prediction Head, achieving 22.97% step-level accuracy while processing only 27% of reasoning logs. Without citing and clearly differentiating from ProMAS, reviewers will reject on novelty grounds.", "CRITICAL MISSING RELATED WORK: ProbGuard (arXiv 2508.00500, August 2025) — 'Probabilistic Runtime Monitoring for LLM Agent Safety' — learns a DTMC from execution traces to estimate P(reaching unsafe states) at each step and triggers intervention when risk exceeds threshold. This is structurally isomorphic to CascadeWatch (P(cascade) > threshold → intervention). Though applied to physical safety, not cognitive-task cascades, it must be discussed in related work.", "Training data is critically sparse: ~200 labeled trajectories total (100 ALFWorld, 50 WebShop, 50 GAIA). Even with 5K synthetic augmentation, the distribution shift between synthetic (Qwen3-72B backbone rollouts) and the human-annotated test distribution may dominate. No cross-validation strategy or regularization design is specified to guard against overfitting the 2-layer MLP to this small set.", "Rollback mechanism underspecified for stateful environments: ALFWorld and WebShop are simulators with action-irreversible state (e.g., picking up an object, submitting a search). 'Targeted rollback to the last low-risk checkpoint' requires either full simulator state serialization at every step (not costed, adds significant engineering overhead) or is limited to context-only rollback (which does NOT undo executed actions). This is a core mechanism that must be precisely defined.", "Resource estimate does not explicitly convert A100-hours to H100-hours. Qwen3-72B requires 2× A100 80GB or 1× H100 80GB for FP16 inference, so the stated '~80h A100 for rollout generation' should read '~80h × 2 GPUs = ~160 A100-GPU-hours = ~80 H100-hours.' Total revised estimate: ~145-160 H100-hours (still within 200, but needs to be shown explicitly).", "Cascade label derivation from root-cause annotations introduces labeling noise: not all trajectories with a root-cause error at step k actually produce cascades — some errors are contained. The label = 'any step ≥ earliest root-cause error is cascade-onset' assumption will generate false cascade labels for trajectories where the agent partially recovers, inflating cascade-positive counts and degrading classifier reliability.", "No ablation is planned to isolate the contribution of ERR-delta features vs. hidden-state embeddings alone. Without this ablation, the paper cannot claim that integrating ERR adds value, which is the key technical differentiator from ProMAS. If ERR adds ≤1% over embeddings-only, the theoretical motivation weakens substantially.", "False-positive compounding is unaddressed: if the monitor fires at step k and the re-sampled action (with elevated temperature) is worse than the original, the agent is now at step k with a potentially worse trajectory prefix. There is no circuit-breaker to prevent repeated triggers, which could lead to worse outcomes than no correction at all.", "The 'Snowball Effect' paper (arXiv 2604.04269) is cited as quantifying 'exponential error amplification,' but from the abstract it is a position/analysis paper about agentic IR, not an empirical measurement of cascade amplification rates that can be cited as empirical support. The claim should be qualified."]
+Feedback: The core idea — a lightweight probe combining frozen LLM hidden-state features with ERR-derived recoverability signals to trigger early rollback — is technically coherent and the supporting evidence (AgentErrorBench, ERR paper) is well-chosen. The revision should focus on three surgical changes that would materially strengthen the paper for EMNLP:
+
+1. **Differentiate from ProMAS and ProbGuard explicitly.** Add both to related work. The differentiating argument should be: (a) ProMAS uses Markovian transition dynamics between quantized semantic clusters but has no corrective action mechanism; CascadeWatch is the first proactive monitor that triggers hard rollback rather than only raising an alert. (b) ProbGuard operates via prompt-injection intervention on physical safety constraints using a DTMC; CascadeWatch targets cognitive-task cascade failure using frozen neural representations + recoverability signals. Frame CascadeWatch as the first system that closes the loop: ProMAS detects, ProbGuard detects and softly intervenes — CascadeWatch detects and hard-rollbacks with empirically validated cascade labels.
+
+2. **Make rollback concrete.** For stateful environments (ALFWorld, WebShop), specify whether rollback restores full simulator state (requiring explicit checkpoint saving at each step) or is context-only (rewinding the prompt/observation history while leaving environment state unchanged). Context-only rollback is implementable in 16 days and sufficient to demonstrate the method; hard state rollback requires environment-specific engineering. Pick one, specify it, and note the limitation for the other case.
+
+3. **Add the ablation that proves ERR adds value.** The only new feature CascadeWatch contributes over ProMAS is the ERR-derived Efficiency Score delta signals. Budget 20-30 A100-hours for a 3-way ablation: (a) embeddings-only probe, (b) ERR-deltas-only logistic regression, (c) full CascadeWatch. If ERR provides ≥3% F1 lift over (a), this is the central empirical result of the paper and should be foregrounded.
+
+Minor: Fix the resource estimate to show explicit H100-hour conversion. Address label noise in cascade derivation by adding a 'cascade confirmed' criterion (e.g., task fails AND root-cause step is before the midpoint). Add a false-positive circuit-breaker (max 2 rollbacks per episode).
+
+### Round 2 review
+Verdict: revise
+Issues: ["CRITICAL — TextWorld save_game/restore_game API is factually incorrect: TextWorld core.py has no save_game or restore_game methods (confirmed via GitHub); the Glulx interpreter's text-level save/restore commands exist but are documented as disabled for ALFWorld competition games (TextWorld GitHub issue #161); the only state-copy mechanism is env.copy(), which does not support .ulx Glulx games and incurs full environment duplication cost, not 5ms. The rollback implementation must be redesigned: either use command-replay from reset (O(k) cost, not 5ms — must be costed), use Jericho's RAM-save for .z8 format games (different game engine, not ALFWorld), or acknowledge ALFWorld rollback is also context-only. The title 'Hard Rollback' is misleading if ALFWorld's claimed mechanism doesn't exist.", "CRITICAL — Hard constraint incompatibility: the 16-day timeline and ≤200 H100-hour compute budget cannot be jointly satisfied. Manual mode: 135–175 H100-hours (within budget) but 4–6 months (violates 16 days). HIL mode: 180–220 H100-hours (within budget) but 4–8 weeks (violates 16 days). Auto-research mode: 3–10 days (within 16 days) but 480–600 H100-hours (2.4–3× the 200-hour limit). The paper must either restructure the HIL mode to be achievable in 16 days under 200 H100-hours (e.g., 3–4 benchmarks only, no ablation sweep, 2K rollouts instead of 5K), or honestly acknowledge that a 16-day execution requires either compute overage or reduced scope.", "MISSING RELATED WORK — BacktrackAgent (arXiv 2505.20660, May 2025): a framework for GUI agent error detection and backtracking with verifier, judger, and reflector modules. The conceptual overlap (error detection → backtracking trigger) must be acknowledged and differentiated. CascadeWatch's differentiator is cascade-specific detection using recoverability signals, not the backtracking trigger mechanism itself.", "MISSING RELATED WORK — 'Step Back to Leap Forward: Self-Backtracking for Boosting Reasoning of Language Models' (arXiv 2502.04404, Feb 2025): trains LLMs to internalize when and where to backtrack during both training and inference. Must be cited to clarify that CascadeWatch is an external monitor (does not require model retraining) and targets cascade failure specifically, not general reasoning dead-ends.", "MISSING RELATED WORK — 'Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification' (arXiv 2504.05419, Apr 2025): uses frozen LLM hidden-state probes for correctness prediction with 24% token reduction in reasoning tasks. The mechanism is structurally similar to CascadeWatch's frozen Qwen3-72B embedding + MLP probe. Must be cited; key differentiation is that CascadeWatch targets agent cascade failure (multi-step trajectory prefixes) rather than single-step answer correctness.", "ERR applicability gap: the ERR paper (arXiv 2601.22352) formalizes recoverability for tool-augmented agents recovering from tool execution failures (e.g., API errors, failed web actions). ALFWorld is a text-based game where failures are cognitive planning errors, not tool execution failures. The paper must explicitly address how the Efficiency Score observable is computed for ALFWorld trajectories that lack structured tool-call/result pairs, or qualify that ERR-delta features apply only to WebShop and GAIA (which involve tool use) and use a different recoverability proxy for ALFWorld.", "Title inconsistency: the paper is titled 'CascadeWatch: Cascade-Onset Detection with Hard Rollback' but WebShop and GAIA receive only context-only rollback (which explicitly does not undo executed web-state changes). If ALFWorld's save_game/restore_game API doesn't exist either, then no benchmark achieves hard rollback. Either fix the rollback mechanism for at least one benchmark to be genuinely hard, or rename to 'CascadeWatch: Cascade-Onset Detection with Targeted Rollback'.", "Resource estimate inconsistency: the auto-research mode (480–600 H100-hours) is presented as a valid execution mode but exceeds the stated hard constraint of ≤200 H100-hours by 2.4–3×. The auto-research section should be framed as 'extended evaluation beyond constraint' or the constraint should be explicitly re-evaluated for that mode."]
+Feedback: The Round 2 revision successfully addresses five of nine Round 1 issues: ProMAS and ProbGuard are now explicitly differentiated, the confirmed-cascade criterion fixes label noise, the 3-way ablation is pre-registered, the H100-hour conversion is shown, and the circuit-breaker is specified. The idea remains technically sound and well-motivated. Three surgical changes are needed for Round 3:
+
+1. **Fix the ALFWorld rollback claim (highest priority).** The save_game/restore_game methods do not exist in TextWorld's Python API, and the Glulx-level save commands are disabled for ALFWorld competition games. Replace with one of: (a) command-replay rollback from env.reset() — acknowledge the O(k) replay cost and add ~5–10 H100-hours to the compute estimate; (b) restrict to context-only rollback for all three benchmarks and retitle accordingly; (c) prototype with Jericho's .z8 RAM-save API, but note this uses a different game format from standard ALFWorld. Option (b) is achievable in 16 days; option (c) risks benchmark mismatch. Whatever you choose, the 5ms claim must be removed.
+
+2. **Add three missing citations with differentiation.** For BacktrackAgent (2505.20660): 'Unlike BacktrackAgent's trained verifier-judger-reflector pipeline for GUI actions, CascadeWatch uses a cascade-specific probe targeting recoverability-degrading prefix patterns, without modifying the base agent.' For Self-Backtracking (2502.04404): 'Self-Backtracking trains the base LLM to internalize rollback decisions; CascadeWatch requires no model retraining and operates as an external monitor on any frozen agent.' For hidden-state probes (2504.05419): 'Prior work probes hidden states for single-step answer correctness in reasoning tasks; CascadeWatch probes multi-step trajectory prefixes for cascade onset in long-horizon agent tasks, adding ERR-delta recoverability signals as a second feature channel.'
+
+3. **Resolve the 16-day/200 H100-hour joint constraint.** The only execution path within both constraints is a compressed HIL mode: reduce to 2 benchmarks (ALFWorld + GAIA), 2K synthetic rollouts at 2 temperatures, 3-fold CV instead of 5-fold, and daily human engagement of 2–3 hours rather than 30 minutes. This brings estimated compute to ~120–140 H100-hours and calendar time to 12–14 days. Show this math explicitly.
+
+Minor: Qualify ERR-delta applicability — note that for ALFWorld, Efficiency Score deltas are computed from step-level reward signals (ALFWorld provides intermediate rewards) rather than from tool-call success rates, and acknowledge this is a domain adaptation of the ERR framework.
+
+### Round 3 review
+Verdict: revise
+Issues: ["UNACKNOWLEDGED COMPETITOR — arXiv 2602.19008 'Capable but Unreliable: Canonical Path Deviation as a Causal Mechanism of Agent Failure in Long-Horizon Tasks' (Feb 2026, Wilson Y. Lee) directly analyzes why long-horizon agents fail by measuring stochastic drift from canonical solution paths. The key finding—that adherence gaps become significant only at 75% trajectory completion and that drift is self-reinforcing—is structurally equivalent to cascade-onset propagation, using path adherence as the recoverability-degrading signal. CascadeWatch must cite this and explain why detecting recoverability-delta (ERR Efficiency Score) is preferable to detecting canonical path deviation as an early-warning signal.", "UNACKNOWLEDGED RELATED WORK — arXiv 2603.04474 'From Spark to Fire: Modeling and Mitigating Error Cascades in LLM-Based Multi-Agent Collaboration' (March 2026) explicitly models cascade error propagation in LLM-based systems and proposes a governance layer with rollback via message-layer blocking, achieving defense success rate from 0.32 to 0.89. Although this is multi-agent and uses genealogy graphs rather than trajectory-prefix probes, EMNLP reviewers will find it. CascadeWatch should explicitly state: this paper targets multi-agent distributed collaboration; CascadeWatch targets single-agent long-horizon cognitive failure in text-game and tool-augmented environments. The distinction is real but must be stated.", "AGENT-SPECIFICITY CLAIM IS MISLEADING: The paper claims CascadeWatch is 'deployable on any frozen agent without model retraining.' This is false as stated. The probe uses frozen Qwen3-72B hidden-state embeddings as features; deploying it with a different backbone (Claude, GPT-4o, Llama-3.3-70B) changes the embedding space entirely, requiring full probe retraining on that backbone's trajectories. The correct claim is: 'CascadeWatch requires no modification to the base agent and does not require retraining the base agent; deploying CascadeWatch with a different LLM backbone requires retraining only the lightweight MLP probe (~3–5 H100-hours), not the base agent.' This is still a meaningful practical advantage over BacktrackAgent but must be stated accurately.", "PRIMARY EMPIRICAL CLAIM FRAMING: The central empirical claim is stated as 'recoverability-delta provides ≥3% F1 lift over embeddings alone.' This is an ablation threshold, not a headline result. EMNLP reviewers will evaluate the paper primarily on the task success rate improvement over baselines (no-correction, ExpeL, self-verification) on ALFWorld and GAIA—especially whether CascadeWatch avoids the Intervention Paradox regression observed with generic critics. The ≥3% F1 ablation claim should be repositioned as an internal validation gate; the primary empirical claim should be the task success rate delta against baselines on pilot-test-passing benchmarks.", "MODEL VERSION STALENESS: The paper specifies 'frozen Qwen3-72B' as the backbone, but Qwen3.5 (released February 2026) and Qwen3.6-Plus supersede Qwen3-72B as of the submission date. This does not invalidate the method but creates a reproducibility question—which checkpoint is used? The paper should specify the exact model checkpoint (Qwen/Qwen3-72B on HuggingFace or equivalent) to ensure reproducibility, or update to Qwen3.5-72B-Instruct if that provides meaningfully better cascade signal separation.", "MINOR — Crab (arXiv 2604.28138) is cited in key references but its role is unclear in the paper. Crab provides semantics-aware checkpoint/restore for agent sandboxes, which is architecturally relevant to the rollback mechanism. The paper should clarify whether Crab was considered for ALFWorld rollback (and why command-replay was chosen instead) or should remove the citation if it has no direct bearing on the method."]
+Feedback: Round 3 has cleanly resolved all three surgical changes requested in Round 2: the ALFWorld rollback mechanism is now technically correct (command-replay from env.reset(), O(k) acknowledged, no false save_game claim), the joint 16-day/200 H100-hour constraint is satisfied in the HIL mode (80–110 H100-hours, 12–14 days), and all three requested citations are present with accurate differentiation. The idea is now coherent, well-specified, and positioned at the right level of novelty for EMNLP Findings. One more focused round is needed.
+
+**Four targeted changes for Round 4:**
+
+1. **Cite and differentiate arXiv 2602.19008 (Canonical Path Deviation).** This paper (Feb 2026) is the closest theoretical neighbor—it identifies stochastic drift from canonical solution paths as the causal mechanism of long-horizon failure, using path adherence as the early-warning signal. The differentiation argument: 'Canonical Path Deviation detects drift post-hoc using trajectory-completion statistics (significance emerges only at 75% completion); CascadeWatch targets cascade onset proactively at steps 5–15 using a trained probe on prefix embeddings + recoverability-delta, enabling intervention before the 75% threshold. Moreover, canonical path adherence requires knowing the canonical path—requiring either multiple successful runs or a verifier—while CascadeWatch's recoverability proxy is computable from single trajectories.'
+
+2. **Cite arXiv 2603.04474 (From Spark to Fire) in 1–2 sentences.** 'From Spark to Fire [citation] proposes a genealogy-graph governance layer for cascade mitigation in multi-agent collaboration; CascadeWatch addresses a structurally different failure mode—cognitive cascade failure in single-agent long-horizon tasks—using trajectory-prefix probes with recoverability signals rather than message-level graph analysis.'
+
+3. **Fix the 'any frozen agent' claim.** Change to: 'CascadeWatch requires no modification to the base agent; deploying it with a new LLM backbone requires retraining only the lightweight MLP probe (~3–5 H100-hours) against that backbone's embedding space, not retraining the agent itself.'
+
+4. **Reframe the primary empirical claim.** The headline result should be: 'CascadeWatch achieves [X]pp task success rate improvement over no-correction on ALFWorld and [Y]pp on GAIA, while avoiding the degradation caused by generic critics (Intervention Paradox) on both benchmarks.' The ≥3% F1 ablation threshold becomes the validation gate for including recoverability-delta features, not the primary claim.
+
+### Round 4 review
+Verdict: revise
+Issues: ["MODERATE — Trajectory Guard (arXiv 2601.00516, AAAI TrustAgent Workshop 2026) is not cited despite direct framing overlap. The paper proposes a Siamese Recurrent Autoencoder with hybrid contrastive-reconstruction loss for real-time anomaly detection in agentic AI trajectories, achieving F1 0.88–0.94 while running 17–27× faster than LLM Judge baselines at 32ms inference. CascadeWatch must cite and differentiate: (a) Trajectory Guard detects general structural anomalies via reconstruction error, not cascade-specific onset via recoverability-delta signals; (b) it evaluates on security audit failures (RAS-Eval) and multi-agent systems (Who&When), not single-agent long-horizon tasks (ALFWorld, GAIA); (c) it provides no rollback or correction mechanism. These distinctions are clear and defensible, but leaving Trajectory Guard uncited risks a reviewer objection on related-work coverage.", "MODERATE — The claim 'Qwen/Qwen3-32B; the largest official open-weights model in the Qwen3 family' is factually incorrect. Qwen3-235B-A22B is an official open-weight MoE model published at Qwen/Qwen3-235B-A22B on HuggingFace under Apache 2.0 with 235B total parameters — larger than Qwen3-32B. The correct claim is 'the largest official open-weights dense model in the Qwen3 family' (the 32B is justified by fitting in 1× H100-80GB BF16 without quantization, not by being the absolute largest). Alternatively, drop the superlative entirely and state: 'We use Qwen/Qwen3-32B (32B dense model, 64GB BF16, fits in 1× H100-80GB without quantization).'", "MINOR — The GAIA training data regime (~27 samples per fold after 3-fold CV on 50 total trajectories) is acknowledged only in the resource_estimate risk_note, not in the methods or experiment design sections. The paper body should explicitly state that the GAIA cascade probe operates near the minimum viable supervised learning regime and frame GAIA results as preliminary evidence, with ALFWorld (100 trajectories, ~67 per fold) providing the primary evidence base for the main claim."]
+Feedback: Round 4 has cleanly addressed all four targeted issues from Round 3. Canonical Path Deviation is now extensively cited with technically precise differentiation (single-trajectory vs. multi-run signals, proactive vs. retrospective detection, targeted rollback vs. full restart). From Spark to Fire is differentiated on structural grounds (inter-agent vs. single-agent cascade). The 'any frozen agent' claim is corrected. The primary empirical claim is reframed as task success rate improvement. The ALFWorld rollback is technically correct (command-replay from env.reset(), Glulx API limitation acknowledged, Crab rationale clarified). Three short fixes will bring this to pass:
+
+1. **Add one Trajectory Guard sentence to §Related Work**: 'Trajectory Guard [arXiv 2601.00516] uses a Siamese Recurrent Autoencoder with hybrid contrastive-reconstruction loss to detect trajectory anomalies in agentic AI at 32ms, but targets general structural anomalies rather than cascade-specific onset via recoverability signals, evaluates on security audit and multi-agent benchmarks (not ALFWorld/GAIA), and provides no rollback mechanism.' This citation is necessary because its framing ('lightweight inference-time monitoring of agentic trajectories') directly overlaps with CascadeWatch's positioning.
+
+2. **Fix Qwen3-32B superlative**: Remove 'the largest official open-weights model in the Qwen3 family.' Replace with 'Qwen/Qwen3-32B (32B dense model; 64GB BF16; fits in 1× H100-80GB without quantization).' The 235B MoE model is also official and is larger; the superlative will draw reviewer scrutiny.
+
+3. **Disclose GAIA data regime in §Experiments**: Add one sentence: 'The GAIA subset (50 trajectories, ~27 training samples per fold) operates near the minimum viable supervised regime; GAIA results are treated as preliminary evidence, with ALFWorld (100 trajectories) providing the primary evidence base for the main cascade-avoidance claim.'
+
+### Round 5 review
+Verdict: revise
+Issues: ["MODERATE — InferAct (arXiv 2407.11843, EMNLP 2025 main track, pages 222–244) is uncited despite being published at the exact target venue and explicitly framing its contribution as 'preemptive detection and correction of misaligned actions in LLM agents.' It uses Theory-of-Mind reasoning (Task Inference Unit + Task Verification Unit) to detect misaligned agent actions before execution and achieves up to 20% Marco-F1 improvement over baselines. EMNLP 2026 reviewers will know this paper and its absence will be a red flag. The distinction from CascadeWatch is real — InferAct targets single-step action misalignment with user intent (e.g., executing a buy action without user authorization) via ToM belief reasoning and requires human-in-loop correction via user alerts; CascadeWatch targets multi-step cascade propagation onset via trajectory-prefix ERR recoverability signals and triggers automated rollback — but these distinctions must be stated explicitly in related work.", "MINOR — MASC (arXiv 2510.14319, October 2025, revised January 2026) — 'Metacognitive Self-Correction for Multi-Agent System via Prototype-Guided Next-Execution Reconstruction' — explicitly targets cascading errors in agent systems using history-conditioned embedding anomaly scoring (Next-Execution Reconstruction + Prototype-Guided Enhancement) to trigger step-level correction, achieving +8.47% AUC-ROC on the Who&When benchmark. Though MASC is multi-agent (not single-agent), it uses an embedding-based cascade-targeting mechanism structurally related to CascadeWatch's frozen embedding probe, and its explicit 'cascading errors' framing partially occupies CascadeWatch's conceptual space. A 1–2 sentence mention with differentiation (multi-agent vs. single-agent; unsupervised reconstruction vs. supervised ERR-motivated cascade labels; Who&When vs. ALFWorld/GAIA) is needed to complete the landscape coverage."]
+Feedback: All three Round 4 fixes are cleanly implemented. The paper is close to pass-ready. Two targeted additions will close the remaining reviewer exposure:
+
+1. **Add InferAct to §Related Work (required):** 'InferAct [arXiv 2407.11843, EMNLP 2025] uses Theory-of-Mind reasoning to detect actions misaligned with user intent before execution and alerts users for correction, achieving up to 20% Marco-F1 improvement. InferAct addresses single-step action misalignment — whether a specific upcoming action matches user authorization — and relies on human-in-loop correction via user alerts. CascadeWatch addresses a structurally different failure mode: multi-step cascade propagation, where an early-step error compounds across subsequent trajectory steps regardless of user intent; our detection uses trajectory-prefix ERR recoverability signals rather than ToM belief inference, and our intervention is automated rollback rather than human alerting.' This distinction is accurate and defensible; the citation is necessary.
+
+2. **Add MASC to §Related Work (recommended, 1–2 sentences):** 'MASC [arXiv 2510.14319] proposes metacognitive self-correction for multi-agent systems via Prototype-Guided Next-Execution Reconstruction, detecting cascading errors at step level via history-conditioned embedding anomaly scoring and triggering correction agents; CascadeWatch differs in targeting single-agent long-horizon cognitive cascades using supervised ERR-motivated recoverability labels (not unsupervised reconstruction) and evaluating on ALFWorld/GAIA rather than the Who&When multi-agent benchmark.'
+
+### Round 6 review
+Verdict: revise
+Issues: ["CRITICAL — TrajAD (arXiv 2602.06443, 'Trajectory Anomaly Detection for Trustworthy LLM Agents') is an uncited competitor that evaluates on ALFWorld, GAIA, AND WebShop — the exact same benchmark set as CascadeWatch — and explicitly states rollback-and-retry is essential for error recovery, using a specialized verifier trained with fine-grained process supervision. EMNLP reviewers will recognize this paper. The differentiation argument exists (TrajAD uses synthetic TrajBench perturbation labels for general anomaly detection; CascadeWatch uses AgentErrorBench's expert-annotated cascade root-causes with ERR recoverability deltas for cascade-specific onset detection; TrajAD's approach is retrospective error localization while CascadeWatch's step ≥ 5 threshold proactively targets the cascade-propagation window that the Intervention Paradox identifies as the high-risk regime), but it must be stated explicitly in §Related Work.", "CRITICAL — InferAct (arXiv 2407.11843, EMNLP 2025 main track, pages 222–244) remains uncited despite being flagged as required in Round 5. It evaluates on ALFWorld (among other benchmarks), is published at the exact target venue, and is preemptive detection with correction — a direct framing overlap. The absence of this citation after two review rounds of flagging will draw immediate reviewer scrutiny.", "MODERATE — MASC (arXiv 2510.14319) remains uncited despite being recommended in Round 5. Its history-conditioned embedding anomaly scoring for cascading errors in multi-agent systems partially occupies CascadeWatch's conceptual space and uses Who&When (not ALFWorld/GAIA) as its benchmark, making differentiation straightforward but necessary."]
+Feedback: Round 6 submission has made no additions relative to Round 5's required citations — InferAct and MASC are still absent. Additionally, a new high-priority competitor (TrajAD) has been independently identified that evaluates on the same benchmark triple (ALFWorld, GAIA, WebShop) with explicit rollback-and-retry. Three targeted additions are needed:
+
+1. **Add TrajAD to §Related Work (highest priority, newly identified):** 'TrajAD [arXiv 2602.06443] proposes a specialized verifier trained with fine-grained process supervision for trajectory anomaly detection on ALFWorld, GAIA, and WebShop, explicitly enabling rollback-and-retry on error localization. TrajAD is a general-purpose anomaly detector: it uses synthetic TrajBench perturbation labels covering diverse procedural deviations, not cascade-specific annotations tied to confirmed failure propagation. CascadeWatch differs in three ways: (1) detection is cascade-onset specific rather than general-anomaly — using ERR Efficiency Score recoverability deltas as the distinguishing signal for compounding-cost prefixes, not reconstruction deviation; (2) training labels come from AgentErrorBench expert root-cause annotations with the confirmed-cascade criterion (trajectory fails AND root-cause before midpoint), not synthetic perturbations; (3) the step ≥ 5 minimum intervention threshold is specifically calibrated to the Intervention Paradox finding that all observed regressions occur at step ≤ 2, a constraint TrajAD does not impose.'
+
+2. **Add InferAct to §Related Work (required, carried from Round 5):** 'InferAct [arXiv 2407.11843, EMNLP 2025] uses Theory-of-Mind reasoning to detect single-step actions misaligned with user intent before execution on WebArena, ALFWorld, and HotpotQA, achieving up to 20% Marco-F1 improvement. InferAct addresses misalignment between the upcoming action and user authorization — whether a specific action matches user intent — and relies on human-in-loop correction via alerts. CascadeWatch addresses a structurally different failure mode: multi-step cascade propagation, where an early-step cognitive error compounds across subsequent trajectory steps independent of user intent; our detection uses trajectory-prefix ERR recoverability signals rather than ToM belief inference, and our intervention is automated targeted rollback rather than human alerting.'
+
+3. **Add MASC in 1–2 sentences (recommended, carried from Round 5):** 'MASC [arXiv 2510.14319] detects cascading errors in multi-agent systems via Prototype-Guided Next-Execution Reconstruction with unsupervised embedding anomaly scoring on Who&When; CascadeWatch targets single-agent long-horizon cognitive cascades using supervised ERR-motivated recoverability labels (not unsupervised reconstruction) on ALFWorld and GAIA.'
+
+### Round 7 review
+Verdict: revise
+Issues: ["MODERATE — Cascade label derivation for synthetic trajectories is unspecified: the confirmed-cascade criterion requires identifying the 'earliest annotated root-cause error step' for each trajectory, but the 5K synthetic rollouts from Qwen/Qwen3-32B have no expert annotations. If the automated label proxy for synthetic trajectories is 'trajectory fails AND some heuristic for early-step failure' (e.g., any step k before midpoint in a failed trajectory), this introduces systematic label noise that differs from the expert-annotated criterion used for the 200 real trajectories. The paper must explicitly state how cascade labels are derived for synthetic data — either the same confirmed-cascade criterion (which is impossible without root-cause annotation) or a degraded proxy (which must be acknowledged and its error rate estimated).", "MODERATE — WebShop omission weakens TrajAD comparison: TrajAD evaluates on ALFWorld, GAIA, AND WebShop; CascadeWatch's 'optional extension' framing for WebShop means the head-to-head comparison with the closest benchmark competitor is incomplete on a full third of its evaluation surface. EMNLP reviewers familiar with TrajAD will flag this. Either (a) commit to WebShop in the primary evaluation (adding ~15–25 H100-hours, which still fits within the 200-hour HIL constraint), or (b) explicitly acknowledge in the paper that the comparison is partial and that TrajAD's WebShop performance remains uncontested by CascadeWatch.", "MINOR — The expected number of cascade-positive examples from the 200 AgentErrorBench trajectories after applying the confirmed-cascade filter is never stated. ALFWorld has a baseline failure rate of 5.8–14.7% (per the Intervention Paradox paper), suggesting most trajectories succeed, but AgentErrorBench likely oversamples failures. Estimating that, say, 60–80 of 100 ALFWorld trajectories are failure trajectories and perhaps 40–60 pass the confirmed-cascade criterion (root-cause before midpoint) gives ~40–60 cascade-positive training examples before augmentation — this should be stated explicitly to give readers confidence in the probe's training signal without relying solely on the 5K synthetic expansion.", "MINOR — The Intervention Paradox's specific finding that 'all observed regressions occur at step ≤ 2' is stated as a key empirical fact grounding the step ≥ 5 threshold, but this claim is from a paper that evaluated specific benchmarks (HotPotQA, GAIA, ALFWorld) with a specific critic type. It would strengthen the paper to note whether this step-≤-2 regression finding applies uniformly across all benchmarks evaluated in that paper, or only to specific ones, to ensure the step ≥ 5 threshold is correctly calibrated for ALFWorld and GAIA specifically."]
+Feedback: The Round 7 submission cleanly addresses all three Round 6 critical issues — TrajAD is now extensively differentiated across four dimensions (training labels, anomaly target with Intervention Paradox awareness, architecture, recoverability signal); InferAct is cited with three substantive distinctions; MASC is differentiated on multi-agent vs. single-agent and supervised vs. unsupervised. Independent verification found no unaddressed competitor papers: the four papers I investigated (Failure is Feedback, Agent Banana, AgentEval, WebRollback) are either in different domains (multimodal retrieval, image editing), post-hoc evaluation frameworks, or web-specific rollback without cascade detection. Two targeted changes are needed for Round 8:
+
+1. **Specify the cascade label derivation procedure for synthetic trajectories (required).** The confirmed-cascade criterion requires expert-annotated root-cause steps, which don't exist for the 5K synthetic rollouts. Add one explicit paragraph: state whether synthetic trajectories are labeled using (a) an automated root-cause approximation (e.g., step where cumulative reward delta first becomes negative), (b) trajectory-level failure labels only (cascade-positive = any step k < ⌊N/2⌋ in a failed trajectory), or (c) held to the same confirmed-cascade standard (in which case, how?). If (b), acknowledge that synthetic labels are coarser than AgentErrorBench expert labels and the probe trains on a mixture of high-precision real labels and lower-precision synthetic labels — this is an important methodological caveat.
+
+2. **Resolve the WebShop evaluation gap (required for TrajAD comparison integrity).** The simplest resolution: add WebShop to the primary HIL evaluation plan. An additional ~15–25 H100-hours brings the total to ~65–100 H100-hours, still well within the 200-hour constraint and within the 12–14 day timeline (WebShop evaluation runs in parallel with GAIA evaluation). This makes the CascadeWatch vs. TrajAD comparison complete on the exact benchmark triple TrajAD uses. If WebShop is genuinely not feasible, change the framing from 'optional extension' to 'out-of-scope negative result: CascadeWatch's context-only rollback for WebShop (which cannot undo submitted searches) makes it a poor fit for this benchmark's action-irreversibility profile, unlike TrajAD's rollback-and-retry which is evaluated there.'
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "354a8817-0bd4-4541-8a33-e72fced985a2",
+  "type": "user",
+  "uuid": "7f0330b4-5fcc-420f-abf7-8c3b6f11c967",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6e242e24-2a19-48ee-ae0a-5c329de4a697",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-09T19:59:56.924Z_
+
+```json
+{
+  "parentUuid": "7f0330b4-5fcc-420f-abf7-8c3b6f11c967",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "b6849937-55ff-43b4-b182-91e280976e4e",
+  "timestamp": "2026-05-09T19:59:56.924Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6e242e24-2a19-48ee-ae0a-5c329de4a697",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-09T19:59:56.924Z_
+
+```json
+{
+  "parentUuid": "b6849937-55ff-43b4-b182-91e280976e4e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "fe2c0d84-3387-45d3-93c8-8f6edf5b6149",
+  "timestamp": "2026-05-09T19:59:56.924Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6e242e24-2a19-48ee-ae0a-5c329de4a697",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-09 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "fe2c0d84-3387-45d3-93c8-8f6edf5b6149",
+  "sessionId": "6e242e24-2a19-48ee-ae0a-5c329de4a697"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Validate CascadeWatch cascade-detection framework with empirical verification",
+  "sessionId": "6e242e24-2a19-48ee-ae0a-5c329de4a697"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-09T20:00:24.212Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze this carefully. This is Round 8 of 10. The Round 7 review requested two specific changes:
+1. Specify cascade label derivation for synthetic trajectories
+2. Resolve the WebShop evaluation gap
+
+Looking at the current round 8 submission, I need to check if these issues were addressed and do my own independent research to verify the claims.
+
+Let me look at what has changed in the current submission vs Round 7:
+
+Looking at the `approach` section in round 8, I can see:
+1. **Cascade label derivation for synthetic trajectories** - This is now explicitly addressed: "For the ~2,000 synthetic rollouts, expert root-cause annotation is unavailable. 
+
+The synthetic trajectories use a failure-based proxy for labeling: a trajectory gets marked as cascade-positive at step k if it ultimately fails and k is in the first half of the episode. This is admittedly coarser than the expert-confirmed cascade labels, so the training data mixes high-precision real annotations from AgentErrorBench (around 135–155 cascade-positive examples) with lower-precision synthetic labels derived from this trajectory-level proxy. The authors acknowledge this methodological trade-off and include an ablation study using only AgentErrorBench data to assess the impact.
+
+2. **WebShop evaluation gap** - Looking at the evaluation setup, WebShop is now included in the primary evaluation alongside ALFWorld and GAIA, comparing task success rate, steps saved, and false-positive intervention rates against several baselines including reflection, self-verification, and anomaly detection approaches. The resource estimates for HIL mode come in at 69–101 H100-hours over 12–14 calendar days, which stays well within the 200 H100-hour and 16-day constraints. I'm also checking the remaining minor issues from Round 7, including the expected count of cascade-positive examples.
+
+The cascade-positive example counts are now specified: approximately 65–75 from ALFWorld, 35–40 from GAIA, and 35–40 from WebShop, totaling around 135–155 before augmentation. On the Intervention Paradox concern, the paper's finding that regression-causing interventions occur at steps 0–1 on HotPotQA and GAIA supports a min_step ≥ 2 threshold, and CascadeWatch's step ≥ 5 is more conservative than that recommendation. ALFWorld is the exception where early intervention actually helps, showing gains of +0.5 to +2.8 percentage points.
+
+Both Round 7 changes are now addressed. I need to independently verify the key claims by checking whether the cited papers actually exist and contain the stated results—specifically AgentErrorBench's 200 annotated trajectories, ERR's empirical validation with δ ≤ 0.05, and the Intervention Paradox's reported AUROC and degradation metrics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fe2c0d84-3387-45d3-93c8-8f6edf5b6149",
+  "isSidechain": false,
+  "requestId": "req_011Casb6ZrFJxnuN3Vjk1sEp",
+  "type": "assistant",
+  "uuid": "088a5dbf-da17-4576-ad6d-c45715217ffe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6e242e24-2a19-48ee-ae0a-5c329de4a697",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_019z7zCQXwJzM8t9z1YVkY7G",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 30646,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 1814,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 30646,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1814,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 30646,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 30646
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-09T20:00:24.510Z_
+
+I'll conduct independent research to verify the claims in this Round 8 submission, checking whether the two required Round 7 fixes were properly addressed and searching for any remaining issues.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "088a5dbf-da17-4576-ad6d-c45715217ffe",
+  "isSidechain": false,
+  "requestId": "req_011Casb6ZrFJxnuN3Vjk1sEp",
+  "type": "assistant",
+  "uuid": "e650423e-73fd-45a9-bd98-2d5b0337f1e0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6e242e24-2a19-48ee-ae0a-5c329de4a697",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_019z7zCQXwJzM8t9z1YVkY7G",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 30646,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 1814,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 30646,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1814,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 30646,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 30646
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-09T20:00:31.605Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01GoS6FfKw6XwwERFx7ssYVW`</summary>
+
+```json
+{
+  "description": "Verify key papers and search for competitive work",
+  "subagent_type": "Explore",
+  "prompt": "I need you to search the web to verify several arXiv papers and find competitive work for a research idea about LLM agent cascade failure detection. Please search for the following and report what you find:\n\n1. Search for \"AgentErrorBench arXiv 2509.25370\" - does this paper exist? What are the key claims about annotated failure trajectories?\n\n2. Search for \"TrajAD trajectory anomaly detection LLM agents arXiv 2602.06443\" - does this exist? Does it evaluate on ALFWorld, GAIA, WebShop?\n\n3. Search for \"Intervention Paradox failure prediction agents arXiv 2602.03338\" - does this exist? What does it say about early intervention?\n\n4. Search for \"canonical path deviation agent failure arXiv 2602.19008\" - does this exist?\n\n5. Search for any NEW papers from March-May 2026 about: \"agent cascade failure detection rollback\", \"LLM agent error monitoring inference-time\", \"agent trajectory monitoring rollback 2026\"\n\n6. Search for \"ERR recoverability tool-augmented agents arXiv 2601.22352\"\n\n7. Search for \"BacktrackAgent arXiv 2505.20660 EMNLP 2025\"\n\nPlease use web search and report your findings for each query, including whether each paper exists and what its key claims are."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e650423e-73fd-45a9-bd98-2d5b0337f1e0",
+  "isSidechain": false,
+  "requestId": "req_011Casb6ZrFJxnuN3Vjk1sEp",
+  "type": "assistant",
+  "uuid": "ab262ca9-697b-4613-8cff-f2bd4f0d7276",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6e242e24-2a19-48ee-ae0a-5c329de4a697",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_019z7zCQXwJzM8t9z1YVkY7G",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 30646,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 1814,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 30646,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1814,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 30646,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 30646
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-09T20:00:36.715Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_016svbJEEYESAB9pxQD381eN`</summary>
+
+```json
+{
+  "description": "Search for newer competitive agent monitoring papers",
+  "subagent_type": "Explore",
+  "prompt": "I'm reviewing a research paper about LLM agent cascade failure monitoring. Please search for competitive papers that might have been missed, focusing on work from 2026:\n\n1. Search arXiv for \"agent self-correction rollback 2026\" - any papers about agents automatically rolling back failed actions?\n\n2. Search for \"proactive agent monitoring cascade 2026 arXiv\" \n\n3. Search for \"TrajAD 2602.06443\" - read the abstract if accessible via WebFetch at https://arxiv.org/abs/2602.06443\n\n4. Search for \"InferAct EMNLP 2025 agent misalignment\" \n\n5. Search for \"MASC metacognitive self-correction multi-agent arXiv 2510.14319\"\n\n6. Search for \"agent trajectory anomaly detection early intervention 2026\"\n\n7. Search for \"LLM agent online monitoring inference-time intervention 2026 arXiv\"\n\n8. Search for \"cascade failure agent single-agent rollback checkpoint 2026\"\n\nReport your findings concisely - what exists, what the key claims are, and whether any of these could be strong competitive papers that would challenge novelty."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ab262ca9-697b-4613-8cff-f2bd4f0d7276",
+  "isSidechain": false,
+  "requestId": "req_011Casb6ZrFJxnuN3Vjk1sEp",
+  "type": "assistant",
+  "uuid": "63b529ef-0921-4ad4-b2b3-9dc2177241a5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6e242e24-2a19-48ee-ae0a-5c329de4a697",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_019z7zCQXwJzM8t9z1YVkY7G",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 30646,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 1814,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 30646,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1814,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 30646,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 30646
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-09T20:01:04.149Z_
+
+<details><summary>↩ Tool result · `toolu_016svbJEEYESAB9pxQD381eN`</summary>
+
+```text
+## Summary of Competitive Papers Found
+
+Based on my search, I've identified several **highly relevant and potentially strong competitive papers** from 2025-2026 that directly address cascade failure monitoring and agent self-correction:
+
+### CRITICAL COMPETITIVE THREATS
+
+**1. TrajAD: Trajectory Anomaly Detection for Trustworthy LLM Agents (2602.06443)**
+- **Core contribution**: Specialized verifier using fine-grained process supervision for detecting and localizing anomalies in agent execution trajectories
+- **Key capability**: Supports "efficient rollback-and-retry mechanisms"
+- **Novelty**: Addresses the exact problem space—runtime anomaly detection focused on precise error localization to enable rollback
+- **Threat level**: VERY HIGH - directly addresses trajectory-level failure detection with explicit rollback support
+
+**2. MASC: Metacognitive Self-Correction for Multi-Agent Systems (2510.14319)**
+- **Core contribution**: Real-time, unsupervised, step-level error detection and self-correction via anomaly scoring
+- **Correction mechanism**: When anomaly flagged, triggers correction agent to revise output before errors propagate downstream
+- **Performance**: Improves step-level error detection by up to 8.47% AUC-ROC; consistent end-to-end gains
+- **Threat level**: VERY HIGH - explicitly prevents cascading failures through targeted correction at anomaly detection points
+
+**3. Trajectory Guard: Lightweight, Sequence-Aware Anomaly Detection (2601.00516)**
+- **Core contribution**: Real-time anomaly detection in agentic AI using Siamese Recurrent Autoencoder
+- **Performance**: F1-scores of 0.88–0.94 on balanced sets
+- **Scope**: Task-trajectory alignment and sequential validity monitoring
+- **Threat level**: HIGH - specialized monitoring system for agent trajectory analysis
+
+**4. ProbGuard: Probabilistic Runtime Monitoring for LLM Agent Safety (2508.00500)**
+- **Core contribution**: Proactive runtime monitoring using DTMC to estimate probability of reaching unsafe states
+- **Key advantage**: Provides warnings 38.66 seconds ahead of violations in autonomous driving
+- **Performance**: Reduces unsafe behavior by up to 65.37%
+- **Threat level**: HIGH - predictive approach to intervention before cascade occurs
+
+### OTHER RELEVANT PAPERS
+
+**5. InferAct: Preemptive Detection and Correction of Misaligned Actions (2407.11843)**
+- **Contribution**: Detects misaligned actions before execution via Theory-of-Mind reasoning
+- **Performance**: Best in 11/12 settings, up to 20% improvements in misalignment detection
+- **Threat level**: MEDIUM-HIGH - prevents execution of problematic actions at planning stage
+
+**6. Autogenesis: Self-Evolving Agent Protocol (2604.15034)**
+- **Contribution**: Self-Evolution Protocol Layer (SEPL) with closed-loop assessment and rollback
+- **Key feature**: Auditable lineage and rollback capabilities
+- **Threat level**: MEDIUM - broader scope on agent self-improvement but includes rollback mechanisms
+
+**7. Reliable Weak-to-Strong Monitoring of LLM Agents (2508.19461)**
+- **Contribution**: Online monitoring with recursive summarization for escalation decisions
+- **Focus**: Predicting harmful outcomes before they become critical or irreversible
+- **Threat level**: MEDIUM - complementary online monitoring approach
+
+**8. Cascade-Aware Multi-Agent Routing (2603.17112)**
+- **Contribution**: Models how failures propagate differently in tree-like vs. cyclic multi-agent graphs
+- **Insight**: Single failure cascades exponentially in tree-like regimes but self-limits in dense cyclic regimes
+- **Threat level**: MEDIUM - addresses cascade propagation dynamics specifically
+
+**9. AgentSpec: Customizable Runtime Enforcement (2503.18666)**
+- **Contribution**: Runtime enforcement with customizable intervention mechanisms
+- **Features**: User inspection, LLM self-examination, action invocation
+- **Threat level**: MEDIUM - generic enforcement framework
+
+**10. SentinelAgent: Graph-Based Anomaly Detection (2505.24201)**
+- **Contribution**: Real-time execution tracing and policy-based intervention in multi-agent systems
+- **Threat level**: LOW-MEDIUM - focuses on multi-agent systems specifically
+
+### KEY NOVELTY CHALLENGES
+
+The strongest competitive threats are **TrajAD**, **MASC**, and **ProbGuard**, which:
+1. Operate at runtime with real-time detection
+2. Explicitly support rollback/correction mechanisms
+3. Show strong empirical results (8.47-65.37% improvements)
+4. Address cascade failure prevention directly
+5. Published Oct 2025 - Jan 2026 (very recent)
+
+If your work focuses on **single-agent cascade failure monitoring with inference-time intervention**, ensure you clearly differentiate from:
+- MASC's step-level anomaly detection in multi-agent contexts
+- TrajAD's trajectory-level error localization approach
+- ProbGuard's probabilistic predictive monitoring
+
+Consider claiming novelty in specificity (single-agent vs. multi-agent), timing (earlier detection windows), or mechanism (your intervention method vs. others).
+
+Sources:
+- [Autogenesis: A Self-Evolving Agent Protocol](https://arxiv.org/abs/2604.15034)
+- [MASC: Metacognitive Self-Correction](https://arxiv.org/abs/2510.14319)
+- [Trajectory Guard](https://arxiv.org/abs/2601.00516)
+- [ProbGuard: Probabilistic Runtime Monitoring](https://arxiv.org/abs/2508.00500)
+- [InferAct: Preemptive Detection and Correction](https://arxiv.org/abs/2407.11843)
+- [Cascade-Aware Multi-Agent Routing](https://arxiv.org/abs/2603.17112)
+- [Reliable Weak-to-Strong Monitoring](https://arxiv.org/abs/2508.19461)
+- [AgentSpec: Customizable Runtime Enforcement](https://arxiv.org/abs/2503.18666)
+- [SentinelAgent: Graph-Based Anomaly Detection](https://arxiv.org/abs/2505.24201)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "63b529ef-0921-4ad4-b2b3-9dc2177241a5",
+  "isSidechain": false,
+  "promptId": "354a8817-0bd4-4541-8a33-e72fced985a2",
+  "type": "user",
+  "uuid": "7d98266e-3647-4bb8-bda9-75a539b8a1e0",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I'm reviewing a research paper about LLM agent cascade failure monitoring. Please search for competitive papers that might have been missed, focusing on work from 2026:\n\n1. Search arXiv for \"agent self-correction rollback 2026\" - any papers about agents automatically rolling back failed actions?\n\n2. Search for \"proactive agent monitoring cascade 2026 arXiv\" \n\n3. Search for \"TrajAD 2602.06443\" - read the abstract if accessible via WebFetch at https://arxiv.org/abs/2602.06443\n\n4. Search for \"InferAct EMNLP 2025 agent misalignment\" \n\n5. Search for \"MASC metacognitive self-correction multi-agent arXiv 2510.14319\"\n\n6. Search for \"agent trajectory anomaly detection early intervention 2026\"\n\n7. Search for \"LLM agent online monitoring inference-time intervention 2026 arXiv\"\n\n8. Search for \"cascade failure agent single-agent rollback checkpoint 2026\"\n\nReport your findings concisely - what exists, what the key claims are, and whether any of these could be strong competitive papers that would challenge novelty.",
+    "agentId": "a156bb69519e49ade",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "## Summary of Competitive Papers Found\n\nBased on my search, I've identified several **highly relevant and potentially strong competitive papers** from 2025-2026 that directly address cascade failure monitoring and agent self-correction:\n\n### CRITICAL COMPETITIVE THREATS\n\n**1. TrajAD: Trajectory Anomaly Detection for Trustworthy LLM Agents (2602.06443)**\n- **Core contribution**: Specialized verifier using fine-grained process supervision for detecting and localizing anomalies in agent execution trajectories\n- **Key capability**: Supports \"efficient rollback-and-retry mechanisms\"\n- **Novelty**: Addresses the exact problem space—runtime anomaly detection focused on precise error localization to enable rollback\n- **Threat level**: VERY HIGH - directly addresses trajectory-level failure detection with explicit rollback support\n\n**2. MASC: Metacognitive Self-Correction for Multi-Agent Systems (2510.14319)**\n- **Core contribution**: Real-time, unsupervised, step-level error detection and self-correction via anomaly scoring\n- **Correction mechanism**: When anomaly flagged, triggers correction agent to revise output before errors propagate downstream\n- **Performance**: Improves step-level error detection by up to 8.47% AUC-ROC; consistent end-to-end gains\n- **Threat level**: VERY HIGH - explicitly prevents cascading failures through targeted correction at anomaly detection points\n\n**3. Trajectory Guard: Lightweight, Sequence-Aware Anomaly Detection (2601.00516)**\n- **Core contribution**: Real-time anomaly detection in agentic AI using Siamese Recurrent Autoencoder\n- **Performance**: F1-scores of 0.88–0.94 on balanced sets\n- **Scope**: Task-trajectory alignment and sequential validity monitoring\n- **Threat level**: HIGH - specialized monitoring system for agent trajectory analysis\n\n**4. ProbGuard: Probabilistic Runtime Monitoring for LLM Agent Safety (2508.00500)**\n- **Core contribution**: Proactive runtime monitoring using DTMC to estimate probability of reaching unsafe states\n- **Key advantage**: Provides warnings 38.66 seconds ahead of violations in autonomous driving\n- **Performance**: Reduces unsafe behavior by up to 65.37%\n- **Threat level**: HIGH - predictive approach to intervention before cascade occurs\n\n### OTHER RELEVANT PAPERS\n\n**5. InferAct: Preemptive Detection and Correction of Misaligned Actions (2407.11843)**\n- **Contribution**: Detects misaligned actions before execution via Theory-of-Mind reasoning\n- **Performance**: Best in 11/12 settings, up to 20% improvements in misalignment detection\n- **Threat level**: MEDIUM-HIGH - prevents execution of problematic actions at planning stage\n\n**6. Autogenesis: Self-Evolving Agent Protocol (2604.15034)**\n- **Contribution**: Self-Evolution Protocol Layer (SEPL) with closed-loop assessment and rollback\n- **Key feature**: Auditable lineage and rollback capabilities\n- **Threat level**: MEDIUM - broader scope on agent self-improvement but includes rollback mechanisms\n\n**7. Reliable Weak-to-Strong Monitoring of LLM Agents (2508.19461)**\n- **Contribution**: Online monitoring with recursive summarization for escalation decisions\n- **Focus**: Predicting harmful outcomes before they become critical or irreversible\n- **Threat level**: MEDIUM - complementary online monitoring approach\n\n**8. Cascade-Aware Multi-Agent Routing (2603.17112)**\n- **Contribution**: Models how failures propagate differently in tree-like vs. cyclic multi-agent graphs\n- **Insight**: Single failure cascades exponentially in tree-like regimes but self-limits in dense cyclic regimes\n- **Threat level**: MEDIUM - addresses cascade propagation dynamics specifically\n\n**9. AgentSpec: Customizable Runtime Enforcement (2503.18666)**\n- **Contribution**: Runtime enforcement with customizable intervention mechanisms\n- **Features**: User inspection, LLM self-examination, action invocation\n- **Threat level**: MEDIUM - generic enforcement framework\n\n**10. SentinelAgent: Graph-Based Anomaly Detection (2505.24201)**\n- **Contribution**: Real-time execution tracing and policy-based intervention in multi-agent systems\n- **Threat level**: LOW-MEDIUM - focuses on multi-agent systems specifically\n\n### KEY NOVELTY CHALLENGES\n\nThe strongest competitive threats are **TrajAD**, **MASC**, and **ProbGuard**, which:\n1. Operate at runtime with real-time detection\n2. Explicitly support rollback/correction mechanisms\n3. Show strong empirical results (8.47-65.37% improvements)\n4. Address cascade failure prevention directly\n5. Published Oct 2025 - Jan 2026 (very recent)\n\nIf your work focuses on **single-agent cascade failure monitoring with inference-time intervention**, ensure you clearly differentiate from:\n- MASC's step-level anomaly detection in multi-agent contexts\n- TrajAD's trajectory-level error localization approach\n- ProbGuard's probabilistic predictive monitoring\n\nConsider claiming novelty in specificity (single-agent vs. multi-agent), timing (earlier detection windows), or mechanism (your intervention method vs. others).\n\nSources:\n- [Autogenesis: A Self-Evolving Agent Protocol](https://arxiv.org/abs/2604.15034)\n- [MASC: Metacognitive Self-Correction](https://arxiv.org/abs/2510.14319)\n- [Trajectory Guard](https://arxiv.org/abs/2601.00516)\n- [ProbGuard: Probabilistic Runtime Monitoring](https://arxiv.org/abs/2508.00500)\n- [InferAct: Preemptive Detection and Correction](https://arxiv.org/abs/2407.11843)\n- [Cascade-Aware Multi-Agent Routing](https://arxiv.org/abs/2603.17112)\n- [Reliable Weak-to-Strong Monitoring](https://arxiv.org/abs/2508.19461)\n- [AgentSpec: Customizable Runtime Enforcement](https://arxiv.org/abs/2503.18666)\n- [SentinelAgent: Graph-Based Anomaly Detection](https://arxiv.org/abs/2505.24201)"
+      }
+    ],
+    "totalDurationMs": 27429,
+    "totalTokens": 26266,
+    "totalToolUseCount": 8,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 7907,
+      "cache_read_input_tokens": 16851,
+      "output_tokens": 1501,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 7907
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 7,
+          "output_tokens": 1501,
+          "cache_read_input_tokens": 16851,
+          "cache_creation_input_tokens": 7907,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 7907,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 8
+    }
+  },
+  "sourceToolAssistantUUID": "63b529ef-0921-4ad4-b2b3-9dc2177241a5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6e242e24-2a19-48ee-ae0a-5c329de4a697",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-09T20:01:16.483Z_
+
+<details><summary>↩ Tool result · `toolu_01GoS6FfKw6XwwERFx7ssYVW`</summary>
+
+```text
+Excellent! I've completed my search of all the papers and topics you requested. Here's a comprehensive summary of my findings:
+
+## Search Results Summary
+
+### 1. AgentErrorBench (arXiv 2509.25370) - **EXISTS**
+**Status:** CONFIRMED - Paper titled "Where LLM Agents Fail and How They can Learn From Failures" (September 29, 2025)
+
+**Key Claims:**
+- Introduces AgentErrorTaxonomy: a modular classification of failure modes spanning memory, reflection, planning, action, and system-level operations
+- AgentErrorBench contains 200 expertly annotated failure trajectories across ALFWorld (100), GAIA (50), and WebShop (50)
+- Proposes AgentDebug framework that isolates root-cause failures and provides corrective feedback
+- Results: 24% higher all-correct accuracy and 17% higher step accuracy; enables up to 26% relative improvements in task success
+
+Source: [arXiv 2509.25370](https://arxiv.org/abs/2509.25370)
+
+---
+
+### 2. TrajAD (arXiv 2602.06443) - **EXISTS**
+**Status:** CONFIRMED - "TrajAD: Trajectory Anomaly Detection for Trustworthy LLM Agents" (February 6, 2026)
+
+**Key Claims:**
+- Proposes TrajAD, a specialized verifier trained with fine-grained process supervision
+- Creates TrajBench dataset via perturb-and-complete strategy covering three anomaly categories: Task Failure, Process Inefficiency, and Unwarranted Continuation
+- Builds on AgentBank covering five core dimensions: reasoning, mathematics, coding, web navigation, and embodied AI
+- Finds that general-purpose LLMs struggle to identify anomalies, revealing that generalized capabilities don't automatically translate to process reliability
+- Fine-tuned Qwen3-4B as core detector
+
+**Note:** The search result does not explicitly confirm evaluation on ALFWorld, GAIA, and WebShop, but indicates broader evaluation across multiple task domains.
+
+Source: [arXiv 2602.06443](https://arxiv.org/abs/2602.06443)
+
+---
+
+### 3. Intervention Paradox (arXiv 2602.03338) - **EXISTS**
+**Status:** CONFIRMED - "The Intervention Paradox: Accurate Failure Prediction in Agents Does Not Imply Effective Failure Prevention" (February 3, 2026)
+
+**Key Claims:**
+- Core finding: A binary LLM critic with AUROC 0.94 can cause severe performance degradation, inducing 26 percentage point collapse on one model
+- Main paradox: Interventions may recover failing trajectories but also disrupt trajectories that would have succeeded
+- Problem statement: Proactive interventions by LLM critics are assumed to improve reliability, yet effects at deployment time are poorly understood
+- Proposes pre-deployment test using 50 tasks to estimate whether intervention helps or harms
+- Authors: Rakshith Vasudev, Melisa Russak, Dan Bikel, Waseem Alshikh
+
+Source: [arXiv 2602.03338](https://arxiv.org/abs/2602.03338)
+
+---
+
+### 4. Canonical Path Deviation (arXiv 2602.19008) - **EXISTS**
+**Status:** CONFIRMED - "Capable but Unreliable: Canonical Path Deviation as a Causal Mechanism of Agent Failure in Long-Horizon Tasks" (February 22, 2026)
+
+**Key Claims:**
+- Argues many agent failures are reliability failures caused by stochastic drift from task's latent solution structure, not capability failures
+- Every well-defined tool-use task imposes a canonical solution path (convergent set of tool invocations across successful runs)
+- Agent success depends on whether trajectory stays within this path's operating envelope
+- Uses Toolathlon benchmark: 22 frontier models attempt 108 real-world tool-use tasks across 3 runs = 515 model×task units
+- Within mixed-outcome units, adherence gap is indistinguishable at 10%, 25%, 50% completion, becomes significant at 75% and strongly significant at full completion
+
+Source: [arXiv 2602.19008](https://arxiv.org/abs/2602.19008)
+
+---
+
+### 5. NEW Papers (March-May 2026) on Agent Cascade Failure & Monitoring - **MULTIPLE FOUND**
+
+**a) SentinelAgent (arXiv 2505.24201, May 2025)**
+- "Graph-based Anomaly Detection in LLM-based Multi-Agent Systems"
+- Addresses how shared memory in multi-agent systems introduces vulnerabilities
+- Proposes anomaly detection must model both control flow and memory flow with temporal invariants
+
+**b) Plausible but Wrong (arXiv 2604.25345, ~April 2026)**
+- "A case study on Agentic Failures in Astrophysical Workflows"
+- Identifies silent wrong computation as primary failure mode
+- Shows failures aren't just execution errors but syntactically valid code producing incorrect results
+
+**c) Which Agent Causes Task Failures and When? (arXiv 2505.00212, May 2025)**
+- Addresses failure attribution in LLM multi-agent systems
+- Best method: 53.5% accuracy identifying failure-responsible agents, 14.2% pinpointing failure steps
+
+**d) Towards a Science of AI Agent Reliability (arXiv 2602.16666, February 2026)**
+- Proposes twelve metrics decomposing agent reliability along: consistency, robustness, predictability, safety
+- Evaluated 14 agentic models; recent capability gains yielded only small reliability improvements
+
+**General Findings on Cascading Failures & Rollback:**
+- SafeAgent enables resilient agent operation through context repair, decision revision, trajectory rollback, constrained execution, and fail-safe termination
+- Sentrial AI platform triggers rollback/retraining/webhooks when high-risk anomalies detected (up to 70% MTTR reduction)
+- Mistral Workflows introduces stateful execution to continue from point of failure
+- Data shows 30% of autonomous agent runs hit exceptions needing recovery; 80% MTTR improvement with checkpointed execution
+
+Sources: [SentinelAgent](https://arxiv.org/html/2505.24201v1), [Plausible but Wrong](https://arxiv.org/html/2604.25345), [Towards a Science](https://arxiv.org/html/2602.16666v1)
+
+---
+
+### 6. ERR (arXiv 2601.22352) - **EXISTS**
+**Status:** CONFIRMED - "Recoverability Has a Law: The ERR Measure for Tool-Augmented Agents" (January 22, 2026)
+
+**Key Claims:**
+- Formalizes recoverability through Expected Recovery Regret (ERR): quantifies deviation of recovery policy from optimal under stochastic execution noise
+- Derives first-order relationship between ERR and Efficiency Score (ES)
+- Validated across 5 tool-use benchmarks spanning controlled perturbations, diagnostic reasoning, and real-world APIs
+- Predicted regret under ERR-ES law closely matched observed post-failure regret (delta ≤ 0.05) across model scales and recovery horizons
+- Shows recoverability is governed property of interaction dynamics, not artifact of scale/architecture
+
+Source: [arXiv 2601.22352](https://arxiv.org/abs/2601.22352)
+
+---
+
+### 7. BacktrackAgent (arXiv 2505.20660, EMNLP 2025) - **EXISTS**
+**Status:** CONFIRMED - "BacktrackAgent: Enhancing GUI Agent with Error Detection and Backtracking Mechanism" (May 27, 2025, published EMNLP 2025)
+
+**Key Claims:**
+- Addresses shortage of effective error detection and recovery mechanisms in existing agents
+- Proposes BacktrackAgent with verifier, judger, and reflector components for error detection/recovery
+- Includes backtracking mechanism considering outcome pages after action executions
+- Develops training dataset specifically for backtracking mechanism
+- Results: Performance improvements in both task success rate and step accuracy on Mobile3M and Auto-UI benchmarks
+- Authors: Qinzhuo Wu, Pengzhi Gao, Wei Liu, Jian Luan
+
+Sources: [arXiv 2505.20660](https://arxiv.org/abs/2505.20660), [ACL Anthology](https://aclanthology.org/2025.emnlp-main.212/)
+
+---
+
+## Summary
+
+All seven papers you requested **exist and have been verified**. The research landscape in agent failure detection is particularly active in early 2026, with multiple papers addressing cascade failures, trajectory monitoring, rollback mechanisms, and recovery prediction. The work spans from early detection methods (TrajAD, Intervention Paradox) to recovery mechanisms (BacktrackAgent, ERR) to system-wide reliability frameworks. The field is converging on the importance of runtime monitoring, proactive detection, and recovery-aware system design.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ab262ca9-697b-4613-8cff-f2bd4f0d7276",
+  "isSidechain": false,
+  "promptId": "354a8817-0bd4-4541-8a33-e72fced985a2",
+  "type": "user",
+  "uuid": "f6959ad4-51cd-4806-8766-534cb73a1656",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need you to search the web to verify several arXiv papers and find competitive work for a research idea about LLM agent cascade failure detection. Please search for the following and report what you find:\n\n1. Search for \"AgentErrorBench arXiv 2509.25370\" - does this paper exist? What are the key claims about annotated failure trajectories?\n\n2. Search for \"TrajAD trajectory anomaly detection LLM agents arXiv 2602.06443\" - does this exist? Does it evaluate on ALFWorld, GAIA, WebShop?\n\n3. Search for \"Intervention Paradox failure prediction agents arXiv 2602.03338\" - does this exist? What does it say about early intervention?\n\n4. Search for \"canonical path deviation agent failure arXiv 2602.19008\" - does this exist?\n\n5. Search for any NEW papers from March-May 2026 about: \"agent cascade failure detection rollback\", \"LLM agent error monitoring inference-time\", \"agent trajectory monitoring rollback 2026\"\n\n6. Search for \"ERR recoverability tool-augmented agents arXiv 2601.22352\"\n\n7. Search for \"BacktrackAgent arXiv 2505.20660 EMNLP 2025\"\n\nPlease use web search and report your findings for each query, including whether each paper exists and what its key claims are.",
+    "agentId": "aa040b91f7b8e9551",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "Excellent! I've completed my search of all the papers and topics you requested. Here's a comprehensive summary of my findings:\n\n## Search Results Summary\n\n### 1. AgentErrorBench (arXiv 2509.25370) - **EXISTS**\n**Status:** CONFIRMED - Paper titled \"Where LLM Agents Fail and How They can Learn From Failures\" (September 29, 2025)\n\n**Key Claims:**\n- Introduces AgentErrorTaxonomy: a modular classification of failure modes spanning memory, reflection, planning, action, and system-level operations\n- AgentErrorBench contains 200 expertly annotated failure trajectories across ALFWorld (100), GAIA (50), and WebShop (50)\n- Proposes AgentDebug framework that isolates root-cause failures and provides corrective feedback\n- Results: 24% higher all-correct accuracy and 17% higher step accuracy; enables up to 26% relative improvements in task success\n\nSource: [arXiv 2509.25370](https://arxiv.org/abs/2509.25370)\n\n---\n\n### 2. TrajAD (arXiv 2602.06443) - **EXISTS**\n**Status:** CONFIRMED - \"TrajAD: Trajectory Anomaly Detection for Trustworthy LLM Agents\" (February 6, 2026)\n\n**Key Claims:**\n- Proposes TrajAD, a specialized verifier trained with fine-grained process supervision\n- Creates TrajBench dataset via perturb-and-complete strategy covering three anomaly categories: Task Failure, Process Inefficiency, and Unwarranted Continuation\n- Builds on AgentBank covering five core dimensions: reasoning, mathematics, coding, web navigation, and embodied AI\n- Finds that general-purpose LLMs struggle to identify anomalies, revealing that generalized capabilities don't automatically translate to process reliability\n- Fine-tuned Qwen3-4B as core detector\n\n**Note:** The search result does not explicitly confirm evaluation on ALFWorld, GAIA, and WebShop, but indicates broader evaluation across multiple task domains.\n\nSource: [arXiv 2602.06443](https://arxiv.org/abs/2602.06443)\n\n---\n\n### 3. Intervention Paradox (arXiv 2602.03338) - **EXISTS**\n**Status:** CONFIRMED - \"The Intervention Paradox: Accurate Failure Prediction in Agents Does Not Imply Effective Failure Prevention\" (February 3, 2026)\n\n**Key Claims:**\n- Core finding: A binary LLM critic with AUROC 0.94 can cause severe performance degradation, inducing 26 percentage point collapse on one model\n- Main paradox: Interventions may recover failing trajectories but also disrupt trajectories that would have succeeded\n- Problem statement: Proactive interventions by LLM critics are assumed to improve reliability, yet effects at deployment time are poorly understood\n- Proposes pre-deployment test using 50 tasks to estimate whether intervention helps or harms\n- Authors: Rakshith Vasudev, Melisa Russak, Dan Bikel, Waseem Alshikh\n\nSource: [arXiv 2602.03338](https://arxiv.org/abs/2602.03338)\n\n---\n\n### 4. Canonical Path Deviation (arXiv 2602.19008) - **EXISTS**\n**Status:** CONFIRMED - \"Capable but Unreliable: Canonical Path Deviation as a Causal Mechanism of Agent Failure in Long-Horizon Tasks\" (February 22, 2026)\n\n**Key Claims:**\n- Argues many agent failures are reliability failures caused by stochastic drift from task's latent solution structure, not capability failures\n- Every well-defined tool-use task imposes a canonical solution path (convergent set of tool invocations across successful runs)\n- Agent success depends on whether trajectory stays within this path's operating envelope\n- Uses Toolathlon benchmark: 22 frontier models attempt 108 real-world tool-use tasks across 3 runs = 515 model×task units\n- Within mixed-outcome units, adherence gap is indistinguishable at 10%, 25%, 50% completion, becomes significant at 75% and strongly significant at full completion\n\nSource: [arXiv 2602.19008](https://arxiv.org/abs/2602.19008)\n\n---\n\n### 5. NEW Papers (March-May 2026) on Agent Cascade Failure & Monitoring - **MULTIPLE FOUND**\n\n**a) SentinelAgent (arXiv 2505.24201, May 2025)**\n- \"Graph-based Anomaly Detection in LLM-based Multi-Agent Systems\"\n- Addresses how shared memory in multi-agent systems introduces vulnerabilities\n- Proposes anomaly detection must model both control flow and memory flow with temporal invariants\n\n**b) Plausible but Wrong (arXiv 2604.25345, ~April 2026)**\n- \"A case study on Agentic Failures in Astrophysical Workflows\"\n- Identifies silent wrong computation as primary failure mode\n- Shows failures aren't just execution errors but syntactically valid code producing incorrect results\n\n**c) Which Agent Causes Task Failures and When? (arXiv 2505.00212, May 2025)**\n- Addresses failure attribution in LLM multi-agent systems\n- Best method: 53.5% accuracy identifying failure-responsible agents, 14.2% pinpointing failure steps\n\n**d) Towards a Science of AI Agent Reliability (arXiv 2602.16666, February 2026)**\n- Proposes twelve metrics decomposing agent reliability along: consistency, robustness, predictability, safety\n- Evaluated 14 agentic models; recent capability gains yielded only small reliability improvements\n\n**General Findings on Cascading Failures & Rollback:**\n- SafeAgent enables resilient agent operation through context repair, decision revision, trajectory rollback, constrained execution, and fail-safe termination\n- Sentrial AI platform triggers rollback/retraining/webhooks when high-risk anomalies detected (up to 70% MTTR reduction)\n- Mistral Workflows introduces stateful execution to continue from point of failure\n- Data shows 30% of autonomous agent runs hit exceptions needing recovery; 80% MTTR improvement with checkpointed execution\n\nSources: [SentinelAgent](https://arxiv.org/html/2505.24201v1), [Plausible but Wrong](https://arxiv.org/html/2604.25345), [Towards a Science](https://arxiv.org/html/2602.16666v1)\n\n---\n\n### 6. ERR (arXiv 2601.22352) - **EXISTS**\n**Status:** CONFIRMED - \"Recoverability Has a Law: The ERR Measure for Tool-Augmented Agents\" (January 22, 2026)\n\n**Key Claims:**\n- Formalizes recoverability through Expected Recovery Regret (ERR): quantifies deviation of recovery policy from optimal under stochastic execution noise\n- Derives first-order relationship between ERR and Efficiency Score (ES)\n- Validated across 5 tool-use benchmarks spanning controlled perturbations, diagnostic reasoning, and real-world APIs\n- Predicted regret under ERR-ES law closely matched observed post-failure regret (delta ≤ 0.05) across model scales and recovery horizons\n- Shows recoverability is governed property of interaction dynamics, not artifact of scale/architecture\n\nSource: [arXiv 2601.22352](https://arxiv.org/abs/2601.22352)\n\n---\n\n### 7. BacktrackAgent (arXiv 2505.20660, EMNLP 2025) - **EXISTS**\n**Status:** CONFIRMED - \"BacktrackAgent: Enhancing GUI Agent with Error Detection and Backtracking Mechanism\" (May 27, 2025, published EMNLP 2025)\n\n**Key Claims:**\n- Addresses shortage of effective error detection and recovery mechanisms in existing agents\n- Proposes BacktrackAgent with verifier, judger, and reflector components for error detection/recovery\n- Includes backtracking mechanism considering outcome pages after action executions\n- Develops training dataset specifically for backtracking mechanism\n- Results: Performance improvements in both task success rate and step accuracy on Mobile3M and Auto-UI benchmarks\n- Authors: Qinzhuo Wu, Pengzhi Gao, Wei Liu, Jian Luan\n\nSources: [arXiv 2505.20660](https://arxiv.org/abs/2505.20660), [ACL Anthology](https://aclanthology.org/2025.emnlp-main.212/)\n\n---\n\n## Summary\n\nAll seven papers you requested **exist and have been verified**. The research landscape in agent failure detection is particularly active in early 2026, with multiple papers addressing cascade failures, trajectory monitoring, rollback mechanisms, and recovery prediction. The work spans from early detection methods (TrajAD, Intervention Paradox) to recovery mechanisms (BacktrackAgent, ERR) to system-wide reliability frameworks. The field is converging on the importance of runtime monitoring, proactive detection, and recovery-aware system design."
+      }
+    ],
+    "totalDurationMs": 44868,
+    "totalTokens": 29560,
+    "totalToolUseCount": 10,
+    "usage": {
+      "input_tokens": 888,
+      "cache_creation_input_tokens": 4828,
+      "cache_read_input_tokens": 21667,
+      "output_tokens": 2177,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 4828
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 888,
+          "output_tokens": 2177,
+          "cache_read_input_tokens": 21667,
+          "cache_creation_input_tokens": 4828,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 4828,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 10
+    }
+  },
+  "sourceToolAssistantUUID": "ab262ca9-697b-4613-8cff-f2bd4f0d7276",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6e242e24-2a19-48ee-ae0a-5c329de4a697",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 14_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-09 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "f6959ad4-51cd-4806-8766-534cb73a1656",
+  "sessionId": "6e242e24-2a19-48ee-ae0a-5c329de4a697"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 15_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Validate CascadeWatch cascade-detection framework with empirical verification",
+  "sessionId": "6e242e24-2a19-48ee-ae0a-5c329de4a697"
+}
+```
+
+---
+
+### Assistant
+
+_source line 16 · 2026-05-09T20:05:02.475Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now search for some more specific things that I want to verify:
+
+1. Whether TrajAD specifically evaluates on ALFWorld, GAIA, and WebShop (the current paper claims this)
+2. Whether the round 8 submission has properly addressed the two required changes from Round 7
+3. Whether there are any new papers from April-May 2026 that might compete with CascadeWatch
+
+The searches confirm that all the key papers cited exist. Now let me analyze the Round 8 submission more carefully:
+
+**Round 7 Required Changes:**
+1. **Cascade label derivation for synthetic trajectories** - ADDRESSED: The submission now explicitly states: "For the ~2,000 synthetic rollouts, expert root-cause annotation is unavailable. 
+
+For synthetic data, they're using a trajectory-level failure proxy where a trajectory gets labeled as cascade-positive at step k if it ultimately fails and k is at most half the trajectory length. They acknowledge this methodological limitation and include an ablation study training only on expert-annotated data to measure how much noise the synthetic proxy introduces.
+
+2. **WebShop evaluation gap** - ADDRESSED: The primary evaluation now explicitly includes "ALFWorld, WebShop, and GAIA" and includes "TrajAD-style general anomaly detection" as a comparison baseline. The HIL compute breakdown also includes WebShop: "1K ALFWorld + 1K GAIA + 1K Web
+
+Shop per temperature."
+
+**Round 7 Minor Issues:**
+- Expected cascade-positive examples: ADDRESSED (65-75 ALFWorld, 35-40 GAIA, 35-40 WebShop = ~135-155 total)
+- Intervention Paradox benchmark-specific findings: ADDRESSED ("all regression-causing interventions occur at steps 0–1 on HotPotQA and GAIA... ALFWorld is the exception")
+
+Now I'm checking the remaining concerns. The GAIA cascade probe operates with only ~27 training samples per fold, which is quite limited, but they've acknowledged this as a preliminary result in the approach section. For TrajAD verification, I need to look more closely at what the baseline actually proposes versus what we're comparing against.
+
+I also noticed a new competitive paper on cascade-aware multi-agent routing that explicitly models propagation effects, so that's worth examining. The model choice has been corrected to Qwen-32B rather than 72B, which properly fits within the hardware constraints. AgentErrorBench provides 200 failure trajectories split across the three benchmarks, which gives us a solid foundation for the error analysis.
+
+The cascade-initiating errors clustering at steps 5-15 aligns well with the claim that most root-cause annotations fall before the midpoint, since typical episodes run 20-40 steps. The compute requirements for the human-in-the-loop mode appear feasible at around 69-101 H100-hours within the 12-hour window.
+
+Now I need to verify whether TrajAD explicitly evaluates on ALFWorld, GAIA, and WebShop as claimed, since the search didn't confirm this directly. I'm also checking if the submission adequately addresses the Round 7 requirements and whether the proposed synthetic cascade proxy—labeling any step k ≤ ⌊N/2⌋ in failed trajectories as cascade-positive—is reasonable despite potentially mislabeling early steps in trajectories that fail due to late errors. The submission does acknowledge this limitation and proposes an ablation study. I should also look into how the Intervention Paradox paper's min_step parameter factors into this analysis.
+
+The step ≥ 5 threshold is now grounded in two ways: cascade-initiating errors empirically start at step 5, and it aligns with the Intervention Paradox recommendations. AgentErrorBench's inter-annotator agreement (Cohen's κ = 0.55) is moderate but acknowledged in the paper. Looking at the opportunity section, AgentErrorBench provides the first systematic failure taxonomy across ALFWorld, WebShop, and GAIA with expert annotations identifying where cascades originate, containing 100 ALFWorld and 50 WebShop examples.
+
+I need to verify whether the specific Cohen's κ = 0.55 value is actually reported in the AgentErrorBench paper—I can confirm the paper exists but can't validate that exact metric without reading it directly. The Intervention Paradox claim checks out: a binary LLM critic with AUROC 0.94 does cause up to 26 percentage point performance degradation, which matches what the first agent confirmed. Now I'm examining the TrajAD claims more carefully.
+
+The submission describes TrajAD fine-tuning Qwen3-4B with QLoRA affecting only 1.8% of parameters on TrajBench, and the search results confirm the fine-tuning approach and the dataset creation via perturb-and-complete strategy covering Task Failure, Process Inefficiency, and Unwarranted Continuation. However, I still need to verify the evaluation claims on ALFWorld, GAIA, and WebShop.
+
+The "Process Inefficiency" category claim is interesting—the authors are making an original interpretation that this class of deviations corresponds precisely to the self-correctable errors that the Intervention Paradox shows cause performance degradation when interrupted. This is their own synthesis connecting two concepts rather than a direct finding from either paper.
+
+For the Canonical Path Deviation issue, the CPD paper uses Toolathlon with 22 frontier models and 108 real-world tasks across 3 runs each, and the 22.7 percentage point claim about off-canonical tool calls reinforcing each other is specific to that benchmark. But I'm noticing a discrepancy in the rollout generation details—the submission mentions 2,000 synthetic rollouts at two temperatures (0.7 and 1.0), but the description seems to cut off mid-sentence about the rollout generation specifics. There's definitely a contradiction here between the approach section stating "~2,000 synthetic rollouts" sampled at two temperatures and the resource breakdown claiming "2K rollouts × 2 temperatures = 4K trajectories." The scope note saying "2,000 total at 2 temperatures" suggests 1K per temperature, but the math in the breakdown implies 2K per temperature for 4K total—these interpretations are fundamentally at odds. It's a clarification issue rather than something that breaks the whole proposal, but it does need to be resolved to understand the actual compute requirements. I'm trying to reconcile the numbers in this paper—the scope mentions 2K total rollouts, but the breakdown suggests 4K trajectories across two temperatures, and the per-temperature allocation of 1K each for ALFWorld, GAIA, and WebShop doesn't align with either figure. Let me go back to the original text to see if I'm misinterpreting something. The breakdown of 1K per benchmark per temperature adds up to 3K per temperature, not 2K total, which creates a real inconsistency in the compute estimates depending on whether it's 2K, 4K, or 6K trajectories overall. I'm checking the main requirements from Round 7 against what's addressed, verifying the papers cited actually exist, and looking for any newer competitive work that might undermine the novelty claims—so far the core contributions still hold, though I haven't been able to confirm TrajAD's exact benchmarks through search. The search couldn't confirm that TrajAD actually evaluates on ALFWorld, GAIA, and WebShop—which is concerning since the paper's differentiation hinges on this claim. I'm also noting a few other minor issues: the synthetic proxy label approach is coarser than ideal, though the ablation study should isolate its impact, and the Cohen's κ = 0.55 for AgentErrorBench indicates only moderate inter-rater agreement. Now I'm weighing the novelty score—the cascade-specific detection combined with the ERR recoverability signal and Intervention Paradox calibration seems solid at around 3.5-4/5.
+
+Feasibility looks strong at 4/5 given the tighter compute and timeline constraints, though the small labeled set for GAIA still worries me. The paper is well-written and comprehensive, so clarity is 4/5. Impact lands at 3.5/5 since the practical value depends on whether the cascade-specific approach actually beats TrajAD on those Intervention Paradox-sensitive benchmarks. That puts the average around 3.75, which falls short of the 4.0 threshold. The core tension remains: the paper claims it will outperform TrajAD and other baselines, but with only around 135-155 labeled examples, I'm uncertain whether that's realistic.
+
+The real risk is that training a 2-layer MLP probe on such a small set—especially with 3-fold cross-validation leaving just 45-50 examples per fold—might not generalize well enough to achieve net-positive intervention across all three benchmarks. There's also a labeling mismatch I'm noticing: the "confirmed-cascade criterion" requires the probe to predict exactly at the annotated root-cause step, but in practice it needs to trigger before the midpoint, not necessarily at that exact step. If only one step per trajectory gets labeled as cascade-onset, that's extremely sparse supervision—maybe 135-155 labels total across the entire dataset.
+
+Actually, looking more carefully at the labeling scheme: for real trajectories, only the root-cause step gets the cascade-onset label if it occurs before the midpoint, while all other steps are negative. But for synthetic trajectories, the labeling is different—any early step in a failing trajectory gets labeled cascade-positive. This creates a fundamental asymmetry in how the two datasets are labeled, which could confuse the probe during training.
+
+The paper acknowledges this through the ablation study in arm (d), but that's more of a post-hoc validation than a prospective fix to the design. Still, given how responsive the authors have been through eight rounds and how solid the core methodology is, I'm inclined to think this concern, while real, doesn't undermine the overall contribution.
+
+But I'm torn between "pass" and "revise." The label inconsistency between real trajectories (one cascade-positive step) and synthetic ones (all first-half steps labeled) is genuinely problematic for training the probe—it could create conflicting signals that hurt performance. There's also the unresolved compute count discrepancy across the resource estimates, and the GAIA training regime remains quite sparse.
+
+Given we're at Round 8 of 10 and these are moderate rather critical issues, I think "revise" is the right call with specific feedback on those three points. Now I need to double-check the TrajAD benchmark claim more carefully—the paper says it evaluates on ALFWorld, GAIA, and WebShop specifically, but my search suggests TrajAD actually uses AgentBank, which covers a broader set of tasks including web navigation and embodied AI. If that's the case, there's a mismatch in what the paper claims versus what TrajAD actually benchmarks on.
+
+Let me verify whether TrajAD's evaluation actually aligns with the "identical ALFWorld/GAIA/WebShop triple" the paper claims for the head-to-head comparison, or if it's using different subsets or benchmarks altogether.
+
+Looking at this more carefully, the training data comes from AgentBank across five dimensions, but the evaluation benchmarks could still be ALFWorld, WebShop, and GAIA even if the training sources differ. The uncertainty here is significant though—if CascadeWatch is making a strong claim about a direct comparison on those exact benchmarks but TrajAD actually evaluated on something different, that's a real problem.
+
+Given this ambiguity, I should flag it as something needing verification rather than treating it as a definitive flaw. So my main issues to raise are the real-versus-synthetic label inconsistency, the rollout count discrepancy in the resource calculation, and this unverified claim about the benchmark alignment. For scoring, the novelty feels around 3.5—the specific combination of cascade-focused design with ERR and the intervention paradox threshold is novel, but the broader agent evaluation space is already quite saturated. Wait, I need to reconsider the label inconsistency more carefully. The real trajectories use step-level binary labels where only the root-cause step gets marked as 1, while synthetic trajectories label ALL steps up to the midpoint as positive if the trajectory fails. That's a fundamental mismatch in what the probe is being trained to recognize.
+
+The paper does acknowledge this is a coarser proxy and plans an ablation to measure the noise, so they're aware of the issue—but the question remains whether this label noise is actually manageable or if it undermines the probe's ability to learn meaningful cascade-onset patterns.
+
+There's a deeper practical issue though: the probe needs to detect cascade-onset at the exact root-cause step to enable timely intervention, but the training signal is sparse—only positive at that single step, with zeros everywhere else. In practice, CascadeWatch would trigger when the probability of cascade exceeds a threshold given the prefix, so the probe learns to recognize that a particular prefix contains the cascade signature at the moment it begins.
+
+The real concern is whether the probe generalizes to detecting cascade-prone prefixes *before* the cascade fully manifests, since it's only trained on the exact onset moment. But given that AgentErrorBench shows cascade-initiating errors cluster around steps 5-15, the probe would learn from examples across that range, teaching it what prefix patterns reliably precede cascades.
+
+I'm settling on a REVISE verdict. The label design is internally consistent with the confirmed-cascade criterion, but there's a genuine inconsistency between how real and synthetic examples are labeled that needs addressing. Beyond that, there's a minor discrepancy in the rollout counts—the approach mentions ~2K synthetic rollouts while the resource estimate suggests 4K trajectories from 2K rollouts at different temperatures. The cascade-onset label mismatch concern extends further — real labels are sparse and pinpoint the exact root-cause step, while synthetic labels densely mark all early-stage failures, which could train the probe to recognize early-trajectory patterns rather than true cascade-onset behavior; the ablation should explicitly test this. There's also a benchmark alignment issue: the submission claims TrajAD uses the same ALFWorld/GAIA/WebShop setup for direct comparison, but TrajAD actually covers five broader dimensions including reasoning and coding, suggesting the benchmarks may not align perfectly and the comparison claim needs qualification. Both are moderate issues fixable in revision, though the novelty score sits at 3.5/5 — the approach is well-differentiated but somewhat incremental. ded space (TrajAD especially) limits novelty headroom.
+- Feasibility: 3.5/5 — HIL timeline and compute are now within constraints, but the label inconsistency and sparse GAIA data raise execution risk.
+- Clarity: 4/5 — Very comprehensive related work coverage; rollout count inconsistency is a clarity gap.
+- Impact: 3.5/5 — Meaningful if the probe works with so few positive examples; the main empirical claim (net-positive rollback on Intervention Paradox benchmarks) is testable.
+
+Average: 3.625 → below 4.0 → "revise"
+
+But I'm reconsidering this at Round 8/10. The paper's been through eight iterations and the two required changes from Round 7 are actually addressed. The remaining issues are pretty minor—a likely typo in the rollout count, a label inconsistency that's acknowledged but could be clearer, and a factual question about TrajAD's benchmarks. Given the revision history and that there are no fundamental flaws, I'm wondering if these warrant another round or if I should let it move forward.
+
+The average is still below 4.0 though, and these are fixable issues. I'll issue "revise" with focused feedback on all three, and if they're addressed at Round 9, it should pass. Though I'm also questioning whether the ERR Efficiency Score approximation is actually valid—the paper mentions the formula but I need to verify the full derivation. The ERR paper's validation on tool-augmented agents doesn't directly transfer to ALFWorld's text-based trajectories, so the adaptation using step-level game score deltas is a necessary adjustment. Now I'm reviewing whether the TrajAD description in the submission aligns with publicly available information about how it synthesizes anomalies through perturbation and completion pipelines across task failure, process inefficiency, and unwarranted continuation categories. The benchmarks claim needs verification—the search results mention AgentBank as a potential training source covering reasoning, mathematics, coding, web navigation, and embodied AI, but I haven't confirmed whether evaluation actually uses ALFWorld, GAIA, and WebShop. I'm also spotting a rollout count inconsistency: the approach describes 2K total, but the resource estimate suggests either 4K (2K × 2 temperatures) or 6K (3K per temperature across three benchmarks), which needs clarification. The real-versus-synthetic label distinction in the training signal also requires more explicit definition. conflict - real labels are sparse (one cascade-onset step per trajectory) while synthetic labels are dense (all first-half steps of failed trajectories). The paper acknowledges the synthetic proxy is "coarser" but doesn't explicitly name this sparsity mismatch, which creates a training distribution conflict.
+3. MINOR: TrajAD's exact evaluation benchmarks (ALFWorld, GAIA, WebShop) should be verified from the paper rather than stated as fact, since the search found references to "AgentBank" as TrajAD's data source, not these specific benchmarks.
+
+These are all fixable issues. At Round 8/10, these are the only remaining concerns.
+
+Now I'm checking the rollout count discrepancy more carefully. The approach section mentions 2,000 synthetic rollouts sampled at two temperatures, the scope note says 2,000 total at both temperatures, but the compute breakdown shows 2,000 multiplied by 2 temperatures equals 4,000 trajectories distributed across the three benchmarks. The breakdown itself lists roughly 1,000 per benchmark per temperature, which would actually total 6,000 across both temperature settings. There's an internal inconsistency here between how the numbers are presented across different sections. I'm working through the alternative interpretation where 2K rollouts per temperature across 2 temperatures yields 4K total trajectories, which would mean roughly 667 samples per benchmark per temperature. This reading makes the "2K × 2 = 4K" framing consistent, though it contradicts the approach section's claim of ~2,000 synthetic rollouts. The rollout count discrepancy is worth flagging as an internal inconsistency that needs clarification, though it's relatively minor—what matters more is whether the compute estimate of 15-20 H100-hours holds up under either interpretation.
+
+At 4K trajectories, the 15-20 H100-hour estimate seems tight. Breaking it down: 4K trajectories with roughly 30 steps each means ~120K LLM inference calls, which at ~0.1 seconds per call gives around 3.3 hours just for inference, plus additional overhead from tool calls (especially GAIA's tool interactions). So 15-20 H100-hours becomes more plausible when accounting for the full pipeline, though it's still on the optimistic side depending on how tool execution time factors in.
+
+But if the actual count is 2K trajectories instead, then 8-12 H100-hours would be more realistic. This inconsistency in the rollout count—whether it's 2K, 4K, or something else—directly impacts whether the compute estimate is credible.
+
+Looking at the submission more carefully, I'm seeing three issues worth flagging: the rollout count needs to be consistent throughout the paper, the mismatch between how real labels mark cascade-onset (one step per trajectory) versus synthetic labels (all first-half steps of failures) creates a training inconsistency that's more fundamental than just "coarser labels," and I should verify TrajAD's exact evaluation benchmarks since the submission claims it evaluates on ALFWorld, GAIA, and WebShop but I want to confirm that against the actual paper.
+
+My verdict is to revise.
+
+Now scoring across dimensions: novelty is strong at 4/5 because the four-way differentiation from TrajAD—combining Intervention Paradox awareness, ERR recoverability, expert cascade labels, and cascade-specific thresholding—is genuinely specific. Feasibility drops to 3/5 due to the label inconsistency creating probe training risk and GAIA's sparse ~27 examples per fold. Clarity is 4/5 with the rollout inconsistency as the main gap. Impact lands at 3.5/5 since the rollback on Intervention Paradox benchmarks would be meaningful if it works. That averages to 3.625, which falls below 4.0, confirming the revise recommendation.
+
+But I need to reconsider the label issue more carefully. The confirmed-cascade criterion marks step k as cascade-onset only if it equals the annotated root-cause step AND occurs before the trajectory midpoint, which means most trajectories have at most one positive-labeled step—the actual cascade-onset point itself. The probe is essentially learning to distinguish the cascade-onset prefix from everything after it, which is a cleaner sequence classification task than I initially thought.
+
+Now I'm realizing the probe architecture takes the mean-pooled embeddings from steps 1 through k plus the running ERR delta features at step k, and uses those to predict whether step k is the cascade-onset step. The embeddings naturally capture the history since they're pooled over the entire prefix, and the ERR features add running prefix estimates, so the model has access to both the trajectory context and the error signal evolution up to that point.
+
+But there's a critical difference in how the labels are constructed. With real cascade-onset labels, the probe learns a sparse signal—exactly one positive label per failed trajectory at the actual cascade-onset step. With synthetic labels, every step in the first half of a failed trajectory gets marked as positive, which means the probe is learning to fire throughout an entire window rather than at a specific critical moment. These are fundamentally different classification targets, and the synthetic setup would train the probe on a much noisier, more distributed signal compared to the precise cascade-onset detection the real labels enforce.
+
+The ablation comparing AgentErrorBench-only training against the mixed-corpus approach will reveal whether the synthetic labels are actually helping or just adding noise. If the mixed-corpus probe performs similarly to the AgentErrorBench-only version, the synthetic data isn't contributing meaningfully. If it's better, then despite the label inconsistency, the synthetic trajectories are providing useful diversity in failure modes.
+
+The paper does acknowledge this as a methodological caveat and proposes measuring the noise contribution through the ablation, which is a reasonable approach. The label inconsistency could be explained more precisely, but it's adequately flagged. The rollout count discrepancy remains the clearest issue that could be fixed.
+
+For Round 8 with a thorough revision history and all prior changes addressed, I'd recommend a "revise" verdict focusing on three fixable issues: the rollout count inconsistency, better articulation of the label granularity mismatch, and verification of the TrajAD benchmark claims. These should be resolvable in one round, and if addressed properly, the paper should be ready by Round 9.
+
+Let me reconsider whether any critical blockers would prevent publication at EMNLP. The core methodological risk is whether a 2-layer MLP can actually generalize from only ~135-155 positive examples, which is a legitimate empirical concern. However, the paper's transparency about this limitation and commitment to reporting results honestly—whether positive or negative—is actually a strength that reviewers should appreciate. The TrajAD comparison claim is important to verify, but I need to think through whether that's a dealbreaker. I need to see the next thinking to rewrite it. Could you provide the next thinking chunk that follows the current rewritten thinking?
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f6959ad4-51cd-4806-8766-534cb73a1656",
+  "isSidechain": false,
+  "requestId": "req_011CasbCRrxEuGDwMZvsy3rp",
+  "type": "assistant",
+  "uuid": "14bda861-dc97-419e-a6d5-955a421d6a88",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6e242e24-2a19-48ee-ae0a-5c329de4a697",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01UQQNWJeGBRwUjn1sDfhBiP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1527,
+      "cache_creation_input_tokens": 4021,
+      "cache_read_input_tokens": 42277,
+      "output_tokens": 11427,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4021,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1527,
+          "output_tokens": 11427,
+          "cache_read_input_tokens": 42277,
+          "cache_creation_input_tokens": 4021,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4021
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-09T20:05:06.179Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01DdBRLu8bj9P6pi8iCr4eke`</summary>
+
+```json
+{
+  "description": "Verify TrajAD benchmark coverage claim",
+  "subagent_type": "Explore",
+  "prompt": "I need to verify a specific claim about a paper. Please search for \"TrajAD arXiv 2602.06443 trajectory anomaly detection\" and try to fetch the abstract from https://arxiv.org/abs/2602.06443 to determine:\n\n1. What specific benchmarks does TrajAD evaluate on? The claim I'm trying to verify is that it evaluates on ALFWorld, GAIA, AND WebShop specifically.\n\n2. Does the paper describe rollback-and-retry as an enabled feature?\n\n3. What is TrajBench? Is it based on AgentBank?\n\nAlso search for \"TrajAD ALFWorld GAIA WebShop evaluation\" and \"TrajAD trajectory anomaly detection benchmarks 2026\"\n\nPlease try to WebFetch https://arxiv.org/abs/2602.06443 to read the actual abstract. Report what you find about the evaluation benchmarks specifically."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "14bda861-dc97-419e-a6d5-955a421d6a88",
+  "isSidechain": false,
+  "requestId": "req_011CasbCRrxEuGDwMZvsy3rp",
+  "type": "assistant",
+  "uuid": "dbb9cf21-1d0f-4c39-8cf1-ca2d9eb3c71b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6e242e24-2a19-48ee-ae0a-5c329de4a697",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01UQQNWJeGBRwUjn1sDfhBiP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1527,
+      "cache_creation_input_tokens": 4021,
+      "cache_read_input_tokens": 42277,
+      "output_tokens": 11427,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4021,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1527,
+          "output_tokens": 11427,
+          "cache_read_input_tokens": 42277,
+          "cache_creation_input_tokens": 4021,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4021
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-09 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "dbb9cf21-1d0f-4c39-8cf1-ca2d9eb3c71b",
+  "sessionId": "6e242e24-2a19-48ee-ae0a-5c329de4a697"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Validate CascadeWatch cascade-detection framework with empirical verification",
+  "sessionId": "6e242e24-2a19-48ee-ae0a-5c329de4a697"
+}
+```
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-09T20:05:25.792Z_
+
+<details><summary>↩ Tool result · `toolu_01DdBRLu8bj9P6pi8iCr4eke`</summary>
+
+```text
+Based on my search and fetch of the arXiv paper, here are my findings about the TrajAD paper (arXiv 2602.06443):
+
+## Key Findings:
+
+**1. Evaluation Benchmarks - CLAIM IS NOT VERIFIED:**
+The abstract and available content from the arXiv page **do not mention ALFWorld, GAIA, or WebShop** as evaluation benchmarks for TrajAD. The paper instead introduces **TrajBench**, which is a newly synthesized dataset specifically created for this work to cover diverse procedural anomalies in agent trajectories. TrajBench is NOT based on existing benchmarks like ALFWorld, GAIA, or WebShop.
+
+**2. Rollback-and-Retry Feature - CLAIM IS PARTIALLY VERIFIED:**
+Yes, the paper does address rollback-and-retry. The abstract explicitly states that "precise error localization" is "essential for enabling efficient rollback-and-retry," indicating this is a stated goal of their approach.
+
+**3. TrajBench Composition - NOT BASED ON AGENTBANK:**
+TrajBench is described as "a dataset synthesized via a perturb-and-complete strategy to cover diverse procedural anomalies." It covers three representative anomaly categories: Task Failure, Process Inefficiency, and Unwarranted Continuation. There is no mention of it being based on AgentBank in the available content.
+
+## Summary:
+The claim that TrajAD evaluates on ALFWorld, GAIA, and WebShop appears to be **incorrect**. The paper instead introduces its own benchmark called TrajBench, synthesized specifically for evaluating trajectory anomalies in LLM agent execution. To get more complete details about what other benchmarks might be used for comparison or validation, you would need to access the full PDF of the paper.
+
+Sources:
+- [TrajAD: Trajectory Anomaly Detection for Trustworthy LLM Agents (Abstract)](https://arxiv.org/abs/2602.06443)
+- [TrajAD: Trajectory Anomaly Detection for Trustworthy LLM Agents (HTML)](https://arxiv.org/html/2602.06443)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dbb9cf21-1d0f-4c39-8cf1-ca2d9eb3c71b",
+  "isSidechain": false,
+  "promptId": "354a8817-0bd4-4541-8a33-e72fced985a2",
+  "type": "user",
+  "uuid": "88a2e2e8-ad96-4e35-9ff1-c7b73afea367",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need to verify a specific claim about a paper. Please search for \"TrajAD arXiv 2602.06443 trajectory anomaly detection\" and try to fetch the abstract from https://arxiv.org/abs/2602.06443 to determine:\n\n1. What specific benchmarks does TrajAD evaluate on? The claim I'm trying to verify is that it evaluates on ALFWorld, GAIA, AND WebShop specifically.\n\n2. Does the paper describe rollback-and-retry as an enabled feature?\n\n3. What is TrajBench? Is it based on AgentBank?\n\nAlso search for \"TrajAD ALFWorld GAIA WebShop evaluation\" and \"TrajAD trajectory anomaly detection benchmarks 2026\"\n\nPlease try to WebFetch https://arxiv.org/abs/2602.06443 to read the actual abstract. Report what you find about the evaluation benchmarks specifically.",
+    "agentId": "aa9e2f45070164e61",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "Based on my search and fetch of the arXiv paper, here are my findings about the TrajAD paper (arXiv 2602.06443):\n\n## Key Findings:\n\n**1. Evaluation Benchmarks - CLAIM IS NOT VERIFIED:**\nThe abstract and available content from the arXiv page **do not mention ALFWorld, GAIA, or WebShop** as evaluation benchmarks for TrajAD. The paper instead introduces **TrajBench**, which is a newly synthesized dataset specifically created for this work to cover diverse procedural anomalies in agent trajectories. TrajBench is NOT based on existing benchmarks like ALFWorld, GAIA, or WebShop.\n\n**2. Rollback-and-Retry Feature - CLAIM IS PARTIALLY VERIFIED:**\nYes, the paper does address rollback-and-retry. The abstract explicitly states that \"precise error localization\" is \"essential for enabling efficient rollback-and-retry,\" indicating this is a stated goal of their approach.\n\n**3. TrajBench Composition - NOT BASED ON AGENTBANK:**\nTrajBench is described as \"a dataset synthesized via a perturb-and-complete strategy to cover diverse procedural anomalies.\" It covers three representative anomaly categories: Task Failure, Process Inefficiency, and Unwarranted Continuation. There is no mention of it being based on AgentBank in the available content.\n\n## Summary:\nThe claim that TrajAD evaluates on ALFWorld, GAIA, and WebShop appears to be **incorrect**. The paper instead introduces its own benchmark called TrajBench, synthesized specifically for evaluating trajectory anomalies in LLM agent execution. To get more complete details about what other benchmarks might be used for comparison or validation, you would need to access the full PDF of the paper.\n\nSources:\n- [TrajAD: Trajectory Anomaly Detection for Trustworthy LLM Agents (Abstract)](https://arxiv.org/abs/2602.06443)\n- [TrajAD: Trajectory Anomaly Detection for Trustworthy LLM Agents (HTML)](https://arxiv.org/html/2602.06443)"
+      }
+    ],
+    "totalDurationMs": 19608,
+    "totalTokens": 21157,
+    "totalToolUseCount": 4,
+    "usage": {
+      "input_tokens": 885,
+      "cache_creation_input_tokens": 2975,
+      "cache_read_input_tokens": 16791,
+      "output_tokens": 506,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2975
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 885,
+          "output_tokens": 506,
+          "cache_read_input_tokens": 16791,
+          "cache_creation_input_tokens": 2975,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2975,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 4
+    }
+  },
+  "sourceToolAssistantUUID": "dbb9cf21-1d0f-4c39-8cf1-ca2d9eb3c71b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6e242e24-2a19-48ee-ae0a-5c329de4a697",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-09T20:06:09.055Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is important! The TrajAD paper does NOT appear to evaluate on ALFWorld, GAIA, and WebShop. The paper introduces its own TrajBench dataset. The submission claims that TrajAD "evaluates on ALFWorld, GAIA, and WebShop—the same benchmark set as CascadeWatch," but this appears to be inaccurate based on the actual paper.
+
+This is a significant issue. The submission has built a major differentiation argument around TrajAD:
+1. "CascadeWatch evaluates on the same ALFWorld/GAIA/WebShop triple as TrajAD, enabling a direct head-to-head comparison"
+
+
+2. Including TrajAD as an explicit baseline would test whether cascade-specific detection outperforms general anomaly detection in the Intervention Paradox regime, but if TrajAD wasn't actually evaluated on those benchmarks, then the head-to-head comparison claim falls apart and we're really just comparing CascadeWatch against a method that was never tested on these datasets. The differentiation around TrajAD's approach to the Intervention Paradox might still hold merit, but the framing is fundamentally misleading.
+
+This is a critical issue that needs to be flagged.
+
+Actually, I need to be more careful here. TrajAD introduces TrajBench as its primary benchmark, but papers often evaluate on established benchmarks like ALFWorld, WebShop, and GAIA downstream even if they introduce a new anomaly detection dataset. The search results don't show the full paper content, so I can't definitively say whether TrajAD evaluated on those benchmarks or not. I should verify this more thoroughly before calling it a critical misrepresentation. I'm realizing that many papers in this space validate their anomaly detection by measuring task success on downstream benchmarks like ALFWorld, WebShop, and GAIA, so TrajAD's rollback-and-retry approach likely does the same—but the abstract doesn't explicitly confirm this. I should flag this as a MODERATE issue since the submission claims TrajAD evaluates on the same benchmarks as CascadeWatch, yet the evidence suggests it primarily introduces TrajBench instead. If TrajAD only evaluates on its own benchmark, the comparison framing is misleading and needs to be repositioned as a methodology baseline rather than a benchmark baseline. Now I'm ready to compile my final review with the issues I've identified.
+
+There's also an internal inconsistency with the rollout counts: the approach mentions roughly 2,000 synthetic rollouts, but the resource estimate breaks this down as 2K rollouts × 2 temperatures = 4K trajectories, then further specifies 1K per benchmark per temperature, which would actually total 6K across three benchmarks and two temperatures—contradicting both the 2K and 4K figures. Additionally, there's a label granularity mismatch between real and synthetic data: real cascade-onset labels are sparse with just one labeled step per trajectory marking the exact root cause, while synthetic labels appear to be dense across multiple steps.
+
+The paper should explicitly name this conflict rather than just acknowledging it, since training a probe on this mixed distribution risks teaching it to detect "early trajectory of failing run" rather than true cascade-onset patterns. The TrajAD benchmark claim is the most concerning issue because the entire head-to-head comparison structure depends on it being properly evaluated.
+
+Looking back at the critical issues from the previous round, the cascade label derivation for synthetic trajectories is addressed with an explicit proxy description, and WebShop evaluation is now included in the primary results. All prior required changes appear to be in place, so the verdict is revise. On novelty, this scores 4/5—it's well-differentiated across four dimensions from both TrajAD and other monitoring approaches.
+
+Feasibility drops to 3/5 due to the small training set with only 27 cascade-positive examples per fold on GAIA, label granularity mismatches, and the rollout count inconsistency that could undermine the baseline comparison structure. Clarity is 3.5/5 given the internal inconsistencies around rollout counts and the potentially inaccurate TrajAD benchmark claim. Impact lands at 3.5/5 since the Intervention Paradox framing is meaningful and net-positive rollback would be novel if the benchmarks hold up.
+
+The average comes to 3.5, which falls short of the 4.0 threshold, so this needs revision.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "88a2e2e8-ad96-4e35-9ff1-c7b73afea367",
+  "isSidechain": false,
+  "requestId": "req_011CasbWpKZrDE9E8kNdnjhc",
+  "type": "assistant",
+  "uuid": "251373ec-da7e-48e7-aea7-79228d1d1ce1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6e242e24-2a19-48ee-ae0a-5c329de4a697",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_011L2S7H54JqFt1xpVooZhAX",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13454,
+      "cache_read_input_tokens": 46298,
+      "output_tokens": 3919,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13454,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3919,
+          "cache_read_input_tokens": 46298,
+          "cache_creation_input_tokens": 13454,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13454
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-09T20:06:48.174Z_
+
+Now I have enough information to issue my verdict. Let me compile the findings.
+
+**Key verification results:**
+1. All cited papers (AgentErrorBench, ERR, Intervention Paradox, Canonical Path Deviation, BacktrackAgent, InferAct, MASC) confirmed to exist with consistent claims.
+2. **TrajAD benchmark claim is NOT verified**: The submission states TrajAD "evaluates on ALFWorld, GAIA, and WebShop—the same benchmark set as CascadeWatch," but the actual paper (arXiv 2602.06443) introduces its own TrajBench dataset and the abstract does not mention ALFWorld, GAIA, or WebShop as evaluation benchmarks.
+3. Round 7's two required changes are genuinely addressed (synthetic label derivation specified, WebShop added to primary evaluation).
+4. Internal rollout count inconsistency detected: approach says ~2K synthetic rollouts; resource estimate says "2K rollouts × 2 temperatures = 4K trajectories; ~1K ALFWorld + 1K GAIA + 1K WebShop per temperature" — 3K per benchmark is internally contradictory across the sections.
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {
+      "score": 4,
+      "rationale": "The combination of Intervention Paradox-calibrated step threshold + ERR recoverability running prefix estimates + expert cascade labels (not synthetic perturbations) + automated targeted rollback is genuinely specific and not replicated by TrajAD, InferAct, MASC, or ProMAS individually. Four-dimensional differentiation from TrajAD is coherent and defensible."
+    },
+    "feasibility": {
+      "score": 3,
+      "rationale": "GAIA operates at ~27 training samples per fold (near minimum viable regime); the mixed real-vs-synthetic label granularity mismatch (one cascade-onset step per real trajectory vs all first-half steps of failed synthetic trajectories) creates a training signal conflict beyond 'coarser labels'; rollout count inconsistency creates compute uncertainty. If TrajAD's evaluation benchmarks don't match ALFWorld/GAIA/WebShop, the comparison baseline structure needs redesign."
+    },
+    "clarity": {
+      "score": 4,
+      "rationale": "Related work coverage is now comprehensive and well-differentiated across nine neighboring systems. The rollout count inconsistency (2K vs 4K vs implied 6K) and the unverified TrajAD benchmark claim are clarity gaps that would draw reviewer scrutiny."
+    },
+    "impact": {
+      "score": 3,
+      "rationale": "Net-positive rollback on Intervention Paradox benchmarks would be a meaningful and citable contribution; the 4-way ablation design is well-specified. Impact is contingent on the probe generalizing from a small labeled set and the TrajAD comparison being valid."
+    }
+  },
+  "issues": [
+    "MODERATE (potentially CRITICAL) — TrajAD benchmark claim is unverified: The submission states TrajAD 'evaluates on ALFWorld, GAIA, and WebShop—the same benchmark set as CascadeWatch,' enabling a 'direct head-to-head comparison.' But the actual arXiv 2602.06443 abstract and HTML indicate TrajAD introduces its own TrajBench (a dataset synthesized via Perturb-and-Complete) and does not appear to evaluate on ALFWorld, GAIA, or WebShop. If TrajAD evaluates on TrajBench only, then (1) the 'identical benchmark triple' claim is false, (2) the 'direct head-to-head' framing must be changed to 'methodology comparison on different benchmarks,' and (3) TrajAD remains a relevant related work for architectural contrast but not a head-to-head baseline. The full TrajAD paper PDF must be checked; if TrajBench-only, reframe TrajAD as 'the most similar concurrent methodology' (not same-benchmark competitor) and compare methods on their respective reported metrics rather than claiming head-to-head.",
+    "MODERATE — Internal rollout count inconsistency across sections: the approach section states '~2,000 synthetic rollouts sampled at two temperatures'; the HIL scope note states '2,000 total at 2 temperatures (T=0.7, T=1.0)'; the compute breakdown states '2K rollouts × 2 temperatures = 4K trajectories; ~1K ALFWorld + 1K GAIA + 1K WebShop per temperature.' The per-temperature breakdown (1K × 3 benchmarks = 3K per temperature × 2 temperatures = 6K total) contradicts both '2K total' and '4K trajectories.' One consistent number must appear throughout: if the intent is 2K total (≈333 per benchmark per temperature), the per-temperature breakdown should read '~333 ALFWorld + ~333 GAIA + ~333 WebShop'; if the intent is 4K total (≈667 per benchmark per temperature), the approach section should say '~4,000 synthetic rollouts.' The compute estimate (~15–20 H100-hours) should also be recalculated against the correct total.",
+    "MODERATE — Real-vs-synthetic label granularity mismatch is acknowledged but understated: the paper says synthetic labels are 'coarser,' but the actual structural difference is more consequential. Real cascade-onset labels from AgentErrorBench are maximally sparse: exactly ONE step per trajectory receives label 1 (the expert-annotated root-cause step), all others receive 0. Synthetic cascade labels are maximally dense: ALL steps k ≤ ⌊N/2⌋ of every failed synthetic trajectory receive label 1. Training a 2-layer MLP on this mixed distribution creates a fundamental learning inconsistency: the probe trained on real data must learn 'fire only at the specific cascade-onset step'; the probe trained on synthetic data must learn 'fire throughout the early trajectory of any failing run.' These are different decision boundaries. The paper should name this conflict explicitly ('label density mismatch') rather than just calling synthetic labels 'coarser,' and should add a sentence explaining what the probe is expected to learn from the mixture: 'the mixed corpus trains the probe to distinguish cascade-onset prefixes from successful-trajectory prefixes (from real labels) while learning failure-mode diversity from synthetic trajectories at the cost of false cascade-onset signal at non-root-cause early steps.'"
+  ],
+  "feedback": "Round 8 has addressed both Round 7 required changes: synthetic cascade label derivation is now explicitly specified (trajectory-level failure proxy for synthetic data, with AgentErrorBench-only ablation arm to quantify noise), and WebShop is now included in the primary HIL evaluation. The Intervention Paradox calibration, ALFWorld command-replay rollback, and all prior related-work citations are cleanly maintained. Three targeted changes are needed for Round 9:\n\n1. **Verify and correct the TrajAD benchmark claim (highest priority).** Fetch the full TrajAD PDF and confirm whether it evaluates on ALFWorld, GAIA, and WebShop or exclusively on TrajBench. If TrajBench-only: remove 'evaluates on ALFWorld, GAIA, and WebShop' from the TrajAD description; replace 'enabling a direct head-to-head comparison' with 'enabling a methodology comparison — CascadeWatch and TrajAD address the same detection problem but on different evaluation surfaces'; retain TrajAD in the baseline set as 'a TrajAD-style general anomaly detector trained on the same CascadeWatch benchmarks using synthetic perturbation labels, ablating cascade-specific precision against general-purpose detection.' This reframing preserves the scientific comparison while being accurate about TrajAD's own evaluation scope.\n\n2. **Resolve the rollout count inconsistency.** Pick one number consistently: either 2K total (≈333/benchmark/temperature, light augmentation) or 4K total (≈667/benchmark/temperature, moderate augmentation). Update the approach section, scope note, compute breakdown, and per-benchmark per-temperature figures to match. Recompute the 15–20 H100-hour rollout estimate against the correct total.\n\n3. **Add one sentence naming the label density mismatch explicitly.** In the training data paragraph, after acknowledging the methodological caveat, add: 'Concretely, real cascade-onset labels are maximally sparse (one positive-labeled step per trajectory, at the expert-annotated root-cause step) while synthetic labels are maximally dense (all first-half steps of each failed trajectory receive cascade-positive labels); the MLP trained on the mixture must reconcile these as a label density mismatch rather than a smoothly graded precision difference. The AgentErrorBench-only ablation arm isolates whether the probe learns cascade-specific onset patterns or merely learns to fire throughout early failed-run prefixes.'",
+  "reason": "Two Round 7 required changes are addressed, but a new moderate-to-critical issue emerged: the submission's central comparative framing ('direct head-to-head on the identical ALFWorld/GAIA/WebShop triple') depends on TrajAD evaluating on those benchmarks, but the actual TrajAD paper introduces its own TrajBench and does not appear to evaluate on ALFWorld/GAIA/WebShop — a factual error that undermines the head-to-head comparison structure."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "251373ec-da7e-48e7-aea7-79228d1d1ce1",
+  "isSidechain": false,
+  "requestId": "req_011CasbWpKZrDE9E8kNdnjhc",
+  "type": "assistant",
+  "uuid": "81da773d-82c4-40d6-8c94-6cb270e116bc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6e242e24-2a19-48ee-ae0a-5c329de4a697",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_011L2S7H54JqFt1xpVooZhAX",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13454,
+      "cache_read_input_tokens": 46298,
+      "output_tokens": 3919,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13454,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3919,
+          "cache_read_input_tokens": 46298,
+          "cache_creation_input_tokens": 13454,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13454
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-09 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "81da773d-82c4-40d6-8c94-6cb270e116bc",
+  "sessionId": "6e242e24-2a19-48ee-ae0a-5c329de4a697"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Validate CascadeWatch cascade-detection framework with empirical verification",
+  "sessionId": "6e242e24-2a19-48ee-ae0a-5c329de4a697"
+}
+```
+
+---

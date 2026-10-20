@@ -1,0 +1,3346 @@
+# Research conversation: 你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260517T133129 tier=best 生成一篇完整的模拟论文。 ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 35
+- **Recorded user turns:** 1
+- **Tool calls:** 6
+- **Original source:** `logs/chats/exported-trajectories/account-2/3aad36b4-392e-474c-8d55-d831dfdf181b.jsonl`
+- **Structured JSON:** [`868d7af86747cf966794.json`](../../sessions/86/868d7af86747cf966794.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-17T13:47:38.714Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-17T13:47:38.714Z",
+  "sessionId": "3aad36b4-392e-474c-8d55-d831dfdf181b",
+  "content": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260517T133129 tier=best 生成一篇完整的模拟论文。\n\n## 关键规则\n1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260517T133129/best/paper.tex`\n2. 用 **Bash 工具** 编译：`cd /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260517T133129/best && pdflatex -interaction=nonstopmode paper.tex && pdflatex -interaction=nonstopmode paper.tex`\n3. 所有文件只写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260517T133129/best/`，禁止写入其他目录\n4. 直接写完整 LaTeX 全文（\\documentclass ... \\end{document}），不要输出 YAML/JSON/Markdown\n5. 不走 5 步流水线，不 spawn Worker，不调 Director API——一次性写完\n6. 你必须在论文中为 experiment_data.json 中的**每个**实验设计对应的 section/table\n7. narrative_guidance 是你的写作方向指引，不要在论文正文中引用或复述此指引\n\n## 输入\n- 实验数据（JSON）：`/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260517T133129/best/experiment_data.json`（先 Read 此文件）\n- Venue：默认\n- Narrative guidance：原始 framing 完全成立。Episode-level GRPO 突破 28% plateau 收敛至 ~48% val success， 双机制理论（sign misattribution + information loss）通过 h-sweep cliff 和 per-window advantage logging 完整实证验证。Contrarian positioning 成立：更粗的 episode-level credit 优于社区默认的 finer credit（GAE 仅持平，不优于 episode-level GRPO，证明 episode-level 信息 是关键而非 per-token credit assignment）。Selective verification（B-IAVR）以 ~55% verification reduction 匹配 always-on performance，action-change reward 有效。 ScienceWorld transfer 成功回应 single-env 攻击。五 seed 复现 std<4pp。 三个 claim 全部成立，不需要降级，可投 NeurIPS/ICLR 主会。\n\n- paper_framing.md（完整版）：`/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260517T133129/best/paper_framing.md`（先 Read 此文件）\n\n## 质量目标\n\"够审\"级——让审稿人能评判 idea 和实验设计，不是投稿质量。包含 Abstract、Introduction、Method、Experiments、Conclusion。每个定量 claim 基于 experiment_data.json 中的数据，不得编造数字。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-17T13:47:38.717Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-17T13:47:38.717Z",
+  "sessionId": "3aad36b4-392e-474c-8d55-d831dfdf181b"
+}
+```
+
+---
+
+## Round 1
+
+33 recorded events
+
+### User
+
+_source line 3 · 2026-05-17T13:47:38.736Z_
+
+你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260517T133129 tier=best 生成一篇完整的模拟论文。
+
+## 关键规则
+1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260517T133129/best/paper.tex`
+2. 用 **Bash 工具** 编译：`cd /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260517T133129/best && pdflatex -interaction=nonstopmode paper.tex && pdflatex -interaction=nonstopmode paper.tex`
+3. 所有文件只写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260517T133129/best/`，禁止写入其他目录
+4. 直接写完整 LaTeX 全文（\documentclass ... \end{document}），不要输出 YAML/JSON/Markdown
+5. 不走 5 步流水线，不 spawn Worker，不调 Director API——一次性写完
+6. 你必须在论文中为 experiment_data.json 中的**每个**实验设计对应的 section/table
+7. narrative_guidance 是你的写作方向指引，不要在论文正文中引用或复述此指引
+
+## 输入
+- 实验数据（JSON）：`/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260517T133129/best/experiment_data.json`（先 Read 此文件）
+- Venue：默认
+- Narrative guidance：原始 framing 完全成立。Episode-level GRPO 突破 28% plateau 收敛至 ~48% val success， 双机制理论（sign misattribution + information loss）通过 h-sweep cliff 和 per-window advantage logging 完整实证验证。Contrarian positioning 成立：更粗的 episode-level credit 优于社区默认的 finer credit（GAE 仅持平，不优于 episode-level GRPO，证明 episode-level 信息 是关键而非 per-token credit assignment）。Selective verification（B-IAVR）以 ~55% verification reduction 匹配 always-on performance，action-change reward 有效。 ScienceWorld transfer 成功回应 single-env 攻击。五 seed 复现 std<4pp。 三个 claim 全部成立，不需要降级，可投 NeurIPS/ICLR 主会。
+
+- paper_framing.md（完整版）：`/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260517T133129/best/paper_framing.md`（先 Read 此文件）
+
+## 质量目标
+"够审"级——让审稿人能评判 idea 和实验设计，不是投稿质量。包含 Abstract、Introduction、Method、Experiments、Conclusion。每个定量 claim 基于 experiment_data.json 中的数据，不得编造数字。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "9b157487-52ba-4170-bcee-a17554702c6c",
+  "type": "user",
+  "uuid": "b0b4c57a-76bf-40fa-b032-738a126abd72",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "3aad36b4-392e-474c-8d55-d831dfdf181b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-17T13:47:38.735Z_
+
+```json
+{
+  "parentUuid": "b0b4c57a-76bf-40fa-b032-738a126abd72",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "141115fc-ea41-467b-935e-b1e70cc33e1d",
+  "timestamp": "2026-05-17T13:47:38.735Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "3aad36b4-392e-474c-8d55-d831dfdf181b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-17T13:47:38.735Z_
+
+```json
+{
+  "parentUuid": "141115fc-ea41-467b-935e-b1e70cc33e1d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "254b086d-fa37-4a85-8fea-a40c90332600",
+  "timestamp": "2026-05-17T13:47:38.735Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "3aad36b4-392e-474c-8d55-d831dfdf181b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generate simulated ML research paper",
+  "sessionId": "3aad36b4-392e-474c-8d55-d831dfdf181b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-17T13:47:44.282Z_
+
+I'll start by reading the input files to understand the experiment data and paper framing.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "254b086d-fa37-4a85-8fea-a40c90332600",
+  "isSidechain": false,
+  "requestId": "req_011Cb8FBFFBANakmUYBfAif4",
+  "type": "assistant",
+  "uuid": "b46d515d-b909-4a20-ade9-358491b34240",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "3aad36b4-392e-474c-8d55-d831dfdf181b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QHAByd3gVAjUbsCk6aBpTu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12573,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 214,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12573,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 214,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12573,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12573
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-17T13:47:44.825Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01R3qgdiXhqNBankz88e1aHR`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260517T133129/best/experiment_data.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b46d515d-b909-4a20-ade9-358491b34240",
+  "isSidechain": false,
+  "requestId": "req_011Cb8FBFFBANakmUYBfAif4",
+  "type": "assistant",
+  "uuid": "389ac890-7b66-4231-be18-b749f5d5628c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "3aad36b4-392e-474c-8d55-d831dfdf181b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QHAByd3gVAjUbsCk6aBpTu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12573,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 214,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12573,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 214,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12573,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12573
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-17T13:47:45.179Z_
+
+<details><summary>↩ Tool result · `toolu_01R3qgdiXhqNBankz88e1aHR`</summary>
+
+```text
+1	[
+2	  {
+3	    "name": "Episode-level GRPO convergence (exp029 continuation)",
+4	    "description": "Episode-level GRPO 继续训练至 step 50+。当前 step15 val=28.125%， train=43.75%。观察 val success 是否突破 plateau 并收敛至 ≥45%。\n",
+5	    "results": {
+6	      "step20_val_success": 0.34,
+7	      "step30_val_success": 0.42,
+8	      "step40_val_success": 0.47,
+9	      "step50_val_success": 0.48,
+10	      "converged_val_pass_at_1": 0.48,
+11	      "converged_val_pass_at_8": 0.96,
+12	      "converged_train_success": 0.56,
+13	      "converged_action_is_valid": 0.72,
+14	      "converged_action_is_effective": 0.85,
+15	      "converged_entropy": 0.15,
+16	      "converged_ppo_kl": 0.008,
+17	      "convergence_step": 45,
+18	      "total_training_hours": 22
+19	    },
+20	    "tables": [
+21	      {
+22	        "title": "Episode-level GRPO training trajectory",
+23	        "columns": [
+24	          "step",
+25	          "val_success",
+26	          "train_success",
+27	          "action_is_valid",
+28	          "entropy",
+29	          "pass_at_8"
+30	        ],
+31	        "rows": [
+32	          [
+33	            5,
+34	            0.25,
+35	            0.31,
+36	            0.48,
+37	            0.22,
+38	            0.82
+39	          ],
+40	          [
+41	            10,
+42	            0.25,
+43	            0.38,
+44	            0.51,
+45	            0.19,
+46	            0.88
+47	          ],
+48	          [
+49	            15,
+50	            0.281,
+51	            0.438,
+52	            0.545,
+53	            0.17,
+54	            0.93
+55	          ],
+56	          [
+57	            20,
+58	            0.34,
+59	            0.48,
+60	            0.6,
+61	            0.16,
+62	            0.94
+63	          ],
+64	          [
+65	            30,
+66	            0.42,
+67	            0.53,
+68	            0.67,
+69	            0.15,
+70	            0.95
+71	          ],
+72	          [
+73	            40,
+74	            0.47,
+75	            0.55,
+76	            0.71,
+77	            0.15,
+78	            0.96
+79	          ],
+80	          [
+81	            50,
+82	            0.48,
+83	            0.56,
+84	            0.72,
+85	            0.15,
+86	            0.96
+87	          ]
+88	        ]
+89	      }
+90	    ],
+91	    "figures": [],
+92	    "analysis": "收敛值 48% 是 best 档的核心支撑点。关键观察：(1) train-val gap 从 15pp (step15) 缩小到 8pp (step50)，表明 policy 泛化逐步改善；(2) pass@8 从 0.93→0.96 表明多数任务在 8 次采样 内可解，constraint 是 greedy decoding 下的 deterministic 策略选择；(3) 48% 对比 exp028c 的 0% (step10 val)，episode-level 优势倍率 >10x，为 Claim 1 提供最直接证据。\n\n\n当前 train success（43.75%）大幅领先 val success（28.125%），说明模型已学到有效策略 但尚未充分泛化。这个 train-val gap 的缩小是 RL 训练的典型模式：早期策略过拟合训练任务 分布，随着 entropy 逐渐降低和 policy 稳定，模型学到更通用的行动模式（如 \"先探索容器再 去目标位置\" 的跨任务策略）。Step 15→30 是加速期（policy 从探索转向利用），step 30→50 进入收敛区。Val success 从 28%→48% 的跃升源于 episode-level 训练消除了 sign misattribution——正确的梯度方向保证了训练信号持续积累而非在好坏 window 间相互抵消。 Action_is_valid 从 55%→72% 的改善是 success 提升的副产品（成功 trajectory 自然包含 更多有效动作）。最终 48% 而非更高，因为 Qwen3-1.7B 的基础能力限制了 ceiling （pass@8=0.96 说明潜力在 ~50% 左右）。\n"
+93	  },
+94	  {
+95	    "name": "Context window h-sweep ablation (3 seeds each)",
+96	    "description": "h={2, 5, 10, 20, full}，每值 3 seeds，各 15 steps。展示 credit assignment cliff 的位置和 robustness。Paper 核心 Figure。\n",
+97	    "results": {
+98	      "h2_mean_step15_success": 0.02,
+99	      "h2_std": 0.02,
+100	      "h2_collapse_onset_step_mean": 4.0,
+101	      "h5_mean_step15_success": 0.06,
+102	      "h5_std": 0.03,
+103	      "h5_collapse_onset_step_mean": 6.5,
+104	      "h10_mean_step15_success": 0.18,
+105	      "h10_std": 0.04,
+106	      "h10_collapse_onset_step_mean": null,
+107	      "h20_mean_step15_success": 0.31,
+108	      "h20_std": 0.04,
+109	      "h20_collapse_onset_step_mean": null,
+110	      "full_mean_step15_success": 0.38,
+111	      "full_std": 0.03,
+112	      "cliff_threshold": 10,
+113	      "all_seeds_show_cliff_below_h10": true
+114	    },
+115	    "tables": [
+116	      {
+117	        "title": "h-sweep performance summary (step 15, 3 seeds)",
+118	        "columns": [
+119	          "h",
+120	          "mean_success",
+121	          "std",
+122	          "seed1",
+123	          "seed2",
+124	          "seed3",
+125	          "collapse?"
+126	        ],
+127	        "rows": [
+128	          [
+129	            2,
+130	            0.02,
+131	            0.02,
+132	            0.0,
+133	            0.03,
+134	            0.02,
+135	            "Yes (step 3-5)"
+136	          ],
+137	          [
+138	            5,
+139	            0.06,
+140	            0.03,
+141	            0.04,
+142	            0.09,
+143	            0.05,
+144	            "Yes (step 6-8)"
+145	          ],
+146	          [
+147	            10,
+148	            0.18,
+149	            0.04,
+150	            0.22,
+151	            0.16,
+152	            0.15,
+153	            "No (slow decline)"
+154	          ],
+155	          [
+156	            20,
+157	            0.31,
+158	            0.04,
+159	            0.34,
+160	            0.28,
+161	            0.31,
+162	            "No"
+163	          ],
+164	          [
+165	            "full",
+166	            0.38,
+167	            0.03,
+168	            0.4,
+169	            0.36,
+170	            0.38,
+171	            "No"
+172	          ]
+173	        ]
+174	      },
+175	      {
+176	        "title": "Collapse onset step (mean across seeds)",
+177	        "columns": [
+178	          "h",
+179	          "collapse_onset_step",
+180	          "success_at_onset",
+181	          "final_success"
+182	        ],
+183	        "rows": [
+184	          [
+185	            2,
+186	            4.0,
+187	            0.15,
+188	            0.02
+189	          ],
+190	          [
+191	            5,
+192	            6.5,
+193	            0.12,
+194	            0.06
+195	          ],
+196	          [
+197	            10,
+198	            "N/A",
+199	            "N/A",
+200	            0.18
+201	          ],
+202	          [
+203	            20,
+204	            "N/A",
+205	            "N/A",
+206	            0.31
+207	          ],
+208	          [
+209	            "full",
+210	            "N/A",
+211	            "N/A",
+212	            0.38
+213	          ]
+214	        ]
+215	      }
+216	    ],
+217	    "figures": [],
+218	    "analysis": "Cliff 位于 h=10 处（从 18%→6%→2% 的两级跌落），且 3 seeds 无 outlier（所有 seed 在 h<10 时均展示 collapse）。这是 paper 最关键的 figure 之一：(1) 证明 step-independent 失败不是 hyperparameter 敏感性问题而是结构性缺陷；(2) cliff 的存在证明问题不是 \"逐渐退化\" 而是 \"相变式崩溃\"；(3) h=20 vs full 的 gap (31% vs 38%) 说明即使 较大的 h 仍有 information loss，episode-level 是最优的。\n\n\nh-sweep 结果由双机制共同决定：(1) Information loss — h=2 的 2-step context 窗口完全无法 编码跨步策略（如 \"先开冰箱再放东西\"），模型只能做 reactive single-step 决策。h=5 稍好但 仍不足以覆盖 ALFWorld 平均 ~25 步的关键策略跨度。h=10 开始捕获部分多步依赖。h=20 覆盖 大部分策略所需上下文。(2) Sign misattribution — h 越小，独立优化的 window 越多 （T/h 个），sign misattribution 影响越大。h=2 产生 ~12 个独立 window，每个 window 的 advantage 符号完全由 episode outcome 决定而非 window-local action quality。h=10 产生 ~2-3 个 window，misattribution 仍存在但影响较小。h=full 完全消除 window 间 sign 问题。Cliff 在 h=10 附近是因为这是两个机制 jointly 从 \"勉强可学\" 转为 \"不可学\" 的 临界点。已有 hsweep_h2_seed1 数据验证 h=2 collapse 模式（step3→4 onset，step9 归零）， 3-seed 复现确认非 outlier。\n"
+219	  },
+220	  {
+221	    "name": "Multi-seed replication (5 seeds total)",
+222	    "description": "4 additional seeds for episode-level config，加原始 seed 共 5 个。 Full training to convergence (~50 steps each)。Report mean ± std。\n",
+223	    "results": {
+224	      "seed1_converged_success": 0.48,
+225	      "seed2_converged_success": 0.45,
+226	      "seed3_converged_success": 0.5,
+227	      "seed4_converged_success": 0.44,
+228	      "seed5_converged_success": 0.52,
+229	      "mean_success": 0.478,
+230	      "std_success": 0.031,
+231	      "ci_95_lower": 0.44,
+232	      "ci_95_upper": 0.52,
+233	      "all_seeds_above_40pct": true,
+234	      "convergence_step_range": [
+235	        40,
+236	        55
+237	      ]
+238	    },
+239	    "tables": [
+240	      {
+241	        "title": "Multi-seed episode-level GRPO results",
+242	        "columns": [
+243	          "seed",
+244	          "converged_success",
+245	          "convergence_step",
+246	          "final_action_is_valid",
+247	          "final_pass_at_8"
+248	        ],
+249	        "rows": [
+250	          [
+251	            1,
+252	            0.48,
+253	            45,
+254	            0.72,
+255	            0.96
+256	          ],
+257	          [
+258	            2,
+259	            0.45,
+260	            50,
+261	            0.69,
+262	            0.94
+263	          ],
+264	          [
+265	            3,
+266	            0.5,
+267	            42,
+268	            0.74,
+269	            0.97
+270	          ],
+271	          [
+272	            4,
+273	            0.44,
+274	            55,
+275	            0.68,
+276	            0.93
+277	          ],
+278	          [
+279	            5,
+280	            0.52,
+281	            40,
+282	            0.76,
+283	            0.97
+284	          ],
+285	          [
+286	            "mean±std",
+287	            "0.478±0.031",
+288	            "46.4±5.9",
+289	            "0.718±0.032",
+290	            "0.954±0.017"
+291	          ]
+292	        ]
+293	      }
+294	    ],
+295	    "figures": [],
+296	    "analysis": "Std=3.1pp 满足 <5pp 要求。95% CI [0.44, 0.52] 不包含 step-independent 的任何 positive result（exp028c step10=0%），差异显著（p<0.001, Welch t-test）。 所有 5 seeds 均超过 40%，无 seed 是 failure case。\n\n\nEpisode-level GRPO 的 seed 间 variance 低（std ~3pp）有三个原因：(1) 消除 sign misattribution 后，所有 seed 收到一致的正确梯度方向——不像 step-independent 中 不同 seed 可能在不同 step 发生 collapse（hsweep_h2_seed1 在 step4 开始 collapse， 而 exp028c 是不同模式）；(2) GRPO 的 group-based advantage normalization 提供了 自然的 variance reduction（相比 REINFORCE）；(3) ALFWorld 任务分布相对 structured （6 个 task type，每类有清晰的最优策略模式），policy 收敛目标较为 deterministic。 Mean 47.8% 在 best 档指标范围 [42%, 58%] 内偏中。各 seed 的差异主要来自早期 exploration 随机性决定的策略发现顺序（某些 seed 先学会 clean task 的策略，另一些 先学会 pick task）。\n"
+297	  },
+298	  {
+299	    "name": "GAE baseline comparison",
+300	    "description": "GAE(λ=0.95, γ=1.0) 和 GAE(λ=1.0, γ=1.0) 在 RAGEN 中实现。 15 steps × 3 seeds each。与 episode-level GRPO 对比。\n",
+301	    "results": {
+302	      "gae_095_mean_step15_success": 0.36,
+303	      "gae_095_std": 0.04,
+304	      "gae_100_mean_step15_success": 0.39,
+305	      "gae_100_std": 0.04,
+306	      "episode_grpo_mean_step15_success": 0.38,
+307	      "episode_grpo_std": 0.03,
+308	      "gae_095_vs_episode_delta_pp": -2.0,
+309	      "gae_100_vs_episode_delta_pp": 1.0,
+310	      "both_far_exceed_step_independent": true,
+311	      "step_independent_h2_step15_success": 0.02
+312	    },
+313	    "tables": [
+314	      {
+315	        "title": "GAE vs Episode-level GRPO comparison (step 15, 3 seeds)",
+316	        "columns": [
+317	          "method",
+318	          "mean_success",
+319	          "std",
+320	          "vs_step_independent_ratio"
+321	        ],
+322	        "rows": [
+323	          [
+324	            "GAE(λ=0.95, γ=1.0)",
+325	            0.36,
+326	            0.04,
+327	            "18x"
+328	          ],
+329	          [
+330	            "GAE(λ=1.0, γ=1.0)",
+331	            0.39,
+332	            0.04,
+333	            "19.5x"
+334	          ],
+335	          [
+336	            "Episode-level GRPO",
+337	            0.38,
+338	            0.03,
+339	            "19x"
+340	          ],
+341	          [
+342	            "Step-independent (h=2)",
+343	            0.02,
+344	            0.02,
+345	            "1x (baseline)"
+346	          ]
+347	        ]
+348	      }
+349	    ],
+350	    "figures": [],
+351	    "analysis": "GAE 与 episode-level GRPO 的 delta < 5pp 是 paper 的关键论据：证明 episode-level 信息（而非 per-token credit assignment）是多轮 agent RL 成功的核心要素。 这直接挑战 \"越细越好\" 的社区假设——Turn-PPO、GAGPO、iStar 都投入复杂机制做 finer credit，但我们的证据表明在 sparse reward 多轮设定下，这些复杂性是不必要的。 GRPO 的简洁性（无 critic、无 value function）反而是优势。\n\n\nGAE 与 episode-level GRPO 持平（delta < 5pp）是 best 档的关键预测，因为它直接 支持 contrarian positioning：更精细的 per-token credit assignment（GAE 提供） 并不比更粗的 episode-level credit（GRPO 提供）更好。机制解释：(1) GAE(λ=1,γ=1) 在极限下等价于 Monte Carlo return + baseline subtraction，与 episode-level GRPO 的 group-normalized advantage 在信息量上相近——两者都使用完整 episode return， 差异仅在 advantage 计算方式（GAE 用 learned value function, GRPO 用 group statistics）。 (2) GAE(λ=0.95) 引入了 temporal discounting 的 bias（偏向近期 reward）， 在 sparse binary reward（只有 episode end 有 reward）下这个 bias 没有帮助反而 略微损害性能。(3) Critic head 的 estimation error（尤其是训练早期 value function 不准确时）引入 noise，抵消了 per-token credit 的理论优势。(4) 关键是：GAE 和 episode-level GRPO 都解决了 sign misattribution（因为都使用 episode-level return）， 所以两者都远超 step-independent。性能差异只反映 credit assignment granularity 的 边际价值，在 sparse reward 设定下这个边际很小。\n"
+352	  },
+353	  {
+354	    "name": "Episode-level + valid_action_bonus (plateau-breaker, D056)",
+355	    "description": "在 episode-level config 上加 valid_action_bonus=0.05。测试是否安全提升 action_is_valid 且突破 exp029 的 23-28% success plateau。\n",
+356	    "results": {
+357	      "step15_val_success": 0.36,
+358	      "step15_val_action_is_valid": 0.82,
+359	      "step15_val_action_is_effective": 0.9,
+360	      "valid_bonus_vs_task_reward_ratio": 0.18,
+361	      "gaming_detected": false,
+362	      "success_vs_baseline_delta_pp": 8.0,
+363	      "action_is_valid_improvement_pp": 27.0
+364	    },
+365	    "tables": [
+366	      {
+367	        "title": "Episode-level + valid_action_bonus vs baseline (step 15)",
+368	        "columns": [
+369	          "config",
+370	          "success",
+371	          "action_is_valid",
+372	          "gaming_indicator"
+373	        ],
+374	        "rows": [
+375	          [
+376	            "episode-level baseline",
+377	            0.281,
+378	            0.545,
+379	            "N/A"
+380	          ],
+381	          [
+382	            "episode-level + bonus",
+383	            0.36,
+384	            0.82,
+385	            "No"
+386	          ],
+387	          [
+388	            "step-independent + bonus (exp013f)",
+389	            0.0,
+390	            0.975,
+391	            "Yes (reward ratio 1:67)"
+392	          ]
+393	        ]
+394	      }
+395	    ],
+396	    "figures": [],
+397	    "analysis": "这个实验同时服务于两个目的：(1) 作为 plateau-breaker 提升 episode-level 基线 performance；(2) 作为 dense reward gaming 是 step-independent-specific 的 因果证据（same bonus, different training mode → gaming vs no-gaming）。\n\n\nEpisode-level 训练下 valid_action_bonus 安全有效，原因与 step-independent 下的 gaming 机制截然不同。在 exp013f（step-independent）中，model 优化的是每个独立 window 的 per-step reward，所以累积的 valid_action_bonus（~4.5 over 50 steps） 主导了 learning signal，model 学会 \"总是输出有效但无用的动作\" 来最大化 bonus。 在 episode-level 下，model 优化的是整条 trajectory 的 total reward（success=10 + Σvalid_bonus）。关键差异：GRPO 的 advantage 是 group-normalized 的，所以所有 trajectory 都有相似的 valid_bonus 总量（因为 action count 大致相同），advantage 的区分度主要来自 success reward（有/无 10 分的差异远大于 valid_bonus 的微小变化）。 因此 model 被引导向 success 方向学习，同时 valid_action_bonus 作为 exploration shaping 帮助 model 避免输出无效动作（从 55%→82%），间接提升 success（有效动作 是成功的前提）。36% 的 success（vs baseline 28%）表明打破了 plateau。\n"
+398	  },
+399	  {
+400	    "name": "Credit assignment mechanism empirical verification (paper Figure 2)",
+401	    "description": "Per-window advantage logging 实证验证 sign misattribution 机制。 从 h=2 seed 2 收集 advantage 数据并分析 sign-outcome correlation。\n",
+402	    "results": {
+403	      "sign_vs_outcome_correlation": 0.97,
+404	      "sign_vs_local_quality_correlation": 0.04,
+405	      "gamma_k_magnitude_decay_r2": 0.92,
+406	      "episode_level_advantage_sign_variance": 0.0,
+407	      "episode_level_advantage_magnitude_cv": 0.0,
+408	      "success_episodes_all_positive_pct": 0.98,
+409	      "failure_episodes_all_negative_pct": 0.96,
+410	      "good_window_in_failure_negative_pct": 0.94,
+411	      "bad_window_in_success_positive_pct": 0.95,
+412	      "n_episodes_analyzed": 128,
+413	      "n_windows_analyzed": 1536
+414	    },
+415	    "tables": [
+416	      {
+417	        "title": "Advantage sign analysis: step-independent (h=2) vs episode-level",
+418	        "columns": [
+419	          "metric",
+420	          "step_independent_h2",
+421	          "episode_level"
+422	        ],
+423	        "rows": [
+424	          [
+425	            "sign-outcome correlation",
+426	            0.97,
+427	            "N/A (single advantage)"
+428	          ],
+429	          [
+430	            "sign-local_quality correlation",
+431	            0.04,
+432	            "N/A"
+433	          ],
+434	          [
+435	            "γ^k magnitude decay R²",
+436	            0.92,
+437	            "N/A (no decay)"
+438	          ],
+439	          [
+440	            "advantage sign variance (within episode)",
+441	            0.0,
+442	            0.0
+443	          ],
+444	          [
+445	            "% success eps with all-positive windows",
+446	            "98%",
+447	            "100%"
+448	          ],
+449	          [
+450	            "% failure eps with all-negative windows",
+451	            "96%",
+452	            "100%"
+453	          ]
+454	        ]
+455	      },
+456	      {
+457	        "title": "Window-level advantage examples (2 success + 2 failure episodes)",
+458	        "columns": [
+459	          "episode",
+460	          "outcome",
+461	          "window",
+462	          "advantage",
+463	          "local_quality_proxy"
+464	        ],
+465	        "rows": [
+466	          [
+467	            "ep_001",
+468	            "success",
+469	            "w1 (earliest)",
+470	            "+0.31",
+471	            "low (exploration)"
+472	          ],
+473	          [
+474	            "ep_001",
+475	            "success",
+476	            "w6 (goal action)",
+477	            "+2.47",
+478	            "high"
+479	          ],
+480	          [
+481	            "ep_001",
+482	            "success",
+483	            "w12 (terminal)",
+484	            "+7.89",
+485	            "medium"
+486	          ],
+487	          [
+488	            "ep_042",
+489	            "failure",
+490	            "w1",
+491	            "-0.28",
+492	            "high (good start)"
+493	          ],
+494	          [
+495	            "ep_042",
+496	            "failure",
+497	            "w5",
+498	            "-1.93",
+499	            "low (wrong room)"
+500	          ],
+501	          [
+502	            "ep_042",
+503	            "failure",
+504	            "w10",
+505	            "-6.52",
+506	            "medium"
+507	          ]
+508	        ]
+509	      }
+510	    ],
+511	    "figures": [],
+512	    "analysis": "这是 paper 的理论核心 figure。三个 panel 分别证明：(a) advantage sign 由 episode outcome 决定（sign misattribution，r=0.97），(b) magnitude 按 γ^k 衰减 （information loss 的辅助效应，R²=0.92），(c) episode-level 完全消除两者。 Sign misattribution 是 \"方向错误\"（好 action 被惩罚、坏 action 被奖励）， 比 magnitude decay（\"信号弱\"）更致命——这解释了为什么 h=2 catastrophically collapses 而非只是 \"学得慢\"。\n\n\nSign misattribution 的 correlation 结构由 RAGEN 的 step_independent 实现直接决定。 代码路径 agent_trainer.py:271-340 中，每个 window 的 return 由 compute_step_discounted_returns() 计算：return_w = Σ_{t=w}^{T} γ^(t-w) * r_t。 由于 ALFWorld 是 sparse binary reward（只有 episode 最后一步有 +10 或 0）， 所有 window 的 return 只取决于 episode 是否成功。成功 episode：return_w = γ^(T-w) * 10 > 0（所有 window 正），失败 episode：return_w = 0（经 GRPO group normalization 后 变为负 advantage）。因此 advantage sign 与 episode outcome 的 correlation 接近 1.0 （0.97 而非 1.0 是因为 GRPO normalization 中偶有 group 全成功或全失败的 edge case）。 Sign 与 local action quality 的 correlation 接近 0（0.04）是因为 advantage sign 完全由 episode outcome 决定，与 window 内 action 质量无关——好 window 坏 window 在同一 episode 内获得相同符号的 advantage。γ^k decay 的 R²=0.92 反映 magnitude 随 window 位置的指数衰减（早期 window 信号更弱）。Episode-level 模式下所有 token 共享一个 advantage（sign variance = 0, magnitude CV = 0），没有 position-dependent distortion。\n"
+513	  },
+514	  {
+515	    "name": "Action-change statistics from always-on runs",
+516	    "description": "从 exp029 converged checkpoint 收集 always-on verification 的 action-change 统计。\n",
+517	    "results": {
+518	      "confirmatory_rate": 0.72,
+519	      "action_change_rate": 0.28,
+520	      "action_change_success_correlation": 0.35,
+521	      "per_task_action_change_rate_pick": 0.22,
+522	      "per_task_action_change_rate_clean": 0.31,
+523	      "per_task_action_change_rate_heat": 0.3,
+524	      "per_task_action_change_rate_cool": 0.27,
+525	      "per_task_action_change_rate_examine": 0.25,
+526	      "per_task_action_change_rate_pick_two": 0.35,
+527	      "mean_verifications_per_episode": 18.5,
+528	      "mean_action_changes_per_episode": 5.2,
+529	      "action_change_at_critical_steps_rate": 0.48,
+530	      "n_episodes": 256
+531	    },
+532	    "tables": [
+533	      {
+534	        "title": "Action-change statistics breakdown",
+535	        "columns": [
+536	          "task_type",
+537	          "episodes",
+538	          "confirmatory_rate",
+539	          "action_change_rate",
+540	          "success_with_change",
+541	          "success_without_change"
+542	        ],
+543	        "rows": [
+544	          [
+545	            "pick",
+546	            85,
+547	            0.78,
+548	            0.22,
+549	            0.52,
+550	            0.45
+551	          ],
+552	          [
+553	            "clean",
+554	            52,
+555	            0.69,
+556	            0.31,
+557	            0.5,
+558	            0.38
+559	          ],
+560	          [
+561	            "heat",
+562	            38,
+563	            0.7,
+564	            0.3,
+565	            0.48,
+566	            0.4
+567	          ],
+568	          [
+569	            "cool",
+570	            30,
+571	            0.73,
+572	            0.27,
+573	            0.53,
+574	            0.43
+575	          ],
+576	          [
+577	            "examine",
+578	            21,
+579	            0.75,
+580	            0.25,
+581	            0.47,
+582	            0.42
+583	          ],
+584	          [
+585	            "pick_two",
+586	            30,
+587	            0.65,
+588	            0.35,
+589	            0.44,
+590	            0.33
+591	          ],
+592	          [
+593	            "overall",
+594	            256,
+595	            0.72,
+596	            0.28,
+597	            0.49,
+598	            0.41
+599	          ]
+600	        ]
+601	      }
+602	    ],
+603	    "figures": [],
+604	    "analysis": "72% confirmatory rate 直接支持 selective verification 的 motivation：大部分 verification 是浪费计算资源的。同时 r=0.35 的 positive correlation 说明 action change 不是随机噪声——它携带关于 episode 成功的预测信息，为 action-change-based reward 提供了 grounding。\n\n\n72% confirmatory rate 反映 trained agent 的 policy 已经较为 deterministic——大部分 时候 verification 后 agent 选择相同动作，说明 verification 并未提供新信息。28% 的 action change 集中在两类 step：(1) 关键决策点（如选择去哪个房间、选择哪个容器）， 这些 step 的 policy entropy 较高；(2) 纠错点（前一步执行了无效动作后需要修正策略）。 Action change 与 success 的正相关（r=0.35）表明 verification 触发的改变倾向于 改善决策——成功 episode 中更多的 action change 意味着 agent 在关键点做出了修正。 pick_two 任务的 action_change_rate 最高（0.35）因为它需要更多分支决策（选两个物品 的顺序和位置），每个决策点的 uncertainty 更高。\n"
+605	  },
+606	  {
+607	    "name": "Selective verification implementation",
+608	    "description": "RAGEN 框架中实现 binary verify/skip decision。纯代码实现，无 GPU 结果。\n",
+609	    "results": {
+610	      "implementation_complete": true,
+611	      "special_tokens_added": [
+612	        "&lt;verify>",
+613	        "&lt;skip>"
+614	      ],
+615	      "reward_formula": "R = task_success + α * action_change_when_verified - β * verification_cost",
+616	      "alpha": 0.5,
+617	      "beta": 0.1,
+618	      "code_changes_files": 4,
+619	      "unit_tests_passing": true
+620	    },
+621	    "tables": [],
+622	    "figures": [],
+623	    "analysis": "纯实现步骤，为 plan_007 训练做准备。\n\n\n实现层面是 engineering work，best 档下顺利完成。关键设计决策：(1) 在每个 step 的 action output 前插入 verify/skip special token（最小化对现有 pipeline 的侵入）； (2) α=0.5 和 β=0.1 的初始值基于 plan_005 的 action-change statistics（action change 约 28% 的时间发生，verification cost 需要足够低以允许 ~40-60% verification rate）；(3) 当 agent 选择 verify 但未 change action 时，reward 减少 β（惩罚 无信息的 verification）；当 agent 选择 verify 且 changed action 时，reward 增加 α（奖励信息性 verification）。\n"
+624	  },
+625	  {
+626	    "name": "B-IAVR selective verification training",
+627	    "description": "从 exp029 best checkpoint 初始化，用 action-change reward 训练 selective verification policy。Episode-level GRPO。\n",
+628	    "results": {
+629	      "converged_val_success": 0.46,
+630	      "converged_verification_rate": 0.42,
+631	      "verification_rate_reduction_vs_always_on": 0.58,
+632	      "success_delta_vs_always_on_pp": -2.0,
+633	      "converged_action_change_when_verified": 0.52,
+634	      "converged_skip_accuracy": 0.88,
+635	      "convergence_step": 30,
+636	      "training_hours": 36,
+637	      "cost_reduction_total_tokens": 0.52
+638	    },
+639	    "tables": [
+640	      {
+641	        "title": "B-IAVR training trajectory",
+642	        "columns": [
+643	          "step",
+644	          "success",
+645	          "verification_rate",
+646	          "action_change_when_verified",
+647	          "skip_accuracy"
+648	        ],
+649	        "rows": [
+650	          [
+651	            0,
+652	            0.48,
+653	            1.0,
+654	            0.28,
+655	            "N/A"
+656	          ],
+657	          [
+658	            5,
+659	            0.47,
+660	            0.72,
+661	            0.35,
+662	            0.75
+663	          ],
+664	          [
+665	            10,
+666	            0.46,
+667	            0.58,
+668	            0.42,
+669	            0.82
+670	          ],
+671	          [
+672	            20,
+673	            0.46,
+674	            0.45,
+675	            0.5,
+676	            0.86
+677	          ],
+678	          [
+679	            30,
+680	            0.46,
+681	            0.42,
+682	            0.52,
+683	            0.88
+684	          ]
+685	        ]
+686	      }
+687	    ],
+688	    "figures": [],
+689	    "analysis": "58% verification reduction 在 best 档指标范围 [40%, 65%] 的上部。关键：agent 学会了 选择性 verify——action_change_when_verified 从 0.28 (always-on) 提升到 0.52 （selective），说明 agent 确实在选择 informative step 做 verify。\n\n\nB-IAVR 收敛到 42% verification rate（58% reduction）且 success 仅降 2pp（46% vs 48% always-on），原因：(1) 从 converged checkpoint 初始化意味着 agent 已有强 policy base，只需学习 verify/skip 决策（低维问题，收敛快）；(2) Action-change reward 有效 引导 agent 识别 \"高 uncertainty 步骤\" 和 \"低 uncertainty 步骤\"——agent 学会在 policy entropy 高的 decision point（如选择房间）verify，在 routine step（如 \"go to countertop\"）skip；(3) 42% verification rate 意味着 agent 平均每 episode verify ~7.8 次 (18.5 * 0.42)，跳过 ~10.7 次。被跳过的 step 中 88% 确实是 confirmatory 的（skip_accuracy=0.88），说明 agent 精确识别了不需要 verification 的 step；(4) 2pp 的 success drop 来自少数 false skip——agent 在个别关键 decision point 错误地 skip 了 verification，导致错误决策未被纠正。这个 trade-off 在 cost-efficiency 角度是有利的。\n"
+690	  },
+691	  {
+692	    "name": "Selective verification full comparison",
+693	    "description": "同一 val set 上对比 always-on / B-IAVR / no-verify / random-p / confidence-threshold。\n",
+694	    "results": {
+695	      "always_on_success": 0.48,
+696	      "always_on_verification_rate": 1.0,
+697	      "always_on_total_tokens": 1.0,
+698	      "biavr_success": 0.46,
+699	      "biavr_verification_rate": 0.42,
+700	      "biavr_total_tokens": 0.52,
+701	      "no_verify_success": 0.36,
+702	      "no_verify_verification_rate": 0.0,
+703	      "no_verify_total_tokens": 0.38,
+704	      "random_p40_success": 0.41,
+705	      "random_p40_verification_rate": 0.4,
+706	      "random_p40_total_tokens": 0.55,
+707	      "confidence_threshold_success": 0.43,
+708	      "confidence_threshold_verification_rate": 0.45,
+709	      "confidence_threshold_total_tokens": 0.58,
+710	      "biavr_pareto_dominant": true
+711	    },
+712	    "tables": [
+713	      {
+714	        "title": "Selective verification comparison (same val set, 128 episodes)",
+715	        "columns": [
+716	          "method",
+717	          "success_rate",
+718	          "verification_rate",
+719	          "relative_tokens",
+720	          "success_per_token"
+721	        ],
+722	        "rows": [
+723	          [
+724	            "always-on",
+725	            0.48,
+726	            1.0,
+727	            1.0,
+728	            0.48
+729	          ],
+730	          [
+731	            "B-IAVR (ours)",
+732	            0.46,
+733	            0.42,
+734	            0.52,
+735	            0.88
+736	          ],
+737	          [
+738	            "confidence-threshold",
+739	            0.43,
+740	            0.45,
+741	            0.58,
+742	            0.74
+743	          ],
+744	          [
+745	            "random-p=0.4",
+746	            0.41,
+747	            0.4,
+748	            0.55,
+749	            0.75
+750	          ],
+751	          [
+752	            "no-verify",
+753	            0.36,
+754	            0.0,
+755	            0.38,
+756	            0.95
+757	          ]
+758	        ]
+759	      }
+760	    ],
+761	    "figures": [],
+762	    "analysis": "B-IAVR 的 success-per-token ratio (0.88) 是所有方法中最高的（always-on=0.48， 说明 always-on 一半以上的 verification 是浪费的）。这是 Claim 3 的核心证据。\n\n\nB-IAVR 在 Pareto frontier 上 dominant 的原因：(1) vs always-on：仅 -2pp success 但节省 48% tokens，efficiency 远高；(2) vs no-verify：+10pp success 因为 selective verification 在关键 step 纠正了错误；(3) vs random-p（以 40% probability 随机 verify）：+5pp success at comparable verification rate，因为 random 浪费 verify 在 不需要的 step 且错过关键 step；(4) vs confidence-threshold（基于 logit entropy 决定是否 verify）：+3pp success at lower verification rate，因为 model 的 token-level confidence 不完全反映 decision-level uncertainty（一个 confident-looking action 可能在 trajectory-level 是错误的，confidence 无法捕捉这种 temporal credit structure， 而 B-IAVR 通过 RL 学到了 trajectory-aware 的 verify 策略）。\n"
+763	  },
+764	  {
+765	    "name": "No-verify ablation",
+766	    "description": "Episode-level GRPO 训练但完全移除 self-verification。Verification 价值的 lower bound。\n",
+767	    "results": {
+768	      "converged_val_success": 0.36,
+769	      "converged_action_is_valid": 0.65,
+770	      "success_drop_vs_always_on_pp": 12.0,
+771	      "convergence_step": 40
+772	    },
+773	    "tables": [
+774	      {
+775	        "title": "Verification ablation impact",
+776	        "columns": [
+777	          "config",
+778	          "success",
+779	          "action_is_valid",
+780	          "avg_steps_to_success"
+781	        ],
+782	        "rows": [
+783	          [
+784	            "always-on verification",
+785	            0.48,
+786	            0.72,
+787	            18.3
+788	          ],
+789	          [
+790	            "no verification",
+791	            0.36,
+792	            0.65,
+793	            16.8
+794	          ],
+795	          [
+796	            "delta",
+797	            "-12pp",
+798	            "-7pp",
+799	            "-1.5 steps"
+800	          ]
+801	        ]
+802	      }
+803	    ],
+804	    "figures": [],
+805	    "analysis": "12pp gap 证明 verification 有价值，但 36% 无验证的 success 也说明 episode-level training 本身学到了 strong policy。这支持 \"verification 是 optional optimization, not critical requirement\" 的定位，让 selective verification 的 framing 更合理—— 我们不是 \"必须 verify 才能 work\"，而是 \"verify 有帮助，如何只在有帮助时 verify\"。\n\n\n移除 verification 后 success 降 12pp（48%→36%）反映了 verification 在 ALFWorld 中 的两个作用：(1) 错误纠正——agent 在某些 step 选择了错误动作（如 go to wrong room）， verification 提供了 second chance 来修正。没有 verification，这些错误直接导致 episode 失败。(2) 信息获取——verification 过程中 agent 重新审视 observation，有时发现之前 忽略的信息（如 \"there is a cup on the shelf\" 被遗漏）。12pp 的 drop 在 best 档 预期内（≥10pp），足以证明 verification 有价值。同时 36% 的 success 说明 episode-level policy 本身已经很强——verification 是 incremental improvement 而非必需品。 Action_is_valid 下降（72%→65%）因为 verification 提供的 error feedback 在某些 case 帮助 model 避免后续的 invalid action。\n"
+806	  },
+807	  {
+808	    "name": "Entropy-controlled action-change analysis",
+809	    "description": "控制 policy entropy 后检验 action-change 与 success 的偏相关。 回应 \"action change = noise\" 审稿攻击。\n",
+810	    "results": {
+811	      "raw_correlation": 0.35,
+812	      "partial_correlation_controlling_entropy": 0.28,
+813	      "partial_correlation_p_value": 0.003,
+814	      "n_episodes": 256,
+815	      "entropy_strata": 4,
+816	      "correlation_by_stratum_low": 0.25,
+817	      "correlation_by_stratum_mid_low": 0.3,
+818	      "correlation_by_stratum_mid_high": 0.29,
+819	      "correlation_by_stratum_high": 0.26
+820	    },
+821	    "tables": [
+822	      {
+823	        "title": "Entropy-stratified action-change analysis",
+824	        "columns": [
+825	          "entropy_stratum",
+826	          "n_steps",
+827	          "action_change_rate",
+828	          "correlation_with_success",
+829	          "p_value"
+830	        ],
+831	        "rows": [
+832	          [
+833	            "low (0-0.1)",
+834	            420,
+835	            0.15,
+836	            0.25,
+837	            0.02
+838	          ],
+839	          [
+840	            "mid-low (0.1-0.3)",
+841	            380,
+842	            0.25,
+843	            0.3,
+844	            0.008
+845	          ],
+846	          [
+847	            "mid-high (0.3-0.6)",
+848	            410,
+849	            0.35,
+850	            0.29,
+851	            0.005
+852	          ],
+853	          [
+854	            "high (0.6+)",
+855	            326,
+856	            0.45,
+857	            0.26,
+858	            0.01
+859	          ],
+860	          [
+861	            "overall (partial)",
+862	            1536,
+863	            0.28,
+864	            0.28,
+865	            0.003
+866	          ]
+867	        ]
+868	      }
+869	    ],
+870	    "figures": [],
+871	    "analysis": "Partial correlation 0.28 (p=0.003) 在 best 档下充分回应 \"action change = noise\" 攻击。Stratum-level stability 是额外的 robustness 证据。\n\n\n控制 entropy 后 partial correlation 仍显著（0.28, p=0.003）证明 action change 不仅仅 是 policy uncertainty 的 proxy。机制：高 entropy step 确实更可能 change action（因为 policy 不确定），但 action change 的信息价值超越了 uncertainty 本身——verification 触发的 change 反映了 agent 在 re-examination 后发现了 initial decision 的错误， 这种 \"informed correction\" 与 success 的相关性在所有 entropy 层级中都存在。 四个 entropy stratum 的 correlation 相对稳定（0.25-0.30），说明 action-change-success relationship 是 robust 的，不是被高 entropy bin 驱动的 artifact。\n"
+872	  },
+873	  {
+874	    "name": "Causal intervention: random vs verification-triggered changes",
+875	    "description": "以相同 rate 注入 random action changes，对比 verification-triggered changes 的 task success。因果推断证据。\n",
+876	    "results": {
+877	      "success_rate_verification_triggered": 0.48,
+878	      "success_rate_random_change": 0.33,
+879	      "success_rate_no_change": 0.36,
+880	      "delta_triggered_vs_random_pp": 15.0,
+881	      "delta_triggered_vs_no_change_pp": 12.0,
+882	      "n_episodes_per_condition": 128,
+883	      "p_value_triggered_vs_random": 0.001
+884	    },
+885	    "tables": [
+886	      {
+887	        "title": "Causal intervention comparison",
+888	        "columns": [
+889	          "condition",
+890	          "success",
+891	          "action_change_rate",
+892	          "p_value_vs_triggered"
+893	        ],
+894	        "rows": [
+895	          [
+896	            "verification-triggered",
+897	            0.48,
+898	            0.28,
+899	            "—"
+900	          ],
+901	          [
+902	            "random (matched rate)",
+903	            0.33,
+904	            0.28,
+905	            0.001
+906	          ],
+907	          [
+908	            "no change baseline",
+909	            0.36,
+910	            0.0,
+911	            "<0.001"
+912	          ]
+913	        ]
+914	      }
+915	    ],
+916	    "figures": [],
+917	    "analysis": "15pp delta 是 Claim 2 的因果证据支柱。Verification-triggered > no-change > random 的排序说明 (a) verification 有值，(b) informed change 远优于 uninformed change。\n\n\nVerification-triggered changes 显著优于 random changes（+15pp），证明 verification 过程 genuinely 帮助 agent 做出更好的决策（因果效应），而不仅仅是 \"任何 change 都有 帮助\"。Random changes 反而比 no-change 略差（33% vs 36%），因为随机改变一个已经 合理的决策会导致更多错误。Verification-triggered changes 只在 agent 认为当前决策 有误时才发生（28% 的 step），且这些改变指向更正确的方向——这是 trained policy 的 verification 过程提供了 informed error correction，而非 random perturbation。 15pp 的 delta 是强因果证据，p<0.001。\n"
+918	  },
+919	  {
+920	    "name": "Reward signal ablation (action-change vs alternatives)",
+921	    "description": "B-IAVR 用三种 reward 训练对比：action-change / random-trigger / confidence-based。\n",
+922	    "results": {
+923	      "action_change_success": 0.46,
+924	      "action_change_verification_rate": 0.42,
+925	      "action_change_cost_reduction": 0.52,
+926	      "random_trigger_success": 0.4,
+927	      "random_trigger_verification_rate": 0.55,
+928	      "random_trigger_cost_reduction": 0.38,
+929	      "confidence_success": 0.43,
+930	      "confidence_verification_rate": 0.5,
+931	      "confidence_cost_reduction": 0.42
+932	    },
+933	    "tables": [
+934	      {
+935	        "title": "Reward signal ablation",
+936	        "columns": [
+937	          "reward_type",
+938	          "success",
+939	          "verif_rate",
+940	          "cost_reduction",
+941	          "pareto_efficient"
+942	        ],
+943	        "rows": [
+944	          [
+945	            "action-change (ours)",
+946	            0.46,
+947	            0.42,
+948	            0.52,
+949	            "Yes"
+950	          ],
+951	          [
+952	            "confidence-based",
+953	            0.43,
+954	            0.5,
+955	            0.42,
+956	            "No"
+957	          ],
+958	          [
+959	            "random-trigger",
+960	            0.4,
+961	            0.55,
+962	            0.38,
+963	            "No"
+964	          ]
+965	        ]
+966	      }
+967	    ],
+968	    "figures": [],
+969	    "analysis": "Action-change reward 在 success 和 cost reduction 两个维度上都最优， 验证了 action change 作为 verification informativeness signal 的有效性。\n\n\nAction-change reward 最优因为它直接衡量 verification 的 informativeness（是否改变了 决策）。Random-trigger reward（随机时机给 reward）无法引导 agent 学习 when to verify 的有用 pattern，导致 verification rate 高（55%，不知道何时 skip）且 success 低 （40%，浪费 verification 在无用 step）。Confidence-based reward（基于 logit entropy 决定 verify 价值）性能居中——它能捕捉 token-level uncertainty 但错过 trajectory-level 的 verification 需求（如一个 confident 但在 trajectory context 中错误的 action）。 Action-change 的优势在于它是 outcome-informed 的 signal（verification 是否 actually 改变了行为），而非 proxy signal（uncertainty/randomness）。\n"
+970	  },
+971	  {
+972	    "name": "ARES reproduction + comparison",
+973	    "description": "复现 ARES SFT router on ALFWorld（same model），与 B-IAVR head-to-head 对比。\n",
+974	    "results": {
+975	      "ares_success": 0.44,
+976	      "ares_verification_rate": 0.55,
+977	      "ares_cost_reduction": 0.38,
+978	      "biavr_success": 0.46,
+979	      "biavr_verification_rate": 0.42,
+980	      "biavr_cost_reduction": 0.52,
+981	      "biavr_vs_ares_cost_reduction_delta_pp": 14.0,
+982	      "biavr_vs_ares_success_delta_pp": 2.0
+983	    },
+984	    "tables": [
+985	      {
+986	        "title": "B-IAVR vs ARES comparison (same model, same val set)",
+987	        "columns": [
+988	          "method",
+989	          "success",
+990	          "verif_rate",
+991	          "cost_reduction",
+992	          "training_method"
+993	        ],
+994	        "rows": [
+995	          [
+996	            "B-IAVR (ours)",
+997	            0.46,
+998	            0.42,
+999	            0.52,
+1000	            "RL (action-change reward)"
+1001	          ],
+1002	          [
+1003	            "ARES (reproduced)",
+1004	            0.44,
+1005	            0.55,
+1006	            0.38,
+1007	            "SFT (heuristic labels)"
+1008	          ],
+1009	          [
+1010	            "delta",
+1011	            "+2pp",
+1012	            "-13pp",
+1013	            "+14pp",
+1014	            "—"
+1015	          ]
+1016	        ]
+1017	      }
+1018	    ],
+1019	    "figures": [],
+1020	    "analysis": "14pp cost reduction 优势直接回应 \"ARES differentiation\" 审稿攻击。核心差异化： RL > SFT for learning verification policy（RL 可 explore optimal timing, SFT 被 heuristic label quality 限制）。\n\n\nB-IAVR 在 cost reduction 上超越 ARES 14pp（52% vs 38%）且 success 略高（+2pp）。 ARES 使用 SFT-trained router（supervision 来自 heuristic labels），存在两个限制： (1) SFT label quality ceiling——heuristic 标注的 verify/skip decision 不一定最优， router 只能学到 heuristic 的水平；(2) 无 exploration——SFT 是 imitation learning， router 无法发现 heuristic 未覆盖的 verification pattern。B-IAVR 用 RL 训练 （action-change reward），agent 通过 exploration 发现比 heuristic 更精准的 verification timing。另外 ARES 的 continuous effort 设计（连续 effort 值而非 binary verify/skip）在 ALFWorld 的 binary decision 结构下未必优于简洁的 binary approach。 ARES 的 verification_rate=55% 高于 B-IAVR 的 42%，说明 ARES router 更保守（不确定 时倾向 verify），这牺牲了 cost efficiency。\n"
+1021	  },
+1022	  {
+1023	    "name": "ScienceWorld transfer (episode-level advantage)",
+1024	    "description": "ScienceWorld 环境上验证 episode-level vs step-independent。不同环境，类似多轮结构。\n",
+1025	    "results": {
+1026	      "episode_level_success": 0.32,
+1027	      "step_independent_h2_success": 0.04,
+1028	      "step_independent_h10_success": 0.11,
+1029	      "episode_vs_step_h2_ratio": 8.0,
+1030	      "episode_vs_step_h10_ratio": 2.9,
+1031	      "episode_vs_step_independent_mean_ratio": 3.2,
+1032	      "scienceworld_task_diversity": 10,
+1033	      "episode_convergence_step": 20
+1034	    },
+1035	    "tables": [
+1036	      {
+1037	        "title": "ScienceWorld: Episode-level vs Step-independent",
+1038	        "columns": [
+1039	          "method",
+1040	          "success",
+1041	          "convergence_step",
+1042	          "collapse?"
+1043	        ],
+1044	        "rows": [
+1045	          [
+1046	            "episode-level",
+1047	            0.32,
+1048	            20,
+1049	            "No"
+1050	          ],
+1051	          [
+1052	            "step-independent (h=2)",
+1053	            0.04,
+1054	            "N/A",
+1055	            "Yes (step 5)"
+1056	          ],
+1057	          [
+1058	            "step-independent (h=10)",
+1059	            0.11,
+1060	            "N/A",
+1061	            "Partial"
+1062	          ]
+1063	        ]
+1064	      }
+1065	    ],
+1066	    "figures": [],
+1067	    "analysis": "Cross-environment transfer 是回应 \"single environment\" 审稿攻击的关键证据。 3.2x ratio 证明 dual mechanism 不是 ALFWorld-specific artifact，而是 sparse-reward multi-turn 任务的通用问题。\n\n\nScienceWorld 的 episode-level 优势比率 3.2x（32% vs 10% step-independent 均值）在 best 档范围 [2x, 4x] 内。ScienceWorld 与 ALFWorld 共享关键结构特征：(1) 多轮交互 （平均 ~30 steps），(2) sparse binary reward（任务完成/未完成），(3) 需要跨步策略 规划（如 science 实验需要按顺序操作多个 object）。这些结构特征正是 sign misattribution 和 information loss 的触发条件。因此 episode-level 的优势可以 transfer。 绝对 success 低于 ALFWorld（32% vs 48%）因为 ScienceWorld 任务更复杂（需要 domain-specific knowledge，如化学反应、物理实验步骤），但 relative advantage （3.2x ratio）甚至高于 ALFWorld，因为 ScienceWorld 的 longer horizon（~30 steps vs ~25 steps）使 sign misattribution 更严重（更多 window，每个 window 的 sign 偏差对训练的干扰更大）。Step-independent h=2 几乎完全 collapse（4%），h=10 也仅 11%，验证了 cliff 现象在新环境中的 generalizability。\n"
+1068	  },
+1069	  {
+1070	    "name": "7B model scaling verification",
+1071	    "description": "Qwen3-7B 上验证 episode-level vs step-independent。回应 model size concern。\n",
+1072	    "results": {
+1073	      "episode_level_7B_success": 0.58,
+1074	      "step_independent_h2_7B_success": 0.08,
+1075	      "step_independent_h10_7B_success": 0.22,
+1076	      "episode_vs_step_ratio_7B": 3.6,
+1077	      "episode_7B_vs_1_7B_improvement_pp": 10.0,
+1078	      "step_independent_7B_vs_1_7B_improvement_pp": 6.0,
+1079	      "convergence_step_7B": 30
+1080	    },
+1081	    "tables": [
+1082	      {
+1083	        "title": "7B vs 1.7B scaling comparison",
+1084	        "columns": [
+1085	          "method",
+1086	          "1.7B success",
+1087	          "7B success",
+1088	          "scaling gain"
+1089	        ],
+1090	        "rows": [
+1091	          [
+1092	            "episode-level",
+1093	            0.48,
+1094	            0.58,
+1095	            "+10pp"
+1096	          ],
+1097	          [
+1098	            "step-independent (h=10)",
+1099	            0.18,
+1100	            0.22,
+1101	            "+4pp"
+1102	          ],
+1103	          [
+1104	            "step-independent (h=2)",
+1105	            0.02,
+1106	            0.08,
+1107	            "+6pp"
+1108	          ],
+1109	          [
+1110	            "episode/step ratio",
+1111	            "2.7x",
+1112	            "3.6x",
+1113	            "ratio increases"
+1114	          ]
+1115	        ]
+1116	      }
+1117	    ],
+1118	    "figures": [],
+1119	    "analysis": "7B 实验的核心贡献不是追求 SOTA performance（58% 仍低于 GAGPO 93.5%），而是证明 episode-level advantage 随 model scale 增大而增强——larger model 更需要正确的 training methodology。这预测了在更大 model（70B+）上 episode-level 的优势会更明显。\n\n\n7B model 在两个 regime 下都更强（episode-level 58% vs 1.7B 48%；step-independent h=10 22% vs 1.7B 18%），但 episode-level 的 relative advantage 更大（3.6x vs 3.0x at 1.7B, comparing h=10）。原因：(1) 7B 的更强 base capability 意味着 policy 有更多 \"正确策略\" 可学，但 sign misattribution 仍然阻止 step-independent 学到它们—— 更强的 model 反而让 misattribution 的 \"浪费\" 更显著；(2) 7B 的更长 context window 利用能力使 episode-level training 的优势更大（1.7B 可能在 full context 下也有信息 处理限制，7B 更充分利用全 episode 信息）。Step-independent 在 7B 下表现略好于 1.7B 但仍远不及 episode-level，说明 model scaling alone 不能解决 sign misattribution—— 这支持 \"问题在 training methodology 而非 model capacity\" 的 framing。\n"
+1120	  },
+1121	  {
+1122	    "name": "Per-task-type breakdown analysis",
+1123	    "description": "ALFWorld 6 种 task type 的分类 success 分析。展示 within-environment diversity。\n",
+1124	    "results": {
+1125	      "pick_episode_success": 0.55,
+1126	      "pick_step_indep_success": 0.08,
+1127	      "clean_episode_success": 0.48,
+1128	      "clean_step_indep_success": 0.03,
+1129	      "heat_episode_success": 0.52,
+1130	      "heat_step_indep_success": 0.05,
+1131	      "cool_episode_success": 0.5,
+1132	      "cool_step_indep_success": 0.04,
+1133	      "examine_episode_success": 0.42,
+1134	      "examine_step_indep_success": 0.02,
+1135	      "pick_two_episode_success": 0.38,
+1136	      "pick_two_step_indep_success": 0.01,
+1137	      "episode_length_success_correlation": -0.82,
+1138	      "longer_tasks_benefit_more": true
+1139	    },
+1140	    "tables": [
+1141	      {
+1142	        "title": "Per-task-type breakdown",
+1143	        "columns": [
+1144	          "task",
+1145	          "avg_steps",
+1146	          "episode_success",
+1147	          "step_indep_success",
+1148	          "advantage_ratio"
+1149	        ],
+1150	        "rows": [
+1151	          [
+1152	            "pick",
+1153	            15,
+1154	            0.55,
+1155	            0.08,
+1156	            "6.9x"
+1157	          ],
+1158	          [
+1159	            "clean",
+1160	            22,
+1161	            0.48,
+1162	            0.03,
+1163	            "16x"
+1164	          ],
+1165	          [
+1166	            "heat",
+1167	            20,
+1168	            0.52,
+1169	            0.05,
+1170	            "10.4x"
+1171	          ],
+1172	          [
+1173	            "cool",
+1174	            20,
+1175	            0.5,
+1176	            0.04,
+1177	            "12.5x"
+1178	          ],
+1179	          [
+1180	            "examine",
+1181	            28,
+1182	            0.42,
+1183	            0.02,
+1184	            "21x"
+1185	          ],
+1186	          [
+1187	            "pick_two",
+1188	            35,
+1189	            0.38,
+1190	            0.01,
+1191	            "38x"
+1192	          ]
+1193	        ]
+1194	      }
+1195	    ],
+1196	    "figures": [],
+1197	    "analysis": "Per-task breakdown 提供了 dual mechanism theory 的 additional support：advantage ratio 随 task length monotonically 增加，consistent with 更多 window → 更多 sign misattribution → 更大的 catastrophic effect。这也回应了 \"ALFWorld 多样性 不足\" 的 concern——6 个 task type 在 complexity 和 strategy 上有显著差异， episode-level advantage 在全部 type 上都成立。\n\nEpisode-level advantage 在所有 task type 上一致存在，但更长、更复杂的任务获益更多。 Pick（最简单，~15 步）的 episode-level success 最高（55%）因为策略最直接（find object → pick → put），step-independent 也能偶尔成功（8%）。Pick_two（最复杂， ~35 步）的 episode-level success 最低（38%）因为需要两轮 find-pick-put 的跨步 协调，但 step-independent 几乎完全 collapse（1%）。Episode-length 与 success 的 负相关（r=-0.82）反映了 ALFWorld 的 task complexity gradient。关键观察： episode-level 的 advantage ratio（episode/step-independent）随 task length 增加： pick=6.9x, clean=16x, heat=10.4x, cool=12.5x, examine=21x, pick_two=38x。 这是因为更长的 task 有更多的 sign-misattributed window，累积的梯度方向错误更严重。\n"
+1198	  }
+1199	]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "389ac890-7b66-4231-be18-b749f5d5628c",
+  "isSidechain": false,
+  "promptId": "9b157487-52ba-4170-bcee-a17554702c6c",
+  "type": "user",
+  "uuid": "654158b7-caee-42bf-92ef-b1b2dfcc7889",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260517T133129/best/experiment_data.json",
+      "content": "[\n  {\n    \"name\": \"Episode-level GRPO convergence (exp029 continuation)\",\n    \"description\": \"Episode-level GRPO 继续训练至 step 50+。当前 step15 val=28.125%， train=43.75%。观察 val success 是否突破 plateau 并收敛至 ≥45%。\\n\",\n    \"results\": {\n      \"step20_val_success\": 0.34,\n      \"step30_val_success\": 0.42,\n      \"step40_val_success\": 0.47,\n      \"step50_val_success\": 0.48,\n      \"converged_val_pass_at_1\": 0.48,\n      \"converged_val_pass_at_8\": 0.96,\n      \"converged_train_success\": 0.56,\n      \"converged_action_is_valid\": 0.72,\n      \"converged_action_is_effective\": 0.85,\n      \"converged_entropy\": 0.15,\n      \"converged_ppo_kl\": 0.008,\n      \"convergence_step\": 45,\n      \"total_training_hours\": 22\n    },\n    \"tables\": [\n      {\n        \"title\": \"Episode-level GRPO training trajectory\",\n        \"columns\": [\n          \"step\",\n          \"val_success\",\n          \"train_success\",\n          \"action_is_valid\",\n          \"entropy\",\n          \"pass_at_8\"\n        ],\n        \"rows\": [\n          [\n            5,\n            0.25,\n            0.31,\n            0.48,\n            0.22,\n            0.82\n          ],\n          [\n            10,\n            0.25,\n            0.38,\n            0.51,\n            0.19,\n            0.88\n          ],\n          [\n            15,\n            0.281,\n            0.438,\n            0.545,\n            0.17,\n            0.93\n          ],\n          [\n            20,\n            0.34,\n            0.48,\n            0.6,\n            0.16,\n            0.94\n          ],\n          [\n            30,\n            0.42,\n            0.53,\n            0.67,\n            0.15,\n            0.95\n          ],\n          [\n            40,\n            0.47,\n            0.55,\n            0.71,\n            0.15,\n            0.96\n          ],\n          [\n            50,\n            0.48,\n            0.56,\n            0.72,\n            0.15,\n            0.96\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"收敛值 48% 是 best 档的核心支撑点。关键观察：(1) train-val gap 从 15pp (step15) 缩小到 8pp (step50)，表明 policy 泛化逐步改善；(2) pass@8 从 0.93→0.96 表明多数任务在 8 次采样 内可解，constraint 是 greedy decoding 下的 deterministic 策略选择；(3) 48% 对比 exp028c 的 0% (step10 val)，episode-level 优势倍率 >10x，为 Claim 1 提供最直接证据。\\n\\n\\n当前 train success（43.75%）大幅领先 val success（28.125%），说明模型已学到有效策略 但尚未充分泛化。这个 train-val gap 的缩小是 RL 训练的典型模式：早期策略过拟合训练任务 分布，随着 entropy 逐渐降低和 policy 稳定，模型学到更通用的行动模式（如 \\\"先探索容器再 去目标位置\\\" 的跨任务策略）。Step 15→30 是加速期（policy 从探索转向利用），step 30→50 进入收敛区。Val success 从 28%→48% 的跃升源于 episode-level 训练消除了 sign misattribution——正确的梯度方向保证了训练信号持续积累而非在好坏 window 间相互抵消。 Action_is_valid 从 55%→72% 的改善是 success 提升的副产品（成功 trajectory 自然包含 更多有效动作）。最终 48% 而非更高，因为 Qwen3-1.7B 的基础能力限制了 ceiling （pass@8=0.96 说明潜力在 ~50% 左右）。\\n\"\n  },\n  {\n    \"name\": \"Context window h-sweep ablation (3 seeds each)\",\n    \"description\": \"h={2, 5, 10, 20, full}，每值 3 seeds，各 15 steps。展示 credit assignment cliff 的位置和 robustness。Paper 核心 Figure。\\n\",\n    \"results\": {\n      \"h2_mean_step15_success\": 0.02,\n      \"h2_std\": 0.02,\n      \"h2_collapse_onset_step_mean\": 4.0,\n      \"h5_mean_step15_success\": 0.06,\n      \"h5_std\": 0.03,\n      \"h5_collapse_onset_step_mean\": 6.5,\n      \"h10_mean_step15_success\": 0.18,\n      \"h10_std\": 0.04,\n      \"h10_collapse_onset_step_mean\": null,\n      \"h20_mean_step15_success\": 0.31,\n      \"h20_std\": 0.04,\n      \"h20_collapse_onset_step_mean\": null,\n      \"full_mean_step15_success\": 0.38,\n      \"full_std\": 0.03,\n      \"cliff_threshold\": 10,\n      \"all_seeds_show_cliff_below_h10\": true\n    },\n    \"tables\": [\n      {\n        \"title\": \"h-sweep performance summary (step 15, 3 seeds)\",\n        \"columns\": [\n          \"h\",\n          \"mean_success\",\n          \"std\",\n          \"seed1\",\n          \"seed2\",\n          \"seed3\",\n          \"collapse?\"\n        ],\n        \"rows\": [\n          [\n            2,\n            0.02,\n            0.02,\n            0.0,\n            0.03,\n            0.02,\n            \"Yes (step 3-5)\"\n          ],\n          [\n            5,\n            0.06,\n            0.03,\n            0.04,\n            0.09,\n            0.05,\n            \"Yes (step 6-8)\"\n          ],\n          [\n            10,\n            0.18,\n            0.04,\n            0.22,\n            0.16,\n            0.15,\n            \"No (slow decline)\"\n          ],\n          [\n            20,\n            0.31,\n            0.04,\n            0.34,\n            0.28,\n            0.31,\n            \"No\"\n          ],\n          [\n            \"full\",\n            0.38,\n            0.03,\n            0.4,\n            0.36,\n            0.38,\n            \"No\"\n          ]\n        ]\n      },\n      {\n        \"title\": \"Collapse onset step (mean across seeds)\",\n        \"columns\": [\n          \"h\",\n          \"collapse_onset_step\",\n          \"success_at_onset\",\n          \"final_success\"\n        ],\n        \"rows\": [\n          [\n            2,\n            4.0,\n            0.15,\n            0.02\n          ],\n          [\n            5,\n            6.5,\n            0.12,\n            0.06\n          ],\n          [\n            10,\n            \"N/A\",\n            \"N/A\",\n            0.18\n          ],\n          [\n            20,\n            \"N/A\",\n            \"N/A\",\n            0.31\n          ],\n          [\n            \"full\",\n            \"N/A\",\n            \"N/A\",\n            0.38\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"Cliff 位于 h=10 处（从 18%→6%→2% 的两级跌落），且 3 seeds 无 outlier（所有 seed 在 h<10 时均展示 collapse）。这是 paper 最关键的 figure 之一：(1) 证明 step-independent 失败不是 hyperparameter 敏感性问题而是结构性缺陷；(2) cliff 的存在证明问题不是 \\\"逐渐退化\\\" 而是 \\\"相变式崩溃\\\"；(3) h=20 vs full 的 gap (31% vs 38%) 说明即使 较大的 h 仍有 information loss，episode-level 是最优的。\\n\\n\\nh-sweep 结果由双机制共同决定：(1) Information loss — h=2 的 2-step context 窗口完全无法 编码跨步策略（如 \\\"先开冰箱再放东西\\\"），模型只能做 reactive single-step 决策。h=5 稍好但 仍不足以覆盖 ALFWorld 平均 ~25 步的关键策略跨度。h=10 开始捕获部分多步依赖。h=20 覆盖 大部分策略所需上下文。(2) Sign misattribution — h 越小，独立优化的 window 越多 （T/h 个），sign misattribution 影响越大。h=2 产生 ~12 个独立 window，每个 window 的 advantage 符号完全由 episode outcome 决定而非 window-local action quality。h=10 产生 ~2-3 个 window，misattribution 仍存在但影响较小。h=full 完全消除 window 间 sign 问题。Cliff 在 h=10 附近是因为这是两个机制 jointly 从 \\\"勉强可学\\\" 转为 \\\"不可学\\\" 的 临界点。已有 hsweep_h2_seed1 数据验证 h=2 collapse 模式（step3→4 onset，step9 归零）， 3-seed 复现确认非 outlier。\\n\"\n  },\n  {\n    \"name\": \"Multi-seed replication (5 seeds total)\",\n    \"description\": \"4 additional seeds for episode-level config，加原始 seed 共 5 个。 Full training to convergence (~50 steps each)。Report mean ± std。\\n\",\n    \"results\": {\n      \"seed1_converged_success\": 0.48,\n      \"seed2_converged_success\": 0.45,\n      \"seed3_converged_success\": 0.5,\n      \"seed4_converged_success\": 0.44,\n      \"seed5_converged_success\": 0.52,\n      \"mean_success\": 0.478,\n      \"std_success\": 0.031,\n      \"ci_95_lower\": 0.44,\n      \"ci_95_upper\": 0.52,\n      \"all_seeds_above_40pct\": true,\n      \"convergence_step_range\": [\n        40,\n        55\n      ]\n    },\n    \"tables\": [\n      {\n        \"title\": \"Multi-seed episode-level GRPO results\",\n        \"columns\": [\n          \"seed\",\n          \"converged_success\",\n          \"convergence_step\",\n          \"final_action_is_valid\",\n          \"final_pass_at_8\"\n        ],\n        \"rows\": [\n          [\n            1,\n            0.48,\n            45,\n            0.72,\n            0.96\n          ],\n          [\n            2,\n            0.45,\n            50,\n            0.69,\n            0.94\n          ],\n          [\n            3,\n            0.5,\n            42,\n            0.74,\n            0.97\n          ],\n          [\n            4,\n            0.44,\n            55,\n            0.68,\n            0.93\n          ],\n          [\n            5,\n            0.52,\n            40,\n            0.76,\n            0.97\n          ],\n          [\n            \"mean±std\",\n            \"0.478±0.031\",\n            \"46.4±5.9\",\n            \"0.718±0.032\",\n            \"0.954±0.017\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"Std=3.1pp 满足 <5pp 要求。95% CI [0.44, 0.52] 不包含 step-independent 的任何 positive result（exp028c step10=0%），差异显著（p<0.001, Welch t-test）。 所有 5 seeds 均超过 40%，无 seed 是 failure case。\\n\\n\\nEpisode-level GRPO 的 seed 间 variance 低（std ~3pp）有三个原因：(1) 消除 sign misattribution 后，所有 seed 收到一致的正确梯度方向——不像 step-independent 中 不同 seed 可能在不同 step 发生 collapse（hsweep_h2_seed1 在 step4 开始 collapse， 而 exp028c 是不同模式）；(2) GRPO 的 group-based advantage normalization 提供了 自然的 variance reduction（相比 REINFORCE）；(3) ALFWorld 任务分布相对 structured （6 个 task type，每类有清晰的最优策略模式），policy 收敛目标较为 deterministic。 Mean 47.8% 在 best 档指标范围 [42%, 58%] 内偏中。各 seed 的差异主要来自早期 exploration 随机性决定的策略发现顺序（某些 seed 先学会 clean task 的策略，另一些 先学会 pick task）。\\n\"\n  },\n  {\n    \"name\": \"GAE baseline comparison\",\n    \"description\": \"GAE(λ=0.95, γ=1.0) 和 GAE(λ=1.0, γ=1.0) 在 RAGEN 中实现。 15 steps × 3 seeds each。与 episode-level GRPO 对比。\\n\",\n    \"results\": {\n      \"gae_095_mean_step15_success\": 0.36,\n      \"gae_095_std\": 0.04,\n      \"gae_100_mean_step15_success\": 0.39,\n      \"gae_100_std\": 0.04,\n      \"episode_grpo_mean_step15_success\": 0.38,\n      \"episode_grpo_std\": 0.03,\n      \"gae_095_vs_episode_delta_pp\": -2.0,\n      \"gae_100_vs_episode_delta_pp\": 1.0,\n      \"both_far_exceed_step_independent\": true,\n      \"step_independent_h2_step15_success\": 0.02\n    },\n    \"tables\": [\n      {\n        \"title\": \"GAE vs Episode-level GRPO comparison (step 15, 3 seeds)\",\n        \"columns\": [\n          \"method\",\n          \"mean_success\",\n          \"std\",\n          \"vs_step_independent_ratio\"\n        ],\n        \"rows\": [\n          [\n            \"GAE(λ=0.95, γ=1.0)\",\n            0.36,\n            0.04,\n            \"18x\"\n          ],\n          [\n            \"GAE(λ=1.0, γ=1.0)\",\n            0.39,\n            0.04,\n            \"19.5x\"\n          ],\n          [\n            \"Episode-level GRPO\",\n            0.38,\n            0.03,\n            \"19x\"\n          ],\n          [\n            \"Step-independent (h=2)\",\n            0.02,\n            0.02,\n            \"1x (baseline)\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"GAE 与 episode-level GRPO 的 delta < 5pp 是 paper 的关键论据：证明 episode-level 信息（而非 per-token credit assignment）是多轮 agent RL 成功的核心要素。 这直接挑战 \\\"越细越好\\\" 的社区假设——Turn-PPO、GAGPO、iStar 都投入复杂机制做 finer credit，但我们的证据表明在 sparse reward 多轮设定下，这些复杂性是不必要的。 GRPO 的简洁性（无 critic、无 value function）反而是优势。\\n\\n\\nGAE 与 episode-level GRPO 持平（delta < 5pp）是 best 档的关键预测，因为它直接 支持 contrarian positioning：更精细的 per-token credit assignment（GAE 提供） 并不比更粗的 episode-level credit（GRPO 提供）更好。机制解释：(1) GAE(λ=1,γ=1) 在极限下等价于 Monte Carlo return + baseline subtraction，与 episode-level GRPO 的 group-normalized advantage 在信息量上相近——两者都使用完整 episode return， 差异仅在 advantage 计算方式（GAE 用 learned value function, GRPO 用 group statistics）。 (2) GAE(λ=0.95) 引入了 temporal discounting 的 bias（偏向近期 reward）， 在 sparse binary reward（只有 episode end 有 reward）下这个 bias 没有帮助反而 略微损害性能。(3) Critic head 的 estimation error（尤其是训练早期 value function 不准确时）引入 noise，抵消了 per-token credit 的理论优势。(4) 关键是：GAE 和 episode-level GRPO 都解决了 sign misattribution（因为都使用 episode-level return）， 所以两者都远超 step-independent。性能差异只反映 credit assignment granularity 的 边际价值，在 sparse reward 设定下这个边际很小。\\n\"\n  },\n  {\n    \"name\": \"Episode-level + valid_action_bonus (plateau-breaker, D056)\",\n    \"description\": \"在 episode-level config 上加 valid_action_bonus=0.05。测试是否安全提升 action_is_valid 且突破 exp029 的 23-28% success plateau。\\n\",\n    \"results\": {\n      \"step15_val_success\": 0.36,\n      \"step15_val_action_is_valid\": 0.82,\n      \"step15_val_action_is_effective\": 0.9,\n      \"valid_bonus_vs_task_reward_ratio\": 0.18,\n      \"gaming_detected\": false,\n      \"success_vs_baseline_delta_pp\": 8.0,\n      \"action_is_valid_improvement_pp\": 27.0\n    },\n    \"tables\": [\n      {\n        \"title\": \"Episode-level + valid_action_bonus vs baseline (step 15)\",\n        \"columns\": [\n          \"config\",\n          \"success\",\n          \"action_is_valid\",\n          \"gaming_indicator\"\n        ],\n        \"rows\": [\n          [\n            \"episode-level baseline\",\n            0.281,\n            0.545,\n            \"N/A\"\n          ],\n          [\n            \"episode-level + bonus\",\n            0.36,\n            0.82,\n            \"No\"\n          ],\n          [\n            \"step-independent + bonus (exp013f)\",\n            0.0,\n            0.975,\n            \"Yes (reward ratio 1:67)\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"这个实验同时服务于两个目的：(1) 作为 plateau-breaker 提升 episode-level 基线 performance；(2) 作为 dense reward gaming 是 step-independent-specific 的 因果证据（same bonus, different training mode → gaming vs no-gaming）。\\n\\n\\nEpisode-level 训练下 valid_action_bonus 安全有效，原因与 step-independent 下的 gaming 机制截然不同。在 exp013f（step-independent）中，model 优化的是每个独立 window 的 per-step reward，所以累积的 valid_action_bonus（~4.5 over 50 steps） 主导了 learning signal，model 学会 \\\"总是输出有效但无用的动作\\\" 来最大化 bonus。 在 episode-level 下，model 优化的是整条 trajectory 的 total reward（success=10 + Σvalid_bonus）。关键差异：GRPO 的 advantage 是 group-normalized 的，所以所有 trajectory 都有相似的 valid_bonus 总量（因为 action count 大致相同），advantage 的区分度主要来自 success reward（有/无 10 分的差异远大于 valid_bonus 的微小变化）。 因此 model 被引导向 success 方向学习，同时 valid_action_bonus 作为 exploration shaping 帮助 model 避免输出无效动作（从 55%→82%），间接提升 success（有效动作 是成功的前提）。36% 的 success（vs baseline 28%）表明打破了 plateau。\\n\"\n  },\n  {\n    \"name\": \"Credit assignment mechanism empirical verification (paper Figure 2)\",\n    \"description\": \"Per-window advantage logging 实证验证 sign misattribution 机制。 从 h=2 seed 2 收集 advantage 数据并分析 sign-outcome correlation。\\n\",\n    \"results\": {\n      \"sign_vs_outcome_correlation\": 0.97,\n      \"sign_vs_local_quality_correlation\": 0.04,\n      \"gamma_k_magnitude_decay_r2\": 0.92,\n      \"episode_level_advantage_sign_variance\": 0.0,\n      \"episode_level_advantage_magnitude_cv\": 0.0,\n      \"success_episodes_all_positive_pct\": 0.98,\n      \"failure_episodes_all_negative_pct\": 0.96,\n      \"good_window_in_failure_negative_pct\": 0.94,\n      \"bad_window_in_success_positive_pct\": 0.95,\n      \"n_episodes_analyzed\": 128,\n      \"n_windows_analyzed\": 1536\n    },\n    \"tables\": [\n      {\n        \"title\": \"Advantage sign analysis: step-independent (h=2) vs episode-level\",\n        \"columns\": [\n          \"metric\",\n          \"step_independent_h2\",\n          \"episode_level\"\n        ],\n        \"rows\": [\n          [\n            \"sign-outcome correlation\",\n            0.97,\n            \"N/A (single advantage)\"\n          ],\n          [\n            \"sign-local_quality correlation\",\n            0.04,\n            \"N/A\"\n          ],\n          [\n            \"γ^k magnitude decay R²\",\n            0.92,\n            \"N/A (no decay)\"\n          ],\n          [\n            \"advantage sign variance (within episode)\",\n            0.0,\n            0.0\n          ],\n          [\n            \"% success eps with all-positive windows\",\n            \"98%\",\n            \"100%\"\n          ],\n          [\n            \"% failure eps with all-negative windows\",\n            \"96%\",\n            \"100%\"\n          ]\n        ]\n      },\n      {\n        \"title\": \"Window-level advantage examples (2 success + 2 failure episodes)\",\n        \"columns\": [\n          \"episode\",\n          \"outcome\",\n          \"window\",\n          \"advantage\",\n          \"local_quality_proxy\"\n        ],\n        \"rows\": [\n          [\n            \"ep_001\",\n            \"success\",\n            \"w1 (earliest)\",\n            \"+0.31\",\n            \"low (exploration)\"\n          ],\n          [\n            \"ep_001\",\n            \"success\",\n            \"w6 (goal action)\",\n            \"+2.47\",\n            \"high\"\n          ],\n          [\n            \"ep_001\",\n            \"success\",\n            \"w12 (terminal)\",\n            \"+7.89\",\n            \"medium\"\n          ],\n          [\n            \"ep_042\",\n            \"failure\",\n            \"w1\",\n            \"-0.28\",\n            \"high (good start)\"\n          ],\n          [\n            \"ep_042\",\n            \"failure\",\n            \"w5\",\n            \"-1.93\",\n            \"low (wrong room)\"\n          ],\n          [\n            \"ep_042\",\n            \"failure\",\n            \"w10\",\n            \"-6.52\",\n            \"medium\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"这是 paper 的理论核心 figure。三个 panel 分别证明：(a) advantage sign 由 episode outcome 决定（sign misattribution，r=0.97），(b) magnitude 按 γ^k 衰减 （information loss 的辅助效应，R²=0.92），(c) episode-level 完全消除两者。 Sign misattribution 是 \\\"方向错误\\\"（好 action 被惩罚、坏 action 被奖励）， 比 magnitude decay（\\\"信号弱\\\"）更致命——这解释了为什么 h=2 catastrophically collapses 而非只是 \\\"学得慢\\\"。\\n\\n\\nSign misattribution 的 correlation 结构由 RAGEN 的 step_independent 实现直接决定。 代码路径 agent_trainer.py:271-340 中，每个 window 的 return 由 compute_step_discounted_returns() 计算：return_w = Σ_{t=w}^{T} γ^(t-w) * r_t。 由于 ALFWorld 是 sparse binary reward（只有 episode 最后一步有 +10 或 0）， 所有 window 的 return 只取决于 episode 是否成功。成功 episode：return_w = γ^(T-w) * 10 > 0（所有 window 正），失败 episode：return_w = 0（经 GRPO group normalization 后 变为负 advantage）。因此 advantage sign 与 episode outcome 的 correlation 接近 1.0 （0.97 而非 1.0 是因为 GRPO normalization 中偶有 group 全成功或全失败的 edge case）。 Sign 与 local action quality 的 correlation 接近 0（0.04）是因为 advantage sign 完全由 episode outcome 决定，与 window 内 action 质量无关——好 window 坏 window 在同一 episode 内获得相同符号的 advantage。γ^k decay 的 R²=0.92 反映 magnitude 随 window 位置的指数衰减（早期 window 信号更弱）。Episode-level 模式下所有 token 共享一个 advantage（sign variance = 0, magnitude CV = 0），没有 position-dependent distortion。\\n\"\n  },\n  {\n    \"name\": \"Action-change statistics from always-on runs\",\n    \"description\": \"从 exp029 converged checkpoint 收集 always-on verification 的 action-change 统计。\\n\",\n    \"results\": {\n      \"confirmatory_rate\": 0.72,\n      \"action_change_rate\": 0.28,\n      \"action_change_success_correlation\": 0.35,\n      \"per_task_action_change_rate_pick\": 0.22,\n      \"per_task_action_change_rate_clean\": 0.31,\n      \"per_task_action_change_rate_heat\": 0.3,\n      \"per_task_action_change_rate_cool\": 0.27,\n      \"per_task_action_change_rate_examine\": 0.25,\n      \"per_task_action_change_rate_pick_two\": 0.35,\n      \"mean_verifications_per_episode\": 18.5,\n      \"mean_action_changes_per_episode\": 5.2,\n      \"action_change_at_critical_steps_rate\": 0.48,\n      \"n_episodes\": 256\n    },\n    \"tables\": [\n      {\n        \"title\": \"Action-change statistics breakdown\",\n        \"columns\": [\n          \"task_type\",\n          \"episodes\",\n          \"confirmatory_rate\",\n          \"action_change_rate\",\n          \"success_with_change\",\n          \"success_without_change\"\n        ],\n        \"rows\": [\n          [\n            \"pick\",\n            85,\n            0.78,\n            0.22,\n            0.52,\n            0.45\n          ],\n          [\n            \"clean\",\n            52,\n            0.69,\n            0.31,\n            0.5,\n            0.38\n          ],\n          [\n            \"heat\",\n            38,\n            0.7,\n            0.3,\n            0.48,\n            0.4\n          ],\n          [\n            \"cool\",\n            30,\n            0.73,\n            0.27,\n            0.53,\n            0.43\n          ],\n          [\n            \"examine\",\n            21,\n            0.75,\n            0.25,\n            0.47,\n            0.42\n          ],\n          [\n            \"pick_two\",\n            30,\n            0.65,\n            0.35,\n            0.44,\n            0.33\n          ],\n          [\n            \"overall\",\n            256,\n            0.72,\n            0.28,\n            0.49,\n            0.41\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"72% confirmatory rate 直接支持 selective verification 的 motivation：大部分 verification 是浪费计算资源的。同时 r=0.35 的 positive correlation 说明 action change 不是随机噪声——它携带关于 episode 成功的预测信息，为 action-change-based reward 提供了 grounding。\\n\\n\\n72% confirmatory rate 反映 trained agent 的 policy 已经较为 deterministic——大部分 时候 verification 后 agent 选择相同动作，说明 verification 并未提供新信息。28% 的 action change 集中在两类 step：(1) 关键决策点（如选择去哪个房间、选择哪个容器）， 这些 step 的 policy entropy 较高；(2) 纠错点（前一步执行了无效动作后需要修正策略）。 Action change 与 success 的正相关（r=0.35）表明 verification 触发的改变倾向于 改善决策——成功 episode 中更多的 action change 意味着 agent 在关键点做出了修正。 pick_two 任务的 action_change_rate 最高（0.35）因为它需要更多分支决策（选两个物品 的顺序和位置），每个决策点的 uncertainty 更高。\\n\"\n  },\n  {\n    \"name\": \"Selective verification implementation\",\n    \"description\": \"RAGEN 框架中实现 binary verify/skip decision。纯代码实现，无 GPU 结果。\\n\",\n    \"results\": {\n      \"implementation_complete\": true,\n      \"special_tokens_added\": [\n        \"&lt;verify>\",\n        \"&lt;skip>\"\n      ],\n      \"reward_formula\": \"R = task_success + α * action_change_when_verified - β * verification_cost\",\n      \"alpha\": 0.5,\n      \"beta\": 0.1,\n      \"code_changes_files\": 4,\n      \"unit_tests_passing\": true\n    },\n    \"tables\": [],\n    \"figures\": [],\n    \"analysis\": \"纯实现步骤，为 plan_007 训练做准备。\\n\\n\\n实现层面是 engineering work，best 档下顺利完成。关键设计决策：(1) 在每个 step 的 action output 前插入 verify/skip special token（最小化对现有 pipeline 的侵入）； (2) α=0.5 和 β=0.1 的初始值基于 plan_005 的 action-change statistics（action change 约 28% 的时间发生，verification cost 需要足够低以允许 ~40-60% verification rate）；(3) 当 agent 选择 verify 但未 change action 时，reward 减少 β（惩罚 无信息的 verification）；当 agent 选择 verify 且 changed action 时，reward 增加 α（奖励信息性 verification）。\\n\"\n  },\n  {\n    \"name\": \"B-IAVR selective verification training\",\n    \"description\": \"从 exp029 best checkpoint 初始化，用 action-change reward 训练 selective verification policy。Episode-level GRPO。\\n\",\n    \"results\": {\n      \"converged_val_success\": 0.46,\n      \"converged_verification_rate\": 0.42,\n      \"verification_rate_reduction_vs_always_on\": 0.58,\n      \"success_delta_vs_always_on_pp\": -2.0,\n      \"converged_action_change_when_verified\": 0.52,\n      \"converged_skip_accuracy\": 0.88,\n      \"convergence_step\": 30,\n      \"training_hours\": 36,\n      \"cost_reduction_total_tokens\": 0.52\n    },\n    \"tables\": [\n      {\n        \"title\": \"B-IAVR training trajectory\",\n        \"columns\": [\n          \"step\",\n          \"success\",\n          \"verification_rate\",\n          \"action_change_when_verified\",\n          \"skip_accuracy\"\n        ],\n        \"rows\": [\n          [\n            0,\n            0.48,\n            1.0,\n            0.28,\n            \"N/A\"\n          ],\n          [\n            5,\n            0.47,\n            0.72,\n            0.35,\n            0.75\n          ],\n          [\n            10,\n            0.46,\n            0.58,\n            0.42,\n            0.82\n          ],\n          [\n            20,\n            0.46,\n            0.45,\n            0.5,\n            0.86\n          ],\n          [\n            30,\n            0.46,\n            0.42,\n            0.52,\n            0.88\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"58% verification reduction 在 best 档指标范围 [40%, 65%] 的上部。关键：agent 学会了 选择性 verify——action_change_when_verified 从 0.28 (always-on) 提升到 0.52 （selective），说明 agent 确实在选择 informative step 做 verify。\\n\\n\\nB-IAVR 收敛到 42% verification rate（58% reduction）且 success 仅降 2pp（46% vs 48% always-on），原因：(1) 从 converged checkpoint 初始化意味着 agent 已有强 policy base，只需学习 verify/skip 决策（低维问题，收敛快）；(2) Action-change reward 有效 引导 agent 识别 \\\"高 uncertainty 步骤\\\" 和 \\\"低 uncertainty 步骤\\\"——agent 学会在 policy entropy 高的 decision point（如选择房间）verify，在 routine step（如 \\\"go to countertop\\\"）skip；(3) 42% verification rate 意味着 agent 平均每 episode verify ~7.8 次 (18.5 * 0.42)，跳过 ~10.7 次。被跳过的 step 中 88% 确实是 confirmatory 的（skip_accuracy=0.88），说明 agent 精确识别了不需要 verification 的 step；(4) 2pp 的 success drop 来自少数 false skip——agent 在个别关键 decision point 错误地 skip 了 verification，导致错误决策未被纠正。这个 trade-off 在 cost-efficiency 角度是有利的。\\n\"\n  },\n  {\n    \"name\": \"Selective verification full comparison\",\n    \"description\": \"同一 val set 上对比 always-on / B-IAVR / no-verify / random-p / confidence-threshold。\\n\",\n    \"results\": {\n      \"always_on_success\": 0.48,\n      \"always_on_verification_rate\": 1.0,\n      \"always_on_total_tokens\": 1.0,\n      \"biavr_success\": 0.46,\n      \"biavr_verification_rate\": 0.42,\n      \"biavr_total_tokens\": 0.52,\n      \"no_verify_success\": 0.36,\n      \"no_verify_verification_rate\": 0.0,\n      \"no_verify_total_tokens\": 0.38,\n      \"random_p40_success\": 0.41,\n      \"random_p40_verification_rate\": 0.4,\n      \"random_p40_total_tokens\": 0.55,\n      \"confidence_threshold_success\": 0.43,\n      \"confidence_threshold_verification_rate\": 0.45,\n      \"confidence_threshold_total_tokens\": 0.58,\n      \"biavr_pareto_dominant\": true\n    },\n    \"tables\": [\n      {\n        \"title\": \"Selective verification comparison (same val set, 128 episodes)\",\n        \"columns\": [\n          \"method\",\n          \"success_rate\",\n          \"verification_rate\",\n          \"relative_tokens\",\n          \"success_per_token\"\n        ],\n        \"rows\": [\n          [\n            \"always-on\",\n            0.48,\n            1.0,\n            1.0,\n            0.48\n          ],\n          [\n            \"B-IAVR (ours)\",\n            0.46,\n            0.42,\n            0.52,\n            0.88\n          ],\n          [\n            \"confidence-threshold\",\n            0.43,\n            0.45,\n            0.58,\n            0.74\n          ],\n          [\n            \"random-p=0.4\",\n            0.41,\n            0.4,\n            0.55,\n            0.75\n          ],\n          [\n            \"no-verify\",\n            0.36,\n            0.0,\n            0.38,\n            0.95\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"B-IAVR 的 success-per-token ratio (0.88) 是所有方法中最高的（always-on=0.48， 说明 always-on 一半以上的 verification 是浪费的）。这是 Claim 3 的核心证据。\\n\\n\\nB-IAVR 在 Pareto frontier 上 dominant 的原因：(1) vs always-on：仅 -2pp success 但节省 48% tokens，efficiency 远高；(2) vs no-verify：+10pp success 因为 selective verification 在关键 step 纠正了错误；(3) vs random-p（以 40% probability 随机 verify）：+5pp success at comparable verification rate，因为 random 浪费 verify 在 不需要的 step 且错过关键 step；(4) vs confidence-threshold（基于 logit entropy 决定是否 verify）：+3pp success at lower verification rate，因为 model 的 token-level confidence 不完全反映 decision-level uncertainty（一个 confident-looking action 可能在 trajectory-level 是错误的，confidence 无法捕捉这种 temporal credit structure， 而 B-IAVR 通过 RL 学到了 trajectory-aware 的 verify 策略）。\\n\"\n  },\n  {\n    \"name\": \"No-verify ablation\",\n    \"description\": \"Episode-level GRPO 训练但完全移除 self-verification。Verification 价值的 lower bound。\\n\",\n    \"results\": {\n      \"converged_val_success\": 0.36,\n      \"converged_action_is_valid\": 0.65,\n      \"success_drop_vs_always_on_pp\": 12.0,\n      \"convergence_step\": 40\n    },\n    \"tables\": [\n      {\n        \"title\": \"Verification ablation impact\",\n        \"columns\": [\n          \"config\",\n          \"success\",\n          \"action_is_valid\",\n          \"avg_steps_to_success\"\n        ],\n        \"rows\": [\n          [\n            \"always-on verification\",\n            0.48,\n            0.72,\n            18.3\n          ],\n          [\n            \"no verification\",\n            0.36,\n            0.65,\n            16.8\n          ],\n          [\n            \"delta\",\n            \"-12pp\",\n            \"-7pp\",\n            \"-1.5 steps\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"12pp gap 证明 verification 有价值，但 36% 无验证的 success 也说明 episode-level training 本身学到了 strong policy。这支持 \\\"verification 是 optional optimization, not critical requirement\\\" 的定位，让 selective verification 的 framing 更合理—— 我们不是 \\\"必须 verify 才能 work\\\"，而是 \\\"verify 有帮助，如何只在有帮助时 verify\\\"。\\n\\n\\n移除 verification 后 success 降 12pp（48%→36%）反映了 verification 在 ALFWorld 中 的两个作用：(1) 错误纠正——agent 在某些 step 选择了错误动作（如 go to wrong room）， verification 提供了 second chance 来修正。没有 verification，这些错误直接导致 episode 失败。(2) 信息获取——verification 过程中 agent 重新审视 observation，有时发现之前 忽略的信息（如 \\\"there is a cup on the shelf\\\" 被遗漏）。12pp 的 drop 在 best 档 预期内（≥10pp），足以证明 verification 有价值。同时 36% 的 success 说明 episode-level policy 本身已经很强——verification 是 incremental improvement 而非必需品。 Action_is_valid 下降（72%→65%）因为 verification 提供的 error feedback 在某些 case 帮助 model 避免后续的 invalid action。\\n\"\n  },\n  {\n    \"name\": \"Entropy-controlled action-change analysis\",\n    \"description\": \"控制 policy entropy 后检验 action-change 与 success 的偏相关。 回应 \\\"action change = noise\\\" 审稿攻击。\\n\",\n    \"results\": {\n      \"raw_correlation\": 0.35,\n      \"partial_correlation_controlling_entropy\": 0.28,\n      \"partial_correlation_p_value\": 0.003,\n      \"n_episodes\": 256,\n      \"entropy_strata\": 4,\n      \"correlation_by_stratum_low\": 0.25,\n      \"correlation_by_stratum_mid_low\": 0.3,\n      \"correlation_by_stratum_mid_high\": 0.29,\n      \"correlation_by_stratum_high\": 0.26\n    },\n    \"tables\": [\n      {\n        \"title\": \"Entropy-stratified action-change analysis\",\n        \"columns\": [\n          \"entropy_stratum\",\n          \"n_steps\",\n          \"action_change_rate\",\n          \"correlation_with_success\",\n          \"p_value\"\n        ],\n        \"rows\": [\n          [\n            \"low (0-0.1)\",\n            420,\n            0.15,\n            0.25,\n            0.02\n          ],\n          [\n            \"mid-low (0.1-0.3)\",\n            380,\n            0.25,\n            0.3,\n            0.008\n          ],\n          [\n            \"mid-high (0.3-0.6)\",\n            410,\n            0.35,\n            0.29,\n            0.005\n          ],\n          [\n            \"high (0.6+)\",\n            326,\n            0.45,\n            0.26,\n            0.01\n          ],\n          [\n            \"overall (partial)\",\n            1536,\n            0.28,\n            0.28,\n            0.003\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"Partial correlation 0.28 (p=0.003) 在 best 档下充分回应 \\\"action change = noise\\\" 攻击。Stratum-level stability 是额外的 robustness 证据。\\n\\n\\n控制 entropy 后 partial correlation 仍显著（0.28, p=0.003）证明 action change 不仅仅 是 policy uncertainty 的 proxy。机制：高 entropy step 确实更可能 change action（因为 policy 不确定），但 action change 的信息价值超越了 uncertainty 本身——verification 触发的 change 反映了 agent 在 re-examination 后发现了 initial decision 的错误， 这种 \\\"informed correction\\\" 与 success 的相关性在所有 entropy 层级中都存在。 四个 entropy stratum 的 correlation 相对稳定（0.25-0.30），说明 action-change-success relationship 是 robust 的，不是被高 entropy bin 驱动的 artifact。\\n\"\n  },\n  {\n    \"name\": \"Causal intervention: random vs verification-triggered changes\",\n    \"description\": \"以相同 rate 注入 random action changes，对比 verification-triggered changes 的 task success。因果推断证据。\\n\",\n    \"results\": {\n      \"success_rate_verification_triggered\": 0.48,\n      \"success_rate_random_change\": 0.33,\n      \"success_rate_no_change\": 0.36,\n      \"delta_triggered_vs_random_pp\": 15.0,\n      \"delta_triggered_vs_no_change_pp\": 12.0,\n      \"n_episodes_per_condition\": 128,\n      \"p_value_triggered_vs_random\": 0.001\n    },\n    \"tables\": [\n      {\n        \"title\": \"Causal intervention comparison\",\n        \"columns\": [\n          \"condition\",\n          \"success\",\n          \"action_change_rate\",\n          \"p_value_vs_triggered\"\n        ],\n        \"rows\": [\n          [\n            \"verification-triggered\",\n            0.48,\n            0.28,\n            \"—\"\n          ],\n          [\n            \"random (matched rate)\",\n            0.33,\n            0.28,\n            0.001\n          ],\n          [\n            \"no change baseline\",\n            0.36,\n            0.0,\n            \"<0.001\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"15pp delta 是 Claim 2 的因果证据支柱。Verification-triggered > no-change > random 的排序说明 (a) verification 有值，(b) informed change 远优于 uninformed change。\\n\\n\\nVerification-triggered changes 显著优于 random changes（+15pp），证明 verification 过程 genuinely 帮助 agent 做出更好的决策（因果效应），而不仅仅是 \\\"任何 change 都有 帮助\\\"。Random changes 反而比 no-change 略差（33% vs 36%），因为随机改变一个已经 合理的决策会导致更多错误。Verification-triggered changes 只在 agent 认为当前决策 有误时才发生（28% 的 step），且这些改变指向更正确的方向——这是 trained policy 的 verification 过程提供了 informed error correction，而非 random perturbation。 15pp 的 delta 是强因果证据，p<0.001。\\n\"\n  },\n  {\n    \"name\": \"Reward signal ablation (action-change vs alternatives)\",\n    \"description\": \"B-IAVR 用三种 reward 训练对比：action-change / random-trigger / confidence-based。\\n\",\n    \"results\": {\n      \"action_change_success\": 0.46,\n      \"action_change_verification_rate\": 0.42,\n      \"action_change_cost_reduction\": 0.52,\n      \"random_trigger_success\": 0.4,\n      \"random_trigger_verification_rate\": 0.55,\n      \"random_trigger_cost_reduction\": 0.38,\n      \"confidence_success\": 0.43,\n      \"confidence_verification_rate\": 0.5,\n      \"confidence_cost_reduction\": 0.42\n    },\n    \"tables\": [\n      {\n        \"title\": \"Reward signal ablation\",\n        \"columns\": [\n          \"reward_type\",\n          \"success\",\n          \"verif_rate\",\n          \"cost_reduction\",\n          \"pareto_efficient\"\n        ],\n        \"rows\": [\n          [\n            \"action-change (ours)\",\n            0.46,\n            0.42,\n            0.52,\n            \"Yes\"\n          ],\n          [\n            \"confidence-based\",\n            0.43,\n            0.5,\n            0.42,\n            \"No\"\n          ],\n          [\n            \"random-trigger\",\n            0.4,\n            0.55,\n            0.38,\n            \"No\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"Action-change reward 在 success 和 cost reduction 两个维度上都最优， 验证了 action change 作为 verification informativeness signal 的有效性。\\n\\n\\nAction-change reward 最优因为它直接衡量 verification 的 informativeness（是否改变了 决策）。Random-trigger reward（随机时机给 reward）无法引导 agent 学习 when to verify 的有用 pattern，导致 verification rate 高（55%，不知道何时 skip）且 success 低 （40%，浪费 verification 在无用 step）。Confidence-based reward（基于 logit entropy 决定 verify 价值）性能居中——它能捕捉 token-level uncertainty 但错过 trajectory-level 的 verification 需求（如一个 confident 但在 trajectory context 中错误的 action）。 Action-change 的优势在于它是 outcome-informed 的 signal（verification 是否 actually 改变了行为），而非 proxy signal（uncertainty/randomness）。\\n\"\n  },\n  {\n    \"name\": \"ARES reproduction + comparison\",\n    \"description\": \"复现 ARES SFT router on ALFWorld（same model），与 B-IAVR head-to-head 对比。\\n\",\n    \"results\": {\n      \"ares_success\": 0.44,\n      \"ares_verification_rate\": 0.55,\n      \"ares_cost_reduction\": 0.38,\n      \"biavr_success\": 0.46,\n      \"biavr_verification_rate\": 0.42,\n      \"biavr_cost_reduction\": 0.52,\n      \"biavr_vs_ares_cost_reduction_delta_pp\": 14.0,\n      \"biavr_vs_ares_success_delta_pp\": 2.0\n    },\n    \"tables\": [\n      {\n        \"title\": \"B-IAVR vs ARES comparison (same model, same val set)\",\n        \"columns\": [\n          \"method\",\n          \"success\",\n          \"verif_rate\",\n          \"cost_reduction\",\n          \"training_method\"\n        ],\n        \"rows\": [\n          [\n            \"B-IAVR (ours)\",\n            0.46,\n            0.42,\n            0.52,\n            \"RL (action-change reward)\"\n          ],\n          [\n            \"ARES (reproduced)\",\n            0.44,\n            0.55,\n            0.38,\n            \"SFT (heuristic labels)\"\n          ],\n          [\n            \"delta\",\n            \"+2pp\",\n            \"-13pp\",\n            \"+14pp\",\n            \"—\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"14pp cost reduction 优势直接回应 \\\"ARES differentiation\\\" 审稿攻击。核心差异化： RL > SFT for learning verification policy（RL 可 explore optimal timing, SFT 被 heuristic label quality 限制）。\\n\\n\\nB-IAVR 在 cost reduction 上超越 ARES 14pp（52% vs 38%）且 success 略高（+2pp）。 ARES 使用 SFT-trained router（supervision 来自 heuristic labels），存在两个限制： (1) SFT label quality ceiling——heuristic 标注的 verify/skip decision 不一定最优， router 只能学到 heuristic 的水平；(2) 无 exploration——SFT 是 imitation learning， router 无法发现 heuristic 未覆盖的 verification pattern。B-IAVR 用 RL 训练 （action-change reward），agent 通过 exploration 发现比 heuristic 更精准的 verification timing。另外 ARES 的 continuous effort 设计（连续 effort 值而非 binary verify/skip）在 ALFWorld 的 binary decision 结构下未必优于简洁的 binary approach。 ARES 的 verification_rate=55% 高于 B-IAVR 的 42%，说明 ARES router 更保守（不确定 时倾向 verify），这牺牲了 cost efficiency。\\n\"\n  },\n  {\n    \"name\": \"ScienceWorld transfer (episode-level advantage)\",\n    \"description\": \"ScienceWorld 环境上验证 episode-level vs step-independent。不同环境，类似多轮结构。\\n\",\n    \"results\": {\n      \"episode_level_success\": 0.32,\n      \"step_independent_h2_success\": 0.04,\n      \"step_independent_h10_success\": 0.11,\n      \"episode_vs_step_h2_ratio\": 8.0,\n      \"episode_vs_step_h10_ratio\": 2.9,\n      \"episode_vs_step_independent_mean_ratio\": 3.2,\n      \"scienceworld_task_diversity\": 10,\n      \"episode_convergence_step\": 20\n    },\n    \"tables\": [\n      {\n        \"title\": \"ScienceWorld: Episode-level vs Step-independent\",\n        \"columns\": [\n          \"method\",\n          \"success\",\n          \"convergence_step\",\n          \"collapse?\"\n        ],\n        \"rows\": [\n          [\n            \"episode-level\",\n            0.32,\n            20,\n            \"No\"\n          ],\n          [\n            \"step-independent (h=2)\",\n            0.04,\n            \"N/A\",\n            \"Yes (step 5)\"\n          ],\n          [\n            \"step-independent (h=10)\",\n            0.11,\n            \"N/A\",\n            \"Partial\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"Cross-environment transfer 是回应 \\\"single environment\\\" 审稿攻击的关键证据。 3.2x ratio 证明 dual mechanism 不是 ALFWorld-specific artifact，而是 sparse-reward multi-turn 任务的通用问题。\\n\\n\\nScienceWorld 的 episode-level 优势比率 3.2x（32% vs 10% step-independent 均值）在 best 档范围 [2x, 4x] 内。ScienceWorld 与 ALFWorld 共享关键结构特征：(1) 多轮交互 （平均 ~30 steps），(2) sparse binary reward（任务完成/未完成），(3) 需要跨步策略 规划（如 science 实验需要按顺序操作多个 object）。这些结构特征正是 sign misattribution 和 information loss 的触发条件。因此 episode-level 的优势可以 transfer。 绝对 success 低于 ALFWorld（32% vs 48%）因为 ScienceWorld 任务更复杂（需要 domain-specific knowledge，如化学反应、物理实验步骤），但 relative advantage （3.2x ratio）甚至高于 ALFWorld，因为 ScienceWorld 的 longer horizon（~30 steps vs ~25 steps）使 sign misattribution 更严重（更多 window，每个 window 的 sign 偏差对训练的干扰更大）。Step-independent h=2 几乎完全 collapse（4%），h=10 也仅 11%，验证了 cliff 现象在新环境中的 generalizability。\\n\"\n  },\n  {\n    \"name\": \"7B model scaling verification\",\n    \"description\": \"Qwen3-7B 上验证 episode-level vs step-independent。回应 model size concern。\\n\",\n    \"results\": {\n      \"episode_level_7B_success\": 0.58,\n      \"step_independent_h2_7B_success\": 0.08,\n      \"step_independent_h10_7B_success\": 0.22,\n      \"episode_vs_step_ratio_7B\": 3.6,\n      \"episode_7B_vs_1_7B_improvement_pp\": 10.0,\n      \"step_independent_7B_vs_1_7B_improvement_pp\": 6.0,\n      \"convergence_step_7B\": 30\n    },\n    \"tables\": [\n      {\n        \"title\": \"7B vs 1.7B scaling comparison\",\n        \"columns\": [\n          \"method\",\n          \"1.7B success\",\n          \"7B success\",\n          \"scaling gain\"\n        ],\n        \"rows\": [\n          [\n            \"episode-level\",\n            0.48,\n            0.58,\n            \"+10pp\"\n          ],\n          [\n            \"step-independent (h=10)\",\n            0.18,\n            0.22,\n            \"+4pp\"\n          ],\n          [\n            \"step-independent (h=2)\",\n            0.02,\n            0.08,\n            \"+6pp\"\n          ],\n          [\n            \"episode/step ratio\",\n            \"2.7x\",\n            \"3.6x\",\n            \"ratio increases\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"7B 实验的核心贡献不是追求 SOTA performance（58% 仍低于 GAGPO 93.5%），而是证明 episode-level advantage 随 model scale 增大而增强——larger model 更需要正确的 training methodology。这预测了在更大 model（70B+）上 episode-level 的优势会更明显。\\n\\n\\n7B model 在两个 regime 下都更强（episode-level 58% vs 1.7B 48%；step-independent h=10 22% vs 1.7B 18%），但 episode-level 的 relative advantage 更大（3.6x vs 3.0x at 1.7B, comparing h=10）。原因：(1) 7B 的更强 base capability 意味着 policy 有更多 \\\"正确策略\\\" 可学，但 sign misattribution 仍然阻止 step-independent 学到它们—— 更强的 model 反而让 misattribution 的 \\\"浪费\\\" 更显著；(2) 7B 的更长 context window 利用能力使 episode-level training 的优势更大（1.7B 可能在 full context 下也有信息 处理限制，7B 更充分利用全 episode 信息）。Step-independent 在 7B 下表现略好于 1.7B 但仍远不及 episode-level，说明 model scaling alone 不能解决 sign misattribution—— 这支持 \\\"问题在 training methodology 而非 model capacity\\\" 的 framing。\\n\"\n  },\n  {\n    \"name\": \"Per-task-type breakdown analysis\",\n    \"description\": \"ALFWorld 6 种 task type 的分类 success 分析。展示 within-environment diversity。\\n\",\n    \"results\": {\n      \"pick_episode_success\": 0.55,\n      \"pick_step_indep_success\": 0.08,\n      \"clean_episode_success\": 0.48,\n      \"clean_step_indep_success\": 0.03,\n      \"heat_episode_success\": 0.52,\n      \"heat_step_indep_success\": 0.05,\n      \"cool_episode_success\": 0.5,\n      \"cool_step_indep_success\": 0.04,\n      \"examine_episode_success\": 0.42,\n      \"examine_step_indep_success\": 0.02,\n      \"pick_two_episode_success\": 0.38,\n      \"pick_two_step_indep_success\": 0.01,\n      \"episode_length_success_correlation\": -0.82,\n      \"longer_tasks_benefit_more\": true\n    },\n    \"tables\": [\n      {\n        \"title\": \"Per-task-type breakdown\",\n        \"columns\": [\n          \"task\",\n          \"avg_steps\",\n          \"episode_success\",\n          \"step_indep_success\",\n          \"advantage_ratio\"\n        ],\n        \"rows\": [\n          [\n            \"pick\",\n            15,\n            0.55,\n            0.08,\n            \"6.9x\"\n          ],\n          [\n            \"clean\",\n            22,\n            0.48,\n            0.03,\n            \"16x\"\n          ],\n          [\n            \"heat\",\n            20,\n            0.52,\n            0.05,\n            \"10.4x\"\n          ],\n          [\n            \"cool\",\n            20,\n            0.5,\n            0.04,\n            \"12.5x\"\n          ],\n          [\n            \"examine\",\n            28,\n            0.42,\n            0.02,\n            \"21x\"\n          ],\n          [\n            \"pick_two\",\n            35,\n            0.38,\n            0.01,\n            \"38x\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"Per-task breakdown 提供了 dual mechanism theory 的 additional support：advantage ratio 随 task length monotonically 增加，consistent with 更多 window → 更多 sign misattribution → 更大的 catastrophic effect。这也回应了 \\\"ALFWorld 多样性 不足\\\" 的 concern——6 个 task type 在 complexity 和 strategy 上有显著差异， episode-level advantage 在全部 type 上都成立。\\n\\nEpisode-level advantage 在所有 task type 上一致存在，但更长、更复杂的任务获益更多。 Pick（最简单，~15 步）的 episode-level success 最高（55%）因为策略最直接（find object → pick → put），step-independent 也能偶尔成功（8%）。Pick_two（最复杂， ~35 步）的 episode-level success 最低（38%）因为需要两轮 find-pick-put 的跨步 协调，但 step-independent 几乎完全 collapse（1%）。Episode-length 与 success 的 负相关（r=-0.82）反映了 ALFWorld 的 task complexity gradient。关键观察： episode-level 的 advantage ratio（episode/step-independent）随 task length 增加： pick=6.9x, clean=16x, heat=10.4x, cool=12.5x, examine=21x, pick_two=38x。 这是因为更长的 task 有更多的 sign-misattributed window，累积的梯度方向错误更严重。\\n\"\n  }\n]",
+      "numLines": 1199,
+      "startLine": 1,
+      "totalLines": 1199
+    }
+  },
+  "sourceToolAssistantUUID": "389ac890-7b66-4231-be18-b749f5d5628c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "3aad36b4-392e-474c-8d55-d831dfdf181b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T13:47:45.198Z_
+
+<details><summary>↩ Tool result · `toolu_01Aa7oXKfJ1wdP68B6cCKh7f`</summary>
+
+```text
+1	# Paper Framing — Learning When to Verify: RL-Trained Selective Self-Verification for Interactive Agents
+2	
+3	> Post-MVP 重写 (2026-05-17) | D054 framing pivot + Dream Review feedback (weak reject → 修正理论)
+4	
+5	## Core Insight
+6	
+7	Multi-turn interactive agents 的 self-verification 大部分是 confirmatory（不改变行为）而非 corrective。训练 agent 学 selective verification 的前提是 RL 训练本身能 work。我们发现 LLM agent 社区默认的 step-independent training 在长 horizon 任务中灾难性崩溃，根因是**双机制失效**：
+8	
+9	1. **Policy Information Loss**: 短窗口（h 步）的 policy 无法学习跨步策略（如 "先探索 drawer 再去 countertop"）
+10	2. **Advantage Sign Misattribution**: step_independent 中，per-window advantage 的**符号**由 episode 成败决定，而非 window-local action quality：
+11	   - 失败 episode 中的好 action → 获得负 advantage（被错误惩罚）
+12	   - 成功 episode 中的差 action → 获得正 advantage（被错误强化）
+13	   - 梯度方向（reinforce/suppress）反映 episode outcome 而非 local decision quality
+14	   - 附加：γ^k magnitude decay 使早期 window 信号更弱（γ^24 ≈ 29%, where 24 = ⌈T/h⌉-1 windows），但方向错误比幅度衰减更致命
+15	
+16	Episode-level training 同时解决两者：policy 看全历史（解决 1），整条 trajectory 作为一个 GRPO 样本，所有 tokens 共享同一 advantage — 虽然仍是 episode-level credit（非 per-token），但消除了 window 间的 sign misattribution，因为不再需要将 episode reward 分配到独立优化的子窗口（解决 2）。
+17	
+18	**技术澄清**：GRPO 算法本身是 bandit-style（advantage = (R-μ)/σ，无显式 γ），但 RAGEN 的 step_independent 实现在 `compute_step_discounted_returns()` 中引入 γ 计算每个 window 的 return（代码：`agent_trainer.py:271-340`）。γ^(T-t) decay 对 step_independent 模式是代码事实，不是类比。Episode-level 模式下无此问题：整条 trajectory 只有一个 return = episode_reward。
+19	
+20	## Story Arc
+21	
+22	**Dual contribution**: Training methodology diagnosis + Selective verification system
+23	
+24	叙事线：
+25	1. Self-verification 对 interactive agents 有用，但 always-on 成本高
+26	2. 训练 agent 学 WHEN to verify 需要 RL → 但 LLM agent 社区默认的 step-independent training 在多轮任务上灾难性崩溃（0% at step 10）
+27	3. 我们诊断双机制根因（information loss + advantage sign misattribution），提出 episode-level GRPO 解决
+28	4. 分析 "为什么社区默认走向 step-independent"（context window 限制 + token-level training 惯性 + framework design accident）
+29	5. 在 episode-level 基础上，用 action-change 作为 verification informativeness 的 reward，训练 selective policy
+30	6. 结果：near-always-on performance + 显著降低 verification cost
+31	
+32	**定位**：不 claim "发明了 episode-level RL"（trivial），而是 "诊断了 LLM agent RL 训练中被忽视的 step-independent 隐性代价 + 系统分析崩溃机制 + 提出实用修复方案 + 在此基础上实现 selective verification"
+33	
+34	## Target Venue
+35	
+36	待定（NeurIPS 2026 / EMNLP 2026 / ICLR 2026），取决于实验进度和最终效果。
+37	
+38	## Core Claims
+39	
+40	### Claim 1 (strength: strong): Step-independent GRPO catastrophically fails for multi-turn agents due to dual mechanism
+41	- 所需证据：episode-level vs step-independent 对比（多 seed），h-sweep ablation（3 seeds each），mechanistic analysis（gradient signal measurement），GAE baseline comparison
+42	- 当前证据状态：**ESTABLISHED** (exp029 step5 val=25% vs exp028c step10 val=0%)
+43	- 机制：(1) policy information loss (h-step context insufficient), (2) advantage sign misattribution (gradient direction reflects episode outcome, not window-local action quality; additionally γ^k magnitude decay for early windows)
+44	- 技术细节：GRPO 算法无固有 γ，但 RAGEN step_independent 的 `compute_step_discounted_returns()` 引入 γ-discounted per-window returns → advantage 符号由 episode 成败决定。代码验证：`agent_trainer.py:271-340` + `core_algos.py:194-246`
+45	
+46	### Claim 2 (strength: moderate): Action-change is an effective intrinsic reward for verification informativeness
+47	- 所需证据：selective verification 训练收敛 + action-change vs random/confidence baselines
+48	- 当前证据状态：**not yet established**，依赖 Phase B 实验
+49	- 前提：episode-level 训练的 agent 需达到 ≥40% success 才有意义
+50	
+51	### Claim 3 (strength: moderate): Learned selective policy matches always-on performance at reduced verification cost
+52	- 所需证据：B-IAVR verification ↓40%+ 且 success delta < 3pp vs always-on
+53	- 当前证据状态：**not yet established**，依赖 Phase B + C
+54	- 前提：Claim 1 的 agent 需足够强
+55	
+56	## Contingency Plan
+57	
+58	如果 episode-level 训练收敛后 success 仍 < 40%（不足以支撑 cost-efficiency story）：
+59	- **Plan A**：paper 变为 diagnostic + analysis contribution — "Why Step-Independent RL Fails for LLM Multi-Turn Agents: Dual Mechanism Analysis" (需更深 ablation + GAE comparison + community practice survey)
+60	- **Plan B**：加 Self-Guide reward 到 episode-level（从 binary→dense reward），推高 performance 后再做 selective verification
+61	- 不考虑 downgrade venue
+62	- **注意**：Dream review 已证明 Plan A 纯 methodology paper 需要比预期更深的分析才能通过审稿（"诊断社区默认实践的隐性代价" > "episode-level RL works"）
+63	
+64	## Reviewer Attack Surface + Defense
+65	
+66	| # | Concern | Severity | Defense |
+67	|---|---------|----------|---------|
+68	| 1 | "Episode-level RL is obvious / well-known" | HIGH | h-sweep (3 seeds) 展示 non-trivial cliff + 双机制理论 + "为什么社区默认 step-independent" 分析 |
+69	| 2 | "Theory 与 GRPO 不匹配" | HIGH | 精确区分：GRPO 算法无 γ，但 step_independent 实现引入 γ-discounted returns（代码引用）→ per-window advantage logging 实证 + 伪代码 |
+70	| 3 | "缺 GAE/标准 RL baselines" | HIGH | 加 GAE(λ=0.95) + GAE(λ=1,γ=1) baseline，证明 episode-level GRPO 与 GAE 的差异 |
+71	| 4 | "Self-Guide 3x performance gap" | HIGH | 正面回应：不同 paradigm (expert-guided vs from-scratch RL)，不同问题（Self-Guide 回避了训练问题） |
+72	| 5 | Single environment (ALFWorld) | MEDIUM | ScienceWorld transfer (if resources permit) |
+73	| 6 | Small model (1.7B) | MEDIUM | 定位 resource-constrained; 7B 验证 (conditional) |
+74	| 7 | Action-change = noise vs signal | MEDIUM | Entropy-controlled analysis + causal intervention (Phase B) |
+75	| 8 | 与 ARES 差异化不足 | LOW | Head-to-head 对比 + 方法论差异表 |
+76	| 9 | "Turn-PPO 已解决相同问题" | HIGH | 精确区分：Turn-PPO 发现 uniform advantage (subset)，我们发现 sign misattribution (superset + 量化 γ^24≈29%)；解法相反 (finer vs coarser) |
+77	
+78	## Evidence Status Matrix
+79	
+80	| Claim | MVP Evidence | Research Evidence Needed | Priority |
+81	|-------|-------------|--------------------------|----------|
+82	| Claim 1 | exp029 vs exp028c (25% vs 0%) | h-value ablation, multi-seed, mechanism paper figure | P0 |
+83	| Claim 2 | N/A | Phase B full implementation | P1 |
+84	| Claim 3 | N/A | Phase B + C comparison suite | P1 |
+85	
+86	## Competitive Positioning
+87	
+88	| System | Method | Benchmark | Key Difference from Us |
+89	|--------|--------|-----------|----------------------|
+90	| Self-Guide (2026) | Always-on verification | ALFWorld 72.7% (1.7B) | We add selectivity via RL |
+91	| ARES (2603.07915) | SFT router, continuous effort | 52.7% token reduction | SFT vs RL, continuous vs binary |
+92	| Thinkless (NeurIPS'25) | RL control token | reasoning domain | Same RL philosophy, different domain |
+93	| ReflAct (EMNLP'25) | Prompting GPT-4 | ALFWorld 93.3% | Different scale/approach |
+94	| RAGEN (2025) | GRPO for agents | varies | Step-independent default, our baseline |
+95	| **Turn-PPO (2512.17008)** | Turn-level MDP + value fn | reasoning tasks | "Uniform advantage" vs our "sign misattribution"; finer credit vs coarser |
+96	| **GAGPO (2605.13217)** | Grouped value proxy, step-aligned | ALFWorld 93.5% (1.5B) | Finer-grained credit for performance; we diagnose mechanism failure |
+97	| **MT-GRPO (2505.11821)** | Turn-level reward design | QA search tasks | Turn-level credit; we show coarser suffices |
+98	| **iStar (ICLR'26)** | Implicit PRM + dual advantage | WebShop 86.5% | Learns step rewards; we show episode-level eliminates misattribution |
+99	| **ArCHer (ICML'24)** | Hierarchical multi-turn RL | multi-turn agents | Foundational framework; establishes need for hierarchical structure |
+100	| **HiPER (2602.16165)** | Hierarchical Plan-Execute RL | ALFWorld 97.4% (7B) | SOTA performance pursuit; we do mechanism diagnosis |
+101	
+102	### Positioning Strategy
+103	
+104	**核心差异化：Contrarian Solution。** 竞品（Turn-PPO, GAGPO, MT-GRPO, iStar, HiPER）一致认为 multi-turn RL 需要更细粒度的 credit assignment（turn-level, step-level, hierarchical），并用此提升性能。我们的贡献是诊断性的：
+105	
+106	1. **问题定义更精确**：Turn-PPO 发现 "uniform advantage" 问题（所有 turn 获得相同 advantage），我们发现更本质的 "Advantage Sign Misattribution"（advantage 符号由 episode outcome 决定而非 local action quality），并量化 γ^24 ≈ 29% 的 return 衰减。Sign misattribution 是 uniform advantage 的超集。
+107	
+108	2. **Contrarian solution**：所有竞品的解法都是引入更细的 credit（turn-level value, step-level PRM, hierarchical planner）。我们展示更粗的 episode-level credit 反而消除 sign misattribution，因为它避免了将 episode reward 错误分配到独立优化的子窗口。这挑战了 "越细越好" 的社区默认假设。
+109	
+110	3. **不同 contribution 维度**：GAGPO/HiPER 追求 ALFWorld 93-97% 的 SOTA performance（通过更好的 credit + 更复杂的架构）。我们不 compete on performance axis，而是回答 "为什么社区默认的 step-independent 灾难性失败" 这个诊断问题。两个 contribution 维度正交互补。
+111	
+112	4. **与 CA Survey 的关系**：Zhang (2604.09459) 系统化了 47 种 CA 方法，但未分析 CA 方法本身的 failure modes（何时更细粒度反而有害）。我们填补这一空白。
+113	
+114	## Research Phases
+115	
+116	1. **Phase A (DONE)**: Episode-level GRPO training — MVP passed, demonstrates Claim 1
+117	2. **Phase A+**: Continue training to convergence (target ≥40% success), deploy tatsu parallel patch, multi-seed
+118	3. **Phase B**: Implement selective verification with action-change reward — Claim 2 & 3
+119	4. **Phase C**: Ablation suite — context window sweep, reward ablations, baseline comparisons
+120	5. **Phase D**: (Conditional on resources) Multi-env / multi-model scaling
+121	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "59ee99ee-fc48-4049-b550-2dc54d12c685",
+  "isSidechain": false,
+  "promptId": "9b157487-52ba-4170-bcee-a17554702c6c",
+  "type": "user",
+  "uuid": "e8b3bc5f-2a31-42b2-b7e1-052286b70475",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260517T133129/best/paper_framing.md",
+      "content": "# Paper Framing — Learning When to Verify: RL-Trained Selective Self-Verification for Interactive Agents\n\n> Post-MVP 重写 (2026-05-17) | D054 framing pivot + Dream Review feedback (weak reject → 修正理论)\n\n## Core Insight\n\nMulti-turn interactive agents 的 self-verification 大部分是 confirmatory（不改变行为）而非 corrective。训练 agent 学 selective verification 的前提是 RL 训练本身能 work。我们发现 LLM agent 社区默认的 step-independent training 在长 horizon 任务中灾难性崩溃，根因是**双机制失效**：\n\n1. **Policy Information Loss**: 短窗口（h 步）的 policy 无法学习跨步策略（如 \"先探索 drawer 再去 countertop\"）\n2. **Advantage Sign Misattribution**: step_independent 中，per-window advantage 的**符号**由 episode 成败决定，而非 window-local action quality：\n   - 失败 episode 中的好 action → 获得负 advantage（被错误惩罚）\n   - 成功 episode 中的差 action → 获得正 advantage（被错误强化）\n   - 梯度方向（reinforce/suppress）反映 episode outcome 而非 local decision quality\n   - 附加：γ^k magnitude decay 使早期 window 信号更弱（γ^24 ≈ 29%, where 24 = ⌈T/h⌉-1 windows），但方向错误比幅度衰减更致命\n\nEpisode-level training 同时解决两者：policy 看全历史（解决 1），整条 trajectory 作为一个 GRPO 样本，所有 tokens 共享同一 advantage — 虽然仍是 episode-level credit（非 per-token），但消除了 window 间的 sign misattribution，因为不再需要将 episode reward 分配到独立优化的子窗口（解决 2）。\n\n**技术澄清**：GRPO 算法本身是 bandit-style（advantage = (R-μ)/σ，无显式 γ），但 RAGEN 的 step_independent 实现在 `compute_step_discounted_returns()` 中引入 γ 计算每个 window 的 return（代码：`agent_trainer.py:271-340`）。γ^(T-t) decay 对 step_independent 模式是代码事实，不是类比。Episode-level 模式下无此问题：整条 trajectory 只有一个 return = episode_reward。\n\n## Story Arc\n\n**Dual contribution**: Training methodology diagnosis + Selective verification system\n\n叙事线：\n1. Self-verification 对 interactive agents 有用，但 always-on 成本高\n2. 训练 agent 学 WHEN to verify 需要 RL → 但 LLM agent 社区默认的 step-independent training 在多轮任务上灾难性崩溃（0% at step 10）\n3. 我们诊断双机制根因（information loss + advantage sign misattribution），提出 episode-level GRPO 解决\n4. 分析 \"为什么社区默认走向 step-independent\"（context window 限制 + token-level training 惯性 + framework design accident）\n5. 在 episode-level 基础上，用 action-change 作为 verification informativeness 的 reward，训练 selective policy\n6. 结果：near-always-on performance + 显著降低 verification cost\n\n**定位**：不 claim \"发明了 episode-level RL\"（trivial），而是 \"诊断了 LLM agent RL 训练中被忽视的 step-independent 隐性代价 + 系统分析崩溃机制 + 提出实用修复方案 + 在此基础上实现 selective verification\"\n\n## Target Venue\n\n待定（NeurIPS 2026 / EMNLP 2026 / ICLR 2026），取决于实验进度和最终效果。\n\n## Core Claims\n\n### Claim 1 (strength: strong): Step-independent GRPO catastrophically fails for multi-turn agents due to dual mechanism\n- 所需证据：episode-level vs step-independent 对比（多 seed），h-sweep ablation（3 seeds each），mechanistic analysis（gradient signal measurement），GAE baseline comparison\n- 当前证据状态：**ESTABLISHED** (exp029 step5 val=25% vs exp028c step10 val=0%)\n- 机制：(1) policy information loss (h-step context insufficient), (2) advantage sign misattribution (gradient direction reflects episode outcome, not window-local action quality; additionally γ^k magnitude decay for early windows)\n- 技术细节：GRPO 算法无固有 γ，但 RAGEN step_independent 的 `compute_step_discounted_returns()` 引入 γ-discounted per-window returns → advantage 符号由 episode 成败决定。代码验证：`agent_trainer.py:271-340` + `core_algos.py:194-246`\n\n### Claim 2 (strength: moderate): Action-change is an effective intrinsic reward for verification informativeness\n- 所需证据：selective verification 训练收敛 + action-change vs random/confidence baselines\n- 当前证据状态：**not yet established**，依赖 Phase B 实验\n- 前提：episode-level 训练的 agent 需达到 ≥40% success 才有意义\n\n### Claim 3 (strength: moderate): Learned selective policy matches always-on performance at reduced verification cost\n- 所需证据：B-IAVR verification ↓40%+ 且 success delta < 3pp vs always-on\n- 当前证据状态：**not yet established**，依赖 Phase B + C\n- 前提：Claim 1 的 agent 需足够强\n\n## Contingency Plan\n\n如果 episode-level 训练收敛后 success 仍 < 40%（不足以支撑 cost-efficiency story）：\n- **Plan A**：paper 变为 diagnostic + analysis contribution — \"Why Step-Independent RL Fails for LLM Multi-Turn Agents: Dual Mechanism Analysis\" (需更深 ablation + GAE comparison + community practice survey)\n- **Plan B**：加 Self-Guide reward 到 episode-level（从 binary→dense reward），推高 performance 后再做 selective verification\n- 不考虑 downgrade venue\n- **注意**：Dream review 已证明 Plan A 纯 methodology paper 需要比预期更深的分析才能通过审稿（\"诊断社区默认实践的隐性代价\" > \"episode-level RL works\"）\n\n## Reviewer Attack Surface + Defense\n\n| # | Concern | Severity | Defense |\n|---|---------|----------|---------|\n| 1 | \"Episode-level RL is obvious / well-known\" | HIGH | h-sweep (3 seeds) 展示 non-trivial cliff + 双机制理论 + \"为什么社区默认 step-independent\" 分析 |\n| 2 | \"Theory 与 GRPO 不匹配\" | HIGH | 精确区分：GRPO 算法无 γ，但 step_independent 实现引入 γ-discounted returns（代码引用）→ per-window advantage logging 实证 + 伪代码 |\n| 3 | \"缺 GAE/标准 RL baselines\" | HIGH | 加 GAE(λ=0.95) + GAE(λ=1,γ=1) baseline，证明 episode-level GRPO 与 GAE 的差异 |\n| 4 | \"Self-Guide 3x performance gap\" | HIGH | 正面回应：不同 paradigm (expert-guided vs from-scratch RL)，不同问题（Self-Guide 回避了训练问题） |\n| 5 | Single environment (ALFWorld) | MEDIUM | ScienceWorld transfer (if resources permit) |\n| 6 | Small model (1.7B) | MEDIUM | 定位 resource-constrained; 7B 验证 (conditional) |\n| 7 | Action-change = noise vs signal | MEDIUM | Entropy-controlled analysis + causal intervention (Phase B) |\n| 8 | 与 ARES 差异化不足 | LOW | Head-to-head 对比 + 方法论差异表 |\n| 9 | \"Turn-PPO 已解决相同问题\" | HIGH | 精确区分：Turn-PPO 发现 uniform advantage (subset)，我们发现 sign misattribution (superset + 量化 γ^24≈29%)；解法相反 (finer vs coarser) |\n\n## Evidence Status Matrix\n\n| Claim | MVP Evidence | Research Evidence Needed | Priority |\n|-------|-------------|--------------------------|----------|\n| Claim 1 | exp029 vs exp028c (25% vs 0%) | h-value ablation, multi-seed, mechanism paper figure | P0 |\n| Claim 2 | N/A | Phase B full implementation | P1 |\n| Claim 3 | N/A | Phase B + C comparison suite | P1 |\n\n## Competitive Positioning\n\n| System | Method | Benchmark | Key Difference from Us |\n|--------|--------|-----------|----------------------|\n| Self-Guide (2026) | Always-on verification | ALFWorld 72.7% (1.7B) | We add selectivity via RL |\n| ARES (2603.07915) | SFT router, continuous effort | 52.7% token reduction | SFT vs RL, continuous vs binary |\n| Thinkless (NeurIPS'25) | RL control token | reasoning domain | Same RL philosophy, different domain |\n| ReflAct (EMNLP'25) | Prompting GPT-4 | ALFWorld 93.3% | Different scale/approach |\n| RAGEN (2025) | GRPO for agents | varies | Step-independent default, our baseline |\n| **Turn-PPO (2512.17008)** | Turn-level MDP + value fn | reasoning tasks | \"Uniform advantage\" vs our \"sign misattribution\"; finer credit vs coarser |\n| **GAGPO (2605.13217)** | Grouped value proxy, step-aligned | ALFWorld 93.5% (1.5B) | Finer-grained credit for performance; we diagnose mechanism failure |\n| **MT-GRPO (2505.11821)** | Turn-level reward design | QA search tasks | Turn-level credit; we show coarser suffices |\n| **iStar (ICLR'26)** | Implicit PRM + dual advantage | WebShop 86.5% | Learns step rewards; we show episode-level eliminates misattribution |\n| **ArCHer (ICML'24)** | Hierarchical multi-turn RL | multi-turn agents | Foundational framework; establishes need for hierarchical structure |\n| **HiPER (2602.16165)** | Hierarchical Plan-Execute RL | ALFWorld 97.4% (7B) | SOTA performance pursuit; we do mechanism diagnosis |\n\n### Positioning Strategy\n\n**核心差异化：Contrarian Solution。** 竞品（Turn-PPO, GAGPO, MT-GRPO, iStar, HiPER）一致认为 multi-turn RL 需要更细粒度的 credit assignment（turn-level, step-level, hierarchical），并用此提升性能。我们的贡献是诊断性的：\n\n1. **问题定义更精确**：Turn-PPO 发现 \"uniform advantage\" 问题（所有 turn 获得相同 advantage），我们发现更本质的 \"Advantage Sign Misattribution\"（advantage 符号由 episode outcome 决定而非 local action quality），并量化 γ^24 ≈ 29% 的 return 衰减。Sign misattribution 是 uniform advantage 的超集。\n\n2. **Contrarian solution**：所有竞品的解法都是引入更细的 credit（turn-level value, step-level PRM, hierarchical planner）。我们展示更粗的 episode-level credit 反而消除 sign misattribution，因为它避免了将 episode reward 错误分配到独立优化的子窗口。这挑战了 \"越细越好\" 的社区默认假设。\n\n3. **不同 contribution 维度**：GAGPO/HiPER 追求 ALFWorld 93-97% 的 SOTA performance（通过更好的 credit + 更复杂的架构）。我们不 compete on performance axis，而是回答 \"为什么社区默认的 step-independent 灾难性失败\" 这个诊断问题。两个 contribution 维度正交互补。\n\n4. **与 CA Survey 的关系**：Zhang (2604.09459) 系统化了 47 种 CA 方法，但未分析 CA 方法本身的 failure modes（何时更细粒度反而有害）。我们填补这一空白。\n\n## Research Phases\n\n1. **Phase A (DONE)**: Episode-level GRPO training — MVP passed, demonstrates Claim 1\n2. **Phase A+**: Continue training to convergence (target ≥40% success), deploy tatsu parallel patch, multi-seed\n3. **Phase B**: Implement selective verification with action-change reward — Claim 2 & 3\n4. **Phase C**: Ablation suite — context window sweep, reward ablations, baseline comparisons\n5. **Phase D**: (Conditional on resources) Multi-env / multi-model scaling\n",
+      "numLines": 121,
+      "startLine": 1,
+      "totalLines": 121
+    }
+  },
+  "sourceToolAssistantUUID": "59ee99ee-fc48-4049-b550-2dc54d12c685",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "3aad36b4-392e-474c-8d55-d831dfdf181b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-17T13:47:45.193Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Aa7oXKfJ1wdP68B6cCKh7f`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260517T133129/best/paper_framing.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "654158b7-caee-42bf-92ef-b1b2dfcc7889",
+  "isSidechain": false,
+  "requestId": "req_011Cb8FBFFBANakmUYBfAif4",
+  "type": "assistant",
+  "uuid": "59ee99ee-fc48-4049-b550-2dc54d12c685",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "3aad36b4-392e-474c-8d55-d831dfdf181b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QHAByd3gVAjUbsCk6aBpTu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12573,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 214,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12573,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 214,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12573,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12573
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 12_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260517T133129 tier=best 生成一篇完整的模拟论文。  ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-…",
+  "leafUuid": "e8b3bc5f-2a31-42b2-b7e1-052286b70475",
+  "sessionId": "3aad36b4-392e-474c-8d55-d831dfdf181b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 13_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generate simulated ML research paper",
+  "sessionId": "3aad36b4-392e-474c-8d55-d831dfdf181b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 14 · 2026-05-17T13:48:01.063Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a thorough understanding of the experiment data and paper framing. Let me write the complete LaTeX paper. Let me first check the output directory exists.
+
+Key elements:
+1. Title: "Learning When to Verify: RL-Trained Selective Self-Verification for Interactive Agents"
+2. Core insight: step-independent RL catastrophically fails due to dual mechanism (sign misattribution + information loss), episode-level GRPO fixes this, then selective verification (B-IAVR) reduces cost
+3. Three claims: (1) step-independent fails, (2) action-change reward works, (3) selective verification matches always-on at reduced cost
+
+
+4. I need to structure the experiments to demonstrate the convergence problem, show how episode-level training with action-change rewards solves it, validate the credit assignment mechanism, and then prove that selective verification achieves comparable performance at lower cost
+
+. The paper will follow a logical flow from the core method through mechanism analysis to practical applications like transfer learning and scaling.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e8b3bc5f-2a31-42b2-b7e1-052286b70475",
+  "isSidechain": false,
+  "requestId": "req_011Cb8FBizHqNLzaoYHctWAW",
+  "type": "assistant",
+  "uuid": "d3c235b1-c5a2-4997-ae32-e88b048f6f93",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "3aad36b4-392e-474c-8d55-d831dfdf181b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BxuYok3BLPh58w1jp5g2fK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 23660,
+      "cache_read_input_tokens": 24414,
+      "output_tokens": 624,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 23660,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 624,
+          "cache_read_input_tokens": 24414,
+          "cache_creation_input_tokens": 23660,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 23660
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15 · 2026-05-17T13:48:01.065Z_
+
+Let me check the output directory exists.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d3c235b1-c5a2-4997-ae32-e88b048f6f93",
+  "isSidechain": false,
+  "requestId": "req_011Cb8FBizHqNLzaoYHctWAW",
+  "type": "assistant",
+  "uuid": "65327528-512a-4eaa-b875-c1777a352976",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "3aad36b4-392e-474c-8d55-d831dfdf181b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BxuYok3BLPh58w1jp5g2fK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 23660,
+      "cache_read_input_tokens": 24414,
+      "output_tokens": 624,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 23660,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 624,
+          "cache_read_input_tokens": 24414,
+          "cache_creation_input_tokens": 23660,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 23660
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-17T13:48:02.609Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01KUPjcmJ1BVJUETj8Eau5TL`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260517T133129/best/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "65327528-512a-4eaa-b875-c1777a352976",
+  "isSidechain": false,
+  "requestId": "req_011Cb8FBizHqNLzaoYHctWAW",
+  "type": "assistant",
+  "uuid": "2f135294-6d2f-45ab-8ccd-8e992f116126",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "3aad36b4-392e-474c-8d55-d831dfdf181b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BxuYok3BLPh58w1jp5g2fK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 23660,
+      "cache_read_input_tokens": 24414,
+      "output_tokens": 624,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 23660,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 624,
+          "cache_read_input_tokens": 24414,
+          "cache_creation_input_tokens": 23660,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 23660
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-17T13:48:02.772Z_
+
+<details><summary>↩ Tool result · `toolu_01KUPjcmJ1BVJUETj8Eau5TL`</summary>
+
+```text
+experiment_data.json
+imagined_experiments.yaml
+paper_framing.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2f135294-6d2f-45ab-8ccd-8e992f116126",
+  "isSidechain": false,
+  "promptId": "9b157487-52ba-4170-bcee-a17554702c6c",
+  "type": "user",
+  "uuid": "dda0b716-cff6-4a60-aa4b-9a10e006b8b3",
+  "toolUseResult": {
+    "stdout": "experiment_data.json\nimagined_experiments.yaml\npaper_framing.md",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "2f135294-6d2f-45ab-8ccd-8e992f116126",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "3aad36b4-392e-474c-8d55-d831dfdf181b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18 · 2026-05-17T13:48:04.493Z_
+
+Now writing the full LaTeX paper.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dda0b716-cff6-4a60-aa4b-9a10e006b8b3",
+  "isSidechain": false,
+  "requestId": "req_011Cb8FD1y2JDSb5PGmVoSby",
+  "type": "assistant",
+  "uuid": "e8a0a44e-f1f9-4550-a138-ba6bce393e60",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "3aad36b4-392e-474c-8d55-d831dfdf181b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AbftpSpkqQ2nJ8WxFu7aQx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 653,
+      "cache_read_input_tokens": 48074,
+      "output_tokens": 11910,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 653,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 11910,
+          "cache_read_input_tokens": 48074,
+          "cache_creation_input_tokens": 653,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 653
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-17T13:51:52.022Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_015cXXg2U9ALf8NmmoEETGVM`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260517T133129/best/paper.tex",
+  "content": "\\documentclass[10pt]{article}\n\\usepackage[margin=1in]{geometry}\n\\usepackage{amsmath,amssymb}\n\\usepackage{booktabs}\n\\usepackage{graphicx}\n\\usepackage{hyperref}\n\\usepackage{natbib}\n\\usepackage{multirow}\n\\usepackage{xcolor}\n\\usepackage{subcaption}\n\n\\newcommand{\\ours}{B-IAVR}\n\n\\title{Learning When to Verify: RL-Trained Selective Self-Verification \\\\ for Multi-Turn Interactive Agents}\n\n\\author{Anonymous}\n\\date{}\n\n\\begin{document}\n\\maketitle\n\n% ============================================================\n% ABSTRACT\n% ============================================================\n\\begin{abstract}\nSelf-verification improves decision quality in multi-turn interactive agents, but always-on verification wastes compute: we find that 72\\% of verification steps are confirmatory (the agent takes the same action regardless). Training an agent to selectively verify requires reinforcement learning (RL), yet the community-default \\emph{step-independent} training mode catastrophically fails for long-horizon tasks. We diagnose a dual mechanism behind this failure: (1)~\\textbf{advantage sign misattribution}, where per-window advantage signs are determined by episode outcome rather than local action quality, and (2)~\\textbf{policy information loss}, where short context windows prevent learning cross-step strategies. A simple fix, episode-level Group Relative Policy Optimization (GRPO), eliminates both failure modes and reaches 47.8\\%$\\pm$3.1pp validation success on ALFWorld (vs.\\ 2\\% for step-independent, $h{=}2$). Crucially, Generalized Advantage Estimation (GAE) achieves comparable performance, demonstrating that episode-level information, not finer per-token credit assignment, is the key factor. Building on this foundation, we propose \\ours{} (Binary Informed Action-change Verification Routing), which trains a selective verification policy using action-change as an intrinsic reward signal. \\ours{} reduces verification cost by 58\\% while losing only 2 percentage points of task success, outperforming both confidence-based and SFT-based routing baselines. The episode-level advantage transfers to ScienceWorld (3.2$\\times$ over step-independent) and scales to 7B parameters (3.6$\\times$ ratio), confirming that the dual mechanism is a general property of sparse-reward multi-turn RL.\n\\end{abstract}\n\n% ============================================================\n% 1. INTRODUCTION\n% ============================================================\n\\section{Introduction}\n\nLarge Language Model (LLM) agents that interact with environments over multiple turns, such as household robots, web navigators, and scientific assistants, benefit substantially from self-verification: pausing to re-examine the current observation before committing to an action. Prior work has shown that always-on verification raises task success by 12 percentage points on ALFWorld~\\citep{alfworld}. However, verification is expensive. Each verification step doubles the inference cost of a turn, and our analysis of a trained agent shows that 72\\% of these steps are \\emph{confirmatory}, producing the same action the agent would have taken anyway.\n\nA natural solution is to train the agent to verify \\emph{selectively}, only at decision points where verification is likely to change, and improve, the chosen action. This requires RL training, which introduces a deeper problem: the community-default \\emph{step-independent} training paradigm, in which the episode is split into fixed-length windows optimized independently, catastrophically fails for multi-turn agents with sparse rewards.\n\nWe identify a dual mechanism behind this failure. First, \\textbf{advantage sign misattribution}: in step-independent mode, each window's advantage sign is determined by the episode outcome (success or failure), not by the quality of actions within that window. Good actions in failed episodes receive negative advantage and are suppressed; bad actions in successful episodes receive positive advantage and are reinforced. Second, \\textbf{policy information loss}: short context windows (e.g., $h{=}2$ steps) prevent the policy from encoding cross-step strategies such as ``open the fridge before placing the item inside.'' The combination produces a phase-transition-style collapse below a critical window size of $h{\\approx}10$, as confirmed by a five-point $h$-sweep with three seeds per condition.\n\nEpisode-level GRPO eliminates both failure modes by treating the entire trajectory as a single optimization unit. All tokens share one advantage value, removing inter-window sign inconsistencies, and the policy sees the full interaction history. With this fix, a Qwen3-1.7B agent converges to 47.8\\%$\\pm$3.1pp validation success across five seeds, compared to 2\\% for step-independent training ($h{=}2$). An important finding is that GAE($\\lambda{=}1.0$) achieves 39\\% at step~15, statistically indistinguishable from episode-level GRPO's 38\\% at the same checkpoint. This demonstrates that episode-level information is the critical ingredient; finer per-token credit assignment provides negligible additional benefit under sparse binary rewards.\n\nBuilding on the episode-level foundation, we propose \\ours{}, a selective verification system that learns when to verify via RL. The key insight is that \\emph{action change}, whether verification causes the agent to switch its action, serves as an effective intrinsic reward for verification informativeness. \\ours{} reduces verification volume by 58\\% while maintaining 46\\% task success (only $-$2pp vs.\\ always-on), and Pareto-dominates confidence-threshold, random, and SFT-based (ARES-style) routing baselines.\n\nOur contributions are:\n\\begin{enumerate}\n    \\item A mechanistic diagnosis of why step-independent GRPO catastrophically fails for multi-turn LLM agents, identifying advantage sign misattribution and policy information loss as dual root causes (Section~\\ref{sec:mechanism}).\n    \\item Empirical evidence that episode-level credit, not finer-grained per-token credit, is the key factor for sparse-reward multi-turn RL, challenging the community's ``finer is better'' assumption (Section~\\ref{sec:gae}).\n    \\item \\ours{}, a selective verification system trained with action-change reward that reduces verification cost by 58\\% with minimal performance loss (Section~\\ref{sec:biavr}).\n\\end{enumerate}\n\n% ============================================================\n% 2. RELATED WORK\n% ============================================================\n\\section{Related Work}\n\n\\paragraph{Multi-turn RL for LLM agents.}\nRAGEN~\\citep{ragen} applies GRPO to multi-turn agent tasks using a step-independent training loop that splits episodes into fixed-length windows. Turn-PPO~\\citep{turnppo} identifies a ``uniform advantage'' problem within this paradigm, where all turns in an episode receive identical advantage values, and proposes turn-level MDPs with learned value functions. GAGPO~\\citep{gagpo} pursues step-aligned grouped value proxies, achieving 93.5\\% on ALFWorld with a 1.5B model. MT-GRPO~\\citep{mtgrpo} introduces turn-level reward design for QA search tasks. iStar~\\citep{istar} learns implicit process rewards via dual-advantage estimation. ArCHer~\\citep{archer} establishes hierarchical multi-turn RL as a general framework. HiPER~\\citep{hiper} combines hierarchical planning with execution RL and achieves 97.4\\% on ALFWorld with a 7B model. All of these approaches move toward finer-grained credit assignment. We take the opposite direction: we show that coarser episode-level credit eliminates sign misattribution and matches GAE performance, suggesting that the granularity axis is less important than the information-preservation axis for sparse-reward settings.\n\n\\paragraph{Self-verification and reflection in LLM agents.}\nReflAct~\\citep{reflact} uses GPT-4-level prompting for self-reflection. Self-Guide~\\citep{selfguide} trains always-on verification via SFT and achieves 72.7\\% on ALFWorld with 1.7B parameters. Reflexion~\\citep{reflexion} introduces verbal self-reflection for episodic improvement. These approaches treat verification as always-on. We address the complementary question of \\emph{when} to verify.\n\n\\paragraph{Adaptive compute allocation.}\nARES~\\citep{ares} trains an SFT-based router that controls continuous verification effort, achieving 52.7\\% token reduction. Thinkless~\\citep{thinkless} uses RL to learn a binary control token that decides whether to ``think'' before acting in reasoning tasks. Our work shares the RL-for-control-token philosophy but targets multi-turn verification rather than single-turn reasoning, and uses action-change as the reward signal instead of task outcome alone.\n\n\\paragraph{Credit assignment in RL.}\nZhang et al.~\\citep{casurvey} survey 47 credit assignment methods but do not analyze when finer granularity becomes harmful. GAE~\\citep{gae} provides a family of advantage estimators parameterized by $\\lambda$. We use GAE as a baseline to show that per-token credit assignment does not outperform episode-level GRPO under sparse binary rewards.\n\n% ============================================================\n% 3. METHOD\n% ============================================================\n\\section{Method}\n\n\\subsection{Problem Setting}\n\nWe consider a multi-turn interactive agent that receives textual observations $o_t$ from an environment (e.g., ALFWorld) and produces actions $a_t$ as text. An episode consists of $T$ turns ($T{\\approx}15$--$35$ depending on task type). The environment provides a sparse binary reward $R \\in \\{0, 1\\}$ only at episode termination.\n\nOptionally, at each turn the agent can \\emph{verify}: re-examine the current observation and potentially change its action before execution. Always-on verification improves success by 12pp but doubles inference cost.\n\n\\subsection{Diagnosing Step-Independent Training Failure}\n\\label{sec:mechanism}\n\nThe default RAGEN training loop splits each episode of $T$ steps into $\\lceil T/h \\rceil$ windows of $h$ consecutive steps and optimizes each window independently via GRPO. We identify two mechanisms by which this procedure fails.\n\n\\paragraph{Advantage sign misattribution.}\nIn RAGEN's \\texttt{compute\\_step\\_discounted\\_returns()}, the return for window $w$ is $G_w = \\sum_{t=w}^{T} \\gamma^{t-w} r_t$. Since the reward is sparse binary (only the final step has $r_T = 10$ or $0$), every window in a successful episode has $G_w = \\gamma^{T-w} \\cdot 10 > 0$, and every window in a failed episode has $G_w = 0$. After GRPO's group-based normalization, all windows in successful episodes receive positive advantage and all windows in failed episodes receive negative advantage, regardless of window-local action quality.\n\nWe verify this empirically by logging per-window advantages across 128 episodes (1,536 windows). The correlation between advantage sign and episode outcome is $r = 0.97$; the correlation between advantage sign and a local action-quality proxy is $r = 0.04$. In failed episodes, 94\\% of windows containing objectively good actions (e.g., correct navigation) still receive negative advantage. In successful episodes, 95\\% of windows containing poor actions (e.g., exploring the wrong room) receive positive advantage.\n\n\\paragraph{Policy information loss.}\nA window of $h = 2$ steps cannot encode strategies that span more than two turns. In ALFWorld, the average task requires coordinating actions across ${\\sim}25$ steps (e.g., ``find object in drawer A, then carry it to countertop B, then use appliance C''). Short windows reduce the policy to reactive single-step decisions.\n\n\\paragraph{Episode-level GRPO.}\nThe fix is simple: treat the entire episode as a single GRPO sample. Each trajectory receives one advantage value $A = (R - \\mu_{\\text{group}}) / \\sigma_{\\text{group}}$, shared across all tokens. This eliminates sign misattribution (no inter-window sign inconsistency) and information loss (the policy conditions on the full history).\n\n\\subsection{Selective Verification via \\ours{}}\n\\label{sec:biavr}\n\nGiven a trained episode-level agent, we add a binary decision token at each turn: \\texttt{&lt;verify>} or \\texttt{&lt;skip>}. The agent is trained with episode-level GRPO using a composite reward:\n\\begin{equation}\nR = R_{\\text{task}} + \\alpha \\cdot \\mathbb{1}[\\text{verify} \\wedge \\text{action\\_changed}] - \\beta \\cdot \\mathbb{1}[\\text{verify} \\wedge \\neg\\text{action\\_changed}]\n\\label{eq:reward}\n\\end{equation}\nwhere $\\alpha = 0.5$ rewards informative verification (the agent changed its action after re-examination), $\\beta = 0.1$ penalizes confirmatory verification (no action change), and $R_{\\text{task}} \\in \\{0, 10\\}$ is the task success reward.\n\nThe action-change signal is grounded in the observation that verification-triggered action changes correlate positively with episode success ($r = 0.35$, $p < 0.001$), even after controlling for policy entropy (partial $r = 0.28$, $p = 0.003$). A causal intervention experiment confirms that verification-triggered changes outperform random changes at the same rate by 15pp ($p < 0.001$).\n\nTraining initializes from a converged episode-level checkpoint, so the agent already has a strong base policy. Only the verify/skip decision needs to be learned, making convergence fast (${\\sim}30$ steps).\n\n% ============================================================\n% 4. EXPERIMENTS\n% ============================================================\n\\section{Experiments}\n\n\\subsection{Setup}\n\n\\paragraph{Environments.}\nWe evaluate primarily on ALFWorld~\\citep{alfworld}, a text-based household task environment with six task types (pick, clean, heat, cool, examine, pick\\_two) requiring 15--35 interaction steps. We also evaluate on ScienceWorld~\\citep{scienceworld} for transfer experiments.\n\n\\paragraph{Models.}\nOur primary model is Qwen3-1.7B. We also run scaling experiments with Qwen3-7B. All training uses the RAGEN framework with episode-level GRPO modifications.\n\n\\paragraph{Metrics.}\nWe report validation pass@1 success rate (greedy decoding), pass@8 (best-of-8 samples), verification rate, relative token cost, and action validity rate. All multi-seed experiments use five seeds; ablations use three seeds per condition.\n\n% ---- 4.2 Episode-level convergence ----\n\\subsection{Episode-Level GRPO Convergence}\n\nTable~\\ref{tab:convergence} shows the training trajectory of episode-level GRPO. Validation success rises from 25\\% at step 5 to 48\\% at step 50, breaking through the 28\\% plateau observed at step 15. The train-validation gap narrows from 15pp (step 15) to 8pp (step 50), indicating improving generalization. Pass@8 reaches 96\\%, suggesting that the performance ceiling for Qwen3-1.7B under greedy decoding is approximately 50\\%.\n\n\\begin{table}[h]\n\\centering\n\\caption{Episode-level GRPO training trajectory on ALFWorld.}\n\\label{tab:convergence}\n\\begin{tabular}{lccccc}\n\\toprule\nStep & Val Success & Train Success & Action Valid & Entropy & Pass@8 \\\\\n\\midrule\n5    & 0.25 & 0.31 & 0.48 & 0.22 & 0.82 \\\\\n10   & 0.25 & 0.38 & 0.51 & 0.19 & 0.88 \\\\\n15   & 0.281 & 0.438 & 0.545 & 0.17 & 0.93 \\\\\n20   & 0.34 & 0.48 & 0.60 & 0.16 & 0.94 \\\\\n30   & 0.42 & 0.53 & 0.67 & 0.15 & 0.95 \\\\\n40   & 0.47 & 0.55 & 0.71 & 0.15 & 0.96 \\\\\n50   & 0.48 & 0.56 & 0.72 & 0.15 & 0.96 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Multi-seed replication.}\nTable~\\ref{tab:multiseed} reports results across five independent seeds. The mean converged success is $47.8\\% \\pm 3.1$pp (95\\% CI: [44\\%, 52\\%]). All five seeds exceed 40\\%, and none exhibits training collapse. The low variance is consistent with the episode-level training providing consistent gradient directions across seeds.\n\n\\begin{table}[h]\n\\centering\n\\caption{Multi-seed episode-level GRPO results (5 seeds, converged).}\n\\label{tab:multiseed}\n\\begin{tabular}{lcccc}\n\\toprule\nSeed & Val Success & Conv.\\ Step & Action Valid & Pass@8 \\\\\n\\midrule\n1 & 0.48 & 45 & 0.72 & 0.96 \\\\\n2 & 0.45 & 50 & 0.69 & 0.94 \\\\\n3 & 0.50 & 42 & 0.74 & 0.97 \\\\\n4 & 0.44 & 55 & 0.68 & 0.93 \\\\\n5 & 0.52 & 40 & 0.76 & 0.97 \\\\\n\\midrule\nMean$\\pm$Std & $0.478 \\pm 0.031$ & $46.4 \\pm 5.9$ & $0.718 \\pm 0.032$ & $0.954 \\pm 0.017$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Effect of dense shaping reward.}\nAdding a small valid-action bonus ($+0.05$ per valid action) to episode-level GRPO accelerates early training: at step~15, success reaches 36\\% (vs.\\ 28.1\\% without the bonus, $+$8pp) and action validity reaches 82\\% (vs.\\ 54.5\\%, $+$27pp). Importantly, no reward gaming is observed, in contrast to step-independent training where the same bonus causes catastrophic gaming (the agent maximizes bonus at the expense of task success, achieving 97.5\\% action validity but 0\\% task success).\n\n% ---- 4.3 Mechanism analysis ----\n\\subsection{Mechanism Analysis: The $h$-Sweep Cliff}\n\n\\paragraph{Context window ablation.}\nTable~\\ref{tab:hsweep} reports step-15 validation success for five values of the context window size $h$, each with three seeds. A sharp performance cliff appears below $h = 10$: success drops from 18\\% ($h{=}10$) to 6\\% ($h{=}5$) to 2\\% ($h{=}2$). For $h \\leq 5$, all seeds exhibit training collapse (success peaks early then drops to near zero). For $h \\geq 10$, no collapse occurs. The cliff is consistent with the dual mechanism: below $h{=}10$, the combined effect of sign misattribution across many short windows and severe information loss makes learning infeasible.\n\n\\begin{table}[h]\n\\centering\n\\caption{Context window $h$-sweep (step 15, 3 seeds each). ``Collapse'' indicates success peaks then drops to near zero.}\n\\label{tab:hsweep}\n\\begin{tabular}{lccl}\n\\toprule\n$h$ & Mean Success & Std & Collapse? \\\\\n\\midrule\n2    & 0.02 & 0.02 & Yes (step 3--5) \\\\\n5    & 0.06 & 0.03 & Yes (step 6--8) \\\\\n10   & 0.18 & 0.04 & No (slow decline) \\\\\n20   & 0.31 & 0.04 & No \\\\\nfull & 0.38 & 0.03 & No \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Empirical verification of sign misattribution.}\nTable~\\ref{tab:sign} presents per-window advantage analysis from 128 episodes (1,536 windows) under step-independent training ($h{=}2$). The advantage sign correlates almost perfectly with episode outcome ($r = 0.97$) and negligibly with local action quality ($r = 0.04$). In 98\\% of successful episodes, \\emph{every} window receives positive advantage; in 96\\% of failed episodes, every window receives negative advantage. The magnitude decays as $\\gamma^k$ with $R^2 = 0.92$, confirming the secondary information-loss effect.\n\n\\begin{table}[h]\n\\centering\n\\caption{Advantage sign analysis: step-independent ($h{=}2$) vs.\\ episode-level.}\n\\label{tab:sign}\n\\begin{tabular}{lcc}\n\\toprule\nMetric & Step-Indep.\\ ($h{=}2$) & Episode-Level \\\\\n\\midrule\nSign--outcome correlation & 0.97 & N/A (single advantage) \\\\\nSign--local quality correlation & 0.04 & N/A \\\\\n$\\gamma^k$ magnitude decay $R^2$ & 0.92 & N/A (no decay) \\\\\n\\% success eps., all-positive windows & 98\\% & 100\\% \\\\\n\\% failure eps., all-negative windows & 96\\% & 100\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:window_examples} shows concrete window-level advantages from representative episodes. In a successful episode (ep\\_001), an early exploration window with low local quality receives positive advantage ($+0.31$), while in a failed episode (ep\\_042), a window with objectively good actions (correct initial navigation) receives negative advantage ($-0.28$). The magnitude increases toward the terminal window due to the $\\gamma^k$ decay in the reverse direction.\n\n\\begin{table}[h]\n\\centering\n\\caption{Window-level advantage examples from step-independent training ($h{=}2$).}\n\\label{tab:window_examples}\n\\begin{tabular}{llcrr}\n\\toprule\nEpisode & Outcome & Window & Advantage & Local Quality \\\\\n\\midrule\nep\\_001 & success & w1 (earliest)    & $+0.31$ & low (exploration) \\\\\nep\\_001 & success & w6 (goal action) & $+2.47$ & high \\\\\nep\\_001 & success & w12 (terminal)   & $+7.89$ & medium \\\\\n\\midrule\nep\\_042 & failure & w1               & $-0.28$ & high (good start) \\\\\nep\\_042 & failure & w5               & $-1.93$ & low (wrong room) \\\\\nep\\_042 & failure & w10              & $-6.52$ & medium \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n% ---- 4.4 GAE comparison ----\n\\subsection{Episode-Level Information Is What Matters}\n\\label{sec:gae}\n\nA natural question is whether the episode-level GRPO advantage is simply too coarse and a proper value-function-based method like GAE would do better. Table~\\ref{tab:gae} compares three methods at step~15 (3 seeds each). GAE($\\lambda{=}1.0, \\gamma{=}1.0$) achieves 39\\%, statistically indistinguishable from episode-level GRPO (38\\%, $\\Delta = 1$pp). GAE($\\lambda{=}0.95$) scores slightly lower (36\\%) because temporal discounting introduces bias under sparse binary rewards. All three methods vastly outperform step-independent training ($h{=}2$, 2\\%).\n\n\\begin{table}[h]\n\\centering\n\\caption{GAE vs.\\ episode-level GRPO comparison (step 15, 3 seeds).}\n\\label{tab:gae}\n\\begin{tabular}{lccc}\n\\toprule\nMethod & Mean Success & Std & vs.\\ Step-Indep.\\ Ratio \\\\\n\\midrule\nGAE($\\lambda{=}0.95, \\gamma{=}1.0$) & 0.36 & 0.04 & 18$\\times$ \\\\\nGAE($\\lambda{=}1.0, \\gamma{=}1.0$) & 0.39 & 0.04 & 19.5$\\times$ \\\\\nEpisode-level GRPO & 0.38 & 0.03 & 19$\\times$ \\\\\nStep-independent ($h{=}2$) & 0.02 & 0.02 & 1$\\times$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThis result directly challenges the ``finer credit is better'' assumption underlying Turn-PPO, GAGPO, MT-GRPO, and iStar. Under sparse binary rewards, the marginal value of per-token credit assignment over episode-level credit is negligible. The critical factor is preserving episode-level information (avoiding sign misattribution and information loss), not computing more granular advantages.\n\n% ---- 4.5 Selective verification ----\n\\subsection{Selective Verification Results}\n\n\\paragraph{Action-change statistics.}\nBefore training the selective policy, we analyze the always-on verification behavior of the converged episode-level agent (256 episodes). Table~\\ref{tab:action_change} breaks down verification outcomes by task type. Overall, 72\\% of verifications are confirmatory (no action change). The action-change rate varies by task complexity, from 22\\% for simple pick tasks to 35\\% for pick\\_two tasks that involve more branching decisions.\n\n\\begin{table}[h]\n\\centering\n\\caption{Action-change statistics from always-on verification (256 episodes).}\n\\label{tab:action_change}\n\\begin{tabular}{lcccc}\n\\toprule\nTask Type & Episodes & Confirmatory & Action Change & Succ.\\ w/ Change \\\\\n\\midrule\npick     & 85  & 78\\% & 22\\% & 0.52 \\\\\nclean    & 52  & 69\\% & 31\\% & 0.50 \\\\\nheat     & 38  & 70\\% & 30\\% & 0.48 \\\\\ncool     & 30  & 73\\% & 27\\% & 0.53 \\\\\nexamine  & 21  & 75\\% & 25\\% & 0.47 \\\\\npick\\_two & 30  & 65\\% & 35\\% & 0.44 \\\\\n\\midrule\noverall  & 256 & 72\\% & 28\\% & 0.49 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Causal evidence for action-change value.}\nTo distinguish verification-triggered changes from random perturbation, we compare three conditions (128 episodes each): always-on verification (0.48 success), random action changes at the same 28\\% rate (0.33), and no changes (0.36). Verification-triggered changes outperform random changes by 15pp ($p < 0.001$), confirming that the verification process provides \\emph{informed} error correction, not mere perturbation. Random changes actually decrease success below the no-change baseline ($-$3pp), because randomly altering a reasonable action is more likely to introduce errors.\n\n\\paragraph{Entropy-controlled analysis.}\nOne might argue that action change is simply a proxy for policy entropy (uncertain steps naturally produce more changes). Table~\\ref{tab:entropy} stratifies steps into four entropy bins and computes the partial correlation between action change and success, controlling for entropy. The partial correlation remains significant across all strata ($r = 0.25$--$0.30$, all $p < 0.05$), with an overall partial $r = 0.28$ ($p = 0.003$). Action change carries information about decision quality beyond what entropy alone captures.\n\n\\begin{table}[h]\n\\centering\n\\caption{Entropy-stratified action-change analysis (1,536 steps from 256 episodes).}\n\\label{tab:entropy}\n\\begin{tabular}{lcccc}\n\\toprule\nEntropy Stratum & Steps & Change Rate & Corr.\\ w/ Success & $p$-value \\\\\n\\midrule\nLow (0--0.1)       & 420 & 0.15 & 0.25 & 0.02 \\\\\nMid-low (0.1--0.3) & 380 & 0.25 & 0.30 & 0.008 \\\\\nMid-high (0.3--0.6)& 410 & 0.35 & 0.29 & 0.005 \\\\\nHigh (0.6+)        & 326 & 0.45 & 0.26 & 0.01 \\\\\n\\midrule\nOverall (partial)   & 1536 & 0.28 & 0.28 & 0.003 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{\\ours{} training.}\nTable~\\ref{tab:biavr_training} shows the \\ours{} training trajectory, initialized from the converged episode-level checkpoint. The verification rate drops from 100\\% to 42\\% while success decreases by only 2pp (48\\% $\\to$ 46\\%). The action-change-when-verified rate rises from 0.28 to 0.52, indicating that the agent learns to verify precisely at steps where verification is informative. Skip accuracy (fraction of skipped steps that are indeed confirmatory) reaches 88\\%.\n\n\\begin{table}[h]\n\\centering\n\\caption{\\ours{} training trajectory.}\n\\label{tab:biavr_training}\n\\begin{tabular}{lcccr}\n\\toprule\nStep & Success & Verif.\\ Rate & Change When Verif. & Skip Acc. \\\\\n\\midrule\n0 (init) & 0.48 & 1.00 & 0.28 & N/A \\\\\n5  & 0.47 & 0.72 & 0.35 & 0.75 \\\\\n10 & 0.46 & 0.58 & 0.42 & 0.82 \\\\\n20 & 0.46 & 0.45 & 0.50 & 0.86 \\\\\n30 & 0.46 & 0.42 & 0.52 & 0.88 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Full comparison.}\nTable~\\ref{tab:full_comparison} compares \\ours{} against four baselines on the same validation set (128 episodes). \\ours{} achieves the best success-per-token ratio (0.88), Pareto-dominating all alternatives. The confidence-threshold baseline, which verifies when logit entropy exceeds a threshold, achieves 43\\% success but at higher token cost (0.58 relative tokens vs.\\ 0.52). Random verification at $p{=}0.4$ performs worse on both axes. The no-verify condition achieves the lowest token cost (0.38) but loses 12pp of success relative to always-on, confirming that verification provides genuine value.\n\n\\begin{table}[h]\n\\centering\n\\caption{Selective verification comparison (same val set, 128 episodes).}\n\\label{tab:full_comparison}\n\\begin{tabular}{lcccc}\n\\toprule\nMethod & Success & Verif.\\ Rate & Rel.\\ Tokens & Success/Token \\\\\n\\midrule\nAlways-on         & 0.48 & 1.00 & 1.00 & 0.48 \\\\\n\\ours{} (ours)    & 0.46 & 0.42 & 0.52 & 0.88 \\\\\nConfidence-thresh.& 0.43 & 0.45 & 0.58 & 0.74 \\\\\nRandom $p{=}0.4$  & 0.41 & 0.40 & 0.55 & 0.75 \\\\\nNo verify         & 0.36 & 0.00 & 0.38 & 0.95 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Reward signal ablation.}\nTable~\\ref{tab:reward_ablation} ablates the reward signal used to train the selective policy. Action-change reward achieves the best success (0.46) and cost reduction (52\\%). Confidence-based reward (verify when logit entropy is high) achieves 43\\% success at 42\\% cost reduction. Random-trigger reward (random verification timing) achieves only 40\\% success at 38\\% cost reduction. Action-change reward is the only Pareto-efficient option.\n\n\\begin{table}[h]\n\\centering\n\\caption{Reward signal ablation for selective verification training.}\n\\label{tab:reward_ablation}\n\\begin{tabular}{lcccc}\n\\toprule\nReward Type & Success & Verif.\\ Rate & Cost Reduction & Pareto? \\\\\n\\midrule\nAction-change (ours) & 0.46 & 0.42 & 52\\% & Yes \\\\\nConfidence-based     & 0.43 & 0.50 & 42\\% & No \\\\\nRandom-trigger       & 0.40 & 0.55 & 38\\% & No \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Comparison with ARES.}\nTable~\\ref{tab:ares} compares \\ours{} against a reproduced ARES baseline (same model, same validation set). \\ours{} achieves 14pp greater cost reduction (52\\% vs.\\ 38\\%) and 2pp higher success (46\\% vs.\\ 44\\%). The gap reflects a fundamental advantage of RL over SFT for learning verification policies: RL enables exploration of verification timing patterns that heuristic SFT labels cannot capture.\n\n\\begin{table}[h]\n\\centering\n\\caption{\\ours{} vs.\\ ARES (reproduced, same model and val set).}\n\\label{tab:ares}\n\\begin{tabular}{lcccc}\n\\toprule\nMethod & Success & Verif.\\ Rate & Cost Reduction & Training \\\\\n\\midrule\n\\ours{} (ours) & 0.46 & 0.42 & 52\\% & RL (action-change) \\\\\nARES (reprod.)  & 0.44 & 0.55 & 38\\% & SFT (heuristic) \\\\\n\\midrule\n$\\Delta$       & $+$2pp & $-$13pp & $+$14pp & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n% ---- 4.6 Transfer and Scaling ----\n\\subsection{Transfer and Scaling}\n\n\\paragraph{ScienceWorld transfer.}\nTo address the concern that our findings are specific to ALFWorld, we evaluate episode-level vs.\\ step-independent training on ScienceWorld, a text-based science experiment environment with 10 task types and longer average episodes (${\\sim}30$ steps). Table~\\ref{tab:scienceworld} shows that episode-level training achieves 32\\% success, compared to 4\\% for step-independent ($h{=}2$) and 11\\% for step-independent ($h{=}10$). The advantage ratio (3.2$\\times$ over the step-independent mean) confirms that the dual mechanism generalizes beyond ALFWorld. The higher advantage ratio relative to ALFWorld is consistent with longer episodes amplifying sign misattribution.\n\n\\begin{table}[h]\n\\centering\n\\caption{ScienceWorld: episode-level vs.\\ step-independent.}\n\\label{tab:scienceworld}\n\\begin{tabular}{lccc}\n\\toprule\nMethod & Success & Conv.\\ Step & Collapse? \\\\\n\\midrule\nEpisode-level             & 0.32 & 20  & No \\\\\nStep-independent ($h{=}2$)  & 0.04 & N/A & Yes (step 5) \\\\\nStep-independent ($h{=}10$) & 0.11 & N/A & Partial \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{7B model scaling.}\nTable~\\ref{tab:scaling} evaluates Qwen3-7B to test whether the episode-level advantage persists at larger scale. The 7B model reaches 58\\% episode-level success (vs.\\ 48\\% at 1.7B, $+$10pp), but the episode-to-step-independent ratio \\emph{increases} from 2.7$\\times$ to 3.6$\\times$. Larger models have greater capacity to exploit correct gradient signals, making the misdirection from sign misattribution more wasteful. Model scaling alone does not resolve the training methodology problem.\n\n\\begin{table}[h]\n\\centering\n\\caption{Scaling comparison: 1.7B vs.\\ 7B.}\n\\label{tab:scaling}\n\\begin{tabular}{lccc}\n\\toprule\nMethod & 1.7B Success & 7B Success & Scaling Gain \\\\\n\\midrule\nEpisode-level             & 0.48 & 0.58 & $+$10pp \\\\\nStep-indep.\\ ($h{=}10$)  & 0.18 & 0.22 & $+$4pp \\\\\nStep-indep.\\ ($h{=}2$)   & 0.02 & 0.08 & $+$6pp \\\\\n\\midrule\nEpisode/step ratio        & 2.7$\\times$ & 3.6$\\times$ & Ratio increases \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Per-task-type breakdown.}\nTable~\\ref{tab:pertask} decomposes ALFWorld results by task type. The episode-level advantage ratio increases monotonically with average episode length: from 6.9$\\times$ for pick (${\\sim}15$ steps) to 38$\\times$ for pick\\_two (${\\sim}35$ steps). This is consistent with longer tasks producing more sign-misattributed windows under step-independent training. Episode-level training benefits all six task types, with no exception.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task-type breakdown on ALFWorld.}\n\\label{tab:pertask}\n\\begin{tabular}{lcccc}\n\\toprule\nTask & Avg.\\ Steps & Episode Success & Step-Indep.\\ Success & Ratio \\\\\n\\midrule\npick      & 15 & 0.55 & 0.08 & 6.9$\\times$ \\\\\nclean     & 22 & 0.48 & 0.03 & 16$\\times$ \\\\\nheat      & 20 & 0.52 & 0.05 & 10.4$\\times$ \\\\\ncool      & 20 & 0.50 & 0.04 & 12.5$\\times$ \\\\\nexamine   & 28 & 0.42 & 0.02 & 21$\\times$ \\\\\npick\\_two & 35 & 0.38 & 0.01 & 38$\\times$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Verification Ablation}\n\nRemoving verification entirely from episode-level training yields 36\\% success, a 12pp drop from the always-on configuration (48\\%). Action validity also decreases (72\\% $\\to$ 65\\%). This confirms that verification provides genuine value through error correction and information re-examination. At the same time, 36\\% without verification demonstrates that the episode-level policy itself is strong, positioning verification as an optimization rather than a requirement. This framing supports the selective verification approach: we do not need to verify at every step, only at steps where verification is likely to correct an error.\n\n% ============================================================\n% 5. CONCLUSION\n% ============================================================\n\\section{Conclusion}\n\nWe have identified advantage sign misattribution and policy information loss as dual mechanisms causing catastrophic failure of step-independent RL training for multi-turn LLM agents. Episode-level GRPO, a simple fix, eliminates both failure modes and achieves $47.8\\% \\pm 3.1$pp on ALFWorld across five seeds. The finding that GAE provides no advantage over episode-level GRPO challenges the ``finer credit is better'' assumption in the community.\n\nBuilding on this foundation, \\ours{} learns when to verify by using action change as an intrinsic reward signal. It reduces verification cost by 58\\% while losing only 2pp of task success, Pareto-dominating confidence-based, random, and SFT-based alternatives. The episode-level advantage transfers to ScienceWorld (3.2$\\times$) and strengthens at 7B scale (3.6$\\times$), confirming generality.\n\n\\paragraph{Limitations.}\nOur absolute performance (48\\% on ALFWorld) is below systems like GAGPO (93.5\\%) and HiPER (97.4\\%) that use finer-grained credit assignment and larger models. Our contribution is diagnostic and methodological rather than performance-focused. The selective verification results are demonstrated on two environments; broader evaluation across web navigation, code generation, and other agent domains remains future work.\n\n% ============================================================\n% REFERENCES\n% ============================================================\n{\\small\n\\bibliographystyle{plainnat}\n\\begin{thebibliography}{30}\n\n\\bibitem[Shridhar et~al.(2021)]{alfworld}\nM.~Shridhar, X.~Yuan, M.-A.~C\\^{o}t\\'{e}, Y.~Bisk, A.~Trischler, and M.~Hausknecht.\n\\newblock {ALFWorld}: Aligning text and embodied environments for interactive learning.\n\\newblock In \\emph{ICLR}, 2021.\n\n\\bibitem[Wang et~al.(2024)]{scienceworld}\nR.~Wang, P.~Jansen, M.-A.~C\\^{o}t\\'{e}, and P.~Ammanabrolu.\n\\newblock {ScienceWorld}: Is your agent smarter than a 5th grader?\n\\newblock In \\emph{EMNLP}, 2024.\n\n\\bibitem[Liu et~al.(2025)]{ragen}\nW.~Liu et~al.\n\\newblock {RAGEN}: Training agents with reinforcement learning.\n\\newblock \\emph{arXiv preprint}, 2025.\n\n\\bibitem[Shinn et~al.(2023)]{reflexion}\nN.~Shinn, F.~Cassano, A.~Gopinath, K.~Narasimhan, and S.~Yao.\n\\newblock Reflexion: Language agents with verbal reinforcement learning.\n\\newblock In \\emph{NeurIPS}, 2023.\n\n\\bibitem[Yao et~al.(2023)]{reflact}\nS.~Yao et~al.\n\\newblock {ReAct}: Synergizing reasoning and acting in language models.\n\\newblock In \\emph{ICLR}, 2023.\n\n\\bibitem[Kim et~al.(2025)]{selfguide}\nH.~Kim et~al.\n\\newblock {Self-Guide}: Self-guided verification for LLM agents.\n\\newblock \\emph{arXiv preprint}, 2025.\n\n\\bibitem[Chen et~al.(2025)]{ares}\nX.~Chen et~al.\n\\newblock {ARES}: Adaptive reasoning effort scaling.\n\\newblock \\emph{arXiv:2603.07915}, 2025.\n\n\\bibitem[Shen et~al.(2025)]{thinkless}\nY.~Shen et~al.\n\\newblock Thinkless: LLM learns when to think.\n\\newblock In \\emph{NeurIPS}, 2025.\n\n\\bibitem[Zhang et~al.(2025)]{turnppo}\nY.~Zhang et~al.\n\\newblock Turn-level credit assignment for multi-turn LLM training.\n\\newblock \\emph{arXiv:2512.17008}, 2025.\n\n\\bibitem[Li et~al.(2025)]{gagpo}\nS.~Li et~al.\n\\newblock {GAGPO}: Grouped advantage guided policy optimization.\n\\newblock \\emph{arXiv:2605.13217}, 2025.\n\n\\bibitem[Wu et~al.(2025)]{mtgrpo}\nZ.~Wu et~al.\n\\newblock {MT-GRPO}: Multi-turn group relative policy optimization.\n\\newblock \\emph{arXiv:2505.11821}, 2025.\n\n\\bibitem[Wang et~al.(2026)]{istar}\nJ.~Wang et~al.\n\\newblock {iStar}: Implicit process reward for multi-turn agents.\n\\newblock In \\emph{ICLR}, 2026.\n\n\\bibitem[Zhou et~al.(2024)]{archer}\nY.~Zhou et~al.\n\\newblock {ArCHer}: Training language model agents via hierarchical multi-turn RL.\n\\newblock In \\emph{ICML}, 2024.\n\n\\bibitem[Zhang et~al.(2025b)]{hiper}\nR.~Zhang et~al.\n\\newblock {HiPER}: Hierarchical plan-execute RL for multi-turn agents.\n\\newblock \\emph{arXiv:2602.16165}, 2025.\n\n\\bibitem[Zhang et~al.(2024)]{casurvey}\nQ.~Zhang et~al.\n\\newblock A survey of credit assignment methods for deep reinforcement learning.\n\\newblock \\emph{arXiv:2604.09459}, 2024.\n\n\\bibitem[Schulman et~al.(2016)]{gae}\nJ.~Schulman, P.~Moritz, S.~Levine, M.~Jordan, and P.~Abbeel.\n\\newblock High-dimensional continuous control using generalized advantage estimation.\n\\newblock In \\emph{ICLR}, 2016.\n\n\\bibitem[Shao et~al.(2024)]{grpo}\nZ.~Shao et~al.\n\\newblock {DeepSeekMath}: Pushing the limits of mathematical reasoning in open language models.\n\\newblock \\emph{arXiv preprint}, 2024.\n\n\\end{thebibliography}\n}\n\n\\end{document}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e8a0a44e-f1f9-4550-a138-ba6bce393e60",
+  "isSidechain": false,
+  "requestId": "req_011Cb8FD1y2JDSb5PGmVoSby",
+  "type": "assistant",
+  "uuid": "6562af37-30ad-4067-9401-2413ac6ab4fc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "3aad36b4-392e-474c-8d55-d831dfdf181b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AbftpSpkqQ2nJ8WxFu7aQx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 653,
+      "cache_read_input_tokens": 48074,
+      "output_tokens": 11910,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 653,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 11910,
+          "cache_read_input_tokens": 48074,
+          "cache_creation_input_tokens": 653,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 653
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-17T13:51:52.038Z_
+
+<details><summary>↩ Tool result · `toolu_015cXXg2U9ALf8NmmoEETGVM`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260517T133129/best/paper.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6562af37-30ad-4067-9401-2413ac6ab4fc",
+  "isSidechain": false,
+  "promptId": "9b157487-52ba-4170-bcee-a17554702c6c",
+  "type": "user",
+  "uuid": "eebdb7c4-fea9-41fc-a712-05853331da8c",
+  "toolUseResult": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260517T133129/best/paper.tex",
+    "content": "\\documentclass[10pt]{article}\n\\usepackage[margin=1in]{geometry}\n\\usepackage{amsmath,amssymb}\n\\usepackage{booktabs}\n\\usepackage{graphicx}\n\\usepackage{hyperref}\n\\usepackage{natbib}\n\\usepackage{multirow}\n\\usepackage{xcolor}\n\\usepackage{subcaption}\n\n\\newcommand{\\ours}{B-IAVR}\n\n\\title{Learning When to Verify: RL-Trained Selective Self-Verification \\\\ for Multi-Turn Interactive Agents}\n\n\\author{Anonymous}\n\\date{}\n\n\\begin{document}\n\\maketitle\n\n% ============================================================\n% ABSTRACT\n% ============================================================\n\\begin{abstract}\nSelf-verification improves decision quality in multi-turn interactive agents, but always-on verification wastes compute: we find that 72\\% of verification steps are confirmatory (the agent takes the same action regardless). Training an agent to selectively verify requires reinforcement learning (RL), yet the community-default \\emph{step-independent} training mode catastrophically fails for long-horizon tasks. We diagnose a dual mechanism behind this failure: (1)~\\textbf{advantage sign misattribution}, where per-window advantage signs are determined by episode outcome rather than local action quality, and (2)~\\textbf{policy information loss}, where short context windows prevent learning cross-step strategies. A simple fix, episode-level Group Relative Policy Optimization (GRPO), eliminates both failure modes and reaches 47.8\\%$\\pm$3.1pp validation success on ALFWorld (vs.\\ 2\\% for step-independent, $h{=}2$). Crucially, Generalized Advantage Estimation (GAE) achieves comparable performance, demonstrating that episode-level information, not finer per-token credit assignment, is the key factor. Building on this foundation, we propose \\ours{} (Binary Informed Action-change Verification Routing), which trains a selective verification policy using action-change as an intrinsic reward signal. \\ours{} reduces verification cost by 58\\% while losing only 2 percentage points of task success, outperforming both confidence-based and SFT-based routing baselines. The episode-level advantage transfers to ScienceWorld (3.2$\\times$ over step-independent) and scales to 7B parameters (3.6$\\times$ ratio), confirming that the dual mechanism is a general property of sparse-reward multi-turn RL.\n\\end{abstract}\n\n% ============================================================\n% 1. INTRODUCTION\n% ============================================================\n\\section{Introduction}\n\nLarge Language Model (LLM) agents that interact with environments over multiple turns, such as household robots, web navigators, and scientific assistants, benefit substantially from self-verification: pausing to re-examine the current observation before committing to an action. Prior work has shown that always-on verification raises task success by 12 percentage points on ALFWorld~\\citep{alfworld}. However, verification is expensive. Each verification step doubles the inference cost of a turn, and our analysis of a trained agent shows that 72\\% of these steps are \\emph{confirmatory}, producing the same action the agent would have taken anyway.\n\nA natural solution is to train the agent to verify \\emph{selectively}, only at decision points where verification is likely to change, and improve, the chosen action. This requires RL training, which introduces a deeper problem: the community-default \\emph{step-independent} training paradigm, in which the episode is split into fixed-length windows optimized independently, catastrophically fails for multi-turn agents with sparse rewards.\n\nWe identify a dual mechanism behind this failure. First, \\textbf{advantage sign misattribution}: in step-independent mode, each window's advantage sign is determined by the episode outcome (success or failure), not by the quality of actions within that window. Good actions in failed episodes receive negative advantage and are suppressed; bad actions in successful episodes receive positive advantage and are reinforced. Second, \\textbf{policy information loss}: short context windows (e.g., $h{=}2$ steps) prevent the policy from encoding cross-step strategies such as ``open the fridge before placing the item inside.'' The combination produces a phase-transition-style collapse below a critical window size of $h{\\approx}10$, as confirmed by a five-point $h$-sweep with three seeds per condition.\n\nEpisode-level GRPO eliminates both failure modes by treating the entire trajectory as a single optimization unit. All tokens share one advantage value, removing inter-window sign inconsistencies, and the policy sees the full interaction history. With this fix, a Qwen3-1.7B agent converges to 47.8\\%$\\pm$3.1pp validation success across five seeds, compared to 2\\% for step-independent training ($h{=}2$). An important finding is that GAE($\\lambda{=}1.0$) achieves 39\\% at step~15, statistically indistinguishable from episode-level GRPO's 38\\% at the same checkpoint. This demonstrates that episode-level information is the critical ingredient; finer per-token credit assignment provides negligible additional benefit under sparse binary rewards.\n\nBuilding on the episode-level foundation, we propose \\ours{}, a selective verification system that learns when to verify via RL. The key insight is that \\emph{action change}, whether verification causes the agent to switch its action, serves as an effective intrinsic reward for verification informativeness. \\ours{} reduces verification volume by 58\\% while maintaining 46\\% task success (only $-$2pp vs.\\ always-on), and Pareto-dominates confidence-threshold, random, and SFT-based (ARES-style) routing baselines.\n\nOur contributions are:\n\\begin{enumerate}\n    \\item A mechanistic diagnosis of why step-independent GRPO catastrophically fails for multi-turn LLM agents, identifying advantage sign misattribution and policy information loss as dual root causes (Section~\\ref{sec:mechanism}).\n    \\item Empirical evidence that episode-level credit, not finer-grained per-token credit, is the key factor for sparse-reward multi-turn RL, challenging the community's ``finer is better'' assumption (Section~\\ref{sec:gae}).\n    \\item \\ours{}, a selective verification system trained with action-change reward that reduces verification cost by 58\\% with minimal performance loss (Section~\\ref{sec:biavr}).\n\\end{enumerate}\n\n% ============================================================\n% 2. RELATED WORK\n% ============================================================\n\\section{Related Work}\n\n\\paragraph{Multi-turn RL for LLM agents.}\nRAGEN~\\citep{ragen} applies GRPO to multi-turn agent tasks using a step-independent training loop that splits episodes into fixed-length windows. Turn-PPO~\\citep{turnppo} identifies a ``uniform advantage'' problem within this paradigm, where all turns in an episode receive identical advantage values, and proposes turn-level MDPs with learned value functions. GAGPO~\\citep{gagpo} pursues step-aligned grouped value proxies, achieving 93.5\\% on ALFWorld with a 1.5B model. MT-GRPO~\\citep{mtgrpo} introduces turn-level reward design for QA search tasks. iStar~\\citep{istar} learns implicit process rewards via dual-advantage estimation. ArCHer~\\citep{archer} establishes hierarchical multi-turn RL as a general framework. HiPER~\\citep{hiper} combines hierarchical planning with execution RL and achieves 97.4\\% on ALFWorld with a 7B model. All of these approaches move toward finer-grained credit assignment. We take the opposite direction: we show that coarser episode-level credit eliminates sign misattribution and matches GAE performance, suggesting that the granularity axis is less important than the information-preservation axis for sparse-reward settings.\n\n\\paragraph{Self-verification and reflection in LLM agents.}\nReflAct~\\citep{reflact} uses GPT-4-level prompting for self-reflection. Self-Guide~\\citep{selfguide} trains always-on verification via SFT and achieves 72.7\\% on ALFWorld with 1.7B parameters. Reflexion~\\citep{reflexion} introduces verbal self-reflection for episodic improvement. These approaches treat verification as always-on. We address the complementary question of \\emph{when} to verify.\n\n\\paragraph{Adaptive compute allocation.}\nARES~\\citep{ares} trains an SFT-based router that controls continuous verification effort, achieving 52.7\\% token reduction. Thinkless~\\citep{thinkless} uses RL to learn a binary control token that decides whether to ``think'' before acting in reasoning tasks. Our work shares the RL-for-control-token philosophy but targets multi-turn verification rather than single-turn reasoning, and uses action-change as the reward signal instead of task outcome alone.\n\n\\paragraph{Credit assignment in RL.}\nZhang et al.~\\citep{casurvey} survey 47 credit assignment methods but do not analyze when finer granularity becomes harmful. GAE~\\citep{gae} provides a family of advantage estimators parameterized by $\\lambda$. We use GAE as a baseline to show that per-token credit assignment does not outperform episode-level GRPO under sparse binary rewards.\n\n% ============================================================\n% 3. METHOD\n% ============================================================\n\\section{Method}\n\n\\subsection{Problem Setting}\n\nWe consider a multi-turn interactive agent that receives textual observations $o_t$ from an environment (e.g., ALFWorld) and produces actions $a_t$ as text. An episode consists of $T$ turns ($T{\\approx}15$--$35$ depending on task type). The environment provides a sparse binary reward $R \\in \\{0, 1\\}$ only at episode termination.\n\nOptionally, at each turn the agent can \\emph{verify}: re-examine the current observation and potentially change its action before execution. Always-on verification improves success by 12pp but doubles inference cost.\n\n\\subsection{Diagnosing Step-Independent Training Failure}\n\\label{sec:mechanism}\n\nThe default RAGEN training loop splits each episode of $T$ steps into $\\lceil T/h \\rceil$ windows of $h$ consecutive steps and optimizes each window independently via GRPO. We identify two mechanisms by which this procedure fails.\n\n\\paragraph{Advantage sign misattribution.}\nIn RAGEN's \\texttt{compute\\_step\\_discounted\\_returns()}, the return for window $w$ is $G_w = \\sum_{t=w}^{T} \\gamma^{t-w} r_t$. Since the reward is sparse binary (only the final step has $r_T = 10$ or $0$), every window in a successful episode has $G_w = \\gamma^{T-w} \\cdot 10 > 0$, and every window in a failed episode has $G_w = 0$. After GRPO's group-based normalization, all windows in successful episodes receive positive advantage and all windows in failed episodes receive negative advantage, regardless of window-local action quality.\n\nWe verify this empirically by logging per-window advantages across 128 episodes (1,536 windows). The correlation between advantage sign and episode outcome is $r = 0.97$; the correlation between advantage sign and a local action-quality proxy is $r = 0.04$. In failed episodes, 94\\% of windows containing objectively good actions (e.g., correct navigation) still receive negative advantage. In successful episodes, 95\\% of windows containing poor actions (e.g., exploring the wrong room) receive positive advantage.\n\n\\paragraph{Policy information loss.}\nA window of $h = 2$ steps cannot encode strategies that span more than two turns. In ALFWorld, the average task requires coordinating actions across ${\\sim}25$ steps (e.g., ``find object in drawer A, then carry it to countertop B, then use appliance C''). Short windows reduce the policy to reactive single-step decisions.\n\n\\paragraph{Episode-level GRPO.}\nThe fix is simple: treat the entire episode as a single GRPO sample. Each trajectory receives one advantage value $A = (R - \\mu_{\\text{group}}) / \\sigma_{\\text{group}}$, shared across all tokens. This eliminates sign misattribution (no inter-window sign inconsistency) and information loss (the policy conditions on the full history).\n\n\\subsection{Selective Verification via \\ours{}}\n\\label{sec:biavr}\n\nGiven a trained episode-level agent, we add a binary decision token at each turn: \\texttt{&lt;verify>} or \\texttt{&lt;skip>}. The agent is trained with episode-level GRPO using a composite reward:\n\\begin{equation}\nR = R_{\\text{task}} + \\alpha \\cdot \\mathbb{1}[\\text{verify} \\wedge \\text{action\\_changed}] - \\beta \\cdot \\mathbb{1}[\\text{verify} \\wedge \\neg\\text{action\\_changed}]\n\\label{eq:reward}\n\\end{equation}\nwhere $\\alpha = 0.5$ rewards informative verification (the agent changed its action after re-examination), $\\beta = 0.1$ penalizes confirmatory verification (no action change), and $R_{\\text{task}} \\in \\{0, 10\\}$ is the task success reward.\n\nThe action-change signal is grounded in the observation that verification-triggered action changes correlate positively with episode success ($r = 0.35$, $p < 0.001$), even after controlling for policy entropy (partial $r = 0.28$, $p = 0.003$). A causal intervention experiment confirms that verification-triggered changes outperform random changes at the same rate by 15pp ($p < 0.001$).\n\nTraining initializes from a converged episode-level checkpoint, so the agent already has a strong base policy. Only the verify/skip decision needs to be learned, making convergence fast (${\\sim}30$ steps).\n\n% ============================================================\n% 4. EXPERIMENTS\n% ============================================================\n\\section{Experiments}\n\n\\subsection{Setup}\n\n\\paragraph{Environments.}\nWe evaluate primarily on ALFWorld~\\citep{alfworld}, a text-based household task environment with six task types (pick, clean, heat, cool, examine, pick\\_two) requiring 15--35 interaction steps. We also evaluate on ScienceWorld~\\citep{scienceworld} for transfer experiments.\n\n\\paragraph{Models.}\nOur primary model is Qwen3-1.7B. We also run scaling experiments with Qwen3-7B. All training uses the RAGEN framework with episode-level GRPO modifications.\n\n\\paragraph{Metrics.}\nWe report validation pass@1 success rate (greedy decoding), pass@8 (best-of-8 samples), verification rate, relative token cost, and action validity rate. All multi-seed experiments use five seeds; ablations use three seeds per condition.\n\n% ---- 4.2 Episode-level convergence ----\n\\subsection{Episode-Level GRPO Convergence}\n\nTable~\\ref{tab:convergence} shows the training trajectory of episode-level GRPO. Validation success rises from 25\\% at step 5 to 48\\% at step 50, breaking through the 28\\% plateau observed at step 15. The train-validation gap narrows from 15pp (step 15) to 8pp (step 50), indicating improving generalization. Pass@8 reaches 96\\%, suggesting that the performance ceiling for Qwen3-1.7B under greedy decoding is approximately 50\\%.\n\n\\begin{table}[h]\n\\centering\n\\caption{Episode-level GRPO training trajectory on ALFWorld.}\n\\label{tab:convergence}\n\\begin{tabular}{lccccc}\n\\toprule\nStep & Val Success & Train Success & Action Valid & Entropy & Pass@8 \\\\\n\\midrule\n5    & 0.25 & 0.31 & 0.48 & 0.22 & 0.82 \\\\\n10   & 0.25 & 0.38 & 0.51 & 0.19 & 0.88 \\\\\n15   & 0.281 & 0.438 & 0.545 & 0.17 & 0.93 \\\\\n20   & 0.34 & 0.48 & 0.60 & 0.16 & 0.94 \\\\\n30   & 0.42 & 0.53 & 0.67 & 0.15 & 0.95 \\\\\n40   & 0.47 & 0.55 & 0.71 & 0.15 & 0.96 \\\\\n50   & 0.48 & 0.56 & 0.72 & 0.15 & 0.96 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Multi-seed replication.}\nTable~\\ref{tab:multiseed} reports results across five independent seeds. The mean converged success is $47.8\\% \\pm 3.1$pp (95\\% CI: [44\\%, 52\\%]). All five seeds exceed 40\\%, and none exhibits training collapse. The low variance is consistent with the episode-level training providing consistent gradient directions across seeds.\n\n\\begin{table}[h]\n\\centering\n\\caption{Multi-seed episode-level GRPO results (5 seeds, converged).}\n\\label{tab:multiseed}\n\\begin{tabular}{lcccc}\n\\toprule\nSeed & Val Success & Conv.\\ Step & Action Valid & Pass@8 \\\\\n\\midrule\n1 & 0.48 & 45 & 0.72 & 0.96 \\\\\n2 & 0.45 & 50 & 0.69 & 0.94 \\\\\n3 & 0.50 & 42 & 0.74 & 0.97 \\\\\n4 & 0.44 & 55 & 0.68 & 0.93 \\\\\n5 & 0.52 & 40 & 0.76 & 0.97 \\\\\n\\midrule\nMean$\\pm$Std & $0.478 \\pm 0.031$ & $46.4 \\pm 5.9$ & $0.718 \\pm 0.032$ & $0.954 \\pm 0.017$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Effect of dense shaping reward.}\nAdding a small valid-action bonus ($+0.05$ per valid action) to episode-level GRPO accelerates early training: at step~15, success reaches 36\\% (vs.\\ 28.1\\% without the bonus, $+$8pp) and action validity reaches 82\\% (vs.\\ 54.5\\%, $+$27pp). Importantly, no reward gaming is observed, in contrast to step-independent training where the same bonus causes catastrophic gaming (the agent maximizes bonus at the expense of task success, achieving 97.5\\% action validity but 0\\% task success).\n\n% ---- 4.3 Mechanism analysis ----\n\\subsection{Mechanism Analysis: The $h$-Sweep Cliff}\n\n\\paragraph{Context window ablation.}\nTable~\\ref{tab:hsweep} reports step-15 validation success for five values of the context window size $h$, each with three seeds. A sharp performance cliff appears below $h = 10$: success drops from 18\\% ($h{=}10$) to 6\\% ($h{=}5$) to 2\\% ($h{=}2$). For $h \\leq 5$, all seeds exhibit training collapse (success peaks early then drops to near zero). For $h \\geq 10$, no collapse occurs. The cliff is consistent with the dual mechanism: below $h{=}10$, the combined effect of sign misattribution across many short windows and severe information loss makes learning infeasible.\n\n\\begin{table}[h]\n\\centering\n\\caption{Context window $h$-sweep (step 15, 3 seeds each). ``Collapse'' indicates success peaks then drops to near zero.}\n\\label{tab:hsweep}\n\\begin{tabular}{lccl}\n\\toprule\n$h$ & Mean Success & Std & Collapse? \\\\\n\\midrule\n2    & 0.02 & 0.02 & Yes (step 3--5) \\\\\n5    & 0.06 & 0.03 & Yes (step 6--8) \\\\\n10   & 0.18 & 0.04 & No (slow decline) \\\\\n20   & 0.31 & 0.04 & No \\\\\nfull & 0.38 & 0.03 & No \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Empirical verification of sign misattribution.}\nTable~\\ref{tab:sign} presents per-window advantage analysis from 128 episodes (1,536 windows) under step-independent training ($h{=}2$). The advantage sign correlates almost perfectly with episode outcome ($r = 0.97$) and negligibly with local action quality ($r = 0.04$). In 98\\% of successful episodes, \\emph{every} window receives positive advantage; in 96\\% of failed episodes, every window receives negative advantage. The magnitude decays as $\\gamma^k$ with $R^2 = 0.92$, confirming the secondary information-loss effect.\n\n\\begin{table}[h]\n\\centering\n\\caption{Advantage sign analysis: step-independent ($h{=}2$) vs.\\ episode-level.}\n\\label{tab:sign}\n\\begin{tabular}{lcc}\n\\toprule\nMetric & Step-Indep.\\ ($h{=}2$) & Episode-Level \\\\\n\\midrule\nSign--outcome correlation & 0.97 & N/A (single advantage) \\\\\nSign--local quality correlation & 0.04 & N/A \\\\\n$\\gamma^k$ magnitude decay $R^2$ & 0.92 & N/A (no decay) \\\\\n\\% success eps., all-positive windows & 98\\% & 100\\% \\\\\n\\% failure eps., all-negative windows & 96\\% & 100\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:window_examples} shows concrete window-level advantages from representative episodes. In a successful episode (ep\\_001), an early exploration window with low local quality receives positive advantage ($+0.31$), while in a failed episode (ep\\_042), a window with objectively good actions (correct initial navigation) receives negative advantage ($-0.28$). The magnitude increases toward the terminal window due to the $\\gamma^k$ decay in the reverse direction.\n\n\\begin{table}[h]\n\\centering\n\\caption{Window-level advantage examples from step-independent training ($h{=}2$).}\n\\label{tab:window_examples}\n\\begin{tabular}{llcrr}\n\\toprule\nEpisode & Outcome & Window & Advantage & Local Quality \\\\\n\\midrule\nep\\_001 & success & w1 (earliest)    & $+0.31$ & low (exploration) \\\\\nep\\_001 & success & w6 (goal action) & $+2.47$ & high \\\\\nep\\_001 & success & w12 (terminal)   & $+7.89$ & medium \\\\\n\\midrule\nep\\_042 & failure & w1               & $-0.28$ & high (good start) \\\\\nep\\_042 & failure & w5               & $-1.93$ & low (wrong room) \\\\\nep\\_042 & failure & w10              & $-6.52$ & medium \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n% ---- 4.4 GAE comparison ----\n\\subsection{Episode-Level Information Is What Matters}\n\\label{sec:gae}\n\nA natural question is whether the episode-level GRPO advantage is simply too coarse and a proper value-function-based method like GAE would do better. Table~\\ref{tab:gae} compares three methods at step~15 (3 seeds each). GAE($\\lambda{=}1.0, \\gamma{=}1.0$) achieves 39\\%, statistically indistinguishable from episode-level GRPO (38\\%, $\\Delta = 1$pp). GAE($\\lambda{=}0.95$) scores slightly lower (36\\%) because temporal discounting introduces bias under sparse binary rewards. All three methods vastly outperform step-independent training ($h{=}2$, 2\\%).\n\n\\begin{table}[h]\n\\centering\n\\caption{GAE vs.\\ episode-level GRPO comparison (step 15, 3 seeds).}\n\\label{tab:gae}\n\\begin{tabular}{lccc}\n\\toprule\nMethod & Mean Success & Std & vs.\\ Step-Indep.\\ Ratio \\\\\n\\midrule\nGAE($\\lambda{=}0.95, \\gamma{=}1.0$) & 0.36 & 0.04 & 18$\\times$ \\\\\nGAE($\\lambda{=}1.0, \\gamma{=}1.0$) & 0.39 & 0.04 & 19.5$\\times$ \\\\\nEpisode-level GRPO & 0.38 & 0.03 & 19$\\times$ \\\\\nStep-independent ($h{=}2$) & 0.02 & 0.02 & 1$\\times$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThis result directly challenges the ``finer credit is better'' assumption underlying Turn-PPO, GAGPO, MT-GRPO, and iStar. Under sparse binary rewards, the marginal value of per-token credit assignment over episode-level credit is negligible. The critical factor is preserving episode-level information (avoiding sign misattribution and information loss), not computing more granular advantages.\n\n% ---- 4.5 Selective verification ----\n\\subsection{Selective Verification Results}\n\n\\paragraph{Action-change statistics.}\nBefore training the selective policy, we analyze the always-on verification behavior of the converged episode-level agent (256 episodes). Table~\\ref{tab:action_change} breaks down verification outcomes by task type. Overall, 72\\% of verifications are confirmatory (no action change). The action-change rate varies by task complexity, from 22\\% for simple pick tasks to 35\\% for pick\\_two tasks that involve more branching decisions.\n\n\\begin{table}[h]\n\\centering\n\\caption{Action-change statistics from always-on verification (256 episodes).}\n\\label{tab:action_change}\n\\begin{tabular}{lcccc}\n\\toprule\nTask Type & Episodes & Confirmatory & Action Change & Succ.\\ w/ Change \\\\\n\\midrule\npick     & 85  & 78\\% & 22\\% & 0.52 \\\\\nclean    & 52  & 69\\% & 31\\% & 0.50 \\\\\nheat     & 38  & 70\\% & 30\\% & 0.48 \\\\\ncool     & 30  & 73\\% & 27\\% & 0.53 \\\\\nexamine  & 21  & 75\\% & 25\\% & 0.47 \\\\\npick\\_two & 30  & 65\\% & 35\\% & 0.44 \\\\\n\\midrule\noverall  & 256 & 72\\% & 28\\% & 0.49 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Causal evidence for action-change value.}\nTo distinguish verification-triggered changes from random perturbation, we compare three conditions (128 episodes each): always-on verification (0.48 success), random action changes at the same 28\\% rate (0.33), and no changes (0.36). Verification-triggered changes outperform random changes by 15pp ($p < 0.001$), confirming that the verification process provides \\emph{informed} error correction, not mere perturbation. Random changes actually decrease success below the no-change baseline ($-$3pp), because randomly altering a reasonable action is more likely to introduce errors.\n\n\\paragraph{Entropy-controlled analysis.}\nOne might argue that action change is simply a proxy for policy entropy (uncertain steps naturally produce more changes). Table~\\ref{tab:entropy} stratifies steps into four entropy bins and computes the partial correlation between action change and success, controlling for entropy. The partial correlation remains significant across all strata ($r = 0.25$--$0.30$, all $p < 0.05$), with an overall partial $r = 0.28$ ($p = 0.003$). Action change carries information about decision quality beyond what entropy alone captures.\n\n\\begin{table}[h]\n\\centering\n\\caption{Entropy-stratified action-change analysis (1,536 steps from 256 episodes).}\n\\label{tab:entropy}\n\\begin{tabular}{lcccc}\n\\toprule\nEntropy Stratum & Steps & Change Rate & Corr.\\ w/ Success & $p$-value \\\\\n\\midrule\nLow (0--0.1)       & 420 & 0.15 & 0.25 & 0.02 \\\\\nMid-low (0.1--0.3) & 380 & 0.25 & 0.30 & 0.008 \\\\\nMid-high (0.3--0.6)& 410 & 0.35 & 0.29 & 0.005 \\\\\nHigh (0.6+)        & 326 & 0.45 & 0.26 & 0.01 \\\\\n\\midrule\nOverall (partial)   & 1536 & 0.28 & 0.28 & 0.003 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{\\ours{} training.}\nTable~\\ref{tab:biavr_training} shows the \\ours{} training trajectory, initialized from the converged episode-level checkpoint. The verification rate drops from 100\\% to 42\\% while success decreases by only 2pp (48\\% $\\to$ 46\\%). The action-change-when-verified rate rises from 0.28 to 0.52, indicating that the agent learns to verify precisely at steps where verification is informative. Skip accuracy (fraction of skipped steps that are indeed confirmatory) reaches 88\\%.\n\n\\begin{table}[h]\n\\centering\n\\caption{\\ours{} training trajectory.}\n\\label{tab:biavr_training}\n\\begin{tabular}{lcccr}\n\\toprule\nStep & Success & Verif.\\ Rate & Change When Verif. & Skip Acc. \\\\\n\\midrule\n0 (init) & 0.48 & 1.00 & 0.28 & N/A \\\\\n5  & 0.47 & 0.72 & 0.35 & 0.75 \\\\\n10 & 0.46 & 0.58 & 0.42 & 0.82 \\\\\n20 & 0.46 & 0.45 & 0.50 & 0.86 \\\\\n30 & 0.46 & 0.42 & 0.52 & 0.88 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Full comparison.}\nTable~\\ref{tab:full_comparison} compares \\ours{} against four baselines on the same validation set (128 episodes). \\ours{} achieves the best success-per-token ratio (0.88), Pareto-dominating all alternatives. The confidence-threshold baseline, which verifies when logit entropy exceeds a threshold, achieves 43\\% success but at higher token cost (0.58 relative tokens vs.\\ 0.52). Random verification at $p{=}0.4$ performs worse on both axes. The no-verify condition achieves the lowest token cost (0.38) but loses 12pp of success relative to always-on, confirming that verification provides genuine value.\n\n\\begin{table}[h]\n\\centering\n\\caption{Selective verification comparison (same val set, 128 episodes).}\n\\label{tab:full_comparison}\n\\begin{tabular}{lcccc}\n\\toprule\nMethod & Success & Verif.\\ Rate & Rel.\\ Tokens & Success/Token \\\\\n\\midrule\nAlways-on         & 0.48 & 1.00 & 1.00 & 0.48 \\\\\n\\ours{} (ours)    & 0.46 & 0.42 & 0.52 & 0.88 \\\\\nConfidence-thresh.& 0.43 & 0.45 & 0.58 & 0.74 \\\\\nRandom $p{=}0.4$  & 0.41 & 0.40 & 0.55 & 0.75 \\\\\nNo verify         & 0.36 & 0.00 & 0.38 & 0.95 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Reward signal ablation.}\nTable~\\ref{tab:reward_ablation} ablates the reward signal used to train the selective policy. Action-change reward achieves the best success (0.46) and cost reduction (52\\%). Confidence-based reward (verify when logit entropy is high) achieves 43\\% success at 42\\% cost reduction. Random-trigger reward (random verification timing) achieves only 40\\% success at 38\\% cost reduction. Action-change reward is the only Pareto-efficient option.\n\n\\begin{table}[h]\n\\centering\n\\caption{Reward signal ablation for selective verification training.}\n\\label{tab:reward_ablation}\n\\begin{tabular}{lcccc}\n\\toprule\nReward Type & Success & Verif.\\ Rate & Cost Reduction & Pareto? \\\\\n\\midrule\nAction-change (ours) & 0.46 & 0.42 & 52\\% & Yes \\\\\nConfidence-based     & 0.43 & 0.50 & 42\\% & No \\\\\nRandom-trigger       & 0.40 & 0.55 & 38\\% & No \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Comparison with ARES.}\nTable~\\ref{tab:ares} compares \\ours{} against a reproduced ARES baseline (same model, same validation set). \\ours{} achieves 14pp greater cost reduction (52\\% vs.\\ 38\\%) and 2pp higher success (46\\% vs.\\ 44\\%). The gap reflects a fundamental advantage of RL over SFT for learning verification policies: RL enables exploration of verification timing patterns that heuristic SFT labels cannot capture.\n\n\\begin{table}[h]\n\\centering\n\\caption{\\ours{} vs.\\ ARES (reproduced, same model and val set).}\n\\label{tab:ares}\n\\begin{tabular}{lcccc}\n\\toprule\nMethod & Success & Verif.\\ Rate & Cost Reduction & Training \\\\\n\\midrule\n\\ours{} (ours) & 0.46 & 0.42 & 52\\% & RL (action-change) \\\\\nARES (reprod.)  & 0.44 & 0.55 & 38\\% & SFT (heuristic) \\\\\n\\midrule\n$\\Delta$       & $+$2pp & $-$13pp & $+$14pp & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n% ---- 4.6 Transfer and Scaling ----\n\\subsection{Transfer and Scaling}\n\n\\paragraph{ScienceWorld transfer.}\nTo address the concern that our findings are specific to ALFWorld, we evaluate episode-level vs.\\ step-independent training on ScienceWorld, a text-based science experiment environment with 10 task types and longer average episodes (${\\sim}30$ steps). Table~\\ref{tab:scienceworld} shows that episode-level training achieves 32\\% success, compared to 4\\% for step-independent ($h{=}2$) and 11\\% for step-independent ($h{=}10$). The advantage ratio (3.2$\\times$ over the step-independent mean) confirms that the dual mechanism generalizes beyond ALFWorld. The higher advantage ratio relative to ALFWorld is consistent with longer episodes amplifying sign misattribution.\n\n\\begin{table}[h]\n\\centering\n\\caption{ScienceWorld: episode-level vs.\\ step-independent.}\n\\label{tab:scienceworld}\n\\begin{tabular}{lccc}\n\\toprule\nMethod & Success & Conv.\\ Step & Collapse? \\\\\n\\midrule\nEpisode-level             & 0.32 & 20  & No \\\\\nStep-independent ($h{=}2$)  & 0.04 & N/A & Yes (step 5) \\\\\nStep-independent ($h{=}10$) & 0.11 & N/A & Partial \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{7B model scaling.}\nTable~\\ref{tab:scaling} evaluates Qwen3-7B to test whether the episode-level advantage persists at larger scale. The 7B model reaches 58\\% episode-level success (vs.\\ 48\\% at 1.7B, $+$10pp), but the episode-to-step-independent ratio \\emph{increases} from 2.7$\\times$ to 3.6$\\times$. Larger models have greater capacity to exploit correct gradient signals, making the misdirection from sign misattribution more wasteful. Model scaling alone does not resolve the training methodology problem.\n\n\\begin{table}[h]\n\\centering\n\\caption{Scaling comparison: 1.7B vs.\\ 7B.}\n\\label{tab:scaling}\n\\begin{tabular}{lccc}\n\\toprule\nMethod & 1.7B Success & 7B Success & Scaling Gain \\\\\n\\midrule\nEpisode-level             & 0.48 & 0.58 & $+$10pp \\\\\nStep-indep.\\ ($h{=}10$)  & 0.18 & 0.22 & $+$4pp \\\\\nStep-indep.\\ ($h{=}2$)   & 0.02 & 0.08 & $+$6pp \\\\\n\\midrule\nEpisode/step ratio        & 2.7$\\times$ & 3.6$\\times$ & Ratio increases \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Per-task-type breakdown.}\nTable~\\ref{tab:pertask} decomposes ALFWorld results by task type. The episode-level advantage ratio increases monotonically with average episode length: from 6.9$\\times$ for pick (${\\sim}15$ steps) to 38$\\times$ for pick\\_two (${\\sim}35$ steps). This is consistent with longer tasks producing more sign-misattributed windows under step-independent training. Episode-level training benefits all six task types, with no exception.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task-type breakdown on ALFWorld.}\n\\label{tab:pertask}\n\\begin{tabular}{lcccc}\n\\toprule\nTask & Avg.\\ Steps & Episode Success & Step-Indep.\\ Success & Ratio \\\\\n\\midrule\npick      & 15 & 0.55 & 0.08 & 6.9$\\times$ \\\\\nclean     & 22 & 0.48 & 0.03 & 16$\\times$ \\\\\nheat      & 20 & 0.52 & 0.05 & 10.4$\\times$ \\\\\ncool      & 20 & 0.50 & 0.04 & 12.5$\\times$ \\\\\nexamine   & 28 & 0.42 & 0.02 & 21$\\times$ \\\\\npick\\_two & 35 & 0.38 & 0.01 & 38$\\times$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Verification Ablation}\n\nRemoving verification entirely from episode-level training yields 36\\% success, a 12pp drop from the always-on configuration (48\\%). Action validity also decreases (72\\% $\\to$ 65\\%). This confirms that verification provides genuine value through error correction and information re-examination. At the same time, 36\\% without verification demonstrates that the episode-level policy itself is strong, positioning verification as an optimization rather than a requirement. This framing supports the selective verification approach: we do not need to verify at every step, only at steps where verification is likely to correct an error.\n\n% ============================================================\n% 5. CONCLUSION\n% ============================================================\n\\section{Conclusion}\n\nWe have identified advantage sign misattribution and policy information loss as dual mechanisms causing catastrophic failure of step-independent RL training for multi-turn LLM agents. Episode-level GRPO, a simple fix, eliminates both failure modes and achieves $47.8\\% \\pm 3.1$pp on ALFWorld across five seeds. The finding that GAE provides no advantage over episode-level GRPO challenges the ``finer credit is better'' assumption in the community.\n\nBuilding on this foundation, \\ours{} learns when to verify by using action change as an intrinsic reward signal. It reduces verification cost by 58\\% while losing only 2pp of task success, Pareto-dominating confidence-based, random, and SFT-based alternatives. The episode-level advantage transfers to ScienceWorld (3.2$\\times$) and strengthens at 7B scale (3.6$\\times$), confirming generality.\n\n\\paragraph{Limitations.}\nOur absolute performance (48\\% on ALFWorld) is below systems like GAGPO (93.5\\%) and HiPER (97.4\\%) that use finer-grained credit assignment and larger models. Our contribution is diagnostic and methodological rather than performance-focused. The selective verification results are demonstrated on two environments; broader evaluation across web navigation, code generation, and other agent domains remains future work.\n\n% ============================================================\n% REFERENCES\n% ============================================================\n{\\small\n\\bibliographystyle{plainnat}\n\\begin{thebibliography}{30}\n\n\\bibitem[Shridhar et~al.(2021)]{alfworld}\nM.~Shridhar, X.~Yuan, M.-A.~C\\^{o}t\\'{e}, Y.~Bisk, A.~Trischler, and M.~Hausknecht.\n\\newblock {ALFWorld}: Aligning text and embodied environments for interactive learning.\n\\newblock In \\emph{ICLR}, 2021.\n\n\\bibitem[Wang et~al.(2024)]{scienceworld}\nR.~Wang, P.~Jansen, M.-A.~C\\^{o}t\\'{e}, and P.~Ammanabrolu.\n\\newblock {ScienceWorld}: Is your agent smarter than a 5th grader?\n\\newblock In \\emph{EMNLP}, 2024.\n\n\\bibitem[Liu et~al.(2025)]{ragen}\nW.~Liu et~al.\n\\newblock {RAGEN}: Training agents with reinforcement learning.\n\\newblock \\emph{arXiv preprint}, 2025.\n\n\\bibitem[Shinn et~al.(2023)]{reflexion}\nN.~Shinn, F.~Cassano, A.~Gopinath, K.~Narasimhan, and S.~Yao.\n\\newblock Reflexion: Language agents with verbal reinforcement learning.\n\\newblock In \\emph{NeurIPS}, 2023.\n\n\\bibitem[Yao et~al.(2023)]{reflact}\nS.~Yao et~al.\n\\newblock {ReAct}: Synergizing reasoning and acting in language models.\n\\newblock In \\emph{ICLR}, 2023.\n\n\\bibitem[Kim et~al.(2025)]{selfguide}\nH.~Kim et~al.\n\\newblock {Self-Guide}: Self-guided verification for LLM agents.\n\\newblock \\emph{arXiv preprint}, 2025.\n\n\\bibitem[Chen et~al.(2025)]{ares}\nX.~Chen et~al.\n\\newblock {ARES}: Adaptive reasoning effort scaling.\n\\newblock \\emph{arXiv:2603.07915}, 2025.\n\n\\bibitem[Shen et~al.(2025)]{thinkless}\nY.~Shen et~al.\n\\newblock Thinkless: LLM learns when to think.\n\\newblock In \\emph{NeurIPS}, 2025.\n\n\\bibitem[Zhang et~al.(2025)]{turnppo}\nY.~Zhang et~al.\n\\newblock Turn-level credit assignment for multi-turn LLM training.\n\\newblock \\emph{arXiv:2512.17008}, 2025.\n\n\\bibitem[Li et~al.(2025)]{gagpo}\nS.~Li et~al.\n\\newblock {GAGPO}: Grouped advantage guided policy optimization.\n\\newblock \\emph{arXiv:2605.13217}, 2025.\n\n\\bibitem[Wu et~al.(2025)]{mtgrpo}\nZ.~Wu et~al.\n\\newblock {MT-GRPO}: Multi-turn group relative policy optimization.\n\\newblock \\emph{arXiv:2505.11821}, 2025.\n\n\\bibitem[Wang et~al.(2026)]{istar}\nJ.~Wang et~al.\n\\newblock {iStar}: Implicit process reward for multi-turn agents.\n\\newblock In \\emph{ICLR}, 2026.\n\n\\bibitem[Zhou et~al.(2024)]{archer}\nY.~Zhou et~al.\n\\newblock {ArCHer}: Training language model agents via hierarchical multi-turn RL.\n\\newblock In \\emph{ICML}, 2024.\n\n\\bibitem[Zhang et~al.(2025b)]{hiper}\nR.~Zhang et~al.\n\\newblock {HiPER}: Hierarchical plan-execute RL for multi-turn agents.\n\\newblock \\emph{arXiv:2602.16165}, 2025.\n\n\\bibitem[Zhang et~al.(2024)]{casurvey}\nQ.~Zhang et~al.\n\\newblock A survey of credit assignment methods for deep reinforcement learning.\n\\newblock \\emph{arXiv:2604.09459}, 2024.\n\n\\bibitem[Schulman et~al.(2016)]{gae}\nJ.~Schulman, P.~Moritz, S.~Levine, M.~Jordan, and P.~Abbeel.\n\\newblock High-dimensional continuous control using generalized advantage estimation.\n\\newblock In \\emph{ICLR}, 2016.\n\n\\bibitem[Shao et~al.(2024)]{grpo}\nZ.~Shao et~al.\n\\newblock {DeepSeekMath}: Pushing the limits of mathematical reasoning in open language models.\n\\newblock \\emph{arXiv preprint}, 2024.\n\n\\end{thebibliography}\n}\n\n\\end{document}\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  },
+  "sourceToolAssistantUUID": "6562af37-30ad-4067-9401-2413ac6ab4fc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "3aad36b4-392e-474c-8d55-d831dfdf181b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260517T133129 tier=best 生成一篇完整的模拟论文。  ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-…",
+  "leafUuid": "eebdb7c4-fea9-41fc-a712-05853331da8c",
+  "sessionId": "3aad36b4-392e-474c-8d55-d831dfdf181b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generate simulated ML research paper",
+  "sessionId": "3aad36b4-392e-474c-8d55-d831dfdf181b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-17T13:51:54.217Z_
+
+Now compiling.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eebdb7c4-fea9-41fc-a712-05853331da8c",
+  "isSidechain": false,
+  "requestId": "req_011Cb8FVvHw3jByKDYW6WrJu",
+  "type": "assistant",
+  "uuid": "4f13858e-92f3-43d7-a175-a84e4af9cc5b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "3aad36b4-392e-474c-8d55-d831dfdf181b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019m1KxsgPddL3CJw73ipUk7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11978,
+      "cache_read_input_tokens": 48727,
+      "output_tokens": 152,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11978,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 152,
+          "cache_read_input_tokens": 48727,
+          "cache_creation_input_tokens": 11978,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11978
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-17T13:51:55.255Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_011Ng5mJBp8JwssEur97gnod`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260517T133129/best && pdflatex -interaction=nonstopmode paper.tex && pdflatex -interaction=nonstopmode paper.tex",
+  "timeout": 120000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4f13858e-92f3-43d7-a175-a84e4af9cc5b",
+  "isSidechain": false,
+  "requestId": "req_011Cb8FVvHw3jByKDYW6WrJu",
+  "type": "assistant",
+  "uuid": "f41b1dfb-4efa-4f84-90c8-ce00e456c657",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "3aad36b4-392e-474c-8d55-d831dfdf181b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019m1KxsgPddL3CJw73ipUk7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11978,
+      "cache_read_input_tokens": 48727,
+      "output_tokens": 152,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11978,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 152,
+          "cache_read_input_tokens": 48727,
+          "cache_creation_input_tokens": 11978,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11978
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-17T13:51:56.575Z_
+
+<details><summary>↩ Tool result · `toolu_011Ng5mJBp8JwssEur97gnod`</summary>
+
+```text
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./paper.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+No file paper.aux.
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+
+Package natbib Warning: Citation `alfworld' on page 1 undefined on input line 3
+4.
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+
+LaTeX Warning: Reference `sec:mechanism' on page 2 undefined on input line 46.
+
+
+LaTeX Warning: Reference `sec:gae' on page 2 undefined on input line 47.
+
+
+LaTeX Warning: Reference `sec:biavr' on page 2 undefined on input line 48.
+
+
+Package natbib Warning: Citation `ragen' on page 2 undefined on input line 57.
+
+
+Package natbib Warning: Citation `turnppo' on page 2 undefined on input line 57
+.
+
+
+Package natbib Warning: Citation `gagpo' on page 2 undefined on input line 57.
+
+
+Package natbib Warning: Citation `mtgrpo' on page 2 undefined on input line 57.
+
+
+
+Package natbib Warning: Citation `istar' on page 2 undefined on input line 57.
+
+
+Package natbib Warning: Citation `archer' on page 2 undefined on input line 57.
+
+
+
+Package natbib Warning: Citation `hiper' on page 2 undefined on input line 57.
+
+
+Package natbib Warning: Citation `reflact' on page 2 undefined on input line 60
+.
+
+
+Package natbib Warning: Citation `selfguide' on page 2 undefined on input line 
+60.
+
+
+Package natbib Warning: Citation `reflexion' on page 2 undefined on input line 
+60.
+
+
+Package natbib Warning: Citation `ares' on page 2 undefined on input line 63.
+
+
+Package natbib Warning: Citation `thinkless' on page 2 undefined on input line 
+63.
+
+
+Package natbib Warning: Citation `casurvey' on page 2 undefined on input line 6
+6.
+
+
+Package natbib Warning: Citation `gae' on page 2 undefined on input line 66.
+
+[2]
+
+Package natbib Warning: Citation `alfworld' on page 3 undefined on input line 1
+17.
+
+
+Package natbib Warning: Citation `scienceworld' on page 3 undefined on input li
+ne 117.
+
+[3]
+
+LaTeX Warning: Reference `tab:convergence' on page 4 undefined on input line 12
+8.
+
+
+LaTeX Warning: Reference `tab:multiseed' on page 4 undefined on input line 150.
+
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 175.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 175.
+
+
+LaTeX Warning: Reference `tab:hsweep' on page 4 undefined on input line 178.
+
+[4]
+
+LaTeX Warning: Reference `tab:sign' on page 5 undefined on input line 198.
+
+
+LaTeX Warning: Reference `tab:window_examples' on page 5 undefined on input lin
+e 217.
+
+
+LaTeX Warning: Reference `tab:gae' on page 5 undefined on input line 242.
+
+[5]
+
+LaTeX Warning: Reference `tab:action_change' on page 6 undefined on input line 
+266.
+
+
+LaTeX Warning: Reference `tab:entropy' on page 6 undefined on input line 292.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: Reference `tab:biavr_training' on page 6 undefined on input line
+ 313.
+
+[6]
+
+LaTeX Warning: Reference `tab:full_comparison' on page 7 undefined on input lin
+e 333.
+
+
+LaTeX Warning: Reference `tab:reward_ablation' on page 7 undefined on input lin
+e 353.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: Reference `tab:ares' on page 7 undefined on input line 371.
+
+[7]
+
+LaTeX Warning: Reference `tab:scienceworld' on page 8 undefined on input line 3
+93.
+
+
+LaTeX Warning: Reference `tab:scaling' on page 8 undefined on input line 411.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: Reference `tab:pertask' on page 8 undefined on input line 431.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[8] [9]
+
+Package natbib Warning: There were undefined citations.
+
+[10] (./paper.aux
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `paper.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb>&lt;/us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>&lt;/usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb>&lt;/usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>&lt;/usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>&lt;/usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmmi12.pfb>&lt;/usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmmi7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmmi9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmr12.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mr17.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb
+>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb>&lt;/usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>&lt;/usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>&lt;/usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb>&lt;/usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmti10.pfb>&lt;/usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmti9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmtt10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/symbols/msbm10.pfb>
+Output written on paper.pdf (10 pages, 279133 bytes).
+Transcript written on paper.log.
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./paper.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(./paper.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+(./paper.out) (./paper.out)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd) [1{/var/lib/texmf/fo
+nts/map/pdftex/updmap/pdftex.map}] [2] [3] [4]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 175.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 175.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[5] [6] [7]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[8] [9] [10] (./paper.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ )&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb>&lt;/us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>&lt;/usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb>&lt;/usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>&lt;/usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>&lt;/usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmmi12.pfb>&lt;/usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmmi7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmmi9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmr12.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mr17.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb
+>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb>&lt;/usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>&lt;/usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>&lt;/usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb>&lt;/usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmti10.pfb>&lt;/usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmti9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmtt10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/symbols/msbm10.pfb>
+Output written on paper.pdf (10 pages, 282398 bytes).
+Transcript written on paper.log.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f41b1dfb-4efa-4f84-90c8-ce00e456c657",
+  "isSidechain": false,
+  "promptId": "9b157487-52ba-4170-bcee-a17554702c6c",
+  "type": "user",
+  "uuid": "b7bc4173-7e34-46dd-ba31-1f202a1ec6a2",
+  "toolUseResult": {
+    "stdout": "This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex)\n restricted \\write18 enabled.\nentering extended mode\n(./paper.tex\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls\nDocument Class: article 2025/01/22 v1.4n Standard LaTeX document class\n(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo))\n(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty\n(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty\nFor additional information on amsmath, use the `?' option.\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty\n(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty\n(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty\n(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty\n(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty\n(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)\n(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)\n(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty\n(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def\n(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty\n(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))\n(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty\n(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty\n(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)\nNo file paper.aux.\n*geometry* driver: auto-detecting\n*geometry* detected driver: pdftex\n(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii\n[Loading MPS to PDF converter (version 2006.09.02).]\n) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty\n(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)\n\nPackage natbib Warning: Citation `alfworld' on page 1 undefined on input line 3\n4.\n\n[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]\n\nLaTeX Warning: Reference `sec:mechanism' on page 2 undefined on input line 46.\n\n\nLaTeX Warning: Reference `sec:gae' on page 2 undefined on input line 47.\n\n\nLaTeX Warning: Reference `sec:biavr' on page 2 undefined on input line 48.\n\n\nPackage natbib Warning: Citation `ragen' on page 2 undefined on input line 57.\n\n\nPackage natbib Warning: Citation `turnppo' on page 2 undefined on input line 57\n.\n\n\nPackage natbib Warning: Citation `gagpo' on page 2 undefined on input line 57.\n\n\nPackage natbib Warning: Citation `mtgrpo' on page 2 undefined on input line 57.\n\n\n\nPackage natbib Warning: Citation `istar' on page 2 undefined on input line 57.\n\n\nPackage natbib Warning: Citation `archer' on page 2 undefined on input line 57.\n\n\n\nPackage natbib Warning: Citation `hiper' on page 2 undefined on input line 57.\n\n\nPackage natbib Warning: Citation `reflact' on page 2 undefined on input line 60\n.\n\n\nPackage natbib Warning: Citation `selfguide' on page 2 undefined on input line \n60.\n\n\nPackage natbib Warning: Citation `reflexion' on page 2 undefined on input line \n60.\n\n\nPackage natbib Warning: Citation `ares' on page 2 undefined on input line 63.\n\n\nPackage natbib Warning: Citation `thinkless' on page 2 undefined on input line \n63.\n\n\nPackage natbib Warning: Citation `casurvey' on page 2 undefined on input line 6\n6.\n\n\nPackage natbib Warning: Citation `gae' on page 2 undefined on input line 66.\n\n[2]\n\nPackage natbib Warning: Citation `alfworld' on page 3 undefined on input line 1\n17.\n\n\nPackage natbib Warning: Citation `scienceworld' on page 3 undefined on input li\nne 117.\n\n[3]\n\nLaTeX Warning: Reference `tab:convergence' on page 4 undefined on input line 12\n8.\n\n\nLaTeX Warning: Reference `tab:multiseed' on page 4 undefined on input line 150.\n\n\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `math shift' on input line 175.\n\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `math shift' on input line 175.\n\n\nLaTeX Warning: Reference `tab:hsweep' on page 4 undefined on input line 178.\n\n[4]\n\nLaTeX Warning: Reference `tab:sign' on page 5 undefined on input line 198.\n\n\nLaTeX Warning: Reference `tab:window_examples' on page 5 undefined on input lin\ne 217.\n\n\nLaTeX Warning: Reference `tab:gae' on page 5 undefined on input line 242.\n\n[5]\n\nLaTeX Warning: Reference `tab:action_change' on page 6 undefined on input line \n266.\n\n\nLaTeX Warning: Reference `tab:entropy' on page 6 undefined on input line 292.\n\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n\nLaTeX Warning: Reference `tab:biavr_training' on page 6 undefined on input line\n 313.\n\n[6]\n\nLaTeX Warning: Reference `tab:full_comparison' on page 7 undefined on input lin\ne 333.\n\n\nLaTeX Warning: Reference `tab:reward_ablation' on page 7 undefined on input lin\ne 353.\n\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n\nLaTeX Warning: Reference `tab:ares' on page 7 undefined on input line 371.\n\n[7]\n\nLaTeX Warning: Reference `tab:scienceworld' on page 8 undefined on input line 3\n93.\n\n\nLaTeX Warning: Reference `tab:scaling' on page 8 undefined on input line 411.\n\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n\nLaTeX Warning: Reference `tab:pertask' on page 8 undefined on input line 431.\n\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n[8] [9]\n\nPackage natbib Warning: There were undefined citations.\n\n[10] (./paper.aux\n\nPackage natbib Warning: Citation(s) may have changed.\n(natbib)                Rerun to get citations correct.\n\n)\n\nLaTeX Warning: There were undefined references.\n\n\nLaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.\n\n\nPackage rerunfilecheck Warning: File `paper.out' has changed.\n(rerunfilecheck)                Rerun to get outlines right\n(rerunfilecheck)                or use package `bookmark'.\n\n )&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb>&lt;/us\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>&lt;/usr/shar\ne/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb>&lt;/usr/share/texli\nve/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>&lt;/usr/share/texlive/tex\nmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>&lt;/usr/share/texlive/texmf-dis\nt/fonts/type1/public/amsfonts/cm/cmmi12.pfb>&lt;/usr/share/texlive/texmf-dist/font\ns/type1/public/amsfonts/cm/cmmi7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1\n/public/amsfonts/cm/cmmi9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public\n/amsfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfon\nts/cm/cmr12.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c\nmr17.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb\n>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb>&lt;/usr/s\nhare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>&lt;/usr/share/t\nexlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>&lt;/usr/share/texlive/\ntexmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb>&lt;/usr/share/texlive/texmf-d\nist/fonts/type1/public/amsfonts/cm/cmti10.pfb>&lt;/usr/share/texlive/texmf-dist/fo\nnts/type1/public/amsfonts/cm/cmti9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/typ\ne1/public/amsfonts/cm/cmtt10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/pub\nlic/amsfonts/symbols/msbm10.pfb>\nOutput written on paper.pdf (10 pages, 279133 bytes).\nTranscript written on paper.log.\nThis is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex)\n restricted \\write18 enabled.\nentering extended mode\n(./paper.tex\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls\nDocument Class: article 2025/01/22 v1.4n Standard LaTeX document class\n(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo))\n(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty\n(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty\nFor additional information on amsmath, use the `?' option.\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty\n(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty\n(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty\n(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty\n(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty\n(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)\n(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)\n(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty\n(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def\n(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty\n(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))\n(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty\n(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty\n(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)\n(./paper.aux)\n*geometry* driver: auto-detecting\n*geometry* detected driver: pdftex\n(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii\n[Loading MPS to PDF converter (version 2006.09.02).]\n) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty\n(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))\n(./paper.out) (./paper.out)\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd) [1{/var/lib/texmf/fo\nnts/map/pdftex/updmap/pdftex.map}] [2] [3] [4]\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `math shift' on input line 175.\n\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `math shift' on input line 175.\n\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n[5] [6] [7]\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n[8] [9] [10] (./paper.aux)\n\nLaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.\n\n )&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb>&lt;/us\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>&lt;/usr/shar\ne/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb>&lt;/usr/share/texli\nve/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>&lt;/usr/share/texlive/tex\nmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>&lt;/usr/share/texlive/texmf-dis\nt/fonts/type1/public/amsfonts/cm/cmmi12.pfb>&lt;/usr/share/texlive/texmf-dist/font\ns/type1/public/amsfonts/cm/cmmi7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1\n/public/amsfonts/cm/cmmi9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public\n/amsfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfon\nts/cm/cmr12.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c\nmr17.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb\n>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb>&lt;/usr/s\nhare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>&lt;/usr/share/t\nexlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>&lt;/usr/share/texlive/\ntexmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb>&lt;/usr/share/texlive/texmf-d\nist/fonts/type1/public/amsfonts/cm/cmti10.pfb>&lt;/usr/share/texlive/texmf-dist/fo\nnts/type1/public/amsfonts/cm/cmti9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/typ\ne1/public/amsfonts/cm/cmtt10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/pub\nlic/amsfonts/symbols/msbm10.pfb>\nOutput written on paper.pdf (10 pages, 282398 bytes).\nTranscript written on paper.log.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "f41b1dfb-4efa-4f84-90c8-ce00e456c657",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260517T133129/best",
+  "sessionId": "3aad36b4-392e-474c-8d55-d831dfdf181b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 26_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260517T133129 tier=best 生成一篇完整的模拟论文。  ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-…",
+  "leafUuid": "b7bc4173-7e34-46dd-ba31-1f202a1ec6a2",
+  "sessionId": "3aad36b4-392e-474c-8d55-d831dfdf181b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generate simulated ML research paper",
+  "sessionId": "3aad36b4-392e-474c-8d55-d831dfdf181b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-17T13:51:58.791Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+There's a warning about labels that may have changed. Let me run a third pass to resolve.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b7bc4173-7e34-46dd-ba31-1f202a1ec6a2",
+  "isSidechain": false,
+  "requestId": "req_011Cb8FWFXpcekgcy2EjT7bM",
+  "type": "assistant",
+  "uuid": "94b49eaa-ecf7-41a1-b930-c6882495ee37",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260517T133129/best",
+  "sessionId": "3aad36b4-392e-474c-8d55-d831dfdf181b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Eyx8QYq4MSaD8GwVtqedyH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6838,
+      "cache_read_input_tokens": 60705,
+      "output_tokens": 170,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6838,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 170,
+          "cache_read_input_tokens": 60705,
+          "cache_creation_input_tokens": 6838,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6838
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-17T13:51:59.313Z_
+
+One more pass to resolve remaining cross-reference warnings.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "94b49eaa-ecf7-41a1-b930-c6882495ee37",
+  "isSidechain": false,
+  "requestId": "req_011Cb8FWFXpcekgcy2EjT7bM",
+  "type": "assistant",
+  "uuid": "112c0c41-2343-46c0-a57d-747bf6932b6a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260517T133129/best",
+  "sessionId": "3aad36b4-392e-474c-8d55-d831dfdf181b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Eyx8QYq4MSaD8GwVtqedyH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6838,
+      "cache_read_input_tokens": 60705,
+      "output_tokens": 170,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6838,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 170,
+          "cache_read_input_tokens": 60705,
+          "cache_creation_input_tokens": 6838,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6838
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-17T13:52:01.957Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_014W8CKGEuXiiX9FPsrFRY83`</summary>
+
+```json
+{
+  "command": "pdflatex -interaction=nonstopmode paper.tex 2>&1 | tail -5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "112c0c41-2343-46c0-a57d-747bf6932b6a",
+  "isSidechain": false,
+  "requestId": "req_011Cb8FWFXpcekgcy2EjT7bM",
+  "type": "assistant",
+  "uuid": "e2bc6121-b210-4ec4-8073-7cd259488be4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260517T133129/best",
+  "sessionId": "3aad36b4-392e-474c-8d55-d831dfdf181b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Eyx8QYq4MSaD8GwVtqedyH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6838,
+      "cache_read_input_tokens": 60705,
+      "output_tokens": 170,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6838,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 170,
+          "cache_read_input_tokens": 60705,
+          "cache_creation_input_tokens": 6838,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6838
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-17T13:52:02.574Z_
+
+<details><summary>↩ Tool result · `toolu_014W8CKGEuXiiX9FPsrFRY83`</summary>
+
+```text
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb>&lt;/usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>&lt;/usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on paper.pdf (10 pages, 282398 bytes).
+Transcript written on paper.log.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e2bc6121-b210-4ec4-8073-7cd259488be4",
+  "isSidechain": false,
+  "promptId": "9b157487-52ba-4170-bcee-a17554702c6c",
+  "type": "user",
+  "uuid": "6683f02e-d97f-4655-a2c6-04d348d2c9e7",
+  "toolUseResult": {
+    "stdout": "hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb>&lt;/usr/share/te\nxlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>&lt;/usr/share/texlive/\ntexmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>\nOutput written on paper.pdf (10 pages, 282398 bytes).\nTranscript written on paper.log.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "e2bc6121-b210-4ec4-8073-7cd259488be4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260517T133129/best",
+  "sessionId": "3aad36b4-392e-474c-8d55-d831dfdf181b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32 · 2026-05-17T13:52:02.580Z_
+
+```json
+{
+  "parentUuid": "6683f02e-d97f-4655-a2c6-04d348d2c9e7",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "dba14149-7687-4706-b576-5e774253a93a",
+  "timestamp": "2026-05-17T13:52:02.580Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260517T133129/best",
+  "sessionId": "3aad36b4-392e-474c-8d55-d831dfdf181b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-17T13:52:13.117Z_
+
+PDF compiled successfully (10 pages, 282 KB). The paper covers all 16 experiments from `experiment_data.json` across 17 tables:
+
+- **Section 4.2**: Episode-level GRPO convergence trajectory, multi-seed replication (5 seeds, std=3.1pp), valid-action bonus ablation
+- **Section 4.3**: $h$-sweep cliff (5 values, 3 seeds each), sign misattribution empirical verification (1,536 windows), window-level advantage examples
+- **Section 4.4**: GAE vs episode-level GRPO comparison (contrarian positioning)
+- **Section 4.5**: Action-change statistics, causal intervention, entropy-controlled analysis, B-IAVR training trajectory, full selective verification comparison, reward signal ablation, ARES head-to-head
+- **Section 4.6**: ScienceWorld transfer, 7B scaling, per-task-type breakdown
+- **Section 4.7**: No-verify ablation
+
+All numbers are drawn directly from the experiment JSON. Output at `best/paper.pdf`.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dba14149-7687-4706-b576-5e774253a93a",
+  "isSidechain": false,
+  "requestId": "req_011Cb8FWhG8oGwtVhvoBgJZB",
+  "type": "assistant",
+  "uuid": "69ac4ebe-cee9-4514-a290-ab1fd29e212d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260517T133129/best",
+  "sessionId": "3aad36b4-392e-474c-8d55-d831dfdf181b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011VqNXeHfa7Ynnm4aVPY4BU",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 370,
+      "cache_read_input_tokens": 67543,
+      "output_tokens": 259,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 370,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 259,
+          "cache_read_input_tokens": 67543,
+          "cache_creation_input_tokens": 370,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 370
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260517T133129 tier=best 生成一篇完整的模拟论文。  ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-…",
+  "leafUuid": "69ac4ebe-cee9-4514-a290-ab1fd29e212d",
+  "sessionId": "3aad36b4-392e-474c-8d55-d831dfdf181b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generate simulated ML research paper",
+  "sessionId": "3aad36b4-392e-474c-8d55-d831dfdf181b"
+}
+```
+
+---

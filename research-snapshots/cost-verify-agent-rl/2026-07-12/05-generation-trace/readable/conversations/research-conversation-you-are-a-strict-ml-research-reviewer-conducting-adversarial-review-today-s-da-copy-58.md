@@ -1,0 +1,2283 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-10 (UTC).** Your job: indep
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 28
+- **Recorded user turns:** 1
+- **Tool calls:** 4
+- **Original source:** `logs/chats/exported-trajectories/account-2/cb034091-647d-4d5f-b542-2af1be7f10ef.jsonl`
+- **Structured JSON:** [`9d42b33dc590170bcf9a.json`](../../sessions/9d/9d42b33dc590170bcf9a.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-10T18:10:44.233Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-10T18:10:44.233Z",
+  "sessionId": "cb034091-647d-4d5f-b542-2af1be7f10ef",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-10 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: LLM Agents.\n\nDirection: LLM Agents — planning algorithms, memory architectures, tool use, multi-agent coordination, agent training (SFT/RL), self-correction in agentic loops, environment feedback exploitation.\n\nContribution type: METHOD ONLY. Must propose a concrete new algorithm, training procedure, or inference-time mechanism. Reject pure benchmark / dataset / analysis ideas. Method + analysis OK if analysis validates the method.\n\nHARD CONSTRAINTS:\n1. Compute: ≤200 H100-hours total (baselines + method + ablations). Show the math.\n2. Time: ≤16 days. Build on existing OSS agent codebases (AutoGen, LangGraph, OpenManus, etc.) — no from-scratch systems.\n3. Eval: existing benchmarks only — AgentBench, WebArena, SWE-bench Verified, GAIA, ToolBench, ALFWorld, Mind2Web, τ-bench.\n\nAvoid: generic ReAct variants, plain tool retrieval, naive memory summarization. Look for: agent training with minimal RL budget, structured planning beyond flat CoT, multi-agent communication protocols, agent self-verification mechanisms.\n\nTag: direction=agent, contribution_type=method. target_venues=[\"EMNLP 2026 Main\", \"EMNLP 2026 Findings\"].**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-10?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 3/10)\n{\n  \"title\": \"Error-Diagnosis-Conditioned Preference Learning for Agent Self-Correction\",\n  \"core_problem\": \"Agent self-correction training methods — including ETO's trajectory-level DPO, Agent-R's MCTS-guided SFT, and CSO's critical-step DPO — identify WHAT step to correct but not WHAT TYPE of error occurred. They apply a single, undifferentiated recovery mechanism regardless of whether the agent failed due to a planning error, an incorrect action, or a verification oversight. Can conditioning recovery training on the diagnosed error type yield better correction rates than type-agnostic step-level approaches?\",\n  \"opportunity\": \"Four recent threads converge: (1) AgentDebug (Sept 2025) shows that prompting-based type-specific correction improves recovery by 26% on ALFWorld/WebShop/GAIA, proving the type-conditioning hypothesis — but prompting-based recovery hits a ceiling with weaker models. (2) PathFinder-PRM (May 2025) demonstrates that decomposing error detection by type (math vs. consistency) significantly improves process reward models, achieving SOTA on PRMBench with 3x less data — validating error-type decomposition as a powerful inductive bias. (3) Step-level preference optimization (Step-DPO, CSO) shows that focusing DPO on critical steps outperforms trajectory-level approaches, with CSO achieving 37% improvement over SFT by targeting verified critical steps. (4) ETO (ACL 2024) establishes that DPO from failure-success trajectory pairs is effective for agent training on ALFWorld/WebShop, but operates at trajectory-level without error-type awareness. Yet no work combines these: error-type-conditioned, step-level DPO from self-generated corrections. Agent-R identifies first-error steps via MCTS and applies SFT, but without type conditioning or preference learning. CSO applies step-level DPO at verified critical steps, but without diagnosing error types. The Self-Verification Dilemma (Feb 2026) explains WHY type conditioning should help: generic self-checks are confirmatory; error-type conditioning forces the model to address the specific diagnosed failure mode.\",\n  \"landscape\": \"General self-correction: SCoRe (ICLR 2025 Oral) establishes that SFT for self-correction fails due to distribution mismatch and behavior collapse, advocating online RL under the model's own distribution. ETO (ACL 2024) proposes exploration-based trajectory optimization using DPO on failure-success trajectory pairs, evaluated on ALFWorld, WebShop, and ScienceWorld — surpassing SFT, RFT, and PPO with ~9-20% gains. ETO is the most directly comparable DPO-based agent training method, but operates at trajectory level without error-type awareness or step-level targeting. Agent-R (arXiv 2501.11425, ByteDance) identifies first-error steps in failed trajectories via MCTS and trains recovery via iterative SFT on Llama-3.1-8B across WebShop, ScienceWorld, and TextCraft, achieving +5.59% average improvement. Agent-R is the closest step-level correction training approach, differing from ours in: (a) no error-type classification, (b) SFT instead of DPO, (c) MCTS tree search instead of self-generated corrections. CSO (ICLR 2026, arXiv 2602.03412) performs verified critical step optimization — step-level DPO at decision points where alternate actions flip outcomes — achieving 37% relative improvement over SFT on GAIA-Text-103 with supervision at only 16% of trajectory steps. CSO represents current SOTA for step-level DPO in agent training but is not error-type conditioned. AgentDebug (Sept 2025) implements taxonomy-based failure classification via LLM zero-shot prompting followed by type-specific corrective feedback, achieving 26% improvement on ALFWorld/GAIA/WebShop — entirely prompting-based without learned recovery policies. AgentHER (March 2026) applies hindsight experience replay to relabel failed trajectories for alternative goals, producing SFT/DPO training data that improves WebArena performance by +7-11pp — a data augmentation technique orthogonal to type-conditioned recovery. T-STAR (April 2026) introduces tree-structured surgical policy optimization at divergence points but is not error-type conditioned. ErrorProbe (April 2026) advances self-improving error diagnosis with backward tracing and episodic memory, focusing on diagnosis accuracy without training recovery policies. PathFinder-PRM (May 2025) shows error-type-aware PRMs decomposing into math and consistency errors achieve SOTA on PRMBench with 3x less data — validating error-type decomposition as an inductive bias, but only for reasoning tasks. Step-DPO and Full-Step-DPO apply step-level preference optimization at the first erroneous step for mathematical reasoning. AgentPRM provides step-level reward models for agent tasks but without error-type awareness. POSITIONING: ETO/Agent-R/CSO identify WHAT step to correct but not WHAT TYPE of error occurred; AgentDebug diagnoses error types but only uses prompting-based recovery; PathFinder-PRM validates error-type decomposition but only for reasoning PRMs. We fill this gap by combining error-type conditioning with step-level DPO from self-generated corrections, creating learned type-specific recovery policies.\",\n  \"approach\": \"Phase 1 — Trajectory Collection & Error Diagnosis (Days 1-4): Generate ~800 trajectories on ALFWorld and ~400 on WebShop using Qwen3-8B as the base agent. Apply LLM-based zero-shot error classification following AgentDebug's approach: use AgentDebug's taxonomy descriptions as structured prompts to Qwen3-8B (or a stronger model like Qwen3-32B if budget permits) to classify each failure step into 3 types: planning errors (wrong subgoal decomposition or ordering), action errors (wrong action or object reference), and verification errors (failure to check state or premature termination). Use AgentErrorBench's 100 annotated ALFWorld + 50 annotated WebShop failure trajectories as a calibration/validation set to measure classifier accuracy. This LLM-based approach eliminates the trained-MLP data bottleneck — zero-shot LLM classification requires no training data and is what AgentDebug itself uses. Apply the classifier to all failed trajectories to identify the first erroneous step and its error type. Phase 2 — Self-Generated Correction Pairs (Days 5-8): For each classified failure, prompt Qwen3-8B to generate 5 correction continuations from the identified failure step, prepending the error-type diagnosis as structured context (e.g., '[ERROR_TYPE: planning] You decomposed the task incorrectly at step 5. The correct approach requires re-ordering subtasks. Continue from step 5:'). From these self-generated corrections, construct DPO preference pairs: successful correction continuations are 'chosen', failed continuations are 'rejected', with the error-type tag retained in the prefix. This self-generation step directly addresses SCoRe's distribution mismatch critique. Phase 3 — Error-Type-Conditioned DPO Training (Days 8-10): QLoRA-finetune Qwen3-8B with DPO on the constructed preference pairs. The error-type tag in the prefix serves as conditioning — the model implicitly learns that planning errors require backtracking and replanning, action errors need single-step corrections, and verification errors demand state re-checking. We train a single model (not separate per-type policies) since the prefix conditioning already specializes behavior. Phase 4 — Evaluation (Days 10-14): Evaluate on both ALFWorld (134 standard evaluation episodes) and WebShop (200 test tasks) against six baselines: (1) no correction (base Qwen3-8B), (2) generic Reflexion-style retry, (3) AgentDebug-style prompting-based type-specific feedback, (4) ETO-style trajectory-level DPO without error-type conditioning, (5) AgentHER-style relabeling + DPO, (6) flat step-level DPO without error-type conditioning (ablating away the type tag). Measure: task completion rate, recovery success rate per error type, compute overhead per correction, and correction diversity (to verify no behavior collapse). We explicitly frame results as methodological comparison (type-conditioned DPO vs. flat DPO vs. trajectory-level DPO) rather than claiming absolute SOTA, since ALFWorld SOTA (Embodied Planner-R1: 99%/96% seen/unseen) uses RL on larger models — our contribution is demonstrating that error-type conditioning improves DPO-based recovery independent of base model scale. Phase 5 — Ablations & Writing (Days 14-18): Key ablations: (a) error-type conditioning vs. flat conditioning (core hypothesis), (b) number of error types (2 vs. 3 vs. 5), (c) self-generated vs. oracle corrections, (d) DPO vs. SFT to validate SCoRe's critique in this setting, (e) LLM classifier accuracy sensitivity via injecting controlled label noise (10%, 20%, 30%) to quantify robustness to misclassification, (f) cross-benchmark transfer: train on ALFWorld, evaluate on WebShop (and vice versa) to test generalizability of type-conditioned recovery.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~100-150h H100 (trajectory generation ~15h for both benchmarks, correction generation ~20h, DPO training ~12h, evaluation ~25h, ablations ~30h)\",\n      \"gpu_utilization\": \"~30-40% effective utilization; idle time for inspecting error classifications, validating correction quality, and debugging the DPO pipeline\",\n      \"timeline\": \"3-4 weeks\",\n      \"team\": \"1-2 researchers\",\n      \"estimated_gpu_cost\": \"$250-375 at ~$2.50/hr on budget GPU cloud providers\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~150-200h H100\",\n      \"gpu_utilization\": \"~55-70% utilization; agent handles trajectory collection, classification, and training while human reviews error-type assignments and correction quality at checkpoints\",\n      \"timeline\": \"2.5-3.5 weeks\",\n      \"team\": \"1 researcher, ~30min/day reviewing error classifications and correction pair quality\",\n      \"claude_api_cost\": \"$200-400 (~2000-4000 Opus turns for pipeline orchestration and analysis)\",\n      \"estimated_gpu_cost\": \"$375-500 at ~$2.50/hr\",\n      \"risk_note\": \"LLM-based classifier accuracy on out-of-distribution failures; human spot-checks at Day 4 checkpoint are critical; WebShop environment may need different error-type distribution\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~220-300h H100 (2-3x more ablation variants: error type granularity, DPO hyperparameters, correction generation strategies, cross-benchmark transfer)\",\n      \"gpu_utilization\": \"~80-90% utilization; agent runs 24/7 cycling through trajectory collection, classification, DPO training, and evaluation on both benchmarks\",\n      \"timeline\": \"12-18 days with 4 H100s in parallel\",\n      \"team\": \"0 (initial setup ~2hrs)\",\n      \"claude_api_cost\": \"$400-700 (~4000-7000 Opus turns for full pipeline management and paper drafting)\",\n      \"estimated_gpu_cost\": \"$550-750 at ~$2.50/hr\",\n      \"speed_bottleneck\": \"ALFWorld and WebShop evaluation are sequential per episode but parallelizable across episodes and methods; with 4 H100s, trajectory collection + evaluation can be distributed across GPUs while DPO training uses 1 GPU\",\n      \"risk_note\": \"Automated LLM-based error-type classification without human validation may have variable accuracy across benchmarks; mitigated by using AgentErrorBench's expert annotations as calibration set, confidence thresholding, and label noise ablations\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 Findings (ARR submission deadline May 25, 2026)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"Training Language Models to Self-Correct via Reinforcement Learning [SCoRe] (ICLR 2025 Oral)\",\n    \"Trial and Error: Exploration-Based Trajectory Optimization for LLM Agents [ETO] (ACL 2024)\",\n    \"Agent-R: Training Language Model Agents to Reflect via Iterative Self-Training (arXiv 2501.11425, Jan 2025)\",\n    \"Verified Critical Step Optimization for LLM Agents [CSO] (ICLR 2026, arXiv 2602.03412)\",\n    \"Where LLM Agents Fail and How They Can Learn From Failures [AgentDebug + AgentErrorBench] (arXiv 2509.25370)\",\n    \"AgentHER: Hindsight Experience Replay for LLM Agent Trajectory Relabeling (arXiv 2603.21357)\",\n    \"Self-Verification Dilemma: Experience-Driven Suppression of Overused Checking in LLM Reasoning (arXiv 2026)\",\n    \"Error Typing for Smarter Rewards: Improving Process Reward Models with Error-Aware Hierarchical Supervision [PathFinder-PRM] (arXiv 2505.19706, May 2025)\",\n    \"Step-DPO: Step-wise Preference Optimization for Long-chain Reasoning of LLMs (NeurIPS 2025)\",\n    \"Reason in Chains, Learn in Trees: Self-Rectification and Grafting for Multi-turn Agent Policy Optimization [T-STAR] (arXiv 2604.07165)\",\n    \"Towards Self-Improving Error Diagnosis in Multi-Agent Systems [ErrorProbe] (arXiv 2604.17658)\",\n    \"Conditional Multi-Stage Failure Recovery for Embodied Agents [CMFR] (arXiv 2507.06016)\",\n    \"AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress (arXiv 2511.08325)\",\n    \"Why Do Multi-Agent LLM Systems Fail? (NeurIPS 2025)\",\n    \"Large Language Models Cannot Self-Correct Reasoning Yet (ICLR 2024)\",\n    \"Can LLMs Correct Themselves? A Benchmark of Self-Correction in LLMs [CorrectBench] (NeurIPS 2025)\",\n    \"SEEA-R1: Tree-Structured Reinforcement Fine-Tuning for Self-Evolving Embodied Agents (NeurIPS 2025)\",\n    \"Unleashing Embodied Task Planning Ability in LLMs via Reinforcement Learning [Embodied Planner-R1] (arXiv 2506.23127)\"\n  ],\n  \"description\": \"We propose Error-Diagnosis-Conditioned Preference Learning, a method that trains agents to apply different recovery strategies for different failure types. Prior step-level training methods — ETO (trajectory-level DPO), Agent-R (MCTS-guided SFT at first-error steps), and CSO (step-level DPO at verified critical steps) — identify WHAT step to correct but not WHAT TYPE of error occurred. AgentDebug diagnoses error types but only applies prompting-based recovery. We bridge this gap: a single model trained via step-level DPO that receives the diagnosed error type as structured context, learning type-specific recovery strategies end-to-end. We use LLM-based zero-shot error classification (following AgentDebug's own approach) rather than a trained MLP, eliminating the data bottleneck of supervised classifier training. Our approach addresses SCoRe's critique: we use self-generated corrections (avoiding distribution mismatch) and preference learning (avoiding behavior collapse). Inspired by PathFinder-PRM's finding (May 2025) that error-type decomposition improves process reward models, we condition recovery on 3 error categories (planning, action, verification) derived from AgentDebug's taxonomy. On ALFWorld (134 episodes) and WebShop (200 tasks), we generate trajectories with Qwen3-8B, classify failures using LLM zero-shot prompting calibrated against AgentErrorBench annotations, construct self-generated correction pairs at the first erroneous step, and train via error-type-conditioned DPO. We evaluate against six baselines: no correction, Reflexion, AgentDebug prompting, ETO-style trajectory DPO, flat step-level DPO, and AgentHER relabeling+DPO. Key ablations: type conditioning vs. flat (core hypothesis), DPO vs. SFT, error-type granularity, classifier noise sensitivity, and cross-benchmark transfer. We frame results as methodological contribution (does type conditioning improve DPO-based recovery?) rather than absolute SOTA, since ALFWorld SOTA (Embodied Planner-R1: 99%/96%) uses RL on larger models. Total compute: ~100-150 H100-hours. All building blocks (AgentErrorBench annotations, ALFWorld, WebShop, Qwen3-8B) are publicly available. Target venue: EMNLP 2026 Findings (ARR May 25).\",\n  \"project_name\": \"error_diag_dpo_recovery\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"CRITICAL VENUE MISMATCH: User requires EMNLP 2026 (ARR deadline May 25, 2026) but idea targets AAAI 2027 and ICLR 2027. This directly violates the user's hard constraint.\", \"CRITICAL METHODOLOGICAL FLAW: SCoRe (ICLR 2025 Oral) demonstrates that SFT for self-correction suffers from (1) distribution mismatch between training data errors and the model's own errors, and (2) behavior collapse where SFT prefers one correction mode that doesn't generalize. The proposed QLoRA-SFT approach for training recovery policies is directly challenged by these findings.\", \"MISSING KEY COMPETITOR - AgentDebug (Sept 2025): Already implements taxonomy-based failure classification → type-specific corrective feedback → iterative recovery, achieving 26% improvement on ALFWorld. The proposed idea's conceptual pipeline is nearly identical, differing only in using trained policies vs. prompting.\", \"MISSING KEY COMPETITOR - AgentHER (March 2026): Implements failure classification + converts failures into SFT/DPO training data, evaluated on WebArena with +7-11pp improvement. Substantial pipeline overlap with the proposed approach.\", \"TIMELINE VIOLATION: User constraint is ≤16 days. Proposal's own estimates are 3-5 months (manual), 6-10 weeks (HIL), 1-3 weeks (auto). Even the most optimistic auto estimate barely fits. WebArena trajectory collection (2000 runs) alone could take days.\", \"COMPUTE BUDGET UNDERESTIMATE: The '~100 H100-hours for SFT' ignores trajectory collection inference (running Qwen3-8B on 2000+ WebArena tasks), baseline evaluation, and ablation runs. Realistic total is likely 150-250 H100-hours.\", \"RECOVERY PAIR CONSTRUCTION RISK: 'Pairing failure points with successful trajectory continuations from similar tasks' is a major engineering challenge. Finding semantically aligned successful continuations from arbitrary failure states is non-trivial and not validated by any cited work.\"]\nFeedback: This idea has a reasonable core intuition but needs significant revision:\n\n1. **Fix the venue**: Must target EMNLP 2026 ARR May 25 deadline as the user requires. Adjust scope to be achievable in 16 days.\n\n2. **Address SCoRe's critique**: SCoRe (ICLR 2025 Oral) proves SFT for self-correction has fundamental distribution mismatch issues. Either (a) switch to online RL like SCoRe but with type-conditioned rewards, (b) use DPO with failure-type conditioning, or (c) provide a convincing argument for why SFT works here (e.g., recovery is not 'self-correction' but 'trajectory continuation' from an external diagnosis, which may avoid the distribution mismatch).\n\n3. **Differentiate from AgentDebug and AgentHER**: AgentDebug (arxiv 2509.25370) already does taxonomy→type-specific correction via prompting with 26% gains on ALFWorld. AgentHER (arxiv 2603.21357) already does failure classification→SFT training from failures on WebArena with +7-11pp. You MUST cite both and articulate why trained per-type policies + routing beats prompting-based type-specific feedback (AgentDebug) and failure-relabeled SFT (AgentHER).\n\n4. **Scope down for 16-day timeline**: Consider (a) using existing failed trajectory datasets (AgentErrorBench from 'Where LLM Agents Fail' has annotated failures), (b) reducing to 2 failure clusters instead of 3-4, (c) using a single benchmark (ALFWorld is faster than WebArena).\n\n5. **Fix compute math**: Include trajectory collection, evaluation, and baselines in the budget. Show it fits ≤200 H100-hours total.\n\n### Round 2 review\nVerdict: revise\nIssues: [\"MISSING CRITICAL BASELINE — ETO (ACL 2024): 'Trial and Error: Exploration-Based Trajectory Optimization' already performs DPO from failure-success trajectory pairs on ALFWorld. This is the most directly comparable prior work — DPO + ALFWorld + learning from failures — and MUST be cited and included as a baseline. The current 'flat DPO without error-type conditioning' baseline partially overlaps but doesn't reference the established method.\", \"MISSING COMPETITOR — Agent-R (arXiv 2501.11425, ByteDance, Jan 2025): Identifies first error steps in failed trajectories via MCTS and trains recovery via iterative SFT. Differs from proposed approach only in: (a) no error-type classification, (b) SFT instead of DPO, (c) MCTS tree search instead of self-generated corrections. Must be cited and discussed as the closest step-level correction training approach.\", \"MISSING COMPETITOR — CSO (ICLR 2026, arXiv 2602.03412): Verified Critical Step Optimization performs step-level DPO for agents at verified critical steps where alternate actions flip outcomes. Achieves 37% improvement over SFT baseline. Not error-type conditioned but represents current SOTA for step-level DPO in agent training. Must be discussed.\", \"ERROR-TYPE CLASSIFIER FRAGILITY: Training an MLP classifier on only 100 AgentErrorBench seed examples (for 3 error types) is dangerously small. With ~33 examples per class, overfitting is near-certain. If classifier accuracy is low (e.g., <70%), the error-type tags become noise rather than signal, potentially degrading performance below flat DPO. Need concrete mitigation: consider using LLM-based zero-shot classification (as AgentDebug itself does) instead of a trained classifier, or augmenting with synthetic labels.\", \"PATHFINDER-PRM DATE ERROR: Paper claims 'PathFinder-PRM (May 2026)' but arXiv 2505.19706 was published May 2025, not 2026. Minor factual error but undermines credibility.\", \"ALFWorld SOTA CEILING CONCERN: SEEA-R1 achieves 85% (NeurIPS 2025), MACLA 90%, prompting-based approaches 90%+. With Qwen3-8B as base, the absolute performance will be far below these, making the comparison less meaningful. The paper should explicitly acknowledge that the contribution is about the training methodology (type-conditioned DPO > flat DPO) rather than pushing SOTA.\", \"SINGLE BENCHMARK LIMITS GENERALIZABILITY: ALFWorld-only evaluation is insufficient for an EMNLP Main paper in the agents track. The 'optional WebShop extension' should be treated as mandatory — two benchmarks minimum to demonstrate the method generalizes beyond one environment.\"]\nFeedback: The idea has matured well from Round 1 — the SCoRe distribution-mismatch critique is properly addressed, the scope is realistic, and the ablation design is strong. Three critical revisions needed:\n\n1. **Add missing baselines/competitors**: You must cite and compare against (a) ETO (ACL 2024) — the established DPO-on-ALFWorld method, (b) Agent-R (arXiv 2501.11425) — the closest step-level correction training approach, and (c) CSO (ICLR 2026) — current SOTA for step-level DPO in agents. Position your work as: 'ETO/Agent-R/CSO identify WHAT to correct but not WHAT TYPE of error occurred; we show that error-type conditioning improves recovery.' Add ETO as a 6th baseline.\n\n2. **Fix the classifier**: 100 seed examples is too few for a trained MLP. Switch to LLM-based zero-shot error classification using AgentDebug's taxonomy descriptions as prompts (which is what AgentDebug itself does). This is more robust, eliminates the training data bottleneck, and is actually simpler to implement. You can still ablate classifier accuracy by injecting label noise.\n\n3. **Make WebShop mandatory, not optional**: Two benchmarks are the minimum for an EMNLP paper claiming a general method. WebShop episodes are fast and AgentDebug already has 50 annotated WebShop failure trajectories. This costs ~15-20 extra H100-hours, well within budget. Target the paper honestly at EMNLP Findings rather than Main — the contribution is solid but incremental for Main.\n\nMinor: fix the PathFinder-PRM date (May 2025, not 2026).\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-10T18:10:44.238Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-10T18:10:44.238Z",
+  "sessionId": "cb034091-647d-4d5f-b542-2af1be7f10ef"
+}
+```
+
+---
+
+## Round 1
+
+26 recorded events
+
+### User
+
+_source line 3 · 2026-05-10T18:10:44.268Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-10 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: LLM Agents.
+
+Direction: LLM Agents — planning algorithms, memory architectures, tool use, multi-agent coordination, agent training (SFT/RL), self-correction in agentic loops, environment feedback exploitation.
+
+Contribution type: METHOD ONLY. Must propose a concrete new algorithm, training procedure, or inference-time mechanism. Reject pure benchmark / dataset / analysis ideas. Method + analysis OK if analysis validates the method.
+
+HARD CONSTRAINTS:
+1. Compute: ≤200 H100-hours total (baselines + method + ablations). Show the math.
+2. Time: ≤16 days. Build on existing OSS agent codebases (AutoGen, LangGraph, OpenManus, etc.) — no from-scratch systems.
+3. Eval: existing benchmarks only — AgentBench, WebArena, SWE-bench Verified, GAIA, ToolBench, ALFWorld, Mind2Web, τ-bench.
+
+Avoid: generic ReAct variants, plain tool retrieval, naive memory summarization. Look for: agent training with minimal RL budget, structured planning beyond flat CoT, multi-agent communication protocols, agent self-verification mechanisms.
+
+Tag: direction=agent, contribution_type=method. target_venues=["EMNLP 2026 Main", "EMNLP 2026 Findings"].**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-10?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 3/10)
+{
+  "title": "Error-Diagnosis-Conditioned Preference Learning for Agent Self-Correction",
+  "core_problem": "Agent self-correction training methods — including ETO's trajectory-level DPO, Agent-R's MCTS-guided SFT, and CSO's critical-step DPO — identify WHAT step to correct but not WHAT TYPE of error occurred. They apply a single, undifferentiated recovery mechanism regardless of whether the agent failed due to a planning error, an incorrect action, or a verification oversight. Can conditioning recovery training on the diagnosed error type yield better correction rates than type-agnostic step-level approaches?",
+  "opportunity": "Four recent threads converge: (1) AgentDebug (Sept 2025) shows that prompting-based type-specific correction improves recovery by 26% on ALFWorld/WebShop/GAIA, proving the type-conditioning hypothesis — but prompting-based recovery hits a ceiling with weaker models. (2) PathFinder-PRM (May 2025) demonstrates that decomposing error detection by type (math vs. consistency) significantly improves process reward models, achieving SOTA on PRMBench with 3x less data — validating error-type decomposition as a powerful inductive bias. (3) Step-level preference optimization (Step-DPO, CSO) shows that focusing DPO on critical steps outperforms trajectory-level approaches, with CSO achieving 37% improvement over SFT by targeting verified critical steps. (4) ETO (ACL 2024) establishes that DPO from failure-success trajectory pairs is effective for agent training on ALFWorld/WebShop, but operates at trajectory-level without error-type awareness. Yet no work combines these: error-type-conditioned, step-level DPO from self-generated corrections. Agent-R identifies first-error steps via MCTS and applies SFT, but without type conditioning or preference learning. CSO applies step-level DPO at verified critical steps, but without diagnosing error types. The Self-Verification Dilemma (Feb 2026) explains WHY type conditioning should help: generic self-checks are confirmatory; error-type conditioning forces the model to address the specific diagnosed failure mode.",
+  "landscape": "General self-correction: SCoRe (ICLR 2025 Oral) establishes that SFT for self-correction fails due to distribution mismatch and behavior collapse, advocating online RL under the model's own distribution. ETO (ACL 2024) proposes exploration-based trajectory optimization using DPO on failure-success trajectory pairs, evaluated on ALFWorld, WebShop, and ScienceWorld — surpassing SFT, RFT, and PPO with ~9-20% gains. ETO is the most directly comparable DPO-based agent training method, but operates at trajectory level without error-type awareness or step-level targeting. Agent-R (arXiv 2501.11425, ByteDance) identifies first-error steps in failed trajectories via MCTS and trains recovery via iterative SFT on Llama-3.1-8B across WebShop, ScienceWorld, and TextCraft, achieving +5.59% average improvement. Agent-R is the closest step-level correction training approach, differing from ours in: (a) no error-type classification, (b) SFT instead of DPO, (c) MCTS tree search instead of self-generated corrections. CSO (ICLR 2026, arXiv 2602.03412) performs verified critical step optimization — step-level DPO at decision points where alternate actions flip outcomes — achieving 37% relative improvement over SFT on GAIA-Text-103 with supervision at only 16% of trajectory steps. CSO represents current SOTA for step-level DPO in agent training but is not error-type conditioned. AgentDebug (Sept 2025) implements taxonomy-based failure classification via LLM zero-shot prompting followed by type-specific corrective feedback, achieving 26% improvement on ALFWorld/GAIA/WebShop — entirely prompting-based without learned recovery policies. AgentHER (March 2026) applies hindsight experience replay to relabel failed trajectories for alternative goals, producing SFT/DPO training data that improves WebArena performance by +7-11pp — a data augmentation technique orthogonal to type-conditioned recovery. T-STAR (April 2026) introduces tree-structured surgical policy optimization at divergence points but is not error-type conditioned. ErrorProbe (April 2026) advances self-improving error diagnosis with backward tracing and episodic memory, focusing on diagnosis accuracy without training recovery policies. PathFinder-PRM (May 2025) shows error-type-aware PRMs decomposing into math and consistency errors achieve SOTA on PRMBench with 3x less data — validating error-type decomposition as an inductive bias, but only for reasoning tasks. Step-DPO and Full-Step-DPO apply step-level preference optimization at the first erroneous step for mathematical reasoning. AgentPRM provides step-level reward models for agent tasks but without error-type awareness. POSITIONING: ETO/Agent-R/CSO identify WHAT step to correct but not WHAT TYPE of error occurred; AgentDebug diagnoses error types but only uses prompting-based recovery; PathFinder-PRM validates error-type decomposition but only for reasoning PRMs. We fill this gap by combining error-type conditioning with step-level DPO from self-generated corrections, creating learned type-specific recovery policies.",
+  "approach": "Phase 1 — Trajectory Collection & Error Diagnosis (Days 1-4): Generate ~800 trajectories on ALFWorld and ~400 on WebShop using Qwen3-8B as the base agent. Apply LLM-based zero-shot error classification following AgentDebug's approach: use AgentDebug's taxonomy descriptions as structured prompts to Qwen3-8B (or a stronger model like Qwen3-32B if budget permits) to classify each failure step into 3 types: planning errors (wrong subgoal decomposition or ordering), action errors (wrong action or object reference), and verification errors (failure to check state or premature termination). Use AgentErrorBench's 100 annotated ALFWorld + 50 annotated WebShop failure trajectories as a calibration/validation set to measure classifier accuracy. This LLM-based approach eliminates the trained-MLP data bottleneck — zero-shot LLM classification requires no training data and is what AgentDebug itself uses. Apply the classifier to all failed trajectories to identify the first erroneous step and its error type. Phase 2 — Self-Generated Correction Pairs (Days 5-8): For each classified failure, prompt Qwen3-8B to generate 5 correction continuations from the identified failure step, prepending the error-type diagnosis as structured context (e.g., '[ERROR_TYPE: planning] You decomposed the task incorrectly at step 5. The correct approach requires re-ordering subtasks. Continue from step 5:'). From these self-generated corrections, construct DPO preference pairs: successful correction continuations are 'chosen', failed continuations are 'rejected', with the error-type tag retained in the prefix. This self-generation step directly addresses SCoRe's distribution mismatch critique. Phase 3 — Error-Type-Conditioned DPO Training (Days 8-10): QLoRA-finetune Qwen3-8B with DPO on the constructed preference pairs. The error-type tag in the prefix serves as conditioning — the model implicitly learns that planning errors require backtracking and replanning, action errors need single-step corrections, and verification errors demand state re-checking. We train a single model (not separate per-type policies) since the prefix conditioning already specializes behavior. Phase 4 — Evaluation (Days 10-14): Evaluate on both ALFWorld (134 standard evaluation episodes) and WebShop (200 test tasks) against six baselines: (1) no correction (base Qwen3-8B), (2) generic Reflexion-style retry, (3) AgentDebug-style prompting-based type-specific feedback, (4) ETO-style trajectory-level DPO without error-type conditioning, (5) AgentHER-style relabeling + DPO, (6) flat step-level DPO without error-type conditioning (ablating away the type tag). Measure: task completion rate, recovery success rate per error type, compute overhead per correction, and correction diversity (to verify no behavior collapse). We explicitly frame results as methodological comparison (type-conditioned DPO vs. flat DPO vs. trajectory-level DPO) rather than claiming absolute SOTA, since ALFWorld SOTA (Embodied Planner-R1: 99%/96% seen/unseen) uses RL on larger models — our contribution is demonstrating that error-type conditioning improves DPO-based recovery independent of base model scale. Phase 5 — Ablations & Writing (Days 14-18): Key ablations: (a) error-type conditioning vs. flat conditioning (core hypothesis), (b) number of error types (2 vs. 3 vs. 5), (c) self-generated vs. oracle corrections, (d) DPO vs. SFT to validate SCoRe's critique in this setting, (e) LLM classifier accuracy sensitivity via injecting controlled label noise (10%, 20%, 30%) to quantify robustness to misclassification, (f) cross-benchmark transfer: train on ALFWorld, evaluate on WebShop (and vice versa) to test generalizability of type-conditioned recovery.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~100-150h H100 (trajectory generation ~15h for both benchmarks, correction generation ~20h, DPO training ~12h, evaluation ~25h, ablations ~30h)",
+      "gpu_utilization": "~30-40% effective utilization; idle time for inspecting error classifications, validating correction quality, and debugging the DPO pipeline",
+      "timeline": "3-4 weeks",
+      "team": "1-2 researchers",
+      "estimated_gpu_cost": "$250-375 at ~$2.50/hr on budget GPU cloud providers"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~150-200h H100",
+      "gpu_utilization": "~55-70% utilization; agent handles trajectory collection, classification, and training while human reviews error-type assignments and correction quality at checkpoints",
+      "timeline": "2.5-3.5 weeks",
+      "team": "1 researcher, ~30min/day reviewing error classifications and correction pair quality",
+      "claude_api_cost": "$200-400 (~2000-4000 Opus turns for pipeline orchestration and analysis)",
+      "estimated_gpu_cost": "$375-500 at ~$2.50/hr",
+      "risk_note": "LLM-based classifier accuracy on out-of-distribution failures; human spot-checks at Day 4 checkpoint are critical; WebShop environment may need different error-type distribution"
+    },
+    "auto_research": {
+      "gpu_hours": "~220-300h H100 (2-3x more ablation variants: error type granularity, DPO hyperparameters, correction generation strategies, cross-benchmark transfer)",
+      "gpu_utilization": "~80-90% utilization; agent runs 24/7 cycling through trajectory collection, classification, DPO training, and evaluation on both benchmarks",
+      "timeline": "12-18 days with 4 H100s in parallel",
+      "team": "0 (initial setup ~2hrs)",
+      "claude_api_cost": "$400-700 (~4000-7000 Opus turns for full pipeline management and paper drafting)",
+      "estimated_gpu_cost": "$550-750 at ~$2.50/hr",
+      "speed_bottleneck": "ALFWorld and WebShop evaluation are sequential per episode but parallelizable across episodes and methods; with 4 H100s, trajectory collection + evaluation can be distributed across GPUs while DPO training uses 1 GPU",
+      "risk_note": "Automated LLM-based error-type classification without human validation may have variable accuracy across benchmarks; mitigated by using AgentErrorBench's expert annotations as calibration set, confidence thresholding, and label noise ablations"
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 Findings (ARR submission deadline May 25, 2026)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "Training Language Models to Self-Correct via Reinforcement Learning [SCoRe] (ICLR 2025 Oral)",
+    "Trial and Error: Exploration-Based Trajectory Optimization for LLM Agents [ETO] (ACL 2024)",
+    "Agent-R: Training Language Model Agents to Reflect via Iterative Self-Training (arXiv 2501.11425, Jan 2025)",
+    "Verified Critical Step Optimization for LLM Agents [CSO] (ICLR 2026, arXiv 2602.03412)",
+    "Where LLM Agents Fail and How They Can Learn From Failures [AgentDebug + AgentErrorBench] (arXiv 2509.25370)",
+    "AgentHER: Hindsight Experience Replay for LLM Agent Trajectory Relabeling (arXiv 2603.21357)",
+    "Self-Verification Dilemma: Experience-Driven Suppression of Overused Checking in LLM Reasoning (arXiv 2026)",
+    "Error Typing for Smarter Rewards: Improving Process Reward Models with Error-Aware Hierarchical Supervision [PathFinder-PRM] (arXiv 2505.19706, May 2025)",
+    "Step-DPO: Step-wise Preference Optimization for Long-chain Reasoning of LLMs (NeurIPS 2025)",
+    "Reason in Chains, Learn in Trees: Self-Rectification and Grafting for Multi-turn Agent Policy Optimization [T-STAR] (arXiv 2604.07165)",
+    "Towards Self-Improving Error Diagnosis in Multi-Agent Systems [ErrorProbe] (arXiv 2604.17658)",
+    "Conditional Multi-Stage Failure Recovery for Embodied Agents [CMFR] (arXiv 2507.06016)",
+    "AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress (arXiv 2511.08325)",
+    "Why Do Multi-Agent LLM Systems Fail? (NeurIPS 2025)",
+    "Large Language Models Cannot Self-Correct Reasoning Yet (ICLR 2024)",
+    "Can LLMs Correct Themselves? A Benchmark of Self-Correction in LLMs [CorrectBench] (NeurIPS 2025)",
+    "SEEA-R1: Tree-Structured Reinforcement Fine-Tuning for Self-Evolving Embodied Agents (NeurIPS 2025)",
+    "Unleashing Embodied Task Planning Ability in LLMs via Reinforcement Learning [Embodied Planner-R1] (arXiv 2506.23127)"
+  ],
+  "description": "We propose Error-Diagnosis-Conditioned Preference Learning, a method that trains agents to apply different recovery strategies for different failure types. Prior step-level training methods — ETO (trajectory-level DPO), Agent-R (MCTS-guided SFT at first-error steps), and CSO (step-level DPO at verified critical steps) — identify WHAT step to correct but not WHAT TYPE of error occurred. AgentDebug diagnoses error types but only applies prompting-based recovery. We bridge this gap: a single model trained via step-level DPO that receives the diagnosed error type as structured context, learning type-specific recovery strategies end-to-end. We use LLM-based zero-shot error classification (following AgentDebug's own approach) rather than a trained MLP, eliminating the data bottleneck of supervised classifier training. Our approach addresses SCoRe's critique: we use self-generated corrections (avoiding distribution mismatch) and preference learning (avoiding behavior collapse). Inspired by PathFinder-PRM's finding (May 2025) that error-type decomposition improves process reward models, we condition recovery on 3 error categories (planning, action, verification) derived from AgentDebug's taxonomy. On ALFWorld (134 episodes) and WebShop (200 tasks), we generate trajectories with Qwen3-8B, classify failures using LLM zero-shot prompting calibrated against AgentErrorBench annotations, construct self-generated correction pairs at the first erroneous step, and train via error-type-conditioned DPO. We evaluate against six baselines: no correction, Reflexion, AgentDebug prompting, ETO-style trajectory DPO, flat step-level DPO, and AgentHER relabeling+DPO. Key ablations: type conditioning vs. flat (core hypothesis), DPO vs. SFT, error-type granularity, classifier noise sensitivity, and cross-benchmark transfer. We frame results as methodological contribution (does type conditioning improve DPO-based recovery?) rather than absolute SOTA, since ALFWorld SOTA (Embodied Planner-R1: 99%/96%) uses RL on larger models. Total compute: ~100-150 H100-hours. All building blocks (AgentErrorBench annotations, ALFWorld, WebShop, Qwen3-8B) are publicly available. Target venue: EMNLP 2026 Findings (ARR May 25).",
+  "project_name": "error_diag_dpo_recovery",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["CRITICAL VENUE MISMATCH: User requires EMNLP 2026 (ARR deadline May 25, 2026) but idea targets AAAI 2027 and ICLR 2027. This directly violates the user's hard constraint.", "CRITICAL METHODOLOGICAL FLAW: SCoRe (ICLR 2025 Oral) demonstrates that SFT for self-correction suffers from (1) distribution mismatch between training data errors and the model's own errors, and (2) behavior collapse where SFT prefers one correction mode that doesn't generalize. The proposed QLoRA-SFT approach for training recovery policies is directly challenged by these findings.", "MISSING KEY COMPETITOR - AgentDebug (Sept 2025): Already implements taxonomy-based failure classification → type-specific corrective feedback → iterative recovery, achieving 26% improvement on ALFWorld. The proposed idea's conceptual pipeline is nearly identical, differing only in using trained policies vs. prompting.", "MISSING KEY COMPETITOR - AgentHER (March 2026): Implements failure classification + converts failures into SFT/DPO training data, evaluated on WebArena with +7-11pp improvement. Substantial pipeline overlap with the proposed approach.", "TIMELINE VIOLATION: User constraint is ≤16 days. Proposal's own estimates are 3-5 months (manual), 6-10 weeks (HIL), 1-3 weeks (auto). Even the most optimistic auto estimate barely fits. WebArena trajectory collection (2000 runs) alone could take days.", "COMPUTE BUDGET UNDERESTIMATE: The '~100 H100-hours for SFT' ignores trajectory collection inference (running Qwen3-8B on 2000+ WebArena tasks), baseline evaluation, and ablation runs. Realistic total is likely 150-250 H100-hours.", "RECOVERY PAIR CONSTRUCTION RISK: 'Pairing failure points with successful trajectory continuations from similar tasks' is a major engineering challenge. Finding semantically aligned successful continuations from arbitrary failure states is non-trivial and not validated by any cited work."]
+Feedback: This idea has a reasonable core intuition but needs significant revision:
+
+1. **Fix the venue**: Must target EMNLP 2026 ARR May 25 deadline as the user requires. Adjust scope to be achievable in 16 days.
+
+2. **Address SCoRe's critique**: SCoRe (ICLR 2025 Oral) proves SFT for self-correction has fundamental distribution mismatch issues. Either (a) switch to online RL like SCoRe but with type-conditioned rewards, (b) use DPO with failure-type conditioning, or (c) provide a convincing argument for why SFT works here (e.g., recovery is not 'self-correction' but 'trajectory continuation' from an external diagnosis, which may avoid the distribution mismatch).
+
+3. **Differentiate from AgentDebug and AgentHER**: AgentDebug (arxiv 2509.25370) already does taxonomy→type-specific correction via prompting with 26% gains on ALFWorld. AgentHER (arxiv 2603.21357) already does failure classification→SFT training from failures on WebArena with +7-11pp. You MUST cite both and articulate why trained per-type policies + routing beats prompting-based type-specific feedback (AgentDebug) and failure-relabeled SFT (AgentHER).
+
+4. **Scope down for 16-day timeline**: Consider (a) using existing failed trajectory datasets (AgentErrorBench from 'Where LLM Agents Fail' has annotated failures), (b) reducing to 2 failure clusters instead of 3-4, (c) using a single benchmark (ALFWorld is faster than WebArena).
+
+5. **Fix compute math**: Include trajectory collection, evaluation, and baselines in the budget. Show it fits ≤200 H100-hours total.
+
+### Round 2 review
+Verdict: revise
+Issues: ["MISSING CRITICAL BASELINE — ETO (ACL 2024): 'Trial and Error: Exploration-Based Trajectory Optimization' already performs DPO from failure-success trajectory pairs on ALFWorld. This is the most directly comparable prior work — DPO + ALFWorld + learning from failures — and MUST be cited and included as a baseline. The current 'flat DPO without error-type conditioning' baseline partially overlaps but doesn't reference the established method.", "MISSING COMPETITOR — Agent-R (arXiv 2501.11425, ByteDance, Jan 2025): Identifies first error steps in failed trajectories via MCTS and trains recovery via iterative SFT. Differs from proposed approach only in: (a) no error-type classification, (b) SFT instead of DPO, (c) MCTS tree search instead of self-generated corrections. Must be cited and discussed as the closest step-level correction training approach.", "MISSING COMPETITOR — CSO (ICLR 2026, arXiv 2602.03412): Verified Critical Step Optimization performs step-level DPO for agents at verified critical steps where alternate actions flip outcomes. Achieves 37% improvement over SFT baseline. Not error-type conditioned but represents current SOTA for step-level DPO in agent training. Must be discussed.", "ERROR-TYPE CLASSIFIER FRAGILITY: Training an MLP classifier on only 100 AgentErrorBench seed examples (for 3 error types) is dangerously small. With ~33 examples per class, overfitting is near-certain. If classifier accuracy is low (e.g., <70%), the error-type tags become noise rather than signal, potentially degrading performance below flat DPO. Need concrete mitigation: consider using LLM-based zero-shot classification (as AgentDebug itself does) instead of a trained classifier, or augmenting with synthetic labels.", "PATHFINDER-PRM DATE ERROR: Paper claims 'PathFinder-PRM (May 2026)' but arXiv 2505.19706 was published May 2025, not 2026. Minor factual error but undermines credibility.", "ALFWorld SOTA CEILING CONCERN: SEEA-R1 achieves 85% (NeurIPS 2025), MACLA 90%, prompting-based approaches 90%+. With Qwen3-8B as base, the absolute performance will be far below these, making the comparison less meaningful. The paper should explicitly acknowledge that the contribution is about the training methodology (type-conditioned DPO > flat DPO) rather than pushing SOTA.", "SINGLE BENCHMARK LIMITS GENERALIZABILITY: ALFWorld-only evaluation is insufficient for an EMNLP Main paper in the agents track. The 'optional WebShop extension' should be treated as mandatory — two benchmarks minimum to demonstrate the method generalizes beyond one environment."]
+Feedback: The idea has matured well from Round 1 — the SCoRe distribution-mismatch critique is properly addressed, the scope is realistic, and the ablation design is strong. Three critical revisions needed:
+
+1. **Add missing baselines/competitors**: You must cite and compare against (a) ETO (ACL 2024) — the established DPO-on-ALFWorld method, (b) Agent-R (arXiv 2501.11425) — the closest step-level correction training approach, and (c) CSO (ICLR 2026) — current SOTA for step-level DPO in agents. Position your work as: 'ETO/Agent-R/CSO identify WHAT to correct but not WHAT TYPE of error occurred; we show that error-type conditioning improves recovery.' Add ETO as a 6th baseline.
+
+2. **Fix the classifier**: 100 seed examples is too few for a trained MLP. Switch to LLM-based zero-shot error classification using AgentDebug's taxonomy descriptions as prompts (which is what AgentDebug itself does). This is more robust, eliminates the training data bottleneck, and is actually simpler to implement. You can still ablate classifier accuracy by injecting label noise.
+
+3. **Make WebShop mandatory, not optional**: Two benchmarks are the minimum for an EMNLP paper claiming a general method. WebShop episodes are fast and AgentDebug already has 50 annotated WebShop failure trajectories. This costs ~15-20 extra H100-hours, well within budget. Target the paper honestly at EMNLP Findings rather than Main — the contribution is solid but incremental for Main.
+
+Minor: fix the PathFinder-PRM date (May 2025, not 2026).
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "04f5c40c-439c-4466-a3de-f150656695ef",
+  "type": "user",
+  "uuid": "a84fc11e-fab1-43a0-9703-c21e23544efc",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cb034091-647d-4d5f-b542-2af1be7f10ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-10T18:10:44.265Z_
+
+```json
+{
+  "parentUuid": "a84fc11e-fab1-43a0-9703-c21e23544efc",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "71069e58-4ca1-46dd-b9fb-96bc4b34befb",
+  "timestamp": "2026-05-10T18:10:44.265Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cb034091-647d-4d5f-b542-2af1be7f10ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-10T18:10:44.265Z_
+
+```json
+{
+  "parentUuid": "71069e58-4ca1-46dd-b9fb-96bc4b34befb",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "34b2055e-47f3-4b86-a11b-b745fc610f99",
+  "timestamp": "2026-05-10T18:10:44.265Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cb034091-647d-4d5f-b542-2af1be7f10ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "34b2055e-47f3-4b86-a11b-b745fc610f99",
+  "sessionId": "cb034091-647d-4d5f-b542-2af1be7f10ef"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review agent error-diagnosis-conditioned DPO for agents",
+  "sessionId": "cb034091-647d-4d5f-b542-2af1be7f10ef"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-10T18:10:50.922Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully review this idea as a strict ML research reviewer. I need to independently verify the claims, check for competing work, assess feasibility, and provide an honest evaluation. Let me start by searching for the key papers and claims.
+
+Let me plan my review:
+
+1. Verify key cited papers exist and claims are accurate (ETO, Agent-R, CSO, AgentDebug, SCoRe, PathFinder-PRM)
+2. Search for competing/concurrent work the generator may have missed
+3. Verify feasibility claims (compute, timeline, data availability)
+4. Assess novelty given the landscape
+
+
+5. Check venue deadlines
+
+Let me start searching.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "34b2055e-47f3-4b86-a11b-b745fc610f99",
+  "isSidechain": false,
+  "requestId": "req_011CauLaTZWsTJD85Qv7AdcE",
+  "type": "assistant",
+  "uuid": "41034483-f57f-42da-8e8b-97146b32f8cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cb034091-647d-4d5f-b542-2af1be7f10ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qw9M4KBRBRWKD87AchZsZZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15458,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 1672,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15458,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1672,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 15458,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15458
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-10T18:10:51.008Z_
+
+I'll conduct a thorough independent review of this idea. Let me start by verifying the key claims, searching for competing work, and checking feasibility.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "41034483-f57f-42da-8e8b-97146b32f8cc",
+  "isSidechain": false,
+  "requestId": "req_011CauLaTZWsTJD85Qv7AdcE",
+  "type": "assistant",
+  "uuid": "ac5e482c-0633-42b9-bc29-68b4d08b3367",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cb034091-647d-4d5f-b542-2af1be7f10ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qw9M4KBRBRWKD87AchZsZZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15458,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 1672,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15458,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1672,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 15458,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15458
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-10T18:11:05.329Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01REXb6b23U8CVjR4BMZr9QM`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Verify key references exist",
+  "prompt": "You are helping verify that cited papers in a research proposal actually exist and their claims are accurate. Use WebSearch and WebFetch to verify the following papers. For each, confirm: (1) the paper exists, (2) the venue/date is correct, (3) the key claims attributed to it are accurate.\n\nPapers to verify:\n1. \"Trial and Error: Exploration-Based Trajectory Optimization for LLM Agents\" [ETO] — claimed ACL 2024, DPO on failure-success trajectory pairs on ALFWorld/WebShop/ScienceWorld\n2. \"Agent-R: Training Language Model Agents to Reflect via Iterative Self-Training\" — claimed arXiv 2501.11425, Jan 2025, ByteDance, MCTS-guided SFT at first-error steps\n3. \"Verified Critical Step Optimization for LLM Agents\" [CSO] — claimed ICLR 2026, arXiv 2602.03412, step-level DPO at verified critical steps, 37% improvement over SFT\n4. \"Where LLM Agents Fail and How They Can Learn From Failures\" [AgentDebug + AgentErrorBench] — claimed arXiv 2509.25370, Sept 2025, taxonomy-based failure classification, 26% improvement on ALFWorld/GAIA/WebShop\n5. \"Training Language Models to Self-Correct via Reinforcement Learning\" [SCoRe] — claimed ICLR 2025 Oral\n6. \"Error Typing for Smarter Rewards\" [PathFinder-PRM] — claimed arXiv 2505.19706, May 2025\n7. \"AgentHER: Hindsight Experience Replay for LLM Agent Trajectory Relabeling\" — claimed arXiv 2603.21357, March 2026\n8. \"Reason in Chains, Learn in Trees\" [T-STAR] — claimed arXiv 2604.07165, April 2026\n9. \"Towards Self-Improving Error Diagnosis in Multi-Agent Systems\" [ErrorProbe] — claimed arXiv 2604.17658, April 2026\n\nFor each paper, search for it and report what you find. Be thorough — check both the title and arXiv ID if provided."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ac5e482c-0633-42b9-bc29-68b4d08b3367",
+  "isSidechain": false,
+  "requestId": "req_011CauLaTZWsTJD85Qv7AdcE",
+  "type": "assistant",
+  "uuid": "4d4ca7e6-c5ee-42f9-9d11-40c1d04c5983",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cb034091-647d-4d5f-b542-2af1be7f10ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qw9M4KBRBRWKD87AchZsZZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15458,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 1672,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15458,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1672,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 15458,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15458
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-10T18:11:14.051Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01361g5bY46V3vJw8x5zZgGN`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Search for competing work",
+  "prompt": "You are helping review a research proposal about \"Error-Diagnosis-Conditioned Preference Learning for Agent Self-Correction.\" The core idea is: when training agents to self-correct via DPO, condition the recovery on the diagnosed error type (planning error, action error, verification error) rather than applying type-agnostic correction.\n\nSearch for competing or highly related work that the proposal may have missed. Use WebSearch extensively with multiple keyword variations. Focus on:\n\n1. Search for \"error type conditioned agent training 2025 2026 site:arxiv.org\"\n2. Search for \"failure type aware DPO agent 2025 2026\"\n3. Search for \"error classification agent self-correction training\"\n4. Search for \"type-specific recovery policy agent\"\n5. Search for \"conditional failure recovery agent 2025 2026\"\n6. Search for \"step-level DPO agent training 2025 2026\"\n7. Search for \"agent self-correction DPO preference learning 2025 2026\"\n8. Search for \"error-aware agent training reinforcement learning\"\n9. Search for recent ICLR 2026, ACL 2026, NAACL 2026 accepted papers on agent self-correction\n10. Search for \"CMFR conditional multi-stage failure recovery\" — this is cited in the references as arXiv 2507.06016\n\nFor any highly relevant paper you find, fetch the abstract and key details. Report all findings."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4d4ca7e6-c5ee-42f9-9d11-40c1d04c5983",
+  "isSidechain": false,
+  "requestId": "req_011CauLaTZWsTJD85Qv7AdcE",
+  "type": "assistant",
+  "uuid": "d346dc49-32d4-4823-9d78-20a6f5ec7ef5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cb034091-647d-4d5f-b542-2af1be7f10ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qw9M4KBRBRWKD87AchZsZZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15458,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 1672,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15458,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1672,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 15458,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15458
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-10T18:11:21.043Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01CKus1WR7WHHPMEZbW6dBb4`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Verify ALFWorld/WebShop SOTA and feasibility",
+  "prompt": "You are helping review a research proposal. Search for the following:\n\n1. Current SOTA on ALFWorld benchmark as of May 2026. Search for \"ALFWorld SOTA 2025 2026\", \"ALFWorld benchmark results\", \"site:paperswithcode.com ALFWorld\". The proposal claims Embodied Planner-R1 achieves 99%/96% seen/unseen — verify this.\n\n2. Current SOTA on WebShop benchmark as of May 2026. Search for \"WebShop benchmark SOTA 2025 2026\", \"site:paperswithcode.com WebShop\".\n\n3. Verify that Qwen3-8B exists and is publicly available. Search for \"Qwen3-8B model release\" and \"site:huggingface.co Qwen3\".\n\n4. Verify that AgentErrorBench annotations (100 ALFWorld + 50 WebShop failure trajectories) are publicly available. Search for \"AgentErrorBench dataset\" and check if the data is released.\n\n5. Check ARR (ACL Rolling Review) submission deadline for EMNLP 2026. Search for \"ARR submission deadline May 2026 EMNLP 2026\".\n\n6. Search for \"SEEA-R1 ALFWorld\" to verify the claimed 85% result on ALFWorld.\n\nReport all findings with sources."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d346dc49-32d4-4823-9d78-20a6f5ec7ef5",
+  "isSidechain": false,
+  "requestId": "req_011CauLaTZWsTJD85Qv7AdcE",
+  "type": "assistant",
+  "uuid": "19a17103-088a-4d73-a484-e2ad6b493596",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cb034091-647d-4d5f-b542-2af1be7f10ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qw9M4KBRBRWKD87AchZsZZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15458,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 1672,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15458,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1672,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 15458,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15458
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-10T18:13:41.846Z_
+
+<details><summary>↩ Tool result · `toolu_01REXb6b23U8CVjR4BMZr9QM`</summary>
+
+```text
+Now I have all the information needed to compile a comprehensive verification report. Here is my findings:
+
+---
+
+## Paper Verification Report
+
+### Paper 1: "Trial and Error: Exploration-Based Trajectory Optimization for LLM Agents" [ETO]
+
+**VERDICT: VERIFIED (with minor title discrepancy)**
+
+- **Exists:** Yes. arXiv [2403.02502](https://arxiv.org/abs/2403.02502), ACL Anthology entry at [2024.acl-long.409](https://aclanthology.org/2024.acl-long.409/).
+- **Venue/Date:** Confirmed ACL 2024 Main Conference. The official title in the ACL Anthology uses "Optimization **of**" rather than "Optimization **for**" -- minor preposition difference ("Trial and Error: Exploration-Based Trajectory Optimization **of** LLM Agents").
+- **Key claims accuracy:** Confirmed. Uses DPO on failure-success contrastive trajectory pairs. Evaluates on ALFWorld, WebShop, and ScienceWorld -- all three benchmarks confirmed via the GitHub repo.
+- **Authors:** Yifan Song, Da Yin, Xiang Yue, Jie Huang, Sujian Li, Bill Yuchen Lin.
+
+---
+
+### Paper 2: "Agent-R: Training Language Model Agents to Reflect via Iterative Self-Training"
+
+**VERDICT: VERIFIED**
+
+- **Exists:** Yes. arXiv [2501.11425](https://arxiv.org/abs/2501.11425).
+- **arXiv ID/Date:** Confirmed 2501.11425, submitted January 20, 2025.
+- **Affiliation:** Confirmed ByteDance Seed Team (verified via [GitHub repo](https://github.com/ByteDance-Seed/Agent-R)).
+- **Key claims accuracy:** Confirmed. Uses MCTS to construct training data that recovers correct trajectories from erroneous ones. The actor identifies the first error step in a failed trajectory, then splices it with a correct path. The resulting data is used for SFT (supervised fine-tuning). The claim "MCTS-guided SFT at first-error steps" is an accurate characterization.
+
+---
+
+### Paper 3: "Verified Critical Step Optimization for LLM Agents" [CSO]
+
+**VERDICT: PARTIALLY VERIFIED -- VENUE CLAIM IS INCORRECT**
+
+- **Exists:** Yes. arXiv [2602.03412](https://arxiv.org/abs/2602.03412), submitted February 3, 2026.
+- **arXiv ID:** Confirmed 2602.03412.
+- **Venue:** **INCORRECT.** The proposal claims "ICLR 2026," but the OpenReview submission page shows it was submitted to **ACL ARR 2026 January** (not ICLR 2026). There is no evidence of acceptance at ICLR 2026. The paper may be under review for ACL 2026 or its Findings track, but is not confirmed accepted anywhere yet.
+- **Key claims accuracy:** The method description is accurate: step-level DPO at verified critical steps. The 37% improvement over SFT is confirmed (37% on GAIA-Text-103, 26% on XBench-DeepSearch). Authors are from Tencent AI Lab, HKU, and Northwestern.
+
+---
+
+### Paper 4: "Where LLM Agents Fail and How They Can Learn From Failures" [AgentDebug + AgentErrorBench]
+
+**VERDICT: PARTIALLY VERIFIED -- DATE CLAIM NEEDS CORRECTION**
+
+- **Exists:** Yes. arXiv [2509.25370](https://arxiv.org/abs/2509.25370).
+- **arXiv ID:** Confirmed 2509.25370.
+- **Date:** Submitted **September 29, 2025** (not simply "Sept 2025" -- though that is technically correct as a shorthand).
+- **Key claims accuracy:** Confirmed. Proposes AgentErrorTaxonomy (taxonomy-based failure classification across memory, reflection, planning, action, and system-level operations), AgentErrorBench (annotated failure trajectories from ALFWorld, GAIA, WebShop), and AgentDebug framework. The 26% relative improvement in task success across ALFWorld, GAIA, and WebShop is confirmed. All claims check out.
+
+---
+
+### Paper 5: "Training Language Models to Self-Correct via Reinforcement Learning" [SCoRe]
+
+**VERDICT: VERIFIED**
+
+- **Exists:** Yes. arXiv [2409.12917](https://arxiv.org/abs/2409.12917).
+- **Venue:** Confirmed **ICLR 2025 Oral**. Verified via both the [ICLR 2025 virtual site](https://iclr.cc/virtual/2025/oral/31899) and [OpenReview](https://openreview.net/forum?id=CjwERcAU7w), both of which explicitly label it "ICLR 2025 Oral."
+- **Key claims:** This is indeed SCoRe (Self-Correction via Reinforcement Learning). Multi-turn online RL approach for self-correction. Authors from Google DeepMind.
+
+---
+
+### Paper 6: "Error Typing for Smarter Rewards" [PathFinder-PRM]
+
+**VERDICT: VERIFIED (title is abbreviated)**
+
+- **Exists:** Yes. arXiv [2505.19706](https://arxiv.org/abs/2505.19706).
+- **Full title:** "Error Typing for Smarter Rewards: Improving Process Reward Models with Error-Aware Hierarchical Supervision" -- the proposal uses the short form of the title.
+- **arXiv ID/Date:** Confirmed 2505.19706, submitted May 26, 2025.
+- **Key claims:** Confirmed. Proposes PathFinder-PRM, a hierarchical error-aware discriminative process reward model. Authors: Tej Deep Pala, Panshul Sharma, Amir Zadeh, Chuan Li, Soujanya Poria.
+
+---
+
+### Paper 7: "AgentHER: Hindsight Experience Replay for LLM Agent Trajectory Relabeling"
+
+**VERDICT: VERIFIED**
+
+- **Exists:** Yes. arXiv [2603.21357](https://arxiv.org/abs/2603.21357).
+- **arXiv ID/Date:** Confirmed 2603.21357, submitted March 22, 2026 (revised April 25, 2026).
+- **Key claims:** Confirmed. Applies Hindsight Experience Replay to LLM agent trajectories -- relabeling failed trajectories as demonstrations for alternative goals. Reports +7.1-11.7 pp improvements on WebArena and ToolBench.
+
+---
+
+### Paper 8: "Reason in Chains, Learn in Trees" [T-STAR]
+
+**VERDICT: VERIFIED**
+
+- **Exists:** Yes. arXiv [2604.07165](https://arxiv.org/abs/2604.07165).
+- **Full title:** "Reason in Chains, Learn in Trees: Self-Rectification and Grafting for Multi-turn Agent Policy Optimization."
+- **arXiv ID/Date:** Confirmed 2604.07165, submitted April 8, 2026 (revised April 15, 2026).
+- **Key claims:** Confirmed. Proposes T-STAR (Tree-structured Self-Taught Agent Rectification). Authors: Yu Li, Sizhe Tang, Tian Lan (George Washington University).
+
+---
+
+### Paper 9: "Towards Self-Improving Error Diagnosis in Multi-Agent Systems" [ErrorProbe]
+
+**VERDICT: VERIFIED**
+
+- **Exists:** Yes. arXiv [2604.17658](https://arxiv.org/abs/2604.17658).
+- **arXiv ID/Date:** Confirmed 2604.17658, submitted April 19, 2026 (note: the proposal says "April 2026" which is correct).
+- **Key claims:** Confirmed. Proposes ErrorProbe, a self-improving framework for semantic failure attribution in multi-agent systems. Uses three-stage pipeline with taxonomy-based anomaly detection, backward tracing, and multi-agent validation. Authors: Jiazheng Li, Emine Yilmaz, Bei Chen, Dieu-Thu Le.
+
+---
+
+## Summary
+
+| # | Paper | Exists | Venue/Date | Claims Accurate | Issues |
+|---|-------|--------|------------|-----------------|--------|
+| 1 | ETO | Yes | Yes (ACL 2024) | Yes | Minor: official title uses "of" not "for" |
+| 2 | Agent-R | Yes | Yes (arXiv 2501.11425, Jan 2025, ByteDance) | Yes | None |
+| 3 | CSO | Yes | **NO** -- claims ICLR 2026, actually submitted to ACL ARR Jan 2026 | Method/results accurate | **Venue is wrong** |
+| 4 | AgentDebug | Yes | Yes (arXiv 2509.25370, Sept 2025) | Yes | None |
+| 5 | SCoRe | Yes | Yes (ICLR 2025 Oral) | Yes | None |
+| 6 | PathFinder-PRM | Yes | Yes (arXiv 2505.19706, May 2025) | Yes | Title is abbreviated form |
+| 7 | AgentHER | Yes | Yes (arXiv 2603.21357, March 2026) | Yes | None |
+| 8 | T-STAR | Yes | Yes (arXiv 2604.07165, April 2026) | Yes | None |
+| 9 | ErrorProbe | Yes | Yes (arXiv 2604.17658, April 2026) | Yes | None |
+
+**Key finding requiring correction:** Paper 3 (CSO) has a **wrong venue claim**. The proposal states it was published at "ICLR 2026," but the paper was actually submitted to **ACL ARR January 2026** (the ACL Rolling Review), with no evidence of ICLR submission or acceptance. This should be corrected in the research proposal.
+
+All other 8 papers are verified as existing with accurate venue/date claims and faithful characterizations of their methods.
+
+Sources:
+- [ETO - ACL Anthology](https://aclanthology.org/2024.acl-long.409/)
+- [ETO - arXiv](https://arxiv.org/abs/2403.02502)
+- [ETO - GitHub](https://github.com/Yifan-Song793/ETO)
+- [Agent-R - arXiv](https://arxiv.org/abs/2501.11425)
+- [Agent-R - GitHub (ByteDance)](https://github.com/ByteDance-Seed/Agent-R)
+- [CSO - arXiv](https://arxiv.org/abs/2602.03412)
+- [CSO - OpenReview (ACL ARR)](https://openreview.net/forum?id=bwd1ykqifH)
+- [AgentDebug - arXiv](https://arxiv.org/abs/2509.25370)
+- [AgentDebug - GitHub](https://github.com/ulab-uiuc/AgentDebug)
+- [SCoRe - arXiv](https://arxiv.org/abs/2409.12917)
+- [SCoRe - ICLR 2025 Oral](https://iclr.cc/virtual/2025/oral/31899)
+- [SCoRe - OpenReview](https://openreview.net/forum?id=CjwERcAU7w)
+- [PathFinder-PRM - arXiv](https://arxiv.org/abs/2505.19706)
+- [PathFinder-PRM - GitHub](https://github.com/declare-lab/PathFinder-PRM)
+- [AgentHER - arXiv](https://arxiv.org/abs/2603.21357)
+- [T-STAR - arXiv](https://arxiv.org/abs/2604.07165)
+- [ErrorProbe - arXiv](https://arxiv.org/abs/2604.17658)
+
+agentId: a67fd44931a124c85 (use SendMessage with to: 'a67fd44931a124c85' to continue this agent)
+&lt;usage>total_tokens: 30950
+tool_uses: 29
+duration_ms: 156511&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4d4ca7e6-c5ee-42f9-9d11-40c1d04c5983",
+  "isSidechain": false,
+  "promptId": "04f5c40c-439c-4466-a3de-f150656695ef",
+  "type": "user",
+  "uuid": "d4dc10ec-dc81-4dd2-9603-a993a6490558",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "You are helping verify that cited papers in a research proposal actually exist and their claims are accurate. Use WebSearch and WebFetch to verify the following papers. For each, confirm: (1) the paper exists, (2) the venue/date is correct, (3) the key claims attributed to it are accurate.\n\nPapers to verify:\n1. \"Trial and Error: Exploration-Based Trajectory Optimization for LLM Agents\" [ETO] — claimed ACL 2024, DPO on failure-success trajectory pairs on ALFWorld/WebShop/ScienceWorld\n2. \"Agent-R: Training Language Model Agents to Reflect via Iterative Self-Training\" — claimed arXiv 2501.11425, Jan 2025, ByteDance, MCTS-guided SFT at first-error steps\n3. \"Verified Critical Step Optimization for LLM Agents\" [CSO] — claimed ICLR 2026, arXiv 2602.03412, step-level DPO at verified critical steps, 37% improvement over SFT\n4. \"Where LLM Agents Fail and How They Can Learn From Failures\" [AgentDebug + AgentErrorBench] — claimed arXiv 2509.25370, Sept 2025, taxonomy-based failure classification, 26% improvement on ALFWorld/GAIA/WebShop\n5. \"Training Language Models to Self-Correct via Reinforcement Learning\" [SCoRe] — claimed ICLR 2025 Oral\n6. \"Error Typing for Smarter Rewards\" [PathFinder-PRM] — claimed arXiv 2505.19706, May 2025\n7. \"AgentHER: Hindsight Experience Replay for LLM Agent Trajectory Relabeling\" — claimed arXiv 2603.21357, March 2026\n8. \"Reason in Chains, Learn in Trees\" [T-STAR] — claimed arXiv 2604.07165, April 2026\n9. \"Towards Self-Improving Error Diagnosis in Multi-Agent Systems\" [ErrorProbe] — claimed arXiv 2604.17658, April 2026\n\nFor each paper, search for it and report what you find. Be thorough — check both the title and arXiv ID if provided.",
+    "agentId": "a67fd44931a124c85",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now I have all the information needed to compile a comprehensive verification report. Here is my findings:\n\n---\n\n## Paper Verification Report\n\n### Paper 1: \"Trial and Error: Exploration-Based Trajectory Optimization for LLM Agents\" [ETO]\n\n**VERDICT: VERIFIED (with minor title discrepancy)**\n\n- **Exists:** Yes. arXiv [2403.02502](https://arxiv.org/abs/2403.02502), ACL Anthology entry at [2024.acl-long.409](https://aclanthology.org/2024.acl-long.409/).\n- **Venue/Date:** Confirmed ACL 2024 Main Conference. The official title in the ACL Anthology uses \"Optimization **of**\" rather than \"Optimization **for**\" -- minor preposition difference (\"Trial and Error: Exploration-Based Trajectory Optimization **of** LLM Agents\").\n- **Key claims accuracy:** Confirmed. Uses DPO on failure-success contrastive trajectory pairs. Evaluates on ALFWorld, WebShop, and ScienceWorld -- all three benchmarks confirmed via the GitHub repo.\n- **Authors:** Yifan Song, Da Yin, Xiang Yue, Jie Huang, Sujian Li, Bill Yuchen Lin.\n\n---\n\n### Paper 2: \"Agent-R: Training Language Model Agents to Reflect via Iterative Self-Training\"\n\n**VERDICT: VERIFIED**\n\n- **Exists:** Yes. arXiv [2501.11425](https://arxiv.org/abs/2501.11425).\n- **arXiv ID/Date:** Confirmed 2501.11425, submitted January 20, 2025.\n- **Affiliation:** Confirmed ByteDance Seed Team (verified via [GitHub repo](https://github.com/ByteDance-Seed/Agent-R)).\n- **Key claims accuracy:** Confirmed. Uses MCTS to construct training data that recovers correct trajectories from erroneous ones. The actor identifies the first error step in a failed trajectory, then splices it with a correct path. The resulting data is used for SFT (supervised fine-tuning). The claim \"MCTS-guided SFT at first-error steps\" is an accurate characterization.\n\n---\n\n### Paper 3: \"Verified Critical Step Optimization for LLM Agents\" [CSO]\n\n**VERDICT: PARTIALLY VERIFIED -- VENUE CLAIM IS INCORRECT**\n\n- **Exists:** Yes. arXiv [2602.03412](https://arxiv.org/abs/2602.03412), submitted February 3, 2026.\n- **arXiv ID:** Confirmed 2602.03412.\n- **Venue:** **INCORRECT.** The proposal claims \"ICLR 2026,\" but the OpenReview submission page shows it was submitted to **ACL ARR 2026 January** (not ICLR 2026). There is no evidence of acceptance at ICLR 2026. The paper may be under review for ACL 2026 or its Findings track, but is not confirmed accepted anywhere yet.\n- **Key claims accuracy:** The method description is accurate: step-level DPO at verified critical steps. The 37% improvement over SFT is confirmed (37% on GAIA-Text-103, 26% on XBench-DeepSearch). Authors are from Tencent AI Lab, HKU, and Northwestern.\n\n---\n\n### Paper 4: \"Where LLM Agents Fail and How They Can Learn From Failures\" [AgentDebug + AgentErrorBench]\n\n**VERDICT: PARTIALLY VERIFIED -- DATE CLAIM NEEDS CORRECTION**\n\n- **Exists:** Yes. arXiv [2509.25370](https://arxiv.org/abs/2509.25370).\n- **arXiv ID:** Confirmed 2509.25370.\n- **Date:** Submitted **September 29, 2025** (not simply \"Sept 2025\" -- though that is technically correct as a shorthand).\n- **Key claims accuracy:** Confirmed. Proposes AgentErrorTaxonomy (taxonomy-based failure classification across memory, reflection, planning, action, and system-level operations), AgentErrorBench (annotated failure trajectories from ALFWorld, GAIA, WebShop), and AgentDebug framework. The 26% relative improvement in task success across ALFWorld, GAIA, and WebShop is confirmed. All claims check out.\n\n---\n\n### Paper 5: \"Training Language Models to Self-Correct via Reinforcement Learning\" [SCoRe]\n\n**VERDICT: VERIFIED**\n\n- **Exists:** Yes. arXiv [2409.12917](https://arxiv.org/abs/2409.12917).\n- **Venue:** Confirmed **ICLR 2025 Oral**. Verified via both the [ICLR 2025 virtual site](https://iclr.cc/virtual/2025/oral/31899) and [OpenReview](https://openreview.net/forum?id=CjwERcAU7w), both of which explicitly label it \"ICLR 2025 Oral.\"\n- **Key claims:** This is indeed SCoRe (Self-Correction via Reinforcement Learning). Multi-turn online RL approach for self-correction. Authors from Google DeepMind.\n\n---\n\n### Paper 6: \"Error Typing for Smarter Rewards\" [PathFinder-PRM]\n\n**VERDICT: VERIFIED (title is abbreviated)**\n\n- **Exists:** Yes. arXiv [2505.19706](https://arxiv.org/abs/2505.19706).\n- **Full title:** \"Error Typing for Smarter Rewards: Improving Process Reward Models with Error-Aware Hierarchical Supervision\" -- the proposal uses the short form of the title.\n- **arXiv ID/Date:** Confirmed 2505.19706, submitted May 26, 2025.\n- **Key claims:** Confirmed. Proposes PathFinder-PRM, a hierarchical error-aware discriminative process reward model. Authors: Tej Deep Pala, Panshul Sharma, Amir Zadeh, Chuan Li, Soujanya Poria.\n\n---\n\n### Paper 7: \"AgentHER: Hindsight Experience Replay for LLM Agent Trajectory Relabeling\"\n\n**VERDICT: VERIFIED**\n\n- **Exists:** Yes. arXiv [2603.21357](https://arxiv.org/abs/2603.21357).\n- **arXiv ID/Date:** Confirmed 2603.21357, submitted March 22, 2026 (revised April 25, 2026).\n- **Key claims:** Confirmed. Applies Hindsight Experience Replay to LLM agent trajectories -- relabeling failed trajectories as demonstrations for alternative goals. Reports +7.1-11.7 pp improvements on WebArena and ToolBench.\n\n---\n\n### Paper 8: \"Reason in Chains, Learn in Trees\" [T-STAR]\n\n**VERDICT: VERIFIED**\n\n- **Exists:** Yes. arXiv [2604.07165](https://arxiv.org/abs/2604.07165).\n- **Full title:** \"Reason in Chains, Learn in Trees: Self-Rectification and Grafting for Multi-turn Agent Policy Optimization.\"\n- **arXiv ID/Date:** Confirmed 2604.07165, submitted April 8, 2026 (revised April 15, 2026).\n- **Key claims:** Confirmed. Proposes T-STAR (Tree-structured Self-Taught Agent Rectification). Authors: Yu Li, Sizhe Tang, Tian Lan (George Washington University).\n\n---\n\n### Paper 9: \"Towards Self-Improving Error Diagnosis in Multi-Agent Systems\" [ErrorProbe]\n\n**VERDICT: VERIFIED**\n\n- **Exists:** Yes. arXiv [2604.17658](https://arxiv.org/abs/2604.17658).\n- **arXiv ID/Date:** Confirmed 2604.17658, submitted April 19, 2026 (note: the proposal says \"April 2026\" which is correct).\n- **Key claims:** Confirmed. Proposes ErrorProbe, a self-improving framework for semantic failure attribution in multi-agent systems. Uses three-stage pipeline with taxonomy-based anomaly detection, backward tracing, and multi-agent validation. Authors: Jiazheng Li, Emine Yilmaz, Bei Chen, Dieu-Thu Le.\n\n---\n\n## Summary\n\n| # | Paper | Exists | Venue/Date | Claims Accurate | Issues |\n|---|-------|--------|------------|-----------------|--------|\n| 1 | ETO | Yes | Yes (ACL 2024) | Yes | Minor: official title uses \"of\" not \"for\" |\n| 2 | Agent-R | Yes | Yes (arXiv 2501.11425, Jan 2025, ByteDance) | Yes | None |\n| 3 | CSO | Yes | **NO** -- claims ICLR 2026, actually submitted to ACL ARR Jan 2026 | Method/results accurate | **Venue is wrong** |\n| 4 | AgentDebug | Yes | Yes (arXiv 2509.25370, Sept 2025) | Yes | None |\n| 5 | SCoRe | Yes | Yes (ICLR 2025 Oral) | Yes | None |\n| 6 | PathFinder-PRM | Yes | Yes (arXiv 2505.19706, May 2025) | Yes | Title is abbreviated form |\n| 7 | AgentHER | Yes | Yes (arXiv 2603.21357, March 2026) | Yes | None |\n| 8 | T-STAR | Yes | Yes (arXiv 2604.07165, April 2026) | Yes | None |\n| 9 | ErrorProbe | Yes | Yes (arXiv 2604.17658, April 2026) | Yes | None |\n\n**Key finding requiring correction:** Paper 3 (CSO) has a **wrong venue claim**. The proposal states it was published at \"ICLR 2026,\" but the paper was actually submitted to **ACL ARR January 2026** (the ACL Rolling Review), with no evidence of ICLR submission or acceptance. This should be corrected in the research proposal.\n\nAll other 8 papers are verified as existing with accurate venue/date claims and faithful characterizations of their methods.\n\nSources:\n- [ETO - ACL Anthology](https://aclanthology.org/2024.acl-long.409/)\n- [ETO - arXiv](https://arxiv.org/abs/2403.02502)\n- [ETO - GitHub](https://github.com/Yifan-Song793/ETO)\n- [Agent-R - arXiv](https://arxiv.org/abs/2501.11425)\n- [Agent-R - GitHub (ByteDance)](https://github.com/ByteDance-Seed/Agent-R)\n- [CSO - arXiv](https://arxiv.org/abs/2602.03412)\n- [CSO - OpenReview (ACL ARR)](https://openreview.net/forum?id=bwd1ykqifH)\n- [AgentDebug - arXiv](https://arxiv.org/abs/2509.25370)\n- [AgentDebug - GitHub](https://github.com/ulab-uiuc/AgentDebug)\n- [SCoRe - arXiv](https://arxiv.org/abs/2409.12917)\n- [SCoRe - ICLR 2025 Oral](https://iclr.cc/virtual/2025/oral/31899)\n- [SCoRe - OpenReview](https://openreview.net/forum?id=CjwERcAU7w)\n- [PathFinder-PRM - arXiv](https://arxiv.org/abs/2505.19706)\n- [PathFinder-PRM - GitHub](https://github.com/declare-lab/PathFinder-PRM)\n- [AgentHER - arXiv](https://arxiv.org/abs/2603.21357)\n- [T-STAR - arXiv](https://arxiv.org/abs/2604.07165)\n- [ErrorProbe - arXiv](https://arxiv.org/abs/2604.17658)"
+      }
+    ],
+    "totalDurationMs": 156511,
+    "totalTokens": 30950,
+    "totalToolUseCount": 29,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 293,
+      "cache_read_input_tokens": 27644,
+      "output_tokens": 3012,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 293
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3012,
+          "cache_read_input_tokens": 27644,
+          "cache_creation_input_tokens": 293,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 293,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 29
+    }
+  },
+  "sourceToolAssistantUUID": "4d4ca7e6-c5ee-42f9-9d11-40c1d04c5983",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cb034091-647d-4d5f-b542-2af1be7f10ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 14_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "d4dc10ec-dc81-4dd2-9603-a993a6490558",
+  "sessionId": "cb034091-647d-4d5f-b542-2af1be7f10ef"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 15_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review agent error-diagnosis-conditioned DPO for agents",
+  "sessionId": "cb034091-647d-4d5f-b542-2af1be7f10ef"
+}
+```
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-10T18:15:44.281Z_
+
+<details><summary>↩ Tool result · `toolu_01CKus1WR7WHHPMEZbW6dBb4`</summary>
+
+```text
+Here is a comprehensive report of all findings:
+
+---
+
+## 1. ALFWorld SOTA (as of May 2026)
+
+**Current SOTA: Embodied Planner-R1** achieves **99.29% (seen) / 96.27% (unseen)** on the ALFWorld text-based benchmark. The paper ("Unleashing Embodied Task Planning Ability in LLMs via Reinforcement Learning") reports that this surpasses the previous best method ETO by +15.00% and +16.42% on seen/unseen respectively. The base model is **Qwen2.5-7B-Instruct** (not Qwen3-8B). The claim of "99%/96% seen/unseen" in the proposal is consistent with these published numbers (99.29%/96.27%).
+
+**Verdict:** The claimed numbers are accurate and match the published results.
+
+Sources:
+- [Embodied-Planner-R1 paper (arXiv 2506.23127)](https://arxiv.org/abs/2506.23127)
+- [GitHub - OpenMOSS/Embodied-Planner-R1](https://github.com/OpenMOSS/Embodied-Planner-R1)
+- [Papers with Code - ALFWorld](https://paperswithcode.com/dataset/alfworld)
+
+---
+
+## 2. WebShop Benchmark SOTA (as of May 2026)
+
+I was unable to find a definitive current SOTA leaderboard for WebShop from web searches. Papers with Code does not appear to have a well-maintained WebShop leaderboard page. The benchmark (1.18M real products, simulated e-commerce) remains in use, and recent work like **AgentRL** (applied to Qwen2.5 and GLM-4-9B) claims strong WebShop results. However, specific numerical SOTA scores were not retrievable. Notably, **Embodied Planner-R1 does not appear to have been evaluated on WebShop** -- it focuses on ALFWorld and ScienceWorld.
+
+**Verdict:** If the proposal claims a specific WebShop SOTA number, it should be independently verified against the original paper. The WebShop leaderboard is not centrally maintained in an easily accessible way.
+
+Sources:
+- [Evidently AI - 10 AI Agent Benchmarks](https://www.evidentlyai.com/blog/ai-agent-benchmarks)
+- [Awesome Agents Web Agent Benchmarks Leaderboard](https://awesomeagents.ai/leaderboards/web-agent-benchmarks-leaderboard/)
+
+---
+
+## 3. Qwen3-8B Availability
+
+**Confirmed: Qwen3-8B exists and is publicly available.** It was released on **April 28, 2025** under the **Apache 2.0 license**. Key specs:
+- 8.2B parameters
+- Supports "thinking mode" (complex reasoning) and "non-thinking mode" (efficient dialogue)
+- Trained on 36 trillion tokens in 119 languages
+- Native context: 32,768 tokens; up to 131,072 with YaRN
+- Available on Hugging Face at `Qwen/Qwen3-8B`
+
+**Verdict:** Fully confirmed. Publicly available and open-weight.
+
+Sources:
+- [Qwen/Qwen3-8B on Hugging Face](https://huggingface.co/Qwen/Qwen3-8B)
+- [GitHub - QwenLM/Qwen3](https://github.com/QwenLM/qwen3)
+- [Qwen3 Technical Report (arXiv 2505.09388)](https://arxiv.org/pdf/2505.09388)
+- [Qwen3 Blog Post](https://qwenlm.github.io/blog/qwen3/)
+
+---
+
+## 4. AgentErrorBench Data Availability
+
+**Confirmed: AgentErrorBench annotations exist and appear to be publicly available.** The dataset contains:
+- **200 expertly annotated failure trajectories**: 100 ALFWorld + 50 WebShop + 50 GAIA (note: the proposal says "100 ALFWorld + 50 WebShop" which is correct for those two environments, but the full dataset also includes 50 GAIA trajectories)
+- Annotations include root cause identification, propagation path, error categories, severity metrics, and remediation hints
+- 10 expert graduate student annotators, Cohen's kappa = 0.55
+- Part of the **AgentDebug** framework from **UIUC (ulab-uiuc)**
+- Code and data available at [GitHub - ulab-uiuc/AgentDebug](https://github.com/ulab-uiuc/AgentDebug)
+- A version also appears on Hugging Face at `davide221/agenterrorbench` (though this may be an unofficial mirror)
+- The paper is [arXiv 2509.25370](https://arxiv.org/abs/2509.25370)
+
+**Verdict:** The data appears publicly released (hosted on Google Drive via the GitHub repo). The 100 ALFWorld + 50 WebShop count is accurate.
+
+Sources:
+- [GitHub - ulab-uiuc/AgentDebug](https://github.com/ulab-uiuc/AgentDebug)
+- [arXiv 2509.25370](https://arxiv.org/abs/2509.25370)
+- [davide221/agenterrorbench on Hugging Face](https://huggingface.co/datasets/davide221/agenterrorbench)
+- [OpenReview - AgentDebug](https://openreview.net/forum?id=PFR4E8583W)
+
+---
+
+## 5. ARR Submission Deadline for EMNLP 2026
+
+**Confirmed:** The ARR submission deadline for EMNLP 2026 is **May 25, 2026**.
+
+Key dates:
+- **ARR Submission Deadline:** May 25, 2026
+- **Author Registration Form:** May 27, 2026 (EoD AoE)
+- **Author Response / Discussion:** July 7-13, 2026
+- **Meta-review Released:** July 30, 2026
+- **Commitment Deadline:** August 2, 2026
+- **Notification of Acceptance:** August 20, 2026
+- **Conference:** October 24-29, 2026, Budapest, Hungary
+
+**Critical note:** Since EMNLP and AACL share the ARR May 2026 cycle, authors must explicitly select a target conference at submission time, and this choice is **binding**.
+
+**Verdict:** If the proposal targets EMNLP 2026 via the May ARR cycle, the submission deadline of May 25, 2026 is confirmed. As of today (May 10, 2026), there are **15 days remaining**.
+
+Sources:
+- [EMNLP 2026 Call for Papers](https://2026.emnlp.org/calls/main_conference_papers/)
+- [ARR Dates and Venues](http://aclrollingreview.org/dates)
+- [EMNLP 2026 Twitter announcement](https://x.com/emnlpmeeting/status/2029508292637061462)
+- [EMNLP 2026 binding conference choice update](https://x.com/emnlpmeeting/status/2047754845919031450)
+
+---
+
+## 6. SEEA-R1 ALFWorld 85% Result
+
+**Confirmed:** SEEA-R1 achieves **85.07%** on ALFWorld **textual tasks** and **46.27%** on multi-modal tasks. The paper is "SEEA-R1: Tree-Structured Reinforcement Fine-Tuning for Self-Evolving Embodied Agents" ([arXiv 2506.21669](https://arxiv.org/abs/2506.21669)), which was accepted as a **NeurIPS 2025 poster**.
+
+Important nuances:
+- The 85.07% is specifically for **textual** ALFWorld tasks, not the overall benchmark
+- Without ground-truth rewards (self-supervised), it achieves 80.30% on textual tasks
+- The model uses Tree-GRPO (Tree-based Group Relative Policy Optimization with MCTS) and a Multi-modal Generative Reward Model (MGRM)
+- I could not confirm which base model SEEA-R1 uses from the searches (the paper likely specifies this)
+
+**Verdict:** The claimed ~85% result is accurate (85.07% on textual ALFWorld tasks). However, this is substantially below Embodied Planner-R1's 99.29%/96.27%, meaning SEEA-R1 is not SOTA on ALFWorld.
+
+Sources:
+- [SEEA-R1 paper (arXiv 2506.21669)](https://arxiv.org/abs/2506.21669)
+- [SEEA-R1 project page](https://seea-r1.github.io/)
+- [NeurIPS 2025 poster](https://neurips.cc/virtual/2025/poster/117024)
+- [OpenReview](https://openreview.net/forum?id=dAwKePZvcN)
+
+agentId: ab8b6c3ae2c8a4d9b (use SendMessage with to: 'ab8b6c3ae2c8a4d9b' to continue this agent)
+&lt;usage>total_tokens: 32985
+tool_uses: 23
+duration_ms: 263233&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "19a17103-088a-4d73-a484-e2ad6b493596",
+  "isSidechain": false,
+  "promptId": "04f5c40c-439c-4466-a3de-f150656695ef",
+  "type": "user",
+  "uuid": "28fdfb5c-a0be-48be-9e4e-8ab80a07f68c",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "You are helping review a research proposal. Search for the following:\n\n1. Current SOTA on ALFWorld benchmark as of May 2026. Search for \"ALFWorld SOTA 2025 2026\", \"ALFWorld benchmark results\", \"site:paperswithcode.com ALFWorld\". The proposal claims Embodied Planner-R1 achieves 99%/96% seen/unseen — verify this.\n\n2. Current SOTA on WebShop benchmark as of May 2026. Search for \"WebShop benchmark SOTA 2025 2026\", \"site:paperswithcode.com WebShop\".\n\n3. Verify that Qwen3-8B exists and is publicly available. Search for \"Qwen3-8B model release\" and \"site:huggingface.co Qwen3\".\n\n4. Verify that AgentErrorBench annotations (100 ALFWorld + 50 WebShop failure trajectories) are publicly available. Search for \"AgentErrorBench dataset\" and check if the data is released.\n\n5. Check ARR (ACL Rolling Review) submission deadline for EMNLP 2026. Search for \"ARR submission deadline May 2026 EMNLP 2026\".\n\n6. Search for \"SEEA-R1 ALFWorld\" to verify the claimed 85% result on ALFWorld.\n\nReport all findings with sources.",
+    "agentId": "ab8b6c3ae2c8a4d9b",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here is a comprehensive report of all findings:\n\n---\n\n## 1. ALFWorld SOTA (as of May 2026)\n\n**Current SOTA: Embodied Planner-R1** achieves **99.29% (seen) / 96.27% (unseen)** on the ALFWorld text-based benchmark. The paper (\"Unleashing Embodied Task Planning Ability in LLMs via Reinforcement Learning\") reports that this surpasses the previous best method ETO by +15.00% and +16.42% on seen/unseen respectively. The base model is **Qwen2.5-7B-Instruct** (not Qwen3-8B). The claim of \"99%/96% seen/unseen\" in the proposal is consistent with these published numbers (99.29%/96.27%).\n\n**Verdict:** The claimed numbers are accurate and match the published results.\n\nSources:\n- [Embodied-Planner-R1 paper (arXiv 2506.23127)](https://arxiv.org/abs/2506.23127)\n- [GitHub - OpenMOSS/Embodied-Planner-R1](https://github.com/OpenMOSS/Embodied-Planner-R1)\n- [Papers with Code - ALFWorld](https://paperswithcode.com/dataset/alfworld)\n\n---\n\n## 2. WebShop Benchmark SOTA (as of May 2026)\n\nI was unable to find a definitive current SOTA leaderboard for WebShop from web searches. Papers with Code does not appear to have a well-maintained WebShop leaderboard page. The benchmark (1.18M real products, simulated e-commerce) remains in use, and recent work like **AgentRL** (applied to Qwen2.5 and GLM-4-9B) claims strong WebShop results. However, specific numerical SOTA scores were not retrievable. Notably, **Embodied Planner-R1 does not appear to have been evaluated on WebShop** -- it focuses on ALFWorld and ScienceWorld.\n\n**Verdict:** If the proposal claims a specific WebShop SOTA number, it should be independently verified against the original paper. The WebShop leaderboard is not centrally maintained in an easily accessible way.\n\nSources:\n- [Evidently AI - 10 AI Agent Benchmarks](https://www.evidentlyai.com/blog/ai-agent-benchmarks)\n- [Awesome Agents Web Agent Benchmarks Leaderboard](https://awesomeagents.ai/leaderboards/web-agent-benchmarks-leaderboard/)\n\n---\n\n## 3. Qwen3-8B Availability\n\n**Confirmed: Qwen3-8B exists and is publicly available.** It was released on **April 28, 2025** under the **Apache 2.0 license**. Key specs:\n- 8.2B parameters\n- Supports \"thinking mode\" (complex reasoning) and \"non-thinking mode\" (efficient dialogue)\n- Trained on 36 trillion tokens in 119 languages\n- Native context: 32,768 tokens; up to 131,072 with YaRN\n- Available on Hugging Face at `Qwen/Qwen3-8B`\n\n**Verdict:** Fully confirmed. Publicly available and open-weight.\n\nSources:\n- [Qwen/Qwen3-8B on Hugging Face](https://huggingface.co/Qwen/Qwen3-8B)\n- [GitHub - QwenLM/Qwen3](https://github.com/QwenLM/qwen3)\n- [Qwen3 Technical Report (arXiv 2505.09388)](https://arxiv.org/pdf/2505.09388)\n- [Qwen3 Blog Post](https://qwenlm.github.io/blog/qwen3/)\n\n---\n\n## 4. AgentErrorBench Data Availability\n\n**Confirmed: AgentErrorBench annotations exist and appear to be publicly available.** The dataset contains:\n- **200 expertly annotated failure trajectories**: 100 ALFWorld + 50 WebShop + 50 GAIA (note: the proposal says \"100 ALFWorld + 50 WebShop\" which is correct for those two environments, but the full dataset also includes 50 GAIA trajectories)\n- Annotations include root cause identification, propagation path, error categories, severity metrics, and remediation hints\n- 10 expert graduate student annotators, Cohen's kappa = 0.55\n- Part of the **AgentDebug** framework from **UIUC (ulab-uiuc)**\n- Code and data available at [GitHub - ulab-uiuc/AgentDebug](https://github.com/ulab-uiuc/AgentDebug)\n- A version also appears on Hugging Face at `davide221/agenterrorbench` (though this may be an unofficial mirror)\n- The paper is [arXiv 2509.25370](https://arxiv.org/abs/2509.25370)\n\n**Verdict:** The data appears publicly released (hosted on Google Drive via the GitHub repo). The 100 ALFWorld + 50 WebShop count is accurate.\n\nSources:\n- [GitHub - ulab-uiuc/AgentDebug](https://github.com/ulab-uiuc/AgentDebug)\n- [arXiv 2509.25370](https://arxiv.org/abs/2509.25370)\n- [davide221/agenterrorbench on Hugging Face](https://huggingface.co/datasets/davide221/agenterrorbench)\n- [OpenReview - AgentDebug](https://openreview.net/forum?id=PFR4E8583W)\n\n---\n\n## 5. ARR Submission Deadline for EMNLP 2026\n\n**Confirmed:** The ARR submission deadline for EMNLP 2026 is **May 25, 2026**.\n\nKey dates:\n- **ARR Submission Deadline:** May 25, 2026\n- **Author Registration Form:** May 27, 2026 (EoD AoE)\n- **Author Response / Discussion:** July 7-13, 2026\n- **Meta-review Released:** July 30, 2026\n- **Commitment Deadline:** August 2, 2026\n- **Notification of Acceptance:** August 20, 2026\n- **Conference:** October 24-29, 2026, Budapest, Hungary\n\n**Critical note:** Since EMNLP and AACL share the ARR May 2026 cycle, authors must explicitly select a target conference at submission time, and this choice is **binding**.\n\n**Verdict:** If the proposal targets EMNLP 2026 via the May ARR cycle, the submission deadline of May 25, 2026 is confirmed. As of today (May 10, 2026), there are **15 days remaining**.\n\nSources:\n- [EMNLP 2026 Call for Papers](https://2026.emnlp.org/calls/main_conference_papers/)\n- [ARR Dates and Venues](http://aclrollingreview.org/dates)\n- [EMNLP 2026 Twitter announcement](https://x.com/emnlpmeeting/status/2029508292637061462)\n- [EMNLP 2026 binding conference choice update](https://x.com/emnlpmeeting/status/2047754845919031450)\n\n---\n\n## 6. SEEA-R1 ALFWorld 85% Result\n\n**Confirmed:** SEEA-R1 achieves **85.07%** on ALFWorld **textual tasks** and **46.27%** on multi-modal tasks. The paper is \"SEEA-R1: Tree-Structured Reinforcement Fine-Tuning for Self-Evolving Embodied Agents\" ([arXiv 2506.21669](https://arxiv.org/abs/2506.21669)), which was accepted as a **NeurIPS 2025 poster**.\n\nImportant nuances:\n- The 85.07% is specifically for **textual** ALFWorld tasks, not the overall benchmark\n- Without ground-truth rewards (self-supervised), it achieves 80.30% on textual tasks\n- The model uses Tree-GRPO (Tree-based Group Relative Policy Optimization with MCTS) and a Multi-modal Generative Reward Model (MGRM)\n- I could not confirm which base model SEEA-R1 uses from the searches (the paper likely specifies this)\n\n**Verdict:** The claimed ~85% result is accurate (85.07% on textual ALFWorld tasks). However, this is substantially below Embodied Planner-R1's 99.29%/96.27%, meaning SEEA-R1 is not SOTA on ALFWorld.\n\nSources:\n- [SEEA-R1 paper (arXiv 2506.21669)](https://arxiv.org/abs/2506.21669)\n- [SEEA-R1 project page](https://seea-r1.github.io/)\n- [NeurIPS 2025 poster](https://neurips.cc/virtual/2025/poster/117024)\n- [OpenReview](https://openreview.net/forum?id=dAwKePZvcN)"
+      }
+    ],
+    "totalDurationMs": 263233,
+    "totalTokens": 32985,
+    "totalToolUseCount": 23,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 887,
+      "cache_read_input_tokens": 29821,
+      "output_tokens": 2276,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 887
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2276,
+          "cache_read_input_tokens": 29821,
+          "cache_creation_input_tokens": 887,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 887,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 23
+    }
+  },
+  "sourceToolAssistantUUID": "19a17103-088a-4d73-a484-e2ad6b493596",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cb034091-647d-4d5f-b542-2af1be7f10ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-10T18:16:20.177Z_
+
+<details><summary>↩ Tool result · `toolu_01361g5bY46V3vJw8x5zZgGN`</summary>
+
+```text
+Now I have a comprehensive picture. Let me compile the full report.
+
+---
+
+## Research Landscape Report: Competing and Related Work for "Error-Diagnosis-Conditioned Preference Learning for Agent Self-Correction"
+
+Below is a thorough survey of competing and closely related work, organized by relevance to the proposal's core contributions: (A) error taxonomy/diagnosis in agents, (B) DPO/preference learning for agents, (C) step-level credit assignment and process rewards, (D) self-correction training, and (E) failure recovery frameworks.
+
+---
+
+### TIER 1: MOST DIRECTLY COMPETING WORK (High overlap with the proposal)
+
+**1. "Where LLM Agents Fail and How They Can Learn From Failures" (arXiv:2509.25370)**
+- Authors: Kunlun Zhu et al. (UIUC)
+- Status: Withdrawn from ICLR 2026 (Jan 2026)
+- **Why it matters**: This paper proposes **AgentErrorTaxonomy** -- a modular classification of failure modes spanning *memory, reflection, planning, action, and system-level* operations. It also introduces **AgentDebug**, a debugging framework that isolates root-cause failures and provides *targeted corrective feedback*, yielding up to 26% relative improvements across ALFWorld, GAIA, and WebShop. This is the closest existing work to the proposal: it defines an error taxonomy for agents AND uses it to provide type-specific corrective feedback. The key differentiator for the proposal would be that this paper applies corrections at inference time via feedback prompting, not via conditioned DPO training. But the overlap in motivation is very high and this paper must be cited and differentiated from.
+- [Paper](https://arxiv.org/abs/2509.25370) | [OpenReview](https://openreview.net/forum?id=PFR4E8583W)
+
+**2. Verified Critical Step Optimization (CSO) for LLM Agents (arXiv:2602.03412)**
+- Authors: Mukai Li, Qingcheng Zeng et al.
+- **Why it matters**: CSO focuses DPO preference learning on "critical steps" -- decision points where alternate actions demonstrably flip task outcomes from failure to success. It uses a process reward model to identify these steps in failed trajectories, then constructs DPO pairs by having expert models propose alternatives that are verified by executing the policy model to completion. Achieves 37% relative improvement over SFT baseline using only 16% of trajectory steps. This is extremely close to the proposal's mechanism: step-level DPO conditioned on identified failure points. The difference is that CSO does not *classify* error types -- it treats all critical steps uniformly. The proposal's contribution of conditioning on diagnosed error type (planning vs. action vs. verification) would be the differentiator.
+- [Paper](https://arxiv.org/abs/2602.03412)
+
+**3. Agent-R: Training Language Model Agents to Reflect via Iterative Self-Training (arXiv:2501.11425)**
+- Authors: Siyu Yuan, Zehui Chen et al.
+- Status: ICLR 2026 (based on search references)
+- **Why it matters**: Agent-R uses MCTS to construct revision trajectories that recover correct paths from erroneous ones. It identifies "the first error step" within the model's capability and splices failed paths with correct alternatives. Training on these revision trajectories outperforms expert trajectories by +5.59%. This is closely related -- it does step-level error identification and constructs correction training data. However, it does NOT classify error types or condition recovery on error diagnosis. The proposal would need to differentiate by showing that error-type conditioning provides gains beyond simple "first error detection."
+- [Paper](https://arxiv.org/abs/2501.11425)
+
+**4. CMFR: Conditional Multi-Stage Failure Recovery for Embodied Agents (arXiv:2507.06016)**
+- Authors: Youmna Farag, Svetlana Stoyanchev et al.
+- Status: Accepted at REALM 2025
+- **Why it matters**: This is the paper cited in the proposal's references. CMFR defines four conditional recovery stages: (1) subgoal importance assessment, (2) precondition checking, (3) workaround generation, and (4) post-execution reflection. Each stage gates the next -- a conditional architecture. It achieves 11.5% improvement on TEACH benchmark. The proposal builds on this idea but applies it to *training-time* preference learning rather than *inference-time* prompting, which is the novel angle.
+- [Paper](https://arxiv.org/abs/2507.06016)
+
+---
+
+### TIER 2: HIGHLY RELATED WORK (Significant overlap in one or more dimensions)
+
+**5. AgentHER: Hindsight Experience Replay for LLM Agent Trajectory Relabeling (arXiv:2603.21357)**
+- Authors: Liang Ding et al.
+- Date: March 2026
+- **Why it matters**: AgentHER recovers training signal from failed trajectories by relabeling them as successes for alternative goals (adapting HER to NL agents). Its four-stage pipeline includes *failure classification* as the first stage, then uses relabeled data for SFT, DPO, and ShareGPT training. Achieves +7.1-11.7pp over success-only SFT. The failure classification stage is related to error diagnosis, though the approach relabels goals rather than conditioning recovery on error type.
+- [Paper](https://arxiv.org/abs/2603.21357)
+
+**6. iStar: Agentic RL with Implicit Step Rewards (arXiv:2509.19199)**
+- Authors: Xiaoqian Liu et al.
+- **Why it matters**: Proposes implicit step rewards via a trajectory-based DPO objective, alternately optimizing a process reward model with the policy. Combines step-level advantages with episode-level advantages. This is relevant because the proposal also operates at the step level with DPO -- the difference is that iStar does not classify or condition on error types.
+- [Paper](https://arxiv.org/abs/2509.19199)
+
+**7. AgentPRM: Process Reward Models for LLM Agents (arXiv:2511.08325)**
+- Authors: Zhiheng Xi et al.
+- Status: Published at ACM Web Conference 2026
+- **Why it matters**: Defines agent-specific process reward models capturing both "promise" (goal proximity) and "progress" (step interdependence). Uses TD-based estimation with GAE. Over 8x more compute-efficient than baselines. Relevant because agent PRMs could serve as the error signal in the proposal's framework, and their notion of step-level evaluation is complementary.
+- [Paper](https://arxiv.org/abs/2511.08325)
+
+**8. Agent-RRM: Exploring Reasoning Reward Model for Agents (arXiv:2601.22154)**
+- Authors: Kaixuan Fan et al. (CUHK/Meituan)
+- **Why it matters**: Introduces a multi-faceted reward model that produces (1) an explicit reasoning trace, (2) a focused critique highlighting reasoning flaws, and (3) an overall score. The "focused critique" component is conceptually related to error diagnosis. Three integration strategies (text-augmented refinement, reward-augmented guidance, unified feedback) achieve 43.7% on GAIA.
+- [Paper](https://arxiv.org/abs/2601.22154)
+
+**9. SCoRe: Training Language Models to Self-Correct via Reinforcement Learning (arXiv:2409.12917)**
+- Authors: Aviral Kumar et al. (Google DeepMind)
+- Status: ICLR 2025
+- **Why it matters**: Multi-turn online RL for self-correction under the model's own distribution. Identifies that SFT on corrections suffers from distribution mismatch and behavior collapse. Achieves +15.6% on MATH, +9.1% on HumanEval. Does not condition on error type but establishes the key challenge of training self-correction, which the proposal addresses with error-type conditioning.
+- [Paper](https://arxiv.org/abs/2409.12917)
+
+**10. AgenTracer: Who Is Inducing Failure in the LLM Agentic Systems? (arXiv:2509.03312)**
+- Authors: Guibin Zhang et al.
+- **Why it matters**: Automated failure attribution via counterfactual replay and fault injection. AgenTracer-8B outperforms Gemini-2.5-Pro and Claude-4-Sonnet on failure attribution by 18.18%. Delivers actionable feedback enabling 4.8-14.2% gains in MetaGPT and MaAS. Directly relevant as an error diagnosis component -- could be used as the "diagnosis" module in the proposal's pipeline.
+- [Paper](https://arxiv.org/abs/2509.03312)
+
+---
+
+### TIER 3: RELEVANT SUPPORTING WORK
+
+**11. AgentProcessBench: Diagnosing Step-Level Process Quality in Tool-Using Agents (arXiv:2603.14465)**
+- First human-annotated benchmark for step-level agent evaluation. 1,000 trajectories with 8,509 annotated steps using ternary labeling (+1 correct, 0 neutral, -1 incorrect) with error propagation rules. Relevant for benchmarking step-level error detection.
+- [Paper](https://arxiv.org/html/2603.14465v1)
+
+**12. AgentFixer: From Failure Detection to Fix Recommendations (arXiv:2603.29848)**
+- Authors: Hadar Mulian et al. (IBM)
+- 15 failure-detection tools and 2 root-cause analysis modules for structured incident detection, classification, and repair. Applied to IBM CUGA on AppWorld and WebArena. Relevant as a diagnostic pipeline but focuses on post-hoc analysis rather than training.
+- [Paper](https://arxiv.org/abs/2603.29848)
+
+**13. AgentRx: Diagnosing AI Agent Failures from Execution Trajectories (arXiv:2602.02475)**
+- Generates executable constraints from tool schema/policy, evaluates step-by-step, and passes validation logs to an LLM judge for root-cause attribution using a cross-domain failure taxonomy. Relevant as an error taxonomy approach.
+- [Paper](https://arxiv.org/pdf/2602.02475)
+
+**14. XENON: Experience-based Knowledge Correction for Robust Planning (arXiv:2505.24157)**
+- Integrates *Failure-aware Action Memory* that corrects action knowledge using past failures, combined with Adaptive Dependency Graphs. Outperforms GPT-4 agents with only a 7B model. The "failure-aware" component is conceptually related to error-type conditioning.
+- [Paper](https://arxiv.org/html/2505.24157v2)
+
+**15. MASC: Metacognitive Self-Correction for Multi-Agent Systems (arXiv:2510.14319)**
+- Real-time, unsupervised, step-level error detection via Next-Execution Reconstruction and Prototype-Guided Enhancement. Achieves 8.47% AUC-ROC improvement on error detection. Relevant as a step-level error detection mechanism.
+- [Paper](https://arxiv.org/html/2510.14319v1)
+
+**16. E2CL: Exploration-based Error Correction Learning (arXiv:2409.03256)**
+- Trains embodied agents to provide self-feedback and correct errors using exploration-induced errors and environmental feedback. Published at EMNLP 2024 Findings. Relevant as a training-time self-correction approach.
+- [Paper](https://arxiv.org/abs/2409.03256)
+
+**17. Localizing and Correcting Errors for LLM-based Planners (arXiv:2602.00276)**
+- Proposes Localized In-Context Learning (L-ICL): identifies first constraint violation and injects targeted correction demonstrations. 2,000 characters of targeted corrections outperforms 20,000 characters of full trajectories. Does not classify error types but performs step-level error localization.
+- [Paper](https://arxiv.org/abs/2602.00276)
+
+**18. T2PO: Uncertainty-Guided Exploration Control (arXiv:2605.02178)**
+- ICML 2026 Spotlight. Token- and turn-level policy optimization with uncertainty-based exploration control. Suppresses low-information actions and mitigates training collapse. Relevant as a multi-turn RL stability technique.
+- [Paper](https://arxiv.org/html/2605.02178v1)
+
+**19. Turn-PPO (arXiv:2512.17008)**
+- EACL 2026 Findings. Turn-level MDP formulation with PPO for multi-turn agent RL. Relevant as an alternative to token-level MDP for agent training.
+- [Paper](https://arxiv.org/abs/2512.17008)
+
+**20. Step-DPO: Step-wise Preference Optimization (OpenReview: H5FUVj0vMd)**
+- Treats individual reasoning steps as units for DPO, achieving ~3% gain on MATH for 70B+ models. Foundational work for the proposal's step-level DPO approach.
+- [Paper](https://openreview.net/forum?id=H5FUVj0vMd)
+
+**21. SRPO: Self-Improving Robust Preference Optimization (arXiv:2406.01660)**
+- Casts preference learning as self-improvement via min-max optimization. Outperforms DPO by 15% after 5 self-revisions. Relevant for the self-improvement / iterative correction dimension.
+- [Paper](https://arxiv.org/abs/2406.01660)
+
+**22. ECHO: Sample-Efficient Online Learning via Hindsight Trajectory Rewriting (arXiv:2510.10304)**
+- Adapts HER for LM agents with arbitrary trajectory rewriting. Outperforms baselines by up to 80%. Relevant as a trajectory reuse mechanism complementary to the proposal.
+- [Paper](https://arxiv.org/abs/2510.10304)
+
+**23. SimpleTIR: End-to-End RL for Multi-Turn Tool-Integrated Reasoning (arXiv:2509.02479)**
+- ICLR 2026. Stabilizes multi-turn RL by filtering void turns. Discovers self-correction patterns emergently. Relevant for the multi-turn RL training stability aspect.
+- [Paper](https://arxiv.org/abs/2509.02479)
+
+**24. Smaug / DPO-Positive (arXiv:2402.13228)**
+- Fixes DPO failure mode where preferred examples' likelihood decreases. Proposes DPOP loss. Relevant as the proposal may encounter the same DPO failure modes.
+- [Paper](https://arxiv.org/abs/2402.13228)
+
+---
+
+### TIER 4: WORKSHOPS AND COMMUNITY SIGNALS
+
+**25. Failure Modes in Agentic AI (FMAI) -- ICML 2026 Workshop**
+- Focused on reproducible triggers, trace diagnostics, and verified fixes for agent failures. The proposal would fit well here.
+- [Workshop site](https://fmai-workshop.github.io/)
+
+**26. Multi-Agent System Failure Taxonomy (MAST) -- NeurIPS 2025**
+- 14 failure modes in 3 categories: system design, inter-agent misalignment, task verification. Complementary taxonomy to the proposal's planning/action/verification split.
+
+**27. ErrorAtlas (Jan 2026)**
+- Model-agnostic taxonomy of 17 LLM failure categories. Provides a broader error classification that could contextualize the proposal's narrower agent-specific taxonomy.
+
+---
+
+### KEY GAPS AND RECOMMENDATIONS FOR THE PROPOSAL
+
+1. **The most critical paper to cite and differentiate from is "Where LLM Agents Fail" (arXiv:2509.25370)**, which already defines an error taxonomy (memory/reflection/planning/action/system) and uses it for corrective feedback. The proposal must argue why *training-time* DPO conditioning is better than *inference-time* feedback conditioning.
+
+2. **CSO (arXiv:2602.03412) is the closest methodological competitor**: it already does step-level DPO on critical failure points. The proposal must demonstrate that conditioning on *diagnosed error type* provides gains beyond CSO's type-agnostic critical-step approach.
+
+3. **Agent-R (arXiv:2501.11425) must be cited**: it does step-level error identification with MCTS for constructing correction trajectories, though without error-type classification.
+
+4. **The "diagnosis-conditioned" framing appears genuinely novel** -- my search for the exact terms "diagnosis-conditioned," "error-conditioned," and "failure-conditioned" preference optimization returned no results, suggesting this specific formulation is not yet explored in the literature.
+
+5. **The proposal should acknowledge recent process reward / step-level supervision work** (AgentPRM, iStar, Agent-RRM) as complementary: these provide the fine-grained reward signals that could serve as the error detection mechanism feeding into the diagnosis-conditioned DPO.
+
+6. **CMFR (arXiv:2507.06016)** -- the paper cited in the references -- uses a 4-stage conditional recovery at inference time (subgoal importance, preconditions, workarounds, post-execution reflection). The proposal should clarify how its error categories (planning/action/verification) relate to CMFR's stages.
+
+agentId: a29176cfbe90ef870 (use SendMessage with to: 'a29176cfbe90ef870' to continue this agent)
+&lt;usage>total_tokens: 63946
+tool_uses: 59
+duration_ms: 306123&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d346dc49-32d4-4823-9d78-20a6f5ec7ef5",
+  "isSidechain": false,
+  "promptId": "04f5c40c-439c-4466-a3de-f150656695ef",
+  "type": "user",
+  "uuid": "1b3504f1-d11d-4362-8eb9-b5c0a24fe363",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "You are helping review a research proposal about \"Error-Diagnosis-Conditioned Preference Learning for Agent Self-Correction.\" The core idea is: when training agents to self-correct via DPO, condition the recovery on the diagnosed error type (planning error, action error, verification error) rather than applying type-agnostic correction.\n\nSearch for competing or highly related work that the proposal may have missed. Use WebSearch extensively with multiple keyword variations. Focus on:\n\n1. Search for \"error type conditioned agent training 2025 2026 site:arxiv.org\"\n2. Search for \"failure type aware DPO agent 2025 2026\"\n3. Search for \"error classification agent self-correction training\"\n4. Search for \"type-specific recovery policy agent\"\n5. Search for \"conditional failure recovery agent 2025 2026\"\n6. Search for \"step-level DPO agent training 2025 2026\"\n7. Search for \"agent self-correction DPO preference learning 2025 2026\"\n8. Search for \"error-aware agent training reinforcement learning\"\n9. Search for recent ICLR 2026, ACL 2026, NAACL 2026 accepted papers on agent self-correction\n10. Search for \"CMFR conditional multi-stage failure recovery\" — this is cited in the references as arXiv 2507.06016\n\nFor any highly relevant paper you find, fetch the abstract and key details. Report all findings.",
+    "agentId": "a29176cfbe90ef870",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now I have a comprehensive picture. Let me compile the full report.\n\n---\n\n## Research Landscape Report: Competing and Related Work for \"Error-Diagnosis-Conditioned Preference Learning for Agent Self-Correction\"\n\nBelow is a thorough survey of competing and closely related work, organized by relevance to the proposal's core contributions: (A) error taxonomy/diagnosis in agents, (B) DPO/preference learning for agents, (C) step-level credit assignment and process rewards, (D) self-correction training, and (E) failure recovery frameworks.\n\n---\n\n### TIER 1: MOST DIRECTLY COMPETING WORK (High overlap with the proposal)\n\n**1. \"Where LLM Agents Fail and How They Can Learn From Failures\" (arXiv:2509.25370)**\n- Authors: Kunlun Zhu et al. (UIUC)\n- Status: Withdrawn from ICLR 2026 (Jan 2026)\n- **Why it matters**: This paper proposes **AgentErrorTaxonomy** -- a modular classification of failure modes spanning *memory, reflection, planning, action, and system-level* operations. It also introduces **AgentDebug**, a debugging framework that isolates root-cause failures and provides *targeted corrective feedback*, yielding up to 26% relative improvements across ALFWorld, GAIA, and WebShop. This is the closest existing work to the proposal: it defines an error taxonomy for agents AND uses it to provide type-specific corrective feedback. The key differentiator for the proposal would be that this paper applies corrections at inference time via feedback prompting, not via conditioned DPO training. But the overlap in motivation is very high and this paper must be cited and differentiated from.\n- [Paper](https://arxiv.org/abs/2509.25370) | [OpenReview](https://openreview.net/forum?id=PFR4E8583W)\n\n**2. Verified Critical Step Optimization (CSO) for LLM Agents (arXiv:2602.03412)**\n- Authors: Mukai Li, Qingcheng Zeng et al.\n- **Why it matters**: CSO focuses DPO preference learning on \"critical steps\" -- decision points where alternate actions demonstrably flip task outcomes from failure to success. It uses a process reward model to identify these steps in failed trajectories, then constructs DPO pairs by having expert models propose alternatives that are verified by executing the policy model to completion. Achieves 37% relative improvement over SFT baseline using only 16% of trajectory steps. This is extremely close to the proposal's mechanism: step-level DPO conditioned on identified failure points. The difference is that CSO does not *classify* error types -- it treats all critical steps uniformly. The proposal's contribution of conditioning on diagnosed error type (planning vs. action vs. verification) would be the differentiator.\n- [Paper](https://arxiv.org/abs/2602.03412)\n\n**3. Agent-R: Training Language Model Agents to Reflect via Iterative Self-Training (arXiv:2501.11425)**\n- Authors: Siyu Yuan, Zehui Chen et al.\n- Status: ICLR 2026 (based on search references)\n- **Why it matters**: Agent-R uses MCTS to construct revision trajectories that recover correct paths from erroneous ones. It identifies \"the first error step\" within the model's capability and splices failed paths with correct alternatives. Training on these revision trajectories outperforms expert trajectories by +5.59%. This is closely related -- it does step-level error identification and constructs correction training data. However, it does NOT classify error types or condition recovery on error diagnosis. The proposal would need to differentiate by showing that error-type conditioning provides gains beyond simple \"first error detection.\"\n- [Paper](https://arxiv.org/abs/2501.11425)\n\n**4. CMFR: Conditional Multi-Stage Failure Recovery for Embodied Agents (arXiv:2507.06016)**\n- Authors: Youmna Farag, Svetlana Stoyanchev et al.\n- Status: Accepted at REALM 2025\n- **Why it matters**: This is the paper cited in the proposal's references. CMFR defines four conditional recovery stages: (1) subgoal importance assessment, (2) precondition checking, (3) workaround generation, and (4) post-execution reflection. Each stage gates the next -- a conditional architecture. It achieves 11.5% improvement on TEACH benchmark. The proposal builds on this idea but applies it to *training-time* preference learning rather than *inference-time* prompting, which is the novel angle.\n- [Paper](https://arxiv.org/abs/2507.06016)\n\n---\n\n### TIER 2: HIGHLY RELATED WORK (Significant overlap in one or more dimensions)\n\n**5. AgentHER: Hindsight Experience Replay for LLM Agent Trajectory Relabeling (arXiv:2603.21357)**\n- Authors: Liang Ding et al.\n- Date: March 2026\n- **Why it matters**: AgentHER recovers training signal from failed trajectories by relabeling them as successes for alternative goals (adapting HER to NL agents). Its four-stage pipeline includes *failure classification* as the first stage, then uses relabeled data for SFT, DPO, and ShareGPT training. Achieves +7.1-11.7pp over success-only SFT. The failure classification stage is related to error diagnosis, though the approach relabels goals rather than conditioning recovery on error type.\n- [Paper](https://arxiv.org/abs/2603.21357)\n\n**6. iStar: Agentic RL with Implicit Step Rewards (arXiv:2509.19199)**\n- Authors: Xiaoqian Liu et al.\n- **Why it matters**: Proposes implicit step rewards via a trajectory-based DPO objective, alternately optimizing a process reward model with the policy. Combines step-level advantages with episode-level advantages. This is relevant because the proposal also operates at the step level with DPO -- the difference is that iStar does not classify or condition on error types.\n- [Paper](https://arxiv.org/abs/2509.19199)\n\n**7. AgentPRM: Process Reward Models for LLM Agents (arXiv:2511.08325)**\n- Authors: Zhiheng Xi et al.\n- Status: Published at ACM Web Conference 2026\n- **Why it matters**: Defines agent-specific process reward models capturing both \"promise\" (goal proximity) and \"progress\" (step interdependence). Uses TD-based estimation with GAE. Over 8x more compute-efficient than baselines. Relevant because agent PRMs could serve as the error signal in the proposal's framework, and their notion of step-level evaluation is complementary.\n- [Paper](https://arxiv.org/abs/2511.08325)\n\n**8. Agent-RRM: Exploring Reasoning Reward Model for Agents (arXiv:2601.22154)**\n- Authors: Kaixuan Fan et al. (CUHK/Meituan)\n- **Why it matters**: Introduces a multi-faceted reward model that produces (1) an explicit reasoning trace, (2) a focused critique highlighting reasoning flaws, and (3) an overall score. The \"focused critique\" component is conceptually related to error diagnosis. Three integration strategies (text-augmented refinement, reward-augmented guidance, unified feedback) achieve 43.7% on GAIA.\n- [Paper](https://arxiv.org/abs/2601.22154)\n\n**9. SCoRe: Training Language Models to Self-Correct via Reinforcement Learning (arXiv:2409.12917)**\n- Authors: Aviral Kumar et al. (Google DeepMind)\n- Status: ICLR 2025\n- **Why it matters**: Multi-turn online RL for self-correction under the model's own distribution. Identifies that SFT on corrections suffers from distribution mismatch and behavior collapse. Achieves +15.6% on MATH, +9.1% on HumanEval. Does not condition on error type but establishes the key challenge of training self-correction, which the proposal addresses with error-type conditioning.\n- [Paper](https://arxiv.org/abs/2409.12917)\n\n**10. AgenTracer: Who Is Inducing Failure in the LLM Agentic Systems? (arXiv:2509.03312)**\n- Authors: Guibin Zhang et al.\n- **Why it matters**: Automated failure attribution via counterfactual replay and fault injection. AgenTracer-8B outperforms Gemini-2.5-Pro and Claude-4-Sonnet on failure attribution by 18.18%. Delivers actionable feedback enabling 4.8-14.2% gains in MetaGPT and MaAS. Directly relevant as an error diagnosis component -- could be used as the \"diagnosis\" module in the proposal's pipeline.\n- [Paper](https://arxiv.org/abs/2509.03312)\n\n---\n\n### TIER 3: RELEVANT SUPPORTING WORK\n\n**11. AgentProcessBench: Diagnosing Step-Level Process Quality in Tool-Using Agents (arXiv:2603.14465)**\n- First human-annotated benchmark for step-level agent evaluation. 1,000 trajectories with 8,509 annotated steps using ternary labeling (+1 correct, 0 neutral, -1 incorrect) with error propagation rules. Relevant for benchmarking step-level error detection.\n- [Paper](https://arxiv.org/html/2603.14465v1)\n\n**12. AgentFixer: From Failure Detection to Fix Recommendations (arXiv:2603.29848)**\n- Authors: Hadar Mulian et al. (IBM)\n- 15 failure-detection tools and 2 root-cause analysis modules for structured incident detection, classification, and repair. Applied to IBM CUGA on AppWorld and WebArena. Relevant as a diagnostic pipeline but focuses on post-hoc analysis rather than training.\n- [Paper](https://arxiv.org/abs/2603.29848)\n\n**13. AgentRx: Diagnosing AI Agent Failures from Execution Trajectories (arXiv:2602.02475)**\n- Generates executable constraints from tool schema/policy, evaluates step-by-step, and passes validation logs to an LLM judge for root-cause attribution using a cross-domain failure taxonomy. Relevant as an error taxonomy approach.\n- [Paper](https://arxiv.org/pdf/2602.02475)\n\n**14. XENON: Experience-based Knowledge Correction for Robust Planning (arXiv:2505.24157)**\n- Integrates *Failure-aware Action Memory* that corrects action knowledge using past failures, combined with Adaptive Dependency Graphs. Outperforms GPT-4 agents with only a 7B model. The \"failure-aware\" component is conceptually related to error-type conditioning.\n- [Paper](https://arxiv.org/html/2505.24157v2)\n\n**15. MASC: Metacognitive Self-Correction for Multi-Agent Systems (arXiv:2510.14319)**\n- Real-time, unsupervised, step-level error detection via Next-Execution Reconstruction and Prototype-Guided Enhancement. Achieves 8.47% AUC-ROC improvement on error detection. Relevant as a step-level error detection mechanism.\n- [Paper](https://arxiv.org/html/2510.14319v1)\n\n**16. E2CL: Exploration-based Error Correction Learning (arXiv:2409.03256)**\n- Trains embodied agents to provide self-feedback and correct errors using exploration-induced errors and environmental feedback. Published at EMNLP 2024 Findings. Relevant as a training-time self-correction approach.\n- [Paper](https://arxiv.org/abs/2409.03256)\n\n**17. Localizing and Correcting Errors for LLM-based Planners (arXiv:2602.00276)**\n- Proposes Localized In-Context Learning (L-ICL): identifies first constraint violation and injects targeted correction demonstrations. 2,000 characters of targeted corrections outperforms 20,000 characters of full trajectories. Does not classify error types but performs step-level error localization.\n- [Paper](https://arxiv.org/abs/2602.00276)\n\n**18. T2PO: Uncertainty-Guided Exploration Control (arXiv:2605.02178)**\n- ICML 2026 Spotlight. Token- and turn-level policy optimization with uncertainty-based exploration control. Suppresses low-information actions and mitigates training collapse. Relevant as a multi-turn RL stability technique.\n- [Paper](https://arxiv.org/html/2605.02178v1)\n\n**19. Turn-PPO (arXiv:2512.17008)**\n- EACL 2026 Findings. Turn-level MDP formulation with PPO for multi-turn agent RL. Relevant as an alternative to token-level MDP for agent training.\n- [Paper](https://arxiv.org/abs/2512.17008)\n\n**20. Step-DPO: Step-wise Preference Optimization (OpenReview: H5FUVj0vMd)**\n- Treats individual reasoning steps as units for DPO, achieving ~3% gain on MATH for 70B+ models. Foundational work for the proposal's step-level DPO approach.\n- [Paper](https://openreview.net/forum?id=H5FUVj0vMd)\n\n**21. SRPO: Self-Improving Robust Preference Optimization (arXiv:2406.01660)**\n- Casts preference learning as self-improvement via min-max optimization. Outperforms DPO by 15% after 5 self-revisions. Relevant for the self-improvement / iterative correction dimension.\n- [Paper](https://arxiv.org/abs/2406.01660)\n\n**22. ECHO: Sample-Efficient Online Learning via Hindsight Trajectory Rewriting (arXiv:2510.10304)**\n- Adapts HER for LM agents with arbitrary trajectory rewriting. Outperforms baselines by up to 80%. Relevant as a trajectory reuse mechanism complementary to the proposal.\n- [Paper](https://arxiv.org/abs/2510.10304)\n\n**23. SimpleTIR: End-to-End RL for Multi-Turn Tool-Integrated Reasoning (arXiv:2509.02479)**\n- ICLR 2026. Stabilizes multi-turn RL by filtering void turns. Discovers self-correction patterns emergently. Relevant for the multi-turn RL training stability aspect.\n- [Paper](https://arxiv.org/abs/2509.02479)\n\n**24. Smaug / DPO-Positive (arXiv:2402.13228)**\n- Fixes DPO failure mode where preferred examples' likelihood decreases. Proposes DPOP loss. Relevant as the proposal may encounter the same DPO failure modes.\n- [Paper](https://arxiv.org/abs/2402.13228)\n\n---\n\n### TIER 4: WORKSHOPS AND COMMUNITY SIGNALS\n\n**25. Failure Modes in Agentic AI (FMAI) -- ICML 2026 Workshop**\n- Focused on reproducible triggers, trace diagnostics, and verified fixes for agent failures. The proposal would fit well here.\n- [Workshop site](https://fmai-workshop.github.io/)\n\n**26. Multi-Agent System Failure Taxonomy (MAST) -- NeurIPS 2025**\n- 14 failure modes in 3 categories: system design, inter-agent misalignment, task verification. Complementary taxonomy to the proposal's planning/action/verification split.\n\n**27. ErrorAtlas (Jan 2026)**\n- Model-agnostic taxonomy of 17 LLM failure categories. Provides a broader error classification that could contextualize the proposal's narrower agent-specific taxonomy.\n\n---\n\n### KEY GAPS AND RECOMMENDATIONS FOR THE PROPOSAL\n\n1. **The most critical paper to cite and differentiate from is \"Where LLM Agents Fail\" (arXiv:2509.25370)**, which already defines an error taxonomy (memory/reflection/planning/action/system) and uses it for corrective feedback. The proposal must argue why *training-time* DPO conditioning is better than *inference-time* feedback conditioning.\n\n2. **CSO (arXiv:2602.03412) is the closest methodological competitor**: it already does step-level DPO on critical failure points. The proposal must demonstrate that conditioning on *diagnosed error type* provides gains beyond CSO's type-agnostic critical-step approach.\n\n3. **Agent-R (arXiv:2501.11425) must be cited**: it does step-level error identification with MCTS for constructing correction trajectories, though without error-type classification.\n\n4. **The \"diagnosis-conditioned\" framing appears genuinely novel** -- my search for the exact terms \"diagnosis-conditioned,\" \"error-conditioned,\" and \"failure-conditioned\" preference optimization returned no results, suggesting this specific formulation is not yet explored in the literature.\n\n5. **The proposal should acknowledge recent process reward / step-level supervision work** (AgentPRM, iStar, Agent-RRM) as complementary: these provide the fine-grained reward signals that could serve as the error detection mechanism feeding into the diagnosis-conditioned DPO.\n\n6. **CMFR (arXiv:2507.06016)** -- the paper cited in the references -- uses a 4-stage conditional recovery at inference time (subgoal importance, preconditions, workarounds, post-execution reflection). The proposal should clarify how its error categories (planning/action/verification) relate to CMFR's stages."
+      }
+    ],
+    "totalDurationMs": 306123,
+    "totalTokens": 63946,
+    "totalToolUseCount": 59,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2932,
+      "cache_read_input_tokens": 56723,
+      "output_tokens": 4290,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2932
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4290,
+          "cache_read_input_tokens": 56723,
+          "cache_creation_input_tokens": 2932,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2932,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 59
+    }
+  },
+  "sourceToolAssistantUUID": "d346dc49-32d4-4823-9d78-20a6f5ec7ef5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cb034091-647d-4d5f-b542-2af1be7f10ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "1b3504f1-d11d-4362-8eb9-b5c0a24fe363",
+  "sessionId": "cb034091-647d-4d5f-b542-2af1be7f10ef"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review agent error-diagnosis-conditioned DPO for agents",
+  "sessionId": "cb034091-647d-4d5f-b542-2af1be7f10ef"
+}
+```
+
+---
+
+### Assistant
+
+_source line 20 · 2026-05-10T18:16:23.861Z_
+
+Good, I have extensive verification results. Let me now do a few more targeted searches for the most critical remaining questions.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1b3504f1-d11d-4362-8eb9-b5c0a24fe363",
+  "isSidechain": false,
+  "requestId": "req_011CauM1DaqHnrfc5C5pNZpP",
+  "type": "assistant",
+  "uuid": "054bb5af-0283-4cdf-8b5f-e018c6742700",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cb034091-647d-4d5f-b542-2af1be7f10ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WNmiSn6NSRbGbX9Q3yvvSu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2386,
+      "cache_creation_input_tokens": 9143,
+      "cache_read_input_tokens": 27262,
+      "output_tokens": 459,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9143,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2386,
+          "output_tokens": 459,
+          "cache_read_input_tokens": 27262,
+          "cache_creation_input_tokens": 9143,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9143
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-10T18:16:34.826Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01KpyoXWisQLh5LaVnAXHzyB`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Search for CMFR and concurrent work",
+  "prompt": "I need to verify a few specific things for a research review. Use WebSearch and WebFetch as needed:\n\n1. Search for \"Conditional Multi-Stage Failure Recovery for Embodied Agents\" arXiv 2507.06016. The proposal cites this as CMFR. Check if it exists, what it does, and whether its approach overlaps significantly with \"error-type-conditioned DPO for agent self-correction.\" Specifically: does CMFR condition recovery on error type at TRAINING time, or is it only inference-time?\n\n2. Search for \"error conditioned DPO\" or \"failure type conditioned preference learning\" or \"diagnosis conditioned preference optimization\" on arXiv — I want to confirm that no one has done exactly this combination before.\n\n3. Search for \"E2CL Exploration-based Error Correction Learning\" arXiv 2409.03256 — check if this is relevant as a training-time self-correction approach that might overlap.\n\n4. Search for \"Qwen3-8B ALFWorld\" or \"Qwen3 agent benchmark\" to see if anyone has already evaluated Qwen3-8B on ALFWorld/WebShop, which would tell us expected baseline performance.\n\n5. Search for \"QLoRA DPO 8B model GPU hours\" or similar to verify the compute estimate of ~12h for DPO training on Qwen3-8B with QLoRA is realistic.\n\nReport all findings concisely."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "054bb5af-0283-4cdf-8b5f-e018c6742700",
+  "isSidechain": false,
+  "requestId": "req_011CauM1DaqHnrfc5C5pNZpP",
+  "type": "assistant",
+  "uuid": "592ff036-be9a-4321-8190-c3668e155348",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cb034091-647d-4d5f-b542-2af1be7f10ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WNmiSn6NSRbGbX9Q3yvvSu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2386,
+      "cache_creation_input_tokens": 9143,
+      "cache_read_input_tokens": 27262,
+      "output_tokens": 459,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9143,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2386,
+          "output_tokens": 459,
+          "cache_read_input_tokens": 27262,
+          "cache_creation_input_tokens": 9143,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9143
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-10T18:19:10.758Z_
+
+<details><summary>↩ Tool result · `toolu_01KpyoXWisQLh5LaVnAXHzyB`</summary>
+
+```text
+Now I have comprehensive data. Let me compile the findings.
+
+Here are the consolidated findings for all five items:
+
+---
+
+## 1. CMFR (arXiv 2507.06016)
+
+**Exists:** Yes. "Conditional Multi-Stage Failure Recovery for Embodied Agents" by Youmna Farag et al., published at REALM 2025 (ACL workshop).
+
+**What it does:** A purely inference-time, zero-shot chain-prompting framework with four sequential error-handling stages: (1) subgoal importance assessment, (2) precondition checking, (3) workaround generation, and (4) post-execution reflection. It achieved SOTA on the TEACH dataset's TfD benchmark (+19% over prior best).
+
+**Training vs. Inference:** CMFR is **entirely inference-time**. No model training, fine-tuning, or preference learning is involved. It relies on LLM reasoning via structured prompts in a zero-shot manner.
+
+**Overlap with error-type-conditioned DPO:** **Minimal.** CMFR does not classify error types, does not use DPO/preference learning, and does not modify the model at training time. The "conditional" in CMFR refers to sequential stage activation (each stage triggers based on the previous stage's output), not conditioning on error type. Your proposed approach of conditioning DPO training on diagnosed error types is fundamentally different -- it operates at training time and modifies model weights.
+
+---
+
+## 2. Prior Work on "Error-Type-Conditioned DPO for Agent Self-Correction"
+
+**No exact match found.** After extensive searching, the closest papers are:
+
+- **AP2O** (arXiv 2510.02393): Conditions DPO on error types, but exclusively for **code generation** (SyntaxError, TypeError, etc.), not embodied agents. It uses a sliding window to progressively optimize by error type. This is the closest conceptual match, but the domain (code) and task type (generation, not interactive agent self-correction) are different.
+
+- **Focused-DPO** (arXiv 2502.11475): Focuses DPO on error-prone code regions, but again purely code generation, not agent tasks. No error-type conditioning per se.
+
+- **TCPO** (arXiv 2509.08500): Applies step-wise preference optimization on ALFWorld, but does **not** condition on error types -- it constructs preference pairs based on reward comparison alone.
+
+- **MCTS-EP** (arXiv 2509.17116): Combines MCTS with DPO for embodied agents on ALFWorld/WebShop, but no error-type conditioning.
+
+- **EMMA** (arXiv 2311.16714): Uses DAgger-DPO for embodied agents, distilling LLM reflections, but no error-type conditioning.
+
+**Conclusion:** The specific combination of (a) diagnosing error types, (b) conditioning DPO preference pairs on those error types, and (c) applying this to agent self-correction in interactive environments appears to be **novel**. AP2O is the closest precedent conceptually (error-type-progressive DPO), but it operates in a completely different domain (code generation).
+
+---
+
+## 3. E2CL (arXiv 2409.03256)
+
+**Exists:** Yes. Published at EMNLP 2024 Findings.
+
+**Relevance:** E2CL is a **training-time self-correction approach** for embodied agents, so it is relevant as related work. Key details:
+
+- Uses **supervised fine-tuning only** (not DPO or preference learning). Three loss components: planning loss, feedback loss, and correction loss, all standard negative log-likelihood.
+- Trained on **FLAN-T5** models (77M, 248M, 783M) -- much smaller than 8B-class models.
+- While the paper catalogs 8 error types in analysis (Appendix B), it does **not explicitly condition training on error types**. The model learns from error-correction pairs implicitly.
+- Data comes from teacher-guided and teacher-free exploration schemes.
+
+**Overlap:** E2CL shares the goal of training-time self-correction but differs in key ways: it uses SFT not DPO, does not condition on error type, uses much smaller models, and evaluates on VirtualHome not ALFWorld/WebShop. It should be cited as related work but is not a direct competitor to your proposed approach.
+
+---
+
+## 4. Qwen3-8B on ALFWorld/WebShop
+
+**Some data exists** from the Agent2 RL-Bench paper (arXiv 2604.10547):
+
+- **Qwen3-8B-Base on ALFWorld:** Baseline success rate of **~5.97-8.96%**. After SFT warmup + GRPO with online rollouts, it reaches **93.28%**. The paper emphasizes huge driver sensitivity -- switching the scaffolding agent dramatically changes results.
+- **Qwen3-8B-Base on WebShop:** Baseline of **0%** (unaligned base model). Best result with Claude Code + Opus 4.6 driver: **67%**; with Codex CLI + GPT-5.2: **75%**.
+
+**Important caveat:** These numbers are for Qwen3-8B-**Base** (unaligned), not Qwen3-8B-Instruct. The instruct model baseline would likely be significantly higher than 5-9% on ALFWorld. No published Qwen3-8B-Instruct ALFWorld/WebShop baselines were found.
+
+---
+
+## 5. Compute Estimate: ~12h QLoRA DPO on Qwen3-8B
+
+**The 12-hour estimate appears slightly optimistic but in the right ballpark**, depending on dataset size and hardware:
+
+- A reference point: QLoRA SFT on Qwen3-8B with ~5K examples (250-800 tokens each) on a single A100 80GB takes **15-20 hours for 3 epochs**.
+- DPO is computationally more expensive than SFT (pairwise comparisons, reference model forward passes), so expect **~1.5-2x the SFT cost** for equivalent data.
+- However, DPO datasets for agent self-correction are typically smaller (1-5K pairs), and 1 epoch with beta=0.01 is often sufficient (per HuggingFace alignment handbook findings).
+- Practical estimates from community reports: QLoRA DPO on 7-8B models with modest datasets (a few thousand pairs) on a single A100: **8-16 hours** for a full run.
+
+**Verdict:** 12 hours is achievable if your dataset is on the smaller side (~2-3K preference pairs) and you train for 1 epoch on a single A100 80GB. With larger datasets or multiple epochs, budget 16-20 hours. The estimate is defensible but should be stated as "~12-16 hours on a single A100 80GB" for safety.
+
+---
+
+Sources:
+- [CMFR - arXiv 2507.06016](https://arxiv.org/abs/2507.06016)
+- [E2CL - arXiv 2409.03256](https://arxiv.org/abs/2409.03256)
+- [AP2O - arXiv 2510.02393](https://arxiv.org/html/2510.02393)
+- [Focused-DPO - arXiv 2502.11475](https://arxiv.org/abs/2502.11475)
+- [TCPO - arXiv 2509.08500](https://arxiv.org/html/2509.08500v1)
+- [MCTS-EP - arXiv 2509.17116](https://arxiv.org/html/2509.17116)
+- [Agent2 RL-Bench - arXiv 2604.10547](https://arxiv.org/html/2604.10547)
+- [Qwen3-8B QLoRA Fine-tuning on A100](https://www.e2enetworks.com/blog/fine-tuning-qwen3-8b-medical-reasoning-qlora-e2e-networks-a100)
+- [QLoRA + DPO W&B Report](https://wandb.ai/iasai/QLoRA%20+%20DPO/reports/DPO-QLoRA--Vmlldzo1MTQ2ODMw)
+- [HuggingFace Alignment Handbook - Zephyr DPO](https://github.com/huggingface/alignment-handbook/blob/main/recipes/zephyr-7b-beta/README.md)
+- [Multi-GPU DPO with FSDP](https://kaitchup.substack.com/p/multi-gpu-dpo-training-with-fsdp)
+
+agentId: a8499ec910eb87a33 (use SendMessage with to: 'a8499ec910eb87a33' to continue this agent)
+&lt;usage>total_tokens: 30153
+tool_uses: 22
+duration_ms: 155925&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "592ff036-be9a-4321-8190-c3668e155348",
+  "isSidechain": false,
+  "promptId": "04f5c40c-439c-4466-a3de-f150656695ef",
+  "type": "user",
+  "uuid": "7a92c2c4-c738-4649-afc1-cee4f8b4e27d",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need to verify a few specific things for a research review. Use WebSearch and WebFetch as needed:\n\n1. Search for \"Conditional Multi-Stage Failure Recovery for Embodied Agents\" arXiv 2507.06016. The proposal cites this as CMFR. Check if it exists, what it does, and whether its approach overlaps significantly with \"error-type-conditioned DPO for agent self-correction.\" Specifically: does CMFR condition recovery on error type at TRAINING time, or is it only inference-time?\n\n2. Search for \"error conditioned DPO\" or \"failure type conditioned preference learning\" or \"diagnosis conditioned preference optimization\" on arXiv — I want to confirm that no one has done exactly this combination before.\n\n3. Search for \"E2CL Exploration-based Error Correction Learning\" arXiv 2409.03256 — check if this is relevant as a training-time self-correction approach that might overlap.\n\n4. Search for \"Qwen3-8B ALFWorld\" or \"Qwen3 agent benchmark\" to see if anyone has already evaluated Qwen3-8B on ALFWorld/WebShop, which would tell us expected baseline performance.\n\n5. Search for \"QLoRA DPO 8B model GPU hours\" or similar to verify the compute estimate of ~12h for DPO training on Qwen3-8B with QLoRA is realistic.\n\nReport all findings concisely.",
+    "agentId": "a8499ec910eb87a33",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now I have comprehensive data. Let me compile the findings.\n\nHere are the consolidated findings for all five items:\n\n---\n\n## 1. CMFR (arXiv 2507.06016)\n\n**Exists:** Yes. \"Conditional Multi-Stage Failure Recovery for Embodied Agents\" by Youmna Farag et al., published at REALM 2025 (ACL workshop).\n\n**What it does:** A purely inference-time, zero-shot chain-prompting framework with four sequential error-handling stages: (1) subgoal importance assessment, (2) precondition checking, (3) workaround generation, and (4) post-execution reflection. It achieved SOTA on the TEACH dataset's TfD benchmark (+19% over prior best).\n\n**Training vs. Inference:** CMFR is **entirely inference-time**. No model training, fine-tuning, or preference learning is involved. It relies on LLM reasoning via structured prompts in a zero-shot manner.\n\n**Overlap with error-type-conditioned DPO:** **Minimal.** CMFR does not classify error types, does not use DPO/preference learning, and does not modify the model at training time. The \"conditional\" in CMFR refers to sequential stage activation (each stage triggers based on the previous stage's output), not conditioning on error type. Your proposed approach of conditioning DPO training on diagnosed error types is fundamentally different -- it operates at training time and modifies model weights.\n\n---\n\n## 2. Prior Work on \"Error-Type-Conditioned DPO for Agent Self-Correction\"\n\n**No exact match found.** After extensive searching, the closest papers are:\n\n- **AP2O** (arXiv 2510.02393): Conditions DPO on error types, but exclusively for **code generation** (SyntaxError, TypeError, etc.), not embodied agents. It uses a sliding window to progressively optimize by error type. This is the closest conceptual match, but the domain (code) and task type (generation, not interactive agent self-correction) are different.\n\n- **Focused-DPO** (arXiv 2502.11475): Focuses DPO on error-prone code regions, but again purely code generation, not agent tasks. No error-type conditioning per se.\n\n- **TCPO** (arXiv 2509.08500): Applies step-wise preference optimization on ALFWorld, but does **not** condition on error types -- it constructs preference pairs based on reward comparison alone.\n\n- **MCTS-EP** (arXiv 2509.17116): Combines MCTS with DPO for embodied agents on ALFWorld/WebShop, but no error-type conditioning.\n\n- **EMMA** (arXiv 2311.16714): Uses DAgger-DPO for embodied agents, distilling LLM reflections, but no error-type conditioning.\n\n**Conclusion:** The specific combination of (a) diagnosing error types, (b) conditioning DPO preference pairs on those error types, and (c) applying this to agent self-correction in interactive environments appears to be **novel**. AP2O is the closest precedent conceptually (error-type-progressive DPO), but it operates in a completely different domain (code generation).\n\n---\n\n## 3. E2CL (arXiv 2409.03256)\n\n**Exists:** Yes. Published at EMNLP 2024 Findings.\n\n**Relevance:** E2CL is a **training-time self-correction approach** for embodied agents, so it is relevant as related work. Key details:\n\n- Uses **supervised fine-tuning only** (not DPO or preference learning). Three loss components: planning loss, feedback loss, and correction loss, all standard negative log-likelihood.\n- Trained on **FLAN-T5** models (77M, 248M, 783M) -- much smaller than 8B-class models.\n- While the paper catalogs 8 error types in analysis (Appendix B), it does **not explicitly condition training on error types**. The model learns from error-correction pairs implicitly.\n- Data comes from teacher-guided and teacher-free exploration schemes.\n\n**Overlap:** E2CL shares the goal of training-time self-correction but differs in key ways: it uses SFT not DPO, does not condition on error type, uses much smaller models, and evaluates on VirtualHome not ALFWorld/WebShop. It should be cited as related work but is not a direct competitor to your proposed approach.\n\n---\n\n## 4. Qwen3-8B on ALFWorld/WebShop\n\n**Some data exists** from the Agent2 RL-Bench paper (arXiv 2604.10547):\n\n- **Qwen3-8B-Base on ALFWorld:** Baseline success rate of **~5.97-8.96%**. After SFT warmup + GRPO with online rollouts, it reaches **93.28%**. The paper emphasizes huge driver sensitivity -- switching the scaffolding agent dramatically changes results.\n- **Qwen3-8B-Base on WebShop:** Baseline of **0%** (unaligned base model). Best result with Claude Code + Opus 4.6 driver: **67%**; with Codex CLI + GPT-5.2: **75%**.\n\n**Important caveat:** These numbers are for Qwen3-8B-**Base** (unaligned), not Qwen3-8B-Instruct. The instruct model baseline would likely be significantly higher than 5-9% on ALFWorld. No published Qwen3-8B-Instruct ALFWorld/WebShop baselines were found.\n\n---\n\n## 5. Compute Estimate: ~12h QLoRA DPO on Qwen3-8B\n\n**The 12-hour estimate appears slightly optimistic but in the right ballpark**, depending on dataset size and hardware:\n\n- A reference point: QLoRA SFT on Qwen3-8B with ~5K examples (250-800 tokens each) on a single A100 80GB takes **15-20 hours for 3 epochs**.\n- DPO is computationally more expensive than SFT (pairwise comparisons, reference model forward passes), so expect **~1.5-2x the SFT cost** for equivalent data.\n- However, DPO datasets for agent self-correction are typically smaller (1-5K pairs), and 1 epoch with beta=0.01 is often sufficient (per HuggingFace alignment handbook findings).\n- Practical estimates from community reports: QLoRA DPO on 7-8B models with modest datasets (a few thousand pairs) on a single A100: **8-16 hours** for a full run.\n\n**Verdict:** 12 hours is achievable if your dataset is on the smaller side (~2-3K preference pairs) and you train for 1 epoch on a single A100 80GB. With larger datasets or multiple epochs, budget 16-20 hours. The estimate is defensible but should be stated as \"~12-16 hours on a single A100 80GB\" for safety.\n\n---\n\nSources:\n- [CMFR - arXiv 2507.06016](https://arxiv.org/abs/2507.06016)\n- [E2CL - arXiv 2409.03256](https://arxiv.org/abs/2409.03256)\n- [AP2O - arXiv 2510.02393](https://arxiv.org/html/2510.02393)\n- [Focused-DPO - arXiv 2502.11475](https://arxiv.org/abs/2502.11475)\n- [TCPO - arXiv 2509.08500](https://arxiv.org/html/2509.08500v1)\n- [MCTS-EP - arXiv 2509.17116](https://arxiv.org/html/2509.17116)\n- [Agent2 RL-Bench - arXiv 2604.10547](https://arxiv.org/html/2604.10547)\n- [Qwen3-8B QLoRA Fine-tuning on A100](https://www.e2enetworks.com/blog/fine-tuning-qwen3-8b-medical-reasoning-qlora-e2e-networks-a100)\n- [QLoRA + DPO W&B Report](https://wandb.ai/iasai/QLoRA%20+%20DPO/reports/DPO-QLoRA--Vmlldzo1MTQ2ODMw)\n- [HuggingFace Alignment Handbook - Zephyr DPO](https://github.com/huggingface/alignment-handbook/blob/main/recipes/zephyr-7b-beta/README.md)\n- [Multi-GPU DPO with FSDP](https://kaitchup.substack.com/p/multi-gpu-dpo-training-with-fsdp)"
+      }
+    ],
+    "totalDurationMs": 155925,
+    "totalTokens": 30153,
+    "totalToolUseCount": 22,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1146,
+      "cache_read_input_tokens": 26858,
+      "output_tokens": 2148,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1146
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2148,
+          "cache_read_input_tokens": 26858,
+          "cache_creation_input_tokens": 1146,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1146,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 22
+    }
+  },
+  "sourceToolAssistantUUID": "592ff036-be9a-4321-8190-c3668e155348",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cb034091-647d-4d5f-b542-2af1be7f10ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-10T18:21:10.165Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me synthesize all my findings into a comprehensive review.
+
+## Summary of Verification Findings
+
+### Reference Verification
+- **All 9 papers verified as existing** with mostly accurate claims
+- **CSO venue is wrong**: claimed ICLR 2026, actually submitted to ACL ARR Jan 2026 (not confirmed accepted anywhere)
+- **PathFinder-PRM date**: May 2025 (proposal correctly states this now, was fixed from Round 1)
+- Other papers are accurately cited
+
+### SOTA Verification
+- **ALFWorld SOTA**: Embodied Planner-R1 achieves 99.29%/96.27% seen/unseen — proposal's claim is accurate
+
+
+- **WebShop SOTA**: Couldn't find clear evidence from my search
+- **SEEA-R1**: Confirmed at 85.07% on ALFWorld textual tasks
+
+### Feasibility Verification
+- **Qwen3-8B**: Publicly available under Apache 2.0, released April 28, 2025
+- **AgentErrorBench**: Consists of 100 ALFWorld, 50 WebShop, and 50 GAIA annotated trajectories available on GitHub
+- **ARR deadline**: May 25, 2026 — 15 days away
+- **DPO training compute**: The 12-hour estimate is somewhat optimistic but defensible within an 8-16 hour range
+- **Qwen3-8B-Base ALFWorld baseline**: Around 6-9% for the base model, though the Instruct variant would likely perform better
+
+### Novelty Assessment
+The error-type-conditioned DPO approach for agent self-correction appears to be genuinely novel. While AP2O is conceptually similar, it focuses on code generation; TCPO applies step-wise DPO on ALFWorld but lacks error-type conditioning; MCTS-EP combines MCTS with DPO for embodied agents without that conditioning; and E2CL uses SFT rather than DPO for training-time self-correction.
+
+### Competing Work Assessment
+The proposal now properly differentiates from related work including ETO, which operates at the trajectory level with DPO...
+
+Now I'm reviewing the full landscape of related work that should be cited. There are several papers I need to make sure are properly integrated: TCPO for step-wise preference optimization on ALFWorld, MCTS-EP for MCTS with DPO in embodied agents, AP2O as a conceptual parallel in the code domain with error-type-progressive DPO, AgenTracer for automated failure attribution, and AgentProcess which appears to be cut off but likely relevant for agent-related methods.
+
+Looking at the novelty assessment, the core contribution of conditioning DPO recovery on diagnosed error types is genuinely novel, though it's somewhat incremental—essentially combining CSO's step-level approach with AgentDebug's error taxonomy and applying DPO training. The intellectual contribution boils down to adding conditional prefixes during DPO training, which is technically straightforward but the combination itself is new.
+
+Actually, reconsidering this: the proposal meaningfully integrates error-type diagnosis, step-level DPO, and self-generated corrections in a way that addresses SCoRe's critique. The PathFinder-PRM findings validate error-type decomposition as a useful inductive bias, and framing this as a methodological question rather than claiming state-of-the-art is the right approach. I'd rate novelty at 3.5—it's a well-motivated combination of existing ideas with a clear hypothesis, though the technical novelty is limited.
+
+On feasibility, the timeline is extremely tight with 15 days remaining and the proposal targeting 14 days for the main phases plus 4 days for ablations and writing.
+
+The compute budget of 100-150 H100-hours fits within the 200-hour allocation, and the pipeline is well-scoped. But there are real risks: the LLM-based error classifier could have low accuracy, which would degrade the signal quality, and the noise ablation only partially addresses this. More critically, if Qwen3-8B's base performance on ALFWorld and WebShop is as low as 6-9%, there may not be enough successful trajectories to generate meaningful DPO pairs—the proposal generates 800 and 400 trajectories respectively but doesn't explain how to handle the case where successful corrections are too sparse to form "chosen" examples.
+
+Actually, looking at the numbers more carefully: if they're using Qwen3-8B-Instruct (which performs much better than the base model at 30-40% on ALFWorld) and generating 5 correction attempts per failure with a 20-30% success rate, they should have enough pairs to work with. This approach seems viable.
+
+The proposal is exceptionally well-written with clear positioning against prior work and a concrete five-phase plan with thoughtful ablations. The framing as a methodological contribution rather than a SOTA claim is appropriately honest. There's a minor venue error (says ICLR 2026 when it's actually ACL ARR January 2026), and the EMNLP 2026 Findings target seems reasonable. The core idea is solid but somewhat incremental.
+
+If error-type conditioning improves DPO-based recovery by 5-10%, that's a useful contribution for the community, though not transformative. Essentially they're showing that structured prefixes in DPO pairs help with recovery, which is reasonable but not deeply novel. For EMNLP Findings though, this level of contribution fits well. Scoring it out: novelty at 3.5 (combination is new but components exist), feasibility at 4 (tight but well-planned), clarity at 4 (well-structured), and impact at 3.5 (useful for Findings). That averages to 3.75, which falls short of the 4.0 threshold, but since this is round 3 of 10, revision is still viable.
+
+Looking at what needs addressing: there's a minor CSO venue error to fix, and they should acknowledge TCPO, MCTS-EP, AP2O, and E2CL even if not deeply engaging with them. The Qwen3-8B baseline performance is uncertain — the proposal doesn't clarify expected base performance or what happens if correction success rates are too low. The core novelty issue remains: "add error-type prefix to DPO pairs" is well-motivated but technically simple, so the paper really needs strong empirical results to be compelling. And there's a timeline crunch — with 15 days left (not 16), the 18-day plan doesn't fit. Phases 1-4 alone take 14 days, leaving just 1 day for ablations and writing, which is extremely tight.
+
+Let me recalculate the timeline. Today is May 10, deadline is May 25 — that's 15 days total. The phases are mapped to days 1-18, but they only have 15 days available. The auto-research mode suggests 12-18 days, so the upper bound doesn't work, but compressing to 12-14 days might be feasible if ablations are reduced. There's also the question of correction pair construction: they're generating 5 corrections per failure and selecting successful ones as "chosen," but what's the realistic success rate? If Qwen3-8B only corrects 10-20% of failures, the dataset size could become problematic.
+
+The cross-benchmark transfer ablation between ALFWorld and WebShop is ambitious but risky — error types may not transfer well across such different environments. Overall, the proposal has improved substantially from earlier rounds with the correct venue, self-generated corrections plus DPO addressing the SCoRe critique, proper baseline citations, and the LLM-based error classifier. WebShop is now mandatory and the PathFinder-PRM date is fixed. Most remaining concerns are minor, like the CSO venue claim.
+
+The average score sits around 3.75, just below the 4.0 threshold, but the issues are relatively straightforward to address. The novelty is incremental at 3.5 — adding a prefix tag to DPO pairs is technically simple, though the combination itself is novel and should suffice for EMNLP Findings if results are strong. Feasibility scores a 4 with realistic planning and public resources, though the timeline is tight and correction success rate is the main risk. Clarity is strong at 4.5 with excellent positioning and detailed planning.
+
+For impact, I'm reconsidering — if the experiments clearly show error-type conditioning improves DPO-based recovery across benchmarks with proper ablations, that's actually a meaningful contribution to the agent training community, even if not transformative. The field is actively exploring step-level DPO, error taxonomies, and self-correction approaches, so this fits naturally into that landscape.
+
+I'll recommend a "revise" verdict with specific fixes: correct the CSO venue, compress the timeline to 15 days, directly address the correction success rate risk, and add citations to TCPO and AP2O to strengthen the related work section. The core novelty really comes down to conditioning step-level DPO with error-type tags to specialize recovery behavior—a simple but well-motivated idea that mirrors how error-type decomposition helped process reward models in prior work. The other components are borrowed or combined from existing approaches, so 3.5 for novelty seems right, though the hypothesis is grounded enough to be worth exploring.
+
+For EMNLP Findings, this feels borderline—the experimental design and focused hypothesis are solid strengths, but I need to address a few issues before recommending acceptance: the venue error in the CSO section, the timeline mismatch (needing 18 days with only 15 available), some missing related work citations, and the unaddressed risk around correction success rates. These are all fixable in one more revision.
+
+I'm also checking whether TCPO is a critical omission since it applies step-wise preference optimization on ALFWorld, which seems directly relevant to what we're proposing.
+
+Looking at the search results, TCPO doesn't condition on error types, so it's essentially another step-level DPO approach similar to CSO. Since the proposal already cites CSO and Step-DPO as the main works in this space, TCPO is worth mentioning but not a major gap. The AgentPRM citation also checks out—it was published at ACM Web Conference 2026, so that's accurate.
+
+Now I'm concerned about the trajectory generation plan: with Qwen3-8B-Instruct, the success rate on ALFWorld might realistically be 30-50%, which could significantly impact whether they actually generate the ~800 trajectories they're projecting.
+
+Even more critically, the proposal doesn't address what happens if the correction success rate falls below expectations. If they're aiming for 5 correction attempts per failure with a 20% success rate, they'd get roughly 400-500 DPO pairs from ALFWorld—which is workable. But if the correction rate drops to 10%, they'd only have 40-50 pairs, which is far too few for effective DPO training. This is a real feasibility risk that the proposal should acknowledge and plan for.
+
+Looking at my scoring: novelty is solid at 3.5 since the combination is validated but technically straightforward. Feasibility drops to 3.5 because the timeline claims 18 days but only 15 are available, the correction success rate is unaddressed, and there's a venue error suggesting incomplete verification. Clarity also drops to 4 due to these inconsistencies. That puts the average at 3.625, well below the 4.0 threshold.
+
+Wait, I should reconsider the feasibility score. The manual timeline is 18 days, but the auto_research timeline mentions 12-18 days with 4 H100s running in parallel, which could actually fit within the available window.
+
+The user has 15 days remaining (May 10 to May 25), and with parallelization, the core phases take 14 days. Phase 5 (ablations and writing) spans days 14-18, which is tight, but they could overlap writing with Phase 4 starting around day 10 and compress the ablations. This is feasible if they're disciplined about it.
+
+Still, I'm keeping feasibility at 3.5 because the timeline is genuinely tight and the correction success rate remains a real risk. The proposal does correctly target EMNLP 2026, which is a positive signal.
+
+On the venue side, Findings is the right call given the contribution level—it aligns with what the user is asking for. I should also note that the landscape section references some very recent papers from early 2026 (CSO, AgentHER, T-STAR, ErrorProbe), which should be framed as concurrent work rather than prior work.
+
+Now I'm ready to finalize my assessment against the user's actual requirements. The timeline crunch is manageable—I can compress the schedule from 18 down to 15-16 days. Looking at the scores, I'm sitting at 3.625 average across novelty, feasibility, clarity, and impact, which puts this in revise territory—the issues are fixable but I need to push the needle higher to clear the threshold.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7a92c2c4-c738-4649-afc1-cee4f8b4e27d",
+  "isSidechain": false,
+  "requestId": "req_011CauMDnwcjXt9CZjQbwqFy",
+  "type": "assistant",
+  "uuid": "5cc18343-f8e3-4203-835d-edfb66adc4a0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cb034091-647d-4d5f-b542-2af1be7f10ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017HwoLqNzFCTgT3LYDZXVik",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5067,
+      "cache_read_input_tokens": 36405,
+      "output_tokens": 6866,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5067,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6866,
+          "cache_read_input_tokens": 36405,
+          "cache_creation_input_tokens": 5067,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5067
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-10T18:21:51.149Z_
+
+Now I have comprehensive verification data. Let me synthesize my findings into a rigorous review.
+
+## Key findings from my independent verification:
+
+**Reference verification:**
+- All 9 checked papers exist and are accurately characterized
+- **CSO venue is WRONG**: claimed "ICLR 2026" but actually submitted to ACL ARR January 2026 — no evidence of ICLR acceptance
+- All other venues/dates confirmed
+
+**Novelty verification:**
+- The specific combination of error-type-conditioned step-level DPO for agent self-correction is **genuinely novel** — extensive search found no exact match
+- **AP2O** (arXiv 2510.02393) conditions DPO on error types but only for code generation, different domain
+- **TCPO** (arXiv 2509.08500) applies step-wise preference optimization on ALFWorld but without error-type conditioning
+
+**Feasibility verification:**
+- Qwen3-8B confirmed available (Apache 2.0, April 28, 2025)
+- AgentErrorBench annotations confirmed available (100 ALFWorld + 50 WebShop)
+- ARR deadline confirmed: May 25, 2026 (15 days from today)
+- QLoRA DPO ~12h on 8B model is slightly optimistic but defensible (8-16h range)
+- Qwen3-8B-Base ALFWorld baseline: ~6-9% (from Agent2 RL-Bench); Instruct version likely 30-50%
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {"score": 3.5, "rationale": "The combination of error-type diagnosis + step-level DPO + self-generated corrections is verified as novel (no exact match found in extensive search). However, the technical contribution reduces to adding an error-type prefix tag to DPO pairs — conceptually simple despite being well-motivated by PathFinder-PRM's validation of error-type decomposition as inductive bias."},
+    "feasibility": {"score": 3.5, "rationale": "Core infrastructure (Qwen3-8B, AgentErrorBench, ALFWorld, WebShop) is verified available. Compute estimate (~100-150 H100-hours) fits the 200h budget. However, the 5-phase plan spans 18 days but only 15 days remain until May 25 deadline — Phase 5 (ablations + writing, Days 14-18) overflows by 3 days. Additionally, the correction success rate risk is unaddressed: if Qwen3-8B self-corrects only 10-15% of failures, the DPO dataset may be too small."},
+    "clarity": {"score": 4, "rationale": "Excellent positioning against ETO/Agent-R/CSO/AgentDebug with clear differentiation. The 5-phase plan is concrete and ablation design is well-structured. The honest framing as methodological contribution rather than SOTA claim is appropriate. Minor factual error: CSO venue is ACL ARR Jan 2026, not ICLR 2026."},
+    "impact": {"score": 3.5, "rationale": "A useful empirical finding for EMNLP Findings if results confirm that error-type conditioning improves DPO-based recovery. However, the contribution is incremental — it demonstrates one specific conditioning technique within an existing training paradigm. The result would inform future work but is unlikely to shift how the field approaches agent self-correction."}
+  },
+  "issues": [
+    "TIMELINE OVERFLOW: The 5-phase plan spans 18 days (Phase 5: Days 14-18 for ablations + writing) but only 15 days remain until the May 25, 2026 ARR deadline. Phase 5 must be compressed or overlapped with Phase 4. Concrete fix: start paper writing from Day 8 (parallel with Phase 3), reduce ablations to the 3 most critical (type conditioning vs. flat, DPO vs. SFT, classifier noise sensitivity), and drop the cross-benchmark transfer ablation to a follow-up.",
+    "CSO VENUE ERROR: The proposal claims CSO was published at 'ICLR 2026' but it was actually submitted to ACL ARR January 2026 (OpenReview forum bwd1ykqifH). No evidence of ICLR acceptance. Should be cited as 'arXiv 2602.03412, under review' or with the correct venue if accepted.",
+    "CORRECTION SUCCESS RATE RISK UNADDRESSED: The proposal generates 5 correction attempts per failure but does not estimate the expected correction success rate. Agent2 RL-Bench shows Qwen3-8B-Base achieves only ~6-9% on ALFWorld, implying the Instruct variant may get ~30-50%. If self-correction success rate is similarly low (10-20%), the 'chosen' side of DPO pairs will be sparse. Need a contingency: (a) increase attempts to 10 per failure, (b) use a stronger model (Qwen3-32B) for correction generation to increase success rate, or (c) specify minimum dataset size thresholds.",
+    "MISSING RELATED WORK — TCPO and AP2O: TCPO (arXiv 2509.08500) applies step-wise preference optimization directly on ALFWorld — a close methodological parallel that should be cited. AP2O (arXiv 2510.02393) conditions DPO on error types for code generation — the closest conceptual precedent in any domain, demonstrating error-type-progressive DPO. Both should be cited to strengthen positioning.",
+    "MISSING RELATED WORK — E2CL (EMNLP 2024 Findings): 'Exploration-based Error Correction Learning' (arXiv 2409.03256) is a training-time self-correction approach for embodied agents that identifies 8 error types in analysis. While it uses SFT rather than DPO and doesn't explicitly condition on error types, it's a direct predecessor in the training-time-self-correction-for-embodied-agents space and was published at EMNLP (target venue)."
+  ],
+  "feedback": "The idea has improved substantially across rounds and the core contribution is verified as novel. Three actionable fixes for the next revision:\n\n1. **Compress timeline to 15 days**: Overlap writing with Phase 3-4 (start writing intro/related work from Day 8). Reduce Phase 5 ablations to 3 essential ones: (a) type-conditioned vs. flat DPO (core hypothesis), (b) DPO vs. SFT (validates SCoRe's critique), (c) classifier noise sensitivity (10/20/30% noise injection). Move cross-benchmark transfer and error-type granularity ablations to appendix/future work. This gets you to Day 15.\n\n2. **Address correction success rate**: Add a paragraph discussing expected correction rates. Cite Agent2 RL-Bench's Qwen3-8B baseline (~6-9% Base, likely 30-50% Instruct on ALFWorld). Estimate correction success rate and specify a minimum threshold (e.g., 'if fewer than 500 valid DPO pairs are generated, we increase attempts to 10 per failure or use Qwen3-32B for correction generation'). This shows reviewers you've thought about failure modes.\n\n3. **Fix CSO venue and add 2 citations**: (a) Correct CSO to 'arXiv 2602.03412, submitted to ACL ARR Jan 2026' (not ICLR 2026). (b) Cite TCPO (arXiv 2509.08500) as another step-level preference optimization approach on ALFWorld. (c) Cite AP2O (arXiv 2510.02393) as the first work to condition DPO on error types (in code generation), positioning your work as extending this insight to interactive agents. (d) Cite E2CL (arXiv 2409.03256, EMNLP 2024 Findings) as a training-time self-correction predecessor.\n\nThese are all minor fixes. The idea's core strength — a clear, testable hypothesis with well-designed ablations and honest framing — is solid for EMNLP Findings.",
+  "reason": "Novel combination verified but timeline overflows by 3 days, correction success rate risk unaddressed, and CSO venue claim is incorrect — all fixable in one revision round."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5cc18343-f8e3-4203-835d-edfb66adc4a0",
+  "isSidechain": false,
+  "requestId": "req_011CauMDnwcjXt9CZjQbwqFy",
+  "type": "assistant",
+  "uuid": "956a42d8-0181-4fbe-bba7-a01de08dfc97",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cb034091-647d-4d5f-b542-2af1be7f10ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017HwoLqNzFCTgT3LYDZXVik",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5067,
+      "cache_read_input_tokens": 36405,
+      "output_tokens": 6866,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5067,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6866,
+          "cache_read_input_tokens": 36405,
+          "cache_creation_input_tokens": 5067,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5067
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 25_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "956a42d8-0181-4fbe-bba7-a01de08dfc97",
+  "sessionId": "cb034091-647d-4d5f-b542-2af1be7f10ef"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 26_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review agent error-diagnosis-conditioned DPO for agents",
+  "sessionId": "cb034091-647d-4d5f-b542-2af1be7f10ef"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "956a42d8-0181-4fbe-bba7-a01de08dfc97",
+  "sessionId": "cb034091-647d-4d5f-b542-2af1be7f10ef"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review agent error-diagnosis-conditioned DPO for agents",
+  "sessionId": "cb034091-647d-4d5f-b542-2af1be7f10ef"
+}
+```
+
+---

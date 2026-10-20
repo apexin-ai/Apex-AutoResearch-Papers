@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "0664baf5c5aa9ecc407f",
+  "project": "cost-verify-agent-rl--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-11 (UTC).** Your job: indep",
+  "task_key": "95d17cd1-56f1-4794-8931-7cb3f90acb67",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/95d17cd1-56f1-4794-8931-7cb3f90acb67.jsonl",
+    "occurrence": 1,
+    "bytes": 585283,
+    "sha256": "ecf8287edb1e473b4ad57557bf5c9973f5223d40e36fcbc8c6dd8d01a2fe4931"
+  },
+  "statistics": {
+    "messages": 150,
+    "user_turns": 1,
+    "tool_calls": 47,
+    "roles": {
+      "record": 36,
+      "user": 1,
+      "assistant": 19,
+      "tool_call": 47,
+      "tool_result": 47
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "0664baf5c5aa9ecc407f-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 148,
+      "chunks": [
+        {
+          "path": "0664baf5c5aa9ecc407f-part-0001.json",
+          "message_count": 141
+        },
+        {
+          "path": "0664baf5c5aa9ecc407f-part-0002.json",
+          "message_count": 7
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-are-a-strict-ml-research-reviewer-conducting-adversarial-review-today-s-da-copy-47.md"
+}

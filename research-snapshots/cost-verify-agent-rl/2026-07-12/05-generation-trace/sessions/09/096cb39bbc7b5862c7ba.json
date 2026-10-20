@@ -1,0 +1,102 @@
+{
+  "schema_version": "1.0",
+  "id": "096cb39bbc7b5862c7ba",
+  "project": "cost-verify-agent-rl--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> Westd 硬规则：1) source /root/miniconda3/etc/profile.d/conda.sh && conda activate base 2) TMPDIR=/root/autod",
+  "task_key": "054a1baf-832d-4c35-8661-325031d85ff8",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/054a1baf-832d-4c35-8661-325031d85ff8.jsonl",
+    "occurrence": 1,
+    "bytes": 544510,
+    "sha256": "46d9066f0df22931ac1e9dd1ef743ce1c1852000514795e5d4c681d634921d0f"
+  },
+  "statistics": {
+    "messages": 222,
+    "user_turns": 5,
+    "tool_calls": 61,
+    "roles": {
+      "record": 52,
+      "user": 5,
+      "assistant": 43,
+      "tool_call": 61,
+      "tool_result": 61
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "096cb39bbc7b5862c7ba-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 38,
+      "chunks": [
+        {
+          "path": "096cb39bbc7b5862c7ba-part-0001.json",
+          "message_count": 38
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 42,
+      "chunks": [
+        {
+          "path": "096cb39bbc7b5862c7ba-part-0001.json",
+          "message_count": 42
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 102,
+      "chunks": [
+        {
+          "path": "096cb39bbc7b5862c7ba-part-0001.json",
+          "message_count": 98
+        },
+        {
+          "path": "096cb39bbc7b5862c7ba-part-0002.json",
+          "message_count": 4
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 28,
+      "chunks": [
+        {
+          "path": "096cb39bbc7b5862c7ba-part-0002.json",
+          "message_count": 28
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 10,
+      "chunks": [
+        {
+          "path": "096cb39bbc7b5862c7ba-part-0002.json",
+          "message_count": 10
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-westd-1-source-root-miniconda3-etc-profile-d-conda-sh-conda-acti-copy-3.md"
+}

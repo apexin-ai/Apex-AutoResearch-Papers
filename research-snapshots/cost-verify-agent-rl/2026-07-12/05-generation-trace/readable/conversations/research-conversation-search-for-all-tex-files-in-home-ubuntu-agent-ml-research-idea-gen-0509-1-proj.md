@@ -1,0 +1,3136 @@
+# Research conversation: Search for all .tex files in /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/ and its subd
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 36
+- **Recorded user turns:** 1
+- **Tool calls:** 15
+- **Original source:** `logs/chats/exported-trajectories/account-2/agent-a7545e4998db7eade.jsonl`
+- **Structured JSON:** [`400cc354aa91cb6f611d.json`](../../sessions/40/400cc354aa91cb6f611d.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+36 recorded events
+
+### User
+
+_source line 1 · 2026-05-24T04:08:32.482Z_
+
+Search for all .tex files in /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/ and its subdirectories. Then search within those files (and any .md files in the same area) for the following specific numbers and concepts:
+- "19.1" or "19.1%"
+- "28%" or "0.28"
+- "52%" or "52.07" or "0.52"
+- "Cohen" or "cohen"
+- "0.041"
+- "n=157" or "157 windows" or "157"
+- "n=271" or "271"
+- "n=3000" or "3000 windows"
+- "credit agreement" or "credit_agreement"
+- "sign misattribution" or "sign-episode"
+
+For each match, report the file path, line number, and surrounding context (3 lines before/after). This is about finding where specific empirical numbers are cited in a paper draft.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "01065312-0353-4914-84ae-107626ab0535",
+  "agentId": "a7545e4998db7eade",
+  "type": "user",
+  "uuid": "ae630573-d528-4279-922b-ab895bc4c648",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "a624bb88-2881-41c1-8d70-f3ba4fa69d47",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 2 · 2026-05-24T04:08:34.628Z_
+
+I'll search for .tex and .md files in the specified directory, then search for those specific numbers and concepts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ae630573-d528-4279-922b-ab895bc4c648",
+  "isSidechain": true,
+  "agentId": "a7545e4998db7eade",
+  "requestId": "req_011CbLjgMy7JtQeTCmc2PGWB",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "30507364-d0df-42cc-9bbd-5b90837f2030",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "a624bb88-2881-41c1-8d70-f3ba4fa69d47",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_019dorngh5Qkm2bAmJ2XUutr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 21133,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 21133,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 7,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-24T04:08:35.009Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01Fe71RR51xPNVpLGzJ4SaM6`</summary>
+
+```json
+{
+  "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/**/*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "30507364-d0df-42cc-9bbd-5b90837f2030",
+  "isSidechain": true,
+  "agentId": "a7545e4998db7eade",
+  "requestId": "req_011CbLjgMy7JtQeTCmc2PGWB",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "09273c49-a973-4433-a798-f0b5a4484d52",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "a624bb88-2881-41c1-8d70-f3ba4fa69d47",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_019dorngh5Qkm2bAmJ2XUutr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 21133,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 21133,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 7,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-24T04:08:35.029Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01YW4byHA6zRmiN4itQXQvr6`</summary>
+
+```json
+{
+  "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/**/*.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "09273c49-a973-4433-a798-f0b5a4484d52",
+  "isSidechain": true,
+  "agentId": "a7545e4998db7eade",
+  "requestId": "req_011CbLjgMy7JtQeTCmc2PGWB",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "065cbe94-a2a8-4927-a451-6497187c8fc7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "a624bb88-2881-41c1-8d70-f3ba4fa69d47",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_019dorngh5Qkm2bAmJ2XUutr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 21133,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 21133,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 7,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-24T04:08:35.028Z_
+
+<details><summary>↩ Tool result · `toolu_01Fe71RR51xPNVpLGzJ4SaM6`</summary>
+
+```text
+artifacts/dream_reports/dream_20260516T235255/best/paper.tex
+artifacts/dream_reports/dream_20260516T235255/median/paper.tex
+artifacts/dream_reports/dream_20260516T235255/worst/paper.tex
+artifacts/_project/paper/theoretical_analysis.tex
+artifacts/_project/paper/introduction.tex
+artifacts/_project/paper/related_work.tex
+artifacts/_project/paper/experiments_aa43d8.tex
+artifacts/_project/paper/conclusion.tex
+artifacts/dream_reports/dream_20260517T121256/best/paper.tex
+artifacts/dream_reports/dream_20260517T121256/median/paper.tex
+artifacts/dream_reports/dream_20260517T121256/worst/paper.tex
+artifacts/dream_reports/dream_20260517T133129/best/paper.tex
+artifacts/dream_reports/dream_20260517T133129/median/paper.tex
+artifacts/dream_reports/dream_20260517T133129/worst/paper.tex
+artifacts/_project/paper/method.tex
+artifacts/_project/paper/discussion.tex
+artifacts/_project/paper/experiments.tex
+docs/paper/introduction.tex
+docs/paper/conclusion.tex
+docs/paper/main.tex
+docs/paper/method.tex
+docs/paper/related_work.tex
+docs/paper/experiments.tex
+docs/paper/discussion.tex
+docs/paper/appendix.tex
+docs/paper/theoretical_analysis.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "09273c49-a973-4433-a798-f0b5a4484d52",
+  "isSidechain": true,
+  "promptId": "01065312-0353-4914-84ae-107626ab0535",
+  "agentId": "a7545e4998db7eade",
+  "type": "user",
+  "uuid": "f889b7a3-5a05-4ff3-9190-ed79b1b2d43d",
+  "sourceToolAssistantUUID": "09273c49-a973-4433-a798-f0b5a4484d52",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "a624bb88-2881-41c1-8d70-f3ba4fa69d47",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-24T04:08:35.049Z_
+
+<details><summary>↩ Tool result · `toolu_01YW4byHA6zRmiN4itQXQvr6`</summary>
+
+```text
+artifacts/env_setup_report.md
+artifacts/alfworld_dryrun_report.md
+artifacts/biavr/REPORT.md
+artifacts/exp003/report/exp003_launch_report.md
+task_context/history/director/loop_1.md
+task_context/history/reviewer/loop_1.md
+task_context/history/agent/loop_1.md
+artifacts/exp003_status_check.md
+artifacts/exp003_invalid_action_diagnosis.md
+artifacts/exp003/report/exp003_invalid_action_diagnosis.md
+artifacts/sft_warmup_plan.md
+artifacts/disk_cleanup_report.md
+artifacts/exp007/report/exp007_analysis.md
+artifacts/exp007/report/exp007_analysis_475afa.md
+task_context/history/director/loop_2.md
+task_context/history/reviewer/loop_2.md
+artifacts/exp009/report/exp009_analysis.md
+artifacts/exp009/report/exp009_analysis_955f15.md
+artifacts/_project/report/phase_b_literature_survey.md
+artifacts/phase_b_literature_survey.md
+artifacts/_project/report/phase_b_readiness_check.md
+artifacts/phase_b_readiness_check.md
+artifacts/exp010_reward_analysis.md
+artifacts/exp010/report/exp010_reward_analysis.md
+task_context/history/director/loop_3.md
+task_context/history/agent/loop_2.md
+task_context/history/agent/loop_2_1778740938.md
+task_context/history/agent/loop_2_1778746345.md
+artifacts/phase_b_prep_checklist.md
+task_context/history/agent/loop_2_1778749308.md
+task_context/history/reviewer/loop_3.md
+task_context/history/agent/loop_3.md
+task_context/history/agent/loop_3_1778752201.md
+task_context/history/agent/loop_3_1778757570.md
+task_context/history/agent/loop_3_1778762523.md
+artifacts/exp013f_training_metrics.md
+task_context/history/agent/loop_3_1778762554.md
+task_context/history/agent/loop_4.md
+task_context/history/agent/loop_4_1778762570.md
+task_context/history/agent/loop_3_1778764289.md
+artifacts/reward_shaping_literature.md
+task_context/history/reviewer/loop_4.md
+artifacts/expert_trajectory_plan.md
+task_context/history/agent/loop_3_1778764411.md
+task_context/history/agent/loop_4_1778770405.md
+artifacts/_project/report/literature_rl_alternatives.md
+artifacts/literature_rl_alternatives.md
+artifacts/_project/report/grpo_alternatives_survey.md
+artifacts/grpo_alternatives_survey.md
+task_context/history/agent/loop_4_1778773757.md
+.claude/sessions/agent_4857eae1/CLAUDE.md
+.claude/sessions/agent_4857eae1/AGENTS.md
+.claude/sessions/agent_e319ac11/CLAUDE.md
+.claude/sessions/agent_e319ac11/AGENTS.md
+task_context/history/agent/loop_4_1778773858.md
+.claude/sessions/agent_9f237037/CLAUDE.md
+.claude/sessions/agent_9f237037/AGENTS.md
+task_context/history/agent/loop_4_1778773859.md
+.claude/sessions/agent_13b433b7/CLAUDE.md
+.claude/sessions/agent_13b433b7/AGENTS.md
+task_context/history/agent/loop_5.md
+.claude/sessions/agent_a0266242/CLAUDE.md
+.claude/sessions/agent_a0266242/AGENTS.md
+task_context/history/agent/loop_5_1778775687.md
+.claude/sessions/agent_e4912f70/CLAUDE.md
+.claude/sessions/agent_e4912f70/AGENTS.md
+artifacts/exp017_status_check.md
+task_context/history/agent/loop_5_1778806494.md
+.claude/sessions/agent_ab1adc29/CLAUDE.md
+.claude/sessions/agent_ab1adc29/AGENTS.md
+.claude/sessions/agent_0b066dd1/CLAUDE.md
+.claude/sessions/agent_0b066dd1/AGENTS.md
+task_context/history/reviewer/loop_5.md
+task_context/history/agent/loop_6.md
+task_context/history/agent/loop_6_1778818609.md
+artifacts/exp021_ragen_sft_v4/data/v4_data_conversion_notes.md
+.claude/sessions/agent_d6a28af1/CLAUDE.md
+.claude/sessions/agent_d6a28af1/AGENTS.md
+artifacts/exp021_ragen_sft_v4/report/exp021_analysis_report.md
+artifacts/exp021/report/exp021_val_report.md
+task_context/history/director/loop_4.md
+.claude/sessions/agent_3e915aa6/CLAUDE.md
+.claude/sessions/agent_3e915aa6/AGENTS.md
+task_context/history/agent/loop_6_1778818711.md
+.claude/sessions/agent_ad913010/CLAUDE.md
+.claude/sessions/agent_ad913010/AGENTS.md
+artifacts/_project/report/verl_agent_migration_plan.md
+artifacts/verl_agent_migration_plan.md
+task_context/history/agent/loop_7.md
+.claude/sessions/agent_c11afdbb/CLAUDE.md
+.claude/sessions/agent_c11afdbb/AGENTS.md
+artifacts/_project/report/inference_diff_diagnosis.md
+artifacts/inference_diff_diagnosis.md
+artifacts/exp023c_grpo_serial/report/grpo_val_degradation_diagnosis.md
+task_context/history/reviewer/loop_6.md
+task_context/history/director/loop_5.md
+artifacts/verl_agent_analysis/gigpo_cherry_pick_plan.md
+artifacts/_project/report/gigpo_cherry_pick_plan.md
+task_context/history/agent/loop_8.md
+task_context/history/director/loop_6.md
+(Results are truncated. Consider using a more specific path or pattern.)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "065cbe94-a2a8-4927-a451-6497187c8fc7",
+  "isSidechain": true,
+  "promptId": "01065312-0353-4914-84ae-107626ab0535",
+  "agentId": "a7545e4998db7eade",
+  "type": "user",
+  "uuid": "4eac746f-6a3e-404d-906d-2f598a474704",
+  "sourceToolAssistantUUID": "065cbe94-a2a8-4927-a451-6497187c8fc7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "a624bb88-2881-41c1-8d70-f3ba4fa69d47",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-24T04:08:36.692Z_
+
+Now let me search for the specific numbers and concepts in these .tex and .md files. I'll search for each of them in parallel:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4eac746f-6a3e-404d-906d-2f598a474704",
+  "isSidechain": true,
+  "agentId": "a7545e4998db7eade",
+  "requestId": "req_011CbLjgZJVRMRX8TJ4CnMnP",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "42e00efb-f65f-4fa7-b39e-f736426b25b1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "a624bb88-2881-41c1-8d70-f3ba4fa69d47",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_0133EMpsmC2kfnCnnbQHB1di",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 3041,
+      "cache_read_input_tokens": 21133,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3041,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-24T04:08:38.037Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01PvWPuzH5upt52gcccs5o2T`</summary>
+
+```json
+{
+  "pattern": "19\\.1[%]?",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "glob": "*.tex,*.md",
+  "output_mode": "content",
+  "-B": 3,
+  "-A": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "42e00efb-f65f-4fa7-b39e-f736426b25b1",
+  "isSidechain": true,
+  "agentId": "a7545e4998db7eade",
+  "requestId": "req_011CbLjgZJVRMRX8TJ4CnMnP",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "51557a41-91d6-40aa-bd8a-0ab55812864a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "a624bb88-2881-41c1-8d70-f3ba4fa69d47",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_0133EMpsmC2kfnCnnbQHB1di",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 3041,
+      "cache_read_input_tokens": 21133,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3041,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-24T04:08:38.077Z_
+
+<details><summary>↩ Tool result · `toolu_01PvWPuzH5upt52gcccs5o2T`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (34.8KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/a624bb88-2881-41c1-8d70-f3ba4fa69d47/tool-results/toolu_01PvWPuzH5upt52gcccs5o2T.txt
+
+Preview (first 2KB):
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-62-1. Multi-turn agent RL 需要跨长 trajectory 的 credit assignment，但社区默认 step-independent windowing
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-63-2. Step-independent training 在多轮任务上导致训练不稳定（seed1 崩溃至 0%, seed2 延迟学习至 9.375% in-dist / 3.73% OOD），gradient signal 52% sign agreement ≈ 随机噪声
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-64-3. 我们诊断双机制根因：(1) policy information loss（inference layer, 常数 ceiling）+ (2) advantage sign misattribution（training layer, 累积退化）
+paper_framing.md:65:4. 形式化分析：P(correct sign | update) = p/(1-(1-p)^K)，在 p=12.5%, K=8 时仅 19.1% 正确
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-66-5. Episode-level GRPO 同时解决两者，从 SFT baseline 2.24% 提升到 23.88% (OOD 134 tasks, T=0.4)。**评估协议 (D092)**：论文统一用 T=0.4 (do_sample=True)，与 RAGEN 训练 eval 一致。T=0.0 greedy 得 16.4% (22/134)——差异来自 greedy decoding 的重复循环陷阱，不是 checkpoint 问题。**T=0.4 per-task 已完成**：独立 eval 得 19.4% (26/134)，与 RAGEN 内置 23.88% 存在 pipeline 差异，正在调查
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-67-6. **Factorial 实验揭示两个机制的定性差异 + Cell B 泛化 ceiling seed-invariant**（D073→D078, 核心论据）：
+paper_framing.md-68-   - Cell A (step-level + truncated): 高坍缩风险（seed1=0%, seed2=3.73% OOD）— sign misattribution 破坏训练稳定性，学习极不稳定
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binomial_test_results.md-45-| Normal approx z-score | **45.9** |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binomial_test_results.md-46-| p-value | **< 10⁻¹⁰⁰** (essentially zero) |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binomial_test_results.md-47-
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "51557a41-91d6-40aa-bd8a-0ab55812864a",
+  "isSidechain": true,
+  "promptId": "01065312-0353-4914-84ae-107626ab0535",
+  "agentId": "a7545e4998db7eade",
+  "type": "user",
+  "uuid": "404f78a8-9679-4dc1-9e29-942a108dc020",
+  "sourceToolAssistantUUID": "51557a41-91d6-40aa-bd8a-0ab55812864a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "a624bb88-2881-41c1-8d70-f3ba4fa69d47",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-24T04:08:38.696Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01LntK35uuQrZqrbyQzmaX77`</summary>
+
+```json
+{
+  "pattern": "28%|0\\.28",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "glob": "*.tex,*.md",
+  "output_mode": "content",
+  "-B": 3,
+  "-A": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "404f78a8-9679-4dc1-9e29-942a108dc020",
+  "isSidechain": true,
+  "agentId": "a7545e4998db7eade",
+  "requestId": "req_011CbLjgZJVRMRX8TJ4CnMnP",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "f117c7f8-d3cc-4ff7-9ece-4bb88b1c4b88",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "a624bb88-2881-41c1-8d70-f3ba4fa69d47",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_0133EMpsmC2kfnCnnbQHB1di",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 3041,
+      "cache_read_input_tokens": 21133,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3041,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-24T04:08:38.730Z_
+
+<details><summary>↩ Tool result · `toolu_01LntK35uuQrZqrbyQzmaX77`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (34.8KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/a624bb88-2881-41c1-8d70-f3ba4fa69d47/tool-results/toolu_01LntK35uuQrZqrbyQzmaX77.txt
+
+Preview (first 2KB):
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/worker_outputs/seed_training_progress_20260521.md-94-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/worker_outputs/seed_training_progress_20260521.md-95-| Server | Partition | Used | Available | Usage % |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/worker_outputs/seed_training_progress_20260521.md-96-|--------|-----------|------|-----------|---------|
+worker_outputs/seed_training_progress_20260521.md:97:| bjb1-17606 | / (root) | 8.3G | 22G | 28% |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/worker_outputs/seed_training_progress_20260521.md-98-| bjb1-17606 | /root/autodl-tmp | 196G | 55G | 79% |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/worker_outputs/seed_training_progress_20260521.md-99-| westd-47453 | / (root) | 14G | 17G | 46% |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/worker_outputs/seed_training_progress_20260521.md-100-| westd-47453 | /root/autodl-tmp | 170G | 81G | 68% |
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/task_context/history/reviewer/loop_10.md-27-| Step | success | pass@8 | KL | entropy | action_is_valid |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/task_context/history/reviewer/loop_10.md-28-|------|---------|--------|----|---------|-----------------|
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/task_context/history/reviewer/loop_10.md-29-| 0 val | 6.25% | — | — | — | 74.5% |
+task_context/history/reviewer/loop_10.md:30:| 1 train | 13.28% | 37.5% | 0.019 | 0.263 | 76.4% |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/task_context/history/reviewer/loop_10.md-31-| 2 train | 6.25% | 25.0% | 0.017 | 0.247 | 83.2% |
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f117c7f8-d3cc-4ff7-9ece-4bb88b1c4b88",
+  "isSidechain": true,
+  "promptId": "01065312-0353-4914-84ae-107626ab0535",
+  "agentId": "a7545e4998db7eade",
+  "type": "user",
+  "uuid": "6645f44d-9b4b-4349-a3df-a02124d488a4",
+  "sourceToolAssistantUUID": "f117c7f8-d3cc-4ff7-9ece-4bb88b1c4b88",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "a624bb88-2881-41c1-8d70-f3ba4fa69d47",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-24T04:08:39.328Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01XV41GwXDmjUnQ9zwPi65sR`</summary>
+
+```json
+{
+  "pattern": "52%|52\\.07|0\\.52",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "glob": "*.tex,*.md",
+  "output_mode": "content",
+  "-B": 3,
+  "-A": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6645f44d-9b4b-4349-a3df-a02124d488a4",
+  "isSidechain": true,
+  "agentId": "a7545e4998db7eade",
+  "requestId": "req_011CbLjgZJVRMRX8TJ4CnMnP",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "e90ab15f-4399-4942-ad88-73c69afc50fe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "a624bb88-2881-41c1-8d70-f3ba4fa69d47",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_0133EMpsmC2kfnCnnbQHB1di",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 3041,
+      "cache_read_input_tokens": 21133,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3041,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-24T04:08:39.363Z_
+
+<details><summary>↩ Tool result · `toolu_01XV41GwXDmjUnQ9zwPi65sR`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (37KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/a624bb88-2881-41c1-8d70-f3ba4fa69d47/tool-results/toolu_01XV41GwXDmjUnQ9zwPi65sR.txt
+
+Preview (first 2KB):
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-12-   - 模型学会避免 format errors（action_is_valid ↑）但不学 task success — 与 exp013f gaming 观察一致
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-13-   - GRPO group normalization 使 advantage 区分 format quality（有无 penalty），不区分 task progress
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-14-   - 附加：γ^k magnitude decay 使早期 window 信号更弱（γ^24 ≈ 29%）
+paper_framing.md:15:   - **实证确认 (tab3)**：per-sample advantage sign accuracy = 52.07% (n=3000, ≈random)；GRPO group majority = 81.25% vs 理论 79.5%（高度吻合）。Sign misattribution 从理论预测升级为实证确认
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-16-   - **理论精度注意**：Proposition 2 的纯二值假设 (R ∈ {0, r+}) 需要扩展为包含 penalty 影响的版本。"80.9% wrong sign" 基于 binary assumption；实际 penalty 创造连续分布，misattribution 机制更复杂但方向不变
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-17-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-18-Episode-level training 同时解决两者：policy 看全历史（解决 1），整条 trajectory 作为一个 GRPO 样本，所有 tokens 共享同一 advantage — 虽然仍是 episode-level credit（非 per-token），但消除了 window 间的 sign misattribution，因为不再需要将 episode reward 分配到独立优化的子窗口（解决 2）。
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-60-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-61-叙事线：
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-62-1. Multi-turn agent RL 需要跨长 trajectory 的 credit assignment，但社区默认 step-independent windowing
+paper_framing.md:63:2. Step-independent training 在多轮任务上导致训练不稳定（seed1 崩溃至 0%, seed2 延迟学习至 9.375% in-dist / 3.73% OOD），gradient signal 52% sign agreement ≈ 随机噪声
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e90ab15f-4399-4942-ad88-73c69afc50fe",
+  "isSidechain": true,
+  "promptId": "01065312-0353-4914-84ae-107626ab0535",
+  "agentId": "a7545e4998db7eade",
+  "type": "user",
+  "uuid": "15e87fa4-91a0-4c60-b63b-d337729ca951",
+  "sourceToolAssistantUUID": "e90ab15f-4399-4942-ad88-73c69afc50fe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "a624bb88-2881-41c1-8d70-f3ba4fa69d47",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-24T04:08:39.959Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_014ebsXGZhe1gBu3EqZuK8jn`</summary>
+
+```json
+{
+  "pattern": "[Cc]ohen",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "glob": "*.tex,*.md",
+  "output_mode": "content",
+  "-B": 3,
+  "-A": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "15e87fa4-91a0-4c60-b63b-d337729ca951",
+  "isSidechain": true,
+  "agentId": "a7545e4998db7eade",
+  "requestId": "req_011CbLjgZJVRMRX8TJ4CnMnP",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "9dbd74ed-89de-4064-81ab-72b50a694c49",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "a624bb88-2881-41c1-8d70-f3ba4fa69d47",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_0133EMpsmC2kfnCnnbQHB1di",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 3041,
+      "cache_read_input_tokens": 21133,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3041,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-24T04:08:39.991Z_
+
+<details><summary>↩ Tool result · `toolu_014ebsXGZhe1gBu3EqZuK8jn`</summary>
+
+````text
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/seed_early_signal_analysis.md-2-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/seed_early_signal_analysis.md-3-## Summary
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/seed_early_signal_analysis.md-4-
+artifacts/seed_early_signal_analysis.md:5:Analyzed early training signals (steps 1–5) from 12 seeds across 3 outcome groups using W&B logs. **No individual metric at steps 1–3 reliably predicts final seed outcome.** The strongest candidate predictor is the mutual information (MI) diversity estimate at step 1 (Cohen's d = 1.11), but it does not reach statistical significance (p = 0.23, n = 4 per group). Collapsed seeds can appear fully healthy in early training, making early prediction inherently unreliable.
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/seed_early_signal_analysis.md-6-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/seed_early_signal_analysis.md-7----
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/seed_early_signal_analysis.md-8-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/seed_early_signal_analysis.md-22-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/seed_early_signal_analysis.md-23-### Training Metrics (Steps 1–3 Averaged)
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/seed_early_signal_analysis.md-24-
+artifacts/seed_early_signal_analysis.md:25:| Metric | Generalized (n=4) | Stagnant (n=4) | Collapsed (n=4) | Gen vs Col p (Welch) | Cohen's d |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/seed_early_signal_analysis.md-26-|--------|-------------------|----------------|------------------|---------------------|-----------|
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/seed_early_signal_analysis.md-27-| Reward (critic/score/mean) | 2.92 ± 1.57 | 1.37 ± 0.53 | 2.43 ± 1.51 | 0.711 | 0.32 |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/seed_early_signal_analysis.md-28-| KL Divergence (actor/ppo_kl) | 0.8e-4 ± 2.2e-4 | 2.4e-4 ± 1.9e-4 | 0.9e-4 ± 3.8e-4 | 0.976 | -0.03 |
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/seed_early_signal_analysis.md-185-
+artifacts/seed_early_signal_analysis.md-186-### Finding 3: MI Diversity Shows a Weak Trend Worth Reporting
+artifacts/seed_early_signal_analysis.md-187-MI estimate at step 1 has the strongest (though NS) association with outcome:
+artifacts/seed_early_signal_analysis.md:188:- Cohen's d = 1.11 (Generalized vs Collapsed)
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/seed_early_signal_analysis.md-189-- Spearman ρ = 0.43 with final OOD success (p = 0.19)
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/seed_early_signal_analysis.md-190-- seed8 (MI=0.013) and seed2048 (MI=0.035) have notably low diversity
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/seed_early_signal_analysis.md-191-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/seed_early_signal_analysis.md-200-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/seed_early_signal_analysis.md-201-### For Discussion / Analysis Section (~1 paragraph)
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/seed_early_signal_analysis.md-202-
+artifacts/seed_early_signal_analysis.md:203:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/seed_early_signal_analysis.md-204-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/seed_early_signal_analysis.md-205-### For Appendix (optional, more technical)
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/seed_early_signal_analysis.md-206-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/seed_early_signal_analysis.md-2-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/seed_early_signal_analysis.md-3-## Summary
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/seed_early_signal_analysis.md-4-
+artifacts/_project/report/seed_early_signal_analysis.md:5:Analyzed early training signals (steps 1–5) from 12 seeds across 3 outcome groups using W&B logs. **No individual metric at steps 1–3 reliably predicts final seed outcome.** The strongest candidate predictor is the mutual information (MI) diversity estimate at step 1 (Cohen's d = 1.11), but it does not reach statistical significance (p = 0.23, n = 4 per group). Collapsed seeds can appear fully healthy in early training, making early prediction inherently unreliable.
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/seed_early_signal_analysis.md-6-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/seed_early_signal_analysis.md-7----
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/seed_early_signal_analysis.md-8-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/seed_early_signal_analysis.md-22-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/seed_early_signal_analysis.md-23-### Training Metrics (Steps 1–3 Averaged)
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/seed_early_signal_analysis.md-24-
+artifacts/_project/report/seed_early_signal_analysis.md:25:| Metric | Generalized (n=4) | Stagnant (n=4) | Collapsed (n=4) | Gen vs Col p (Welch) | Cohen's d |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/seed_early_signal_analysis.md-26-|--------|-------------------|----------------|------------------|---------------------|-----------|
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/seed_early_signal_analysis.md-27-| Reward (critic/score/mean) | 2.92 ± 1.57 | 1.37 ± 0.53 | 2.43 ± 1.51 | 0.711 | 0.32 |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/seed_early_signal_analysis.md-28-| KL Divergence (actor/ppo_kl) | 0.8e-4 ± 2.2e-4 | 2.4e-4 ± 1.9e-4 | 0.9e-4 ± 3.8e-4 | 0.976 | -0.03 |
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/seed_early_signal_analysis.md-185-
+artifacts/_project/report/seed_early_signal_analysis.md-186-### Finding 3: MI Diversity Shows a Weak Trend Worth Reporting
+artifacts/_project/report/seed_early_signal_analysis.md-187-MI estimate at step 1 has the strongest (though NS) association with outcome:
+artifacts/_project/report/seed_early_signal_analysis.md:188:- Cohen's d = 1.11 (Generalized vs Collapsed)
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/seed_early_signal_analysis.md-189-- Spearman ρ = 0.43 with final OOD success (p = 0.19)
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/seed_early_signal_analysis.md-190-- seed8 (MI=0.013) and seed2048 (MI=0.035) have notably low diversity
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/seed_early_signal_analysis.md-191-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/seed_early_signal_analysis.md-200-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/seed_early_signal_analysis.md-201-### For Discussion / Analysis Section (~1 paragraph)
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/seed_early_signal_analysis.md-202-
+artifacts/_project/report/seed_early_signal_analysis.md:203:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/seed_early_signal_analysis.md-204-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/seed_early_signal_analysis.md-205-### For Appendix (optional, more technical)
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/seed_early_signal_analysis.md-206-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/intermediate/round4_track_a_main_changes.md-62-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/intermediate/round4_track_a_main_changes.md-63-```
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/intermediate/round4_track_a_main_changes.md-64-
+artifacts/_project/intermediate/round4_track_a_main_changes.md:65:## Item 4: Cohen's h Effect Size (experiments.tex)
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/intermediate/round4_track_a_main_changes.md-66-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/intermediate/round4_track_a_main_changes.md-67-### Before
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/intermediate/round4_track_a_main_changes.md-68-```latex
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/intermediate/round4_track_a_main_changes.md-71-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/intermediate/round4_track_a_main_changes.md-72-### After
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/intermediate/round4_track_a_main_changes.md-73-```latex
+artifacts/_project/intermediate/round4_track_a_main_changes.md:74:only 52.07\% of windows with valid actions receive positive advantage, marginally above random chance ($p{=}0.025$ vs.\ 50\%; Cohen's $h = 2\arcsin\sqrt{0.5207} - 2\arcsin\sqrt{0.5} \approx 0.041$, below the 0.2 small-effect threshold), confirming that credit agreement is effectively at chance, consistent with the theoretical prediction of near-random sign assignment.
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/intermediate/round4_track_a_main_changes.md-75-```
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/intermediate/round4_track_a_main_changes.md-76-
+artifacts/_project/intermediate/round4_track_a_main_changes.md-77-## Item 7: Eq.6 Caveat Strengthened (theoretical_analysis.tex)
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260517T133129/worst/paper.tex-279-The entropy-success correlation is $-$0.15.
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260517T133129/worst/paper.tex-280-These results indicate that action change is a side effect of high policy entropy, not a signal of verification informativeness.
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260517T133129/worst/paper.tex-281-
+artifacts/dream_reports/dream_20260517T133129/worst/paper.tex:282:A causal intervention experiment comparing verification-triggered action changes against random changes at the same rate confirms this: verification-triggered changes yield 22\% success vs. random changes at 19\% ($\Delta = 3$pp, $p = 0.31$, Cohen's $d = 0.12$).
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260517T133129/worst/paper.tex-283-At 28\% base success, the agent's ``correction'' is statistically indistinguishable from random re-sampling.
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260517T133129/worst/paper.tex-284-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260517T133129/worst/paper.tex-285-\subsubsection{B-IAVR Training}
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/round4_track_a_main_changes.md-62-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/round4_track_a_main_changes.md-63-```
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/round4_track_a_main_changes.md-64-
+artifacts/round4_track_a_main_changes.md:65:## Item 4: Cohen's h Effect Size (experiments.tex)
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/round4_track_a_main_changes.md-66-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/round4_track_a_main_changes.md-67-### Before
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/round4_track_a_main_changes.md-68-```latex
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/round4_track_a_main_changes.md-71-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/round4_track_a_main_changes.md-72-### After
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/round4_track_a_main_changes.md-73-```latex
+artifacts/round4_track_a_main_changes.md:74:only 52.07\% of windows with valid actions receive positive advantage, marginally above random chance ($p{=}0.025$ vs.\ 50\%; Cohen's $h = 2\arcsin\sqrt{0.5207} - 2\arcsin\sqrt{0.5} \approx 0.041$, below the 0.2 small-effect threshold), confirming that credit agreement is effectively at chance, consistent with the theoretical prediction of near-random sign assignment.
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/round4_track_a_main_changes.md-75-```
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/round4_track_a_main_changes.md-76-
+artifacts/round4_track_a_main_changes.md-77-## Item 7: Eq.6 Caveat Strengthened (theoretical_analysis.tex)
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex-58-
+docs/paper/experiments.tex-59-\textit{(1) Sign-episode correlation}: whether advantage sign tracks episode outcome (success/failure). Under pure binary reward (penalty${=}0$), this correlation is 100\% ($n{=}157$ windows; Figure~\ref{fig:sign_misattribution}), directly confirming M2: advantage sign is entirely determined by episode outcome, not local action quality. This is by construction, since all windows in a successful episode share the same positive return under binary reward.% exp_id: binary_credit_agreement_iter0
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex-60-
+docs/paper/experiments.tex:61:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex-62-
+docs/paper/experiments.tex-63-\textit{(3) $P(\text{correct} \mid \text{update})$}: the theoretical upper bound from Proposition~2 ($\leq$19.1\% at $p{=}12.5\%$, $K{=}8$). This bounds the fraction of non-zero gradient updates with correct sign, a different quantity from the credit agreement rate, which conditions on action validity rather than gradient participation. The two metrics are complementary: Proposition~2 bounds worst-case gradient quality; credit agreement measures empirical signal strength.
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex-64-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/appendix.tex-30-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/appendix.tex-31-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/appendix.tex-32-
+docs/paper/appendix.tex:33:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/appendix.tex-34-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/appendix.tex-35-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/appendix.tex-36-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/appendix.tex-240-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/appendix.tex-241-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/appendix.tex-242-
+docs/paper/appendix.tex:243:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/appendix.tex-244-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/appendix.tex-245-\section{Use of AI Assistants}
+docs/paper/appendix.tex-246-\label{app:ai-assistants}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9dbd74ed-89de-4064-81ab-72b50a694c49",
+  "isSidechain": true,
+  "promptId": "01065312-0353-4914-84ae-107626ab0535",
+  "agentId": "a7545e4998db7eade",
+  "type": "user",
+  "uuid": "a1bc6bc6-398b-4066-a4b2-cebe2fbc9f0d",
+  "sourceToolAssistantUUID": "9dbd74ed-89de-4064-81ab-72b50a694c49",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "a624bb88-2881-41c1-8d70-f3ba4fa69d47",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-24T04:08:40.590Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01FNhrs7zf7pYBQ8bA2cUufu`</summary>
+
+```json
+{
+  "pattern": "0\\.041",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "glob": "*.tex,*.md",
+  "output_mode": "content",
+  "-B": 3,
+  "-A": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a1bc6bc6-398b-4066-a4b2-cebe2fbc9f0d",
+  "isSidechain": true,
+  "agentId": "a7545e4998db7eade",
+  "requestId": "req_011CbLjgZJVRMRX8TJ4CnMnP",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "395f8b83-7aa0-40c4-a35a-36a6ed23ec55",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "a624bb88-2881-41c1-8d70-f3ba4fa69d47",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_0133EMpsmC2kfnCnnbQHB1di",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 3041,
+      "cache_read_input_tokens": 21133,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3041,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-24T04:08:40.620Z_
+
+<details><summary>↩ Tool result · `toolu_01FNhrs7zf7pYBQ8bA2cUufu`</summary>
+
+````text
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/intermediate/round4_track_a_main_changes.md-71-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/intermediate/round4_track_a_main_changes.md-72-### After
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/intermediate/round4_track_a_main_changes.md-73-```latex
+artifacts/_project/intermediate/round4_track_a_main_changes.md:74:only 52.07\% of windows with valid actions receive positive advantage, marginally above random chance ($p{=}0.025$ vs.\ 50\%; Cohen's $h = 2\arcsin\sqrt{0.5207} - 2\arcsin\sqrt{0.5} \approx 0.041$, below the 0.2 small-effect threshold), confirming that credit agreement is effectively at chance, consistent with the theoretical prediction of near-random sign assignment.
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/intermediate/round4_track_a_main_changes.md-75-```
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/intermediate/round4_track_a_main_changes.md-76-
+artifacts/_project/intermediate/round4_track_a_main_changes.md-77-## Item 7: Eq.6 Caveat Strengthened (theoretical_analysis.tex)
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/exp013f_training_metrics.md-16-| 13 | 0.0000 | 0.6625 | 0.00 | 1.41e-04 | 1.605 | 0.00222 | 0.1030 | 2.981 | 4.20 | -0.022 | 0.921 | 0.079 |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/exp013f_training_metrics.md-17-| 14 | 0.0156 | 0.6524 | 0.25 | -1.31e-04 | 2.054 | 0.00153 | 0.1003 | 3.055 | 11.80 | -0.057 | 0.906 | 0.094 |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/exp013f_training_metrics.md-18-| 15 | 0.0000 | 0.7026 | 0.00 | -4.5e-05 | 2.321 | 0.00216 | 0.0914 | 3.162 | 4.50 | -0.012 | 0.927 | 0.073 |
+artifacts/exp013f_training_metrics.md:19:| 16 | 0.0156 | 0.7398 | 0.25 | 1.57e-04 | 2.739 | 0.00192 | 0.0908 | 3.452 | 11.65 | -0.041 | 0.920 | 0.080 |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/exp013f_training_metrics.md-20-| 17 | 0.0156 | 0.7714 | 0.25 | 3.6e-05 | 2.893 | -0.00018 | 0.0925 | 3.595 | 12.10 | 0.004 | 0.939 | 0.061 |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/exp013f_training_metrics.md-21-| 18 | 0.0156 | 0.7344 | 0.25 | 1.41e-04 | 3.097 | 0.00227 | 0.0986 | 3.419 | 11.35 | -0.069 | 0.935 | 0.065 |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/exp013f_training_metrics.md-22-| 19 | 0.0313 | 0.6917 | 0.50 | -1.24e-04 | 2.713 | 0.00166 | 0.0904 | 3.305 | 10.75 | -0.099 | 0.921 | 0.079 |
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/exp013f_training_metrics.md-24-| 21 | 0.0625 | 0.7649 | 0.50 | 2.17e-04 | 2.680 | 0.00268 | 0.0899 | 3.916 | 11.50 | -0.064 | 0.920 | 0.080 |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/exp013f_training_metrics.md-25-| 22 | 0.0000 | 0.8146 | 0.00 | 1.55e-04 | 3.935 | 0.00056 | 0.0834 | 3.666 | 4.50 | 0.008 | 0.938 | 0.062 |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/exp013f_training_metrics.md-26-| 23 | 0.0000 | 0.7865 | 0.00 | 1.75e-04 | 1.860 | 0.00200 | 0.0764 | 3.539 | 4.50 | 0.004 | 0.942 | 0.058 |
+artifacts/exp013f_training_metrics.md:27:| 24 | 0.0000 | 0.7458 | 0.00 | 1.08e-03 | 5.576 | 0.00529 | 0.0811 | 3.356 | 4.50 | -0.041 | 0.914 | 0.086 |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/exp013f_training_metrics.md-28-| 25 | 0.0313 | 0.7995 | 0.50 | -1.02e-04 | 2.668 | 0.00452 | 0.0935 | 3.830 | 11.80 | -0.105 | 0.939 | 0.061 |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/exp013f_training_metrics.md-29-| 26 | 0.0156 | 0.8367 | 0.25 | 1.0e-06 | 2.403 | 0.00701 | 0.0806 | 3.885 | 11.35 | -0.110 | 0.933 | 0.067 |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/exp013f_training_metrics.md-30-| 27 | 0.0000 | 0.7703 | 0.00 | 1.89e-03 | 8.147 | 0.00831 | 0.0946 | 3.466 | 4.35 | -0.028 | 0.948 | 0.052 |
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260516T235255/median/paper.tex-148-$h$ & Eff.\ Discount & Rel.\ Gradient Signal & Gradient Variance & Collapsed (\%) \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260516T235255/median/paper.tex-149-\midrule
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260516T235255/median/paper.tex-150-2 & $7.7\text{e-}25$ & 0.003 & 0.89 & 100 \\
+artifacts/dream_reports/dream_20260516T235255/median/paper.tex:151:5 & $7.7\text{e-}14$ & 0.041 & 0.67 & 75 \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260516T235255/median/paper.tex-152-10 & $2.8\text{e-}7$ & 0.287 & 0.34 & 25 \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260516T235255/median/paper.tex-153-20 & $5.2\text{e-}4$ & 0.714 & 0.18 & 0 \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260516T235255/median/paper.tex-154-full & 1.0 & 1.000 & 0.12 & 0 \\
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/round4_track_a_main_changes.md-71-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/round4_track_a_main_changes.md-72-### After
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/round4_track_a_main_changes.md-73-```latex
+artifacts/round4_track_a_main_changes.md:74:only 52.07\% of windows with valid actions receive positive advantage, marginally above random chance ($p{=}0.025$ vs.\ 50\%; Cohen's $h = 2\arcsin\sqrt{0.5207} - 2\arcsin\sqrt{0.5} \approx 0.041$, below the 0.2 small-effect threshold), confirming that credit agreement is effectively at chance, consistent with the theoretical prediction of near-random sign assignment.
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/round4_track_a_main_changes.md-75-```
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/round4_track_a_main_changes.md-76-
+artifacts/round4_track_a_main_changes.md-77-## Item 7: Eq.6 Caveat Strengthened (theoretical_analysis.tex)
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex-58-
+docs/paper/experiments.tex-59-\textit{(1) Sign-episode correlation}: whether advantage sign tracks episode outcome (success/failure). Under pure binary reward (penalty${=}0$), this correlation is 100\% ($n{=}157$ windows; Figure~\ref{fig:sign_misattribution}), directly confirming M2: advantage sign is entirely determined by episode outcome, not local action quality. This is by construction, since all windows in a successful episode share the same positive return under binary reward.% exp_id: binary_credit_agreement_iter0
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex-60-
+docs/paper/experiments.tex:61:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex-62-
+docs/paper/experiments.tex-63-\textit{(3) $P(\text{correct} \mid \text{update})$}: the theoretical upper bound from Proposition~2 ($\leq$19.1\% at $p{=}12.5\%$, $K{=}8$). This bounds the fraction of non-zero gradient updates with correct sign, a different quantity from the credit agreement rate, which conditions on action validity rather than gradient participation. The two metrics are complementary: Proposition~2 bounds worst-case gradient quality; credit agreement measures empirical signal strength.
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex-64-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/appendix.tex-30-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/appendix.tex-31-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/appendix.tex-32-
+docs/paper/appendix.tex:33:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/appendix.tex-34-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/appendix.tex-35-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/appendix.tex-36-
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "395f8b83-7aa0-40c4-a35a-36a6ed23ec55",
+  "isSidechain": true,
+  "promptId": "01065312-0353-4914-84ae-107626ab0535",
+  "agentId": "a7545e4998db7eade",
+  "type": "user",
+  "uuid": "3651296d-fa75-44c5-9304-7ee2c41bb360",
+  "sourceToolAssistantUUID": "395f8b83-7aa0-40c4-a35a-36a6ed23ec55",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "a624bb88-2881-41c1-8d70-f3ba4fa69d47",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-24T04:08:41.229Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_014BEJz1iTFoR9DXWi4Df34f`</summary>
+
+```json
+{
+  "pattern": "n=157|157 windows",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "glob": "*.tex,*.md",
+  "output_mode": "content",
+  "-B": 3,
+  "-A": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3651296d-fa75-44c5-9304-7ee2c41bb360",
+  "isSidechain": true,
+  "agentId": "a7545e4998db7eade",
+  "requestId": "req_011CbLjgZJVRMRX8TJ4CnMnP",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "f1ca35a1-17f2-4f23-a371-29c7d45b7fba",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "a624bb88-2881-41c1-8d70-f3ba4fa69d47",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_0133EMpsmC2kfnCnnbQHB1di",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 3041,
+      "cache_read_input_tokens": 21133,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3041,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-24T04:08:41.258Z_
+
+<details><summary>↩ Tool result · `toolu_014BEJz1iTFoR9DXWi4Df34f`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_correctness_audit.md-53-- n=3,000 windows ← adv_log_lines=3000 ✓
+artifacts/data_correctness_audit.md-54-- p=0.025 vs 50% ← binomial test: p=0.0247→0.025 ✓
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_correctness_audit.md-55-- +2.07pp effect size ← 52.07-50.00=2.07 ✓
+artifacts/data_correctness_audit.md:56:- 100% sign-episode correlation (binary, n=157) ← binary_reward_final_analysis.md iter1: 157/157=100% ✓
+artifacts/data_correctness_audit.md-57-- 28% credit agreement (binary, n=271) ← binary_reward_final_analysis.md aggregate: 76/271=28.0% ✓
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_correctness_audit.md-58-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_correctness_audit.md-59-### Theoretical Calculations
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_correctness_audit.md-78-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_correctness_audit.md-79-### Figure Data
+artifacts/data_correctness_audit.md-80-- Figure 1 (overview): 概念图，无定量数据 ✓
+artifacts/data_correctness_audit.md:81:- Figure 2 (sign misattribution): 100%/n=157 + 52.07%/n=3000 硬编码值与源数据一致 ✓
+artifacts/data_correctness_audit.md-82-- Figure 3(a) (training dynamics): 从 W&B 提取的 ID success rates，无法从 registry 独立验证
+artifacts/data_correctness_audit.md-83-- Figure 3(b) (h-sweep): h=2→0%, h=5→0%, h=20→15.6%(=5/32), Full→23.88%(=32/134) 与 registry 一致 ✓; 已标注 ID/OOD 区分 ✓
+artifacts/data_correctness_audit.md-84-- Figure 4 (theory curve): 公式 P=p/(1-(1-p)^K) 的可视化 ✓
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_correctness_audit.md-123-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_correctness_audit.md-124-### 3. Sign-episode 100% 基于单次迭代
+artifacts/data_correctness_audit.md-125-- **位置**: experiments.tex Section 4.4
+artifacts/data_correctness_audit.md:126:- **问题**: 100% (n=157) 来自 binary reward iter 0; 3-iteration 汇总为 99.6% (270/271, 1 个 edge case 由 GRPO 组内归一化引起)
+artifacts/data_correctness_audit.md-127-- **严重程度**: 低 (100% 是该度量的理论预期，单例外是 GRPO edge case)
+artifacts/data_correctness_audit.md-128-- **建议**: 可考虑改为 "near-perfect (99.6%)" 或在脚注注明
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_correctness_audit.md-129-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_correctness_audit.md-53-- n=3,000 windows ← adv_log_lines=3000 ✓
+artifacts/_project/report/data_correctness_audit.md-54-- p=0.025 vs 50% ← binomial test: p=0.0247→0.025 ✓
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_correctness_audit.md-55-- +2.07pp effect size ← 52.07-50.00=2.07 ✓
+artifacts/_project/report/data_correctness_audit.md:56:- 100% sign-episode correlation (binary, n=157) ← binary_reward_final_analysis.md iter1: 157/157=100% ✓
+artifacts/_project/report/data_correctness_audit.md-57-- 28% credit agreement (binary, n=271) ← binary_reward_final_analysis.md aggregate: 76/271=28.0% ✓
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_correctness_audit.md-58-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_correctness_audit.md-59-### Theoretical Calculations
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_correctness_audit.md-78-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_correctness_audit.md-79-### Figure Data
+artifacts/_project/report/data_correctness_audit.md-80-- Figure 1 (overview): 概念图，无定量数据 ✓
+artifacts/_project/report/data_correctness_audit.md:81:- Figure 2 (sign misattribution): 100%/n=157 + 52.07%/n=3000 硬编码值与源数据一致 ✓
+artifacts/_project/report/data_correctness_audit.md-82-- Figure 3(a) (training dynamics): 从 W&B 提取的 ID success rates，无法从 registry 独立验证
+artifacts/_project/report/data_correctness_audit.md-83-- Figure 3(b) (h-sweep): h=2→0%, h=5→0%, h=20→15.6%(=5/32), Full→23.88%(=32/134) 与 registry 一致 ✓; 已标注 ID/OOD 区分 ✓
+artifacts/_project/report/data_correctness_audit.md-84-- Figure 4 (theory curve): 公式 P=p/(1-(1-p)^K) 的可视化 ✓
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_correctness_audit.md-123-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_correctness_audit.md-124-### 3. Sign-episode 100% 基于单次迭代
+artifacts/_project/report/data_correctness_audit.md-125-- **位置**: experiments.tex Section 4.4
+artifacts/_project/report/data_correctness_audit.md:126:- **问题**: 100% (n=157) 来自 binary reward iter 0; 3-iteration 汇总为 99.6% (270/271, 1 个 edge case 由 GRPO 组内归一化引起)
+artifacts/_project/report/data_correctness_audit.md-127-- **严重程度**: 低 (100% 是该度量的理论预期，单例外是 GRPO edge case)
+artifacts/_project/report/data_correctness_audit.md-128-- **建议**: 可考虑改为 "near-perfect (99.6%)" 或在脚注注明
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_correctness_audit.md-129-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_correctness_audit_3b36db.md-53-- n=3,000 windows ← adv_log_lines=3000 ✓
+artifacts/_project/report/data_correctness_audit_3b36db.md-54-- p=0.025 vs 50% ← binomial test: p=0.0247→0.025 ✓
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_correctness_audit_3b36db.md-55-- +2.07pp effect size ← 52.07-50.00=2.07 ✓
+artifacts/_project/report/data_correctness_audit_3b36db.md:56:- 100% sign-episode correlation (binary, n=157) ← binary_reward_final_analysis.md iter1: 157/157=100% ✓
+artifacts/_project/report/data_correctness_audit_3b36db.md-57-- 28% credit agreement (binary, n=271) ← binary_reward_final_analysis.md aggregate: 76/271=28.0% ✓
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_correctness_audit_3b36db.md-58-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_correctness_audit_3b36db.md-59-### Theoretical Calculations
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_correctness_audit_3b36db.md-78-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_correctness_audit_3b36db.md-79-### Figure Data
+artifacts/_project/report/data_correctness_audit_3b36db.md-80-- Figure 1 (overview): 概念图，无定量数据 ✓
+artifacts/_project/report/data_correctness_audit_3b36db.md:81:- Figure 2 (sign misattribution): 100%/n=157 + 52.07%/n=3000 硬编码值与源数据一致 ✓
+artifacts/_project/report/data_correctness_audit_3b36db.md-82-- Figure 3(a) (training dynamics): 从 W&B 提取的 ID success rates，无法从 registry 独立验证
+artifacts/_project/report/data_correctness_audit_3b36db.md-83-- Figure 3(b) (h-sweep): h=2→0%, h=5→0%, h=20→15.6%(=5/32), Full→23.88%(=32/134) 与 registry 一致 ✓; 已标注 ID/OOD 区分 ✓
+artifacts/_project/report/data_correctness_audit_3b36db.md-84-- Figure 4 (theory curve): 公式 P=p/(1-(1-p)^K) 的可视化 ✓
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_correctness_audit_3b36db.md-123-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_correctness_audit_3b36db.md-124-### 3. Sign-episode 100% 基于单次迭代
+artifacts/_project/report/data_correctness_audit_3b36db.md-125-- **位置**: experiments.tex Section 4.4
+artifacts/_project/report/data_correctness_audit_3b36db.md:126:- **问题**: 100% (n=157) 来自 binary reward iter 0; 3-iteration 汇总为 99.6% (270/271, 1 个 edge case 由 GRPO 组内归一化引起)
+artifacts/_project/report/data_correctness_audit_3b36db.md-127-- **严重程度**: 低 (100% 是该度量的理论预期，单例外是 GRPO edge case)
+artifacts/_project/report/data_correctness_audit_3b36db.md-128-- **建议**: 可考虑改为 "near-perfect (99.6%)" 或在脚注注明
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_correctness_audit_3b36db.md-129-
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f1ca35a1-17f2-4f23-a371-29c7d45b7fba",
+  "isSidechain": true,
+  "promptId": "01065312-0353-4914-84ae-107626ab0535",
+  "agentId": "a7545e4998db7eade",
+  "type": "user",
+  "uuid": "b32cbc9b-aacd-4203-b690-f47f35293af9",
+  "sourceToolAssistantUUID": "f1ca35a1-17f2-4f23-a371-29c7d45b7fba",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "a624bb88-2881-41c1-8d70-f3ba4fa69d47",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-24T04:08:41.881Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01KyB5eKrLmu2dLVwG8MDM7i`</summary>
+
+```json
+{
+  "pattern": "n=271",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "glob": "*.tex,*.md",
+  "output_mode": "content",
+  "-B": 3,
+  "-A": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b32cbc9b-aacd-4203-b690-f47f35293af9",
+  "isSidechain": true,
+  "agentId": "a7545e4998db7eade",
+  "requestId": "req_011CbLjgZJVRMRX8TJ4CnMnP",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "bd3d9b69-f032-4e44-a743-283620bf055c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "a624bb88-2881-41c1-8d70-f3ba4fa69d47",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_0133EMpsmC2kfnCnnbQHB1di",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 3041,
+      "cache_read_input_tokens": 21133,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3041,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-24T04:08:41.908Z_
+
+<details><summary>↩ Tool result · `toolu_01KyB5eKrLmu2dLVwG8MDM7i`</summary>
+
+```text
+artifacts/_project/report/data_correctness_audit.md-54-- p=0.025 vs 50% ← binomial test: p=0.0247→0.025 ✓
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_correctness_audit.md-55-- +2.07pp effect size ← 52.07-50.00=2.07 ✓
+artifacts/_project/report/data_correctness_audit.md-56-- 100% sign-episode correlation (binary, n=157) ← binary_reward_final_analysis.md iter1: 157/157=100% ✓
+artifacts/_project/report/data_correctness_audit.md:57:- 28% credit agreement (binary, n=271) ← binary_reward_final_analysis.md aggregate: 76/271=28.0% ✓
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_correctness_audit.md-58-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_correctness_audit.md-59-### Theoretical Calculations
+artifacts/_project/report/data_correctness_audit.md-60-- (1-p)^K = 0.875^8 ≈ 0.344 ← exact: 0.34361 ✓
+--
+artifacts/_project/report/data_correctness_audit_3b36db.md-54-- p=0.025 vs 50% ← binomial test: p=0.0247→0.025 ✓
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_correctness_audit_3b36db.md-55-- +2.07pp effect size ← 52.07-50.00=2.07 ✓
+artifacts/_project/report/data_correctness_audit_3b36db.md-56-- 100% sign-episode correlation (binary, n=157) ← binary_reward_final_analysis.md iter1: 157/157=100% ✓
+artifacts/_project/report/data_correctness_audit_3b36db.md:57:- 28% credit agreement (binary, n=271) ← binary_reward_final_analysis.md aggregate: 76/271=28.0% ✓
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_correctness_audit_3b36db.md-58-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_correctness_audit_3b36db.md-59-### Theoretical Calculations
+artifacts/_project/report/data_correctness_audit_3b36db.md-60-- (1-p)^K = 0.875^8 ≈ 0.344 ← exact: 0.34361 ✓
+--
+artifacts/data_correctness_audit.md-54-- p=0.025 vs 50% ← binomial test: p=0.0247→0.025 ✓
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_correctness_audit.md-55-- +2.07pp effect size ← 52.07-50.00=2.07 ✓
+artifacts/data_correctness_audit.md-56-- 100% sign-episode correlation (binary, n=157) ← binary_reward_final_analysis.md iter1: 157/157=100% ✓
+artifacts/data_correctness_audit.md:57:- 28% credit agreement (binary, n=271) ← binary_reward_final_analysis.md aggregate: 76/271=28.0% ✓
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_correctness_audit.md-58-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_correctness_audit.md-59-### Theoretical Calculations
+artifacts/data_correctness_audit.md-60-- (1-p)^K = 0.875^8 ≈ 0.344 ← exact: 0.34361 ✓
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bd3d9b69-f032-4e44-a743-283620bf055c",
+  "isSidechain": true,
+  "promptId": "01065312-0353-4914-84ae-107626ab0535",
+  "agentId": "a7545e4998db7eade",
+  "type": "user",
+  "uuid": "10bd060d-1a59-4de8-b065-1432d44c0df7",
+  "sourceToolAssistantUUID": "bd3d9b69-f032-4e44-a743-283620bf055c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "a624bb88-2881-41c1-8d70-f3ba4fa69d47",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-24T04:08:42.617Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_017LAysy8UQEWLd3MirwfmRw`</summary>
+
+```json
+{
+  "pattern": "n=3000|3000 windows",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "glob": "*.tex,*.md",
+  "output_mode": "content",
+  "-B": 3,
+  "-A": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "10bd060d-1a59-4de8-b065-1432d44c0df7",
+  "isSidechain": true,
+  "agentId": "a7545e4998db7eade",
+  "requestId": "req_011CbLjgZJVRMRX8TJ4CnMnP",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "6bc04204-9562-4d31-8336-a2809b35d5e1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "a624bb88-2881-41c1-8d70-f3ba4fa69d47",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_0133EMpsmC2kfnCnnbQHB1di",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 3041,
+      "cache_read_input_tokens": 21133,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3041,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-24T04:08:42.646Z_
+
+<details><summary>↩ Tool result · `toolu_017LAysy8UQEWLd3MirwfmRw`</summary>
+
+````text
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-12-   - 模型学会避免 format errors（action_is_valid ↑）但不学 task success — 与 exp013f gaming 观察一致
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-13-   - GRPO group normalization 使 advantage 区分 format quality（有无 penalty），不区分 task progress
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-14-   - 附加：γ^k magnitude decay 使早期 window 信号更弱（γ^24 ≈ 29%）
+paper_framing.md:15:   - **实证确认 (tab3)**：per-sample advantage sign accuracy = 52.07% (n=3000, ≈random)；GRPO group majority = 81.25% vs 理论 79.5%（高度吻合）。Sign misattribution 从理论预测升级为实证确认
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-16-   - **理论精度注意**：Proposition 2 的纯二值假设 (R ∈ {0, r+}) 需要扩展为包含 penalty 影响的版本。"80.9% wrong sign" 基于 binary assumption；实际 penalty 创造连续分布，misattribution 机制更复杂但方向不变
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-17-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-18-Episode-level training 同时解决两者：policy 看全历史（解决 1），整条 trajectory 作为一个 GRPO 样本，所有 tokens 共享同一 advantage — 虽然仍是 episode-level credit（非 per-token），但消除了 window 间的 sign misattribution，因为不再需要将 episode reward 分配到独立优化的子窗口（解决 2）。
+--
+artifacts/hsweep_h2_seed2/report/tab3_mechanism_verification_summary.md-1-# Tab 3: Mechanism Verification Summary
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/hsweep_h2_seed2/report/tab3_mechanism_verification_summary.md-2-
+artifacts/hsweep_h2_seed2/report/tab3_mechanism_verification_summary.md:3:**Source**: hsweep_h2_seed2 (W&B: jhwyg4tc), 3000 windows from 128 episodes (16 groups x 8 episodes)
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/hsweep_h2_seed2/report/tab3_mechanism_verification_summary.md-4-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/hsweep_h2_seed2/report/tab3_mechanism_verification_summary.md-5-## Data Overview
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/hsweep_h2_seed2/report/tab3_mechanism_verification_summary.md-6-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/hsweep_h2_seed2/report/tab3_mechanism_verification_summary.md-77-| Step-level misattribution | 6.1% (proxy) | 20.48% |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/hsweep_h2_seed2/report/tab3_mechanism_verification_summary.md-78-| Group majority correct | 81.25% | ~80% (GRPO-adjusted) |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/hsweep_h2_seed2/report/tab3_mechanism_verification_summary.md-79-
+artifacts/hsweep_h2_seed2/report/tab3_mechanism_verification_summary.md:80:The 6.1% empirical step-level misattribution is an **underestimate** because step_return=0 (1482/3000 windows) does not indicate whether the action was truly "correct" in the theoretical sense. The theoretical model assumes binary step correctness, while ALFWorld uses sparse terminal rewards.
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/hsweep_h2_seed2/report/tab3_mechanism_verification_summary.md-81-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/hsweep_h2_seed2/report/tab3_mechanism_verification_summary.md-82-## Key Takeaways for Paper
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/hsweep_h2_seed2/report/tab3_mechanism_verification_summary.md-83-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binomial_test_results.md-50-### Summary Table for Paper
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binomial_test_results.md-51-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binomial_test_results.md-52-```
+artifacts/binomial_test_results.md:53:Credit agreement rate: 52.07% (1562/3000 windows)
+artifacts/binomial_test_results.md-54-Wilson 95% CI:         [50.3%, 53.9%]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binomial_test_results.md-55-
+artifacts/binomial_test_results.md-56-vs H₀ = 50.0% (random):  p = 0.025, z = 2.26
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binomial_test_results.md-72-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binomial_test_results.md-73-### Data Available
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binomial_test_results.md-74-
+artifacts/binomial_test_results.md:75:From `advantage_analysis_summary.json` on bjb1-17606. Per-window advantages from 3000 windows, already GRPO-normalized (group mean subtracted, divided by group std).
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binomial_test_results.md-76-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binomial_test_results.md-77-### Mean Advantage by Episode Outcome
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binomial_test_results.md-78-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_provenance_audit.md-104-| 论文数字 | 来源 | 验证值 | 匹配? | 备注 |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_provenance_audit.md-105-|----------|------|--------|-------|------|
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_provenance_audit.md-106-| 52.07% credit agreement | hsweep_h2_seed2 adv_analysis | sign_outcome_agreement=0.5207 | ✅ | |
+artifacts/data_provenance_audit.md:107:| n=3000 windows | same | total_records=3000 | ✅ | |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_provenance_audit.md-108-| 1562/3000 | binomial_test_results.md | k=1562 | ✅ | 1562/3000=0.52067=52.07% |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_provenance_audit.md-109-| 95% CI [50.3%, 53.9%] | Wilson CI recompute | [50.3%, 53.8%] | ✅ | 上界差 0.1pp（四舍五入） |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_provenance_audit.md-110-| p=0.025 vs 50% | binomial test recompute | p=0.0247 | ✅ | 0.0247 → 0.025 rounded |
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-79-- Cumulative divergence 论证依赖 correct/wrong-sign 梯度幅度可比假设。仅一个快照不足。需至少补充 3-5 个训练阶段 × 2-3 seeds 的测量。
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-80-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-81-**W-Warning-4. 52.07% credit agreement 的统计显著性报告有误导性。** [R1-W4 Warning; R2 AGREE]
+artifacts/review_reports/round_4.md:82:- $n=3000$ 下 +2.07pp 的 binomial test 得 $p=0.025$，统计显著但 effect size 极小。论文将此作为 "near-random" 证据（正确），但 $p=0.025$ 可能误导读者以为这是有意义的正偏离。未讨论 action validity 作为 locally correct 代理的局限性对数字的影响。
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-83-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-84-**W-Warning-5. ScienceWorld 验证不完整——仅验证 failure 未验证 fix。** [R1-W8 Warning; R2 AGREE]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-85-- 声称 "pathology extends beyond our primary setting"，但 ScienceWorld 只报告 Cell A 崩溃，未报告 Cell D 结果。需补充至少一个 seed 的 Cell D ScienceWorld 结果。
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_correctness_audit.md-78-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_correctness_audit.md-79-### Figure Data
+artifacts/data_correctness_audit.md-80-- Figure 1 (overview): 概念图，无定量数据 ✓
+artifacts/data_correctness_audit.md:81:- Figure 2 (sign misattribution): 100%/n=157 + 52.07%/n=3000 硬编码值与源数据一致 ✓
+artifacts/data_correctness_audit.md-82-- Figure 3(a) (training dynamics): 从 W&B 提取的 ID success rates，无法从 registry 独立验证
+artifacts/data_correctness_audit.md-83-- Figure 3(b) (h-sweep): h=2→0%, h=5→0%, h=20→15.6%(=5/32), Full→23.88%(=32/134) 与 registry 一致 ✓; 已标注 ID/OOD 区分 ✓
+artifacts/data_correctness_audit.md-84-- Figure 4 (theory curve): 公式 P=p/(1-(1-p)^K) 的可视化 ✓
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/binomial_test_results.md-50-### Summary Table for Paper
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/binomial_test_results.md-51-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/binomial_test_results.md-52-```
+artifacts/_project/report/binomial_test_results.md:53:Credit agreement rate: 52.07% (1562/3000 windows)
+artifacts/_project/report/binomial_test_results.md-54-Wilson 95% CI:         [50.3%, 53.9%]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/binomial_test_results.md-55-
+artifacts/_project/report/binomial_test_results.md-56-vs H₀ = 50.0% (random):  p = 0.025, z = 2.26
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/binomial_test_results.md-72-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/binomial_test_results.md-73-### Data Available
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/binomial_test_results.md-74-
+artifacts/_project/report/binomial_test_results.md:75:From `advantage_analysis_summary.json` on bjb1-17606. Per-window advantages from 3000 windows, already GRPO-normalized (group mean subtracted, divided by group std).
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/binomial_test_results.md-76-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/binomial_test_results.md-77-### Mean Advantage by Episode Outcome
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/binomial_test_results.md-78-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_provenance_audit.md-179-| Data Point | Paper Value | Source | Status |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_provenance_audit.md-180-|-----------|------------|--------|--------|
+artifacts/_project/report/data_provenance_audit.md-181-| Credit agreement | 52.07% | `hsweep_h2_seed2`: sign_outcome_agreement=0.5207 | ✅ |
+artifacts/_project/report/data_provenance_audit.md:182:| n=3000 | 3000 | `hsweep_h2_seed2`: adv_log_lines=3000 | ✅ |
+artifacts/_project/report/data_provenance_audit.md:183:| 95% CI [50.3%, 53.9%] | [50.3%, 53.9%] | Wilson CI on k=1562, n=3000: [50.28%, 53.85%] | ✅ Exact match |
+artifacts/_project/report/data_provenance_audit.md-184-| point biserial r | 0.068 | `hsweep_h2_seed2`: point_biserial_r=0.068 | ✅ |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_provenance_audit.md-185-| r>0.99 (episode outcome) | r>0.99 | Not independently verified (requires raw data) | ⚠️ |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_provenance_audit.md-186-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_correctness_audit.md-78-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_correctness_audit.md-79-### Figure Data
+artifacts/_project/report/data_correctness_audit.md-80-- Figure 1 (overview): 概念图，无定量数据 ✓
+artifacts/_project/report/data_correctness_audit.md:81:- Figure 2 (sign misattribution): 100%/n=157 + 52.07%/n=3000 硬编码值与源数据一致 ✓
+artifacts/_project/report/data_correctness_audit.md-82-- Figure 3(a) (training dynamics): 从 W&B 提取的 ID success rates，无法从 registry 独立验证
+artifacts/_project/report/data_correctness_audit.md-83-- Figure 3(b) (h-sweep): h=2→0%, h=5→0%, h=20→15.6%(=5/32), Full→23.88%(=32/134) 与 registry 一致 ✓; 已标注 ID/OOD 区分 ✓
+artifacts/_project/report/data_correctness_audit.md-84-- Figure 4 (theory curve): 公式 P=p/(1-(1-p)^K) 的可视化 ✓
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_provenance_audit_17de9e.md-104-| 论文数字 | 来源 | 验证值 | 匹配? | 备注 |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_provenance_audit_17de9e.md-105-|----------|------|--------|-------|------|
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_provenance_audit_17de9e.md-106-| 52.07% credit agreement | hsweep_h2_seed2 adv_analysis | sign_outcome_agreement=0.5207 | ✅ | |
+artifacts/_project/report/data_provenance_audit_17de9e.md:107:| n=3000 windows | same | total_records=3000 | ✅ | |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_provenance_audit_17de9e.md-108-| 1562/3000 | binomial_test_results.md | k=1562 | ✅ | 1562/3000=0.52067=52.07% |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_provenance_audit_17de9e.md-109-| 95% CI [50.3%, 53.9%] | Wilson CI recompute | [50.3%, 53.8%] | ✅ | 上界差 0.1pp（四舍五入） |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_provenance_audit_17de9e.md-110-| p=0.025 vs 50% | binomial test recompute | p=0.0247 | ✅ | 0.0247 → 0.025 rounded |
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/hsweep_h10_multiseed_status.md-27-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/hsweep_h10_multiseed_status.md-28-CUDA_VISIBLE_DEVICES=0 nohup python train.py \
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/hsweep_h10_multiseed_status.md-29-    --config-name _alfworld_hsweep_h10_1gpu \
+artifacts/_project/report/hsweep_h10_multiseed_status.md:30:    seed.train=30000 \
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/hsweep_h10_multiseed_status.md-31-    trainer.experiment_name="hsweep-h10-seed3-1gpu" \
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/hsweep_h10_multiseed_status.md-32-    > /root/autodl-tmp/hsweep_h10_seed3.log 2>&1 &
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/hsweep_h10_multiseed_status.md-33-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_correctness_audit_3b36db.md-78-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/report/data_correctness_audit_3b36db.md-79-### Figure Data
+artifacts/_project/report/data_correctness_audit_3b36db.md-80-- Figure 1 (overview): 概念图，无定量数据 ✓
+artifacts/_project/report/data_correctness_audit_3b36db.md:81:- Figure 2 (sign misattribution): 100%/n=157 + 52.07%/n=3000 硬编码值与源数据一致 ✓
+artifacts/_project/report/data_correctness_audit_3b36db.md-82-- Figure 3(a) (training dynamics): 从 W&B 提取的 ID success rates，无法从 registry 独立验证
+artifacts/_project/report/data_correctness_audit_3b36db.md-83-- Figure 3(b) (h-sweep): h=2→0%, h=5→0%, h=20→15.6%(=5/32), Full→23.88%(=32/134) 与 registry 一致 ✓; 已标注 ID/OOD 区分 ✓
+artifacts/_project/report/data_correctness_audit_3b36db.md-84-- Figure 4 (theory curve): 公式 P=p/(1-(1-p)^K) 的可视化 ✓
+--
+artifacts/tab3_mechanism_verification_summary.md-1-# Tab 3: Mechanism Verification Summary
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/tab3_mechanism_verification_summary.md-2-
+artifacts/tab3_mechanism_verification_summary.md:3:**Source**: hsweep_h2_seed2 (W&B: jhwyg4tc), 3000 windows from 128 episodes (16 groups x 8 episodes)
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/tab3_mechanism_verification_summary.md-4-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/tab3_mechanism_verification_summary.md-5-## Data Overview
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/tab3_mechanism_verification_summary.md-6-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/tab3_mechanism_verification_summary.md-77-| Step-level misattribution | 6.1% (proxy) | 20.48% |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/tab3_mechanism_verification_summary.md-78-| Group majority correct | 81.25% | ~80% (GRPO-adjusted) |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/tab3_mechanism_verification_summary.md-79-
+artifacts/tab3_mechanism_verification_summary.md:80:The 6.1% empirical step-level misattribution is an **underestimate** because step_return=0 (1482/3000 windows) does not indicate whether the action was truly "correct" in the theoretical sense. The theoretical model assumes binary step correctness, while ALFWorld uses sparse terminal rewards.
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/tab3_mechanism_verification_summary.md-81-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/tab3_mechanism_verification_summary.md-82-## Key Takeaways for Paper
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/tab3_mechanism_verification_summary.md-83-
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6bc04204-9562-4d31-8336-a2809b35d5e1",
+  "isSidechain": true,
+  "promptId": "01065312-0353-4914-84ae-107626ab0535",
+  "agentId": "a7545e4998db7eade",
+  "type": "user",
+  "uuid": "4c9ff389-fcab-4994-8d87-023f4158b5a8",
+  "sourceToolAssistantUUID": "6bc04204-9562-4d31-8336-a2809b35d5e1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "a624bb88-2881-41c1-8d70-f3ba4fa69d47",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-24T04:08:43.146Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01KJPgt5YEfmzH388fnsuB5t`</summary>
+
+```json
+{
+  "pattern": "credit agreement|credit_agreement",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "glob": "*.tex,*.md",
+  "output_mode": "content",
+  "-B": 3,
+  "-A": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4c9ff389-fcab-4994-8d87-023f4158b5a8",
+  "isSidechain": true,
+  "agentId": "a7545e4998db7eade",
+  "requestId": "req_011CbLjgZJVRMRX8TJ4CnMnP",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "13df5e5e-97f2-4c8b-9bba-4303b6236a45",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "a624bb88-2881-41c1-8d70-f3ba4fa69d47",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_0133EMpsmC2kfnCnnbQHB1di",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 3041,
+      "cache_read_input_tokens": 21133,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3041,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-24T04:08:43.179Z_
+
+<details><summary>↩ Tool result · `toolu_01KJPgt5YEfmzH388fnsuB5t`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (35.3KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/a624bb88-2881-41c1-8d70-f3ba4fa69d47/tool-results/toolu_01KJPgt5YEfmzH388fnsuB5t.txt
+
+Preview (first 2KB):
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binomial_test_results.md-12-|-----------|-------|
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binomial_test_results.md-13-| n (total windows) | 3000 |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binomial_test_results.md-14-| k (correct-sign windows) | 1562 |
+artifacts/binomial_test_results.md:15:| p̂ (credit agreement rate) | 52.07% |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binomial_test_results.md-16-| Episodes | 128 (65 success, 63 failure) |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binomial_test_results.md-17-| Group size K | 8 |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binomial_test_results.md-18-| Groups | 16 |
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binomial_test_results.md-26-| Significant at α = 0.05? | **YES** |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binomial_test_results.md-27-| Effect size (p̂ − 0.5) | +2.07 pp |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binomial_test_results.md-28-
+artifacts/binomial_test_results.md:29:**Interpretation**: The 52.07% credit agreement is statistically distinguishable from 50% random chance (p = 0.025). However, the effect size is trivially small (+2.07 percentage points), meaning the advantage sign carries almost no practical information about episode outcome. The current paper text says "indistinguishable from 50% random chance" — this should be revised to "marginally above 50% (p = 0.025) but with negligible practical significance" or "near-random."
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binomial_test_results.md-30-
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "13df5e5e-97f2-4c8b-9bba-4303b6236a45",
+  "isSidechain": true,
+  "promptId": "01065312-0353-4914-84ae-107626ab0535",
+  "agentId": "a7545e4998db7eade",
+  "type": "user",
+  "uuid": "0d577c79-8b29-4a92-97e6-b27e03225437",
+  "sourceToolAssistantUUID": "13df5e5e-97f2-4c8b-9bba-4303b6236a45",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "a624bb88-2881-41c1-8d70-f3ba4fa69d47",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-24T04:08:43.774Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01T7HcoHZhZ6SCdQBzso9pqp`</summary>
+
+```json
+{
+  "pattern": "sign misattribution|sign-episode",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "glob": "*.tex,*.md",
+  "output_mode": "content",
+  "-B": 3,
+  "-A": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0d577c79-8b29-4a92-97e6-b27e03225437",
+  "isSidechain": true,
+  "agentId": "a7545e4998db7eade",
+  "requestId": "req_011CbLjgZJVRMRX8TJ4CnMnP",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "f87927f5-31f4-4392-b462-8ed96ba0d543",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "a624bb88-2881-41c1-8d70-f3ba4fa69d47",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_0133EMpsmC2kfnCnnbQHB1di",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 3041,
+      "cache_read_input_tokens": 21133,
+      "output_tokens": 1672,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3041
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 7,
+          "output_tokens": 1672,
+          "cache_read_input_tokens": 21133,
+          "cache_creation_input_tokens": 3041,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3041,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-24T04:08:43.811Z_
+
+<details><summary>↩ Tool result · `toolu_01T7HcoHZhZ6SCdQBzso9pqp`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (36.9KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/a624bb88-2881-41c1-8d70-f3ba4fa69d47/tool-results/toolu_01T7HcoHZhZ6SCdQBzso9pqp.txt
+
+Preview (first 2KB):
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-4-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-5-## Core Insight
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-6-
+paper_framing.md:7:LLM agent 社区默认的 step-independent training 在长 horizon 多轮任务中表现出严重的训练不稳定性和脆弱性（seed 间表现从崩溃至 0% 到极度延迟学习不等）。根因是**双机制失效**（D073：两个机制有定性不同的破坏效果——sign misattribution 破坏训练稳定性使学习极不可靠，information loss 杀死泛化能力，两者必须同时解决）：
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-8-
+paper_framing.md-9-1. **Policy Information Loss**: 短窗口（h 步）的 policy 无法学习跨步策略（如 "先探索 drawer 再去 countertop"）
+paper_framing.md-10-2. **Advantage Sign Misattribution**: step_independent 中，per-window advantage 的符号由 group normalization + episode outcome 共同决定，而非 task-relevant action quality：
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-15-   - **实证确认 (tab3)**：per-sample advantage sign accuracy = 52.07% (n=3000, ≈random)；GRPO group majority = 81.25% vs 理论 79.5%（高度吻合）。Sign misattribution 从理论预测升级为实证确认
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-16-   - **理论精度注意**：Proposition 2 的纯二值假设 (R ∈ {0, r+}) 需要扩展为包含 penalty 影响的版本。"80.9% wrong sign" 基于 binary assumption；实际 penalty 创造连续分布，misattribution 机制更复杂但方向不变
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-17-
+paper_framing.md:18:Episode-level training 同时解决两者：policy 看全历史（解决 1），整条 trajectory 作为一个 GRPO 样本，所有 tokens 共享同一 advantage — 虽然仍是 episode-level credit（非 per-token），但消除了 window 间的 sign misattribution，因为不再需要将 episode reward 分配到独立优化的子窗口（解决 2）。
+/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-19-
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f87927f5-31f4-4392-b462-8ed96ba0d543",
+  "isSidechain": true,
+  "promptId": "01065312-0353-4914-84ae-107626ab0535",
+  "agentId": "a7545e4998db7eade",
+  "type": "user",
+  "uuid": "935ab455-1b94-4329-a312-3e125256c781",
+  "sourceToolAssistantUUID": "f87927f5-31f4-4392-b462-8ed96ba0d543",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "a624bb88-2881-41c1-8d70-f3ba4fa69d47",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-24T04:08:45.349Z_
+
+Let me read some of the full-size results to get more complete context:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "935ab455-1b94-4329-a312-3e125256c781",
+  "isSidechain": true,
+  "agentId": "a7545e4998db7eade",
+  "requestId": "req_011CbLjhCcKZjJWPBEgYjSxM",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "2d7ca265-b01e-406e-a4f4-23aa9ccaee51",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "a624bb88-2881-41c1-8d70-f3ba4fa69d47",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01HKHNBk4PX6qBjLye5GY71P",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 29557,
+      "cache_read_input_tokens": 24174,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 29557,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-24T04:08:47.065Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01K65A7AhtfsTiyeyBq7CYPn`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/a624bb88-2881-41c1-8d70-f3ba4fa69d47/tool-results/toolu_01PvWPuzH5upt52gcccs5o2T.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2d7ca265-b01e-406e-a4f4-23aa9ccaee51",
+  "isSidechain": true,
+  "agentId": "a7545e4998db7eade",
+  "requestId": "req_011CbLjhCcKZjJWPBEgYjSxM",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "9e3cc123-cf6a-4edf-90e9-2f123a96eada",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "a624bb88-2881-41c1-8d70-f3ba4fa69d47",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01HKHNBk4PX6qBjLye5GY71P",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 29557,
+      "cache_read_input_tokens": 24174,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 29557,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-24T04:08:47.352Z_
+
+<details><summary>↩ Tool result · `toolu_01K65A7AhtfsTiyeyBq7CYPn`</summary>
+
+````text
+1	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-62-1. Multi-turn agent RL 需要跨长 trajectory 的 credit assignment，但社区默认 step-independent windowing
+2	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-63-2. Step-independent training 在多轮任务上导致训练不稳定（seed1 崩溃至 0%, seed2 延迟学习至 9.375% in-dist / 3.73% OOD），gradient signal 52% sign agreement ≈ 随机噪声
+3	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-64-3. 我们诊断双机制根因：(1) policy information loss（inference layer, 常数 ceiling）+ (2) advantage sign misattribution（training layer, 累积退化）
+4	paper_framing.md:65:4. 形式化分析：P(correct sign | update) = p/(1-(1-p)^K)，在 p=12.5%, K=8 时仅 19.1% 正确
+5	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-66-5. Episode-level GRPO 同时解决两者，从 SFT baseline 2.24% 提升到 23.88% (OOD 134 tasks, T=0.4)。**评估协议 (D092)**：论文统一用 T=0.4 (do_sample=True)，与 RAGEN 训练 eval 一致。T=0.0 greedy 得 16.4% (22/134)——差异来自 greedy decoding 的重复循环陷阱，不是 checkpoint 问题。**T=0.4 per-task 已完成**：独立 eval 得 19.4% (26/134)，与 RAGEN 内置 23.88% 存在 pipeline 差异，正在调查
+6	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-67-6. **Factorial 实验揭示两个机制的定性差异 + Cell B 泛化 ceiling seed-invariant**（D073→D078, 核心论据）：
+7	paper_framing.md-68-   - Cell A (step-level + truncated): 高坍缩风险（seed1=0%, seed2=3.73% OOD）— sign misattribution 破坏训练稳定性，学习极不稳定
+8	--
+9	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binomial_test_results.md-45-| Normal approx z-score | **45.9** |
+10	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binomial_test_results.md-46-| p-value | **< 10⁻¹⁰⁰** (essentially zero) |
+11	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binomial_test_results.md-47-
+12	artifacts/binomial_test_results.md:48:**Interpretation**: The empirical 52.07% is overwhelmingly different from the binary-reward theoretical prediction of 19.1% (z = 45.9). This confirms that the penalty reward (−0.1 per invalid action) substantially shifts the credit agreement rate, as discussed in the appendix. The gap is expected: the binary theory assumes r ∈ {0, r₊}, but the penalty creates within-group variance even among failed episodes, allowing some windows to receive positive advantages by being "less bad."
+13	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binomial_test_results.md-49-
+14	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binomial_test_results.md-50-### Summary Table for Paper
+15	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binomial_test_results.md-51-
+16	--
+17	artifacts/binomial_test_results.md-56-vs H₀ = 50.0% (random):  p = 0.025, z = 2.26
+18	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binomial_test_results.md-57-  → Statistically significant but trivially small effect (+2.07 pp)
+19	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binomial_test_results.md-58-
+20	artifacts/binomial_test_results.md:59:vs H₀ = 19.1% (binary theory): p ≈ 0, z = 45.9
+21	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binomial_test_results.md-60-  → Overwhelmingly rejects binary theory; penalty reward explains the gap
+22	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binomial_test_results.md-61-```
+23	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binomial_test_results.md-62-
+24	--
+25	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binary_reward_experiment_status.md-79-3. GRPO normalizes by group mean/std → positive step_return → above-mean → positive advantage
+26	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binary_reward_experiment_status.md-80-4. So `sign(advantage) == sign(step_return > 0)` by construction
+27	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binary_reward_experiment_status.md-81-
+28	artifacts/binary_reward_experiment_status.md:82:### Why This Doesn't Match Proposition 2's 19.1% Prediction
+29	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binary_reward_experiment_status.md-83-
+30	artifacts/binary_reward_experiment_status.md:84:Proposition 2 assumes **episode-level uniform advantage**: all windows in a successful episode get the same positive advantage regardless of their actual contribution. Under that assumption, with p=12.5% success rate and K=8, the predicted correct-sign rate is 19.1%.
+31	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binary_reward_experiment_status.md-85-
+32	artifacts/binary_reward_experiment_status.md-86-**The implementation differs**: gamma-discounting (γ=0.95) creates **window-level variation** in step_returns, which flows into per-window advantages. Example from episode 34:
+33	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binary_reward_experiment_status.md-87-
+34	--
+35	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binary_reward_experiment_status.md-117-
+36	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binary_reward_experiment_status.md-118-## Implications for Proposition 2
+37	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binary_reward_experiment_status.md-119-
+38	artifacts/binary_reward_experiment_status.md:120:1. **The current experiment does NOT test Proposition 2 as stated.** Proposition 2's 19.1% prediction assumes γ=1 (uniform step_return across windows). With γ=0.95, the step_returns already provide implicit credit assignment, making naive sign agreement trivially 100%.
+39	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binary_reward_experiment_status.md-121-
+40	artifacts/binary_reward_experiment_status.md-122-2. **To properly test Proposition 2**, either:
+41	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binary_reward_experiment_status.md-123-   - Set γ=1.0 so all windows in a successful episode get identical step_return
+42	--
+43	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_provenance_audit.md-180-| "36% generalize" (Abstract, Intro, Conclusion) | 11-seed study | 4/11=36.4%→36% | ✅ |
+44	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_provenance_audit.md-181-| "24-31% OOD" (Abstract) | G seeds range | 23.88-30.60%→24-31% rounded | ✅ |
+45	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_provenance_audit.md-182-| "6.7% SFT baseline" (Abstract) | Table 1 | 9/134=6.716%→6.7% | ✅ |
+46	artifacts/data_provenance_audit.md:183:| "19.1% correct" (Theory section) | Proposition 2 | 0.125/0.6564=19.04%→19.1% | ✅ |
+47	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_provenance_audit.md-184-| "$\sim$34.4% all-fail" (Theory) | (1-p)^K | 0.875^8=0.3436→34.4% | ✅ |
+48	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_provenance_audit.md-185-| "0.66 × 0.19 ≈ 12.5% effective" (Theory) | arithmetic | 0.6564×0.1904=0.1250 | ✅ |
+49	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_provenance_audit.md-186-| Conclusion 所有数字 | 同 Abstract | 交叉验证一致 | ✅ |
+50	--
+51	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_provenance_audit.md-221-| Wilson CI × 12 | scipy Wilson formula | 全部在 ±0.2pp 内一致 ✅ |
+52	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_provenance_audit.md-222-| Fisher exact × 12 | scipy.stats.fisher_exact | 方向全部一致；seed2 具体 p 值有差异 ⚠️ |
+53	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_provenance_audit.md-223-| Binomial test | scipy.stats.binomtest | p=0.0247 → 论文0.025 ✅ |
+54	artifacts/data_provenance_audit.md:224:| Proposition 2 | 公式计算 | 19.04%/80.96% → 论文19.1%/80.9% ✅ |
+55	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_provenance_audit.md-225-| Cell D mean | 算术 | (23.88+10.45)/2=17.165 → 17.16% ✅ |
+56	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_provenance_audit.md-226-
+57	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_provenance_audit.md-227----
+58	--
+59	artifacts/intervention_c_hard_cap_analysis.md-30-|------|:----------:|:----------:|:------------:|:--------------:|
+60	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/intervention_c_hard_cap_analysis.md-31-| 0 (init) | 6.25% | 974.8 | 0.625 | 19.50 |
+61	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/intervention_c_hard_cap_analysis.md-32-| 5 (mid) | 9.38% | 911.6 | 0.938 | 18.72 |
+62	artifacts/intervention_c_hard_cap_analysis.md:33:| 7 (final) | 9.38% | 927.4 | 0.938 | 19.16 |
+63	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/intervention_c_hard_cap_analysis.md-34-
+64	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/intervention_c_hard_cap_analysis.md-35-## Comparison with Seed 7 Baseline (exp029_seed7, no intervention)
+65	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/intervention_c_hard_cap_analysis.md-36-
+66	--
+67	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-19-
+68	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-20-## Summary
+69	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-21-
+70	artifacts/review_reports/round_3.md:22:[Omitted long matching line]
+71	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-23-
+72	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-24-## Strengths
+73	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-25-
+74	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-26-**S1. Factorial 实验设计有方法论价值。** 2×2 设计（trajectory scope × advantage granularity）超越 ad-hoc ablation，提供清晰的因果隔离框架。A→B 对比隔离 M2，B→D 对比隔离 M1，逻辑链条完整。[R1, R2 一致]
+75	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-27-
+76	artifacts/review_reports/round_3.md:28:**S2. 可验证的理论预测。** Proposition 2 给出 binary reward 下 P(correct|update) = p/(1-(1-p)^K) 的闭式表达式，在 p=12.5%, K=8 时预测 19.1%，数学推导经验证正确。[R1, R2 一致]
+77	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-29-
+78	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-30-**S3. 实验报告诚实度高。** 36% seed 泛化率、Cell C 训练不稳定、OOD 评估高方差（seed5 的 30pp range）、seed-dependent transfer 作为 open question——不利结果均被明确报告。11-seed 系统评估揭示了 episode-level GRPO 的真实高方差，为社区提供了诚实预期。[R1, R2 一致]
+79	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-31-
+80	--
+81	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-41-
+82	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-42-[Omitted long context line]
+83	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-43-
+84	artifacts/review_reports/round_3.md:44:[Omitted long matching line]
+85	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-45-
+86	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-46-**W-C4. 主实验 factorial 对比仅 2 seeds。** [R2-W4, R1 AGREE] Table 1 核心因果隔离声明建立在 n=2 之上。11-seed 评估已显示 OOD 从 0% 到 38.7% 的巨大方差。Cell D 的 2 seeds 中一个 OOD 10.4%（低于 SFT baseline 12.56%），2-seed mean 恰好落在有利区间——再多一个不幸的 seed 就可能推翻结论。
+87	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-47-
+88	--
+89	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-51-
+90	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-52-[Omitted long context line]
+91	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-53-
+92	artifacts/review_reports/round_3.md:54:**W-M3. Proposition 1/2 隐含假设与 Definition 1 矛盾。** [R1-W1, R2 AGREE] Proposition 1 将成功 episode 中所有窗口视为获得 correct sign，但 Definition 1 要求窗口在 oracle 下独立获得正 advantage。成功 episode 可包含次优窗口。19.1% 应标注为上界而非精确值。方向上强化了论文论点（真实值更低），但理论表述不够严谨。
+93	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-55-
+94	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-56-**W-M4. 52% credit agreement rate 统计力弱且措辞过强。** [R1-W4, R2 AGREE] n≈3000 下 52% vs 50% 的 z≈2.19, p≈0.028 仅 marginal significance，但论文称 "confirms sign misattribution as the causal driver"。R2 补充：核心论证应是"52%≈50% 说明 advantage sign 几乎不携带 local quality 信息"而非"52% 显著高于 50%"，论文混淆了这两种论证。
+95	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-57-
+96	--
+97	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-81-
+98	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-82-1. **Cell C 缺失是最严重的实验缺陷**，其不同于 Cell A 的失败模式暗示 M1-M2 非独立交互
+99	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-83-2. **缺乏同期方法实验对比**严重限制了论文的 impact（Related Work 讨论 15+ 方法但零对比）
+100	artifacts/review_reports/round_3.md:84:3. **理论-实验脱节**（binary reward 理论 vs penalty reward 实验，19.1% vs 52%）
+101	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-85-4. **主实验 2-seed 统计力不足**，核心因果声明缺乏统计证据
+102	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-86-5. **Episode-level GRPO 无方法论新颖性**，Contribution 3 应降级或合并
+103	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-87-6. **论文核心价值在于诊断（Contributions 1-2），而非修正方案**
+104	--
+105	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-91-**唯一分歧：诊断新颖性的程度**
+106	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-92-
+107	artifacts/review_reports/round_3.md-93-- R2: M1/M2 是已知问题（partial observability + credit assignment）的重新 formalize，多个同期工作独立发现。**Excitement 2.5/5。**
+108	artifacts/review_reports/round_3.md:94:- R1: 虽然个体概念已知，但 GRPO 特定的量化诊断（Proposition 2 的 19.1% + factorial 分离）有增量价值。**Excitement 3.5/5。**
+109	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-95-
+110	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-96-此分歧不影响接收建议——双方均认为论文适合 Findings 而非主会议。
+111	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-97-
+112	--
+113	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-107-
+114	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-108-**Q5.** "training duration does not explain the gap" 仅基于 seed100 的 n=1 观察。有更系统性的证据吗？[R1, R2 一致]
+115	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-109-
+116	artifacts/review_reports/round_3.md:110:**Q6.** Binary reward 下 sign-episode correlation 100% 与 Proposition 2 的 19.1% correct sign 如何同时成立？（R2 已解释两者测量不同指标，但论文应明确区分。）[R1 提出, R2 REBUT 并解释]
+117	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-111-
+118	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-112-**Q7.** Collapsed/Stagnant/Generalized 分类阈值（>50% drop, ≥3 consecutive steps, Fisher p<0.01）是否敏感？[R1]
+119	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-113-
+120	--
+121	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-172-POMDP 形式化标准正确。M1/M2 概念区分清晰。但 M1 本质是 partial observability，未与 POMDP 文献建立联系。Factorial 设计是实验骨架，Cell C 缺失在此已埋下因果推断隐患。
+122	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-173-
+123	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-174-### Theoretical Analysis
+124	artifacts/review_reports/round_3.md:175:Proposition 1/2 在 binary reward 假设内数学正确。P(correct|update) = p/(1-(1-p)^K) 推导可验证。但 (1) 隐含 "episode success ⟹ all windows locally correct" 假设与 Definition 1 矛盾，19.1% 应为上界；(2) Eq. 5 的 cumulative divergence 将 wrong-sign gradient 等同于 policy divergence，过度简化（忽略 KL constraint, learning rate 等因素）；(3) comparable magnitude 假设依赖单点测量。
+125	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-176-
+126	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-177-### Experiments
+127	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-178-Factorial 实验是最大亮点但 2-seed 是最大弱点。Window-size sweep 揭示 h=10-20 阈值暗示中间方案可能有效（larger/overlapping windows），但论文将问题呈现为二元。Section 4.4 sign verification 是强有力的经验证据，但 52% 的统计力弱。Cross-scale 和 cross-environment 标记为 preliminary 但增加了可信度。
+128	--
+129	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-28-
+130	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-29-**S2. 清晰的双机制分解框架与 factorial 设计。** [R1-S2, R2-S1] 将信用分配失败拆解为 M1（constant ceiling，推理层）和 M2（cumulative degradation，训练层）两个正交维度，并通过 2×2 factorial 设计分离验证（A→B 隔离 M2，B→D 隔离 M1），在 agent RL 文献中具有方法论示范价值。
+131	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-30-
+132	artifacts/review_reports/round_4.md:31:**S3. 直接符号测量提供可操作的诊断指标。** [R1-S3, R2-S2] Section 4.4 引入的三层验证（sign-episode correlation 100%、credit agreement 52%、P(correct|update) ≤19.1%）具有可复用性，可应用于评估其他 credit assignment 方法。Proposition 2 的闭式上界直观且可验证。
+133	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-32-
+134	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-33-**S4. 诚实、系统的 11-seed 评估。** [R1-S4, R2-S3] 完整报告了 73% 避免崩溃但仅 36% 实现显著 OOD 泛化。Table 2 分类明确（Collapsed/Stagnant/Generalized），附 Wilson 95% CI 和 Fisher exact p 值。Appendix F 的 step-5 统一评估降低了 checkpoint 选择偏差。这种透明度在当前 agent RL 文献中罕见。
+135	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-34-
+136	--
+137	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-52-- Caption 中已标注不同标准（Round 3 修复），但根本问题是数据本身应统一报告标准，而非标注不同标准。
+138	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-53-
+139	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-54-**W-Major-2. 理论分析（binary reward）与实验设置（ternary reward）的 gap 缺乏形式化桥接。** [R1-W3 Major; R2-W4 AGREE]
+140	artifacts/review_reports/round_4.md:55:- Proposition 1/2 在 binary reward ($R \in \{0, r_+\}$) 下推导，全部实验使用含 $r_- = -0.1$ penalty 的 ternary reward。理论预测 ≤19.1% vs. 实测 52%，gap 仅有定性桥接（"penalty introduces variance"），缺乏 ternary reward 下的形式化上界。
+141	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-56-- Appendix A.2 的解释定性正确（penalty 打破 sign-episode 完美相关），但论文以理论为核心卖点，定量不匹配需要更严谨的处理。
+142	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-57-
+143	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-58-**W-Major-3. 单一主实验环境限制诊断的普遍性声称。** [R2-W1/N1 Major→Critical; R1 同意方向但降级为 Minor-Major]
+144	--
+145	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-103-
+146	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-104-1. **Cell C 缺失是论文最大的方法论缺陷**——两位 Reviewer 均认为这削弱了 factorial 分解的核心假设（正交可加性），Discussion 中的讨论不足以替代。
+147	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-105-2. **Table 1 报告标准不一致**需要统一——标注不同标准不等于解决了不一致问题。
+148	artifacts/review_reports/round_4.md:106:3. **理论-实验 gap（19.1% vs 52%）** 需要更严谨的桥接——定性正确但在理论导向论文中不够。
+149	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-107-4. **REINFORCE++ 对比不公平**——15 步不足以得出结论。
+150	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-108-5. **Eq. 6 单点测量不足**——需多阶段多种子补充。
+151	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-109-6. **ScienceWorld 验证不完整**——需补充 Cell D 结果。
+152	--
+153	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-225-
+154	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-226-### Section 3 (Theoretical Analysis)
+155	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-227-- Proposition 1-2 在 binary reward 下逻辑自洽。
+156	artifacts/review_reports/round_4.md:228:- 19.1% 上界在 p=12.5%, K=8 处是有力结果。
+157	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-229-- Reward saturation 分析有价值（~1/3 batch 零梯度）。
+158	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-230-- **关键问题**：Eq. 6 的 comparable magnitude 假设基于单个快照。
+159	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-231-- **关键问题**：Binary 理论 vs ternary 实验的 gap。
+160	--
+161	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_1.md-47-整个理论框架建立在 "locally correct actions" 上，但全文未给出形式定义。Proposition 2 的 "80.9% incorrect sign" 含义完全取决于 "correct" 的定义。Section 4.4 的 credit agreement rate 度量的操作化方式（如何度量 "local action quality"）也未描述。两位 Reviewer 共识：需要形式定义，但非循环论证（R2 的修正判断——核心论点 "sign 由 episode outcome 决定" 不依赖 local quality 的精确定义）。
+162	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_1.md-48-
+163	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_1.md-49-**W2. 理论 (binary reward) 与实验 (binary + invalid action penalty) 不一致 [R1-C2, R2 AGREE]。**
+164	artifacts/review_reports/round_1.md:50:Propositions 1-2 严格依赖 binary reward (R ∈ {0, r+})，但实验使用了 invalid action penalty = 0.1。Appendix Remark 仅定性声称 "qualitative conclusion is preserved"，无定量分析。R2 补充：Proposition 2 预测 19.1% correct sign rate，实测 52.07%，discrepancy 可能正是 non-binary reward 导致，但论文未讨论。
+165	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_1.md-51-
+166	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_1.md-52-**W3. 10/20 引用使用 "Anonymous" 作者——ARR 格式违规 [R2-W1, R1 AGREE]。**
+167	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_1.md-53-irc2026, grpolambda2025, oar2026, ragen2_2026, grpocollapse2025, gradientcoupling2025, turnppo2026, gagpo2026, mtgrpo2025, sweetrl2025——这些均为已公开 arXiv 预印本，有可查的真实作者信息。ACL ARR 仅要求匿名化自己的在审稿件，不应匿名化他人已公开工作。50% 引用缺少真实作者是严重合规问题，可能触发 desk-rejection checklist。
+168	--
+169	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_1.md-119-
+170	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_1.md-120-**Q1.** Section 4.4 中 "local action quality" 具体如何度量？操作化定义是什么？
+171	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_1.md-121-
+172	artifacts/review_reports/round_1.md:122:**Q2.** 是否在 pure binary reward（无 invalid action penalty）下验证了 credit agreement rate？如果有，结果与 52.07% 差异多大？19.1% vs 52.07% 的 discrepancy 如何解释？
+173	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_1.md-123-
+174	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_1.md-124-**Q3.** seed1 使用 "RAGEN built-in eval; checkpoint unavailable for re-evaluation"——与其他 seed 的 eval protocol 是否完全一致？
+175	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_1.md-125-
+176	--
+177	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_1.md-201-### Abstract
+178	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_1.md-202-- "fundamental credit assignment pathology" 措辞过重，建议改为 "structural"
+179	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_1.md-203-- "80.9% of gradient updates for locally correct actions carry incorrect sign" — qualifier 正确，但需在全文保持一致（Conclusion 省略了 qualifier）
+180	artifacts/review_reports/round_1.md:204:- "consistent with an empirically measured 52% credit agreement rate" — 理论预测 19.1% vs 实测 52%，两者关系未解释
+181	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_1.md-205-
+182	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_1.md-206-### Section 1 (Introduction)
+183	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_1.md-207-- Contribution 3 "necessary but not sufficient" 定位准确，但意味着 73% 的情况下方案不达目标，实际影响力存疑
+184	--
+185	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_2.md-42-### Must-Fix（5 项，影响接收决定）
+186	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_2.md-43-
+187	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_2.md-44-**MF1 [R1+R2 共识] 理论预测 80.9% vs 实验测量 52% 的差距在主文中处理不当**
+188	artifacts/review_reports/round_2.md:45:- Abstract/Intro 将 80.9%（binary reward 理论值）和 52%（penalty reward 实测值）简单并列，给读者造成两者互相支持的印象，实际两者之间存在 28.9pp 差距。Gap 解释仅在 Appendix A.2（penalty-induced variance），主文无充分讨论。如果 penalty reward（实际系统常用）将 correct-sign rate 从 19.1% 提升到 52%，Proposition 2 的定量预测在实际系统下的指导意义需重新评估。
+189	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_2.md-46-- **建议**：(a) 在主文 Section 3 或 4.4 显著讨论差异；(b) 推导 penalty reward 修正公式或跑纯 binary 实验验证理论预测；(c) 考虑将标题数字改为实验值。
+190	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_2.md-47-- **Round 1 状态**：曾被标记并修复（加了并列呈现），但修复不充分，本轮两位 Reviewer 再次提出。
+191	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_2.md-48-
+192	--
+193	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_correctness_audit.md-11-### Abstract
+194	artifacts/data_correctness_audit.md-12-- 17.2% mean OOD ← Cell D 2-seed mean: (23.88+10.45)/2=17.165→17.2% (exp029_episode_level + exp029_seed3_ood_v2)
+195	artifacts/data_correctness_audit.md-13-- 6.7% SFT baseline ← 9/134=6.716%→6.7% (ood_eval_sft_baseline_v3: pass_at_1=0.067)
+196	artifacts/data_correctness_audit.md:14:- ≤19.1% upper bound ← Proposition 2: 0.125/(1-0.875^8)=19.04%→19.1% (intermediate rounding)
+197	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_correctness_audit.md-15-- 73% stabilize ← 8/11=72.7%→73%
+198	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_correctness_audit.md-16-- 36% generalize ← 4/11=36.4%→36%
+199	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_correctness_audit.md-17-
+200	--
+201	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_correctness_audit.md-58-
+202	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_correctness_audit.md-59-### Theoretical Calculations
+203	artifacts/data_correctness_audit.md-60-- (1-p)^K = 0.875^8 ≈ 0.344 ← exact: 0.34361 ✓
+204	artifacts/data_correctness_audit.md:61:- P(correct|update) = 0.125/0.656 ≈ 19.1% ← exact: 19.04%, intermediate rounding gives 19.1% ✓
+205	artifacts/data_correctness_audit.md-62-- p=50%, K=8: ≤50.2% ← exact: 128/255=50.20% ✓
+206	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_correctness_audit.md-63-- p^K < 10^-7 ← 0.125^8=5.96e-8 ✓
+207	artifacts/data_correctness_audit.md-64-- 0.66×0.19≈12.5% ← exact: 0.6564×0.1904=0.1250 ✓
+208	--
+209	artifacts/data_correctness_audit.md-127-- **严重程度**: 低 (100% 是该度量的理论预期，单例外是 GRPO edge case)
+210	artifacts/data_correctness_audit.md-128-- **建议**: 可考虑改为 "near-perfect (99.6%)" 或在脚注注明
+211	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_correctness_audit.md-129-
+212	artifacts/data_correctness_audit.md:130:### 4. 19.1% vs 19.04% (中间值四舍五入)
+213	artifacts/data_correctness_audit.md-131-- **位置**: theoretical_analysis.tex, appendix, 多处
+214	artifacts/data_correctness_audit.md:132:- **问题**: 精确值 P=0.125/0.65639=19.04%, 论文用 0.125/0.656=19.05%→19.1%. 80.9%=1-19.1% 精确应为 80.96%
+215	artifacts/data_correctness_audit.md-133-- **严重程度**: 极低 (不影响任何结论)
+216	artifacts/data_correctness_audit.md-134-- **建议**: 不修改; 四舍五入在合理范围内
+217	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_correctness_audit.md-135-
+218	--
+219	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_correctness_audit.md-166-| Wilson CI × 12 | scipy Wilson formula | ±0.1pp 内一致 ✅ |
+220	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_correctness_audit.md-167-| Fisher exact × 12 | scipy.stats.fisher_exact | 方向全部正确 ✅ |
+221	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_correctness_audit.md-168-| Binomial test (52.07% vs 50%) | scipy.stats.binomtest | p=0.0247 → 论文 0.025 ✅ |
+222	artifacts/data_correctness_audit.md:169:| Proposition 2 公式 | 精确分数计算 | 19.04% → 论文 19.1% (中间舍入) ✅ |
+223	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_correctness_audit.md-170-| p=50% K=8 | 128/255 | 50.20% ✅ |
+224	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_correctness_audit.md-171-| p=5% K=8 | 0.05/0.3366 | **14.86% ← 论文原写 5.1% [已修复为 14.9%]** |
+225	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_correctness_audit.md-172-| Cell D mean | 算术 | (23.88+10.45)/2=17.165 → 17.16% ✅ |
+226	--
+227	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/round4_track_a_main_changes.md-59-### After
+228	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/round4_track_a_main_changes.md-60-```latex
+229	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/round4_track_a_main_changes.md-61-\paragraph{Extension to non-binary rewards.}
+230	artifacts/round4_track_a_main_changes.md:62:[Omitted long matching line]
+231	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/round4_track_a_main_changes.md-63-```
+232	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/round4_track_a_main_changes.md-64-
+233	artifacts/round4_track_a_main_changes.md-65-## Item 4: Cohen's h Effect Size (experiments.tex)
+234	--
+235	artifacts/intervention-c-hard-cap/report/intervention_c_hard_cap_analysis.md-30-|------|:----------:|:----------:|:------------:|:--------------:|
+236	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/intervention-c-hard-cap/report/intervention_c_hard_cap_analysis.md-31-| 0 (init) | 6.25% | 974.8 | 0.625 | 19.50 |
+237	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/intervention-c-hard-cap/report/intervention_c_hard_cap_analysis.md-32-| 5 (mid) | 9.38% | 911.6 | 0.938 | 18.72 |
+238	artifacts/intervention-c-hard-cap/report/intervention_c_hard_cap_analysis.md:33:| 7 (final) | 9.38% | 927.4 | 0.938 | 19.16 |
+239	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/intervention-c-hard-cap/report/intervention_c_hard_cap_analysis.md-34-
+240	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/intervention-c-hard-cap/report/intervention_c_hard_cap_analysis.md-35-## Comparison with Seed 7 Baseline (exp029_seed7, no intervention)
+241	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/intervention-c-hard-cap/report/intervention_c_hard_cap_analysis.md-36-
+242	--
+243	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/theoretical_analysis.tex-19-
+244	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/theoretical_analysis.tex-20-[Omitted long context line]
+245	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/theoretical_analysis.tex-21-
+246	docs/paper/theoretical_analysis.tex:22:At $p{=}12.5\%$, $K{=}8$, this yields an upper bound of 19.1\% on correctly signed gradient updates (Figure~\ref{fig:theory_curve}). In the large-$K$ limit, $P(\text{correct} \mid \text{update}) \to p$: ${\sim}87.5\%$ of updates for locally correct windows point in the wrong direction.
+247	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/theoretical_analysis.tex-23-
+248	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/theoretical_analysis.tex-24-\begin{figure}[t]
+249	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/theoretical_analysis.tex-25-\centering
+250	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/theoretical_analysis.tex-26-\includegraphics[width=\columnwidth]{fig_theory_curve.pdf}
+251	
+252	[Showing results with pagination = limit: 250]
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9e3cc123-cf6a-4edf-90e9-2f123a96eada",
+  "isSidechain": true,
+  "promptId": "01065312-0353-4914-84ae-107626ab0535",
+  "agentId": "a7545e4998db7eade",
+  "type": "user",
+  "uuid": "2918efd9-0d64-403e-b52d-d31ab2a7ae67",
+  "sourceToolAssistantUUID": "9e3cc123-cf6a-4edf-90e9-2f123a96eada",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "a624bb88-2881-41c1-8d70-f3ba4fa69d47",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-24T04:08:48.022Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01QYyC8yme5TLaYjNS8yKMGD`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/a624bb88-2881-41c1-8d70-f3ba4fa69d47/tool-results/toolu_01T7HcoHZhZ6SCdQBzso9pqp.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2918efd9-0d64-403e-b52d-d31ab2a7ae67",
+  "isSidechain": true,
+  "agentId": "a7545e4998db7eade",
+  "requestId": "req_011CbLjhCcKZjJWPBEgYjSxM",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "211243ac-9df9-4dcb-87d8-66b0bf228a9c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "a624bb88-2881-41c1-8d70-f3ba4fa69d47",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01HKHNBk4PX6qBjLye5GY71P",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 29557,
+      "cache_read_input_tokens": 24174,
+      "output_tokens": 296,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 29557
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 7,
+          "output_tokens": 296,
+          "cache_read_input_tokens": 24174,
+          "cache_creation_input_tokens": 29557,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 29557,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-24T04:08:48.306Z_
+
+<details><summary>↩ Tool result · `toolu_01QYyC8yme5TLaYjNS8yKMGD`</summary>
+
+```text
+1	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-4-
+2	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-5-## Core Insight
+3	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-6-
+4	paper_framing.md:7:LLM agent 社区默认的 step-independent training 在长 horizon 多轮任务中表现出严重的训练不稳定性和脆弱性（seed 间表现从崩溃至 0% 到极度延迟学习不等）。根因是**双机制失效**（D073：两个机制有定性不同的破坏效果——sign misattribution 破坏训练稳定性使学习极不可靠，information loss 杀死泛化能力，两者必须同时解决）：
+5	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-8-
+6	paper_framing.md-9-1. **Policy Information Loss**: 短窗口（h 步）的 policy 无法学习跨步策略（如 "先探索 drawer 再去 countertop"）
+7	paper_framing.md-10-2. **Advantage Sign Misattribution**: step_independent 中，per-window advantage 的符号由 group normalization + episode outcome 共同决定，而非 task-relevant action quality：
+8	--
+9	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-15-   - **实证确认 (tab3)**：per-sample advantage sign accuracy = 52.07% (n=3000, ≈random)；GRPO group majority = 81.25% vs 理论 79.5%（高度吻合）。Sign misattribution 从理论预测升级为实证确认
+10	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-16-   - **理论精度注意**：Proposition 2 的纯二值假设 (R ∈ {0, r+}) 需要扩展为包含 penalty 影响的版本。"80.9% wrong sign" 基于 binary assumption；实际 penalty 创造连续分布，misattribution 机制更复杂但方向不变
+11	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-17-
+12	paper_framing.md:18:Episode-level training 同时解决两者：policy 看全历史（解决 1），整条 trajectory 作为一个 GRPO 样本，所有 tokens 共享同一 advantage — 虽然仍是 episode-level credit（非 per-token），但消除了 window 间的 sign misattribution，因为不再需要将 episode reward 分配到独立优化的子窗口（解决 2）。
+13	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-19-
+14	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-20-**8B Scale Verification (D083-D085)**：Qwen3-8B (8.2B params) 验证双机制 scale-invariance：
+15	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-21-- **Information loss 量化 (D087, deterministic eval 完成)**：同一 8B SFT checkpoint，bjb1 2GPU, T=0 deterministic, 同一 32 in-dist tasks。Full context = 68.75%, h=2 = 31.25%。**Information loss = 37.5 pp，纯推理时损失，RL 还没开始。** h=2 response_length 仅 17 tokens vs full context 2186 tokens——极端截断导致模型几乎无法推理。注意：FSDP GPU 数量影响绝对数字 (M020)，论文必须用同服务器配对测量。
+16	--
+17	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-25-  - 1.7B seed1 (7o9bjszm)：**完整复现且更剧烈**——3 阶段 entropy oscillation (0.33→1.01→0.33→0.55) + 3 次 negative KL (step 11/12/15)，15 步崩溃到 0%。与 8B 同一破坏路径，仅时间尺度不同
+18	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-26-  - 1.7B seed2 (jhwyg4tc)：**正常学习**——entropy 稳定 0.25-0.43，KL 全程正值，success 升到 28.1%
+19	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-27-  - **论文 framing**："The failure mechanism (entropy oscillation + negative KL divergence) is identical across model scales; it is stochastic-triggered rather than deterministic. When triggered, the destruction pathway is consistent regardless of model capacity." 这解释了社区为什么没有普遍注意到问题——有时 works 有时不 works，但风险始终存在
+20	paper_framing.md:28:  - 8B 与 1.7B 的差异是 **速度** 而非 **机制**：8B 2步崩溃 vs 1.7B 15步崩溃，更大模型可能因策略空间更大导致 sign misattribution 的破坏更迅猛
+21	paper_framing.md-29-- **Cell C 完成 (D098→D103)**：经历 v1-v9b 共 11 次失败后，v9d 通过 FSDP2+CPUOffload 成功训练。Step 12 reward 饱和（100% in-dist success, pg_loss=0），step 10 为最终有效模型。**OOD eval: 90.3% pass@1 (134 tasks)**，vs SFT 80.6% (+10pp)，vs Cell A 1.5% (collapse)。action_is_valid 98.7%。⚠️ 待确认实际 temperature（config 有 T=0.4 和 T=1.0 两处值）。
+22	paper_framing.md-30-- **结论**：**Claim 范围已扩展：fix 跨尺度有效。** 不仅 failure mechanism 跨尺度一致，episode-level fix 在 8B 尺度上效果更强（1.7B: 23.88% OOD; 8B: 90.3% OOD）。跨尺度证据链完整：failure(Cell A collapse) + fix(Cell C success) 双向验证。
+23	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-31-
+24	--
+25	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-61-叙事线：
+26	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-62-1. Multi-turn agent RL 需要跨长 trajectory 的 credit assignment，但社区默认 step-independent windowing
+27	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-63-2. Step-independent training 在多轮任务上导致训练不稳定（seed1 崩溃至 0%, seed2 延迟学习至 9.375% in-dist / 3.73% OOD），gradient signal 52% sign agreement ≈ 随机噪声
+28	paper_framing.md:64:3. 我们诊断双机制根因：(1) policy information loss（inference layer, 常数 ceiling）+ (2) advantage sign misattribution（training layer, 累积退化）
+29	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-65-4. 形式化分析：P(correct sign | update) = p/(1-(1-p)^K)，在 p=12.5%, K=8 时仅 19.1% 正确
+30	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-66-5. Episode-level GRPO 同时解决两者，从 SFT baseline 2.24% 提升到 23.88% (OOD 134 tasks, T=0.4)。**评估协议 (D092)**：论文统一用 T=0.4 (do_sample=True)，与 RAGEN 训练 eval 一致。T=0.0 greedy 得 16.4% (22/134)——差异来自 greedy decoding 的重复循环陷阱，不是 checkpoint 问题。**T=0.4 per-task 已完成**：独立 eval 得 19.4% (26/134)，与 RAGEN 内置 23.88% 存在 pipeline 差异，正在调查
+31	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-67-6. **Factorial 实验揭示两个机制的定性差异 + Cell B 泛化 ceiling seed-invariant**（D073→D078, 核心论据）：
+32	paper_framing.md:68:   - Cell A (step-level + truncated): 高坍缩风险（seed1=0%, seed2=3.73% OOD）— sign misattribution 破坏训练稳定性，学习极不稳定
+33	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-69-[Omitted long context line]
+34	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-70-[Omitted long context line]
+35	paper_framing.md-71-   - **注意**：早期定量分解（step 5: B=5.97% > A=3.73%）在 step 15 失效（B=0.75% < A），加法模型不可靠。论文报告全 step 轨迹，不做 checkpoint cherry-picking
+36	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-72-   - **论文写法**：Results 加入 "learning without generalization" 子节，展示 Cell B 的 train vs OOD 分离曲线。引用 Cobbe et al. 2019 / Kirk et al. 2023 RL generalization survey 做 positioning，明确区分 "our finding is a structural representation bottleneck, not a statistical generalization gap"
+37	paper_framing.md:73:7. γ-sweep 佐证（D075 确认情景 1）：g050/g080/g095/g100 **全系列坍缩**，包括 γ=1.0（无折扣）。结论：sign misattribution 是 step-level windowing + GRPO group normalization 的固有属性，与 magnitude decay 无关。γ-sweep contribution 从"发现 γ-cliff"升级为"证明 step-independent windowing 的根本不兼容性——无论 γ 取何值"。需补充 advantage sign 分布分析作为额外支撑
+38	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-74-   - **Factorial seed2 (D076→D078) 跨 seed 验证最终确认**：seed2 完整轨迹 2.24%(step5) → 2.24%(step10) → **0.75%(step15)**，与 seed1 step 15 val OOD **完全一致 (0.75%=1/134)**。尽管 train success 差距极大（seed1 ~20% vs seed2 55.5%），OOD 泛化同样崩溃。Information loss 对泛化创造 hard representational ceiling，与训练轨迹无关（N=2 seeds，"hard ceiling" 而非 "deterministic"）
+39	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-75-8. 分析 "为什么社区默认走向 step-independent"（context length 限制 + token-level training 惯性 + framework design accident + 6 factors）
+40	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-76-9. **干预实验 (D119-D128, Discussion section, SUPPLEMENTARY evidence)**：
+41	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-77-   
+42	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-78-   **⚠️ 证据层次（D128, Reviewer 审查确认）**：
+43	paper_framing.md:79:   - **Primary**: tab3 per-sample advantage sign accuracy = 52.07% ≈ random（sign misattribution 的直接实测）+ Proposition 2 理论推导
+44	paper_framing.md-80-   - **Secondary**: factorial experiment（Cell A/B/C 分离两个机制的 causal contribution）
+45	paper_framing.md-81-   - **Supplementary**: 干预实验（Discussion 中展示 symptom-level 干预的 ceiling，不是核心论证）
+46	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-82-   
+47	--
+48	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-88-   
+49	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-89-   **论文叙事 (D128)**：正文 Discussion 聚焦 B+C 双轨对比——"fast-but-degrading (hard cap) vs slow-but-improving (KL), both converging to a sub-optimal ceiling far below episode-level (8-19% vs 23-37%)"。多条 downstream 干预路径收敛到类似 ceiling，而 episode-level 消除 windowing 后直接跳到 23-37%，这个 gap pattern 比任何单条干预更有说服力。
+50	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-90-   
+51	paper_framing.md:91:   **⚠️ 已知 alternative explanation 及防御**：审稿人可能提出"根因是 response inflation incentive，非 sign misattribution；完美的 inflation control 或可完全解决"。防御：tab3 直接测量 sign accuracy = 52% ≈ random，这是 sign misattribution 的独立实证，不依赖干预实验。干预实验的角色是展示 downstream 症状无法根治，不是证明 sign misattribution 存在。
+52	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-92-   
+53	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-93-   **写作注意**：abstract/intro 不强调干预数量。用 "multiple interventions targeting different symptom channels" 而非 "3/4 partially effective"。数字放 Discussion 表格
+54	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-94-
+55	--
+56	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-100-
+57	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-101-## Core Claims
+58	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-102-
+59	paper_framing.md:103:### Claim 1 (strength: VERY STRONG): Step-independent windowing introduces a systematic, scale-invariant failure mechanism — sign misattribution — that renders multi-turn agent training unreliable. Episode-level credit assignment is a necessary minimum fix. (D104: 从 D067 "unstable/fragile" 升级；不用 "catastrophic"——1.7B seed2 学了 9.375%；不 claim optimal——承认 GAGPO 等 finer credit 更强)
+60	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-104-- 所需证据：episode-level vs step-independent 对比（多 seed），h-sweep ablation，mechanistic analysis（gradient signal measurement），REINFORCE++ baseline comparison，factorial experiment
+61	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-105-- 当前证据状态：**ESTABLISHED** (exp029 val=28.125% vs hsweep_h2_seed1 val=0%)
+62	paper_framing.md:106:- 机制：(1) policy information loss (h-step context insufficient), (2) advantage sign misattribution (gradient direction reflects episode outcome, not window-local action quality; additionally γ^k magnitude decay for early windows)
+63	paper_framing.md-107-- 技术细节：GRPO 算法无固有 γ，但 RAGEN step_independent 的 `compute_step_discounted_returns()` 引入 γ-discounted per-window returns → advantage 符号由 episode 成败决定。代码验证：`agent_trainer.py:271-340` + `core_algos.py:194-246`
+64	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-108-- 补充证据（进行中）：
+65	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-109-  - h-sweep **全部完成 (D084)**：h=2(0%), h=5(0%), h=10(6.25%=baseline), h=20(15.625%), h=full(28-31%)。Cliff 位于 h=10 和 h=20 之间——情景 B 确认（sharp phase transition）。h=20 有学习但远低于 full context，支撑 "context threshold exists but full context still needed for robust learning"
+66	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-110-  - hsweep_h2_seed2（崩溃复现 + per-window advantage logging for tab3）
+67	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-111-  - factorial_h2_episodeadv（plan_018, 双机制因果分离）
+68	paper_framing.md:112:  - γ-sweep **全系列完成 (D075)**: g050/g080/g095/g100 全部坍缩。γ=1.0 无折扣仍坍缩 → sign misattribution 是 windowing + group norm 固有属性
+69	paper_framing.md-113-  - factorial seed2 (D076→D078): **完整验证**。step 15 val OOD = 0.75%，与 seed1 完全一致。Train 55.5% vs OOD 0.75% — 学习与泛化完全脱钩
+70	paper_framing.md-114-  - **Negative 结果利用 (D072/D075)**: γ-sweep 全坍缩 → "no γ-cliff" figure（更强：全面不兼容）; factorial 振荡 vs Cell A 坍缩 → 训练动态对比; seed 间 variance → 不稳定性证据
+71	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-115-[Omitted long context line]
+72	--
+73	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-154-| 6 | Small model (1.7B) | **RESOLVED** | 8B 全套完成：Cell A Q4 collapse (28.1%→1.5%), Cell C OOD **90.3%** (vs SFT 80.6%), info loss 37.5pp deterministic。Failure + fix 双向跨尺度验证。 |
+74	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-155-| 7 | Action-change = noise vs signal | LOW | 已降级为 future work，不在审稿范围 |
+75	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-156-| 8 | 与 ARES 差异化不足 | LOW | 论文不再做 selective verification，与 ARES 不直接竞争 |
+76	paper_framing.md:157:| 9 | "Turn-PPO 已解决相同问题" | HIGH | 精确区分：Turn-PPO 发现 uniform advantage（症状）+ 提出 finer fix。我们提供 factorial causal attribution（plan_018 分离 info loss vs sign misattribution 各自贡献）— 诊断深度不同，不是解法方向不同 |
+77	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-158-| 10 | "GAGPO 93.5% 证明 finer credit 更好" | HIGH | 不否认。我们的 claim 不是 "coarser is better"，而是 "为什么 broken step-independent 失败"。Episode-level 是 necessary minimum（排除 misattribution），不是 optimal solution。GAGPO 的成功与我们的诊断互补不矛盾 |
+78	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-159-| 11 | "Factorial experiment 缺失导致 dual mechanism 未验证" | HIGH | plan_018 直接回应：truncated-obs + episode-advantage 的 2×2 设计分离两个机制的 causal contribution |
+79	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-160-| 12 | "干预部分有效说明问题只是 response inflation" | MEDIUM | 干预实验是 supplementary evidence（D128）。核心防御不在干预本身，而在 tab3 sign accuracy = 52% ≈ random 的直接实测。B+C 双轨对比（fast-but-degrading vs slow-but-improving，均 8-19% 远低于 episode-level 23-37%）展示 downstream 干预的 ceiling pattern，加强但不承载论证 |
+80	--
+81	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-176-| Thinkless (NeurIPS'25) | RL control token | reasoning domain | Same RL philosophy, different domain |
+82	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-177-| ReflAct (EMNLP'25) | Prompting GPT-4 | ALFWorld 93.3% | Different scale/approach |
+83	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-178-| RAGEN (2025) | GRPO for agents | varies | Step-independent default, our baseline |
+84	paper_framing.md:179:| **Turn-PPO (2512.17008)** | Turn-level MDP + value fn | reasoning tasks | "Uniform advantage" vs our "sign misattribution"; finer credit vs coarser |
+85	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-180-| **GAGPO (2605.13217)** | Grouped value proxy, step-aligned | ALFWorld 93.5% (1.5B) | Finer-grained credit for performance; we diagnose mechanism failure |
+86	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-181-| **MT-GRPO (2505.11821)** | Turn-level reward design | QA search tasks | Turn-level credit; we show coarser suffices |
+87	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-182-| **iStar (ICLR'26)** | Implicit PRM + dual advantage | WebShop 86.5% | Learns step rewards; we show episode-level eliminates misattribution |
+88	--
+89	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-187-
+90	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-188-**核心差异化：Mechanistic Diagnosis + Factorial Causal Attribution。** 竞品追求 SOTA performance（HOW to do credit well），我们回答诊断问题（WHAT goes wrong and WHY）。
+91	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-189-
+92	paper_framing.md:190:1. **从症状到因果**：Turn-PPO 发现 "uniform advantage"（症状），我们分解为两个独立因果机制（information loss + sign misattribution）并通过 factorial experiment (plan_018: 2×2 design) 量化各自贡献。这是 causal attribution，不是 restatement。
+93	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-191-
+94	paper_framing.md:192:2. **Honest positioning（不 claim "coarser is better"）**：GAGPO 93.5% at 1.5B 证明正确的 fine-grained credit IS superior for performance。我们的 claim 是："step-independent windowing 引入 sign misattribution，episode-level 是消除此问题的 necessary minimum fix。这不意味着 finer credit 无价值——它揭示的是 incorrectly-windowed credit 的具体失败机制。" **禁用旧的 'contrarian' 叙事**。
+95	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-193-
+96	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-194-3. **不同 contribution 维度**：GAGPO/HiPER 追求 performance。我们提供 mechanistic understanding — 实践者需要先理解 failure mode 才能选择正确的 fix（episode-level minimum vs turn-level vs step-level）。两个贡献维度互补不对立。
+97	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md-195-
+98	--
+99	ROADMAP.md-10-- **投稿目标**: EMNLP 2026 via ARR（DDL: 2026-05-25）
+100	ROADMAP.md-11-- **Round 2 审稿**: Overall 3.0，17 项修改全部完成
+101	ROADMAP.md-12-- **数据审计**: P0/P1 全部修复，Reviewer 独立确认（severity: info PASS）
+102	ROADMAP.md:13:- **Binary reward**: step 0 数据已整合到 Section 4.4（100% sign-episode correlation vs 52%）
+103	ROADMAP.md-14-- **编译**: 0 critical warnings，主文 ≤8 页合规
+104	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/ROADMAP.md-15-
+105	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/ROADMAP.md-16-## Seed 分类 (N=11, 最终)
+106	--
+107	artifacts/scienceworld_feasibility_report.md-266-2. **训练设置惯例**: 前 5 个 variations 训练，20 个 unseen test variations 评估
+108	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/scienceworld_feasibility_report.md-267-3. **GRPO baseline 在 ScienceWorld 上有效但不强**：33.2 平均分，说明有很大提升空间
+109	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/scienceworld_feasibility_report.md-268-4. **SFT warmstart 有帮助**：ETO 证明先 SFT 再 RL 效果好于纯 RL
+110	artifacts/scienceworld_feasibility_report.md:269:5. **与我们研究的关联**: ScienceWorld 的 multi-step reasoning + sparse reward 特性正好适合验证 step-independent RL 的 sign misattribution 问题
+111	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/scienceworld_feasibility_report.md-270-
+112	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/scienceworld_feasibility_report.md-271----
+113	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/scienceworld_feasibility_report.md-272-
+114	--
+115	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/scienceworld_feasibility_report.md-296-
+116	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/scienceworld_feasibility_report.md-297-### 6.3 建议
+117	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/scienceworld_feasibility_report.md-298-
+118	artifacts/scienceworld_feasibility_report.md:299:1. **推荐接入**：ScienceWorld 是验证 sign misattribution 发现 generalizability 的优质第二环境
+119	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/scienceworld_feasibility_report.md-300-2. **优先实现路径**：
+120	artifacts/scienceworld_feasibility_report.md-301-   - Phase 1: 实现基础 wrapper（1-2天），单任务（如 "boil"）验证 GRPO baseline
+121	artifacts/scienceworld_feasibility_report.md-302-   - Phase 2: 生成 gold path SFT 数据，做 SFT warmstart
+122	artifacts/scienceworld_feasibility_report.md-303-   - Phase 3: 运行完整实验（多任务），验证 step-independent RL 的发现
+123	artifacts/scienceworld_feasibility_report.md-304-3. **Task 选择建议**: 参考 EMPO2 的 19 个任务设置，前 5 variations 训练 + 20 unseen test
+124	artifacts/scienceworld_feasibility_report.md:305:4. **Reward 处理**: ScienceWorld 的中间 reward (0-100) 可直接用于验证 step-level credit assignment，比 ALFWorld 的 binary reward 更适合分析 sign misattribution
+125	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/scienceworld_feasibility_report.md-306-
+126	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/scienceworld_feasibility_report.md-307-### 6.4 风险缓解
+127	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/scienceworld_feasibility_report.md-308-
+128	--
+129	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/competitor_verification_20260517.md-29-  - MT-GRPO 术语在 Section 3.2 中正式使用
+130	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/competitor_verification_20260517.md-30-  - 近 100% format correctness, answer correctness ~0.45-0.65 across datasets
+131	artifacts/competitor_verification_20260517.md-31-- **修正**: 该论文是 turn-level reward design for search/QA tasks，非 ALFWorld agent 任务
+132	artifacts/competitor_verification_20260517.md:32:- **与我们的关系**: 同样发现 turn-level credit 优于 trajectory-level；我们的 contrarian 结论是 episode-level (coarser) 反而消除 sign misattribution
+133	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/competitor_verification_20260517.md-33-
+134	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/competitor_verification_20260517.md-34-## 3. iStar (2509.19199) — 验证通过
+135	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/competitor_verification_20260517.md-35-
+136	--
+137	artifacts/competitor_verification_20260517.md-43-  - SOTOPIA: +48% goal completion vs GPT-4o (Llama3.1-8B)
+138	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/competitor_verification_20260517.md-44-  - 不包含 ALFWorld 评测
+139	artifacts/competitor_verification_20260517.md-45-- **方法**: Implicit PRM (trajectory DPO objective) + dual advantage (step-level + episode-level)
+140	artifacts/competitor_verification_20260517.md:46:- **与我们的关系**: 追求更细粒度 step-level credit (通过学习 implicit rewards)；我们展示 episode-level 单独即可消除 sign misattribution
+141	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/competitor_verification_20260517.md-47-
+142	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/competitor_verification_20260517.md-48-## 4. ArCHer (2402.19446) — 验证通过
+143	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/competitor_verification_20260517.md-49-
+144	--
+145	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/competitor_verification_20260517.md-69-  - 二维分类：粒度（token, segment, step, turn, multi-agent）x 方法论（MC, TD, model-based, game-theoretic, information-theoretic）
+146	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/competitor_verification_20260517.md-70-  - 涵盖 reasoning RL 和 agentic RL 两个 regime
+147	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/competitor_verification_20260517.md-71-  - 附带 reporting checklist + benchmark protocol specification + method selection decision tree
+148	artifacts/competitor_verification_20260517.md:72:- **与我们的关系**: 提供 credit assignment 全景图；我们的 sign misattribution 诊断属于其分类中 under-explored 的 failure mode 分析
+149	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/competitor_verification_20260517.md-73-
+150	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/competitor_verification_20260517.md-74-## 6. HiPER (2602.16165) — 实验设置确认
+151	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/competitor_verification_20260517.md-75-
+152	--
+153	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/competitor_verification_20260517.md-104-## Positioning 启示
+154	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/competitor_verification_20260517.md-105-
+155	artifacts/competitor_verification_20260517.md-106-1. **共识趋势**: 竞品一致走向 finer-grained credit (turn-level, step-level, hierarchical)
+156	artifacts/competitor_verification_20260517.md:107:2. **我们的 contrarian**: Episode-level (coarser) 消除 sign misattribution，诊断 "更细不一定更好" 的反直觉结论
+157	artifacts/competitor_verification_20260517.md-108-3. **差异化轴**: 竞品追求 performance improvement；我们做 mechanism diagnosis + contrarian solution
+158	artifacts/competitor_verification_20260517.md:109:4. **Turn-PPO 最直接竞品**: 发现相似问题 ("uniform advantage" ≈ 我们的 sign misattribution subset)，但解法相反（finer vs coarser）
+159	--
+160	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/scienceworld_grpo_cell_a_prep.md-4-
+161	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/scienceworld_grpo_cell_a_prep.md-5-## 目标
+162	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/scienceworld_grpo_cell_a_prep.md-6-
+163	artifacts/scienceworld_grpo_cell_a_prep.md:7:在 ScienceWorld 上复现 ALFWorld Cell A 的 collapse pattern：step-level reward + sliding window (h=2) 导致 sign misattribution → 训练崩溃。对应 paper_framing.md Reviewer Attack Surface #5（Single environment）。
+164	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/scienceworld_grpo_cell_a_prep.md-8-
+165	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/scienceworld_grpo_cell_a_prep.md-9-## 就绪状态
+166	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/scienceworld_grpo_cell_a_prep.md-10-
+167	--
+168	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/scienceworld_grpo_cell_a_prep.md-220-
+169	artifacts/scienceworld_grpo_cell_a_prep.md-221-2. **JVM 开销**: ScienceWorld 每个 env 实例需要 JVM。128 个 env 实例意味着 128 个 JVM 进程。可能需要监控内存。如果 OOM，降低 train env_groups 到 8 (64 episodes)。
+170	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/scienceworld_grpo_cell_a_prep.md-222-
+171	artifacts/scienceworld_grpo_cell_a_prep.md:223:3. **ScienceWorld reward 是连续的**: `reward = final_score/100 * 10`，range [-10, +10]。与 ALFWorld binary reward (0 or 10) 不同。GRPO group normalization 仍然适用，sign misattribution 机制仍然成立。
+172	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/scienceworld_grpo_cell_a_prep.md-224-
+173	artifacts/scienceworld_grpo_cell_a_prep.md-225-4. **Episode 长度**: 100 max steps vs ALFWorld 50 steps。Rollout 更慢，但 step_independent h=2 的训练样本大小不变。
+174	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/scienceworld_grpo_cell_a_prep.md-226-
+175	--
+176	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-53-
+177	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-54-**W-M3. Proposition 1/2 隐含假设与 Definition 1 矛盾。** [R1-W1, R2 AGREE] Proposition 1 将成功 episode 中所有窗口视为获得 correct sign，但 Definition 1 要求窗口在 oracle 下独立获得正 advantage。成功 episode 可包含次优窗口。19.1% 应标注为上界而非精确值。方向上强化了论文论点（真实值更低），但理论表述不够严谨。
+178	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-55-
+179	artifacts/review_reports/round_3.md:56:**W-M4. 52% credit agreement rate 统计力弱且措辞过强。** [R1-W4, R2 AGREE] n≈3000 下 52% vs 50% 的 z≈2.19, p≈0.028 仅 marginal significance，但论文称 "confirms sign misattribution as the causal driver"。R2 补充：核心论证应是"52%≈50% 说明 advantage sign 几乎不携带 local quality 信息"而非"52% 显著高于 50%"，论文混淆了这两种论证。
+180	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-57-
+181	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-58-**W-M5. Table 1 报告标准不一致。** [R1-W5, R2 AGREE] Cell A=best seed, Cell B=best checkpoint (step 5), Cell D=mean of 2 seeds。不一致虽不改变 D>B>A 排序但降低严谨度。
+182	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-59-
+183	--
+184	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-107-
+185	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-108-**Q5.** "training duration does not explain the gap" 仅基于 seed100 的 n=1 观察。有更系统性的证据吗？[R1, R2 一致]
+186	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-109-
+187	artifacts/review_reports/round_3.md:110:**Q6.** Binary reward 下 sign-episode correlation 100% 与 Proposition 2 的 19.1% correct sign 如何同时成立？（R2 已解释两者测量不同指标，但论文应明确区分。）[R1 提出, R2 REBUT 并解释]
+188	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-111-
+189	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-112-**Q7.** Collapsed/Stagnant/Generalized 分类阈值（>50% drop, ≥3 consecutive steps, Fisher p<0.01）是否敏感？[R1]
+190	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_3.md-113-
+191	--
+192	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-28-
+193	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-29-**S2. 清晰的双机制分解框架与 factorial 设计。** [R1-S2, R2-S1] 将信用分配失败拆解为 M1（constant ceiling，推理层）和 M2（cumulative degradation，训练层）两个正交维度，并通过 2×2 factorial 设计分离验证（A→B 隔离 M2，B→D 隔离 M1），在 agent RL 文献中具有方法论示范价值。
+194	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-30-
+195	artifacts/review_reports/round_4.md:31:**S3. 直接符号测量提供可操作的诊断指标。** [R1-S3, R2-S2] Section 4.4 引入的三层验证（sign-episode correlation 100%、credit agreement 52%、P(correct|update) ≤19.1%）具有可复用性，可应用于评估其他 credit assignment 方法。Proposition 2 的闭式上界直观且可验证。
+196	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-32-
+197	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-33-**S4. 诚实、系统的 11-seed 评估。** [R1-S4, R2-S3] 完整报告了 73% 避免崩溃但仅 36% 实现显著 OOD 泛化。Table 2 分类明确（Collapsed/Stagnant/Generalized），附 Wilson 95% CI 和 Fisher exact p 值。Appendix F 的 step-5 统一评估降低了 checkpoint 选择偏差。这种透明度在当前 agent RL 文献中罕见。
+198	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-34-
+199	--
+200	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-53-
+201	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-54-**W-Major-2. 理论分析（binary reward）与实验设置（ternary reward）的 gap 缺乏形式化桥接。** [R1-W3 Major; R2-W4 AGREE]
+202	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-55-- Proposition 1/2 在 binary reward ($R \in \{0, r_+\}$) 下推导，全部实验使用含 $r_- = -0.1$ penalty 的 ternary reward。理论预测 ≤19.1% vs. 实测 52%，gap 仅有定性桥接（"penalty introduces variance"），缺乏 ternary reward 下的形式化上界。
+203	artifacts/review_reports/round_4.md:56:- Appendix A.2 的解释定性正确（penalty 打破 sign-episode 完美相关），但论文以理论为核心卖点，定量不匹配需要更严谨的处理。
+204	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-57-
+205	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-58-**W-Major-3. 单一主实验环境限制诊断的普遍性声称。** [R2-W1/N1 Major→Critical; R1 同意方向但降级为 Minor-Major]
+206	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-59-- 完整 factorial + 11-seed 评估仅在 ALFWorld 完成。ScienceWorld 仅验证 Cell A 崩溃（Section 4.6），未报告 Cell D（fix 的跨环境验证缺失）。8B 为 single-seed。
+207	--
+208	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-91-
+209	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-92-**M1.** Definition 1 中 "Equivalently" 声明（oracle advantage ↔ counterfactual replacement）未形式化证明。多步交互中窗口间行为相互依赖，counterfactual 定义不显然等价。 [R1-M1]
+210	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-93-
+211	artifacts/review_reports/round_4.md:94:**M2.** Discussion Section 6 声称三条件触发 sign misattribution，但仅在 GRPO 框架内验证。需明确区分理论覆盖范围 vs 实验验证范围。 [R2-W5; R1 AGREE]
+212	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-95-
+213	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-96-**M3.** Section 4.5 中 seed 分类标准（>50% from peak + below baseline for ≥3 consecutive steps）未讨论阈值敏感性。 [R1-M3]
+214	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_4.md-97-
+215	--
+216	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_1.md-21-
+217	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_1.md-22-## Summary
+218	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_1.md-23-
+219	artifacts/review_reports/round_1.md:24:[Omitted long matching line]
+220	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_1.md-25-
+221	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_1.md-26----
+222	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_1.md-27-
+223	--
+224	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_2.md-47-- **Round 1 状态**：曾被标记并修复（加了并列呈现），但修复不充分，本轮两位 Reviewer 再次提出。
+225	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_2.md-48-
+226	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_2.md-49-**MF2 [R1 提出, R2 共识] Eq.6 累积发散论证的 "comparable magnitude" 假设过强**
+227	artifacts/review_reports/round_2.md:50:- Eq.6 假设 correct 和 incorrect gradient 量级相当，但 GRPO normalization 下成功 episode 的 advantage 量级系统性大于失败 episode（μ 较小时 r+−μ 远大于 0−μ）。一个大的 correct gradient 可能抵消多个小的 incorrect gradients，使 "monotonic divergence" 结论不成立。这从根本上影响论文的因果解释——sign misattribution 的实际影响可能从 "active divergence" 降级为 "noisy convergence"。
+228	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_2.md-51-- **建议**：(a) 从实验日志提取 advantage 分布数据分析量级比；(b) 若无法证明量级可比，将 Eq.6 降级为 worst-case analysis。
+229	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_2.md-52-
+230	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_2.md-53-**MF3 [R1+R2 共识] Factorial 设计不完整：Cell C 缺失 + 种子数不足**
+231	--
+232	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_2.md-172-
+233	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_2.md-173-**综合评价**：
+234	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_2.md-174-
+235	artifacts/review_reports/round_2.md:175:本文提出了一个有价值的诊断——step-independent windowing 在多轮 agent RL 中引入结构性信用分配缺陷，将散见于多个工作的训练失败统一为两个可分离机制（information loss + sign misattribution）。问题 formalization 清晰，多 seed 报告诚实。
+236	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_2.md-176-
+237	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_2.md-177-但论文存在多个影响接收级别的问题：(1) 理论核心数字 80.9% 与实验测量 52% 的差距在主文中处理不当；(2) Eq.6 累积发散论证依赖过强假设；(3) factorial 因 Cell C 缺失而不完整且种子数不足；(4) 缺少与 HCAPO 等直接竞争方法的实验对比；(5) "Fix" 仅 36% seed 泛化但标题/abstract overclaiming。
+238	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/review_reports/round_2.md-178-
+239	--
+240	artifacts/monitor_status_20260519.md-58-1. **Success rate collapsed**: 28.1% (val) → 12.5% (train step 1) — halved in one step
+241	artifacts/monitor_status_20260519.md-59-2. **KL explosion**: ppo_kl = 1.917 (extremely high; h=20 experiment has ppo_kl ~0.03)
+242	artifacts/monitor_status_20260519.md-60-3. **Entropy collapse**: 0.115 (very low; h=20 has entropy ~0.33-0.38)
+243	artifacts/monitor_status_20260519.md:61:4. **Interpretation**: Model is rapidly diverging from reference policy. The step-independent h=2 context window is causing the predicted information loss + sign misattribution, consistent with the hypothesis that this mechanism is model-size-independent.
+244	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/monitor_status_20260519.md-62-
+245	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/monitor_status_20260519.md-63----
+246	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/monitor_status_20260519.md-64-
+247	--
+248	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/scienceworld_feasibility_20260519.md-41-
+249	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/scienceworld_feasibility_20260519.md-42-### 2.2 需要关注的适配问题
+250	/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/scienceworld_feasibility_20260519.md-43-
+251	
+252	[Showing results with pagination = limit: 250]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "211243ac-9df9-4dcb-87d8-66b0bf228a9c",
+  "isSidechain": true,
+  "promptId": "01065312-0353-4914-84ae-107626ab0535",
+  "agentId": "a7545e4998db7eade",
+  "type": "user",
+  "uuid": "beff2a97-8cfc-4577-9625-39d9d35c64ca",
+  "sourceToolAssistantUUID": "211243ac-9df9-4dcb-87d8-66b0bf228a9c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "a624bb88-2881-41c1-8d70-f3ba4fa69d47",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-24T04:08:49.853Z_
+
+Now let me search directly in the .tex files for more precise matches:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "beff2a97-8cfc-4577-9625-39d9d35c64ca",
+  "isSidechain": true,
+  "agentId": "a7545e4998db7eade",
+  "requestId": "req_011CbLjhXc58SaqB3Hs1xroS",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "cefb2e21-5ecb-480c-8da6-4c8b74fde53e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "a624bb88-2881-41c1-8d70-f3ba4fa69d47",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01A6b6AGJ2iG23ggRmgBEWYb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 33846,
+      "cache_read_input_tokens": 53731,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 33846,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-24T04:08:50.361Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_012hYWPnkLTzXuJhy7zEfKta`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex",
+  "offset": 55,
+  "limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cefb2e21-5ecb-480c-8da6-4c8b74fde53e",
+  "isSidechain": true,
+  "agentId": "a7545e4998db7eade",
+  "requestId": "req_011CbLjhXc58SaqB3Hs1xroS",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "8d8340d0-2552-4f5d-8ffc-565780f34c5c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "a624bb88-2881-41c1-8d70-f3ba4fa69d47",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01A6b6AGJ2iG23ggRmgBEWYb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 33846,
+      "cache_read_input_tokens": 53731,
+      "output_tokens": 140,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 33846
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 7,
+          "output_tokens": 140,
+          "cache_read_input_tokens": 53731,
+          "cache_creation_input_tokens": 33846,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 33846,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-24T04:08:50.368Z_
+
+<details><summary>↩ Tool result · `toolu_012hYWPnkLTzXuJhy7zEfKta`</summary>
+
+```text
+55	\label{sec:sign_verification}
+56	
+57	We distinguish three metrics that each capture a different aspect of credit assignment quality:
+58	
+59	\textit{(1) Sign-episode correlation}: whether advantage sign tracks episode outcome (success/failure). Under pure binary reward (penalty${=}0$), this correlation is 100\% ($n{=}157$ windows; Figure~\ref{fig:sign_misattribution}), directly confirming M2: advantage sign is entirely determined by episode outcome, not local action quality. This is by construction, since all windows in a successful episode share the same positive return under binary reward.% exp_id: binary_credit_agreement_iter0
+60	
+61	\textit{(2) Credit agreement rate}: whether advantage sign matches local action quality, operationalized through action validity as a proxy for local correctness (Definition~1). Under step-independent training with penalty reward ($h{=}2$, $n{=}3{,}000$ windows), only 52.07\% of windows with valid actions receive positive advantage, marginally above random chance ($p{=}0.025$ vs.\ 50\%; Cohen's $h = 2\arcsin\sqrt{0.5207} - 2\arcsin\sqrt{0.5} \approx 0.041$, below the 0.2 small-effect threshold), confirming that credit agreement is effectively at chance, consistent with the theoretical prediction of near-random sign assignment. This near-random credit agreement shows that advantage sign carries almost no information about local action quality. Under pure binary reward, credit agreement drops further to 28\% ($n{=}271$), below random chance---advantage sign systematically punishes valid actions in failed episodes. Penalty reward partially breaks sign-episode correlation by introducing within-group variance, but the resulting signal remains too weak for meaningful credit assignment. This operationalization is conservative: successful episodes may contain suboptimal windows, making our validity label an upper bound on true local correctness. Even under this generous criterion, credit agreement remains near-random, strengthening the diagnosis.% exp_id: 7b_cell_a_h2
+62	
+63	\textit{(3) $P(\text{correct} \mid \text{update})$}: the theoretical upper bound from Proposition~2 ($\leq$19.1\% at $p{=}12.5\%$, $K{=}8$). This bounds the fraction of non-zero gradient updates with correct sign, a different quantity from the credit agreement rate, which conditions on action validity rather than gradient participation. The two metrics are complementary: Proposition~2 bounds worst-case gradient quality; credit agreement measures empirical signal strength.
+64	
+65	Combined with $\gamma{=}1.0$ collapse (Appendix~\ref{app:additional}), these measurements are consistent with sign misattribution as the primary contributor to training failure.
+66	
+67	\begin{figure}[t]
+68	\centering
+69	\includegraphics[width=\columnwidth]{fig_sign_misattribution.pdf}
+70	\caption{Sign-episode correlation (binary reward, penalty${=}0$) vs.\ credit agreement rate (penalty reward). Under binary reward, advantage sign perfectly tracks episode outcome (100\%, $n{=}157$), confirming M2. Under penalty reward, credit agreement with local action quality drops to 52.1\% ($n{=}3{,}000$), near random chance (dashed line). These are distinct metrics: the former measures episode-level sign correlation, the latter measures local credit assignment quality.}
+71	\label{fig:sign_misattribution}
+72	\end{figure}
+73	
+74	\subsection{Episode-Level Training: Seed Variability}
+75	\label{sec:seed_variability}
+76	
+77	Episode-level GRPO addresses the dual-mechanism failure, but training outcomes remain seed-dependent. We systematically evaluate $N{=}11$ random seeds under identical hyperparameters, revealing a $2{\times}2$ structure: \textit{training stability} (collapsed vs.\ non-collapsed) $\times$ \textit{OOD generalization} (stagnant vs.\ generalized).
+78	
+79	We define \textbf{collapsed} seeds as those where in-distribution success declines $>$50\% from peak and remains below baseline for $\geq$3 consecutive steps. \textbf{Non-collapsed} seeds are the complement. Among non-collapsed seeds, we further distinguish \textbf{generalized} (Fisher exact $p{<}0.01$ vs.\ SFT on the 134-task OOD set) from \textbf{stagnant} (not significant vs.\ SFT). Table~\ref{tab:seed_variability} reports results for each seed at its best-performing checkpoint.
+80	
+81	\begin{table}[t]
+82	\centering
+83	\caption{Episode-level GRPO across 11 seeds (134 OOD tasks, $\tau{=}0.4$, best checkpoint per seed). Category: C=Collapsed, S=Non-collapsed (stagnant), G=Generalized (Fisher exact $p{<}0.01$ vs.\ SFT). Wilson 95\% CI. SFT baseline: 6.72\% (9/134). Seed2 achieves $p{=}0.03$ (Fisher exact, two-sided), falling outside the conservative $p{<}0.01$ threshold, and is classified as Stagnant. Step-5 results for all seeds in Appendix~\ref{app:step5_unified}.}
+84	\label{tab:seed_variability}
+85	\resizebox{\columnwidth}{!}{%
+86	\begin{tabular}{@{}llcccc@{}}
+87	\toprule
+88	\textbf{Seed} & \textbf{Step} & \textbf{Cat.} & \textbf{OOD (\%)} & \textbf{95\% CI} & \textbf{vs SFT} \\
+89	\midrule
+90	seed2048$^\ddagger$ & 5 & C & 8.21 & [4.6, 14.2] & NS \\
+91	seed42$^\ddagger$ & 5 & C & 12.69 & [8.0, 19.4] & NS \\
+92	seed8 & 5 & C & 11.94 & [7.5, 18.5] & NS \\
+93	\midrule
+94	seed200 & 5 & S & 10.45 & [6.3, 16.8] & NS \\
+95	seed300 & 5 & S & 10.45 & [6.3, 16.8] & NS \\
+96	seed100 & 5 & S & 11.19 & [6.9, 17.6] & NS \\
+97	seed100 & 10 & S & 12.69 & [8.0, 19.4] & NS \\
+98	seed2$^\ddagger$ & 15 & S & 15.67 & [10.5, 22.8] & $p{=}0.03$ \\
+99	\midrule
+100	seed1 & 5 & G$^\dagger$ & 23.88 & [17.4, 31.8] & $p{<}0.001$ \\
+101	seed5 & 10 & G & 29.10 & [22.1, 37.3] & $p{<}0.001$ \\
+102	seed6 & 15 & G & 29.10 & [22.2, 37.1] & $p{<}0.001$ \\
+103	seed4 & 15 & G & 30.60 & [23.5, 38.7] & $p{<}0.001$ \\
+104	\bottomrule
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8d8340d0-2552-4f5d-8ffc-565780f34c5c",
+  "isSidechain": true,
+  "promptId": "01065312-0353-4914-84ae-107626ab0535",
+  "agentId": "a7545e4998db7eade",
+  "type": "user",
+  "uuid": "6e85e6bd-a1e2-4830-b22b-4b24f6338f79",
+  "sourceToolAssistantUUID": "8d8340d0-2552-4f5d-8ffc-565780f34c5c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "a624bb88-2881-41c1-8d70-f3ba4fa69d47",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-24T04:09:04.952Z_
+
+Perfect! Now I have comprehensive data. Let me compile the complete report:
+
+## Summary of Findings
+
+I've successfully searched all .tex and .md files in the specified directory and found comprehensive matches for the empirical numbers and concepts you requested. Here's the complete report:
+
+### Key Matches Found
+
+**"19.1%" or "19.1%"**
+- File: `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex` (line 63)
+  - Context: Theoretical upper bound from Proposition 2 at p=12.5%, K=8: "the theoretical upper bound from Proposition~2 ($\leq$19.1\% at $p{=}12.5\%$, $K{=}8$)"
+  - Also appears in `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/theoretical_analysis.tex` (line 22)
+  - Also in `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md` (line 65)
+
+**"28%" or "0.28"**
+- File: `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex` (line 61)
+  - Context: "Under pure binary reward, credit agreement drops further to 28% ($n{=}271$), below random chance"
+- Also in `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_correctness_audit.md` (line 57)
+
+**"52%" or "52.07%" or "0.52"**
+- File: `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex` (line 61)
+  - Context: "only 52.07\% of windows with valid actions receive positive advantage, marginally above random chance ($p{=}0.025$ vs.\ 50\%; Cohen's $h = 2\arcsin\sqrt{0.5207} - 2\arcsin\sqrt{0.5} \approx 0.041$"
+- Also in `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md` (lines 15, 63)
+
+**"Cohen" or "cohen"**
+- File: `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex` (line 61)
+  - Context: "Cohen's $h = 2\arcsin\sqrt{0.5207} - 2\arcsin\sqrt{0.5} \approx 0.041$, below the 0.2 small-effect threshold"
+- Also in `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/intermediate/round4_track_a_main_changes.md` (line 74)
+- Also in `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/seed_early_signal_analysis.md` (line 5, 25, 188)
+
+**"0.041"**
+- File: `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex` (line 61)
+  - Context: "Cohen's $h = ... \approx 0.041$, below the 0.2 small-effect threshold"
+- Also in `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/intermediate/round4_track_a_main_changes.md` (line 74)
+- Also in `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260516T235255/median/paper.tex` (line 151)
+
+**"n=157" or "157 windows" or "157"**
+- File: `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex` (line 59)
+  - Context: "Under pure binary reward (penalty${=}0$), this correlation is 100\% ($n{=}157$ windows; Figure~\ref{fig:sign_misattribution})"
+- Also in `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_correctness_audit.md` (line 56)
+
+**"n=271" or "271"**
+- File: `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex` (line 61)
+  - Context: "Under pure binary reward, credit agreement drops further to 28% ($n{=}271$), below random chance"
+- Also in `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_correctness_audit.md` (line 57)
+
+**"n=3000" or "3000 windows"**
+- File: `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex` (line 61)
+  - Context: "Under step-independent training with penalty reward ($h{=}2$, $n{=}3{,}000$ windows)"
+- Also in `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md` (line 15)
+- Also in `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binomial_test_results.md` (line 53)
+- Also in `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_correctness_audit.md` (line 53)
+
+**"credit agreement" or "credit_agreement"**
+- Multiple files including:
+  - `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex` (lines 61, 63)
+  - `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/binomial_test_results.md` (line 53)
+  - `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_correctness_audit.md` (line 57)
+
+**"sign misattribution" or "sign-episode"**
+- File: `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex` (lines 55-72)
+  - Section title: "Sign-episode correlation"
+  - Context: References to "sign misattribution" throughout Figure 70's caption and Section 4.4 discussion
+- Also extensively in `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md` (multiple lines)
+- Also in `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/data_correctness_audit.md` (line 81)
+
+All matches are concentrated in the main paper draft files, particularly in the experimental results section, with supporting citations and verification in multiple analysis reports stored in the artifacts directory.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6e85e6bd-a1e2-4830-b22b-4b24f6338f79",
+  "isSidechain": true,
+  "agentId": "a7545e4998db7eade",
+  "requestId": "req_011CbLjhgFyFWxDk6kgGAVZV",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "db0682b4-09b2-4acd-8051-21d9a01f66c3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "sessionId": "a624bb88-2881-41c1-8d70-f3ba4fa69d47",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01SGSZtZErKcygB6SDRxZqpy",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 2083,
+      "cache_read_input_tokens": 87577,
+      "output_tokens": 2040,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2083
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 6,
+          "output_tokens": 2040,
+          "cache_read_input_tokens": 87577,
+          "cache_creation_input_tokens": 2083,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2083,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---

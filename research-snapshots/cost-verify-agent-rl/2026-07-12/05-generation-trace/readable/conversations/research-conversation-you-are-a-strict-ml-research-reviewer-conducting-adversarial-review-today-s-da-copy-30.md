@@ -1,0 +1,9075 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-10 (UTC).** Your job: indep
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 126
+- **Recorded user turns:** 1
+- **Tool calls:** 39
+- **Original source:** `logs/chats/exported-trajectories/account-2/4022032e-a6f3-4253-870f-7d14b53d35b2.jsonl`
+- **Structured JSON:** [`efb7f100da8dcd8c25bb.json`](../../sessions/ef/efb7f100da8dcd8c25bb.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-10T18:02:11.659Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-10T18:02:11.659Z",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-10 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: LLM Agents.\n\nDirection: LLM Agents — planning algorithms, memory architectures, tool use, multi-agent coordination, agent training (SFT/RL), self-correction in agentic loops, environment feedback exploitation.\n\nContribution type: METHOD ONLY. Must propose a concrete new algorithm, training procedure, or inference-time mechanism. Reject pure benchmark / dataset / analysis ideas. Method + analysis OK if analysis validates the method.\n\nHARD CONSTRAINTS:\n1. Compute: ≤200 H100-hours total (baselines + method + ablations). Show the math.\n2. Time: ≤16 days. Build on existing OSS agent codebases (AutoGen, LangGraph, OpenManus, etc.) — no from-scratch systems.\n3. Eval: existing benchmarks only — AgentBench, WebArena, SWE-bench Verified, GAIA, ToolBench, ALFWorld, Mind2Web, τ-bench.\n\nAvoid: generic ReAct variants, plain tool retrieval, naive memory summarization. Look for: agent training with minimal RL budget, structured planning beyond flat CoT, multi-agent communication protocols, agent self-verification mechanisms.\n\nTag: direction=agent, contribution_type=method. target_venues=[\"EMNLP 2026 Main\", \"EMNLP 2026 Findings\"].**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-10?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 2/10)\n{\n  \"title\": \"Self-Supervised Irreversibility-Aware Advantage Weighting for Long-Horizon Agent RL\",\n  \"core_problem\": \"Step-level credit assignment methods for long-horizon agent RL (GRPO, HCAPO, SALT, GiGPO) assign advantages based on trajectory structure or outcome signals but ignore a fundamental property of agent actions: some are irreversible (form submissions, purchases, file writes) while others are costlessly reversible (scrolling, typing, reading). Mistakes at irreversible steps propagate catastrophically and cannot be corrected by subsequent actions, yet no existing training method modulates optimization pressure based on action reversibility.\",\n  \"opportunity\": \"Planning-centric analysis (arXiv 2601.22311) demonstrates that early irreversible errors propagate catastrophically in long-horizon tasks. Meanwhile, the credit assignment landscape has matured rapidly: HCAPO uses hindsight Q-values (+7.7% on WebShop), SALT uses trajectory graphs, GiGPO uses anchor-state grouping (+12% on ALFWorld), and CSO identifies outcome-critical steps via branch rollouts. However, all these methods identify 'important' steps through outcome-based or structural signals — none leverages the structural property of action reversibility itself. Grinsztajn et al. (NeurIPS 2021) showed that reversibility can be learned self-supervisedly in state-based RL and used for reward shaping (RAE) or action filtering (RAC), but this has never been adapted to LLM agent policy gradient training or text-based environments. The gap: a composable, environment-agnostic mechanism that amplifies optimization pressure at irreversible commitment points during GRPO-style training, without requiring expert models (unlike CSO) or trajectory graphs (unlike SALT/GiGPO).\",\n  \"landscape\": \"**Reversibility in RL.** Grinsztajn et al. (NeurIPS 2021) introduced self-supervised reversibility estimation via temporal ordering of state pairs, with two integration strategies: RAE (reward modification) and RAC (action filtering). Their work targets state-based RL (Sokoban, grid worlds) and modulates rewards additively or filters actions binarily — fundamentally different from modulating advantages multiplicatively in policy gradients. No follow-up work has adapted this to LLM agents or text-based environments. **Step-level credit assignment for agents.** HCAPO (March 2026) uses the LLM as a post-hoc hindsight critic for step-level Q-values, achieving +7.7%/+13.8% on WebShop/ALFWorld over GRPO with Qwen2.5-7B — but has no public implementation. iStar (ICLR 2026) alternates implicit PRM training with policy updates; code listed as 'coming soon.' SALT (EACL 2026 Findings) constructs trajectory graphs to assign step advantages as a plug-and-play GRPO module, evaluated on WebShop, ALFWorld, and AppWorld with Qwen2.5-7B. GiGPO (NeurIPS 2025) introduces anchor-state grouping for step-level credit (+12% ALFWorld, +9% WebShop) with public code (verl-agent). Tree-GRPO (ICLR 2026) uses tree search for step-level process supervision. RTMC (April 2026) builds rollout trees for critic-free step advantages. All assign advantages based on trajectory structure or outcome signals; none incorporates action-type semantics like reversibility. **Critical step identification.** CSO (ACL 2026 Findings) identifies critical steps where outcomes flip via branch rollouts with an expert model (Claude-3.7-Sonnet), applying selective DPO at those steps (+37% on GAIA over SFT). CSO's 'criticality' is outcome-based (requires expensive branch rollouts), while irreversibility is a structural property of the action (cheap to classify). These are complementary signals: an irreversible action may not be outcome-critical (if the agent happened to act correctly), and an outcome-critical action may be reversible (e.g., choosing which page to visit). **Asymmetric optimization.** NGRPO (Sep 2025) introduces asymmetric clipping boundaries for positive vs. negative advantages. ASPO (Oct 2025) flips IS ratios for positive-advantage tokens. SAPO (Dec 2025) uses temperature-controlled gating. POPO (May 2026) optimizes using only positive rollouts. All apply asymmetry along the advantage-sign dimension. IAW applies asymmetry along the action-type dimension (reversible vs. irreversible), which is orthogonal and composable with sign-based asymmetry. **Other related work.** CORAL (ICLR 2026) manages cognitive resources (memory checkpoints) for long-horizon tasks. The comprehensive survey (arXiv 2604.09459) cataloging 47 credit assignment methods confirms no existing work uses action reversibility as a modulator of optimization pressure in LLM agent training. In the agent safety literature, MOSAIC (2026) and Zora (2026) use irreversibility scores for runtime safety decisions, not for training-time optimization.\",\n  \"approach\": \"**Phase 1: Self-supervised reversibility estimation.** Inspired by Grinsztajn et al. (2021), we learn reversibility from trajectory data without manual heuristics. During initial GRPO rollouts on Qwen2.5-7B-Instruct, we collect trajectories as sequences of (observation, action, next_observation). For each action a_t, we compute cosine similarity between the embedding of obs_t (pre-action observation) and all subsequent observations obs_{t+k} across trajectories from the same task, using frozen Qwen2.5-7B embeddings. If the maximum similarity exceeds a threshold τ (i.e., a subsequent state 'returns' to the pre-action state), a_t is labeled reversible; otherwise irreversible. We then train a lightweight binary MLP classifier on top of frozen embeddings using these labels. This adaptation differs from Grinsztajn's temporal-ordering approach in using embedding similarity over text observations rather than state-pair ordering over pixel/grid states, and in producing labels for advantage modulation rather than reward shaping. **Phase 2: Irreversibility-aware advantage weighting (IAW).** During GRPO training, we compute step-level advantages using standard group-relative estimation. At each step, the trained classifier predicts P(irreversible | obs_t, a_t). Advantages at steps with P > 0.5 are amplified by factor α ∈ [2, 4]. We apply asymmetric amplification: for irreversible steps, negative advantages receive α_neg = α while positive advantages receive α_pos = α/2, encoding that mistakes at commitment points are costlier than correct actions are valuable. This action-type asymmetry is orthogonal to the sign-based asymmetry in NGRPO/ASPO/SAPO. **Composability.** IAW is a plug-and-play multiplier on step advantages, composable with any step-level credit assignment method. We test IAW alone (on GRPO advantages) and IAW composed with SALT (on trajectory-graph advantages) and GiGPO (on anchor-state advantages). **Baselines and evaluation.** We evaluate on WebShop and ALFWorld using Qwen2.5-7B-Instruct, matching published baselines. Primary baselines: GRPO (reproduced via verl-agent for same-hardware fairness), GiGPO (published results + verl-agent), SALT (reimplemented — lightweight plug-and-play module). HCAPO and iStar results cited from their papers on the same model and benchmarks. Ablations: α ∈ {1.5, 3, 5} on WebShop; asymmetric vs. symmetric amplification; reversibility classifier accuracy analysis; composability experiments (IAW+SALT, IAW+GiGPO).\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~200h H100. Breakdown: reversibility classifier training (5h) + GRPO reproduction for same-hardware fairness (2 benchmarks × 1 seed × 15h = 30h) + IAW training (2 benchmarks × 3 seeds × 15h = 90h) + composability experiments IAW+SALT, IAW+GiGPO (2 configs × 1 benchmark × 1 seed × 15h = 30h) + alpha ablation (3 values × 1 benchmark × 1 seed × 15h = 45h). Per-run estimate: ~15 H100h for Qwen2.5-7B on WebShop/ALFWorld (4×H100, ~4h wall clock, based on GiGPO's published setup of 150 iterations with batch size 128). GRPO/GiGPO/SALT baselines (3 seeds) cited from published results on Qwen2.5-7B; HCAPO/iStar cited from papers (no public code).\",\n      \"gpu_utilization\": \"~25-30% — GPUs idle during reversibility labeling pipeline development, classifier architecture iteration, SALT reimplementation, and result analysis\",\n      \"timeline\": \"6-8 weeks (includes self-supervised labeling pipeline, classifier training, SALT reimplementation, verl-agent integration, training runs, paper writing)\",\n      \"team\": \"1-2 researchers (one RL-focused, one optional for infrastructure/environments)\",\n      \"estimated_gpu_cost\": \"$500-600 (200h × $2.50-3.00/h H100 spot pricing)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~240h H100 (additional exploration: reversibility threshold τ sweep, embedding layer selection for classifier, extra composability configs)\",\n      \"gpu_utilization\": \"~55-65% — automated experiment pipelines reduce idle; human approves experiment batches and interprets reversibility classifier quality\",\n      \"timeline\": \"4-5 weeks (agent handles SALT reimplementation, config generation, reversibility labeling pipeline, result aggregation)\",\n      \"team\": \"1 researcher, ~30-45min/day for approving experiment designs and validating reversibility labels\",\n      \"claude_api_cost\": \"$150-250 (~1500-2500 turns for code generation, experiment design, result analysis, paper drafting)\",\n      \"estimated_gpu_cost\": \"$600-720 (240h × $2.50-3.00/h)\",\n      \"risk_note\": \"Reversibility classifier quality depends on trajectory diversity and embedding similarity threshold τ; agent may need human guidance on calibrating τ per environment\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~450h H100 (4x more experiments: full α grid, τ threshold sweep, embedding layer ablation, classifier architecture sweep, all composability combinations with SALT+GiGPO, per-environment tuning, additional model scale 3B)\",\n      \"gpu_utilization\": \"~90%+ — agent queues next experiment before current one finishes; 24/7 execution\",\n      \"timeline\": \"10-14 days with 8 H100s available in parallel\",\n      \"team\": \"0 (only initial setup: verl-agent installation, environment access, compute allocation)\",\n      \"claude_api_cost\": \"$250-500 (~2500-5000 turns for autonomous exploration, debugging, writing)\",\n      \"estimated_gpu_cost\": \"$1,125-1,350 (450h × $2.50-3.00/h)\",\n      \"speed_bottleneck\": \"GPU count (8 H100s needed for parallel training); WebShop/ALFWorld environment throughput for rollouts\",\n      \"risk_note\": \"Agent may over-explore reversibility classifier architectures or τ thresholds without converging; requires clear success criteria (classifier F1 > 0.85) and early-stopping logic\"\n    }\n  },\n  \"target_venues\": [\n    \"AAAI 2027 (deadline expected August 2026, Montréal, February 2027)\",\n    \"ACL 2027 or NAACL 2027 (via ARR July/August 2026 cycle)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"There Is No Turning Back: A Self-Supervised Approach for Reversibility-Aware Reinforcement Learning (Grinsztajn et al., NeurIPS 2021)\",\n    \"Verified Critical Step Optimization for LLM Agents (Li et al., ACL 2026 Findings)\",\n    \"SALT: Step-level Advantage Assignment for Long-horizon Agents via Trajectory Graph (Li et al., EACL 2026 Findings)\",\n    \"Group-in-Group Policy Optimization for LLM Agent Training (Feng et al., NeurIPS 2025)\",\n    \"Hindsight Credit Assignment for Long-Horizon LLM Agents (arXiv 2026)\",\n    \"Agentic Reinforcement Learning with Implicit Step Rewards (ICLR 2026)\",\n    \"Tree Search for LLM Agent Reinforcement Learning (ICLR 2026)\",\n    \"RTMC: Step-Level Credit Assignment via Rollout Trees (arXiv 2026)\",\n    \"NGRPO: Negative-enhanced Group Relative Policy Optimization (arXiv 2025)\",\n    \"Why Reasoning Fails to Plan: A Planning-Centric Analysis (arXiv 2026)\",\n    \"From Reasoning to Agentic: Credit Assignment in RL for LLMs (arXiv 2026)\"\n  ],\n  \"description\": \"We propose irreversibility-aware advantage weighting (IAW), a composable plug-and-play mechanism for long-horizon agent RL that amplifies optimization pressure at commitment points — actions classified as irreversible — while leaving reversible actions at standard weight. Unlike prior reversibility-aware RL (Grinsztajn et al., NeurIPS 2021), which modulates rewards additively or filters actions in state-based environments, IAW modulates step advantages multiplicatively during GRPO training on text-based LLM agent tasks. Unlike CSO (ACL 2026), which identifies outcome-critical steps via expensive branch rollouts with expert models, IAW uses a cheap self-supervised reversibility classifier trained on trajectory data: for each action, we check whether any subsequent observation in the trajectory set returns to a state similar to the pre-action observation (via frozen LLM embedding similarity), yielding environment-agnostic reversibility labels without manual heuristics. During GRPO training on Qwen2.5-7B-Instruct, step advantages are multiplied by an asymmetric amplification factor at irreversible steps (α_neg > α_pos), encoding that mistakes at commitment points are costlier than correct actions are valuable. This action-type asymmetry is orthogonal to the sign-based asymmetry in NGRPO/ASPO/SAPO and to the structure-based advantage assignment in SALT and GiGPO, enabling composition. We evaluate on WebShop and ALFWorld against GRPO, GiGPO, and SALT baselines (citing HCAPO/iStar from papers), with composability experiments (IAW+SALT, IAW+GiGPO) and α ablations. The approach requires ~200 H100-hours with explicit per-experiment compute math, targeting AAAI 2027.\",\n  \"project_name\": \"irrev_advantage_weighting\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"CRITICAL MISSING PRIOR ART: 'There Is No Turning Back: A Self-Supervised Approach for Reversibility-Aware Reinforcement Learning' (Grinsztajn et al., NeurIPS 2021) directly addresses reversibility estimation in RL with two integration strategies (RAE for reward modification, RAC for action filtering). This paper MUST be discussed and differentiated from. The generator's claim that 'no existing work uses action reversibility as a modulator of optimization pressure' is misleading — the NeurIPS 2021 paper uses reversibility to modulate rewards, which is closely related.\", \"CRITICAL MISSING COMPETITOR: 'Verified Critical Step Optimization for LLM Agents' (Li et al., ACL 2026 Findings) identifies critical decision points in agent trajectories and applies selective DPO training at those steps, achieving 37% and 26% improvement over SFT baselines. This shares the core intuition of non-uniform training focus at important steps, and overlaps conceptually — 'steps where outcomes flip' vs. 'steps that are irreversible.'\", \"MISSING COMPETITOR: SALT (Step-level Advantage Assignment for Long-horizon Agents via Trajectory Graph, EACL 2026 Findings) is a plug-and-play module for step-level advantage assignment in GRPO, evaluated on the exact same benchmarks (WebShop, ALFWorld). IAW needs to compare against SALT directly.\", \"COMPUTE BUDGET VIOLATION: The ≤200 H100-hour hard constraint is likely violated. Even under optimistic assumptions (10 H100h per training run), baseline reproduction alone (3 methods × 3 benchmarks × 3 seeds = 27 runs = 270 H100h) exceeds the budget, before method runs (~9 runs = 90 H100h) and alpha ablations (~12+ runs = 120 H100h). Total realistic estimate: 400-500 H100h for a rigorous evaluation.\", \"BASELINE REPRODUCIBILITY RISK: HCAPO has no public implementation. iStar's code is listed as 'coming soon' on its paper page. Reproducing these baselines from paper descriptions within 16 days is high-risk. The proposal should explicitly address which baseline implementations are available and which need to be recreated.\", \"HEURISTIC LABEL GENERALIZABILITY: The irreversibility classifier relies on manually-designed heuristic labels specific to each environment (form submissions for WebArena, purchase confirmations for WebShop, object manipulation for ALFWorld). This limits the method's generalizability claim and raises questions about whether the approach works beyond the specific environments where heuristics are manually designed.\", \"MODEL INCONSISTENCY: The landscape section discusses baselines on Qwen2.5-7B-Instruct (matching HCAPO's setup), but the approach section proposes training on Qwen3-8B. This creates an unfair comparison — either baselines must be re-run on Qwen3-8B (adding compute) or the method should use Qwen2.5-7B to match published baselines.\", \"ASYMMETRIC AMPLIFICATION NOVELTY OVERSTATED: Asymmetric treatment of positive vs. negative advantages is already well-explored in NGRPO (asymmetric clipping, Sep 2025), ASPO (asymmetric importance sampling, Oct 2025), SAPO (asymmetric temperatures, Dec 2025), and POPO (positive-only optimization, May 2026). The generator should acknowledge this broader trend.\", \"WebArena-Lite SELECTION: The proposal uses WebArena-Lite (165 tasks) rather than WebArena-Verified (the community-standard audited variant). WebArena-Lite is less rigorous and results may be questioned by reviewers. Consider WebArena-Verified or WebArena-Verified Hard (137 tasks) instead.\"]\nFeedback: The idea has a defensible core — irreversible actions deserve more optimization pressure — but in its current form it reads as a straightforward composition of existing techniques without sufficient differentiation. Here are specific revisions needed:\n\n1. **Address the NeurIPS 2021 reversibility-aware RL paper head-on.** Explain precisely why modulating advantages (your approach) is better than modulating rewards (RAE) or filtering actions (RAC). Consider using their self-supervised reversibility estimator instead of heuristic labels — this would significantly strengthen generalizability.\n\n2. **Differentiate from CSO (ACL 2026 Findings) and SALT (EACL 2026 Findings).** Both are published/accepted works that selectively focus training on important steps. Argue why reversibility-based step identification is complementary to or better than outcome-based (CSO) or trajectory-graph-based (SALT) identification.\n\n3. **Fix the compute budget.** The 200 H100h constraint is very tight. Options: (a) reduce to 2 benchmarks instead of 3, (b) use 1 seed with variance estimated via bootstrap, (c) use only baselines with public checkpoints (e.g., GRPO via Open-AgentRL), (d) compare against SALT and RTMC (which may have code) instead of HCAPO and iStar. Show explicit per-experiment compute math.\n\n4. **Replace heuristic labels with learned reversibility.** The NeurIPS 2021 self-supervised approach learns reversibility from trajectory data without manual annotation. Adapting this to LLM agent trajectories would make the method environment-agnostic and significantly more novel.\n\n5. **Resolve the Qwen2.5-7B vs. Qwen3-8B inconsistency.** Stick with one model; Qwen2.5-7B has more baselines available for fair comparison.\n\n6. **Add SALT as a required baseline** since it operates on the same benchmarks with the same goal (step-level advantage assignment for GRPO).\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-10T18:02:11.665Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-10T18:02:11.665Z",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2"
+}
+```
+
+---
+
+## Round 1
+
+124 recorded events
+
+### User
+
+_source line 3 · 2026-05-10T18:02:11.690Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-10 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: LLM Agents.
+
+Direction: LLM Agents — planning algorithms, memory architectures, tool use, multi-agent coordination, agent training (SFT/RL), self-correction in agentic loops, environment feedback exploitation.
+
+Contribution type: METHOD ONLY. Must propose a concrete new algorithm, training procedure, or inference-time mechanism. Reject pure benchmark / dataset / analysis ideas. Method + analysis OK if analysis validates the method.
+
+HARD CONSTRAINTS:
+1. Compute: ≤200 H100-hours total (baselines + method + ablations). Show the math.
+2. Time: ≤16 days. Build on existing OSS agent codebases (AutoGen, LangGraph, OpenManus, etc.) — no from-scratch systems.
+3. Eval: existing benchmarks only — AgentBench, WebArena, SWE-bench Verified, GAIA, ToolBench, ALFWorld, Mind2Web, τ-bench.
+
+Avoid: generic ReAct variants, plain tool retrieval, naive memory summarization. Look for: agent training with minimal RL budget, structured planning beyond flat CoT, multi-agent communication protocols, agent self-verification mechanisms.
+
+Tag: direction=agent, contribution_type=method. target_venues=["EMNLP 2026 Main", "EMNLP 2026 Findings"].**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-10?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 2/10)
+{
+  "title": "Self-Supervised Irreversibility-Aware Advantage Weighting for Long-Horizon Agent RL",
+  "core_problem": "Step-level credit assignment methods for long-horizon agent RL (GRPO, HCAPO, SALT, GiGPO) assign advantages based on trajectory structure or outcome signals but ignore a fundamental property of agent actions: some are irreversible (form submissions, purchases, file writes) while others are costlessly reversible (scrolling, typing, reading). Mistakes at irreversible steps propagate catastrophically and cannot be corrected by subsequent actions, yet no existing training method modulates optimization pressure based on action reversibility.",
+  "opportunity": "Planning-centric analysis (arXiv 2601.22311) demonstrates that early irreversible errors propagate catastrophically in long-horizon tasks. Meanwhile, the credit assignment landscape has matured rapidly: HCAPO uses hindsight Q-values (+7.7% on WebShop), SALT uses trajectory graphs, GiGPO uses anchor-state grouping (+12% on ALFWorld), and CSO identifies outcome-critical steps via branch rollouts. However, all these methods identify 'important' steps through outcome-based or structural signals — none leverages the structural property of action reversibility itself. Grinsztajn et al. (NeurIPS 2021) showed that reversibility can be learned self-supervisedly in state-based RL and used for reward shaping (RAE) or action filtering (RAC), but this has never been adapted to LLM agent policy gradient training or text-based environments. The gap: a composable, environment-agnostic mechanism that amplifies optimization pressure at irreversible commitment points during GRPO-style training, without requiring expert models (unlike CSO) or trajectory graphs (unlike SALT/GiGPO).",
+  "landscape": "**Reversibility in RL.** Grinsztajn et al. (NeurIPS 2021) introduced self-supervised reversibility estimation via temporal ordering of state pairs, with two integration strategies: RAE (reward modification) and RAC (action filtering). Their work targets state-based RL (Sokoban, grid worlds) and modulates rewards additively or filters actions binarily — fundamentally different from modulating advantages multiplicatively in policy gradients. No follow-up work has adapted this to LLM agents or text-based environments. **Step-level credit assignment for agents.** HCAPO (March 2026) uses the LLM as a post-hoc hindsight critic for step-level Q-values, achieving +7.7%/+13.8% on WebShop/ALFWorld over GRPO with Qwen2.5-7B — but has no public implementation. iStar (ICLR 2026) alternates implicit PRM training with policy updates; code listed as 'coming soon.' SALT (EACL 2026 Findings) constructs trajectory graphs to assign step advantages as a plug-and-play GRPO module, evaluated on WebShop, ALFWorld, and AppWorld with Qwen2.5-7B. GiGPO (NeurIPS 2025) introduces anchor-state grouping for step-level credit (+12% ALFWorld, +9% WebShop) with public code (verl-agent). Tree-GRPO (ICLR 2026) uses tree search for step-level process supervision. RTMC (April 2026) builds rollout trees for critic-free step advantages. All assign advantages based on trajectory structure or outcome signals; none incorporates action-type semantics like reversibility. **Critical step identification.** CSO (ACL 2026 Findings) identifies critical steps where outcomes flip via branch rollouts with an expert model (Claude-3.7-Sonnet), applying selective DPO at those steps (+37% on GAIA over SFT). CSO's 'criticality' is outcome-based (requires expensive branch rollouts), while irreversibility is a structural property of the action (cheap to classify). These are complementary signals: an irreversible action may not be outcome-critical (if the agent happened to act correctly), and an outcome-critical action may be reversible (e.g., choosing which page to visit). **Asymmetric optimization.** NGRPO (Sep 2025) introduces asymmetric clipping boundaries for positive vs. negative advantages. ASPO (Oct 2025) flips IS ratios for positive-advantage tokens. SAPO (Dec 2025) uses temperature-controlled gating. POPO (May 2026) optimizes using only positive rollouts. All apply asymmetry along the advantage-sign dimension. IAW applies asymmetry along the action-type dimension (reversible vs. irreversible), which is orthogonal and composable with sign-based asymmetry. **Other related work.** CORAL (ICLR 2026) manages cognitive resources (memory checkpoints) for long-horizon tasks. The comprehensive survey (arXiv 2604.09459) cataloging 47 credit assignment methods confirms no existing work uses action reversibility as a modulator of optimization pressure in LLM agent training. In the agent safety literature, MOSAIC (2026) and Zora (2026) use irreversibility scores for runtime safety decisions, not for training-time optimization.",
+  "approach": "**Phase 1: Self-supervised reversibility estimation.** Inspired by Grinsztajn et al. (2021), we learn reversibility from trajectory data without manual heuristics. During initial GRPO rollouts on Qwen2.5-7B-Instruct, we collect trajectories as sequences of (observation, action, next_observation). For each action a_t, we compute cosine similarity between the embedding of obs_t (pre-action observation) and all subsequent observations obs_{t+k} across trajectories from the same task, using frozen Qwen2.5-7B embeddings. If the maximum similarity exceeds a threshold τ (i.e., a subsequent state 'returns' to the pre-action state), a_t is labeled reversible; otherwise irreversible. We then train a lightweight binary MLP classifier on top of frozen embeddings using these labels. This adaptation differs from Grinsztajn's temporal-ordering approach in using embedding similarity over text observations rather than state-pair ordering over pixel/grid states, and in producing labels for advantage modulation rather than reward shaping. **Phase 2: Irreversibility-aware advantage weighting (IAW).** During GRPO training, we compute step-level advantages using standard group-relative estimation. At each step, the trained classifier predicts P(irreversible | obs_t, a_t). Advantages at steps with P > 0.5 are amplified by factor α ∈ [2, 4]. We apply asymmetric amplification: for irreversible steps, negative advantages receive α_neg = α while positive advantages receive α_pos = α/2, encoding that mistakes at commitment points are costlier than correct actions are valuable. This action-type asymmetry is orthogonal to the sign-based asymmetry in NGRPO/ASPO/SAPO. **Composability.** IAW is a plug-and-play multiplier on step advantages, composable with any step-level credit assignment method. We test IAW alone (on GRPO advantages) and IAW composed with SALT (on trajectory-graph advantages) and GiGPO (on anchor-state advantages). **Baselines and evaluation.** We evaluate on WebShop and ALFWorld using Qwen2.5-7B-Instruct, matching published baselines. Primary baselines: GRPO (reproduced via verl-agent for same-hardware fairness), GiGPO (published results + verl-agent), SALT (reimplemented — lightweight plug-and-play module). HCAPO and iStar results cited from their papers on the same model and benchmarks. Ablations: α ∈ {1.5, 3, 5} on WebShop; asymmetric vs. symmetric amplification; reversibility classifier accuracy analysis; composability experiments (IAW+SALT, IAW+GiGPO).",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~200h H100. Breakdown: reversibility classifier training (5h) + GRPO reproduction for same-hardware fairness (2 benchmarks × 1 seed × 15h = 30h) + IAW training (2 benchmarks × 3 seeds × 15h = 90h) + composability experiments IAW+SALT, IAW+GiGPO (2 configs × 1 benchmark × 1 seed × 15h = 30h) + alpha ablation (3 values × 1 benchmark × 1 seed × 15h = 45h). Per-run estimate: ~15 H100h for Qwen2.5-7B on WebShop/ALFWorld (4×H100, ~4h wall clock, based on GiGPO's published setup of 150 iterations with batch size 128). GRPO/GiGPO/SALT baselines (3 seeds) cited from published results on Qwen2.5-7B; HCAPO/iStar cited from papers (no public code).",
+      "gpu_utilization": "~25-30% — GPUs idle during reversibility labeling pipeline development, classifier architecture iteration, SALT reimplementation, and result analysis",
+      "timeline": "6-8 weeks (includes self-supervised labeling pipeline, classifier training, SALT reimplementation, verl-agent integration, training runs, paper writing)",
+      "team": "1-2 researchers (one RL-focused, one optional for infrastructure/environments)",
+      "estimated_gpu_cost": "$500-600 (200h × $2.50-3.00/h H100 spot pricing)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~240h H100 (additional exploration: reversibility threshold τ sweep, embedding layer selection for classifier, extra composability configs)",
+      "gpu_utilization": "~55-65% — automated experiment pipelines reduce idle; human approves experiment batches and interprets reversibility classifier quality",
+      "timeline": "4-5 weeks (agent handles SALT reimplementation, config generation, reversibility labeling pipeline, result aggregation)",
+      "team": "1 researcher, ~30-45min/day for approving experiment designs and validating reversibility labels",
+      "claude_api_cost": "$150-250 (~1500-2500 turns for code generation, experiment design, result analysis, paper drafting)",
+      "estimated_gpu_cost": "$600-720 (240h × $2.50-3.00/h)",
+      "risk_note": "Reversibility classifier quality depends on trajectory diversity and embedding similarity threshold τ; agent may need human guidance on calibrating τ per environment"
+    },
+    "auto_research": {
+      "gpu_hours": "~450h H100 (4x more experiments: full α grid, τ threshold sweep, embedding layer ablation, classifier architecture sweep, all composability combinations with SALT+GiGPO, per-environment tuning, additional model scale 3B)",
+      "gpu_utilization": "~90%+ — agent queues next experiment before current one finishes; 24/7 execution",
+      "timeline": "10-14 days with 8 H100s available in parallel",
+      "team": "0 (only initial setup: verl-agent installation, environment access, compute allocation)",
+      "claude_api_cost": "$250-500 (~2500-5000 turns for autonomous exploration, debugging, writing)",
+      "estimated_gpu_cost": "$1,125-1,350 (450h × $2.50-3.00/h)",
+      "speed_bottleneck": "GPU count (8 H100s needed for parallel training); WebShop/ALFWorld environment throughput for rollouts",
+      "risk_note": "Agent may over-explore reversibility classifier architectures or τ thresholds without converging; requires clear success criteria (classifier F1 > 0.85) and early-stopping logic"
+    }
+  },
+  "target_venues": [
+    "AAAI 2027 (deadline expected August 2026, Montréal, February 2027)",
+    "ACL 2027 or NAACL 2027 (via ARR July/August 2026 cycle)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "There Is No Turning Back: A Self-Supervised Approach for Reversibility-Aware Reinforcement Learning (Grinsztajn et al., NeurIPS 2021)",
+    "Verified Critical Step Optimization for LLM Agents (Li et al., ACL 2026 Findings)",
+    "SALT: Step-level Advantage Assignment for Long-horizon Agents via Trajectory Graph (Li et al., EACL 2026 Findings)",
+    "Group-in-Group Policy Optimization for LLM Agent Training (Feng et al., NeurIPS 2025)",
+    "Hindsight Credit Assignment for Long-Horizon LLM Agents (arXiv 2026)",
+    "Agentic Reinforcement Learning with Implicit Step Rewards (ICLR 2026)",
+    "Tree Search for LLM Agent Reinforcement Learning (ICLR 2026)",
+    "RTMC: Step-Level Credit Assignment via Rollout Trees (arXiv 2026)",
+    "NGRPO: Negative-enhanced Group Relative Policy Optimization (arXiv 2025)",
+    "Why Reasoning Fails to Plan: A Planning-Centric Analysis (arXiv 2026)",
+    "From Reasoning to Agentic: Credit Assignment in RL for LLMs (arXiv 2026)"
+  ],
+  "description": "We propose irreversibility-aware advantage weighting (IAW), a composable plug-and-play mechanism for long-horizon agent RL that amplifies optimization pressure at commitment points — actions classified as irreversible — while leaving reversible actions at standard weight. Unlike prior reversibility-aware RL (Grinsztajn et al., NeurIPS 2021), which modulates rewards additively or filters actions in state-based environments, IAW modulates step advantages multiplicatively during GRPO training on text-based LLM agent tasks. Unlike CSO (ACL 2026), which identifies outcome-critical steps via expensive branch rollouts with expert models, IAW uses a cheap self-supervised reversibility classifier trained on trajectory data: for each action, we check whether any subsequent observation in the trajectory set returns to a state similar to the pre-action observation (via frozen LLM embedding similarity), yielding environment-agnostic reversibility labels without manual heuristics. During GRPO training on Qwen2.5-7B-Instruct, step advantages are multiplied by an asymmetric amplification factor at irreversible steps (α_neg > α_pos), encoding that mistakes at commitment points are costlier than correct actions are valuable. This action-type asymmetry is orthogonal to the sign-based asymmetry in NGRPO/ASPO/SAPO and to the structure-based advantage assignment in SALT and GiGPO, enabling composition. We evaluate on WebShop and ALFWorld against GRPO, GiGPO, and SALT baselines (citing HCAPO/iStar from papers), with composability experiments (IAW+SALT, IAW+GiGPO) and α ablations. The approach requires ~200 H100-hours with explicit per-experiment compute math, targeting AAAI 2027.",
+  "project_name": "irrev_advantage_weighting",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["CRITICAL MISSING PRIOR ART: 'There Is No Turning Back: A Self-Supervised Approach for Reversibility-Aware Reinforcement Learning' (Grinsztajn et al., NeurIPS 2021) directly addresses reversibility estimation in RL with two integration strategies (RAE for reward modification, RAC for action filtering). This paper MUST be discussed and differentiated from. The generator's claim that 'no existing work uses action reversibility as a modulator of optimization pressure' is misleading — the NeurIPS 2021 paper uses reversibility to modulate rewards, which is closely related.", "CRITICAL MISSING COMPETITOR: 'Verified Critical Step Optimization for LLM Agents' (Li et al., ACL 2026 Findings) identifies critical decision points in agent trajectories and applies selective DPO training at those steps, achieving 37% and 26% improvement over SFT baselines. This shares the core intuition of non-uniform training focus at important steps, and overlaps conceptually — 'steps where outcomes flip' vs. 'steps that are irreversible.'", "MISSING COMPETITOR: SALT (Step-level Advantage Assignment for Long-horizon Agents via Trajectory Graph, EACL 2026 Findings) is a plug-and-play module for step-level advantage assignment in GRPO, evaluated on the exact same benchmarks (WebShop, ALFWorld). IAW needs to compare against SALT directly.", "COMPUTE BUDGET VIOLATION: The ≤200 H100-hour hard constraint is likely violated. Even under optimistic assumptions (10 H100h per training run), baseline reproduction alone (3 methods × 3 benchmarks × 3 seeds = 27 runs = 270 H100h) exceeds the budget, before method runs (~9 runs = 90 H100h) and alpha ablations (~12+ runs = 120 H100h). Total realistic estimate: 400-500 H100h for a rigorous evaluation.", "BASELINE REPRODUCIBILITY RISK: HCAPO has no public implementation. iStar's code is listed as 'coming soon' on its paper page. Reproducing these baselines from paper descriptions within 16 days is high-risk. The proposal should explicitly address which baseline implementations are available and which need to be recreated.", "HEURISTIC LABEL GENERALIZABILITY: The irreversibility classifier relies on manually-designed heuristic labels specific to each environment (form submissions for WebArena, purchase confirmations for WebShop, object manipulation for ALFWorld). This limits the method's generalizability claim and raises questions about whether the approach works beyond the specific environments where heuristics are manually designed.", "MODEL INCONSISTENCY: The landscape section discusses baselines on Qwen2.5-7B-Instruct (matching HCAPO's setup), but the approach section proposes training on Qwen3-8B. This creates an unfair comparison — either baselines must be re-run on Qwen3-8B (adding compute) or the method should use Qwen2.5-7B to match published baselines.", "ASYMMETRIC AMPLIFICATION NOVELTY OVERSTATED: Asymmetric treatment of positive vs. negative advantages is already well-explored in NGRPO (asymmetric clipping, Sep 2025), ASPO (asymmetric importance sampling, Oct 2025), SAPO (asymmetric temperatures, Dec 2025), and POPO (positive-only optimization, May 2026). The generator should acknowledge this broader trend.", "WebArena-Lite SELECTION: The proposal uses WebArena-Lite (165 tasks) rather than WebArena-Verified (the community-standard audited variant). WebArena-Lite is less rigorous and results may be questioned by reviewers. Consider WebArena-Verified or WebArena-Verified Hard (137 tasks) instead."]
+Feedback: The idea has a defensible core — irreversible actions deserve more optimization pressure — but in its current form it reads as a straightforward composition of existing techniques without sufficient differentiation. Here are specific revisions needed:
+
+1. **Address the NeurIPS 2021 reversibility-aware RL paper head-on.** Explain precisely why modulating advantages (your approach) is better than modulating rewards (RAE) or filtering actions (RAC). Consider using their self-supervised reversibility estimator instead of heuristic labels — this would significantly strengthen generalizability.
+
+2. **Differentiate from CSO (ACL 2026 Findings) and SALT (EACL 2026 Findings).** Both are published/accepted works that selectively focus training on important steps. Argue why reversibility-based step identification is complementary to or better than outcome-based (CSO) or trajectory-graph-based (SALT) identification.
+
+3. **Fix the compute budget.** The 200 H100h constraint is very tight. Options: (a) reduce to 2 benchmarks instead of 3, (b) use 1 seed with variance estimated via bootstrap, (c) use only baselines with public checkpoints (e.g., GRPO via Open-AgentRL), (d) compare against SALT and RTMC (which may have code) instead of HCAPO and iStar. Show explicit per-experiment compute math.
+
+4. **Replace heuristic labels with learned reversibility.** The NeurIPS 2021 self-supervised approach learns reversibility from trajectory data without manual annotation. Adapting this to LLM agent trajectories would make the method environment-agnostic and significantly more novel.
+
+5. **Resolve the Qwen2.5-7B vs. Qwen3-8B inconsistency.** Stick with one model; Qwen2.5-7B has more baselines available for fair comparison.
+
+6. **Add SALT as a required baseline** since it operates on the same benchmarks with the same goal (step-level advantage assignment for GRPO).
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "87b3ea13-9a5a-41fb-8cf4-baa855e5369a",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-10T18:02:11.689Z_
+
+```json
+{
+  "parentUuid": "87b3ea13-9a5a-41fb-8cf4-baa855e5369a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "632bdd1d-829d-4195-ab3d-a4154a65728a",
+  "timestamp": "2026-05-10T18:02:11.689Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-10T18:02:11.689Z_
+
+```json
+{
+  "parentUuid": "632bdd1d-829d-4195-ab3d-a4154a65728a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "a36e834e-f61a-48f3-8ff4-3d287f0a9811",
+  "timestamp": "2026-05-10T18:02:11.689Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "a36e834e-f61a-48f3-8ff4-3d287f0a9811",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of Irreversibility-Aware Advantage Weighting for Agent RL",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-10T18:02:17.543Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully review this idea as a strict ML research reviewer. I need to independently verify the claims, check for competing work, and assess feasibility. Let me start by searching for the key papers and claims mentioned.
+
+Let me organize my review plan:
+
+1. Verify key references exist and are correctly cited
+2. Search for competing/concurrent work the generator may have missed
+3. Verify the compute budget is realistic
+4. Assess novelty given the revised proposal
+5. Check if the reversibility estimation approach is sound
+
+Let me start with searches.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a36e834e-f61a-48f3-8ff4-3d287f0a9811",
+  "isSidechain": false,
+  "requestId": "req_011CauKvg81TaD1eshYk48LC",
+  "type": "assistant",
+  "uuid": "255a3f03-4a29-4126-b33d-694332464db9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011okMQuVKTjZisJiGf8BSK8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14268,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 244,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14268,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 244,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 14268,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14268
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-10T18:02:18.551Z_
+
+I'll conduct a thorough independent review of this revised idea. Let me start by verifying key claims and searching for competing work across multiple dimensions.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "255a3f03-4a29-4126-b33d-694332464db9",
+  "isSidechain": false,
+  "requestId": "req_011CauKvg81TaD1eshYk48LC",
+  "type": "assistant",
+  "uuid": "83a54e60-8bc0-4163-9c98-33e361a70a70",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011okMQuVKTjZisJiGf8BSK8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14268,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 244,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14268,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 244,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 14268,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14268
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-10T18:02:19.364Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01G3V9VSW4XtM9PfP27EDAGn`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "83a54e60-8bc0-4163-9c98-33e361a70a70",
+  "isSidechain": false,
+  "requestId": "req_011CauKvg81TaD1eshYk48LC",
+  "type": "assistant",
+  "uuid": "5e591846-2af1-48e4-a3b1-d510ffbc39e6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011okMQuVKTjZisJiGf8BSK8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14268,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 244,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14268,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 244,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 14268,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14268
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-10T18:02:19.370Z_
+
+<details><summary>↩ Tool result · `toolu_01G3V9VSW4XtM9PfP27EDAGn`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5e591846-2af1-48e4-a3b1-d510ffbc39e6",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "6080edbb-5573-44ed-9137-556d6023ed75",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "5e591846-2af1-48e4-a3b1-d510ffbc39e6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-10T18:02:28.177Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start my systematic review. I need to verify several key claims and search for competing work. Let me launch multiple searches in parallel.
+
+Key areas to investigate:
+1. Grinsztajn et al. (NeurIPS 2021) - reversibility-aware RL - verify the paper and understand how the revised proposal differentiates
+2. SALT, GiGPO, HCAPO, CSO - verify these exist and check their claims
+3. Search for concurrent/competing work on reversibility in LLM agents
+4. Verify compute estimates
+5. Check for any work that directly applies reversibility to LLM agent training
+
+
+6. Check what the submission deadlines are for relevant venues
+
+Now I'll start running these searches in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6080edbb-5573-44ed-9137-556d6023ed75",
+  "isSidechain": false,
+  "requestId": "req_011CauKwEyhTfM98bEHvP1rJ",
+  "type": "assistant",
+  "uuid": "5e95103c-b6a0-49d2-b832-9913184086ff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q8Tfc5ynmFKeqt95P8NCyX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1263,
+      "cache_read_input_tokens": 26072,
+      "output_tokens": 281,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1263,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 281,
+          "cache_read_input_tokens": 26072,
+          "cache_creation_input_tokens": 1263,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1263
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-10T18:02:28.486Z_
+
+Starting my independent verification. I'll search across multiple dimensions to validate claims, find competing work, and assess feasibility.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5e95103c-b6a0-49d2-b832-9913184086ff",
+  "isSidechain": false,
+  "requestId": "req_011CauKwEyhTfM98bEHvP1rJ",
+  "type": "assistant",
+  "uuid": "c262f11a-20ed-45b3-b18c-63d0dd6a6eda",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q8Tfc5ynmFKeqt95P8NCyX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1263,
+      "cache_read_input_tokens": 26072,
+      "output_tokens": 281,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1263,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 281,
+          "cache_read_input_tokens": 26072,
+          "cache_creation_input_tokens": 1263,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1263
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-10T18:02:28.690Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XtVtAdRZse3WUkWKbGE8N7`</summary>
+
+```json
+{
+  "query": "Grinsztajn \"There Is No Turning Back\" reversibility-aware reinforcement learning NeurIPS 2021"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c262f11a-20ed-45b3-b18c-63d0dd6a6eda",
+  "isSidechain": false,
+  "requestId": "req_011CauKwEyhTfM98bEHvP1rJ",
+  "type": "assistant",
+  "uuid": "66a2dd34-6d14-409a-a9d3-1459f663f96e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q8Tfc5ynmFKeqt95P8NCyX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1263,
+      "cache_read_input_tokens": 26072,
+      "output_tokens": 281,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1263,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 281,
+          "cache_read_input_tokens": 26072,
+          "cache_creation_input_tokens": 1263,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1263
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-10T18:02:33.571Z_
+
+<details><summary>↩ Tool result · `toolu_01XtVtAdRZse3WUkWKbGE8N7`</summary>
+
+```text
+Web search results for query: "Grinsztajn "There Is No Turning Back" reversibility-aware reinforcement learning NeurIPS 2021"
+
+Links: [{"title":"There Is No Turning Back: A Self-Supervised Approach for Reversibility-Aware Reinforcement Learning","url":"https://proceedings.neurips.cc/paper/2021/hash/0e98aeeb54acf612b9eb4e48a269814c-Abstract.html"},{"title":"[2106.04480] There Is No Turning Back: A Self-Supervised Approach for Reversibility-Aware Reinforcement Learning","url":"https://arxiv.org/abs/2106.04480"},{"title":"There Is No Turning Back: A Self-Supervised Approach for Reversibility-Aware Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=3X65eaS4PtP"},{"title":"GitHub - nathangrinsztajn/NoTurningBack: Official implementation of the paper \"There Is No Turning Back: A Self-Supervised Approach for Reversibility-Aware Reinforcement Learning\" · GitHub","url":"https://github.com/nathangrinsztajn/NoTurningBack"},{"title":"A Self-Supervised Approach for Reversibility-Aware ...","url":"https://proceedings.neurips.cc/paper_files/paper/2021/file/0e98aeeb54acf612b9eb4e48a269814c-Paper.pdf"},{"title":"Self-Supervised Reversibility-Aware Reinforcement Learning","url":"https://research.google/blog/self-supervised-reversibility-aware-reinforcement-learning/"},{"title":"Self-Supervised Reversibility-Aware Reinforcement Learning – Google Research Blog","url":"https://ai.googleblog.com/2021/11/self-supervised-reversibility-aware.html"},{"title":"There Is No Turning Back: A Self-Supervised Approach for Reversibility-Aware Reinforcement Learning | Nathan Grinsztajn","url":"https://nathangrinsztajn.github.io/publication/reversibility/"},{"title":"There Is No Turning Back: A Self-Supervised Approach for Reversibility-Aware Reinforcement Learning | DeepAI","url":"https://deepai.org/publication/there-is-no-turning-back-a-self-supervised-approach-for-reversibility-aware-reinforcement-learning"},{"title":"[PDF] There Is No Turning Back: A Self-Supervised Approach for Reversibility-Aware Reinforcement Learning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/There-Is-No-Turning-Back:-A-Self-Supervised-for-Grinsztajn-Ferret/f70d68fc66d06e067b6aee4d97cb3395a672cc71"}]
+
+I found the paper you're looking for. Here's what I found:
+
+"There Is No Turning Back: A Self-Supervised Approach for Reversibility-Aware Reinforcement Learning" was authored by Nathan Grinsztajn, Johan Ferret, Olivier Pietquin, Philippe Preux, and Matthieu Geist, and it was accepted at NeurIPS 2021.
+
+**Core Contribution:**
+The paper proposes learning to distinguish reversible from irreversible actions for better informed decision-making in RL, showing that approximate reversibility can be learned through a simple surrogate task: ranking randomly sampled trajectory events in chronological order.
+
+**Key Insight:**
+Pairs of events that are always observed in the same order are likely to be separated by an irreversible sequence of actions, and learning the temporal order of events can be done in a fully self-supervised way to estimate the reversibility of actions from experience, without any priors.
+
+**Methods:**
+Two different strategies incorporate reversibility in RL agents: one strategy for exploration (RAE) and one strategy for control (RAC).
+
+**Results:**
+The potential of reversibility-aware agents is demonstrated in several environments, including the challenging Sokoban game.
+
+The official implementation is available on GitHub at https://github.com/nathangrinsztajn/NoTurningBack.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "66a2dd34-6d14-409a-a9d3-1459f663f96e",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "c3b5b201-7f18-40aa-b5b2-5663edd62559",
+  "toolUseResult": {
+    "query": "Grinsztajn \"There Is No Turning Back\" reversibility-aware reinforcement learning NeurIPS 2021",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015vTxZxB4CVHdRuEzaQpod2",
+        "content": [
+          {
+            "title": "There Is No Turning Back: A Self-Supervised Approach for Reversibility-Aware Reinforcement Learning",
+            "url": "https://proceedings.neurips.cc/paper/2021/hash/0e98aeeb54acf612b9eb4e48a269814c-Abstract.html"
+          },
+          {
+            "title": "[2106.04480] There Is No Turning Back: A Self-Supervised Approach for Reversibility-Aware Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2106.04480"
+          },
+          {
+            "title": "There Is No Turning Back: A Self-Supervised Approach for Reversibility-Aware Reinforcement Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=3X65eaS4PtP"
+          },
+          {
+            "title": "GitHub - nathangrinsztajn/NoTurningBack: Official implementation of the paper \"There Is No Turning Back: A Self-Supervised Approach for Reversibility-Aware Reinforcement Learning\" · GitHub",
+            "url": "https://github.com/nathangrinsztajn/NoTurningBack"
+          },
+          {
+            "title": "A Self-Supervised Approach for Reversibility-Aware ...",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2021/file/0e98aeeb54acf612b9eb4e48a269814c-Paper.pdf"
+          },
+          {
+            "title": "Self-Supervised Reversibility-Aware Reinforcement Learning",
+            "url": "https://research.google/blog/self-supervised-reversibility-aware-reinforcement-learning/"
+          },
+          {
+            "title": "Self-Supervised Reversibility-Aware Reinforcement Learning – Google Research Blog",
+            "url": "https://ai.googleblog.com/2021/11/self-supervised-reversibility-aware.html"
+          },
+          {
+            "title": "There Is No Turning Back: A Self-Supervised Approach for Reversibility-Aware Reinforcement Learning | Nathan Grinsztajn",
+            "url": "https://nathangrinsztajn.github.io/publication/reversibility/"
+          },
+          {
+            "title": "There Is No Turning Back: A Self-Supervised Approach for Reversibility-Aware Reinforcement Learning | DeepAI",
+            "url": "https://deepai.org/publication/there-is-no-turning-back-a-self-supervised-approach-for-reversibility-aware-reinforcement-learning"
+          },
+          {
+            "title": "[PDF] There Is No Turning Back: A Self-Supervised Approach for Reversibility-Aware Reinforcement Learning | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/There-Is-No-Turning-Back:-A-Self-Supervised-for-Grinsztajn-Ferret/f70d68fc66d06e067b6aee4d97cb3395a672cc71"
+          }
+        ]
+      },
+      "I found the paper you're looking for. Here's what I found:\n\n\"There Is No Turning Back: A Self-Supervised Approach for Reversibility-Aware Reinforcement Learning\" was authored by Nathan Grinsztajn, Johan Ferret, Olivier Pietquin, Philippe Preux, and Matthieu Geist, and it was accepted at NeurIPS 2021.\n\n**Core Contribution:**\nThe paper proposes learning to distinguish reversible from irreversible actions for better informed decision-making in RL, showing that approximate reversibility can be learned through a simple surrogate task: ranking randomly sampled trajectory events in chronological order.\n\n**Key Insight:**\nPairs of events that are always observed in the same order are likely to be separated by an irreversible sequence of actions, and learning the temporal order of events can be done in a fully self-supervised way to estimate the reversibility of actions from experience, without any priors.\n\n**Methods:**\nTwo different strategies incorporate reversibility in RL agents: one strategy for exploration (RAE) and one strategy for control (RAC).\n\n**Results:**\nThe potential of reversibility-aware agents is demonstrated in several environments, including the challenging Sokoban game.\n\nThe official implementation is available on GitHub at https://github.com/nathangrinsztajn/NoTurningBack."
+    ],
+    "durationSeconds": 4.876461353999999
+  },
+  "sourceToolAssistantUUID": "66a2dd34-6d14-409a-a9d3-1459f663f96e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-10T18:02:36.327Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Hx6gYixbTnw4DKaMTnRDvy`</summary>
+
+```json
+{
+  "query": "SALT step-level advantage assignment trajectory graph GRPO EACL 2026 agent"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c3b5b201-7f18-40aa-b5b2-5663edd62559",
+  "isSidechain": false,
+  "requestId": "req_011CauKxHZkhpGmEA6YZmcLd",
+  "type": "assistant",
+  "uuid": "5ed133a5-90a9-4d0f-b7cb-13a4919aed8b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MixCbeL7u2oXfErqWfUuSH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1314,
+      "cache_read_input_tokens": 27335,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1314,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 27335,
+          "cache_creation_input_tokens": 1314,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1314
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-10T18:02:43.707Z_
+
+<details><summary>↩ Tool result · `toolu_01Hx6gYixbTnw4DKaMTnRDvy`</summary>
+
+```text
+Web search results for query: "SALT step-level advantage assignment trajectory graph GRPO EACL 2026 agent"
+
+Links: [{"title":"SALT: Step-level Advantage Assignment for Long-horizon Agents via Trajectory Graph - ACL Anthology","url":"https://aclanthology.org/2026.findings-eacl.247/"},{"title":"Step-level Advantage Assignment for Long-horizon Agents ...","url":"https://aclanthology.org/2026.findings-eacl.247.pdf"},{"title":"[2510.20022] SALT: Step-level Advantage Assignment for Long-horizon Agents via Trajectory Graph","url":"https://arxiv.org/abs/2510.20022"},{"title":"SALT: Step-level Advantage Assignment for Long-horizon Agents","url":"https://arxiv.org/pdf/2510.20022"},{"title":"SALT: Step-level advantage assignment for long-horizon agents via trajectory graph - Amazon Science","url":"https://www.amazon.science/publications/salt-step-level-advantage-assignment-for-long-horizon-agents-via-trajectory-graph"},{"title":"SALT: Step-level Advantage Assignment for Long-horizon Agents via Trajectory Graph | Request PDF","url":"https://www.researchgate.net/publication/396848467_SALT_Step-level_Advantage_Assignment_for_Long-horizon_Agents_via_Trajectory_Graph"},{"title":"SALT: Step-level Advantage Assignment for Long-horizon Agents via Trajectory Graph","url":"https://arxiv.org/html/2510.20022"},{"title":"Step-level Advantage Assignment for Long-horizon Agents ...","url":"https://www.semanticscholar.org/paper/SALT:-Step-level-Advantage-Assignment-for-Agents-Li-Wang/3fb703b11e3be7f9189f1aea0d60b4dc976c81da"},{"title":"Turn-Level Advantage Estimation with PPO for Improved ...","url":"https://aclanthology.org/2026.findings-eacl.328.pdf"},{"title":"RTMC: Step-Level Credit Assignment via Rollout Trees","url":"https://arxiv.org/html/2604.11037"}]
+
+I found comprehensive information about SALT. Here's a summary of the search results:
+
+## SALT: Step-level Advantage Assignment for Long-horizon Agents via Trajectory Graph
+
+This paper by Jiazheng Li, Yawei Wang, Qiaojing Yan, Yijun Tian, Zhichao Xu, Huan Song, Panpan Xu, and Lin Lee Cheong was published in the Findings of the Association for Computational Linguistics: EACL 2026 in Rabat, Morocco.
+
+### Problem and Solution
+
+Large Language Models (LLMs) have demonstrated remarkable capabilities, enabling language agents to excel at single-turn tasks. However, their application to complex, multi-step, and long-horizon tasks remains challenging. Mainstream approaches typically rely solely on sparse, outcome-based rewards, a limitation that becomes especially problematic for group-based RL algorithms lacking critic models, such as Group Relative Policy Optimization (GRPO).
+
+SALT is a novel and lightweight framework that provides a finer-grained advantage assignment, derived solely from outcome rewards. This is achieved by constructing a graph from trajectories of the same prompt, which allows quantifying the quality of each step and assigning advantages accordingly.
+
+### Key Features and Results
+
+SALT is designed as a plug-and-play module that seamlessly integrates with existing group-based RL algorithms — requiring no modifications to the rollout procedure and introducing negligible computational overhead. Extensive experiments on the WebShop, ALFWorld, and AppWorld benchmarks with various model sizes demonstrate that SALT consistently improves performance.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5ed133a5-90a9-4d0f-b7cb-13a4919aed8b",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "89654889-cda1-4aa3-b716-9f8af8dc9d5f",
+  "toolUseResult": {
+    "query": "SALT step-level advantage assignment trajectory graph GRPO EACL 2026 agent",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FJLJZTEQtcWgRJghm8oHBb",
+        "content": [
+          {
+            "title": "SALT: Step-level Advantage Assignment for Long-horizon Agents via Trajectory Graph - ACL Anthology",
+            "url": "https://aclanthology.org/2026.findings-eacl.247/"
+          },
+          {
+            "title": "Step-level Advantage Assignment for Long-horizon Agents ...",
+            "url": "https://aclanthology.org/2026.findings-eacl.247.pdf"
+          },
+          {
+            "title": "[2510.20022] SALT: Step-level Advantage Assignment for Long-horizon Agents via Trajectory Graph",
+            "url": "https://arxiv.org/abs/2510.20022"
+          },
+          {
+            "title": "SALT: Step-level Advantage Assignment for Long-horizon Agents",
+            "url": "https://arxiv.org/pdf/2510.20022"
+          },
+          {
+            "title": "SALT: Step-level advantage assignment for long-horizon agents via trajectory graph - Amazon Science",
+            "url": "https://www.amazon.science/publications/salt-step-level-advantage-assignment-for-long-horizon-agents-via-trajectory-graph"
+          },
+          {
+            "title": "SALT: Step-level Advantage Assignment for Long-horizon Agents via Trajectory Graph | Request PDF",
+            "url": "https://www.researchgate.net/publication/396848467_SALT_Step-level_Advantage_Assignment_for_Long-horizon_Agents_via_Trajectory_Graph"
+          },
+          {
+            "title": "SALT: Step-level Advantage Assignment for Long-horizon Agents via Trajectory Graph",
+            "url": "https://arxiv.org/html/2510.20022"
+          },
+          {
+            "title": "Step-level Advantage Assignment for Long-horizon Agents ...",
+            "url": "https://www.semanticscholar.org/paper/SALT:-Step-level-Advantage-Assignment-for-Agents-Li-Wang/3fb703b11e3be7f9189f1aea0d60b4dc976c81da"
+          },
+          {
+            "title": "Turn-Level Advantage Estimation with PPO for Improved ...",
+            "url": "https://aclanthology.org/2026.findings-eacl.328.pdf"
+          },
+          {
+            "title": "RTMC: Step-Level Credit Assignment via Rollout Trees",
+            "url": "https://arxiv.org/html/2604.11037"
+          }
+        ]
+      },
+      "I found comprehensive information about SALT. Here's a summary of the search results:\n\n## SALT: Step-level Advantage Assignment for Long-horizon Agents via Trajectory Graph\n\nThis paper by Jiazheng Li, Yawei Wang, Qiaojing Yan, Yijun Tian, Zhichao Xu, Huan Song, Panpan Xu, and Lin Lee Cheong was published in the Findings of the Association for Computational Linguistics: EACL 2026 in Rabat, Morocco.\n\n### Problem and Solution\n\nLarge Language Models (LLMs) have demonstrated remarkable capabilities, enabling language agents to excel at single-turn tasks. However, their application to complex, multi-step, and long-horizon tasks remains challenging. Mainstream approaches typically rely solely on sparse, outcome-based rewards, a limitation that becomes especially problematic for group-based RL algorithms lacking critic models, such as Group Relative Policy Optimization (GRPO).\n\nSALT is a novel and lightweight framework that provides a finer-grained advantage assignment, derived solely from outcome rewards. This is achieved by constructing a graph from trajectories of the same prompt, which allows quantifying the quality of each step and assigning advantages accordingly.\n\n### Key Features and Results\n\nSALT is designed as a plug-and-play module that seamlessly integrates with existing group-based RL algorithms — requiring no modifications to the rollout procedure and introducing negligible computational overhead. Extensive experiments on the WebShop, ALFWorld, and AppWorld benchmarks with various model sizes demonstrate that SALT consistently improves performance."
+    ],
+    "durationSeconds": 7.375586082999998
+  },
+  "sourceToolAssistantUUID": "5ed133a5-90a9-4d0f-b7cb-13a4919aed8b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-10T18:02:46.534Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EbkMNkCzjWr2BdmMwE7wkU`</summary>
+
+```json
+{
+  "query": "GiGPO \"Group-in-Group Policy Optimization\" LLM agent training NeurIPS 2025 verl-agent"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "89654889-cda1-4aa3-b716-9f8af8dc9d5f",
+  "isSidechain": false,
+  "requestId": "req_011CauKy2m3E9FVU3V9oJbTf",
+  "type": "assistant",
+  "uuid": "b7bd0673-93a9-4bd8-b34d-351f6cbe7011",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VJhU9qUeyZ437mqMnoTorD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 998,
+      "cache_read_input_tokens": 28649,
+      "output_tokens": 83,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 998,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 83,
+          "cache_read_input_tokens": 28649,
+          "cache_creation_input_tokens": 998,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 998
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-10T18:02:53.186Z_
+
+<details><summary>↩ Tool result · `toolu_01EbkMNkCzjWr2BdmMwE7wkU`</summary>
+
+```text
+Web search results for query: "GiGPO "Group-in-Group Policy Optimization" LLM agent training NeurIPS 2025 verl-agent"
+
+Links: [{"title":"[2505.10978] Group-in-Group Policy Optimization for LLM Agent Training","url":"https://arxiv.org/abs/2505.10978"},{"title":"NeurIPS Poster Group-in-Group Policy Optimization for LLM Agent Training","url":"https://neurips.cc/virtual/2025/poster/118123"},{"title":"Group-in-Group Policy Optimization for LLM Agent Training | OpenReview","url":"https://openreview.net/forum?id=QXEhBMNrCW"},{"title":"Group-in-Group Policy Optimization for LLM Agent Training Lang Feng1","url":"https://personal.ntu.edu.sg/boan/papers/NeurIPS25_GiGPO.pdf"},{"title":"GitHub - langfengQ/verl-agent: verl-agent is an extension of veRL, designed for training LLM/VLM agents via RL. verl-agent is also the official code for paper \"Group-in-Group Policy Optimization for LLM Agent Training\" · GitHub","url":"https://github.com/langfengq/verl-agent"},{"title":"Group-in-Group Policy Optimization for LLM Agent Training | alphaXiv","url":"https://www.alphaxiv.org/overview/2505.10978v1"},{"title":"Paper page - Group-in-Group Policy Optimization for LLM Agent Training","url":"https://huggingface.co/papers/2505.10978"},{"title":"Group-in-Group Policy Optimization for LLM Agent Training","url":"https://arxiv.org/html/2505.10978v1"},{"title":"Group-in-Group Policy Optimization for LLM Agent Training | Request PDF","url":"https://www.researchgate.net/publication/391857132_Group-in-Group_Policy_Optimization_for_LLM_Agent_Training"},{"title":"Group-in-Group Policy Optimization for LLM Agent Training - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250510978F/abstract"}]
+
+I found comprehensive information about GiGPO and related research. Here's what I found:
+
+## Overview
+
+GiGPO was accepted at NeurIPS 2025, and it is a NeurIPS 2025 poster presentation.
+
+## What is GiGPO?
+
+Group-in-Group Policy Optimization (GiGPO) is a novel RL algorithm that achieves fine-grained credit assignment for LLM agents while preserving the appealing properties of group-based RL: critic-free, low memory, and stable convergence.
+
+## The Two-Level Structure
+
+GiGPO introduces a two-level structure for estimating relative advantage: at the episode-level, GiGPO computes macro relative advantages based on groups of complete trajectories; at the step-level, GiGPO introduces an anchor state grouping mechanism that retroactively constructs step-level groups by identifying repeated environment states across trajectories. Actions stemming from the same state are grouped together, enabling micro relative advantage estimation.
+
+## Evaluation and Results
+
+GiGPO was evaluated on challenging agent benchmarks, including ALFWorld and WebShop, as well as tool-integrated reasoning on search-augmented QA tasks, using Qwen2.5-1.5B/3B/7B-Instruct. 
+
+GiGPO achieves performance gains of >12% on ALFWorld and >9% on WebShop over GRPO, and obtains superior performance on QA tasks (42.1% on 3B and 47.2% on 7B): all while maintaining the same GPU memory overhead, identical LLM rollout, and incurring little to no additional time cost.
+
+## verl-agent Implementation
+
+verl-agent is an extension of veRL, designed for training LLM/VLM agents via RL. verl-agent is also the official code for the paper "Group-in-Group Policy Optimization for LLM Agent Training".
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b7bd0673-93a9-4bd8-b34d-351f6cbe7011",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "8f0247c6-8d64-481f-8e6b-e21e79225ec4",
+  "toolUseResult": {
+    "query": "GiGPO \"Group-in-Group Policy Optimization\" LLM agent training NeurIPS 2025 verl-agent",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01V4wk2WkFgeAQxJRnxWoP75",
+        "content": [
+          {
+            "title": "[2505.10978] Group-in-Group Policy Optimization for LLM Agent Training",
+            "url": "https://arxiv.org/abs/2505.10978"
+          },
+          {
+            "title": "NeurIPS Poster Group-in-Group Policy Optimization for LLM Agent Training",
+            "url": "https://neurips.cc/virtual/2025/poster/118123"
+          },
+          {
+            "title": "Group-in-Group Policy Optimization for LLM Agent Training | OpenReview",
+            "url": "https://openreview.net/forum?id=QXEhBMNrCW"
+          },
+          {
+            "title": "Group-in-Group Policy Optimization for LLM Agent Training Lang Feng1",
+            "url": "https://personal.ntu.edu.sg/boan/papers/NeurIPS25_GiGPO.pdf"
+          },
+          {
+            "title": "GitHub - langfengQ/verl-agent: verl-agent is an extension of veRL, designed for training LLM/VLM agents via RL. verl-agent is also the official code for paper \"Group-in-Group Policy Optimization for LLM Agent Training\" · GitHub",
+            "url": "https://github.com/langfengq/verl-agent"
+          },
+          {
+            "title": "Group-in-Group Policy Optimization for LLM Agent Training | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2505.10978v1"
+          },
+          {
+            "title": "Paper page - Group-in-Group Policy Optimization for LLM Agent Training",
+            "url": "https://huggingface.co/papers/2505.10978"
+          },
+          {
+            "title": "Group-in-Group Policy Optimization for LLM Agent Training",
+            "url": "https://arxiv.org/html/2505.10978v1"
+          },
+          {
+            "title": "Group-in-Group Policy Optimization for LLM Agent Training | Request PDF",
+            "url": "https://www.researchgate.net/publication/391857132_Group-in-Group_Policy_Optimization_for_LLM_Agent_Training"
+          },
+          {
+            "title": "Group-in-Group Policy Optimization for LLM Agent Training - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250510978F/abstract"
+          }
+        ]
+      },
+      "I found comprehensive information about GiGPO and related research. Here's what I found:\n\n## Overview\n\nGiGPO was accepted at NeurIPS 2025, and it is a NeurIPS 2025 poster presentation.\n\n## What is GiGPO?\n\nGroup-in-Group Policy Optimization (GiGPO) is a novel RL algorithm that achieves fine-grained credit assignment for LLM agents while preserving the appealing properties of group-based RL: critic-free, low memory, and stable convergence.\n\n## The Two-Level Structure\n\nGiGPO introduces a two-level structure for estimating relative advantage: at the episode-level, GiGPO computes macro relative advantages based on groups of complete trajectories; at the step-level, GiGPO introduces an anchor state grouping mechanism that retroactively constructs step-level groups by identifying repeated environment states across trajectories. Actions stemming from the same state are grouped together, enabling micro relative advantage estimation.\n\n## Evaluation and Results\n\nGiGPO was evaluated on challenging agent benchmarks, including ALFWorld and WebShop, as well as tool-integrated reasoning on search-augmented QA tasks, using Qwen2.5-1.5B/3B/7B-Instruct. \n\nGiGPO achieves performance gains of >12% on ALFWorld and >9% on WebShop over GRPO, and obtains superior performance on QA tasks (42.1% on 3B and 47.2% on 7B): all while maintaining the same GPU memory overhead, identical LLM rollout, and incurring little to no additional time cost.\n\n## verl-agent Implementation\n\nverl-agent is an extension of veRL, designed for training LLM/VLM agents via RL. verl-agent is also the official code for the paper \"Group-in-Group Policy Optimization for LLM Agent Training\"."
+    ],
+    "durationSeconds": 6.648263538999999
+  },
+  "sourceToolAssistantUUID": "b7bd0673-93a9-4bd8-b34d-351f6cbe7011",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "8f0247c6-8d64-481f-8e6b-e21e79225ec4",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of Irreversibility-Aware Advantage Weighting for Agent RL",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2"
+}
+```
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-10T18:02:55.392Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Pf374hFZcFAYPjRdrwzGd9`</summary>
+
+```json
+{
+  "query": "\"Verified Critical Step Optimization\" CSO LLM agents ACL 2026 selective DPO critical steps"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8f0247c6-8d64-481f-8e6b-e21e79225ec4",
+  "isSidechain": false,
+  "requestId": "req_011CauKyjENXiyxGiJuqqgMU",
+  "type": "assistant",
+  "uuid": "138f9b1e-320c-4ae3-a442-8a67976516c8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019eG89pWxFijXFKg8Wdg1DV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1116,
+      "cache_read_input_tokens": 29647,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1116,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 29647,
+          "cache_creation_input_tokens": 1116,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1116
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-10T18:03:03.303Z_
+
+<details><summary>↩ Tool result · `toolu_01Pf374hFZcFAYPjRdrwzGd9`</summary>
+
+```text
+Web search results for query: ""Verified Critical Step Optimization" CSO LLM agents ACL 2026 selective DPO critical steps"
+
+Links: [{"title":"Verified Critical Step Optimization for LLM Agents","url":"https://arxiv.org/html/2602.03412"},{"title":"[2602.03412] Verified Critical Step Optimization for LLM Agents","url":"https://arxiv.org/abs/2602.03412"},{"title":"Verified Critical Step Optimization for LLM Agents Mukai Li†,1,2","url":"https://arxiv.org/pdf/2602.03412"},{"title":"Verified Critical Step Optimization for LLM Agents Anonymous ACL submission","url":"https://openreview.net/attachment?id=bwd1ykqifH&name=pdf"},{"title":"Post-Training in 2026: GRPO, DAPO, RLVR & Beyond","url":"https://llm-stats.com/blog/research/post-training-techniques-2026"},{"title":"Evaluating DPO and its Variants Across Multiple Tasks","url":"https://aclanthology.org/2025.acl-srw.26.pdf"},{"title":"ScoreFlow: Mastering LLM Agent Workflows via Score- ...","url":"https://i-newcar.com/uploads/allimg/20250221/2-2502211GH2A1.pdf"},{"title":"Prior Prejudice: LLM Judges Are Biased by Their Own Beliefs · ACL 2026 Findings","url":"https://uiuc-conversational-ai-lab.github.io/prior-prejudice/"},{"title":"LLMOrbit: A Circular Taxonomy of Large Language Models","url":"https://arxiv.org/pdf/2601.14053"},{"title":"Direct Multi-Turn Preference Optimization for Language ...","url":"https://aclanthology.org/2024.emnlp-main.138.pdf"}]
+
+Based on the search results, I found information about "Verified Critical Step Optimization for LLM Agents." Here's what the research covers:
+
+## Overview
+
+The Critical Step Optimization (CSO) framework formalizes agentic decision-making as ReAct trajectories and identifies verified critical steps in failed policy trajectories where alternative actions can flip task outcomes, constructing fine-grained preference pairs from these verified critical steps for targeted DPO training.
+
+## Key Approach
+
+CSO offers an orthogonal offline approach by focusing exclusively on outcome-verified critical steps, naturally achieving precise credit assignment with minimal step-level supervision. The method uses a process reward model (PRM) to identify candidate critical steps, leverages expert models to propose high-quality alternatives, then continues execution from these alternatives using the policy model itself until task completion. Only alternatives that the policy successfully executes to correct outcomes are verified and used as DPO training data, ensuring both quality and policy reachability, yielding fine-grained, verifiable supervision at critical decisions while avoiding trajectory-level coarseness and step-level noise.
+
+## Results
+
+CSO achieves 37% and 26% relative improvement over the SFT baseline on GAIA-Text-103 and XBench-DeepSearch respectively, while requiring supervision at only 16% of trajectory steps.
+
+The work appears to be submitted to ACL 2026 as indicated in the search results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "138f9b1e-320c-4ae3-a442-8a67976516c8",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "2deb6d66-15f6-4c23-a4f2-ee08e57d56d6",
+  "toolUseResult": {
+    "query": "\"Verified Critical Step Optimization\" CSO LLM agents ACL 2026 selective DPO critical steps",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01C2rSZwcUuKS7LKCo7foqHf",
+        "content": [
+          {
+            "title": "Verified Critical Step Optimization for LLM Agents",
+            "url": "https://arxiv.org/html/2602.03412"
+          },
+          {
+            "title": "[2602.03412] Verified Critical Step Optimization for LLM Agents",
+            "url": "https://arxiv.org/abs/2602.03412"
+          },
+          {
+            "title": "Verified Critical Step Optimization for LLM Agents Mukai Li†,1,2",
+            "url": "https://arxiv.org/pdf/2602.03412"
+          },
+          {
+            "title": "Verified Critical Step Optimization for LLM Agents Anonymous ACL submission",
+            "url": "https://openreview.net/attachment?id=bwd1ykqifH&name=pdf"
+          },
+          {
+            "title": "Post-Training in 2026: GRPO, DAPO, RLVR & Beyond",
+            "url": "https://llm-stats.com/blog/research/post-training-techniques-2026"
+          },
+          {
+            "title": "Evaluating DPO and its Variants Across Multiple Tasks",
+            "url": "https://aclanthology.org/2025.acl-srw.26.pdf"
+          },
+          {
+            "title": "ScoreFlow: Mastering LLM Agent Workflows via Score- ...",
+            "url": "https://i-newcar.com/uploads/allimg/20250221/2-2502211GH2A1.pdf"
+          },
+          {
+            "title": "Prior Prejudice: LLM Judges Are Biased by Their Own Beliefs · ACL 2026 Findings",
+            "url": "https://uiuc-conversational-ai-lab.github.io/prior-prejudice/"
+          },
+          {
+            "title": "LLMOrbit: A Circular Taxonomy of Large Language Models",
+            "url": "https://arxiv.org/pdf/2601.14053"
+          },
+          {
+            "title": "Direct Multi-Turn Preference Optimization for Language ...",
+            "url": "https://aclanthology.org/2024.emnlp-main.138.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found information about \"Verified Critical Step Optimization for LLM Agents.\" Here's what the research covers:\n\n## Overview\n\nThe Critical Step Optimization (CSO) framework formalizes agentic decision-making as ReAct trajectories and identifies verified critical steps in failed policy trajectories where alternative actions can flip task outcomes, constructing fine-grained preference pairs from these verified critical steps for targeted DPO training.\n\n## Key Approach\n\nCSO offers an orthogonal offline approach by focusing exclusively on outcome-verified critical steps, naturally achieving precise credit assignment with minimal step-level supervision. The method uses a process reward model (PRM) to identify candidate critical steps, leverages expert models to propose high-quality alternatives, then continues execution from these alternatives using the policy model itself until task completion. Only alternatives that the policy successfully executes to correct outcomes are verified and used as DPO training data, ensuring both quality and policy reachability, yielding fine-grained, verifiable supervision at critical decisions while avoiding trajectory-level coarseness and step-level noise.\n\n## Results\n\nCSO achieves 37% and 26% relative improvement over the SFT baseline on GAIA-Text-103 and XBench-DeepSearch respectively, while requiring supervision at only 16% of trajectory steps.\n\nThe work appears to be submitted to ACL 2026 as indicated in the search results."
+    ],
+    "durationSeconds": 7.905470352000004
+  },
+  "sourceToolAssistantUUID": "138f9b1e-320c-4ae3-a442-8a67976516c8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-10T18:03:07.449Z_
+
+Good, key references are verified. Now let me search for competing work the generator may have missed, and verify the self-supervised reversibility estimation approach for text-based environments.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2deb6d66-15f6-4c23-a4f2-ee08e57d56d6",
+  "isSidechain": false,
+  "requestId": "req_011CauKzUrTddJyZscs3qMqA",
+  "type": "assistant",
+  "uuid": "1c27207b-43df-400d-9396-c645c3a52e93",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GGjFRXpBBawy3PgWXFxHmL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 902,
+      "cache_read_input_tokens": 30763,
+      "output_tokens": 107,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 902,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 107,
+          "cache_read_input_tokens": 30763,
+          "cache_creation_input_tokens": 902,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 902
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-10T18:03:08.081Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013xJrAucNPCEDJVkKMBDsaU`</summary>
+
+```json
+{
+  "query": "irreversibility LLM agent training reversible actions policy optimization 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1c27207b-43df-400d-9396-c645c3a52e93",
+  "isSidechain": false,
+  "requestId": "req_011CauKzUrTddJyZscs3qMqA",
+  "type": "assistant",
+  "uuid": "9b6b6ac8-58df-4e1b-a1e6-fb0c61baa5c0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GGjFRXpBBawy3PgWXFxHmL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 902,
+      "cache_read_input_tokens": 30763,
+      "output_tokens": 107,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 902,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 107,
+          "cache_read_input_tokens": 30763,
+          "cache_creation_input_tokens": 902,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 902
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-10T18:03:22.974Z_
+
+<details><summary>↩ Tool result · `toolu_013xJrAucNPCEDJVkKMBDsaU`</summary>
+
+```text
+Web search results for query: "irreversibility LLM agent training reversible actions policy optimization 2025 2026"
+
+Links: [{"title":"StepPO: Step-Aligned Policy Optimization for Agentic Reinforcement Learning","url":"https://arxiv.org/html/2604.18401v1"},{"title":"GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub","url":"https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"},{"title":"Reinforcing LLM Agents via Policy Optimization with Action Decomposition | OpenReview","url":"https://openreview.net/forum?id=Hz6cSigMyU"},{"title":"Stabilizing Off-Policy Training for Long-Horizon LLM Agent via Turn-Level Importance Sampling and Clipping-Triggered Normalization","url":"https://arxiv.org/html/2511.20718v2"},{"title":"A Survey on the Optimization of Large Language Model-based Agents","url":"https://arxiv.org/html/2503.12434v2"},{"title":"A Brief Overview: Agentic Reinforcement Learning In Large Language Models","url":"https://arxiv.org/html/2604.27859"},{"title":"[2509.22576] EPO: Entropy-regularized Policy Optimization for LLM Agents Reinforcement Learning","url":"https://arxiv.org/abs/2509.22576"},{"title":"EPO: Entropy-regularized Policy Optimization for LLM Agents Reinforcement Learning","url":"https://arxiv.org/html/2509.22576v1"},{"title":"Agentic Reinforced Policy Optimization | Request PDF","url":"https://www.researchgate.net/publication/394081444_Agentic_Reinforced_Policy_Optimization"},{"title":"HIERARCHY-OF-GROUPS POLICY OPTIMIZATION FOR ...","url":"https://openreview.net/pdf?id=T8Dev99qnz"}]
+
+Based on the search results, here are the key findings on irreversibility, LLM agent training, reversible actions, and policy optimization in 2025-2026:
+
+## Irreversibility and Reversibility in Agent Training
+
+A critical issue identified in recent research is that the mapping from tokens to text and back to tokens is not reversible in general, which can cause retokenization drift, breaking rollout-training consistency and destabilizing step-aligned learning. This irreversibility problem is directly addressed in the StepPO framework.
+
+## Recent Policy Optimization Approaches
+
+Several novel policy optimization methods have emerged for LLM agent training:
+
+1. **StepPO (2025)**: This approach argues that Agentic RL should move from token-level MDP to step-level MDP, where each complete interaction round, rather than each token, forms the proper transition unit and the step becomes the right action representation for LLM agents.
+
+2. **SORL (2026)**: A framework that addresses two fundamental sources of instability: (1) a granularity mismatch between token-level policy optimization and turn-structured interactions, and (2) high-variance and unreliable gradient updates induced by off-policy importance sampling and inaccurate advantage estimation.
+
+3. **EPO (2025-2026)**: This framework addresses the challenge of training LLM agents in multi-turn environments with sparse rewards, where completing a single task requires 30+ turns, and identifies a critical failure mode: the exploration-exploitation cascade failure.
+
+These recent developments focus on improving credit assignment and addressing irreversibility issues in multi-turn agent training scenarios.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9b6b6ac8-58df-4e1b-a1e6-fb0c61baa5c0",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "991385dc-d337-4f43-9f4a-2b5dbdb26adf",
+  "toolUseResult": {
+    "query": "irreversibility LLM agent training reversible actions policy optimization 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01G8NrbSNGLeSUkr6oZfDPAe",
+        "content": [
+          {
+            "title": "StepPO: Step-Aligned Policy Optimization for Agentic Reinforcement Learning",
+            "url": "https://arxiv.org/html/2604.18401v1"
+          },
+          {
+            "title": "GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub",
+            "url": "https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"
+          },
+          {
+            "title": "Reinforcing LLM Agents via Policy Optimization with Action Decomposition | OpenReview",
+            "url": "https://openreview.net/forum?id=Hz6cSigMyU"
+          },
+          {
+            "title": "Stabilizing Off-Policy Training for Long-Horizon LLM Agent via Turn-Level Importance Sampling and Clipping-Triggered Normalization",
+            "url": "https://arxiv.org/html/2511.20718v2"
+          },
+          {
+            "title": "A Survey on the Optimization of Large Language Model-based Agents",
+            "url": "https://arxiv.org/html/2503.12434v2"
+          },
+          {
+            "title": "A Brief Overview: Agentic Reinforcement Learning In Large Language Models",
+            "url": "https://arxiv.org/html/2604.27859"
+          },
+          {
+            "title": "[2509.22576] EPO: Entropy-regularized Policy Optimization for LLM Agents Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2509.22576"
+          },
+          {
+            "title": "EPO: Entropy-regularized Policy Optimization for LLM Agents Reinforcement Learning",
+            "url": "https://arxiv.org/html/2509.22576v1"
+          },
+          {
+            "title": "Agentic Reinforced Policy Optimization | Request PDF",
+            "url": "https://www.researchgate.net/publication/394081444_Agentic_Reinforced_Policy_Optimization"
+          },
+          {
+            "title": "HIERARCHY-OF-GROUPS POLICY OPTIMIZATION FOR ...",
+            "url": "https://openreview.net/pdf?id=T8Dev99qnz"
+          }
+        ]
+      },
+      "Based on the search results, here are the key findings on irreversibility, LLM agent training, reversible actions, and policy optimization in 2025-2026:\n\n## Irreversibility and Reversibility in Agent Training\n\nA critical issue identified in recent research is that the mapping from tokens to text and back to tokens is not reversible in general, which can cause retokenization drift, breaking rollout-training consistency and destabilizing step-aligned learning. This irreversibility problem is directly addressed in the StepPO framework.\n\n## Recent Policy Optimization Approaches\n\nSeveral novel policy optimization methods have emerged for LLM agent training:\n\n1. **StepPO (2025)**: This approach argues that Agentic RL should move from token-level MDP to step-level MDP, where each complete interaction round, rather than each token, forms the proper transition unit and the step becomes the right action representation for LLM agents.\n\n2. **SORL (2026)**: A framework that addresses two fundamental sources of instability: (1) a granularity mismatch between token-level policy optimization and turn-structured interactions, and (2) high-variance and unreliable gradient updates induced by off-policy importance sampling and inaccurate advantage estimation.\n\n3. **EPO (2025-2026)**: This framework addresses the challenge of training LLM agents in multi-turn environments with sparse rewards, where completing a single task requires 30+ turns, and identifies a critical failure mode: the exploration-exploitation cascade failure.\n\nThese recent developments focus on improving credit assignment and addressing irreversibility issues in multi-turn agent training scenarios."
+    ],
+    "durationSeconds": 14.889239587000004
+  },
+  "sourceToolAssistantUUID": "9b6b6ac8-58df-4e1b-a1e6-fb0c61baa5c0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-10T18:03:25.397Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PRJp4WGcKbbmEBakQyQspV`</summary>
+
+```json
+{
+  "query": "HCAPO \"Hindsight Credit Assignment\" long-horizon LLM agents GRPO 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "991385dc-d337-4f43-9f4a-2b5dbdb26adf",
+  "isSidechain": false,
+  "requestId": "req_011CauL1vdGzCo9fH8Gn11ng",
+  "type": "assistant",
+  "uuid": "8cf43c2f-f65a-45a1-835f-3eb6218c3ca2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LdgEqhjKRG9nXhL249xiQJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1011,
+      "cache_read_input_tokens": 31665,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1011,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 31665,
+          "cache_creation_input_tokens": 1011,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1011
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-10T18:03:31.169Z_
+
+<details><summary>↩ Tool result · `toolu_01PRJp4WGcKbbmEBakQyQspV`</summary>
+
+```text
+Web search results for query: "HCAPO "Hindsight Credit Assignment" long-horizon LLM agents GRPO 2026"
+
+Links: [{"title":"[2603.08754] Hindsight Credit Assignment for Long-Horizon LLM Agents","url":"https://arxiv.org/abs/2603.08754"},{"title":"Hindsight Credit Assignment for Long-Horizon LLM Agents - ADS","url":"https://ui.adsabs.harvard.edu/abs/2026arXiv260308754T/abstract"},{"title":"Hindsight Credit Assignment for Long-Horizon LLM Agents","url":"https://arxiv.org/html/2603.08754v1"},{"title":"Paper page - Hindsight Credit Assignment for Long-Horizon LLM Agents","url":"https://huggingface.co/papers/2603.08754"},{"title":"[Literature Review] Hindsight Credit Assignment for Long-Horizon LLM Agents","url":"https://www.themoonlight.io/en/review/hindsight-credit-assignment-for-long-horizon-llm-agents"},{"title":"From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models","url":"https://arxiv.org/html/2604.09459"},{"title":"GitHub - xxzcc/Awesome-Credit-Assignment-in-LLM-RL · GitHub","url":"https://github.com/xxzcc/Awesome-Credit-Assignment-in-LLM-RL"},{"title":"Daily Papers - Hugging Face","url":"https://huggingface.co/papers?q=value+agents"},{"title":"Hindsight Credit Assignment for Long-Horizon LLM Agents – Own Your AI","url":"https://ownyourai.com/hindsight-credit-assignment-for-long-horizon-llm-agents/"},{"title":"Hindsight Credit Assignment for Long-Horizon LLM Agents | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/arxiv/2603.08754"}]
+
+I found comprehensive information about HCAPO (Hindsight Credit Assignment Policy Optimization). Here's a summary of the research:
+
+## Overview
+
+HCAPO is the first framework to integrate hindsight credit assignment into LLM agents. LLM agents often face significant credit assignment challenges in long-horizon, multi-step tasks due to sparse rewards, and existing value-free methods like Group Relative Policy Optimization (GRPO) encounter two fundamental bottlenecks: inaccurate step-level Q-value estimation and misaligned value baselines for intermediate states.
+
+## Core Mechanism
+
+HCAPO leverages the LLM itself as a post-hoc critic to refine step-level Q-values through hindsight reasoning. HCAPO's multi-scale advantage mechanism effectively supplements the inaccurate value baselines at critical decision states.
+
+## Performance Results
+
+HCAPO achieves a 7.7% improvement in success rate on WebShop and a 13.8% on ALFWorld over GRPO using the Qwen2.5-7B-Instruct model. These results indicate that HCAPO significantly enhances exploration efficiency, promotes concise decision-making, and ensures scalability in complex, long-horizon tasks.
+
+## Publication
+
+The paper was submitted on March 7, 2026. Three independent papers on counterfactual/hindsight credit appeared within a single week in March 2026, suggesting growing community interest in this problem.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8cf43c2f-f65a-45a1-835f-3eb6218c3ca2",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "67c11ef2-3d15-4b1b-a3ea-7ca18a5679d3",
+  "toolUseResult": {
+    "query": "HCAPO \"Hindsight Credit Assignment\" long-horizon LLM agents GRPO 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QcPkESGetiNzLUvU5DXGPw",
+        "content": [
+          {
+            "title": "[2603.08754] Hindsight Credit Assignment for Long-Horizon LLM Agents",
+            "url": "https://arxiv.org/abs/2603.08754"
+          },
+          {
+            "title": "Hindsight Credit Assignment for Long-Horizon LLM Agents - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2026arXiv260308754T/abstract"
+          },
+          {
+            "title": "Hindsight Credit Assignment for Long-Horizon LLM Agents",
+            "url": "https://arxiv.org/html/2603.08754v1"
+          },
+          {
+            "title": "Paper page - Hindsight Credit Assignment for Long-Horizon LLM Agents",
+            "url": "https://huggingface.co/papers/2603.08754"
+          },
+          {
+            "title": "[Literature Review] Hindsight Credit Assignment for Long-Horizon LLM Agents",
+            "url": "https://www.themoonlight.io/en/review/hindsight-credit-assignment-for-long-horizon-llm-agents"
+          },
+          {
+            "title": "From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models",
+            "url": "https://arxiv.org/html/2604.09459"
+          },
+          {
+            "title": "GitHub - xxzcc/Awesome-Credit-Assignment-in-LLM-RL · GitHub",
+            "url": "https://github.com/xxzcc/Awesome-Credit-Assignment-in-LLM-RL"
+          },
+          {
+            "title": "Daily Papers - Hugging Face",
+            "url": "https://huggingface.co/papers?q=value+agents"
+          },
+          {
+            "title": "Hindsight Credit Assignment for Long-Horizon LLM Agents – Own Your AI",
+            "url": "https://ownyourai.com/hindsight-credit-assignment-for-long-horizon-llm-agents/"
+          },
+          {
+            "title": "Hindsight Credit Assignment for Long-Horizon LLM Agents | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/arxiv/2603.08754"
+          }
+        ]
+      },
+      "I found comprehensive information about HCAPO (Hindsight Credit Assignment Policy Optimization). Here's a summary of the research:\n\n## Overview\n\nHCAPO is the first framework to integrate hindsight credit assignment into LLM agents. LLM agents often face significant credit assignment challenges in long-horizon, multi-step tasks due to sparse rewards, and existing value-free methods like Group Relative Policy Optimization (GRPO) encounter two fundamental bottlenecks: inaccurate step-level Q-value estimation and misaligned value baselines for intermediate states.\n\n## Core Mechanism\n\nHCAPO leverages the LLM itself as a post-hoc critic to refine step-level Q-values through hindsight reasoning. HCAPO's multi-scale advantage mechanism effectively supplements the inaccurate value baselines at critical decision states.\n\n## Performance Results\n\nHCAPO achieves a 7.7% improvement in success rate on WebShop and a 13.8% on ALFWorld over GRPO using the Qwen2.5-7B-Instruct model. These results indicate that HCAPO significantly enhances exploration efficiency, promotes concise decision-making, and ensures scalability in complex, long-horizon tasks.\n\n## Publication\n\nThe paper was submitted on March 7, 2026. Three independent papers on counterfactual/hindsight credit appeared within a single week in March 2026, suggesting growing community interest in this problem."
+    ],
+    "durationSeconds": 5.768758767000007
+  },
+  "sourceToolAssistantUUID": "8cf43c2f-f65a-45a1-835f-3eb6218c3ca2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29 · 2026-05-10T18:03:31.173Z_
+
+```json
+{
+  "parentUuid": "67c11ef2-3d15-4b1b-a3ea-7ca18a5679d3",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "55128f26-7118-49f0-bbef-95851788b44b",
+  "timestamp": "2026-05-10T18:03:31.173Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-10T18:03:33.605Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01S5fNPvf765USJJUTPmiv9q`</summary>
+
+```json
+{
+  "query": "reversibility estimation text-based environments embedding similarity state return LLM 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "55128f26-7118-49f0-bbef-95851788b44b",
+  "isSidechain": false,
+  "requestId": "req_011CauL2XhfR126h1AUyJ7dC",
+  "type": "assistant",
+  "uuid": "6d71ddf6-dc94-427e-b017-fe90e9c9f68b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015AFAvrEFNBpsyhm4WMsVYG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1051,
+      "cache_read_input_tokens": 32676,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1051,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 32676,
+          "cache_creation_input_tokens": 1051,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1051
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-10T18:03:41.467Z_
+
+<details><summary>↩ Tool result · `toolu_01S5fNPvf765USJJUTPmiv9q`</summary>
+
+```text
+Web search results for query: "reversibility estimation text-based environments embedding similarity state return LLM 2025 2026"
+
+Links: [{"title":"Embedding-based In-Context Prompt Training for Enhancing LLMs as Text Encoders","url":"https://arxiv.org/html/2605.01372"},{"title":"DataTechNotes: Semantic Text Similarity with LLM Embeddings in Python","url":"https://www.datatechnotes.com/2026/04/semantic-text-similarity-with-llm.html"},{"title":"On the Theoretical Limitations of Embedding-Based Retrieval","url":"https://arxiv.org/pdf/2508.21038"},{"title":"Published as a conference paper at ICLR 2024","url":"https://arxiv.org/pdf/2308.08241"},{"title":"Depth Gives a False Sense of Privacy: LLM Internal States ...","url":"https://www.usenix.org/system/files/usenixsecurity25-dong-tian.pdf"},{"title":"Qwen3 Embedding: Advancing Text ...","url":"https://arxiv.org/pdf/2506.05176"},{"title":"Why Large Language Models can Secretly Outperform Embedding Similarity in Information Retrieval","url":"https://arxiv.org/html/2603.08077"},{"title":"The State of Embedding Technologies for Large Language Models — Trends, Taxonomies, Benchmarks, and Future Directions. | by Adnan Masood, PhD. | Medium","url":"https://medium.com/@adnanmasood/the-state-of-embedding-technologies-for-large-language-models-trends-taxonomies-benchmarks-and-95e5ec303f67"},{"title":"LLM Research Papers: The 2025 List (July to December)","url":"https://magazine.sebastianraschka.com/p/llm-research-papers-2025-part2"},{"title":"Interpretable Text Embeddings and Text Similarity ...","url":"https://aclanthology.org/2025.emnlp-main.1135.pdf"}]
+
+I've completed the web search for your query about reversibility estimation, text-based environments, embedding similarity, state return, and LLMs in 2025-2026.
+
+The search results show several relevant research areas but don't appear to contain a specific paper directly focused on all those exact topics together. However, the results reveal some related work:
+
+1. **LLM Embeddings and Text Similarity**: Advances in 2025 driven by LLMs and benchmarks show transformer-based and instruction-tuned embeddings achieving top performance.
+
+2. **Embedding-Based Retrieval Limitations**: Research shows that models severely struggle with embedding-based retrieval tasks even when they are trivially simple, with models struggling to reach even 20% recall@100 in full settings.
+
+3. **LLM-Based Relevance Judgment Systems**: Recent work explores systems that use LLMs' verbalized relevance scores for matching (LLM-Based Relevance Judgment Systems), which have been shown to be effective.
+
+4. **Interpretable Text Embeddings**: A 2025 survey on interpretable text embeddings and text similarity explanation was published at EMNLP 2025.
+
+If you're looking for a specific paper on reversibility estimation in text-based environments, you might want to try a more targeted search with different keywords or check recent arxiv submissions directly.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6d71ddf6-dc94-427e-b017-fe90e9c9f68b",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "4da4eddd-7ee8-440b-afab-bc6d799e41aa",
+  "toolUseResult": {
+    "query": "reversibility estimation text-based environments embedding similarity state return LLM 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01YSA52KaxqdruGGooWHLYKZ",
+        "content": [
+          {
+            "title": "Embedding-based In-Context Prompt Training for Enhancing LLMs as Text Encoders",
+            "url": "https://arxiv.org/html/2605.01372"
+          },
+          {
+            "title": "DataTechNotes: Semantic Text Similarity with LLM Embeddings in Python",
+            "url": "https://www.datatechnotes.com/2026/04/semantic-text-similarity-with-llm.html"
+          },
+          {
+            "title": "On the Theoretical Limitations of Embedding-Based Retrieval",
+            "url": "https://arxiv.org/pdf/2508.21038"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2024",
+            "url": "https://arxiv.org/pdf/2308.08241"
+          },
+          {
+            "title": "Depth Gives a False Sense of Privacy: LLM Internal States ...",
+            "url": "https://www.usenix.org/system/files/usenixsecurity25-dong-tian.pdf"
+          },
+          {
+            "title": "Qwen3 Embedding: Advancing Text ...",
+            "url": "https://arxiv.org/pdf/2506.05176"
+          },
+          {
+            "title": "Why Large Language Models can Secretly Outperform Embedding Similarity in Information Retrieval",
+            "url": "https://arxiv.org/html/2603.08077"
+          },
+          {
+            "title": "The State of Embedding Technologies for Large Language Models — Trends, Taxonomies, Benchmarks, and Future Directions. | by Adnan Masood, PhD. | Medium",
+            "url": "https://medium.com/@adnanmasood/the-state-of-embedding-technologies-for-large-language-models-trends-taxonomies-benchmarks-and-95e5ec303f67"
+          },
+          {
+            "title": "LLM Research Papers: The 2025 List (July to December)",
+            "url": "https://magazine.sebastianraschka.com/p/llm-research-papers-2025-part2"
+          },
+          {
+            "title": "Interpretable Text Embeddings and Text Similarity ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.1135.pdf"
+          }
+        ]
+      },
+      "I've completed the web search for your query about reversibility estimation, text-based environments, embedding similarity, state return, and LLMs in 2025-2026.\n\nThe search results show several relevant research areas but don't appear to contain a specific paper directly focused on all those exact topics together. However, the results reveal some related work:\n\n1. **LLM Embeddings and Text Similarity**: Advances in 2025 driven by LLMs and benchmarks show transformer-based and instruction-tuned embeddings achieving top performance.\n\n2. **Embedding-Based Retrieval Limitations**: Research shows that models severely struggle with embedding-based retrieval tasks even when they are trivially simple, with models struggling to reach even 20% recall@100 in full settings.\n\n3. **LLM-Based Relevance Judgment Systems**: Recent work explores systems that use LLMs' verbalized relevance scores for matching (LLM-Based Relevance Judgment Systems), which have been shown to be effective.\n\n4. **Interpretable Text Embeddings**: A 2025 survey on interpretable text embeddings and text similarity explanation was published at EMNLP 2025.\n\nIf you're looking for a specific paper on reversibility estimation in text-based environments, you might want to try a more targeted search with different keywords or check recent arxiv submissions directly."
+    ],
+    "durationSeconds": 7.855603857999988
+  },
+  "sourceToolAssistantUUID": "6d71ddf6-dc94-427e-b017-fe90e9c9f68b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "4da4eddd-7ee8-440b-afab-bc6d799e41aa",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of Irreversibility-Aware Advantage Weighting for Agent RL",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2"
+}
+```
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-10T18:03:44.027Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BeJeUDtScoQvS4tLGffFp9`</summary>
+
+```json
+{
+  "query": "MOSAIC irreversibility score agent safety 2026 OR Zora irreversibility LLM agent 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4da4eddd-7ee8-440b-afab-bc6d799e41aa",
+  "isSidechain": false,
+  "requestId": "req_011CauL3Hi53DiEZ9iAPDdL8",
+  "type": "assistant",
+  "uuid": "564041fc-2230-4713-b814-3dd327aad2e0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TPvq3rsRzPaQqi8UUabhPJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 917,
+      "cache_read_input_tokens": 33727,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 917,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 33727,
+          "cache_creation_input_tokens": 917,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 917
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-10T18:03:52.313Z_
+
+<details><summary>↩ Tool result · `toolu_01BeJeUDtScoQvS4tLGffFp9`</summary>
+
+```text
+Web search results for query: "MOSAIC irreversibility score agent safety 2026 OR Zora irreversibility LLM agent 2026"
+
+Links: [{"title":"Zora AI Agent Launches with Compaction-Proof Memory After OpenClaw Email Deletion Incident — clawbot.blog","url":"https://www.clawbot.blog/blog/zora-ai-agent-launches-with-compaction-proof-memory-after-openclaw-email-deletio/"},{"title":"Published at ICLR 2026 Workshop on Agents in the Wild","url":"https://openreview.net/attachment?id=LBt5eX6OKx&name=pdf"},{"title":"GitHub - tmgthb/Autonomous-Agents: Autonomous Agents (LLMs) research papers. Updated Daily. · GitHub","url":"https://github.com/tmgthb/Autonomous-Agents"},{"title":"Show HN: Zora, AI agent with compaction-proof memory and a runtime safety layer | Hacker News","url":"https://news.ycombinator.com/item?id=47425436"},{"title":"What are LLM Security Risks and Mitigation Plan for 2026","url":"https://www.uscsinstitute.org/cybersecurity-insights/blog/what-are-llm-security-risks-and-mitigation-plan-for-2026"},{"title":"LLM Security Risks in 2026: Prompt Injection, RAG, and Shadow AI","url":"https://sombrainc.com/blog/llm-security-risks-2026"},{"title":"Evaluation and Benchmarking of LLM Agents: A Survey","url":"https://arxiv.org/html/2507.21504v1"},{"title":"[2605.06161] Beyond Accuracy: Policy Invariance as a Reliability Test for LLM Safety Judges","url":"https://arxiv.org/abs/2605.06161"},{"title":"2025 AI Safety Index - Future of Life Institute","url":"https://futureoflife.org/ai-safety-index-summer-2025/"},{"title":"AI Agents Care Less About Safety When Under Pressure - IEEE Spectrum","url":"https://spectrum.ieee.org/ai-agents-safety"}]
+
+Based on the search results, here's what I found about your query:
+
+## Zora - Irreversibility Score and LLM Agent Safety (2026)
+
+Zora is a new AI agent framework designed specifically to prevent the context compaction failures that led to OpenClaw deleting 200+ of Summer Yue's emails at Meta. The framework includes a runtime safety mechanism focused on irreversibility scoring.
+
+Zora assigns every potential tool call an irreversibility score from 0 to 100 before execution. Sending a message scores low, perhaps 10. Deleting a file scores high, perhaps 85. Transferring cryptocurrency scores near 100. This scoring happens in the PolicyEngine based on tool definitions in your policy file.
+
+The framework also introduces a runtime safety layer that scores every tool call for irreversibility and routes high-risk actions to your phone for approval via Signal or Telegram.
+
+## MOSAIC-Bench
+
+The search results show that MOSAIC-Bench introduces a benchmark for evaluating how coding agents induce security vulnerabilities through multi-stage, innocuous-looking engineering tickets that bypass standard safety reflexes. However, the search results do not contain detailed information specifically linking MOSAIC to an "irreversibility score" concept in the same way as Zora's framework.
+
+Both appear to be 2026 developments addressing agent safety, though they approach the problem from different angles—Zora through runtime scoring and policy enforcement, and MOSAIC-Bench through vulnerability evaluation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "564041fc-2230-4713-b814-3dd327aad2e0",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "5e9a9d88-a0e2-4e10-a030-ec947885dd82",
+  "toolUseResult": {
+    "query": "MOSAIC irreversibility score agent safety 2026 OR Zora irreversibility LLM agent 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JK1vK1WdhJhKxu62CUq2f5",
+        "content": [
+          {
+            "title": "Zora AI Agent Launches with Compaction-Proof Memory After OpenClaw Email Deletion Incident — clawbot.blog",
+            "url": "https://www.clawbot.blog/blog/zora-ai-agent-launches-with-compaction-proof-memory-after-openclaw-email-deletio/"
+          },
+          {
+            "title": "Published at ICLR 2026 Workshop on Agents in the Wild",
+            "url": "https://openreview.net/attachment?id=LBt5eX6OKx&name=pdf"
+          },
+          {
+            "title": "GitHub - tmgthb/Autonomous-Agents: Autonomous Agents (LLMs) research papers. Updated Daily. · GitHub",
+            "url": "https://github.com/tmgthb/Autonomous-Agents"
+          },
+          {
+            "title": "Show HN: Zora, AI agent with compaction-proof memory and a runtime safety layer | Hacker News",
+            "url": "https://news.ycombinator.com/item?id=47425436"
+          },
+          {
+            "title": "What are LLM Security Risks and Mitigation Plan for 2026",
+            "url": "https://www.uscsinstitute.org/cybersecurity-insights/blog/what-are-llm-security-risks-and-mitigation-plan-for-2026"
+          },
+          {
+            "title": "LLM Security Risks in 2026: Prompt Injection, RAG, and Shadow AI",
+            "url": "https://sombrainc.com/blog/llm-security-risks-2026"
+          },
+          {
+            "title": "Evaluation and Benchmarking of LLM Agents: A Survey",
+            "url": "https://arxiv.org/html/2507.21504v1"
+          },
+          {
+            "title": "[2605.06161] Beyond Accuracy: Policy Invariance as a Reliability Test for LLM Safety Judges",
+            "url": "https://arxiv.org/abs/2605.06161"
+          },
+          {
+            "title": "2025 AI Safety Index - Future of Life Institute",
+            "url": "https://futureoflife.org/ai-safety-index-summer-2025/"
+          },
+          {
+            "title": "AI Agents Care Less About Safety When Under Pressure - IEEE Spectrum",
+            "url": "https://spectrum.ieee.org/ai-agents-safety"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about your query:\n\n## Zora - Irreversibility Score and LLM Agent Safety (2026)\n\nZora is a new AI agent framework designed specifically to prevent the context compaction failures that led to OpenClaw deleting 200+ of Summer Yue's emails at Meta. The framework includes a runtime safety mechanism focused on irreversibility scoring.\n\nZora assigns every potential tool call an irreversibility score from 0 to 100 before execution. Sending a message scores low, perhaps 10. Deleting a file scores high, perhaps 85. Transferring cryptocurrency scores near 100. This scoring happens in the PolicyEngine based on tool definitions in your policy file.\n\nThe framework also introduces a runtime safety layer that scores every tool call for irreversibility and routes high-risk actions to your phone for approval via Signal or Telegram.\n\n## MOSAIC-Bench\n\nThe search results show that MOSAIC-Bench introduces a benchmark for evaluating how coding agents induce security vulnerabilities through multi-stage, innocuous-looking engineering tickets that bypass standard safety reflexes. However, the search results do not contain detailed information specifically linking MOSAIC to an \"irreversibility score\" concept in the same way as Zora's framework.\n\nBoth appear to be 2026 developments addressing agent safety, though they approach the problem from different angles—Zora through runtime scoring and policy enforcement, and MOSAIC-Bench through vulnerability evaluation."
+    ],
+    "durationSeconds": 8.281679390000004
+  },
+  "sourceToolAssistantUUID": "564041fc-2230-4713-b814-3dd327aad2e0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-10T18:03:54.269Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019NwQAExWC1cNr5xKp5D3m3`</summary>
+
+```json
+{
+  "query": "action reversibility advantage weighting reinforcement learning LLM agent commitment point site:arxiv.org 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5e9a9d88-a0e2-4e10-a030-ec947885dd82",
+  "isSidechain": false,
+  "requestId": "req_011CauL464NJYuB92eBzqxjo",
+  "type": "assistant",
+  "uuid": "01808144-5f5d-4c8d-a0a5-b73331898003",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A3gB8cB7LEv4FBHRYnZmCA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 987,
+      "cache_read_input_tokens": 34644,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 987,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 34644,
+          "cache_creation_input_tokens": 987,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 987
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-10T18:04:00.661Z_
+
+<details><summary>↩ Tool result · `toolu_019NwQAExWC1cNr5xKp5D3m3`</summary>
+
+```text
+Web search results for query: "action reversibility advantage weighting reinforcement learning LLM agent commitment point site:arxiv.org 2026"
+
+Links: [{"title":"Tree Search for LLM Agent Reinforcement Learning","url":"https://arxiv.org/pdf/2509.21240"},{"title":"Agent-R1: Training Powerful LLM Agents with End-to-End Reinforcement Learning","url":"https://arxiv.org/html/2511.14460"},{"title":"Published as a conference paper at ICLR 2026 BENEFITS AND PITFALLS OF","url":"https://arxiv.org/pdf/2509.22613"},{"title":"Reinforcement Learning for Long-Horizon Interactive LLM Agents","url":"https://arxiv.org/pdf/2502.01600"},{"title":"Hindsight Credit Assignment for Long-Horizon LLM Agents","url":"https://arxiv.org/pdf/2603.08754"},{"title":"LLM Collaboration With Multi-Agent Reinforcement Learning","url":"https://arxiv.org/html/2508.04652v1"},{"title":"[2603.08754] Hindsight Credit Assignment for Long-Horizon LLM Agents","url":"https://arxiv.org/abs/2603.08754"},{"title":"Efficient Reinforcement Learning for LLM Reasoning via ...","url":"https://www.arxiv.org/pdf/2506.02177"},{"title":"Agent Q-Mix: Selecting the Right Action for LLM Multi-Agent Systems through Reinforcement Learning","url":"https://arxiv.org/html/2604.00344"},{"title":"Rethinking Agentic Reinforcement Learning In Large Language Models","url":"https://arxiv.org/html/2604.27859v1"}]
+
+I found several recent papers on arxiv.org related to reinforcement learning for LLM agents from 2026, but the search results don't contain specific information matching all the terms in your query (particularly "action reversibility advantage weighting" and "commitment point" together). 
+
+However, the search did return several highly relevant papers on reinforcement learning for LLM agents published in 2026:
+
+1. **Agent-R1** - Discusses how Large Language Models are being explored for building Agents capable of active environmental interaction, and how Reinforcement Learning is considered a key technology for training such Agents.
+
+2. **Reinforcement Learning for Long-Horizon Interactive LLM Agents** - Explores PPO gradients at the token level and discusses different importance weighting schemes (per-token, per-trajectory, and per-turn).
+
+3. **Hindsight Credit Assignment for Long-Horizon LLM Agents** - A paper from March 11, 2026 that addresses credit assignment problems in LLM RL.
+
+4. **Tree Search for LLM Agent Reinforcement Learning** - Discusses recent advances in RL for LLM alignment and reasoning.
+
+If you're looking for a specific paper with the exact concepts of "action reversibility advantage weighting" and "commitment points," it may be published under a different title or use alternative terminology. Would you like me to search with different keywords or look for more specific concepts?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "01808144-5f5d-4c8d-a0a5-b73331898003",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "04671e5d-6a5b-4e5f-b66d-dbf3c2794d61",
+  "toolUseResult": {
+    "query": "action reversibility advantage weighting reinforcement learning LLM agent commitment point site:arxiv.org 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PGBYK8jpRaA5XNBy1y9LFZ",
+        "content": [
+          {
+            "title": "Tree Search for LLM Agent Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2509.21240"
+          },
+          {
+            "title": "Agent-R1: Training Powerful LLM Agents with End-to-End Reinforcement Learning",
+            "url": "https://arxiv.org/html/2511.14460"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026 BENEFITS AND PITFALLS OF",
+            "url": "https://arxiv.org/pdf/2509.22613"
+          },
+          {
+            "title": "Reinforcement Learning for Long-Horizon Interactive LLM Agents",
+            "url": "https://arxiv.org/pdf/2502.01600"
+          },
+          {
+            "title": "Hindsight Credit Assignment for Long-Horizon LLM Agents",
+            "url": "https://arxiv.org/pdf/2603.08754"
+          },
+          {
+            "title": "LLM Collaboration With Multi-Agent Reinforcement Learning",
+            "url": "https://arxiv.org/html/2508.04652v1"
+          },
+          {
+            "title": "[2603.08754] Hindsight Credit Assignment for Long-Horizon LLM Agents",
+            "url": "https://arxiv.org/abs/2603.08754"
+          },
+          {
+            "title": "Efficient Reinforcement Learning for LLM Reasoning via ...",
+            "url": "https://www.arxiv.org/pdf/2506.02177"
+          },
+          {
+            "title": "Agent Q-Mix: Selecting the Right Action for LLM Multi-Agent Systems through Reinforcement Learning",
+            "url": "https://arxiv.org/html/2604.00344"
+          },
+          {
+            "title": "Rethinking Agentic Reinforcement Learning In Large Language Models",
+            "url": "https://arxiv.org/html/2604.27859v1"
+          }
+        ]
+      },
+      "I found several recent papers on arxiv.org related to reinforcement learning for LLM agents from 2026, but the search results don't contain specific information matching all the terms in your query (particularly \"action reversibility advantage weighting\" and \"commitment point\" together). \n\nHowever, the search did return several highly relevant papers on reinforcement learning for LLM agents published in 2026:\n\n1. **Agent-R1** - Discusses how Large Language Models are being explored for building Agents capable of active environmental interaction, and how Reinforcement Learning is considered a key technology for training such Agents.\n\n2. **Reinforcement Learning for Long-Horizon Interactive LLM Agents** - Explores PPO gradients at the token level and discusses different importance weighting schemes (per-token, per-trajectory, and per-turn).\n\n3. **Hindsight Credit Assignment for Long-Horizon LLM Agents** - A paper from March 11, 2026 that addresses credit assignment problems in LLM RL.\n\n4. **Tree Search for LLM Agent Reinforcement Learning** - Discusses recent advances in RL for LLM alignment and reasoning.\n\nIf you're looking for a specific paper with the exact concepts of \"action reversibility advantage weighting\" and \"commitment points,\" it may be published under a different title or use alternative terminology. Would you like me to search with different keywords or look for more specific concepts?"
+    ],
+    "durationSeconds": 6.387466031999996
+  },
+  "sourceToolAssistantUUID": "01808144-5f5d-4c8d-a0a5-b73331898003",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-10T18:04:03.130Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YEdzyAEE7FTmTHoPWDHDNS`</summary>
+
+```json
+{
+  "query": "StepPO step-level policy optimization agentic RL 2025 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "04671e5d-6a5b-4e5f-b66d-dbf3c2794d61",
+  "isSidechain": false,
+  "requestId": "req_011CauL4hiUsrDSpVVEaBHMZ",
+  "type": "assistant",
+  "uuid": "9a951c8b-ec02-4201-97c0-271d300bf944",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016BJuzprQxP8H5jtmP7iNvi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 854,
+      "cache_read_input_tokens": 35631,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 854,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 35631,
+          "cache_creation_input_tokens": 854,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 854
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-10T18:04:11.423Z_
+
+<details><summary>↩ Tool result · `toolu_01YEdzyAEE7FTmTHoPWDHDNS`</summary>
+
+```text
+Web search results for query: "StepPO step-level policy optimization agentic RL 2025 2026 arxiv"
+
+Links: [{"title":"[2604.18401] StepPO: Step-Aligned Policy Optimization for Agentic Reinforcement Learning","url":"https://arxiv.org/abs/2604.18401"},{"title":"StepPO: Step-Aligned Policy Optimization for Agentic Reinforcement Learning","url":"https://arxiv.org/html/2604.18401v1"},{"title":"RAPO: Expanding Exploration for LLM Agents via Retrieval-Augmented Policy Optimization","url":"https://arxiv.org/html/2603.03078"},{"title":"GitHub - RUC-NLPIR/ARPO: [ICLR 2026] Agentic Reinforced Policy Optimization (ARPO) · GitHub","url":"https://github.com/RUC-NLPIR/ARPO"},{"title":"DSPO: Stable and Efficient Policy Optimization for Agentic Search and Reasoning","url":"https://arxiv.org/html/2510.09255"},{"title":"[2602.22817v1] Hierarchy-of-Groups Policy Optimization for Long-Horizon Agentic Tasks","url":"https://arxiv.org/abs/2602.22817v1"},{"title":"Verified Critical Step Optimization for LLM Agents","url":"https://arxiv.org/html/2602.03412"},{"title":"GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub","url":"https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"},{"title":"[2604.27151] Step-level Optimization for Efficient Computer-use Agents","url":"https://arxiv.org/abs/2604.27151"},{"title":"Agentic Reinforced Policy Optimization | OpenReview","url":"https://openreview.net/forum?id=TX4k7BF6aO"}]
+
+Based on the search results, I found relevant information about StepPO and related work in agentic reinforcement learning:
+
+## StepPO: Step-Aligned Policy Optimization
+
+StepPO argues that the conventional token-level Markov Decision Process (MDP) should be advanced to a step-level MDP formulation, and that the step, rather than the token, should be regarded as the proper action representation for LLM agents. The approach proposes step-level credit assignment as the natural optimization counterpart of this formulation, thereby aligning policy optimization and reward propagation with the granularity of agent decisions.
+
+The paper was submitted to arXiv on April 20, 2026.
+
+### Context in Agentic RL
+
+Agentic Reinforcement Learning (RL) is emerging as a central post-training paradigm for empowering LLMs with agentic capabilities, targeting multi-turn interactive settings where the goal is to optimize core agentic capabilities such as decision making and tool use while addressing challenges including delayed and sparse rewards, as well as long and variable context.
+
+### Related Work
+
+The search also surfaced other recent step-level optimization approaches in agentic RL:
+
+- Group-based reinforcement learning (RL), such as GRPO, has advanced the capabilities of large language models on long-horizon agentic tasks, with recent research increasingly shifting toward stepwise group-based policy optimization.
+
+- ARPO (Agentic Reinforced Policy Optimization) is a novel agentic RL algorithm tailored for training multi-turn LLM-based agents.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9a951c8b-ec02-4201-97c0-271d300bf944",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "66ae80e5-94e4-409a-885e-90e93464b937",
+  "toolUseResult": {
+    "query": "StepPO step-level policy optimization agentic RL 2025 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FX37HzajbDd9AXnpTVPWBf",
+        "content": [
+          {
+            "title": "[2604.18401] StepPO: Step-Aligned Policy Optimization for Agentic Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2604.18401"
+          },
+          {
+            "title": "StepPO: Step-Aligned Policy Optimization for Agentic Reinforcement Learning",
+            "url": "https://arxiv.org/html/2604.18401v1"
+          },
+          {
+            "title": "RAPO: Expanding Exploration for LLM Agents via Retrieval-Augmented Policy Optimization",
+            "url": "https://arxiv.org/html/2603.03078"
+          },
+          {
+            "title": "GitHub - RUC-NLPIR/ARPO: [ICLR 2026] Agentic Reinforced Policy Optimization (ARPO) · GitHub",
+            "url": "https://github.com/RUC-NLPIR/ARPO"
+          },
+          {
+            "title": "DSPO: Stable and Efficient Policy Optimization for Agentic Search and Reasoning",
+            "url": "https://arxiv.org/html/2510.09255"
+          },
+          {
+            "title": "[2602.22817v1] Hierarchy-of-Groups Policy Optimization for Long-Horizon Agentic Tasks",
+            "url": "https://arxiv.org/abs/2602.22817v1"
+          },
+          {
+            "title": "Verified Critical Step Optimization for LLM Agents",
+            "url": "https://arxiv.org/html/2602.03412"
+          },
+          {
+            "title": "GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub",
+            "url": "https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"
+          },
+          {
+            "title": "[2604.27151] Step-level Optimization for Efficient Computer-use Agents",
+            "url": "https://arxiv.org/abs/2604.27151"
+          },
+          {
+            "title": "Agentic Reinforced Policy Optimization | OpenReview",
+            "url": "https://openreview.net/forum?id=TX4k7BF6aO"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about StepPO and related work in agentic reinforcement learning:\n\n## StepPO: Step-Aligned Policy Optimization\n\nStepPO argues that the conventional token-level Markov Decision Process (MDP) should be advanced to a step-level MDP formulation, and that the step, rather than the token, should be regarded as the proper action representation for LLM agents. The approach proposes step-level credit assignment as the natural optimization counterpart of this formulation, thereby aligning policy optimization and reward propagation with the granularity of agent decisions.\n\nThe paper was submitted to arXiv on April 20, 2026.\n\n### Context in Agentic RL\n\nAgentic Reinforcement Learning (RL) is emerging as a central post-training paradigm for empowering LLMs with agentic capabilities, targeting multi-turn interactive settings where the goal is to optimize core agentic capabilities such as decision making and tool use while addressing challenges including delayed and sparse rewards, as well as long and variable context.\n\n### Related Work\n\nThe search also surfaced other recent step-level optimization approaches in agentic RL:\n\n- Group-based reinforcement learning (RL), such as GRPO, has advanced the capabilities of large language models on long-horizon agentic tasks, with recent research increasingly shifting toward stepwise group-based policy optimization.\n\n- ARPO (Agentic Reinforced Policy Optimization) is a novel agentic RL algorithm tailored for training multi-turn LLM-based agents."
+    ],
+    "durationSeconds": 8.288726049999998
+  },
+  "sourceToolAssistantUUID": "9a951c8b-ec02-4201-97c0-271d300bf944",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-10T18:04:13.412Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UD9QQpwfkKchXDTAGytkVk`</summary>
+
+```json
+{
+  "query": "\"credit assignment\" \"step level\" \"action type\" OR \"action semantics\" OR \"action category\" reinforcement learning agent 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "66ae80e5-94e4-409a-885e-90e93464b937",
+  "isSidechain": false,
+  "requestId": "req_011CauL5VkRksME5rR6y88zg",
+  "type": "assistant",
+  "uuid": "55c138a8-cc9c-41bc-bf09-84630b9b4e63",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TvthiEPLmLGPzfyZYb5L9r",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 985,
+      "cache_read_input_tokens": 36485,
+      "output_tokens": 84,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 985,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 84,
+          "cache_read_input_tokens": 36485,
+          "cache_creation_input_tokens": 985,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 985
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-10T18:04:22.358Z_
+
+<details><summary>↩ Tool result · `toolu_01UD9QQpwfkKchXDTAGytkVk`</summary>
+
+```text
+Web search results for query: ""credit assignment" "step level" "action type" OR "action semantics" OR "action category" reinforcement learning agent 2025 2026"
+
+Links: [{"title":"From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models","url":"https://arxiv.org/html/2604.09459v1"},{"title":"RTMC: Step-Level Credit Assignment via Rollout Trees","url":"https://arxiv.org/html/2604.11037"},{"title":"GitHub - xxzcc/Awesome-Credit-Assignment-in-LLM-RL · GitHub","url":"https://github.com/xxzcc/Awesome-Credit-Assignment-in-LLM-RL"},{"title":"Step-Level Credit Assignment","url":"https://www.emergentmind.com/topics/step-level-credit-assignment"},{"title":"GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub","url":"https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"},{"title":"[2604.09459] From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models","url":"https://arxiv.org/abs/2604.09459"},{"title":"ICLR Poster SSVPO: Effective Step-Level Credit Assignment for RL Training of Language Models","url":"https://iclr.cc/virtual/2026/poster/10008182"},{"title":"SSVPO: Effective Step-Level Credit Assignment for RL Training of Language Models | OpenReview","url":"https://openreview.net/forum?id=g33DGvnHYd"},{"title":"Published as a conference paper at ICLR 2026 AGENTIC REINFORCEMENT LEARNING","url":"https://openreview.net/pdf/a1e5782d4488277b71a1a194ebecc820d981e887.pdf"},{"title":"Agentic Reinforcement Learning with Implicit Step Rewards | OpenReview","url":"https://openreview.net/forum?id=ooROvpmxMV"}]
+
+I've found comprehensive research on this topic. Here are the key findings from recent 2025-2026 literature on credit assignment with step-level and action-level approaches in reinforcement learning for agents:
+
+## Step-Level Credit Assignment Methods
+
+Recent RL for LLMs increasingly relies on sparse, outcome-level rewards, but determining which actions within a long trajectory caused the outcome remains difficult. This credit assignment problem manifests in two regimes: reasoning RL (distributing credit across tokens and steps within a single chain-of-thought) and agentic RL (with multi-turn environment interaction introducing stochastic transitions, partial observability, and horizons of 100+ turns).
+
+### Key Recent Approaches (2025-2026):
+
+**Semantic/Action-Type Based Methods:**
+SCRIBE maintains a library of "skill prototypes"—templates of common agentic sub-tasks (e.g., "search and extract information," "write and test code," "format and submit output"). When the agent performs an action, SCRIBE matches it to the nearest skill prototype and assigns credit based on how well the action fulfills the prototype's expected behavior, providing credit at a semantic level between individual tokens and complete trajectories.
+
+**Turn and Step-Level Methods:**
+Turn-level and hindsight-based methods have emerged to address the qualitatively harder credit assignment problem in agentic settings.
+
+Applying RL to agentic tasks exposes a critical gap in credit assignment. Critic-free methods like GRPO assign a single advantage to an entire trajectory, unable to distinguish good steps from bad ones within a multi-turn episode.
+
+**Process Reward Models:**
+Methods such as CAPO use an LLM-based process reward model to identify erroneous steps, aggregate them via voting, then assign fine-grained rewards or penalties.
+
+The iStar method introduces implicit step rewards for agentic RL as a general credit-assignment strategy that integrates seamlessly with standard RL algorithms, optimizing an implicit process reward model with the policy model to generate step rewards for each action via a multi-turn DPO objective.
+
+This represents a significant research direction in 2025-2026 for improving RL training efficiency in LLM-based agents.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "55c138a8-cc9c-41bc-bf09-84630b9b4e63",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "1dcb5c1c-d25e-4573-8256-58559c76ebf0",
+  "toolUseResult": {
+    "query": "\"credit assignment\" \"step level\" \"action type\" OR \"action semantics\" OR \"action category\" reinforcement learning agent 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FwkomB6q3aU3rd68JE7Tgq",
+        "content": [
+          {
+            "title": "From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models",
+            "url": "https://arxiv.org/html/2604.09459v1"
+          },
+          {
+            "title": "RTMC: Step-Level Credit Assignment via Rollout Trees",
+            "url": "https://arxiv.org/html/2604.11037"
+          },
+          {
+            "title": "GitHub - xxzcc/Awesome-Credit-Assignment-in-LLM-RL · GitHub",
+            "url": "https://github.com/xxzcc/Awesome-Credit-Assignment-in-LLM-RL"
+          },
+          {
+            "title": "Step-Level Credit Assignment",
+            "url": "https://www.emergentmind.com/topics/step-level-credit-assignment"
+          },
+          {
+            "title": "GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub",
+            "url": "https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"
+          },
+          {
+            "title": "[2604.09459] From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models",
+            "url": "https://arxiv.org/abs/2604.09459"
+          },
+          {
+            "title": "ICLR Poster SSVPO: Effective Step-Level Credit Assignment for RL Training of Language Models",
+            "url": "https://iclr.cc/virtual/2026/poster/10008182"
+          },
+          {
+            "title": "SSVPO: Effective Step-Level Credit Assignment for RL Training of Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=g33DGvnHYd"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026 AGENTIC REINFORCEMENT LEARNING",
+            "url": "https://openreview.net/pdf/a1e5782d4488277b71a1a194ebecc820d981e887.pdf"
+          },
+          {
+            "title": "Agentic Reinforcement Learning with Implicit Step Rewards | OpenReview",
+            "url": "https://openreview.net/forum?id=ooROvpmxMV"
+          }
+        ]
+      },
+      "I've found comprehensive research on this topic. Here are the key findings from recent 2025-2026 literature on credit assignment with step-level and action-level approaches in reinforcement learning for agents:\n\n## Step-Level Credit Assignment Methods\n\nRecent RL for LLMs increasingly relies on sparse, outcome-level rewards, but determining which actions within a long trajectory caused the outcome remains difficult. This credit assignment problem manifests in two regimes: reasoning RL (distributing credit across tokens and steps within a single chain-of-thought) and agentic RL (with multi-turn environment interaction introducing stochastic transitions, partial observability, and horizons of 100+ turns).\n\n### Key Recent Approaches (2025-2026):\n\n**Semantic/Action-Type Based Methods:**\nSCRIBE maintains a library of \"skill prototypes\"—templates of common agentic sub-tasks (e.g., \"search and extract information,\" \"write and test code,\" \"format and submit output\"). When the agent performs an action, SCRIBE matches it to the nearest skill prototype and assigns credit based on how well the action fulfills the prototype's expected behavior, providing credit at a semantic level between individual tokens and complete trajectories.\n\n**Turn and Step-Level Methods:**\nTurn-level and hindsight-based methods have emerged to address the qualitatively harder credit assignment problem in agentic settings.\n\nApplying RL to agentic tasks exposes a critical gap in credit assignment. Critic-free methods like GRPO assign a single advantage to an entire trajectory, unable to distinguish good steps from bad ones within a multi-turn episode.\n\n**Process Reward Models:**\nMethods such as CAPO use an LLM-based process reward model to identify erroneous steps, aggregate them via voting, then assign fine-grained rewards or penalties.\n\nThe iStar method introduces implicit step rewards for agentic RL as a general credit-assignment strategy that integrates seamlessly with standard RL algorithms, optimizing an implicit process reward model with the policy model to generate step rewards for each action via a multi-turn DPO objective.\n\nThis represents a significant research direction in 2025-2026 for improving RL training efficiency in LLM-based agents."
+    ],
+    "durationSeconds": 8.942734844999984
+  },
+  "sourceToolAssistantUUID": "55c138a8-cc9c-41bc-bf09-84630b9b4e63",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "1dcb5c1c-d25e-4573-8256-58559c76ebf0",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of Irreversibility-Aware Advantage Weighting for Agent RL",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2"
+}
+```
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-10T18:04:24.024Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NLQkvV9J8bwgcntVJbp5yP`</summary>
+
+```json
+{
+  "query": "SSVPO step-level credit assignment ICLR 2026 language models"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1dcb5c1c-d25e-4573-8256-58559c76ebf0",
+  "isSidechain": false,
+  "requestId": "req_011CauL6JWXQp4gDqFzo3Cnp",
+  "type": "assistant",
+  "uuid": "bf9acdd1-8fdb-4dbd-8135-2d0fa163b103",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PpT8UWELWwM27rLPegKY2N",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1151,
+      "cache_read_input_tokens": 37470,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1151,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 37470,
+          "cache_creation_input_tokens": 1151,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1151
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-10T18:04:31.444Z_
+
+<details><summary>↩ Tool result · `toolu_01NLQkvV9J8bwgcntVJbp5yP`</summary>
+
+```text
+Web search results for query: "SSVPO step-level credit assignment ICLR 2026 language models"
+
+Links: [{"title":"ICLR Poster SSVPO: Effective Step-Level Credit Assignment for RL Training of Language Models","url":"https://iclr.cc/virtual/2026/poster/10008182"},{"title":"SSVPO: Effective Step-Level Credit Assignment for RL Training of Language Models [Quick Review]","url":"https://liner.com/review/ssvpo-effective-steplevel-credit-assignment-for-rl-training-of-language"},{"title":"Published as a conference paper at ICLR 2026 TOWARD EFFICIENT EXPLORATION","url":"https://dilipa.github.io/papers/iclr26_psrl_llms.pdf"},{"title":"ICLR 2026: 12 papers on making AI systems reliable, efficient, and secure","url":"https://lambda.ai/blog/iclr-2026-12-papers"},{"title":"Published as a conference paper at ICLR 2026","url":"https://openreview.net/pdf?id=eFXmrCun0c"},{"title":"ICLR 2026 Papers","url":"https://iclr.cc/virtual/2026/papers.html"},{"title":"2026 Conference","url":"https://iclr.cc/"},{"title":"ICLR 2026 Schedule","url":"https://iclr.cc/virtual/2026/calendar"},{"title":"ICLR 2026 – ICLR Blog","url":"https://blog.iclr.cc/category/iclr-2026/"},{"title":"Reinforcement Learning for Large Language Model Fine- ...","url":"https://assets-eu.researchsquare.com/files/rs-8196796/v1_covered_96aef1fc-9b91-4ac6-8e6d-0c088657015f.pdf"}]
+
+Based on the search results, I found information about SSVPO at ICLR 2026:
+
+## SSVPO Overview
+
+SSVPO (Sequential Shapley Value Policy Optimization) is a step-level credit assignment framework inspired by multi-agent RL. The paper was presented as a poster at ICLR 2026 on Friday, April 24, 2026.
+
+## The Problem and Solution
+
+Post-training with outcome-based reinforcement learning can enhance language model reasoning but is inefficient because it relies solely on final rewards, while recent credit assignment-based RL methods provide intermediate feedback yet struggle to fairly evaluate each step's importance, especially in partially correct reasoning chains.
+
+SSVPO introduces an insertion MDP and Sequential Shapley Values (SSV), which measure each step's marginal contribution by reordering reasoning steps into alternative chains, ensuring fair credit assignment to all possible steps.
+
+## Theoretical and Empirical Results
+
+The authors provide a theoretical proof that SSV ensures fairness in credit allocation and demonstrate that SSV as the new advantage baseline is consistent with Proximal Policy Optimization (PPO).
+
+Across 7 benchmarks, SSVPO outperforms state-of-the-art RL methods, both outcome-based (RLOO, GRPO, DAPO) and credit assignment-based (VinePPO, SPO), achieving up to an 11.6% gain in accuracy, an 18.1% reduction in token usage, and a 1.6× improvement in reasoning efficiency over vanilla methods.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bf9acdd1-8fdb-4dbd-8135-2d0fa163b103",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "0492cd86-956c-4cbe-9cf2-c763e96aa97d",
+  "toolUseResult": {
+    "query": "SSVPO step-level credit assignment ICLR 2026 language models",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012LwQ2XTzkwDGiiuYwEFrcy",
+        "content": [
+          {
+            "title": "ICLR Poster SSVPO: Effective Step-Level Credit Assignment for RL Training of Language Models",
+            "url": "https://iclr.cc/virtual/2026/poster/10008182"
+          },
+          {
+            "title": "SSVPO: Effective Step-Level Credit Assignment for RL Training of Language Models [Quick Review]",
+            "url": "https://liner.com/review/ssvpo-effective-steplevel-credit-assignment-for-rl-training-of-language"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026 TOWARD EFFICIENT EXPLORATION",
+            "url": "https://dilipa.github.io/papers/iclr26_psrl_llms.pdf"
+          },
+          {
+            "title": "ICLR 2026: 12 papers on making AI systems reliable, efficient, and secure",
+            "url": "https://lambda.ai/blog/iclr-2026-12-papers"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://openreview.net/pdf?id=eFXmrCun0c"
+          },
+          {
+            "title": "ICLR 2026 Papers",
+            "url": "https://iclr.cc/virtual/2026/papers.html"
+          },
+          {
+            "title": "2026 Conference",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "ICLR 2026 Schedule",
+            "url": "https://iclr.cc/virtual/2026/calendar"
+          },
+          {
+            "title": "ICLR 2026 – ICLR Blog",
+            "url": "https://blog.iclr.cc/category/iclr-2026/"
+          },
+          {
+            "title": "Reinforcement Learning for Large Language Model Fine- ...",
+            "url": "https://assets-eu.researchsquare.com/files/rs-8196796/v1_covered_96aef1fc-9b91-4ac6-8e6d-0c088657015f.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found information about SSVPO at ICLR 2026:\n\n## SSVPO Overview\n\nSSVPO (Sequential Shapley Value Policy Optimization) is a step-level credit assignment framework inspired by multi-agent RL. The paper was presented as a poster at ICLR 2026 on Friday, April 24, 2026.\n\n## The Problem and Solution\n\nPost-training with outcome-based reinforcement learning can enhance language model reasoning but is inefficient because it relies solely on final rewards, while recent credit assignment-based RL methods provide intermediate feedback yet struggle to fairly evaluate each step's importance, especially in partially correct reasoning chains.\n\nSSVPO introduces an insertion MDP and Sequential Shapley Values (SSV), which measure each step's marginal contribution by reordering reasoning steps into alternative chains, ensuring fair credit assignment to all possible steps.\n\n## Theoretical and Empirical Results\n\nThe authors provide a theoretical proof that SSV ensures fairness in credit allocation and demonstrate that SSV as the new advantage baseline is consistent with Proximal Policy Optimization (PPO).\n\nAcross 7 benchmarks, SSVPO outperforms state-of-the-art RL methods, both outcome-based (RLOO, GRPO, DAPO) and credit assignment-based (VinePPO, SPO), achieving up to an 11.6% gain in accuracy, an 18.1% reduction in token usage, and a 1.6× improvement in reasoning efficiency over vanilla methods."
+    ],
+    "durationSeconds": 7.414850676000002
+  },
+  "sourceToolAssistantUUID": "bf9acdd1-8fdb-4dbd-8135-2d0fa163b103",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-10T18:04:33.687Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017ncUPj2Ja1AnV4QaQV7JjY`</summary>
+
+```json
+{
+  "query": "RTMC rollout tree step credit assignment critic-free 2026 arxiv LLM agent"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0492cd86-956c-4cbe-9cf2-c763e96aa97d",
+  "isSidechain": false,
+  "requestId": "req_011CauL6yKtVv6TkUoEFGfQz",
+  "type": "assistant",
+  "uuid": "0e3cd740-b29a-4037-9ae0-0e128f7e9768",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UKvzr82XRTkgPdfrydVUrm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 923,
+      "cache_read_input_tokens": 38621,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 923,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 38621,
+          "cache_creation_input_tokens": 923,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 923
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-10T18:04:44.928Z_
+
+<details><summary>↩ Tool result · `toolu_017ncUPj2Ja1AnV4QaQV7JjY`</summary>
+
+```text
+Web search results for query: "RTMC rollout tree step credit assignment critic-free 2026 arxiv LLM agent"
+
+Links: [{"title":"RTMC: Step-Level Credit Assignment via Rollout Trees","url":"https://arxiv.org/html/2604.11037"},{"title":"[2604.11037] RTMC: Step-Level Credit Assignment via Rollout Trees","url":"https://arxiv.org/abs/2604.11037"},{"title":"(PDF) RTMC: Step-Level Credit Assignment via Rollout Trees","url":"https://www.researchgate.net/publication/403791864_RTMC_Step-Level_Credit_Assignment_via_Rollout_Trees"},{"title":"Computer Science Apr 2026","url":"https://arxiv.org/list/cs/2026-04?skip=5800&show=100"},{"title":"From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models","url":"https://arxiv.org/html/2604.09459v1"},{"title":"TSR: Trajectory‑Search Rollouts for Multi‑Turn RL of LLM Agents","url":"https://arxiv.org/html/2602.11767v1"},{"title":"GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub","url":"https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"},{"title":"Tree Search for LLM Agent Reinforcement Learning","url":"https://arxiv.org/pdf/2509.21240"},{"title":"MICA: Multi-granularity Intertemporal Credit Assignment for Long-Horizon Emotional Support Dialogue","url":"https://arxiv.org/html/2603.06194v2"},{"title":"Xiaoxiao Xu's research works | Alibaba Group and other places","url":"https://www.researchgate.net/scientific-contributions/Xiaoxiao-Xu-2321074403"}]
+
+I found the paper you're looking for! Here's information about the RTMC research:
+
+## RTMC: Step-Level Credit Assignment via Rollout Trees
+
+RTMC (Rollout-Tree Monte Carlo) is an advantage estimation method that aggregates return statistics across rollouts sharing a common state to produce per-step Q-values and advantages—without any learned critic.
+
+### Key Innovation
+
+A state-action signature system compresses raw interaction histories into compact, comparable representations, making cross-rollout state matching tractable.
+
+### Problem Context
+
+Applying RL to agentic tasks exposes a critical gap in credit assignment, as critic-free methods like GRPO assign a single advantage to an entire trajectory, unable to distinguish good steps from bad ones within a multi-turn episode.
+
+### Performance
+
+On SWE-bench Verified, RTMC improves pass@1 by 3.2 percentage points over GRPO.
+
+### Related Methods
+
+The paper discusses several competing approaches: GiGPO groups actions from matching anchor states but requires exact raw-state matching; iStar trains an implicit process reward model; CriticSearch employs a retrospective critic; and AT2PO propagates terminal rewards through a tree but requires additional rollouts beyond those already collected.
+
+The paper appears to be from April 2026 and is available on arXiv (paper ID: 2604.11037).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0e3cd740-b29a-4037-9ae0-0e128f7e9768",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "2845285b-ad8c-4bb8-9d72-b7f5da7fd780",
+  "toolUseResult": {
+    "query": "RTMC rollout tree step credit assignment critic-free 2026 arxiv LLM agent",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WAoJmRTcpjUCdWJhAgQgZx",
+        "content": [
+          {
+            "title": "RTMC: Step-Level Credit Assignment via Rollout Trees",
+            "url": "https://arxiv.org/html/2604.11037"
+          },
+          {
+            "title": "[2604.11037] RTMC: Step-Level Credit Assignment via Rollout Trees",
+            "url": "https://arxiv.org/abs/2604.11037"
+          },
+          {
+            "title": "(PDF) RTMC: Step-Level Credit Assignment via Rollout Trees",
+            "url": "https://www.researchgate.net/publication/403791864_RTMC_Step-Level_Credit_Assignment_via_Rollout_Trees"
+          },
+          {
+            "title": "Computer Science Apr 2026",
+            "url": "https://arxiv.org/list/cs/2026-04?skip=5800&show=100"
+          },
+          {
+            "title": "From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models",
+            "url": "https://arxiv.org/html/2604.09459v1"
+          },
+          {
+            "title": "TSR: Trajectory‑Search Rollouts for Multi‑Turn RL of LLM Agents",
+            "url": "https://arxiv.org/html/2602.11767v1"
+          },
+          {
+            "title": "GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub",
+            "url": "https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"
+          },
+          {
+            "title": "Tree Search for LLM Agent Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2509.21240"
+          },
+          {
+            "title": "MICA: Multi-granularity Intertemporal Credit Assignment for Long-Horizon Emotional Support Dialogue",
+            "url": "https://arxiv.org/html/2603.06194v2"
+          },
+          {
+            "title": "Xiaoxiao Xu's research works | Alibaba Group and other places",
+            "url": "https://www.researchgate.net/scientific-contributions/Xiaoxiao-Xu-2321074403"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's information about the RTMC research:\n\n## RTMC: Step-Level Credit Assignment via Rollout Trees\n\nRTMC (Rollout-Tree Monte Carlo) is an advantage estimation method that aggregates return statistics across rollouts sharing a common state to produce per-step Q-values and advantages—without any learned critic.\n\n### Key Innovation\n\nA state-action signature system compresses raw interaction histories into compact, comparable representations, making cross-rollout state matching tractable.\n\n### Problem Context\n\nApplying RL to agentic tasks exposes a critical gap in credit assignment, as critic-free methods like GRPO assign a single advantage to an entire trajectory, unable to distinguish good steps from bad ones within a multi-turn episode.\n\n### Performance\n\nOn SWE-bench Verified, RTMC improves pass@1 by 3.2 percentage points over GRPO.\n\n### Related Methods\n\nThe paper discusses several competing approaches: GiGPO groups actions from matching anchor states but requires exact raw-state matching; iStar trains an implicit process reward model; CriticSearch employs a retrospective critic; and AT2PO propagates terminal rewards through a tree but requires additional rollouts beyond those already collected.\n\nThe paper appears to be from April 2026 and is available on arXiv (paper ID: 2604.11037)."
+    ],
+    "durationSeconds": 11.237287761000013
+  },
+  "sourceToolAssistantUUID": "0e3cd740-b29a-4037-9ae0-0e128f7e9768",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48 · 2026-05-10T18:04:49.037Z_
+
+Now let me check for the most critical missing competitors — any work that explicitly modulates training based on action properties (not just outcome signals) in LLM agent RL.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2845285b-ad8c-4bb8-9d72-b7f5da7fd780",
+  "isSidechain": false,
+  "requestId": "req_011CauL7y1pHacJrGaBUQYXw",
+  "type": "assistant",
+  "uuid": "ea02b9fb-4be1-4ab3-b278-a5ee2c92222e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AEar4KZAvkHXiMuFp97vcH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 917,
+      "cache_read_input_tokens": 39544,
+      "output_tokens": 117,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 917,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 117,
+          "cache_read_input_tokens": 39544,
+          "cache_creation_input_tokens": 917,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 917
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-10T18:04:50.931Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015LtuCfwtta3dYyRddH9WHX`</summary>
+
+```json
+{
+  "query": "\"action property\" OR \"action characteristic\" OR \"action type awareness\" step advantage modulation agent reinforcement learning 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ea02b9fb-4be1-4ab3-b278-a5ee2c92222e",
+  "isSidechain": false,
+  "requestId": "req_011CauL7y1pHacJrGaBUQYXw",
+  "type": "assistant",
+  "uuid": "f42bb753-f1a7-486a-bb2f-3e0827dac1ac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AEar4KZAvkHXiMuFp97vcH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 917,
+      "cache_read_input_tokens": 39544,
+      "output_tokens": 117,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 917,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 117,
+          "cache_read_input_tokens": 39544,
+          "cache_creation_input_tokens": 917,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 917
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-10T18:04:58.841Z_
+
+<details><summary>↩ Tool result · `toolu_015LtuCfwtta3dYyRddH9WHX`</summary>
+
+```text
+Web search results for query: ""action property" OR "action characteristic" OR "action type awareness" step advantage modulation agent reinforcement learning 2025 2026"
+
+Links: [{"title":"Reinforcement learning - Wikipedia","url":"https://en.wikipedia.org/wiki/Reinforcement_learning"},{"title":"Know Your Action Set: Learning Action Relations for Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=MljXVdp4A3N"},{"title":"When a Reinforcement Learning Agent Encounters Unknown Unknowns","url":"https://arxiv.org/html/2505.13188"},{"title":"[1902.00183] Learning Action Representations for Reinforcement Learning","url":"https://arxiv.org/abs/1902.00183"},{"title":"Learning Action Representations for Reinforcement Learning","url":"https://arxiv.org/pdf/1902.00183"},{"title":"Constraint-Aware Reinforcement Learning via Adaptive Action Scaling","url":"https://arxiv.org/html/2510.11491"},{"title":"Reinforcement Learning Your Way: Agent Characterization through Policy Regularization","url":"https://www.mdpi.com/2673-2688/3/2/15"},{"title":"Part 1: Key Concepts in RL — Spinning Up documentation","url":"https://spinningup.openai.com/en/latest/spinningup/rl_intro.html"},{"title":"Reinforcement learning - Scholarpedia","url":"http://www.scholarpedia.org/article/Reinforcement_learning"},{"title":"LLMs augmented hierarchical reinforcement learning with action primitives for long-horizon manipulation tasks | Scientific Reports","url":"https://www.nature.com/articles/s41598-025-20653-y"}]
+
+Based on my web search, I found several relevant recent papers and resources on reinforcement learning related to action properties, characteristics, and modulation. Here are the key findings:
+
+## Recent Work on Action-Related RL Concepts (2025-2026)
+
+**Action Modulation and Safety:** A 2026 paper on "Constraint-Aware Reinforcement Learning via Adaptive Action Scaling" introduces element-wise modulation that attenuates each component of the action based on its risk profile, reducing the magnitude of high-risk components. This approach uses a modular cost-aware regulator that scales the agent's actions based on predicted constraint violations, preserving exploration through smooth action modulation rather than overriding the policy.
+
+**Action Properties and Awareness:** A 2025 paper titled "When a Reinforcement Learning Agent Encounters Unknown Unknowns" addresses scenarios where an agent reaches states outside its aware domain, proposing an episodic Markov decision process with growing awareness (EMDP-GA) model and a noninformative value expansion (NIVE) approach.
+
+**Action Relations:** Earlier work asserts that tasks with varying action sets require reasoning of the relations between available actions, proposing a novel policy architecture consisting of a graph attention network over the available actions.
+
+**Action Representations:** Research shows how policies can be decomposed into a component acting in a low-dimensional space of action representations and a component transforming these representations into actual actions, improving generalization over large finite action sets.
+
+These approaches represent current advances in how RL agents can leverage action properties, characteristics, and modulation mechanisms for improved learning and safety.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f42bb753-f1a7-486a-bb2f-3e0827dac1ac",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "2d29461b-62b5-487f-b6c6-050b888e2148",
+  "toolUseResult": {
+    "query": "\"action property\" OR \"action characteristic\" OR \"action type awareness\" step advantage modulation agent reinforcement learning 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013gy3isD4y2YxeoYt5JtcT6",
+        "content": [
+          {
+            "title": "Reinforcement learning - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Reinforcement_learning"
+          },
+          {
+            "title": "Know Your Action Set: Learning Action Relations for Reinforcement Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=MljXVdp4A3N"
+          },
+          {
+            "title": "When a Reinforcement Learning Agent Encounters Unknown Unknowns",
+            "url": "https://arxiv.org/html/2505.13188"
+          },
+          {
+            "title": "[1902.00183] Learning Action Representations for Reinforcement Learning",
+            "url": "https://arxiv.org/abs/1902.00183"
+          },
+          {
+            "title": "Learning Action Representations for Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/1902.00183"
+          },
+          {
+            "title": "Constraint-Aware Reinforcement Learning via Adaptive Action Scaling",
+            "url": "https://arxiv.org/html/2510.11491"
+          },
+          {
+            "title": "Reinforcement Learning Your Way: Agent Characterization through Policy Regularization",
+            "url": "https://www.mdpi.com/2673-2688/3/2/15"
+          },
+          {
+            "title": "Part 1: Key Concepts in RL — Spinning Up documentation",
+            "url": "https://spinningup.openai.com/en/latest/spinningup/rl_intro.html"
+          },
+          {
+            "title": "Reinforcement learning - Scholarpedia",
+            "url": "http://www.scholarpedia.org/article/Reinforcement_learning"
+          },
+          {
+            "title": "LLMs augmented hierarchical reinforcement learning with action primitives for long-horizon manipulation tasks | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-025-20653-y"
+          }
+        ]
+      },
+      "Based on my web search, I found several relevant recent papers and resources on reinforcement learning related to action properties, characteristics, and modulation. Here are the key findings:\n\n## Recent Work on Action-Related RL Concepts (2025-2026)\n\n**Action Modulation and Safety:** A 2026 paper on \"Constraint-Aware Reinforcement Learning via Adaptive Action Scaling\" introduces element-wise modulation that attenuates each component of the action based on its risk profile, reducing the magnitude of high-risk components. This approach uses a modular cost-aware regulator that scales the agent's actions based on predicted constraint violations, preserving exploration through smooth action modulation rather than overriding the policy.\n\n**Action Properties and Awareness:** A 2025 paper titled \"When a Reinforcement Learning Agent Encounters Unknown Unknowns\" addresses scenarios where an agent reaches states outside its aware domain, proposing an episodic Markov decision process with growing awareness (EMDP-GA) model and a noninformative value expansion (NIVE) approach.\n\n**Action Relations:** Earlier work asserts that tasks with varying action sets require reasoning of the relations between available actions, proposing a novel policy architecture consisting of a graph attention network over the available actions.\n\n**Action Representations:** Research shows how policies can be decomposed into a component acting in a low-dimensional space of action representations and a component transforming these representations into actual actions, improving generalization over large finite action sets.\n\nThese approaches represent current advances in how RL agents can leverage action properties, characteristics, and modulation mechanisms for improved learning and safety."
+    ],
+    "durationSeconds": 7.906238404000003
+  },
+  "sourceToolAssistantUUID": "f42bb753-f1a7-486a-bb2f-3e0827dac1ac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-10T18:05:02.991Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019iF1uAwhSXbw6ynrCtTdEx`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 ARR submission deadline May 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2d29461b-62b5-487f-b6c6-050b888e2148",
+  "isSidechain": false,
+  "requestId": "req_011CauL97YJfgaYBhk1zffMm",
+  "type": "assistant",
+  "uuid": "b13cb49a-540d-4b36-bc76-bb860bad908d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QQFv2Am95KTLTys3bdihkB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 930,
+      "cache_read_input_tokens": 40461,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 930,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 40461,
+          "cache_creation_input_tokens": 930,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 930
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-10T18:05:07.558Z_
+
+<details><summary>↩ Tool result · `toolu_019iF1uAwhSXbw6ynrCtTdEx`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 ARR submission deadline May 2026"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"EMNLP 2026 (@emnlpmeeting) / Posts / X","url":"https://x.com/emnlpmeeting?lang=en"},{"title":"emnlp 2026 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=emnlp26"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"CALL FOR PAPERS – ACL Rolling Review","url":"http://aclrollingreview.org/cfp"}]
+
+Based on the search results, here is the information about the EMNLP 2026 ARR submission deadline:
+
+The ARR Submission Deadline for EMNLP 2026 is May 25, 2026.
+
+Additionally, there are several other important related deadlines for EMNLP 2026:
+
+- Reviewer registration deadline for ALL authors: May 27, 2026
+- Author response and author-reviewer discussion: July 7 - July 13, 2026
+- Meta review released: July 30, 2026
+- EMNLP commitment deadline: August 2, 2026
+
+It's worth noting that authors submitting to the ARR 2026 May cycle need to explicitly declare which conference they intend to commit to at submission time, and this choice will be binding for EMNLP 2026 - meaning ARR 2026 May submissions that do not select EMNLP 2026 during submission will not be able to commit to EMNLP 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b13cb49a-540d-4b36-bc76-bb860bad908d",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "934b46ed-3762-4345-8e54-f3c4b72b2e1a",
+  "toolUseResult": {
+    "query": "EMNLP 2026 ARR submission deadline May 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HnFakv84TDXXw39FGP8ZT6",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2029508292637061462"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)",
+            "url": "https://linguistlist.org/issues/37/972/"
+          },
+          {
+            "title": "EMNLP 2026 (@emnlpmeeting) / Posts / X",
+            "url": "https://x.com/emnlpmeeting?lang=en"
+          },
+          {
+            "title": "emnlp 2026 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=emnlp26"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review",
+            "url": "http://aclrollingreview.org/cfp"
+          }
+        ]
+      },
+      "Based on the search results, here is the information about the EMNLP 2026 ARR submission deadline:\n\nThe ARR Submission Deadline for EMNLP 2026 is May 25, 2026.\n\nAdditionally, there are several other important related deadlines for EMNLP 2026:\n\n- Reviewer registration deadline for ALL authors: May 27, 2026\n- Author response and author-reviewer discussion: July 7 - July 13, 2026\n- Meta review released: July 30, 2026\n- EMNLP commitment deadline: August 2, 2026\n\nIt's worth noting that authors submitting to the ARR 2026 May cycle need to explicitly declare which conference they intend to commit to at submission time, and this choice will be binding for EMNLP 2026 - meaning ARR 2026 May submissions that do not select EMNLP 2026 during submission will not be able to commit to EMNLP 2026."
+    ],
+    "durationSeconds": 4.561384659000003
+  },
+  "sourceToolAssistantUUID": "b13cb49a-540d-4b36-bc76-bb860bad908d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 53 · 2026-05-10T18:05:07.565Z_
+
+```json
+{
+  "parentUuid": "934b46ed-3762-4345-8e54-f3c4b72b2e1a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "56f96302-36d0-4451-90fc-ca931dd27f5a",
+  "timestamp": "2026-05-10T18:05:07.565Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-10T18:05:09.748Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KBUw7cSAVKN4ehAeZLgLrL`</summary>
+
+```json
+{
+  "query": "NGRPO \"Negative-enhanced Group Relative Policy Optimization\" asymmetric clipping 2025 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "56f96302-36d0-4451-90fc-ca931dd27f5a",
+  "isSidechain": false,
+  "requestId": "req_011CauL9dmz1E52agAoReYfJ",
+  "type": "assistant",
+  "uuid": "60139289-ac13-41ff-a739-3a4ab0461651",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U51PikcHVzdjfvs4jTEkpQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 953,
+      "cache_read_input_tokens": 41391,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 953,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 41391,
+          "cache_creation_input_tokens": 953,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 953
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 55_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "60139289-ac13-41ff-a739-3a4ab0461651",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 56_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of Irreversibility-Aware Advantage Weighting for Agent RL",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2"
+}
+```
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-10T18:05:18.983Z_
+
+<details><summary>↩ Tool result · `toolu_01KBUw7cSAVKN4ehAeZLgLrL`</summary>
+
+```text
+Web search results for query: "NGRPO "Negative-enhanced Group Relative Policy Optimization" asymmetric clipping 2025 arxiv"
+
+Links: [{"title":"NGRPO: NEGATIVE-ENHANCED GROUP RELATIVE POLICY OPTIMIZATION","url":"https://arxiv.org/pdf/2509.18851"},{"title":"[2509.18851] NGRPO: Negative-enhanced Group Relative Policy Optimization","url":"https://arxiv.org/abs/2509.18851"},{"title":"NGRPO: Negative-enhanced Group Relative Policy Optimization","url":"https://www.researchgate.net/publication/395771138_NGRPO_Negative-enhanced_Group_Relative_Policy_Optimization"},{"title":"Daily Papers - Hugging Face","url":"https://huggingface.co/papers?q=Group+Relative+Policy+Optimization"},{"title":"On the Effect of Negative Gradient in Group Relative Deep Reinforcement Optimization | OpenReview","url":"https://openreview.net/forum?id=a3v2HhEWrf"},{"title":"[Literature Review] NGRPO: Negative-enhanced Group Relative Policy Optimization","url":"https://www.themoonlight.io/en/review/ngrpo-negative-enhanced-group-relative-policy-optimization"},{"title":"Reinforce-Ada: An Adaptive Sampling Framework for Reinforce-Style LLM Training","url":"https://arxiv.org/pdf/2510.04996"},{"title":"Don’t Waste Mistakes: Leveraging Negative RL-Groups via Confidence Reweighting","url":"https://arxiv.org/pdf/2510.08696"},{"title":"Adaptive-Boundary-Clipping GRPO: Ensuring Bounded Ratios for Stable and Generalizable Training","url":"https://arxiv.org/html/2601.03895"},{"title":"Group Relative Policy Optimization (GRPO)","url":"https://cameronrwolfe.substack.com/p/grpo"}]
+
+I found the paper you're looking for! Here are the key findings from the search results:
+
+## NGRPO Overview
+
+NGRPO (Negative-enhanced Group Relative Policy Optimization) is an algorithm designed to convert homogeneous errors into robust learning signals.
+
+## The Problem It Addresses
+
+GRPO, a representative RLVR algorithm, suffers from a critical limitation: when all responses within a group are either entirely correct or entirely incorrect, the model fails to learn from these homogeneous responses. This is particularly problematic for homogeneously incorrect groups, where GRPO's advantage function yields a value of zero, leading to null gradients and the loss of valuable learning signals.
+
+## Core Mechanisms
+
+**Advantage Calibration:** NGRPO introduces Advantage Calibration, which hypothesizes the existence of a virtual maximum-reward sample during advantage calculation, thereby altering the mean and variance of rewards within a group and ensuring that the advantages for homogeneously incorrect samples are no longer zero.
+
+**Asymmetric Clipping:** Instead of the standard symmetric range [1 −ϵ, 1 + ϵ], NGRPO defines separate clipping boundaries for positive and negative advantages, with distinct hyperparameters ϵpos and ϵneg. A tighter constraint is set on negative updates (ϵneg = 0.16) while allowing more latitude for positive updates (ϵpos = 0.24).
+
+## Results
+
+Experiments on Qwen2.5-Math-7B demonstrate that NGRPO significantly outperforms baselines such as PPO, GRPO, DAPO, and PSR-NSR on mathematical benchmarks including MATH500, AMC23, and AIME2025. These results validate NGRPO's ability to learn from homogeneous errors, leading to stable and substantial improvements in mathematical reasoning.
+
+The paper was published on arXiv on September 23, 2025 (arxiv ID: 2509.18851).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "60139289-ac13-41ff-a739-3a4ab0461651",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "60d85a8d-e83a-46bc-b2bb-bf2c5a7f0c82",
+  "toolUseResult": {
+    "query": "NGRPO \"Negative-enhanced Group Relative Policy Optimization\" asymmetric clipping 2025 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TH2qWihRXBxGieNLTqTnvb",
+        "content": [
+          {
+            "title": "NGRPO: NEGATIVE-ENHANCED GROUP RELATIVE POLICY OPTIMIZATION",
+            "url": "https://arxiv.org/pdf/2509.18851"
+          },
+          {
+            "title": "[2509.18851] NGRPO: Negative-enhanced Group Relative Policy Optimization",
+            "url": "https://arxiv.org/abs/2509.18851"
+          },
+          {
+            "title": "NGRPO: Negative-enhanced Group Relative Policy Optimization",
+            "url": "https://www.researchgate.net/publication/395771138_NGRPO_Negative-enhanced_Group_Relative_Policy_Optimization"
+          },
+          {
+            "title": "Daily Papers - Hugging Face",
+            "url": "https://huggingface.co/papers?q=Group+Relative+Policy+Optimization"
+          },
+          {
+            "title": "On the Effect of Negative Gradient in Group Relative Deep Reinforcement Optimization | OpenReview",
+            "url": "https://openreview.net/forum?id=a3v2HhEWrf"
+          },
+          {
+            "title": "[Literature Review] NGRPO: Negative-enhanced Group Relative Policy Optimization",
+            "url": "https://www.themoonlight.io/en/review/ngrpo-negative-enhanced-group-relative-policy-optimization"
+          },
+          {
+            "title": "Reinforce-Ada: An Adaptive Sampling Framework for Reinforce-Style LLM Training",
+            "url": "https://arxiv.org/pdf/2510.04996"
+          },
+          {
+            "title": "Don’t Waste Mistakes: Leveraging Negative RL-Groups via Confidence Reweighting",
+            "url": "https://arxiv.org/pdf/2510.08696"
+          },
+          {
+            "title": "Adaptive-Boundary-Clipping GRPO: Ensuring Bounded Ratios for Stable and Generalizable Training",
+            "url": "https://arxiv.org/html/2601.03895"
+          },
+          {
+            "title": "Group Relative Policy Optimization (GRPO)",
+            "url": "https://cameronrwolfe.substack.com/p/grpo"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the key findings from the search results:\n\n## NGRPO Overview\n\nNGRPO (Negative-enhanced Group Relative Policy Optimization) is an algorithm designed to convert homogeneous errors into robust learning signals.\n\n## The Problem It Addresses\n\nGRPO, a representative RLVR algorithm, suffers from a critical limitation: when all responses within a group are either entirely correct or entirely incorrect, the model fails to learn from these homogeneous responses. This is particularly problematic for homogeneously incorrect groups, where GRPO's advantage function yields a value of zero, leading to null gradients and the loss of valuable learning signals.\n\n## Core Mechanisms\n\n**Advantage Calibration:** NGRPO introduces Advantage Calibration, which hypothesizes the existence of a virtual maximum-reward sample during advantage calculation, thereby altering the mean and variance of rewards within a group and ensuring that the advantages for homogeneously incorrect samples are no longer zero.\n\n**Asymmetric Clipping:** Instead of the standard symmetric range [1 −ϵ, 1 + ϵ], NGRPO defines separate clipping boundaries for positive and negative advantages, with distinct hyperparameters ϵpos and ϵneg. A tighter constraint is set on negative updates (ϵneg = 0.16) while allowing more latitude for positive updates (ϵpos = 0.24).\n\n## Results\n\nExperiments on Qwen2.5-Math-7B demonstrate that NGRPO significantly outperforms baselines such as PPO, GRPO, DAPO, and PSR-NSR on mathematical benchmarks including MATH500, AMC23, and AIME2025. These results validate NGRPO's ability to learn from homogeneous errors, leading to stable and substantial improvements in mathematical reasoning.\n\nThe paper was published on arXiv on September 23, 2025 (arxiv ID: 2509.18851)."
+    ],
+    "durationSeconds": 9.230836245999992
+  },
+  "sourceToolAssistantUUID": "60139289-ac13-41ff-a739-3a4ab0461651",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58 · 2026-05-10T18:05:21.934Z_
+
+Now let me do a critical deep-dive: check whether the self-supervised reversibility estimation via embedding similarity is technically sound, and search for the closest concurrent work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "60d85a8d-e83a-46bc-b2bb-bf2c5a7f0c82",
+  "isSidechain": false,
+  "requestId": "req_011CauLAUb7Y56xv2q7B3hZr",
+  "type": "assistant",
+  "uuid": "9fa6f282-50e2-49f5-9693-cf610864865e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JKiB8h9ErVoefGiFchB13h",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1055,
+      "cache_read_input_tokens": 42344,
+      "output_tokens": 111,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1055,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 111,
+          "cache_read_input_tokens": 42344,
+          "cache_creation_input_tokens": 1055,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1055
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-10T18:05:22.511Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GxekyuCs78w7MT8yZRpa4G`</summary>
+
+```json
+{
+  "query": "\"self-supervised\" reversibility detection text observation embedding cosine similarity agent trajectory 2024 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9fa6f282-50e2-49f5-9693-cf610864865e",
+  "isSidechain": false,
+  "requestId": "req_011CauLAUb7Y56xv2q7B3hZr",
+  "type": "assistant",
+  "uuid": "48a1631a-a8b2-46e7-ae6a-bc824c75fbf1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JKiB8h9ErVoefGiFchB13h",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1055,
+      "cache_read_input_tokens": 42344,
+      "output_tokens": 111,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1055,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 111,
+          "cache_read_input_tokens": 42344,
+          "cache_creation_input_tokens": 1055,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1055
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-10T18:05:29.358Z_
+
+<details><summary>↩ Tool result · `toolu_01GxekyuCs78w7MT8yZRpa4G`</summary>
+
+```text
+Web search results for query: ""self-supervised" reversibility detection text observation embedding cosine similarity agent trajectory 2024 2025 2026"
+
+Links: [{"title":"CSTRM: : Contrastive Self-Supervised Trajectory Representation Model for trajectory similarity computation: Computer Communications: Vol 185, No C","url":"https://dl.acm.org/doi/10.1016/j.comcom.2022.01.001"},{"title":"On the Importance of Embedding Norms in Self-Supervised ...","url":"https://arxiv.org/pdf/2502.09252"},{"title":"CSTRM: Contrastive Self-Supervised Trajectory Representation Model for trajectory similarity computation - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0140366422000019"},{"title":"Self-supervised phrase embedding method by fusing internal and external semantic information of phrases | Multimedia Tools and Applications | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11042-022-14312-x"},{"title":"Consistent Sentence Embedding via Similarity Ranking","url":"https://penghao-bdsc.github.io/papers/CoSENT_TASLP2024.pdf"},{"title":"Cosine similarity knowledge distillation for surface anomaly detection | Scientific Reports","url":"https://www.nature.com/articles/s41598-024-58409-9"},{"title":"SSL-TTS: Leveraging Self-Supervised Embeddings and kNN Retrieval for Zero-Shot Multi-speaker TTS","url":"https://arxiv.org/html/2408.10771v1"},{"title":"Contrastive Representation Learning | Lil'Log","url":"https://lilianweng.github.io/posts/2021-05-31-contrastive/"},{"title":"GitHub - HKUDS/AI-Researcher: [NeurIPS2025] \"AI-Researcher: Autonomous Scientific Innovation\" -- A production-ready version: https://novix.science/chat · GitHub","url":"https://github.com/HKUDS/AI-Researcher"},{"title":"Alternative to Cosine Similarity Function for Self-Supervised Tasks | by Priyanshu maurya | Medium","url":"https://medium.com/@_prinsh_u/alternative-to-cosine-similarity-function-for-self-supervised-tasks-c27f3472fc1c"}]
+
+Based on the search results, I found several relevant research areas related to your query:
+
+## Key Findings
+
+**Self-Supervised Learning with Embeddings and Cosine Similarity:**
+Recent work examines gradient fields of cosine similarity and optimization techniques in self-supervised learning. Research reveals an inevitable catch-22 for self-supervised learning: small embeddings are needed to avoid vanishing gradients but optimizing SSL loss functions grows the embeddings—referred to as the embedding-norm effect.
+
+**Text Embedding Applications:**
+CoSENT presents a novel, consistent, and adaptive sentence embedding framework, with experiments demonstrating effectiveness on unsupervised and supervised semantic textual similarity tasks. Cosine similarity is commonly computed between sentence embeddings in semantic text similarity experiments.
+
+**Trajectory Representation and Agent Learning:**
+Trajectory representation learning aims to embed trajectory sequences into fixed-length vector representations while preserving their original spatio-temporal feature proximity. Encoder–decoder-based trajectory representation models use cosine or Euclidean distance of representations to measure trajectory similarity.
+
+**Contrastive Self-Supervised Learning:**
+Contrastive learning provides self-supervision signals to enhance the robustness of learned representations, allowing models to distinguish between relevant and irrelevant interactions.
+
+The search results contain research from 2022-2025 addressing several components of your query, though a single integrated work combining all these elements wasn't identified in the results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "48a1631a-a8b2-46e7-ae6a-bc824c75fbf1",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "d84f9f55-8c80-4d4d-8db5-6d32ec0205d6",
+  "toolUseResult": {
+    "query": "\"self-supervised\" reversibility detection text observation embedding cosine similarity agent trajectory 2024 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NkJBt7hiYtPZAqj7WnvrnM",
+        "content": [
+          {
+            "title": "CSTRM: : Contrastive Self-Supervised Trajectory Representation Model for trajectory similarity computation: Computer Communications: Vol 185, No C",
+            "url": "https://dl.acm.org/doi/10.1016/j.comcom.2022.01.001"
+          },
+          {
+            "title": "On the Importance of Embedding Norms in Self-Supervised ...",
+            "url": "https://arxiv.org/pdf/2502.09252"
+          },
+          {
+            "title": "CSTRM: Contrastive Self-Supervised Trajectory Representation Model for trajectory similarity computation - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0140366422000019"
+          },
+          {
+            "title": "Self-supervised phrase embedding method by fusing internal and external semantic information of phrases | Multimedia Tools and Applications | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s11042-022-14312-x"
+          },
+          {
+            "title": "Consistent Sentence Embedding via Similarity Ranking",
+            "url": "https://penghao-bdsc.github.io/papers/CoSENT_TASLP2024.pdf"
+          },
+          {
+            "title": "Cosine similarity knowledge distillation for surface anomaly detection | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-024-58409-9"
+          },
+          {
+            "title": "SSL-TTS: Leveraging Self-Supervised Embeddings and kNN Retrieval for Zero-Shot Multi-speaker TTS",
+            "url": "https://arxiv.org/html/2408.10771v1"
+          },
+          {
+            "title": "Contrastive Representation Learning | Lil'Log",
+            "url": "https://lilianweng.github.io/posts/2021-05-31-contrastive/"
+          },
+          {
+            "title": "GitHub - HKUDS/AI-Researcher: [NeurIPS2025] \"AI-Researcher: Autonomous Scientific Innovation\" -- A production-ready version: https://novix.science/chat · GitHub",
+            "url": "https://github.com/HKUDS/AI-Researcher"
+          },
+          {
+            "title": "Alternative to Cosine Similarity Function for Self-Supervised Tasks | by Priyanshu maurya | Medium",
+            "url": "https://medium.com/@_prinsh_u/alternative-to-cosine-similarity-function-for-self-supervised-tasks-c27f3472fc1c"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant research areas related to your query:\n\n## Key Findings\n\n**Self-Supervised Learning with Embeddings and Cosine Similarity:**\nRecent work examines gradient fields of cosine similarity and optimization techniques in self-supervised learning. Research reveals an inevitable catch-22 for self-supervised learning: small embeddings are needed to avoid vanishing gradients but optimizing SSL loss functions grows the embeddings—referred to as the embedding-norm effect.\n\n**Text Embedding Applications:**\nCoSENT presents a novel, consistent, and adaptive sentence embedding framework, with experiments demonstrating effectiveness on unsupervised and supervised semantic textual similarity tasks. Cosine similarity is commonly computed between sentence embeddings in semantic text similarity experiments.\n\n**Trajectory Representation and Agent Learning:**\nTrajectory representation learning aims to embed trajectory sequences into fixed-length vector representations while preserving their original spatio-temporal feature proximity. Encoder–decoder-based trajectory representation models use cosine or Euclidean distance of representations to measure trajectory similarity.\n\n**Contrastive Self-Supervised Learning:**\nContrastive learning provides self-supervision signals to enhance the robustness of learned representations, allowing models to distinguish between relevant and irrelevant interactions.\n\nThe search results contain research from 2022-2025 addressing several components of your query, though a single integrated work combining all these elements wasn't identified in the results."
+    ],
+    "durationSeconds": 6.8427300099999995
+  },
+  "sourceToolAssistantUUID": "48a1631a-a8b2-46e7-ae6a-bc824c75fbf1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-10T18:05:31.901Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019D7pzsw9cPRVcmopMTAjvE`</summary>
+
+```json
+{
+  "query": "Qwen2.5-7B WebShop ALFWorld GRPO training H100 hours compute cost 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d84f9f55-8c80-4d4d-8db5-6d32ec0205d6",
+  "isSidechain": false,
+  "requestId": "req_011CauLBEvN3bCKvzxcNT7M2",
+  "type": "assistant",
+  "uuid": "64477543-913f-4130-b937-51927668c0f2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VjHpZH9eHAie9P8JbXBzts",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1045,
+      "cache_read_input_tokens": 43399,
+      "output_tokens": 82,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1045,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 82,
+          "cache_read_input_tokens": 43399,
+          "cache_creation_input_tokens": 1045,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1045
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-10T18:05:44.179Z_
+
+<details><summary>↩ Tool result · `toolu_019D7pzsw9cPRVcmopMTAjvE`</summary>
+
+```text
+Web search results for query: "Qwen2.5-7B WebShop ALFWorld GRPO training H100 hours compute cost 2025 2026"
+
+Links: [{"title":"Finetune Qwen-2.5 AI Model for Chain-of-Thought (CoT) | by Mahadir Ahmad | Medium","url":"https://medium.com/@mahadir.ahmad/finetune-qwen-2-5-ai-model-for-chain-of-thought-cot-4d1eae3a3aa9"},{"title":"Fine-Tune and Deploy Qwen2.5 - Coder with SFT & DPO on PAI - Alibaba Cloud","url":"https://www.alibabacloud.com/help/en/pai/use-cases/training-evaluation-compression-and-deployment-of-qwen2-5-coder-model"},{"title":"Title: Training a Qwen 2.5 Model for Medical Reasoning with GRPO: A Tutorial and “Aha!” Moment | by Matthew Chung | Medium","url":"https://matthewchung74.medium.com/title-training-a-qwen-2-5-model-for-medical-reasoning-with-grpo-a-tutorial-and-aha-moment-c224f63828dc"},{"title":"Qwen/Qwen2.5-7B-Instruct-1M Free Chat Online - skywork.ai - Skywork ai","url":"https://skywork.ai/blog/models/qwen-qwen2-5-7b-instruct-1m-free-chat-online-skywork-ai/"},{"title":"2025-01-06 Qwen2.5 Technical Report Qwen Team https://huggingface.co/Qwen","url":"https://arxiv.org/pdf/2412.15115"},{"title":"Fine-Tuning Qwen2.5-3B-Instruct (GRPO, PEFT)","url":"https://www.kaggle.com/code/ksmooi/fine-tuning-qwen2-5-3b-instruct-grpo-peft"},{"title":"Budget-Friendly AI: My Guide to Renting GPUs for Qwen2.5-Omni-7B - Novita","url":"https://blogs.novita.ai/budget-friendly-ai-my-guide-to-renting-gpus-for-qwen2-5-omni-7b/"},{"title":"Benchmarking Qwen Models Across NVIDIA GPUs (T4, L4, H100) Architectures: Inference Performance & Code Quality Analysis | by Wltsankalpa | Medium","url":"https://medium.com/@wltsankalpa/benchmarking-qwen-models-across-nvidia-gpus-t4-l4-h100-architectures-finding-your-sweet-spot-a59a0adf9043"},{"title":"The Engineering Handbook for GRPO + LoRA with Verl: Training Qwen2.5 on Multi-GPU","url":"https://huggingface.co/blog/Weyaxi/engineering-handbook-grpo-lora-with-verl"},{"title":"vik on X: \"Grok believes the infra training cost for Qwen-2.5-72B was $29.5M and the additional VL training cost $6.7M. https://t.co/kllmhoHk9L\" / X","url":"https://x.com/vikhyatk/status/1910087026181075397"}]
+
+The search results provide general information about Qwen2.5 training and GRPO, but don't contain specific details about WebShop, ALFWorld, or compute costs for those specific benchmarks. Let me search more specifically for those benchmarks and training details.
+
+Links: [{"title":"Agent2 RL-Bench: Can LLM Agents Engineer Agentic RL Post-Training?","url":"https://arxiv.org/html/2604.10547"},{"title":"Group-in-Group Policy Optimization for LLM Agent Training","url":"https://arxiv.org/html/2505.10978v1"},{"title":"SALT: Step-level Advantage Assignment for Long-horizon Agents via Trajectory Graph","url":"https://arxiv.org/html/2510.20022"},{"title":"Graph-Enhanced Policy Optimization in LLM Agent Training","url":"https://arxiv.org/html/2510.26270"},{"title":"Learning to Simulate from Experience for Better AI Agents","url":"https://arxiv.org/pdf/2510.09577"},{"title":"Group-in-Group Policy Optimization for LLM Agent Training Lang Feng1","url":"https://personal.ntu.edu.sg/boan/papers/NeurIPS25_GiGPO.pdf"},{"title":"HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents","url":"https://arxiv.org/html/2602.16165"},{"title":"SEEA-R1: Tree-Structured Reinforcement Fine-Tuning for Self-Evolving Embodied Agents","url":"https://arxiv.org/html/2506.21669"},{"title":"SKILLRL: Evolving Agents via Recursive Skill-Augmented Reinforcement Learning","url":"https://arxiv.org/pdf/2602.08234"},{"title":"Agentic Critical Training","url":"https://attention-is-all-i-need.github.io/ACT/"}]
+
+Links: [{"title":"Fine-Tune and Deploy Qwen2.5 - Coder with SFT & DPO on PAI - Alibaba Cloud","url":"https://www.alibabacloud.com/help/en/pai/use-cases/training-evaluation-compression-and-deployment-of-qwen2-5-coder-model"},{"title":"Benchmarking Qwen Models Across NVIDIA GPUs (T4, L4, H100) Architectures: Inference Performance & Code Quality Analysis | by Wltsankalpa | Medium","url":"https://medium.com/@wltsankalpa/benchmarking-qwen-models-across-nvidia-gpus-t4-l4-h100-architectures-finding-your-sweet-spot-a59a0adf9043"},{"title":"Qwen2.5 Hosting, Host Your Qwen-2.5 with Ollama","url":"https://www.databasemart.com/qwen-2-5-hosting"},{"title":"NVIDIA H100 Price Guide 2026: GPU Costs, Cloud Pricing & Buy vs Rent | Jarvis Labs Blog | Jarvis Labs","url":"https://jarvislabs.ai/blog/h100-price"},{"title":"Performance on Qwen2.5-7B-Instruct · Issue #42 · simplescaling/s1","url":"https://github.com/simplescaling/s1/issues/42"},{"title":"Finetune Qwen-2.5 AI Model for Chain-of-Thought (CoT) | by Mahadir Ahmad | Medium","url":"https://medium.com/@mahadir.ahmad/finetune-qwen-2-5-ai-model-for-chain-of-thought-cot-4d1eae3a3aa9"},{"title":"qwen2.5-7b-instruct Model by Qwen","url":"https://build.nvidia.com/qwen/qwen2_5-7b-instruct/modelcard"},{"title":"Local LLM Hardware Guide 2025: GPU Specs & Pricing | Introl Blog","url":"https://introl.com/blog/local-llm-hardware-pricing-guide-2025"},{"title":"Qwen2.5-7B: Specifications and GPU VRAM Requirements","url":"https://apxml.com/models/qwen2-5-7b"},{"title":"Nvidia H100 GPU Server Ollama Performance Test: The Best Choice for LLM Reasoning","url":"https://www.databasemart.com/blog/ollama-gpu-benchmark-h100"}]
+
+Based on my search results, I found relevant information about training on WebShop and ALFWorld benchmarks with GRPO and Qwen2.5 models, but the results don't contain specific information about Qwen2.5-7B training on these benchmarks combined with exact H100 compute hours and costs.
+
+Here's what I found:
+
+## WebShop and ALFWorld GRPO Training
+
+ALFWorld and WebShop require stateful multi-step interaction, making them challenging benchmarks for LLM agent training. ALFWorld is an embodied environment designed to assess the ability of LLM agents to perform multi-step decision-making, with 4,639 task instances across six categories of common household activities: Pick & Place (Pick), Examine in Light (Look), Clean & Place (Clean), Heat & Place (Heat), Cool & Place (Cool), and Pick Two & Place (Pick2). WebShop is a complex, web-based interactive environment designed to test LLM agents in realistic online shopping scenarios, where the agent must interact with a simulated HTML-based shopping website to search for, navigate to, and ultimately purchase a suitable item.
+
+## GRPO Performance on Qwen2.5-7B
+
+With the 7B model, GRPO reaches similar overall gains to PPO and RLOO, with PPO reaching 82.8% overall success on ALFWorld and 68.7% on WebShop. Recent methods have shown improvements, with HiPER achieving state-of-the-art performance on challenging interactive benchmarks, reaching 97.4% success on ALFWorld and 83.3% on WebShop with Qwen2.5-7B-Instruct.
+
+## H100 Training Costs
+
+For general H100 training costs, small models (1-7B parameters) cost $50-$500 using 1-2 H100s for 10-50 hours, while medium models (13-30B parameters) cost $500-$3,000 using 4 H100s for 50-200 hours. Cloud GPU pricing ranges from $2.69 (Jarvislabs) to $9.984 (Baseten) per hour for H100s.
+
+However, the search results do not contain specific information about exact H100 hours or compute costs specifically for training Qwen2.5-7B on the WebShop and ALFWorld benchmarks combined with GRPO.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "64477543-913f-4130-b937-51927668c0f2",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "6fec2cfc-80d0-4c10-8f78-45f58d9f5867",
+  "toolUseResult": {
+    "query": "Qwen2.5-7B WebShop ALFWorld GRPO training H100 hours compute cost 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01J7rMT68KhCKXkyAv71Pe6Y",
+        "content": [
+          {
+            "title": "Finetune Qwen-2.5 AI Model for Chain-of-Thought (CoT) | by Mahadir Ahmad | Medium",
+            "url": "https://medium.com/@mahadir.ahmad/finetune-qwen-2-5-ai-model-for-chain-of-thought-cot-4d1eae3a3aa9"
+          },
+          {
+            "title": "Fine-Tune and Deploy Qwen2.5 - Coder with SFT & DPO on PAI - Alibaba Cloud",
+            "url": "https://www.alibabacloud.com/help/en/pai/use-cases/training-evaluation-compression-and-deployment-of-qwen2-5-coder-model"
+          },
+          {
+            "title": "Title: Training a Qwen 2.5 Model for Medical Reasoning with GRPO: A Tutorial and “Aha!” Moment | by Matthew Chung | Medium",
+            "url": "https://matthewchung74.medium.com/title-training-a-qwen-2-5-model-for-medical-reasoning-with-grpo-a-tutorial-and-aha-moment-c224f63828dc"
+          },
+          {
+            "title": "Qwen/Qwen2.5-7B-Instruct-1M Free Chat Online - skywork.ai - Skywork ai",
+            "url": "https://skywork.ai/blog/models/qwen-qwen2-5-7b-instruct-1m-free-chat-online-skywork-ai/"
+          },
+          {
+            "title": "2025-01-06 Qwen2.5 Technical Report Qwen Team https://huggingface.co/Qwen",
+            "url": "https://arxiv.org/pdf/2412.15115"
+          },
+          {
+            "title": "Fine-Tuning Qwen2.5-3B-Instruct (GRPO, PEFT)",
+            "url": "https://www.kaggle.com/code/ksmooi/fine-tuning-qwen2-5-3b-instruct-grpo-peft"
+          },
+          {
+            "title": "Budget-Friendly AI: My Guide to Renting GPUs for Qwen2.5-Omni-7B - Novita",
+            "url": "https://blogs.novita.ai/budget-friendly-ai-my-guide-to-renting-gpus-for-qwen2-5-omni-7b/"
+          },
+          {
+            "title": "Benchmarking Qwen Models Across NVIDIA GPUs (T4, L4, H100) Architectures: Inference Performance & Code Quality Analysis | by Wltsankalpa | Medium",
+            "url": "https://medium.com/@wltsankalpa/benchmarking-qwen-models-across-nvidia-gpus-t4-l4-h100-architectures-finding-your-sweet-spot-a59a0adf9043"
+          },
+          {
+            "title": "The Engineering Handbook for GRPO + LoRA with Verl: Training Qwen2.5 on Multi-GPU",
+            "url": "https://huggingface.co/blog/Weyaxi/engineering-handbook-grpo-lora-with-verl"
+          },
+          {
+            "title": "vik on X: \"Grok believes the infra training cost for Qwen-2.5-72B was $29.5M and the additional VL training cost $6.7M. https://t.co/kllmhoHk9L\" / X",
+            "url": "https://x.com/vikhyatk/status/1910087026181075397"
+          }
+        ]
+      },
+      "The search results provide general information about Qwen2.5 training and GRPO, but don't contain specific details about WebShop, ALFWorld, or compute costs for those specific benchmarks. Let me search more specifically for those benchmarks and training details.",
+      {
+        "tool_use_id": "srvtoolu_013mVhfs5VQf5cFWb7txHT1X",
+        "content": [
+          {
+            "title": "Agent2 RL-Bench: Can LLM Agents Engineer Agentic RL Post-Training?",
+            "url": "https://arxiv.org/html/2604.10547"
+          },
+          {
+            "title": "Group-in-Group Policy Optimization for LLM Agent Training",
+            "url": "https://arxiv.org/html/2505.10978v1"
+          },
+          {
+            "title": "SALT: Step-level Advantage Assignment for Long-horizon Agents via Trajectory Graph",
+            "url": "https://arxiv.org/html/2510.20022"
+          },
+          {
+            "title": "Graph-Enhanced Policy Optimization in LLM Agent Training",
+            "url": "https://arxiv.org/html/2510.26270"
+          },
+          {
+            "title": "Learning to Simulate from Experience for Better AI Agents",
+            "url": "https://arxiv.org/pdf/2510.09577"
+          },
+          {
+            "title": "Group-in-Group Policy Optimization for LLM Agent Training Lang Feng1",
+            "url": "https://personal.ntu.edu.sg/boan/papers/NeurIPS25_GiGPO.pdf"
+          },
+          {
+            "title": "HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents",
+            "url": "https://arxiv.org/html/2602.16165"
+          },
+          {
+            "title": "SEEA-R1: Tree-Structured Reinforcement Fine-Tuning for Self-Evolving Embodied Agents",
+            "url": "https://arxiv.org/html/2506.21669"
+          },
+          {
+            "title": "SKILLRL: Evolving Agents via Recursive Skill-Augmented Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2602.08234"
+          },
+          {
+            "title": "Agentic Critical Training",
+            "url": "https://attention-is-all-i-need.github.io/ACT/"
+          }
+        ]
+      },
+      {
+        "tool_use_id": "srvtoolu_01MVvfoebkeYawPCxTMBZEPQ",
+        "content": [
+          {
+            "title": "Fine-Tune and Deploy Qwen2.5 - Coder with SFT & DPO on PAI - Alibaba Cloud",
+            "url": "https://www.alibabacloud.com/help/en/pai/use-cases/training-evaluation-compression-and-deployment-of-qwen2-5-coder-model"
+          },
+          {
+            "title": "Benchmarking Qwen Models Across NVIDIA GPUs (T4, L4, H100) Architectures: Inference Performance & Code Quality Analysis | by Wltsankalpa | Medium",
+            "url": "https://medium.com/@wltsankalpa/benchmarking-qwen-models-across-nvidia-gpus-t4-l4-h100-architectures-finding-your-sweet-spot-a59a0adf9043"
+          },
+          {
+            "title": "Qwen2.5 Hosting, Host Your Qwen-2.5 with Ollama",
+            "url": "https://www.databasemart.com/qwen-2-5-hosting"
+          },
+          {
+            "title": "NVIDIA H100 Price Guide 2026: GPU Costs, Cloud Pricing & Buy vs Rent | Jarvis Labs Blog | Jarvis Labs",
+            "url": "https://jarvislabs.ai/blog/h100-price"
+          },
+          {
+            "title": "Performance on Qwen2.5-7B-Instruct · Issue #42 · simplescaling/s1",
+            "url": "https://github.com/simplescaling/s1/issues/42"
+          },
+          {
+            "title": "Finetune Qwen-2.5 AI Model for Chain-of-Thought (CoT) | by Mahadir Ahmad | Medium",
+            "url": "https://medium.com/@mahadir.ahmad/finetune-qwen-2-5-ai-model-for-chain-of-thought-cot-4d1eae3a3aa9"
+          },
+          {
+            "title": "qwen2.5-7b-instruct Model by Qwen",
+            "url": "https://build.nvidia.com/qwen/qwen2_5-7b-instruct/modelcard"
+          },
+          {
+            "title": "Local LLM Hardware Guide 2025: GPU Specs & Pricing | Introl Blog",
+            "url": "https://introl.com/blog/local-llm-hardware-pricing-guide-2025"
+          },
+          {
+            "title": "Qwen2.5-7B: Specifications and GPU VRAM Requirements",
+            "url": "https://apxml.com/models/qwen2-5-7b"
+          },
+          {
+            "title": "Nvidia H100 GPU Server Ollama Performance Test: The Best Choice for LLM Reasoning",
+            "url": "https://www.databasemart.com/blog/ollama-gpu-benchmark-h100"
+          }
+        ]
+      },
+      "Based on my search results, I found relevant information about training on WebShop and ALFWorld benchmarks with GRPO and Qwen2.5 models, but the results don't contain specific information about Qwen2.5-7B training on these benchmarks combined with exact H100 compute hours and costs.\n\nHere's what I found:\n\n## WebShop and ALFWorld GRPO Training\n\nALFWorld and WebShop require stateful multi-step interaction, making them challenging benchmarks for LLM agent training. ALFWorld is an embodied environment designed to assess the ability of LLM agents to perform multi-step decision-making, with 4,639 task instances across six categories of common household activities: Pick & Place (Pick), Examine in Light (Look), Clean & Place (Clean), Heat & Place (Heat), Cool & Place (Cool), and Pick Two & Place (Pick2). WebShop is a complex, web-based interactive environment designed to test LLM agents in realistic online shopping scenarios, where the agent must interact with a simulated HTML-based shopping website to search for, navigate to, and ultimately purchase a suitable item.\n\n## GRPO Performance on Qwen2.5-7B\n\nWith the 7B model, GRPO reaches similar overall gains to PPO and RLOO, with PPO reaching 82.8% overall success on ALFWorld and 68.7% on WebShop. Recent methods have shown improvements, with HiPER achieving state-of-the-art performance on challenging interactive benchmarks, reaching 97.4% success on ALFWorld and 83.3% on WebShop with Qwen2.5-7B-Instruct.\n\n## H100 Training Costs\n\nFor general H100 training costs, small models (1-7B parameters) cost $50-$500 using 1-2 H100s for 10-50 hours, while medium models (13-30B parameters) cost $500-$3,000 using 4 H100s for 50-200 hours. Cloud GPU pricing ranges from $2.69 (Jarvislabs) to $9.984 (Baseten) per hour for H100s.\n\nHowever, the search results do not contain specific information about exact H100 hours or compute costs specifically for training Qwen2.5-7B on the WebShop and ALFWorld benchmarks combined with GRPO."
+    ],
+    "durationSeconds": 12.270447015999991
+  },
+  "sourceToolAssistantUUID": "64477543-913f-4130-b937-51927668c0f2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 63_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "6fec2cfc-80d0-4c10-8f78-45f58d9f5867",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 64_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of Irreversibility-Aware Advantage Weighting for Agent RL",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2"
+}
+```
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-10T18:05:50.117Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EeLGZz351caJpMLSGLKMHA`</summary>
+
+```json
+{
+  "query": "GiGPO verl-agent training setup GPU hours Qwen2.5-7B batch size 128 iterations WebShop ALFWorld"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6fec2cfc-80d0-4c10-8f78-45f58d9f5867",
+  "isSidechain": false,
+  "requestId": "req_011CauLCLL5ovfY51PJhgFy9",
+  "type": "assistant",
+  "uuid": "40d924f6-f2d6-4925-b981-0265d59e5d12",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016HQb9XbyujDfPJMseML2e5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2643,
+      "cache_read_input_tokens": 44444,
+      "output_tokens": 85,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2643,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 85,
+          "cache_read_input_tokens": 44444,
+          "cache_creation_input_tokens": 2643,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2643
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-10T18:05:58.588Z_
+
+<details><summary>↩ Tool result · `toolu_01EeLGZz351caJpMLSGLKMHA`</summary>
+
+```text
+Web search results for query: "GiGPO verl-agent training setup GPU hours Qwen2.5-7B batch size 128 iterations WebShop ALFWorld"
+
+Links: [{"title":"GitHub - langfengQ/verl-agent: verl-agent is an extension of veRL, designed for training LLM/VLM agents via RL. verl-agent is also the official code for paper \"Group-in-Group Policy Optimization for LLM Agent Training\" · GitHub","url":"https://github.com/langfengQ/verl-agent"},{"title":"Group-in-Group Policy Optimization for LLM Agent Training Lang Feng1","url":"https://personal.ntu.edu.sg/boan/papers/NeurIPS25_GiGPO.pdf"},{"title":"langfeng01/GiGPO-Qwen2.5-7B-Instruct-ALFWorld · Hugging Face","url":"https://huggingface.co/langfeng01/GiGPO-Qwen2.5-7B-Instruct-ALFWorld"},{"title":"Qwen2.5-VL Usage Guide - vLLM Recipes","url":"https://docs.vllm.ai/projects/recipes/en/latest/Qwen/Qwen2.5-VL.html"},{"title":"Group-in-Group Policy Optimization for LLM Agent Training","url":"https://arxiv.org/html/2505.10978v1"},{"title":"langfeng01/GiGPO-Qwen2.5-7B-Instruct-WebShop · Hugging Face","url":"https://huggingface.co/langfeng01/GiGPO-Qwen2.5-7B-Instruct-WebShop"},{"title":"verl - Qwen docs","url":"https://qwen.readthedocs.io/en/latest/training/verl.html"},{"title":"Paper page - Group-in-Group Policy Optimization for LLM Agent Training","url":"https://huggingface.co/papers/2505.10978"},{"title":"The Engineering Handbook for GRPO + LoRA with Verl: Training Qwen2.5 on Multi-GPU","url":"https://huggingface.co/blog/Weyaxi/engineering-handbook-grpo-lora-with-verl"},{"title":"Qwen2.5-7B: Specifications and GPU VRAM Requirements","url":"https://apxml.com/models/qwen2-5-7b"}]
+
+Based on the search results, I found relevant information about GiGPO training with Qwen2.5-7B on agent tasks like ALFWorld and WebShop. Here's what I found:
+
+## GiGPO Training Overview
+
+verl-agent is an extension of veRL, designed for training LLM/VLM agents via RL and is the official code for the paper "Group-in-Group Policy Optimization for LLM Agent Training".
+
+## Model and Benchmark Information
+
+GiGPO was evaluated on challenging agent benchmarks, including ALFWorld and WebShop, as well as tool-integrated reasoning on search-augmented QA tasks, using Qwen2.5-1.5B/3B/7B-Instruct.
+
+## Performance Results
+
+GiGPO achieves performance gains of > 12% on ALFWorld and > 9% on WebShop over GRPO, while maintaining the same GPU memory overhead, identical LLM rollout.
+
+## Training Time per Iteration
+
+When training an LLM agent in ALFWorld using Qwen2.5-1.5B-Instruct, the additional components of GiGPO incur little to no additional time cost compared to dominant operations such as rollouts, computation of old and reference probabilities, and policy updates, whose total time cost reaches 362.83s per iteration.
+
+## Hardware Requirements
+
+verl-agent supports training 7B models using 2 H100 GPUs.
+
+However, the search results don't contain specific information about batch size 128 iterations or other detailed hyperparameters. For more specific training setup details, you may want to consult the official GitHub repository or the full GiGPO paper.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "40d924f6-f2d6-4925-b981-0265d59e5d12",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "19e0537e-e680-4941-8e52-1d64bf854f46",
+  "toolUseResult": {
+    "query": "GiGPO verl-agent training setup GPU hours Qwen2.5-7B batch size 128 iterations WebShop ALFWorld",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017rJwrjAovVK8pdgEPjLg9H",
+        "content": [
+          {
+            "title": "GitHub - langfengQ/verl-agent: verl-agent is an extension of veRL, designed for training LLM/VLM agents via RL. verl-agent is also the official code for paper \"Group-in-Group Policy Optimization for LLM Agent Training\" · GitHub",
+            "url": "https://github.com/langfengQ/verl-agent"
+          },
+          {
+            "title": "Group-in-Group Policy Optimization for LLM Agent Training Lang Feng1",
+            "url": "https://personal.ntu.edu.sg/boan/papers/NeurIPS25_GiGPO.pdf"
+          },
+          {
+            "title": "langfeng01/GiGPO-Qwen2.5-7B-Instruct-ALFWorld · Hugging Face",
+            "url": "https://huggingface.co/langfeng01/GiGPO-Qwen2.5-7B-Instruct-ALFWorld"
+          },
+          {
+            "title": "Qwen2.5-VL Usage Guide - vLLM Recipes",
+            "url": "https://docs.vllm.ai/projects/recipes/en/latest/Qwen/Qwen2.5-VL.html"
+          },
+          {
+            "title": "Group-in-Group Policy Optimization for LLM Agent Training",
+            "url": "https://arxiv.org/html/2505.10978v1"
+          },
+          {
+            "title": "langfeng01/GiGPO-Qwen2.5-7B-Instruct-WebShop · Hugging Face",
+            "url": "https://huggingface.co/langfeng01/GiGPO-Qwen2.5-7B-Instruct-WebShop"
+          },
+          {
+            "title": "verl - Qwen docs",
+            "url": "https://qwen.readthedocs.io/en/latest/training/verl.html"
+          },
+          {
+            "title": "Paper page - Group-in-Group Policy Optimization for LLM Agent Training",
+            "url": "https://huggingface.co/papers/2505.10978"
+          },
+          {
+            "title": "The Engineering Handbook for GRPO + LoRA with Verl: Training Qwen2.5 on Multi-GPU",
+            "url": "https://huggingface.co/blog/Weyaxi/engineering-handbook-grpo-lora-with-verl"
+          },
+          {
+            "title": "Qwen2.5-7B: Specifications and GPU VRAM Requirements",
+            "url": "https://apxml.com/models/qwen2-5-7b"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about GiGPO training with Qwen2.5-7B on agent tasks like ALFWorld and WebShop. Here's what I found:\n\n## GiGPO Training Overview\n\nverl-agent is an extension of veRL, designed for training LLM/VLM agents via RL and is the official code for the paper \"Group-in-Group Policy Optimization for LLM Agent Training\".\n\n## Model and Benchmark Information\n\nGiGPO was evaluated on challenging agent benchmarks, including ALFWorld and WebShop, as well as tool-integrated reasoning on search-augmented QA tasks, using Qwen2.5-1.5B/3B/7B-Instruct.\n\n## Performance Results\n\nGiGPO achieves performance gains of > 12% on ALFWorld and > 9% on WebShop over GRPO, while maintaining the same GPU memory overhead, identical LLM rollout.\n\n## Training Time per Iteration\n\nWhen training an LLM agent in ALFWorld using Qwen2.5-1.5B-Instruct, the additional components of GiGPO incur little to no additional time cost compared to dominant operations such as rollouts, computation of old and reference probabilities, and policy updates, whose total time cost reaches 362.83s per iteration.\n\n## Hardware Requirements\n\nverl-agent supports training 7B models using 2 H100 GPUs.\n\nHowever, the search results don't contain specific information about batch size 128 iterations or other detailed hyperparameters. For more specific training setup details, you may want to consult the official GitHub repository or the full GiGPO paper."
+    ],
+    "durationSeconds": 8.46489211799999
+  },
+  "sourceToolAssistantUUID": "40d924f6-f2d6-4925-b981-0265d59e5d12",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-10T18:06:02.083Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Ttri5rMgmYuoKGov9kCk7i`</summary>
+
+```json
+{
+  "url": "https://github.com/langfengQ/verl-agent",
+  "prompt": "Extract: 1) Training hardware requirements (number of GPUs, GPU type), 2) Training time per experiment, 3) Number of iterations/epochs, 4) Batch size, 5) Any compute budget details for WebShop and ALFWorld experiments with Qwen2.5-7B"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "19e0537e-e680-4941-8e52-1d64bf854f46",
+  "isSidechain": false,
+  "requestId": "req_011CauLDPyssqs2C7f47GYBS",
+  "type": "assistant",
+  "uuid": "7b01fa53-ad7a-4225-bd42-fc3794574db1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hd5sDnW37FfFoJj498cAnK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1133,
+      "cache_read_input_tokens": 47087,
+      "output_tokens": 150,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1133,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 150,
+          "cache_read_input_tokens": 47087,
+          "cache_creation_input_tokens": 1133,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1133
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-10T18:06:08.035Z_
+
+<details><summary>↩ Tool result · `toolu_01Ttri5rMgmYuoKGov9kCk7i`</summary>
+
+```text
+# Training Requirements for verl-agent
+
+Based on the provided GitHub repository documentation, specific training hardware and computational details are **not explicitly documented** for the experiments mentioned.
+
+## Available Information:
+
+**Hardware mentions:**
+The documentation notes that "verl-agent now supports training 7B models using 2 H100 GPUs" when utilizing LoRA fine-tuning, but specific requirements for full training runs are absent.
+
+**Search experiment setup:**
+The retrieval server infrastructure requires "around 6GB of GPU memory per GPU," but this applies only to the retrieval component, not the main training process.
+
+## Missing Details:
+
+The README lacks concrete specifications for:
+- Total GPU requirements for Qwen2.5-7B training on WebShop and ALFWorld
+- Training duration per experiment
+- Iteration/epoch counts
+- Batch size configurations
+- Overall computational budgets
+
+## Where to Find This Information:
+
+The repository references training logs via "[![wandb](https://api.wandb.ai/links/...)]" links in the results table. These Weights & Biases links likely contain detailed hyperparameter configurations, but accessing them requires following those external URLs beyond this documentation.
+
+For complete computational specifications, consulting the [GiGPO paper](https://arxiv.org/abs/2505.10978) or the linked training logs would be necessary.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7b01fa53-ad7a-4225-bd42-fc3794574db1",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "d2cf083c-98e0-405a-ae1b-dbaa09382b12",
+  "toolUseResult": {
+    "bytes": 489595,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Training Requirements for verl-agent\n\nBased on the provided GitHub repository documentation, specific training hardware and computational details are **not explicitly documented** for the experiments mentioned.\n\n## Available Information:\n\n**Hardware mentions:**\nThe documentation notes that \"verl-agent now supports training 7B models using 2 H100 GPUs\" when utilizing LoRA fine-tuning, but specific requirements for full training runs are absent.\n\n**Search experiment setup:**\nThe retrieval server infrastructure requires \"around 6GB of GPU memory per GPU,\" but this applies only to the retrieval component, not the main training process.\n\n## Missing Details:\n\nThe README lacks concrete specifications for:\n- Total GPU requirements for Qwen2.5-7B training on WebShop and ALFWorld\n- Training duration per experiment\n- Iteration/epoch counts\n- Batch size configurations\n- Overall computational budgets\n\n## Where to Find This Information:\n\nThe repository references training logs via \"[![wandb](https://api.wandb.ai/links/...)]\" links in the results table. These Weights & Biases links likely contain detailed hyperparameter configurations, but accessing them requires following those external URLs beyond this documentation.\n\nFor complete computational specifications, consulting the [GiGPO paper](https://arxiv.org/abs/2505.10978) or the linked training logs would be necessary.",
+    "durationMs": 5947,
+    "url": "https://github.com/langfengQ/verl-agent"
+  },
+  "sourceToolAssistantUUID": "7b01fa53-ad7a-4225-bd42-fc3794574db1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-10T18:06:11.798Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_012AgSGGJFq9EGdTwXTQhjsK`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2505.10978",
+  "prompt": "Extract training details: 1) Number of GPUs and GPU type used, 2) Training iterations/steps, 3) Batch size, 4) Training time per experiment, 5) Total compute budget, 6) Any per-experiment GPU hours for WebShop and ALFWorld with Qwen2.5-7B. Also extract the exact performance numbers (success rates) for GRPO baseline and GiGPO on WebShop and ALFWorld with Qwen2.5-7B."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d2cf083c-98e0-405a-ae1b-dbaa09382b12",
+  "isSidechain": false,
+  "requestId": "req_011CauLE78PUHPm1pcRAmqcR",
+  "type": "assistant",
+  "uuid": "82d2903b-ebee-452f-af83-68fd69161cf3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LqdawYXCqqYAVKBH6pYCt7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 461,
+      "cache_read_input_tokens": 48220,
+      "output_tokens": 195,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 461,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 195,
+          "cache_read_input_tokens": 48220,
+          "cache_creation_input_tokens": 461,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 461
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-10T18:06:15.582Z_
+
+<details><summary>↩ Tool result · `toolu_012AgSGGJFq9EGdTwXTQhjsK`</summary>
+
+```text
+# Training Details and Performance Metrics
+
+Based on the arXiv page content provided, **specific training details are not available**. The abstract and metadata do not include:
+
+- GPU count and type
+- Training iterations/steps
+- Batch size specifications
+- Training time per experiment
+- Total compute budget
+- Per-experiment GPU hours for WebShop/ALFWorld
+
+## Performance Comparison
+
+The page does report comparative results:
+
+**ALFWorld (Qwen2.5-7B):** GiGPO achieved "performance gains of > 12%...over GRPO"
+
+**WebShop (Qwen2.5-7B):** GiGPO obtained "performance gains...> 9% on WebShop over GRPO"
+
+**QA Tasks:** GiGPO reached "47.2% on 7B"
+
+However, **exact baseline success rates for GRPO are not provided** on this page. The document only presents the comparative improvement percentages rather than absolute performance numbers for both methods on these specific benchmarks with Qwen2.5-7B.
+
+To obtain complete training specifications and detailed baseline metrics, the full paper PDF would need to be consulted.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "82d2903b-ebee-452f-af83-68fd69161cf3",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "4a55ec7d-77fe-4844-a2cf-5a27d3c03111",
+  "toolUseResult": {
+    "bytes": 48027,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Training Details and Performance Metrics\n\nBased on the arXiv page content provided, **specific training details are not available**. The abstract and metadata do not include:\n\n- GPU count and type\n- Training iterations/steps\n- Batch size specifications\n- Training time per experiment\n- Total compute budget\n- Per-experiment GPU hours for WebShop/ALFWorld\n\n## Performance Comparison\n\nThe page does report comparative results:\n\n**ALFWorld (Qwen2.5-7B):** GiGPO achieved \"performance gains of > 12%...over GRPO\"\n\n**WebShop (Qwen2.5-7B):** GiGPO obtained \"performance gains...> 9% on WebShop over GRPO\"\n\n**QA Tasks:** GiGPO reached \"47.2% on 7B\"\n\nHowever, **exact baseline success rates for GRPO are not provided** on this page. The document only presents the comparative improvement percentages rather than absolute performance numbers for both methods on these specific benchmarks with Qwen2.5-7B.\n\nTo obtain complete training specifications and detailed baseline metrics, the full paper PDF would need to be consulted.",
+    "durationMs": 3779,
+    "url": "https://arxiv.org/abs/2505.10978"
+  },
+  "sourceToolAssistantUUID": "82d2903b-ebee-452f-af83-68fd69161cf3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-10T18:06:22.001Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01PKZhKCbFXx4zFTvsvXkbWa`</summary>
+
+```json
+{
+  "url": "https://personal.ntu.edu.sg/boan/papers/NeurIPS25_GiGPO.pdf",
+  "prompt": "Extract the following details from the GiGPO paper: 1) Number of GPUs and GPU type used for training, 2) Training iterations for WebShop and ALFWorld, 3) Batch size, 4) Training time per experiment, 5) Total compute budget in GPU hours, 6) Exact GRPO and GiGPO success rates on WebShop and ALFWorld with Qwen2.5-7B-Instruct. 7) Any mention of rollout count or samples per prompt."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4a55ec7d-77fe-4844-a2cf-5a27d3c03111",
+  "isSidechain": false,
+  "requestId": "req_011CauLEecUq7WpNDQvzvyrL",
+  "type": "assistant",
+  "uuid": "e78fd694-3d44-4e46-90a1-21dc5a48f177",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011SXBLXBBnksLcWahiNvxfD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 471,
+      "cache_read_input_tokens": 48681,
+      "output_tokens": 215,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 471,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 215,
+          "cache_read_input_tokens": 48681,
+          "cache_creation_input_tokens": 471,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 471
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-10T18:06:27.566Z_
+
+<details><summary>↩ Tool result · `toolu_01PKZhKCbFXx4zFTvsvXkbWa`</summary>
+
+```text
+I cannot extract the requested information from the provided content. The text appears to be a PDF file encoded in binary/compressed format (FlateDecode streams), which renders as unreadable character sequences rather than plain text.
+
+To obtain the GiGPO paper details you're seeking—including GPU specifications, training iterations, batch sizes, compute budgets, and success rates—you would need to:
+
+1. Provide the paper in readable text or HTML format
+2. Share the paper's direct URL
+3. Paste the actual readable content from the paper
+
+Once accessible text is available, I can extract the specific metrics: GPU type/count, WebShop/ALFWorld iterations, batch size, training duration, total GPU hours, GRPO/GiGPO success rates with Qwen2.5-7B-Instruct, and rollout/sample counts.
+
+[Binary content (application/pdf, 2MB) also saved to /home/ubuntu/.claude-account-2/projects/-/4022032e-a6f3-4253-870f-7d14b53d35b2/tool-results/webfetch-1778436383897-ofpnol.pdf]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e78fd694-3d44-4e46-90a1-21dc5a48f177",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "b4182684-bacc-483d-9f21-ff90134ba365",
+  "toolUseResult": {
+    "bytes": 2131551,
+    "code": 200,
+    "codeText": "OK",
+    "result": "I cannot extract the requested information from the provided content. The text appears to be a PDF file encoded in binary/compressed format (FlateDecode streams), which renders as unreadable character sequences rather than plain text.\n\nTo obtain the GiGPO paper details you're seeking—including GPU specifications, training iterations, batch sizes, compute budgets, and success rates—you would need to:\n\n1. Provide the paper in readable text or HTML format\n2. Share the paper's direct URL\n3. Paste the actual readable content from the paper\n\nOnce accessible text is available, I can extract the specific metrics: GPU type/count, WebShop/ALFWorld iterations, batch size, training duration, total GPU hours, GRPO/GiGPO success rates with Qwen2.5-7B-Instruct, and rollout/sample counts.\n\n[Binary content (application/pdf, 2MB) also saved to /home/ubuntu/.claude-account-2/projects/-/4022032e-a6f3-4253-870f-7d14b53d35b2/tool-results/webfetch-1778436383897-ofpnol.pdf]",
+    "durationMs": 5562,
+    "url": "https://personal.ntu.edu.sg/boan/papers/NeurIPS25_GiGPO.pdf"
+  },
+  "sourceToolAssistantUUID": "e78fd694-3d44-4e46-90a1-21dc5a48f177",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-10T18:06:33.353Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01H7gdB7Hdgf8GvuFHSLJKcN`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2505.10978v1",
+  "prompt": "Extract the following details: 1) Number of GPUs and GPU type used for training, 2) Training iterations for WebShop and ALFWorld, 3) Batch size or samples per prompt, 4) Training time per experiment or total compute budget, 5) Exact GRPO baseline and GiGPO success rates on WebShop and ALFWorld with Qwen2.5-7B-Instruct, 6) Number of rollouts per prompt, 7) Any hardware setup details."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b4182684-bacc-483d-9f21-ff90134ba365",
+  "isSidechain": false,
+  "requestId": "req_011CauLFXrxM1RhQybC8N4Hp",
+  "type": "assistant",
+  "uuid": "c5e8c61c-f9f0-4c47-9e63-574a0ff1955d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KDv6QDNrLFJoAerbpXU5Hv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 492,
+      "cache_read_input_tokens": 49152,
+      "output_tokens": 197,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 492,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 197,
+          "cache_read_input_tokens": 49152,
+          "cache_creation_input_tokens": 492,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 492
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-10T18:06:39.485Z_
+
+<details><summary>↩ Tool result · `toolu_01H7gdB7Hdgf8GvuFHSLJKcN`</summary>
+
+```text
+# GiGPO Training Details Extraction
+
+Based on the provided paper content, here's what I found:
+
+## Available Information:
+
+**1) GPU Type & Count:** Not specified in the document.
+
+**2) Training Iterations:**
+- Not explicitly stated for either benchmark.
+
+**3) Batch Size/Samples:** "The rollout group size N for group-based RL methods is set to 8."
+
+**4) Training Time:** "GiGPO-specific additions" account for "< 0.002% of the total per-iteration training time" compared to GRPO's baseline operations.
+
+**5) Success Rates (Qwen2.5-7B-Instruct):**
+- **ALFWorld:** GRPO achieved 77.6% ± 5.2%, while GiGPOw/o std reached 90.2% ± 2.3%
+- **WebShop:** GRPO scored 79.3% ± 2.8%, GiGPOw/o std achieved 86.2% ± 2.6%
+
+**6) Rollouts per Prompt:** Eight trajectories sampled per task (N=8).
+
+**7) Hardware Setup:** The paper notes "identical GPU memory overhead" as GRPO but omits specific GPU model, quantity, and total compute budget details. Full experimental parameters are referenced as located in "Appendix D.1" but this appendix content was truncated in the provided text.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c5e8c61c-f9f0-4c47-9e63-574a0ff1955d",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "bce07060-c556-4115-8c8a-f21cffbeecb4",
+  "toolUseResult": {
+    "bytes": 695578,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# GiGPO Training Details Extraction\n\nBased on the provided paper content, here's what I found:\n\n## Available Information:\n\n**1) GPU Type & Count:** Not specified in the document.\n\n**2) Training Iterations:**\n- Not explicitly stated for either benchmark.\n\n**3) Batch Size/Samples:** \"The rollout group size N for group-based RL methods is set to 8.\"\n\n**4) Training Time:** \"GiGPO-specific additions\" account for \"< 0.002% of the total per-iteration training time\" compared to GRPO's baseline operations.\n\n**5) Success Rates (Qwen2.5-7B-Instruct):**\n- **ALFWorld:** GRPO achieved 77.6% ± 5.2%, while GiGPOw/o std reached 90.2% ± 2.3%\n- **WebShop:** GRPO scored 79.3% ± 2.8%, GiGPOw/o std achieved 86.2% ± 2.6%\n\n**6) Rollouts per Prompt:** Eight trajectories sampled per task (N=8).\n\n**7) Hardware Setup:** The paper notes \"identical GPU memory overhead\" as GRPO but omits specific GPU model, quantity, and total compute budget details. Full experimental parameters are referenced as located in \"Appendix D.1\" but this appendix content was truncated in the provided text.",
+    "durationMs": 6128,
+    "url": "https://arxiv.org/html/2505.10978v1"
+  },
+  "sourceToolAssistantUUID": "c5e8c61c-f9f0-4c47-9e63-574a0ff1955d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75 · 2026-05-10T18:06:41.632Z_
+
+Good, I now have the key performance numbers. Let me search for a few more critical items.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bce07060-c556-4115-8c8a-f21cffbeecb4",
+  "isSidechain": false,
+  "requestId": "req_011CauLGQpKG3epzrwWvWQHa",
+  "type": "assistant",
+  "uuid": "1c31e429-d0b1-41c2-8172-fa3346c6a61d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011eZsaDeUjBTLYFnaddoQ4L",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 544,
+      "cache_read_input_tokens": 49644,
+      "output_tokens": 96,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 544,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 96,
+          "cache_read_input_tokens": 49644,
+          "cache_creation_input_tokens": 544,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 544
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-10T18:06:42.474Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011mJRveDBNgw2FFcETnpn6u`</summary>
+
+```json
+{
+  "query": "HiPER hierarchical reinforcement learning credit assignment LLM agents ALFWorld WebShop 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1c31e429-d0b1-41c2-8172-fa3346c6a61d",
+  "isSidechain": false,
+  "requestId": "req_011CauLGQpKG3epzrwWvWQHa",
+  "type": "assistant",
+  "uuid": "18341f94-2186-4a37-9525-10dc33d27996",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011eZsaDeUjBTLYFnaddoQ4L",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 544,
+      "cache_read_input_tokens": 49644,
+      "output_tokens": 96,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 544,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 96,
+          "cache_read_input_tokens": 49644,
+          "cache_creation_input_tokens": 544,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 544
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-10T18:06:50.025Z_
+
+<details><summary>↩ Tool result · `toolu_011mJRveDBNgw2FFcETnpn6u`</summary>
+
+```text
+Web search results for query: "HiPER hierarchical reinforcement learning credit assignment LLM agents ALFWorld WebShop 2026"
+
+Links: [{"title":"HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents","url":"https://arxiv.org/html/2602.16165v1"},{"title":"[2602.16165] HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents","url":"https://arxiv.org/abs/2602.16165"},{"title":"[2602.16165v1] HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents","url":"https://arxiv.org/abs/2602.16165v1"},{"title":"Paper page - Hindsight Credit Assignment for Long-Horizon LLM Agents","url":"https://huggingface.co/papers/2603.08754"},{"title":"HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents | Request PDF","url":"https://www.researchgate.net/publication/400930124_HiPER_Hierarchical_Reinforcement_Learning_with_Explicit_Credit_Assignment_for_Large_Language_Model_Agents"},{"title":"HiMAC: Hierarchical Macro–Micro Learning for Long-Horizon LLM Agents","url":"https://arxiv.org/html/2603.00977"},{"title":"[2603.08754] Hindsight Credit Assignment for Long-Horizon LLM Agents","url":"https://arxiv.org/abs/2603.08754"},{"title":"Hindsight Credit Assignment for Long-Horizon LLM Agents","url":"https://arxiv.org/html/2603.08754v1"},{"title":"[Literature Review] Hindsight Credit Assignment for Long-Horizon LLM Agents","url":"https://www.themoonlight.io/en/review/hindsight-credit-assignment-for-long-horizon-llm-agents"},{"title":"Paper page - From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models","url":"https://huggingface.co/papers/2604.09459"}]
+
+## Search Results Summary
+
+I found comprehensive information about HiPER and related hierarchical reinforcement learning methods for LLM agents. Here are the key findings:
+
+### HiPER Overview
+
+HiPER is a novel Hierarchical Plan-Execute RL framework that explicitly separates high-level planning from low-level execution, factorizing the policy into a high-level planner that proposes subgoals and a low-level executor that carries them out over multiple action steps.
+
+### Core Technical Innovation
+
+The key technique is hierarchical advantage estimation (HAE), which carefully assigns credit at both the planning and execution levels. By aggregating returns over the execution of each subgoal and coordinating updates across the two levels, HAE provides an unbiased gradient estimator and provably reduces variance compared to flat generalized advantage estimation.
+
+### Performance Results
+
+HiPER was evaluated on two interactive benchmarks: ALFWorld, a text-based embodied household environment and WebShop, a simulated website interaction environment, achieving 97.4% success rate on ALFWorld and 83.3% success rate on WebShop with Qwen2.5-7B-Instruct. These results represent +6.6% and +8.3% improvements over the best prior method, with especially large gains on long-horizon tasks requiring multiple dependent subtasks.
+
+### Problem Context
+
+Training LLMs as interactive agents for multi-turn decision-making remains challenging, particularly in long-horizon tasks with sparse and delayed rewards. In sparse-reward settings, flat policies must propagate credit across the entire trajectory without explicit temporal abstraction, which often leads to unstable optimization and inefficient credit assignment.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "18341f94-2186-4a37-9525-10dc33d27996",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "d1be2207-50b9-47f0-a208-b0b45a176f36",
+  "toolUseResult": {
+    "query": "HiPER hierarchical reinforcement learning credit assignment LLM agents ALFWorld WebShop 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0178QQLEdygA1fajdkGJEYy7",
+        "content": [
+          {
+            "title": "HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents",
+            "url": "https://arxiv.org/html/2602.16165v1"
+          },
+          {
+            "title": "[2602.16165] HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents",
+            "url": "https://arxiv.org/abs/2602.16165"
+          },
+          {
+            "title": "[2602.16165v1] HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents",
+            "url": "https://arxiv.org/abs/2602.16165v1"
+          },
+          {
+            "title": "Paper page - Hindsight Credit Assignment for Long-Horizon LLM Agents",
+            "url": "https://huggingface.co/papers/2603.08754"
+          },
+          {
+            "title": "HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents | Request PDF",
+            "url": "https://www.researchgate.net/publication/400930124_HiPER_Hierarchical_Reinforcement_Learning_with_Explicit_Credit_Assignment_for_Large_Language_Model_Agents"
+          },
+          {
+            "title": "HiMAC: Hierarchical Macro–Micro Learning for Long-Horizon LLM Agents",
+            "url": "https://arxiv.org/html/2603.00977"
+          },
+          {
+            "title": "[2603.08754] Hindsight Credit Assignment for Long-Horizon LLM Agents",
+            "url": "https://arxiv.org/abs/2603.08754"
+          },
+          {
+            "title": "Hindsight Credit Assignment for Long-Horizon LLM Agents",
+            "url": "https://arxiv.org/html/2603.08754v1"
+          },
+          {
+            "title": "[Literature Review] Hindsight Credit Assignment for Long-Horizon LLM Agents",
+            "url": "https://www.themoonlight.io/en/review/hindsight-credit-assignment-for-long-horizon-llm-agents"
+          },
+          {
+            "title": "Paper page - From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models",
+            "url": "https://huggingface.co/papers/2604.09459"
+          }
+        ]
+      },
+      "## Search Results Summary\n\nI found comprehensive information about HiPER and related hierarchical reinforcement learning methods for LLM agents. Here are the key findings:\n\n### HiPER Overview\n\nHiPER is a novel Hierarchical Plan-Execute RL framework that explicitly separates high-level planning from low-level execution, factorizing the policy into a high-level planner that proposes subgoals and a low-level executor that carries them out over multiple action steps.\n\n### Core Technical Innovation\n\nThe key technique is hierarchical advantage estimation (HAE), which carefully assigns credit at both the planning and execution levels. By aggregating returns over the execution of each subgoal and coordinating updates across the two levels, HAE provides an unbiased gradient estimator and provably reduces variance compared to flat generalized advantage estimation.\n\n### Performance Results\n\nHiPER was evaluated on two interactive benchmarks: ALFWorld, a text-based embodied household environment and WebShop, a simulated website interaction environment, achieving 97.4% success rate on ALFWorld and 83.3% success rate on WebShop with Qwen2.5-7B-Instruct. These results represent +6.6% and +8.3% improvements over the best prior method, with especially large gains on long-horizon tasks requiring multiple dependent subtasks.\n\n### Problem Context\n\nTraining LLMs as interactive agents for multi-turn decision-making remains challenging, particularly in long-horizon tasks with sparse and delayed rewards. In sparse-reward settings, flat policies must propagate credit across the entire trajectory without explicit temporal abstraction, which often leads to unstable optimization and inefficient credit assignment."
+    ],
+    "durationSeconds": 7.5467186779999755
+  },
+  "sourceToolAssistantUUID": "18341f94-2186-4a37-9525-10dc33d27996",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 78 · 2026-05-10T18:06:50.033Z_
+
+```json
+{
+  "parentUuid": "d1be2207-50b9-47f0-a208-b0b45a176f36",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "254d3829-4702-418e-8ba7-c2cc0d5968f5",
+  "timestamp": "2026-05-10T18:06:50.033Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 79_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "254d3829-4702-418e-8ba7-c2cc0d5968f5",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 80_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of Irreversibility-Aware Advantage Weighting for Agent RL",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2"
+}
+```
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-10T18:06:52.343Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0199DsLsajKWxVyQANgHH7Dd`</summary>
+
+```json
+{
+  "query": "POPO positive-only policy optimization reinforcement learning 2026 arxiv LLM"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "254d3829-4702-418e-8ba7-c2cc0d5968f5",
+  "isSidechain": false,
+  "requestId": "req_011CauLHBui8486GyEJM7Foc",
+  "type": "assistant",
+  "uuid": "b7aba7c3-05ac-41fc-994f-d97e4052e9fe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TVHzoNe65ffn2bp8Jd5myb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1145,
+      "cache_read_input_tokens": 50188,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1145,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 50188,
+          "cache_creation_input_tokens": 1145,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1145
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-10T18:06:59.795Z_
+
+<details><summary>↩ Tool result · `toolu_0199DsLsajKWxVyQANgHH7Dd`</summary>
+
+```text
+Web search results for query: "POPO positive-only policy optimization reinforcement learning 2026 arxiv LLM"
+
+Links: [{"title":"Beyond Negative Rollouts: Positive-Only Policy Optimization with Implicit Negative Gradients","url":"https://arxiv.org/html/2605.06650"},{"title":"[2605.06650] Beyond Negative Rollouts: Positive-Only Policy Optimization with Implicit Negative Gradients","url":"https://arxiv.org/abs/2605.06650"},{"title":"[2509.24159] RE-PO: Robust Enhanced Policy Optimization as a General Framework for LLM Alignment","url":"https://arxiv.org/abs/2509.24159"},{"title":"EPO: Entropy-regularized Policy Optimization for LLM Agents Reinforcement Learning","url":"https://arxiv.org/html/2509.22576"},{"title":"[2509.22576] EPO: Entropy-regularized Policy Optimization for LLM Agents Reinforcement Learning","url":"https://arxiv.org/abs/2509.22576"},{"title":"Comparative Analysis and Parametric Tuning of PPO, GRPO, and DAPO for LLM Reasoning Enhancement","url":"https://arxiv.org/html/2512.07611v1"},{"title":"[1707.06347] Proximal Policy Optimization Algorithms","url":"https://arxiv.org/abs/1707.06347"},{"title":"The State of Reinforcement Learning for LLM Reasoning","url":"https://magazine.sebastianraschka.com/p/the-state-of-llm-reasoning-model-training"},{"title":"Proximal Policy Optimization Algorithms","url":"https://arxiv.org/pdf/1707.06347"},{"title":"[2605.04066] Adapt to Thrive! Adaptive Power-Mean Policy Optimization for Improved LLM Reasoning","url":"https://arxiv.org/abs/2605.04066"}]
+
+Based on the search results, I found relevant information about POPO (Positive-Only Policy Optimization) from 2026 on arXiv. Here's what the search revealed:
+
+## POPO: Positive-Only Policy Optimization
+
+Positive-Only Policy Optimization (POPO) is a novel RLVR (Reinforcement Learning with Verifiable Rewards) framework in which learning can occur exclusively via online positive rollouts.
+
+### Key Features
+
+POPO utilizes bounded importance sampling over the positive rollout set. The method applies a siamese policy network with a momentum-based adaptation law for stabilized policy evolution, and replaces the KL-divergence with a bounded similarity penalty term in the siamese representation space.
+
+### Motivation
+
+The authors note that negative rollouts may admit no gradation of failure severity, and the combinatorial vastness makes penalizing a few sampled negatives unlikely to cover a meaningful reward signal under sparse binary rewards. POPO shows that implicit negative gradients can emerge naturally through reinforcing the positive probability via rollouts redistribution.
+
+### Performance Results
+
+The experiments use publicly available, well-established text-LLM models, such as the Qwen family, across all-level mathematical benchmarks. POPO achieves 36.67% in AIME 2025 with Qwen-Math-7B, outperforming GRPO 30.00%. POPO achieves performance comparable to, or even superior to GRPO.
+
+The paper was recently published on arXiv (May 7, 2026) as paper 2605.06650.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b7aba7c3-05ac-41fc-994f-d97e4052e9fe",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "67ee9777-b5c4-47e1-90a2-6775213d6056",
+  "toolUseResult": {
+    "query": "POPO positive-only policy optimization reinforcement learning 2026 arxiv LLM",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JX1X2NVRQ1LRZXm7Gdv5Jd",
+        "content": [
+          {
+            "title": "Beyond Negative Rollouts: Positive-Only Policy Optimization with Implicit Negative Gradients",
+            "url": "https://arxiv.org/html/2605.06650"
+          },
+          {
+            "title": "[2605.06650] Beyond Negative Rollouts: Positive-Only Policy Optimization with Implicit Negative Gradients",
+            "url": "https://arxiv.org/abs/2605.06650"
+          },
+          {
+            "title": "[2509.24159] RE-PO: Robust Enhanced Policy Optimization as a General Framework for LLM Alignment",
+            "url": "https://arxiv.org/abs/2509.24159"
+          },
+          {
+            "title": "EPO: Entropy-regularized Policy Optimization for LLM Agents Reinforcement Learning",
+            "url": "https://arxiv.org/html/2509.22576"
+          },
+          {
+            "title": "[2509.22576] EPO: Entropy-regularized Policy Optimization for LLM Agents Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2509.22576"
+          },
+          {
+            "title": "Comparative Analysis and Parametric Tuning of PPO, GRPO, and DAPO for LLM Reasoning Enhancement",
+            "url": "https://arxiv.org/html/2512.07611v1"
+          },
+          {
+            "title": "[1707.06347] Proximal Policy Optimization Algorithms",
+            "url": "https://arxiv.org/abs/1707.06347"
+          },
+          {
+            "title": "The State of Reinforcement Learning for LLM Reasoning",
+            "url": "https://magazine.sebastianraschka.com/p/the-state-of-llm-reasoning-model-training"
+          },
+          {
+            "title": "Proximal Policy Optimization Algorithms",
+            "url": "https://arxiv.org/pdf/1707.06347"
+          },
+          {
+            "title": "[2605.04066] Adapt to Thrive! Adaptive Power-Mean Policy Optimization for Improved LLM Reasoning",
+            "url": "https://arxiv.org/abs/2605.04066"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about POPO (Positive-Only Policy Optimization) from 2026 on arXiv. Here's what the search revealed:\n\n## POPO: Positive-Only Policy Optimization\n\nPositive-Only Policy Optimization (POPO) is a novel RLVR (Reinforcement Learning with Verifiable Rewards) framework in which learning can occur exclusively via online positive rollouts.\n\n### Key Features\n\nPOPO utilizes bounded importance sampling over the positive rollout set. The method applies a siamese policy network with a momentum-based adaptation law for stabilized policy evolution, and replaces the KL-divergence with a bounded similarity penalty term in the siamese representation space.\n\n### Motivation\n\nThe authors note that negative rollouts may admit no gradation of failure severity, and the combinatorial vastness makes penalizing a few sampled negatives unlikely to cover a meaningful reward signal under sparse binary rewards. POPO shows that implicit negative gradients can emerge naturally through reinforcing the positive probability via rollouts redistribution.\n\n### Performance Results\n\nThe experiments use publicly available, well-established text-LLM models, such as the Qwen family, across all-level mathematical benchmarks. POPO achieves 36.67% in AIME 2025 with Qwen-Math-7B, outperforming GRPO 30.00%. POPO achieves performance comparable to, or even superior to GRPO.\n\nThe paper was recently published on arXiv (May 7, 2026) as paper 2605.06650."
+    ],
+    "durationSeconds": 7.447922266000009
+  },
+  "sourceToolAssistantUUID": "b7aba7c3-05ac-41fc-994f-d97e4052e9fe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-10T18:07:01.932Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016niDytXnhfef6tLptDCado`</summary>
+
+```json
+{
+  "query": "CORAL cognitive resource management long-horizon agent ICLR 2026 memory checkpoints"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "67ee9777-b5c4-47e1-90a2-6775213d6056",
+  "isSidechain": false,
+  "requestId": "req_011CauLHudwZmyigWr8ZEgHt",
+  "type": "assistant",
+  "uuid": "84dba8bf-24ac-45a2-93b9-4a4f4b5f57d9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LGG8nrfyRRysGLeaSrPUR7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 944,
+      "cache_read_input_tokens": 51333,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 944,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 51333,
+          "cache_creation_input_tokens": 944,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 944
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-10T18:07:08.936Z_
+
+<details><summary>↩ Tool result · `toolu_016niDytXnhfef6tLptDCado`</summary>
+
+```text
+Web search results for query: "CORAL cognitive resource management long-horizon agent ICLR 2026 memory checkpoints"
+
+Links: [{"title":"Don’t Lose the Thread: Empowering Long-Horizon LLM Agents with Cognitive Resource Self-Allocation | OpenReview","url":"https://openreview.net/forum?id=NBGlItueYE"},{"title":"ICLR 2026 Workshop MemAgents","url":"https://sites.google.com/view/memagent-iclr26/"},{"title":"ICLR 2026 Workshop Proposal MemAgents: Memory for LLM-Based Agentic Systems","url":"https://openreview.net/pdf?id=U51WxL382H"},{"title":"ICLR 2026 Workshop on Memory for LLM-Based Agentic Systems (MemAgents)","url":"https://iclr.cc/virtual/2026/workshop/10000792"},{"title":"ICLR Oral MemAgent: Reshaping Long-Context LLM with Multi-Conv RL-based Memory Agent","url":"https://iclr.cc/virtual/2026/oral/10007826"},{"title":"ICLR 2026 Workshop on Memory for LLM-Based Agentic Systems (MemAgents) | OpenReview","url":"https://openreview.net/forum?id=U51WxL382H"},{"title":"AMA-BENCH: EVALUATING LONG-HORIZON MEMORY","url":"https://openreview.net/pdf/69cb7b00c144feb67b7fe9a7c1fe5969d961e1f7.pdf"},{"title":"Published as a conference paper at ICLR 2026","url":"https://openreview.net/pdf/061241ca5a30c124478594f14b2e19955327b0c0.pdf"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2507.05257"},{"title":"MemAgent: Reshaping Long-Context LLM with Multi-Conv RL-based Memory Agent | OpenReview","url":"https://openreview.net/forum?id=k5nIOvYGCL"}]
+
+Based on the search results, I found relevant information about CORAL and related research at ICLR 2026:
+
+## CORAL: Cognitive Resource Management for Long-Horizon Agents
+
+CORAL is implemented as an agent-callable working memory management toolset that allows an agent to maintain crucial checkpoints of its progress within its working memory and adaptively initiate a new problem-solving episode by purging cluttered working memory. The agent's checkpoint capabilities are enhanced using a Multi-episode Agentic Reinforced Policy Optimization algorithm.
+
+On several long-horizon task benchmarks, CORAL significantly outperforms standard LLM agent methods. Analysis of the LLMs' attention distribution reveals that CORAL substantially optimizes agentic RL dynamics, which ensures agents maintain a focused cognitive resource allocation, thereby continuously amplifying performance gains.
+
+The CORAL paper appears to be part of broader research discussions at ICLR 2026 about memory management in agentic systems, particularly focused on how agents encode, retain, retrieve, and consolidate experience into useful knowledge for future decisions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "84dba8bf-24ac-45a2-93b9-4a4f4b5f57d9",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "7a8f1ae3-1197-4975-829b-3be8123c7e0a",
+  "toolUseResult": {
+    "query": "CORAL cognitive resource management long-horizon agent ICLR 2026 memory checkpoints",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01W894zir6FrJybUaFwUwbVq",
+        "content": [
+          {
+            "title": "Don’t Lose the Thread: Empowering Long-Horizon LLM Agents with Cognitive Resource Self-Allocation | OpenReview",
+            "url": "https://openreview.net/forum?id=NBGlItueYE"
+          },
+          {
+            "title": "ICLR 2026 Workshop MemAgents",
+            "url": "https://sites.google.com/view/memagent-iclr26/"
+          },
+          {
+            "title": "ICLR 2026 Workshop Proposal MemAgents: Memory for LLM-Based Agentic Systems",
+            "url": "https://openreview.net/pdf?id=U51WxL382H"
+          },
+          {
+            "title": "ICLR 2026 Workshop on Memory for LLM-Based Agentic Systems (MemAgents)",
+            "url": "https://iclr.cc/virtual/2026/workshop/10000792"
+          },
+          {
+            "title": "ICLR Oral MemAgent: Reshaping Long-Context LLM with Multi-Conv RL-based Memory Agent",
+            "url": "https://iclr.cc/virtual/2026/oral/10007826"
+          },
+          {
+            "title": "ICLR 2026 Workshop on Memory for LLM-Based Agentic Systems (MemAgents) | OpenReview",
+            "url": "https://openreview.net/forum?id=U51WxL382H"
+          },
+          {
+            "title": "AMA-BENCH: EVALUATING LONG-HORIZON MEMORY",
+            "url": "https://openreview.net/pdf/69cb7b00c144feb67b7fe9a7c1fe5969d961e1f7.pdf"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://openreview.net/pdf/061241ca5a30c124478594f14b2e19955327b0c0.pdf"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2507.05257"
+          },
+          {
+            "title": "MemAgent: Reshaping Long-Context LLM with Multi-Conv RL-based Memory Agent | OpenReview",
+            "url": "https://openreview.net/forum?id=k5nIOvYGCL"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about CORAL and related research at ICLR 2026:\n\n## CORAL: Cognitive Resource Management for Long-Horizon Agents\n\nCORAL is implemented as an agent-callable working memory management toolset that allows an agent to maintain crucial checkpoints of its progress within its working memory and adaptively initiate a new problem-solving episode by purging cluttered working memory. The agent's checkpoint capabilities are enhanced using a Multi-episode Agentic Reinforced Policy Optimization algorithm.\n\nOn several long-horizon task benchmarks, CORAL significantly outperforms standard LLM agent methods. Analysis of the LLMs' attention distribution reveals that CORAL substantially optimizes agentic RL dynamics, which ensures agents maintain a focused cognitive resource allocation, thereby continuously amplifying performance gains.\n\nThe CORAL paper appears to be part of broader research discussions at ICLR 2026 about memory management in agentic systems, particularly focused on how agents encode, retain, retrieve, and consolidate experience into useful knowledge for future decisions."
+    ],
+    "durationSeconds": 7.00003792100004
+  },
+  "sourceToolAssistantUUID": "84dba8bf-24ac-45a2-93b9-4a4f4b5f57d9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 85 · 2026-05-10T18:07:12.861Z_
+
+Now let me look specifically for the survey on credit assignment that the generator cites, and check whether it truly confirms no work uses reversibility for training-time optimization.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7a8f1ae3-1197-4975-829b-3be8123c7e0a",
+  "isSidechain": false,
+  "requestId": "req_011CauLJan9y8DgZhuMarEVX",
+  "type": "assistant",
+  "uuid": "d5a8d62f-34a0-42b3-92b7-48cb7ef73302",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019FqHZFRbd6VrgVGBbuhvyG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 889,
+      "cache_read_input_tokens": 52277,
+      "output_tokens": 194,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 889,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 194,
+          "cache_read_input_tokens": 52277,
+          "cache_creation_input_tokens": 889,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 889
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86 · 2026-05-10T18:07:15.716Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_018umCaqJshHy2iQFcW3bmWJ`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2604.09459",
+  "prompt": "Does this survey paper mention reversibility, irreversibility, or action type as a factor in credit assignment for LLM agent training? Does it catalog any method that modulates optimization pressure based on action reversibility? List the categories of credit assignment methods it identifies. Also note if it mentions MOSAIC or Zora or any safety-related use of irreversibility scores."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d5a8d62f-34a0-42b3-92b7-48cb7ef73302",
+  "isSidechain": false,
+  "requestId": "req_011CauLJan9y8DgZhuMarEVX",
+  "type": "assistant",
+  "uuid": "7c99f7f4-4ef1-44da-8a73-0170aa3b2d2d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019FqHZFRbd6VrgVGBbuhvyG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 889,
+      "cache_read_input_tokens": 52277,
+      "output_tokens": 194,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 889,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 194,
+          "cache_read_input_tokens": 52277,
+          "cache_creation_input_tokens": 889,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 889
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-10T18:07:20.315Z_
+
+<details><summary>↩ Tool result · `toolu_018umCaqJshHy2iQFcW3bmWJ`</summary>
+
+```text
+# Analysis of Survey Paper Content
+
+Based on the provided webpage content, I cannot definitively answer your specific questions about reversibility, irreversibility, or action-type factors in credit assignment.
+
+## What the Abstract Does Reveal
+
+The paper identifies **five categories of credit assignment methodologies**:
+- Monte Carlo approaches
+- Temporal difference methods
+- Model-based techniques
+- Game-theoretic strategies
+- Information-theoretic approaches
+
+It also organizes methods by **assignment granularity** (token, segment, step, turn, multi-agent).
+
+## What Remains Unclear
+
+The abstract does not mention:
+- Reversibility or irreversibility as credit assignment factors
+- Action type modulation based on reversibility
+- "MOSAIC" or "Zora"
+- Safety-related applications of irreversibility scoring
+
+The webpage provides only the abstract and metadata. To determine whether the full 47-method survey addresses these concepts, you would need to access the complete PDF or HTML version of the paper at the provided links.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7c99f7f4-4ef1-44da-8a73-0170aa3b2d2d",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "d0cdfa07-7e05-472c-bf3b-a29e38ea02d4",
+  "toolUseResult": {
+    "bytes": 46647,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of Survey Paper Content\n\nBased on the provided webpage content, I cannot definitively answer your specific questions about reversibility, irreversibility, or action-type factors in credit assignment.\n\n## What the Abstract Does Reveal\n\nThe paper identifies **five categories of credit assignment methodologies**:\n- Monte Carlo approaches\n- Temporal difference methods\n- Model-based techniques\n- Game-theoretic strategies\n- Information-theoretic approaches\n\nIt also organizes methods by **assignment granularity** (token, segment, step, turn, multi-agent).\n\n## What Remains Unclear\n\nThe abstract does not mention:\n- Reversibility or irreversibility as credit assignment factors\n- Action type modulation based on reversibility\n- \"MOSAIC\" or \"Zora\"\n- Safety-related applications of irreversibility scoring\n\nThe webpage provides only the abstract and metadata. To determine whether the full 47-method survey addresses these concepts, you would need to access the complete PDF or HTML version of the paper at the provided links.",
+    "durationMs": 4594,
+    "url": "https://arxiv.org/abs/2604.09459"
+  },
+  "sourceToolAssistantUUID": "7c99f7f4-4ef1-44da-8a73-0170aa3b2d2d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88 · 2026-05-10T18:07:24.102Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JQNAgY3xq5YPSSy4Nih6Fr`</summary>
+
+```json
+{
+  "query": "arXiv 2601.22311 \"planning-centric analysis\" irreversible errors long-horizon agents 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d0cdfa07-7e05-472c-bf3b-a29e38ea02d4",
+  "isSidechain": false,
+  "requestId": "req_011CauLKRPPHzQJsTi7uaiVK",
+  "type": "assistant",
+  "uuid": "3e6b902c-c466-42f2-ba61-e23826b2c928",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HQxSiaLzy6MfanbArRRfDz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 426,
+      "cache_read_input_tokens": 53166,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 426,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 53166,
+          "cache_creation_input_tokens": 426,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 426
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-10T18:07:31.641Z_
+
+<details><summary>↩ Tool result · `toolu_01JQNAgY3xq5YPSSy4Nih6Fr`</summary>
+
+```text
+Web search results for query: "arXiv 2601.22311 "planning-centric analysis" irreversible errors long-horizon agents 2026"
+
+Links: [{"title":"[2601.22311] Why Reasoning Fails to Plan: A Planning-Centric Analysis of Long-Horizon Decision Making in LLM Agents","url":"https://arxiv.org/abs/2601.22311"},{"title":"Why Reasoning Fails to Plan: A Planning-Centric Analysis of Long-Horizon Decision Making in LLM Agents","url":"https://arxiv.org/html/2601.22311"},{"title":"A Planning-Centric Analysis of Long-Horizon Decision ...","url":"https://arxiv.org/pdf/2601.22311"},{"title":"Why Reasoning Fails to Plan: A Planning-Centric Analysis of Long-Horizon Decision Making in LLM Agents | alphaXiv","url":"https://www.alphaxiv.org/abs/2601.22311"},{"title":"Why Reasoning Fails to Plan: A Planning-Centric Analysis of Long-Horizon Decision Making in LLM Agents | ResearchTrend.AI","url":"https://researchtrend.ai/papers/2601.22311"},{"title":"(PDF) Why Reasoning Fails to Plan: A Planning-Centric Analysis of Long-Horizon Decision Making in LLM Agents","url":"https://www.researchgate.net/publication/400339696_Why_Reasoning_Fails_to_Plan_A_Planning-Centric_Analysis_of_Long-Horizon_Decision_Making_in_LLM_Agents"},{"title":"DeepPlanning: Benchmarking Long-Horizon Agentic Planning with Verifiable Constraints","url":"https://arxiv.org/html/2601.18137v1"},{"title":"Why Reasoning Fails to Plan: The Fundamental Gap Between Step-by-Step Thinking and Long-Horizon Decision Making in LLM Agents","url":"https://co-r-e.com/method/reasoning-planning-llm-agents"},{"title":"[2601.18137] DeepPlanning: Benchmarking Long-Horizon Agentic Planning with Verifiable Constraints","url":"https://arxiv.org/abs/2601.18137"},{"title":"InfiAgent: An Infinite-Horizon Framework for General-Purpose Autonomous Agents","url":"https://arxiv.org/html/2601.03204v1"}]
+
+Based on the search results for arXiv 2601.22311, here's what I found:
+
+## Paper Summary
+
+The paper is titled "Why Reasoning Fails to Plan: A Planning-Centric Analysis of Long-Horizon Decision Making in LLM Agents".
+
+### Key Findings
+
+The research shows that large language model (LLM)-based agents exhibit strong step-by-step reasoning capabilities over short horizons, yet often fail to sustain coherent behavior over long planning horizons. The failure reflects a fundamental mismatch: step-wise reasoning induces a step-wise greedy policy that is adequate for short horizons but fails in long-horizon planning.
+
+### Core Failure Mode
+
+The analysis reveals a core failure mode of reasoning-based policies: locally optimal choices induced by step-wise scoring lead to early myopic commitments that are systematically amplified over time and difficult to recover from.
+
+This failure reflects a structural limitation of step-wise greedy decision making: once actions are selected based on local signals, early commitments become difficult to revise, locking agents into irreversible trajectories.
+
+### Proposed Solution
+
+The paper introduces FLARE (Future-aware Lookahead with Reward Estimation) as a minimal instantiation of future-aware planning to enforce explicit lookahead, value propagation, and limited commitment. Across multiple benchmarks, agent frameworks, and LLM backbones, FLARE consistently improves task performance and planning-level behavior.
+
+The paper was published on January 29, 2026, and provides both empirical and theoretical analysis of why planning-centric approaches outperform pure step-by-step reasoning for long-horizon agent tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3e6b902c-c466-42f2-ba61-e23826b2c928",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "b5e9abdc-8991-49bb-934d-95447e3e9c53",
+  "toolUseResult": {
+    "query": "arXiv 2601.22311 \"planning-centric analysis\" irreversible errors long-horizon agents 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016rgrpkWya4QKXiprUnerDu",
+        "content": [
+          {
+            "title": "[2601.22311] Why Reasoning Fails to Plan: A Planning-Centric Analysis of Long-Horizon Decision Making in LLM Agents",
+            "url": "https://arxiv.org/abs/2601.22311"
+          },
+          {
+            "title": "Why Reasoning Fails to Plan: A Planning-Centric Analysis of Long-Horizon Decision Making in LLM Agents",
+            "url": "https://arxiv.org/html/2601.22311"
+          },
+          {
+            "title": "A Planning-Centric Analysis of Long-Horizon Decision ...",
+            "url": "https://arxiv.org/pdf/2601.22311"
+          },
+          {
+            "title": "Why Reasoning Fails to Plan: A Planning-Centric Analysis of Long-Horizon Decision Making in LLM Agents | alphaXiv",
+            "url": "https://www.alphaxiv.org/abs/2601.22311"
+          },
+          {
+            "title": "Why Reasoning Fails to Plan: A Planning-Centric Analysis of Long-Horizon Decision Making in LLM Agents | ResearchTrend.AI",
+            "url": "https://researchtrend.ai/papers/2601.22311"
+          },
+          {
+            "title": "(PDF) Why Reasoning Fails to Plan: A Planning-Centric Analysis of Long-Horizon Decision Making in LLM Agents",
+            "url": "https://www.researchgate.net/publication/400339696_Why_Reasoning_Fails_to_Plan_A_Planning-Centric_Analysis_of_Long-Horizon_Decision_Making_in_LLM_Agents"
+          },
+          {
+            "title": "DeepPlanning: Benchmarking Long-Horizon Agentic Planning with Verifiable Constraints",
+            "url": "https://arxiv.org/html/2601.18137v1"
+          },
+          {
+            "title": "Why Reasoning Fails to Plan: The Fundamental Gap Between Step-by-Step Thinking and Long-Horizon Decision Making in LLM Agents",
+            "url": "https://co-r-e.com/method/reasoning-planning-llm-agents"
+          },
+          {
+            "title": "[2601.18137] DeepPlanning: Benchmarking Long-Horizon Agentic Planning with Verifiable Constraints",
+            "url": "https://arxiv.org/abs/2601.18137"
+          },
+          {
+            "title": "InfiAgent: An Infinite-Horizon Framework for General-Purpose Autonomous Agents",
+            "url": "https://arxiv.org/html/2601.03204v1"
+          }
+        ]
+      },
+      "Based on the search results for arXiv 2601.22311, here's what I found:\n\n## Paper Summary\n\nThe paper is titled \"Why Reasoning Fails to Plan: A Planning-Centric Analysis of Long-Horizon Decision Making in LLM Agents\".\n\n### Key Findings\n\nThe research shows that large language model (LLM)-based agents exhibit strong step-by-step reasoning capabilities over short horizons, yet often fail to sustain coherent behavior over long planning horizons. The failure reflects a fundamental mismatch: step-wise reasoning induces a step-wise greedy policy that is adequate for short horizons but fails in long-horizon planning.\n\n### Core Failure Mode\n\nThe analysis reveals a core failure mode of reasoning-based policies: locally optimal choices induced by step-wise scoring lead to early myopic commitments that are systematically amplified over time and difficult to recover from.\n\nThis failure reflects a structural limitation of step-wise greedy decision making: once actions are selected based on local signals, early commitments become difficult to revise, locking agents into irreversible trajectories.\n\n### Proposed Solution\n\nThe paper introduces FLARE (Future-aware Lookahead with Reward Estimation) as a minimal instantiation of future-aware planning to enforce explicit lookahead, value propagation, and limited commitment. Across multiple benchmarks, agent frameworks, and LLM backbones, FLARE consistently improves task performance and planning-level behavior.\n\nThe paper was published on January 29, 2026, and provides both empirical and theoretical analysis of why planning-centric approaches outperform pure step-by-step reasoning for long-horizon agent tasks."
+    ],
+    "durationSeconds": 7.533640837999992
+  },
+  "sourceToolAssistantUUID": "3e6b902c-c466-42f2-ba61-e23826b2c928",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 90 · 2026-05-10T18:07:35.781Z_
+
+Good — the planning-centric paper does discuss "early myopic commitments" and "irreversible trajectories" as a failure mode, which supports the generator's motivation. Now let me check the venue alignment issue and search for the most critical potential competitor — any work that directly uses action-type properties in agent RL training.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b5e9abdc-8991-49bb-934d-95447e3e9c53",
+  "isSidechain": false,
+  "requestId": "req_011CauLLFni45SzPaZpZ46kn",
+  "type": "assistant",
+  "uuid": "9e867f37-ec21-4281-a26f-726ad6227190",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L88f1oo3jWuA5yCoDXzK2h",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1075,
+      "cache_read_input_tokens": 53592,
+      "output_tokens": 160,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1075,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 160,
+          "cache_read_input_tokens": 53592,
+          "cache_creation_input_tokens": 1075,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1075
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-10T18:07:36.547Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KgHbpg4WXpmJCPFeQHa7fe`</summary>
+
+```json
+{
+  "query": "\"action-aware\" OR \"action-type\" advantage weighting OR modulation GRPO reinforcement learning LLM 2025 2026 site:arxiv.org"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9e867f37-ec21-4281-a26f-726ad6227190",
+  "isSidechain": false,
+  "requestId": "req_011CauLLFni45SzPaZpZ46kn",
+  "type": "assistant",
+  "uuid": "e9df64d6-d935-416a-b440-07d44a326695",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L88f1oo3jWuA5yCoDXzK2h",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1075,
+      "cache_read_input_tokens": 53592,
+      "output_tokens": 160,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1075,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 160,
+          "cache_read_input_tokens": 53592,
+          "cache_creation_input_tokens": 1075,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1075
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 92_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "e9df64d6-d935-416a-b440-07d44a326695",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 93_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of Irreversibility-Aware Advantage Weighting for Agent RL",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2"
+}
+```
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-10T18:07:40.849Z_
+
+<details><summary>↩ Tool result · `toolu_01KgHbpg4WXpmJCPFeQHa7fe`</summary>
+
+```text
+Web search results for query: ""action-aware" OR "action-type" advantage weighting OR modulation GRPO reinforcement learning LLM 2025 2026 site:arxiv.org"
+
+No links found.
+
+The search didn't return any results. This could be because:
+
+1. The combination of terms is very specific and may not appear together in indexed papers
+2. The specific terminology ("action-aware," "action-type," "advantage weighting/modulation," "GRPO") may be specialized concepts that aren't widely discussed in recent literature
+
+To help you find what you're looking for, I'd suggest:
+- **Searching arxiv.org directly** for more precise filtering by site and date range (2025-2026)
+- **Breaking the search into simpler components**, such as:
+  - "GRPO reinforcement learning LLM"
+  - "advantage weighting LLM policy gradient"
+  - "action-type modulation reinforcement learning"
+- **Using arxiv.org's advanced search** which allows you to specify exact phrases, date ranges, and categories more precisely
+
+Would you like me to try a simpler search query, or would you prefer to search arxiv.org directly using their interface?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e9df64d6-d935-416a-b440-07d44a326695",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "2c2fd643-e7e9-4d65-9013-eccd3fdb3918",
+  "toolUseResult": {
+    "query": "\"action-aware\" OR \"action-type\" advantage weighting OR modulation GRPO reinforcement learning LLM 2025 2026 site:arxiv.org",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019Z2Zf3Zb84DTfftN1j2i3J",
+        "content": []
+      },
+      "The search didn't return any results. This could be because:\n\n1. The combination of terms is very specific and may not appear together in indexed papers\n2. The specific terminology (\"action-aware,\" \"action-type,\" \"advantage weighting/modulation,\" \"GRPO\") may be specialized concepts that aren't widely discussed in recent literature\n\nTo help you find what you're looking for, I'd suggest:\n- **Searching arxiv.org directly** for more precise filtering by site and date range (2025-2026)\n- **Breaking the search into simpler components**, such as:\n  - \"GRPO reinforcement learning LLM\"\n  - \"advantage weighting LLM policy gradient\"\n  - \"action-type modulation reinforcement learning\"\n- **Using arxiv.org's advanced search** which allows you to specify exact phrases, date ranges, and categories more precisely\n\nWould you like me to try a simpler search query, or would you prefer to search arxiv.org directly using their interface?"
+    ],
+    "durationSeconds": 4.297255122000002
+  },
+  "sourceToolAssistantUUID": "e9df64d6-d935-416a-b440-07d44a326695",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-10T18:07:43.231Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WAPtRRt47yYiHNN4vvArDu`</summary>
+
+```json
+{
+  "query": "safe reinforcement learning irreversible actions reward shaping LLM agent safety-aware training 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2c2fd643-e7e9-4d65-9013-eccd3fdb3918",
+  "isSidechain": false,
+  "requestId": "req_011CauLLwDHMsmGoNAJKuDve",
+  "type": "assistant",
+  "uuid": "8d0ec1d7-1e44-4cba-9b47-f9ee6b122c03",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AxDQWxYyp6WNyXQQaqqAAu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 468,
+      "cache_read_input_tokens": 54667,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 468,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 54667,
+          "cache_creation_input_tokens": 468,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 468
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-10T18:07:52.477Z_
+
+<details><summary>↩ Tool result · `toolu_01WAPtRRt47yYiHNN4vvArDu`</summary>
+
+```text
+Web search results for query: "safe reinforcement learning irreversible actions reward shaping LLM agent safety-aware training 2025 2026"
+
+Links: [{"title":"[2511.21050] Breaking the Safety-Capability Tradeoff: Reinforcement Learning with Verifiable Rewards Maintains Safety Guardrails in LLMs","url":"https://arxiv.org/abs/2511.21050"},{"title":"Breaking the Safety-Capability Tradeoff: Reinforcement Learning with Verifiable Rewards Maintains Safety Guardrails in LLMs","url":"https://arxiv.org/html/2511.21050"},{"title":"Reinforcement Learning for Safe LLM Code Generation Roy Huang","url":"https://www2.eecs.berkeley.edu/Pubs/TechRpts/2025/EECS-2025-123.pdf"},{"title":"GitHub - bobxwu/learning-from-rewards-llm-papers: A comrephensive collection of learning from rewards in the post-training and test-time scaling of LLMs, with a focus on both reward models and learning strategies across training, inference, and post-inference stages. · GitHub","url":"https://github.com/bobxwu/learning-from-rewards-llm-papers"},{"title":"GitHub - tmgthb/Autonomous-Agents: Autonomous Agents (LLMs) research papers. Updated Daily. · GitHub","url":"https://github.com/tmgthb/Autonomous-Agents"},{"title":"[2603.14018] LLM-Guided Safe Reinforcement Learning for Energy System Topology Reconfiguration","url":"https://arxiv.org/abs/2603.14018"},{"title":"Breaking the Safety-Capability Tradeoff: Reinforcement Learning with Verifiable","url":"https://arxiv.org/pdf/2511.21050"},{"title":"A Survey of Safe Reinforcement Learning and Constrained MDPs: A Technical Survey on Single-Agent and Multi-Agent Safety","url":"https://arxiv.org/html/2505.17342v1"},{"title":"AI 101: The State of Reinforcement Learning in 2025","url":"https://www.turingpost.com/p/stateofrl2025"},{"title":"Reinforcement Learning from Human Feedback (RLHF) Explained | IntuitionLabs","url":"https://intuitionlabs.ai/articles/reinforcement-learning-human-feedback"}]
+
+I've performed the web search on safe reinforcement learning with a focus on irreversible actions, reward shaping, LLM agent safety-aware training for 2025-2026. Here are the key findings:
+
+## Recent Research Highlights
+
+### Safety-Capability Tradeoff in LLMs (November 2025)
+
+Fine-tuning large language models for downstream tasks exhibits a fundamental safety-capability tradeoff, where improving task performance degrades safety alignment even on benign datasets. This degradation persists across standard approaches including supervised finetuning (SFT) and reinforcement learning from human feedback (RLHF).
+
+However, while reinforcement learning with verifiable rewards (RLVR) has emerged as a promising alternative that optimizes models on objectively measurable tasks, recent research presents the first comprehensive theoretical and empirical analysis of safety properties in RLVR. Theoretically, researchers derived upper bounds on safety drift under KL-constrained optimization and proved conditions under which safety degradation is eliminated.
+
+### Safe RL with Irreversible Actions (March 2026)
+
+A recent framework addresses irreversible actions in energy systems: Operational voltage and thermal limits are reformulated into smooth safety-cost signals, enabling risk-aware policy optimization. A knowledge-based Safety-LLM module is introduced to refine unsafe or suboptimal transitions through domain knowledge and state-informed reasoning, guiding the learning agent toward safer actions.
+
+### General RL Safety Framework (May 2025)
+
+In applications involving irreversible damage, exceeding operational limits can cause irreversible hardware damage, so constraints must hold at every step. Safe reinforcement learning via shielding uses Linear Temporal Logic (LTL) specifications to construct shields for RL agents.
+
+### Industry Trends (2025-2026)
+
+Reinforcement Learning from Human Feedback (RLHF) became the default alignment strategy for LLMs in 2025. Ever since DeepSeek-R1 kicked off the year with a major reasoning breakthrough, researchers increasingly turned to RL-based training as a way to strengthen reasoning and agentic behavior.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8d0ec1d7-1e44-4cba-9b47-f9ee6b122c03",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "2609df39-6e87-4d06-956b-f555b51fc929",
+  "toolUseResult": {
+    "query": "safe reinforcement learning irreversible actions reward shaping LLM agent safety-aware training 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014A44YC7hWGSe1vcadEHh4G",
+        "content": [
+          {
+            "title": "[2511.21050] Breaking the Safety-Capability Tradeoff: Reinforcement Learning with Verifiable Rewards Maintains Safety Guardrails in LLMs",
+            "url": "https://arxiv.org/abs/2511.21050"
+          },
+          {
+            "title": "Breaking the Safety-Capability Tradeoff: Reinforcement Learning with Verifiable Rewards Maintains Safety Guardrails in LLMs",
+            "url": "https://arxiv.org/html/2511.21050"
+          },
+          {
+            "title": "Reinforcement Learning for Safe LLM Code Generation Roy Huang",
+            "url": "https://www2.eecs.berkeley.edu/Pubs/TechRpts/2025/EECS-2025-123.pdf"
+          },
+          {
+            "title": "GitHub - bobxwu/learning-from-rewards-llm-papers: A comrephensive collection of learning from rewards in the post-training and test-time scaling of LLMs, with a focus on both reward models and learning strategies across training, inference, and post-inference stages. · GitHub",
+            "url": "https://github.com/bobxwu/learning-from-rewards-llm-papers"
+          },
+          {
+            "title": "GitHub - tmgthb/Autonomous-Agents: Autonomous Agents (LLMs) research papers. Updated Daily. · GitHub",
+            "url": "https://github.com/tmgthb/Autonomous-Agents"
+          },
+          {
+            "title": "[2603.14018] LLM-Guided Safe Reinforcement Learning for Energy System Topology Reconfiguration",
+            "url": "https://arxiv.org/abs/2603.14018"
+          },
+          {
+            "title": "Breaking the Safety-Capability Tradeoff: Reinforcement Learning with Verifiable",
+            "url": "https://arxiv.org/pdf/2511.21050"
+          },
+          {
+            "title": "A Survey of Safe Reinforcement Learning and Constrained MDPs: A Technical Survey on Single-Agent and Multi-Agent Safety",
+            "url": "https://arxiv.org/html/2505.17342v1"
+          },
+          {
+            "title": "AI 101: The State of Reinforcement Learning in 2025",
+            "url": "https://www.turingpost.com/p/stateofrl2025"
+          },
+          {
+            "title": "Reinforcement Learning from Human Feedback (RLHF) Explained | IntuitionLabs",
+            "url": "https://intuitionlabs.ai/articles/reinforcement-learning-human-feedback"
+          }
+        ]
+      },
+      "I've performed the web search on safe reinforcement learning with a focus on irreversible actions, reward shaping, LLM agent safety-aware training for 2025-2026. Here are the key findings:\n\n## Recent Research Highlights\n\n### Safety-Capability Tradeoff in LLMs (November 2025)\n\nFine-tuning large language models for downstream tasks exhibits a fundamental safety-capability tradeoff, where improving task performance degrades safety alignment even on benign datasets. This degradation persists across standard approaches including supervised finetuning (SFT) and reinforcement learning from human feedback (RLHF).\n\nHowever, while reinforcement learning with verifiable rewards (RLVR) has emerged as a promising alternative that optimizes models on objectively measurable tasks, recent research presents the first comprehensive theoretical and empirical analysis of safety properties in RLVR. Theoretically, researchers derived upper bounds on safety drift under KL-constrained optimization and proved conditions under which safety degradation is eliminated.\n\n### Safe RL with Irreversible Actions (March 2026)\n\nA recent framework addresses irreversible actions in energy systems: Operational voltage and thermal limits are reformulated into smooth safety-cost signals, enabling risk-aware policy optimization. A knowledge-based Safety-LLM module is introduced to refine unsafe or suboptimal transitions through domain knowledge and state-informed reasoning, guiding the learning agent toward safer actions.\n\n### General RL Safety Framework (May 2025)\n\nIn applications involving irreversible damage, exceeding operational limits can cause irreversible hardware damage, so constraints must hold at every step. Safe reinforcement learning via shielding uses Linear Temporal Logic (LTL) specifications to construct shields for RL agents.\n\n### Industry Trends (2025-2026)\n\nReinforcement Learning from Human Feedback (RLHF) became the default alignment strategy for LLMs in 2025. Ever since DeepSeek-R1 kicked off the year with a major reasoning breakthrough, researchers increasingly turned to RL-based training as a way to strengthen reasoning and agentic behavior."
+    ],
+    "durationSeconds": 9.242205526000005
+  },
+  "sourceToolAssistantUUID": "8d0ec1d7-1e44-4cba-9b47-f9ee6b122c03",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-10T18:07:55.287Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WY3sJaJR2MLv6bK7owGyVK`</summary>
+
+```json
+{
+  "query": "cosine similarity observation embedding state matching LLM agent trajectory reversibility detection feasibility"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2609df39-6e87-4d06-956b-f555b51fc929",
+  "isSidechain": false,
+  "requestId": "req_011CauLMnrmLuAcfH9KNJeNA",
+  "type": "assistant",
+  "uuid": "582396a5-5237-4dec-8c8f-2b58118831de",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013ou9jmDoCSkgcFaZGYuJzv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1159,
+      "cache_read_input_tokens": 55135,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1159,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 55135,
+          "cache_creation_input_tokens": 1159,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1159
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-10T18:08:02.300Z_
+
+<details><summary>↩ Tool result · `toolu_01WY3sJaJR2MLv6bK7owGyVK`</summary>
+
+```text
+Web search results for query: "cosine similarity observation embedding state matching LLM agent trajectory reversibility detection feasibility"
+
+Links: [{"title":"Understanding Cosine Similarity: Applications in LLMs and Beyond | by KoshurAI | Medium","url":"https://koshurai.medium.com/understanding-cosine-similarity-applications-in-llms-and-beyond-882bcf1077dc"},{"title":"Revisiting JBShield: Breaking and Rebuilding Representation-Level Jailbreak Defenses","url":"https://arxiv.org/html/2605.03095"},{"title":"How Does Cosine Similarity Work? The Math Behind LLMs Explained","url":"https://www.freecodecamp.org/news/how-does-cosine-similarity-work/"},{"title":"Is Cosine-Similarity of Embeddings Really About Similarity?","url":"https://research.netflix.com/publication/is-cosine-similarity-of-embeddings-really-about-similarity"},{"title":"Is Cosine-Similarity of Embeddings Really About Similarity?","url":"https://arxiv.org/html/2403.05440v1"},{"title":"Embedding-based similarity matching in Kong AI gateway plugins - Kong Gateway | Kong Docs","url":"https://developer.konghq.com/ai-gateway/semantic-similarity/"},{"title":"How does cosine similarity work?","url":"https://tomhazledine.com/cosine-similarity/"},{"title":"Measuring Similarity and Distance between Embeddings","url":"https://www.dataquest.io/blog/measuring-similarity-and-distance-between-embeddings/"},{"title":"SemScore: Evaluating LLMs with Semantic Similarity","url":"https://huggingface.co/blog/g-ronimo/semscore"},{"title":"What Is Cosine Similarity? | IBM","url":"https://www.ibm.com/think/topics/cosine-similarity"}]
+
+Based on the web search results, I found comprehensive information about cosine similarity and its applications with LLM embeddings. Here's what the search revealed:
+
+## Cosine Similarity and Embedding Observation Matching
+
+LLMs can generate vector embeddings for sentences or entire documents, and to determine how similar two pieces of text are, cosine similarity can be computed between their embeddings.
+
+Cosine similarity is a metric that assesses the orientation of two vectors in space without regard to magnitude, making it well-suited for comparing document or sentence embeddings in NLP.
+
+## Applications in State Matching
+
+Neural networks and LLMs compare vector embeddings using cosine similarity to evaluate the semantic closeness between inputs. This is particularly relevant for state observation matching in agent trajectories, as when generating answers, LLMs rely on vector similarity to decide which words or phrases best follow in context.
+
+## Feasibility Considerations
+
+However, there are important limitations to consider. Cosine similarity can yield arbitrary and meaningless 'similarities,' and a combination of different regularizations employed when learning deep models have implicit and unintended effects when taking cosine-similarities of the resulting embeddings, rendering results opaque and possibly arbitrary.
+
+Additionally, embeddings typically do not capture subtle semantic changes or handle long context as well as LLMs.
+
+The search results focus primarily on the mechanics and applications of cosine similarity in NLP and LLM systems, but don't contain specific research on trajectory reversibility detection in agents using these methods.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "582396a5-5237-4dec-8c8f-2b58118831de",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "2cf9af93-1e7c-4627-b8a2-cde7e7561c99",
+  "toolUseResult": {
+    "query": "cosine similarity observation embedding state matching LLM agent trajectory reversibility detection feasibility",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QLKSsqXc3tnBAPYSxFFjE6",
+        "content": [
+          {
+            "title": "Understanding Cosine Similarity: Applications in LLMs and Beyond | by KoshurAI | Medium",
+            "url": "https://koshurai.medium.com/understanding-cosine-similarity-applications-in-llms-and-beyond-882bcf1077dc"
+          },
+          {
+            "title": "Revisiting JBShield: Breaking and Rebuilding Representation-Level Jailbreak Defenses",
+            "url": "https://arxiv.org/html/2605.03095"
+          },
+          {
+            "title": "How Does Cosine Similarity Work? The Math Behind LLMs Explained",
+            "url": "https://www.freecodecamp.org/news/how-does-cosine-similarity-work/"
+          },
+          {
+            "title": "Is Cosine-Similarity of Embeddings Really About Similarity?",
+            "url": "https://research.netflix.com/publication/is-cosine-similarity-of-embeddings-really-about-similarity"
+          },
+          {
+            "title": "Is Cosine-Similarity of Embeddings Really About Similarity?",
+            "url": "https://arxiv.org/html/2403.05440v1"
+          },
+          {
+            "title": "Embedding-based similarity matching in Kong AI gateway plugins - Kong Gateway | Kong Docs",
+            "url": "https://developer.konghq.com/ai-gateway/semantic-similarity/"
+          },
+          {
+            "title": "How does cosine similarity work?",
+            "url": "https://tomhazledine.com/cosine-similarity/"
+          },
+          {
+            "title": "Measuring Similarity and Distance between Embeddings",
+            "url": "https://www.dataquest.io/blog/measuring-similarity-and-distance-between-embeddings/"
+          },
+          {
+            "title": "SemScore: Evaluating LLMs with Semantic Similarity",
+            "url": "https://huggingface.co/blog/g-ronimo/semscore"
+          },
+          {
+            "title": "What Is Cosine Similarity? | IBM",
+            "url": "https://www.ibm.com/think/topics/cosine-similarity"
+          }
+        ]
+      },
+      "Based on the web search results, I found comprehensive information about cosine similarity and its applications with LLM embeddings. Here's what the search revealed:\n\n## Cosine Similarity and Embedding Observation Matching\n\nLLMs can generate vector embeddings for sentences or entire documents, and to determine how similar two pieces of text are, cosine similarity can be computed between their embeddings.\n\nCosine similarity is a metric that assesses the orientation of two vectors in space without regard to magnitude, making it well-suited for comparing document or sentence embeddings in NLP.\n\n## Applications in State Matching\n\nNeural networks and LLMs compare vector embeddings using cosine similarity to evaluate the semantic closeness between inputs. This is particularly relevant for state observation matching in agent trajectories, as when generating answers, LLMs rely on vector similarity to decide which words or phrases best follow in context.\n\n## Feasibility Considerations\n\nHowever, there are important limitations to consider. Cosine similarity can yield arbitrary and meaningless 'similarities,' and a combination of different regularizations employed when learning deep models have implicit and unintended effects when taking cosine-similarities of the resulting embeddings, rendering results opaque and possibly arbitrary.\n\nAdditionally, embeddings typically do not capture subtle semantic changes or handle long context as well as LLMs.\n\nThe search results focus primarily on the mechanics and applications of cosine similarity in NLP and LLM systems, but don't contain specific research on trajectory reversibility detection in agents using these methods."
+    ],
+    "durationSeconds": 7.007835777
+  },
+  "sourceToolAssistantUUID": "582396a5-5237-4dec-8c8f-2b58118831de",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-10T18:08:05.407Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RYra1vdP3MkiAiyTnWggH2`</summary>
+
+```json
+{
+  "query": "AAAI 2027 submission deadline August 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2cf9af93-1e7c-4627-b8a2-cde7e7561c99",
+  "isSidechain": false,
+  "requestId": "req_011CauLNXAyNbXgWvWYGyqwz",
+  "type": "assistant",
+  "uuid": "f4489c0d-3e20-4b66-9943-094b752c585a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BDvvoujYAcBr9qGjWCnMuo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 889,
+      "cache_read_input_tokens": 56294,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 889,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 56294,
+          "cache_creation_input_tokens": 889,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 889
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-10T18:08:08.641Z_
+
+<details><summary>↩ Tool result · `toolu_01RYra1vdP3MkiAiyTnWggH2`</summary>
+
+```text
+Web search results for query: "AAAI 2027 submission deadline August 2026"
+
+Links: [{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=3"},{"title":"Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"},{"title":"AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf","url":"https://www.underleaf.ai/templates/aaai"},{"title":"AAAI Conference on Artificial Intelligence - AAAI","url":"https://aaai.org/conference/aaai/"},{"title":"🚨AAAI-26 Call for Papers🚨 AAAI-26 will in Singapore from ...","url":"https://www.facebook.com/AAAIOrg/posts/aaai-26-call-for-papersaaai-26-will-in-singapore-from-january-20-to-january-27-2/751564707547430/"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"MPC Deadlines Hub","url":"https://mpc-deadlines.github.io/"},{"title":"AAAI 2026","url":"http://aideadlines.org/conference/?id=aaai26"}]
+
+Based on the search results, here's what I found about the AAAI 2027 submission deadline:
+
+The AAAI 2027 deadline is August 1, 2026 at 23:59, with an abstract deadline of July 25. The conference will be held in Montréal, Québec, Canada from February 16-23, 2027.
+
+Additionally, submission deadlines for AAAI 2027 are expected around July–August 2026 based on historical patterns, which aligns with the official deadline information found.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f4489c0d-3e20-4b66-9943-094b752c585a",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "f8525239-583c-4aed-9288-df5434b5398c",
+  "toolUseResult": {
+    "query": "AAAI 2027 submission deadline August 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VdHTjgMtojceuZUTCzvPbr",
+        "content": [
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=3"
+          },
+          {
+            "title": "Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"
+          },
+          {
+            "title": "AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf",
+            "url": "https://www.underleaf.ai/templates/aaai"
+          },
+          {
+            "title": "AAAI Conference on Artificial Intelligence - AAAI",
+            "url": "https://aaai.org/conference/aaai/"
+          },
+          {
+            "title": "🚨AAAI-26 Call for Papers🚨 AAAI-26 will in Singapore from ...",
+            "url": "https://www.facebook.com/AAAIOrg/posts/aaai-26-call-for-papersaaai-26-will-in-singapore-from-january-20-to-january-27-2/751564707547430/"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "MPC Deadlines Hub",
+            "url": "https://mpc-deadlines.github.io/"
+          },
+          {
+            "title": "AAAI 2026",
+            "url": "http://aideadlines.org/conference/?id=aaai26"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the AAAI 2027 submission deadline:\n\nThe AAAI 2027 deadline is August 1, 2026 at 23:59, with an abstract deadline of July 25. The conference will be held in Montréal, Québec, Canada from February 16-23, 2027.\n\nAdditionally, submission deadlines for AAAI 2027 are expected around July–August 2026 based on historical patterns, which aligns with the official deadline information found."
+    ],
+    "durationSeconds": 3.2293412019999814
+  },
+  "sourceToolAssistantUUID": "f4489c0d-3e20-4b66-9943-094b752c585a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 101 · 2026-05-10T18:08:08.643Z_
+
+```json
+{
+  "parentUuid": "f8525239-583c-4aed-9288-df5434b5398c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "28df0c07-c88e-4d3f-a042-ec53e6e43ffe",
+  "timestamp": "2026-05-10T18:08:08.643Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 102 · 2026-05-10T18:08:10.747Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VSVCFtoJwxFjr9Dd3wsUZM`</summary>
+
+```json
+{
+  "query": "SCRIBE skill prototype credit assignment agentic reinforcement learning step-level 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "28df0c07-c88e-4d3f-a042-ec53e6e43ffe",
+  "isSidechain": false,
+  "requestId": "req_011CauLNyzXMSV4FcqHbgsBy",
+  "type": "assistant",
+  "uuid": "1907c75f-22ce-4f85-8b17-f68f12400196",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WoMxDZ7FPjVEr234hmx81X",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 798,
+      "cache_read_input_tokens": 57183,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 798,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 57183,
+          "cache_creation_input_tokens": 798,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 798
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 103 · 2026-05-10T18:08:17.473Z_
+
+<details><summary>↩ Tool result · `toolu_01VSVCFtoJwxFjr9Dd3wsUZM`</summary>
+
+```text
+Web search results for query: "SCRIBE skill prototype credit assignment agentic reinforcement learning step-level 2025 2026"
+
+Links: [{"title":"From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models","url":"https://arxiv.org/html/2604.09459v1"},{"title":"GitHub - xxzcc/Awesome-Credit-Assignment-in-LLM-RL · GitHub","url":"https://github.com/xxzcc/Awesome-Credit-Assignment-in-LLM-RL"},{"title":"Agentic Reinforcement Learning with Implicit Step Rewards | OpenReview","url":"https://openreview.net/forum?id=ooROvpmxMV"},{"title":"Published as a conference paper at ICLR 2026 AGENTIC REINFORCEMENT LEARNING","url":"https://openreview.net/pdf/a1e5782d4488277b71a1a194ebecc820d981e887.pdf"},{"title":"GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub","url":"https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"},{"title":"RTMC: Step-Level Credit Assignment via Rollout Trees","url":"https://arxiv.org/html/2604.11037"},{"title":"[2509.19199] Agentic Reinforcement Learning with Implicit Step Rewards","url":"https://arxiv.org/abs/2509.19199"},{"title":"Agentic Reinforcement Learning with Implicit Step Rewards","url":"https://arxiv.org/html/2509.19199v3"},{"title":"[2604.09459] From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models","url":"https://arxiv.org/abs/2604.09459"},{"title":"NeurIPS A Practitioner's Guide to Multi-turn Agentic Reinforcement Learning","url":"https://neurips.cc/virtual/2025/127960"}]
+
+Based on the web search results, here's what I found about SCRIBE and credit assignment in agentic reinforcement learning:
+
+## SCRIBE Method
+
+SCRIBE is a method from 2026 that uses skill-prototype supervision at the step level for credit assignment. More specifically, when the agent performs an action, SCRIBE matches it to the nearest skill prototype and assigns credit based on how well the action fulfills the prototype's expected behavior, providing credit at a semantic level between individual tokens and complete trajectories.
+
+## Broader Context on Credit Assignment in Agentic RL (2025-2026)
+
+The search results reveal this is part of a rapidly growing research area. Between 2024 and early 2026, 47 papers have been published proposing credit assignment methods, ranging from Monte Carlo token-level value estimation to Shapley value-based reward decomposition, process reward models, and hindsight counterfactual analysis.
+
+The credit assignment problem is particularly hard in agentic settings, driving innovation focused on turn-level and hindsight-based methods. Other notable step-level approaches include LaRe, which bridges LLM reasoning and credit assignment by using LLMs to generate natural language credit explanations that are converted to scalar rewards.
+
+The research addresses a fundamental challenge: in multi-turn trajectories, a single wrong tool call at turn 3 receives the same penalty as dozens of correct subsequent actions when using episode-level credit.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1907c75f-22ce-4f85-8b17-f68f12400196",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "bf0ea833-d8aa-4274-b1a1-a1e96167fdba",
+  "toolUseResult": {
+    "query": "SCRIBE skill prototype credit assignment agentic reinforcement learning step-level 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PRK3ux6EiNGjP8owbVxCpn",
+        "content": [
+          {
+            "title": "From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models",
+            "url": "https://arxiv.org/html/2604.09459v1"
+          },
+          {
+            "title": "GitHub - xxzcc/Awesome-Credit-Assignment-in-LLM-RL · GitHub",
+            "url": "https://github.com/xxzcc/Awesome-Credit-Assignment-in-LLM-RL"
+          },
+          {
+            "title": "Agentic Reinforcement Learning with Implicit Step Rewards | OpenReview",
+            "url": "https://openreview.net/forum?id=ooROvpmxMV"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026 AGENTIC REINFORCEMENT LEARNING",
+            "url": "https://openreview.net/pdf/a1e5782d4488277b71a1a194ebecc820d981e887.pdf"
+          },
+          {
+            "title": "GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub",
+            "url": "https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"
+          },
+          {
+            "title": "RTMC: Step-Level Credit Assignment via Rollout Trees",
+            "url": "https://arxiv.org/html/2604.11037"
+          },
+          {
+            "title": "[2509.19199] Agentic Reinforcement Learning with Implicit Step Rewards",
+            "url": "https://arxiv.org/abs/2509.19199"
+          },
+          {
+            "title": "Agentic Reinforcement Learning with Implicit Step Rewards",
+            "url": "https://arxiv.org/html/2509.19199v3"
+          },
+          {
+            "title": "[2604.09459] From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models",
+            "url": "https://arxiv.org/abs/2604.09459"
+          },
+          {
+            "title": "NeurIPS A Practitioner's Guide to Multi-turn Agentic Reinforcement Learning",
+            "url": "https://neurips.cc/virtual/2025/127960"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found about SCRIBE and credit assignment in agentic reinforcement learning:\n\n## SCRIBE Method\n\nSCRIBE is a method from 2026 that uses skill-prototype supervision at the step level for credit assignment. More specifically, when the agent performs an action, SCRIBE matches it to the nearest skill prototype and assigns credit based on how well the action fulfills the prototype's expected behavior, providing credit at a semantic level between individual tokens and complete trajectories.\n\n## Broader Context on Credit Assignment in Agentic RL (2025-2026)\n\nThe search results reveal this is part of a rapidly growing research area. Between 2024 and early 2026, 47 papers have been published proposing credit assignment methods, ranging from Monte Carlo token-level value estimation to Shapley value-based reward decomposition, process reward models, and hindsight counterfactual analysis.\n\nThe credit assignment problem is particularly hard in agentic settings, driving innovation focused on turn-level and hindsight-based methods. Other notable step-level approaches include LaRe, which bridges LLM reasoning and credit assignment by using LLMs to generate natural language credit explanations that are converted to scalar rewards.\n\nThe research addresses a fundamental challenge: in multi-turn trajectories, a single wrong tool call at turn 3 receives the same penalty as dozens of correct subsequent actions when using episode-level credit."
+    ],
+    "durationSeconds": 6.719673647999996
+  },
+  "sourceToolAssistantUUID": "1907c75f-22ce-4f85-8b17-f68f12400196",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 104_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "bf0ea833-d8aa-4274-b1a1-a1e96167fdba",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 105_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of Irreversibility-Aware Advantage Weighting for Agent RL",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2"
+}
+```
+
+---
+
+### Assistant
+
+_source line 106 · 2026-05-10T18:08:20.892Z_
+
+This is important — SCRIBE uses "action-type semantics" (skill prototypes) for credit assignment, which is conceptually similar to using action reversibility as a semantic property. Let me investigate this more.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bf0ea833-d8aa-4274-b1a1-a1e96167fdba",
+  "isSidechain": false,
+  "requestId": "req_011CauLPdj9T7iH8aEJuuTis",
+  "type": "assistant",
+  "uuid": "1f87a71a-9d63-4a85-9aa3-3dad15e5cafa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Sa9CFSTrkC4rhrqt2W9c4a",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 943,
+      "cache_read_input_tokens": 57981,
+      "output_tokens": 114,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 943,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 114,
+          "cache_read_input_tokens": 57981,
+          "cache_creation_input_tokens": 943,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 943
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-10T18:08:21.049Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016HQmBbfvkWWy8NK49NL5ap`</summary>
+
+```json
+{
+  "query": "SCRIBE skill prototype agentic credit assignment arxiv 2026 paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1f87a71a-9d63-4a85-9aa3-3dad15e5cafa",
+  "isSidechain": false,
+  "requestId": "req_011CauLPdj9T7iH8aEJuuTis",
+  "type": "assistant",
+  "uuid": "e591a265-f206-4218-83e4-1bd9e2153002",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Sa9CFSTrkC4rhrqt2W9c4a",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 943,
+      "cache_read_input_tokens": 57981,
+      "output_tokens": 114,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 943,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 114,
+          "cache_read_input_tokens": 57981,
+          "cache_creation_input_tokens": 943,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 943
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-10T18:08:26.512Z_
+
+<details><summary>↩ Tool result · `toolu_016HQmBbfvkWWy8NK49NL5ap`</summary>
+
+```text
+Web search results for query: "SCRIBE skill prototype agentic credit assignment arxiv 2026 paper"
+
+Links: [{"title":"GitHub - VoltAgent/awesome-ai-agent-papers: A curated collection of AI agent research papers released in 2026, covering agent engineering, memory, evaluation, workflows, and autonomous systems. · GitHub","url":"https://github.com/VoltAgent/awesome-ai-agent-papers"},{"title":"[2604.09459] From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models","url":"https://arxiv.org/abs/2604.09459"},{"title":"From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models","url":"https://arxiv.org/html/2604.09459v1"},{"title":"RTMC: Step-Level Credit Assignment via Rollout Trees","url":"https://arxiv.org/html/2604.11037"},{"title":"GitHub - xxzcc/Awesome-Credit-Assignment-in-LLM-RL · GitHub","url":"https://github.com/xxzcc/Awesome-Credit-Assignment-in-LLM-RL"},{"title":"[2604.11037] RTMC: Step-Level Credit Assignment via Rollout Trees","url":"https://arxiv.org/abs/2604.11037"},{"title":"GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub","url":"https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"},{"title":"ICA: Information-Aware Credit Assignment for Visually Grounded Long-Horizon Information-Seeking Agents","url":"https://arxiv.org/html/2602.10863"},{"title":"Agentic Skill Discovery","url":"https://arxiv.org/html/2405.15019v1"},{"title":"Skill Retrieval Augmentation for Agentic AI","url":"https://arxiv.org/pdf/2604.24594"}]
+
+Based on the search results, I found information about the SCRIBE paper:
+
+SCRIBE: Structured Mid-Level Supervision for Tool-Using Language Models proposes a skill-conditioned RL framework for tool-using agents that grounds reward modeling in a library of skill prototypes for mid-level credit assignment.
+
+The paper appears in a curated collection of AI agent research from 2026 and is also listed in a GitHub repository tracking credit assignment methods in LLM RL. SCRIBE is categorized as a skill-prototype step-level credit assignment method from 2026.
+
+The approach addresses the challenge of credit assignment in agentic reinforcement learning by using skill prototypes as an intermediate level of supervision between token-level and episode-level rewards, enabling more effective learning for tool-using language model agents.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e591a265-f206-4218-83e4-1bd9e2153002",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "1e6656b9-1a0a-40d3-823b-364af4816b74",
+  "toolUseResult": {
+    "query": "SCRIBE skill prototype agentic credit assignment arxiv 2026 paper",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01X8ajjVjENqTkveDCBqndbL",
+        "content": [
+          {
+            "title": "GitHub - VoltAgent/awesome-ai-agent-papers: A curated collection of AI agent research papers released in 2026, covering agent engineering, memory, evaluation, workflows, and autonomous systems. · GitHub",
+            "url": "https://github.com/VoltAgent/awesome-ai-agent-papers"
+          },
+          {
+            "title": "[2604.09459] From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models",
+            "url": "https://arxiv.org/abs/2604.09459"
+          },
+          {
+            "title": "From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models",
+            "url": "https://arxiv.org/html/2604.09459v1"
+          },
+          {
+            "title": "RTMC: Step-Level Credit Assignment via Rollout Trees",
+            "url": "https://arxiv.org/html/2604.11037"
+          },
+          {
+            "title": "GitHub - xxzcc/Awesome-Credit-Assignment-in-LLM-RL · GitHub",
+            "url": "https://github.com/xxzcc/Awesome-Credit-Assignment-in-LLM-RL"
+          },
+          {
+            "title": "[2604.11037] RTMC: Step-Level Credit Assignment via Rollout Trees",
+            "url": "https://arxiv.org/abs/2604.11037"
+          },
+          {
+            "title": "GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub",
+            "url": "https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"
+          },
+          {
+            "title": "ICA: Information-Aware Credit Assignment for Visually Grounded Long-Horizon Information-Seeking Agents",
+            "url": "https://arxiv.org/html/2602.10863"
+          },
+          {
+            "title": "Agentic Skill Discovery",
+            "url": "https://arxiv.org/html/2405.15019v1"
+          },
+          {
+            "title": "Skill Retrieval Augmentation for Agentic AI",
+            "url": "https://arxiv.org/pdf/2604.24594"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the SCRIBE paper:\n\nSCRIBE: Structured Mid-Level Supervision for Tool-Using Language Models proposes a skill-conditioned RL framework for tool-using agents that grounds reward modeling in a library of skill prototypes for mid-level credit assignment.\n\nThe paper appears in a curated collection of AI agent research from 2026 and is also listed in a GitHub repository tracking credit assignment methods in LLM RL. SCRIBE is categorized as a skill-prototype step-level credit assignment method from 2026.\n\nThe approach addresses the challenge of credit assignment in agentic reinforcement learning by using skill prototypes as an intermediate level of supervision between token-level and episode-level rewards, enabling more effective learning for tool-using language model agents."
+    ],
+    "durationSeconds": 5.458734334000037
+  },
+  "sourceToolAssistantUUID": "e591a265-f206-4218-83e4-1bd9e2153002",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-10T18:08:40.333Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_019AQLYgCDyPh385PwoE43VW`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2604.09459v1",
+  "prompt": "I need to find if this survey mentions: 1) SCRIBE and what it does exactly, 2) Any method that uses action-type properties (reversibility, action category, action semantics) to modulate advantages or rewards during training, 3) Any gap identified related to action-type-aware credit assignment. Also look for any mention of Grinsztajn or reversibility. List all the 47 methods categorized. Focus on the taxonomy and whether any category covers 'action property-based' or 'semantic action-type' advantage modulation."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1e6656b9-1a0a-40d3-823b-364af4816b74",
+  "isSidechain": false,
+  "requestId": "req_011CauLQJZFsbpqkjuoCaYyQ",
+  "type": "assistant",
+  "uuid": "1244ecd7-22f2-45ce-a1c3-b49080565c99",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xr9DM7hiPo7nvq7nPCekVu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 830,
+      "cache_read_input_tokens": 58924,
+      "output_tokens": 205,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 830,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 205,
+          "cache_read_input_tokens": 58924,
+          "cache_creation_input_tokens": 830,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 830
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-10T18:08:49.980Z_
+
+<details><summary>↩ Tool result · `toolu_019AQLYgCDyPh385PwoE43VW`</summary>
+
+```text
+# Analysis of Survey on Credit Assignment in LLM RL
+
+## 1. SCRIBE Method
+
+SCRIBE is mentioned in Section 5.7 (Infrastructure and Practical Methods) as one of the CA-adjacent enablers. The document states it contributes to "infrastructure and practical methods" for agentic RL but provides **no detailed explanation of what SCRIBE does specifically**. It appears to be listed among infrastructure/framework contributions rather than core CA algorithms.
+
+## 2. Action-Type-Aware Credit Assignment
+
+**No method in this survey explicitly uses action properties like reversibility, action category, or semantic action-type to modulate advantages/rewards.** 
+
+However, two methods come closest:
+- **HICRA** distinguishes between "planning tokens" and "procedural tokens," treating different functional roles differently
+- **CARL** uses "action entropy to identify high-impact decision points," focusing credit on high-uncertainty decisions
+
+Neither explicitly incorporates reversibility or semantic action properties as described in your query.
+
+**No mention of Grinsztajn or reversibility concepts** appears in the provided content.
+
+## 3. Identified Gap
+
+Section 4.4 (Challenge 4: Heterogeneous Action Types) explicitly acknowledges this gap:
+
+> "These action types have vastly different 'credit profiles'" but notes current methods struggle with this heterogeneity. The survey identifies this as an "open problem" without proposing action-property-based solutions.
+
+## 4. Complete Method Taxonomy
+
+**47 Total Methods (41 core + 6 adjacent):**
+
+**Token-Level:** VinePPO, RED, T-REG, From r→Q*
+**Segment-Level:** SPO, TEMPO, SCAR
+**Step-Level (Reasoning):** PURE, SPRO, FinePO, PRL, InT, ACPO, CAPO, HICRA
+**Turn-Level (Agentic):** AgentPRM, SWEET-RL, Turn-PPO, SORL, TARL, ITPO
+**Hindsight/Counterfactual:** HCAPO, C3, CCPO, CriticSearch
+**Critic-Free:** GiGPO, POAD
+**Hierarchical:** ArCHer, PilotRL, CARL
+**Information-Theoretic:** IGPO
+**Implicit/DPO-Based:** iStar, StepAgent
+**Infrastructure:** Agent Lightning, RAGEN/StarPO, SPA-RL, SCRIBE, LaRe, PRS+VSPO, Adaptive Segment-Level Reward
+**Multi-Agent:** M-GRPO, LLM-MCA, QLLM, SHARP, MAPPA, Dr. MAS, C3 (revisited)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1244ecd7-22f2-45ce-a1c3-b49080565c99",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "53cb3f75-a64a-46ae-a9f0-560fd2e5e5f3",
+  "toolUseResult": {
+    "bytes": 677706,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of Survey on Credit Assignment in LLM RL\n\n## 1. SCRIBE Method\n\nSCRIBE is mentioned in Section 5.7 (Infrastructure and Practical Methods) as one of the CA-adjacent enablers. The document states it contributes to \"infrastructure and practical methods\" for agentic RL but provides **no detailed explanation of what SCRIBE does specifically**. It appears to be listed among infrastructure/framework contributions rather than core CA algorithms.\n\n## 2. Action-Type-Aware Credit Assignment\n\n**No method in this survey explicitly uses action properties like reversibility, action category, or semantic action-type to modulate advantages/rewards.** \n\nHowever, two methods come closest:\n- **HICRA** distinguishes between \"planning tokens\" and \"procedural tokens,\" treating different functional roles differently\n- **CARL** uses \"action entropy to identify high-impact decision points,\" focusing credit on high-uncertainty decisions\n\nNeither explicitly incorporates reversibility or semantic action properties as described in your query.\n\n**No mention of Grinsztajn or reversibility concepts** appears in the provided content.\n\n## 3. Identified Gap\n\nSection 4.4 (Challenge 4: Heterogeneous Action Types) explicitly acknowledges this gap:\n\n> \"These action types have vastly different 'credit profiles'\" but notes current methods struggle with this heterogeneity. The survey identifies this as an \"open problem\" without proposing action-property-based solutions.\n\n## 4. Complete Method Taxonomy\n\n**47 Total Methods (41 core + 6 adjacent):**\n\n**Token-Level:** VinePPO, RED, T-REG, From r→Q*\n**Segment-Level:** SPO, TEMPO, SCAR\n**Step-Level (Reasoning):** PURE, SPRO, FinePO, PRL, InT, ACPO, CAPO, HICRA\n**Turn-Level (Agentic):** AgentPRM, SWEET-RL, Turn-PPO, SORL, TARL, ITPO\n**Hindsight/Counterfactual:** HCAPO, C3, CCPO, CriticSearch\n**Critic-Free:** GiGPO, POAD\n**Hierarchical:** ArCHer, PilotRL, CARL\n**Information-Theoretic:** IGPO\n**Implicit/DPO-Based:** iStar, StepAgent\n**Infrastructure:** Agent Lightning, RAGEN/StarPO, SPA-RL, SCRIBE, LaRe, PRS+VSPO, Adaptive Segment-Level Reward\n**Multi-Agent:** M-GRPO, LLM-MCA, QLLM, SHARP, MAPPA, Dr. MAS, C3 (revisited)",
+    "durationMs": 9643,
+    "url": "https://arxiv.org/html/2604.09459v1"
+  },
+  "sourceToolAssistantUUID": "1244ecd7-22f2-45ce-a1c3-b49080565c99",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 111 · 2026-05-10T18:10:01.232Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is very important! The survey explicitly identifies "Heterogeneous Action Types" as Challenge 4 and an open problem. This actually supports the novelty of the proposed idea. No existing work uses action-type properties like reversibility for credit assignment. Let me verify this and look for more context.
+
+Now let me also check the target venue issue. The user asked for EMNLP 2026 with ARR submission deadline 2026-05-25. But the generator targets AAAI 2027 (August 2026) and ACL/NAACL 2027 (ARR July/August 2026). This is a misalignment with the user's requirements.
+
+
+I'm breaking down the compute budget to verify the ~200 H100 hours claim—reversibility classifier takes 5 hours, GRPO reproduction across benchmarks and seeds adds 30 hours, IAW training with multiple seeds reaches 90 hours, composability and ablation experiments account for another 75 hours combined, totaling 200 hours. The real question is whether this budget is actually sufficient.
+
+Looking at the baseline comparisons, 15 H100 hours per run aligns with what GiGPO used (4 H100s for ~4 hours wall clock), so that estimate seems solid. The generator's approach makes sense too—reproducing GRPO baselines on the same hardware for fair comparison while citing published results for SALT and GiGPO, and pulling HCAPO and iStar from papers since they lack public code. This is a reasonable strategy for balancing reproducibility with practical constraints.
+
+Now I'm seeing a potential venue mismatch: the user is asking for EMNLP 2026 (ARR deadline May 25), but the generator is targeting AAAI 2027 and ACL/NAACL 2027 with later deadlines.  The auto approach could theoretically fit the EMNLP timeline at 10-14 days, but the generator explicitly chose different venues, which doesn't align with what was requested. That's a significant deviation from the user's stated goal.
+
+For the technical side, I'm examining how the reversibility estimation works using cosine similarity of frozen Qwen embeddings.  The approach has some real limitations—short text observations in ALFWorld might not reliably distinguish between truly reversed states and just semantically similar ones, and HTML pages in WebShop could easily show high embedding similarity between different products. Plus, the threshold τ would need environment-specific tuning, which undermines the environment-agnostic claim.
+
+I'm also noticing the paper doesn't mention HiPER at all, which is a major oversight since it achieves 97.4% on ALFWorld and 83.3% on WebShop with the same base model—those are strong baselines that IAW should be compared against.
+
+On novelty, the survey does confirm that heterogeneous action types is an open problem, and using action reversibility for training-time optimization in LLM agents appears genuinely new. The adaptation to text-based environments with embedding similarity is novel too, though the core mechanism—scaling advantages by a scalar at certain steps—is relatively straightforward. The real contribution is identifying what to amplify rather than how.
+
+The compute budget looks feasible at 200 H100h with the breakdown across classifier training, GRPO reproduction, IAW experiments across benchmarks and seeds, composability tests, and ablations. The bigger risk is SALT reimplementation since it's unclear if they have public code available. Round 1 feedback has been addressed—Grinsztajn is now thoroughly differentiated, CSO is clarified as outcome-based versus structural, and SALT is being handled.
+
+But there are still significant gaps: the venue targets AAAI/ACL 2027 instead of the required EMNLP 2026, HiPER is missing as a competitor despite performing much better on the same benchmarks, and the self-supervised reversibility detection using cosine similarity of embeddings is untested and could be unreliable. Only two benchmarks are being used, which limits scope. Looking at the benchmark choices, WebShop and ALFWorld are standard for this type of work, but the user's constraints specify a different set of benchmarks—WebArena, SWE-bench Verified, GAIA, ToolBench, Mind2Web, and τ-bench among others. WebShop isn't on that list, so I need to reconsider whether it fits the evaluation plan or if I should pivot to the user's specified benchmarks instead.
+
+On the overall assessment, the core idea is solid and addresses a real gap in the field, with the survey confirming this is an open challenge. The novelty sits around 3-3.5: the reversibility-based training optimization is genuinely new for LLM agents, but the implementation—scaling advantages by a reversibility score—is mechanically straightforward, and the self-supervised estimation borrows from existing work. The venue mismatch, missing HiPER comparison, and technical uncertainty around reversibility estimation in text environments are still concerns that need addressing. The self-supervised reversibility detection via LLM embeddings is the main technical risk, and the timeline works better for AAAI 2027 than EMNLP 2026, plus reimplementing SALT adds complexity. Clarity is strong with good differentiation and explicit math, though I should've mentioned HiPER. Impact-wise, it's a solid credit assignment tool but the benchmarks are getting saturated and the composability angle needs more validation to feel like more than an incremental improvement. Averaging out to 3.25, so this needs revision.
+
+But I'm realizing there's a venue problem I missed—the user explicitly requested EMNLP 2026 with a 16-day deadline, and the generator switched to AAAI 2027 instead, which directly violates the stated requirements. The auto research estimate of 10-14 days is already tight for EMNLP's timeline, so pushing to AAAI feels like sidestepping the constraint rather than solving it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "53cb3f75-a64a-46ae-a9f0-560fd2e5e5f3",
+  "isSidechain": false,
+  "requestId": "req_011CauLS2p299v5Yme76kijY",
+  "type": "assistant",
+  "uuid": "35d6100a-cff4-4f57-a9a2-e2b92f53ecad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M5cCZMnUvqPsmXn1nvAvpP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 865,
+      "cache_read_input_tokens": 59754,
+      "output_tokens": 3046,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 865,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3046,
+          "cache_read_input_tokens": 59754,
+          "cache_creation_input_tokens": 865,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 865
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 112 · 2026-05-10T18:10:01.381Z_
+
+Now let me do one final check — search for any additional recent competitors that leverage action-level semantics or properties for credit assignment.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "35d6100a-cff4-4f57-a9a2-e2b92f53ecad",
+  "isSidechain": false,
+  "requestId": "req_011CauLS2p299v5Yme76kijY",
+  "type": "assistant",
+  "uuid": "b442546d-c633-4e01-9f3e-423f4ec1e305",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M5cCZMnUvqPsmXn1nvAvpP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 865,
+      "cache_read_input_tokens": 59754,
+      "output_tokens": 3046,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 865,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3046,
+          "cache_read_input_tokens": 59754,
+          "cache_creation_input_tokens": 865,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 865
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 113 · 2026-05-10T18:10:02.078Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XS8BPUrrfp5kAU3Vgbt6qS`</summary>
+
+```json
+{
+  "query": "HiPER hierarchical plan execute RL ALFWorld 97.4% WebShop 83.3% Qwen2.5-7B 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b442546d-c633-4e01-9f3e-423f4ec1e305",
+  "isSidechain": false,
+  "requestId": "req_011CauLS2p299v5Yme76kijY",
+  "type": "assistant",
+  "uuid": "7af2f2e6-297c-4331-b56c-42f716dce857",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M5cCZMnUvqPsmXn1nvAvpP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 865,
+      "cache_read_input_tokens": 59754,
+      "output_tokens": 3046,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 865,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3046,
+          "cache_read_input_tokens": 59754,
+          "cache_creation_input_tokens": 865,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 865
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 114_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "7af2f2e6-297c-4331-b56c-42f716dce857",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 115_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of Irreversibility-Aware Advantage Weighting for Agent RL",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2"
+}
+```
+
+---
+
+### Tool result
+
+_source line 116 · 2026-05-10T18:10:08.026Z_
+
+<details><summary>↩ Tool result · `toolu_01XS8BPUrrfp5kAU3Vgbt6qS`</summary>
+
+```text
+Web search results for query: "HiPER hierarchical plan execute RL ALFWorld 97.4% WebShop 83.3% Qwen2.5-7B 2026 arxiv"
+
+Links: [{"title":"HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents","url":"https://arxiv.org/html/2602.16165"},{"title":"[2602.16165v1] HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents","url":"https://arxiv.org/abs/2602.16165v1"},{"title":"[2602.16165] HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents","url":"https://arxiv.org/abs/2602.16165"},{"title":"Hierarchy-of-Groups Policy Optimization for Long-Horizon Agentic Tasks","url":"https://arxiv.org/html/2602.22817"},{"title":"HiMAC: Hierarchical Macro–Micro Learning for Long-Horizon LLM Agents","url":"https://arxiv.org/html/2603.00977"},{"title":"HiPlan: Hierarchical Planning for LLM Agents with Adaptive Global-Local Guidance","url":"https://arxiv.org/html/2508.19076"},{"title":"HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents | Request PDF","url":"https://www.researchgate.net/publication/400930124_HiPER_Hierarchical_Reinforcement_Learning_with_Explicit_Credit_Assignment_for_Large_Language_Model_Agents"},{"title":"AgentRL: Scaling Agentic Reinforcement Learning with a ...","url":"https://arxiv.org/pdf/2510.04206"},{"title":"Group-in-Group Policy Optimization for LLM Agent Training Lang Feng1","url":"https://arxiv.org/pdf/2505.10978"},{"title":"SALT: Step-level Advantage Assignment for Long-horizon Agents via Trajectory Graph","url":"https://arxiv.org/html/2510.20022"}]
+
+I found the paper you were looking for! Here's what the search revealed:
+
+HiPER is a novel Hierarchical Plan-Execute RL framework that explicitly separates high-level planning from low-level execution, achieving state-of-the-art performance with 97.4% success rate on ALFWorld and 83.3% success rate on WebShop with Qwen2.5-7B-Instruct.
+
+HiPER factorizes the policy into a high-level planner that proposes subgoals and a low-level executor that carries them out over multiple action steps, introducing a key technique called hierarchical advantage estimation (HAE) which carefully assigns credit at both the planning and execution levels.
+
+The method achieves +6.6% and +8.3% improvements over the best prior method, with especially large gains on long-horizon tasks requiring multiple dependent subtasks.
+
+The paper was published on arXiv (2602.16165) in February 2026 and is available at: https://arxiv.org/abs/2602.16165
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7af2f2e6-297c-4331-b56c-42f716dce857",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "42343c1f-71d0-46db-95f4-a39e9d814714",
+  "toolUseResult": {
+    "query": "HiPER hierarchical plan execute RL ALFWorld 97.4% WebShop 83.3% Qwen2.5-7B 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016TcGCBvFy6af58toW9JB7C",
+        "content": [
+          {
+            "title": "HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents",
+            "url": "https://arxiv.org/html/2602.16165"
+          },
+          {
+            "title": "[2602.16165v1] HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents",
+            "url": "https://arxiv.org/abs/2602.16165v1"
+          },
+          {
+            "title": "[2602.16165] HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents",
+            "url": "https://arxiv.org/abs/2602.16165"
+          },
+          {
+            "title": "Hierarchy-of-Groups Policy Optimization for Long-Horizon Agentic Tasks",
+            "url": "https://arxiv.org/html/2602.22817"
+          },
+          {
+            "title": "HiMAC: Hierarchical Macro–Micro Learning for Long-Horizon LLM Agents",
+            "url": "https://arxiv.org/html/2603.00977"
+          },
+          {
+            "title": "HiPlan: Hierarchical Planning for LLM Agents with Adaptive Global-Local Guidance",
+            "url": "https://arxiv.org/html/2508.19076"
+          },
+          {
+            "title": "HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents | Request PDF",
+            "url": "https://www.researchgate.net/publication/400930124_HiPER_Hierarchical_Reinforcement_Learning_with_Explicit_Credit_Assignment_for_Large_Language_Model_Agents"
+          },
+          {
+            "title": "AgentRL: Scaling Agentic Reinforcement Learning with a ...",
+            "url": "https://arxiv.org/pdf/2510.04206"
+          },
+          {
+            "title": "Group-in-Group Policy Optimization for LLM Agent Training Lang Feng1",
+            "url": "https://arxiv.org/pdf/2505.10978"
+          },
+          {
+            "title": "SALT: Step-level Advantage Assignment for Long-horizon Agents via Trajectory Graph",
+            "url": "https://arxiv.org/html/2510.20022"
+          }
+        ]
+      },
+      "I found the paper you were looking for! Here's what the search revealed:\n\nHiPER is a novel Hierarchical Plan-Execute RL framework that explicitly separates high-level planning from low-level execution, achieving state-of-the-art performance with 97.4% success rate on ALFWorld and 83.3% success rate on WebShop with Qwen2.5-7B-Instruct.\n\nHiPER factorizes the policy into a high-level planner that proposes subgoals and a low-level executor that carries them out over multiple action steps, introducing a key technique called hierarchical advantage estimation (HAE) which carefully assigns credit at both the planning and execution levels.\n\nThe method achieves +6.6% and +8.3% improvements over the best prior method, with especially large gains on long-horizon tasks requiring multiple dependent subtasks.\n\nThe paper was published on arXiv (2602.16165) in February 2026 and is available at: https://arxiv.org/abs/2602.16165"
+    ],
+    "durationSeconds": 5.941646537000023
+  },
+  "sourceToolAssistantUUID": "7af2f2e6-297c-4331-b56c-42f716dce857",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 117 · 2026-05-10T18:10:10.708Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01W169Xmn1UMTTd6NojhuMsf`</summary>
+
+```json
+{
+  "query": "SALT step advantage GRPO public code implementation github available 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "42343c1f-71d0-46db-95f4-a39e9d814714",
+  "isSidechain": false,
+  "requestId": "req_011CauLXnTEeioF9T3sgmYDd",
+  "type": "assistant",
+  "uuid": "a0b207d1-11fd-45d3-b0e6-34ff8858e160",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PC5czsqR3dpKSGgx15emcB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3843,
+      "cache_read_input_tokens": 60619,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3843,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 60619,
+          "cache_creation_input_tokens": 3843,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3843
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 118 · 2026-05-10T18:10:17.586Z_
+
+<details><summary>↩ Tool result · `toolu_01W169Xmn1UMTTd6NojhuMsf`</summary>
+
+```text
+Web search results for query: "SALT step advantage GRPO public code implementation github available 2025 2026"
+
+Links: [{"title":"GitHub - bcmi/Granular-GRPO: [CVPR 2026] Fine-Grained GRPO for Precise Preference Alignment in Flow Models · GitHub","url":"https://github.com/bcmi/Granular-GRPO"},{"title":"GitHub - showlab/Adv-GRPO: [CVPR 2026] An official implementation of Adv-GRPO. The Image as Its Own Reward: Reinforcement Learning with Adversarial Reward for Image Generation. · GitHub","url":"https://github.com/showlab/Adv-GRPO"},{"title":"GitHub - lsdefine/simple_GRPO: A very simple GRPO implement for reproducing r1-like LLM thinking. · GitHub","url":"https://github.com/lsdefine/simple_GRPO"},{"title":"GitHub - CodeGoat24/Pref-GRPO: Official implementation of Pref-GRPO: Pairwise Preference Reward-based GRPO for Stable Text-to-Image Reinforcement Learning · GitHub","url":"https://github.com/CodeGoat24/Pref-GRPO"},{"title":"Step-GRPO: Internalizing Dynamic Early Exit for Efficient Reasoning","url":"https://arxiv.org/html/2604.16890v1"},{"title":"A vision researcher’s guide to some RL stuff: PPO & GRPO - Yuge (Jimmy) Shi","url":"https://yugeten.github.io/posts/2025/01/ppogrpo/"},{"title":"Group Relative Policy Optimization (GRPO)","url":"https://cameronrwolfe.substack.com/p/grpo"},{"title":"Salt Security Launches GitHub Connect to Proactively Discover Shadow APIs and MCP Risks in Code Repositories","url":"https://www.prnewswire.com/news-releases/salt-security-launches-github-connect-to-proactively-discover-shadow-apis-and-mcp-risks-in-code-repositories-302618522.html"},{"title":"Group Relative Policy Optimization (GRPO)","url":"https://mbottoni.github.io/2025/02/06/grpo.html"},{"title":"grpo · GitHub Topics · GitHub","url":"https://github.com/topics/grpo"}]
+
+Based on the search results, here's what I found regarding SALT, step advantage, and GRPO implementations:
+
+## Step-GRPO: Dynamic Early Exit for Efficient Reasoning
+
+Step-GRPO is a novel post-training framework that internalizes dynamic early-exit capabilities directly into the model by shifting the optimization objective from raw tokens to semantic steps using linguistic markers to structure reasoning. The research addresses the "overthinking" problem where models often generate unnecessary verification steps or circular explanations even after finding the correct solution.
+
+## Available GRPO Implementations on GitHub (2025-2026)
+
+Several public GRPO implementations are available:
+
+1. **Granular-GRPO (G²RPO)** - Introduces a Singular Stochastic Sampling strategy for step-wise stochastic exploration, and a Multi-Granularity Advantage Integration module that aggregates advantages computed at multiple diffusion scales.
+
+2. **Adv-GRPO** - Code has been released along with inference code and pretrained checkpoints.
+
+3. **Pref-GRPO** - Official implementation available with recent updates in 2025-2026.
+
+4. **Simple GRPO** - A minimal implementation with about 200 lines of code that only depends on standard libraries like deepspeed and torch without requiring dependencies like ray.
+
+The search results show active development of GRPO variants throughout 2025-2026 on GitHub, with multiple public repositories offering different optimization approaches and advantages.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a0b207d1-11fd-45d3-b0e6-34ff8858e160",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "68263cec-2085-4177-b55c-6ac39bcb8f11",
+  "toolUseResult": {
+    "query": "SALT step advantage GRPO public code implementation github available 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NxjoQpRZihk5n8MAMGFioD",
+        "content": [
+          {
+            "title": "GitHub - bcmi/Granular-GRPO: [CVPR 2026] Fine-Grained GRPO for Precise Preference Alignment in Flow Models · GitHub",
+            "url": "https://github.com/bcmi/Granular-GRPO"
+          },
+          {
+            "title": "GitHub - showlab/Adv-GRPO: [CVPR 2026] An official implementation of Adv-GRPO. The Image as Its Own Reward: Reinforcement Learning with Adversarial Reward for Image Generation. · GitHub",
+            "url": "https://github.com/showlab/Adv-GRPO"
+          },
+          {
+            "title": "GitHub - lsdefine/simple_GRPO: A very simple GRPO implement for reproducing r1-like LLM thinking. · GitHub",
+            "url": "https://github.com/lsdefine/simple_GRPO"
+          },
+          {
+            "title": "GitHub - CodeGoat24/Pref-GRPO: Official implementation of Pref-GRPO: Pairwise Preference Reward-based GRPO for Stable Text-to-Image Reinforcement Learning · GitHub",
+            "url": "https://github.com/CodeGoat24/Pref-GRPO"
+          },
+          {
+            "title": "Step-GRPO: Internalizing Dynamic Early Exit for Efficient Reasoning",
+            "url": "https://arxiv.org/html/2604.16890v1"
+          },
+          {
+            "title": "A vision researcher’s guide to some RL stuff: PPO & GRPO - Yuge (Jimmy) Shi",
+            "url": "https://yugeten.github.io/posts/2025/01/ppogrpo/"
+          },
+          {
+            "title": "Group Relative Policy Optimization (GRPO)",
+            "url": "https://cameronrwolfe.substack.com/p/grpo"
+          },
+          {
+            "title": "Salt Security Launches GitHub Connect to Proactively Discover Shadow APIs and MCP Risks in Code Repositories",
+            "url": "https://www.prnewswire.com/news-releases/salt-security-launches-github-connect-to-proactively-discover-shadow-apis-and-mcp-risks-in-code-repositories-302618522.html"
+          },
+          {
+            "title": "Group Relative Policy Optimization (GRPO)",
+            "url": "https://mbottoni.github.io/2025/02/06/grpo.html"
+          },
+          {
+            "title": "grpo · GitHub Topics · GitHub",
+            "url": "https://github.com/topics/grpo"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding SALT, step advantage, and GRPO implementations:\n\n## Step-GRPO: Dynamic Early Exit for Efficient Reasoning\n\nStep-GRPO is a novel post-training framework that internalizes dynamic early-exit capabilities directly into the model by shifting the optimization objective from raw tokens to semantic steps using linguistic markers to structure reasoning. The research addresses the \"overthinking\" problem where models often generate unnecessary verification steps or circular explanations even after finding the correct solution.\n\n## Available GRPO Implementations on GitHub (2025-2026)\n\nSeveral public GRPO implementations are available:\n\n1. **Granular-GRPO (G²RPO)** - Introduces a Singular Stochastic Sampling strategy for step-wise stochastic exploration, and a Multi-Granularity Advantage Integration module that aggregates advantages computed at multiple diffusion scales.\n\n2. **Adv-GRPO** - Code has been released along with inference code and pretrained checkpoints.\n\n3. **Pref-GRPO** - Official implementation available with recent updates in 2025-2026.\n\n4. **Simple GRPO** - A minimal implementation with about 200 lines of code that only depends on standard libraries like deepspeed and torch without requiring dependencies like ray.\n\nThe search results show active development of GRPO variants throughout 2025-2026 on GitHub, with multiple public repositories offering different optimization approaches and advantages."
+    ],
+    "durationSeconds": 6.87434282900003
+  },
+  "sourceToolAssistantUUID": "a0b207d1-11fd-45d3-b0e6-34ff8858e160",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 119 · 2026-05-10T18:10:21.592Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UMdEPHX45zB2SHPB7Yrd4D`</summary>
+
+```json
+{
+  "query": "SALT step-level advantage trajectory graph code github implementation open source Li Wang"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "68263cec-2085-4177-b55c-6ac39bcb8f11",
+  "isSidechain": false,
+  "requestId": "req_011CauLYVHebBq6sdjh4wEK7",
+  "type": "assistant",
+  "uuid": "b5be484a-ff46-4584-bd95-3bd4c00f2610",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A2ARpfDDidFkSgdmaxsoBS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1023,
+      "cache_read_input_tokens": 64462,
+      "output_tokens": 66,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1023,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 66,
+          "cache_read_input_tokens": 64462,
+          "cache_creation_input_tokens": 1023,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1023
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 120 · 2026-05-10T18:10:31.839Z_
+
+<details><summary>↩ Tool result · `toolu_01UMdEPHX45zB2SHPB7Yrd4D`</summary>
+
+```text
+Web search results for query: "SALT step-level advantage trajectory graph code github implementation open source Li Wang"
+
+Links: [{"title":"[2510.20022] SALT: Step-level Advantage Assignment for Long-horizon Agents via Trajectory Graph","url":"https://arxiv.org/abs/2510.20022"},{"title":"SALT: Step-level Advantage Assignment for Long-horizon Agents via Trajectory Graph","url":"https://arxiv.org/html/2510.20022"},{"title":"SALT: Step-level advantage assignment for long-horizon agents via trajectory graph - Amazon Science","url":"https://www.amazon.science/publications/salt-step-level-advantage-assignment-for-long-horizon-agents-via-trajectory-graph"},{"title":"SALT: Step-level Advantage Assignment for Long-horizon Agents","url":"https://arxiv.org/pdf/2510.20022"},{"title":"SALT: Step-level Advantage Assignment for Long-horizon Agents via Trajectory Graph | Request PDF","url":"https://www.researchgate.net/publication/403067374_SALT_Step-level_Advantage_Assignment_for_Long-horizon_Agents_via_Trajectory_Graph"},{"title":"Step-level Advantage Assignment for Long-horizon Agents ...","url":"https://www.semanticscholar.org/paper/SALT:-Step-level-Advantage-Assignment-for-Agents-Li-Wang/3fb703b11e3be7f9189f1aea0d60b4dc976c81da"},{"title":"GitHub - Psychic-DL/Awesome-Traffic-Agent-Trajectory-Prediction: This is a list of papers related to traffic agent trajectory prediction. · GitHub","url":"https://github.com/Psychic-DL/Awesome-Traffic-Agent-Trajectory-Prediction"},{"title":"GitHub - uctb/ST-Paper: Spatio-Temporal Prediction Paper List · GitHub","url":"https://github.com/uctb/ST-Paper/"},{"title":"GitHub - iszhanjiawei/flow_matching_arxiv_daily · GitHub","url":"https://github.com/iszhanjiawei/flow_matching_arxiv_daily"},{"title":"GitHub - boschresearch/trajectory_games_learning: This is the companion code for the method reported in the paper \"Learning game-theoretic models of multiagent trajectories using implicit layers\" published at AAAI 2021","url":"https://github.com/boschresearch/trajectory_games_learning"}]
+
+I found information about the SALT paper, but the search results don't show a specific GitHub repository with open-source code. Let me search more specifically for the GitHub implementation.
+
+Links: [{"title":"GitHub - saltstack/salt: Software to automate the management and configuration of infrastructure and applications at scale. · GitHub","url":"https://github.com/saltstack/salt"},{"title":"Jiazheng Li","url":"https://lijiazheng0917.github.io/"},{"title":"Salt Project · GitHub","url":"https://github.com/saltstack"},{"title":"GitHub - jwwthu/Satellite-Open-Source: This is the repository for the collection of open source code and data for satellite communication. · GitHub","url":"https://github.com/jwwthu/Satellite-Open-Source"},{"title":"GitHub - saltstack/awesome-saltproject: A collaborative curated list of awesome Salt Project resources, tutorials and other salted stuff (originally maintained by the since-archived repo https://github.com/hbokh/awesome-saltstack) · GitHub","url":"https://github.com/saltstack/awesome-saltproject"},{"title":"SALT · GitHub","url":"https://github.com/SALT-NLP"},{"title":"GitHub - Kitware/SlicerSALT: An open-source, free comprehensive software that will allow biomedical scientists to precisely locate shape changes in their imaging studies. This software called Slicer Shape AnaLysis Toolbox (SlicerSALT), will enhance the intuitiveness and ease of use for such studies, as well as allow researchers to find shape changes with higher statistical power. Altogether this constitutes a crucial resource for the imaging field that will enable many and important new findings in biomedic","url":"https://github.com/Kitware/SlicerSALT"},{"title":"The salt Open Source Project on Open Hub","url":"https://openhub.net/p/salt"},{"title":"SALT Community · GitHub","url":"https://github.com/salt-community"},{"title":"GitHub - SAP-samples/salt: Source code and data for the paper \"SALT: Sales Autocompletion Linked Business Tables Dataset\" · GitHub","url":"https://github.com/SAP-samples/salt"}]
+
+Based on my search results, I can provide you with information about the SALT paper research, though I found limited public information about a dedicated GitHub repository.
+
+## SALT Research Overview
+
+SALT is a novel and lightweight framework that provides finer-grained advantage assignment, derived solely from outcome rewards by constructing a graph from trajectories of the same prompt, which allows quantifying the quality of each step and assigning advantages accordingly.
+
+The paper was authored by Jiazheng Li, Yawei Wang, David Yan, Yijun Tian, Zhichao Xu, Huan Song, Panpan Xu, and Lin Lee Cheong.
+
+SALT is designed as a plug-and-play module that seamlessly integrates with existing group-based RL algorithms, requiring no modifications to the rollout procedure and introducing negligible computational overhead. Extensive experiments on the WebShop, ALFWorld, and AppWorld benchmarks with various model sizes demonstrate that SALT consistently improves performance.
+
+## GitHub Repository Status
+
+The search results did not reveal a specific public GitHub repository for the SALT code implementation associated with this research. The SALT paper is listed for publication at EACL 2026, which may explain why the code might not yet be publicly available or widely indexed.
+
+For the latest updates on code availability, I recommend:
+1. Checking the paper directly on arXiv (2510.20022)
+2. Visiting Jiazheng Li's personal website or GitHub profile
+3. Contacting the authors directly for code availability information
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b5be484a-ff46-4584-bd95-3bd4c00f2610",
+  "isSidechain": false,
+  "promptId": "987391dd-93ef-4c8b-b89b-f583a15086f8",
+  "type": "user",
+  "uuid": "b2fed1fe-e111-4233-8922-59afc0c4324f",
+  "toolUseResult": {
+    "query": "SALT step-level advantage trajectory graph code github implementation open source Li Wang",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Vd5Tekb5MgqTWxK8KvNEe6",
+        "content": [
+          {
+            "title": "[2510.20022] SALT: Step-level Advantage Assignment for Long-horizon Agents via Trajectory Graph",
+            "url": "https://arxiv.org/abs/2510.20022"
+          },
+          {
+            "title": "SALT: Step-level Advantage Assignment for Long-horizon Agents via Trajectory Graph",
+            "url": "https://arxiv.org/html/2510.20022"
+          },
+          {
+            "title": "SALT: Step-level advantage assignment for long-horizon agents via trajectory graph - Amazon Science",
+            "url": "https://www.amazon.science/publications/salt-step-level-advantage-assignment-for-long-horizon-agents-via-trajectory-graph"
+          },
+          {
+            "title": "SALT: Step-level Advantage Assignment for Long-horizon Agents",
+            "url": "https://arxiv.org/pdf/2510.20022"
+          },
+          {
+            "title": "SALT: Step-level Advantage Assignment for Long-horizon Agents via Trajectory Graph | Request PDF",
+            "url": "https://www.researchgate.net/publication/403067374_SALT_Step-level_Advantage_Assignment_for_Long-horizon_Agents_via_Trajectory_Graph"
+          },
+          {
+            "title": "Step-level Advantage Assignment for Long-horizon Agents ...",
+            "url": "https://www.semanticscholar.org/paper/SALT:-Step-level-Advantage-Assignment-for-Agents-Li-Wang/3fb703b11e3be7f9189f1aea0d60b4dc976c81da"
+          },
+          {
+            "title": "GitHub - Psychic-DL/Awesome-Traffic-Agent-Trajectory-Prediction: This is a list of papers related to traffic agent trajectory prediction. · GitHub",
+            "url": "https://github.com/Psychic-DL/Awesome-Traffic-Agent-Trajectory-Prediction"
+          },
+          {
+            "title": "GitHub - uctb/ST-Paper: Spatio-Temporal Prediction Paper List · GitHub",
+            "url": "https://github.com/uctb/ST-Paper/"
+          },
+          {
+            "title": "GitHub - iszhanjiawei/flow_matching_arxiv_daily · GitHub",
+            "url": "https://github.com/iszhanjiawei/flow_matching_arxiv_daily"
+          },
+          {
+            "title": "GitHub - boschresearch/trajectory_games_learning: This is the companion code for the method reported in the paper \"Learning game-theoretic models of multiagent trajectories using implicit layers\" published at AAAI 2021",
+            "url": "https://github.com/boschresearch/trajectory_games_learning"
+          }
+        ]
+      },
+      "I found information about the SALT paper, but the search results don't show a specific GitHub repository with open-source code. Let me search more specifically for the GitHub implementation.",
+      {
+        "tool_use_id": "srvtoolu_01P7Tphp7GtTh2U5tkrThEzT",
+        "content": [
+          {
+            "title": "GitHub - saltstack/salt: Software to automate the management and configuration of infrastructure and applications at scale. · GitHub",
+            "url": "https://github.com/saltstack/salt"
+          },
+          {
+            "title": "Jiazheng Li",
+            "url": "https://lijiazheng0917.github.io/"
+          },
+          {
+            "title": "Salt Project · GitHub",
+            "url": "https://github.com/saltstack"
+          },
+          {
+            "title": "GitHub - jwwthu/Satellite-Open-Source: This is the repository for the collection of open source code and data for satellite communication. · GitHub",
+            "url": "https://github.com/jwwthu/Satellite-Open-Source"
+          },
+          {
+            "title": "GitHub - saltstack/awesome-saltproject: A collaborative curated list of awesome Salt Project resources, tutorials and other salted stuff (originally maintained by the since-archived repo https://github.com/hbokh/awesome-saltstack) · GitHub",
+            "url": "https://github.com/saltstack/awesome-saltproject"
+          },
+          {
+            "title": "SALT · GitHub",
+            "url": "https://github.com/SALT-NLP"
+          },
+          {
+            "title": "GitHub - Kitware/SlicerSALT: An open-source, free comprehensive software that will allow biomedical scientists to precisely locate shape changes in their imaging studies. This software called Slicer Shape AnaLysis Toolbox (SlicerSALT), will enhance the intuitiveness and ease of use for such studies, as well as allow researchers to find shape changes with higher statistical power. Altogether this constitutes a crucial resource for the imaging field that will enable many and important new findings in biomedic",
+            "url": "https://github.com/Kitware/SlicerSALT"
+          },
+          {
+            "title": "The salt Open Source Project on Open Hub",
+            "url": "https://openhub.net/p/salt"
+          },
+          {
+            "title": "SALT Community · GitHub",
+            "url": "https://github.com/salt-community"
+          },
+          {
+            "title": "GitHub - SAP-samples/salt: Source code and data for the paper \"SALT: Sales Autocompletion Linked Business Tables Dataset\" · GitHub",
+            "url": "https://github.com/SAP-samples/salt"
+          }
+        ]
+      },
+      "Based on my search results, I can provide you with information about the SALT paper research, though I found limited public information about a dedicated GitHub repository.\n\n## SALT Research Overview\n\nSALT is a novel and lightweight framework that provides finer-grained advantage assignment, derived solely from outcome rewards by constructing a graph from trajectories of the same prompt, which allows quantifying the quality of each step and assigning advantages accordingly.\n\nThe paper was authored by Jiazheng Li, Yawei Wang, David Yan, Yijun Tian, Zhichao Xu, Huan Song, Panpan Xu, and Lin Lee Cheong.\n\nSALT is designed as a plug-and-play module that seamlessly integrates with existing group-based RL algorithms, requiring no modifications to the rollout procedure and introducing negligible computational overhead. Extensive experiments on the WebShop, ALFWorld, and AppWorld benchmarks with various model sizes demonstrate that SALT consistently improves performance.\n\n## GitHub Repository Status\n\nThe search results did not reveal a specific public GitHub repository for the SALT code implementation associated with this research. The SALT paper is listed for publication at EACL 2026, which may explain why the code might not yet be publicly available or widely indexed.\n\nFor the latest updates on code availability, I recommend:\n1. Checking the paper directly on arXiv (2510.20022)\n2. Visiting Jiazheng Li's personal website or GitHub profile\n3. Contacting the authors directly for code availability information"
+    ],
+    "durationSeconds": 10.243802412000019
+  },
+  "sourceToolAssistantUUID": "b5be484a-ff46-4584-bd95-3bd4c00f2610",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 121 · 2026-05-10T18:11:12.050Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. So SALT doesn't have public code. The generator plans to reimplement it, which adds risk. Let me also check whether HCAPO has public code.
+
+Now let me consolidate my findings and write the review.
+
+Key findings from my research:
+
+1. **All key references verified**: Grinsztajn NeurIPS 2021 ✓, SALT EACL 2026 ✓, GiGPO NeurIPS 2025 ✓, CSO ACL 2026 ✓, HCAPO arxiv 2026 ✓, NGRPO 2025 ✓, POPO 2026 ✓, CORAL ICLR 2026 ✓, planning-centric analysis ✓
+
+
+2. The credit assignment survey explicitly flags heterogeneous action types as an open problem, and I don't see any existing methods leveraging action-type properties like reversibility, which supports the novelty claim. However, there's a significant gap: HiPER from February 2026 achieves 97.4% on ALFWorld and 83.3% on WebShop with Qwen2.5-7B—these are the current state-of-the-art results on both benchmarks—yet it's not mentioned in the proposal. Additionally, there appears to be a venue mismatch that I need to examine.
+
+3. The generator is targeting AAAI 2027 and ACL/NAACL 2027, but the user requires EMNLP 2026 with an ARR deadline of May 25, 2026, which is a clear conflict.
+
+4. SALT lacks public code, so reimplementation would be necessary and introduces additional risk. The self-supervised reversibility estimation approach using cosine similarity of frozen LLM embeddings to detect state returns in text environments is untested, with concerns about whether short text observations in ALFWorld might have high embedding similarity across different states, and the per-environment threshold calibration undermines the environment-agnostic claim. The compute budget appears sound with 200 H100 hours and roughly 15 H100 hours per run for Qwen2.5-7B.
+
+5. The performance ceiling is already quite high—HiPER reaches 97.4% on ALFWorld and GiGPO hits 90.2%—so there's limited room for improvement through IAW. Reversibility-based modulation for LLM agent training appears genuinely novel with no direct competitors using this approach. The Round 1 feedback has been substantially addressed across multiple dimensions including differentiation from Grinsztajn and CSO, addition of SALT as a baseline, compute budget fixes, replacement of heuristics with self-supervised labels, and consistent use of Qwen2.5-7B throughout.
+
+On novelty, I'm weighing whether this deserves a 3 or 4. The core mechanism is straightforward—multiplying advantages by a scalar—and the self-supervised estimation borrows from Grinsztajn's existing approach. But the insight that reversibility signals useful credit assignment information fills a real gap I've confirmed through the survey, and the composability angle adds practical value. I think 3 is the right call—it's a solid contribution without the excitement or surprise needed for a 4. Feasibility lands at 3 as well.
+
+The timeline is the real constraint here: I have 16 days until EMNLP, but the manual work alone would take 6-8 weeks. The self-supervised reversibility estimation in text is unproven territory, and I'll need to reimplement SALT from scratch since there's no public code. The bigger experimental risk is missing HiPER as a baseline—if reviewers catch that omission, it could seriously weaken the results section.
+
+Clarity gets a 4 because the proposal is well-structured with clear differentiation from prior work, explicit compute budgets, and a defined experimental plan. The main issues are the missing baseline and venue mismatch, but the writing itself is solid.
+
+For impact, it's a 3. If this works, it's a useful plug-and-play module for agent RL, but WebShop and ALFWorld are hitting saturation—HiPER already achieves 97.4% on ALFWorld. The composability story is interesting but needs more development to really land.
+
+That puts me at 3.25 overall, so my verdict is revise. The key problems I need to flag are the venue mismatch with AAAI 2027 instead of EMNLP 2026, the missing HiPER baseline, the technical risk of self-supervised reversibility in text, the saturation problem on existing benchmarks, and the reimplementation burden with SALT.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b2fed1fe-e111-4233-8922-59afc0c4324f",
+  "isSidechain": false,
+  "requestId": "req_011CauLZYGm7NXrjWyXRAF1f",
+  "type": "assistant",
+  "uuid": "ce85ca3c-05ab-4361-99ab-e16ccc78990c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017M5fgMyzSRzqh6kkBQfwzq",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1551,
+      "cache_read_input_tokens": 65485,
+      "output_tokens": 3554,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1551,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3554,
+          "cache_read_input_tokens": 65485,
+          "cache_creation_input_tokens": 1551,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1551
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 122 · 2026-05-10T18:11:57.891Z_
+
+I've completed my independent verification. Let me now compile my findings into a structured review.
+
+Key findings from my research:
+- **Survey confirmation**: The credit assignment survey (arXiv 2604.09459) explicitly identifies "Heterogeneous Action Types" as an open problem (Challenge 4, Section 4.4) — validating the novelty claim
+- **Critical missing baseline**: HiPER (Feb 2026) achieves 97.4% ALFWorld / 83.3% WebShop with Qwen2.5-7B, not mentioned
+- **Venue mismatch**: Generator targets AAAI 2027, not user-required EMNLP 2026
+- **SALT has no public code**: reimplementation needed
+- **No direct competitor confirmed**: no existing work applies reversibility to LLM agent training-time optimization
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {"score": 3, "rationale": "The gap is real — confirmed by the credit assignment survey (arXiv 2604.09459) which explicitly lists 'Heterogeneous Action Types' as an open challenge with no existing solution using action reversibility. However, the mechanism itself (multiplying advantages by a scalar at classified steps) is straightforward, and the self-supervised estimation adapts Grinsztajn's existing approach to a new modality. Solid contribution but not surprising enough for 4."},
+    "feasibility": {"score": 3, "rationale": "Compute budget math checks out (~200 H100h). But three risks compound: (1) self-supervised reversibility estimation via cosine similarity of frozen LLM embeddings for text observations is completely untested — short ALFWorld observations may yield unreliable similarity signals, (2) SALT has no public code and must be reimplemented, (3) the EMNLP 2026 deadline (16 days) is incompatible with the 6-8 week manual timeline, and even auto-research at 10-14 days is razor-thin."},
+    "clarity": {"score": 4, "rationale": "The revised proposal is well-structured with clear differentiation from Grinsztajn, CSO, SALT, GiGPO, and asymmetric methods. Explicit per-experiment compute breakdown, well-defined ablation plan, and composability experiments are all clearly laid out. Round 1 feedback was substantially addressed."},
+    "impact": {"score": 3, "rationale": "A composable plug-and-play module for GRPO is useful but incremental. ALFWorld is becoming saturated (HiPER: 97.4%, GiGPO: 90.2%), limiting headroom for additional gains. Only 2 benchmarks (WebShop + ALFWorld) limits the generalizability story. The contribution adds one more signal to the credit assignment toolkit rather than changing the paradigm."}
+  },
+  "issues": [
+    "VENUE MISMATCH: The user explicitly requires EMNLP 2026 (ARR deadline May 25, 2026), but the generator targets AAAI 2027 (August 2026) and ACL/NAACL 2027 (July/August ARR cycle). The manual timeline of 6-8 weeks makes the EMNLP deadline impossible. Even auto-research at 10-14 days leaves essentially zero margin. The generator must either commit to EMNLP 2026 with a dramatically scoped-down plan or justify the venue change explicitly.",
+    "CRITICAL MISSING BASELINE — HiPER: HiPER (arXiv 2602.16165, Feb 2026) achieves 97.4% on ALFWorld and 83.3% on WebShop with Qwen2.5-7B-Instruct using hierarchical credit assignment (HAE). This is the current SOTA on both evaluation benchmarks. IAW must compare against HiPER or convincingly argue why it is excluded. On ALFWorld specifically, the gap between GRPO (77.6%) and HiPER (97.4%) is nearly closed, leaving very little headroom for IAW to demonstrate meaningful improvement over HiPER.",
+    "SELF-SUPERVISED REVERSIBILITY ESTIMATION TECHNICAL RISK: The proposal uses cosine similarity of frozen Qwen2.5-7B embeddings between pre-action and subsequent observations to label reversibility. This approach is completely untested for text-based environments. Key concerns: (a) ALFWorld observations are short template-based strings — 'You are in the kitchen. You see a fridge 1' vs. 'You are in the kitchen. You see a fridge 1 and a cabinet 1' may have very high cosine similarity despite being different states; (b) WebShop HTML observations may have high similarity across different product pages; (c) the threshold τ requires per-environment calibration, undermining the 'environment-agnostic' claim. The proposal should include a preliminary validation study of the classifier before committing to full training.",
+    "SALT CODE UNAVAILABILITY: SALT has no public code repository. The generator plans to reimplement it as a 'lightweight plug-and-play module,' but this adds execution risk within an already tight timeline. If SALT reimplementation introduces bugs, the composability experiments (IAW+SALT) become unreliable. Consider dropping SALT reimplementation and focusing composability experiments on IAW+GiGPO (which has public code via verl-agent).",
+    "ALFWORLD PERFORMANCE SATURATION: With HiPER at 97.4% and GiGPO at 90.2% on ALFWorld, the performance ceiling is nearly reached. IAW improvements over GRPO (77.6%) might look good numerically but fail to be competitive with the latest methods. Adding a third benchmark from the user's required list (e.g., GAIA, SWE-bench Verified, or Mind2Web) would strengthen the evaluation and mitigate saturation concerns.",
+    "BENCHMARK COVERAGE: The user's hard constraints list 8 acceptable benchmarks (AgentBench, WebArena, SWE-bench Verified, GAIA, ToolBench, ALFWorld, Mind2Web, τ-bench). The proposal uses only 2 (ALFWorld + WebShop, and WebShop isn't even in the user's list). Adding at least one more benchmark from the user's list would strengthen both coverage and the generalizability argument.",
+    "COMPOSABILITY CLAIM UNDERTESTED: IAW+SALT and IAW+GiGPO are tested on only 1 benchmark each with 1 seed. This is insufficient to make a robust composability claim. Either test composability on both benchmarks or acknowledge this as preliminary evidence."
+  ],
+  "feedback": "The idea has improved significantly from Round 1 — the core gap is now validated by a comprehensive survey, differentiation from prior work is clear, and the compute budget is realistic. However, several issues remain:\n\n1. **Fix venue alignment.** Either (a) commit to EMNLP 2026 by scoping down to 2 benchmarks, 1 composability config, and citing all baselines from papers (no reproduction), or (b) explicitly acknowledge the venue change to AAAI 2027 and justify it. The user's requirement is EMNLP 2026.\n\n2. **Add HiPER as a baseline.** HiPER (arXiv 2602.16165) is the current SOTA on both your benchmarks with the same model. You can cite from the paper without reproducing, but ignoring it will be flagged by any reviewer. Frame IAW as complementary: HiPER decomposes the policy hierarchically while IAW modulates advantages by action type — they could potentially compose.\n\n3. **Validate reversibility estimation before full training.** The self-supervised reversibility classifier is the riskiest component. Add a preliminary step: collect trajectories from a few GRPO rollouts, compute the embedding similarity labels, and report classifier precision/recall against a small manually-labeled set (~50-100 actions). If the classifier is unreliable, the entire method fails. This validation costs <1 H100h and should happen before committing to full training runs.\n\n4. **Simplify SALT composability.** Drop SALT reimplementation given no public code. Focus composability on IAW+GiGPO (public code via verl-agent), which is lower-risk and equally demonstrates the plug-and-play claim.\n\n5. **Add one benchmark from user's list.** Consider GAIA (if CSO numbers can be compared) or Mind2Web (web-based tasks where irreversibility is especially relevant — form submissions, purchases). This addresses both the user's requirements and the generalizability story.\n\n6. **Acknowledge ALFWorld saturation.** If HiPER already hits 97.4%, frame IAW's contribution on ALFWorld as showing that reversibility-awareness helps even simple methods (GRPO+IAW) approach sophisticated hierarchical methods (HiPER), rather than claiming absolute SOTA.",
+  "reason": "Core gap is validated and Round 1 feedback was addressed, but venue mismatch with user requirements, missing SOTA baseline (HiPER), untested reversibility estimation for text, and limited benchmark coverage prevent a pass."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ce85ca3c-05ab-4361-99ab-e16ccc78990c",
+  "isSidechain": false,
+  "requestId": "req_011CauLZYGm7NXrjWyXRAF1f",
+  "type": "assistant",
+  "uuid": "ee1c2810-c455-48d7-a060-3c7a5227e8ef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017M5fgMyzSRzqh6kkBQfwzq",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1551,
+      "cache_read_input_tokens": 65485,
+      "output_tokens": 3554,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1551,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3554,
+          "cache_read_input_tokens": 65485,
+          "cache_creation_input_tokens": 1551,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1551
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 123_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "ee1c2810-c455-48d7-a060-3c7a5227e8ef",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 124_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of Irreversibility-Aware Advantage Weighting for Agent RL",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 125_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "ee1c2810-c455-48d7-a060-3c7a5227e8ef",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 126_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of Irreversibility-Aware Advantage Weighting for Agent RL",
+  "sessionId": "4022032e-a6f3-4253-870f-7d14b53d35b2"
+}
+```
+
+---

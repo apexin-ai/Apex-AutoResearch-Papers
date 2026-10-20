@@ -1,0 +1,3728 @@
+# Research conversation: [HANDOFF] 你是 Main Agent，这是 Loop #17。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - **GPU 白名单**：bjb1-17606 仅 cuda:0,1；westd
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 65
+- **Recorded user turns:** 1
+- **Tool calls:** 18
+- **Original source:** `logs/chats/exported-trajectories/account-2/42eb6368-ec23-42c7-b122-8c135f1ea51d.jsonl`
+- **Structured JSON:** [`98240beaac4f98641946.json`](../../sessions/98/98240beaac4f98641946.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-17T19:05:42.551Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-17T19:05:42.551Z",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "content": "[HANDOFF] 你是 Main Agent，这是 Loop #17。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**：bjb1-17606 仅 cuda:0,1；westd-47453 仅 cuda:0,1,2,3。超出范围必须 push back Director\n- **westd-47453 必须 `export TORCH_COMPILE_DISABLE=1`**：RTX PRO 6000 的 torch._inductor 模板冲突会导致 vLLM crash\n- **WANDB_MODE 禁止 disabled**：cron 依赖 W&B heartbeat 判活，disabled 会误判实验 failed\n- **eval split 已统一为 valid_unseen(134 tasks)**（D064）：所有新实验必须用 `eval_dataset: \"eval_out_of_distribution\"`, `env_groups: 134`\n- **factorial_h2_episodeadv_seed1 已 ALLOCATED 但未提交**：需要 ~20-25 行代码改动实现 episode-level advantage mode 后才能跑（plan_018）\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-17606**（2× A6000）\n  - 工作目录：需 SSH 确认（RAGEN 项目目录）\n  - 活跃：hsweep_h2_seed2, PID=945877, cuda:0,1\n- **westd-47453**（4× RTX PRO 6000）\n  - 工作目录：需 SSH 确认（RAGEN 项目目录）\n  - 活跃：gae_baseline_seed1 PID=40267 cuda:0,1；gsweep_g050_h5_seed1 PID=85798 cuda:2,3\n- **Cron 监控**：3 个 cron 全部 reconcile OK，均 still running\n- **Python/conda**：bjb1 和 westd 用 `source /root/miniconda3/bin/activate` 方式（不依赖 .venv）\n- **W&B**：project = cost-verify-agent-rl（具体 entity 需 SSH 查 config）\n- **模型**：Qwen3-1.7B 系列（具体路径在各实验 config 中）\n\n### 3. 📊 当前状态\n**刚完成**：Dream review 分析 → D062 framing 调整（放弃 \"contrarian\" 叙事，转 \"mechanistic diagnosis + factorial causal attribution\"）→ 新实验 plan_018/019 加入计划。\n\n**RUNNING（3 个实验，6 GPU 全占满）**：\n- `gsweep_g050_h5_seed1`：γ=0.5 极端衰减验证崩溃加速（westd cuda:2,3）\n- `gae_baseline_seed1`：REINFORCE++ baseline 对比（westd cuda:0,1）— D065 early-stop at step 10\n- `hsweep_h2_seed2`：h=2 第二 seed 复现 + ADV log 收集 for plan_004（bjb1 cuda:0,1）\n\n**ALLOCATED 未提交（1）**：\n- `factorial_h2_episodeadv_seed1`：关键 factorial 实验，需先实现 episode-level advantage 代码（plan_018 ~25 行改动）\n\n**等待中**：\n- 3 个 cron 回调（实验完成时触发）\n- Director 未回复 r=0.640 诊断 4 个问题（D063）\n- γ-sweep 后续 3 个 γ 值（g080/g095/g100）排在 g050 完成后 chain 提交\n\n### 4. 📋 待办（条件触发式）\n- `gsweep_g050_h5_seed1` 完成 → 提交 `gsweep_g080_h5_seed1`（同 GPU cuda:2,3）\n- `gae_baseline_seed1` 完成（step 10 early-stop, D065）→ 分析 vs exp029 对比，更新 report\n- `hsweep_h2_seed2` 完成 → spawn Worker 分析 ADV log + 提交 `hsweep_h10_seed1`（释放的 GPU）\n- Director 回复 r=0.640 Q1-Q4 → 据此调整 sign misattribution claim 精度，可能影响 paper Proposition 2\n- plan_018 代码就绪（Worker 实现 episode-level advantage mode）→ 提交 `factorial_h2_episodeadv_seed1`\n- 全部 γ-sweep + h-sweep 完成 → 绘制 cliff figure (fig5) + 写 Results section\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- D058: step-independent h=2 崩溃（0% by step 10）= 确认\n- D057: episode-level 有效（28% at step 15）= Core Claim 1 ESTABLISHED\n- D062: Framing 从 \"contrarian/coarser is better\" 转为 \"mechanistic diagnosis\"（因 GAGPO 93.5% 证明 finer credit 本身没问题）\n- D063: sign misattribution 成立但比 binary 假设更复杂（Type C evidence 4%）\n\n**易错点**：\n1. **不要把 episode-level 当成 \"我们的方法\"**——episode-level 本身是 trivial，论文贡献是**诊断**为什么 step-independent 失败 + factorial 因果归因\n2. **advantage vs step_return 是同源变量**（memory.md plan_004 陷阱）——r=0.640 无诊断意义，不要再用这个数字\n3. **γ 在 GRPO 算法层面不存在**，是 RAGEN step_independent 实现引入的——论文必须精确区分 \"算法\" vs \"实现\"\n4. **gae_baseline 实际是 REINFORCE++**（TRL 1.1.0 移除了 value head，D060）——不要混称 GAE\n5. **exp028_prereq_zeroshot_instruct / exp020d 等老实验已 deprioritized**——当前焦点是 factorial (plan_018) + sweep 数据\n\n## 项目硬约束 (memory.md 节选)\n\n## westd-47453 RTX PRO 6000 环境约束（2026-05-17）\n\nwestd-47453 的 RTX PRO 6000 GPU 在 torch._inductor 编译路径下会触发 `AssertionError: duplicate template name`（vLLM import chain）。bjb1-17606 的 A6000 不触发。两台服务器 PyTorch/vLLM 版本完全一致（torch 2.10.0+cu128, vLLM 0.18.1），是架构特有的 inductor kernel 模板冲突。\n\n**硬规则**: westd-47453 上所有实验启动命令必须包含 `export TORCH_COMPILE_DISABLE=1`。\n\n## 可查的历史\n前 49 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-17T19:05:42.554Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-17T19:05:42.554Z",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d"
+}
+```
+
+---
+
+## Round 1
+
+63 recorded events
+
+### User
+
+_source line 3 · 2026-05-17T19:05:42.590Z_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #17。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- **GPU 白名单**：bjb1-17606 仅 cuda:0,1；westd-47453 仅 cuda:0,1,2,3。超出范围必须 push back Director
+- **westd-47453 必须 `export TORCH_COMPILE_DISABLE=1`**：RTX PRO 6000 的 torch._inductor 模板冲突会导致 vLLM crash
+- **WANDB_MODE 禁止 disabled**：cron 依赖 W&B heartbeat 判活，disabled 会误判实验 failed
+- **eval split 已统一为 valid_unseen(134 tasks)**（D064）：所有新实验必须用 `eval_dataset: "eval_out_of_distribution"`, `env_groups: 134`
+- **factorial_h2_episodeadv_seed1 已 ALLOCATED 但未提交**：需要 ~20-25 行代码改动实现 episode-level advantage mode 后才能跑（plan_018）
+
+### 2. 🖥️ 基础设施快照
+- **bjb1-17606**（2× A6000）
+  - 工作目录：需 SSH 确认（RAGEN 项目目录）
+  - 活跃：hsweep_h2_seed2, PID=945877, cuda:0,1
+- **westd-47453**（4× RTX PRO 6000）
+  - 工作目录：需 SSH 确认（RAGEN 项目目录）
+  - 活跃：gae_baseline_seed1 PID=40267 cuda:0,1；gsweep_g050_h5_seed1 PID=85798 cuda:2,3
+- **Cron 监控**：3 个 cron 全部 reconcile OK，均 still running
+- **Python/conda**：bjb1 和 westd 用 `source /root/miniconda3/bin/activate` 方式（不依赖 .venv）
+- **W&B**：project = cost-verify-agent-rl（具体 entity 需 SSH 查 config）
+- **模型**：Qwen3-1.7B 系列（具体路径在各实验 config 中）
+
+### 3. 📊 当前状态
+**刚完成**：Dream review 分析 → D062 framing 调整（放弃 "contrarian" 叙事，转 "mechanistic diagnosis + factorial causal attribution"）→ 新实验 plan_018/019 加入计划。
+
+**RUNNING（3 个实验，6 GPU 全占满）**：
+- `gsweep_g050_h5_seed1`：γ=0.5 极端衰减验证崩溃加速（westd cuda:2,3）
+- `gae_baseline_seed1`：REINFORCE++ baseline 对比（westd cuda:0,1）— D065 early-stop at step 10
+- `hsweep_h2_seed2`：h=2 第二 seed 复现 + ADV log 收集 for plan_004（bjb1 cuda:0,1）
+
+**ALLOCATED 未提交（1）**：
+- `factorial_h2_episodeadv_seed1`：关键 factorial 实验，需先实现 episode-level advantage 代码（plan_018 ~25 行改动）
+
+**等待中**：
+- 3 个 cron 回调（实验完成时触发）
+- Director 未回复 r=0.640 诊断 4 个问题（D063）
+- γ-sweep 后续 3 个 γ 值（g080/g095/g100）排在 g050 完成后 chain 提交
+
+### 4. 📋 待办（条件触发式）
+- `gsweep_g050_h5_seed1` 完成 → 提交 `gsweep_g080_h5_seed1`（同 GPU cuda:2,3）
+- `gae_baseline_seed1` 完成（step 10 early-stop, D065）→ 分析 vs exp029 对比，更新 report
+- `hsweep_h2_seed2` 完成 → spawn Worker 分析 ADV log + 提交 `hsweep_h10_seed1`（释放的 GPU）
+- Director 回复 r=0.640 Q1-Q4 → 据此调整 sign misattribution claim 精度，可能影响 paper Proposition 2
+- plan_018 代码就绪（Worker 实现 episode-level advantage mode）→ 提交 `factorial_h2_episodeadv_seed1`
+- 全部 γ-sweep + h-sweep 完成 → 绘制 cliff figure (fig5) + 写 Results section
+
+### 5. 🎯 战略上下文
+**核心结论链**：
+- D058: step-independent h=2 崩溃（0% by step 10）= 确认
+- D057: episode-level 有效（28% at step 15）= Core Claim 1 ESTABLISHED
+- D062: Framing 从 "contrarian/coarser is better" 转为 "mechanistic diagnosis"（因 GAGPO 93.5% 证明 finer credit 本身没问题）
+- D063: sign misattribution 成立但比 binary 假设更复杂（Type C evidence 4%）
+
+**易错点**：
+1. **不要把 episode-level 当成 "我们的方法"**——episode-level 本身是 trivial，论文贡献是**诊断**为什么 step-independent 失败 + factorial 因果归因
+2. **advantage vs step_return 是同源变量**（memory.md plan_004 陷阱）——r=0.640 无诊断意义，不要再用这个数字
+3. **γ 在 GRPO 算法层面不存在**，是 RAGEN step_independent 实现引入的——论文必须精确区分 "算法" vs "实现"
+4. **gae_baseline 实际是 REINFORCE++**（TRL 1.1.0 移除了 value head，D060）——不要混称 GAE
+5. **exp028_prereq_zeroshot_instruct / exp020d 等老实验已 deprioritized**——当前焦点是 factorial (plan_018) + sweep 数据
+
+## 项目硬约束 (memory.md 节选)
+
+## westd-47453 RTX PRO 6000 环境约束（2026-05-17）
+
+westd-47453 的 RTX PRO 6000 GPU 在 torch._inductor 编译路径下会触发 `AssertionError: duplicate template name`（vLLM import chain）。bjb1-17606 的 A6000 不触发。两台服务器 PyTorch/vLLM 版本完全一致（torch 2.10.0+cu128, vLLM 0.18.1），是架构特有的 inductor kernel 模板冲突。
+
+**硬规则**: westd-47453 上所有实验启动命令必须包含 `export TORCH_COMPILE_DISABLE=1`。
+
+## 可查的历史
+前 49 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "71c1d71a-6877-4d97-89ab-bc2334ced39e",
+  "type": "user",
+  "uuid": "251d90b5-213c-4352-b813-7b4a32618d84",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-17T19:05:42.589Z_
+
+```json
+{
+  "parentUuid": "251d90b5-213c-4352-b813-7b4a32618d84",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_mistakes",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_mistakes",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "60a85904-5d98-40ad-9ac2-a0c8a0fcd3de",
+  "timestamp": "2026-05-17T19:05:42.589Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-17T19:05:42.590Z_
+
+```json
+{
+  "parentUuid": "60a85904-5d98-40ad-9ac2-a0c8a0fcd3de",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "0202076b-9931-4727-99a2-acf030092463",
+  "timestamp": "2026-05-17T19:05:42.590Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-17T19:05:42.590Z_
+
+```json
+{
+  "parentUuid": "0202076b-9931-4727-99a2-acf030092463",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "d56bdf2d-aa74-475b-a3c7-60b774de4430",
+  "timestamp": "2026-05-17T19:05:42.590Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify GPU allocation and confirm running experiments",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-17T19:05:49.212Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+新 session 启动，执行 session-start 初始化流程。先确认硬约束已读取，然后执行初始化步骤。
+
+让我先确认我看到了硬约束和当前状态，然后开始工具调用。
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d56bdf2d-aa74-475b-a3c7-60b774de4430",
+  "isSidechain": false,
+  "requestId": "req_011Cb8fRzvBBQ6TVEpn9mejZ",
+  "type": "assistant",
+  "uuid": "4f86f0fa-fb29-4ff8-bfa4-90cd578c64fb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TP7rp9BCk8nGDURYHbLoe7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 27694,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 360,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 27694,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 360,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 27694,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 27694
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-17T19:05:53.432Z_
+
+Loop #17 启动。硬约束已确认：GPU 白名单（bjb1 cuda:0,1 / westd cuda:0,1,2,3）、westd 必须 `TORCH_COMPILE_DISABLE=1`、WANDB_MODE 禁止 disabled、eval split 统一 valid_unseen(134)。当前 3 个 RUNNING + 1 个 ALLOCATED 未提交。
+
+开始 session-start 初始化。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4f86f0fa-fb29-4ff8-bfa4-90cd578c64fb",
+  "isSidechain": false,
+  "requestId": "req_011Cb8fRzvBBQ6TVEpn9mejZ",
+  "type": "assistant",
+  "uuid": "b30405a5-c635-4d25-9a3c-7b61195c345f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TP7rp9BCk8nGDURYHbLoe7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 27694,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 360,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 27694,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 360,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 27694,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 27694
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-17T19:05:55.759Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Aj8yAxUjbXrAgX8bV3A86k`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b30405a5-c635-4d25-9a3c-7b61195c345f",
+  "isSidechain": false,
+  "requestId": "req_011Cb8fRzvBBQ6TVEpn9mejZ",
+  "type": "assistant",
+  "uuid": "a1335c67-b1b5-4fd1-b463-8989e9c0abe5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TP7rp9BCk8nGDURYHbLoe7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 27694,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 360,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 27694,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 360,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 27694,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 27694
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-17T19:05:55.767Z_
+
+<details><summary>↩ Tool result · `toolu_01Aj8yAxUjbXrAgX8bV3A86k`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_roadmap"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__main_agent_post_to_director"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a1335c67-b1b5-4fd1-b463-8989e9c0abe5",
+  "isSidechain": false,
+  "promptId": "71c1d71a-6877-4d97-89ab-bc2334ced39e",
+  "type": "user",
+  "uuid": "eeed6764-1275-49be-ac1e-8f865c44e615",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__main_agent_post_to_director"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director",
+    "total_deferred_tools": 80
+  },
+  "sourceToolAssistantUUID": "a1335c67-b1b5-4fd1-b463-8989e9c0abe5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-17T19:06:00.868Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01VBGcYrZtMTfiLbUf25C5qi`</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "limit": 0,
+  "filters": {
+    "status": "RUNNING"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eeed6764-1275-49be-ac1e-8f865c44e615",
+  "isSidechain": false,
+  "requestId": "req_011Cb8fSzCYjpgZjBa1eP5NG",
+  "type": "assistant",
+  "uuid": "30589811-cd1b-40b5-8723-3c8a65ddb5e9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016WmeggnzY8ygZVxqxce3Qn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1498,
+      "cache_read_input_tokens": 39535,
+      "output_tokens": 266,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1498,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 266,
+          "cache_read_input_tokens": 39535,
+          "cache_creation_input_tokens": 1498,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1498
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-17T19:06:00.874Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons · `toolu_01Y3GVNb4kcZ3DrfdzAkzK2c`</summary>
+
+```json
+{}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "30589811-cd1b-40b5-8723-3c8a65ddb5e9",
+  "isSidechain": false,
+  "requestId": "req_011Cb8fSzCYjpgZjBa1eP5NG",
+  "type": "assistant",
+  "uuid": "d2ac0964-3011-4525-8087-274742e391cf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016WmeggnzY8ygZVxqxce3Qn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1498,
+      "cache_read_input_tokens": 39535,
+      "output_tokens": 266,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1498,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 266,
+          "cache_read_input_tokens": 39535,
+          "cache_creation_input_tokens": 1498,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1498
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T19:06:01.093Z_
+
+<details><summary>↩ Tool result · `toolu_01VBGcYrZtMTfiLbUf25C5qi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"gsweep_g050_h5_seed1\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-17T13:56:51.277Z\", \"updated_at\": \"2026-05-17T15:26:17.118Z\", \"hypothesis\": \"γ=0.5 with h=5 will show accelerated collapse compared to default γ=0.95, because γ^k decay compounds: early windows receive only γ^(N-1) ≈ 0.5^9 ≈ 0.2% of terminal return, making sign misattribution maximally severe.\", \"parent\": \"hsweep_h2_seed1\", \"notes\": \"Infrastructure failure: experiment crashed during vLLM rollout module initialization with 'AssertionError: duplicate template name' in torch._inductor/select_algorithm.py. This is a vLLM/PyTorch version incompatibility on westd-47453. Zero training steps completed, no W&B data, no checkpoint. Hypothesis (γ=0.5 accelerates collapse vs γ=0.95) was never tested. Needs environment fix (likely vLLM or PyTorch version mismatch) before retry.\"}, \"gae_baseline_seed1\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-17T14:05:31.533Z\", \"updated_at\": \"2026-05-17T15:25:30.126Z\", \"hypothesis\": \"REINFORCE++ (running-mean baseline, no critic) provides modest improvement over episode-level GRPO due to per-token advantage normalization. Fallback from GAE due to TRL 1.1.0 removing AutoModelForCausalLMWithValueHead (critic head unavailable).\", \"parent\": \"exp029_episode_level\", \"metrics\": {\"wandb_run_id\": \"dt79qyd9\", \"pid\": 40267, \"val_step0\": {\"success\": 0.0625, \"action_is_valid\": 0.7796}, \"server\": \"westd-47453\", \"gpu\": \"cuda:0,1\", \"method\": \"reinforce_plus_plus\", \"fallback_reason\": \"TRL 1.1.0 removed AutoModelForCausalLMWithValueHead\"}, \"notes\": \"实际运行 REINFORCE++ (adv_estimator=reinforce_plus_plus_baseline)，非 GAE。GAE 因 TRL 1.1.0 移除 AutoModelForCausalLMWithValueHead 不可用 (D060)。\"}, \"hsweep_h2_seed2\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-17T14:37:14.817Z\", \"updated_at\": \"2026-05-17T15:25:28.256Z\", \"hypothesis\": \"h=2 seed 2 replicates seed 1 catastrophic collapse (step 3-4 onset, 0% by step 9+), confirming collapse is robust not single-run artifact. Additionally LOG_PER_SAMPLE_ADV=1 collects per-window advantage data for plan_004 sign misattribution empirical verification.\", \"parent\": \"hsweep_h2_seed1\"}}, \"count\": 3, \"total\": 3, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2084}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "30589811-cd1b-40b5-8723-3c8a65ddb5e9",
+  "isSidechain": false,
+  "promptId": "71c1d71a-6877-4d97-89ab-bc2334ced39e",
+  "type": "user",
+  "uuid": "fddbf77d-6d03-4da2-8d73-b23546164c82",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"gsweep_g050_h5_seed1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-17T13:56:51.277Z\\\", \\\"updated_at\\\": \\\"2026-05-17T15:26:17.118Z\\\", \\\"hypothesis\\\": \\\"γ=0.5 with h=5 will show accelerated collapse compared to default γ=0.95, because γ^k decay compounds: early windows receive only γ^(N-1) ≈ 0.5^9 ≈ 0.2% of terminal return, making sign misattribution maximally severe.\\\", \\\"parent\\\": \\\"hsweep_h2_seed1\\\", \\\"notes\\\": \\\"Infrastructure failure: experiment crashed during vLLM rollout module initialization with 'AssertionError: duplicate template name' in torch._inductor/select_algorithm.py. This is a vLLM/PyTorch version incompatibility on westd-47453. Zero training steps completed, no W&B data, no checkpoint. Hypothesis (γ=0.5 accelerates collapse vs γ=0.95) was never tested. Needs environment fix (likely vLLM or PyTorch version mismatch) before retry.\\\"}, \\\"gae_baseline_seed1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-17T14:05:31.533Z\\\", \\\"updated_at\\\": \\\"2026-05-17T15:25:30.126Z\\\", \\\"hypothesis\\\": \\\"REINFORCE++ (running-mean baseline, no critic) provides modest improvement over episode-level GRPO due to per-token advantage normalization. Fallback from GAE due to TRL 1.1.0 removing AutoModelForCausalLMWithValueHead (critic head unavailable).\\\", \\\"parent\\\": \\\"exp029_episode_level\\\", \\\"metrics\\\": {\\\"wandb_run_id\\\": \\\"dt79qyd9\\\", \\\"pid\\\": 40267, \\\"val_step0\\\": {\\\"success\\\": 0.0625, \\\"action_is_valid\\\": 0.7796}, \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": \\\"cuda:0,1\\\", \\\"method\\\": \\\"reinforce_plus_plus\\\", \\\"fallback_reason\\\": \\\"TRL 1.1.0 removed AutoModelForCausalLMWithValueHead\\\"}, \\\"notes\\\": \\\"实际运行 REINFORCE++ (adv_estimator=reinforce_plus_plus_baseline)，非 GAE。GAE 因 TRL 1.1.0 移除 AutoModelForCausalLMWithValueHead 不可用 (D060)。\\\"}, \\\"hsweep_h2_seed2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-17T14:37:14.817Z\\\", \\\"updated_at\\\": \\\"2026-05-17T15:25:28.256Z\\\", \\\"hypothesis\\\": \\\"h=2 seed 2 replicates seed 1 catastrophic collapse (step 3-4 onset, 0% by step 9+), confirming collapse is robust not single-run artifact. Additionally LOG_PER_SAMPLE_ADV=1 collects per-window advantage data for plan_004 sign misattribution empirical verification.\\\", \\\"parent\\\": \\\"hsweep_h2_seed1\\\"}}, \\\"count\\\": 3, \\\"total\\\": 3, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2084}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"gsweep_g050_h5_seed1\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-17T13:56:51.277Z\", \"updated_at\": \"2026-05-17T15:26:17.118Z\", \"hypothesis\": \"γ=0.5 with h=5 will show accelerated collapse compared to default γ=0.95, because γ^k decay compounds: early windows receive only γ^(N-1) ≈ 0.5^9 ≈ 0.2% of terminal return, making sign misattribution maximally severe.\", \"parent\": \"hsweep_h2_seed1\", \"notes\": \"Infrastructure failure: experiment crashed during vLLM rollout module initialization with 'AssertionError: duplicate template name' in torch._inductor/select_algorithm.py. This is a vLLM/PyTorch version incompatibility on westd-47453. Zero training steps completed, no W&B data, no checkpoint. Hypothesis (γ=0.5 accelerates collapse vs γ=0.95) was never tested. Needs environment fix (likely vLLM or PyTorch version mismatch) before retry.\"}, \"gae_baseline_seed1\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-17T14:05:31.533Z\", \"updated_at\": \"2026-05-17T15:25:30.126Z\", \"hypothesis\": \"REINFORCE++ (running-mean baseline, no critic) provides modest improvement over episode-level GRPO due to per-token advantage normalization. Fallback from GAE due to TRL 1.1.0 removing AutoModelForCausalLMWithValueHead (critic head unavailable).\", \"parent\": \"exp029_episode_level\", \"metrics\": {\"wandb_run_id\": \"dt79qyd9\", \"pid\": 40267, \"val_step0\": {\"success\": 0.0625, \"action_is_valid\": 0.7796}, \"server\": \"westd-47453\", \"gpu\": \"cuda:0,1\", \"method\": \"reinforce_plus_plus\", \"fallback_reason\": \"TRL 1.1.0 removed AutoModelForCausalLMWithValueHead\"}, \"notes\": \"实际运行 REINFORCE++ (adv_estimator=reinforce_plus_plus_baseline)，非 GAE。GAE 因 TRL 1.1.0 移除 AutoModelForCausalLMWithValueHead 不可用 (D060)。\"}, \"hsweep_h2_seed2\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-17T14:37:14.817Z\", \"updated_at\": \"2026-05-17T15:25:28.256Z\", \"hypothesis\": \"h=2 seed 2 replicates seed 1 catastrophic collapse (step 3-4 onset, 0% by step 9+), confirming collapse is robust not single-run artifact. Additionally LOG_PER_SAMPLE_ADV=1 collects per-window advantage data for plan_004 sign misattribution empirical verification.\", \"parent\": \"hsweep_h2_seed1\"}}, \"count\": 3, \"total\": 3, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2084}}"
+    }
+  },
+  "sourceToolAssistantUUID": "30589811-cd1b-40b5-8723-3c8a65ddb5e9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-17T19:06:01.156Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01RAR4jbmmQwAfF4245eT3zb`</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fddbf77d-6d03-4da2-8d73-b23546164c82",
+  "isSidechain": false,
+  "requestId": "req_011Cb8fSzCYjpgZjBa1eP5NG",
+  "type": "assistant",
+  "uuid": "fe2dcd3a-6f04-4c40-97dc-670db5de853d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016WmeggnzY8ygZVxqxce3Qn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1498,
+      "cache_read_input_tokens": 39535,
+      "output_tokens": 266,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1498,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 266,
+          "cache_read_input_tokens": 39535,
+          "cache_creation_input_tokens": 1498,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1498
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-17T19:06:01.301Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap · `toolu_01SMaA4q3vPsoXjs4DKYoLvq`</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fe2dcd3a-6f04-4c40-97dc-670db5de853d",
+  "isSidechain": false,
+  "requestId": "req_011Cb8fSzCYjpgZjBa1eP5NG",
+  "type": "assistant",
+  "uuid": "37b1a3cc-05cc-4b30-948f-d60b7d57f16c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016WmeggnzY8ygZVxqxce3Qn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1498,
+      "cache_read_input_tokens": 39535,
+      "output_tokens": 266,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1498,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 266,
+          "cache_read_input_tokens": 39535,
+          "cache_creation_input_tokens": 1498,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1498
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #17。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - **GPU 白名单**：bjb1-17606 仅 cuda:0,1；westd-47453 仅 cuda:0,1,2,3。超出范围必须 push back Director - **westd-47453 必须 `export TO…",
+  "leafUuid": "37b1a3cc-05cc-4b30-948f-d60b7d57f16c",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify GPU allocation and confirm running experiments",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d"
+}
+```
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-17T19:06:06.644Z_
+
+<details><summary>↩ Tool result · `toolu_01Y3GVNb4kcZ3DrfdzAkzK2c`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 3, \"results\": [{\"exp_id\": \"hsweep_h2_seed2\", \"success\": true, \"actions\": [\"Job still running (pid=945877)\"]}, {\"exp_id\": \"gae_baseline_seed1\", \"success\": true, \"actions\": [\"Job still running (pid=40267)\"]}, {\"exp_id\": \"gsweep_g050_h5_seed1\", \"success\": true, \"actions\": [\"Job still running (pid=85798)\"]}]}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d2ac0964-3011-4525-8087-274742e391cf",
+  "isSidechain": false,
+  "promptId": "71c1d71a-6877-4d97-89ab-bc2334ced39e",
+  "type": "user",
+  "uuid": "4fba12d6-94bc-47ee-9b48-94376937d3fe",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 3, \\\"results\\\": [{\\\"exp_id\\\": \\\"hsweep_h2_seed2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=945877)\\\"]}, {\\\"exp_id\\\": \\\"gae_baseline_seed1\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=40267)\\\"]}, {\\\"exp_id\\\": \\\"gsweep_g050_h5_seed1\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=85798)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"reconciled\": 3, \"results\": [{\"exp_id\": \"hsweep_h2_seed2\", \"success\": true, \"actions\": [\"Job still running (pid=945877)\"]}, {\"exp_id\": \"gae_baseline_seed1\", \"success\": true, \"actions\": [\"Job still running (pid=40267)\"]}, {\"exp_id\": \"gsweep_g050_h5_seed1\", \"success\": true, \"actions\": [\"Job still running (pid=85798)\"]}]}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "d2ac0964-3011-4525-8087-274742e391cf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-17T19:06:06.660Z_
+
+<details><summary>↩ Tool result · `toolu_01RAR4jbmmQwAfF4245eT3zb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/report.md\", \"content\": \"# Handover — 2026-05-17\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| gsweep_g050_h5_seed1 | γ=0.5 with h=5 will show accelerated collapse compared to default γ=0.95, because γ^k decay compounds: early windows receive only γ^(N-1) ≈ 0.5^9 ≈ 0.2% of terminal return, making sign misattribution maximally severe. | — | — | — |\\n| gae_baseline_seed1 | REINFORCE++ (running-mean baseline, no critic) provides modest improvement over episode-level GRPO due to per-token advantage normalization. Fallback from GAE due to TRL 1.1.0 removing AutoModelForCausalLMWithValueHead (critic head unavailable). | — | — | — |\\n| hsweep_h2_seed2 | h=2 seed 2 replicates seed 1 catastrophic collapse (step 3-4 onset, 0% by step 9+), confirming collapse is robust not single-run artifact. Additionally LOG_PER_SAMPLE_ADV=1 collects per-window advantage data for plan_004 sign misattribution empirical verification. | — | — | — |\\n\\n## 待处理\\n- factorial_h2_episodeadv_seed1: Step_independent generation (h=2) with episode-level advantage eliminates sign misattribution while preserving truncated-context inference. If success >> h=2 step-level (0%), information loss alone does not cause collapse — sign misattribution is the primary driver. If success ≈ 0%, information loss is sufficient to cause collapse regardless of advantage computation. This is the key factorial experiment separating the two mechanisms.（已分配 ? GPU:?，等待提交）\\n- hsweep_h10_seed1: h=10 step_independent GRPO (N=5 windows per episode) will show intermediate performance between h=2 (catastrophic collapse) and h=full (28.1% success). With fewer windows than h=2, magnitude decay is reduced (γ^4≈0.81 vs γ^24≈0.29) and information loss is partially mitigated. Key data point for cliff figure (fig5).（准备中）\\n- gsweep_g100_h5_seed1: γ=1.0 with h=5 means no discount (all windows receive full terminal return). If collapse is driven by sign misattribution from discounting, γ=1.0 should show least collapse. But uniform return may reduce temporal credit assignment sharpness.（准备中）\\n- gsweep_g095_h5_seed1: γ=0.95 with h=5 is the control condition matching hsweep_h5. Early windows retain γ^9 ≈ 0.95^9 ≈ 63% of terminal return. Expected to reproduce h5 behavior from h-sweep.（准备中）\\n- gsweep_g080_h5_seed1: γ=0.8 with h=5 represents an intermediate decay rate where early windows retain γ^9 ≈ 0.8^9 ≈ 13% of terminal return, potentially showing delayed but still present collapse compared to γ=0.95 (39%).（准备中）\\n- exp028_prereq_zeroshot_instruct: Qwen3-1.7B-Instruct 零样本 ALFWorld eval，验证\\\"SFT是毒药\\\"假设。如果 Instruct ≥15% success（vs SFT checkpoint 6.25%），则确认 SFT 起点有害，exp028a 可跳过 SFT 直接 GRPO。（准备中）\\n- exp021_sft_ragen_format: Two-stage SFT with RAGEN-format data (v4). From exp008_sft checkpoint, fine-tune with v4 data (RAGEN Turn/State/Reward structure, fixed system prompt with consistent &lt;answer> tag instruction). LR=5e-6, 2 epochs. Validate via RAGEN val_before_train (not eval_sft_fast). Pass: RAGEN val success >= 10%, action_is_valid >= 85%.（准备中）\\n- exp020d_grpo_from_sft: GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Symlink fix for response_mask assertion (proven in exp020b). exp020c failed: Hydra key path wrong.（准备中）\\n- exp020c_grpo_from_sft: GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Fix: symlink + enable_response_mask=false (exp020/020b crashed on response_mask assertion).（准备中）\\n- exp019c_expert_sft_v3: Two-stage Expert SFT（重试）: 从 exp008_sft checkpoint 出发，用 v3 数据（保留原始 move actions + admissible actions augmentation）微调。LR=5e-6, 2 epochs, batch=4, grad_accum=4, max_seq=4096。Pass: success ≥ 10%, format_ok ≥ 90%, action_is_valid ≥ 85%。（准备中）\\n- …另有 13 项\\n\\n## 近期结论\\n- **hsweep_h2_seed1** (success): Step-independent GRPO with h=2 (minimal context, N=25 windows per episode) will catastrophically collapse due to advantage sign misattribution: early windows retain only γ^24=0.95^24≈29% of terminal return, and all windows in failed episodes receive undifferentiated negative advantage regardless of action quality ← 基于 exp029_episode_level\\n- **exp025c** (killed): —\\n- **exp029_episode_level** (success): Episode-level 训练（context_window_mode: full）解决 step_independent h=2 的信用分配缺陷，模型能学到跨步规划策略，val success 不再停滞于 baseline。 ← 基于 exp028c_selfguide_recipe\\n  [exp029_episode_level_diagnose_attempt4](/api/workspace-files/projects/cost-verify-agent-rl/artifacts/exp029_episode_level/report/diagnose_attempt4.md) | [tatsu_patch_deploy_plan](/api/workspace-files/projects/cost-verify-agent-rl/artifacts/exp029_episode_level/intermediate/tatsu_patch_deploy_plan.md) | [credit_assignment_analysis](/api/workspace-files/projects/cost-verify-agent-rl/artifacts/exp029_episode_level/chart/credit_assignment_analysis_info.md)\\n\\n## 趋势\\n成功 5 / 负向 5 / 失败 19 / 共 39\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nbjb1-17606: 无 GPU 信息\\nwestd-47453: 无 GPU 信息\\n\\n## 告警\\n- exp_001: 训练失败 — unknown\\n- exp_001b: 训练失败 — unknown\\n- exp_002: 训练失败 — unknown\\n- exp003: 训练失败 — unknown\\n- exp007: 训练失败 — unknown\\n- exp009: 训练失败 — unknown\\n- exp010: 训练失败 — unknown\\n- exp011: 已被终止 — unknown\\n- exp012: 训练失败 — unknown\\n- exp012b: 已被终止 — unknown\\n- exp013: 已被终止 — unknown\\n- exp013b: 训练失败 — unknown\\n- exp013c: 已被终止 — unknown\\n- exp013d: 训练失败 — unknown\\n- exp013e: 训练失败 — unknown\\n- exp015: 已被终止 — unknown\\n- exp016: 训练失败 — unknown\\n- exp019_expert_sft_v2: 已被终止 — unknown\\n- exp020_grpo_from_sft: 训练失败 — unknown\\n- exp022_grpo_from_sft_v4: 已被终止 — unknown\\n- exp023_grpo_parallel: 训练失败 — unknown\\n- exp023c_grpo_serial: 训练失败 — unknown\\n- exp024_success_gated_grpo: 已被终止 — unknown\\n- exp025: 训练失败 — unknown\\n- exp025b: 训练失败 — unknown\\n- exp025c: 已被终止 — unknown\\n- exp027_stable_grpo: 训练失败 — unknown\\n- exp028a_recipe_fix: 已被终止 — unknown\\n- exp028c_selfguide_recipe: 训练失败 — unknown\\n\", \"total_chars\": 5957, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fe2dcd3a-6f04-4c40-97dc-670db5de853d",
+  "isSidechain": false,
+  "promptId": "71c1d71a-6877-4d97-89ab-bc2334ced39e",
+  "type": "user",
+  "uuid": "deda2ca4-6010-465d-95e4-1d83066d8f07",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-17\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| gsweep_g050_h5_seed1 | γ=0.5 with h=5 will show accelerated collapse compared to default γ=0.95, because γ^k decay compounds: early windows receive only γ^(N-1) ≈ 0.5^9 ≈ 0.2% of terminal return, making sign misattribution maximally severe. | — | — | — |\\\\n| gae_baseline_seed1 | REINFORCE++ (running-mean baseline, no critic) provides modest improvement over episode-level GRPO due to per-token advantage normalization. Fallback from GAE due to TRL 1.1.0 removing AutoModelForCausalLMWithValueHead (critic head unavailable). | — | — | — |\\\\n| hsweep_h2_seed2 | h=2 seed 2 replicates seed 1 catastrophic collapse (step 3-4 onset, 0% by step 9+), confirming collapse is robust not single-run artifact. Additionally LOG_PER_SAMPLE_ADV=1 collects per-window advantage data for plan_004 sign misattribution empirical verification. | — | — | — |\\\\n\\\\n## 待处理\\\\n- factorial_h2_episodeadv_seed1: Step_independent generation (h=2) with episode-level advantage eliminates sign misattribution while preserving truncated-context inference. If success >> h=2 step-level (0%), information loss alone does not cause collapse — sign misattribution is the primary driver. If success ≈ 0%, information loss is sufficient to cause collapse regardless of advantage computation. This is the key factorial experiment separating the two mechanisms.（已分配 ? GPU:?，等待提交）\\\\n- hsweep_h10_seed1: h=10 step_independent GRPO (N=5 windows per episode) will show intermediate performance between h=2 (catastrophic collapse) and h=full (28.1% success). With fewer windows than h=2, magnitude decay is reduced (γ^4≈0.81 vs γ^24≈0.29) and information loss is partially mitigated. Key data point for cliff figure (fig5).（准备中）\\\\n- gsweep_g100_h5_seed1: γ=1.0 with h=5 means no discount (all windows receive full terminal return). If collapse is driven by sign misattribution from discounting, γ=1.0 should show least collapse. But uniform return may reduce temporal credit assignment sharpness.（准备中）\\\\n- gsweep_g095_h5_seed1: γ=0.95 with h=5 is the control condition matching hsweep_h5. Early windows retain γ^9 ≈ 0.95^9 ≈ 63% of terminal return. Expected to reproduce h5 behavior from h-sweep.（准备中）\\\\n- gsweep_g080_h5_seed1: γ=0.8 with h=5 represents an intermediate decay rate where early windows retain γ^9 ≈ 0.8^9 ≈ 13% of terminal return, potentially showing delayed but still present collapse compared to γ=0.95 (39%).（准备中）\\\\n- exp028_prereq_zeroshot_instruct: Qwen3-1.7B-Instruct 零样本 ALFWorld eval，验证\\\\\\\"SFT是毒药\\\\\\\"假设。如果 Instruct ≥15% success（vs SFT checkpoint 6.25%），则确认 SFT 起点有害，exp028a 可跳过 SFT 直接 GRPO。（准备中）\\\\n- exp021_sft_ragen_format: Two-stage SFT with RAGEN-format data (v4). From exp008_sft checkpoint, fine-tune with v4 data (RAGEN Turn/State/Reward structure, fixed system prompt with consistent &lt;answer> tag instruction). LR=5e-6, 2 epochs. Validate via RAGEN val_before_train (not eval_sft_fast). Pass: RAGEN val success >= 10%, action_is_valid >= 85%.（准备中）\\\\n- exp020d_grpo_from_sft: GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Symlink fix for response_mask assertion (proven in exp020b). exp020c failed: Hydra key path wrong.（准备中）\\\\n- exp020c_grpo_from_sft: GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Fix: symlink + enable_response_mask=false (exp020/020b crashed on response_mask assertion).（准备中）\\\\n- exp019c_expert_sft_v3: Two-stage Expert SFT（重试）: 从 exp008_sft checkpoint 出发，用 v3 数据（保留原始 move actions + admissible actions augmentation）微调。LR=5e-6, 2 epochs, batch=4, grad_accum=4, max_seq=4096。Pass: success ≥ 10%, format_ok ≥ 90%, action_is_valid ≥ 85%。（准备中）\\\\n- …另有 13 项\\\\n\\\\n## 近期结论\\\\n- **hsweep_h2_seed1** (success): Step-independent GRPO with h=2 (minimal context, N=25 windows per episode) will catastrophically collapse due to advantage sign misattribution: early windows retain only γ^24=0.95^24≈29% of terminal return, and all windows in failed episodes receive undifferentiated negative advantage regardless of action quality ← 基于 exp029_episode_level\\\\n- **exp025c** (killed): —\\\\n- **exp029_episode_level** (success): Episode-level 训练（context_window_mode: full）解决 step_independent h=2 的信用分配缺陷，模型能学到跨步规划策略，val success 不再停滞于 baseline。 ← 基于 exp028c_selfguide_recipe\\\\n  [exp029_episode_level_diagnose_attempt4](/api/workspace-files/projects/cost-verify-agent-rl/artifacts/exp029_episode_level/report/diagnose_attempt4.md) | [tatsu_patch_deploy_plan](/api/workspace-files/projects/cost-verify-agent-rl/artifacts/exp029_episode_level/intermediate/tatsu_patch_deploy_plan.md) | [credit_assignment_analysis](/api/workspace-files/projects/cost-verify-agent-rl/artifacts/exp029_episode_level/chart/credit_assignment_analysis_info.md)\\\\n\\\\n## 趋势\\\\n成功 5 / 负向 5 / 失败 19 / 共 39\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nbjb1-17606: 无 GPU 信息\\\\nwestd-47453: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- exp_001: 训练失败 — unknown\\\\n- exp_001b: 训练失败 — unknown\\\\n- exp_002: 训练失败 — unknown\\\\n- exp003: 训练失败 — unknown\\\\n- exp007: 训练失败 — unknown\\\\n- exp009: 训练失败 — unknown\\\\n- exp010: 训练失败 — unknown\\\\n- exp011: 已被终止 — unknown\\\\n- exp012: 训练失败 — unknown\\\\n- exp012b: 已被终止 — unknown\\\\n- exp013: 已被终止 — unknown\\\\n- exp013b: 训练失败 — unknown\\\\n- exp013c: 已被终止 — unknown\\\\n- exp013d: 训练失败 — unknown\\\\n- exp013e: 训练失败 — unknown\\\\n- exp015: 已被终止 — unknown\\\\n- exp016: 训练失败 — unknown\\\\n- exp019_expert_sft_v2: 已被终止 — unknown\\\\n- exp020_grpo_from_sft: 训练失败 — unknown\\\\n- exp022_grpo_from_sft_v4: 已被终止 — unknown\\\\n- exp023_grpo_parallel: 训练失败 — unknown\\\\n- exp023c_grpo_serial: 训练失败 — unknown\\\\n- exp024_success_gated_grpo: 已被终止 — unknown\\\\n- exp025: 训练失败 — unknown\\\\n- exp025b: 训练失败 — unknown\\\\n- exp025c: 已被终止 — unknown\\\\n- exp027_stable_grpo: 训练失败 — unknown\\\\n- exp028a_recipe_fix: 已被终止 — unknown\\\\n- exp028c_selfguide_recipe: 训练失败 — unknown\\\\n\\\", \\\"total_chars\\\": 5957, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/report.md\", \"content\": \"# Handover — 2026-05-17\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| gsweep_g050_h5_seed1 | γ=0.5 with h=5 will show accelerated collapse compared to default γ=0.95, because γ^k decay compounds: early windows receive only γ^(N-1) ≈ 0.5^9 ≈ 0.2% of terminal return, making sign misattribution maximally severe. | — | — | — |\\n| gae_baseline_seed1 | REINFORCE++ (running-mean baseline, no critic) provides modest improvement over episode-level GRPO due to per-token advantage normalization. Fallback from GAE due to TRL 1.1.0 removing AutoModelForCausalLMWithValueHead (critic head unavailable). | — | — | — |\\n| hsweep_h2_seed2 | h=2 seed 2 replicates seed 1 catastrophic collapse (step 3-4 onset, 0% by step 9+), confirming collapse is robust not single-run artifact. Additionally LOG_PER_SAMPLE_ADV=1 collects per-window advantage data for plan_004 sign misattribution empirical verification. | — | — | — |\\n\\n## 待处理\\n- factorial_h2_episodeadv_seed1: Step_independent generation (h=2) with episode-level advantage eliminates sign misattribution while preserving truncated-context inference. If success >> h=2 step-level (0%), information loss alone does not cause collapse — sign misattribution is the primary driver. If success ≈ 0%, information loss is sufficient to cause collapse regardless of advantage computation. This is the key factorial experiment separating the two mechanisms.（已分配 ? GPU:?，等待提交）\\n- hsweep_h10_seed1: h=10 step_independent GRPO (N=5 windows per episode) will show intermediate performance between h=2 (catastrophic collapse) and h=full (28.1% success). With fewer windows than h=2, magnitude decay is reduced (γ^4≈0.81 vs γ^24≈0.29) and information loss is partially mitigated. Key data point for cliff figure (fig5).（准备中）\\n- gsweep_g100_h5_seed1: γ=1.0 with h=5 means no discount (all windows receive full terminal return). If collapse is driven by sign misattribution from discounting, γ=1.0 should show least collapse. But uniform return may reduce temporal credit assignment sharpness.（准备中）\\n- gsweep_g095_h5_seed1: γ=0.95 with h=5 is the control condition matching hsweep_h5. Early windows retain γ^9 ≈ 0.95^9 ≈ 63% of terminal return. Expected to reproduce h5 behavior from h-sweep.（准备中）\\n- gsweep_g080_h5_seed1: γ=0.8 with h=5 represents an intermediate decay rate where early windows retain γ^9 ≈ 0.8^9 ≈ 13% of terminal return, potentially showing delayed but still present collapse compared to γ=0.95 (39%).（准备中）\\n- exp028_prereq_zeroshot_instruct: Qwen3-1.7B-Instruct 零样本 ALFWorld eval，验证\\\"SFT是毒药\\\"假设。如果 Instruct ≥15% success（vs SFT checkpoint 6.25%），则确认 SFT 起点有害，exp028a 可跳过 SFT 直接 GRPO。（准备中）\\n- exp021_sft_ragen_format: Two-stage SFT with RAGEN-format data (v4). From exp008_sft checkpoint, fine-tune with v4 data (RAGEN Turn/State/Reward structure, fixed system prompt with consistent &lt;answer> tag instruction). LR=5e-6, 2 epochs. Validate via RAGEN val_before_train (not eval_sft_fast). Pass: RAGEN val success >= 10%, action_is_valid >= 85%.（准备中）\\n- exp020d_grpo_from_sft: GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Symlink fix for response_mask assertion (proven in exp020b). exp020c failed: Hydra key path wrong.（准备中）\\n- exp020c_grpo_from_sft: GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Fix: symlink + enable_response_mask=false (exp020/020b crashed on response_mask assertion).（准备中）\\n- exp019c_expert_sft_v3: Two-stage Expert SFT（重试）: 从 exp008_sft checkpoint 出发，用 v3 数据（保留原始 move actions + admissible actions augmentation）微调。LR=5e-6, 2 epochs, batch=4, grad_accum=4, max_seq=4096。Pass: success ≥ 10%, format_ok ≥ 90%, action_is_valid ≥ 85%。（准备中）\\n- …另有 13 项\\n\\n## 近期结论\\n- **hsweep_h2_seed1** (success): Step-independent GRPO with h=2 (minimal context, N=25 windows per episode) will catastrophically collapse due to advantage sign misattribution: early windows retain only γ^24=0.95^24≈29% of terminal return, and all windows in failed episodes receive undifferentiated negative advantage regardless of action quality ← 基于 exp029_episode_level\\n- **exp025c** (killed): —\\n- **exp029_episode_level** (success): Episode-level 训练（context_window_mode: full）解决 step_independent h=2 的信用分配缺陷，模型能学到跨步规划策略，val success 不再停滞于 baseline。 ← 基于 exp028c_selfguide_recipe\\n  [exp029_episode_level_diagnose_attempt4](/api/workspace-files/projects/cost-verify-agent-rl/artifacts/exp029_episode_level/report/diagnose_attempt4.md) | [tatsu_patch_deploy_plan](/api/workspace-files/projects/cost-verify-agent-rl/artifacts/exp029_episode_level/intermediate/tatsu_patch_deploy_plan.md) | [credit_assignment_analysis](/api/workspace-files/projects/cost-verify-agent-rl/artifacts/exp029_episode_level/chart/credit_assignment_analysis_info.md)\\n\\n## 趋势\\n成功 5 / 负向 5 / 失败 19 / 共 39\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nbjb1-17606: 无 GPU 信息\\nwestd-47453: 无 GPU 信息\\n\\n## 告警\\n- exp_001: 训练失败 — unknown\\n- exp_001b: 训练失败 — unknown\\n- exp_002: 训练失败 — unknown\\n- exp003: 训练失败 — unknown\\n- exp007: 训练失败 — unknown\\n- exp009: 训练失败 — unknown\\n- exp010: 训练失败 — unknown\\n- exp011: 已被终止 — unknown\\n- exp012: 训练失败 — unknown\\n- exp012b: 已被终止 — unknown\\n- exp013: 已被终止 — unknown\\n- exp013b: 训练失败 — unknown\\n- exp013c: 已被终止 — unknown\\n- exp013d: 训练失败 — unknown\\n- exp013e: 训练失败 — unknown\\n- exp015: 已被终止 — unknown\\n- exp016: 训练失败 — unknown\\n- exp019_expert_sft_v2: 已被终止 — unknown\\n- exp020_grpo_from_sft: 训练失败 — unknown\\n- exp022_grpo_from_sft_v4: 已被终止 — unknown\\n- exp023_grpo_parallel: 训练失败 — unknown\\n- exp023c_grpo_serial: 训练失败 — unknown\\n- exp024_success_gated_grpo: 已被终止 — unknown\\n- exp025: 训练失败 — unknown\\n- exp025b: 训练失败 — unknown\\n- exp025c: 已被终止 — unknown\\n- exp027_stable_grpo: 训练失败 — unknown\\n- exp028a_recipe_fix: 已被终止 — unknown\\n- exp028c_selfguide_recipe: 训练失败 — unknown\\n\", \"total_chars\": 5957, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "fe2dcd3a-6f04-4c40-97dc-670db5de853d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-17T19:06:06.682Z_
+
+<details><summary>↩ Tool result · `toolu_01SMaA4q3vPsoXjs4DKYoLvq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/ROADMAP.md\", \"content\": \"# cost-verify-agent-rl — Research Dashboard\\n\\n> 最后更新: 2026-05-17 17:22 UTC | 更新原因: Dream review 分析完成 + framing 调整 + 新实验加入计划\\n\\n## 核心方向\\n诊断 LLM agent step-independent RL 训练的灾难性崩溃机制（information loss + sign misattribution），通过 factorial experiment 量化各机制贡献。详见 paper_framing.md。\\n\\n**Framing 调整 (D062)**: 放弃 \\\"contrarian/coarser is better\\\" 叙事，改为 \\\"mechanistic diagnosis + factorial causal attribution\\\"。GAGPO 93.5% 证明正确的 finer credit IS better；我们的 claim 是诊断 WHY broken step-independent fails。\\n\\n## 当前进展\\n- **阶段**: Research (Phase A+) + 审稿进行中 (Group C)\\n- **Core Claim 1**: ESTABLISHED (exp029 25% vs exp028c 0%)\\n- **关键缺口**: factorial mechanism separation (plan_018)、Turn-PPO empirical comparison、evaluation set expansion (32→134)\\n- **Running**: gsweep_g050 (γ-sweep), gae_baseline (REINFORCE++), hsweep_h2_seed2 (ADV log)\\n- **Critical pending**: Agent 诊断 r=0.640 finding（4 diagnostic questions），待回复\\n\\n## 近期任务\\n- [ ] Agent 回复 r=0.640 诊断 (Q1-Q4)，据此决定 sign misattribution claim 精度\\n- [ ] plan_018: factorial experiment 设计 + 代码实现（truncated-obs + episode-advantage）\\n- [ ] plan_019: 确认 RAGEN 支持 134-task eval split\\n- [ ] γ-sweep 完成（g050→g080→g095→g100 chained via watchdog）\\n- [ ] gae_baseline (REINFORCE++) 跑到收敛\\n- [ ] h=10 seed1 启动（hsweep_h2_seed2 数据收集完后释放 GPU）\\n- [ ] [Dream 观察] Turn-PPO empirical comparison — 待 Phase A+ 核心实验完成后评估是否实现\\n- [ ] [Dream 观察] 更多 GAE lambda 值 (0.0, 0.5, 0.9) — gae_baseline 收敛后评估\\n- [ ] [Dream 观察] evaluation set 32→134 对现有结论的影响 — plan_019 完成后评估\\n\\n## GPU 预算\\n- bjb1-17606: cuda:0,1 (2× A6000) — hsweep_h2_seed2 占用\\n- westd-47453: cuda:0-3 (4× RTX PRO 6000) — gsweep + gae_baseline 占用\\n- 总计 6 GPU 全部在用\\n\\n## Dream 分析摘要 (dream_20260517T133129)\\n- Best 3.5 / Median 3.0 / Worst 2.5\\n- 跨档一致问题: factorial分离、GAGPO gap、Turn-PPO差异化、related work\\n- 已采取行动: plan_018 + plan_019 加入 plan, framing 调整 (D062)\\n- 观察项: Turn-PPO comparison、GAE sweep、eval set expansion impact\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D065 | 2026-05-17 | gae_baseline_seed1 (REINFORCE++) step 10 early-sto | gae_baseline_seed1, exp029_episode_level |\\n| D064 | 2026-05-17 | Eval 切换到 valid_unseen(134) 对齐文献标准 + re-eval exp029 | plan_019, exp029_episode_level |\\n| D063 | 2026-05-17 | r=0.640 解析：sign misattribution 成立但机制比 binary 假设更复杂 | hsweep_h2_seed2, plan_004, plan_018 |\\n| D062 | 2026-05-17 | Dream review 分析：放弃 \\\"contrarian\\\" framing，加 factoria | dream_20260517T133129, plan_018, plan_019 |\\n| D061 | 2026-05-17 | Selective verification 从核心贡献降级为 proposed future ap | exp029_episode_level, hsweep_h2_seed1 |\\n| D060 | 2026-05-17 | GAE baseline fallback to REINFORCE++: TRL 1.1.0 移除 | gae_baseline_seed1 |\\n| D059 | 2026-05-17 | h-sweep val 用 post-hoc full-context eval 替代 trunca | hsweep_h2_seed1, exp028c |\\n| D058 | 2026-05-17 | Theory correction: \\\"flat advantage\\\" → \\\"γ-attenuate | hsweep_h2_seed1, exp029 |\\n| D057 | 2026-05-17 | Early-stop exp029 at step 15 (val=28%, pass@8=92.9 | exp029_episode_level, exp028c_selfguide_recipe |\\n| D056 | 2026-05-17 | Negative 复盘发现：episode-level + valid_action_bonus 可 | exp013f, exp029_episode_level |\\n\\n\", \"lines\": 54}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "37b1a3cc-05cc-4b30-948f-d60b7d57f16c",
+  "isSidechain": false,
+  "promptId": "71c1d71a-6877-4d97-89ab-bc2334ced39e",
+  "type": "user",
+  "uuid": "cd88a88b-199b-432e-928c-23fa455a8540",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/ROADMAP.md\\\", \\\"content\\\": \\\"# cost-verify-agent-rl — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-17 17:22 UTC | 更新原因: Dream review 分析完成 + framing 调整 + 新实验加入计划\\\\n\\\\n## 核心方向\\\\n诊断 LLM agent step-independent RL 训练的灾难性崩溃机制（information loss + sign misattribution），通过 factorial experiment 量化各机制贡献。详见 paper_framing.md。\\\\n\\\\n**Framing 调整 (D062)**: 放弃 \\\\\\\"contrarian/coarser is better\\\\\\\" 叙事，改为 \\\\\\\"mechanistic diagnosis + factorial causal attribution\\\\\\\"。GAGPO 93.5% 证明正确的 finer credit IS better；我们的 claim 是诊断 WHY broken step-independent fails。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research (Phase A+) + 审稿进行中 (Group C)\\\\n- **Core Claim 1**: ESTABLISHED (exp029 25% vs exp028c 0%)\\\\n- **关键缺口**: factorial mechanism separation (plan_018)、Turn-PPO empirical comparison、evaluation set expansion (32→134)\\\\n- **Running**: gsweep_g050 (γ-sweep), gae_baseline (REINFORCE++), hsweep_h2_seed2 (ADV log)\\\\n- **Critical pending**: Agent 诊断 r=0.640 finding（4 diagnostic questions），待回复\\\\n\\\\n## 近期任务\\\\n- [ ] Agent 回复 r=0.640 诊断 (Q1-Q4)，据此决定 sign misattribution claim 精度\\\\n- [ ] plan_018: factorial experiment 设计 + 代码实现（truncated-obs + episode-advantage）\\\\n- [ ] plan_019: 确认 RAGEN 支持 134-task eval split\\\\n- [ ] γ-sweep 完成（g050→g080→g095→g100 chained via watchdog）\\\\n- [ ] gae_baseline (REINFORCE++) 跑到收敛\\\\n- [ ] h=10 seed1 启动（hsweep_h2_seed2 数据收集完后释放 GPU）\\\\n- [ ] [Dream 观察] Turn-PPO empirical comparison — 待 Phase A+ 核心实验完成后评估是否实现\\\\n- [ ] [Dream 观察] 更多 GAE lambda 值 (0.0, 0.5, 0.9) — gae_baseline 收敛后评估\\\\n- [ ] [Dream 观察] evaluation set 32→134 对现有结论的影响 — plan_019 完成后评估\\\\n\\\\n## GPU 预算\\\\n- bjb1-17606: cuda:0,1 (2× A6000) — hsweep_h2_seed2 占用\\\\n- westd-47453: cuda:0-3 (4× RTX PRO 6000) — gsweep + gae_baseline 占用\\\\n- 总计 6 GPU 全部在用\\\\n\\\\n## Dream 分析摘要 (dream_20260517T133129)\\\\n- Best 3.5 / Median 3.0 / Worst 2.5\\\\n- 跨档一致问题: factorial分离、GAGPO gap、Turn-PPO差异化、related work\\\\n- 已采取行动: plan_018 + plan_019 加入 plan, framing 调整 (D062)\\\\n- 观察项: Turn-PPO comparison、GAE sweep、eval set expansion impact\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D065 | 2026-05-17 | gae_baseline_seed1 (REINFORCE++) step 10 early-sto | gae_baseline_seed1, exp029_episode_level |\\\\n| D064 | 2026-05-17 | Eval 切换到 valid_unseen(134) 对齐文献标准 + re-eval exp029 | plan_019, exp029_episode_level |\\\\n| D063 | 2026-05-17 | r=0.640 解析：sign misattribution 成立但机制比 binary 假设更复杂 | hsweep_h2_seed2, plan_004, plan_018 |\\\\n| D062 | 2026-05-17 | Dream review 分析：放弃 \\\\\\\"contrarian\\\\\\\" framing，加 factoria | dream_20260517T133129, plan_018, plan_019 |\\\\n| D061 | 2026-05-17 | Selective verification 从核心贡献降级为 proposed future ap | exp029_episode_level, hsweep_h2_seed1 |\\\\n| D060 | 2026-05-17 | GAE baseline fallback to REINFORCE++: TRL 1.1.0 移除 | gae_baseline_seed1 |\\\\n| D059 | 2026-05-17 | h-sweep val 用 post-hoc full-context eval 替代 trunca | hsweep_h2_seed1, exp028c |\\\\n| D058 | 2026-05-17 | Theory correction: \\\\\\\"flat advantage\\\\\\\" → \\\\\\\"γ-attenuate | hsweep_h2_seed1, exp029 |\\\\n| D057 | 2026-05-17 | Early-stop exp029 at step 15 (val=28%, pass@8=92.9 | exp029_episode_level, exp028c_selfguide_recipe |\\\\n| D056 | 2026-05-17 | Negative 复盘发现：episode-level + valid_action_bonus 可 | exp013f, exp029_episode_level |\\\\n\\\\n\\\", \\\"lines\\\": 54}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/ROADMAP.md\", \"content\": \"# cost-verify-agent-rl — Research Dashboard\\n\\n> 最后更新: 2026-05-17 17:22 UTC | 更新原因: Dream review 分析完成 + framing 调整 + 新实验加入计划\\n\\n## 核心方向\\n诊断 LLM agent step-independent RL 训练的灾难性崩溃机制（information loss + sign misattribution），通过 factorial experiment 量化各机制贡献。详见 paper_framing.md。\\n\\n**Framing 调整 (D062)**: 放弃 \\\"contrarian/coarser is better\\\" 叙事，改为 \\\"mechanistic diagnosis + factorial causal attribution\\\"。GAGPO 93.5% 证明正确的 finer credit IS better；我们的 claim 是诊断 WHY broken step-independent fails。\\n\\n## 当前进展\\n- **阶段**: Research (Phase A+) + 审稿进行中 (Group C)\\n- **Core Claim 1**: ESTABLISHED (exp029 25% vs exp028c 0%)\\n- **关键缺口**: factorial mechanism separation (plan_018)、Turn-PPO empirical comparison、evaluation set expansion (32→134)\\n- **Running**: gsweep_g050 (γ-sweep), gae_baseline (REINFORCE++), hsweep_h2_seed2 (ADV log)\\n- **Critical pending**: Agent 诊断 r=0.640 finding（4 diagnostic questions），待回复\\n\\n## 近期任务\\n- [ ] Agent 回复 r=0.640 诊断 (Q1-Q4)，据此决定 sign misattribution claim 精度\\n- [ ] plan_018: factorial experiment 设计 + 代码实现（truncated-obs + episode-advantage）\\n- [ ] plan_019: 确认 RAGEN 支持 134-task eval split\\n- [ ] γ-sweep 完成（g050→g080→g095→g100 chained via watchdog）\\n- [ ] gae_baseline (REINFORCE++) 跑到收敛\\n- [ ] h=10 seed1 启动（hsweep_h2_seed2 数据收集完后释放 GPU）\\n- [ ] [Dream 观察] Turn-PPO empirical comparison — 待 Phase A+ 核心实验完成后评估是否实现\\n- [ ] [Dream 观察] 更多 GAE lambda 值 (0.0, 0.5, 0.9) — gae_baseline 收敛后评估\\n- [ ] [Dream 观察] evaluation set 32→134 对现有结论的影响 — plan_019 完成后评估\\n\\n## GPU 预算\\n- bjb1-17606: cuda:0,1 (2× A6000) — hsweep_h2_seed2 占用\\n- westd-47453: cuda:0-3 (4× RTX PRO 6000) — gsweep + gae_baseline 占用\\n- 总计 6 GPU 全部在用\\n\\n## Dream 分析摘要 (dream_20260517T133129)\\n- Best 3.5 / Median 3.0 / Worst 2.5\\n- 跨档一致问题: factorial分离、GAGPO gap、Turn-PPO差异化、related work\\n- 已采取行动: plan_018 + plan_019 加入 plan, framing 调整 (D062)\\n- 观察项: Turn-PPO comparison、GAE sweep、eval set expansion impact\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D065 | 2026-05-17 | gae_baseline_seed1 (REINFORCE++) step 10 early-sto | gae_baseline_seed1, exp029_episode_level |\\n| D064 | 2026-05-17 | Eval 切换到 valid_unseen(134) 对齐文献标准 + re-eval exp029 | plan_019, exp029_episode_level |\\n| D063 | 2026-05-17 | r=0.640 解析：sign misattribution 成立但机制比 binary 假设更复杂 | hsweep_h2_seed2, plan_004, plan_018 |\\n| D062 | 2026-05-17 | Dream review 分析：放弃 \\\"contrarian\\\" framing，加 factoria | dream_20260517T133129, plan_018, plan_019 |\\n| D061 | 2026-05-17 | Selective verification 从核心贡献降级为 proposed future ap | exp029_episode_level, hsweep_h2_seed1 |\\n| D060 | 2026-05-17 | GAE baseline fallback to REINFORCE++: TRL 1.1.0 移除 | gae_baseline_seed1 |\\n| D059 | 2026-05-17 | h-sweep val 用 post-hoc full-context eval 替代 trunca | hsweep_h2_seed1, exp028c |\\n| D058 | 2026-05-17 | Theory correction: \\\"flat advantage\\\" → \\\"γ-attenuate | hsweep_h2_seed1, exp029 |\\n| D057 | 2026-05-17 | Early-stop exp029 at step 15 (val=28%, pass@8=92.9 | exp029_episode_level, exp028c_selfguide_recipe |\\n| D056 | 2026-05-17 | Negative 复盘发现：episode-level + valid_action_bonus 可 | exp013f, exp029_episode_level |\\n\\n\", \"lines\": 54}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "37b1a3cc-05cc-4b30-948f-d60b7d57f16c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #17。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - **GPU 白名单**：bjb1-17606 仅 cuda:0,1；westd-47453 仅 cuda:0,1,2,3。超出范围必须 push back Director - **westd-47453 必须 `export TO…",
+  "leafUuid": "cd88a88b-199b-432e-928c-23fa455a8540",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify GPU allocation and confirm running experiments",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-17T19:06:18.414Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I've read the registry, reconciled crons, read report.md and ROADMAP.md. Let me also check the ALLOCATED experiment and any other statuses.
+
+Current state:
+1. **3 RUNNING experiments**, all crons reconciled OK (still running):
+   - `gsweep_g050_h5_seed1` (westd cuda:2,3) - γ=0.5 sweep
+   - `gae_baseline_seed1` (westd cuda:0,1) - REINFORCE++ baseline
+   - `hsweep_h2_seed2` (bjb1 cuda:0,1) - h=2 seed 2 replication
+
+
+2. **ALLOCATED**: `factorial_h2_episodeadv_seed1` is queued but blocked on a ~20-25 line code change, and all 6 GPUs are currently occupied.
+3. There are a few open items: Director hasn't responded to the r=0.640 diagnostic questions, and the γ-sweep chain is scheduled to start after g050 finishes.
+
+Let me scan through the ALLOCATED and PREPARING experiments to see what else might need attention.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cd88a88b-199b-432e-928c-23fa455a8540",
+  "isSidechain": false,
+  "requestId": "req_011Cb8fTmrBGyLahdLecAhxN",
+  "type": "assistant",
+  "uuid": "e60f76dc-4d24-48c7-bf2f-b7bf73d49db6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PFsYnNZPMwynzgd1mfe5XT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5703,
+      "cache_read_input_tokens": 41033,
+      "output_tokens": 509,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5703,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 509,
+          "cache_read_input_tokens": 41033,
+          "cache_creation_input_tokens": 5703,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5703
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-17T19:06:18.425Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01D1YSTfUitTSFXnJ85Xw7HW`</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "filters": {
+    "status": "ALLOCATED"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e60f76dc-4d24-48c7-bf2f-b7bf73d49db6",
+  "isSidechain": false,
+  "requestId": "req_011Cb8fTmrBGyLahdLecAhxN",
+  "type": "assistant",
+  "uuid": "2bb5f214-6cc4-4ac8-a043-5598a39584f3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PFsYnNZPMwynzgd1mfe5XT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5703,
+      "cache_read_input_tokens": 41033,
+      "output_tokens": 509,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5703,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 509,
+          "cache_read_input_tokens": 41033,
+          "cache_creation_input_tokens": 5703,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5703
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-17T19:06:18.610Z_
+
+<details><summary>↩ Tool result · `toolu_01D1YSTfUitTSFXnJ85Xw7HW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"factorial_h2_episodeadv_seed1\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-17T18:17:23.327Z\", \"updated_at\": \"2026-05-17T18:41:17.958Z\", \"hypothesis\": \"Step_independent generation (h=2) with episode-level advantage eliminates sign misattribution while preserving truncated-context inference. If success >> h=2 step-level (0%), information loss alone does not cause collapse — sign misattribution is the primary driver. If success ≈ 0%, information loss is sufficient to cause collapse regardless of advantage computation. This is the key factorial experiment separating the two mechanisms.\", \"parent\": \"hsweep_h2_seed1\"}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1679}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2bb5f214-6cc4-4ac8-a043-5598a39584f3",
+  "isSidechain": false,
+  "promptId": "71c1d71a-6877-4d97-89ab-bc2334ced39e",
+  "type": "user",
+  "uuid": "b8c0a439-1c50-4283-a075-5b8ecb37d02c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"factorial_h2_episodeadv_seed1\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T18:17:23.327Z\\\", \\\"updated_at\\\": \\\"2026-05-17T18:41:17.958Z\\\", \\\"hypothesis\\\": \\\"Step_independent generation (h=2) with episode-level advantage eliminates sign misattribution while preserving truncated-context inference. If success >> h=2 step-level (0%), information loss alone does not cause collapse — sign misattribution is the primary driver. If success ≈ 0%, information loss is sufficient to cause collapse regardless of advantage computation. This is the key factorial experiment separating the two mechanisms.\\\", \\\"parent\\\": \\\"hsweep_h2_seed1\\\"}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1679}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"factorial_h2_episodeadv_seed1\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-17T18:17:23.327Z\", \"updated_at\": \"2026-05-17T18:41:17.958Z\", \"hypothesis\": \"Step_independent generation (h=2) with episode-level advantage eliminates sign misattribution while preserving truncated-context inference. If success >> h=2 step-level (0%), information loss alone does not cause collapse — sign misattribution is the primary driver. If success ≈ 0%, information loss is sufficient to cause collapse regardless of advantage computation. This is the key factorial experiment separating the two mechanisms.\", \"parent\": \"hsweep_h2_seed1\"}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1679}}"
+    }
+  },
+  "sourceToolAssistantUUID": "2bb5f214-6cc4-4ac8-a043-5598a39584f3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-17T19:06:19.018Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01Mpp2rjQvbfGxjfbfcWAEFy`</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "filters": {
+    "status": "PREPARING"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b8c0a439-1c50-4283-a075-5b8ecb37d02c",
+  "isSidechain": false,
+  "requestId": "req_011Cb8fTmrBGyLahdLecAhxN",
+  "type": "assistant",
+  "uuid": "e302fc01-7a11-4fe3-a56c-c63f7fa387e3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PFsYnNZPMwynzgd1mfe5XT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5703,
+      "cache_read_input_tokens": 41033,
+      "output_tokens": 509,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5703,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 509,
+          "cache_read_input_tokens": 41033,
+          "cache_creation_input_tokens": 5703,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5703
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-17T19:06:19.205Z_
+
+<details><summary>↩ Tool result · `toolu_01Mpp2rjQvbfGxjfbfcWAEFy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"hsweep_h10_seed1\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-17T17:30:46.964Z\", \"updated_at\": \"2026-05-17T17:30:55.306Z\", \"hypothesis\": \"h=10 step_independent GRPO (N=5 windows per episode) will show intermediate performance between h=2 (catastrophic collapse) and h=full (28.1% success). With fewer windows than h=2, magnitude decay is reduced (γ^4≈0.81 vs γ^24≈0.29) and information loss is partially mitigated. Key data point for cliff figure (fig5).\", \"parent\": \"hsweep_h2_seed1\"}, \"gsweep_g100_h5_seed1\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-17T13:56:58.033Z\", \"updated_at\": \"2026-05-17T13:57:04.417Z\", \"hypothesis\": \"γ=1.0 with h=5 means no discount (all windows receive full terminal return). If collapse is driven by sign misattribution from discounting, γ=1.0 should show least collapse. But uniform return may reduce temporal credit assignment sharpness.\", \"parent\": \"hsweep_h2_seed1\"}, \"gsweep_g095_h5_seed1\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-17T13:56:55.994Z\", \"updated_at\": \"2026-05-17T13:57:03.573Z\", \"hypothesis\": \"γ=0.95 with h=5 is the control condition matching hsweep_h5. Early windows retain γ^9 ≈ 0.95^9 ≈ 63% of terminal return. Expected to reproduce h5 behavior from h-sweep.\", \"parent\": \"hsweep_h2_seed1\"}, \"gsweep_g080_h5_seed1\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-17T13:56:53.634Z\", \"updated_at\": \"2026-05-17T13:57:03.148Z\", \"hypothesis\": \"γ=0.8 with h=5 represents an intermediate decay rate where early windows retain γ^9 ≈ 0.8^9 ≈ 13% of terminal return, potentially showing delayed but still present collapse compared to γ=0.95 (39%).\", \"parent\": \"hsweep_h2_seed1\"}, \"exp028_prereq_zeroshot_instruct\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-15T20:59:57.529Z\", \"updated_at\": \"2026-05-15T21:06:09.982Z\", \"hypothesis\": \"Qwen3-1.7B-Instruct 零样本 ALFWorld eval，验证\\\"SFT是毒药\\\"假设。如果 Instruct ≥15% success（vs SFT checkpoint 6.25%），则确认 SFT 起点有害，exp028a 可跳过 SFT 直接 GRPO。\", \"parent\": \"exp027_stable_grpo\", \"notes\": \"Qwen3-1.7B 确认就是 instruct 模型（无独立 Instruct 变体）。零样本 eval 0% success / 0.75% valid（与之前结果一致）。关键结论：\\\"SFT是毒药\\\"假设(D044)不成立——SFT 实际提升了 0%→6.25%。62pp gap 根因排除 SFT，聚焦于 binary reward 零梯度 + mini-batch 过小 + 训练步数不足。\"}, \"exp021_sft_ragen_format\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T22:35:48.559Z\", \"updated_at\": \"2026-05-15T02:11:46.204Z\", \"hypothesis\": \"Two-stage SFT with RAGEN-format data (v4). From exp008_sft checkpoint, fine-tune with v4 data (RAGEN Turn/State/Reward structure, fixed system prompt with consistent &lt;answer> tag instruction). LR=5e-6, 2 epochs. Validate via RAGEN val_before_train (not eval_sft_fast). Pass: RAGEN val success >= 10%, action_is_valid >= 85%.\", \"parent\": \"exp019b_expert_sft_v3\", \"notes\": \"被 exp021_ragen_sft_v4 取代。\", \"conclusion\": \"killed\"}, \"exp020d_grpo_from_sft\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T22:19:30.993Z\", \"updated_at\": \"2026-05-15T02:01:10.192Z\", \"hypothesis\": \"GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Symlink fix for response_mask assertion (proven in exp020b). exp020c failed: Hydra key path wrong.\", \"parent\": \"exp019b_expert_sft_v3\", \"conclusion\": \"failed\", \"notes\": \"D022 废弃。exp020b 确认 GRPO from SFT 因 RAGEN 格式不兼容导致 val success = 0%。exp020c/d 同样会遇到此问题。改走 exp021（RAGEN 格式 SFT 数据重训）。\"}, \"exp020c_grpo_from_sft\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T22:15:37.659Z\", \"updated_at\": \"2026-05-15T02:01:08.768Z\", \"hypothesis\": \"GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Fix: symlink + enable_response_mask=false (exp020/020b crashed on response_mask assertion).\", \"parent\": \"exp019b_expert_sft_v3\", \"conclusion\": \"failed\", \"notes\": \"D022 废弃。exp020b 确认 GRPO from SFT 因 RAGEN 格式不兼容导致 val success = 0%。exp020c/d 同样会遇到此问题。改走 exp021（RAGEN 格式 SFT 数据重训）。\"}, \"exp019c_expert_sft_v3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T21:03:02.685Z\", \"updated_at\": \"2026-05-14T21:05:37.494Z\", \"hypothesis\": \"Two-stage Expert SFT（重试）: 从 exp008_sft checkpoint 出发，用 v3 数据（保留原始 move actions + admissible actions augmentation）微调。LR=5e-6, 2 epochs, batch=4, grad_accum=4, max_seq=4096。Pass: success ≥ 10%, format_ok ≥ 90%, action_is_valid ≥ 85%。\", \"parent\": \"exp019b_expert_sft_v3\", \"notes\": \"废弃。submit_training_job 因 GPU 被占（exp019b nohup 进程仍在跑）EXIT_CODE=1 退出。实际训练由 exp019b 的 nohup 进程完成。\", \"conclusion\": \"killed\"}, \"exp019b_expert_sft_v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T16:49:30.246Z\", \"updated_at\": \"2026-05-14T16:49:30.246Z\"}, \"exp018_sft_grpo\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T15:43:08.545Z\", \"updated_at\": \"2026-05-14T16:45:33.314Z\", \"hypothesis\": \"Expert SFT → Sparse GRPO：从 exp017 SFT checkpoint 开始纯 sparse GRPO 训练。SFT 提升 baseline success rate（≥10%），使 GRPO 有足够非零 reward group 产生有效梯度。LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, won=10.0, 无 bonus/penalty, GRPO 30 步。Pass: success ≥ 20%。\", \"parent\": \"exp017_expert_sft\", \"conclusion\": \"killed\", \"notes\": \"D018 取消：exp017 eval 5% success 与 base 4.7% 差异太小，GRPO 大概率重蹈覆辙。等 exp019 v2 SFT（修复 move→put + admissible actions 数据增强）后再考虑 GRPO。\"}, \"exp014b\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T12:45:27.876Z\", \"updated_at\": \"2026-05-14T12:48:37.433Z\", \"hypothesis\": \"极低 Dense Reward: valid_action_bonus=0.01（1:1000 比例），测试极弱 bonus 能否防 collapse 又不引发 gaming。如果 bonus 弱到不影响 GRPO reward ranking，模型不会被诱导走捷径。success_reward=10.0, format_penalty=0, 从 exp008 step 5 checkpoint 恢复, GRPO 30 步。\", \"parent\": \"exp013f\", \"conclusion\": \"killed\", \"notes\": \"D013 撤销：Director 修订决策，改为 exp015。exp014b 等 exp015 结果后再决定。\"}, \"exp014a\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T12:45:27.347Z\", \"updated_at\": \"2026-05-14T12:48:35.102Z\", \"hypothesis\": \"Success-Gated Dense Reward: valid_action_bonus=0.15 只在 group 内至少一条 trajectory success 时才给。消除 reward gaming 的独立最大化路径——没有 success 就没有 bonus，模型必须探索 success。success_reward=10.0, format_penalty=0, 从 exp008 step 5 checkpoint 恢复, GRPO 30 步。\", \"parent\": \"exp013f\", \"conclusion\": \"killed\", \"notes\": \"D013 撤销：Director 修订决策，success-gated bonus 有 bootstrap 问题（初始 success=0 时 bonus 永远为 0，退化为 sparse reward），改为 exp015 纯 sparse GRPO + 训练稳定性修复。\"}, \"exp014c\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T12:45:21.231Z\", \"updated_at\": \"2026-05-14T12:45:25.025Z\", \"hypothesis\": \"Success-gated valid_action_bonus：bonus 仅在 episode 成功时累加到 reward，消除独立最大化路径。valid_action_bonus=0.15, success_reward=10.0。解决 exp013f reward gaming（unconditional bonus 导致 agent 放弃 success 追求 valid action）。从 step 5 checkpoint 恢复 GRPO 30 步。\", \"parent\": \"exp013f\"}, \"exp008\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T03:01:53.741Z\", \"updated_at\": \"2026-05-14T03:04:43.138Z\", \"conclusion\": \"killed\", \"notes\": \"Director 撤回：LR 5e-6 方案不对，问题是命令语义缺失。改为 SFT warmup (D006)\"}, \"exp007_dryrun\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T00:19:04.596Z\", \"updated_at\": \"2026-05-14T00:19:04.596Z\"}, \"exp005\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-13T23:23:20.655Z\", \"updated_at\": \"2026-05-13T23:23:20.655Z\"}, \"exp_003\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-13T21:01:51.727Z\", \"updated_at\": \"2026-05-13T22:04:11.399Z\", \"conclusion\": \"failed\"}, \"exp_003_dryrun\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-13T21:07:02.905Z\", \"updated_at\": \"2026-05-13T21:44:30.297Z\", \"conclusion\": \"failed\"}, \"exp_003_dryrun2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-13T21:22:01.436Z\", \"updated_at\": \"2026-05-13T21:44:29.827Z\", \"conclusion\": \"failed\"}, \"exp003_dryrun3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-13T21:26:41.066Z\", \"updated_at\": \"2026-05-13T21:44:28.884Z\", \"conclusion\": \"failed\"}, \"exp_003_dryrun3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-13T21:27:05.011Z\", \"updated_at\": \"2026-05-13T21:44:27.949Z\", \"conclusion\": \"failed\"}}, \"count\": 22, \"total\": 22, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1749}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e302fc01-7a11-4fe3-a56c-c63f7fa387e3",
+  "isSidechain": false,
+  "promptId": "71c1d71a-6877-4d97-89ab-bc2334ced39e",
+  "type": "user",
+  "uuid": "ee9f1d5a-0df2-4da1-bd8c-b654f832502c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"hsweep_h10_seed1\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-17T17:30:46.964Z\\\", \\\"updated_at\\\": \\\"2026-05-17T17:30:55.306Z\\\", \\\"hypothesis\\\": \\\"h=10 step_independent GRPO (N=5 windows per episode) will show intermediate performance between h=2 (catastrophic collapse) and h=full (28.1% success). With fewer windows than h=2, magnitude decay is reduced (γ^4≈0.81 vs γ^24≈0.29) and information loss is partially mitigated. Key data point for cliff figure (fig5).\\\", \\\"parent\\\": \\\"hsweep_h2_seed1\\\"}, \\\"gsweep_g100_h5_seed1\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-17T13:56:58.033Z\\\", \\\"updated_at\\\": \\\"2026-05-17T13:57:04.417Z\\\", \\\"hypothesis\\\": \\\"γ=1.0 with h=5 means no discount (all windows receive full terminal return). If collapse is driven by sign misattribution from discounting, γ=1.0 should show least collapse. But uniform return may reduce temporal credit assignment sharpness.\\\", \\\"parent\\\": \\\"hsweep_h2_seed1\\\"}, \\\"gsweep_g095_h5_seed1\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-17T13:56:55.994Z\\\", \\\"updated_at\\\": \\\"2026-05-17T13:57:03.573Z\\\", \\\"hypothesis\\\": \\\"γ=0.95 with h=5 is the control condition matching hsweep_h5. Early windows retain γ^9 ≈ 0.95^9 ≈ 63% of terminal return. Expected to reproduce h5 behavior from h-sweep.\\\", \\\"parent\\\": \\\"hsweep_h2_seed1\\\"}, \\\"gsweep_g080_h5_seed1\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-17T13:56:53.634Z\\\", \\\"updated_at\\\": \\\"2026-05-17T13:57:03.148Z\\\", \\\"hypothesis\\\": \\\"γ=0.8 with h=5 represents an intermediate decay rate where early windows retain γ^9 ≈ 0.8^9 ≈ 13% of terminal return, potentially showing delayed but still present collapse compared to γ=0.95 (39%).\\\", \\\"parent\\\": \\\"hsweep_h2_seed1\\\"}, \\\"exp028_prereq_zeroshot_instruct\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-15T20:59:57.529Z\\\", \\\"updated_at\\\": \\\"2026-05-15T21:06:09.982Z\\\", \\\"hypothesis\\\": \\\"Qwen3-1.7B-Instruct 零样本 ALFWorld eval，验证\\\\\\\"SFT是毒药\\\\\\\"假设。如果 Instruct ≥15% success（vs SFT checkpoint 6.25%），则确认 SFT 起点有害，exp028a 可跳过 SFT 直接 GRPO。\\\", \\\"parent\\\": \\\"exp027_stable_grpo\\\", \\\"notes\\\": \\\"Qwen3-1.7B 确认就是 instruct 模型（无独立 Instruct 变体）。零样本 eval 0% success / 0.75% valid（与之前结果一致）。关键结论：\\\\\\\"SFT是毒药\\\\\\\"假设(D044)不成立——SFT 实际提升了 0%→6.25%。62pp gap 根因排除 SFT，聚焦于 binary reward 零梯度 + mini-batch 过小 + 训练步数不足。\\\"}, \\\"exp021_sft_ragen_format\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T22:35:48.559Z\\\", \\\"updated_at\\\": \\\"2026-05-15T02:11:46.204Z\\\", \\\"hypothesis\\\": \\\"Two-stage SFT with RAGEN-format data (v4). From exp008_sft checkpoint, fine-tune with v4 data (RAGEN Turn/State/Reward structure, fixed system prompt with consistent &lt;answer> tag instruction). LR=5e-6, 2 epochs. Validate via RAGEN val_before_train (not eval_sft_fast). Pass: RAGEN val success >= 10%, action_is_valid >= 85%.\\\", \\\"parent\\\": \\\"exp019b_expert_sft_v3\\\", \\\"notes\\\": \\\"被 exp021_ragen_sft_v4 取代。\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp020d_grpo_from_sft\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T22:19:30.993Z\\\", \\\"updated_at\\\": \\\"2026-05-15T02:01:10.192Z\\\", \\\"hypothesis\\\": \\\"GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Symlink fix for response_mask assertion (proven in exp020b). exp020c failed: Hydra key path wrong.\\\", \\\"parent\\\": \\\"exp019b_expert_sft_v3\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"D022 废弃。exp020b 确认 GRPO from SFT 因 RAGEN 格式不兼容导致 val success = 0%。exp020c/d 同样会遇到此问题。改走 exp021（RAGEN 格式 SFT 数据重训）。\\\"}, \\\"exp020c_grpo_from_sft\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T22:15:37.659Z\\\", \\\"updated_at\\\": \\\"2026-05-15T02:01:08.768Z\\\", \\\"hypothesis\\\": \\\"GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Fix: symlink + enable_response_mask=false (exp020/020b crashed on response_mask assertion).\\\", \\\"parent\\\": \\\"exp019b_expert_sft_v3\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"D022 废弃。exp020b 确认 GRPO from SFT 因 RAGEN 格式不兼容导致 val success = 0%。exp020c/d 同样会遇到此问题。改走 exp021（RAGEN 格式 SFT 数据重训）。\\\"}, \\\"exp019c_expert_sft_v3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T21:03:02.685Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:05:37.494Z\\\", \\\"hypothesis\\\": \\\"Two-stage Expert SFT（重试）: 从 exp008_sft checkpoint 出发，用 v3 数据（保留原始 move actions + admissible actions augmentation）微调。LR=5e-6, 2 epochs, batch=4, grad_accum=4, max_seq=4096。Pass: success ≥ 10%, format_ok ≥ 90%, action_is_valid ≥ 85%。\\\", \\\"parent\\\": \\\"exp019b_expert_sft_v3\\\", \\\"notes\\\": \\\"废弃。submit_training_job 因 GPU 被占（exp019b nohup 进程仍在跑）EXIT_CODE=1 退出。实际训练由 exp019b 的 nohup 进程完成。\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp019b_expert_sft_v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T16:49:30.246Z\\\", \\\"updated_at\\\": \\\"2026-05-14T16:49:30.246Z\\\"}, \\\"exp018_sft_grpo\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T15:43:08.545Z\\\", \\\"updated_at\\\": \\\"2026-05-14T16:45:33.314Z\\\", \\\"hypothesis\\\": \\\"Expert SFT → Sparse GRPO：从 exp017 SFT checkpoint 开始纯 sparse GRPO 训练。SFT 提升 baseline success rate（≥10%），使 GRPO 有足够非零 reward group 产生有效梯度。LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, won=10.0, 无 bonus/penalty, GRPO 30 步。Pass: success ≥ 20%。\\\", \\\"parent\\\": \\\"exp017_expert_sft\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"D018 取消：exp017 eval 5% success 与 base 4.7% 差异太小，GRPO 大概率重蹈覆辙。等 exp019 v2 SFT（修复 move→put + admissible actions 数据增强）后再考虑 GRPO。\\\"}, \\\"exp014b\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T12:45:27.876Z\\\", \\\"updated_at\\\": \\\"2026-05-14T12:48:37.433Z\\\", \\\"hypothesis\\\": \\\"极低 Dense Reward: valid_action_bonus=0.01（1:1000 比例），测试极弱 bonus 能否防 collapse 又不引发 gaming。如果 bonus 弱到不影响 GRPO reward ranking，模型不会被诱导走捷径。success_reward=10.0, format_penalty=0, 从 exp008 step 5 checkpoint 恢复, GRPO 30 步。\\\", \\\"parent\\\": \\\"exp013f\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"D013 撤销：Director 修订决策，改为 exp015。exp014b 等 exp015 结果后再决定。\\\"}, \\\"exp014a\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T12:45:27.347Z\\\", \\\"updated_at\\\": \\\"2026-05-14T12:48:35.102Z\\\", \\\"hypothesis\\\": \\\"Success-Gated Dense Reward: valid_action_bonus=0.15 只在 group 内至少一条 trajectory success 时才给。消除 reward gaming 的独立最大化路径——没有 success 就没有 bonus，模型必须探索 success。success_reward=10.0, format_penalty=0, 从 exp008 step 5 checkpoint 恢复, GRPO 30 步。\\\", \\\"parent\\\": \\\"exp013f\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"D013 撤销：Director 修订决策，success-gated bonus 有 bootstrap 问题（初始 success=0 时 bonus 永远为 0，退化为 sparse reward），改为 exp015 纯 sparse GRPO + 训练稳定性修复。\\\"}, \\\"exp014c\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T12:45:21.231Z\\\", \\\"updated_at\\\": \\\"2026-05-14T12:45:25.025Z\\\", \\\"hypothesis\\\": \\\"Success-gated valid_action_bonus：bonus 仅在 episode 成功时累加到 reward，消除独立最大化路径。valid_action_bonus=0.15, success_reward=10.0。解决 exp013f reward gaming（unconditional bonus 导致 agent 放弃 success 追求 valid action）。从 step 5 checkpoint 恢复 GRPO 30 步。\\\", \\\"parent\\\": \\\"exp013f\\\"}, \\\"exp008\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T03:01:53.741Z\\\", \\\"updated_at\\\": \\\"2026-05-14T03:04:43.138Z\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"Director 撤回：LR 5e-6 方案不对，问题是命令语义缺失。改为 SFT warmup (D006)\\\"}, \\\"exp007_dryrun\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T00:19:04.596Z\\\", \\\"updated_at\\\": \\\"2026-05-14T00:19:04.596Z\\\"}, \\\"exp005\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-13T23:23:20.655Z\\\", \\\"updated_at\\\": \\\"2026-05-13T23:23:20.655Z\\\"}, \\\"exp_003\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-13T21:01:51.727Z\\\", \\\"updated_at\\\": \\\"2026-05-13T22:04:11.399Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp_003_dryrun\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-13T21:07:02.905Z\\\", \\\"updated_at\\\": \\\"2026-05-13T21:44:30.297Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp_003_dryrun2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-13T21:22:01.436Z\\\", \\\"updated_at\\\": \\\"2026-05-13T21:44:29.827Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp003_dryrun3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-13T21:26:41.066Z\\\", \\\"updated_at\\\": \\\"2026-05-13T21:44:28.884Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp_003_dryrun3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-13T21:27:05.011Z\\\", \\\"updated_at\\\": \\\"2026-05-13T21:44:27.949Z\\\", \\\"conclusion\\\": \\\"failed\\\"}}, \\\"count\\\": 22, \\\"total\\\": 22, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1749}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"hsweep_h10_seed1\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-17T17:30:46.964Z\", \"updated_at\": \"2026-05-17T17:30:55.306Z\", \"hypothesis\": \"h=10 step_independent GRPO (N=5 windows per episode) will show intermediate performance between h=2 (catastrophic collapse) and h=full (28.1% success). With fewer windows than h=2, magnitude decay is reduced (γ^4≈0.81 vs γ^24≈0.29) and information loss is partially mitigated. Key data point for cliff figure (fig5).\", \"parent\": \"hsweep_h2_seed1\"}, \"gsweep_g100_h5_seed1\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-17T13:56:58.033Z\", \"updated_at\": \"2026-05-17T13:57:04.417Z\", \"hypothesis\": \"γ=1.0 with h=5 means no discount (all windows receive full terminal return). If collapse is driven by sign misattribution from discounting, γ=1.0 should show least collapse. But uniform return may reduce temporal credit assignment sharpness.\", \"parent\": \"hsweep_h2_seed1\"}, \"gsweep_g095_h5_seed1\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-17T13:56:55.994Z\", \"updated_at\": \"2026-05-17T13:57:03.573Z\", \"hypothesis\": \"γ=0.95 with h=5 is the control condition matching hsweep_h5. Early windows retain γ^9 ≈ 0.95^9 ≈ 63% of terminal return. Expected to reproduce h5 behavior from h-sweep.\", \"parent\": \"hsweep_h2_seed1\"}, \"gsweep_g080_h5_seed1\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-17T13:56:53.634Z\", \"updated_at\": \"2026-05-17T13:57:03.148Z\", \"hypothesis\": \"γ=0.8 with h=5 represents an intermediate decay rate where early windows retain γ^9 ≈ 0.8^9 ≈ 13% of terminal return, potentially showing delayed but still present collapse compared to γ=0.95 (39%).\", \"parent\": \"hsweep_h2_seed1\"}, \"exp028_prereq_zeroshot_instruct\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-15T20:59:57.529Z\", \"updated_at\": \"2026-05-15T21:06:09.982Z\", \"hypothesis\": \"Qwen3-1.7B-Instruct 零样本 ALFWorld eval，验证\\\"SFT是毒药\\\"假设。如果 Instruct ≥15% success（vs SFT checkpoint 6.25%），则确认 SFT 起点有害，exp028a 可跳过 SFT 直接 GRPO。\", \"parent\": \"exp027_stable_grpo\", \"notes\": \"Qwen3-1.7B 确认就是 instruct 模型（无独立 Instruct 变体）。零样本 eval 0% success / 0.75% valid（与之前结果一致）。关键结论：\\\"SFT是毒药\\\"假设(D044)不成立——SFT 实际提升了 0%→6.25%。62pp gap 根因排除 SFT，聚焦于 binary reward 零梯度 + mini-batch 过小 + 训练步数不足。\"}, \"exp021_sft_ragen_format\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T22:35:48.559Z\", \"updated_at\": \"2026-05-15T02:11:46.204Z\", \"hypothesis\": \"Two-stage SFT with RAGEN-format data (v4). From exp008_sft checkpoint, fine-tune with v4 data (RAGEN Turn/State/Reward structure, fixed system prompt with consistent &lt;answer> tag instruction). LR=5e-6, 2 epochs. Validate via RAGEN val_before_train (not eval_sft_fast). Pass: RAGEN val success >= 10%, action_is_valid >= 85%.\", \"parent\": \"exp019b_expert_sft_v3\", \"notes\": \"被 exp021_ragen_sft_v4 取代。\", \"conclusion\": \"killed\"}, \"exp020d_grpo_from_sft\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T22:19:30.993Z\", \"updated_at\": \"2026-05-15T02:01:10.192Z\", \"hypothesis\": \"GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Symlink fix for response_mask assertion (proven in exp020b). exp020c failed: Hydra key path wrong.\", \"parent\": \"exp019b_expert_sft_v3\", \"conclusion\": \"failed\", \"notes\": \"D022 废弃。exp020b 确认 GRPO from SFT 因 RAGEN 格式不兼容导致 val success = 0%。exp020c/d 同样会遇到此问题。改走 exp021（RAGEN 格式 SFT 数据重训）。\"}, \"exp020c_grpo_from_sft\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T22:15:37.659Z\", \"updated_at\": \"2026-05-15T02:01:08.768Z\", \"hypothesis\": \"GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Fix: symlink + enable_response_mask=false (exp020/020b crashed on response_mask assertion).\", \"parent\": \"exp019b_expert_sft_v3\", \"conclusion\": \"failed\", \"notes\": \"D022 废弃。exp020b 确认 GRPO from SFT 因 RAGEN 格式不兼容导致 val success = 0%。exp020c/d 同样会遇到此问题。改走 exp021（RAGEN 格式 SFT 数据重训）。\"}, \"exp019c_expert_sft_v3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T21:03:02.685Z\", \"updated_at\": \"2026-05-14T21:05:37.494Z\", \"hypothesis\": \"Two-stage Expert SFT（重试）: 从 exp008_sft checkpoint 出发，用 v3 数据（保留原始 move actions + admissible actions augmentation）微调。LR=5e-6, 2 epochs, batch=4, grad_accum=4, max_seq=4096。Pass: success ≥ 10%, format_ok ≥ 90%, action_is_valid ≥ 85%。\", \"parent\": \"exp019b_expert_sft_v3\", \"notes\": \"废弃。submit_training_job 因 GPU 被占（exp019b nohup 进程仍在跑）EXIT_CODE=1 退出。实际训练由 exp019b 的 nohup 进程完成。\", \"conclusion\": \"killed\"}, \"exp019b_expert_sft_v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T16:49:30.246Z\", \"updated_at\": \"2026-05-14T16:49:30.246Z\"}, \"exp018_sft_grpo\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T15:43:08.545Z\", \"updated_at\": \"2026-05-14T16:45:33.314Z\", \"hypothesis\": \"Expert SFT → Sparse GRPO：从 exp017 SFT checkpoint 开始纯 sparse GRPO 训练。SFT 提升 baseline success rate（≥10%），使 GRPO 有足够非零 reward group 产生有效梯度。LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, won=10.0, 无 bonus/penalty, GRPO 30 步。Pass: success ≥ 20%。\", \"parent\": \"exp017_expert_sft\", \"conclusion\": \"killed\", \"notes\": \"D018 取消：exp017 eval 5% success 与 base 4.7% 差异太小，GRPO 大概率重蹈覆辙。等 exp019 v2 SFT（修复 move→put + admissible actions 数据增强）后再考虑 GRPO。\"}, \"exp014b\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T12:45:27.876Z\", \"updated_at\": \"2026-05-14T12:48:37.433Z\", \"hypothesis\": \"极低 Dense Reward: valid_action_bonus=0.01（1:1000 比例），测试极弱 bonus 能否防 collapse 又不引发 gaming。如果 bonus 弱到不影响 GRPO reward ranking，模型不会被诱导走捷径。success_reward=10.0, format_penalty=0, 从 exp008 step 5 checkpoint 恢复, GRPO 30 步。\", \"parent\": \"exp013f\", \"conclusion\": \"killed\", \"notes\": \"D013 撤销：Director 修订决策，改为 exp015。exp014b 等 exp015 结果后再决定。\"}, \"exp014a\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T12:45:27.347Z\", \"updated_at\": \"2026-05-14T12:48:35.102Z\", \"hypothesis\": \"Success-Gated Dense Reward: valid_action_bonus=0.15 只在 group 内至少一条 trajectory success 时才给。消除 reward gaming 的独立最大化路径——没有 success 就没有 bonus，模型必须探索 success。success_reward=10.0, format_penalty=0, 从 exp008 step 5 checkpoint 恢复, GRPO 30 步。\", \"parent\": \"exp013f\", \"conclusion\": \"killed\", \"notes\": \"D013 撤销：Director 修订决策，success-gated bonus 有 bootstrap 问题（初始 success=0 时 bonus 永远为 0，退化为 sparse reward），改为 exp015 纯 sparse GRPO + 训练稳定性修复。\"}, \"exp014c\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T12:45:21.231Z\", \"updated_at\": \"2026-05-14T12:45:25.025Z\", \"hypothesis\": \"Success-gated valid_action_bonus：bonus 仅在 episode 成功时累加到 reward，消除独立最大化路径。valid_action_bonus=0.15, success_reward=10.0。解决 exp013f reward gaming（unconditional bonus 导致 agent 放弃 success 追求 valid action）。从 step 5 checkpoint 恢复 GRPO 30 步。\", \"parent\": \"exp013f\"}, \"exp008\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T03:01:53.741Z\", \"updated_at\": \"2026-05-14T03:04:43.138Z\", \"conclusion\": \"killed\", \"notes\": \"Director 撤回：LR 5e-6 方案不对，问题是命令语义缺失。改为 SFT warmup (D006)\"}, \"exp007_dryrun\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T00:19:04.596Z\", \"updated_at\": \"2026-05-14T00:19:04.596Z\"}, \"exp005\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-13T23:23:20.655Z\", \"updated_at\": \"2026-05-13T23:23:20.655Z\"}, \"exp_003\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-13T21:01:51.727Z\", \"updated_at\": \"2026-05-13T22:04:11.399Z\", \"conclusion\": \"failed\"}, \"exp_003_dryrun\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-13T21:07:02.905Z\", \"updated_at\": \"2026-05-13T21:44:30.297Z\", \"conclusion\": \"failed\"}, \"exp_003_dryrun2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-13T21:22:01.436Z\", \"updated_at\": \"2026-05-13T21:44:29.827Z\", \"conclusion\": \"failed\"}, \"exp003_dryrun3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-13T21:26:41.066Z\", \"updated_at\": \"2026-05-13T21:44:28.884Z\", \"conclusion\": \"failed\"}, \"exp_003_dryrun3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-13T21:27:05.011Z\", \"updated_at\": \"2026-05-13T21:44:27.949Z\", \"conclusion\": \"failed\"}}, \"count\": 22, \"total\": 22, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1749}}"
+    }
+  },
+  "sourceToolAssistantUUID": "e302fc01-7a11-4fe3-a56c-c63f7fa387e3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #17。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - **GPU 白名单**：bjb1-17606 仅 cuda:0,1；westd-47453 仅 cuda:0,1,2,3。超出范围必须 push back Director - **westd-47453 必须 `export TO…",
+  "leafUuid": "ee9f1d5a-0df2-4da1-bd8c-b654f832502c",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify GPU allocation and confirm running experiments",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-17T19:06:43.513Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture of the current state:
+
+**RUNNING (3):**
+1. `gsweep_g050_h5_seed1` - westd cuda:2,3, PID=85798
+2. `gae_baseline_seed1` - westd cuda:0,1, PID=40267
+3. `hsweep_h2_seed2` - bjb1 cuda:0,1, PID=945877
+
+**ALLOCATED (1):**
+- `factorial_h2_episodeadv_seed1` - needs code implementation (~20-25 lines for episode-level advantage mode)
+
+
+- `hsweep_h10_seed1` and the γ-sweep chain (`gsweep_g080/g095/g100_h5_seed1`) are queued up next
+
+All GPUs are fully occupied with 3 active crons that are all synced properly. I need to spawn a Worker to implement the episode-level advantage code for the factorial experiment before I can submit it, and I'm waiting on the cron callbacks to signal when the current runs finish. The Director still hasn't responded to my diagnostic questions about the r=0.640 case.
+
+I'm realizing there's a GPU allocation issue with the factorial experiment—it shows as ALLOCATED but the GPU assignment is unclear, and since all 6 GPUs are currently in use, I need to clarify which GPU it's actually reserved for.
+
+The code implementation for the episode-level advantage calculation doesn't depend on GPU availability though, so I should spawn a Worker to get that done now while waiting for resources to free up. I also need to check if there's been any prior progress on this implementation and then report the status to the Director.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ee9f1d5a-0df2-4da1-bd8c-b654f832502c",
+  "isSidechain": false,
+  "requestId": "req_011Cb8fUhSnntoamPBwEtFAw",
+  "type": "assistant",
+  "uuid": "74bce7ff-873c-4758-bafb-b7011dea55c7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019NWxGwZU4XBLteuE8zYtN8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4782,
+      "cache_read_input_tokens": 46736,
+      "output_tokens": 865,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4782,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 865,
+          "cache_read_input_tokens": 46736,
+          "cache_creation_input_tokens": 4782,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4782
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-17T19:06:44.247Z_
+
+状态确认完毕。3 个实验 RUNNING（6 GPU 全占），1 个 ALLOCATED 待代码实现。需要检查 plan_018 代码实现进度，然后向 Director 汇报。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "74bce7ff-873c-4758-bafb-b7011dea55c7",
+  "isSidechain": false,
+  "requestId": "req_011Cb8fUhSnntoamPBwEtFAw",
+  "type": "assistant",
+  "uuid": "b96c8c7b-4478-4900-83d1-116f54107fde",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019NWxGwZU4XBLteuE8zYtN8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4782,
+      "cache_read_input_tokens": 46736,
+      "output_tokens": 865,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4782,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 865,
+          "cache_read_input_tokens": 46736,
+          "cache_creation_input_tokens": 4782,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4782
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-17T19:06:46.226Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_012PXk3MFbUWZ9qDp7kwcnVW`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__list_workers",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b96c8c7b-4478-4900-83d1-116f54107fde",
+  "isSidechain": false,
+  "requestId": "req_011Cb8fUhSnntoamPBwEtFAw",
+  "type": "assistant",
+  "uuid": "046b9511-e2b7-4d6e-9841-d651f328e77a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019NWxGwZU4XBLteuE8zYtN8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4782,
+      "cache_read_input_tokens": 46736,
+      "output_tokens": 865,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4782,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 865,
+          "cache_read_input_tokens": 46736,
+          "cache_creation_input_tokens": 4782,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4782
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-17T19:06:46.232Z_
+
+<details><summary>↩ Tool result · `toolu_012PXk3MFbUWZ9qDp7kwcnVW`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_experiment_plan_with_status"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__get_project_resource_usage"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__spawn_worker"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__list_workers"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "046b9511-e2b7-4d6e-9841-d651f328e77a",
+  "isSidechain": false,
+  "promptId": "71c1d71a-6877-4d97-89ab-bc2334ced39e",
+  "type": "user",
+  "uuid": "a9329006-85e0-4591-a333-0f054fd09a6f",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__list_workers"
+    ],
+    "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__list_workers",
+    "total_deferred_tools": 80
+  },
+  "sourceToolAssistantUUID": "046b9511-e2b7-4d6e-9841-d651f328e77a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 35 · 2026-05-17T19:06:46.238Z_
+
+```json
+{
+  "parentUuid": "a9329006-85e0-4591-a333-0f054fd09a6f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "f6f5e126-a077-4335-aa95-14c92e277e39",
+  "timestamp": "2026-05-17T19:06:46.238Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-17T19:06:48.987Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_project_resource_usage · `toolu_01EgspykHaAqLRaNbTGwmvzU`</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f6f5e126-a077-4335-aa95-14c92e277e39",
+  "isSidechain": false,
+  "requestId": "req_011Cb8fWgxpg1LH6BE1ZPwUc",
+  "type": "assistant",
+  "uuid": "98a58d69-1e3e-4b7a-85f1-fb835a2379f6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mv2TBcNNHjCH7vTmjEwSaU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2723,
+      "cache_read_input_tokens": 51518,
+      "output_tokens": 143,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2723,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 143,
+          "cache_read_input_tokens": 51518,
+          "cache_creation_input_tokens": 2723,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2723
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-17T19:06:49.197Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers · `toolu_014jP9GFc7DmbVF7PbGkWm1C`</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "98a58d69-1e3e-4b7a-85f1-fb835a2379f6",
+  "isSidechain": false,
+  "requestId": "req_011Cb8fWgxpg1LH6BE1ZPwUc",
+  "type": "assistant",
+  "uuid": "87e4de87-2629-4cac-991e-b68f623659f4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mv2TBcNNHjCH7vTmjEwSaU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2723,
+      "cache_read_input_tokens": 51518,
+      "output_tokens": 143,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2723,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 143,
+          "cache_read_input_tokens": 51518,
+          "cache_creation_input_tokens": 2723,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2723
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-17T19:06:49.248Z_
+
+<details><summary>↩ Tool result · `toolu_01EgspykHaAqLRaNbTGwmvzU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"allocated_gpus\": [], \"actually_running_gpus\": [{\"server\": \"westd-47453\", \"gpu_id\": \"cuda:2\", \"exp_id\": \"gsweep_g050_h5_seed1\"}, {\"server\": \"westd-47453\", \"gpu_id\": \"cuda:3\", \"exp_id\": \"gsweep_g050_h5_seed1\"}, {\"server\": \"westd-47453\", \"gpu_id\": \"cuda:0\", \"exp_id\": \"gae_baseline_seed1\"}, {\"server\": \"westd-47453\", \"gpu_id\": \"1\", \"exp_id\": \"gae_baseline_seed1\"}, {\"server\": \"bjb1-17606\", \"gpu_id\": \"cuda:0\", \"exp_id\": \"hsweep_h2_seed2\"}, {\"server\": \"bjb1-17606\", \"gpu_id\": \"1\", \"exp_id\": \"hsweep_h2_seed2\"}], \"allocated_but_idle\": [], \"registered_but_hw_idle\": [], \"unregistered_but_hw_active\": [], \"running_experiments\": [{\"exp_id\": \"gsweep_g050_h5_seed1\", \"gpus\": [\"cuda:2\", \"cuda:3\"], \"util_avg\": null}, {\"exp_id\": \"gae_baseline_seed1\", \"gpus\": [\"cuda:0\", \"1\"], \"util_avg\": null}, {\"exp_id\": \"hsweep_h2_seed2\", \"gpus\": [\"cuda:0\", \"1\"], \"util_avg\": null}], \"worker_pool\": {\"total\": 0, \"gpu_tasks\": 0, \"cpu_tasks\": 0, \"details\": []}, \"summary\": \"分配 0 张, 实际跑 6 张 | Worker 0 (GPU 0 / CPU 0)\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "98a58d69-1e3e-4b7a-85f1-fb835a2379f6",
+  "isSidechain": false,
+  "promptId": "71c1d71a-6877-4d97-89ab-bc2334ced39e",
+  "type": "user",
+  "uuid": "c4b690bf-91af-4554-bde7-d9dad657d647",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"allocated_gpus\\\": [], \\\"actually_running_gpus\\\": [{\\\"server\\\": \\\"westd-47453\\\", \\\"gpu_id\\\": \\\"cuda:2\\\", \\\"exp_id\\\": \\\"gsweep_g050_h5_seed1\\\"}, {\\\"server\\\": \\\"westd-47453\\\", \\\"gpu_id\\\": \\\"cuda:3\\\", \\\"exp_id\\\": \\\"gsweep_g050_h5_seed1\\\"}, {\\\"server\\\": \\\"westd-47453\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"exp_id\\\": \\\"gae_baseline_seed1\\\"}, {\\\"server\\\": \\\"westd-47453\\\", \\\"gpu_id\\\": \\\"1\\\", \\\"exp_id\\\": \\\"gae_baseline_seed1\\\"}, {\\\"server\\\": \\\"bjb1-17606\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"exp_id\\\": \\\"hsweep_h2_seed2\\\"}, {\\\"server\\\": \\\"bjb1-17606\\\", \\\"gpu_id\\\": \\\"1\\\", \\\"exp_id\\\": \\\"hsweep_h2_seed2\\\"}], \\\"allocated_but_idle\\\": [], \\\"registered_but_hw_idle\\\": [], \\\"unregistered_but_hw_active\\\": [], \\\"running_experiments\\\": [{\\\"exp_id\\\": \\\"gsweep_g050_h5_seed1\\\", \\\"gpus\\\": [\\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"gae_baseline_seed1\\\", \\\"gpus\\\": [\\\"cuda:0\\\", \\\"1\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"hsweep_h2_seed2\\\", \\\"gpus\\\": [\\\"cuda:0\\\", \\\"1\\\"], \\\"util_avg\\\": null}], \\\"worker_pool\\\": {\\\"total\\\": 0, \\\"gpu_tasks\\\": 0, \\\"cpu_tasks\\\": 0, \\\"details\\\": []}, \\\"summary\\\": \\\"分配 0 张, 实际跑 6 张 | Worker 0 (GPU 0 / CPU 0)\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"allocated_gpus\": [], \"actually_running_gpus\": [{\"server\": \"westd-47453\", \"gpu_id\": \"cuda:2\", \"exp_id\": \"gsweep_g050_h5_seed1\"}, {\"server\": \"westd-47453\", \"gpu_id\": \"cuda:3\", \"exp_id\": \"gsweep_g050_h5_seed1\"}, {\"server\": \"westd-47453\", \"gpu_id\": \"cuda:0\", \"exp_id\": \"gae_baseline_seed1\"}, {\"server\": \"westd-47453\", \"gpu_id\": \"1\", \"exp_id\": \"gae_baseline_seed1\"}, {\"server\": \"bjb1-17606\", \"gpu_id\": \"cuda:0\", \"exp_id\": \"hsweep_h2_seed2\"}, {\"server\": \"bjb1-17606\", \"gpu_id\": \"1\", \"exp_id\": \"hsweep_h2_seed2\"}], \"allocated_but_idle\": [], \"registered_but_hw_idle\": [], \"unregistered_but_hw_active\": [], \"running_experiments\": [{\"exp_id\": \"gsweep_g050_h5_seed1\", \"gpus\": [\"cuda:2\", \"cuda:3\"], \"util_avg\": null}, {\"exp_id\": \"gae_baseline_seed1\", \"gpus\": [\"cuda:0\", \"1\"], \"util_avg\": null}, {\"exp_id\": \"hsweep_h2_seed2\", \"gpus\": [\"cuda:0\", \"1\"], \"util_avg\": null}], \"worker_pool\": {\"total\": 0, \"gpu_tasks\": 0, \"cpu_tasks\": 0, \"details\": []}, \"summary\": \"分配 0 张, 实际跑 6 张 | Worker 0 (GPU 0 / CPU 0)\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "98a58d69-1e3e-4b7a-85f1-fb835a2379f6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-17T19:06:49.309Z_
+
+<details><summary>↩ Tool result · `toolu_014jP9GFc7DmbVF7PbGkWm1C`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "87e4de87-2629-4cac-991e-b68f623659f4",
+  "isSidechain": false,
+  "promptId": "71c1d71a-6877-4d97-89ab-bc2334ced39e",
+  "type": "user",
+  "uuid": "9c1f43b1-7324-48a2-ae44-d0c9873b14aa",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "87e4de87-2629-4cac-991e-b68f623659f4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-17T19:07:03.840Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Current state:
+- 6 GPUs running across 3 experiments, no idle GPUs
+- 0 Workers running - **this is a violation of the "Worker池 < 2 = 失职" rule**
+
+I need to immediately spawn Workers for CPU tasks. The most important pending task is:
+1. **plan_018 code implementation**: Implement episode-level advantage mode for the factorial experiment (factorial_h2_episodeadv_seed1). This is ALLOCATED but needs ~20-25 lines of code.
+2. Other CPU tasks I could parallelize: analysis preparation, literature research, etc.
+
+
+I should spawn a Code Worker to implement the episode-level advantage mode for plan_018 on the remote server, and possibly an Analysis Worker to handle metrics checking or preparation tasks in parallel. Let me review the exact requirements from the experiment plan to confirm what the code changes need to accomplish.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9c1f43b1-7324-48a2-ae44-d0c9873b14aa",
+  "isSidechain": false,
+  "requestId": "req_011Cb8fWv5MiJ2E7LjQjK8kS",
+  "type": "assistant",
+  "uuid": "60beaff3-e6f2-40ac-9b78-78c1f407538b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QWZA8BEVABsqhxEySoeDxT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 821,
+      "cache_read_input_tokens": 54241,
+      "output_tokens": 648,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 821,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 648,
+          "cache_read_input_tokens": 54241,
+          "cache_creation_input_tokens": 821,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 821
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-17T19:07:04.816Z_
+
+Worker 池 = 0，违反硬约束。需要立即派发 Workers。先读实验计划了解 plan_018 细节。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "60beaff3-e6f2-40ac-9b78-78c1f407538b",
+  "isSidechain": false,
+  "requestId": "req_011Cb8fWv5MiJ2E7LjQjK8kS",
+  "type": "assistant",
+  "uuid": "556447b9-5bd1-442a-aeed-f841c87586c6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QWZA8BEVABsqhxEySoeDxT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 821,
+      "cache_read_input_tokens": 54241,
+      "output_tokens": 648,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 821,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 648,
+          "cache_read_input_tokens": 54241,
+          "cache_creation_input_tokens": 821,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 821
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-17T19:07:05.398Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_experiment_plan_with_status · `toolu_01AXoLghU1FZz4fvV8ejV7eT`</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "556447b9-5bd1-442a-aeed-f841c87586c6",
+  "isSidechain": false,
+  "requestId": "req_011Cb8fWv5MiJ2E7LjQjK8kS",
+  "type": "assistant",
+  "uuid": "6fe84033-42f0-4434-9a0a-e07ac953a4db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QWZA8BEVABsqhxEySoeDxT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 821,
+      "cache_read_input_tokens": 54241,
+      "output_tokens": 648,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 821,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 648,
+          "cache_read_input_tokens": 54241,
+          "cache_creation_input_tokens": 821,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 821
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-17T19:07:05.613Z_
+
+<details><summary>↩ Tool result · `toolu_01AXoLghU1FZz4fvV8ejV7eT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"plan_001\", \"title\": \"Episode-level GRPO convergence (exp029 continuation)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [], \"registry_id\": \"exp029_episode_level\", \"status\": \"DONE\", \"description\": \"Episode-level GRPO (context_window_mode: full) on Qwen3-1.7B + ALFWorld. 50 steps, dual-GPU. MVP passed at step 5 (val=25%, 2x baseline 12.5%). Continue to convergence (step 20+) with tatsu parallel patch for 4x val speedup.\\n\", \"hypothesis\": \"Episode-level training enables stable RL for multi-turn agents, reaching ≥40% success by convergence.\\n\", \"metrics\": {\"current_step\": 15, \"total_steps\": 100, \"progress_pct\": 15, \"step5_val_success\": 0.25, \"step10_val_success\": 0.25, \"step15_val_success\": 0.28125, \"step15_val_pass_at_1\": 0.28125, \"step15_val_pass_at_2\": 0.469, \"step15_val_pass_at_4\": 0.726, \"step15_val_pass_at_8\": 0.929, \"step15_val_pass_at_16\": 0.996, \"step15_val_action_is_valid\": 0.5452, \"step15_val_action_is_effective\": 0.7672, \"step15_val_manager_invalid_action\": 0.2328, \"step15_train_success\": 0.4375, \"step15_train_pass_at_8\": 0.75, \"elapsed_hours\": 7.35, \"eta_completion\": \"2026-05-19T03:00:00Z\"}, \"gpu_hours_estimate\": 48, \"framing_ref\": \"claim_1\", \"conclusion\": \"success\"}, {\"id\": \"plan_002\", \"title\": \"Context window h-sweep ablation (3 seeds each)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_001\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Sweep context_window h={2, 5, 10, 20, full} on same GRPO config. Config: context_window_mode=step_independent + step_independent_history_length={h} (h=full uses context_window_mode=full). 15 steps per run, 3 seeds each. KEY paper figure: shows credit assignment cliff is robust across seeds. Addresses Reviewer Concern #1 + Dream C3 (statistical power).\\n\", \"hypothesis\": \"Performance degrades monotonically with smaller h, with sharp cliff below h=10. Cliff is robust across seeds (not single-run artifact).\\n\", \"metrics\": [\"success_rate_per_h\", \"convergence_speed\", \"collapse_rate\"], \"gpu_hours_estimate\": 90, \"notes\": \"5 h-values × 15 steps × 3 seeds. h=2 已有 exp028c 作 1 seed。\"}, {\"id\": \"plan_003\", \"title\": \"Multi-seed replication (5 seeds total)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_001\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"4 additional seeds for exp029 episode-level config (5 total incl original). Report mean ± std. Dream C3 要求 5-8 seeds for credible CI.\\n\", \"hypothesis\": \"Episode-level success rate is reproducible (std < 5pp across 5 seeds).\\n\", \"metrics\": [\"success_rate_mean\", \"success_rate_std\"], \"gpu_hours_estimate\": 192}, {\"id\": \"plan_003b\", \"title\": \"REINFORCE++ baseline comparison (fallback from GAE)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_001\"], \"registry_id\": \"gae_baseline_seed1\", \"status\": \"RUNNING\", \"description\": \"Per-token credit baseline using REINFORCE++ (running-mean baseline, adv_estimator=reinforce_plus_plus_baseline). Fallback from GAE due to TRL 1.1.0 removing AutoModelForCausalLMWithValueHead (critic head unavailable, D060). Provides per-token advantage normalization vs episode-level GRPO uniform advantage. If REINFORCE++ >> episode-level → per-token normalization adds value even without critic. If comparable → episode-level info is the key factor, not credit granularity.\", \"hypothesis\": \"REINFORCE++ provides modest improvement over episode-level GRPO due to per-token advantage normalization, but both far exceed step-independent.\", \"metrics\": {\"wandb_run_id\": \"dt79qyd9\", \"pid\": 40267, \"val_step0\": {\"success\": 0.0625, \"action_is_valid\": 0.7796}, \"server\": \"westd-47453\", \"gpu\": \"cuda:0,1\", \"method\": \"reinforce_plus_plus\", \"fallback_reason\": \"TRL 1.1.0 removed AutoModelForCausalLMWithValueHead\"}, \"gpu_hours_estimate\": 60, \"notes\": \"D060: GAE infeasible (TRL 1.1.0 removed ValueHead). Using REINFORCE++ as practical per-token baseline. Running on westd cuda:0,1.\"}, {\"id\": \"plan_003c\", \"title\": \"Episode-level + valid_action_bonus (plateau-breaker, D056)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_001\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Derived from exp013f negative (D056): dense reward gaming is step_independent-specific. Episode-level training prevents per-step reward gaming because model optimizes full trajectory total reward. Add valid_action_bonus=0.05 to episode-level config. Test if this safely improves action_is_valid (currently 55.9%) without gaming, and whether it breaks the 23-25% success plateau. Run during h-sweep batch as h=full variant.\\n\", \"hypothesis\": \"Episode-level + small valid_action_bonus safely improves action_is_valid (target ≥80%) without reward gaming, and success rate exceeds 30% (breaking exp029 plateau). Gaming only occurs under step_independent.\\n\", \"metrics\": [\"success_rate\", \"action_is_valid\", \"valid_bonus_vs_task_reward_ratio\"], \"gpu_hours_estimate\": 24, \"parent\": \"exp013f\", \"notes\": \"Parent derivation: exp013f gaming → D056 insight → episode-level safety hypothesis\"}, {\"id\": \"plan_004\", \"title\": \"Credit assignment mechanism empirical verification (paper Figure 2)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_002\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Empirically verify \\\"Advantage Sign Misattribution\\\" mechanism (D058, Reviewer-refined): (a) Per-window advantage logging from h=2 seed 2: record (episode_id, window_position,\\n    raw_return, advantage_sign, advantage_magnitude, episode_outcome, local_action_quality_proxy)\\n(b) Key analysis: advantage sign vs episode outcome correlation (should be ~1.0),\\n    advantage sign vs local action quality correlation (should be ~0, proving misattribution)\\n(c) Contrast success vs failure episodes: success → all positive (including bad windows),\\n    failure → all negative (including good windows)\\n(d) γ^k magnitude decay: advantage magnitude vs position in success episodes (e) Episode-level control: all tokens share one advantage (no position/sign variance) Data source: LOG_PER_SAMPLE_ADV=1 on h=2 seed 2 (10 lines logging code, zero GPU overhead). Code reference: agent_trainer.py:271-340, core_algos.py:194-246.\\n\", \"hypothesis\": \"Per-window advantage in step_independent shows: (1) advantage sign is determined by episode success/failure (correlation > 0.95), (2) advantage sign is NOT correlated with window-local action quality (r < 0.1), proving sign misattribution, (3) magnitude decays as γ^k from terminal position, (4) episode-level shows uniform advantage with no sign/magnitude position effects.\\n\", \"metrics\": [\"sign_vs_outcome_correlation\", \"sign_vs_local_quality_correlation\", \"magnitude_position_decay_r2\", \"episode_level_variance\"], \"gpu_hours_estimate\": 4, \"notes\": \"D058+Reviewer: 'sign misattribution' is the core mechanism (direction error > magnitude error). γ^k decay is secondary.\"}, {\"id\": \"plan_005\", \"title\": \"Action-change statistics from always-on runs\", \"claim\": \"Claim 2\", \"phase\": \"B\", \"priority\": \"P1\", \"depends_on\": [\"plan_001\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Collect action-change statistics from exp029 trained checkpoints: (1) fraction of verifications triggering action change, (2) correlation between action change and episode success, (3) per-task-type breakdown. Informs reward design and provides empirical grounding.\\n\", \"hypothesis\": \"Most verifications are confirmatory (>60% no action change). Action change positively correlates with episode success (r > 0.2).\\n\", \"metrics\": [\"action_change_rate\", \"correlation\", \"confirmatory_rate\"], \"gpu_hours_estimate\": 4}, {\"id\": \"plan_006\", \"title\": \"Selective verification implementation\", \"claim\": \"Claim 2\", \"phase\": \"B\", \"priority\": \"P1\", \"depends_on\": [\"plan_005\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Implement binary verify/skip decision in RAGEN framework. Agent outputs special token (verify/skip) before each step. Reward = task_success + alpha * action_change_when_verified - beta * verification_cost. Code-only, no GPU.\\n\", \"hypothesis\": null, \"metrics\": [], \"gpu_hours_estimate\": 0}, {\"id\": \"plan_007\", \"title\": \"B-IAVR selective verification training\", \"claim\": \"Claim 2, Claim 3\", \"phase\": \"B\", \"priority\": \"P1\", \"depends_on\": [\"plan_006\", \"plan_001\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Train selective verification policy via episode-level GRPO. Initialize from best exp029 checkpoint. Action-change reward encourages verification only when informative.\\n\", \"hypothesis\": \"B-IAVR achieves verification rate ↓40%+ vs always-on while maintaining success within 5pp of baseline.\\n\", \"metrics\": [\"success_rate\", \"verification_rate\", \"cost_reduction\"], \"gpu_hours_estimate\": 96}, {\"id\": \"plan_008\", \"title\": \"Selective verification full comparison\", \"claim\": \"Claim 3\", \"phase\": \"B\", \"priority\": \"P1\", \"depends_on\": [\"plan_007\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Compare on same val set: always-on / B-IAVR / no-verify / random-p / confidence-threshold. Report success rate, verification rate, total inference tokens, per-task breakdown.\\n\", \"hypothesis\": \"B-IAVR dominates Pareto frontier (best success-to-cost ratio).\\n\", \"metrics\": [\"success_rate\", \"verification_rate\", \"cost_reduction\", \"total_tokens\"], \"gpu_hours_estimate\": 8}, {\"id\": \"plan_009\", \"title\": \"No-verify ablation\", \"claim\": \"Claim 3\", \"phase\": \"C\", \"priority\": \"P1\", \"depends_on\": [\"plan_001\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Episode-level GRPO without any self-verification. Lower bound: demonstrates verification value.\\n\", \"hypothesis\": \"Removing verification drops success by ≥10pp vs always-on.\\n\", \"metrics\": [\"success_rate\", \"action_is_valid\"], \"gpu_hours_estimate\": 48}, {\"id\": \"plan_010\", \"title\": \"Entropy-controlled action-change analysis\", \"claim\": \"Claim 2\", \"phase\": \"C\", \"priority\": \"P1\", \"depends_on\": [\"plan_005\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Defense for \\\"action change = noise\\\" concern. Stratify by policy entropy; test if action-change-success correlation holds within each stratum.\\n\", \"hypothesis\": \"Partial correlation remains significant (p < 0.05) after controlling entropy.\\n\", \"metrics\": [\"partial_correlation\", \"p_value\"], \"gpu_hours_estimate\": 4}, {\"id\": \"plan_011\", \"title\": \"Causal intervention: random vs verification-triggered changes\", \"claim\": \"Claim 2\", \"phase\": \"C\", \"priority\": \"P1\", \"depends_on\": [\"plan_001\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Inject random action changes at same rate as verification-triggered. Compare task success. If verification-triggered >> random, causal evidence.\\n\", \"hypothesis\": \"Verification-triggered changes yield ≥10pp higher success than random.\\n\", \"metrics\": [\"success_rate_triggered\", \"success_rate_random\", \"delta\"], \"gpu_hours_estimate\": 8}, {\"id\": \"plan_012\", \"title\": \"Reward signal ablation (action-change vs alternatives)\", \"claim\": \"Claim 2\", \"phase\": \"C\", \"priority\": \"P1\", \"depends_on\": [\"plan_007\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Train B-IAVR with alternative rewards: (a) action-change (ours), (b) random trigger reward, (c) confidence-based reward. Demonstrates action-change is the best signal.\\n\", \"hypothesis\": \"Action-change reward produces best cost-performance tradeoff.\\n\", \"metrics\": [\"success_rate\", \"verification_rate\", \"cost_reduction\"], \"gpu_hours_estimate\": 192}, {\"id\": \"plan_013\", \"title\": \"ARES reproduction + comparison\", \"claim\": \"Claim 3\", \"phase\": \"C\", \"priority\": \"P1\", \"depends_on\": [\"plan_007\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Reproduce ARES SFT router on ALFWorld (same model). Head-to-head with B-IAVR on identical eval episodes. Addresses \\\"ARES differentiation\\\" concern.\\n\", \"hypothesis\": \"B-IAVR achieves ≥10pp better cost reduction than ARES at matched success.\\n\", \"metrics\": [\"success_rate\", \"verification_rate\", \"cost_reduction\"], \"gpu_hours_estimate\": 24}, {\"id\": \"plan_014\", \"title\": \"ScienceWorld transfer (episode-level advantage)\", \"claim\": \"Claim 1\", \"phase\": \"D\", \"priority\": \"P2\", \"depends_on\": [\"plan_001\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Validate episode-level vs step-independent on ScienceWorld. Different env, similar multi-turn structure. Addresses single-env concern.\\n\", \"hypothesis\": \"Episode-level advantage generalizes: ≥2x improvement over step-independent.\\n\", \"metrics\": [\"success_rate_episode\", \"success_rate_step_independent\"], \"gpu_hours_estimate\": 72}, {\"id\": \"plan_015\", \"title\": \"7B model scaling verification\", \"claim\": \"Claim 1\", \"phase\": \"D\", \"priority\": \"P2\", \"depends_on\": [\"plan_002\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Episode-level vs step-independent on Qwen3-7B. Addresses model size concern. May need cloud GPU.\\n\", \"hypothesis\": \"Episode-level advantage holds at 7B scale.\\n\", \"metrics\": [\"success_rate_episode_7B\", \"success_rate_step_independent_7B\"], \"gpu_hours_estimate\": 192, \"notes\": \"May require cloud GPU rental (4x A100 or 2x H100)\"}, {\"id\": \"plan_016\", \"title\": \"Per-task-type breakdown analysis\", \"claim\": \"Claim 1\", \"phase\": \"D\", \"priority\": \"P2\", \"depends_on\": [\"plan_001\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Breakdown by ALFWorld task type (pick, clean, heat, cool, examine, pick_two). Shows within-environment diversity.\\n\", \"hypothesis\": \"Episode-level advantage varies by task complexity; longer tasks benefit more.\\n\", \"metrics\": [\"per_task_success\", \"episode_length_correlation\"], \"gpu_hours_estimate\": 2}, {\"id\": \"plan_017\", \"title\": \"Discount factor γ-sweep (dual mechanism separation)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_001\"], \"registry_id\": \"gsweep_g050_h5_seed1\", \"status\": \"RUNNING\", \"description\": \"Sweep discount factor γ ∈ {0.5, 0.8, 0.95, 1.0} with fixed h=5, step_independent mode, 15 steps each. Separates two mechanisms: (1) magnitude decay (γ^k attenuation) vs (2) sign misattribution (advantage sign determined by episode outcome). γ=1.0 eliminates magnitude decay; if collapse persists, sign misattribution is the root cause. KEY paper evidence for dual mechanism separation.\\n\", \"hypothesis\": \"γ=1.0 eliminates magnitude decay but step_independent still collapses, proving sign misattribution is the root cause rather than γ^k decay. Lower γ values show accelerated collapse due to compounded magnitude attenuation.\\n\", \"metrics\": [\"success_rate_per_gamma\", \"collapse_onset_step\", \"magnitude_decay_vs_sign_effect\"], \"gpu_hours_estimate\": 40, \"notes\": \"4 γ values × 15 steps. γ=0.5 running (gsweep_g050_h5_seed1). Remaining: gsweep_g080_h5_seed1, gsweep_g095_h5_seed1, gsweep_g100_h5_seed1 pre-registered.\"}, {\"id\": \"plan_018\", \"title\": \"Factorial mechanism separation: truncated-obs + episode-level advantage\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_001\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"CRITICAL experiment requested by ALL 3 Dream review tiers. 2×2 factorial design to isolate information loss from sign misattribution. Configuration: step_independent GENERATION (h=2 observation window, model only sees 2 steps of history during rollout) BUT episode-level ADVANTAGE computation (all windows in same episode share one GRPO advantage = normalized episode return). This means the model still has limited observation (information loss present) but credit assignment is correct (sign misattribution eliminated). Outcome interpretation: (A) if still collapses → information loss is dominant (model cannot plan with limited visibility regardless of credit quality); (B) if succeeds → sign misattribution was dominant (correct credit enables learning even with limited observation). May require small code modification in RAGEN: compute_step_discounted_returns() needs a mode that assigns episode return to all windows uniformly instead of per-window γ-discounted returns.\", \"hypothesis\": \"Truncated observation (h=2) + episode-level advantage isolates the two mechanisms. If collapse persists, information loss is primary. If performance improves significantly over standard step_independent h=2 (currently 0%), sign misattribution is primary.\", \"metrics\": [\"success_rate\", \"collapse_onset_step\", \"comparison_vs_step_independent_h2\", \"comparison_vs_episode_level_full\"], \"gpu_hours_estimate\": 24, \"notes\": \"Dream consensus: this is THE most critical missing experiment. All 3 tiers (best/median/worst) independently flagged the absence of factorial mechanism separation as a critical weakness. Also serves to resolve the r=0.640 diagnostic question.\"}, {\"id\": \"plan_019\", \"title\": \"Evaluation set expansion (32→134 tasks)\", \"claim\": \"Claim 1, Claim 2, Claim 3\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Expand ALFWorld validation set from 32 to 134 tasks (standard full split). Dream worst-case flagged 32 tasks as critically small (3.125% per episode, many comparisons are <2 episode difference). Standard ALFWorld evaluation uses 134 tasks. This is a config/infrastructure change affecting all future experiments.\", \"hypothesis\": \"Larger evaluation set provides statistical power for ≤3pp differences. Current results (e.g. 25% = 8/32 tasks) become more precise.\", \"metrics\": [\"statistical_power\", \"confidence_interval_width\"], \"gpu_hours_estimate\": 0, \"notes\": \"Infrastructure change. Need to verify RAGEN supports 134-task eval split and identify the correct task list file. May require modifying val config.\"}], \"total\": 21}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6fe84033-42f0-4434-9a0a-e07ac953a4db",
+  "isSidechain": false,
+  "promptId": "71c1d71a-6877-4d97-89ab-bc2334ced39e",
+  "type": "user",
+  "uuid": "5c69e656-8f0b-4701-8106-64eaced34fd5",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_001\\\", \\\"title\\\": \\\"Episode-level GRPO convergence (exp029 continuation)\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"A+\\\", \\\"priority\\\": \\\"P0\\\", \\\"depends_on\\\": [], \\\"registry_id\\\": \\\"exp029_episode_level\\\", \\\"status\\\": \\\"DONE\\\", \\\"description\\\": \\\"Episode-level GRPO (context_window_mode: full) on Qwen3-1.7B + ALFWorld. 50 steps, dual-GPU. MVP passed at step 5 (val=25%, 2x baseline 12.5%). Continue to convergence (step 20+) with tatsu parallel patch for 4x val speedup.\\\\n\\\", \\\"hypothesis\\\": \\\"Episode-level training enables stable RL for multi-turn agents, reaching ≥40% success by convergence.\\\\n\\\", \\\"metrics\\\": {\\\"current_step\\\": 15, \\\"total_steps\\\": 100, \\\"progress_pct\\\": 15, \\\"step5_val_success\\\": 0.25, \\\"step10_val_success\\\": 0.25, \\\"step15_val_success\\\": 0.28125, \\\"step15_val_pass_at_1\\\": 0.28125, \\\"step15_val_pass_at_2\\\": 0.469, \\\"step15_val_pass_at_4\\\": 0.726, \\\"step15_val_pass_at_8\\\": 0.929, \\\"step15_val_pass_at_16\\\": 0.996, \\\"step15_val_action_is_valid\\\": 0.5452, \\\"step15_val_action_is_effective\\\": 0.7672, \\\"step15_val_manager_invalid_action\\\": 0.2328, \\\"step15_train_success\\\": 0.4375, \\\"step15_train_pass_at_8\\\": 0.75, \\\"elapsed_hours\\\": 7.35, \\\"eta_completion\\\": \\\"2026-05-19T03:00:00Z\\\"}, \\\"gpu_hours_estimate\\\": 48, \\\"framing_ref\\\": \\\"claim_1\\\", \\\"conclusion\\\": \\\"success\\\"}, {\\\"id\\\": \\\"plan_002\\\", \\\"title\\\": \\\"Context window h-sweep ablation (3 seeds each)\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"A+\\\", \\\"priority\\\": \\\"P0\\\", \\\"depends_on\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\", \\\"description\\\": \\\"Sweep context_window h={2, 5, 10, 20, full} on same GRPO config. Config: context_window_mode=step_independent + step_independent_history_length={h} (h=full uses context_window_mode=full). 15 steps per run, 3 seeds each. KEY paper figure: shows credit assignment cliff is robust across seeds. Addresses Reviewer Concern #1 + Dream C3 (statistical power).\\\\n\\\", \\\"hypothesis\\\": \\\"Performance degrades monotonically with smaller h, with sharp cliff below h=10. Cliff is robust across seeds (not single-run artifact).\\\\n\\\", \\\"metrics\\\": [\\\"success_rate_per_h\\\", \\\"convergence_speed\\\", \\\"collapse_rate\\\"], \\\"gpu_hours_estimate\\\": 90, \\\"notes\\\": \\\"5 h-values × 15 steps × 3 seeds. h=2 已有 exp028c 作 1 seed。\\\"}, {\\\"id\\\": \\\"plan_003\\\", \\\"title\\\": \\\"Multi-seed replication (5 seeds total)\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"A+\\\", \\\"priority\\\": \\\"P0\\\", \\\"depends_on\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\", \\\"description\\\": \\\"4 additional seeds for exp029 episode-level config (5 total incl original). Report mean ± std. Dream C3 要求 5-8 seeds for credible CI.\\\\n\\\", \\\"hypothesis\\\": \\\"Episode-level success rate is reproducible (std < 5pp across 5 seeds).\\\\n\\\", \\\"metrics\\\": [\\\"success_rate_mean\\\", \\\"success_rate_std\\\"], \\\"gpu_hours_estimate\\\": 192}, {\\\"id\\\": \\\"plan_003b\\\", \\\"title\\\": \\\"REINFORCE++ baseline comparison (fallback from GAE)\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"A+\\\", \\\"priority\\\": \\\"P0\\\", \\\"depends_on\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": \\\"gae_baseline_seed1\\\", \\\"status\\\": \\\"RUNNING\\\", \\\"description\\\": \\\"Per-token credit baseline using REINFORCE++ (running-mean baseline, adv_estimator=reinforce_plus_plus_baseline). Fallback from GAE due to TRL 1.1.0 removing AutoModelForCausalLMWithValueHead (critic head unavailable, D060). Provides per-token advantage normalization vs episode-level GRPO uniform advantage. If REINFORCE++ >> episode-level → per-token normalization adds value even without critic. If comparable → episode-level info is the key factor, not credit granularity.\\\", \\\"hypothesis\\\": \\\"REINFORCE++ provides modest improvement over episode-level GRPO due to per-token advantage normalization, but both far exceed step-independent.\\\", \\\"metrics\\\": {\\\"wandb_run_id\\\": \\\"dt79qyd9\\\", \\\"pid\\\": 40267, \\\"val_step0\\\": {\\\"success\\\": 0.0625, \\\"action_is_valid\\\": 0.7796}, \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": \\\"cuda:0,1\\\", \\\"method\\\": \\\"reinforce_plus_plus\\\", \\\"fallback_reason\\\": \\\"TRL 1.1.0 removed AutoModelForCausalLMWithValueHead\\\"}, \\\"gpu_hours_estimate\\\": 60, \\\"notes\\\": \\\"D060: GAE infeasible (TRL 1.1.0 removed ValueHead). Using REINFORCE++ as practical per-token baseline. Running on westd cuda:0,1.\\\"}, {\\\"id\\\": \\\"plan_003c\\\", \\\"title\\\": \\\"Episode-level + valid_action_bonus (plateau-breaker, D056)\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"A+\\\", \\\"priority\\\": \\\"P0\\\", \\\"depends_on\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\", \\\"description\\\": \\\"Derived from exp013f negative (D056): dense reward gaming is step_independent-specific. Episode-level training prevents per-step reward gaming because model optimizes full trajectory total reward. Add valid_action_bonus=0.05 to episode-level config. Test if this safely improves action_is_valid (currently 55.9%) without gaming, and whether it breaks the 23-25% success plateau. Run during h-sweep batch as h=full variant.\\\\n\\\", \\\"hypothesis\\\": \\\"Episode-level + small valid_action_bonus safely improves action_is_valid (target ≥80%) without reward gaming, and success rate exceeds 30% (breaking exp029 plateau). Gaming only occurs under step_independent.\\\\n\\\", \\\"metrics\\\": [\\\"success_rate\\\", \\\"action_is_valid\\\", \\\"valid_bonus_vs_task_reward_ratio\\\"], \\\"gpu_hours_estimate\\\": 24, \\\"parent\\\": \\\"exp013f\\\", \\\"notes\\\": \\\"Parent derivation: exp013f gaming → D056 insight → episode-level safety hypothesis\\\"}, {\\\"id\\\": \\\"plan_004\\\", \\\"title\\\": \\\"Credit assignment mechanism empirical verification (paper Figure 2)\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"A+\\\", \\\"priority\\\": \\\"P0\\\", \\\"depends_on\\\": [\\\"plan_002\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\", \\\"description\\\": \\\"Empirically verify \\\\\\\"Advantage Sign Misattribution\\\\\\\" mechanism (D058, Reviewer-refined): (a) Per-window advantage logging from h=2 seed 2: record (episode_id, window_position,\\\\n    raw_return, advantage_sign, advantage_magnitude, episode_outcome, local_action_quality_proxy)\\\\n(b) Key analysis: advantage sign vs episode outcome correlation (should be ~1.0),\\\\n    advantage sign vs local action quality correlation (should be ~0, proving misattribution)\\\\n(c) Contrast success vs failure episodes: success → all positive (including bad windows),\\\\n    failure → all negative (including good windows)\\\\n(d) γ^k magnitude decay: advantage magnitude vs position in success episodes (e) Episode-level control: all tokens share one advantage (no position/sign variance) Data source: LOG_PER_SAMPLE_ADV=1 on h=2 seed 2 (10 lines logging code, zero GPU overhead). Code reference: agent_trainer.py:271-340, core_algos.py:194-246.\\\\n\\\", \\\"hypothesis\\\": \\\"Per-window advantage in step_independent shows: (1) advantage sign is determined by episode success/failure (correlation > 0.95), (2) advantage sign is NOT correlated with window-local action quality (r < 0.1), proving sign misattribution, (3) magnitude decays as γ^k from terminal position, (4) episode-level shows uniform advantage with no sign/magnitude position effects.\\\\n\\\", \\\"metrics\\\": [\\\"sign_vs_outcome_correlation\\\", \\\"sign_vs_local_quality_correlation\\\", \\\"magnitude_position_decay_r2\\\", \\\"episode_level_variance\\\"], \\\"gpu_hours_estimate\\\": 4, \\\"notes\\\": \\\"D058+Reviewer: 'sign misattribution' is the core mechanism (direction error > magnitude error). γ^k decay is secondary.\\\"}, {\\\"id\\\": \\\"plan_005\\\", \\\"title\\\": \\\"Action-change statistics from always-on runs\\\", \\\"claim\\\": \\\"Claim 2\\\", \\\"phase\\\": \\\"B\\\", \\\"priority\\\": \\\"P1\\\", \\\"depends_on\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\", \\\"description\\\": \\\"Collect action-change statistics from exp029 trained checkpoints: (1) fraction of verifications triggering action change, (2) correlation between action change and episode success, (3) per-task-type breakdown. Informs reward design and provides empirical grounding.\\\\n\\\", \\\"hypothesis\\\": \\\"Most verifications are confirmatory (>60% no action change). Action change positively correlates with episode success (r > 0.2).\\\\n\\\", \\\"metrics\\\": [\\\"action_change_rate\\\", \\\"correlation\\\", \\\"confirmatory_rate\\\"], \\\"gpu_hours_estimate\\\": 4}, {\\\"id\\\": \\\"plan_006\\\", \\\"title\\\": \\\"Selective verification implementation\\\", \\\"claim\\\": \\\"Claim 2\\\", \\\"phase\\\": \\\"B\\\", \\\"priority\\\": \\\"P1\\\", \\\"depends_on\\\": [\\\"plan_005\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\", \\\"description\\\": \\\"Implement binary verify/skip decision in RAGEN framework. Agent outputs special token (verify/skip) before each step. Reward = task_success + alpha * action_change_when_verified - beta * verification_cost. Code-only, no GPU.\\\\n\\\", \\\"hypothesis\\\": null, \\\"metrics\\\": [], \\\"gpu_hours_estimate\\\": 0}, {\\\"id\\\": \\\"plan_007\\\", \\\"title\\\": \\\"B-IAVR selective verification training\\\", \\\"claim\\\": \\\"Claim 2, Claim 3\\\", \\\"phase\\\": \\\"B\\\", \\\"priority\\\": \\\"P1\\\", \\\"depends_on\\\": [\\\"plan_006\\\", \\\"plan_001\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\", \\\"description\\\": \\\"Train selective verification policy via episode-level GRPO. Initialize from best exp029 checkpoint. Action-change reward encourages verification only when informative.\\\\n\\\", \\\"hypothesis\\\": \\\"B-IAVR achieves verification rate ↓40%+ vs always-on while maintaining success within 5pp of baseline.\\\\n\\\", \\\"metrics\\\": [\\\"success_rate\\\", \\\"verification_rate\\\", \\\"cost_reduction\\\"], \\\"gpu_hours_estimate\\\": 96}, {\\\"id\\\": \\\"plan_008\\\", \\\"title\\\": \\\"Selective verification full comparison\\\", \\\"claim\\\": \\\"Claim 3\\\", \\\"phase\\\": \\\"B\\\", \\\"priority\\\": \\\"P1\\\", \\\"depends_on\\\": [\\\"plan_007\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\", \\\"description\\\": \\\"Compare on same val set: always-on / B-IAVR / no-verify / random-p / confidence-threshold. Report success rate, verification rate, total inference tokens, per-task breakdown.\\\\n\\\", \\\"hypothesis\\\": \\\"B-IAVR dominates Pareto frontier (best success-to-cost ratio).\\\\n\\\", \\\"metrics\\\": [\\\"success_rate\\\", \\\"verification_rate\\\", \\\"cost_reduction\\\", \\\"total_tokens\\\"], \\\"gpu_hours_estimate\\\": 8}, {\\\"id\\\": \\\"plan_009\\\", \\\"title\\\": \\\"No-verify ablation\\\", \\\"claim\\\": \\\"Claim 3\\\", \\\"phase\\\": \\\"C\\\", \\\"priority\\\": \\\"P1\\\", \\\"depends_on\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\", \\\"description\\\": \\\"Episode-level GRPO without any self-verification. Lower bound: demonstrates verification value.\\\\n\\\", \\\"hypothesis\\\": \\\"Removing verification drops success by ≥10pp vs always-on.\\\\n\\\", \\\"metrics\\\": [\\\"success_rate\\\", \\\"action_is_valid\\\"], \\\"gpu_hours_estimate\\\": 48}, {\\\"id\\\": \\\"plan_010\\\", \\\"title\\\": \\\"Entropy-controlled action-change analysis\\\", \\\"claim\\\": \\\"Claim 2\\\", \\\"phase\\\": \\\"C\\\", \\\"priority\\\": \\\"P1\\\", \\\"depends_on\\\": [\\\"plan_005\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\", \\\"description\\\": \\\"Defense for \\\\\\\"action change = noise\\\\\\\" concern. Stratify by policy entropy; test if action-change-success correlation holds within each stratum.\\\\n\\\", \\\"hypothesis\\\": \\\"Partial correlation remains significant (p < 0.05) after controlling entropy.\\\\n\\\", \\\"metrics\\\": [\\\"partial_correlation\\\", \\\"p_value\\\"], \\\"gpu_hours_estimate\\\": 4}, {\\\"id\\\": \\\"plan_011\\\", \\\"title\\\": \\\"Causal intervention: random vs verification-triggered changes\\\", \\\"claim\\\": \\\"Claim 2\\\", \\\"phase\\\": \\\"C\\\", \\\"priority\\\": \\\"P1\\\", \\\"depends_on\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\", \\\"description\\\": \\\"Inject random action changes at same rate as verification-triggered. Compare task success. If verification-triggered >> random, causal evidence.\\\\n\\\", \\\"hypothesis\\\": \\\"Verification-triggered changes yield ≥10pp higher success than random.\\\\n\\\", \\\"metrics\\\": [\\\"success_rate_triggered\\\", \\\"success_rate_random\\\", \\\"delta\\\"], \\\"gpu_hours_estimate\\\": 8}, {\\\"id\\\": \\\"plan_012\\\", \\\"title\\\": \\\"Reward signal ablation (action-change vs alternatives)\\\", \\\"claim\\\": \\\"Claim 2\\\", \\\"phase\\\": \\\"C\\\", \\\"priority\\\": \\\"P1\\\", \\\"depends_on\\\": [\\\"plan_007\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\", \\\"description\\\": \\\"Train B-IAVR with alternative rewards: (a) action-change (ours), (b) random trigger reward, (c) confidence-based reward. Demonstrates action-change is the best signal.\\\\n\\\", \\\"hypothesis\\\": \\\"Action-change reward produces best cost-performance tradeoff.\\\\n\\\", \\\"metrics\\\": [\\\"success_rate\\\", \\\"verification_rate\\\", \\\"cost_reduction\\\"], \\\"gpu_hours_estimate\\\": 192}, {\\\"id\\\": \\\"plan_013\\\", \\\"title\\\": \\\"ARES reproduction + comparison\\\", \\\"claim\\\": \\\"Claim 3\\\", \\\"phase\\\": \\\"C\\\", \\\"priority\\\": \\\"P1\\\", \\\"depends_on\\\": [\\\"plan_007\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\", \\\"description\\\": \\\"Reproduce ARES SFT router on ALFWorld (same model). Head-to-head with B-IAVR on identical eval episodes. Addresses \\\\\\\"ARES differentiation\\\\\\\" concern.\\\\n\\\", \\\"hypothesis\\\": \\\"B-IAVR achieves ≥10pp better cost reduction than ARES at matched success.\\\\n\\\", \\\"metrics\\\": [\\\"success_rate\\\", \\\"verification_rate\\\", \\\"cost_reduction\\\"], \\\"gpu_hours_estimate\\\": 24}, {\\\"id\\\": \\\"plan_014\\\", \\\"title\\\": \\\"ScienceWorld transfer (episode-level advantage)\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"D\\\", \\\"priority\\\": \\\"P2\\\", \\\"depends_on\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\", \\\"description\\\": \\\"Validate episode-level vs step-independent on ScienceWorld. Different env, similar multi-turn structure. Addresses single-env concern.\\\\n\\\", \\\"hypothesis\\\": \\\"Episode-level advantage generalizes: ≥2x improvement over step-independent.\\\\n\\\", \\\"metrics\\\": [\\\"success_rate_episode\\\", \\\"success_rate_step_independent\\\"], \\\"gpu_hours_estimate\\\": 72}, {\\\"id\\\": \\\"plan_015\\\", \\\"title\\\": \\\"7B model scaling verification\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"D\\\", \\\"priority\\\": \\\"P2\\\", \\\"depends_on\\\": [\\\"plan_002\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\", \\\"description\\\": \\\"Episode-level vs step-independent on Qwen3-7B. Addresses model size concern. May need cloud GPU.\\\\n\\\", \\\"hypothesis\\\": \\\"Episode-level advantage holds at 7B scale.\\\\n\\\", \\\"metrics\\\": [\\\"success_rate_episode_7B\\\", \\\"success_rate_step_independent_7B\\\"], \\\"gpu_hours_estimate\\\": 192, \\\"notes\\\": \\\"May require cloud GPU rental (4x A100 or 2x H100)\\\"}, {\\\"id\\\": \\\"plan_016\\\", \\\"title\\\": \\\"Per-task-type breakdown analysis\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"D\\\", \\\"priority\\\": \\\"P2\\\", \\\"depends_on\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\", \\\"description\\\": \\\"Breakdown by ALFWorld task type (pick, clean, heat, cool, examine, pick_two). Shows within-environment diversity.\\\\n\\\", \\\"hypothesis\\\": \\\"Episode-level advantage varies by task complexity; longer tasks benefit more.\\\\n\\\", \\\"metrics\\\": [\\\"per_task_success\\\", \\\"episode_length_correlation\\\"], \\\"gpu_hours_estimate\\\": 2}, {\\\"id\\\": \\\"plan_017\\\", \\\"title\\\": \\\"Discount factor γ-sweep (dual mechanism separation)\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"A+\\\", \\\"priority\\\": \\\"P0\\\", \\\"depends_on\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": \\\"gsweep_g050_h5_seed1\\\", \\\"status\\\": \\\"RUNNING\\\", \\\"description\\\": \\\"Sweep discount factor γ ∈ {0.5, 0.8, 0.95, 1.0} with fixed h=5, step_independent mode, 15 steps each. Separates two mechanisms: (1) magnitude decay (γ^k attenuation) vs (2) sign misattribution (advantage sign determined by episode outcome). γ=1.0 eliminates magnitude decay; if collapse persists, sign misattribution is the root cause. KEY paper evidence for dual mechanism separation.\\\\n\\\", \\\"hypothesis\\\": \\\"γ=1.0 eliminates magnitude decay but step_independent still collapses, proving sign misattribution is the root cause rather than γ^k decay. Lower γ values show accelerated collapse due to compounded magnitude attenuation.\\\\n\\\", \\\"metrics\\\": [\\\"success_rate_per_gamma\\\", \\\"collapse_onset_step\\\", \\\"magnitude_decay_vs_sign_effect\\\"], \\\"gpu_hours_estimate\\\": 40, \\\"notes\\\": \\\"4 γ values × 15 steps. γ=0.5 running (gsweep_g050_h5_seed1). Remaining: gsweep_g080_h5_seed1, gsweep_g095_h5_seed1, gsweep_g100_h5_seed1 pre-registered.\\\"}, {\\\"id\\\": \\\"plan_018\\\", \\\"title\\\": \\\"Factorial mechanism separation: truncated-obs + episode-level advantage\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"A+\\\", \\\"priority\\\": \\\"P0\\\", \\\"depends_on\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\", \\\"description\\\": \\\"CRITICAL experiment requested by ALL 3 Dream review tiers. 2×2 factorial design to isolate information loss from sign misattribution. Configuration: step_independent GENERATION (h=2 observation window, model only sees 2 steps of history during rollout) BUT episode-level ADVANTAGE computation (all windows in same episode share one GRPO advantage = normalized episode return). This means the model still has limited observation (information loss present) but credit assignment is correct (sign misattribution eliminated). Outcome interpretation: (A) if still collapses → information loss is dominant (model cannot plan with limited visibility regardless of credit quality); (B) if succeeds → sign misattribution was dominant (correct credit enables learning even with limited observation). May require small code modification in RAGEN: compute_step_discounted_returns() needs a mode that assigns episode return to all windows uniformly instead of per-window γ-discounted returns.\\\", \\\"hypothesis\\\": \\\"Truncated observation (h=2) + episode-level advantage isolates the two mechanisms. If collapse persists, information loss is primary. If performance improves significantly over standard step_independent h=2 (currently 0%), sign misattribution is primary.\\\", \\\"metrics\\\": [\\\"success_rate\\\", \\\"collapse_onset_step\\\", \\\"comparison_vs_step_independent_h2\\\", \\\"comparison_vs_episode_level_full\\\"], \\\"gpu_hours_estimate\\\": 24, \\\"notes\\\": \\\"Dream consensus: this is THE most critical missing experiment. All 3 tiers (best/median/worst) independently flagged the absence of factorial mechanism separation as a critical weakness. Also serves to resolve the r=0.640 diagnostic question.\\\"}, {\\\"id\\\": \\\"plan_019\\\", \\\"title\\\": \\\"Evaluation set expansion (32→134 tasks)\\\", \\\"claim\\\": \\\"Claim 1, Claim 2, Claim 3\\\", \\\"phase\\\": \\\"A+\\\", \\\"priority\\\": \\\"P0\\\", \\\"depends_on\\\": [], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\", \\\"description\\\": \\\"Expand ALFWorld validation set from 32 to 134 tasks (standard full split). Dream worst-case flagged 32 tasks as critically small (3.125% per episode, many comparisons are <2 episode difference). Standard ALFWorld evaluation uses 134 tasks. This is a config/infrastructure change affecting all future experiments.\\\", \\\"hypothesis\\\": \\\"Larger evaluation set provides statistical power for ≤3pp differences. Current results (e.g. 25% = 8/32 tasks) become more precise.\\\", \\\"metrics\\\": [\\\"statistical_power\\\", \\\"confidence_interval_width\\\"], \\\"gpu_hours_estimate\\\": 0, \\\"notes\\\": \\\"Infrastructure change. Need to verify RAGEN supports 134-task eval split and identify the correct task list file. May require modifying val config.\\\"}], \\\"total\\\": 21}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"plan_001\", \"title\": \"Episode-level GRPO convergence (exp029 continuation)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [], \"registry_id\": \"exp029_episode_level\", \"status\": \"DONE\", \"description\": \"Episode-level GRPO (context_window_mode: full) on Qwen3-1.7B + ALFWorld. 50 steps, dual-GPU. MVP passed at step 5 (val=25%, 2x baseline 12.5%). Continue to convergence (step 20+) with tatsu parallel patch for 4x val speedup.\\n\", \"hypothesis\": \"Episode-level training enables stable RL for multi-turn agents, reaching ≥40% success by convergence.\\n\", \"metrics\": {\"current_step\": 15, \"total_steps\": 100, \"progress_pct\": 15, \"step5_val_success\": 0.25, \"step10_val_success\": 0.25, \"step15_val_success\": 0.28125, \"step15_val_pass_at_1\": 0.28125, \"step15_val_pass_at_2\": 0.469, \"step15_val_pass_at_4\": 0.726, \"step15_val_pass_at_8\": 0.929, \"step15_val_pass_at_16\": 0.996, \"step15_val_action_is_valid\": 0.5452, \"step15_val_action_is_effective\": 0.7672, \"step15_val_manager_invalid_action\": 0.2328, \"step15_train_success\": 0.4375, \"step15_train_pass_at_8\": 0.75, \"elapsed_hours\": 7.35, \"eta_completion\": \"2026-05-19T03:00:00Z\"}, \"gpu_hours_estimate\": 48, \"framing_ref\": \"claim_1\", \"conclusion\": \"success\"}, {\"id\": \"plan_002\", \"title\": \"Context window h-sweep ablation (3 seeds each)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_001\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Sweep context_window h={2, 5, 10, 20, full} on same GRPO config. Config: context_window_mode=step_independent + step_independent_history_length={h} (h=full uses context_window_mode=full). 15 steps per run, 3 seeds each. KEY paper figure: shows credit assignment cliff is robust across seeds. Addresses Reviewer Concern #1 + Dream C3 (statistical power).\\n\", \"hypothesis\": \"Performance degrades monotonically with smaller h, with sharp cliff below h=10. Cliff is robust across seeds (not single-run artifact).\\n\", \"metrics\": [\"success_rate_per_h\", \"convergence_speed\", \"collapse_rate\"], \"gpu_hours_estimate\": 90, \"notes\": \"5 h-values × 15 steps × 3 seeds. h=2 已有 exp028c 作 1 seed。\"}, {\"id\": \"plan_003\", \"title\": \"Multi-seed replication (5 seeds total)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_001\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"4 additional seeds for exp029 episode-level config (5 total incl original). Report mean ± std. Dream C3 要求 5-8 seeds for credible CI.\\n\", \"hypothesis\": \"Episode-level success rate is reproducible (std < 5pp across 5 seeds).\\n\", \"metrics\": [\"success_rate_mean\", \"success_rate_std\"], \"gpu_hours_estimate\": 192}, {\"id\": \"plan_003b\", \"title\": \"REINFORCE++ baseline comparison (fallback from GAE)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_001\"], \"registry_id\": \"gae_baseline_seed1\", \"status\": \"RUNNING\", \"description\": \"Per-token credit baseline using REINFORCE++ (running-mean baseline, adv_estimator=reinforce_plus_plus_baseline). Fallback from GAE due to TRL 1.1.0 removing AutoModelForCausalLMWithValueHead (critic head unavailable, D060). Provides per-token advantage normalization vs episode-level GRPO uniform advantage. If REINFORCE++ >> episode-level → per-token normalization adds value even without critic. If comparable → episode-level info is the key factor, not credit granularity.\", \"hypothesis\": \"REINFORCE++ provides modest improvement over episode-level GRPO due to per-token advantage normalization, but both far exceed step-independent.\", \"metrics\": {\"wandb_run_id\": \"dt79qyd9\", \"pid\": 40267, \"val_step0\": {\"success\": 0.0625, \"action_is_valid\": 0.7796}, \"server\": \"westd-47453\", \"gpu\": \"cuda:0,1\", \"method\": \"reinforce_plus_plus\", \"fallback_reason\": \"TRL 1.1.0 removed AutoModelForCausalLMWithValueHead\"}, \"gpu_hours_estimate\": 60, \"notes\": \"D060: GAE infeasible (TRL 1.1.0 removed ValueHead). Using REINFORCE++ as practical per-token baseline. Running on westd cuda:0,1.\"}, {\"id\": \"plan_003c\", \"title\": \"Episode-level + valid_action_bonus (plateau-breaker, D056)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_001\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Derived from exp013f negative (D056): dense reward gaming is step_independent-specific. Episode-level training prevents per-step reward gaming because model optimizes full trajectory total reward. Add valid_action_bonus=0.05 to episode-level config. Test if this safely improves action_is_valid (currently 55.9%) without gaming, and whether it breaks the 23-25% success plateau. Run during h-sweep batch as h=full variant.\\n\", \"hypothesis\": \"Episode-level + small valid_action_bonus safely improves action_is_valid (target ≥80%) without reward gaming, and success rate exceeds 30% (breaking exp029 plateau). Gaming only occurs under step_independent.\\n\", \"metrics\": [\"success_rate\", \"action_is_valid\", \"valid_bonus_vs_task_reward_ratio\"], \"gpu_hours_estimate\": 24, \"parent\": \"exp013f\", \"notes\": \"Parent derivation: exp013f gaming → D056 insight → episode-level safety hypothesis\"}, {\"id\": \"plan_004\", \"title\": \"Credit assignment mechanism empirical verification (paper Figure 2)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_002\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Empirically verify \\\"Advantage Sign Misattribution\\\" mechanism (D058, Reviewer-refined): (a) Per-window advantage logging from h=2 seed 2: record (episode_id, window_position,\\n    raw_return, advantage_sign, advantage_magnitude, episode_outcome, local_action_quality_proxy)\\n(b) Key analysis: advantage sign vs episode outcome correlation (should be ~1.0),\\n    advantage sign vs local action quality correlation (should be ~0, proving misattribution)\\n(c) Contrast success vs failure episodes: success → all positive (including bad windows),\\n    failure → all negative (including good windows)\\n(d) γ^k magnitude decay: advantage magnitude vs position in success episodes (e) Episode-level control: all tokens share one advantage (no position/sign variance) Data source: LOG_PER_SAMPLE_ADV=1 on h=2 seed 2 (10 lines logging code, zero GPU overhead). Code reference: agent_trainer.py:271-340, core_algos.py:194-246.\\n\", \"hypothesis\": \"Per-window advantage in step_independent shows: (1) advantage sign is determined by episode success/failure (correlation > 0.95), (2) advantage sign is NOT correlated with window-local action quality (r < 0.1), proving sign misattribution, (3) magnitude decays as γ^k from terminal position, (4) episode-level shows uniform advantage with no sign/magnitude position effects.\\n\", \"metrics\": [\"sign_vs_outcome_correlation\", \"sign_vs_local_quality_correlation\", \"magnitude_position_decay_r2\", \"episode_level_variance\"], \"gpu_hours_estimate\": 4, \"notes\": \"D058+Reviewer: 'sign misattribution' is the core mechanism (direction error > magnitude error). γ^k decay is secondary.\"}, {\"id\": \"plan_005\", \"title\": \"Action-change statistics from always-on runs\", \"claim\": \"Claim 2\", \"phase\": \"B\", \"priority\": \"P1\", \"depends_on\": [\"plan_001\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Collect action-change statistics from exp029 trained checkpoints: (1) fraction of verifications triggering action change, (2) correlation between action change and episode success, (3) per-task-type breakdown. Informs reward design and provides empirical grounding.\\n\", \"hypothesis\": \"Most verifications are confirmatory (>60% no action change). Action change positively correlates with episode success (r > 0.2).\\n\", \"metrics\": [\"action_change_rate\", \"correlation\", \"confirmatory_rate\"], \"gpu_hours_estimate\": 4}, {\"id\": \"plan_006\", \"title\": \"Selective verification implementation\", \"claim\": \"Claim 2\", \"phase\": \"B\", \"priority\": \"P1\", \"depends_on\": [\"plan_005\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Implement binary verify/skip decision in RAGEN framework. Agent outputs special token (verify/skip) before each step. Reward = task_success + alpha * action_change_when_verified - beta * verification_cost. Code-only, no GPU.\\n\", \"hypothesis\": null, \"metrics\": [], \"gpu_hours_estimate\": 0}, {\"id\": \"plan_007\", \"title\": \"B-IAVR selective verification training\", \"claim\": \"Claim 2, Claim 3\", \"phase\": \"B\", \"priority\": \"P1\", \"depends_on\": [\"plan_006\", \"plan_001\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Train selective verification policy via episode-level GRPO. Initialize from best exp029 checkpoint. Action-change reward encourages verification only when informative.\\n\", \"hypothesis\": \"B-IAVR achieves verification rate ↓40%+ vs always-on while maintaining success within 5pp of baseline.\\n\", \"metrics\": [\"success_rate\", \"verification_rate\", \"cost_reduction\"], \"gpu_hours_estimate\": 96}, {\"id\": \"plan_008\", \"title\": \"Selective verification full comparison\", \"claim\": \"Claim 3\", \"phase\": \"B\", \"priority\": \"P1\", \"depends_on\": [\"plan_007\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Compare on same val set: always-on / B-IAVR / no-verify / random-p / confidence-threshold. Report success rate, verification rate, total inference tokens, per-task breakdown.\\n\", \"hypothesis\": \"B-IAVR dominates Pareto frontier (best success-to-cost ratio).\\n\", \"metrics\": [\"success_rate\", \"verification_rate\", \"cost_reduction\", \"total_tokens\"], \"gpu_hours_estimate\": 8}, {\"id\": \"plan_009\", \"title\": \"No-verify ablation\", \"claim\": \"Claim 3\", \"phase\": \"C\", \"priority\": \"P1\", \"depends_on\": [\"plan_001\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Episode-level GRPO without any self-verification. Lower bound: demonstrates verification value.\\n\", \"hypothesis\": \"Removing verification drops success by ≥10pp vs always-on.\\n\", \"metrics\": [\"success_rate\", \"action_is_valid\"], \"gpu_hours_estimate\": 48}, {\"id\": \"plan_010\", \"title\": \"Entropy-controlled action-change analysis\", \"claim\": \"Claim 2\", \"phase\": \"C\", \"priority\": \"P1\", \"depends_on\": [\"plan_005\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Defense for \\\"action change = noise\\\" concern. Stratify by policy entropy; test if action-change-success correlation holds within each stratum.\\n\", \"hypothesis\": \"Partial correlation remains significant (p < 0.05) after controlling entropy.\\n\", \"metrics\": [\"partial_correlation\", \"p_value\"], \"gpu_hours_estimate\": 4}, {\"id\": \"plan_011\", \"title\": \"Causal intervention: random vs verification-triggered changes\", \"claim\": \"Claim 2\", \"phase\": \"C\", \"priority\": \"P1\", \"depends_on\": [\"plan_001\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Inject random action changes at same rate as verification-triggered. Compare task success. If verification-triggered >> random, causal evidence.\\n\", \"hypothesis\": \"Verification-triggered changes yield ≥10pp higher success than random.\\n\", \"metrics\": [\"success_rate_triggered\", \"success_rate_random\", \"delta\"], \"gpu_hours_estimate\": 8}, {\"id\": \"plan_012\", \"title\": \"Reward signal ablation (action-change vs alternatives)\", \"claim\": \"Claim 2\", \"phase\": \"C\", \"priority\": \"P1\", \"depends_on\": [\"plan_007\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Train B-IAVR with alternative rewards: (a) action-change (ours), (b) random trigger reward, (c) confidence-based reward. Demonstrates action-change is the best signal.\\n\", \"hypothesis\": \"Action-change reward produces best cost-performance tradeoff.\\n\", \"metrics\": [\"success_rate\", \"verification_rate\", \"cost_reduction\"], \"gpu_hours_estimate\": 192}, {\"id\": \"plan_013\", \"title\": \"ARES reproduction + comparison\", \"claim\": \"Claim 3\", \"phase\": \"C\", \"priority\": \"P1\", \"depends_on\": [\"plan_007\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Reproduce ARES SFT router on ALFWorld (same model). Head-to-head with B-IAVR on identical eval episodes. Addresses \\\"ARES differentiation\\\" concern.\\n\", \"hypothesis\": \"B-IAVR achieves ≥10pp better cost reduction than ARES at matched success.\\n\", \"metrics\": [\"success_rate\", \"verification_rate\", \"cost_reduction\"], \"gpu_hours_estimate\": 24}, {\"id\": \"plan_014\", \"title\": \"ScienceWorld transfer (episode-level advantage)\", \"claim\": \"Claim 1\", \"phase\": \"D\", \"priority\": \"P2\", \"depends_on\": [\"plan_001\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Validate episode-level vs step-independent on ScienceWorld. Different env, similar multi-turn structure. Addresses single-env concern.\\n\", \"hypothesis\": \"Episode-level advantage generalizes: ≥2x improvement over step-independent.\\n\", \"metrics\": [\"success_rate_episode\", \"success_rate_step_independent\"], \"gpu_hours_estimate\": 72}, {\"id\": \"plan_015\", \"title\": \"7B model scaling verification\", \"claim\": \"Claim 1\", \"phase\": \"D\", \"priority\": \"P2\", \"depends_on\": [\"plan_002\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Episode-level vs step-independent on Qwen3-7B. Addresses model size concern. May need cloud GPU.\\n\", \"hypothesis\": \"Episode-level advantage holds at 7B scale.\\n\", \"metrics\": [\"success_rate_episode_7B\", \"success_rate_step_independent_7B\"], \"gpu_hours_estimate\": 192, \"notes\": \"May require cloud GPU rental (4x A100 or 2x H100)\"}, {\"id\": \"plan_016\", \"title\": \"Per-task-type breakdown analysis\", \"claim\": \"Claim 1\", \"phase\": \"D\", \"priority\": \"P2\", \"depends_on\": [\"plan_001\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Breakdown by ALFWorld task type (pick, clean, heat, cool, examine, pick_two). Shows within-environment diversity.\\n\", \"hypothesis\": \"Episode-level advantage varies by task complexity; longer tasks benefit more.\\n\", \"metrics\": [\"per_task_success\", \"episode_length_correlation\"], \"gpu_hours_estimate\": 2}, {\"id\": \"plan_017\", \"title\": \"Discount factor γ-sweep (dual mechanism separation)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_001\"], \"registry_id\": \"gsweep_g050_h5_seed1\", \"status\": \"RUNNING\", \"description\": \"Sweep discount factor γ ∈ {0.5, 0.8, 0.95, 1.0} with fixed h=5, step_independent mode, 15 steps each. Separates two mechanisms: (1) magnitude decay (γ^k attenuation) vs (2) sign misattribution (advantage sign determined by episode outcome). γ=1.0 eliminates magnitude decay; if collapse persists, sign misattribution is the root cause. KEY paper evidence for dual mechanism separation.\\n\", \"hypothesis\": \"γ=1.0 eliminates magnitude decay but step_independent still collapses, proving sign misattribution is the root cause rather than γ^k decay. Lower γ values show accelerated collapse due to compounded magnitude attenuation.\\n\", \"metrics\": [\"success_rate_per_gamma\", \"collapse_onset_step\", \"magnitude_decay_vs_sign_effect\"], \"gpu_hours_estimate\": 40, \"notes\": \"4 γ values × 15 steps. γ=0.5 running (gsweep_g050_h5_seed1). Remaining: gsweep_g080_h5_seed1, gsweep_g095_h5_seed1, gsweep_g100_h5_seed1 pre-registered.\"}, {\"id\": \"plan_018\", \"title\": \"Factorial mechanism separation: truncated-obs + episode-level advantage\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_001\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"CRITICAL experiment requested by ALL 3 Dream review tiers. 2×2 factorial design to isolate information loss from sign misattribution. Configuration: step_independent GENERATION (h=2 observation window, model only sees 2 steps of history during rollout) BUT episode-level ADVANTAGE computation (all windows in same episode share one GRPO advantage = normalized episode return). This means the model still has limited observation (information loss present) but credit assignment is correct (sign misattribution eliminated). Outcome interpretation: (A) if still collapses → information loss is dominant (model cannot plan with limited visibility regardless of credit quality); (B) if succeeds → sign misattribution was dominant (correct credit enables learning even with limited observation). May require small code modification in RAGEN: compute_step_discounted_returns() needs a mode that assigns episode return to all windows uniformly instead of per-window γ-discounted returns.\", \"hypothesis\": \"Truncated observation (h=2) + episode-level advantage isolates the two mechanisms. If collapse persists, information loss is primary. If performance improves significantly over standard step_independent h=2 (currently 0%), sign misattribution is primary.\", \"metrics\": [\"success_rate\", \"collapse_onset_step\", \"comparison_vs_step_independent_h2\", \"comparison_vs_episode_level_full\"], \"gpu_hours_estimate\": 24, \"notes\": \"Dream consensus: this is THE most critical missing experiment. All 3 tiers (best/median/worst) independently flagged the absence of factorial mechanism separation as a critical weakness. Also serves to resolve the r=0.640 diagnostic question.\"}, {\"id\": \"plan_019\", \"title\": \"Evaluation set expansion (32→134 tasks)\", \"claim\": \"Claim 1, Claim 2, Claim 3\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Expand ALFWorld validation set from 32 to 134 tasks (standard full split). Dream worst-case flagged 32 tasks as critically small (3.125% per episode, many comparisons are <2 episode difference). Standard ALFWorld evaluation uses 134 tasks. This is a config/infrastructure change affecting all future experiments.\", \"hypothesis\": \"Larger evaluation set provides statistical power for ≤3pp differences. Current results (e.g. 25% = 8/32 tasks) become more precise.\", \"metrics\": [\"statistical_power\", \"confidence_interval_width\"], \"gpu_hours_estimate\": 0, \"notes\": \"Infrastructure change. Need to verify RAGEN supports 134-task eval split and identify the correct task list file. May require modifying val config.\"}], \"total\": 21}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "6fe84033-42f0-4434-9a0a-e07ac953a4db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-17T19:07:05.958Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01PyAxv3yGhGh3noyAPWfnPy`</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "file": "memory.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5c69e656-8f0b-4701-8106-64eaced34fd5",
+  "isSidechain": false,
+  "requestId": "req_011Cb8fWv5MiJ2E7LjQjK8kS",
+  "type": "assistant",
+  "uuid": "1a08df35-88a5-431e-89bc-311264bf612a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QWZA8BEVABsqhxEySoeDxT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 821,
+      "cache_read_input_tokens": 54241,
+      "output_tokens": 648,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 821,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 648,
+          "cache_read_input_tokens": 54241,
+          "cache_creation_input_tokens": 821,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 821
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-17T19:07:05.967Z_
+
+<details><summary>↩ Tool result · `toolu_01PyAxv3yGhGh3noyAPWfnPy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/memory.md\", \"content\": \"# Project Memory — cost-verify-agent-rl\\n\\n> ⚠️ 2026-05-17 重建：Worker deep-read-turn-ppo-v2 意外覆写了 memory.md，原始内容从 artifacts 重建。\\n> 文献调研内容已移至 `artifacts/_project/report/memory.md`（artifact ID: art_20260517_fd0802）。\\n\\n---\\n\\n## D064: Eval split 统一为 valid_unseen 134 tasks（2026-05-17）\\n\\n所有未来实验统一使用 ALFWorld valid_unseen (134 tasks, OOD) 对齐文献标准。Config 改动：`eval_dataset: \\\"eval_out_of_distribution\\\"`, `env_groups: 134`。已完成实验内部相对比较仍有效（同 eval 下对比）。exp029 需在 best checkpoint (step 15) 上 re-eval valid_unseen(134)。\\n\\n## D063: Sign misattribution 机制确认（2026-05-17）\\n\\nr(adv, step_return)=0.640 是分析伪影（advantage 是 step_return 的 z-score 归一化，同源变量）。Reviewer 核实 800 条 ADV log 发现 Type C windows (4%): 失败 episode + 零 penalty → positive advantage，是 sign misattribution 的直接证据。结论：sign misattribution 成立但机制比 binary 假设更复杂。\\n\\n## plan_004 分析陷阱：advantage vs step_return 同源性（2026-05-17）\\n\\nanalyze_advantage_log.py 中 r(advantage, step_return) = 0.640 看似反驳 sign misattribution，实为分析伪影。根因：\\n- **advantage 就是 step_return 的 z-score 归一化**（`compute_grpo_step_advantage` 中 `adv = (return - mean) / std`），两者在同一 group 内 r=1.0\\n- 跨 group 池化 + response_mask 平均化使 r 降到 0.640\\n- invalid_action_penalty=-0.1 使 failed episode 内有 per-window variation，但只反映 format errors 非 task progress\\n\\n**教训**：分析 RL 训练信号时，必须确认被比较的两个变量是否同源。advantage = f(return) 时，r(advantage, return) 没有诊断意义。正确的 local quality proxy 应独立于训练 reward（如 oracle action match rate）。\\n\\n## westd-47453 RTX PRO 6000 环境约束（2026-05-17）\\n\\nwestd-47453 的 RTX PRO 6000 GPU 在 torch._inductor 编译路径下会触发 `AssertionError: duplicate template name`（vLLM import chain）。bjb1-17606 的 A6000 不触发。两台服务器 PyTorch/vLLM 版本完全一致（torch 2.10.0+cu128, vLLM 0.18.1），是架构特有的 inductor kernel 模板冲突。\\n\\n**硬规则**: westd-47453 上所有实验启动命令必须包含 `export TORCH_COMPILE_DISABLE=1`。\\n\\n## plan_018 代码评估结论（2026-05-17）\\n\\n\\\"step_independent generation + episode-level advantage\\\" 仅需 ~20-25 行改动：\\n- `compute_episode_returns()` 已存在于 step_rewards.py:88\\n- 在 agent_trainer.py 的 `compute_advantage()` 加 `advantage_mode` 分支\\n- Config: `algorithm.advantage_mode: episode_level`\\n- 向后兼容，tensor shape 不变\\n\\n## plan_019 eval 扩展结论（2026-05-17）\\n\\n纯 config 改动。valid_seen=140 tasks, valid_unseen=134 tasks。改 `eval_dataset` + `env_groups` 即可。exp028c 已验证 env_groups=140 可行。耗时 ~4.2x 线性增长。\\n\\n## Citation Audit 摘要（2026-05-15）\\n\\nliterature_map.yaml 28 篇论文验证结果（详见 `artifacts/citation_audit.md` + `artifacts/citation_audit_report.md`）：\\n\\n**严重错误（已修正）**:\\n- AgentPRM: arXiv ID 错误（2502.10325 → 2511.08325），作者应为 Xi et al.\\n- Huang2024 Self-Correction Survey: 作者应为 Kamoi et al.\\n- DAPO: 标题应为 \\\"An Open-Source LLM Reinforcement Learning System at Scale\\\"\\n\\n**中等错误**:\\n- CFGM: 已发表于 EMNLP 2025（非 arXiv 2026），arXiv ID: 2508.15305\\n- WebAgent-R1: citation key pei2025 应为 wei2025\\n\\n## Adaptive KL 分析（2026-05-15）\\n\\nverl 框架有两套独立 KL 机制（详见 `artifacts/docs/adaptive_kl_assessment.md`）：\\n\\n| 机制 | 当前状态 | Adaptive 支持 |\\n|------|---------|--------------|\\n| Reward-level KL (`use_kl_in_reward`) | 未启用 | **已支持** — AdaptiveKLController 已实现 |\\n| Loss-level KL (`use_kl_loss`) | 启用（coef=0.005） | 不支持（静态 float） |\\n\\n## Recipe Gap 根因分析（2026-05-15）\\n\\nexp027 (10.16%) vs GiGPO/Self-Guide (72.8%) 的 62pp gap（详见 `artifacts/docs/recipe_gap_analysis.md`）：\\n\\n**已排除**:\\n1. ~~SFT 起点反效果~~（D044/D047 否定）\\n2. ~~Binary reward 零梯度 / penalty 缺失~~\\n\\n**唯一未排除**: Recipe 参数组合（mini-batch, 训练步数, LR, rollout 多样性）\\n\\n## Ray Raylet 失败记录\\n\\n- exp027: Step 4 后 Ray raylet 被 SIGKILL（可能 OOM）\\n- exp013e: val→train 过渡时 vLLM 内存峰值崩溃\\n- exp013d: object_store_memory 环境变量未生效，需 Hydra config override\\n\\n## WANDB + Cron 交互（2026-05-15）\\n\\nWANDB_MODE=disabled 导致 cron 自动判定实验失败。**规则**: 所有实验必须启用 W&B。\\n\\n## 竞品实验参考（2026-05-17 待更新）\\n\\n详细调研见 `artifacts/_project/report/memory.md`（art_20260517_fd0802）。\\n- **Turn-PPO** (2512.17008): 最直接竞品\\n- **GiGPO** (2505.10978): Anchor State Grouping\\n- **GAGPO** (2605.13217): Grouped Value Proxy（待验证）\\n- **HiPER** (2602.16165): Hierarchical Advantage Estimation\\n\", \"total_chars\": 3796, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1a08df35-88a5-431e-89bc-311264bf612a",
+  "isSidechain": false,
+  "promptId": "71c1d71a-6877-4d97-89ab-bc2334ced39e",
+  "type": "user",
+  "uuid": "8a500f44-aaeb-44ba-8310-dec340358065",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/memory.md\\\", \\\"content\\\": \\\"# Project Memory — cost-verify-agent-rl\\\\n\\\\n> ⚠️ 2026-05-17 重建：Worker deep-read-turn-ppo-v2 意外覆写了 memory.md，原始内容从 artifacts 重建。\\\\n> 文献调研内容已移至 `artifacts/_project/report/memory.md`（artifact ID: art_20260517_fd0802）。\\\\n\\\\n---\\\\n\\\\n## D064: Eval split 统一为 valid_unseen 134 tasks（2026-05-17）\\\\n\\\\n所有未来实验统一使用 ALFWorld valid_unseen (134 tasks, OOD) 对齐文献标准。Config 改动：`eval_dataset: \\\\\\\"eval_out_of_distribution\\\\\\\"`, `env_groups: 134`。已完成实验内部相对比较仍有效（同 eval 下对比）。exp029 需在 best checkpoint (step 15) 上 re-eval valid_unseen(134)。\\\\n\\\\n## D063: Sign misattribution 机制确认（2026-05-17）\\\\n\\\\nr(adv, step_return)=0.640 是分析伪影（advantage 是 step_return 的 z-score 归一化，同源变量）。Reviewer 核实 800 条 ADV log 发现 Type C windows (4%): 失败 episode + 零 penalty → positive advantage，是 sign misattribution 的直接证据。结论：sign misattribution 成立但机制比 binary 假设更复杂。\\\\n\\\\n## plan_004 分析陷阱：advantage vs step_return 同源性（2026-05-17）\\\\n\\\\nanalyze_advantage_log.py 中 r(advantage, step_return) = 0.640 看似反驳 sign misattribution，实为分析伪影。根因：\\\\n- **advantage 就是 step_return 的 z-score 归一化**（`compute_grpo_step_advantage` 中 `adv = (return - mean) / std`），两者在同一 group 内 r=1.0\\\\n- 跨 group 池化 + response_mask 平均化使 r 降到 0.640\\\\n- invalid_action_penalty=-0.1 使 failed episode 内有 per-window variation，但只反映 format errors 非 task progress\\\\n\\\\n**教训**：分析 RL 训练信号时，必须确认被比较的两个变量是否同源。advantage = f(return) 时，r(advantage, return) 没有诊断意义。正确的 local quality proxy 应独立于训练 reward（如 oracle action match rate）。\\\\n\\\\n## westd-47453 RTX PRO 6000 环境约束（2026-05-17）\\\\n\\\\nwestd-47453 的 RTX PRO 6000 GPU 在 torch._inductor 编译路径下会触发 `AssertionError: duplicate template name`（vLLM import chain）。bjb1-17606 的 A6000 不触发。两台服务器 PyTorch/vLLM 版本完全一致（torch 2.10.0+cu128, vLLM 0.18.1），是架构特有的 inductor kernel 模板冲突。\\\\n\\\\n**硬规则**: westd-47453 上所有实验启动命令必须包含 `export TORCH_COMPILE_DISABLE=1`。\\\\n\\\\n## plan_018 代码评估结论（2026-05-17）\\\\n\\\\n\\\\\\\"step_independent generation + episode-level advantage\\\\\\\" 仅需 ~20-25 行改动：\\\\n- `compute_episode_returns()` 已存在于 step_rewards.py:88\\\\n- 在 agent_trainer.py 的 `compute_advantage()` 加 `advantage_mode` 分支\\\\n- Config: `algorithm.advantage_mode: episode_level`\\\\n- 向后兼容，tensor shape 不变\\\\n\\\\n## plan_019 eval 扩展结论（2026-05-17）\\\\n\\\\n纯 config 改动。valid_seen=140 tasks, valid_unseen=134 tasks。改 `eval_dataset` + `env_groups` 即可。exp028c 已验证 env_groups=140 可行。耗时 ~4.2x 线性增长。\\\\n\\\\n## Citation Audit 摘要（2026-05-15）\\\\n\\\\nliterature_map.yaml 28 篇论文验证结果（详见 `artifacts/citation_audit.md` + `artifacts/citation_audit_report.md`）：\\\\n\\\\n**严重错误（已修正）**:\\\\n- AgentPRM: arXiv ID 错误（2502.10325 → 2511.08325），作者应为 Xi et al.\\\\n- Huang2024 Self-Correction Survey: 作者应为 Kamoi et al.\\\\n- DAPO: 标题应为 \\\\\\\"An Open-Source LLM Reinforcement Learning System at Scale\\\\\\\"\\\\n\\\\n**中等错误**:\\\\n- CFGM: 已发表于 EMNLP 2025（非 arXiv 2026），arXiv ID: 2508.15305\\\\n- WebAgent-R1: citation key pei2025 应为 wei2025\\\\n\\\\n## Adaptive KL 分析（2026-05-15）\\\\n\\\\nverl 框架有两套独立 KL 机制（详见 `artifacts/docs/adaptive_kl_assessment.md`）：\\\\n\\\\n| 机制 | 当前状态 | Adaptive 支持 |\\\\n|------|---------|--------------|\\\\n| Reward-level KL (`use_kl_in_reward`) | 未启用 | **已支持** — AdaptiveKLController 已实现 |\\\\n| Loss-level KL (`use_kl_loss`) | 启用（coef=0.005） | 不支持（静态 float） |\\\\n\\\\n## Recipe Gap 根因分析（2026-05-15）\\\\n\\\\nexp027 (10.16%) vs GiGPO/Self-Guide (72.8%) 的 62pp gap（详见 `artifacts/docs/recipe_gap_analysis.md`）：\\\\n\\\\n**已排除**:\\\\n1. ~~SFT 起点反效果~~（D044/D047 否定）\\\\n2. ~~Binary reward 零梯度 / penalty 缺失~~\\\\n\\\\n**唯一未排除**: Recipe 参数组合（mini-batch, 训练步数, LR, rollout 多样性）\\\\n\\\\n## Ray Raylet 失败记录\\\\n\\\\n- exp027: Step 4 后 Ray raylet 被 SIGKILL（可能 OOM）\\\\n- exp013e: val→train 过渡时 vLLM 内存峰值崩溃\\\\n- exp013d: object_store_memory 环境变量未生效，需 Hydra config override\\\\n\\\\n## WANDB + Cron 交互（2026-05-15）\\\\n\\\\nWANDB_MODE=disabled 导致 cron 自动判定实验失败。**规则**: 所有实验必须启用 W&B。\\\\n\\\\n## 竞品实验参考（2026-05-17 待更新）\\\\n\\\\n详细调研见 `artifacts/_project/report/memory.md`（art_20260517_fd0802）。\\\\n- **Turn-PPO** (2512.17008): 最直接竞品\\\\n- **GiGPO** (2505.10978): Anchor State Grouping\\\\n- **GAGPO** (2605.13217): Grouped Value Proxy（待验证）\\\\n- **HiPER** (2602.16165): Hierarchical Advantage Estimation\\\\n\\\", \\\"total_chars\\\": 3796, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/memory.md\", \"content\": \"# Project Memory — cost-verify-agent-rl\\n\\n> ⚠️ 2026-05-17 重建：Worker deep-read-turn-ppo-v2 意外覆写了 memory.md，原始内容从 artifacts 重建。\\n> 文献调研内容已移至 `artifacts/_project/report/memory.md`（artifact ID: art_20260517_fd0802）。\\n\\n---\\n\\n## D064: Eval split 统一为 valid_unseen 134 tasks（2026-05-17）\\n\\n所有未来实验统一使用 ALFWorld valid_unseen (134 tasks, OOD) 对齐文献标准。Config 改动：`eval_dataset: \\\"eval_out_of_distribution\\\"`, `env_groups: 134`。已完成实验内部相对比较仍有效（同 eval 下对比）。exp029 需在 best checkpoint (step 15) 上 re-eval valid_unseen(134)。\\n\\n## D063: Sign misattribution 机制确认（2026-05-17）\\n\\nr(adv, step_return)=0.640 是分析伪影（advantage 是 step_return 的 z-score 归一化，同源变量）。Reviewer 核实 800 条 ADV log 发现 Type C windows (4%): 失败 episode + 零 penalty → positive advantage，是 sign misattribution 的直接证据。结论：sign misattribution 成立但机制比 binary 假设更复杂。\\n\\n## plan_004 分析陷阱：advantage vs step_return 同源性（2026-05-17）\\n\\nanalyze_advantage_log.py 中 r(advantage, step_return) = 0.640 看似反驳 sign misattribution，实为分析伪影。根因：\\n- **advantage 就是 step_return 的 z-score 归一化**（`compute_grpo_step_advantage` 中 `adv = (return - mean) / std`），两者在同一 group 内 r=1.0\\n- 跨 group 池化 + response_mask 平均化使 r 降到 0.640\\n- invalid_action_penalty=-0.1 使 failed episode 内有 per-window variation，但只反映 format errors 非 task progress\\n\\n**教训**：分析 RL 训练信号时，必须确认被比较的两个变量是否同源。advantage = f(return) 时，r(advantage, return) 没有诊断意义。正确的 local quality proxy 应独立于训练 reward（如 oracle action match rate）。\\n\\n## westd-47453 RTX PRO 6000 环境约束（2026-05-17）\\n\\nwestd-47453 的 RTX PRO 6000 GPU 在 torch._inductor 编译路径下会触发 `AssertionError: duplicate template name`（vLLM import chain）。bjb1-17606 的 A6000 不触发。两台服务器 PyTorch/vLLM 版本完全一致（torch 2.10.0+cu128, vLLM 0.18.1），是架构特有的 inductor kernel 模板冲突。\\n\\n**硬规则**: westd-47453 上所有实验启动命令必须包含 `export TORCH_COMPILE_DISABLE=1`。\\n\\n## plan_018 代码评估结论（2026-05-17）\\n\\n\\\"step_independent generation + episode-level advantage\\\" 仅需 ~20-25 行改动：\\n- `compute_episode_returns()` 已存在于 step_rewards.py:88\\n- 在 agent_trainer.py 的 `compute_advantage()` 加 `advantage_mode` 分支\\n- Config: `algorithm.advantage_mode: episode_level`\\n- 向后兼容，tensor shape 不变\\n\\n## plan_019 eval 扩展结论（2026-05-17）\\n\\n纯 config 改动。valid_seen=140 tasks, valid_unseen=134 tasks。改 `eval_dataset` + `env_groups` 即可。exp028c 已验证 env_groups=140 可行。耗时 ~4.2x 线性增长。\\n\\n## Citation Audit 摘要（2026-05-15）\\n\\nliterature_map.yaml 28 篇论文验证结果（详见 `artifacts/citation_audit.md` + `artifacts/citation_audit_report.md`）：\\n\\n**严重错误（已修正）**:\\n- AgentPRM: arXiv ID 错误（2502.10325 → 2511.08325），作者应为 Xi et al.\\n- Huang2024 Self-Correction Survey: 作者应为 Kamoi et al.\\n- DAPO: 标题应为 \\\"An Open-Source LLM Reinforcement Learning System at Scale\\\"\\n\\n**中等错误**:\\n- CFGM: 已发表于 EMNLP 2025（非 arXiv 2026），arXiv ID: 2508.15305\\n- WebAgent-R1: citation key pei2025 应为 wei2025\\n\\n## Adaptive KL 分析（2026-05-15）\\n\\nverl 框架有两套独立 KL 机制（详见 `artifacts/docs/adaptive_kl_assessment.md`）：\\n\\n| 机制 | 当前状态 | Adaptive 支持 |\\n|------|---------|--------------|\\n| Reward-level KL (`use_kl_in_reward`) | 未启用 | **已支持** — AdaptiveKLController 已实现 |\\n| Loss-level KL (`use_kl_loss`) | 启用（coef=0.005） | 不支持（静态 float） |\\n\\n## Recipe Gap 根因分析（2026-05-15）\\n\\nexp027 (10.16%) vs GiGPO/Self-Guide (72.8%) 的 62pp gap（详见 `artifacts/docs/recipe_gap_analysis.md`）：\\n\\n**已排除**:\\n1. ~~SFT 起点反效果~~（D044/D047 否定）\\n2. ~~Binary reward 零梯度 / penalty 缺失~~\\n\\n**唯一未排除**: Recipe 参数组合（mini-batch, 训练步数, LR, rollout 多样性）\\n\\n## Ray Raylet 失败记录\\n\\n- exp027: Step 4 后 Ray raylet 被 SIGKILL（可能 OOM）\\n- exp013e: val→train 过渡时 vLLM 内存峰值崩溃\\n- exp013d: object_store_memory 环境变量未生效，需 Hydra config override\\n\\n## WANDB + Cron 交互（2026-05-15）\\n\\nWANDB_MODE=disabled 导致 cron 自动判定实验失败。**规则**: 所有实验必须启用 W&B。\\n\\n## 竞品实验参考（2026-05-17 待更新）\\n\\n详细调研见 `artifacts/_project/report/memory.md`（art_20260517_fd0802）。\\n- **Turn-PPO** (2512.17008): 最直接竞品\\n- **GiGPO** (2505.10978): Anchor State Grouping\\n- **GAGPO** (2605.13217): Grouped Value Proxy（待验证）\\n- **HiPER** (2602.16165): Hierarchical Advantage Estimation\\n\", \"total_chars\": 3796, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "1a08df35-88a5-431e-89bc-311264bf612a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #17。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - **GPU 白名单**：bjb1-17606 仅 cuda:0,1；westd-47453 仅 cuda:0,1,2,3。超出范围必须 push back Director - **westd-47453 必须 `export TO…",
+  "leafUuid": "8a500f44-aaeb-44ba-8310-dec340358065",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify GPU allocation and confirm running experiments",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 48 · 2026-05-17T19:07:32.995Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture. Key findings:
+
+1. **Worker pool = 0** — VIOLATION of "Worker 池 < 2 = 失职" rule
+2. **3 RUNNING experiments, 6 GPUs all occupied**
+3. **factorial_h2_episodeadv_seed1 ALLOCATED** — needs ~20-25 lines code change (plan_018)
+4. **plan_019** (eval expansion to 134 tasks) — pure config change, planned
+
+From memory.md, plan_018 code assessment already exists:
+- `compute_episode_returns()` already exists in step_rewards.py:88
+
+
+- Need to add `advantage_mode` branch in agent_trainer.py's `compute_advantage()` with config `algorithm.advantage_mode: episode_level`
+
+I should immediately spawn two Workers: one to implement the episode-level advantage mode on the remote server, and another to monitor W&B metrics for the 3 running experiments. The factorial experiment is allocated but GPU-bound, so the code needs to be ready before a GPU frees up. Let me check if there were any previous attempts at this code implementation.
+
+Actually, I'll spawn the Workers now since the handoff confirms the code assessment is done and we need roughly 20-25 lines. I need to figure out which server the factorial experiment should run on by tracking when GPUs become available—the gae_baseline_seed1 experiment on westd should finish sooner based on the early-stop at step 10, which would free up cuda:0,1.
+
+For the code implementation Worker, I realize I need to discover the exact project paths on the servers since the handoff mentions confirming the RAGEN project directory via SSH. I'll spawn two Workers: one to SSH into the appropriate server, locate the project directory, and implement the episode-level advantage mode, and another to monitor the current metrics for the three running experiments.
+
+Since gae_baseline is nearly done and westd-47453 has the best availability, that's where the code changes should go—though both servers likely share the same codebase. Before reporting back to the Director, I should also review the resource-saturation skill to understand the current constraints.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8a500f44-aaeb-44ba-8310-dec340358065",
+  "isSidechain": false,
+  "requestId": "req_011Cb8fY9XGhPu6iuVBmdLQa",
+  "type": "assistant",
+  "uuid": "9a402f8e-37fd-4a0f-9ea5-0073a596c782",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H5wGAbqUK43E4c41aCv3Ek",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8856,
+      "cache_read_input_tokens": 55062,
+      "output_tokens": 936,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8856,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 936,
+          "cache_read_input_tokens": 55062,
+          "cache_creation_input_tokens": 8856,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8856
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49 · 2026-05-17T19:07:33.183Z_
+
+Worker 池 = 0，需立即派发。plan_018 代码实现是关键路径。先读 resource-saturation skill，然后派 Workers。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9a402f8e-37fd-4a0f-9ea5-0073a596c782",
+  "isSidechain": false,
+  "requestId": "req_011Cb8fY9XGhPu6iuVBmdLQa",
+  "type": "assistant",
+  "uuid": "c4cdcf3a-7e9a-4f1e-88c0-0c732397e4fd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H5wGAbqUK43E4c41aCv3Ek",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8856,
+      "cache_read_input_tokens": 55062,
+      "output_tokens": 936,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8856,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 936,
+          "cache_read_input_tokens": 55062,
+          "cache_creation_input_tokens": 8856,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8856
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-17T19:07:34.897Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Tg9h9VxnDXhN1REyqw2en6`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c4cdcf3a-7e9a-4f1e-88c0-0c732397e4fd",
+  "isSidechain": false,
+  "requestId": "req_011Cb8fY9XGhPu6iuVBmdLQa",
+  "type": "assistant",
+  "uuid": "93a093f2-300a-4e63-8819-1c0bfe1b7c21",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H5wGAbqUK43E4c41aCv3Ek",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8856,
+      "cache_read_input_tokens": 55062,
+      "output_tokens": 936,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8856,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 936,
+          "cache_read_input_tokens": 55062,
+          "cache_creation_input_tokens": 8856,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8856
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-17T19:07:34.916Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01Tg9h9VxnDXhN1REyqw2en6`</summary>
+
+```text
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "93a093f2-300a-4e63-8819-1c0bfe1b7c21",
+  "isSidechain": false,
+  "promptId": "71c1d71a-6877-4d97-89ab-bc2334ced39e",
+  "type": "user",
+  "uuid": "8e5afd16-1d13-4884-9ea1-98d49d614e3a",
+  "toolUseResult": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6.",
+  "sourceToolAssistantUUID": "93a093f2-300a-4e63-8819-1c0bfe1b7c21",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-17T19:07:37.288Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01UJbWNj9fD2GSfzk5tZnyAL`</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8e5afd16-1d13-4884-9ea1-98d49d614e3a",
+  "isSidechain": false,
+  "requestId": "req_011Cb8faHeEP8LxRa9V24yg1",
+  "type": "assistant",
+  "uuid": "16b085e0-f6b0-4a2e-a64e-e7e14f7d1ff5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FiBqTz7UxGpDszY4pKSMZo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1008,
+      "cache_read_input_tokens": 63918,
+      "output_tokens": 93,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1008,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 93,
+          "cache_read_input_tokens": 63918,
+          "cache_creation_input_tokens": 1008,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1008
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-17T19:07:37.312Z_
+
+<details><summary>↩ Tool result · `toolu_01UJbWNj9fD2GSfzk5tZnyAL`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "16b085e0-f6b0-4a2e-a64e-e7e14f7d1ff5",
+  "isSidechain": false,
+  "promptId": "71c1d71a-6877-4d97-89ab-bc2334ced39e",
+  "type": "user",
+  "uuid": "f024f43b-2097-4fbf-869c-b2cd4080caea",
+  "toolUseResult": {
+    "filenames": [],
+    "durationMs": 19,
+    "numFiles": 0,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "16b085e0-f6b0-4a2e-a64e-e7e14f7d1ff5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-17T19:07:39.223Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01Nqsw8hma2vr1n1hucg9XEx`</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/agent-ml-research"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f024f43b-2097-4fbf-869c-b2cd4080caea",
+  "isSidechain": false,
+  "requestId": "req_011Cb8faTMdV74dK2KqWN3Qa",
+  "type": "assistant",
+  "uuid": "787067d3-2f5c-42d7-b891-e1bf24a8e028",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hu75kakZ76SgLm2aidwqwE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 108,
+      "cache_read_input_tokens": 64926,
+      "output_tokens": 84,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 108,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 84,
+          "cache_read_input_tokens": 64926,
+          "cache_creation_input_tokens": 108,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 108
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-17T19:07:41.952Z_
+
+<details><summary>↩ Tool result · `toolu_01Nqsw8hma2vr1n1hucg9XEx`</summary>
+
+```text
+/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "787067d3-2f5c-42d7-b891-e1bf24a8e028",
+  "isSidechain": false,
+  "promptId": "71c1d71a-6877-4d97-89ab-bc2334ced39e",
+  "type": "user",
+  "uuid": "14eea8ff-e62b-4b1f-a103-5851e57dcb53",
+  "toolUseResult": {
+    "filenames": [
+      "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+    ],
+    "durationMs": 2726,
+    "numFiles": 1,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "787067d3-2f5c-42d7-b891-e1bf24a8e028",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-17T19:07:47.529Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_019oCFU6BkQze7kWz5NA3ySD`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "14eea8ff-e62b-4b1f-a103-5851e57dcb53",
+  "isSidechain": false,
+  "requestId": "req_011Cb8faoAVmiHWw17kyvMGf",
+  "type": "assistant",
+  "uuid": "89bb156d-e9c5-4a5d-98ba-407b2282e9cf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018h73YafEugBCk1DKovTFES",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 118,
+      "cache_read_input_tokens": 65034,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 118,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 65034,
+          "cache_creation_input_tokens": 118,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 118
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-17T19:07:47.539Z_
+
+<details><summary>↩ Tool result · `toolu_019oCFU6BkQze7kWz5NA3ySD`</summary>
+
+```text
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "89bb156d-e9c5-4a5d-98ba-407b2282e9cf",
+  "isSidechain": false,
+  "promptId": "71c1d71a-6877-4d97-89ab-bc2334ced39e",
+  "type": "user",
+  "uuid": "0b9cadbe-be76-4462-8447-3319373d5dbb",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md",
+      "content": "---\nname: resource-saturation\ndescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\nalways: false\nroles:\n  - director\n  - agent\n---\n\n# 资源饱和度自检（硬约束）\n\n## A. GPU 分配率检查\n\n调 `get_project_resource_usage(project)` 看:\n- 已分配给本项目的 GPU 总数和具体卡号\n- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n- 分配了但没跑的 GPU 清单 ⚠️\n\n任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n- 派 Worker 铺 dry-run / 下一批实验代码准备\n- 铺 ablation（从 experiment-matrix 空白格子里挑）\n- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n\n**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n\n## B. GPU 效率检查\n\n调 `get_gpu_health(server)`:\n- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）\n- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优\n\n## C. 非 GPU 任务并行\n\nGPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:\n- 下一批实验的数据集下载 / 预处理 / fingerprint\n- 下一批实验的代码准备 / dry-run / 环境配置\n- 论文文献调研 / related work 检索\n- 已完成实验的 log 深度分析 / metric 聚合\n- 论文章节起草\n- 代码 review / refactor\n\n**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。\n\n## D. 汇报格式\n\n向 Director 汇报时开头必须带资源声明行:\n\n    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)\n",
+      "numLines": 50,
+      "startLine": 1,
+      "totalLines": 50
+    }
+  },
+  "sourceToolAssistantUUID": "89bb156d-e9c5-4a5d-98ba-407b2282e9cf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 58 · 2026-05-17T19:07:47.595Z_
+
+```json
+{
+  "parentUuid": "0b9cadbe-be76-4462-8447-3319373d5dbb",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "51858c2b-970e-46d2-ac54-c2fe61b5b59f",
+  "timestamp": "2026-05-17T19:07:47.595Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 59 · 2026-05-17T19:08:04.029Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the resource-saturation skill. Let me spawn Workers immediately.
+
+I need at least 2 Workers:
+
+1. **Code implementation for plan_018** (SSH to server, implement episode-level advantage mode)
+2. **W&B metrics check** for running experiments (to know how far along they are)
+
+Let me think about the code implementation Worker more carefully:
+
+From memory.md:
+- `compute_episode_returns()` already exists in step_rewards.py:88
+- Need to add `advantage_mode` branch in agent_trainer.py's `compute_advantage()`
+
+
+- Config change is just ~20-25 lines with `algorithm.advantage_mode: episode_level`
+
+The Worker should SSH to westd-47453, locate the RAGEN project directory, read the relevant code files, implement the episode-level advantage mode, and run a dry-check to verify it works. I'll focus on one server first rather than trying to sync across both machines immediately.
+
+For the W&B metrics Worker, I need to check the current progress of the running experiments.
+
+Now I'm spawning both Workers. The code Worker gets task type "code:plan_018_factorial_advantage" with SSH access and needs context about the code location and changes. The metrics Worker gets task type "analysis:running_experiments_metrics" with W&B and registry access to check all three running experiments. Let me draft the prompts for both.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "51858c2b-970e-46d2-ac54-c2fe61b5b59f",
+  "isSidechain": false,
+  "requestId": "req_011Cb8fbDLnxFuwjqd64KN2M",
+  "type": "assistant",
+  "uuid": "f7c9f8ce-b56d-4d5c-a98c-3cc33645f916",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C1jrVSbm6hQZnRsJzu8iA6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1249,
+      "cache_read_input_tokens": 65152,
+      "output_tokens": 2679,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1249,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2679,
+          "cache_read_input_tokens": 65152,
+          "cache_creation_input_tokens": 1249,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1249
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60 · 2026-05-17T19:08:04.656Z_
+
+派发 2 个 Workers：plan_018 代码实现 + 运行中实验指标检查。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f7c9f8ce-b56d-4d5c-a98c-3cc33645f916",
+  "isSidechain": false,
+  "requestId": "req_011Cb8fbDLnxFuwjqd64KN2M",
+  "type": "assistant",
+  "uuid": "122e88aa-2f40-4c17-8432-682035668993",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C1jrVSbm6hQZnRsJzu8iA6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1249,
+      "cache_read_input_tokens": 65152,
+      "output_tokens": 2679,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1249,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2679,
+          "cache_read_input_tokens": 65152,
+          "cache_creation_input_tokens": 1249,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1249
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-17T19:08:29.876Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker · `toolu_01T7iRJGE1cR6PLFH9HcTrr7`</summary>
+
+```json
+{
+  "task_type": "code:plan_018_episode_advantage",
+  "project": "cost-verify-agent-rl",
+  "tool_groups": [
+    "ssh"
+  ],
+  "tools": [
+    "read_project_file",
+    "read_registry"
+  ],
+  "task_prompt": "## 任务：在 RAGEN 代码中实现 episode-level advantage mode（plan_018）\n\n### 背景\n我们在做一个 2×2 factorial 实验：step_independent generation (h=2) + episode-level advantage computation。当前 RAGEN 的 step_independent 模式用 per-window γ-discounted return 计算 advantage，我们需要加一个新 mode，让所有 window 共享一个 episode-level advantage（即整个 episode 的 return 归一化后均匀分配给所有 window）。\n\n### 已有评估结论（memory.md plan_018）\n- `compute_episode_returns()` 已存在于 step_rewards.py:88\n- 在 agent_trainer.py 的 `compute_advantage()` 加 `advantage_mode` 分支\n- Config: `algorithm.advantage_mode: episode_level`\n- 预估 ~20-25 行改动\n- 向后兼容，tensor shape 不变\n\n### 具体步骤\n\n1. SSH 到 **westd-47453**（`ssh root@westd-47453`），找到 RAGEN 项目目录（可能在 /root/ 下搜索包含 agent_trainer.py 的目录）\n\n2. 读懂关键代码：\n   - `step_rewards.py` — 找到 `compute_episode_returns()` 和 per-window return 计算逻辑\n   - `agent_trainer.py` — 找到 `compute_advantage()` 或类似函数（handoff 提到 agent_trainer.py:271-340, core_algos.py:194-246）\n   - 理解当前 step_independent advantage 是怎么从 per-window return → z-score normalize → advantage 的\n\n3. 实现 episode-level advantage mode：\n   - 加一个 config 参数 `advantage_mode`（默认 \"step_level\" 保持向后兼容，新增 \"episode_level\"）\n   - 当 `advantage_mode == \"episode_level\"` 时：\n     a. 用 `compute_episode_returns()` 得到每个 episode 的总 return\n     b. 对 episode returns 做 GRPO-style z-score normalize（(r - mean) / std）\n     c. 将归一化后的 episode advantage 广播到该 episode 的所有 window\n   - tensor shape 必须和 per-window mode 输出一致（不要改下游接口）\n\n4. 在 config/yaml 中加入 `advantage_mode` 参数\n\n5. **验证**：\n   - 不跑完整训练，只验证代码能导入、config 能解析\n   - 如果可以，用 `python -c \"from ragen... import ...\"` 验证模块可导入\n   - 检查 tensor shape 兼容性\n\n### 环境信息\n- westd-47453 上用 `source /root/miniconda3/bin/activate` 激活环境\n- **重要**：westd 上必须 `export TORCH_COMPILE_DISABLE=1`（RTX PRO 6000 的 inductor 冲突）\n- PyTorch 2.10.0+cu128, vLLM 0.18.1\n\n### 产出\n- 修改后的代码文件（直接在服务器上改）\n- 简要说明改了哪些文件、哪些行、为什么这样改\n- 验证结果（能否成功导入 / config 解析）\n",
+  "context": "plan_018 是论文最关键的 factorial 实验（Dream review 3 个 tier 全部独立指出缺少 mechanism separation）。实验 factorial_h2_episodeadv_seed1 已 ALLOCATED 等待代码就绪后提交。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "122e88aa-2f40-4c17-8432-682035668993",
+  "isSidechain": false,
+  "requestId": "req_011Cb8fbDLnxFuwjqd64KN2M",
+  "type": "assistant",
+  "uuid": "6876e5df-fea8-428f-b2d2-49c8c084432b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C1jrVSbm6hQZnRsJzu8iA6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1249,
+      "cache_read_input_tokens": 65152,
+      "output_tokens": 2679,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1249,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2679,
+          "cache_read_input_tokens": 65152,
+          "cache_creation_input_tokens": 1249,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1249
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-17T19:08:33.010Z_
+
+<details><summary>↩ Tool result · `toolu_01T7iRJGE1cR6PLFH9HcTrr7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_plan_018_episode_advantage_20260517T190830\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/logs/workers/worker_code_plan_018_episode_advantage_20260517T190830.log\", \"setup_data\": {}, \"message\": \"Worker worker_code_plan_018_episode_advantage_20260517T190830 started. Use get_worker_status('worker_code_plan_018_episode_advantage_20260517T190830') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6876e5df-fea8-428f-b2d2-49c8c084432b",
+  "isSidechain": false,
+  "promptId": "71c1d71a-6877-4d97-89ab-bc2334ced39e",
+  "type": "user",
+  "uuid": "e07df397-4703-44f6-88d2-83ea00f9b036",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_plan_018_episode_advantage_20260517T190830\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/logs/workers/worker_code_plan_018_episode_advantage_20260517T190830.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_code_plan_018_episode_advantage_20260517T190830 started. Use get_worker_status('worker_code_plan_018_episode_advantage_20260517T190830') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_code_plan_018_episode_advantage_20260517T190830\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/logs/workers/worker_code_plan_018_episode_advantage_20260517T190830.log\", \"setup_data\": {}, \"message\": \"Worker worker_code_plan_018_episode_advantage_20260517T190830 started. Use get_worker_status('worker_code_plan_018_episode_advantage_20260517T190830') to check progress.\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "6876e5df-fea8-428f-b2d2-49c8c084432b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-17T19:08:48.939Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker · `toolu_011Ny316hjKtaWJRL2CmEJ61`</summary>
+
+```json
+{
+  "task_type": "analysis:running_experiments_check",
+  "project": "cost-verify-agent-rl",
+  "tool_groups": [
+    "wandb",
+    "ssh"
+  ],
+  "tools": [
+    "read_registry"
+  ],
+  "task_prompt": "## 任务：检查 3 个运行中实验的最新指标\n\n### 实验列表\n\n1. **gae_baseline_seed1** — REINFORCE++ baseline（westd-47453 cuda:0,1）\n   - W&B run_id: dt79qyd9\n   - **关键**：D065 指示 step 10 early-stop。检查当前 step 数、val success rate、是否已达到 step 10\n   - 对比目标：exp029_episode_level（step 15 val success=28.1%）\n\n2. **gsweep_g050_h5_seed1** — γ=0.5 极端衰减（westd-47453 cuda:2,3）\n   - 检查当前 step、val success rate、是否出现预期的加速崩溃\n   - 假设：γ=0.5 应比 γ=0.95 更快崩溃\n\n3. **hsweep_h2_seed2** — h=2 第二 seed 复现（bjb1-17606 cuda:0,1）\n   - 检查当前 step、val success rate\n   - 假设：应复现 seed 1 的崩溃（step 3-4 onset, 0% by step 9+）\n   - 同时检查是否有 ADV log 文件（LOG_PER_SAMPLE_ADV=1）\n\n### 操作步骤\n\n1. 用 `fetch_wandb_metrics` 拉取每个实验的最新训练/验证指标\n   - project: cost-verify-agent-rl\n   - 关注 metrics: val/success, val/action_is_valid, train/success, train/reward_mean, step\n   \n2. 对 gae_baseline_seed1：如果已到 step 10，重点看 val success 与 exp029 (28.1%) 的对比\n\n3. 对 gsweep_g050：看崩溃速度是否比已知的 h=5 γ=0.95 更快\n\n4. 对 hsweep_h2_seed2：确认崩溃复现 pattern + ADV log 是否在生成\n\n5. SSH 到 westd-47453 检查 gae_baseline 和 gsweep_g050 的进程状态（`ps aux | grep [pid]`），SSH 到 bjb1-17606 检查 hsweep_h2_seed2\n\n### 产出\n- 每个实验的当前 step、key metrics、预估剩余时间\n- gae_baseline vs exp029 对比分析\n- 任何异常或需要关注的情况\n\n### 环境\n- westd-47453: `ssh root@westd-47453`, `source /root/miniconda3/bin/activate`\n- bjb1-17606: `ssh root@bjb1-17606`, `source /root/miniconda3/bin/activate`\n",
+  "context": "3 个实验均在 RUNNING 状态，cron 监控正常。gae_baseline_seed1 是 REINFORCE++ (非 GAE，TRL 1.1.0 移除了 value head)，D065 指示 step 10 early-stop。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e07df397-4703-44f6-88d2-83ea00f9b036",
+  "isSidechain": false,
+  "requestId": "req_011Cb8fbDLnxFuwjqd64KN2M",
+  "type": "assistant",
+  "uuid": "93935657-ec04-4a45-9b41-6c8a38630523",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6fe090e6",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C1jrVSbm6hQZnRsJzu8iA6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1249,
+      "cache_read_input_tokens": 65152,
+      "output_tokens": 2679,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1249,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2679,
+          "cache_read_input_tokens": 65152,
+          "cache_creation_input_tokens": 1249,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1249
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 64_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #17。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - **GPU 白名单**：bjb1-17606 仅 cuda:0,1；westd-47453 仅 cuda:0,1,2,3。超出范围必须 push back Director - **westd-47453 必须 `export TO…",
+  "leafUuid": "93935657-ec04-4a45-9b41-6c8a38630523",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 65_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify GPU allocation and confirm running experiments",
+  "sessionId": "42eb6368-ec23-42c7-b122-8c135f1ea51d"
+}
+```
+
+---

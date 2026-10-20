@@ -1,0 +1,1826 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-10 (UTC).** Your job: indep
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 24
+- **Recorded user turns:** 1
+- **Tool calls:** 3
+- **Original source:** `logs/chats/exported-trajectories/account-2/86c36b8a-4f2b-4be8-9159-e3bc93060d38.jsonl`
+- **Structured JSON:** [`70df6a1fff510d2d0446.json`](../../sessions/70/70df6a1fff510d2d0446.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-10T09:25:19.466Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-10T09:25:19.466Z",
+  "sessionId": "86c36b8a-4f2b-4be8-9159-e3bc93060d38",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-10 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: Multimodality and Language Grounding to Vision, Robotics and Beyond.\n\nDirection: Vision-language methods, document understanding, spatial reasoning, grounded language generation. In-scope: visual question answering with structured reasoning, document layout understanding, chart/table comprehension, spatial language grounding, vision-language alignment methods. NOT restricted to LLMs — encoder-based and hybrid architectures welcome.\n\nContribution type: METHOD ONLY. New architectures, training objectives, or inference algorithms for multimodal understanding. Not a new dataset.\n\nHARD CONSTRAINTS:\n1. Compute: ≤200 H100-hours total. Many VL tasks are eval-heavy — budget for LoRA fine-tuning of open VLMs (LLaVA, InternVL, Qwen-VL).\n2. Time: ≤16 days. Use existing open multimodal models + established frameworks (HF Transformers, LLaVA codebase).\n3. Eval: DocVQA, ChartQA, InfographicVQA, TextVQA, GQA, POPE, MMBench, SEED-Bench, RealWorldQA.\n\nLook for: structured reasoning over visual documents (not just OCR+LLM), spatial relation grounding methods, cross-modal retrieval with layout awareness, efficient vision-language adaptation. Avoid: generic VLM fine-tuning without architectural contribution.\n\nTag: direction=multimodal_grounding, contribution_type=method. target_venues=[\"EMNLP 2026 Main\", \"EMNLP 2026 Findings\"].**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-10?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 7/10)\n{\n  \"title\": \"Layout-Structured Multi-Hop Evidence Chains for Complex Document Reasoning\",\n  \"project_name\": \"layout_hop_evidence_chain\",\n  \"source\": \"web_research\",\n  \"core_problem\": \"Complex document questions require synthesizing evidence from multiple layout regions within a single page — reading a value from a table, referencing the adjacent caption, then cross-checking with an embedded chart — but no existing method trains a generative VLM to produce explicit multi-hop traversal traces across Table, Figure, Caption, and TextBlock nodes while preserving typed spatial relationships between semantic layout elements. Models either flatten the document into a token sequence (losing inter-region structure) or navigate page-by-page (missing within-page region-to-region links), or use implicit graph propagation with no supervisable chain-of-thought.\\n\\nThe empirical gap is well-established for WITHIN-PAGE multi-hop layout reasoning: WikiMixQA (arXiv:2506.15594, ACL 2025 Findings) demonstrates that within-page multi-hop table-and-chart reasoning is severely challenging for current models — in the oracle/direct-context setting (table and chart provided directly), proprietary models achieve ~70% (GPT-4o: 71.42%, Claude-3.5-Sonnet: 70.82%, Gemini-2.0-Pro: 69.53%) while open-source VLMs score only 14–27% (InternVL2.5-78B: 27.37%, Qwen2.5-VL-72B: 23.17%, Llama-3.2-11B: 14.08%); in the Wikidoc/retrieval setting, GPT-4o is the only model exceeding 50% (55.24%). Notably, the oracle-setting open-source performance (23–27%) is near-random for a 4-choice MCQ (25% baseline) and barely scales from 1B to 78B parameters — indicating a fundamental cross-modal synthesis limitation rather than purely a layout traversal gap. This large open-source gap in the oracle setting directly quantifies the within-region synthesis difficulty that LHEC targets, while the scale-invariance pattern motivates making the InfographicVQA hard subset the primary contribution claim. InfographicVQA's hard multi-hop layout questions (requiring ≥2 layout-region hops across charts, tables, captions, and text blocks in a single infographic) represent the primary per-page evaluation front where base VLMs that treat pages as flat images fail to exploit spatial relationships.\\n\\nTwo prior works come closest. PDF-VQA (arXiv:2304.06447, ECML-PKDD 2023) already builds typed Logical Relation graphs (parent-child hierarchical) and Spatial Relation graphs (8-directional: top/bottom/left/right and four diagonals) over document nodes including title, text, list, figure, table, table caption, and figure caption — graph construction over these node types is therefore not novel. But PDF-VQA's LoSpa model is fully extractive (predicts an element index via GCN, then retrieves OCR text from that region), produces no verbalized traversal chain-of-thought, and is evaluated only on the proprietary PDF-VQA PubMed dataset. MGA-VQA (arXiv:2511.17881, NeurIPS 2025) builds a spatial graph from OCR-detected text bounding boxes with untyped proximity/similarity edges and propagates through a 3-layer implicit GCN; its text-box nodes miss figure and chart regions entirely, its edges carry no semantic type labels, and all outputs are extractive spans with no traversal chain-of-thought.\\n\\nThe structured gap is: no method trains a generative VLM to verbalize step-by-step multi-hop traversal across typed layout-region nodes within a page — the exact capability required to answer questions that chain a table value through an Adjacent edge to its Caption and then through a Caption-of edge into a referenced Figure.\",\n  \"opportunity\": \"InfographicVQA (WACV 2022, leaderboard active) is the **primary** evaluation target and the primary contribution claim: it is genuinely per-page and layout-intensive, requiring joint reasoning over charts, tables, maps, and text blocks within single infographic images. The current SOTA is Qwen2.5-VL-72B at 87.3% ANLS (early 2025); no model has exceeded 90% (human performance is ~98%), confirming this benchmark is not at ceiling. The actual fine-tuning backbone is Qwen3-VL-8B-Instruct, whose InfoVQA baseline must be established via zero-shot evaluation on Day 1 of the project (the Qwen2.5-VL-7B 82.6% figure is NOT the correct anchor for a different backbone; Qwen3-VL-8B-Instruct score is unconfirmed in any public source as of May 2026 — likely in the 80–84 range based on scaling trends). Regardless of the overall ANLS level, hard multi-hop layout questions — those requiring the model to traverse ≥2 typed layout regions to compose the answer, identified via InfographicVQA's evidence-source category annotations — are the defensible hard subset where LHEC's explicit traversal training targets a meaningful gap over the base model. The Day 0 hard-subset audit (described in the approach) will determine whether the hard subset count supports statistical significance (≥200) or preliminary (100–200) framing.\\n\\nWikiMixQA (arXiv:2506.15594, ACL 2025 Findings) is an **exploratory secondary** evaluation target: it benchmarks multi-hop reasoning over table+chart pairs from Wikipedia. In the oracle/direct-context setting (table and chart provided directly), proprietary models achieve ~70% (GPT-4o: 71.42%, Claude-3.5-Sonnet: 70.82%, Gemini-2.0-Pro: 69.53%), while open-source VLMs score only 14–27% even with direct evidence access (InternVL2.5-78B: 27.37%, Qwen2.5-VL-72B: 23.17%). Critically, this oracle-setting open-source performance is near-random for a 4-choice MCQ (25% random baseline) and barely scales from 1B to 78B parameters — indicating that the failure reflects a fundamental cross-modal table+chart synthesis limitation rather than a layout traversal gap that typed graph training alone can bridge. LHEC evaluates WikiMixQA exclusively in the oracle setting; at evaluation, LHEC (Qwen3-VL-8B-Instruct fine-tuned) receives the HTML table and chart image as direct multimodal inputs without DocLayout-YOLO preprocessing — the trained cross-modal traversal reasoning is applied directly to these two provided modalities. The Wikidoc/retrieval setting is excluded because LHEC's per-page graphs cannot address evidence spread across multiple rendered pages (Wikipedia articles average 24.18 rendered pages). The Day 1 zero-shot Qwen3-VL-8B-Instruct baseline on WikiMixQA oracle will establish whether traversal fine-tuning yields non-trivial gains (>5%). If gains are ≤5% over the Day 1 baseline, the WikiMixQA result is reported as a documented negative — establishing the limits of layout traversal training for cross-modal table+chart synthesis — and the contribution is framed entirely through the InfographicVQA hard multi-hop subset. This contingency plan is the expected primary contribution scenario given the near-random, scale-invariant failure pattern.\\n\\nDocHop-QA (arXiv:2508.15851, NeurIPS 2025 track) is explicitly a cross-DOCUMENT benchmark (its own paper reports multi-document reasoning dominates overall). LHEC's per-page graphs cannot address cross-document failure modes. DocHop-QA is therefore used ONLY as a supplementary training corpus after a Day 1 audit: instances where all BBox-annotated evidence regions fall within a single page are extracted and used for within-page traversal chain synthesis; the cross-document majority of the 11,379 instances is excluded. If the within-page audit yields fewer than 500 usable instances, DocHop-QA is dropped from training entirely and the claim of using it is removed.\\n\\nBRIDGE (March 2026, arXiv:2603.07931) provides grounded multi-hop evidence annotations for long scientific documents and confirms no proposed method resolves the within-page cross-region gap it diagnoses; it is a strong secondary evaluation target for the AAAI 2027 extended version. The combination of DocLayout-YOLO layout detection (with GT annotation fallback for infographics, detailed in approach) + rule-based typed graph + generative VLM fine-tuned on explicit verbalized traversal chains is architecturally distinct from PDF-VQA (extractive element-index model), MGA-VQA (implicit GCN on OCR boxes), and LayoutLLM/DocLayLLM (text layout embeddings with coordinate-anchored CoT steps, no spatial graph), buildable entirely from open components, and executable within 15 days targeting EMNLP 2026 ARR (May 25, 2026).\",\n  \"landscape\": \"Multi-page document VQA methods include GRAM (learnable document tokens), Hi-VT5 (hierarchical page summaries), Doc-V* (April 2026, arXiv:2604.13731, coarse-to-fine agentic page navigation), AVIR (Jan 2026, adaptive visual retrieval for SlideVQA). Within-page multi-hop reasoning: ARGUS (CVPR 2025) grounds single visual elements with bounding boxes in CoT chains; GCoT (March 2025) generates coordinate-grounded reasoning steps; MAGIC-VQA (ACL 2025 Findings) uses commonsense knowledge graphs for inference.\\n\\nLayoutLLM (arXiv:2404.05225, CVPR 2024) introduces LayoutCoT, a three-step layout chain-of-thought module (Question Analysis → Relevant Area Concentration → Answer Formation) that generates text reasoning steps augmented with bounding-box coordinate anchors over document layout text, achieving +3.45% on DocVQA zero-shot (74.27% ANLS). LayoutLLM uses a LayoutLMv3-based document encoder with 2D positional text embeddings — there is no spatial graph, no typed inter-region edges, and no visual region detector; the 'Relevant Area Concentration' step outputs the union bounding box of relevant text spans rather than traversing detected layout regions. LayoutCoT does not evaluate on InfographicVQA or WikiMixQA. LHEC extends this direction on three axes: (a) LHEC uses DocLayout-YOLO to ground reasoning in visually detected spatial regions (Table, Figure, Caption, TextBlock) rather than text layout embeddings; (b) LHEC assigns typed spatial edges between detected nodes (Caption-of, Adjacent, Up/Down/Left/Right) enabling graph-structured multi-hop traversal across heterogeneous region types including figure and chart nodes invisible to text-only encoders; (c) LHEC trains on explicit node-ID traversal traces (Table[3]→[Adjacent]→Caption[4]→[Caption-of]→Figure[5]) that are directly supervisable as structured chain-of-thought, rather than question-type reasoning steps. DocLayLLM (arXiv:2408.15045, CVPR 2025), a follow-on from the same lineage, integrates visual patches (196 tokens), 2D positional tokens, and text into an LLM backbone via lightweight projectors with CoT Pre-training on layout-type, table-structure, and geometry tasks plus CoT Annealing; it achieves 76.59% on InfographicVQA ANLS. DocLayLLM similarly uses no spatial graph and no typed inter-region edges — its table-structure CoT operates within detected table boundaries, not across heterogeneous layout region types.\\n\\nPDF-VQA (arXiv:2304.06447, ECML-PKDD 2023) is an important predecessor that must be cited and differentiated from. It builds both a typed Logical Relation graph (LR graph: binary parent-child hierarchical edges) and a typed Spatial Relation graph (SR graph: 8-directional edges — top, bottom, left, right, top-left, top-right, bottom-left, bottom-right) over document element nodes including title, text, list, figure, table, table caption, and figure caption — the same node types LHEC uses. Its LoSpa model propagates via GCN to predict the index of the document element containing the answer (fully extractive: answer is OCR text retrieved from that region). PDF-VQA is evaluated only on its own proprietary PubMed Central dataset and contains no verbalized chain-of-thought. LHEC's novel contribution relative to PDF-VQA is the training of a generative VLM to verbalize traversal traces step-by-step ('Table[3]→[Adjacent]→Caption[4]→[Caption-of]→Figure[5]') as a directly supervisable chain-of-thought.\\n\\nMGA-VQA (Nov 2025, arXiv:2511.17881, NeurIPS 2025 track) is the second closest prior work and the most important direct comparison target: it uses OCR-detected text boxes as nodes (no figure/chart nodes), untyped proximity and semantic-similarity edges with scalar weights, a 3-layer GCN for implicit propagation, and extractive span outputs; it evaluates on FUNSD, CORD, SROIE, DocVQA, STE-VQA, RICO — DocVQA is included but all outputs are extractive spans from OCR boxes; no verbalized traversal chain-of-thought is produced and figure/chart regions are invisible to the model. LHEC differentiates on four axes: semantic layout region nodes, typed edges, verbalized traversal traces, and generative output. Public code at github.com/ahmad-shirazi/MGAVQA enables direct comparison.\\n\\nGraphDoc (ICLR 2025) annotates spatial and logical relations (Up/Down/Left/Right, Parent/Child/Sequence) between document nodes, providing the taxonomy directly used in LHEC's rule-based edge assignment.\\n\\nWikiMixQA (arXiv:2506.15594, ACL 2025 Findings) benchmarks multi-hop reasoning over table+chart pairs from Wikipedia (1,000 MCQs from 526 articles): in the oracle/direct-context setting, proprietary models achieve ~70% (GPT-4o: 71.42%, Claude-3.5-Sonnet: 70.82%, Gemini-2.0-Pro: 69.53%) while open-source VLMs score only 14–27% even with evidence provided directly (InternVL2.5-78B: 27.37%, Qwen2.5-VL-72B: 23.17%); in the Wikidoc/retrieval setting, GPT-4o scores 55.24% and is the only model exceeding 50%. The oracle-setting open-source failure is near-random (25% random baseline for 4-choice MCQ) and scale-invariant from 1B to 78B parameters — indicating a fundamental cross-modal table+chart synthesis limitation. Evidence pairs are drawn from the same Wikipedia article but may span different rendered pages (articles average 24.18 rendered pages). LHEC evaluates WikiMixQA exclusively in the oracle setting as an exploratory secondary target; at evaluation, LHEC receives the HTML table and chart image as direct multimodal inputs without DocLayout-YOLO preprocessing, applying trained cross-modal traversal reasoning directly to these provided modalities.\\n\\nHopChain (March 2026, arXiv:2603.17024) synthesizes multi-hop vision-language reasoning data for RLVR training via category identification, instance segmentation, multi-hop query generation, and verifiable numeric answers — it is a counting-task synthesis framework, NOT a document layout traversal chain method, and is not used in LHEC's synthesis pipeline. LHEC's traversal chain synthesis is a custom pipeline described separately.\\n\\nDocHop-QA (Aug 2025, arXiv:2508.15851, NeurIPS 2025 track) is a cross-DOCUMENT benchmark where multi-document reasoning dominates; it is NOT suitable as a primary LHEC evaluation target since LHEC's per-page graphs cannot address cross-document reasoning. DocHop-QA's BBox-annotated evidence regions are useful as a supplementary within-page training source after auditing for single-page-evidence instances only.\\n\\nBenchmark papers BRIDGE (March 2026) and DocHop-QA (Aug 2025) diagnose the multi-hop gap without proposing methods. InfographicVQA (WACV 2022): current SOTA Qwen2.5-VL-72B at 87.3% ANLS; Qwen3-VL-8B-Instruct zero-shot baseline to be established on Day 1; the hard multi-hop layout question subset (questions requiring ≥2 evidence source types per InfographicVQA annotations, Day 0 audit) is the primary evaluation target and primary contribution claim where LHEC is expected to show improvement.\",\n  \"approach\": \"We propose LHEC (Layout-Structured Hop Evidence Chains): given a document page, DocLayout-YOLO detects all layout regions (TextBlock, Table, Figure, Caption), and rule-based heuristics assign typed spatial and semantic edges to build a per-page evidence graph — no separate relation head training is required, eliminating a 2-4 day training dependency. Specifically: (1) Caption-of edge: from a Caption node to the nearest Table or Figure within 150px vertical distance; (2) Adjacent edge: between any two regions sharing a column or row boundary within 50px; (3) Up/Down/Left/Right edges: from center-point geometry following GraphDoc taxonomy (nearest neighbor in each axis direction). This rule-based assignment is deterministic, requires no annotated training data, and completes in minutes on CPU alongside DocLayout-YOLO inference. A trained relation head replacing these heuristics is a natural extension presented as future work (AAAI 2027 version).\\n\\nA Qwen3-VL-8B-Instruct backbone fine-tuned with QLoRA is trained to produce structured multi-hop reasoning traces that explicitly traverse this graph — citing region node IDs and edge types at each hop (e.g., 'Table[3]→[Adjacent]→Caption[4]→[Caption-of]→Figure[5]') — before producing the final answer.\\n\\n**Day 0 prerequisite — DocLayout-YOLO infographic validation:** DocLayout-YOLO was trained exclusively on formal structured documents (academic, financial, legal, and textbook categories from D4LA, DocLayNet, and DocStructBench) and has no training signal for infographic-style documents. Before committing to the synthesis pipeline, we run DocLayout-YOLO on 100 InfographicVQA training images and compute Table/Figure/Caption/TextBlock region recall against the gold evidence bounding box annotations provided in the InfographicVQA training set. If recall ≥60%, we proceed with YOLO-detected regions as graph nodes for all InfographicVQA training data. If recall <60% (the expected outcome given the training domain mismatch), we substitute InfographicVQA's own annotated bounding boxes as graph nodes for the InfographicVQA training portion, reserving YOLO detection for PMC-OA where no ground-truth annotations exist. For evaluation at test time (where GT annotations are not publicly available), we use DocLayout-YOLO in all conditions and report its validation-split recall as a confound in the paper.\\n\\n**Day 0 prerequisite — InfographicVQA hard multi-hop subset audit:** InfographicVQA annotates each question with evidence source type(s) — Text, Figure, Table/List, Map, Visual/Layout — with multiple types permitted per question. We run the released annotation files to identify test-set questions annotated with ≥2 distinct evidence source types; this constitutes the hard multi-hop subset. Framing gates: ≥200 test questions = statistical significance claim; 100–200 = preliminary targeted evaluation; <100 = drop hard-subset framing entirely and frame contribution through WikiMixQA oracle-setting gains. Based on InfographicVQA's design intent (3,288 test questions across 579 complex infographic images requiring multimodal layout reasoning), we estimate ≥500 qualifying questions (>15% of test set), but the exact count is established before finalizing any contribution claims.\\n\\nTraining data synthesis (custom pipeline — not HopChain, which is a numeric counting RLVR framework unrelated to document layout traversal): (1) Run DocLayout-YOLO over PMC-OA scientific page subset and, if Day 0 recall ≥60%, over InfographicVQA training images; otherwise use InfographicVQA's own annotated bounding boxes as graph nodes for InfographicVQA training data. (2) Align ground-truth QA evidence regions to detected (or annotated) layout nodes via IoU overlap ≥ 0.5; when IoU < 0.5, assign the evidence span to the nearest detected region by centroid distance. (3) Build the per-page typed evidence graph with rule-based edges (Caption-of, Adjacent, Up/Down/Left/Right). (4) For each QA pair, extract the shortest path in the evidence graph traversing all aligned evidence regions — this forms the traversal template. (5) Verbalize the traversal template into a structured chain-of-thought: 'Table[3]→[Adjacent]→Caption[4]→[Caption-of]→Figure[5]' covering 2-4 hop lengths. The InfographicVQA training split (~24K QA pairs) is the primary training source — it is per-page, layout-intensive, and in-distribution with respect to the primary evaluation target. PMC-OA scientific pages supplement this corpus with figure+caption+table triplets characteristic of academic document layouts.\\n\\nDocHop-QA is audited on Day 1 for within-page-amenable instances (all evidence BBox regions on a single page). If this audit yields ≥500 instances, they are included as a supplementary training source. If fewer than 500 instances qualify (expected given cross-document dominance), DocHop-QA is dropped from training and this decision is documented in the paper.\\n\\nFor the EMNLP 2026 submission, cross-page PageRef linking is scoped out — per-page graphs are used throughout; rule-based cross-reference linking is explicitly presented as future work for the AAAI 2027 extended version.\\n\\nEvaluation plan:\\n(1) Day 1 prerequisite: Zero-shot Qwen3-VL-8B-Instruct evaluation on InfographicVQA and WikiMixQA oracle setting to establish actual baselines. This is a precondition for interpretable contribution framing — the paper cannot use the 82.6% ANLS figure from Qwen2.5-VL-7B as the baseline for a different backbone, and the WikiMixQA oracle estimate (~20–30% for a non-fine-tuned 8B model, consistent with the 23–27% range for larger open-source models) must be confirmed.\\n(2) Primary benchmark — primary contribution claim: InfographicVQA (per-page, layout-intensive, active leaderboard). Report: (a) overall ANLS, base Qwen3-VL-8B-Instruct vs. LHEC-fine-tuned; (b) hard multi-hop layout subset ANLS (questions requiring ≥2 evidence source types per Day 0 annotation audit), where the largest gains are expected and the primary contribution claim is grounded.\\n(3) Exploratory secondary benchmark: WikiMixQA oracle setting (table+chart provided directly, multi-hop synthesis; open-source models score 14–27% vs. proprietary ~70%, near-random for 4-choice MCQ with 25% random baseline). At WikiMixQA oracle evaluation, LHEC (Qwen3-VL-8B-Instruct fine-tuned) receives the HTML table and chart image as direct multimodal inputs without DocLayout-YOLO preprocessing; the model applies its trained cross-modal traversal reasoning to these two provided modalities. The Wikidoc/retrieval setting is excluded because LHEC's per-page graphs cannot resolve evidence spread across multiple rendered pages. Given the near-random, scale-invariant open-source failure pattern on WikiMixQA oracle, gains from traversal fine-tuning are uncertain. If gains are ≤5% over the Day 1 baseline, the WikiMixQA result is reported as a documented negative — establishing the boundary of layout traversal training's transferability to cross-modal table+chart synthesis — and the contribution is framed entirely through the InfographicVQA hard multi-hop subset. This contingency is treated as the expected primary scenario, not a fallback.\\n(4) Scope-acknowledged secondary benchmark: DocHop-QA within-page-only subset (after audit). Report LHEC vs. base model on this subset with explicit framing: 'LHEC addresses within-page layout traversal; results are reported on the ~X% of DocHop-QA instances where all evidence is contained within a single page.'\\n(5) Regression checks: DocVQA (~96% for base, near ceiling — regression check only), ChartQA (near ceiling — regression check only).\\n(6) Zero-shot general regression suite: TextVQA, GQA, POPE, MMBench, SEED-Bench, RealWorldQA — base Qwen3-VL-8B-Instruct vs. fine-tuned LHEC, confirming no general regression from document-specific QLoRA fine-tuning.\\n\\nBaselines: vanilla Qwen3-VL-8B-Instruct (zero-shot), ARGUS (single-element grounding), PDF-VQA LoSpa (extractive element-selection, re-implemented on DocHop-QA within-page subset and InfographicVQA), MGA-VQA (direct comparison using public codebase on InfographicVQA and WikiMixQA oracle).\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~40h H100-SXM (equivalent to ~80h A100-80GB at 2× conversion factor)\",\n      \"gpu_utilization\": \"~30-35% active; idle periods during sequential code writing, debugging, and experiment launching\",\n      \"timeline\": \"3-4 weeks (exceeds EMNLP 2026 ARR deadline — manual mode is infeasible for the 15-day target)\",\n      \"team\": \"1-2 researchers\",\n      \"estimated_gpu_cost\": \"~$60-80 (H100-SXM at $1.50-2.00/hr on Lambda Labs or RunPod)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~35-40h H100-SXM (equivalent to ~70-80h A100-80GB at 2× conversion); well within 200 H100h hard cap\",\n      \"gpu_utilization\": \"~55-65% active; agent handles code generation and experiment queuing, human approves data pipeline checkpoints and training configs (~30 min/day)\",\n      \"timeline\": \"15 days targeting EMNLP 2026 ARR deadline (May 25, 2026): Day 0: DocLayout-YOLO validation on 100 InfographicVQA training images vs. GT bounding boxes (≥60% recall gate; expected fallback to InfographicVQA GT annotations) + InfographicVQA hard multi-hop subset audit via evidence annotation categories; Day 1: zero-shot Qwen3-VL-8B-Instruct baseline eval on InfographicVQA and WikiMixQA oracle setting (establishes actual baselines before training; CPU/GPU inference only) + DocHop-QA within-page audit; Days 1-2: DocLayout-YOLO integration over PMC-OA scientific page subset and InfographicVQA training images (CPU-bound inference; GT fallback applied per Day 0 gate); Days 2-3: rule-based typed graph construction (Caption-of/Adjacent/Up-Down-Left-Right, deterministic, no training); Days 3-6: custom verbalized traversal chain synthesis with IoU alignment + nearest-region fallback + shortest-path traversal template generation; Days 6-10: QLoRA fine-tuning of Qwen3-VL-8B-Instruct on 2× H100s (~25-30 H100h); Days 11-13: primary evaluation on InfographicVQA and WikiMixQA oracle + regression suite (DocVQA, ChartQA, TextVQA, GQA, POPE, MMBench, SEED-Bench, RealWorldQA) + DocHop-QA within-page subset; Days 13-15: paper writing and submission.\",\n      \"team\": \"1 researcher, ~30 min/day check-in for approvals\",\n      \"claude_api_cost\": \"$150-200 (~1,200-1,600 turns across pipeline build, training management, and result analysis at Opus rates)\",\n      \"estimated_gpu_cost\": \"~$55-80 (H100-SXM at $1.50-2.00/hr)\",\n      \"risk_note\": \"Primary risk: 15 days is the hard ceiling (EMNLP 2026 ARR May 25, 2026). Day 0 DocLayout-YOLO validation is likely to trigger the GT annotation fallback for InfographicVQA (YOLO was not trained on infographics); this adds no timeline cost since InfographicVQA GT bounding boxes are available in the training split. The rule-based edge assignment eliminates the relation head training bottleneck; QLoRA fine-tuning on InfographicVQA + PMC-OA synthesis is the sole training step at ~25-30 H100h on 2× H100s (~3-4 days). Day 1 baseline eval is critical: if Qwen3-VL-8B-Instruct already scores ≥90% on InfographicVQA overall (unlikely given 87.3 is current 72B SOTA), contribution framing pivots entirely to the hard multi-hop subset (primary) and WikiMixQA oracle (exploratory secondary — reported as negative if gains ≤5%). WikiMixQA oracle near-random baseline risk: the scale-invariant open-source failure pattern (23–27% for 1B–78B models) makes ≤5% gains the expected outcome; this is already the primary scenario with InfographicVQA hard subset as the load-bearing contribution claim. DocHop-QA within-page audit may yield too few instances (<500) for meaningful training contribution; if so, drop DocHop-QA entirely from training corpus. Secondary risk: DocLayout-YOLO recall on InfographicVQA test images (GT unavailable) creates a training-inference domain mismatch; report validation-split recall as a confound.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~40-50h H100-SXM (precompute DocLayout-YOLO detections on CPU before GPU training; QLoRA fine-tuning is the sole GPU-bound step)\",\n      \"gpu_utilization\": \"~90-95% active; agent queues experiments back-to-back with no human wait cycles\",\n      \"timeline\": \"10-12 days with 2× H100s; Day 0 DocLayout-YOLO validation and hard subset audit run immediately; Day 1 zero-shot baseline eval runs concurrently with DocLayout-YOLO inference; delivers results by ~May 22 with 3-day buffer for writing, comfortably within EMNLP 2026 ARR deadline\",\n      \"team\": \"0 (initial 1-2h setup and config only)\",\n      \"claude_api_cost\": \"$200-350 (~1,600-2,800 turns across auto experiment design, code generation, and result analysis)\",\n      \"estimated_gpu_cost\": \"~$60-100 (H100-SXM at $1.50-2.00/hr)\",\n      \"speed_bottleneck\": \"DocLayout-YOLO inference over PMC-OA subset and (if recall ≥60%) InfographicVQA training images is CPU-bound and must be fully precomputed before GPU training starts. 2× H100s are sufficient for the single QLoRA fine-tuning run; no ablation grid needed in the 15-day scope.\",\n      \"risk_note\": \"Day 4-5 mid-run sanity check on training loss curves is recommended to catch misconfigured verbalized traversal chain format before wasting ~15 H100h on a diverged run. Do NOT run Qwen3-VL-32B-Instruct — adding a 32B backbone comparison would push total GPU hours toward 120-160h, consuming the entire budget and missing the deadline. Trained relation head and cross-page PageRef ablations are explicitly deferred to the AAAI 2027 extended version. WikiMixQA oracle exploratory target: the scale-invariant near-random failure pattern makes gains likely small; if Day 1 zero-shot eval shows ≤5% headroom for gains, immediately confirm InfographicVQA hard multi-hop subset as the sole load-bearing contribution claim and frame WikiMixQA oracle as a documented negative result. If Day 1 zero-shot eval shows Qwen3-VL-8B-Instruct at ≥90% InfoVQA overall ANLS (unlikely), reframe contribution entirely around hard multi-hop subset and WikiMixQA oracle exploratory target.\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 ARR (deadline May 25, 2026 — PRIMARY target; 15-day HIL or 10-12-day auto-research plan delivers experimental results by ~May 22 with buffer for writing; cross-page PageRef linking and trained relation head explicitly scoped as future work to maintain feasibility)\",\n    \"AAAI 2027 (abstract deadline July 25, 2026; full paper August 1, 2026 — SECONDARY target; would add trained relation head replacing rule-based edges, cross-page PageRef linking, and BRIDGE evaluation to extend the contribution)\",\n    \"ICLR 2027 (deadline expected September-October 2026 — TERTIARY target for full multi-page multi-document analysis with ablations on relation head variants and cross-page graph linking)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"PDF-VQA (arXiv:2304.06447, ECML-PKDD 2023) — key predecessor: builds typed LR graph (parent-child hierarchical) and SR graph (8-directional: top/bottom/left/right + diagonals) over document element nodes including figure, table, figure caption, table caption, title, text, list; LoSpa model is EXTRACTIVE (predicts element index via GCN, retrieves OCR text); evaluated only on proprietary PDF-VQA PubMed dataset with no public benchmark comparison; LHEC's novel contribution relative to PDF-VQA is the generative VLM verbalized traversal training (not the graph construction, which PDF-VQA already did for extraction)\",\n    \"MGA-VQA: Secure and Interpretable Graph-Augmented Visual Question Answering with Memory-Guided Protection Against Unauthorized Knowledge Use (arXiv:2511.17881, NeurIPS 2025 track) — closest direct comparison; uses OCR-box nodes (missing figures/charts), untyped proximity/similarity edges, implicit 3-layer GCN, extractive-only output; evaluates on FUNSD, CORD, SROIE, DocVQA, STE-VQA, RICO; public code at github.com/ahmad-shirazi/MGAVQA; LHEC differentiates on semantic layout region nodes, typed edges, verbalized traversal traces, and generative output\",\n    \"LayoutLLM: Layout-Instruction Tuning with Large Language Models for Document Understanding (arXiv:2404.05225, CVPR 2024) — introduces LayoutCoT, a 3-step layout chain-of-thought (Question Analysis → Relevant Area Concentration → Answer Formation) with bounding-box coordinate anchors over document text; uses LayoutLMv3-style 2D positional text embeddings, no spatial graph, no typed inter-region edges; achieves 74.27% DocVQA ANLS zero-shot; does not evaluate on InfographicVQA or WikiMixQA. LHEC extends this direction with visual region detectors (DocLayout-YOLO), typed inter-region edges (Caption-of, Adjacent, Up/Down/Left/Right), and explicit node-ID traversal traces supervisable as structured chain-of-thought.\",\n    \"DocLayLLM: An Efficient Multi-modal Extension of Large Language Models for Text-Rich Document Understanding (arXiv:2408.15045, CVPR 2025) — follow-on to LayoutLLM from the same lineage; integrates visual patches (196 tokens), 2D positional tokens, and text into LLM with CoT Pre-training on layout-type, table-structure, and geometry tasks plus CoT Annealing; achieves 76.59% InfographicVQA ANLS; no spatial graph, no typed inter-region edges. Cited to show progression of layout-aware CoT reasoning and to position LHEC as extending beyond text-layout-embedding approaches to visually-grounded typed graph traversal.\",\n    \"WikiMixQA: A Multimodal Benchmark for Question Answering over Tables and Charts (arXiv:2506.15594, ACL 2025 Findings) — exploratory secondary evaluation target; 1,000 MCQs over table+chart pairs from 526 Wikipedia articles; oracle/direct-context setting: GPT-4o 71.42%, Claude-3.5-Sonnet 70.82%, Gemini-2.0-Pro 69.53%, InternVL2.5-78B 27.37%, Qwen2.5-VL-72B 23.17%; open-source oracle performance is near-random for 4-choice MCQ (25% random baseline) and scale-invariant from 1B to 78B — indicating fundamental cross-modal synthesis limitation. At evaluation, LHEC receives HTML table and chart image as direct multimodal inputs without DocLayout-YOLO preprocessing. If gains ≤5% over Day 1 baseline, reported as documented negative result; contribution framed entirely through InfographicVQA hard multi-hop subset.\",\n    \"Argus: Vision-Centric Reasoning with Grounded Chain-of-Thought (CVPR 2025)\",\n    \"Grounded Chain-of-Thought for Multimodal Large Language Models (GCoT, arXiv 2025)\",\n    \"MAGIC-VQA: Multimodal And Grounded Inference with Commonsense Knowledge for Visual Question Answering (ACL Findings 2025)\",\n    \"Graph-based Document Structure Analysis / GraphDoc — spatial and logical relation taxonomy (Up/Down/Left/Right, Parent/Child/Sequence) used to derive LHEC's rule-based edge assignment without supervised training (ICLR 2025)\",\n    \"Doc-V*: Coarse-to-Fine Interactive Visual Reasoning for Multi-Page Document VQA (arXiv:2604.13731, April 2026)\",\n    \"AVIR: Adaptive Visual In-Document Retrieval for Efficient Multi-Page Document Question Answering (arXiv 2026)\",\n    \"DocHop-QA: Towards Multi-Hop Reasoning over Multimodal Document Collections (arXiv:2508.15851, NeurIPS 2025 track) — CROSS-DOCUMENT benchmark where multi-document reasoning dominates; NOT suitable as primary LHEC evaluation target because LHEC builds per-page graphs that cannot resolve cross-document failure modes; used ONLY as supplementary training source after Day 1 within-page audit (instances where all evidence BBoxes fall on a single page); full benchmark excluded from primary evaluation claims\",\n    \"BRIDGE: Benchmark for multi-hop Reasoning In long multimodal Documents with Grounded Evidence (arXiv:2603.07931, March 2026) — confirms no existing method resolves the multi-hop cross-region gap; deferred to AAAI 2027/ICLR 2027 extended version\",\n    \"HopChain: Multi-Hop Data Synthesis for Generalizable Vision-Language Reasoning (arXiv:2603.17024, March 2026) — NOTE: HopChain synthesizes multi-hop numeric verifiable chains for RLVR training of VLMs on counting/visual reasoning tasks; it is NOT a document layout traversal chain method and is NOT used in LHEC's synthesis pipeline; LHEC uses a custom traversal chain synthesis pipeline (IoU-alignment + shortest-path verbalization) that is methodologically distinct from HopChain\",\n    \"DocLayout-YOLO: Enhancing Document Layout Analysis through Diverse Synthetic Data and Global-to-Local Adaptive Perception (arXiv:2410.12628) — layout region detector providing Table, Figure, Caption, TextBlock nodes; trained on formal structured documents (D4LA, DocLayNet, DocStructBench academic/financial/legal/textbook categories); not trained on infographic-style documents — Day 0 recall validation against InfographicVQA GT annotations required before committing synthesis pipeline\",\n    \"InfographicVQA (WACV 2022, arXiv:2104.12756) — PRIMARY evaluation benchmark and primary contribution claim; per-page, layout-intensive, active leaderboard; current SOTA Qwen2.5-VL-72B at 87.3% ANLS (no model above 90%, human ~98%); Qwen3-VL-8B-Instruct zero-shot baseline must be established on Day 1 (Qwen2.5-VL-7B 82.6% is NOT the correct anchor for this backbone); evidence source annotations (Text, Figure, Table/List, Map, Visual/Layout) used to identify hard multi-hop subset (Day 0 audit); InfographicVQA training split (~24K QA pairs) is the PRIMARY training corpus with GT bounding box annotations as graph nodes\",\n    \"PubLayNet (arXiv:1908.07836) + PMC-OA (PubMed Central Open Access) — PMC-OA provides 1.6M biomedical figure-caption-table image-text pairs; used as supplementary training source for LHEC's Caption-of traversal chain synthesis alongside InfographicVQA training split; DocLayout-YOLO detection used for PMC-OA (academic domain matches YOLO training distribution)\"\n  ],\n  \"description\": \"LHEC (Layout-Structured Hop Evidence Chains) targets the within-page multi-hop layout reasoning gap quantified by WikiMixQA (ACL 2025 Findings, arXiv:2506.15594) — in the oracle/direct-context setting (evidence provided directly), open-source VLMs score only 14–27% (InternVL2.5-78B: 27.37%, Qwen2.5-VL-72B: 23.17%) vs. proprietary models at ~70% (GPT-4o: 71.42%). Notably, the open-source oracle failure is near-random (25% random for 4-choice MCQ) and scale-invariant (1B to 78B), indicating fundamental cross-modal synthesis difficulty. The **primary** contribution claim is the InfographicVQA hard multi-hop layout subset — questions requiring ≥2 distinct evidence source types within a single infographic page (current SOTA Qwen2.5-VL-72B at 87.3% ANLS, active leaderboard not at ceiling; Qwen3-VL-8B-Instruct baseline established Day 1). WikiMixQA oracle is an **exploratory secondary** target: given the scale-invariant near-random open-source failure pattern, gains from 8B traversal fine-tuning are uncertain; if gains are ≤5% over the Day 1 baseline, WikiMixQA oracle is reported as a documented negative result and the contribution is framed entirely through InfographicVQA.\\n\\nThe method converts any document page into an explicit spatial evidence graph using DocLayout-YOLO region detection (Table, Figure, Caption, TextBlock nodes) and rule-based typed edge assignment (Caption-of by 150px vertical proximity; Adjacent by shared column/row boundary within 50px; Up/Down/Left/Right from center-point geometry following GraphDoc taxonomy — no separate relation head training required), then fine-tunes Qwen3-VL-8B-Instruct with QLoRA to generate reasoning traces that explicitly traverse graph node IDs and edge types step-by-step before answering (e.g., 'Table[3]→[Adjacent]→Caption[4]→[Caption-of]→Figure[5]').\\n\\nLHEC extends the LayoutLLM/DocLayLLM line of layout-aware CoT methods on three axes: (a) visual region detection (DocLayout-YOLO) rather than text layout embeddings; (b) typed inter-region spatial edges enabling multi-hop traversal across heterogeneous layout region types including figures/charts invisible to text-only encoders; (c) explicit node-ID traversal traces as directly supervisable structured chain-of-thought.\\n\\nTraining data is synthesized via a custom pipeline (NOT HopChain, which is a numeric counting RLVR framework). A Day 0 prerequisite validates DocLayout-YOLO recall against InfographicVQA GT bounding boxes (≥60% recall: use YOLO-detected nodes; <60%: use InfographicVQA's own annotated bounding boxes as graph nodes — GT fallback is expected given infographic domain mismatch). Primary training corpus: InfographicVQA training split (~24K QA pairs, per-page layout-intensive, GT annotations as fallback graph nodes). Supplementary: PMC-OA scientific pages (academic domain matches YOLO training distribution).\\n\\nA Day 0 hard-subset audit identifies InfographicVQA test questions annotated with ≥2 distinct evidence source types (Text/Figure/Table-List/Map/Visual-Layout), applying threshold-gated framing: ≥200 questions = statistical significance; 100–200 = preliminary; <100 = drop subset framing. DocHop-QA (arXiv:2508.15851) is a cross-DOCUMENT benchmark where LHEC's per-page graphs cannot address the dominant cross-document failure mode — used only as supplementary training data after within-page instance audit.\\n\\nDay 1 prerequisite: zero-shot Qwen3-VL-8B-Instruct evaluation on InfographicVQA and WikiMixQA oracle setting establishes true baselines before training begins.\\n\\nEvaluation: (1) Primary contribution claim: InfographicVQA (overall ANLS + hard multi-hop subset per Day 0 audit). (2) Exploratory secondary: WikiMixQA oracle setting — at evaluation, LHEC receives HTML table and chart image as direct multimodal inputs without DocLayout-YOLO preprocessing, applying trained cross-modal traversal reasoning to these provided modalities; reported as documented negative if gains ≤5%. (3) Scope-acknowledged secondary: DocHop-QA within-page-only audit subset. (4) Regression: DocVQA, ChartQA (near ceiling for base model). (5) General regression suite: TextVQA, GQA, POPE, MMBench, SEED-Bench, RealWorldQA. Baselines: vanilla Qwen3-VL-8B-Instruct, ARGUS, PDF-VQA LoSpa, MGA-VQA. WikiMixQA Wikidoc/retrieval setting excluded (LHEC per-page graphs cannot resolve cross-page evidence; articles average 24.18 rendered pages). Target: EMNLP 2026 ARR (May 25, 2026); AAAI 2027 with trained relation head and cross-page extension.\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"HARD CONSTRAINT VIOLATION — Timeline: User requires ≤16 days; generator's own minimum timeline is 2-3 weeks (auto) / 6-8 weeks (HIL). Generator explicitly acknowledges EMNLP 2026 is viable 'only if layout pipeline and preliminary results are already in hand' — they are not. The primary target venue is infeasible.\", \"HARD CONSTRAINT VIOLATION — Compute budget: Auto-research mode estimates ~700 A100h ≈ 280-350 H100h, exceeding the 200 H100h hard cap. Estimates should be stated in H100h, not A100h, to avoid confusion.\", \"CRITICAL OMISSION — MGA-VQA (arXiv:2511.17881, NeurIPS 2025 track) builds a spatial graph from document regions for multi-hop document VQA with graph reasoning and multi-modal fusion. Generator never cites or compares against it. Reviewers will identify this immediately. Differentiation (layout-region-level vs. OCR-box-level; explicit traversal vs. implicit GCN) must be articulated and evaluated.\", \"BENCHMARK MISMATCH — User's required eval benchmarks: DocVQA, ChartQA, InfographicVQA, TextVQA, GQA, POPE, MMBench, SEED-Bench, RealWorldQA. Generator proposes: DocHop-QA, BRIDGE, MP-DocVQA, DUDE — zero overlap. LHEC will show negligible improvement on the required benchmarks (DocVQA SOTA: 96.4%; ChartQA/GQA/POPE do not involve layout multi-hop reasoning).\", \"ARCHITECTURAL GAP — LHEC builds 'per-page spatial evidence graphs' but DocHop-QA (multi-document) and BRIDGE (multi-page scientific papers) require cross-page or cross-document reasoning. No mechanism for linking per-page graphs across pages is proposed, making the evaluation targets and the method architecturally misaligned.\", \"MODEL NAMING ERROR — Generator refers to 'Qwen3-VL-7B' throughout; the actual model is Qwen3-VL-8B-Instruct (verified on HuggingFace). 'Qwen3-VL-30B' in the resource section is also incorrect — the dense model is Qwen3-VL-32B-Instruct and the MoE variant is Qwen3-VL-30B-A3B.\", \"TRAINING DATA RISK — Constructing ground-truth graph-path labels by aligning DocLayout-YOLO detections with text-span evidence in BRIDGE/DocHop-QA is an unvalidated engineering step with no fallback. BRIDGE constructs QA from 262 scientific papers with text-only evidence spans; bridging these to detected bounding boxes requires non-trivial coordinate alignment that may fail for complex scientific layouts (equations, subfigures, multi-column).\"]\nFeedback: The core idea — build explicit spatial evidence graphs from detected layout regions and train a VLM to traverse them step-by-step — is genuine and fills a real gap. To make this revise-worthy → pass, address these four changes:\n\n1. **Retarget to AAAI 2027 / ICLR 2027 and acknowledge EMNLP is infeasible**: The 16-day constraint cannot be met by any configuration described. Reframe the proposal with AAAI 2027 (abstract deadline July 25, 2026) as the primary target, and provide a 10-week execution plan that fits within ≤200 H100h for the HIL mode.\n\n2. **Explicitly position against MGA-VQA (arXiv:2511.17881)**: MGA-VQA is the closest prior work. State clearly: MGA-VQA uses OCR-box nodes + implicit 3-layer GCN propagation; LHEC uses semantic layout regions (tables, figures, captions) + typed spatial/semantic edges + explicit node-traversal reasoning traces that can be supervised. Propose a direct comparison experiment.\n\n3. **Add a multi-page extension and revise eval plan**: For MP-DocVQA and DUDE, describe how per-page graphs are linked (e.g., carry-over nodes for cross-page references). To satisfy the user's required benchmarks, add InfographicVQA (layout-heavy, benefits from spatial grounding) and report results on DocVQA/ChartQA as held-out zero-shot to show no regression, even if the primary gains are on DocHop-QA and BRIDGE.\n\n4. **Fix compute estimates to H100h and bound the budget**: Restate all estimates in H100h. HIL mode (~112 H100h) stays within budget; auto mode should be scoped down to a 3-4 ablation budget (~160-180 H100h) by dropping the 30B backbone comparison.\n\n### Round 2 review\nVerdict: revise\nIssues: [\"HARD CONSTRAINT VIOLATION — unchanged from Round 1: User requires ≤16 days targeting EMNLP 2026 ARR (May 25, 2026). Generator explicitly marks EMNLP 2026 as 'INFEASIBLE' and pivots to AAAI 2027 (July 25 abstract deadline). Even the fastest auto-research mode estimates 2-3 weeks with 4+ H100s — borderline at 21 days, not 16. The idea as scoped does NOT meet the user's stated constraints.\", \"UNACCOUNTED TIMELINE DEPENDENCY — relation head training: The proposal includes 'a lightweight relation head assigns typed spatial edges' requiring supervised training on GraphDoc annotations. GraphDoc (ICLR 2025) provides the taxonomy and ~4M annotated relations, but fine-tuning even a lightweight relation head is a distinct training step adding 2-4 days that is absent from all three mode timelines. A rule-based edge assignment (proximity threshold + caption-text pattern matching) would eliminate this dependency and save significant time.\", \"UNCITED PRIOR WORK — PDF-VQA (arXiv:2304.06447): This 2023 paper already constructs both typed logical relation graphs (Parent/Child/Sequence between document sections) and typed spatial relation graphs over document elements including tables and figures, with explicit annotation of inter-element typed edges. This is a directly relevant predecessor to LHEC's typed graph construction and will be cited by reviewers. The generator must cite and differentiate from PDF-VQA, particularly arguing that LHEC's novel contribution is training a generative VLM to verbalize traversal across these graph edges, not the graph construction itself.\", \"MGA-VQA BENCHMARK SCOPE MISCHARACTERIZED: In multiple passages the generator states MGA-VQA is 'evaluated exclusively on single-hop IE tasks (FUNSD, CORD, SROIE).' Independent verification confirms MGA-VQA actually evaluates on six benchmarks: FUNSD, CORD, SROIE, DocVQA, STE-VQA, and RICO. DocVQA is a multi-hop-capable benchmark, so the 'exclusively single-hop IE' framing is misleading. This should be corrected to avoid reviewer pushback.\", \"BENCHMARK GAIN PROFILE MISMATCH WITH USER REQUIREMENTS: The user required gains on DocVQA, ChartQA, InfographicVQA, TextVQA, GQA, POPE, MMBench, SEED-Bench, RealWorldQA. The generator explicitly acknowledges 'no significant gain or regression expected' on GQA/POPE/MMBench/SEED-Bench/RealWorldQA. The only required benchmark where genuine gain is expected is InfographicVQA (ANLS leaderboard top is ~56.8% per Llama 3.2 90B). A paper showing gains on DocHop-QA and BRIDGE but flat on 8 of 9 required benchmarks may be seen as solving the wrong problem for the user's stated track.\"]\nFeedback: The Round 2 revision is substantively better: MGA-VQA differentiation is now precise, compute is within budget, all required benchmarks are covered, model names are corrected, and the cross-page mechanism is described. However, the primary hard constraint — 16 days / EMNLP 2026 — remains violated, and this is what prevents a 'pass'.\n\n**Path to a 16-day minimal LHEC (EMNLP feasible):**\nDrop the trained relation head entirely and replace with rule-based edge assignment: (1) Caption-of = nearest figure or table within 150px vertical; (2) Adjacent = any two regions sharing a column or row boundary within 50px; (3) Up/Down/Left/Right from GraphDoc taxonomy using center-point geometry. This eliminates the GraphDoc supervised training step — the single largest unaccounted dependency — and reduces the pipeline to: DocLayout-YOLO inference (Day 1-2, CPU-bound), rule-based graph construction (Day 2-3), HopChain-style training data synthesis on DocHop-QA (Day 3-6), QLoRA fine-tuning of Qwen3-VL-8B (Day 6-10, ~25 H100h on 2× H100s), evaluation on InfographicVQA + DocVQA + required benchmark suite (Day 11-13), paper writing (Day 13-16). This fits within 16 days and stays well under 100 H100h. The contribution remains novel: rule-based typed edges + explicit verbalized traversal training is still architecturally distinct from MGA-VQA's untyped implicit GCN. Present the trained relation head as future work.\n\n**Three specific fixes for the next revision:**\n1. Add PDF-VQA (arXiv:2304.06447) to the landscape and explicitly state LHEC's contribution is the generative VLM traversal training, not the graph construction (which PDF-VQA already did for extraction).\n2. Correct MGA-VQA benchmarks to 'FUNSD, CORD, SROIE, DocVQA, STE-VQA, RICO' — DocVQA is included, so the differentiation argument should be 'MGA-VQA reaches DocVQA ANLS X% but is limited to extractive spans from OCR boxes; LHEC targets DocHop-QA and InfographicVQA where multi-hop cross-region synthesis is required.'\n3. Either commit to the 16-day minimal version above (retarget primary = EMNLP 2026) or explicitly acknowledge that this idea exceeds the user's stated constraints and is fundamentally an AAAI 2027 proposal.\n\n### Round 3 review\nVerdict: revise\nIssues: [\"ARCHITECTURAL MISMATCH — PRIMARY EVALUATION TARGET INVALID: DocHop-QA (arXiv:2508.15851) is explicitly a cross-DOCUMENT benchmark. The paper's Figure 6 states 'Multi-document reasoning dominates overall.' LHEC builds per-page graphs with cross-page linking explicitly scoped out as future work. LHEC's per-page traversal addresses within-page layout hops; it cannot fix the cross-document failure mode that causes models to 'fail severely' on DocHop-QA. The claim 'strong gain expected on DocHop-QA' is therefore not supported by the proposed method. This architectural mismatch was flagged in Round 1 as 'ARCHITECTURAL GAP' and persists unresolved in Round 3. DocHop-QA evidence IS available at bounding-box granularity (Task 1 confirms BBox Entity Index Extraction), but the within-page subset that LHEC can actually train/eval on is undetermined and likely constitutes a minority of the 11,379 instances.\", \"MISLEADING CLAIM — HopChain 'style' misrepresentation: HopChain (arXiv:2603.17024, March 2026) synthesizes multi-hop data via category identification, instance segmentation, multi-hop query generation, and verifiable numeric answers for RLVR training of Qwen3.5 MoE models on visual counting tasks. It is NOT a method for generating document layout traversal chains of the form 'Table[3]→[Adjacent]→Caption[4]→[Caption-of]→Figure[5].' Calling the synthesis pipeline 'HopChain-style augmentation' is misleading — the actual synthesis pipeline is custom and novel and should be described as such. Reviewers familiar with HopChain will immediately notice the mismatch.\", \"UNESTABLISHED GAP — Baseline model mismatch: The '82.6% ANLS leaving a meaningful gap' argument is anchored on Qwen2.5-VL-7B-Instruct (confirmed correct from the HuggingFace model card). But the backbone being fine-tuned is Qwen3-VL-8B-Instruct (released Oct 2025, confirmed to exist). The Qwen3-VL technical report (arXiv:2511.21631) confirms the 8B model 'delivers superior performance across a broad range of multimodal benchmarks' compared to Qwen2.5-VL-7B. If Qwen3-VL-8B-Instruct already scores 85–88% on InfoVQA, the 'meaningful gap' to be closed may be significantly smaller than claimed, weakening the paper's contribution framing.\", \"TRAINING DATA SCOPE RISK: DocHop-QA does provide BBox annotations and element-level evidence (Task 1 confirms this), but training split information is not publicly specified in the paper. The evidence content includes text and table elements, with 'layout-aware evidence synthesis' across multiple documents. Since cross-document reasoning dominates, using DocHop-QA as the primary training source for within-page layout traversal chains may yield far fewer usable training examples than the '11,379 QA instances' figure suggests. The generator should audit how many DocHop-QA instances can actually be handled within a single page before committing to this as the primary training corpus.\"]\nFeedback: Round 3 has resolved the hard constraint violations from Rounds 1–2: EMNLP 2026 is now the primary target, rule-based edges eliminate the relation head training bottleneck, resource estimates are within budget, prior work is correctly cited, and model names are fixed. This is genuine progress. The verdict remains 'revise' due to one persistent architectural mismatch and two new verification findings.\n\n**Fix 1 (Critical — DocHop-QA evaluation reframe):** DocHop-QA is a multi-DOCUMENT benchmark where cross-document reasoning dominates. LHEC's per-page graphs address within-page layout traversal only. Do NOT claim 'strong gain expected on DocHop-QA' — this is unsupported. Two options: (a) Audit DocHop-QA for within-page-only instances (questions where all evidence comes from a single page/document section) and report LHEC gains on this subset, framed as 'within-page multi-hop' evaluation; (b) Pivot the primary evaluation claim entirely to InfographicVQA, which is genuinely per-page and layout-intensive — DocHop-QA becomes a secondary target with explicit acknowledgment of the cross-page scope limitation. Option (b) is safer for a 15-day timeline.\n\n**Fix 2 (Important — HopChain claim):** Remove 'HopChain-style augmentation' framing. HopChain generates numeric counting chains via RLVR — your synthesis pipeline generates document layout traversal chains from BBox-annotated evidence spans using IoU region alignment. These are different methods. Describe your synthesis as: 'We construct verbalized traversal chains by (1) running DocLayout-YOLO over DocHop-QA and InfographicVQA source images to detect Table/Figure/Caption/TextBlock regions, (2) aligning ground-truth evidence bounding boxes to detected regions via IoU overlap (nearest-region fallback below IoU 0.5), and (3) generating traversal templates from the shortest path in the typed evidence graph traversing aligned regions.' This is novel and should stand on its own without borrowing HopChain's name.\n\n**Fix 3 (Important — establish actual baseline):** Run Qwen3-VL-8B-Instruct zero-shot on InfoVQA before submission to establish the actual baseline score. If it is already above 86%, reframe the contribution as 'closing the remaining gap on hard multi-hop layout questions' rather than 'closing the gap from 82.6%.' The 82.6% figure from Qwen2.5-VL-7B is not the right anchor for a paper that fine-tunes Qwen3-VL-8B.\n\n### Round 4 review\nVerdict: revise\nIssues: [\"EVALUATION SETTING AMBIGUITY — WikiMixQA: The 27% figure cited throughout is for open-source models in the RETRIEVAL setting (where models must locate the relevant page). LHEC operates in the DIRECT-CONTEXT setting (the page image is given). From the WikiMixQA paper, proprietary models achieve ~70% in direct-context, implying open-source models likely score in the 40–55% range direct-context. The generator must (a) specify that LHEC is evaluated in the direct-context setting, (b) establish the Qwen3-VL-8B-Instruct zero-shot direct-context baseline on Day 1 alongside the InfoVQA baseline, and (c) restate the expected gain accordingly. Claiming gains from a 27% retrieval-setting floor when LHEC targets direct-context is misleading.\", \"MISSING CITATION — LayoutLLM/LayoutCoT (CVPR 2024): LayoutLLM introduces a LayoutCoT module that generates layout-aware chain-of-thought supervision for document understanding (DocVQA +1.96%, FUNSD +5.96%), and is directly related work the generator has omitted. EMNLP reviewers familiar with this line will immediately flag the gap. LHEC's differentiation is clear and compelling — LayoutCoT uses text-based layout CoT without explicit spatial graph nodes or traversal notation; LHEC uses typed layout-region graphs with node-ID traversal chains ('Table[3]→[Adjacent]→Caption[4]') — but this must be stated in the landscape section.\", \"UNDERDEFINED PRIMARY EVALUATION SUBSET — InfographicVQA hard multi-hop subset: The paper's contribution framing depends critically on gains within the hard multi-hop layout question subset (≥2 typed region hops), but the proposal does not specify: (a) how many InfographicVQA test questions qualify (if fewer than ~150, statistical significance claims are questionable), (b) whether this subset is defined by existing InfographicVQA answer-source category annotations or requires new annotation, and (c) what the base model's performance on this subset is prior to fine-tuning. Without a well-defined, sufficiently large subset, the claim of targeted improvement is unverifiable.\", \"DOCLAYOUT-YOLO DETECTION QUALITY ON INFOGRAPHICS — No concrete pre-validation plan: DocLayout-YOLO was trained primarily on academic-style documents (PubLayNet, DocLayNet). InfographicVQA contains visually diverse infographic images (magazine layouts, charts with decorative elements, overlapping text and graphics) that differ substantially from the training distribution. The proposal acknowledges this as a 'secondary risk' with a 'nearest-region fallback' but provides no quantitative pre-validation. A Day 0 quality check (run DocLayout-YOLO on ~100 InfoVQA training images, measure region recall against ground-truth answer-evidence bounding boxes) should be a hard prerequisite before committing to the training pipeline.\", \"INFOVQA OVERALL ANLS NEAR-CEILING RISK STILL PRESENT: Based on independent verification, Qwen2.5-VL-72B achieves 87.3% InfoVQA ANLS (InternVL3.5 Aug 2025 comparison table) and Qwen2.5-VL-7B achieves 82.6%; Qwen3-VL-8B-Instruct (Nov 2025, newer generation) is likely in the 84–87% range, possibly higher for the Thinking variant (reported 86.0%). If Day 1 zero-shot eval confirms ≥86% overall ANLS, the overall benchmark improvement from LHEC may be statistically marginal. The proposal's contingency plan (pivot to hard subset + WikiMixQA framing) is sound — but this should be stated more explicitly as the expected primary contribution story rather than a fallback.\"]\nFeedback: Round 4 has resolved all hard constraint violations from Rounds 1–3: timeline is feasible, compute is within budget, DocHop-QA is correctly scoped as supplementary training only, HopChain misrepresentation is removed, PDF-VQA and MGA-VQA are cited accurately, and Day 1 zero-shot baseline evaluation is a named prerequisite. This is genuine convergence. Four targeted fixes will complete the proposal:\n\n**Fix 1 (Critical — WikiMixQA evaluation setting):** Specify that LHEC is evaluated in the WikiMixQA direct-context setting (the page image provided, no retrieval). The 27% figure is for the retrieval setting — open-source models in direct-context likely score 40–55%. Day 1 must include Qwen3-VL-8B-Instruct zero-shot on WikiMixQA direct-context alongside InfoVQA. Restate the expected gain against the actual direct-context baseline, not the retrieval-setting floor.\n\n**Fix 2 (Important — LayoutLLM/LayoutCoT citation):** Add to the landscape section: 'LayoutLLM (CVPR 2024) introduces LayoutCoT, a layout-aware chain-of-thought module that generates question-type-conditioned reasoning steps over document layout text; it achieves +1.96% on DocVQA and +5.96% on FUNSD. LHEC extends this direction by (a) using visual region detectors rather than text layout as the basis for CoT structure, (b) assigning explicit typed spatial edges (Caption-of, Adjacent) between detected region nodes, and (c) training on graph traversal traces with node IDs rather than question-type reasoning steps.' This citation strengthens the paper by showing progression from text-layout CoT to visual-region graph traversal.\n\n**Fix 3 (Important — hard subset definition):** Before the EMNLP submission, specify the InfographicVQA hard multi-hop subset: use InfographicVQA's existing answer-source category annotations (text, table, chart, map, figure-caption) to identify test questions where the gold answer source involves ≥2 distinct category types. Report the count. If ≥200 test questions qualify, claim statistical significance. If 100–200, frame as 'preliminary targeted evaluation.' If <100, drop hard-subset framing and rely entirely on WikiMixQA as the non-ceiling evaluation target.\n\n**Fix 4 (Moderate — DocLayout-YOLO validation):** Promote the Day 0 DocLayout-YOLO quality check from implied to explicit: run detection on 100 InfoVQA training images and compute region recall against the gold answer-evidence bounding boxes. If recall ≥60%, proceed with the synthesis pipeline. If recall <60%, adapt: use InfoVQA's own annotated bounding boxes (available in the training set) as region nodes directly, bypassing YOLO detection for the InfoVQA portion of training data. This ensures training data quality regardless of YOLO's performance on atypical infographic layouts.\n\n### Round 5 review\nVerdict: revise\nIssues: [\"UNADDRESSED ROUND 4 FIX 2 — LayoutLLM/LayoutCoT still not cited: LayoutLLM (CVPR 2024, arXiv:2404.05225) introduces LayoutCoT, a layout chain-of-thought module that generates region-focused reasoning steps for document VQA. It is published by Alibaba at CVPR 2024, is widely cited, and directly overlaps with LHEC's layout-aware reasoning chain direction. Its absence from the Round 5 landscape and key_references after an explicit Round 4 citation requirement will trigger immediate reviewer rejection. Differentiation is available and compelling — LayoutCoT uses question-type-conditioned text steps without spatial graph nodes or typed edges; LHEC uses explicit node-ID traversal notation ('Table[3]→[Adjacent]→Caption[4]') over a typed graph — but this must appear in the paper. DocLayLLM (CVPR 2025) is an additional uncited layout-aware LLM from the same lineage.\", \"UNADDRESSED ROUND 4 FIX 1 — WikiMixQA evaluation setting factual error persists: The 'opportunity' section still states 'GPT-4o is the only model exceeding 50% accuracy even in the direct-context setting, while open-source VLMs max at 27% in retrieval settings.' Independent verification of the WikiMixQA paper confirms this is wrong: in the oracle/direct-context setting, MULTIPLE proprietary models achieve ~70% (GPT-4o: 71.42%, Gemini-2.0-Pro close behind); GPT-4o is the only model exceeding 50% in the RETRIEVAL/Wikidoc setting, where open-source VLMs max at 27%. In the oracle/direct-context setting where LHEC will be evaluated, open-source VLMs likely score 40-55% — significantly above 27%. The 'strong gains expected' framing should be anchored to Day 1 zero-shot baselines in the oracle setting, not the retrieval-setting floor.\", \"UNADDRESSED ROUND 4 FIX 3 — InfographicVQA hard multi-hop subset size unspecified: Round 4 explicitly required: 'specify the InfographicVQA hard multi-hop subset — use InfographicVQA answer-source category annotations to identify questions requiring ≥2 distinct category types, report the count, and frame claims based on count (≥200 = statistical significance, 100-200 = preliminary, <100 = drop subset framing).' Round 5 still describes the subset as 'questions requiring ≥2 typed region hops' without any count estimate, annotation methodology, or base model performance baseline. Without this, the primary contribution claim is unverifiable by reviewers.\", \"UNADDRESSED ROUND 4 FIX 4 — DocLayout-YOLO quality check not explicit: Round 4 required explicit Day 0 DocLayout-YOLO validation: run detection on 100 InfoVQA training images, compute region recall against gold answer-evidence bounding boxes, gate on ≥60% recall with fallback to InfographicVQA's own annotated bounding boxes. Round 5 mentions DocLayout-YOLO detection quality as a 'secondary risk' with 'nearest-region fallback' but does not include the explicit threshold-gated validation plan in the approach section. This is a hard prerequisite before committing to the synthesis pipeline.\", \"WikiMixQA 'within-page' characterization is imprecise: WikiMixQA sources table-chart pairs from Wikipedia articles that average 24 pages. The table and chart in each question pair may appear on different rendered pages of the document. In the oracle/direct-context setting, both are provided directly, which sidesteps the multi-page issue — but the proposal's claim that WikiMixQA 'directly quantifies the within-page typed-region traversal gap' overstates the alignment. LHEC's per-page graph cannot handle cross-page table-chart pairs in the Wikidoc setting; the contribution framing should specify 'oracle-setting evaluation' and acknowledge that LHEC targets within-page instances.\"]\nFeedback: Round 5 has resolved all hard constraint violations from Rounds 1-4: EMNLP 2026 timeline is achievable, compute is within budget, DocHop-QA scoping is correct, HopChain misrepresentation is removed, PDF-VQA and MGA-VQA are accurately cited and differentiated. This represents genuine convergence on the core architecture and feasibility. Four targeted fixes — all from Round 4, none new — are blocking a pass verdict:\n\n**Fix 1 (Critical — LayoutLLM/LayoutCoT, required since Round 4):** Add to the landscape section: 'LayoutLLM (CVPR 2024, arXiv:2404.05225) introduces LayoutCoT, a layout chain-of-thought module that generates question-type-conditioned reasoning steps (Question Analysis → Relevant Area Concentration → Answer Formation) over document layout text, achieving +3.45% on DocVQA. LHEC extends this direction in three ways: (a) LHEC uses visual region detectors (DocLayout-YOLO) to ground reasoning in detected spatial regions, not text layout embeddings; (b) LHEC assigns typed spatial edges between detected nodes (Caption-of, Adjacent, Up/Down/Left/Right) enabling graph-structured multi-hop traversal; (c) LHEC trains on explicit node-ID traversal traces (Table[3]→[Adjacent]→Caption[4]→[Caption-of]→Figure[5]) rather than question-type reasoning steps.' Also add DocLayLLM (CVPR 2025) as a follow-on work in the same lineage. This citation immediately makes the novelty claim stronger by showing progression, not just omission.\n\n**Fix 2 (Critical — WikiMixQA factual correction):** In the 'opportunity' section, replace 'GPT-4o is the only model exceeding 50% accuracy even in the direct-context setting, while open-source VLMs max at 27% in retrieval settings' with the correct statement: 'In the oracle/direct-context setting (table and chart provided directly), proprietary models achieve ~70% (GPT-4o: 71.42%, Gemini-2.0-Pro closely following); in the retrieval/Wikidoc setting, GPT-4o is the only model exceeding 50% while open-source VLMs max at 27%. LHEC targets the oracle setting; the Day 1 zero-shot Qwen3-VL-8B-Instruct baseline on WikiMixQA oracle will establish the actual starting point (estimated 40-55% for open-source models in this setting based on the gap between proprietary ~70% and retrieval-setting ~27%).' This ensures the gain claim is anchored to the correct baseline.\n\n**Fix 3 (Important — hard subset definition):** Before finalizing the proposal, estimate the InfographicVQA hard multi-hop subset size using the publicly available InfographicVQA answer-source category annotations. Questions where the gold answer requires combining information from ≥2 distinct categories (text+chart, table+figure, etc.) constitute the hard subset. Provide a count estimate: if ≥200 test questions qualify, claim statistical significance; if 100-200, frame as preliminary targeted evaluation; if <100, drop the hard-subset framing entirely and frame contribution entirely through WikiMixQA oracle-setting gains.\n\n**Fix 4 (Important — DocLayout-YOLO validation):** Add to the approach section as an explicit prerequisite: 'Before committing to the synthesis pipeline, we run DocLayout-YOLO on 100 InfographicVQA training images and compute region recall against the gold answer-evidence bounding boxes provided in the training set. If recall ≥60%, we proceed with YOLO-detected regions as graph nodes for all training data. If recall <60%, we substitute InfographicVQA's own annotated bounding boxes as graph nodes for the InfographicVQA portion, reserving YOLO detection for PMC-OA where no ground-truth annotations exist.' This one paragraph converts a vague 'secondary risk' into a concrete gated decision.\n\n### Round 6 review\nVerdict: revise\nIssues: [\"UNSPECIFIED WikiMixQA ORACLE INFERENCE PROTOCOL: LHEC trains on single page images where DocLayout-YOLO detects Table/Figure/Caption/TextBlock regions and the model generates node-ID traversal traces. WikiMixQA oracle provides a HTML table and a separate chart image — NOT a combined page image — so DocLayout-YOLO cannot be applied. The proposal never states how LHEC handles WikiMixQA oracle at inference time. This will immediately concern EMNLP reviewers. A one-sentence clarification is required: 'At WikiMixQA oracle evaluation, LHEC receives the HTML table and chart image as direct multimodal inputs to Qwen3-VL without DocLayout-YOLO preprocessing; the model applies its trained cross-modal traversal reasoning to these provided modalities.' Without this, the evaluation methodology is incomplete.\", \"NEAR-RANDOM WikiMixQA ORACLE BASELINE RISK UNDERSTATED: Independent verification of the WikiMixQA paper confirms that open-source model performance in the oracle setting is near-random (Qwen2.5-VL-72B: 23.17%, InternVL2.5-78B: 27.37% vs 25% random for 4-choice MCQ) and barely scales from 1B to 78B parameters — suggesting a fundamental cross-modal reasoning limitation, not a layout traversal gap. The Qwen3-VL-8B-Instruct zero-shot oracle baseline may be similarly near-random. The proposal estimates '20–30%' for the 8B base model and expects 'meaningful gains' from traversal training, but the near-scale-invariant oracle failure pattern suggests these gains may be small or zero. The contingency plan (fall back to InfoVQA hard subset framing) is correct but should be elevated as the expected primary contribution scenario, not a fallback.\"]\nFeedback: Round 6 has successfully resolved all four blocking issues from Round 5: LayoutLLM and DocLayLLM are now cited with precise differentiation; the WikiMixQA oracle scores (14–27% for open-source models) are correctly stated and independently verified; the InfographicVQA hard-subset audit has explicit threshold-gated framing; and the DocLayout-YOLO Day 0 validation is now an explicit gate with GT fallback. The proposal is one targeted fix away from a pass.\n\n**Fix 1 (Critical — WikiMixQA oracle inference protocol):** Add one sentence to the evaluation plan: 'At WikiMixQA oracle evaluation, Qwen3-VL-8B-Instruct (fine-tuned as LHEC) receives the HTML table and chart image as direct multimodal inputs without DocLayout-YOLO preprocessing; the trained cross-modal traversal reasoning is applied directly to these two provided modalities.' This resolves the train-eval format gap that reviewers will immediately flag.\n\n**Fix 2 (Important — contribution framing rebalance):** Given that WikiMixQA oracle performance is near-random even for 72B models (barely scaling from 1B to 78B), the probability that an 8B fine-tuned model shows substantial gains is uncertain. Rebalance the contribution framing so that the InfographicVQA hard multi-hop subset is explicitly the **primary** contribution claim and WikiMixQA oracle is a **secondary/exploratory** target. Concretely, change the phrasing from 'LHEC targets meaningful gains in this setting' to 'LHEC evaluates WikiMixQA oracle as an exploratory secondary target; if gains are ≤5% over the Day 1 baseline, the contribution is framed entirely through the InfographicVQA hard subset.' This makes the contingency plan load-bearing rather than a footnote, which will strengthen rather than weaken the paper.\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-10T09:25:19.471Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-10T09:25:19.471Z",
+  "sessionId": "86c36b8a-4f2b-4be8-9159-e3bc93060d38"
+}
+```
+
+---
+
+## Round 1
+
+22 recorded events
+
+### User
+
+_source line 3 · 2026-05-10T09:25:19.501Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-10 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: Multimodality and Language Grounding to Vision, Robotics and Beyond.
+
+Direction: Vision-language methods, document understanding, spatial reasoning, grounded language generation. In-scope: visual question answering with structured reasoning, document layout understanding, chart/table comprehension, spatial language grounding, vision-language alignment methods. NOT restricted to LLMs — encoder-based and hybrid architectures welcome.
+
+Contribution type: METHOD ONLY. New architectures, training objectives, or inference algorithms for multimodal understanding. Not a new dataset.
+
+HARD CONSTRAINTS:
+1. Compute: ≤200 H100-hours total. Many VL tasks are eval-heavy — budget for LoRA fine-tuning of open VLMs (LLaVA, InternVL, Qwen-VL).
+2. Time: ≤16 days. Use existing open multimodal models + established frameworks (HF Transformers, LLaVA codebase).
+3. Eval: DocVQA, ChartQA, InfographicVQA, TextVQA, GQA, POPE, MMBench, SEED-Bench, RealWorldQA.
+
+Look for: structured reasoning over visual documents (not just OCR+LLM), spatial relation grounding methods, cross-modal retrieval with layout awareness, efficient vision-language adaptation. Avoid: generic VLM fine-tuning without architectural contribution.
+
+Tag: direction=multimodal_grounding, contribution_type=method. target_venues=["EMNLP 2026 Main", "EMNLP 2026 Findings"].**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-10?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 7/10)
+{
+  "title": "Layout-Structured Multi-Hop Evidence Chains for Complex Document Reasoning",
+  "project_name": "layout_hop_evidence_chain",
+  "source": "web_research",
+  "core_problem": "Complex document questions require synthesizing evidence from multiple layout regions within a single page — reading a value from a table, referencing the adjacent caption, then cross-checking with an embedded chart — but no existing method trains a generative VLM to produce explicit multi-hop traversal traces across Table, Figure, Caption, and TextBlock nodes while preserving typed spatial relationships between semantic layout elements. Models either flatten the document into a token sequence (losing inter-region structure) or navigate page-by-page (missing within-page region-to-region links), or use implicit graph propagation with no supervisable chain-of-thought.\n\nThe empirical gap is well-established for WITHIN-PAGE multi-hop layout reasoning: WikiMixQA (arXiv:2506.15594, ACL 2025 Findings) demonstrates that within-page multi-hop table-and-chart reasoning is severely challenging for current models — in the oracle/direct-context setting (table and chart provided directly), proprietary models achieve ~70% (GPT-4o: 71.42%, Claude-3.5-Sonnet: 70.82%, Gemini-2.0-Pro: 69.53%) while open-source VLMs score only 14–27% (InternVL2.5-78B: 27.37%, Qwen2.5-VL-72B: 23.17%, Llama-3.2-11B: 14.08%); in the Wikidoc/retrieval setting, GPT-4o is the only model exceeding 50% (55.24%). Notably, the oracle-setting open-source performance (23–27%) is near-random for a 4-choice MCQ (25% baseline) and barely scales from 1B to 78B parameters — indicating a fundamental cross-modal synthesis limitation rather than purely a layout traversal gap. This large open-source gap in the oracle setting directly quantifies the within-region synthesis difficulty that LHEC targets, while the scale-invariance pattern motivates making the InfographicVQA hard subset the primary contribution claim. InfographicVQA's hard multi-hop layout questions (requiring ≥2 layout-region hops across charts, tables, captions, and text blocks in a single infographic) represent the primary per-page evaluation front where base VLMs that treat pages as flat images fail to exploit spatial relationships.\n\nTwo prior works come closest. PDF-VQA (arXiv:2304.06447, ECML-PKDD 2023) already builds typed Logical Relation graphs (parent-child hierarchical) and Spatial Relation graphs (8-directional: top/bottom/left/right and four diagonals) over document nodes including title, text, list, figure, table, table caption, and figure caption — graph construction over these node types is therefore not novel. But PDF-VQA's LoSpa model is fully extractive (predicts an element index via GCN, then retrieves OCR text from that region), produces no verbalized traversal chain-of-thought, and is evaluated only on the proprietary PDF-VQA PubMed dataset. MGA-VQA (arXiv:2511.17881, NeurIPS 2025) builds a spatial graph from OCR-detected text bounding boxes with untyped proximity/similarity edges and propagates through a 3-layer implicit GCN; its text-box nodes miss figure and chart regions entirely, its edges carry no semantic type labels, and all outputs are extractive spans with no traversal chain-of-thought.\n\nThe structured gap is: no method trains a generative VLM to verbalize step-by-step multi-hop traversal across typed layout-region nodes within a page — the exact capability required to answer questions that chain a table value through an Adjacent edge to its Caption and then through a Caption-of edge into a referenced Figure.",
+  "opportunity": "InfographicVQA (WACV 2022, leaderboard active) is the **primary** evaluation target and the primary contribution claim: it is genuinely per-page and layout-intensive, requiring joint reasoning over charts, tables, maps, and text blocks within single infographic images. The current SOTA is Qwen2.5-VL-72B at 87.3% ANLS (early 2025); no model has exceeded 90% (human performance is ~98%), confirming this benchmark is not at ceiling. The actual fine-tuning backbone is Qwen3-VL-8B-Instruct, whose InfoVQA baseline must be established via zero-shot evaluation on Day 1 of the project (the Qwen2.5-VL-7B 82.6% figure is NOT the correct anchor for a different backbone; Qwen3-VL-8B-Instruct score is unconfirmed in any public source as of May 2026 — likely in the 80–84 range based on scaling trends). Regardless of the overall ANLS level, hard multi-hop layout questions — those requiring the model to traverse ≥2 typed layout regions to compose the answer, identified via InfographicVQA's evidence-source category annotations — are the defensible hard subset where LHEC's explicit traversal training targets a meaningful gap over the base model. The Day 0 hard-subset audit (described in the approach) will determine whether the hard subset count supports statistical significance (≥200) or preliminary (100–200) framing.\n\nWikiMixQA (arXiv:2506.15594, ACL 2025 Findings) is an **exploratory secondary** evaluation target: it benchmarks multi-hop reasoning over table+chart pairs from Wikipedia. In the oracle/direct-context setting (table and chart provided directly), proprietary models achieve ~70% (GPT-4o: 71.42%, Claude-3.5-Sonnet: 70.82%, Gemini-2.0-Pro: 69.53%), while open-source VLMs score only 14–27% even with direct evidence access (InternVL2.5-78B: 27.37%, Qwen2.5-VL-72B: 23.17%). Critically, this oracle-setting open-source performance is near-random for a 4-choice MCQ (25% random baseline) and barely scales from 1B to 78B parameters — indicating that the failure reflects a fundamental cross-modal table+chart synthesis limitation rather than a layout traversal gap that typed graph training alone can bridge. LHEC evaluates WikiMixQA exclusively in the oracle setting; at evaluation, LHEC (Qwen3-VL-8B-Instruct fine-tuned) receives the HTML table and chart image as direct multimodal inputs without DocLayout-YOLO preprocessing — the trained cross-modal traversal reasoning is applied directly to these two provided modalities. The Wikidoc/retrieval setting is excluded because LHEC's per-page graphs cannot address evidence spread across multiple rendered pages (Wikipedia articles average 24.18 rendered pages). The Day 1 zero-shot Qwen3-VL-8B-Instruct baseline on WikiMixQA oracle will establish whether traversal fine-tuning yields non-trivial gains (>5%). If gains are ≤5% over the Day 1 baseline, the WikiMixQA result is reported as a documented negative — establishing the limits of layout traversal training for cross-modal table+chart synthesis — and the contribution is framed entirely through the InfographicVQA hard multi-hop subset. This contingency plan is the expected primary contribution scenario given the near-random, scale-invariant failure pattern.\n\nDocHop-QA (arXiv:2508.15851, NeurIPS 2025 track) is explicitly a cross-DOCUMENT benchmark (its own paper reports multi-document reasoning dominates overall). LHEC's per-page graphs cannot address cross-document failure modes. DocHop-QA is therefore used ONLY as a supplementary training corpus after a Day 1 audit: instances where all BBox-annotated evidence regions fall within a single page are extracted and used for within-page traversal chain synthesis; the cross-document majority of the 11,379 instances is excluded. If the within-page audit yields fewer than 500 usable instances, DocHop-QA is dropped from training entirely and the claim of using it is removed.\n\nBRIDGE (March 2026, arXiv:2603.07931) provides grounded multi-hop evidence annotations for long scientific documents and confirms no proposed method resolves the within-page cross-region gap it diagnoses; it is a strong secondary evaluation target for the AAAI 2027 extended version. The combination of DocLayout-YOLO layout detection (with GT annotation fallback for infographics, detailed in approach) + rule-based typed graph + generative VLM fine-tuned on explicit verbalized traversal chains is architecturally distinct from PDF-VQA (extractive element-index model), MGA-VQA (implicit GCN on OCR boxes), and LayoutLLM/DocLayLLM (text layout embeddings with coordinate-anchored CoT steps, no spatial graph), buildable entirely from open components, and executable within 15 days targeting EMNLP 2026 ARR (May 25, 2026).",
+  "landscape": "Multi-page document VQA methods include GRAM (learnable document tokens), Hi-VT5 (hierarchical page summaries), Doc-V* (April 2026, arXiv:2604.13731, coarse-to-fine agentic page navigation), AVIR (Jan 2026, adaptive visual retrieval for SlideVQA). Within-page multi-hop reasoning: ARGUS (CVPR 2025) grounds single visual elements with bounding boxes in CoT chains; GCoT (March 2025) generates coordinate-grounded reasoning steps; MAGIC-VQA (ACL 2025 Findings) uses commonsense knowledge graphs for inference.\n\nLayoutLLM (arXiv:2404.05225, CVPR 2024) introduces LayoutCoT, a three-step layout chain-of-thought module (Question Analysis → Relevant Area Concentration → Answer Formation) that generates text reasoning steps augmented with bounding-box coordinate anchors over document layout text, achieving +3.45% on DocVQA zero-shot (74.27% ANLS). LayoutLLM uses a LayoutLMv3-based document encoder with 2D positional text embeddings — there is no spatial graph, no typed inter-region edges, and no visual region detector; the 'Relevant Area Concentration' step outputs the union bounding box of relevant text spans rather than traversing detected layout regions. LayoutCoT does not evaluate on InfographicVQA or WikiMixQA. LHEC extends this direction on three axes: (a) LHEC uses DocLayout-YOLO to ground reasoning in visually detected spatial regions (Table, Figure, Caption, TextBlock) rather than text layout embeddings; (b) LHEC assigns typed spatial edges between detected nodes (Caption-of, Adjacent, Up/Down/Left/Right) enabling graph-structured multi-hop traversal across heterogeneous region types including figure and chart nodes invisible to text-only encoders; (c) LHEC trains on explicit node-ID traversal traces (Table[3]→[Adjacent]→Caption[4]→[Caption-of]→Figure[5]) that are directly supervisable as structured chain-of-thought, rather than question-type reasoning steps. DocLayLLM (arXiv:2408.15045, CVPR 2025), a follow-on from the same lineage, integrates visual patches (196 tokens), 2D positional tokens, and text into an LLM backbone via lightweight projectors with CoT Pre-training on layout-type, table-structure, and geometry tasks plus CoT Annealing; it achieves 76.59% on InfographicVQA ANLS. DocLayLLM similarly uses no spatial graph and no typed inter-region edges — its table-structure CoT operates within detected table boundaries, not across heterogeneous layout region types.\n\nPDF-VQA (arXiv:2304.06447, ECML-PKDD 2023) is an important predecessor that must be cited and differentiated from. It builds both a typed Logical Relation graph (LR graph: binary parent-child hierarchical edges) and a typed Spatial Relation graph (SR graph: 8-directional edges — top, bottom, left, right, top-left, top-right, bottom-left, bottom-right) over document element nodes including title, text, list, figure, table, table caption, and figure caption — the same node types LHEC uses. Its LoSpa model propagates via GCN to predict the index of the document element containing the answer (fully extractive: answer is OCR text retrieved from that region). PDF-VQA is evaluated only on its own proprietary PubMed Central dataset and contains no verbalized chain-of-thought. LHEC's novel contribution relative to PDF-VQA is the training of a generative VLM to verbalize traversal traces step-by-step ('Table[3]→[Adjacent]→Caption[4]→[Caption-of]→Figure[5]') as a directly supervisable chain-of-thought.\n\nMGA-VQA (Nov 2025, arXiv:2511.17881, NeurIPS 2025 track) is the second closest prior work and the most important direct comparison target: it uses OCR-detected text boxes as nodes (no figure/chart nodes), untyped proximity and semantic-similarity edges with scalar weights, a 3-layer GCN for implicit propagation, and extractive span outputs; it evaluates on FUNSD, CORD, SROIE, DocVQA, STE-VQA, RICO — DocVQA is included but all outputs are extractive spans from OCR boxes; no verbalized traversal chain-of-thought is produced and figure/chart regions are invisible to the model. LHEC differentiates on four axes: semantic layout region nodes, typed edges, verbalized traversal traces, and generative output. Public code at github.com/ahmad-shirazi/MGAVQA enables direct comparison.\n\nGraphDoc (ICLR 2025) annotates spatial and logical relations (Up/Down/Left/Right, Parent/Child/Sequence) between document nodes, providing the taxonomy directly used in LHEC's rule-based edge assignment.\n\nWikiMixQA (arXiv:2506.15594, ACL 2025 Findings) benchmarks multi-hop reasoning over table+chart pairs from Wikipedia (1,000 MCQs from 526 articles): in the oracle/direct-context setting, proprietary models achieve ~70% (GPT-4o: 71.42%, Claude-3.5-Sonnet: 70.82%, Gemini-2.0-Pro: 69.53%) while open-source VLMs score only 14–27% even with evidence provided directly (InternVL2.5-78B: 27.37%, Qwen2.5-VL-72B: 23.17%); in the Wikidoc/retrieval setting, GPT-4o scores 55.24% and is the only model exceeding 50%. The oracle-setting open-source failure is near-random (25% random baseline for 4-choice MCQ) and scale-invariant from 1B to 78B parameters — indicating a fundamental cross-modal table+chart synthesis limitation. Evidence pairs are drawn from the same Wikipedia article but may span different rendered pages (articles average 24.18 rendered pages). LHEC evaluates WikiMixQA exclusively in the oracle setting as an exploratory secondary target; at evaluation, LHEC receives the HTML table and chart image as direct multimodal inputs without DocLayout-YOLO preprocessing, applying trained cross-modal traversal reasoning directly to these provided modalities.\n\nHopChain (March 2026, arXiv:2603.17024) synthesizes multi-hop vision-language reasoning data for RLVR training via category identification, instance segmentation, multi-hop query generation, and verifiable numeric answers — it is a counting-task synthesis framework, NOT a document layout traversal chain method, and is not used in LHEC's synthesis pipeline. LHEC's traversal chain synthesis is a custom pipeline described separately.\n\nDocHop-QA (Aug 2025, arXiv:2508.15851, NeurIPS 2025 track) is a cross-DOCUMENT benchmark where multi-document reasoning dominates; it is NOT suitable as a primary LHEC evaluation target since LHEC's per-page graphs cannot address cross-document reasoning. DocHop-QA's BBox-annotated evidence regions are useful as a supplementary within-page training source after auditing for single-page-evidence instances only.\n\nBenchmark papers BRIDGE (March 2026) and DocHop-QA (Aug 2025) diagnose the multi-hop gap without proposing methods. InfographicVQA (WACV 2022): current SOTA Qwen2.5-VL-72B at 87.3% ANLS; Qwen3-VL-8B-Instruct zero-shot baseline to be established on Day 1; the hard multi-hop layout question subset (questions requiring ≥2 evidence source types per InfographicVQA annotations, Day 0 audit) is the primary evaluation target and primary contribution claim where LHEC is expected to show improvement.",
+  "approach": "We propose LHEC (Layout-Structured Hop Evidence Chains): given a document page, DocLayout-YOLO detects all layout regions (TextBlock, Table, Figure, Caption), and rule-based heuristics assign typed spatial and semantic edges to build a per-page evidence graph — no separate relation head training is required, eliminating a 2-4 day training dependency. Specifically: (1) Caption-of edge: from a Caption node to the nearest Table or Figure within 150px vertical distance; (2) Adjacent edge: between any two regions sharing a column or row boundary within 50px; (3) Up/Down/Left/Right edges: from center-point geometry following GraphDoc taxonomy (nearest neighbor in each axis direction). This rule-based assignment is deterministic, requires no annotated training data, and completes in minutes on CPU alongside DocLayout-YOLO inference. A trained relation head replacing these heuristics is a natural extension presented as future work (AAAI 2027 version).\n\nA Qwen3-VL-8B-Instruct backbone fine-tuned with QLoRA is trained to produce structured multi-hop reasoning traces that explicitly traverse this graph — citing region node IDs and edge types at each hop (e.g., 'Table[3]→[Adjacent]→Caption[4]→[Caption-of]→Figure[5]') — before producing the final answer.\n\n**Day 0 prerequisite — DocLayout-YOLO infographic validation:** DocLayout-YOLO was trained exclusively on formal structured documents (academic, financial, legal, and textbook categories from D4LA, DocLayNet, and DocStructBench) and has no training signal for infographic-style documents. Before committing to the synthesis pipeline, we run DocLayout-YOLO on 100 InfographicVQA training images and compute Table/Figure/Caption/TextBlock region recall against the gold evidence bounding box annotations provided in the InfographicVQA training set. If recall ≥60%, we proceed with YOLO-detected regions as graph nodes for all InfographicVQA training data. If recall <60% (the expected outcome given the training domain mismatch), we substitute InfographicVQA's own annotated bounding boxes as graph nodes for the InfographicVQA training portion, reserving YOLO detection for PMC-OA where no ground-truth annotations exist. For evaluation at test time (where GT annotations are not publicly available), we use DocLayout-YOLO in all conditions and report its validation-split recall as a confound in the paper.\n\n**Day 0 prerequisite — InfographicVQA hard multi-hop subset audit:** InfographicVQA annotates each question with evidence source type(s) — Text, Figure, Table/List, Map, Visual/Layout — with multiple types permitted per question. We run the released annotation files to identify test-set questions annotated with ≥2 distinct evidence source types; this constitutes the hard multi-hop subset. Framing gates: ≥200 test questions = statistical significance claim; 100–200 = preliminary targeted evaluation; <100 = drop hard-subset framing entirely and frame contribution through WikiMixQA oracle-setting gains. Based on InfographicVQA's design intent (3,288 test questions across 579 complex infographic images requiring multimodal layout reasoning), we estimate ≥500 qualifying questions (>15% of test set), but the exact count is established before finalizing any contribution claims.\n\nTraining data synthesis (custom pipeline — not HopChain, which is a numeric counting RLVR framework unrelated to document layout traversal): (1) Run DocLayout-YOLO over PMC-OA scientific page subset and, if Day 0 recall ≥60%, over InfographicVQA training images; otherwise use InfographicVQA's own annotated bounding boxes as graph nodes for InfographicVQA training data. (2) Align ground-truth QA evidence regions to detected (or annotated) layout nodes via IoU overlap ≥ 0.5; when IoU < 0.5, assign the evidence span to the nearest detected region by centroid distance. (3) Build the per-page typed evidence graph with rule-based edges (Caption-of, Adjacent, Up/Down/Left/Right). (4) For each QA pair, extract the shortest path in the evidence graph traversing all aligned evidence regions — this forms the traversal template. (5) Verbalize the traversal template into a structured chain-of-thought: 'Table[3]→[Adjacent]→Caption[4]→[Caption-of]→Figure[5]' covering 2-4 hop lengths. The InfographicVQA training split (~24K QA pairs) is the primary training source — it is per-page, layout-intensive, and in-distribution with respect to the primary evaluation target. PMC-OA scientific pages supplement this corpus with figure+caption+table triplets characteristic of academic document layouts.\n\nDocHop-QA is audited on Day 1 for within-page-amenable instances (all evidence BBox regions on a single page). If this audit yields ≥500 instances, they are included as a supplementary training source. If fewer than 500 instances qualify (expected given cross-document dominance), DocHop-QA is dropped from training and this decision is documented in the paper.\n\nFor the EMNLP 2026 submission, cross-page PageRef linking is scoped out — per-page graphs are used throughout; rule-based cross-reference linking is explicitly presented as future work for the AAAI 2027 extended version.\n\nEvaluation plan:\n(1) Day 1 prerequisite: Zero-shot Qwen3-VL-8B-Instruct evaluation on InfographicVQA and WikiMixQA oracle setting to establish actual baselines. This is a precondition for interpretable contribution framing — the paper cannot use the 82.6% ANLS figure from Qwen2.5-VL-7B as the baseline for a different backbone, and the WikiMixQA oracle estimate (~20–30% for a non-fine-tuned 8B model, consistent with the 23–27% range for larger open-source models) must be confirmed.\n(2) Primary benchmark — primary contribution claim: InfographicVQA (per-page, layout-intensive, active leaderboard). Report: (a) overall ANLS, base Qwen3-VL-8B-Instruct vs. LHEC-fine-tuned; (b) hard multi-hop layout subset ANLS (questions requiring ≥2 evidence source types per Day 0 annotation audit), where the largest gains are expected and the primary contribution claim is grounded.\n(3) Exploratory secondary benchmark: WikiMixQA oracle setting (table+chart provided directly, multi-hop synthesis; open-source models score 14–27% vs. proprietary ~70%, near-random for 4-choice MCQ with 25% random baseline). At WikiMixQA oracle evaluation, LHEC (Qwen3-VL-8B-Instruct fine-tuned) receives the HTML table and chart image as direct multimodal inputs without DocLayout-YOLO preprocessing; the model applies its trained cross-modal traversal reasoning to these two provided modalities. The Wikidoc/retrieval setting is excluded because LHEC's per-page graphs cannot resolve evidence spread across multiple rendered pages. Given the near-random, scale-invariant open-source failure pattern on WikiMixQA oracle, gains from traversal fine-tuning are uncertain. If gains are ≤5% over the Day 1 baseline, the WikiMixQA result is reported as a documented negative — establishing the boundary of layout traversal training's transferability to cross-modal table+chart synthesis — and the contribution is framed entirely through the InfographicVQA hard multi-hop subset. This contingency is treated as the expected primary scenario, not a fallback.\n(4) Scope-acknowledged secondary benchmark: DocHop-QA within-page-only subset (after audit). Report LHEC vs. base model on this subset with explicit framing: 'LHEC addresses within-page layout traversal; results are reported on the ~X% of DocHop-QA instances where all evidence is contained within a single page.'\n(5) Regression checks: DocVQA (~96% for base, near ceiling — regression check only), ChartQA (near ceiling — regression check only).\n(6) Zero-shot general regression suite: TextVQA, GQA, POPE, MMBench, SEED-Bench, RealWorldQA — base Qwen3-VL-8B-Instruct vs. fine-tuned LHEC, confirming no general regression from document-specific QLoRA fine-tuning.\n\nBaselines: vanilla Qwen3-VL-8B-Instruct (zero-shot), ARGUS (single-element grounding), PDF-VQA LoSpa (extractive element-selection, re-implemented on DocHop-QA within-page subset and InfographicVQA), MGA-VQA (direct comparison using public codebase on InfographicVQA and WikiMixQA oracle).",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~40h H100-SXM (equivalent to ~80h A100-80GB at 2× conversion factor)",
+      "gpu_utilization": "~30-35% active; idle periods during sequential code writing, debugging, and experiment launching",
+      "timeline": "3-4 weeks (exceeds EMNLP 2026 ARR deadline — manual mode is infeasible for the 15-day target)",
+      "team": "1-2 researchers",
+      "estimated_gpu_cost": "~$60-80 (H100-SXM at $1.50-2.00/hr on Lambda Labs or RunPod)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~35-40h H100-SXM (equivalent to ~70-80h A100-80GB at 2× conversion); well within 200 H100h hard cap",
+      "gpu_utilization": "~55-65% active; agent handles code generation and experiment queuing, human approves data pipeline checkpoints and training configs (~30 min/day)",
+      "timeline": "15 days targeting EMNLP 2026 ARR deadline (May 25, 2026): Day 0: DocLayout-YOLO validation on 100 InfographicVQA training images vs. GT bounding boxes (≥60% recall gate; expected fallback to InfographicVQA GT annotations) + InfographicVQA hard multi-hop subset audit via evidence annotation categories; Day 1: zero-shot Qwen3-VL-8B-Instruct baseline eval on InfographicVQA and WikiMixQA oracle setting (establishes actual baselines before training; CPU/GPU inference only) + DocHop-QA within-page audit; Days 1-2: DocLayout-YOLO integration over PMC-OA scientific page subset and InfographicVQA training images (CPU-bound inference; GT fallback applied per Day 0 gate); Days 2-3: rule-based typed graph construction (Caption-of/Adjacent/Up-Down-Left-Right, deterministic, no training); Days 3-6: custom verbalized traversal chain synthesis with IoU alignment + nearest-region fallback + shortest-path traversal template generation; Days 6-10: QLoRA fine-tuning of Qwen3-VL-8B-Instruct on 2× H100s (~25-30 H100h); Days 11-13: primary evaluation on InfographicVQA and WikiMixQA oracle + regression suite (DocVQA, ChartQA, TextVQA, GQA, POPE, MMBench, SEED-Bench, RealWorldQA) + DocHop-QA within-page subset; Days 13-15: paper writing and submission.",
+      "team": "1 researcher, ~30 min/day check-in for approvals",
+      "claude_api_cost": "$150-200 (~1,200-1,600 turns across pipeline build, training management, and result analysis at Opus rates)",
+      "estimated_gpu_cost": "~$55-80 (H100-SXM at $1.50-2.00/hr)",
+      "risk_note": "Primary risk: 15 days is the hard ceiling (EMNLP 2026 ARR May 25, 2026). Day 0 DocLayout-YOLO validation is likely to trigger the GT annotation fallback for InfographicVQA (YOLO was not trained on infographics); this adds no timeline cost since InfographicVQA GT bounding boxes are available in the training split. The rule-based edge assignment eliminates the relation head training bottleneck; QLoRA fine-tuning on InfographicVQA + PMC-OA synthesis is the sole training step at ~25-30 H100h on 2× H100s (~3-4 days). Day 1 baseline eval is critical: if Qwen3-VL-8B-Instruct already scores ≥90% on InfographicVQA overall (unlikely given 87.3 is current 72B SOTA), contribution framing pivots entirely to the hard multi-hop subset (primary) and WikiMixQA oracle (exploratory secondary — reported as negative if gains ≤5%). WikiMixQA oracle near-random baseline risk: the scale-invariant open-source failure pattern (23–27% for 1B–78B models) makes ≤5% gains the expected outcome; this is already the primary scenario with InfographicVQA hard subset as the load-bearing contribution claim. DocHop-QA within-page audit may yield too few instances (<500) for meaningful training contribution; if so, drop DocHop-QA entirely from training corpus. Secondary risk: DocLayout-YOLO recall on InfographicVQA test images (GT unavailable) creates a training-inference domain mismatch; report validation-split recall as a confound."
+    },
+    "auto_research": {
+      "gpu_hours": "~40-50h H100-SXM (precompute DocLayout-YOLO detections on CPU before GPU training; QLoRA fine-tuning is the sole GPU-bound step)",
+      "gpu_utilization": "~90-95% active; agent queues experiments back-to-back with no human wait cycles",
+      "timeline": "10-12 days with 2× H100s; Day 0 DocLayout-YOLO validation and hard subset audit run immediately; Day 1 zero-shot baseline eval runs concurrently with DocLayout-YOLO inference; delivers results by ~May 22 with 3-day buffer for writing, comfortably within EMNLP 2026 ARR deadline",
+      "team": "0 (initial 1-2h setup and config only)",
+      "claude_api_cost": "$200-350 (~1,600-2,800 turns across auto experiment design, code generation, and result analysis)",
+      "estimated_gpu_cost": "~$60-100 (H100-SXM at $1.50-2.00/hr)",
+      "speed_bottleneck": "DocLayout-YOLO inference over PMC-OA subset and (if recall ≥60%) InfographicVQA training images is CPU-bound and must be fully precomputed before GPU training starts. 2× H100s are sufficient for the single QLoRA fine-tuning run; no ablation grid needed in the 15-day scope.",
+      "risk_note": "Day 4-5 mid-run sanity check on training loss curves is recommended to catch misconfigured verbalized traversal chain format before wasting ~15 H100h on a diverged run. Do NOT run Qwen3-VL-32B-Instruct — adding a 32B backbone comparison would push total GPU hours toward 120-160h, consuming the entire budget and missing the deadline. Trained relation head and cross-page PageRef ablations are explicitly deferred to the AAAI 2027 extended version. WikiMixQA oracle exploratory target: the scale-invariant near-random failure pattern makes gains likely small; if Day 1 zero-shot eval shows ≤5% headroom for gains, immediately confirm InfographicVQA hard multi-hop subset as the sole load-bearing contribution claim and frame WikiMixQA oracle as a documented negative result. If Day 1 zero-shot eval shows Qwen3-VL-8B-Instruct at ≥90% InfoVQA overall ANLS (unlikely), reframe contribution entirely around hard multi-hop subset and WikiMixQA oracle exploratory target."
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 ARR (deadline May 25, 2026 — PRIMARY target; 15-day HIL or 10-12-day auto-research plan delivers experimental results by ~May 22 with buffer for writing; cross-page PageRef linking and trained relation head explicitly scoped as future work to maintain feasibility)",
+    "AAAI 2027 (abstract deadline July 25, 2026; full paper August 1, 2026 — SECONDARY target; would add trained relation head replacing rule-based edges, cross-page PageRef linking, and BRIDGE evaluation to extend the contribution)",
+    "ICLR 2027 (deadline expected September-October 2026 — TERTIARY target for full multi-page multi-document analysis with ablations on relation head variants and cross-page graph linking)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "PDF-VQA (arXiv:2304.06447, ECML-PKDD 2023) — key predecessor: builds typed LR graph (parent-child hierarchical) and SR graph (8-directional: top/bottom/left/right + diagonals) over document element nodes including figure, table, figure caption, table caption, title, text, list; LoSpa model is EXTRACTIVE (predicts element index via GCN, retrieves OCR text); evaluated only on proprietary PDF-VQA PubMed dataset with no public benchmark comparison; LHEC's novel contribution relative to PDF-VQA is the generative VLM verbalized traversal training (not the graph construction, which PDF-VQA already did for extraction)",
+    "MGA-VQA: Secure and Interpretable Graph-Augmented Visual Question Answering with Memory-Guided Protection Against Unauthorized Knowledge Use (arXiv:2511.17881, NeurIPS 2025 track) — closest direct comparison; uses OCR-box nodes (missing figures/charts), untyped proximity/similarity edges, implicit 3-layer GCN, extractive-only output; evaluates on FUNSD, CORD, SROIE, DocVQA, STE-VQA, RICO; public code at github.com/ahmad-shirazi/MGAVQA; LHEC differentiates on semantic layout region nodes, typed edges, verbalized traversal traces, and generative output",
+    "LayoutLLM: Layout-Instruction Tuning with Large Language Models for Document Understanding (arXiv:2404.05225, CVPR 2024) — introduces LayoutCoT, a 3-step layout chain-of-thought (Question Analysis → Relevant Area Concentration → Answer Formation) with bounding-box coordinate anchors over document text; uses LayoutLMv3-style 2D positional text embeddings, no spatial graph, no typed inter-region edges; achieves 74.27% DocVQA ANLS zero-shot; does not evaluate on InfographicVQA or WikiMixQA. LHEC extends this direction with visual region detectors (DocLayout-YOLO), typed inter-region edges (Caption-of, Adjacent, Up/Down/Left/Right), and explicit node-ID traversal traces supervisable as structured chain-of-thought.",
+    "DocLayLLM: An Efficient Multi-modal Extension of Large Language Models for Text-Rich Document Understanding (arXiv:2408.15045, CVPR 2025) — follow-on to LayoutLLM from the same lineage; integrates visual patches (196 tokens), 2D positional tokens, and text into LLM with CoT Pre-training on layout-type, table-structure, and geometry tasks plus CoT Annealing; achieves 76.59% InfographicVQA ANLS; no spatial graph, no typed inter-region edges. Cited to show progression of layout-aware CoT reasoning and to position LHEC as extending beyond text-layout-embedding approaches to visually-grounded typed graph traversal.",
+    "WikiMixQA: A Multimodal Benchmark for Question Answering over Tables and Charts (arXiv:2506.15594, ACL 2025 Findings) — exploratory secondary evaluation target; 1,000 MCQs over table+chart pairs from 526 Wikipedia articles; oracle/direct-context setting: GPT-4o 71.42%, Claude-3.5-Sonnet 70.82%, Gemini-2.0-Pro 69.53%, InternVL2.5-78B 27.37%, Qwen2.5-VL-72B 23.17%; open-source oracle performance is near-random for 4-choice MCQ (25% random baseline) and scale-invariant from 1B to 78B — indicating fundamental cross-modal synthesis limitation. At evaluation, LHEC receives HTML table and chart image as direct multimodal inputs without DocLayout-YOLO preprocessing. If gains ≤5% over Day 1 baseline, reported as documented negative result; contribution framed entirely through InfographicVQA hard multi-hop subset.",
+    "Argus: Vision-Centric Reasoning with Grounded Chain-of-Thought (CVPR 2025)",
+    "Grounded Chain-of-Thought for Multimodal Large Language Models (GCoT, arXiv 2025)",
+    "MAGIC-VQA: Multimodal And Grounded Inference with Commonsense Knowledge for Visual Question Answering (ACL Findings 2025)",
+    "Graph-based Document Structure Analysis / GraphDoc — spatial and logical relation taxonomy (Up/Down/Left/Right, Parent/Child/Sequence) used to derive LHEC's rule-based edge assignment without supervised training (ICLR 2025)",
+    "Doc-V*: Coarse-to-Fine Interactive Visual Reasoning for Multi-Page Document VQA (arXiv:2604.13731, April 2026)",
+    "AVIR: Adaptive Visual In-Document Retrieval for Efficient Multi-Page Document Question Answering (arXiv 2026)",
+    "DocHop-QA: Towards Multi-Hop Reasoning over Multimodal Document Collections (arXiv:2508.15851, NeurIPS 2025 track) — CROSS-DOCUMENT benchmark where multi-document reasoning dominates; NOT suitable as primary LHEC evaluation target because LHEC builds per-page graphs that cannot resolve cross-document failure modes; used ONLY as supplementary training source after Day 1 within-page audit (instances where all evidence BBoxes fall on a single page); full benchmark excluded from primary evaluation claims",
+    "BRIDGE: Benchmark for multi-hop Reasoning In long multimodal Documents with Grounded Evidence (arXiv:2603.07931, March 2026) — confirms no existing method resolves the multi-hop cross-region gap; deferred to AAAI 2027/ICLR 2027 extended version",
+    "HopChain: Multi-Hop Data Synthesis for Generalizable Vision-Language Reasoning (arXiv:2603.17024, March 2026) — NOTE: HopChain synthesizes multi-hop numeric verifiable chains for RLVR training of VLMs on counting/visual reasoning tasks; it is NOT a document layout traversal chain method and is NOT used in LHEC's synthesis pipeline; LHEC uses a custom traversal chain synthesis pipeline (IoU-alignment + shortest-path verbalization) that is methodologically distinct from HopChain",
+    "DocLayout-YOLO: Enhancing Document Layout Analysis through Diverse Synthetic Data and Global-to-Local Adaptive Perception (arXiv:2410.12628) — layout region detector providing Table, Figure, Caption, TextBlock nodes; trained on formal structured documents (D4LA, DocLayNet, DocStructBench academic/financial/legal/textbook categories); not trained on infographic-style documents — Day 0 recall validation against InfographicVQA GT annotations required before committing synthesis pipeline",
+    "InfographicVQA (WACV 2022, arXiv:2104.12756) — PRIMARY evaluation benchmark and primary contribution claim; per-page, layout-intensive, active leaderboard; current SOTA Qwen2.5-VL-72B at 87.3% ANLS (no model above 90%, human ~98%); Qwen3-VL-8B-Instruct zero-shot baseline must be established on Day 1 (Qwen2.5-VL-7B 82.6% is NOT the correct anchor for this backbone); evidence source annotations (Text, Figure, Table/List, Map, Visual/Layout) used to identify hard multi-hop subset (Day 0 audit); InfographicVQA training split (~24K QA pairs) is the PRIMARY training corpus with GT bounding box annotations as graph nodes",
+    "PubLayNet (arXiv:1908.07836) + PMC-OA (PubMed Central Open Access) — PMC-OA provides 1.6M biomedical figure-caption-table image-text pairs; used as supplementary training source for LHEC's Caption-of traversal chain synthesis alongside InfographicVQA training split; DocLayout-YOLO detection used for PMC-OA (academic domain matches YOLO training distribution)"
+  ],
+  "description": "LHEC (Layout-Structured Hop Evidence Chains) targets the within-page multi-hop layout reasoning gap quantified by WikiMixQA (ACL 2025 Findings, arXiv:2506.15594) — in the oracle/direct-context setting (evidence provided directly), open-source VLMs score only 14–27% (InternVL2.5-78B: 27.37%, Qwen2.5-VL-72B: 23.17%) vs. proprietary models at ~70% (GPT-4o: 71.42%). Notably, the open-source oracle failure is near-random (25% random for 4-choice MCQ) and scale-invariant (1B to 78B), indicating fundamental cross-modal synthesis difficulty. The **primary** contribution claim is the InfographicVQA hard multi-hop layout subset — questions requiring ≥2 distinct evidence source types within a single infographic page (current SOTA Qwen2.5-VL-72B at 87.3% ANLS, active leaderboard not at ceiling; Qwen3-VL-8B-Instruct baseline established Day 1). WikiMixQA oracle is an **exploratory secondary** target: given the scale-invariant near-random open-source failure pattern, gains from 8B traversal fine-tuning are uncertain; if gains are ≤5% over the Day 1 baseline, WikiMixQA oracle is reported as a documented negative result and the contribution is framed entirely through InfographicVQA.\n\nThe method converts any document page into an explicit spatial evidence graph using DocLayout-YOLO region detection (Table, Figure, Caption, TextBlock nodes) and rule-based typed edge assignment (Caption-of by 150px vertical proximity; Adjacent by shared column/row boundary within 50px; Up/Down/Left/Right from center-point geometry following GraphDoc taxonomy — no separate relation head training required), then fine-tunes Qwen3-VL-8B-Instruct with QLoRA to generate reasoning traces that explicitly traverse graph node IDs and edge types step-by-step before answering (e.g., 'Table[3]→[Adjacent]→Caption[4]→[Caption-of]→Figure[5]').\n\nLHEC extends the LayoutLLM/DocLayLLM line of layout-aware CoT methods on three axes: (a) visual region detection (DocLayout-YOLO) rather than text layout embeddings; (b) typed inter-region spatial edges enabling multi-hop traversal across heterogeneous layout region types including figures/charts invisible to text-only encoders; (c) explicit node-ID traversal traces as directly supervisable structured chain-of-thought.\n\nTraining data is synthesized via a custom pipeline (NOT HopChain, which is a numeric counting RLVR framework). A Day 0 prerequisite validates DocLayout-YOLO recall against InfographicVQA GT bounding boxes (≥60% recall: use YOLO-detected nodes; <60%: use InfographicVQA's own annotated bounding boxes as graph nodes — GT fallback is expected given infographic domain mismatch). Primary training corpus: InfographicVQA training split (~24K QA pairs, per-page layout-intensive, GT annotations as fallback graph nodes). Supplementary: PMC-OA scientific pages (academic domain matches YOLO training distribution).\n\nA Day 0 hard-subset audit identifies InfographicVQA test questions annotated with ≥2 distinct evidence source types (Text/Figure/Table-List/Map/Visual-Layout), applying threshold-gated framing: ≥200 questions = statistical significance; 100–200 = preliminary; <100 = drop subset framing. DocHop-QA (arXiv:2508.15851) is a cross-DOCUMENT benchmark where LHEC's per-page graphs cannot address the dominant cross-document failure mode — used only as supplementary training data after within-page instance audit.\n\nDay 1 prerequisite: zero-shot Qwen3-VL-8B-Instruct evaluation on InfographicVQA and WikiMixQA oracle setting establishes true baselines before training begins.\n\nEvaluation: (1) Primary contribution claim: InfographicVQA (overall ANLS + hard multi-hop subset per Day 0 audit). (2) Exploratory secondary: WikiMixQA oracle setting — at evaluation, LHEC receives HTML table and chart image as direct multimodal inputs without DocLayout-YOLO preprocessing, applying trained cross-modal traversal reasoning to these provided modalities; reported as documented negative if gains ≤5%. (3) Scope-acknowledged secondary: DocHop-QA within-page-only audit subset. (4) Regression: DocVQA, ChartQA (near ceiling for base model). (5) General regression suite: TextVQA, GQA, POPE, MMBench, SEED-Bench, RealWorldQA. Baselines: vanilla Qwen3-VL-8B-Instruct, ARGUS, PDF-VQA LoSpa, MGA-VQA. WikiMixQA Wikidoc/retrieval setting excluded (LHEC per-page graphs cannot resolve cross-page evidence; articles average 24.18 rendered pages). Target: EMNLP 2026 ARR (May 25, 2026); AAAI 2027 with trained relation head and cross-page extension."
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["HARD CONSTRAINT VIOLATION — Timeline: User requires ≤16 days; generator's own minimum timeline is 2-3 weeks (auto) / 6-8 weeks (HIL). Generator explicitly acknowledges EMNLP 2026 is viable 'only if layout pipeline and preliminary results are already in hand' — they are not. The primary target venue is infeasible.", "HARD CONSTRAINT VIOLATION — Compute budget: Auto-research mode estimates ~700 A100h ≈ 280-350 H100h, exceeding the 200 H100h hard cap. Estimates should be stated in H100h, not A100h, to avoid confusion.", "CRITICAL OMISSION — MGA-VQA (arXiv:2511.17881, NeurIPS 2025 track) builds a spatial graph from document regions for multi-hop document VQA with graph reasoning and multi-modal fusion. Generator never cites or compares against it. Reviewers will identify this immediately. Differentiation (layout-region-level vs. OCR-box-level; explicit traversal vs. implicit GCN) must be articulated and evaluated.", "BENCHMARK MISMATCH — User's required eval benchmarks: DocVQA, ChartQA, InfographicVQA, TextVQA, GQA, POPE, MMBench, SEED-Bench, RealWorldQA. Generator proposes: DocHop-QA, BRIDGE, MP-DocVQA, DUDE — zero overlap. LHEC will show negligible improvement on the required benchmarks (DocVQA SOTA: 96.4%; ChartQA/GQA/POPE do not involve layout multi-hop reasoning).", "ARCHITECTURAL GAP — LHEC builds 'per-page spatial evidence graphs' but DocHop-QA (multi-document) and BRIDGE (multi-page scientific papers) require cross-page or cross-document reasoning. No mechanism for linking per-page graphs across pages is proposed, making the evaluation targets and the method architecturally misaligned.", "MODEL NAMING ERROR — Generator refers to 'Qwen3-VL-7B' throughout; the actual model is Qwen3-VL-8B-Instruct (verified on HuggingFace). 'Qwen3-VL-30B' in the resource section is also incorrect — the dense model is Qwen3-VL-32B-Instruct and the MoE variant is Qwen3-VL-30B-A3B.", "TRAINING DATA RISK — Constructing ground-truth graph-path labels by aligning DocLayout-YOLO detections with text-span evidence in BRIDGE/DocHop-QA is an unvalidated engineering step with no fallback. BRIDGE constructs QA from 262 scientific papers with text-only evidence spans; bridging these to detected bounding boxes requires non-trivial coordinate alignment that may fail for complex scientific layouts (equations, subfigures, multi-column)."]
+Feedback: The core idea — build explicit spatial evidence graphs from detected layout regions and train a VLM to traverse them step-by-step — is genuine and fills a real gap. To make this revise-worthy → pass, address these four changes:
+
+1. **Retarget to AAAI 2027 / ICLR 2027 and acknowledge EMNLP is infeasible**: The 16-day constraint cannot be met by any configuration described. Reframe the proposal with AAAI 2027 (abstract deadline July 25, 2026) as the primary target, and provide a 10-week execution plan that fits within ≤200 H100h for the HIL mode.
+
+2. **Explicitly position against MGA-VQA (arXiv:2511.17881)**: MGA-VQA is the closest prior work. State clearly: MGA-VQA uses OCR-box nodes + implicit 3-layer GCN propagation; LHEC uses semantic layout regions (tables, figures, captions) + typed spatial/semantic edges + explicit node-traversal reasoning traces that can be supervised. Propose a direct comparison experiment.
+
+3. **Add a multi-page extension and revise eval plan**: For MP-DocVQA and DUDE, describe how per-page graphs are linked (e.g., carry-over nodes for cross-page references). To satisfy the user's required benchmarks, add InfographicVQA (layout-heavy, benefits from spatial grounding) and report results on DocVQA/ChartQA as held-out zero-shot to show no regression, even if the primary gains are on DocHop-QA and BRIDGE.
+
+4. **Fix compute estimates to H100h and bound the budget**: Restate all estimates in H100h. HIL mode (~112 H100h) stays within budget; auto mode should be scoped down to a 3-4 ablation budget (~160-180 H100h) by dropping the 30B backbone comparison.
+
+### Round 2 review
+Verdict: revise
+Issues: ["HARD CONSTRAINT VIOLATION — unchanged from Round 1: User requires ≤16 days targeting EMNLP 2026 ARR (May 25, 2026). Generator explicitly marks EMNLP 2026 as 'INFEASIBLE' and pivots to AAAI 2027 (July 25 abstract deadline). Even the fastest auto-research mode estimates 2-3 weeks with 4+ H100s — borderline at 21 days, not 16. The idea as scoped does NOT meet the user's stated constraints.", "UNACCOUNTED TIMELINE DEPENDENCY — relation head training: The proposal includes 'a lightweight relation head assigns typed spatial edges' requiring supervised training on GraphDoc annotations. GraphDoc (ICLR 2025) provides the taxonomy and ~4M annotated relations, but fine-tuning even a lightweight relation head is a distinct training step adding 2-4 days that is absent from all three mode timelines. A rule-based edge assignment (proximity threshold + caption-text pattern matching) would eliminate this dependency and save significant time.", "UNCITED PRIOR WORK — PDF-VQA (arXiv:2304.06447): This 2023 paper already constructs both typed logical relation graphs (Parent/Child/Sequence between document sections) and typed spatial relation graphs over document elements including tables and figures, with explicit annotation of inter-element typed edges. This is a directly relevant predecessor to LHEC's typed graph construction and will be cited by reviewers. The generator must cite and differentiate from PDF-VQA, particularly arguing that LHEC's novel contribution is training a generative VLM to verbalize traversal across these graph edges, not the graph construction itself.", "MGA-VQA BENCHMARK SCOPE MISCHARACTERIZED: In multiple passages the generator states MGA-VQA is 'evaluated exclusively on single-hop IE tasks (FUNSD, CORD, SROIE).' Independent verification confirms MGA-VQA actually evaluates on six benchmarks: FUNSD, CORD, SROIE, DocVQA, STE-VQA, and RICO. DocVQA is a multi-hop-capable benchmark, so the 'exclusively single-hop IE' framing is misleading. This should be corrected to avoid reviewer pushback.", "BENCHMARK GAIN PROFILE MISMATCH WITH USER REQUIREMENTS: The user required gains on DocVQA, ChartQA, InfographicVQA, TextVQA, GQA, POPE, MMBench, SEED-Bench, RealWorldQA. The generator explicitly acknowledges 'no significant gain or regression expected' on GQA/POPE/MMBench/SEED-Bench/RealWorldQA. The only required benchmark where genuine gain is expected is InfographicVQA (ANLS leaderboard top is ~56.8% per Llama 3.2 90B). A paper showing gains on DocHop-QA and BRIDGE but flat on 8 of 9 required benchmarks may be seen as solving the wrong problem for the user's stated track."]
+Feedback: The Round 2 revision is substantively better: MGA-VQA differentiation is now precise, compute is within budget, all required benchmarks are covered, model names are corrected, and the cross-page mechanism is described. However, the primary hard constraint — 16 days / EMNLP 2026 — remains violated, and this is what prevents a 'pass'.
+
+**Path to a 16-day minimal LHEC (EMNLP feasible):**
+Drop the trained relation head entirely and replace with rule-based edge assignment: (1) Caption-of = nearest figure or table within 150px vertical; (2) Adjacent = any two regions sharing a column or row boundary within 50px; (3) Up/Down/Left/Right from GraphDoc taxonomy using center-point geometry. This eliminates the GraphDoc supervised training step — the single largest unaccounted dependency — and reduces the pipeline to: DocLayout-YOLO inference (Day 1-2, CPU-bound), rule-based graph construction (Day 2-3), HopChain-style training data synthesis on DocHop-QA (Day 3-6), QLoRA fine-tuning of Qwen3-VL-8B (Day 6-10, ~25 H100h on 2× H100s), evaluation on InfographicVQA + DocVQA + required benchmark suite (Day 11-13), paper writing (Day 13-16). This fits within 16 days and stays well under 100 H100h. The contribution remains novel: rule-based typed edges + explicit verbalized traversal training is still architecturally distinct from MGA-VQA's untyped implicit GCN. Present the trained relation head as future work.
+
+**Three specific fixes for the next revision:**
+1. Add PDF-VQA (arXiv:2304.06447) to the landscape and explicitly state LHEC's contribution is the generative VLM traversal training, not the graph construction (which PDF-VQA already did for extraction).
+2. Correct MGA-VQA benchmarks to 'FUNSD, CORD, SROIE, DocVQA, STE-VQA, RICO' — DocVQA is included, so the differentiation argument should be 'MGA-VQA reaches DocVQA ANLS X% but is limited to extractive spans from OCR boxes; LHEC targets DocHop-QA and InfographicVQA where multi-hop cross-region synthesis is required.'
+3. Either commit to the 16-day minimal version above (retarget primary = EMNLP 2026) or explicitly acknowledge that this idea exceeds the user's stated constraints and is fundamentally an AAAI 2027 proposal.
+
+### Round 3 review
+Verdict: revise
+Issues: ["ARCHITECTURAL MISMATCH — PRIMARY EVALUATION TARGET INVALID: DocHop-QA (arXiv:2508.15851) is explicitly a cross-DOCUMENT benchmark. The paper's Figure 6 states 'Multi-document reasoning dominates overall.' LHEC builds per-page graphs with cross-page linking explicitly scoped out as future work. LHEC's per-page traversal addresses within-page layout hops; it cannot fix the cross-document failure mode that causes models to 'fail severely' on DocHop-QA. The claim 'strong gain expected on DocHop-QA' is therefore not supported by the proposed method. This architectural mismatch was flagged in Round 1 as 'ARCHITECTURAL GAP' and persists unresolved in Round 3. DocHop-QA evidence IS available at bounding-box granularity (Task 1 confirms BBox Entity Index Extraction), but the within-page subset that LHEC can actually train/eval on is undetermined and likely constitutes a minority of the 11,379 instances.", "MISLEADING CLAIM — HopChain 'style' misrepresentation: HopChain (arXiv:2603.17024, March 2026) synthesizes multi-hop data via category identification, instance segmentation, multi-hop query generation, and verifiable numeric answers for RLVR training of Qwen3.5 MoE models on visual counting tasks. It is NOT a method for generating document layout traversal chains of the form 'Table[3]→[Adjacent]→Caption[4]→[Caption-of]→Figure[5].' Calling the synthesis pipeline 'HopChain-style augmentation' is misleading — the actual synthesis pipeline is custom and novel and should be described as such. Reviewers familiar with HopChain will immediately notice the mismatch.", "UNESTABLISHED GAP — Baseline model mismatch: The '82.6% ANLS leaving a meaningful gap' argument is anchored on Qwen2.5-VL-7B-Instruct (confirmed correct from the HuggingFace model card). But the backbone being fine-tuned is Qwen3-VL-8B-Instruct (released Oct 2025, confirmed to exist). The Qwen3-VL technical report (arXiv:2511.21631) confirms the 8B model 'delivers superior performance across a broad range of multimodal benchmarks' compared to Qwen2.5-VL-7B. If Qwen3-VL-8B-Instruct already scores 85–88% on InfoVQA, the 'meaningful gap' to be closed may be significantly smaller than claimed, weakening the paper's contribution framing.", "TRAINING DATA SCOPE RISK: DocHop-QA does provide BBox annotations and element-level evidence (Task 1 confirms this), but training split information is not publicly specified in the paper. The evidence content includes text and table elements, with 'layout-aware evidence synthesis' across multiple documents. Since cross-document reasoning dominates, using DocHop-QA as the primary training source for within-page layout traversal chains may yield far fewer usable training examples than the '11,379 QA instances' figure suggests. The generator should audit how many DocHop-QA instances can actually be handled within a single page before committing to this as the primary training corpus."]
+Feedback: Round 3 has resolved the hard constraint violations from Rounds 1–2: EMNLP 2026 is now the primary target, rule-based edges eliminate the relation head training bottleneck, resource estimates are within budget, prior work is correctly cited, and model names are fixed. This is genuine progress. The verdict remains 'revise' due to one persistent architectural mismatch and two new verification findings.
+
+**Fix 1 (Critical — DocHop-QA evaluation reframe):** DocHop-QA is a multi-DOCUMENT benchmark where cross-document reasoning dominates. LHEC's per-page graphs address within-page layout traversal only. Do NOT claim 'strong gain expected on DocHop-QA' — this is unsupported. Two options: (a) Audit DocHop-QA for within-page-only instances (questions where all evidence comes from a single page/document section) and report LHEC gains on this subset, framed as 'within-page multi-hop' evaluation; (b) Pivot the primary evaluation claim entirely to InfographicVQA, which is genuinely per-page and layout-intensive — DocHop-QA becomes a secondary target with explicit acknowledgment of the cross-page scope limitation. Option (b) is safer for a 15-day timeline.
+
+**Fix 2 (Important — HopChain claim):** Remove 'HopChain-style augmentation' framing. HopChain generates numeric counting chains via RLVR — your synthesis pipeline generates document layout traversal chains from BBox-annotated evidence spans using IoU region alignment. These are different methods. Describe your synthesis as: 'We construct verbalized traversal chains by (1) running DocLayout-YOLO over DocHop-QA and InfographicVQA source images to detect Table/Figure/Caption/TextBlock regions, (2) aligning ground-truth evidence bounding boxes to detected regions via IoU overlap (nearest-region fallback below IoU 0.5), and (3) generating traversal templates from the shortest path in the typed evidence graph traversing aligned regions.' This is novel and should stand on its own without borrowing HopChain's name.
+
+**Fix 3 (Important — establish actual baseline):** Run Qwen3-VL-8B-Instruct zero-shot on InfoVQA before submission to establish the actual baseline score. If it is already above 86%, reframe the contribution as 'closing the remaining gap on hard multi-hop layout questions' rather than 'closing the gap from 82.6%.' The 82.6% figure from Qwen2.5-VL-7B is not the right anchor for a paper that fine-tunes Qwen3-VL-8B.
+
+### Round 4 review
+Verdict: revise
+Issues: ["EVALUATION SETTING AMBIGUITY — WikiMixQA: The 27% figure cited throughout is for open-source models in the RETRIEVAL setting (where models must locate the relevant page). LHEC operates in the DIRECT-CONTEXT setting (the page image is given). From the WikiMixQA paper, proprietary models achieve ~70% in direct-context, implying open-source models likely score in the 40–55% range direct-context. The generator must (a) specify that LHEC is evaluated in the direct-context setting, (b) establish the Qwen3-VL-8B-Instruct zero-shot direct-context baseline on Day 1 alongside the InfoVQA baseline, and (c) restate the expected gain accordingly. Claiming gains from a 27% retrieval-setting floor when LHEC targets direct-context is misleading.", "MISSING CITATION — LayoutLLM/LayoutCoT (CVPR 2024): LayoutLLM introduces a LayoutCoT module that generates layout-aware chain-of-thought supervision for document understanding (DocVQA +1.96%, FUNSD +5.96%), and is directly related work the generator has omitted. EMNLP reviewers familiar with this line will immediately flag the gap. LHEC's differentiation is clear and compelling — LayoutCoT uses text-based layout CoT without explicit spatial graph nodes or traversal notation; LHEC uses typed layout-region graphs with node-ID traversal chains ('Table[3]→[Adjacent]→Caption[4]') — but this must be stated in the landscape section.", "UNDERDEFINED PRIMARY EVALUATION SUBSET — InfographicVQA hard multi-hop subset: The paper's contribution framing depends critically on gains within the hard multi-hop layout question subset (≥2 typed region hops), but the proposal does not specify: (a) how many InfographicVQA test questions qualify (if fewer than ~150, statistical significance claims are questionable), (b) whether this subset is defined by existing InfographicVQA answer-source category annotations or requires new annotation, and (c) what the base model's performance on this subset is prior to fine-tuning. Without a well-defined, sufficiently large subset, the claim of targeted improvement is unverifiable.", "DOCLAYOUT-YOLO DETECTION QUALITY ON INFOGRAPHICS — No concrete pre-validation plan: DocLayout-YOLO was trained primarily on academic-style documents (PubLayNet, DocLayNet). InfographicVQA contains visually diverse infographic images (magazine layouts, charts with decorative elements, overlapping text and graphics) that differ substantially from the training distribution. The proposal acknowledges this as a 'secondary risk' with a 'nearest-region fallback' but provides no quantitative pre-validation. A Day 0 quality check (run DocLayout-YOLO on ~100 InfoVQA training images, measure region recall against ground-truth answer-evidence bounding boxes) should be a hard prerequisite before committing to the training pipeline.", "INFOVQA OVERALL ANLS NEAR-CEILING RISK STILL PRESENT: Based on independent verification, Qwen2.5-VL-72B achieves 87.3% InfoVQA ANLS (InternVL3.5 Aug 2025 comparison table) and Qwen2.5-VL-7B achieves 82.6%; Qwen3-VL-8B-Instruct (Nov 2025, newer generation) is likely in the 84–87% range, possibly higher for the Thinking variant (reported 86.0%). If Day 1 zero-shot eval confirms ≥86% overall ANLS, the overall benchmark improvement from LHEC may be statistically marginal. The proposal's contingency plan (pivot to hard subset + WikiMixQA framing) is sound — but this should be stated more explicitly as the expected primary contribution story rather than a fallback."]
+Feedback: Round 4 has resolved all hard constraint violations from Rounds 1–3: timeline is feasible, compute is within budget, DocHop-QA is correctly scoped as supplementary training only, HopChain misrepresentation is removed, PDF-VQA and MGA-VQA are cited accurately, and Day 1 zero-shot baseline evaluation is a named prerequisite. This is genuine convergence. Four targeted fixes will complete the proposal:
+
+**Fix 1 (Critical — WikiMixQA evaluation setting):** Specify that LHEC is evaluated in the WikiMixQA direct-context setting (the page image provided, no retrieval). The 27% figure is for the retrieval setting — open-source models in direct-context likely score 40–55%. Day 1 must include Qwen3-VL-8B-Instruct zero-shot on WikiMixQA direct-context alongside InfoVQA. Restate the expected gain against the actual direct-context baseline, not the retrieval-setting floor.
+
+**Fix 2 (Important — LayoutLLM/LayoutCoT citation):** Add to the landscape section: 'LayoutLLM (CVPR 2024) introduces LayoutCoT, a layout-aware chain-of-thought module that generates question-type-conditioned reasoning steps over document layout text; it achieves +1.96% on DocVQA and +5.96% on FUNSD. LHEC extends this direction by (a) using visual region detectors rather than text layout as the basis for CoT structure, (b) assigning explicit typed spatial edges (Caption-of, Adjacent) between detected region nodes, and (c) training on graph traversal traces with node IDs rather than question-type reasoning steps.' This citation strengthens the paper by showing progression from text-layout CoT to visual-region graph traversal.
+
+**Fix 3 (Important — hard subset definition):** Before the EMNLP submission, specify the InfographicVQA hard multi-hop subset: use InfographicVQA's existing answer-source category annotations (text, table, chart, map, figure-caption) to identify test questions where the gold answer source involves ≥2 distinct category types. Report the count. If ≥200 test questions qualify, claim statistical significance. If 100–200, frame as 'preliminary targeted evaluation.' If <100, drop hard-subset framing and rely entirely on WikiMixQA as the non-ceiling evaluation target.
+
+**Fix 4 (Moderate — DocLayout-YOLO validation):** Promote the Day 0 DocLayout-YOLO quality check from implied to explicit: run detection on 100 InfoVQA training images and compute region recall against the gold answer-evidence bounding boxes. If recall ≥60%, proceed with the synthesis pipeline. If recall <60%, adapt: use InfoVQA's own annotated bounding boxes (available in the training set) as region nodes directly, bypassing YOLO detection for the InfoVQA portion of training data. This ensures training data quality regardless of YOLO's performance on atypical infographic layouts.
+
+### Round 5 review
+Verdict: revise
+Issues: ["UNADDRESSED ROUND 4 FIX 2 — LayoutLLM/LayoutCoT still not cited: LayoutLLM (CVPR 2024, arXiv:2404.05225) introduces LayoutCoT, a layout chain-of-thought module that generates region-focused reasoning steps for document VQA. It is published by Alibaba at CVPR 2024, is widely cited, and directly overlaps with LHEC's layout-aware reasoning chain direction. Its absence from the Round 5 landscape and key_references after an explicit Round 4 citation requirement will trigger immediate reviewer rejection. Differentiation is available and compelling — LayoutCoT uses question-type-conditioned text steps without spatial graph nodes or typed edges; LHEC uses explicit node-ID traversal notation ('Table[3]→[Adjacent]→Caption[4]') over a typed graph — but this must appear in the paper. DocLayLLM (CVPR 2025) is an additional uncited layout-aware LLM from the same lineage.", "UNADDRESSED ROUND 4 FIX 1 — WikiMixQA evaluation setting factual error persists: The 'opportunity' section still states 'GPT-4o is the only model exceeding 50% accuracy even in the direct-context setting, while open-source VLMs max at 27% in retrieval settings.' Independent verification of the WikiMixQA paper confirms this is wrong: in the oracle/direct-context setting, MULTIPLE proprietary models achieve ~70% (GPT-4o: 71.42%, Gemini-2.0-Pro close behind); GPT-4o is the only model exceeding 50% in the RETRIEVAL/Wikidoc setting, where open-source VLMs max at 27%. In the oracle/direct-context setting where LHEC will be evaluated, open-source VLMs likely score 40-55% — significantly above 27%. The 'strong gains expected' framing should be anchored to Day 1 zero-shot baselines in the oracle setting, not the retrieval-setting floor.", "UNADDRESSED ROUND 4 FIX 3 — InfographicVQA hard multi-hop subset size unspecified: Round 4 explicitly required: 'specify the InfographicVQA hard multi-hop subset — use InfographicVQA answer-source category annotations to identify questions requiring ≥2 distinct category types, report the count, and frame claims based on count (≥200 = statistical significance, 100-200 = preliminary, <100 = drop subset framing).' Round 5 still describes the subset as 'questions requiring ≥2 typed region hops' without any count estimate, annotation methodology, or base model performance baseline. Without this, the primary contribution claim is unverifiable by reviewers.", "UNADDRESSED ROUND 4 FIX 4 — DocLayout-YOLO quality check not explicit: Round 4 required explicit Day 0 DocLayout-YOLO validation: run detection on 100 InfoVQA training images, compute region recall against gold answer-evidence bounding boxes, gate on ≥60% recall with fallback to InfographicVQA's own annotated bounding boxes. Round 5 mentions DocLayout-YOLO detection quality as a 'secondary risk' with 'nearest-region fallback' but does not include the explicit threshold-gated validation plan in the approach section. This is a hard prerequisite before committing to the synthesis pipeline.", "WikiMixQA 'within-page' characterization is imprecise: WikiMixQA sources table-chart pairs from Wikipedia articles that average 24 pages. The table and chart in each question pair may appear on different rendered pages of the document. In the oracle/direct-context setting, both are provided directly, which sidesteps the multi-page issue — but the proposal's claim that WikiMixQA 'directly quantifies the within-page typed-region traversal gap' overstates the alignment. LHEC's per-page graph cannot handle cross-page table-chart pairs in the Wikidoc setting; the contribution framing should specify 'oracle-setting evaluation' and acknowledge that LHEC targets within-page instances."]
+Feedback: Round 5 has resolved all hard constraint violations from Rounds 1-4: EMNLP 2026 timeline is achievable, compute is within budget, DocHop-QA scoping is correct, HopChain misrepresentation is removed, PDF-VQA and MGA-VQA are accurately cited and differentiated. This represents genuine convergence on the core architecture and feasibility. Four targeted fixes — all from Round 4, none new — are blocking a pass verdict:
+
+**Fix 1 (Critical — LayoutLLM/LayoutCoT, required since Round 4):** Add to the landscape section: 'LayoutLLM (CVPR 2024, arXiv:2404.05225) introduces LayoutCoT, a layout chain-of-thought module that generates question-type-conditioned reasoning steps (Question Analysis → Relevant Area Concentration → Answer Formation) over document layout text, achieving +3.45% on DocVQA. LHEC extends this direction in three ways: (a) LHEC uses visual region detectors (DocLayout-YOLO) to ground reasoning in detected spatial regions, not text layout embeddings; (b) LHEC assigns typed spatial edges between detected nodes (Caption-of, Adjacent, Up/Down/Left/Right) enabling graph-structured multi-hop traversal; (c) LHEC trains on explicit node-ID traversal traces (Table[3]→[Adjacent]→Caption[4]→[Caption-of]→Figure[5]) rather than question-type reasoning steps.' Also add DocLayLLM (CVPR 2025) as a follow-on work in the same lineage. This citation immediately makes the novelty claim stronger by showing progression, not just omission.
+
+**Fix 2 (Critical — WikiMixQA factual correction):** In the 'opportunity' section, replace 'GPT-4o is the only model exceeding 50% accuracy even in the direct-context setting, while open-source VLMs max at 27% in retrieval settings' with the correct statement: 'In the oracle/direct-context setting (table and chart provided directly), proprietary models achieve ~70% (GPT-4o: 71.42%, Gemini-2.0-Pro closely following); in the retrieval/Wikidoc setting, GPT-4o is the only model exceeding 50% while open-source VLMs max at 27%. LHEC targets the oracle setting; the Day 1 zero-shot Qwen3-VL-8B-Instruct baseline on WikiMixQA oracle will establish the actual starting point (estimated 40-55% for open-source models in this setting based on the gap between proprietary ~70% and retrieval-setting ~27%).' This ensures the gain claim is anchored to the correct baseline.
+
+**Fix 3 (Important — hard subset definition):** Before finalizing the proposal, estimate the InfographicVQA hard multi-hop subset size using the publicly available InfographicVQA answer-source category annotations. Questions where the gold answer requires combining information from ≥2 distinct categories (text+chart, table+figure, etc.) constitute the hard subset. Provide a count estimate: if ≥200 test questions qualify, claim statistical significance; if 100-200, frame as preliminary targeted evaluation; if <100, drop the hard-subset framing entirely and frame contribution entirely through WikiMixQA oracle-setting gains.
+
+**Fix 4 (Important — DocLayout-YOLO validation):** Add to the approach section as an explicit prerequisite: 'Before committing to the synthesis pipeline, we run DocLayout-YOLO on 100 InfographicVQA training images and compute region recall against the gold answer-evidence bounding boxes provided in the training set. If recall ≥60%, we proceed with YOLO-detected regions as graph nodes for all training data. If recall <60%, we substitute InfographicVQA's own annotated bounding boxes as graph nodes for the InfographicVQA portion, reserving YOLO detection for PMC-OA where no ground-truth annotations exist.' This one paragraph converts a vague 'secondary risk' into a concrete gated decision.
+
+### Round 6 review
+Verdict: revise
+Issues: ["UNSPECIFIED WikiMixQA ORACLE INFERENCE PROTOCOL: LHEC trains on single page images where DocLayout-YOLO detects Table/Figure/Caption/TextBlock regions and the model generates node-ID traversal traces. WikiMixQA oracle provides a HTML table and a separate chart image — NOT a combined page image — so DocLayout-YOLO cannot be applied. The proposal never states how LHEC handles WikiMixQA oracle at inference time. This will immediately concern EMNLP reviewers. A one-sentence clarification is required: 'At WikiMixQA oracle evaluation, LHEC receives the HTML table and chart image as direct multimodal inputs to Qwen3-VL without DocLayout-YOLO preprocessing; the model applies its trained cross-modal traversal reasoning to these provided modalities.' Without this, the evaluation methodology is incomplete.", "NEAR-RANDOM WikiMixQA ORACLE BASELINE RISK UNDERSTATED: Independent verification of the WikiMixQA paper confirms that open-source model performance in the oracle setting is near-random (Qwen2.5-VL-72B: 23.17%, InternVL2.5-78B: 27.37% vs 25% random for 4-choice MCQ) and barely scales from 1B to 78B parameters — suggesting a fundamental cross-modal reasoning limitation, not a layout traversal gap. The Qwen3-VL-8B-Instruct zero-shot oracle baseline may be similarly near-random. The proposal estimates '20–30%' for the 8B base model and expects 'meaningful gains' from traversal training, but the near-scale-invariant oracle failure pattern suggests these gains may be small or zero. The contingency plan (fall back to InfoVQA hard subset framing) is correct but should be elevated as the expected primary contribution scenario, not a fallback."]
+Feedback: Round 6 has successfully resolved all four blocking issues from Round 5: LayoutLLM and DocLayLLM are now cited with precise differentiation; the WikiMixQA oracle scores (14–27% for open-source models) are correctly stated and independently verified; the InfographicVQA hard-subset audit has explicit threshold-gated framing; and the DocLayout-YOLO Day 0 validation is now an explicit gate with GT fallback. The proposal is one targeted fix away from a pass.
+
+**Fix 1 (Critical — WikiMixQA oracle inference protocol):** Add one sentence to the evaluation plan: 'At WikiMixQA oracle evaluation, Qwen3-VL-8B-Instruct (fine-tuned as LHEC) receives the HTML table and chart image as direct multimodal inputs without DocLayout-YOLO preprocessing; the trained cross-modal traversal reasoning is applied directly to these two provided modalities.' This resolves the train-eval format gap that reviewers will immediately flag.
+
+**Fix 2 (Important — contribution framing rebalance):** Given that WikiMixQA oracle performance is near-random even for 72B models (barely scaling from 1B to 78B), the probability that an 8B fine-tuned model shows substantial gains is uncertain. Rebalance the contribution framing so that the InfographicVQA hard multi-hop subset is explicitly the **primary** contribution claim and WikiMixQA oracle is a **secondary/exploratory** target. Concretely, change the phrasing from 'LHEC targets meaningful gains in this setting' to 'LHEC evaluates WikiMixQA oracle as an exploratory secondary target; if gains are ≤5% over the Day 1 baseline, the contribution is framed entirely through the InfographicVQA hard subset.' This makes the contingency plan load-bearing rather than a footnote, which will strengthen rather than weaken the paper.
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "2a990e1b-9d8f-4c5f-ae77-55e461c806cd",
+  "type": "user",
+  "uuid": "118d1f89-a90b-41ee-890e-2a6c6ea6985e",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "86c36b8a-4f2b-4be8-9159-e3bc93060d38",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-10T09:25:19.496Z_
+
+```json
+{
+  "parentUuid": "118d1f89-a90b-41ee-890e-2a6c6ea6985e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "88e7a1a2-ec07-42fc-bffd-693ae7acc5e9",
+  "timestamp": "2026-05-10T09:25:19.496Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "86c36b8a-4f2b-4be8-9159-e3bc93060d38",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-10T09:25:19.497Z_
+
+```json
+{
+  "parentUuid": "88e7a1a2-ec07-42fc-bffd-693ae7acc5e9",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "560eb032-e61d-4bb1-be0f-23f5e5a5b69d",
+  "timestamp": "2026-05-10T09:25:19.497Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "86c36b8a-4f2b-4be8-9159-e3bc93060d38",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "560eb032-e61d-4bb1-be0f-23f5e5a5b69d",
+  "sessionId": "86c36b8a-4f2b-4be8-9159-e3bc93060d38"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Layout-Structured Hop Evidence Chains for Document Reasoning",
+  "sessionId": "86c36b8a-4f2b-4be8-9159-e3bc93060d38"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-10T09:25:55.517Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze this round 7 review carefully. The idea is "Layout-Structured Multi-Hop Evidence Chains for Complex Document Reasoning" (LHEC). This is round 7/10.
+
+Let me review what has been fixed from Round 6:
+
+**Round 6 Issues that needed fixing:**
+1. UNSPECIFIED WikiMixQA ORACLE INFERENCE PROTOCOL - Was this fixed?
+2. NEAR-RANDOM WikiMixQA ORACLE BASELINE RISK UNDERSTATED - Was this fixed?
+
+Looking at the current Round 7 submission:
+
+**Fix 1 (WikiMixQA oracle inference protocol):** 
+
+
+Good news — this is now clearly specified. The approach now explicitly states that LHEC receives the HTML table and chart image as direct multimodal inputs without DocLayout-YOLO preprocessing, applying its trained cross-modal traversal reasoning directly to these two modalities at evaluation time.
+
+The contribution framing has also been rebalanced: WikiMixQA is positioned as an exploratory secondary evaluation target with a documented negative result contingency if gains are ≤5%, while InfographicVQA is established as the primary evaluation target and primary contribution claim. Both fixes appear to be in place.
+
+Now I'm checking the current state-of-the-art performance on InfographicVQA and gathering details on the WikiMixQA paper to independently verify the proposal's quality. I'm noticing these arXiv IDs span from June 2025 through April 2026, and since my knowledge was last updated in August 2025, I can't verify the more recent papers without searching. Let me do some web searches to confirm whether these key papers actually exist and if their reported metrics are accurate. I need to verify whether WikiMixQA actually exists on arXiv and confirm those benchmark scores, since the reported numbers for both proprietary and open-source models seem critical to the proposal's claims. There's also an unresolved question about whether the oracle setting scores for open-source models (14-27%) were properly addressed in the round 6 revision.
+
+For InfographicVQA, I should establish a Qwen3-VL-8B-Instruct baseline on Day 1 rather than relying on the Qwen2.5-VL-72B SOTA at 87.3% as the anchor. The core novelty hinges on extending LayoutLLM/DocLayLLM's text-based layout chain-of-thought approach to generative VLMs using typed layout graphs, which needs clearer differentiation from prior work.
+
+The execution risks are significant: the InfographicVQA hard subset might be too small for reliable evaluation, WikiMixQA improvements could be marginal, Qwen3-VL-8B might already perform well on the benchmark, and DocLayout-YOLO could struggle with infographics (though I have a ground-truth fallback). With the ARR deadline 15 days away, the timeline is tight but workable in human-in-the-loop mode.
+
+Now I need to verify some key claims through targeted searches—checking whether WikiMixQA and MGA-VQA actually exist, what the current state-of-the-art is on InfographicVQA, and how Qwen3-VL-8B-Instruct performs on these benchmarks. I'm particularly interested in confirming that WikiMixQA paper with the arXiv ID 2506.15594.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "560eb032-e61d-4bb1-be0f-23f5e5a5b69d",
+  "isSidechain": false,
+  "requestId": "req_011CateWeMtNSUseSNB495Kb",
+  "type": "assistant",
+  "uuid": "f7742b95-67b6-4099-b9e6-b3a272ce8725",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "86c36b8a-4f2b-4be8-9159-e3bc93060d38",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_019CDfsp7jKmLHUPnuuNPouA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 29511,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 2559,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 29511,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2559,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 29511,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 29511
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-10T09:25:55.670Z_
+
+I'll conduct independent verification searches to assess this Round 7 proposal, focusing on whether Round 6 fixes were properly addressed and checking for any remaining issues or competing work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f7742b95-67b6-4099-b9e6-b3a272ce8725",
+  "isSidechain": false,
+  "requestId": "req_011CateWeMtNSUseSNB495Kb",
+  "type": "assistant",
+  "uuid": "45265546-8d3a-459c-abb1-1a0ea4ae90ab",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "86c36b8a-4f2b-4be8-9159-e3bc93060d38",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_019CDfsp7jKmLHUPnuuNPouA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 29511,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 2559,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 29511,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2559,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 29511,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 29511
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-10T09:25:59.583Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_0128KRSyTWBPJUV1fKdycMRX`</summary>
+
+```json
+{
+  "description": "Verify WikiMixQA paper and InfographicVQA SOTA",
+  "subagent_type": "Explore",
+  "prompt": "I need you to do web searches to verify claims in an ML paper proposal. Please search for the following and report back precise findings:\n\n1. Search for \"WikiMixQA arXiv 2506.15594\" - does this paper exist? What are the actual scores reported for open-source models in the oracle/direct-context setting vs retrieval setting? What is the random baseline?\n\n2. Search for \"InfographicVQA SOTA 2025 2026 leaderboard ANLS\" and \"InfographicVQA Qwen2.5-VL-72B 87.3\" - is the 87.3% ANLS figure accurate? What is the current SOTA?\n\n3. Search for \"Qwen3-VL-8B InfographicVQA\" or \"Qwen3-VL-8B-Instruct InfographicVQA performance\" - what score does this model achieve?\n\n4. Search for \"MGA-VQA arXiv 2511.17881 NeurIPS 2025\" - does this paper exist? What benchmarks does it evaluate on?\n\nReport exact numbers and paper details where found."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "45265546-8d3a-459c-abb1-1a0ea4ae90ab",
+  "isSidechain": false,
+  "requestId": "req_011CateWeMtNSUseSNB495Kb",
+  "type": "assistant",
+  "uuid": "110953cb-c720-4454-9934-9ebf4b35b3f0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "86c36b8a-4f2b-4be8-9159-e3bc93060d38",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_019CDfsp7jKmLHUPnuuNPouA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 29511,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 2559,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 29511,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2559,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 29511,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 29511
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-10T09:26:39.615Z_
+
+<details><summary>↩ Tool result · `toolu_0128KRSyTWBPJUV1fKdycMRX`</summary>
+
+```text
+## Summary of Findings
+
+Based on my comprehensive web searches, here are my findings regarding the claims in your ML paper proposal:
+
+### 1. **WikiMixQA (arXiv 2506.15594)**
+**CONFIRMED TO EXIST** - The paper is real and was accepted to ACL 2025 (published June 18, 2025).
+
+**Specific Scores Found:**
+- Proprietary models achieve ~70% accuracy in oracle/direct-context setting
+- Open-source models maximum accuracy: 27% (oracle/direct-context setting)
+- GPT-4o is the only model exceeding 50% accuracy in the retrieval from long documents setting
+- Random baseline: NOT explicitly stated in available abstracts/summaries
+- The paper evaluates 12 state-of-the-art vision-language models on 1,000 MCQs
+
+**Sources:** [WikiMixQA arXiv](https://arxiv.org/abs/2506.15594), [GitHub Repository](https://github.com/negar-foroutan/WikiMixQA), [ACL Anthology](https://aclanthology.org/2025.findings-acl.1280.pdf)
+
+### 2. **InfographicVQA SOTA and Qwen2.5-VL-72B (87.3% ANLS)**
+**SPECIFIC FIGURE NOT VERIFIED** - While searches confirm Qwen2.5-VL-72B performs well on "InfoVQA" (alternate name for InfographicVQA), the exact 87.3% ANLS figure could not be found in publicly accessible search results. The technical report exists but specific benchmark scores are not available through web search.
+
+**What was confirmed:**
+- Qwen2.5-VL-72B achieves "remarkable results" on OCR-related benchmarks including InfoVQA
+- A dedicated InfographicVQA SOTA leaderboard for 2025-2026 does NOT appear to exist publicly (Papers with Code was shut down by Meta in July 2025)
+
+**Sources:** [Qwen2.5-VL Technical Report](https://arxiv.org/abs/2502.13923), [Hugging Face Model Card](https://huggingface.co/Qwen/Qwen2.5-VL-72B-Instruct)
+
+### 3. **Qwen3-VL-8B InfographicVQA Performance**
+**SPECIFIC BENCHMARK SCORE NOT FOUND** - The Qwen3-VL-8B model exists and is confirmed as "the most capable vision-language model in the Qwen series," but specific InfographicVQA ANLS scores are not available through public web search results. The technical report PDF would need direct access for these details.
+
+**Sources:** [Qwen3-VL Technical Report](https://arxiv.org/abs/2511.21631), [Hugging Face Model](https://huggingface.co/Qwen/Qwen3-VL-8B-Instruct)
+
+### 4. **MGA-VQA (arXiv 2511.17881)**
+**CONFIRMED TO EXIST** - Published at NeurIPS 2025.
+
+**Key Details:**
+- Full title: "MGA-VQA: Secure and Interpretable Graph-Augmented Visual Question Answering with Memory-Guided Protection Against Unauthorized Knowledge Use"
+- Focus: Document VQA with graph-based spatial reasoning
+- **Benchmarks evaluated:** FUNSD, CORD, SROIE, DocVQA, STE-VQA, and RICO (6 benchmarks total)
+- Demonstrates superior accuracy and efficiency across all six benchmarks with improvements in both answer prediction and spatial localization
+
+**Sources:** [arXiv Abstract](https://arxiv.org/abs/2511.17881), [PDF](https://arxiv.org/pdf/2511.17881), [HTML Version](https://arxiv.org/html/2511.17881)
+
+### Critical Gaps:
+The specific InfographicVQA benchmark scores (87.3% for Qwen2.5.5-VL-72B and Qwen3-VL-8B performance) could not be verified through public web sources. These would require accessing the full PDF technical reports directly. The WikiMixQA random baseline figure was also not explicitly stated in available materials.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "110953cb-c720-4454-9934-9ebf4b35b3f0",
+  "isSidechain": false,
+  "promptId": "2a990e1b-9d8f-4c5f-ae77-55e461c806cd",
+  "type": "user",
+  "uuid": "82a241b9-0ca6-4983-99fa-ee0d09be96ad",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need you to do web searches to verify claims in an ML paper proposal. Please search for the following and report back precise findings:\n\n1. Search for \"WikiMixQA arXiv 2506.15594\" - does this paper exist? What are the actual scores reported for open-source models in the oracle/direct-context setting vs retrieval setting? What is the random baseline?\n\n2. Search for \"InfographicVQA SOTA 2025 2026 leaderboard ANLS\" and \"InfographicVQA Qwen2.5-VL-72B 87.3\" - is the 87.3% ANLS figure accurate? What is the current SOTA?\n\n3. Search for \"Qwen3-VL-8B InfographicVQA\" or \"Qwen3-VL-8B-Instruct InfographicVQA performance\" - what score does this model achieve?\n\n4. Search for \"MGA-VQA arXiv 2511.17881 NeurIPS 2025\" - does this paper exist? What benchmarks does it evaluate on?\n\nReport exact numbers and paper details where found.",
+    "agentId": "a0805c66b2012f137",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "## Summary of Findings\n\nBased on my comprehensive web searches, here are my findings regarding the claims in your ML paper proposal:\n\n### 1. **WikiMixQA (arXiv 2506.15594)**\n**CONFIRMED TO EXIST** - The paper is real and was accepted to ACL 2025 (published June 18, 2025).\n\n**Specific Scores Found:**\n- Proprietary models achieve ~70% accuracy in oracle/direct-context setting\n- Open-source models maximum accuracy: 27% (oracle/direct-context setting)\n- GPT-4o is the only model exceeding 50% accuracy in the retrieval from long documents setting\n- Random baseline: NOT explicitly stated in available abstracts/summaries\n- The paper evaluates 12 state-of-the-art vision-language models on 1,000 MCQs\n\n**Sources:** [WikiMixQA arXiv](https://arxiv.org/abs/2506.15594), [GitHub Repository](https://github.com/negar-foroutan/WikiMixQA), [ACL Anthology](https://aclanthology.org/2025.findings-acl.1280.pdf)\n\n### 2. **InfographicVQA SOTA and Qwen2.5-VL-72B (87.3% ANLS)**\n**SPECIFIC FIGURE NOT VERIFIED** - While searches confirm Qwen2.5-VL-72B performs well on \"InfoVQA\" (alternate name for InfographicVQA), the exact 87.3% ANLS figure could not be found in publicly accessible search results. The technical report exists but specific benchmark scores are not available through web search.\n\n**What was confirmed:**\n- Qwen2.5-VL-72B achieves \"remarkable results\" on OCR-related benchmarks including InfoVQA\n- A dedicated InfographicVQA SOTA leaderboard for 2025-2026 does NOT appear to exist publicly (Papers with Code was shut down by Meta in July 2025)\n\n**Sources:** [Qwen2.5-VL Technical Report](https://arxiv.org/abs/2502.13923), [Hugging Face Model Card](https://huggingface.co/Qwen/Qwen2.5-VL-72B-Instruct)\n\n### 3. **Qwen3-VL-8B InfographicVQA Performance**\n**SPECIFIC BENCHMARK SCORE NOT FOUND** - The Qwen3-VL-8B model exists and is confirmed as \"the most capable vision-language model in the Qwen series,\" but specific InfographicVQA ANLS scores are not available through public web search results. The technical report PDF would need direct access for these details.\n\n**Sources:** [Qwen3-VL Technical Report](https://arxiv.org/abs/2511.21631), [Hugging Face Model](https://huggingface.co/Qwen/Qwen3-VL-8B-Instruct)\n\n### 4. **MGA-VQA (arXiv 2511.17881)**\n**CONFIRMED TO EXIST** - Published at NeurIPS 2025.\n\n**Key Details:**\n- Full title: \"MGA-VQA: Secure and Interpretable Graph-Augmented Visual Question Answering with Memory-Guided Protection Against Unauthorized Knowledge Use\"\n- Focus: Document VQA with graph-based spatial reasoning\n- **Benchmarks evaluated:** FUNSD, CORD, SROIE, DocVQA, STE-VQA, and RICO (6 benchmarks total)\n- Demonstrates superior accuracy and efficiency across all six benchmarks with improvements in both answer prediction and spatial localization\n\n**Sources:** [arXiv Abstract](https://arxiv.org/abs/2511.17881), [PDF](https://arxiv.org/pdf/2511.17881), [HTML Version](https://arxiv.org/html/2511.17881)\n\n### Critical Gaps:\nThe specific InfographicVQA benchmark scores (87.3% for Qwen2.5.5-VL-72B and Qwen3-VL-8B performance) could not be verified through public web sources. These would require accessing the full PDF technical reports directly. The WikiMixQA random baseline figure was also not explicitly stated in available materials."
+      }
+    ],
+    "totalDurationMs": 40025,
+    "totalTokens": 26886,
+    "totalToolUseCount": 11,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 2688,
+      "cache_read_input_tokens": 23152,
+      "output_tokens": 1039,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2688
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 7,
+          "output_tokens": 1039,
+          "cache_read_input_tokens": 23152,
+          "cache_creation_input_tokens": 2688,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2688,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 11
+    }
+  },
+  "sourceToolAssistantUUID": "110953cb-c720-4454-9934-9ebf4b35b3f0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "86c36b8a-4f2b-4be8-9159-e3bc93060d38",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-10T09:26:48.730Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01WSDD98UeRiox3qgnY1Hxek`</summary>
+
+```json
+{
+  "description": "Search for competing layout reasoning and document VLM papers 2025-2026",
+  "subagent_type": "Explore",
+  "prompt": "I need to verify novelty claims in a research proposal about \"layout-structured multi-hop evidence chain reasoning for document VQA.\" The method builds typed spatial graphs from document layout regions (Table, Figure, Caption, TextBlock) using DocLayout-YOLO, then fine-tunes a VLM (Qwen3-VL-8B) with QLoRA to generate explicit node-ID traversal traces like \"Table[3]→[Adjacent]→Caption[4]→[Caption-of]→Figure[5]\" as chain-of-thought.\n\nPlease search for:\n\n1. \"layout graph document VQA 2025 2026 arXiv\" - any papers using spatial graphs + VLMs for document understanding?\n\n2. \"document layout chain of thought reasoning 2025 2026\" - any papers on layout-aware CoT for document VQA?\n\n3. \"typed spatial graph document understanding VLM fine-tuning 2025\" - any papers fine-tuning VLMs with typed spatial edges?\n\n4. \"InfographicVQA multi-hop reasoning 2025 2026\" - any papers specifically targeting InfographicVQA multi-hop layout reasoning?\n\n5. \"DocLayout-YOLO infographic detection\" - what do people report about DocLayout-YOLO performance on infographic-style images?\n\n6. \"BRIDGE arXiv 2603.07931\" and \"HopChain arXiv 2603.17024\" - do these papers exist? What do they do?\n\n7. \"Doc-V* arXiv 2604.13731\" - does this exist?\n\nReport any papers that could be direct competitors or that undermine the novelty claim."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "82a241b9-0ca6-4983-99fa-ee0d09be96ad",
+  "isSidechain": false,
+  "requestId": "req_011CatecXzKdgpNQ1MP42tuT",
+  "type": "assistant",
+  "uuid": "2cba9c5f-4608-4730-80e7-28b0f6f67928",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "86c36b8a-4f2b-4be8-9159-e3bc93060d38",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01DXht1XfNpX3Kqmx16DmLcb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3603,
+      "cache_read_input_tokens": 41142,
+      "output_tokens": 493,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3603,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 493,
+          "cache_read_input_tokens": 41142,
+          "cache_creation_input_tokens": 3603,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3603
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-10T09:27:45.445Z_
+
+<details><summary>↩ Tool result · `toolu_01WSDD98UeRiox3qgnY1Hxek`</summary>
+
+```text
+Based on my comprehensive search, here is my analysis of the novelty claims:
+
+## Analysis of Novelty Claims
+
+### Papers Found (Direct References)
+
+**1. BRIDGE (arXiv 2603.07931) - CONFIRMED** ✓
+- **What it does:** A benchmark for multi-hop reasoning over long scientific papers integrating evidence across text, tables, and figures with explicit multi-hop reasoning annotations
+- **Submitted:** March 9, 2026
+- **Relevance:** Directly addresses multi-hop evidence chain reasoning in multimodal documents with grounded evidence, similar problem domain
+
+**2. HopChain (arXiv 2603.17024) - CONFIRMED** ✓
+- **What it does:** Multi-hop data synthesis framework for VLM training with logically dependent reasoning chains. Trains Qwen3.5-35B/397B with chain-of-thought reasoning
+- **Submitted:** March 17-19, 2026
+- **Relevance:** Directly uses multi-hop reasoning chains with VLMs; focuses on synthesizing training data for long chain-of-thought reasoning across 24 benchmarks including Document Understanding
+
+**3. Doc-V* (arXiv 2604.13731) - CONFIRMED** ✓
+- **What it does:** Coarse-to-fine interactive visual reasoning framework for multi-page Document VQA using OCR-free agentic reasoning with structured working memory
+- **Submitted:** April 15, 2026
+- **Relevance:** Directly addresses Document VQA with explicit reasoning aggregation; uses sequential evidence chain reasoning
+
+### Competing/Related Research Areas Found
+
+**4. MGA-VQA (November 2025)**
+- Uses spatial graph reasoning for document VQA tasks with memory-guided inference across FUNSD, CORD, SROIE, DocVQA, STE-VQA, RICO benchmarks
+- Directly combines graphs + VQA understanding
+
+**5. ReasonVQA (ICCV 2025)**
+- Multi-hop reasoning benchmark for VQA with structural knowledge integration
+- Directly addresses multi-hop visual reasoning
+
+**6. Small Drafts, Big Verdict (arXiv 2510.20812)**
+- Addresses information-intensive visual reasoning with speculative decoding
+- Specifically reports improvements on InfographicVQA multi-hop reasoning
+- Training-free approach using draft experts
+
+**7. GraphCoT-VLA (August 2025)**
+- Combines spatial graphs with chain-of-thought reasoning for robotic manipulation
+- Demonstrates scene understanding through structured CoT over spatial relationships
+
+**8. SpatialVLM (CVPR 2024, ICLR 2026 publication)**
+- Natively handles spatial relationships in VLMs with chain-of-thought spatial reasoning
+- Direct spatial reasoning in VLMs
+
+### Specific Novelty Assessment
+
+**Potential Vulnerabilities to Novelty Claim:**
+
+1. **Typed Spatial Graphs for Documents** - MGA-VQA (2025) and GraphCoT-VLA (2025) both use spatial graphs with VLM-based reasoning, though not specifically with explicit node-ID traversal notation
+
+2. **Explicit Chain-of-Thought for Document Understanding** - HopChain (2603.17024) synthesizes multi-hop reasoning chains for VLMs and trains on Document Understanding benchmarks; uses logically dependent reasoning chains
+
+3. **Layout-Aware Multi-Hop Reasoning** - Small Drafts, Big Verdict specifically targets InfographicVQA multi-hop reasoning with better results (2025)
+
+4. **VLM Fine-Tuning with QLoRA** - Multiple papers use QLoRA fine-tuning on Qwen models; this is standard practice by 2025-2026
+
+5. **DocLayout-YOLO Integration** - DocLayout-YOLO paper (October 2024) is established; using it as a component is not novel, though combining it with the full pipeline may be
+
+**Critical Finding:**
+The **exact combination** of (1) typed spatial graphs with (2) explicit node-ID traversal traces like "Table[3]→[Adjacent]→Caption[4]" as (3) chain-of-thought output from (4) QLoRA fine-tuned Qwen3-VL-8B does not appear explicitly described in retrieved papers. However:
+
+- The individual components (spatial graphs, multi-hop reasoning, VLM fine-tuning, explicit reasoning traces) are all well-established in 2025-2026
+- HopChain and BRIDGE both work on multi-hop chains in documents
+- Doc-V* works on sequential evidence aggregation in documents
+- The novelty likely lies in the **specific notation/format** and **particular combination** rather than fundamental innovation
+
+---
+
+## Sources
+
+- [MGA-VQA: Secure and Interpretable Graph-Augmented Visual Question Answering](https://arxiv.org/abs/2511.17881)
+- [SCAN: Semantic Document Layout Analysis for Textual and Visual Retrieval-Augmented Generation](https://arxiv.org/html/2505.14381v1)
+- [Parser-Oriented Structural Refinement for a Stable Layout Interface in Document Parsing](https://arxiv.org/html/2604.02692v1)
+- [BRIDGE: Benchmark for multi-hop Reasoning In long multimodal Documents with Grounded Evidence](https://arxiv.org/abs/2603.07931)
+- [HopChain: Multi-Hop Data Synthesis for Generalizable Vision-Language Reasoning](https://arxiv.org/abs/2603.17024)
+- [Doc-V*: Coarse-to-Fine Interactive Visual Reasoning for Multi-Page Document VQA](https://arxiv.org/abs/2604.13731)
+- [ReasonVQA: A Multi-hop Reasoning Benchmark with Structural Knowledge for Visual Question Answering](https://openaccess.thecvf.com/content/ICCV2025/papers/Tran_ReasonVQA_A_Multi-hop_Reasoning_Benchmark_with_Structural_Knowledge_for_Visual_ICCV_2025_paper.pdf)
+- [Small Drafts, Big Verdict: Information-Intensive Visual Reasoning via Speculation](https://arxiv.org/abs/2510.20812)
+- [DocLayout-YOLO: Enhancing Document Layout Analysis through Diverse Synthetic Data and Global-to-Local Adaptive Perception](https://arxiv.org/abs/2410.12628)
+- [SpatialVLM: Endowing Vision-Language Models with Spatial Reasoning Capabilities](https://openaccess.thecvf.com/content/CVPR2024/papers/Chen_SpatialVLM_Endowing_Vision-Language_Models_with_Spatial_Reasoning_Capabilities_CVPR_2024_paper.pdf)
+- [Enhancing Spatial Reasoning in Vision-Language Models via Chain-of-Thought Prompting and Reinforcement Learning](https://arxiv.org/html/2507.13362v1)
+- [GraphCoT-VLA: A 3D Spatial-Aware Reasoning Vision-Language-Action Model for Robotic Manipulation](https://arxiv.org/html/2508.07650v1)
+- [DocVAL: Validated Chain-of-Thought Distillation for Grounded Document VQA](https://arxiv.org/html/2511.22521v1)
+- [ViInfographicVQA: A Benchmark for Single and Multi-image Visual Question Answering on Vietnamese Infographics](https://arxiv.org/html/2512.12424v1)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2cba9c5f-4608-4730-80e7-28b0f6f67928",
+  "isSidechain": false,
+  "promptId": "2a990e1b-9d8f-4c5f-ae77-55e461c806cd",
+  "type": "user",
+  "uuid": "3220b21d-c201-4d7a-9b7d-4dccf72decb8",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need to verify novelty claims in a research proposal about \"layout-structured multi-hop evidence chain reasoning for document VQA.\" The method builds typed spatial graphs from document layout regions (Table, Figure, Caption, TextBlock) using DocLayout-YOLO, then fine-tunes a VLM (Qwen3-VL-8B) with QLoRA to generate explicit node-ID traversal traces like \"Table[3]→[Adjacent]→Caption[4]→[Caption-of]→Figure[5]\" as chain-of-thought.\n\nPlease search for:\n\n1. \"layout graph document VQA 2025 2026 arXiv\" - any papers using spatial graphs + VLMs for document understanding?\n\n2. \"document layout chain of thought reasoning 2025 2026\" - any papers on layout-aware CoT for document VQA?\n\n3. \"typed spatial graph document understanding VLM fine-tuning 2025\" - any papers fine-tuning VLMs with typed spatial edges?\n\n4. \"InfographicVQA multi-hop reasoning 2025 2026\" - any papers specifically targeting InfographicVQA multi-hop layout reasoning?\n\n5. \"DocLayout-YOLO infographic detection\" - what do people report about DocLayout-YOLO performance on infographic-style images?\n\n6. \"BRIDGE arXiv 2603.07931\" and \"HopChain arXiv 2603.17024\" - do these papers exist? What do they do?\n\n7. \"Doc-V* arXiv 2604.13731\" - does this exist?\n\nReport any papers that could be direct competitors or that undermine the novelty claim.",
+    "agentId": "a4c683bb5fedad109",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "Based on my comprehensive search, here is my analysis of the novelty claims:\n\n## Analysis of Novelty Claims\n\n### Papers Found (Direct References)\n\n**1. BRIDGE (arXiv 2603.07931) - CONFIRMED** ✓\n- **What it does:** A benchmark for multi-hop reasoning over long scientific papers integrating evidence across text, tables, and figures with explicit multi-hop reasoning annotations\n- **Submitted:** March 9, 2026\n- **Relevance:** Directly addresses multi-hop evidence chain reasoning in multimodal documents with grounded evidence, similar problem domain\n\n**2. HopChain (arXiv 2603.17024) - CONFIRMED** ✓\n- **What it does:** Multi-hop data synthesis framework for VLM training with logically dependent reasoning chains. Trains Qwen3.5-35B/397B with chain-of-thought reasoning\n- **Submitted:** March 17-19, 2026\n- **Relevance:** Directly uses multi-hop reasoning chains with VLMs; focuses on synthesizing training data for long chain-of-thought reasoning across 24 benchmarks including Document Understanding\n\n**3. Doc-V* (arXiv 2604.13731) - CONFIRMED** ✓\n- **What it does:** Coarse-to-fine interactive visual reasoning framework for multi-page Document VQA using OCR-free agentic reasoning with structured working memory\n- **Submitted:** April 15, 2026\n- **Relevance:** Directly addresses Document VQA with explicit reasoning aggregation; uses sequential evidence chain reasoning\n\n### Competing/Related Research Areas Found\n\n**4. MGA-VQA (November 2025)**\n- Uses spatial graph reasoning for document VQA tasks with memory-guided inference across FUNSD, CORD, SROIE, DocVQA, STE-VQA, RICO benchmarks\n- Directly combines graphs + VQA understanding\n\n**5. ReasonVQA (ICCV 2025)**\n- Multi-hop reasoning benchmark for VQA with structural knowledge integration\n- Directly addresses multi-hop visual reasoning\n\n**6. Small Drafts, Big Verdict (arXiv 2510.20812)**\n- Addresses information-intensive visual reasoning with speculative decoding\n- Specifically reports improvements on InfographicVQA multi-hop reasoning\n- Training-free approach using draft experts\n\n**7. GraphCoT-VLA (August 2025)**\n- Combines spatial graphs with chain-of-thought reasoning for robotic manipulation\n- Demonstrates scene understanding through structured CoT over spatial relationships\n\n**8. SpatialVLM (CVPR 2024, ICLR 2026 publication)**\n- Natively handles spatial relationships in VLMs with chain-of-thought spatial reasoning\n- Direct spatial reasoning in VLMs\n\n### Specific Novelty Assessment\n\n**Potential Vulnerabilities to Novelty Claim:**\n\n1. **Typed Spatial Graphs for Documents** - MGA-VQA (2025) and GraphCoT-VLA (2025) both use spatial graphs with VLM-based reasoning, though not specifically with explicit node-ID traversal notation\n\n2. **Explicit Chain-of-Thought for Document Understanding** - HopChain (2603.17024) synthesizes multi-hop reasoning chains for VLMs and trains on Document Understanding benchmarks; uses logically dependent reasoning chains\n\n3. **Layout-Aware Multi-Hop Reasoning** - Small Drafts, Big Verdict specifically targets InfographicVQA multi-hop reasoning with better results (2025)\n\n4. **VLM Fine-Tuning with QLoRA** - Multiple papers use QLoRA fine-tuning on Qwen models; this is standard practice by 2025-2026\n\n5. **DocLayout-YOLO Integration** - DocLayout-YOLO paper (October 2024) is established; using it as a component is not novel, though combining it with the full pipeline may be\n\n**Critical Finding:**\nThe **exact combination** of (1) typed spatial graphs with (2) explicit node-ID traversal traces like \"Table[3]→[Adjacent]→Caption[4]\" as (3) chain-of-thought output from (4) QLoRA fine-tuned Qwen3-VL-8B does not appear explicitly described in retrieved papers. However:\n\n- The individual components (spatial graphs, multi-hop reasoning, VLM fine-tuning, explicit reasoning traces) are all well-established in 2025-2026\n- HopChain and BRIDGE both work on multi-hop chains in documents\n- Doc-V* works on sequential evidence aggregation in documents\n- The novelty likely lies in the **specific notation/format** and **particular combination** rather than fundamental innovation\n\n---\n\n## Sources\n\n- [MGA-VQA: Secure and Interpretable Graph-Augmented Visual Question Answering](https://arxiv.org/abs/2511.17881)\n- [SCAN: Semantic Document Layout Analysis for Textual and Visual Retrieval-Augmented Generation](https://arxiv.org/html/2505.14381v1)\n- [Parser-Oriented Structural Refinement for a Stable Layout Interface in Document Parsing](https://arxiv.org/html/2604.02692v1)\n- [BRIDGE: Benchmark for multi-hop Reasoning In long multimodal Documents with Grounded Evidence](https://arxiv.org/abs/2603.07931)\n- [HopChain: Multi-Hop Data Synthesis for Generalizable Vision-Language Reasoning](https://arxiv.org/abs/2603.17024)\n- [Doc-V*: Coarse-to-Fine Interactive Visual Reasoning for Multi-Page Document VQA](https://arxiv.org/abs/2604.13731)\n- [ReasonVQA: A Multi-hop Reasoning Benchmark with Structural Knowledge for Visual Question Answering](https://openaccess.thecvf.com/content/ICCV2025/papers/Tran_ReasonVQA_A_Multi-hop_Reasoning_Benchmark_with_Structural_Knowledge_for_Visual_ICCV_2025_paper.pdf)\n- [Small Drafts, Big Verdict: Information-Intensive Visual Reasoning via Speculation](https://arxiv.org/abs/2510.20812)\n- [DocLayout-YOLO: Enhancing Document Layout Analysis through Diverse Synthetic Data and Global-to-Local Adaptive Perception](https://arxiv.org/abs/2410.12628)\n- [SpatialVLM: Endowing Vision-Language Models with Spatial Reasoning Capabilities](https://openaccess.thecvf.com/content/CVPR2024/papers/Chen_SpatialVLM_Endowing_Vision-Language_Models_with_Spatial_Reasoning_Capabilities_CVPR_2024_paper.pdf)\n- [Enhancing Spatial Reasoning in Vision-Language Models via Chain-of-Thought Prompting and Reinforcement Learning](https://arxiv.org/html/2507.13362v1)\n- [GraphCoT-VLA: A 3D Spatial-Aware Reasoning Vision-Language-Action Model for Robotic Manipulation](https://arxiv.org/html/2508.07650v1)\n- [DocVAL: Validated Chain-of-Thought Distillation for Grounded Document VQA](https://arxiv.org/html/2511.22521v1)\n- [ViInfographicVQA: A Benchmark for Single and Multi-image Visual Question Answering on Vietnamese Infographics](https://arxiv.org/html/2512.12424v1)"
+      }
+    ],
+    "totalDurationMs": 56710,
+    "totalTokens": 32638,
+    "totalToolUseCount": 13,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 2194,
+      "cache_read_input_tokens": 28604,
+      "output_tokens": 1833,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2194
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 7,
+          "output_tokens": 1833,
+          "cache_read_input_tokens": 28604,
+          "cache_creation_input_tokens": 2194,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2194,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 13
+    }
+  },
+  "sourceToolAssistantUUID": "2cba9c5f-4608-4730-80e7-28b0f6f67928",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "86c36b8a-4f2b-4be8-9159-e3bc93060d38",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 14_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "3220b21d-c201-4d7a-9b7d-4dccf72decb8",
+  "sessionId": "86c36b8a-4f2b-4be8-9159-e3bc93060d38"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 15_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Layout-Structured Hop Evidence Chains for Document Reasoning",
+  "sessionId": "86c36b8a-4f2b-4be8-9159-e3bc93060d38"
+}
+```
+
+---
+
+### Assistant
+
+_source line 16 · 2026-05-10T09:29:56.193Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me look at some of these papers more carefully, particularly:
+1. "Small Drafts, Big Verdict" (arXiv 2510.20812) - this supposedly specifically reports improvements on InfographicVQA multi-hop reasoning
+2. HopChain (arXiv 2603.17024) - the agent says it "trains on Document Understanding benchmarks; uses logically dependent reasoning chains" - this could be a concurrent work concern
+
+Let me also look at the WikiMixQA paper details more carefully - specifically about the oracle/direct-context setting scores for open-source models. The original round 6 issue was about whether the 14-27% for open-source models was in the oracle setting or retrieval setting.
+ 
+So the WikiMixQA paper actually confirms that 27% is the open-source maximum in the oracle/direct-context setting, not the retrieval setting as the Round 6 reviewers claimed. This aligns with what the proposal states - InternVL2.5-78B at 27.37% and Qwen2.5-VL-72B at 23%.
+
+17% - which is essentially random performance for a 4-choice question. Now I need to assess whether "Small Drafts, Big Verdict" is genuinely competing work, especially since it claims improvements on InfographicVQA multi-hop reasoning. I've confirmed the key validation gates are in place: InfographicVQA's hard subset is the primary contribution with explicit thresholds for statistical significance, DocLayout-YOLO has a 60% recall requirement with ground truth fallback, and HopChain is correctly positioned as a counting/VLM training method rather than a document layout approach. Now I need to dig into whether "Small Drafts, Big Verdict" poses a methodological overlap concern with the multi-hop reasoning claims.
+
+Looking at the novelty assessment, the typed layout graphs combined with generative VLM traversal chains do represent a distinct contribution compared to text-only approaches like LayoutLLM and DocLayLLM, extractive methods like PDF-VQA, and implicit graph approaches like MGA-VQA.  "Small Drafts, Big Verdict" operates at inference time through speculative decoding rather than as a training methodology, so it's not a direct competitor. The core innovation—verbalized node-ID traversal chain training—sits on top of established components, making this an incremental contribution that lands around 3-3.5 in novelty, appropriate for EMNLP Findings but potentially borderline for the main conference.
+
+The feasibility has improved significantly with the rule-based graph construction approach, the 15-day timeline is realistic, and the 35-40 H100 hours fits comfortably within budget constraints. The GT fallback for InfographicVQA provides a safety net for training data quality. Clarity is strong across the board—the contribution is well-scoped, contingencies are explicit, and the evaluation protocol is clearly defined. For impact, the method targets the hard multi-hop subset of InfographicVQA where current SOTA sits at 87.3% with Qwen2.5-VL-72B, and improvements here would be meaningful though somewhat narrow in scope.
+
+The overall score comes to 3.5, which falls short of the 4.0 threshold needed to pass. The main concern is whether Qwen3-VL-8B's baseline performance on the hard subset will be high enough to leave meaningful room for improvement. I need to investigate two competing approaches that could affect the project's novelty: "Small Drafts, Big Verdict" appears to address multi-hop reasoning on InfographicVQA but I'm unclear whether it's a training-time or inference-time method, and there's also HopChain training on document understanding that needs clarification.
+
+The WikiMixQA oracle scores are troubling—open-source models score near-random even when given direct context, which suggests the bottleneck might be cross-modal synthesis rather than layout traversal. If that's the case, LHEC's focus on training cross-modal reasoning may not address the actual failure mode. The viability of the hard subset approach hinges on whether InfographicVQA contains enough multi-hop questions to form a meaningful evaluation set and whether LHEC can demonstrate clear gains on that subset specifically.
+
+Given the May 25 deadline, the timeline is actually workable with intensive development. The proposal has addressed the structural issues from before, but I'm concerned the novelty remains incremental and the core claims still rest on unverified assumptions about subset size and baseline performance.
+
+Let me step back and check whether those previous fixes actually hold up. The WikiMixQA oracle protocol is now clearly specified with direct multimodal inputs, which resolves that concern. But the contribution rebalancing around InfographicVQA's hard subset is still contingent on data I haven't confirmed yet.
+
+Now I'm looking at what might still need addressing. The "Small Drafts, Big Verdict" issue is worth flagging—if this is truly an inference-time approach like speculative decoding, it's orthogonal to LHEC's training methodology, but I should push the generator to make that distinction explicit. Beyond that, I'm checking what HopChain Document Understanding actually covers.
+
+HopChain is fundamentally about numeric verification and counting tasks through RLVR, not layout traversal, so the proposal's differentiation holds up. WikiMixQA as an exploratory secondary baseline is now properly framed. The InfographicVQA hard subset estimate of ≥500 questions (>15% of test set) is reasonable given the dataset's design. The Qwen3-VL-8B-Instruct baseline still needs to be established early, but that's a Day 1 task rather than a blocker.
+
+The core contribution—InfographicVQA improvements on both overall and hard multi-hop subsets, with WikiMixQA as exploratory—positions this as a solid EMNLP Findings paper, though not Main conference material. The remaining uncertainties are whether the "Small Drafts, Big Verdict" paper creates direct competition, whether typed traversal chain training is sufficiently novel for EMNLP, and whether EMNLP 2026 ARR May is the right venue target.
+
+Looking at the timeline more carefully, the proposal is at Round 7 out of 10, and the previous round's issues have been addressed. The lingering concerns—novelty, hard subset verification, and baseline confirmation—are all mitigated by the proposal's built-in contingency gates at Day 0 and Day 1, which shows appropriate caution about unknowns. This feels like a minor revisions situation rather than a fundamental problem.
+
+The "Small Drafts, Big Verdict" paper does pose some competition on the multi-hop reasoning front, and I recognize the approach is somewhat incremental—layering existing components like DocLayout-YOLO, rule-based edges, QLoRA, and verbalized chains without a novel architecture underneath. That would normally be a Main conference concern, but the user's target includes EMNLP Findings explicitly, where the novelty bar is lower and this contribution—verbalized typed traversal chains for document VQA—becomes more appropriate. The method is clearly articulated, the evaluation is rigorous, feasibility is demonstrated, and the framing is solid.
+
+Scoring this honestly: novelty around 3/5 (genuine but incremental), feasibility 4/5 with contingencies in place, clarity 4/5, and impact 3/5 depending on the hard subset results. That averages to 3.5, which falls short of the 4.0 threshold for "truly outstanding." This is a solid, well-executed incremental paper rather than an outstanding one, so by the stated criteria it should be revised. But we're at Round 7 of 10 with extensive revision already done—the core issues have been addressed. What's actually left to fix?
+
+The remaining gaps are clearer now: the novelty framing needs strengthening since LayoutLLM and DocLayLLM already handle layout-aware chain-of-thought reasoning, and PDF-VQA covers typed elements. The proposal's core claim about training a generative VLM to verbalize multi-hop traversal across typed layout-region nodes doesn't sufficiently differentiate from existing work. There's also the WikiMixQA concern—those 14-27% oracle scores suggest the bottleneck is cross-modal synthesis rather than layout traversal, so LHEC's approach of training on layout chains might not actually help there, though the proposal does correctly anticipate this as a negative result.
+
+For the verdict, I'm leaning toward "revise" because the contribution is genuinely novel at an EMNLP Findings level but not groundbreaking, and there are two concrete issues to address: first, "Small Drafts, Big Verdict" potentially overlaps on InfographicVQA and needs explicit comparison, and second, the entire viability hinges on the Day 0 and Day 1 gate results, which haven't been pre-validated yet. The proposal would be much stronger if those baselines were already run to confirm the hard subset actually exists and has a meaningful gap before committing to the full submission. I need to verify whether "Small Drafts, Big Verdict" is a training-based competitor or an inference-time complement to LHEC's approach. On the WikiMixQA oracle setup, there's a potential train-eval mismatch since LHEC trains on page images with detected layout regions but evaluates on HTML tables and chart images directly—though the proposal does argue the trained traversal reasoning should transfer to these modalities, which seems reasonable.
+
+The bigger concern is whether InfographicVQA's ~24K training pairs contain enough multi-hop examples to effectively train traversal chains. The proposal doesn't specify how many questions actually require reasoning across multiple typed regions, though given the dataset's design for complex reasoning, a meaningful fraction probably does involve multi-hop evidence paths.
+
+Looking at the overall assessment, the critical issues from earlier rounds have been addressed, leaving just three non-critical gaps: the missing citation for "Small Drafts, Big Verdict," the unspecified multi-hop fraction in the training corpus, and a partial mismatch in WikiMixQA's train-eval format. The proposal itself is well-structured with solid contingency planning, but the novelty and impact scores remain at 3/5 each—combining existing components in a genuine but incremental way, with moderate impact that hinges on hard subset performance. That puts the average below the 4.0 threshold needed to pass, despite strong feasibility and clarity ratings.
+
+The verdict leans toward "revise" because the scores don't meet the bar, though the core novelty claim—training a generative VLM to verbalize step-by-step multi-hop traversal across typed layout-region nodes—is actually defensible against the current landscape. LayoutLLM and DocLayLLM use text-based chain-of-thought without typed inter-region edges, while PDF-VQA employs typed graphs but stays extractive. The positioning just needs to be clearer about why this represents a meaningful advance rather than an incremental combination.
+
+The real question is whether the experimental results will be strong enough to back up the claim. The InfographicVQA hard subset is the primary test case, WikiMixQA is the contingency, and the evaluation plan is solid with proper baselines. The main issues to address are the citation gap around "Small Drafts, Big Verdict" and clarifying the train-eval format discrepancy for WikiMixQA.
+
+Looking at the actual paper from October 2025 on speculative decoding for visual reasoning—it improves InfographicVQA multi-hop reasoning but appears to be an inference-time method, so it's complementary rather than directly competitive. Still, I need to verify whether it establishes a stronger baseline than the vanilla Qwen3-VL-8B-Instruct on InfographicVQA, since that could reshape how the contribution is framed.
+
+The WikiMixQA evaluation also has a train-test mismatch worth addressing: LHEC trains on full page images with detected regions but evaluates on separate HTML table and chart image inputs, and the proposal doesn't clearly explain why page-level graph traversal would transfer to this different input format. There's also the question of how many of the ~24K InfographicVQA training pairs actually contain multi-hop reasoning chains—if it's only 10-20%, the training signal for that capability might be weaker than claimed.
+
+Actually, reconsidering the multi-hop issue: InfographicVQA is specifically designed to require multi-modal reasoning, so a substantial fraction likely involves multiple evidence sources, and the PMC-OA supplement adds more figure-caption-table combinations. That concern probably doesn't hold up.
+
+So I'm settling on the first two issues as the main ones. Looking at the scores—novelty 3/5, feasibility 4/5, clarity 4/5, impact 3/5—I'm averaging around 3.5. One more thing to flag: the claim about ≥500 qualifying questions in the hard subset is an estimate based on InfographicVQA's annotation distribution, and if the actual number comes in below 200, that weakens the core contribution significantly.
+
+I think I have what I need to write the verdict now.
+
+The remaining problems are the uncited "Small Drafts, Big Verdict" paper and the missing justification for WikiMixQA transfer. With scores averaging 3.5, this falls below the 4.0 threshold for acceptance. It's not a rejection—genuine progress has been made and the core issues are resolved—but the novelty and impact scores just don't reach the bar. I should recommend revision and suggest they cite and differentiate from that prior work, add a sentence justifying the WikiMixQA transfer, and consider whether the method can be framed more strongly rather than as an incremental extension of LayoutLLM.
+
+I also want to verify the WikiMixQA oracle scores match what they're claiming. The search confirmed proprietary models hit around 70% accuracy in the oracle setting and open-source models max out at 27%, which aligns with what the proposal states.
+
+After seven revisions, the proposal is well-structured with proper contingency gates and addresses most concerns. The novelty is genuinely incremental at 3/5, and impact hinges on the hard subset results at 3/5. That 3.5 average doesn't clear the 4.0 threshold, so I'll issue a revise verdict with specific feedback on what would improve the scores.
+
+I'm reconsidering the novelty score though. The combination of DocLayout-YOLO for visual region detection and rule-based typed edge assignment might be stronger than I initially assessed. Feasibility checks out at 4/5 given the realistic 15-day timeline with rule-based edges and solid contingency planning, plus the compute budget is well within limits. Clarity's also strong at 4/5 with detailed gates and evaluation protocols spelled out. The main weakness is impact—the focus on InfographicVQA's hard subset is defensible but somewhat narrow, bringing it to 3/5.
+
+There's a critical citation gap: a recent October 2025 paper on small model improvements reportedly shows gains on InfographicVQA multi-hop reasoning, which could reframe what counts as a baseline. I need to verify whether it actually evaluates on InfographicVQA and what scores it achieves, since that directly affects how novel this contribution looks. There's also a methodological concern with WikiMixQA—the model trains on page layouts detected by DocLayout-YOLO, but the oracle evaluation uses HTML tables and chart images as separate inputs where DocLayout-YOLO doesn't apply, creating a train-eval mismatch that the proposal doesn't adequately address.
+
+The feedback indicates the structural issues are resolved: the oracle protocol is now specified and InfographicVQA hard multi-hop is positioned as the primary claim with WikiMixQA framed as an expected negative result. Two remaining fixes are needed: first, I need to search for and verify that October 2025 paper's actual results on InfographicVQA, and second, I should add a sentence justifying why page-level layout traversal training transfers to directly-provided table-chart inputs. verify whether it evaluates on InfographicVQA and what score it reports. If it achieves higher scores than vanilla Qwen3-VL-8B-Instruct on InfographicVQA, it must be cited as either a baseline or a concurrent work in the landscape. If it's a training-free inference method (speculative decoding), it's complementary to LHEC rather than competing — state this explicitly.
+
+Fix 2 (Minor — WikiMixQA transfer justification): Add one sentence in the WikiMixQA evaluation section explaining why layout traversal training on page-level graph structures is expected to transfer to HTML table + chart image inputs in the oracle setting. This closes the remaining train-eval format gap question that reviewers will raise.
+
+The core issue is that this remains an incremental method with solid feasibility but a fairly narrow primary contribution, which puts it below the 4.0 acceptance threshold.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3220b21d-c201-4d7a-9b7d-4dccf72decb8",
+  "isSidechain": false,
+  "requestId": "req_011CatehPkrmUzwit2B8R1Qj",
+  "type": "assistant",
+  "uuid": "377e099e-2155-4d7c-8d74-d12fcdc48895",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "86c36b8a-4f2b-4be8-9159-e3bc93060d38",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01JHTmeJjFogTMNBiPdNEm35",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2334,
+      "cache_read_input_tokens": 44745,
+      "output_tokens": 8020,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2334,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 8020,
+          "cache_read_input_tokens": 44745,
+          "cache_creation_input_tokens": 2334,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2334
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-10T09:29:59.854Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01G5UzEE7zPwm6htd6bFRgHg`</summary>
+
+```json
+{
+  "description": "Verify Small Drafts Big Verdict and WikiMixQA oracle details",
+  "subagent_type": "Explore",
+  "prompt": "I need to verify specific details about two papers for an ML research review. Please search and fetch as much detail as possible:\n\n1. Search for \"Small Drafts Big Verdict arXiv 2510.20812 InfographicVQA\" - what method does this paper use? Does it evaluate on InfographicVQA? What score does it report? Is it a training-based method or an inference-time/training-free method?\n\n2. Fetch the abstract of https://arxiv.org/abs/2510.20812 to understand this paper's approach.\n\n3. Search for \"WikiMixQA oracle setting open source VLM scores\" - specifically: in the oracle/direct-context setting (where the table and chart are provided directly), what do open-source models score? Are the 14-27% scores confirmed as oracle setting (not retrieval setting)?\n\n4. Try fetching https://arxiv.org/abs/2506.15594 (WikiMixQA) to get more details on the benchmark and the oracle vs. retrieval setting score breakdown.\n\nReport exact scores and method types (training vs inference-time)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "377e099e-2155-4d7c-8d74-d12fcdc48895",
+  "isSidechain": false,
+  "requestId": "req_011CatehPkrmUzwit2B8R1Qj",
+  "type": "assistant",
+  "uuid": "60911494-334a-4c0d-89fb-032f6f65c92f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "86c36b8a-4f2b-4be8-9159-e3bc93060d38",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01JHTmeJjFogTMNBiPdNEm35",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2334,
+      "cache_read_input_tokens": 44745,
+      "output_tokens": 8020,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2334,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 8020,
+          "cache_read_input_tokens": 44745,
+          "cache_creation_input_tokens": 2334,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2334
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "60911494-334a-4c0d-89fb-032f6f65c92f",
+  "sessionId": "86c36b8a-4f2b-4be8-9159-e3bc93060d38"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Layout-Structured Hop Evidence Chains for Document Reasoning",
+  "sessionId": "86c36b8a-4f2b-4be8-9159-e3bc93060d38"
+}
+```
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-10T09:30:24.727Z_
+
+<details><summary>↩ Tool result · `toolu_01G5UzEE7zPwm6htd6bFRgHg`</summary>
+
+```text
+Perfect! I now have comprehensive information. Here's my verification report:
+
+## Research Paper Verification Report
+
+### Paper 1: "Small Drafts, Big Verdict" (arXiv 2510.20812)
+
+**Method Type:** Inference-time/training-free method (explicitly stated as "a training-free framework inspired by speculative decoding")
+
+**Method Description:** Speculative Verdict (SV) combines multiple lightweight draft experts (small VLMs) with a large verdict model. Small VLMs generate diverse reasoning paths in a draft stage, and a stronger model synthesizes these paths to produce final answers. The framework includes a consensus expert selection mechanism.
+
+**InfographicVQA Evaluation:** YES - confirmed
+
+**Reported Scores on InfographicVQA:**
+- SV with GPT-4o Verdict: **88.4 ANLS**
+- SV with Qwen2.5-VL-72B-Instruct Verdict: **86.7 ANLS**
+- Improvement over GPT-4o baseline (76.5 ANLS): **11.9 percentage points**
+
+---
+
+### Paper 2: "WikiMixQA" (arXiv 2506.15594)
+
+**Oracle/Direct-Context Setting - Open-Source VLM Scores (CONFIRMED):**
+- InternVL2.5-5B-MPO: **27.87%** (highest)
+- InternVL2.5-78B: **27.67%**
+- InternVL2.5-78B-MPO: **27.37%**
+- InternVL2.5-26B-MPO: **26.37%**
+- Qwen2.5-VL-7B-Instruct: **22.87%**
+- Qwen2.5-VL-72B-Instruct: **23.17%**
+- InternVL2.5-1B-MPO: **23.17%**
+- Llama-3.2-11B-Vision-Instruct: **14.08%** (lowest)
+
+**Key Finding:** The 14-27% scores are **confirmed as oracle/direct-context setting** scores (where the table and chart are provided directly). These are NOT retrieval setting scores. In contrast, proprietary models achieve ~70% in the oracle setting, and human experts achieve 87.5%.
+
+**Comparison:** Retrieval setting is much harder, where open-source models perform worse (max 27%) while GPT-4o exceeds 50%.
+
+---
+
+Sources:
+- [Small Drafts, Big Verdict: Information-Intensive Visual Reasoning via Speculation (arXiv 2510.20812)](https://arxiv.org/abs/2510.20812)
+- [WikiMixQA: A Multimodal Benchmark for Question Answering over Tables and Charts (arXiv 2506.15594)](https://arxiv.org/abs/2506.15594)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "60911494-334a-4c0d-89fb-032f6f65c92f",
+  "isSidechain": false,
+  "promptId": "2a990e1b-9d8f-4c5f-ae77-55e461c806cd",
+  "type": "user",
+  "uuid": "4b90ed7a-387a-42c2-a44a-9247ae70312b",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need to verify specific details about two papers for an ML research review. Please search and fetch as much detail as possible:\n\n1. Search for \"Small Drafts Big Verdict arXiv 2510.20812 InfographicVQA\" - what method does this paper use? Does it evaluate on InfographicVQA? What score does it report? Is it a training-based method or an inference-time/training-free method?\n\n2. Fetch the abstract of https://arxiv.org/abs/2510.20812 to understand this paper's approach.\n\n3. Search for \"WikiMixQA oracle setting open source VLM scores\" - specifically: in the oracle/direct-context setting (where the table and chart are provided directly), what do open-source models score? Are the 14-27% scores confirmed as oracle setting (not retrieval setting)?\n\n4. Try fetching https://arxiv.org/abs/2506.15594 (WikiMixQA) to get more details on the benchmark and the oracle vs. retrieval setting score breakdown.\n\nReport exact scores and method types (training vs inference-time).",
+    "agentId": "a98f8010eb6b68c91",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "Perfect! I now have comprehensive information. Here's my verification report:\n\n## Research Paper Verification Report\n\n### Paper 1: \"Small Drafts, Big Verdict\" (arXiv 2510.20812)\n\n**Method Type:** Inference-time/training-free method (explicitly stated as \"a training-free framework inspired by speculative decoding\")\n\n**Method Description:** Speculative Verdict (SV) combines multiple lightweight draft experts (small VLMs) with a large verdict model. Small VLMs generate diverse reasoning paths in a draft stage, and a stronger model synthesizes these paths to produce final answers. The framework includes a consensus expert selection mechanism.\n\n**InfographicVQA Evaluation:** YES - confirmed\n\n**Reported Scores on InfographicVQA:**\n- SV with GPT-4o Verdict: **88.4 ANLS**\n- SV with Qwen2.5-VL-72B-Instruct Verdict: **86.7 ANLS**\n- Improvement over GPT-4o baseline (76.5 ANLS): **11.9 percentage points**\n\n---\n\n### Paper 2: \"WikiMixQA\" (arXiv 2506.15594)\n\n**Oracle/Direct-Context Setting - Open-Source VLM Scores (CONFIRMED):**\n- InternVL2.5-5B-MPO: **27.87%** (highest)\n- InternVL2.5-78B: **27.67%**\n- InternVL2.5-78B-MPO: **27.37%**\n- InternVL2.5-26B-MPO: **26.37%**\n- Qwen2.5-VL-7B-Instruct: **22.87%**\n- Qwen2.5-VL-72B-Instruct: **23.17%**\n- InternVL2.5-1B-MPO: **23.17%**\n- Llama-3.2-11B-Vision-Instruct: **14.08%** (lowest)\n\n**Key Finding:** The 14-27% scores are **confirmed as oracle/direct-context setting** scores (where the table and chart are provided directly). These are NOT retrieval setting scores. In contrast, proprietary models achieve ~70% in the oracle setting, and human experts achieve 87.5%.\n\n**Comparison:** Retrieval setting is much harder, where open-source models perform worse (max 27%) while GPT-4o exceeds 50%.\n\n---\n\nSources:\n- [Small Drafts, Big Verdict: Information-Intensive Visual Reasoning via Speculation (arXiv 2510.20812)](https://arxiv.org/abs/2510.20812)\n- [WikiMixQA: A Multimodal Benchmark for Question Answering over Tables and Charts (arXiv 2506.15594)](https://arxiv.org/abs/2506.15594)"
+      }
+    ],
+    "totalDurationMs": 24870,
+    "totalTokens": 21560,
+    "totalToolUseCount": 6,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 1998,
+      "cache_read_input_tokens": 18852,
+      "output_tokens": 703,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1998
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 7,
+          "output_tokens": 703,
+          "cache_read_input_tokens": 18852,
+          "cache_creation_input_tokens": 1998,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1998,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 6
+    }
+  },
+  "sourceToolAssistantUUID": "60911494-334a-4c0d-89fb-032f6f65c92f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "86c36b8a-4f2b-4be8-9159-e3bc93060d38",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-10T09:30:57.061Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have critical information:
+
+1. **"Small Drafts, Big Verdict" (arXiv:2510.20812)**:
+   - It IS a training-free/inference-time method (speculative decoding-inspired)
+   - It DOES evaluate on InfographicVQA
+   - GPT-4o verdict + draft experts = 88.4 ANLS
+   - Qwen2.5-VL-72B verdict = 86.7 ANLS
+   - These are SOTA-level scores on InfographicVQA
+   
+   This means the InfographicVQA leaderboard might be at a higher level than 87.3% - the "Small Drafts, Big Verdict" achieves 88.4% with GPT-4o verdict.
+   
+Since "Small Drafts, Big Verdict" is training-free, it doesn't directly compete with LHEC's fine-tuning approach, but it does set a SOTA benchmark around 88.4%. If Qwen3-VL-8B performs at 80-84% baseline, LHEC's fine-tuning on the hard multi-hop subset could still demonstrate meaningful improvement over that starting point, even if it doesn't reach the 88.4% ceiling.
+
+The key comparison should be between the zero-shot Qwen3-VL-8B baseline and LHEC's fine-tuned version, both evaluated on the hard subset specifically. That's where LHEC's contribution becomes clear. I should also note that the proposal's InfographicVQA SOTA figure needs updating—it's now 88.4%, not 87.3%. So the key distinction is that "Small Drafts, Big Verdict" achieves 88.4% only when using GPT-4o as the verdict model—with Qwen2.5-VL-72B it actually underperforms the standalone baseline at 86.7%. For LHEC's work, the comparison is against a much smaller model (Qwen3-VL-8B with QLoRA fine-tuning), not the larger Qwen2.5-VL-72B, so it's still a meaningful contribution even if the absolute numbers are lower. The "Small Drafts, Big Verdict" paper should be cited for completeness, but it operates in a different paradigm and isn't a direct competitor to LHEC's approach. inference-time ensemble vs. training approach).
+
+Let me now write my final verdict:
+
+**Revised assessment:**
+
+Issues:
+1. "Small Drafts, Big Verdict" (arXiv:2510.20812, October 2025) is not cited but achieves 88.4% on InfographicVQA (GPT-4o verdict) and 86.7% (Qwen2.5-VL-72B verdict), updating the current SOTA above the 87.3% figure claimed. While this paper is training-free (speculative decoding), it must be cited to establish accurate SOTA context and to show LHEC provides complementary benefits (targeted training for hard multi-hop instances) versus inference-time ensemble methods.
+
+2. WikiMixQA oracle scores check out as claimed, validating the proposal's core assumptions.
+
+3. The train-eval format mismatch on WikiMixQA needs addressing—LHEC trains on page images with detected regions but evaluates on HTML tables and separate chart images, and there's no explanation for why this transfer should succeed.
+
+**Updated scores:**
+- Novelty: 3/5 - genuine but incremental; the specific "verbalized typed traversal training" is the actual novel contribution
+- Feasibility: 4/5 - well-planned with concrete gates
+- Clarity: 4/5 - detailed, precise, well-scoped
+- Impact: 3/5 - narrow primary contribution on InfographicVQA hard subset; EMNLP Findings level
+
+Average: 3.5/5 - below 4.0 threshold
+
+Verdict: revise (critical citation gap on InfographicVQA SOTA)
+
+Wait—is the 88.4% from "Small Drafts, Big Verdict" using GPT-4o as the verdict model? That's a proprietary setup, so it's not directly comparable to LHEC's open-source approach. The real benchmark for LHEC should be Qwen2.5-VL-72B-Instruct at 87.3% standalone, though interestingly the paper shows speculative drafting actually drops performance to 86.7% on this task, so the technique doesn't universally help.
+
+Still, I need to cite "Small Drafts, Big Verdict" since it updates the SOTA framing, even if the comparison isn't apples-to-apples. The main gaps I'm seeing are the missing citation for that paper, no justification for the WikiMixQA oracle inference setup, and some incomplete reasoning on the average performance claims.
+
+Writing the final JSON now.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4b90ed7a-387a-42c2-a44a-9247ae70312b",
+  "isSidechain": false,
+  "requestId": "req_011Cateu8Xf5yuytY36w66YB",
+  "type": "assistant",
+  "uuid": "fabcd3a1-c703-4d87-bbd1-47f8fbc84db7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "86c36b8a-4f2b-4be8-9159-e3bc93060d38",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Xdr3rQqm1BXGQjJgokgucy",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8724,
+      "cache_read_input_tokens": 47079,
+      "output_tokens": 4020,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8724,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4020,
+          "cache_read_input_tokens": 47079,
+          "cache_creation_input_tokens": 8724,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8724
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-10T09:31:28.145Z_
+
+Now I have everything I need for my independent assessment. Let me compile the verdict.
+
+**Key verified findings:**
+- WikiMixQA oracle scores (14-27% for open-source models) are **confirmed correct** — these are the direct-context/oracle setting scores, not retrieval setting
+- "Small Drafts, Big Verdict" (arXiv:2510.20812, Oct 2025) achieves **88.4% ANLS on InfographicVQA** (GPT-4o verdict) and 86.7% (Qwen2.5-VL-72B verdict) — it's training-free (speculative decoding), but it's **not cited** in the proposal and updates the claimed SOTA from 87.3% to 88.4%
+- Both Round 6 issues (WikiMixQA oracle inference protocol, contribution framing rebalance) are properly resolved in Round 7
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {
+      "score": 3,
+      "rationale": "The specific combination of DocLayout-YOLO visual region detection + rule-based typed edges (Caption-of, Adjacent, directional) + verbalized node-ID traversal training is genuinely distinguishable from LayoutLLM/DocLayLLM (text-based CoT, no graph), PDF-VQA (extractive typed graph), and MGA-VQA (implicit GCN, OCR-box-only). However, all individual components are established, the graph construction is rule-based (no novel learning), and the contribution is an incremental extension of the layout-aware CoT direction rather than a fundamentally new architecture or training paradigm."
+    },
+    "feasibility": {
+      "score": 4,
+      "rationale": "The 15-day HIL plan with rule-based edges is concrete and realistic; 35-40 H100h is well within the 200H cap; Day 0 DocLayout-YOLO recall gate with GT fallback and Day 1 zero-shot baseline gate are explicit with actionable thresholds; all major execution risks have identified fallbacks."
+    },
+    "clarity": {
+      "score": 4,
+      "rationale": "The proposal is highly detailed with precise contingency gates (DocLayout-YOLO ≥60% recall, hard subset ≥200 questions, WikiMixQA ≤5% gain triggers documented-negative framing), accurate prior-work differentiation, and a well-scoped evaluation protocol; WikiMixQA oracle inference protocol is now specified."
+    },
+    "impact": {
+      "score": 3,
+      "rationale": "The primary contribution is confined to the InfographicVQA hard multi-hop layout subset (a subset of one benchmark, count unverified pre-experiment); WikiMixQA oracle is framed as the expected negative result; broader generalization across the required benchmark suite (GQA, POPE, MMBench, SEED-Bench, RealWorldQA) is regression-check only — this is a solid but narrow EMNLP Findings contribution."
+    }
+  },
+  "issues": [
+    "UNCITED SOTA UPDATE — 'Small Drafts, Big Verdict' (arXiv:2510.20812, October 2025): Independent verification confirms this paper evaluates on InfographicVQA and achieves 88.4% ANLS (GPT-4o verdict model) and 86.7% ANLS (Qwen2.5-VL-72B verdict model), updating the InfographicVQA SOTA above the proposal's claimed 87.3% figure. The method is training-free (speculative decoding ensemble: small draft VLMs + large verdict model) and therefore complementary to LHEC rather than competing architecturally. However, its absence from the landscape and key_references is a factual omission that EMNLP reviewers will catch. The proposal must: (a) update the SOTA framing to acknowledge 88.4% as the current best on InfographicVQA, (b) note that 88.4% requires GPT-4o at inference (expensive, not open-source), (c) cite Small Drafts, Big Verdict as a concurrent training-free alternative, and (d) position LHEC as providing complementary benefits — targeted training signal that improves the model's intrinsic multi-hop layout reasoning rather than inference-time ensembling.",
+    "WikiMixQA TRAIN-EVAL FORMAT TRANSFER UNJUSTIFIED: LHEC trains on page images where DocLayout-YOLO detects layout regions and generates node-ID traversal traces (Table[3]→[Adjacent]→Caption[4]→[Caption-of]→Figure[5]) grounded in those regions. At WikiMixQA oracle evaluation, LHEC receives an HTML table and a chart image as separate inputs — DocLayout-YOLO does not apply, no layout regions are detected, and no node IDs are assigned. The proposal states the model 'applies its trained cross-modal traversal reasoning to these provided modalities' but provides zero justification for why training on page-level graph traversal transfers to this qualitatively different input format. One sentence of justification is needed, e.g.: 'We hypothesize that QLoRA fine-tuning on typed layout traversal chains teaches the model cross-modal table-figure synthesis skills that transfer when table and chart are provided directly, without explicit node IDs — the traversal format conditions the model to reason step-by-step across modalities regardless of how those modalities are packaged.' Without this, the methodology gap will be flagged by reviewers."
+  ],
+  "feedback": "Round 7 has resolved both Round 6 critical issues: the WikiMixQA oracle inference protocol is now explicitly specified, and the InfographicVQA hard multi-hop subset is correctly elevated as the primary contribution claim with WikiMixQA oracle framed as the expected documented negative. The proposal is now structurally sound. Two targeted fixes will complete it:\n\n**Fix 1 (Important — update InfographicVQA SOTA and cite Small Drafts, Big Verdict):** Independent verification confirms that 'Small Drafts, Big Verdict' (arXiv:2510.20812, October 2025) achieves 88.4% ANLS on InfographicVQA using GPT-4o as the verdict model, and 86.7% using Qwen2.5-VL-72B — this is above the proposal's claimed 87.3% SOTA. Update the SOTA framing and add this to the landscape: 'Small Drafts, Big Verdict (arXiv:2510.20812, Oct 2025) achieves 88.4% ANLS on InfographicVQA via a training-free speculative decoding ensemble (small draft VLMs + GPT-4o verdict); this is the current best result but requires proprietary inference at test time. LHEC provides a complementary approach: direct training of a single open-source model to internalize multi-hop layout traversal.' Note that 86.7% with Qwen2.5-VL-72B as verdict suggests the upper bound for open-source models on InfographicVQA with this inference-time method is around 86-87%. LHEC fine-tuning Qwen3-VL-8B is targeting a different efficiency point.\n\n**Fix 2 (Important — WikiMixQA transfer justification):** In the WikiMixQA evaluation section, add one sentence justifying the train-eval format transfer: explain why training on page-level typed layout graph traversal is expected to teach cross-modal synthesis skills that apply when table and chart are provided directly as separate inputs (without node IDs or DocLayout-YOLO preprocessing). The justification can be brief and empirical — the Day 1 baseline will determine if the trained model shows any gains — but reviewers need to see the transfer assumption stated explicitly.",
+  "reason": "Both Round 6 issues resolved; two remaining issues (uncited InfographicVQA SOTA update from Small Drafts Big Verdict at 88.4%, WikiMixQA train-eval format transfer unjustified) prevent a pass; average score 3.5/5 below the 4.0 threshold for an incremental-but-genuine method paper."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fabcd3a1-c703-4d87-bbd1-47f8fbc84db7",
+  "isSidechain": false,
+  "requestId": "req_011Cateu8Xf5yuytY36w66YB",
+  "type": "assistant",
+  "uuid": "9381790f-1a1e-4d8e-9719-2d244c71b7e7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "86c36b8a-4f2b-4be8-9159-e3bc93060d38",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Xdr3rQqm1BXGQjJgokgucy",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8724,
+      "cache_read_input_tokens": 47079,
+      "output_tokens": 4020,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8724,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4020,
+          "cache_read_input_tokens": 47079,
+          "cache_creation_input_tokens": 8724,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8724
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "9381790f-1a1e-4d8e-9719-2d244c71b7e7",
+  "sessionId": "86c36b8a-4f2b-4be8-9159-e3bc93060d38"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Layout-Structured Hop Evidence Chains for Document Reasoning",
+  "sessionId": "86c36b8a-4f2b-4be8-9159-e3bc93060d38"
+}
+```
+
+---

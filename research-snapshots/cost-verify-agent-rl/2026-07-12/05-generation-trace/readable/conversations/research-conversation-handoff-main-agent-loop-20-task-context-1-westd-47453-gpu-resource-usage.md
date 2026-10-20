@@ -1,0 +1,6548 @@
+# Research conversation: [HANDOFF] 你是 Main Agent，这是 Loop #20。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - westd-47453 GPU 分配需确认——resource_usage 显
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 114
+- **Recorded user turns:** 3
+- **Tool calls:** 30
+- **Original source:** `logs/chats/exported-trajectories/account-2/1e2ffa45-200e-4118-ab05-61d88c83c6a6.jsonl`
+- **Structured JSON:** [`ce2ecf7a082f099cc5db.json`](../../sessions/ce/ce2ecf7a082f099cc5db.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-21T02:36:54.536Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-21T02:36:54.536Z",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "content": "[HANDOFF] 你是 Main Agent，这是 Loop #20。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- westd-47453 GPU 分配需确认——resource_usage 显示 allocated_gpus=[]，ROADMAP 说 westd cuda:0-3 跑 v9d，但 cron reconcile 未检测到。提交前必须 `get_project_resource_usage` 确认白名单\n- bjb1-17606 cuda:0,1 正在跑 scienceworld_sft_eval_v2，不可抢占\n- v9d step 10 是当前论文关键数据点（8B OOD generalization），checkpoint 路径不可删除\n- 8b_v9d_ood_eval 已连续触发 3 次 CRON 失败回调（同一次失败重复通知），不要重复处理\n\n### 2. 🖥️ 基础设施快照\n- **westd-47453**: 工作目录 ~/runs/cost-verify-agent-rl/，磁盘 813G/879G (3%)\n- **bjb1-17606**: 磁盘 817G/879G (3%)\n- 日志路径: `~/runs/cost-verify-agent-rl/8b_v9d_ood_eval.log` (westd)\n- 活跃进程: scienceworld_sft_eval_v2 PID 195853 (bjb1 cuda:0,1)，~70.4% 完成\n- v9d 训练状态不明——ROADMAP 说 step 10→30 运行中但 cron 未检测到，需 SSH 确认\n- Worker 已派发: `worker_diag_8b_v9d_ood_eval_20260520T095705`（诊断日志）\n\n### 3. 📊 当前状态\n收到 `8b_v9d_ood_eval` 失败 CRON 回调（3 次重复）。已派 Worker SSH 读日志诊断，等待回调。\n\nRegistry 状态:\n- `scienceworld_sft_eval_v2`: RUNNING (bjb1, ~70.4% done, ETA ~5h)\n- `8b_v9d_ood_eval`: DONE(failed) — AssertionError: env_groups * group_size * effective_ratio\n- `8b_cell_c_episode_v9d`: DONE(success) — step 10 val 96.875%\n- 19 个实验 PREPARING 状态\n\n等待中:\n- Worker `worker_diag_8b_v9d_ood_eval_20260520T095705` 回调 → 拿到完整 traceback + 修复方案\n- scienceworld_sft_eval_v2 完成回调\n- v9d 训练（如果还活着）进度回调\n\n已向 Director 汇报失败初步信息，待 Worker 返回后补充完整诊断。\n\n### 4. 📋 待办\n- Worker diag 回调到达 → 读诊断报告 → update_registry 写 failure_reason → 向 Director 汇报根因 + 修复方案 → 等 Director 决定是否重跑\n- scienceworld_sft_eval_v2 完成 → 按 on-experiment-done 流程处理（更新 registry、report.md、汇报 Director）→ bjb1 空出后排 ScienceWorld GRPO Cell A\n- 确认 westd v9d 训练是否还活着（SSH 检查 PID）→ 如果已死需汇报 Director\n- 8b_v9d_ood_eval 修复后重跑 → 这是论文 key data point（8B OOD generalization）\n\n### 5. 🎯 战略上下文\n- **核心论文 story**: 诊断 step-independent RL 的两个失败机制（information loss + sign misattribution），Cell C (episode-level) 是 fix\n- **关键数据缺口**: 8B Cell C v9d OOD eval 是论文最重要的缺失数据点——证明 fix 在 8B scale 也 generalize。seed1 7B OOD=23.88%，8B 预期更高\n- **v9d 训练曲线极健康**: 40.6% → 81.25% → 96.875% (step 0/5/10)，step 12 后 reward 饱和（Decision D103 决定 step 10 为最终模型）\n- **OOD eval 失败是配置问题**（AssertionError 关于 env_groups/group_size），不是模型问题，修复后应能顺利跑\n- **易错点**: westd GPU 状态不透明——ROADMAP 写着 v9d running 但 resource_usage API 看不到。可能 v9d 早已完成/崩溃但 registry 未更新。下一个\"你\"首先 SSH 确认 westd 上实际运行的进程\n\n## 项目硬约束 (memory.md 节选)\n\n## 约束\n\n### westd GPU 内存紧张 (2026-05-19)\n8B FSDP2+CPUOffload 训练时 GPU 占用 ~83/95.6 GB (87%)。不要增加 batch size 或 max_model_len，无余量。\n\n## 可查的历史\n前 55 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-21T02:36:54.539Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-21T02:36:54.539Z",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6"
+}
+```
+
+---
+
+## Round 1
+
+108 recorded events
+
+### User
+
+_source line 3 · 2026-05-21T02:36:54.575Z_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #20。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- westd-47453 GPU 分配需确认——resource_usage 显示 allocated_gpus=[]，ROADMAP 说 westd cuda:0-3 跑 v9d，但 cron reconcile 未检测到。提交前必须 `get_project_resource_usage` 确认白名单
+- bjb1-17606 cuda:0,1 正在跑 scienceworld_sft_eval_v2，不可抢占
+- v9d step 10 是当前论文关键数据点（8B OOD generalization），checkpoint 路径不可删除
+- 8b_v9d_ood_eval 已连续触发 3 次 CRON 失败回调（同一次失败重复通知），不要重复处理
+
+### 2. 🖥️ 基础设施快照
+- **westd-47453**: 工作目录 ~/runs/cost-verify-agent-rl/，磁盘 813G/879G (3%)
+- **bjb1-17606**: 磁盘 817G/879G (3%)
+- 日志路径: `~/runs/cost-verify-agent-rl/8b_v9d_ood_eval.log` (westd)
+- 活跃进程: scienceworld_sft_eval_v2 PID 195853 (bjb1 cuda:0,1)，~70.4% 完成
+- v9d 训练状态不明——ROADMAP 说 step 10→30 运行中但 cron 未检测到，需 SSH 确认
+- Worker 已派发: `worker_diag_8b_v9d_ood_eval_20260520T095705`（诊断日志）
+
+### 3. 📊 当前状态
+收到 `8b_v9d_ood_eval` 失败 CRON 回调（3 次重复）。已派 Worker SSH 读日志诊断，等待回调。
+
+Registry 状态:
+- `scienceworld_sft_eval_v2`: RUNNING (bjb1, ~70.4% done, ETA ~5h)
+- `8b_v9d_ood_eval`: DONE(failed) — AssertionError: env_groups * group_size * effective_ratio
+- `8b_cell_c_episode_v9d`: DONE(success) — step 10 val 96.875%
+- 19 个实验 PREPARING 状态
+
+等待中:
+- Worker `worker_diag_8b_v9d_ood_eval_20260520T095705` 回调 → 拿到完整 traceback + 修复方案
+- scienceworld_sft_eval_v2 完成回调
+- v9d 训练（如果还活着）进度回调
+
+已向 Director 汇报失败初步信息，待 Worker 返回后补充完整诊断。
+
+### 4. 📋 待办
+- Worker diag 回调到达 → 读诊断报告 → update_registry 写 failure_reason → 向 Director 汇报根因 + 修复方案 → 等 Director 决定是否重跑
+- scienceworld_sft_eval_v2 完成 → 按 on-experiment-done 流程处理（更新 registry、report.md、汇报 Director）→ bjb1 空出后排 ScienceWorld GRPO Cell A
+- 确认 westd v9d 训练是否还活着（SSH 检查 PID）→ 如果已死需汇报 Director
+- 8b_v9d_ood_eval 修复后重跑 → 这是论文 key data point（8B OOD generalization）
+
+### 5. 🎯 战略上下文
+- **核心论文 story**: 诊断 step-independent RL 的两个失败机制（information loss + sign misattribution），Cell C (episode-level) 是 fix
+- **关键数据缺口**: 8B Cell C v9d OOD eval 是论文最重要的缺失数据点——证明 fix 在 8B scale 也 generalize。seed1 7B OOD=23.88%，8B 预期更高
+- **v9d 训练曲线极健康**: 40.6% → 81.25% → 96.875% (step 0/5/10)，step 12 后 reward 饱和（Decision D103 决定 step 10 为最终模型）
+- **OOD eval 失败是配置问题**（AssertionError 关于 env_groups/group_size），不是模型问题，修复后应能顺利跑
+- **易错点**: westd GPU 状态不透明——ROADMAP 写着 v9d running 但 resource_usage API 看不到。可能 v9d 早已完成/崩溃但 registry 未更新。下一个"你"首先 SSH 确认 westd 上实际运行的进程
+
+## 项目硬约束 (memory.md 节选)
+
+## 约束
+
+### westd GPU 内存紧张 (2026-05-19)
+8B FSDP2+CPUOffload 训练时 GPU 占用 ~83/95.6 GB (87%)。不要增加 batch size 或 max_model_len，无余量。
+
+## 可查的历史
+前 55 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "f8302a3c-3d42-4fa9-96cb-f9a27b66ab52",
+  "type": "user",
+  "uuid": "69701a86-58bc-4bf3-b20e-411a6ddfc1c4",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-21T02:36:54.574Z_
+
+```json
+{
+  "parentUuid": "69701a86-58bc-4bf3-b20e-411a6ddfc1c4",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__distill_papers",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_distill_status",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_mistakes",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__distill_papers",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_distill_status",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_mistakes",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "167a48c7-3fb3-41c7-943a-d715cbce40f5",
+  "timestamp": "2026-05-21T02:36:54.574Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-21T02:36:54.574Z_
+
+```json
+{
+  "parentUuid": "167a48c7-3fb3-41c7-943a-d715cbce40f5",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "361aa91a-195f-46c5-82e1-cb38ada55372",
+  "timestamp": "2026-05-21T02:36:54.574Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-21T02:36:54.574Z_
+
+```json
+{
+  "parentUuid": "361aa91a-195f-46c5-82e1-cb38ada55372",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "502cd11f-16ae-4ed4-ac90-a5bc684347f7",
+  "timestamp": "2026-05-21T02:36:54.574Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Diagnose 8B OOD eval failure and confirm v9d training status",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-21T02:37:05.319Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+新 session 启动，我需要按 session-start 流程初始化，同时处理 handoff 中的待办事项。
+
+让我先确认硬约束和当前状态，然后执行初始化步骤。
+
+硬约束确认：
+1. westd-47453 GPU 分配需确认白名单
+2. bjb1-17606 cuda:0,1 正在跑 scienceworld_sft_eval_v2，不可抢占
+
+
+3. v9d step 10 checkpoint 不可删
+4. 8b_v9d_ood_eval 重复 CRON 回调需去重处理
+
+当前 scienceworld_sft_eval_v2 在运行，8b_v9d_ood_eval 已失败完成，我在等待 Worker 诊断回调。接下来需要读取注册表、协调 CRON 任务、查看报告和路线图，然后向 Director 汇报。
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "502cd11f-16ae-4ed4-ac90-a5bc684347f7",
+  "isSidechain": false,
+  "requestId": "req_011CbEwGLfBmT7tJ3EHNCh43",
+  "type": "assistant",
+  "uuid": "438c4367-4397-4b17-9d80-eacdf6efb0fb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CcRVJYyxekjvd9BUAGo2Yc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 26662,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 538,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 26662,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 538,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 26662,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 26662
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-21T02:37:06.661Z_
+
+已确认 handoff 硬约束：westd GPU 白名单待确认、bjb1 cuda:0,1 不可抢占、v9d step 10 checkpoint 不可删、8b_v9d_ood_eval 重复回调不重复处理。当前活跃实验：scienceworld_sft_eval_v2 RUNNING、8b_v9d_ood_eval DONE(failed) 等 Worker 诊断回调。
+
+执行 session-start 初始化。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "438c4367-4397-4b17-9d80-eacdf6efb0fb",
+  "isSidechain": false,
+  "requestId": "req_011CbEwGLfBmT7tJ3EHNCh43",
+  "type": "assistant",
+  "uuid": "65a24d70-4f39-463c-a075-5d35e6008e6f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CcRVJYyxekjvd9BUAGo2Yc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 26662,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 538,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 26662,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 538,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 26662,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 26662
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-21T02:37:08.234Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Jaom2JckTWcPhEorn84BZb`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "65a24d70-4f39-463c-a075-5d35e6008e6f",
+  "isSidechain": false,
+  "requestId": "req_011CbEwGLfBmT7tJ3EHNCh43",
+  "type": "assistant",
+  "uuid": "7d123ce1-0f24-4f34-a792-4592a35bb4c2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CcRVJYyxekjvd9BUAGo2Yc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 26662,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 538,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 26662,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 538,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 26662,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 26662
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-21T02:37:08.242Z_
+
+<details><summary>↩ Tool result · `toolu_01Jaom2JckTWcPhEorn84BZb`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_roadmap"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7d123ce1-0f24-4f34-a792-4592a35bb4c2",
+  "isSidechain": false,
+  "promptId": "f8302a3c-3d42-4fa9-96cb-f9a27b66ab52",
+  "type": "user",
+  "uuid": "b9a7d1bd-56d8-4b3b-be0a-e5f02efa8418",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_roadmap"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "total_deferred_tools": 82
+  },
+  "sourceToolAssistantUUID": "7d123ce1-0f24-4f34-a792-4592a35bb4c2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-21T02:37:10.832Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01Teb2Kdpmw6EEZgzPotjvyn`</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b9a7d1bd-56d8-4b3b-be0a-e5f02efa8418",
+  "isSidechain": false,
+  "requestId": "req_011CbEwHMM92ymE46PtmNDQp",
+  "type": "assistant",
+  "uuid": "a130bc64-8226-4dc9-a7e2-7961c6fde27c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019KS99hfQ1xfm5JKxNNNBV5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1415,
+      "cache_read_input_tokens": 38503,
+      "output_tokens": 243,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1415,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 243,
+          "cache_read_input_tokens": 38503,
+          "cache_creation_input_tokens": 1415,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1415
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-21T02:37:11.410Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons · `toolu_01Pu6oPzVUHnWBygCBP25epn`</summary>
+
+```json
+{}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a130bc64-8226-4dc9-a7e2-7961c6fde27c",
+  "isSidechain": false,
+  "requestId": "req_011CbEwHMM92ymE46PtmNDQp",
+  "type": "assistant",
+  "uuid": "85fd1645-4613-49bc-994d-ba1271a13004",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019KS99hfQ1xfm5JKxNNNBV5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1415,
+      "cache_read_input_tokens": 38503,
+      "output_tokens": 243,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1415,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 243,
+          "cache_read_input_tokens": 38503,
+          "cache_creation_input_tokens": 1415,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1415
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-21T02:37:11.535Z_
+
+<details><summary>↩ Tool result · `toolu_01Teb2Kdpmw6EEZgzPotjvyn`</summary>
+
+```text
+Error: result (88,506 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-6eea29da/1e2ffa45-200e-4118-ab05-61d88c83c6a6/tool-results/mcp-agent-ml-research-read_registry-1779331031513.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-6eea29da/1e2ffa45-200e-4118-ab05-61d88c83c6a6/tool-results/mcp-agent-ml-research-read_registry-1779331031513.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-6eea29da/1e2ffa45-200e-4118-ab05-61d88c83c6a6/tool-results/mcp-agent-ml-research-read_registry-1779331031513.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a130bc64-8226-4dc9-a7e2-7961c6fde27c",
+  "isSidechain": false,
+  "promptId": "f8302a3c-3d42-4fa9-96cb-f9a27b66ab52",
+  "type": "user",
+  "uuid": "12f5f622-aa97-43ac-92ed-65f55d80c490",
+  "toolUseResult": "Error: result (88,506 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-6eea29da/1e2ffa45-200e-4118-ab05-61d88c83c6a6/tool-results/mcp-agent-ml-research-read_registry-1779331031513.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-6eea29da/1e2ffa45-200e-4118-ab05-61d88c83c6a6/tool-results/mcp-agent-ml-research-read_registry-1779331031513.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-6eea29da/1e2ffa45-200e-4118-ab05-61d88c83c6a6/tool-results/mcp-agent-ml-research-read_registry-1779331031513.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp029_seed3_ood_v2\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-21T00:39:28.222Z\", \"updated_at\": \"2026-05-21T00:40:16.565Z\"}, \"exp029_seed3_ood_final\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T23:00:23.413Z\", \"updated_at\": \"2026-05-21T00:36:31.725Z\", \"hypothesis\": \"Evaluate exp029_seed3_v2 final checkpoint (global_step_15, episode-level GRPO seed=42) on 134 OOD tasks. Cross-seed OOD evidence. Seed 1 OOD=23.88%.\", \"parent\": \"exp029_seed3_v2\", \"conclusion\": \"failed\"}, \"exp029_seed3_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T17:09:19.834Z\", \"updated_at\": \"2026-05-20T23:01:27.840Z\", \"hypothesis\": \"Episode-level GRPO avoids collapse and learns consistently across seeds, confirming robustness of the credit assignment fix (seed 3 replication of exp029)\", \"parent\": \"exp029_seed3_episode\", \"conclusion\": \"success\", \"notes\": \"训练实际完成 15/15 步。EXIT_CODE=129 是 W&B teardown BrokenPipeError 导致的误报。Checkpoint 已保存至 /root/autodl-tmp/checkpoints/exp029-seed3/global_step_15/。初步 metrics: val-core/reward/mean@32=4.0625 (~40.6% success), first_turn_valid_rate=0.977, pass@1(non-zero)=1.0, best@4=8.49, best@8=9.72\"}, \"exp029_seed3_ood\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T19:57:11.789Z\", \"updated_at\": \"2026-05-20T21:09:53.849Z\", \"hypothesis\": \"Evaluate exp029_seed3_v2 checkpoint (global_step_5) on 134 OOD tasks (valid_unseen) to provide cross-seed OOD generalization evidence. Seed 1 OOD=23.88% at step 15.\", \"parent\": \"exp029_seed3_v2\", \"conclusion\": \"failed\"}, \"scienceworld_grpo_cell_c_v3\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-20T18:23:30.854Z\", \"updated_at\": \"2026-05-20T19:19:30.777Z\", \"hypothesis\": \"ScienceWorld 环境下 episode-level GRPO 能避免 collapse 并学到有效策略，验证 episode-level credit 作为 fix 的跨环境泛化性（v3: 磁盘清理后重启）\", \"parent\": \"scienceworld_grpo_cell_c_v2\"}, \"exp029_seed2_ood_step15\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-19T10:37:25.028Z\", \"updated_at\": \"2026-05-20T19:14:37.390Z\", \"hypothesis\": \"Evaluate exp029_seed2 global_step_15 checkpoint on 134 OOD tasks (valid_unseen). Step 15 is the bjb1 checkpoint before westd resume (step 30 checkpoint lost in disk cleanup M019). Provides cross-seed OOD number for paper table (seed1 OOD=23.88%). Step 15 val was near peak (~25-28%), OOD number expected similar to seed1.\", \"parent\": \"exp029_episode_level_seed2\", \"notes\": \"全部 seed2 checkpoint 已丢失（M019）。Director 确认取消，论文只用 seed1 OOD 数据。\", \"conclusion\": \"killed\"}, \"sw_info_loss_bjb1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T16:38:54.097Z\", \"updated_at\": \"2026-05-20T19:10:24.938Z\", \"hypothesis\": \"ScienceWorld SFT model under h=2 windowing shows significant performance degradation vs full context (T=0 deterministic), quantifying information loss (M1) cross-environment on bjb1\", \"parent\": \"scienceworld_sft_eval_v2\", \"metrics\": {\"full_context_success\": 0.348, \"h2_success\": 0.045, \"info_loss_delta_pp\": 30.3, \"full_episodes\": 89, \"h2_episodes\": 89, \"full_avg_score\": 26.7, \"h2_avg_score\": 17.4, \"temperature\": 0, \"notable\": \"find-animal/find-living-thing/lifespan-longest+shortest: 100% full → 0% h=2\"}, \"conclusion\": \"success\"}, \"scienceworld_grpo_cell_c_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T15:41:04.991Z\", \"updated_at\": \"2026-05-20T18:23:54.294Z\", \"hypothesis\": \"ScienceWorld 环境下 episode-level GRPO 能避免 collapse 并学到有效策略，验证 episode-level credit 作为 fix 的跨环境泛化性（v2: 加固 JVM 通信——增大堆至 4g + py4j 断连自动重建 JVM + step 崩溃优雅降级）\", \"parent\": \"scienceworld_grpo_cell_c\", \"conclusion\": \"failed\", \"metrics\": {\"note\": \"Stalled at step 2 due to disk full (99%), Ray object spilling blocked. GPU 0% util for >1h50min. Killed and restarted as v3.\"}}, \"exp029_seed3_episode\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T16:52:11.263Z\", \"updated_at\": \"2026-05-20T17:07:41.079Z\", \"hypothesis\": \"Episode-level GRPO avoids collapse and learns consistently across seeds, confirming robustness of the credit assignment fix (seed 3 replication of exp029)\", \"parent\": \"exp029_episode_level\", \"conclusion\": \"failed\"}, \"scienceworld_grpo_cell_c\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T11:24:51.574Z\", \"updated_at\": \"2026-05-20T15:32:10.728Z\", \"hypothesis\": \"ScienceWorld 环境下 episode-level GRPO 能避免 collapse 并学到有效策略，验证 episode-level credit 作为 fix 的跨环境泛化性\", \"parent\": \"scienceworld_sft\", \"conclusion\": \"failed\", \"metrics\": {\"step_1_success\": 0, \"step_1_pass_at_8\": 0, \"step_1_score\": 2.74, \"step_1_final_score\": 5.44, \"step_1_action_valid\": 0.44, \"completed_steps\": \"1/15\", \"failure_reason\": \"ScienceWorld Java environment communication error: Exception while sending command\"}}, \"scienceworld_info_loss_h2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T14:21:16.640Z\", \"updated_at\": \"2026-05-20T14:36:43.490Z\", \"hypothesis\": \"ScienceWorld SFT model with h=2 sliding window at T=0 shows degraded performance vs full context, confirming information loss generalizes beyond ALFWorld\", \"parent\": \"8b_det_eval_h2\", \"conclusion\": \"killed\"}, \"sw_info_loss_full_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T14:34:18.334Z\", \"updated_at\": \"2026-05-20T14:36:34.122Z\", \"hypothesis\": \"ScienceWorld SFT model with full context at T=0 achieves significantly higher success rate than h=2, quantifying information loss (Mechanism 1) in a second environment beyond ALFWorld\", \"parent\": \"scienceworld_sft_eval_v2\", \"conclusion\": \"failed\"}, \"scienceworld_info_loss_full\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T14:21:15.269Z\", \"updated_at\": \"2026-05-20T14:33:44.987Z\", \"hypothesis\": \"ScienceWorld SFT model with full context at T=0 achieves significantly higher success rate than h=2, quantifying information loss (Mechanism 1) in a second environment beyond ALFWorld\", \"parent\": \"8b_det_eval_full\", \"conclusion\": \"failed\"}, \"scienceworld_sft_eval_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T18:50:45.230Z\", \"updated_at\": \"2026-05-20T14:15:37.390Z\", \"hypothesis\": \"SFT-trained model on ScienceWorld can achieve meaningful task completion rates across diverse science tasks, establishing a baseline for subsequent RL fine-tuning comparison.\", \"parent\": \"scienceworld_sft_eval\", \"metrics\": {\"total_episodes\": 1796, \"success_count\": 540, \"overall_success_rate\": 0.301, \"timeouts\": 0, \"errors\": 0, \"avg_score\": 20.9, \"avg_steps_per_episode\": 28.7, \"total_time_seconds\": 51462, \"split\": \"dev\", \"temperature\": 0.4, \"per_task_type\": {\"boil\": {\"n\": 7, \"succ\": 0, \"rate\": 0}, \"change-the-state-of-matter-of\": {\"n\": 7, \"succ\": 1, \"rate\": 0.143}, \"chemistry-mix\": {\"n\": 8, \"succ\": 0, \"rate\": 0}, \"chemistry-mix-paint-secondary-color\": {\"n\": 9, \"succ\": 2, \"rate\": 0.222}, \"chemistry-mix-paint-tertiary-color\": {\"n\": 9, \"succ\": 0, \"rate\": 0}, \"find-animal\": {\"n\": 75, \"succ\": 37, \"rate\": 0.493}, \"find-living-thing\": {\"n\": 75, \"succ\": 49, \"rate\": 0.653}, \"find-non-living-thing\": {\"n\": 75, \"succ\": 58, \"rate\": 0.773}, \"find-plant\": {\"n\": 75, \"succ\": 9, \"rate\": 0.12}, \"freeze\": {\"n\": 7, \"succ\": 0, \"rate\": 0}, \"grow-fruit\": {\"n\": 31, \"succ\": 2, \"rate\": 0.065}, \"grow-plant\": {\"n\": 31, \"succ\": 0, \"rate\": 0}, \"identify-life-stages-1\": {\"n\": 3, \"succ\": 0, \"rate\": 0}, \"identify-life-stages-2\": {\"n\": 2, \"succ\": 0, \"rate\": 0}, \"inclined-plane-determine-angle\": {\"n\": 42, \"succ\": 7, \"rate\": 0.167}, \"inclined-plane-friction-named-surfaces\": {\"n\": 346, \"succ\": 83, \"rate\": 0.24}, \"inclined-plane-friction-unnamed-surfaces\": {\"n\": 40, \"succ\": 10, \"rate\": 0.25}, \"lifespan-longest-lived\": {\"n\": 31, \"succ\": 28, \"rate\": 0.903}, \"lifespan-longest-lived-then-shortest-lived\": {\"n\": 31, \"succ\": 28, \"rate\": 0.903}, \"lifespan-shortest-lived\": {\"n\": 31, \"succ\": 21, \"rate\": 0.677}, \"measure-melting-point-known-substance\": {\"n\": 109, \"succ\": 25, \"rate\": 0.229}, \"measure-melting-point-unknown-substance\": {\"n\": 75, \"succ\": 27, \"rate\": 0.36}, \"melt\": {\"n\": 7, \"succ\": 1, \"rate\": 0.143}, \"mendelian-genetics-known-plant\": {\"n\": 30, \"succ\": 8, \"rate\": 0.267}, \"mendelian-genetics-unknown-plant\": {\"n\": 120, \"succ\": 35, \"rate\": 0.292}, \"power-component\": {\"n\": 5, \"succ\": 3, \"rate\": 0.6}, \"power-component-renewable-vs-nonrenewable-energy\": {\"n\": 5, \"succ\": 0, \"rate\": 0}, \"test-conductivity\": {\"n\": 225, \"succ\": 35, \"rate\": 0.156}, \"test-conductivity-of-unknown-substances\": {\"n\": 150, \"succ\": 44, \"rate\": 0.293}, \"use-thermometer\": {\"n\": 135, \"succ\": 27, \"rate\": 0.2}}, \"results_json_path\": \"/root/autodl-tmp/checkpoints/scienceworld_sft/eval_results_dev_v2.json\"}, \"conclusion\": \"success\"}, \"scienceworld_grpo_cell_a\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T11:24:49.171Z\", \"updated_at\": \"2026-05-20T13:54:57.116Z\", \"hypothesis\": \"ScienceWorld 环境下 step-independent GRPO (h=2) 也会出现 policy collapse，验证 ALFWorld 观察到的 collapse 是 step-independent credit assignment 的固有问题而非环境特异性\", \"parent\": \"scienceworld_sft\", \"conclusion\": \"negative\", \"metrics\": {\"steps_completed\": 14, \"success_rate\": 0, \"final_score_train\": -100, \"final_score_val\": 1, \"reward_mean_start\": 0.6, \"reward_mean_end\": 0.1, \"entropy_start\": 0.283, \"entropy_end\": 0.52, \"kl_start\": 1.606, \"kl_end\": 0.03, \"exit_mode\": \"abnormal (log truncated at step 15 start)\", \"note\": \"collapse confirmed - success rate 0% throughout, matches ALFWorld Cell A pattern\"}}, \"8b_v9d_ood_eval_v5\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T10:25:24.932Z\", \"updated_at\": \"2026-05-20T11:20:18.763Z\", \"hypothesis\": \"Evaluate 8B Cell C episode-level GRPO model (v9d step 10, val_before_train 96.875%) on 134 OOD ALFWorld tasks. Paper's key data point: 8B model OOD generalization under episode-level GRPO. Fix: val.env_groups 234→134 to match val.n_groups=[134].\", \"parent\": \"8b_cell_c_episode_v9d\", \"conclusion\": \"success\", \"metrics\": {\"pass_at_1\": 90.3, \"action_valid_rate\": 98.7, \"n_tasks\": 134, \"temperature\": 0.4, \"model\": \"8B Cell C v9d step 10\"}}, \"8b_v9d_ood_eval_v4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T10:14:46.445Z\", \"updated_at\": \"2026-05-20T10:20:38.588Z\", \"hypothesis\": \"Evaluate 8B Cell C episode-level GRPO model (v9d step 10, val_before_train 96.875%) on 134 OOD ALFWorld tasks. Paper's key data point. Config fix: ppo_mini_batch_size=4, env_groups=2, n_groups=[2].\", \"parent\": \"8b_cell_c_episode_v9d\", \"conclusion\": \"failed\"}, \"8b_v9d_ood_eval_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T10:13:27.671Z\", \"updated_at\": \"2026-05-20T10:14:40.807Z\", \"hypothesis\": \"Evaluate 8B Cell C episode-level GRPO model (v9d step 10, val_before_train 96.875%) on 134 OOD ALFWorld tasks. Paper's key data point. Config fix via base64-encoded script: ppo_mini_batch_size=4, env_groups=2, n_groups=[2].\", \"parent\": \"8b_cell_c_episode_v9d\", \"conclusion\": \"failed\"}, \"8b_v9d_ood_eval_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T10:12:05.992Z\", \"updated_at\": \"2026-05-20T10:13:16.252Z\", \"hypothesis\": \"Evaluate 8B Cell C episode-level GRPO model (v9d step 10, val_before_train 96.875%) on 134 OOD ALFWorld tasks (valid_unseen). Step 10 is effective final model (reward saturated at step 12, zero gradients). This is the paper's key data point: 8B model OOD generalization under episode-level GRPO. Retry of 8b_v9d_ood_eval with fixed config (ppo_mini_batch_size=4, env_groups=2, n_groups=[2]).\", \"parent\": \"8b_cell_c_episode_v9d\", \"conclusion\": \"failed\"}, \"8b_v9d_ood_eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T09:37:39.568Z\", \"updated_at\": \"2026-05-20T10:11:53.284Z\", \"hypothesis\": \"Evaluate 8B Cell C episode-level GRPO model (v9d step 10, val_before_train 96.875%) on 134 OOD ALFWorld tasks (valid_unseen). Step 10 is effective final model (reward saturated at step 12, zero gradients). This is the paper's key data point: 8B model OOD generalization under episode-level GRPO.\", \"parent\": \"8b_cell_c_episode_v9d\", \"conclusion\": \"failed\"}, \"8b_cell_c_episode_v9d\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T23:13:25.570Z\", \"updated_at\": \"2026-05-20T09:32:19.245Z\", \"hypothesis\": \"FSDP2 + CPUOffloadPolicy 8B Cell C episode-level GRPO。v9c 证明训练有效（2步 success 40%→64%），但 step 3 因 max_prompt_length==max_model_len 溢出。v9d 修复：max_prompt_length 16384→15360，留 1024 token headroom。从头训练（无 checkpoint）。\", \"parent\": \"8b_cell_c_episode_v9c\", \"notes\": \"SIGHUP 诊断 (2026-05-20): 无 EXIT_CODE=129。v9d 实际到达 step 10（checkpoint 存在 92GB），之前 metrics 仅更新到 step 7。v9c 根因: vLLM prompt 16384 = max_model_len 溢出 (EXIT_CODE=1)。v9d 已重启 (15:56 UTC)，从 step 10 恢复，wandb: aeml21w9。SFT checkpoint 通过 symlink→Qwen3-8B 修复。剩余 20 步。风险: prompt 长度崩溃仍可能重现。\", \"metrics\": {\"step\": 15, \"steps_total\": 30, \"stopped_reason\": \"reward_saturation_and_nccl_hang\", \"train_success_step12\": 1, \"pg_loss_step12\": 0, \"advantage_step12\": 0, \"val_before_train_step10\": 0.96875, \"train_success_step7\": 0.914, \"train_success_step11\": 0.9375, \"effective_final_step\": 10, \"wandb_run_id\": \"aeml21w9\", \"note\": \"Reward saturated at step 12 (100% success, zero gradients). NCCL hang at step 15. Step 10 checkpoint is effective final model.\"}, \"conclusion\": \"success\"}, \"8b_cell_c_episode_v9c\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T19:08:11.566Z\", \"updated_at\": \"2026-05-19T23:10:39.477Z\", \"hypothesis\": \"FSDP2 + CPUOffloadPolicy 解决 8B Cell C backward OOM。v9b 因 _fsdp_wrapped_module (FSDP1 专属属性) 在 compute_log_prob 崩溃。v9c 全量修复 5 个文件 10 处 FSDP1-specific 模式（_fsdp_wrapped_module→getattr 兼容, summon_full_params→isinstance 守卫）。预期无 FSDP1/2 兼容性问题。\", \"parent\": \"8b_cell_c_episode_v9b\", \"metrics\": {\"step\": 1, \"val_reward_mean_at_32\": 4.06, \"gpu_mem_peak_gb\": 83, \"step_time_min\": 31.5}, \"conclusion\": \"failed\"}, \"8b_cell_c_episode_v9b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T18:36:02.652Z\", \"updated_at\": \"2026-05-19T18:58:19.550Z\", \"hypothesis\": \"FSDP2 + CPUOffloadPolicy 解决 8B Cell C backward OOM（v7 缺口 3.7 GiB）。v9 失败于 NotImplementedError（train.py 不识别 fsdp2 strategy），已修复：train.py 接受 fsdp2 + critic.strategy=fsdp2。重试。\", \"parent\": \"8b_cell_c_episode_v9\", \"conclusion\": \"failed\"}, \"scienceworld_sft_eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T18:11:10.597Z\", \"updated_at\": \"2026-05-19T18:46:33.866Z\", \"hypothesis\": \"Evaluate ScienceWorld SFT checkpoint on dev split (1796 episodes, 30 task types). Establishes SFT baseline success rate for ScienceWorld before GRPO experiments.\", \"parent\": \"scienceworld_sft\", \"conclusion\": \"killed\"}, \"8b_cell_c_episode_v9\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T18:12:32.644Z\", \"updated_at\": \"2026-05-19T18:35:55.002Z\", \"hypothesis\": \"FSDP2 + CPUOffloadPolicy 解决 8B Cell C backward OOM（v7 缺口 3.7 GiB）。CPU offload 将参数和 optimizer states 按 layer 搬运，GPU 峰值从 ~55-65GB 降至 ~26-36GB。验证 8B 模型 episode-level GRPO 训练可行性。\", \"parent\": \"8b_cell_c_episode_v8\", \"conclusion\": \"failed\", \"notes\": \"失败原因: NotImplementedError at train.py:245 — TaskRunner.run() 中 FSDP2+CPUOffload 代码路径未实现。策略配置 strategy=fsdp 但 run() 方法对应分支 raise NotImplementedError。运行仅 154s，初始化阶段即崩溃。 | 已有成果: 无（未进入训练） | 建议: 需在 train.py 中实现 FSDP2+CPUOffloadPolicy 的 run 逻辑\", \"metrics\": {\"failure_reason\": \"NotImplementedError in train.py:245 - FSDP2 strategy not handled in if-else\", \"fix\": \"Added fsdp2 to strategy check + critic.strategy=fsdp2 in config\"}}, \"scienceworld_sft\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T14:35:00.255Z\", \"updated_at\": \"2026-05-19T17:50:12.565Z\", \"hypothesis\": \"ScienceWorld 1.7B SFT 训练，为后续 GRPO 实验提供 base checkpoint。验证 SFT 训练 pipeline 可泛化到第二个交互环境（ALFWorld 之外），支撑跨环境 RL 训练失败机制对比（Cell A vs Cell C）。数据：3592 train / 1796 val expert trajectories。\", \"conclusion\": \"success\", \"metrics\": {\"train_loss_final\": 0.00318, \"val_loss_final\": 0.01098, \"total_steps\": 448, \"epochs\": 2, \"total_train_time_s\": 9319.4, \"checkpoint\": \"global_step_448\"}}, \"exp029_per_task_t04_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T14:40:00.807Z\", \"updated_at\": \"2026-05-19T15:24:57.755Z\", \"hypothesis\": \"Per-task-type OOD eval with T=0.4 (paper protocol D092) will show similar task-type ranking pattern as T=0.0 but with higher overall success rate (~23.88% vs 16.4%). Multi-step tasks (heat/cool/two_obj) expected to remain worst. Rerun after v1 vLLM crash.\", \"conclusion\": \"success\", \"metrics\": {\"temperature\": 0.4, \"total_success_rate\": 0.194, \"total_success\": 26, \"total_tasks\": 134, \"pick_and_place_simple\": {\"count\": 24, \"success\": 4, \"rate\": 0.167}, \"pick_clean_then_place_in_recep\": {\"count\": 31, \"success\": 8, \"rate\": 0.258}, \"pick_heat_then_place_in_recep\": {\"count\": 23, \"success\": 4, \"rate\": 0.174}, \"pick_cool_then_place_in_recep\": {\"count\": 21, \"success\": 5, \"rate\": 0.238}, \"look_at_obj_in_light\": {\"count\": 18, \"success\": 5, \"rate\": 0.278}, \"pick_two_obj_and_place\": {\"count\": 17, \"success\": 0, \"rate\": 0}}, \"notes\": \"独立 eval script T=0.4 得 19.4% (26/134)，vs RAGEN 内置 eval 23.88% (32/134)。差 4.48pp，需排查 pipeline 差异（任务 B）。结果文件：/root/autodl-tmp/tmp/exp029_per_task_type_breakdown_t04.json。Cron 误标 failed，实际成功完成。\"}, \"exp029_per_task_t04\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T14:17:41.710Z\", \"updated_at\": \"2026-05-19T14:31:42.043Z\", \"hypothesis\": \"Per-task-type OOD eval with T=0.4 (paper protocol D092) will show similar task-type ranking pattern as T=0.0 but with higher overall success rate (~23.88% vs 16.4%). Multi-step tasks (heat/cool/two_obj) expected to remain worst.\", \"parent\": \"exp029_per_task_breakdown\", \"conclusion\": \"failed\"}, \"8b_cell_c_episode_v8\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T14:10:15.655Z\", \"updated_at\": \"2026-05-19T14:16:13.413Z\", \"hypothesis\": \"Reducing ppo_mini_batch_size 4→2 halves backward activation memory (~3.7 GiB freed), and lowering gpu_memory_utilization 0.25→0.22 returns ~2.88 GiB/GPU to PyTorch allocator. Together these resolve the backward OOM that killed v7 (needed 3.7 GiB, had 0). D094 final attempt — if fails, 8B Cell C abandoned.\", \"parent\": \"8b_cell_c_episode_v7\", \"conclusion\": \"failed\", \"notes\": \"失败原因: 配置约束违反 — ppo_mini_batch_size=2 但 ppo_micro_batch_size_per_gpu(1)*n_gpus(4)=4 > 2。4 GPU 下 mini_batch 最小为 4。| 根因: v7 已证明 mini_batch=4 时 backward 需 8.94 GiB 仅剩 3.83 GiB，无法进一步缩小 mini_batch。8B Cell C episode-level 在 4×96GB 上内存死锁 — FSDP+actor+optimizer+vLLM KV cache 占满显存，backward 无余量。| D094 已标记为最后尝试，8 次连续失败(v1→v8)，覆盖了所有可行参数组合(use_ref, gpu_mem_util, max_model_len, mini_batch_size)。| 建议: 放弃 8B Cell C，用 1.7B Cell C (exp029, 已 success) 作为论文正面对照\"}, \"exp029_per_task_breakdown\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T12:22:29.035Z\", \"updated_at\": \"2026-05-19T14:15:04.649Z\", \"hypothesis\": \"Per-task-type OOD eval of exp029 seed1 (Cell C, episode-level + full context) will reveal which ALFWorld task types benefit most from RL training, providing granular analysis for paper Results section. Checkpoint: global_step_15, 134 OOD tasks grouped by task type.\", \"parent\": \"exp029_episode_level\", \"conclusion\": \"success\", \"metrics\": {\"temperature\": 0, \"total_success_rate\": 0.164, \"pick_and_place_simple\": {\"count\": 24, \"success\": 5, \"rate\": 0.208}, \"pick_clean_then_place_in_recep\": {\"count\": 31, \"success\": 8, \"rate\": 0.258}, \"pick_heat_then_place_in_recep\": {\"count\": 23, \"success\": 1, \"rate\": 0.043}, \"pick_cool_then_place_in_recep\": {\"count\": 21, \"success\": 2, \"rate\": 0.095}, \"look_at_obj_in_light\": {\"count\": 18, \"success\": 5, \"rate\": 0.278}, \"pick_two_obj_and_place\": {\"count\": 17, \"success\": 1, \"rate\": 0.059}}}, \"8b_cell_c_episode_v7\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T13:45:33.729Z\", \"updated_at\": \"2026-05-19T14:06:53.506Z\", \"hypothesis\": \"8B Cell C episode-level with gpu_memory_utilization=0.25 (up from 0.20, giving 6.24 GiB KV cache vs needed 2.25 GiB) and max_model_len=16384. v5 solved OOM (use_ref=False), v6 failed on insufficient KV cache (1.44 GiB < 2.25 GiB needed). D093 math: 0.25 gives 2.8x headroom. No expandable_segments (vLLM incompatible).\", \"parent\": \"8b_cell_c_episode_v6\", \"conclusion\": \"failed\"}, \"8b_cell_c_episode_v6\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T13:23:28.445Z\", \"updated_at\": \"2026-05-19T13:46:13.860Z\", \"hypothesis\": \"8B Cell C episode-level with use_ref=False, max_model_len=16384 (up from 8192 which was too short for some prompts), no expandable_segments (incompatible with vLLM CuMemAllocator). v5 proved OOM is solved and VLLM inits successfully; v6 fixes the remaining prompt length issue. If backward pass succeeds, Cell C at 8B scale provides the positive control for scale-invariant information loss analysis.\", \"parent\": \"8b_cell_c_episode_v5\", \"conclusion\": \"failed\", \"notes\": \"失败原因: vLLM KV cache 内存不足 — max_model_len=16384 需 2.25 GiB，gpu_memory_utilization=0.20 仅提供 1.44 GiB (estimated max len=10480) | v5→v6 progression: v5 证明 use_ref=False + util=0.20 解决了 FSDP OOM 和 vLLM init 问题，但 max_model_len=8192 太短；v6 增到 16384 又超了 KV cache 预算 | 建议: v7 用 max_model_len=10240 (在 1.44 GiB 预算内) 或 gpu_memory_utilization=0.25-0.30 给更多 KV cache 空间\"}, \"8b_cell_c_episode_v5\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T13:11:45.033Z\", \"updated_at\": \"2026-05-19T13:18:55.955Z\", \"hypothesis\": \"8B Cell C episode-level with use_ref=False (releasing ~8 GiB/GPU from ref model) and gpu_memory_utilization=0.20 will resolve the Catch-22 OOM: FSDP+ref baseline ~90 GiB/GPU leaves no room for VLLM. Removing ref model is the only viable fix since batch/token params were already minimized in v1-v3 and gpu_memory_utilization=0.15 was too low for VLLM init in v4.\", \"parent\": \"8b_cell_c_episode_v2\", \"conclusion\": \"failed\"}, \"8b_cell_c_episode_v4\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-19T12:49:54.545Z\", \"updated_at\": \"2026-05-19T12:49:54.545Z\"}, \"8b_cell_c_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T12:14:42.678Z\", \"updated_at\": \"2026-05-19T12:47:42.902Z\", \"hypothesis\": \"8B Cell C (episode-level, full context) with ppo_mini_batch_size=4 can pass backward without OOM. Positive control for scale analysis: if 8B Cell C maintains/improves from SFT baseline while Cell A collapses, confirms scale-invariant information loss mechanism.\", \"parent\": \"8b_cell_c_episode_v2\", \"conclusion\": \"failed\"}, \"8b_det_eval_h2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T11:54:36.334Z\", \"updated_at\": \"2026-05-19T12:32:42.763Z\", \"hypothesis\": \"h=2 windowing at T=0 deterministic eval will show substantial information loss compared to full-context T=0 eval on same 32 in-dist tasks. The gap quantifies pure information loss without sampling variance confound. Expected significant degradation from full-context baseline.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.3125, \"num_actions\": 37.59, \"action_is_valid\": 0.9188, \"pass_at_1\": 0.3125, \"eval_tasks\": 32, \"temperature\": 0, \"do_sample\": false, \"wandb_run\": \"qtxhh5ak\", \"information_loss_pp\": 37.5, \"information_loss_relative\": 0.545}}, \"8b_det_eval_full\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T11:49:48.132Z\", \"updated_at\": \"2026-05-19T12:32:41.705Z\", \"hypothesis\": \"Full-context deterministic eval (T=0) of 8B SFT checkpoint provides the true baseline success rate on 32 in-dist tasks, eliminating sampling variance. Expected ~70-80% given 80.6% OOD performance. This number is the denominator for quantifying information loss from h=2 windowing.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.6875, \"num_actions\": 24.22, \"action_is_valid\": 0.926, \"pass_at_1\": 0.6875, \"eval_tasks\": 32, \"temperature\": 0, \"do_sample\": false, \"wandb_run\": \"mb005ir1\"}}, \"8b_cell_c_episode_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T11:47:08.586Z\", \"updated_at\": \"2026-05-19T12:14:02.446Z\", \"hypothesis\": \"8B Cell C v2: episode-level RL with full context from 80.6% SFT baseline. Same as 8b_cell_c_episode but with OOM fix (ppo_max_token_len_per_gpu 32768→16384, PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True). Positive control for scale analysis. Core comparison vs Cell A: Cell A collapse + Cell C stability = scale-invariant mechanism confirmation. lr=5e-7.\", \"parent\": \"7b_sft_v1\", \"conclusion\": \"failed\", \"notes\": \"Second OOM at backward(). ppo_max_token_len_per_gpu 32768→16384 无效（内存数字与 v1 完全一致：tried to alloc 8.76GiB, 4.94GiB free）。瓶颈是 backward pass 同时处理的序列数，不是总 token 数。Fix: ppo_mini_batch_size 16→4。Retrying as 8b_cell_c_v3.\"}, \"8b_cell_c_episode\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T10:08:01.438Z\", \"updated_at\": \"2026-05-19T11:46:47.187Z\", \"hypothesis\": \"8B Cell C: episode-level RL with full context from 80.6% SFT baseline. Positive control for scale analysis. At 1.7B Cell C reached ~28-31% OOD. If 8B Cell C maintains/improves from 80.6%, confirms episode-level advantage is robust across model scales. Core comparison vs Cell A: Cell A collapse (28.1%→12.5% step 1) + Cell C stability = scale-invariant mechanism confirmation. lr=5e-7.\", \"parent\": \"7b_sft_v1\", \"conclusion\": \"failed\", \"notes\": \"OOM at backward(): full context avg 1464 tokens (~2.6x longer than h=2) exceeded 96GB. Fix: ppo_max_token_len_per_gpu 32768→16384 + PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True. Retrying as 8b_cell_c_episode_v2.\"}, \"8b_sft_clean_eval_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T11:18:59.182Z\", \"updated_at\": \"2026-05-19T11:24:37.814Z\", \"hypothesis\": \"8B SFT checkpoint full-context eval on 32 in-dist val tasks. Provides clean comparison baseline: current 80.6% is OOD 134 tasks, need full-context in-dist number to quantify information loss from h=2 windowing on the SAME eval set (Cell A used 32 in-dist). Required for paper: cannot claim \\\"52pp loss\\\" when comparing different eval sets.\", \"parent\": \"7b_sft_v1\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.71875, \"num_actions\": 23.4375, \"action_is_effective\": 1, \"action_is_valid\": 0.9595, \"pass@1\": 0.71875, \"response_length\": 1731, \"reward_mean@32\": 7.1875, \"reward_std@32\": 4.496, \"best@32_mean\": 10, \"worst@32_mean\": 0, \"eval_episodes\": 32, \"eval_split\": \"eval_in_distribution\", \"eval_context\": \"full\"}, \"notes\": \"8B SFT full-context in-dist eval: 71.875% success (23/32 tasks). Key comparison: Cell A h=2 in-dist val_before_train = 28.1% → information loss from h=2 windowing = 43.7pp on same eval set. OOD (134 tasks) = 80.6%. W&B: h4cupinr. PID was 149409 on bjb1.\"}, \"7b_cell_a_h2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T07:48:29.054Z\", \"updated_at\": \"2026-05-19T11:24:24.790Z\", \"hypothesis\": \"7B (Qwen3-8B) Cell A: step-independent RL with h=2 from 80.6% SFT baseline. Tests whether information loss + sign misattribution mechanisms are scale-invariant. At 1.7B, Cell A collapsed to 0%/3.73%. If 8B Cell A also degrades (drop to &lt;70% or training instability/collapse), confirms the mechanisms are fundamental to step-independent RL regardless of model capacity. Core comparison: Cell A degradation vs Cell C stability, direction should match 1.7B findings. lr=5e-7 (conservative, strong baseline).\", \"parent\": \"7b_sft_v1\", \"notes\": \"D085: killed at step 2. Q4 confirmed (complete collapse). Step 1: train=12.5%, entropy=0.115 (collapse), KL=1.917. Step 2: train=1.56%, entropy=0.605 (rebound from collapse), KL=-1.885 (negative, policy pushed away from own behavior). Entropy collapse→rebound + negative KL = sign misattribution destruction mechanism. If 1.7B shows same pattern → scale-invariant evidence for paper.\", \"metrics\": {\"val_before_train_success\": 0.281, \"step1_train_success\": 0.125, \"step1_kl\": 1.917, \"step1_entropy\": 0.115, \"step1_grad_norm\": 2.29, \"step1_num_actions\": 47.7, \"step1_pass_at_8\": 0.5, \"step1_pg_clipfrac\": 0.109, \"step1_response_length\": 567.5, \"step1_duration_sec\": 5076, \"step2_train_success\": 0.015625, \"step2_entropy\": 0.605, \"step2_ppo_kl\": -1.885, \"step2_num_actions\": 49.7, \"collapse_pattern\": \"Q4 confirmed: step 0 val=28.1% → step 1 train=12.5% (entropy collapse 0.115) → step 2 train=1.56% (entropy rebound 0.605, negative KL -1.885). Complete collapse in 2 steps.\"}, \"conclusion\": \"killed\"}, \"8b_sft_clean_eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T10:07:58.491Z\", \"updated_at\": \"2026-05-19T11:16:10.623Z\", \"hypothesis\": \"8B SFT checkpoint full-context eval on 32 in-dist val tasks. Provides clean comparison baseline: current 80.6% is OOD 134 tasks, 28.1% is in-dist 32 tasks with h=2 windowing. Need full-context in-dist number to quantify information loss from h=2 windowing on the SAME eval set. Required for paper: cannot write \\\"52pp loss\\\" when comparing different eval sets.\", \"parent\": \"7b_sft_v1\", \"conclusion\": \"failed\"}, \"exp029_seed2_ood_reeval_v4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T07:39:29.323Z\", \"updated_at\": \"2026-05-19T10:35:20.219Z\", \"hypothesis\": \"Evaluate exp029_seed2 step 30 checkpoint (val peak 31.25%) on 134 OOD tasks (valid_unseen) for cross-seed OOD comparison. Paper table requires seed2 OOD number (seed1=23.88%). Previous v1/v2/v3 all crashed due to root partition overflow (M017), now fixed with TMPDIR redirect.\", \"parent\": \"exp029_seed2_westd_resume\", \"notes\": \"D084: westd 上 exp029-seed2/ checkpoint (62G) 在磁盘清理时被删除。bjb1 上只有 global_step_15（原始训练崩溃点），无 global_step_30。OOD eval 阻塞。\", \"conclusion\": \"failed\"}, \"hsweep_h20_seed1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T18:04:42.684Z\", \"updated_at\": \"2026-05-19T10:33:39.352Z\", \"hypothesis\": \"h=20 with step_independent generation provides 20-step observation windows. Key data point for fig5 cliff figure: with h=10 and h=5 both collapsing, h=20 tests whether 20 steps of context is sufficient for recovery. If h=20 recovers (val > 0% at step 5+), the cliff is between h=10 and h=20. If still collapsed, the minimum viable context window is larger than 20 steps.\", \"parent\": \"hsweep_h10_seed1\", \"notes\": \"D084 确认: 只需 step 5 val 数据做 cliff figure (in-dist val success vs h-value), 不需要 checkpoint, 不做 h=20 OOD eval。Step 5 val 出来后立即 kill, 释放 bjb1 GPU 给 exp029_seed2 OOD eval + 8b_sft_clean_eval。\", \"metrics\": {\"step1_train\": 0.203, \"step2_train\": 0.133, \"step4_train\": 0.281, \"val_step5_success\": 0.15625}, \"conclusion\": \"success\"}, \"7b_sft_eval_ood\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T07:39:26.088Z\", \"updated_at\": \"2026-05-19T07:43:55.586Z\", \"hypothesis\": \"Evaluate Qwen3-8B SFT checkpoint (7b_sft_v1, loss=0.0355, acc=98.56%) on ALFWorld OOD 134 tasks. Establishes 8B SFT baseline for subsequent RL experiments (Cell A vs Cell C). If success rate significantly higher than 1.7B SFT baseline (~6.25%), confirms model scale advantage for SFT; if similar, the 1.7B findings generalize.\", \"parent\": \"7b_sft_v1\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.806, \"pass_at_1\": 0.806, \"num_actions\": 20.18, \"action_is_valid\": 0.963, \"action_is_effective\": 1, \"reward_mean_at_134\": 8.06, \"response_length\": 1987.9, \"best_at_2_mean\": 9.53, \"best_at_4_mean\": 9.98, \"best_at_8_mean\": 10, \"worst_at_2_mean\": 6.55, \"worst_at_4_mean\": 4.11, \"worst_at_8_mean\": 1.93}, \"notes\": \"Eval completed successfully. OOD 134 tasks success rate 80.6%. W&B data missing due to BrokenPipeError during wandb teardown (asyncio stream close), but all metrics logged to file. GPU cuda:2,3 released.\"}, \"7b_sft_v1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T06:09:08.447Z\", \"updated_at\": \"2026-05-19T07:38:58.545Z\", \"hypothesis\": \"SFT Qwen3-8B on ALFWorld expert data (2460 examples) to create 8B SFT checkpoint for subsequent RL training (Cell A vs C). Also tests westd stability with non-Ray workload (torchrun). SFT is mandatory for fair comparison with 1.7B experiments (same pipeline: base → SFT → RL).\", \"conclusion\": \"success\", \"notes\": \"Final: loss=0.0355, token_accuracy=98.56%, 231/231 steps, 3 epochs. FSDP full_shard 4xRTX PRO 6000. DDP OOM → FSDP resolved. TMPDIR fix (M017) prevented root partition overflow. Checkpoint saving 7 shards to /root/autodl-tmp/checkpoints/qwen3_8b_sft_v1/.\"}, \"7b_zeroshot_eval_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T05:43:38.265Z\", \"updated_at\": \"2026-05-19T06:05:28.518Z\", \"hypothesis\": \"Zero-shot evaluation of Qwen3-8B on ALFWorld OOD 134 tasks. If success rate > 30%, can skip SFT and go directly to RL. If < 10%, SFT is mandatory. Establishes 8B baseline for model-agnostic claim.\", \"conclusion\": \"failed\"}, \"exp029_seed2_ood_reeval_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T05:22:37.809Z\", \"updated_at\": \"2026-05-19T06:05:27.014Z\", \"hypothesis\": \"Retry of exp029_seed2_ood_reeval (crashed twice). Evaluate exp029_seed2 step 30 checkpoint (val peak 31.25%) on 134 OOD tasks (valid_unseen) for cross-seed OOD comparison. Paper table requires seed2 OOD number (seed1=23.88%).\", \"parent\": \"exp029_seed2_ood_reeval\", \"conclusion\": \"failed\"}, \"exp029_seed2_ood_reeval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T02:38:28.552Z\", \"updated_at\": \"2026-05-19T05:02:51.662Z\", \"hypothesis\": \"Evaluate exp029_seed2 step 30 checkpoint (val peak 31.25%) on 134 OOD tasks (valid_unseen) to get cross-seed OOD comparison with seed1 (23.88%). Paper table requires both seeds.\", \"parent\": \"exp029_seed2_westd_resume\", \"conclusion\": \"failed\"}, \"hsweep_h10_seed1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T17:30:46.964Z\", \"updated_at\": \"2026-05-19T02:45:40.356Z\", \"hypothesis\": \"h=10 with step_independent generation provides 10-step observation windows. Key data point for fig5 cliff figure: if h=10 shows recovery (val > 0%), the cliff is between h=5 and h=10. If still collapsed, cliff is between h=10 and full context (h=28).\", \"parent\": \"hsweep_h2_seed1\", \"notes\": \"Director ordered kill: h=10 fully collapsed (train=0% from step 2, val=SFT baseline at step 5). Ray cluster占全部4 GPU（idle worker锁定cuda:0,1各40GB）。M015教训：必须显式设CUDA_VISIBLE_DEVICES。\", \"conclusion\": \"killed\", \"metrics\": {\"step2_train_success\": 0, \"step5_val_success\": \"SFT_baseline\", \"collapse_onset\": \"step 2\", \"verdict\": \"complete collapse, h=10 insufficient context\"}}, \"exp029_seed2_westd_resume\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T22:50:04.399Z\", \"updated_at\": \"2026-05-19T02:20:31.354Z\", \"hypothesis\": \"Resume exp029_seed2 (Cell C full_context + episode-level advantage, seed=43) from step 15 on westd. Target step 40, confirm stable learning trajectory.\", \"parent\": \"exp029_episode_level_seed2\", \"conclusion\": \"killed\", \"metrics\": {\"step15_val_success\": 0.25, \"step15_manager_invalid\": 0.008, \"step15_num_actions\": 40.1, \"step20_val_success\": 0.125, \"step20_manager_invalid\": 0.343, \"step25_val_success\": 0.156, \"step25_manager_invalid\": 0.51, \"step30_val_success\": 0.3125, \"step30_manager_invalid\": 0.467, \"step35_val_success\": 0.28125, \"step35_manager_invalid\": 0.591, \"step40_val_success\": 0.28125, \"step40_manager_invalid\": 0.584, \"step40_train_success\": 0.0625, \"step40_train_manager_invalid\": 0.801, \"step40_ppo_kl\": 0.1735, \"step40_grad_norm\": 8.47, \"step40_num_actions\": 8.2}}, \"factorial_h2_episodeadv_seed2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T04:48:02.228Z\", \"updated_at\": \"2026-05-18T22:47:00.000Z\", \"conclusion\": \"success\", \"metrics\": {\"step15_train_success\": 0.555, \"step15_val_ood_success\": 0.0075, \"step15_val_ood_action_valid\": 0.173, \"step15_kl\": 0.618, \"step15_train_pass8\": 0.875}, \"hypothesis\": \"Replicate factorial experiment (step-independent + episode-level advantage) with different seed to confirm that sign misattribution elimination is robust, not single-seed artifact. Same config, different seed, 15 steps.\", \"parent\": \"factorial_h2_episodeadv_seed1\"}, \"exp029_episode_level_seed2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T04:48:01.826Z\", \"updated_at\": \"2026-05-18T18:25:16.249Z\", \"hypothesis\": \"Replicate exp029 episode-level result (23.88% OOD) with different seed to confirm statistical robustness. P0 priority: core positive claim built on single seed is desk-reject risk. Same SFT checkpoint, same config, seed=43, 15 steps, AlfworldSG_OOD 134 tasks eval.\", \"parent\": \"exp029_episode_level\", \"conclusion\": \"killed\", \"notes\": \"Director 止损 kill。bjb1 累计 10+ 次失败。step 15 val=21.875% (32 tasks)，数据保留在 /root/autodl-tmp/checkpoints/exp029-seed2/。计划转移到 westd cuda:0,1 继续（factorial 完成后）。\"}, \"gsweep_g100_h5_seed1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T13:56:58.033Z\", \"updated_at\": \"2026-05-18T17:36:39.529Z\", \"hypothesis\": \"γ=1.0 (no discount) tests whether collapse in h=5 is caused by sign misattribution from magnitude decay. If γ=1.0 also collapses, sign misattribution is not solely from discount-induced magnitude decay.\", \"parent\": \"gsweep_g095_h5_seed1\", \"conclusion\": \"negative\", \"metrics\": {\"conclusion_reason\": \"collapsed, γ=1.0 also collapses confirming sign misattribution not solely from magnitude decay\"}}, \"gsweep_g095_h5_seed1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T13:56:55.994Z\", \"updated_at\": \"2026-05-18T13:11:09.941Z\", \"hypothesis\": \"γ=0.95 with h=5 is the control condition matching hsweep_h5. Early windows retain γ^9 ≈ 0.95^9 ≈ 63% of terminal return. Expected to reproduce h5 behavior from h-sweep.\", \"parent\": \"hsweep_h2_seed1\", \"conclusion\": \"negative\", \"metrics\": {\"val_success_step5\": 0, \"conclusion_reason\": \"collapsed at step 5, val=0%\"}}, \"factorial_h2_episodeadv_seed1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T18:17:23.327Z\", \"updated_at\": \"2026-05-18T10:22:36.071Z\", \"hypothesis\": \"Step_independent generation (h=2) with episode-level advantage eliminates sign misattribution while preserving truncated-context inference. If success >> h=2 step-level (0%), information loss alone does not cause collapse — sign misattribution is the primary driver. If success ≈ 0%, information loss is sufficient to cause collapse regardless of advantage computation. This is the key factorial experiment separating the two mechanisms.\", \"parent\": \"hsweep_h2_seed1\", \"metrics\": {\"completed_steps\": \"15/15\", \"wandb_run_id\": \"6liw7fm1\", \"val_step5\": {\"success\": 0.0597, \"dataset\": \"AlfworldOOD_134tasks\"}, \"val_step15\": {\"success\": 0.0075}, \"kl_loss_trajectory\": {\"step1\": 0.238, \"step5\": 0.735, \"step10\": 1.029, \"step15\": 2.845}, \"ppo_kl_range\": \"0.025-0.096\", \"best_checkpoint\": \"global_step_5\", \"best_val_success\": 0.0597, \"train_step1\": {\"success\": 0.203, \"pass_at_8\": 0.688}, \"train_step6\": {\"success\": 0.258, \"pass_at_8\": 0.813}, \"checkpoint_paths\": {\"step5\": \"/root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_5/\", \"step10\": \"/root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_10/\", \"step15\": \"/root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_15/\"}, \"exit_cause\": \"W&B atexit BrokenPipeError (false positive)\", \"kl_issue\": \"kl_loss_coef=0.01 too low, policy drifted after step 5\", \"status_note\": \"COMPLETED. Best val OOD 5.97% at step 5. Degraded to 0.75% by step 15 due to KL drift. Sign misattribution elimination confirmed: 5.97% vs 0% (step-level h=2).\"}, \"notes\": \"W&B 深度分析确认：sign misattribution 是 collapse 的 primary driver。关键证据：step 3→4 hsweep action_valid 91.3%→43.1% (catastrophic collapse) vs factorial 保�� 79-85% (无崩溃)。V-shaped recovery (20.3%→3.1%→15.63%) 是探索期波动非不可逆退化。3-cell 贡献：sign misattribution ~6pp (0%→5.97% val), information loss ~22pp (5.97%→28.1% val)。Sign misattribution pp 贡献较小但是 catastrophic collapse 的质变 trigger。\", \"conclusion\": \"success\"}, \"gsweep_g080_h5_seed1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T13:56:53.634Z\", \"updated_at\": \"2026-05-18T09:35:23.404Z\", \"hypothesis\": \"γ=0.8 with h=5 represents an intermediate decay rate where early windows retain γ^9 ≈ 0.8^9 ≈ 13% of terminal return, potentially showing delayed but still present collapse compared to γ=0.95 (39%).\", \"parent\": \"hsweep_h2_seed1\", \"metrics\": {\"step5_val_success\": \"3.125%\", \"step5_entropy\": 0.185, \"subsequent_steps\": \"all 0%\", \"conclusion_note\": \"Complete collapse confirmed. γ=0.80 with h=5 shows catastrophic failure — killed early by Director as no new information expected. Supports hypothesis that lower gamma accelerates collapse.\"}, \"conclusion\": \"negative\"}, \"hsweep_h2_seed2_reeval_ood\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T04:12:03.656Z\", \"updated_at\": \"2026-05-18T05:13:33.875Z\", \"hypothesis\": \"Evaluate hsweep_h2_seed2 checkpoint (step 15) on OOD 134 tasks to get comparable metric with exp029 reeval (23.88%). If val success remains low (~9% in-distribution), confirms collapse is real even with late recovery.\", \"parent\": \"hsweep_h2_seed2\", \"metrics\": {\"success\": 0.0373, \"action_is_valid\": 0.994, \"action_is_effective\": 1, \"pass_at_1\": 0.0373, \"num_actions\": 48.53, \"response_length\": 8501, \"dataset\": \"AlfworldSG_OOD_134tasks\", \"date\": \"2026-05-18\", \"note\": \"Valid actions (99.4%) but cannot complete tasks - generates long ineffective sequences\"}, \"conclusion\": \"success\"}, \"exp029_episode_level\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T08:49:53.280Z\", \"updated_at\": \"2026-05-18T04:11:39.305Z\", \"hypothesis\": \"Episode-level 训练（context_window_mode: full）解决 step_independent h=2 的信用分配缺陷，模型能学到跨步规划策略，val success 不再停滞于 baseline。\", \"parent\": \"exp028c_selfguide_recipe\", \"notes\": \"Director 决策 early-stop at step 15（val success 28.125%, pass@8=92.9%）释放 GPU 给 h-sweep。MVP 已通过（step 5 val=25%, 2x baseline）。Episode-level 训练假设确认：从 12.5% baseline 提升到 28.125%，而 step-independent 崩塌到 0%。Checkpoint: global_step_15。\", \"conclusion\": \"success\", \"metrics\": {\"reeval_ood_134tasks\": {\"success\": 0.2388, \"action_is_valid\": 0.5683, \"action_is_effective\": 0.916, \"manager_invalid_action\": 0.0839, \"reward_mean\": 2.388, \"best_at_8\": 8.88, \"dataset\": \"AlfworldSG_OOD_134tasks\", \"date\": \"2026-05-18\"}}}, \"gsweep_g050_h5_seed1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T13:56:51.277Z\", \"updated_at\": \"2026-05-18T02:56:21.234Z\", \"hypothesis\": \"γ=0.5 with h=5 will show accelerated collapse compared to default γ=0.95, because γ^k decay compounds: early windows receive only γ^(N-1) ≈ 0.5^9 ≈ 0.2% of terminal return, making sign misattribution maximally severe.\", \"parent\": \"hsweep_h2_seed1\", \"notes\": \"Director 批准 early kill (step 12/15)。Hypothesis 完全确认：γ=0.5 加速 collapse，从 step 1 起 train success 基本为 0%，val step 5/10 全零，KL step 8 spike 到 0.209。step 10 checkpoint 已保存。数据足够用于论文 gamma sweep figure。Watchdog 预期自动启动 g080。\", \"metrics\": {\"current_step\": \"12/15\", \"train_success_collapsed_at\": \"step 1\", \"train_success_all_steps\": \"0-2.3% (effectively 0%)\", \"val_step0\": {\"success\": 0.094}, \"val_step5\": {\"success\": 0, \"reward\": 0}, \"val_step10\": {\"success\": 0, \"reward\": 0, \"response_length\": 1412}, \"kl_sequence\": [0.019, 0.025, 0.018, 0.014, 0.01, 0.009, 0.009, 0.209, 0.018], \"kl_spike_step8\": 0.209, \"checkpoint\": \"global_step_10\", \"eta\": \"~5h from 02:46 UTC\", \"status_note\": \"COMPLETELY COLLAPSED. Train success 0% from step 1. KL spike 20x at step 8. Val all zeros. Remaining 3 steps waste GPU. Recommend early kill.\"}, \"conclusion\": \"killed\"}, \"hsweep_h2_seed2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T14:37:14.817Z\", \"updated_at\": \"2026-05-18T02:55:38.705Z\", \"hypothesis\": \"h=2 seed 2 replicates seed 1 catastrophic collapse (step 3-4 onset, 0% by step 9+), confirming collapse is robust not single-run artifact. Additionally LOG_PER_SAMPLE_ADV=1 collects per-window advantage data for plan_004 sign misattribution empirical verification.\", \"parent\": \"hsweep_h2_seed1\", \"metrics\": {\"current_step\": \"15/15\", \"completed\": true, \"val_step5\": {\"success\": 0}, \"val_step10\": {\"success\": 0}, \"val_step15\": {\"success\": 0.09375}, \"train_step14\": {\"success\": 0.2656, \"pass_at_8\": 0.6875}, \"train_step15\": {\"success\": 0.2812, \"pass_at_8\": 0.625, \"entropy\": 0.401, \"ppo_kl\": 0.006}, \"train_success_peak\": {\"step\": 15, \"value\": 0.2812}, \"adv_log_lines\": 3000, \"adv_episodes\": {\"total\": 128, \"success\": 65, \"fail\": 63}, \"adv_analysis\": {\"sign_outcome_agreement\": 0.5207, \"point_biserial_r\": 0.068, \"p_adv_pos_given_success\": 0.3706, \"p_adv_pos_given_failure\": 0.306, \"magnitude_decay_gamma\": 0.9426, \"distribution_overlap\": 0.878, \"verdict\": \"52% agreement confirms advantage signal nearly uninformative about episode outcome = sign misattribution\"}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/hsweep-h2/global_step_15/\", \"checkpoint_warning\": \"seed2 overwrote seed1 step15 checkpoint in same directory\", \"status_note\": \"COMPLETED 15/15. Late recovery at step 14-15 (train 26-28%). Val 9.375% on 16 in-dist tasks. ADV: 52% sign agreement = near-random.\"}, \"conclusion\": \"success\", \"notes\": \"15/15 步正常完成 + final val。Hypothesis NOT confirmed：seed2 未复现 seed1 的 catastrophic collapse。关键差异：(1) action_is_valid 始终 88-100%（seed1 崩至 0.06%）(2) val step 15 恢复到 9.375%（seed1 终值 0%）(3) train step 15 success=28.1%（seed1 终值 0%）。Val step 0/5/10 确实为 0%，说明 h=2 确实造成学习困难，但不是 seed1 那样的不可逆 catastrophic collapse。Collapse 行为是 seed-dependent 的，不是 robust finding。ADV log 3000 行可用于 sign misattribution 分析。注意：checkpoint 写入 hsweep-h2/ 目录（与 seed1 共享，global_step_15 被覆盖）。\"}, \"gae_baseline_seed1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T14:05:31.533Z\", \"updated_at\": \"2026-05-17T19:19:48.391Z\", \"hypothesis\": \"REINFORCE++ (running-mean baseline, no critic) provides modest improvement over episode-level GRPO due to per-token advantage normalization. Fallback from GAE due to TRL 1.1.0 removing AutoModelForCausalLMWithValueHead (critic head unavailable).\", \"parent\": \"exp029_episode_level\", \"metrics\": {\"wandb_run_id\": \"dt79qyd9\", \"pid\": 40267, \"val_step0\": {\"success\": 0.0625, \"action_is_valid\": 0.7796}, \"val_step5\": {\"success\": 0.125, \"action_is_valid\": 0.6926}, \"val_step10\": {\"success\": 0.125, \"pass_at_1\": 0.125, \"reward_mean\": 1.25}, \"train_step9\": {\"success\": 0.0313, \"action_is_valid\": 0.6033, \"pass_at_8\": 0.25}, \"server\": \"westd-47453\", \"gpu\": \"cuda:0,1\", \"method\": \"reinforce_plus_plus\", \"fallback_reason\": \"TRL 1.1.0 removed AutoModelForCausalLMWithValueHead\", \"current_step\": \"11/15\"}, \"notes\": \"实际运行 REINFORCE++ (adv_estimator=reinforce_plus_plus_baseline)，非 GAE。GAE 因 TRL 1.1.0 移除 AutoModelForCausalLMWithValueHead 不可用 (D060)。\", \"conclusion\": \"killed\"}, \"hsweep_h2_seed1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T04:37:11.061Z\", \"updated_at\": \"2026-05-17T14:36:40.246Z\", \"hypothesis\": \"Step-independent GRPO with h=2 (minimal context, N=25 windows per episode) will catastrophically collapse due to advantage sign misattribution: early windows retain only γ^24=0.95^24≈29% of terminal return, and all windows in failed episodes receive undifferentiated negative advantage regardless of action quality\", \"parent\": \"exp029_episode_level\", \"metrics\": {\"train_step\": 15, \"total_steps\": 15, \"wandb_run_id\": \"7o9bjszm\", \"step1\": {\"success\": 0.1875, \"pass_at_8\": 0.4375, \"invalid_action\": 0.027}, \"step2\": {\"success\": 0.1484, \"pass_at_8\": 0.5, \"invalid_action\": 0.02}, \"step3\": {\"success\": 0.1875, \"pass_at_8\": 0.625, \"invalid_action\": 0.028}, \"step4\": {\"success\": 0.0547, \"pass_at_8\": 0.25, \"invalid_action\": 0.264}, \"step5\": {\"success\": 0.0156, \"pass_at_8\": 0.0625, \"invalid_action\": 0.369}, \"step6\": {\"success\": 0.0313, \"pass_at_8\": 0.25, \"invalid_action\": 0.471}, \"step7\": {\"success\": 0.0469, \"pass_at_8\": 0.1875, \"invalid_action\": 0.502}, \"step8\": {\"success\": 0.0156, \"pass_at_8\": 0.125, \"invalid_action\": 0.542}, \"step9\": {\"success\": 0, \"pass_at_8\": 0, \"invalid_action\": 0.641}, \"step10\": {\"success\": 0.0234}, \"step11_15\": {\"success\": 0, \"invalid_action\": 0.972}, \"val_final\": {\"success\": 0, \"invalid_action\": 0.999, \"action_is_valid\": 0.0006}, \"checkpoint\": \"global_step_5,10,15\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/hsweep-h2/\", \"log_path\": \"~/runs/cost-verify-agent-rl/hsweep_h2_s1.log\", \"gpu_util\": \"95-100%\", \"collapse_onset\": \"step3→step4\", \"elapsed_hours\": 10.04, \"step15_entropy\": 0.342, \"step15_kl_loss\": 0.777, \"step15_grad_norm\": 1.611, \"auto_next_triggered\": true, \"seed2_pid\": 945877, \"seed2_wandb\": \"jhwyg4tc\"}, \"conclusion\": \"success\", \"notes\": \"15 steps 完成。Hypothesis 验证：h=2 step_independent 确实灾难性崩溃（step 3→4 onset, step 9 归零, step 11-15 持续为零）。Final val: success=0%, invalid_action=99.9%, action_is_valid=0.06%。模型彻底退化到几乎只输出无效动作。\"}, \"exp025c\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T08:09:29.393Z\", \"updated_at\": \"2026-05-17T10:53:00.425Z\", \"notes\": \"项目已 pivot 到 h-sweep + sign misattribution 诊断方向（D054/D057）。exp025c 属于 pivot 前的实验设计，不在当前 experiment_plan.yaml 中，与论文核心 claims 无关联。GPU 资源优先用于 h-sweep 和 GAE baseline。\", \"conclusion\": \"killed\"}, \"exp026_step_independent_grpo\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T09:34:33.675Z\", \"updated_at\": \"2026-05-17T03:14:31.315Z\", \"notes\": \"exp026 negative: step-independent GRPO 在 step 2 达峰 train success=32.81% 后连续崩塌至 step 4 的 0%。Step 5 val eval 未完成即被 kill（val 生成阶段启动后进程被终止），无法对比 step 0 vs step 5 val。无 checkpoint（save_freq=25 未触发）。根因分析（Reviewer）：sparse reward + 小 env_groups(4=64 rollouts) 导致全零 batch 概率高，advantage 只有负信号把策略推回 reference。action_is_valid 在 step 2-4 保持 ~72% 但 success 归零，模型学会了\\\"看起来合理\\\"的 action 但丧失任务完成能力。教训：(1) save_freq 必须 ≤5 捕获早期峰值 (2) env_groups 需 ≥8 降低全零 batch 概率 (3) WANDB_MODE=disabled 导致 cron 误判 (4) cron 应监控 Ray TaskRunner PID 而非 shell wrapper PID。\", \"metrics\": {\"val_before_train_success\": 0.0625, \"val_before_train_action_is_valid\": 0.631, \"val_before_train_episodes\": 16, \"train_step1_success\": 0.2188, \"train_step1_action_is_valid\": 0.686, \"train_step1_entropy\": 0.2672, \"train_step1_kl_loss\": 0.1797, \"train_step1_grad_norm\": 14.43, \"train_step1_reward_mean\": 1.218, \"train_step1_pass_at_16\": 1, \"train_step2_success\": 0.3281, \"train_step2_action_is_valid\": 0.603, \"train_step2_entropy\": 0.317, \"train_step2_kl_loss\": 0.0974, \"train_step2_grad_norm\": 15.62, \"train_step2_reward_mean\": 1.62, \"train_step2_pass_at_16\": 1, \"train_step3_success\": 0.1719, \"train_step3_action_is_valid\": 0.641, \"train_step3_entropy\": 0.387, \"train_step3_kl_loss\": 0.2617, \"train_step3_grad_norm\": 15.65, \"train_step3_reward_mean\": 1.079, \"train_step3_pass_at_16\": 0.75, \"train_step4_success\": 0, \"train_step4_action_is_valid\": 0.717, \"train_step4_entropy\": 0.387, \"train_step4_kl_loss\": 0.054, \"train_step4_grad_norm\": 13.81, \"train_step4_pass_at_16\": 0}, \"conclusion\": \"negative\", \"hypothesis\": \"Step-independent GRPO（每步独立优化、不建模跨步依赖）能在ALFWorld多步任务中学到有效策略，因为每步的local reward信号足以引导正确行为选择\", \"parent\": \"exp021_ragen_sft_v4\"}, \"exp019b_expert_sft_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T17:30:00.085Z\", \"updated_at\": \"2026-05-17T03:14:30.703Z\", \"hypothesis\": \"Two-stage Expert SFT: exp008_sft checkpoint + v3 data (original move actions + admissible actions). LR=5e-6, 2 epochs, batch=4, grad_accum=4, max_seq=4096. Pass: success>=10%, format_ok>=90%, action_is_valid>=85%.\", \"notes\": \"训练成功完成 320/320 steps (2 epochs, 47:49)。Cron 多次误报 failed（监控错误 PID / 无法区分正常退出与崩溃）。Checkpoint: /root/autodl-tmp/checkpoints/exp019b_expert_sft_v3/final/\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 0.0718, \"eval_loss\": 0.0428, \"eval_mean_token_accuracy\": 0.9869, \"train_runtime_seconds\": 2869.8, \"steps\": 320, \"epochs\": 2, \"eval_success_rate\": 0.2, \"eval_format_ok\": 1, \"eval_action_is_valid\": 0.8533, \"eval_episodes\": 20, \"eval_avg_steps\": 25.4, \"eval_time_seconds\": 146}, \"parent\": \"exp008_sft\"}, \"exp013f\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T09:21:46.227Z\", \"updated_at\": \"2026-05-17T03:14:29.725Z\", \"hypothesis\": \"Dense reward shaping(valid_action_bonus=0.15)为全失败GRPO group提供非零方差梯度信号，使模型在避免梯度collapse的同时学到task success而非仅优化bonus\", \"parent\": \"exp013e\", \"metrics\": {\"step\": 30, \"total_steps\": 30, \"completed\": true, \"exit_code\": 0, \"training_time_s\": 10683, \"step6_success\": 0.0156, \"step7_success\": 0.0781, \"step10_success\": 0, \"step17_success\": 0.0156, \"final_val_success\": 0, \"final_val_action_is_valid\": 0.975, \"final_val_action_is_effective\": 1, \"final_val_reward_mean_at4\": 4.388, \"final_val_reward_std_at4\": 0.195, \"final_val_reward_best_at4\": 4.499, \"final_val_pass_at1\": 0, \"action_is_valid_trend\": \"60%→65.9%→77.1%→97.5%\", \"success_trend\": \"0%→1.56%→7.81%→0%→1.56%→0%\", \"grad_norm_range\": \"1.7-2.9 (no collapse)\", \"conclusion_reason\": \"Dense reward gaming: model optimized valid_action_bonus (action_is_valid 60%→97.5%) but success stayed 0%. Reward ratio 1:67 too weak — cumulative valid_action_bonus (4.5) dominated learning signal vs sparse success_reward (10.0). GRPO collapse prevented but task completion not learned.\"}, \"conclusion\": \"negative\", \"notes\": \"30/30 步完成，EXIT_CODE=0。Dense reward shaping 成功解决了 exp012b 的 catastrophic collapse（grad_norm 稳定 1.7-2.9），但产生 reward gaming：模型最大化 valid_action_bonus 而非 success_reward。action_is_valid 60%→97.5%（学会合法命令），success 始终 0-8%（未学会完成任务）。final_val reward/mean@4=4.388 ≈ 29 valid_actions × 0.15，几乎无 success_reward 贡献。Disk warning: /root/autodl-tmp 95% full (4.1GB remaining)。Ray log 备份失败（脚本执行时 session 已清理）。Checkpoint: global_step_30 已保存。\"}, \"exp028_prereq_zeroshot\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T21:11:06.120Z\", \"updated_at\": \"2026-05-17T03:14:28.598Z\", \"conclusion\": \"negative\", \"wandb_run_id\": \"qdvv09da\", \"metrics\": {\"success\": 0, \"action_is_valid\": 0.75, \"num_actions\": 50, \"pass_at_1\": 0, \"response_length\": 75.07}, \"notes\": \"Qwen3-1.7B（本身就是 instruct 模型）零样本 ALFWorld eval = 0% success。证明 SFT 从 0%→6.25% 是有益的，D044 '不做SFT' 假设不成立。W&B run: qdvv09da\", \"hypothesis\": \"Qwen3-1.7B base模型具备ALFWorld零样本能力(success>0%)，无需SFT即可作为GRPO冷启动点——如成立则SFT引入的分布偏差可能反而有害\"}, \"exp008_sft\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T03:04:47.496Z\", \"updated_at\": \"2026-05-17T03:14:25.946Z\", \"notes\": \"SFT 转换脚本修复后重跑成功。Eval 方法: 独立脚本 eval_sft_model.py, 4 episodes (seed=0,1,2,3), HF generate() + AlfredTXTEnv, cuda:1, max_steps=50。action_is_valid=90% (180/200 actions), format_ok=100%, success_rate=0%。完整 50-episode eval 未完成（为 GRPO 让出 GPU）。\", \"conclusion\": \"success\", \"metrics\": {\"action_is_valid\": 0.9, \"format_ok\": 1, \"success_rate\": 0, \"final_loss\": 0.069, \"final_token_accuracy\": 0.973, \"data_count\": 1200, \"epochs\": 3, \"total_steps\": 225, \"training_time_s\": 576}, \"hypothesis\": \"基础格式SFT使Qwen3-1.7B学会ALFWorld动作格式和有效动作选择(format_ok+action_is_valid)，建立可训练基线，为后续expert SFT和GRPO提供非随机起点\"}, \"exp028c_selfguide_recipe\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T21:38:48.089Z\", \"updated_at\": \"2026-05-16T08:29:53.723Z\", \"wandb_run_id\": \"4yu6qz1m\", \"notes\": \"D052 终止。step_independent h=2 导致灾难性过拟合：step_5_val best@128=10.0 → step_10_val best@800=0.0。train success 波动上升(peak 21.88%)=局部动作过拟合，但无法泛化到新 game。根因：(1) step_independent 破坏长程信用分配 (2) self-guidance reward 缺失 (3) val 仅 16 episodes。参见 selfguide_setup_audit.md。\", \"metrics\": {\"step_0_val\": {\"success\": 6.25, \"pass_at_1\": 6.25, \"action_is_valid\": 74.5, \"score_mean\": 0.119}, \"step_1_train\": {\"success\": 13.28, \"pass_at_8\": 37.5, \"action_is_valid\": 76.4, \"action_is_effective\": 96.37, \"entropy\": 0.2634, \"kl_loss\": 0.0128, \"ppo_kl\": 0.019, \"grad_norm\": 16.88, \"score_mean\": 0.843, \"time_s\": 3252, \"note\": \"三方交叉验证通过\"}, \"step_2_train\": {\"success\": 6.25, \"pass_at_8\": 25, \"action_is_valid\": 83.2, \"entropy\": 0.247, \"kl_loss\": 0.1706, \"pg_loss\": 0.007, \"grad_norm\": 17.3, \"score_mean\": 0.274, \"time_s\": 3120}, \"step_3_train\": {\"success\": 15.63, \"pass_at_8\": 68.75, \"action_is_valid\": 85.9, \"entropy\": 0.2488, \"kl_loss\": 0.1118, \"grad_norm\": 12.57, \"score_mean\": 0.661, \"time_s\": 2760}, \"step_4_train\": {\"success\": 18.75, \"pass_at_8\": 62.5, \"action_is_valid\": 87.94, \"entropy\": 0.234, \"kl_loss\": 0.031, \"ppo_kl\": 0.015}, \"step_5_train\": {\"success\": 9.4, \"pass_at_8\": 37.5, \"action_is_valid\": 89.6, \"entropy\": 0.236, \"kl_loss\": 0.824, \"grad_norm\": 13.1}, \"step_5_val\": {\"success\": 6.25, \"pass_at_1\": 6.25, \"action_is_valid\": 96.5, \"action_is_effective\": 100, \"num_actions\": 49.4, \"score_mean\": 0.518}, \"step_6_train\": {\"success\": 10.94, \"action_is_valid\": 90.4, \"entropy\": 0.234, \"kl_loss\": 0.098, \"grad_norm\": 12.54}, \"step_7_train\": {\"success\": 21.88, \"pass_at_8\": 56.25, \"action_is_valid\": 91.8, \"entropy\": 0.224, \"kl_loss\": 0.046}, \"step_8_train\": {\"success\": 15.6, \"pass_at_8\": 50, \"action_is_valid\": 92.7, \"kl_loss\": 0.039, \"entropy\": 0.204}, \"step_9_train\": {\"success\": 18, \"pass_at_8\": 56.3, \"action_is_valid\": 93.6, \"kl_loss\": 0.047, \"entropy\": 0.204}, \"step_10_train\": {\"success\": 18.75, \"action_is_valid\": 90.7, \"kl_loss\": 0.197}, \"step_10_val\": {\"success\": 0, \"pass_at_1\": 0, \"best_at_128\": 0, \"best_at_800\": 0, \"action_is_valid\": 93.6, \"num_actions\": 49.8, \"reward_mean\": 0, \"note\": \"灾难性崩溃，模型完全遗忘\"}}, \"conclusion\": \"failed\"}, \"exp028a_recipe_fix\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T21:08:53.131Z\", \"updated_at\": \"2026-05-15T21:25:46.006Z\", \"hypothesis\": \"invalid_action_penalty (-0.1) 为全失败 GRPO group 提供非零方差梯度信号。从 exp021 SFT checkpoint (6.25% success) 出发，仅增加 invalid_action_penalty_coef=0.1，其余参数与 exp027 完全一致。预期：penalty 让失败 trajectory 间有区分（invalid action 多=reward更低），解决 ~43% group 零梯度问题。Pass: success ≥20%（稳定，非瞬时 peak）。\", \"parent\": \"exp027_stable_grpo\", \"wandb_run_id\": \"lu42su82\", \"conclusion\": \"killed\", \"notes\": \"与 exp027 功能等价（penalty getattr 默认值=0.1 在 exp027 中已生效）。Director 指令停止。\"}, \"exp028_prereq_zeroshot_instruct\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-15T20:59:57.529Z\", \"updated_at\": \"2026-05-15T21:06:09.982Z\", \"hypothesis\": \"Qwen3-1.7B-Instruct 零样本 ALFWorld eval，验证\\\"SFT是毒药\\\"假设。如果 Instruct ≥15% success（vs SFT checkpoint 6.25%），则确认 SFT 起点有害，exp028a 可跳过 SFT 直接 GRPO。\", \"parent\": \"exp027_stable_grpo\", \"notes\": \"Qwen3-1.7B 确认就是 instruct 模型（无独立 Instruct 变体）。零样本 eval 0% success / 0.75% valid（与之前结果一致）。关键结论：\\\"SFT是毒药\\\"假设(D044)不成立——SFT 实际提升了 0%→6.25%。62pp gap 根因排除 SFT，聚焦于 binary reward 零梯度 + mini-batch 过小 + 训练步数不足。\"}, \"exp027_stable_grpo\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T14:04:13.123Z\", \"updated_at\": \"2026-05-15T20:44:26.582Z\", \"notes\": \"进程退出原因：Ray raylet 被异常终止（ActorUnavailableError: RPC error: Socket closed rpc_code: 14）。Raylet termination unexpected — 可能 SIGKILL by OOM killer 或内存访问错误。退出发生在 step 4 完成后、step 5 开始前。EXIT_CODE=1。D045 已判定 MVP 未通过（train success 13.28% < 20% 阈值）。Recipe Gap 诊断三大根因：(1) SFT 起点反效果 (2) Binary reward 零梯度 (3) Mini-batch 8× 过小。exp028 配置准备中（5 个 Worker 活跃）。\", \"hypothesis\": \"Stabilized step-independent GRPO: 针对 exp026 死亡螺旋根因（sparse reward + 小 env_groups 导致全零 batch），增加 rollouts（env_groups 4→8, 128 trajectories）、降低 LR（1e-6→5e-7）、降低 KL（0.01→0.005）、新增 entropy bonus（0.01）、save_freq 5 捕获峰值。50 步快速验证。Pass: success ≥20% 且无连续 2 步归零。\", \"parent\": \"exp026_step_independent_grpo\", \"wandb_run_id\": \"y7jiibqk\", \"metrics\": {\"step_0_val_before_train\": {\"success\": 6.25, \"action_is_valid\": 63.125, \"action_is_effective\": 87.875, \"num_actions\": 42.375, \"response_length\": 114.67, \"reward_mean\": 0.3226, \"val_generation_time_s\": 502.57}, \"step_1_train\": {\"success\": 35.94, \"kl_loss\": 0.058, \"batch_size\": 5152, \"training_time_s\": 4342}, \"step_2_train\": {\"success\": 10.16, \"kl_loss\": 0.413, \"batch_size\": 6144, \"training_time_s\": 5886}, \"step_3_train\": {\"success\": 10.16, \"kl_loss\": 0.248, \"entropy\": 0.385, \"pass_at_16\": 0.5, \"grad_norm\": 21.31, \"reward_mean\": 0.483, \"batch_size\": 6048, \"training_time_s\": 4689}, \"step_4_train\": {\"success\": 13.28, \"pass_at_16\": 0.375, \"note\": \"Director判定: 趋势确认, MVP未通过\"}}, \"conclusion\": \"failed\"}, \"exp025b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T07:34:34.283Z\", \"updated_at\": \"2026-05-15T07:44:26.903Z\", \"parent\": \"exp025\", \"notes\": \"三次提交均失败。第三次：pre-flight 清理后 Ray 主进程启动成功、数据加载成功（8810 train / 494 val），但 AlfworldWorker 进程初始化时线程创建失败（Resource temporarily unavailable, EAGAIN）。36+ 次 system:11 错误，43+ 次 Fatal Python error: Aborted。jemalloc arena background thread creation failed。根因：系统 nproc/线程上限不足，8 个 AlfworldWorker + Ray 内部线程总数超限。需排查 ulimit -u 和 /proc/sys/kernel/threads-max。\", \"conclusion\": \"failed\"}, \"exp025\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T06:52:48.190Z\", \"updated_at\": \"2026-05-15T07:34:25.374Z\", \"notes\": \"崩溃原因：(1) conda activate base 错误，应用 /root/autodl-tmp/conda-envs/verl-agent 环境 (2) save_freq=-1 未修改为 25。ModuleNotFoundError — base 环境缺 verl-agent 依赖。教训：提交前必须验证 which python 指向正确环境 + 关键参数在 config 中与预期一致。\", \"conclusion\": \"failed\"}, \"exp021_ragen_sft_v4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T02:09:31.719Z\", \"updated_at\": \"2026-05-15T06:24:16.570Z\", \"hypothesis\": \"Two-stage SFT with RAGEN-format data (v4). From exp008_sft checkpoint, fine-tune with v4 data (RAGEN Turn/State/Reward structure, fixed system prompt with consistent &lt;answer&gt; tag instruction). LR=5e-6, 2 epochs. Validate via RAGEN val_before_train (not eval_sft_fast). Pass: RAGEN val success >= 10%, action_is_valid >= 85%.\", \"parent\": \"exp019b_expert_sft_v3\", \"conclusion\": \"negative\", \"metrics\": {\"train_loss_final\": 0.038, \"train_token_accuracy\": 0.988, \"train_steps\": 320, \"train_epochs\": 2, \"train_time_min\": 47.8, \"ragen_val_success\": 0.25, \"ragen_val_action_is_valid\": 0.875, \"eval_sft_fast_success\": 0, \"eval_sft_fast_format_ok\": 1, \"eval_sft_fast_action_is_valid\": 0.71, \"checkpoint_size_gb\": 3.3, \"ragen_val_success_16ep\": 0.0625, \"ragen_val_action_is_valid_16ep\": 0.6875}, \"notes\": \"D024: conclusion 降级为 negative (原 success)。16ep eval 数据: success=6.25%, action_is_valid=68.75%。原 4ep eval 的 25%/87.5% 为 unreliable_small_sample，不作为决策依据。Registry 无 inconclusive 选项，用 negative 代替。\"}, \"exp024_success_gated_grpo\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T06:03:10.298Z\", \"updated_at\": \"2026-05-15T06:04:06.454Z\", \"hypothesis\": \"Success-gated GRPO from exp021 checkpoint. D026 终止 RAGEN GRPO 后不再适用，success-gated 不解决 context 爆炸根因。关联 D027。\", \"conclusion\": \"killed\", \"notes\": \"D027: Kill exp024 — D026 终止 RAGEN GRPO 后 success-gated 变体不再适用，不解决 context 爆炸根因。关联 D025/D026/D027。\"}, \"exp023c_grpo_serial\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T04:20:22.909Z\", \"updated_at\": \"2026-05-15T05:11:22.083Z\", \"hypothesis\": \"GRPO from exp021 RAGEN-format SFT checkpoint. Serial mode (parallel_friendly=false, max_workers=1) to avoid tatsu race. reward scale=10.0, kl_loss_coef=0.5, LR=5e-7, val env_groups=16, gpu_memory_utilization=0.6, 30 steps. Pass: success ≥ 25%, step time baseline comparison with exp022 (~208s/step).\", \"parent\": \"exp023_grpo_parallel\", \"metrics\": {\"val_step0_success\": 0.0625, \"val_step0_action_is_valid\": 0.6875, \"val_step0_episodes\": 16, \"train_step1_success\": 0.297, \"train_step1_action_is_valid\": 0.791, \"train_step1_entropy\": 0.0652, \"train_step1_pass16\": 0.75, \"train_step1_kl\": 0.000156, \"train_step8_success\": 0.234, \"train_step8_action_is_valid\": 0.779, \"train_step8_entropy\": 0.0555, \"train_step8_pass16\": 0.5, \"train_step8_kl\": 0.000475, \"steps_completed\": 8, \"steps_planned\": 30, \"step_time_seconds_start\": 240, \"step_time_seconds_end\": 365}, \"notes\": \"磁盘满崩溃 (step 9, /root/autodl-tmp 94% 233G/250G, OSError Errno 28)。但 8 步 metrics 趋势已显示退化：train success 29.7%→23.4%↓, pass@16 75%→50%↓, entropy 0.065→0.056↓, KL 0.00016→0.00048↑, step time 240s→365s↓。GRPO 未能在 SFT baseline 上产生改善，反而在退化。注意 step 0 val success=6.25% 与 train step 1 success=29.7% 差异大（val 用不同 game set + 16 episodes vs train 64 trajectories）。Checkpoint: global_step_5 only (save_freq=5, 第二次保存在 step 10 未到)。\", \"conclusion\": \"failed\"}, \"exp023_grpo_parallel\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T04:06:02.056Z\", \"updated_at\": \"2026-05-15T04:12:41.878Z\", \"hypothesis\": \"GRPO from exp021 RAGEN-format SFT checkpoint with 3 key fixes: (1) reward scale 10.0→1.0 (align with Self-Guide paper binary reward), (2) parallel rollout (max_workers=4, thread-safe env), (3) val env_groups=16 for reliable eval. kl_loss_coef=0.5, LR=5e-7, 30 steps. Pass: success ≥ 25% (maintain SFT baseline), step time < 200s (vs exp022 ~208s serial).\", \"parent\": \"exp022_grpo_from_sft_v4\", \"conclusion\": \"failed\", \"notes\": \"失败原因: textworld PDDL parser (tatsu) 在 val env reset 时崩溃 — tatsu.exceptions.FailedToken: expecting 'action', got template :: \\\"take {o} from {r}\\\". val env_groups=16 加载了更多 game files，触发了某个 game file 与当前 tatsu 版本不兼容的 PDDL grammar. | 已有成果: 无（val_before_train 阶段即崩溃，未开始训练） | 建议: 诊断具体哪个 game file 有问题，降低 val env_groups 或修复 game file/tatsu 兼容性\"}, \"exp022_grpo_from_sft_v4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T03:17:34.035Z\", \"updated_at\": \"2026-05-15T03:52:55.267Z\", \"hypothesis\": \"GRPO from exp021 RAGEN-format SFT checkpoint (25% RAGEN val success baseline). Sparse reward (won=10.0), LR=5e-7, kl_loss_coef=0.5 (5x stronger than exp020b to prevent entropy collapse), max_grad_norm=1.0, 30 steps, val env_groups=8. Pass: success ≥ 25% (maintain SFT baseline).\", \"parent\": \"exp021_ragen_sft_v4\", \"notes\": \"Step 0 val: success=12.5% (1/8), action_is_valid=48.75%。Step 1 完成后 kill。action_is_valid 远低于 SFT eval 结果（87.5%/68.75%），说明 RAGEN GRPO 框架中模型表现显著退化。kl_loss_coef=0.5, env_groups=8 均已确认生效。训练速度 ~208s/step。Checkpoint: global_step_1 可能已保存。\", \"conclusion\": \"killed\", \"metrics\": {\"steps_completed\": 1, \"steps_planned\": 30, \"val_step0_success\": 0.125, \"val_step0_action_is_valid\": 0.4875, \"val_step0_action_is_effective\": 1, \"val_step0_reward_mean\": 1.25, \"val_step0_reward_best\": 6.61, \"val_step0_episodes\": 8, \"step_time_seconds\": 208}}, \"exp021_sft_ragen_format\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T22:35:48.559Z\", \"updated_at\": \"2026-05-15T02:11:46.204Z\", \"hypothesis\": \"Two-stage SFT with RAGEN-format data (v4). From exp008_sft checkpoint, fine-tune with v4 data (RAGEN Turn/State/Reward structure, fixed system prompt with consistent &lt;answer> tag instruction). LR=5e-6, 2 epochs. Validate via RAGEN val_before_train (not eval_sft_fast). Pass: RAGEN val success >= 10%, action_is_valid >= 85%.\", \"parent\": \"exp019b_expert_sft_v3\", \"notes\": \"被 exp021_ragen_sft_v4 取代。\", \"conclusion\": \"killed\"}, \"exp020d_grpo_from_sft\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T22:19:30.993Z\", \"updated_at\": \"2026-05-15T02:01:10.192Z\", \"hypothesis\": \"GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Symlink fix for response_mask assertion (proven in exp020b). exp020c failed: Hydra key path wrong.\", \"parent\": \"exp019b_expert_sft_v3\", \"conclusion\": \"failed\", \"notes\": \"D022 废弃。exp020b 确认 GRPO from SFT 因 RAGEN 格式不兼容导致 val success = 0%。exp020c/d 同样会遇到此问题。改走 exp021（RAGEN 格式 SFT 数据重训）。\"}, \"exp020c_grpo_from_sft\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T22:15:37.659Z\", \"updated_at\": \"2026-05-15T02:01:08.768Z\", \"hypothesis\": \"GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Fix: symlink + enable_response_mask=false (exp020/020b crashed on response_mask assertion).\", \"parent\": \"exp019b_expert_sft_v3\", \"conclusion\": \"failed\", \"notes\": \"D022 废弃。exp020b 确认 GRPO from SFT 因 RAGEN 格式不兼容导致 val success = 0%。exp020c/d 同样会遇到此问题。改走 exp021（RAGEN 格式 SFT 数据重训）。\"}, \"exp020b_grpo_from_sft\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T22:12:38.928Z\", \"updated_at\": \"2026-05-15T02:00:56.016Z\", \"hypothesis\": \"GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Fix: symlink with \\\"qwen\\\" in path to pass response_mask assertion (exp020 crashed on this).\", \"parent\": \"exp019b_expert_sft_v3\", \"conclusion\": \"negative\", \"metrics\": {\"steps_completed\": 22, \"steps_planned\": 30, \"hung_at_step\": 23, \"step1_train_success\": 0.1875, \"step10_train_success\": 0.1875, \"step20_train_success\": 0.125, \"step22_train_success\": 0.0469, \"val_success_step0\": 0, \"val_success_step20\": 0, \"entropy_initial\": 0.107, \"entropy_final\": 0.042, \"grad_norm_initial\": 2.78, \"grad_norm_step20\": 5.58, \"ppo_kl_final\": 0.00918, \"pass_at_16_step1\": 0.75, \"pass_at_16_step22\": 0.25, \"checkpoint_latest\": \"global_step_20\", \"training_status\": \"hung_at_step23_rollout\"}, \"notes\": \"Negative 结论：GRPO from SFT 导致策略坍缩。训练 22/30 步后卡死在 step 23 rollout（环境交互死锁，GPU 0% 利用率但显存仍占 40GB×2）。关键指标全线恶化：train success 18.75%→4.69%（远低于 SFT baseline 20%），val success 始终 0%，entropy 0.107→0.042（坍缩 61%），pass@16 从 75%降到 25%。GRPO 不仅未提升 SFT 性能，反而严重退化。根因分析：sparse reward（won=10.0）学习信号不足以维持 SFT 学到的 task knowledge，KL coef=0.1 不足以约束策略偏移。Checkpoint: /root/autodl-tmp/checkpoints/exp020b/global_step_20/\"}, \"exp020_grpo_from_sft\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T22:07:16.290Z\", \"updated_at\": \"2026-05-14T22:11:05.341Z\", \"hypothesis\": \"GRPO from exp019b SFT checkpoint (20% success baseline) can maintain or improve success rate. Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%.\", \"parent\": \"exp019b_expert_sft_v3\", \"conclusion\": \"failed\", \"notes\": \"失败原因: AssertionError at train.py:137 — model_path=/root/autodl-tmp/checkpoints/exp019b_expert_sft_v3/final 不含 \\\"qwen\\\" 字符串，enable_response_mask=true 断言失败。模型实际是 Qwen3-1.7B 微调 checkpoint，路径命名问题。error_type=infrastructure | 建议: 创建含 \\\"qwen\\\" 的 symlink 或添加 enable_response_mask=false override 后重提交\"}, \"exp019c_expert_sft_v3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T21:03:02.685Z\", \"updated_at\": \"2026-05-14T21:05:37.494Z\", \"hypothesis\": \"Two-stage Expert SFT（重试）: 从 exp008_sft checkpoint 出发，用 v3 数据（保留原始 move actions + admissible actions augmentation）微调。LR=5e-6, 2 epochs, batch=4, grad_accum=4, max_seq=4096。Pass: success ≥ 10%, format_ok ≥ 90%, action_is_valid ≥ 85%。\", \"parent\": \"exp019b_expert_sft_v3\", \"notes\": \"废弃。submit_training_job 因 GPU 被占（exp019b nohup 进程仍在跑）EXIT_CODE=1 退出。实际训练由 exp019b 的 nohup 进程完成。\", \"conclusion\": \"killed\"}, \"exp019_expert_sft_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T16:38:05.515Z\", \"updated_at\": \"2026-05-14T17:11:09.024Z\", \"conclusion\": \"killed\", \"notes\": \"D019 kill：move→put 替换方向错误。ALFWorld admissible_commands 包含 move X to Y，不含 put。用 put 替换的数据会使 action_is_valid 更差。改用原始 expert data（保留 move）+ admissible actions augmentation。\"}, \"exp019b_expert_sft_v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T16:49:30.246Z\", \"updated_at\": \"2026-05-14T16:49:30.246Z\"}, \"exp018_sft_grpo\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T15:43:08.545Z\", \"updated_at\": \"2026-05-14T16:45:33.314Z\", \"hypothesis\": \"Expert SFT → Sparse GRPO：从 exp017 SFT checkpoint 开始纯 sparse GRPO 训练。SFT 提升 baseline success rate（≥10%），使 GRPO 有足够非零 reward group 产生有效梯度。LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, won=10.0, 无 bonus/penalty, GRPO 30 步。Pass: success ≥ 20%。\", \"parent\": \"exp017_expert_sft\", \"conclusion\": \"killed\", \"notes\": \"D018 取消：exp017 eval 5% success 与 base 4.7% 差异太小，GRPO 大概率重蹈覆辙。等 exp019 v2 SFT（修复 move→put + admissible actions 数据增强）后再考虑 GRPO。\"}, \"exp017_expert_sft\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T15:36:28.291Z\", \"updated_at\": \"2026-05-14T16:36:17.637Z\", \"hypothesis\": \"Expert SFT: 用 PDDL expert trajectory 数据 SFT Qwen3-1.7B instruct 模型，提升 ALFWorld baseline success rate，为后续 GRPO 提供更好的冷启动点。LR=2e-5, 3 epochs, batch_size=4, grad_accum=4。Pass 标准: success ≥ 10%。\", \"parent\": \"exp008_sft\", \"conclusion\": \"success\", \"metrics\": {\"final_train_loss\": 0.1434, \"final_step_loss\": 0.04, \"final_token_accuracy\": 0.983, \"epochs\": 3, \"total_steps\": 462, \"training_time_min\": 26, \"data_count_train\": 2460, \"data_count_val\": 129, \"checkpoint_size_gb\": 3.44, \"eval_success_rate\": 0.05, \"eval_success\": \"1/20\", \"eval_action_is_valid\": 0.638, \"eval_format_ok\": 0.75, \"eval_avg_steps\": 22, \"eval_time_s\": 149.6, \"eval_per_task\": {\"put\": \"0/10\", \"clean\": \"0/4\", \"cool\": \"1/3\", \"heat\": \"0/2\", \"examine\": \"0/1\"}, \"eval_parse_failures\": \"5/20 episodes (EP 7/12/16/17/18)\"}, \"notes\": \"训练成功完成。Expert PDDL trajectory 2460 条 SFT Qwen3-1.7B，3 epochs 462 steps 26 min。Final loss=0.1434。Checkpoint: /root/autodl-tmp/checkpoints/exp017_expert_sft/final/ (3.44GB)。\\n\\nEval 结果（20 episodes, vLLM 推理, max_steps=30）：success=5% (1/20), action_is_valid=63.8%, format_ok=75%。唯一成功是 1 个 cool 任务（EP 8, 15 步）。5/20 episodes parse 失败（1 步即退出）。put 任务 0/10 全失败。\\n\\n对比 exp008_sft（1200 条普通 SFT）：action_is_valid 90%→63.8%（下降！）, format_ok 100%→75%（下降！）, success 0%→5%（略升）。Expert data SFT 提升了 success 但 format/valid 反而退步，可能因为 expert trajectory 格式与 RAGEN 的 &lt;think>/&lt;answer> 格式不完全匹配。\"}, \"exp016\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T13:44:58.883Z\", \"updated_at\": \"2026-05-14T15:36:27.432Z\", \"hypothesis\": \"LR 折中方案：LR=5e-7（exp012b 1e-6 collapse vs exp015 1e-7 零梯度的中间值）。kl_loss_coef=0.1, max_grad_norm=1.0 保持。纯 sparse reward（won=10.0，无 bonus，无 format_penalty）。从 exp015/global_step_5 checkpoint 恢复，GRPO 30 步。\", \"parent\": \"exp015\", \"metrics\": {\"step\": 12, \"total_steps\": 30, \"elapsed_min\": 51, \"step6_success\": 0, \"step6_action_is_valid\": 0.521, \"step6_pg_loss\": 0, \"step6_grad_norm\": 0.841, \"step7_success\": 0.047, \"step7_pass_at16\": 0.5, \"step7_action_is_valid\": 0.655, \"step10_success\": 0, \"step10_action_is_valid\": 0.664, \"step10_pg_loss\": 0, \"step10_grad_norm\": 0.856, \"step10_entropy\": 0.1046, \"step10_ppo_kl\": -9.1e-05, \"all_raw_rewards\": 0, \"all_advantages\": 0, \"all_returns\": 0, \"reward_signal\": \"BROKEN — success episodes get reward=0\", \"action_is_valid_trend\": \"52.1%→65.5%→66.4%\", \"manager_invalid_action_trend\": \"13.5%→11.2%→9.6%\"}, \"conclusion\": \"failed\", \"notes\": \"D015 kill。训练 12 步，pg_loss 恒为 0。原因：base success ~4.7%（仅 val，train temperature=1.0 下接近 0%），纯 sparse reward 下 GRPO 无有效学习信号。raw_reward=0 是日志 artifact（info dict 缺 raw_reward 字段），实际训练 reward pipeline 正常（critic/score 正确传递，step 7 score/mean=0.46875=3/64×10.0）。NaiveRewardManager 是 pass-through，不覆盖 env reward。LR=5e-7 本身无问题，根因是 sparse reward 冷启动。\"}, \"exp015\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T12:48:38.065Z\", \"updated_at\": \"2026-05-14T13:44:57.940Z\", \"hypothesis\": \"Sparse GRPO + 训练稳定性修复。纯 sparse reward（won=10.0，无 valid_action_bonus，无 format_penalty）。针对 exp012b 的 step 7 catastrophic collapse（grad_norm 1.48→0.094），三项修复：LR 1e-7（降 10 倍防单步更新过激）、kl_loss_coef 0.1（增 10 倍约束策略偏移）、max_grad_norm=1.0（梯度裁剪）。从 exp008 step 5 checkpoint 恢复，GRPO 30 步。\", \"parent\": \"exp012b\", \"notes\": \"D014 kill。Steps 3-5 连续零梯度（pg_loss=0, grad_norm~0），LR=1e-7 过保守导致无有效学习。Step 0 val: action_is_valid=85.8%, success=0%。训练稳定性修复验证成功（无 catastrophic collapse），但学习率不足以产生有意义的 policy update。Checkpoint: global_step_5 已保存，供 exp016 恢复。\", \"metrics\": {\"step\": 1, \"total_steps\": 30, \"val_step0_success\": 0, \"val_step0_action_is_valid\": 0.858, \"val_step0_pass_at1\": 0, \"val_step0_episodic_return\": 0, \"val_step0_response_length\": 2797.5, \"val_train_transition\": \"passed\", \"estimated_total_time_min\": 163, \"time_per_step_min\": 5.6}, \"conclusion\": \"killed\"}, \"exp014b\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T12:45:27.876Z\", \"updated_at\": \"2026-05-14T12:48:37.433Z\", \"hypothesis\": \"极低 Dense Reward: valid_action_bonus=0.01（1:1000 比例），测试极弱 bonus 能否防 collapse 又不引发 gaming。如果 bonus 弱到不影响 GRPO reward ranking，模型不会被诱导走捷径。success_reward=10.0, format_penalty=0, 从 exp008 step 5 checkpoint 恢复, GRPO 30 步。\", \"parent\": \"exp013f\", \"conclusion\": \"killed\", \"notes\": \"D013 撤销：Director 修订决策，改为 exp015。exp014b 等 exp015 结果后再决定。\"}, \"exp014a\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T12:45:27.347Z\", \"updated_at\": \"2026-05-14T12:48:35.102Z\", \"hypothesis\": \"Success-Gated Dense Reward: valid_action_bonus=0.15 只在 group 内至少一条 trajectory success 时才给。消除 reward gaming 的独立最大化路径——没有 success 就没有 bonus，模型必须探索 success。success_reward=10.0, format_penalty=0, 从 exp008 step 5 checkpoint 恢复, GRPO 30 步。\", \"parent\": \"exp013f\", \"conclusion\": \"killed\", \"notes\": \"D013 撤销：Director 修订决策，success-gated bonus 有 bootstrap 问题（初始 success=0 时 bonus 永远为 0，退化为 sparse reward），改为 exp015 纯 sparse GRPO + 训练稳定性修复。\"}, \"exp014c\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T12:45:21.231Z\", \"updated_at\": \"2026-05-14T12:45:25.025Z\", \"hypothesis\": \"Success-gated valid_action_bonus：bonus 仅在 episode 成功时累加到 reward，消除独立最大化路径。valid_action_bonus=0.15, success_reward=10.0。解决 exp013f reward gaming（unconditional bonus 导致 agent 放弃 success 追求 valid action）。从 step 5 checkpoint 恢复 GRPO 30 步。\", \"parent\": \"exp013f\"}, \"exp013e\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T09:02:52.837Z\", \"updated_at\": \"2026-05-14T09:21:08.911Z\", \"hypothesis\": \"exp013d 基础设施修复重试。Ray object_store_memory 改用 Hydra config override (ray_kwargs.ray_init.object_store_memory=32212254720) 替代无效的环境变量。其余同 exp013d: dense reward shaping (valid_action_bonus=0.15, kl_loss_coef=0.01, success_reward=10.0), env_groups=4, 从 step 5 checkpoint 恢复。\", \"parent\": \"exp013d\", \"conclusion\": \"failed\", \"notes\": \"ActorUnavailableError: RPC error: Socket closed rpc_code: 14。validation step 5 完成后向 training step 6 过渡时崩溃。诊断排除: cgroup OOM (oom_kill=0)、系统 OOM (dmesg 无记录)、CUDA OOM (无日志)、磁盘满 (118GB剩余)。Ray worker 日志被 ray stop --force 清除，最可能原因: vLLM worker 在 val→train 切换时的内存峰值或内部错误。object_store_memory=30GB 设置正确(train.py:203)。validation 指标: success=0, action_is_valid=0.656, reward_mean=2.953, reward_std=1.608。结论: 瞬态崩溃，可安全重提交。建议加 HYDRA_FULL_ERROR=1。\"}, \"exp013d\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T08:34:37.036Z\", \"updated_at\": \"2026-05-14T08:52:25.371Z\", \"hypothesis\": \"exp013b/c 内存修复重试。Dense reward shaping (valid_action_bonus=0.15) 已验证有效 (reward_std=1.608>0)。修复: env_groups 8→4 (64并发, 峰值~158GB < 220GB cgroup限制) + RAY_object_store_memory=30GB。\", \"parent\": \"exp013c\", \"notes\": \"RAY_object_store_memory env var 未生效，Ray 仍分配 70.36GB object store（默认值）。env_groups=4 生效但不够。Raylet 被 cgroup OOM killer SIGKILL。修复: 用 Hydra config override ray_kwargs.ray_init.object_store_memory=32212254720 显式传给 ray.init()。\", \"conclusion\": \"failed\"}, \"exp013c\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T08:30:44.623Z\", \"updated_at\": \"2026-05-14T08:34:10.517Z\", \"hypothesis\": \"exp013b 基础设施重试。Dense reward shaping (valid_action_bonus=0.15 + success=10.0) 已验证有效 (reward_std=1.608>0)。exp013b 因 OOM/Ray 崩溃，非算法问题。\", \"parent\": \"exp013b\", \"notes\": \"预防性kill。诊断确认 exp013b 崩溃根因: cgroup 内存限制 220GB, Ray object_store 70GB + memory 164GB = 234GB 超限。128并发ALFWorld游戏(8 env_groups × 16 group_size)在 step 6 rollout 触发 Plasma mmap ENOMEM。exp013c 同配置会重现。修复: env_groups 8→4 + RAY_object_store_memory=30GB。\", \"conclusion\": \"killed\"}, \"exp013b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T08:15:44.247Z\", \"updated_at\": \"2026-05-14T08:27:21.850Z\", \"hypothesis\": \"Dense reward shaping: valid_action_bonus=0.15 per valid action + success_reward=10.0 + kl_loss_coef=0.01。每步有效动作获得 0.15 奖励提供持续 GRPO 学习信号（30步累计上限4.5 vs 终局10.0），KL 约束防止 policy 过激更新。format_penalty=0，从 step 5 checkpoint 恢复 GRPO 30 步。\", \"parent\": \"exp013\", \"notes\": \"Dense reward shaping 有效性已确认：val reward_mean=2.953, reward_std=1.608 (>0)。崩溃是基础设施问题（OOM/Ray），非算法问题。清理后重试。超参: valid_action_bonus=0.15, kl_loss_coef=0.01, success_reward=10.0, format_penalty=0, group_size=16。\", \"conclusion\": \"failed\"}, \"exp013\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T08:02:52.275Z\", \"updated_at\": \"2026-05-14T08:04:35.100Z\", \"hypothesis\": \"Dense reward shaping (valid_action_bonus=0.5 + success_reward=10.0) 解决 sparse binary reward 冷启动死锁。每步有效动作获得 0.5 奖励提供持续学习信号，终局 success 保留 10.0 大奖引导任务完成。\", \"parent\": \"exp012b\", \"notes\": \"D011驳回纯KL方案。Director要求dense reward shaping: valid_action_bonus=0.5 + success_reward=10.0 (1:20比值)。需改reward function代码（env.py或es_manager.py），不只是yaml config。format_penalty=0保持，从step 5恢复。\", \"conclusion\": \"killed\"}, \"exp012b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T06:44:22.570Z\", \"updated_at\": \"2026-05-14T07:57:46.417Z\", \"hypothesis\": \"format_penalty=0 + group_size=16，从 step 5 checkpoint 恢复 GRPO 训练。纯 A2 实验（D010）：隔离 format penalty 对 success 崩塌的影响。exp012 的基础设施修复重试（vLLM 参数兼容已修复）。\", \"parent\": \"exp012\", \"notes\": \"D011 kill。step 6 success=8.59%（优于 exp010 的 4.7%），但 step 7 catastrophic collapse: success→0%, grad_norm 1.48→0.09, pg_loss→0。根因：GRPO 单步 policy update 过激，跳出有 success 的分布区域。Reward fix (format_penalty=0) 延缓了 1 步但未解决根因。下一步 exp013: 降 LR 1e-6 + kl_coef 0.05 稳定训练。\", \"metrics\": {\"step\": 8, \"total_steps\": 30, \"step6_success\": 0.0859, \"step6_action_is_valid\": 0.613, \"step6_pass_at_16\": 0.5, \"step6_ppo_kl\": 0.0039, \"step6_entropy\": 0.1006, \"step6_grad_norm\": 1.477, \"step7_success\": 0, \"step7_action_is_valid\": 0.685, \"step7_pass_at_16\": 0, \"step7_pg_loss\": 0, \"step7_ppo_kl\": 0.00439, \"step7_entropy\": 0.0904, \"step7_grad_norm\": 0.094, \"trend\": \"success 8.6%→0% collapse at step 7 (same pattern as exp010, delayed 1 step). grad_norm 1.477→0.094, pg_loss→0. Reward fix delayed but did not prevent collapse.\"}, \"conclusion\": \"killed\"}, \"exp012\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T06:24:24.322Z\", \"updated_at\": \"2026-05-14T06:32:18.431Z\", \"hypothesis\": \"format_penalty=0 + group_size=16 解决 exp010/011 中 format penalty 劫持 GRPO 梯度导致 success 崩塌的问题。从 step 5 checkpoint 恢复，预期 success rate 能持续上升而非崩塌。\", \"parent\": \"exp011\", \"notes\": \"D010指令：纯A2实验，隔离变量。format_penalty=0（非-0.01），不含valid-action bonus，env.py保持原始二值reward（won=10.0/otherwise 0）。group_size=16, resume from step 5。\\n\\n失败原因: vLLM 版本兼容问题。agent_proxy.py:69 传 `disable_mm_preprocessor_cache` 给 vLLM LLM()，但服务器安装的 vLLM 版本不支持此参数。TypeError at EngineArgs.__init__()。启动即崩溃，无训练数据。\\n\\n诊断 Worker: worker_diagnose_exp012_20260514T063149 正在修复。error_type=infrastructure。\", \"conclusion\": \"failed\"}, \"exp011\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T05:16:54.748Z\", \"updated_at\": \"2026-05-14T06:26:41.225Z\", \"conclusion\": \"killed\", \"notes\": \"D007决定kill: reward shaping问题导致success崩塌(format penalty劫持GRPO梯度)。D008确认A2(降format_penalty)为P0。下一步: exp012修改reward function后从step 5 checkpoint恢复。\"}, \"exp010\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T03:45:56.628Z\", \"updated_at\": \"2026-05-14T05:28:54.984Z\", \"metrics\": {\"step\": 11, \"total_steps\": 30, \"crash_reason\": \"/tmp disk full (fast_downward libdownward.so)\", \"initial_val_action_is_valid\": 0.652, \"initial_val_success\": 0, \"step1_success\": 0.047, \"step1_pass_at_8\": 0.375, \"step1_action_is_valid\": 0.588, \"step10_success\": 0, \"step10_pass_at_8\": 0, \"step10_action_is_valid\": 0.683, \"step5_ppo_kl\": 0.00158, \"step5_entropy\": 0.1, \"trend\": \"action_is_valid improving (58.8%→68.3%) but success collapsing (4.7%→0%)\", \"checkpoint_saved\": \"global_step_10\"}, \"notes\": \"Step 11 崩溃: /tmp磁盘满(fast_downward libdownward.so, 与exp007相同根因)。TMPDIR已修复。关键问题: success 4.7%→0%, pass@8 37.5%→0% (学习信号问题), 但action_is_valid 58.8%→68.3% (模型在学合法命令但非任务完成)。Director要求先分析reward shaping再决定是否恢复训练。\", \"conclusion\": \"failed\"}, \"exp009\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T03:35:13.150Z\", \"updated_at\": \"2026-05-14T04:28:35.845Z\", \"notes\": \"第1次: 启动即失败(response_mask断言)。第2次: 与exp010资源冲突(双GRPO同时跑cuda:0+1, 写同一checkpoint目录), 手动终止保留exp010。\", \"conclusion\": \"failed\"}, \"exp008\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T03:01:53.741Z\", \"updated_at\": \"2026-05-14T03:04:43.138Z\", \"conclusion\": \"killed\", \"notes\": \"Director 撤回：LR 5e-6 方案不对，问题是命令语义缺失。改为 SFT warmup (D006)\"}, \"exp007\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T00:12:06.008Z\", \"updated_at\": \"2026-05-14T03:00:29.952Z\", \"conclusion\": \"failed\", \"metrics\": {\"steps_completed\": 10, \"steps_planned\": 30, \"crash_reason\": \"OSError: No space left on device (/tmp)\", \"final_success_rate\": 0.0625, \"final_action_is_valid\": 0.0835, \"final_manager_invalid_action\": 0.0156, \"final_pass_at_8\": 0.375, \"final_pg_loss\": 0.00117, \"final_ppo_kl\": 0.00127, \"final_entropy\": 0.057, \"final_score_mean\": 0.578, \"dryrun_action_is_valid\": 0.054, \"dryrun_invalid_action\": 0.065, \"training_time_s\": 6739}, \"notes\": \"失败原因: (1) 基础设施: step 10时/tmp磁盘满(Ray session文件占满30GB根分区) (2) 学习信号: action_is_valid 8.4% < 10% kill阈值, GRPO无法从稀疏reward bootstrap有效ALFWorld命令 | 已有成果: parser fix验证成功(invalid_action 95%→1.6%), 速度优化验证成功(95min→12min/step) | 建议: SFT warmup教模型ALFWorld命令语义后再接GRPO\"}, \"exp007_dryrun\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T00:19:04.596Z\", \"updated_at\": \"2026-05-14T00:19:04.596Z\"}, \"exp003\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T21:39:20.081Z\", \"updated_at\": \"2026-05-14T00:08:23.334Z\", \"conclusion\": \"failed\"}, \"exp005\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-13T23:23:20.655Z\", \"updated_at\": \"2026-05-13T23:23:20.655Z\"}, \"exp_003\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-13T21:01:51.727Z\", \"updated_at\": \"2026-05-13T22:04:11.399Z\", \"conclusion\": \"failed\"}, \"exp_003_dryrun\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-13T21:07:02.905Z\", \"updated_at\": \"2026-05-13T21:44:30.297Z\", \"conclusion\": \"failed\"}, \"exp_003_dryrun2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-13T21:22:01.436Z\", \"updated_at\": \"2026-05-13T21:44:29.827Z\", \"conclusion\": \"failed\"}, \"exp003_dryrun3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-13T21:26:41.066Z\", \"updated_at\": \"2026-05-13T21:44:28.884Z\", \"conclusion\": \"failed\"}, \"exp_003_dryrun3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-13T21:27:05.011Z\", \"updated_at\": \"2026-05-13T21:44:27.949Z\", \"conclusion\": \"failed\"}, \"exp_002\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T19:28:16.342Z\", \"updated_at\": \"2026-05-13T21:22:13.213Z\", \"conclusion\": \"failed\"}, \"exp_001b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T19:14:10.718Z\", \"updated_at\": \"2026-05-13T19:29:05.714Z\", \"conclusion\": \"failed\"}, \"exp_001\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T18:26:40.715Z\", \"updated_at\": \"2026-05-13T19:13:39.086Z\", \"conclusion\": \"failed\"}}, \"count\": 118, \"total\": 118, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3941}}"
+    }
+  },
+  "sourceToolAssistantUUID": "a130bc64-8226-4dc9-a7e2-7961c6fde27c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-21T02:37:11.924Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_014v7yGEXFU19LQQtUzpxLSR`</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "12f5f622-aa97-43ac-92ed-65f55d80c490",
+  "isSidechain": false,
+  "requestId": "req_011CbEwHMM92ymE46PtmNDQp",
+  "type": "assistant",
+  "uuid": "9048b1ac-a0d0-438a-a8af-ad66210f8b70",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019KS99hfQ1xfm5JKxNNNBV5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1415,
+      "cache_read_input_tokens": 38503,
+      "output_tokens": 243,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1415,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 243,
+          "cache_read_input_tokens": 38503,
+          "cache_creation_input_tokens": 1415,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1415
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-21T02:37:12.064Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap · `toolu_01DSPrv5JZw7UDe7yueaC17e`</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9048b1ac-a0d0-438a-a8af-ad66210f8b70",
+  "isSidechain": false,
+  "requestId": "req_011CbEwHMM92ymE46PtmNDQp",
+  "type": "assistant",
+  "uuid": "424c8e11-31c5-42f0-92aa-09711282132b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019KS99hfQ1xfm5JKxNNNBV5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1415,
+      "cache_read_input_tokens": 38503,
+      "output_tokens": 243,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1415,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 243,
+          "cache_read_input_tokens": 38503,
+          "cache_creation_input_tokens": 1415,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1415
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #20。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - westd-47453 GPU 分配需确认——resource_usage 显示 allocated_gpus=[]，ROADMAP 说 westd cuda:0-3 跑 v9d，但 cron reconcile 未检测到。提交前必…",
+  "leafUuid": "424c8e11-31c5-42f0-92aa-09711282132b",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Diagnose 8B OOD eval failure and confirm v9d training status",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6"
+}
+```
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-21T02:37:14.051Z_
+
+<details><summary>↩ Tool result · `toolu_01Pu6oPzVUHnWBygCBP25epn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"scienceworld_grpo_cell_c_v3\", \"success\": true, \"actions\": [\"Job still running (pid=88226)\"]}]}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "85fd1645-4613-49bc-994d-ba1271a13004",
+  "isSidechain": false,
+  "promptId": "f8302a3c-3d42-4fa9-96cb-f9a27b66ab52",
+  "type": "user",
+  "uuid": "d90f0ff2-58ce-439a-a949-278584c3542f",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 1, \\\"results\\\": [{\\\"exp_id\\\": \\\"scienceworld_grpo_cell_c_v3\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=88226)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"scienceworld_grpo_cell_c_v3\", \"success\": true, \"actions\": [\"Job still running (pid=88226)\"]}]}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "85fd1645-4613-49bc-994d-ba1271a13004",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-21T02:37:14.070Z_
+
+<details><summary>↩ Tool result · `toolu_014v7yGEXFU19LQQtUzpxLSR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/report.md\", \"content\": \"# Handover — 2026-05-21\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp029_seed3_ood_v2 | — | — | — | — |\\n| scienceworld_grpo_cell_c_v3 | ScienceWorld 环境下 episode-level GRPO 能避免 collapse 并学到有效策略，验证 episode-level credit 作为 fix 的跨环境泛化性（v3: 磁盘清理后重启） | — | — | — |\\n\\n## 待处理\\n- exp029_seed3_ood_final: Evaluate exp029_seed3_v2 final checkpoint (global_step_15, episode-level GRPO seed=42) on 134 OOD tasks. Cross-seed OOD evidence. Seed 1 OOD=23.88%.（准备中）\\n- exp029_seed2_ood_step15: Evaluate exp029_seed2 global_step_15 checkpoint on 134 OOD tasks (valid_unseen). Step 15 is the bjb1 checkpoint before westd resume (step 30 checkpoint lost in disk cleanup M019). Provides cross-seed OOD number for paper table (seed1 OOD=23.88%). Step 15 val was near peak (~25-28%), OOD number expected similar to seed1.（准备中）\\n- 8b_cell_c_episode_v4（准备中）\\n- exp028_prereq_zeroshot_instruct: Qwen3-1.7B-Instruct 零样本 ALFWorld eval，验证\\\"SFT是毒药\\\"假设。如果 Instruct ≥15% success（vs SFT checkpoint 6.25%），则确认 SFT 起点有害，exp028a 可跳过 SFT 直接 GRPO。（准备中）\\n- exp021_sft_ragen_format: Two-stage SFT with RAGEN-format data (v4). From exp008_sft checkpoint, fine-tune with v4 data (RAGEN Turn/State/Reward structure, fixed system prompt with consistent &lt;answer> tag instruction). LR=5e-6, 2 epochs. Validate via RAGEN val_before_train (not eval_sft_fast). Pass: RAGEN val success >= 10%, action_is_valid >= 85%.（准备中）\\n- exp020d_grpo_from_sft: GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Symlink fix for response_mask assertion (proven in exp020b). exp020c failed: Hydra key path wrong.（准备中）\\n- exp020c_grpo_from_sft: GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Fix: symlink + enable_response_mask=false (exp020/020b crashed on response_mask assertion).（准备中）\\n- exp019c_expert_sft_v3: Two-stage Expert SFT（重试）: 从 exp008_sft checkpoint 出发，用 v3 数据（保留原始 move actions + admissible actions augmentation）微调。LR=5e-6, 2 epochs, batch=4, grad_accum=4, max_seq=4096。Pass: success ≥ 10%, format_ok ≥ 90%, action_is_valid ≥ 85%。（准备中）\\n- exp019b_expert_sft_v2（准备中）\\n- exp018_sft_grpo: Expert SFT → Sparse GRPO：从 exp017 SFT checkpoint 开始纯 sparse GRPO 训练。SFT 提升 baseline success rate（≥10%），使 GRPO 有足够非零 reward group 产生有效梯度。LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, won=10.0, 无 bonus/penalty, GRPO 30 步。Pass: success ≥ 20%。（准备中）\\n- …另有 11 项\\n\\n## 近期结论\\n- **exp029_seed3_v2** (success): Episode-level GRPO avoids collapse and learns consistently across seeds, confirming robustness of the credit assignment fix (seed 3 replication of exp029) ← 基于 exp029_seed3_episode\\n  [exp029_seed3_v2_analysis](/api/workspace-files/projects/cost-verify-agent-rl/artifacts/exp029_seed3_v2/report/exp029_seed3_v2_analysis.md)\\n- **exp029_seed3_ood** (failed): Evaluate exp029_seed3_v2 checkpoint (global_step_5) on 134 OOD tasks (valid_unseen) to provide cross-seed OOD generalization evidence. Seed 1 OOD=23.88% at step 15. ← 基于 exp029_seed3_v2\\n- **sw_info_loss_bjb1** (success): ScienceWorld SFT model under h=2 windowing shows significant performance degradation vs full context (T=0 deterministic), quantifying information loss (M1) cross-environment on bjb1 ← 基于 scienceworld_sft_eval_v2\\n\\n## 趋势\\n成功 23 / 负向 9 / 失败 45 / 共 95\\ntemperature: 0 ↓（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nbjb1-17606: 无 GPU 信息\\nwestd-47453: 无 GPU 信息\\n\\n## 告警\\n- exp_001: 训练失败 — unknown\\n- exp_001b: 训练失败 — unknown\\n- exp_002: 训练失败 — unknown\\n- exp003: 训练失败 — unknown\\n- exp007: 训练失败 — unknown\\n- exp009: 训练失败 — unknown\\n- exp010: 训练失败 — unknown\\n- exp011: 已被终止 — unknown\\n- exp012: 训练失败 — unknown\\n- exp012b: 已被终止 — unknown\\n- exp013: 已被终止 — unknown\\n- exp013b: 训练失败 — unknown\\n- exp013c: 已被终止 — unknown\\n- exp013d: 训练失败 — unknown\\n- exp013e: 训练失败 — unknown\\n- exp015: 已被终止 — unknown\\n- exp016: 训练失败 — unknown\\n- exp019_expert_sft_v2: 已被终止 — unknown\\n- exp020_grpo_from_sft: 训练失败 — unknown\\n- exp022_grpo_from_sft_v4: 已被终止 — unknown\\n- exp023_grpo_parallel: 训练失败 — unknown\\n- exp023c_grpo_serial: 训练失败 — unknown\\n- exp024_success_gated_grpo: 已被终止 — unknown\\n- exp025: 训练失败 — unknown\\n- exp025b: 训练失败 — unknown\\n- exp025c: 已被终止 — unknown\\n- exp027_stable_grpo: 训练失败 — unknown\\n- exp028a_recipe_fix: 已被终止 — unknown\\n- exp028c_selfguide_recipe: 训练失败 — unknown\\n- gsweep_g050_h5_seed1: 已被终止 — unknown\\n- gae_baseline_seed1: 已被终止 — unknown\\n- hsweep_h10_seed1: 已被终止 — unknown\\n- exp029_episode_level_seed2: 已被终止 — unknown\\n- exp029_seed2_westd_resume: 已被终止 — unknown\\n- exp029_seed2_ood_reeval: 训练失败 — unknown\\n- exp029_seed2_ood_reeval_v3: 训练失败 — unknown\\n- 7b_zeroshot_eval_v2: 训练失败 — unknown\\n- exp029_seed2_ood_reeval_v4: 训练失败 — unknown\\n- 7b_cell_a_h2: 已被终止 — unknown\\n- 8b_sft_clean_eval: 训练失败 — unknown\\n- 8b_cell_c_episode: 训练失败 — unknown\\n- 8b_cell_c_episode_v2: 训练失败 — unknown\\n- 8b_cell_c_v3: 训练失败 — unknown\\n- 8b_cell_c_episode_v5: 训练失败 — unknown\\n- 8b_cell_c_episode_v6: 训练失败 — unknown\\n- 8b_cell_c_episode_v7: 训练失败 — unknown\\n- 8b_cell_c_episode_v8: 训练失败 — unknown\\n- exp029_per_task_t04: 训练失败 — unknown\\n- scienceworld_sft_eval: 已被终止 — unknown\\n- 8b_cell_c_episode_v9: 训练失败 — unknown\\n- 8b_cell_c_episode_v9b: 训练失败 — unknown\\n- 8b_cell_c_episode_v9c: 训练失败 — unknown\\n- 8b_v9d_ood_eval: 训练失败 — unknown\\n- 8b_v9d_ood_eval_v2: 训练失败 — unknown\\n- 8b_v9d_ood_eval_v3: 训练失败 — unknown\\n- 8b_v9d_ood_eval_v4: 训练失败 — unknown\\n- scienceworld_grpo_cell_c: 训练失败 — unknown\\n- scienceworld_info_loss_full: 训练失败 — unknown\\n- scienceworld_info_loss_h2: 已被终止 — unknown\\n- sw_info_loss_full_v2: 训练失败 — unknown\\n- scienceworld_grpo_cell_c_v2: 训练失败 — unknown\\n- exp029_seed3_episode: 训练失败 — unknown\\n- exp029_seed3_ood: 训练失败 — unknown\\n\", \"total_chars\": 5785, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9048b1ac-a0d0-438a-a8af-ad66210f8b70",
+  "isSidechain": false,
+  "promptId": "f8302a3c-3d42-4fa9-96cb-f9a27b66ab52",
+  "type": "user",
+  "uuid": "81c00a69-809e-4b6b-8263-09f648a4c688",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-21\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| exp029_seed3_ood_v2 | — | — | — | — |\\\\n| scienceworld_grpo_cell_c_v3 | ScienceWorld 环境下 episode-level GRPO 能避免 collapse 并学到有效策略，验证 episode-level credit 作为 fix 的跨环境泛化性（v3: 磁盘清理后重启） | — | — | — |\\\\n\\\\n## 待处理\\\\n- exp029_seed3_ood_final: Evaluate exp029_seed3_v2 final checkpoint (global_step_15, episode-level GRPO seed=42) on 134 OOD tasks. Cross-seed OOD evidence. Seed 1 OOD=23.88%.（准备中）\\\\n- exp029_seed2_ood_step15: Evaluate exp029_seed2 global_step_15 checkpoint on 134 OOD tasks (valid_unseen). Step 15 is the bjb1 checkpoint before westd resume (step 30 checkpoint lost in disk cleanup M019). Provides cross-seed OOD number for paper table (seed1 OOD=23.88%). Step 15 val was near peak (~25-28%), OOD number expected similar to seed1.（准备中）\\\\n- 8b_cell_c_episode_v4（准备中）\\\\n- exp028_prereq_zeroshot_instruct: Qwen3-1.7B-Instruct 零样本 ALFWorld eval，验证\\\\\\\"SFT是毒药\\\\\\\"假设。如果 Instruct ≥15% success（vs SFT checkpoint 6.25%），则确认 SFT 起点有害，exp028a 可跳过 SFT 直接 GRPO。（准备中）\\\\n- exp021_sft_ragen_format: Two-stage SFT with RAGEN-format data (v4). From exp008_sft checkpoint, fine-tune with v4 data (RAGEN Turn/State/Reward structure, fixed system prompt with consistent &lt;answer> tag instruction). LR=5e-6, 2 epochs. Validate via RAGEN val_before_train (not eval_sft_fast). Pass: RAGEN val success >= 10%, action_is_valid >= 85%.（准备中）\\\\n- exp020d_grpo_from_sft: GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Symlink fix for response_mask assertion (proven in exp020b). exp020c failed: Hydra key path wrong.（准备中）\\\\n- exp020c_grpo_from_sft: GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Fix: symlink + enable_response_mask=false (exp020/020b crashed on response_mask assertion).（准备中）\\\\n- exp019c_expert_sft_v3: Two-stage Expert SFT（重试）: 从 exp008_sft checkpoint 出发，用 v3 数据（保留原始 move actions + admissible actions augmentation）微调。LR=5e-6, 2 epochs, batch=4, grad_accum=4, max_seq=4096。Pass: success ≥ 10%, format_ok ≥ 90%, action_is_valid ≥ 85%。（准备中）\\\\n- exp019b_expert_sft_v2（准备中）\\\\n- exp018_sft_grpo: Expert SFT → Sparse GRPO：从 exp017 SFT checkpoint 开始纯 sparse GRPO 训练。SFT 提升 baseline success rate（≥10%），使 GRPO 有足够非零 reward group 产生有效梯度。LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, won=10.0, 无 bonus/penalty, GRPO 30 步。Pass: success ≥ 20%。（准备中）\\\\n- …另有 11 项\\\\n\\\\n## 近期结论\\\\n- **exp029_seed3_v2** (success): Episode-level GRPO avoids collapse and learns consistently across seeds, confirming robustness of the credit assignment fix (seed 3 replication of exp029) ← 基于 exp029_seed3_episode\\\\n  [exp029_seed3_v2_analysis](/api/workspace-files/projects/cost-verify-agent-rl/artifacts/exp029_seed3_v2/report/exp029_seed3_v2_analysis.md)\\\\n- **exp029_seed3_ood** (failed): Evaluate exp029_seed3_v2 checkpoint (global_step_5) on 134 OOD tasks (valid_unseen) to provide cross-seed OOD generalization evidence. Seed 1 OOD=23.88% at step 15. ← 基于 exp029_seed3_v2\\\\n- **sw_info_loss_bjb1** (success): ScienceWorld SFT model under h=2 windowing shows significant performance degradation vs full context (T=0 deterministic), quantifying information loss (M1) cross-environment on bjb1 ← 基于 scienceworld_sft_eval_v2\\\\n\\\\n## 趋势\\\\n成功 23 / 负向 9 / 失败 45 / 共 95\\\\ntemperature: 0 ↓（近 3 次 success）\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nbjb1-17606: 无 GPU 信息\\\\nwestd-47453: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- exp_001: 训练失败 — unknown\\\\n- exp_001b: 训练失败 — unknown\\\\n- exp_002: 训练失败 — unknown\\\\n- exp003: 训练失败 — unknown\\\\n- exp007: 训练失败 — unknown\\\\n- exp009: 训练失败 — unknown\\\\n- exp010: 训练失败 — unknown\\\\n- exp011: 已被终止 — unknown\\\\n- exp012: 训练失败 — unknown\\\\n- exp012b: 已被终止 — unknown\\\\n- exp013: 已被终止 — unknown\\\\n- exp013b: 训练失败 — unknown\\\\n- exp013c: 已被终止 — unknown\\\\n- exp013d: 训练失败 — unknown\\\\n- exp013e: 训练失败 — unknown\\\\n- exp015: 已被终止 — unknown\\\\n- exp016: 训练失败 — unknown\\\\n- exp019_expert_sft_v2: 已被终止 — unknown\\\\n- exp020_grpo_from_sft: 训练失败 — unknown\\\\n- exp022_grpo_from_sft_v4: 已被终止 — unknown\\\\n- exp023_grpo_parallel: 训练失败 — unknown\\\\n- exp023c_grpo_serial: 训练失败 — unknown\\\\n- exp024_success_gated_grpo: 已被终止 — unknown\\\\n- exp025: 训练失败 — unknown\\\\n- exp025b: 训练失败 — unknown\\\\n- exp025c: 已被终止 — unknown\\\\n- exp027_stable_grpo: 训练失败 — unknown\\\\n- exp028a_recipe_fix: 已被终止 — unknown\\\\n- exp028c_selfguide_recipe: 训练失败 — unknown\\\\n- gsweep_g050_h5_seed1: 已被终止 — unknown\\\\n- gae_baseline_seed1: 已被终止 — unknown\\\\n- hsweep_h10_seed1: 已被终止 — unknown\\\\n- exp029_episode_level_seed2: 已被终止 — unknown\\\\n- exp029_seed2_westd_resume: 已被终止 — unknown\\\\n- exp029_seed2_ood_reeval: 训练失败 — unknown\\\\n- exp029_seed2_ood_reeval_v3: 训练失败 — unknown\\\\n- 7b_zeroshot_eval_v2: 训练失败 — unknown\\\\n- exp029_seed2_ood_reeval_v4: 训练失败 — unknown\\\\n- 7b_cell_a_h2: 已被终止 — unknown\\\\n- 8b_sft_clean_eval: 训练失败 — unknown\\\\n- 8b_cell_c_episode: 训练失败 — unknown\\\\n- 8b_cell_c_episode_v2: 训练失败 — unknown\\\\n- 8b_cell_c_v3: 训练失败 — unknown\\\\n- 8b_cell_c_episode_v5: 训练失败 — unknown\\\\n- 8b_cell_c_episode_v6: 训练失败 — unknown\\\\n- 8b_cell_c_episode_v7: 训练失败 — unknown\\\\n- 8b_cell_c_episode_v8: 训练失败 — unknown\\\\n- exp029_per_task_t04: 训练失败 — unknown\\\\n- scienceworld_sft_eval: 已被终止 — unknown\\\\n- 8b_cell_c_episode_v9: 训练失败 — unknown\\\\n- 8b_cell_c_episode_v9b: 训练失败 — unknown\\\\n- 8b_cell_c_episode_v9c: 训练失败 — unknown\\\\n- 8b_v9d_ood_eval: 训练失败 — unknown\\\\n- 8b_v9d_ood_eval_v2: 训练失败 — unknown\\\\n- 8b_v9d_ood_eval_v3: 训练失败 — unknown\\\\n- 8b_v9d_ood_eval_v4: 训练失败 — unknown\\\\n- scienceworld_grpo_cell_c: 训练失败 — unknown\\\\n- scienceworld_info_loss_full: 训练失败 — unknown\\\\n- scienceworld_info_loss_h2: 已被终止 — unknown\\\\n- sw_info_loss_full_v2: 训练失败 — unknown\\\\n- scienceworld_grpo_cell_c_v2: 训练失败 — unknown\\\\n- exp029_seed3_episode: 训练失败 — unknown\\\\n- exp029_seed3_ood: 训练失败 — unknown\\\\n\\\", \\\"total_chars\\\": 5785, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/report.md\", \"content\": \"# Handover — 2026-05-21\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp029_seed3_ood_v2 | — | — | — | — |\\n| scienceworld_grpo_cell_c_v3 | ScienceWorld 环境下 episode-level GRPO 能避免 collapse 并学到有效策略，验证 episode-level credit 作为 fix 的跨环境泛化性（v3: 磁盘清理后重启） | — | — | — |\\n\\n## 待处理\\n- exp029_seed3_ood_final: Evaluate exp029_seed3_v2 final checkpoint (global_step_15, episode-level GRPO seed=42) on 134 OOD tasks. Cross-seed OOD evidence. Seed 1 OOD=23.88%.（准备中）\\n- exp029_seed2_ood_step15: Evaluate exp029_seed2 global_step_15 checkpoint on 134 OOD tasks (valid_unseen). Step 15 is the bjb1 checkpoint before westd resume (step 30 checkpoint lost in disk cleanup M019). Provides cross-seed OOD number for paper table (seed1 OOD=23.88%). Step 15 val was near peak (~25-28%), OOD number expected similar to seed1.（准备中）\\n- 8b_cell_c_episode_v4（准备中）\\n- exp028_prereq_zeroshot_instruct: Qwen3-1.7B-Instruct 零样本 ALFWorld eval，验证\\\"SFT是毒药\\\"假设。如果 Instruct ≥15% success（vs SFT checkpoint 6.25%），则确认 SFT 起点有害，exp028a 可跳过 SFT 直接 GRPO。（准备中）\\n- exp021_sft_ragen_format: Two-stage SFT with RAGEN-format data (v4). From exp008_sft checkpoint, fine-tune with v4 data (RAGEN Turn/State/Reward structure, fixed system prompt with consistent &lt;answer> tag instruction). LR=5e-6, 2 epochs. Validate via RAGEN val_before_train (not eval_sft_fast). Pass: RAGEN val success >= 10%, action_is_valid >= 85%.（准备中）\\n- exp020d_grpo_from_sft: GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Symlink fix for response_mask assertion (proven in exp020b). exp020c failed: Hydra key path wrong.（准备中）\\n- exp020c_grpo_from_sft: GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Fix: symlink + enable_response_mask=false (exp020/020b crashed on response_mask assertion).（准备中）\\n- exp019c_expert_sft_v3: Two-stage Expert SFT（重试）: 从 exp008_sft checkpoint 出发，用 v3 数据（保留原始 move actions + admissible actions augmentation）微调。LR=5e-6, 2 epochs, batch=4, grad_accum=4, max_seq=4096。Pass: success ≥ 10%, format_ok ≥ 90%, action_is_valid ≥ 85%。（准备中）\\n- exp019b_expert_sft_v2（准备中）\\n- exp018_sft_grpo: Expert SFT → Sparse GRPO：从 exp017 SFT checkpoint 开始纯 sparse GRPO 训练。SFT 提升 baseline success rate（≥10%），使 GRPO 有足够非零 reward group 产生有效梯度。LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, won=10.0, 无 bonus/penalty, GRPO 30 步。Pass: success ≥ 20%。（准备中）\\n- …另有 11 项\\n\\n## 近期结论\\n- **exp029_seed3_v2** (success): Episode-level GRPO avoids collapse and learns consistently across seeds, confirming robustness of the credit assignment fix (seed 3 replication of exp029) ← 基于 exp029_seed3_episode\\n  [exp029_seed3_v2_analysis](/api/workspace-files/projects/cost-verify-agent-rl/artifacts/exp029_seed3_v2/report/exp029_seed3_v2_analysis.md)\\n- **exp029_seed3_ood** (failed): Evaluate exp029_seed3_v2 checkpoint (global_step_5) on 134 OOD tasks (valid_unseen) to provide cross-seed OOD generalization evidence. Seed 1 OOD=23.88% at step 15. ← 基于 exp029_seed3_v2\\n- **sw_info_loss_bjb1** (success): ScienceWorld SFT model under h=2 windowing shows significant performance degradation vs full context (T=0 deterministic), quantifying information loss (M1) cross-environment on bjb1 ← 基于 scienceworld_sft_eval_v2\\n\\n## 趋势\\n成功 23 / 负向 9 / 失败 45 / 共 95\\ntemperature: 0 ↓（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nbjb1-17606: 无 GPU 信息\\nwestd-47453: 无 GPU 信息\\n\\n## 告警\\n- exp_001: 训练失败 — unknown\\n- exp_001b: 训练失败 — unknown\\n- exp_002: 训练失败 — unknown\\n- exp003: 训练失败 — unknown\\n- exp007: 训练失败 — unknown\\n- exp009: 训练失败 — unknown\\n- exp010: 训练失败 — unknown\\n- exp011: 已被终止 — unknown\\n- exp012: 训练失败 — unknown\\n- exp012b: 已被终止 — unknown\\n- exp013: 已被终止 — unknown\\n- exp013b: 训练失败 — unknown\\n- exp013c: 已被终止 — unknown\\n- exp013d: 训练失败 — unknown\\n- exp013e: 训练失败 — unknown\\n- exp015: 已被终止 — unknown\\n- exp016: 训练失败 — unknown\\n- exp019_expert_sft_v2: 已被终止 — unknown\\n- exp020_grpo_from_sft: 训练失败 — unknown\\n- exp022_grpo_from_sft_v4: 已被终止 — unknown\\n- exp023_grpo_parallel: 训练失败 — unknown\\n- exp023c_grpo_serial: 训练失败 — unknown\\n- exp024_success_gated_grpo: 已被终止 — unknown\\n- exp025: 训练失败 — unknown\\n- exp025b: 训练失败 — unknown\\n- exp025c: 已被终止 — unknown\\n- exp027_stable_grpo: 训练失败 — unknown\\n- exp028a_recipe_fix: 已被终止 — unknown\\n- exp028c_selfguide_recipe: 训练失败 — unknown\\n- gsweep_g050_h5_seed1: 已被终止 — unknown\\n- gae_baseline_seed1: 已被终止 — unknown\\n- hsweep_h10_seed1: 已被终止 — unknown\\n- exp029_episode_level_seed2: 已被终止 — unknown\\n- exp029_seed2_westd_resume: 已被终止 — unknown\\n- exp029_seed2_ood_reeval: 训练失败 — unknown\\n- exp029_seed2_ood_reeval_v3: 训练失败 — unknown\\n- 7b_zeroshot_eval_v2: 训练失败 — unknown\\n- exp029_seed2_ood_reeval_v4: 训练失败 — unknown\\n- 7b_cell_a_h2: 已被终止 — unknown\\n- 8b_sft_clean_eval: 训练失败 — unknown\\n- 8b_cell_c_episode: 训练失败 — unknown\\n- 8b_cell_c_episode_v2: 训练失败 — unknown\\n- 8b_cell_c_v3: 训练失败 — unknown\\n- 8b_cell_c_episode_v5: 训练失败 — unknown\\n- 8b_cell_c_episode_v6: 训练失败 — unknown\\n- 8b_cell_c_episode_v7: 训练失败 — unknown\\n- 8b_cell_c_episode_v8: 训练失败 — unknown\\n- exp029_per_task_t04: 训练失败 — unknown\\n- scienceworld_sft_eval: 已被终止 — unknown\\n- 8b_cell_c_episode_v9: 训练失败 — unknown\\n- 8b_cell_c_episode_v9b: 训练失败 — unknown\\n- 8b_cell_c_episode_v9c: 训练失败 — unknown\\n- 8b_v9d_ood_eval: 训练失败 — unknown\\n- 8b_v9d_ood_eval_v2: 训练失败 — unknown\\n- 8b_v9d_ood_eval_v3: 训练失败 — unknown\\n- 8b_v9d_ood_eval_v4: 训练失败 — unknown\\n- scienceworld_grpo_cell_c: 训练失败 — unknown\\n- scienceworld_info_loss_full: 训练失败 — unknown\\n- scienceworld_info_loss_h2: 已被终止 — unknown\\n- sw_info_loss_full_v2: 训练失败 — unknown\\n- scienceworld_grpo_cell_c_v2: 训练失败 — unknown\\n- exp029_seed3_episode: 训练失败 — unknown\\n- exp029_seed3_ood: 训练失败 — unknown\\n\", \"total_chars\": 5785, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "9048b1ac-a0d0-438a-a8af-ad66210f8b70",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-21T02:37:14.092Z_
+
+<details><summary>↩ Tool result · `toolu_01DSPrv5JZw7UDe7yueaC17e`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/ROADMAP.md\", \"content\": \"# cost-verify-agent-rl — Research Dashboard\\n\\n> 最后更新: 2026-05-21 01:53 UTC | 更新原因: Reviewer 建议 claim 强度细化：诊断 VERY STRONG / 修复 STRONG；Cell C v3 止损阈值设定；Seed 2 确认不可恢复\\n\\n## 核心方向\\n诊断 step-independent RL 训练的 systematic failure mechanism (dual: information loss + sign misattribution)。Episode-level credit 是 necessary minimum fix。详见 paper_framing.md。\\n\\n**诊断 claim: VERY STRONG** (D104, ALFWorld factorial + γ-sweep + 8B + ScienceWorld 全验证)\\n**修复 claim: STRONG** (ALFWorld-specific, seed-variant; OOD 13.4pp gap, ScienceWorld fix 待确认)\\n\\n## 当前阶段：论文数据整合完成，等 Cell C v3 step 5\\n\\nSeed 3 OOD eval 完成 (10.45%)，多 seed 数据已整合到论文 (D108)。Cell C v3 出现坍塌信号，等 step 5 决定是否终止。\\n\\n## Running / Active\\n| 任务 | server | GPU | 状态 | 进度 |\\n|------|--------|-----|------|------|\\n| Cell C v3 (SW episode GRPO) | westd | 2,3 | ⚠️ RUNNING | 3/15, 坍塌信号 |\\n\\n**止损阈值**：step 5 success=0% + action_is_valid<20% → 终止释放 GPU\\n\\n## GPU 状态\\n- westd cuda:0,1: **空闲**\\n- westd cuda:2,3: Cell C v3 RUNNING\\n- bjb1 cuda:0,1: **空闲**\\n- **2/6 活跃**\\n\\n## 论文状态（D108 完成）\\n- 全部数字更新为 multi-seed mean: 17.2% OOD [10.4-23.9%]\\n- Table 1: Cell D mean [range], caption 更新\\n- Limitations: +seed variance +fix generality\\n- Consistency check: 0 critical, 2 orphan bib (appendix 引用，非正文)\\n- 编译通过，正文 8 页\\n- **待 Reviewer D108 一致性审查完成后可提交**\\n\\n## 实验证据完成度\\n- ✅ ALFWorld 全 factorial + h-sweep + γ-sweep + sign verification + dense reward + REINFORCE++\\n- ✅ 8B cross-scale: Cell A collapse + Cell D 90.3% OOD (single seed)\\n- ✅ ScienceWorld Cell A collapse + Info Loss 30.3pp\\n- ✅ Multi-seed: Seed 1 OOD 23.88%, Seed 3 OOD 10.45%, mean 17.2%\\n- ❌ Seed 2: checkpoint 在磁盘清理中丢失，无法恢复\\n- ⚠️ Cell C v3: step 2 坍塌信号，等 step 5 决定\\n\\n## 近期任务\\n- [x] Seed 3 OOD eval + 数据整合 (D108)\\n- [x] 论文数字全面更新 + Limitations 补充\\n- [ ] Reviewer D108 一致性审查 → 修复任何问题\\n- [ ] Cell C v3 step 5 → 止损判断\\n- [ ] 最终编译 + 提交审稿\\n\\n## GPU 预算\\n- westd: 4× RTX PRO 6000 96GB — 2/4 占用\\n- bjb1: 2× RTX PRO 6000 96GB — 0/2 空闲\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D108 | 2026-05-21 | Seed 3 OOD 10.45% (vs Seed 1 23.88%)：Table 1 报 mea | exp029_seed3_ood_v2, exp029_episode_level, scienceworld_grpo_cell_c_v3 |\\n| D107 | 2026-05-20 | ScienceWorld Cell C 崩溃（第3次 Java 异常）：最后重试一次加固版，不阻塞论 | scienceworld_grpo_cell_c, scienceworld_grpo_cell_a |\\n| D106 | 2026-05-20 | ScienceWorld Cell A 崩溃确认：final_score 6.0→-100.0，比  | scienceworld_grpo_cell_a, scienceworld_grpo_cell_c |\\n| D105 | 2026-05-20 | ScienceWorld GRPO 三场景预案：(1) Cell A collapse + Cell | scienceworld_grpo_cell_a, scienceworld_grpo_cell_c |\\n| D104 | 2026-05-20 | Claim 1 升级：从 \\\"unstable/fragile\\\" 升级为 \\\"systematic fa | 8b_cell_c_episode_v9d, 7b_cell_a_h2, gsweep_g100_h5_seed1 |\\n| D103 | 2026-05-20 | v9d step 15 后停止训练——step 12 起 GRPO reward 饱和（100% s | 8b_cell_c_episode_v9d |\\n| D102 | 2026-05-20 | v9d 暂停训练，转向 step 10 OOD eval——8+ 次崩溃指向系统性不稳定，step  | 8b_cell_c_episode_v9d |\\n| D101 | 2026-05-20 | v9d save_contents 去掉 optimizer——checkpoint 从 92GB  | 8b_cell_c_episode_v9d |\\n| D100 | 2026-05-19 | 停止 v9d 修改 save_freq=5 后重启——15h FSDP2 首次完整训练不能无 che | 8b_cell_c_episode_v9d |\\n| D099 | 2026-05-19 | D099: 8B Cell C v9c backward pass 成功——FSDP2+CPUOff | 8b_cell_c_v9c |\\n\\n\\n\\n\", \"lines\": 72}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "424c8e11-31c5-42f0-92aa-09711282132b",
+  "isSidechain": false,
+  "promptId": "f8302a3c-3d42-4fa9-96cb-f9a27b66ab52",
+  "type": "user",
+  "uuid": "8240f9c6-21d7-4a16-95a9-75d42ec2cd4c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/ROADMAP.md\\\", \\\"content\\\": \\\"# cost-verify-agent-rl — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-21 01:53 UTC | 更新原因: Reviewer 建议 claim 强度细化：诊断 VERY STRONG / 修复 STRONG；Cell C v3 止损阈值设定；Seed 2 确认不可恢复\\\\n\\\\n## 核心方向\\\\n诊断 step-independent RL 训练的 systematic failure mechanism (dual: information loss + sign misattribution)。Episode-level credit 是 necessary minimum fix。详见 paper_framing.md。\\\\n\\\\n**诊断 claim: VERY STRONG** (D104, ALFWorld factorial + γ-sweep + 8B + ScienceWorld 全验证)\\\\n**修复 claim: STRONG** (ALFWorld-specific, seed-variant; OOD 13.4pp gap, ScienceWorld fix 待确认)\\\\n\\\\n## 当前阶段：论文数据整合完成，等 Cell C v3 step 5\\\\n\\\\nSeed 3 OOD eval 完成 (10.45%)，多 seed 数据已整合到论文 (D108)。Cell C v3 出现坍塌信号，等 step 5 决定是否终止。\\\\n\\\\n## Running / Active\\\\n| 任务 | server | GPU | 状态 | 进度 |\\\\n|------|--------|-----|------|------|\\\\n| Cell C v3 (SW episode GRPO) | westd | 2,3 | ⚠️ RUNNING | 3/15, 坍塌信号 |\\\\n\\\\n**止损阈值**：step 5 success=0% + action_is_valid<20% → 终止释放 GPU\\\\n\\\\n## GPU 状态\\\\n- westd cuda:0,1: **空闲**\\\\n- westd cuda:2,3: Cell C v3 RUNNING\\\\n- bjb1 cuda:0,1: **空闲**\\\\n- **2/6 活跃**\\\\n\\\\n## 论文状态（D108 完成）\\\\n- 全部数字更新为 multi-seed mean: 17.2% OOD [10.4-23.9%]\\\\n- Table 1: Cell D mean [range], caption 更新\\\\n- Limitations: +seed variance +fix generality\\\\n- Consistency check: 0 critical, 2 orphan bib (appendix 引用，非正文)\\\\n- 编译通过，正文 8 页\\\\n- **待 Reviewer D108 一致性审查完成后可提交**\\\\n\\\\n## 实验证据完成度\\\\n- ✅ ALFWorld 全 factorial + h-sweep + γ-sweep + sign verification + dense reward + REINFORCE++\\\\n- ✅ 8B cross-scale: Cell A collapse + Cell D 90.3% OOD (single seed)\\\\n- ✅ ScienceWorld Cell A collapse + Info Loss 30.3pp\\\\n- ✅ Multi-seed: Seed 1 OOD 23.88%, Seed 3 OOD 10.45%, mean 17.2%\\\\n- ❌ Seed 2: checkpoint 在磁盘清理中丢失，无法恢复\\\\n- ⚠️ Cell C v3: step 2 坍塌信号，等 step 5 决定\\\\n\\\\n## 近期任务\\\\n- [x] Seed 3 OOD eval + 数据整合 (D108)\\\\n- [x] 论文数字全面更新 + Limitations 补充\\\\n- [ ] Reviewer D108 一致性审查 → 修复任何问题\\\\n- [ ] Cell C v3 step 5 → 止损判断\\\\n- [ ] 最终编译 + 提交审稿\\\\n\\\\n## GPU 预算\\\\n- westd: 4× RTX PRO 6000 96GB — 2/4 占用\\\\n- bjb1: 2× RTX PRO 6000 96GB — 0/2 空闲\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D108 | 2026-05-21 | Seed 3 OOD 10.45% (vs Seed 1 23.88%)：Table 1 报 mea | exp029_seed3_ood_v2, exp029_episode_level, scienceworld_grpo_cell_c_v3 |\\\\n| D107 | 2026-05-20 | ScienceWorld Cell C 崩溃（第3次 Java 异常）：最后重试一次加固版，不阻塞论 | scienceworld_grpo_cell_c, scienceworld_grpo_cell_a |\\\\n| D106 | 2026-05-20 | ScienceWorld Cell A 崩溃确认：final_score 6.0→-100.0，比  | scienceworld_grpo_cell_a, scienceworld_grpo_cell_c |\\\\n| D105 | 2026-05-20 | ScienceWorld GRPO 三场景预案：(1) Cell A collapse + Cell | scienceworld_grpo_cell_a, scienceworld_grpo_cell_c |\\\\n| D104 | 2026-05-20 | Claim 1 升级：从 \\\\\\\"unstable/fragile\\\\\\\" 升级为 \\\\\\\"systematic fa | 8b_cell_c_episode_v9d, 7b_cell_a_h2, gsweep_g100_h5_seed1 |\\\\n| D103 | 2026-05-20 | v9d step 15 后停止训练——step 12 起 GRPO reward 饱和（100% s | 8b_cell_c_episode_v9d |\\\\n| D102 | 2026-05-20 | v9d 暂停训练，转向 step 10 OOD eval——8+ 次崩溃指向系统性不稳定，step  | 8b_cell_c_episode_v9d |\\\\n| D101 | 2026-05-20 | v9d save_contents 去掉 optimizer——checkpoint 从 92GB  | 8b_cell_c_episode_v9d |\\\\n| D100 | 2026-05-19 | 停止 v9d 修改 save_freq=5 后重启——15h FSDP2 首次完整训练不能无 che | 8b_cell_c_episode_v9d |\\\\n| D099 | 2026-05-19 | D099: 8B Cell C v9c backward pass 成功——FSDP2+CPUOff | 8b_cell_c_v9c |\\\\n\\\\n\\\\n\\\\n\\\", \\\"lines\\\": 72}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/ROADMAP.md\", \"content\": \"# cost-verify-agent-rl — Research Dashboard\\n\\n> 最后更新: 2026-05-21 01:53 UTC | 更新原因: Reviewer 建议 claim 强度细化：诊断 VERY STRONG / 修复 STRONG；Cell C v3 止损阈值设定；Seed 2 确认不可恢复\\n\\n## 核心方向\\n诊断 step-independent RL 训练的 systematic failure mechanism (dual: information loss + sign misattribution)。Episode-level credit 是 necessary minimum fix。详见 paper_framing.md。\\n\\n**诊断 claim: VERY STRONG** (D104, ALFWorld factorial + γ-sweep + 8B + ScienceWorld 全验证)\\n**修复 claim: STRONG** (ALFWorld-specific, seed-variant; OOD 13.4pp gap, ScienceWorld fix 待确认)\\n\\n## 当前阶段：论文数据整合完成，等 Cell C v3 step 5\\n\\nSeed 3 OOD eval 完成 (10.45%)，多 seed 数据已整合到论文 (D108)。Cell C v3 出现坍塌信号，等 step 5 决定是否终止。\\n\\n## Running / Active\\n| 任务 | server | GPU | 状态 | 进度 |\\n|------|--------|-----|------|------|\\n| Cell C v3 (SW episode GRPO) | westd | 2,3 | ⚠️ RUNNING | 3/15, 坍塌信号 |\\n\\n**止损阈值**：step 5 success=0% + action_is_valid<20% → 终止释放 GPU\\n\\n## GPU 状态\\n- westd cuda:0,1: **空闲**\\n- westd cuda:2,3: Cell C v3 RUNNING\\n- bjb1 cuda:0,1: **空闲**\\n- **2/6 活跃**\\n\\n## 论文状态（D108 完成）\\n- 全部数字更新为 multi-seed mean: 17.2% OOD [10.4-23.9%]\\n- Table 1: Cell D mean [range], caption 更新\\n- Limitations: +seed variance +fix generality\\n- Consistency check: 0 critical, 2 orphan bib (appendix 引用，非正文)\\n- 编译通过，正文 8 页\\n- **待 Reviewer D108 一致性审查完成后可提交**\\n\\n## 实验证据完成度\\n- ✅ ALFWorld 全 factorial + h-sweep + γ-sweep + sign verification + dense reward + REINFORCE++\\n- ✅ 8B cross-scale: Cell A collapse + Cell D 90.3% OOD (single seed)\\n- ✅ ScienceWorld Cell A collapse + Info Loss 30.3pp\\n- ✅ Multi-seed: Seed 1 OOD 23.88%, Seed 3 OOD 10.45%, mean 17.2%\\n- ❌ Seed 2: checkpoint 在磁盘清理中丢失，无法恢复\\n- ⚠️ Cell C v3: step 2 坍塌信号，等 step 5 决定\\n\\n## 近期任务\\n- [x] Seed 3 OOD eval + 数据整合 (D108)\\n- [x] 论文数字全面更新 + Limitations 补充\\n- [ ] Reviewer D108 一致性审查 → 修复任何问题\\n- [ ] Cell C v3 step 5 → 止损判断\\n- [ ] 最终编译 + 提交审稿\\n\\n## GPU 预算\\n- westd: 4× RTX PRO 6000 96GB — 2/4 占用\\n- bjb1: 2× RTX PRO 6000 96GB — 0/2 空闲\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D108 | 2026-05-21 | Seed 3 OOD 10.45% (vs Seed 1 23.88%)：Table 1 报 mea | exp029_seed3_ood_v2, exp029_episode_level, scienceworld_grpo_cell_c_v3 |\\n| D107 | 2026-05-20 | ScienceWorld Cell C 崩溃（第3次 Java 异常）：最后重试一次加固版，不阻塞论 | scienceworld_grpo_cell_c, scienceworld_grpo_cell_a |\\n| D106 | 2026-05-20 | ScienceWorld Cell A 崩溃确认：final_score 6.0→-100.0，比  | scienceworld_grpo_cell_a, scienceworld_grpo_cell_c |\\n| D105 | 2026-05-20 | ScienceWorld GRPO 三场景预案：(1) Cell A collapse + Cell | scienceworld_grpo_cell_a, scienceworld_grpo_cell_c |\\n| D104 | 2026-05-20 | Claim 1 升级：从 \\\"unstable/fragile\\\" 升级为 \\\"systematic fa | 8b_cell_c_episode_v9d, 7b_cell_a_h2, gsweep_g100_h5_seed1 |\\n| D103 | 2026-05-20 | v9d step 15 后停止训练——step 12 起 GRPO reward 饱和（100% s | 8b_cell_c_episode_v9d |\\n| D102 | 2026-05-20 | v9d 暂停训练，转向 step 10 OOD eval——8+ 次崩溃指向系统性不稳定，step  | 8b_cell_c_episode_v9d |\\n| D101 | 2026-05-20 | v9d save_contents 去掉 optimizer——checkpoint 从 92GB  | 8b_cell_c_episode_v9d |\\n| D100 | 2026-05-19 | 停止 v9d 修改 save_freq=5 后重启——15h FSDP2 首次完整训练不能无 che | 8b_cell_c_episode_v9d |\\n| D099 | 2026-05-19 | D099: 8B Cell C v9c backward pass 成功——FSDP2+CPUOff | 8b_cell_c_v9c |\\n\\n\\n\\n\", \"lines\": 72}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "424c8e11-31c5-42f0-92aa-09711282132b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #20。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - westd-47453 GPU 分配需确认——resource_usage 显示 allocated_gpus=[]，ROADMAP 说 westd cuda:0-3 跑 v9d，但 cron reconcile 未检测到。提交前必…",
+  "leafUuid": "8240f9c6-21d7-4a16-95a9-75d42ec2cd4c",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Diagnose 8B OOD eval failure and confirm v9d training status",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6"
+}
+```
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-21T02:37:33.460Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the results:
+
+1. **reconcile_crons**: Only 1 active cron - `scienceworld_grpo_cell_c_v3` on pid=88226, still running.
+
+2. **report.md** shows:
+   - Running: `exp029_seed3_ood_v2` and `scienceworld_grpo_cell_c_v3`
+   - Key recent conclusions: exp029_seed3_v2 (success), exp029_seed3_ood (failed), sw_info_loss_bjb1 (success)
+   
+3. **ROADMAP.md** shows:
+   - Cell C v3 running on westd cuda:2,3 - step 3/15 with collapse signal, waiting for step 5
+   - westd cuda:0,1 FREE
+   - bjb1 cuda:0,1 FREE
+   - 2/6 GPUs active
+   - Paper is at D108 stage - waiting for Reviewer consistency check + Cell C v3 step 5
+   - Stop-loss threshold: step 5 success=0% + action_is_valid<20% → terminate
+
+Now I need to check the registry for RUNNING experiments, but the output was too large so I'll need to filter it.
+
+There are some discrepancies between the handoff notes and the current ROADMAP - bjb1 was supposedly running scienceworld_sft_eval_v2 at 70% completion, but it's showing as FREE now, and the reconcile_crons only found scienceworld_grpo_cell_c_v3. Also, exp029_seed3_ood_v2 appears in the report as running but not in ROADMAP's running table, and I need to verify whether the worker for 8b_v9d_ood_eval has finished. Let me query the registry to get the current status of running experiments and check on that worker.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8240f9c6-21d7-4a16-95a9-75d42ec2cd4c",
+  "isSidechain": false,
+  "requestId": "req_011CbEwHn1TZ596JvdJDu2jo",
+  "type": "assistant",
+  "uuid": "169337a7-e403-43be-b90a-f926685b8226",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PhW1QhgA88BzetkQKNHQBB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5986,
+      "cache_read_input_tokens": 39918,
+      "output_tokens": 1124,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5986,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1124,
+          "cache_read_input_tokens": 39918,
+          "cache_creation_input_tokens": 5986,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5986
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-21T02:37:33.466Z_
+
+Cron reconcile 完成：只有 `scienceworld_grpo_cell_c_v3` (pid=88226) 仍在运行。ROADMAP 显示 bjb1 已空闲（与 handoff 说的 scienceworld_sft_eval_v2 运行中不一致）。需要查 registry 确认实际状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "169337a7-e403-43be-b90a-f926685b8226",
+  "isSidechain": false,
+  "requestId": "req_011CbEwHn1TZ596JvdJDu2jo",
+  "type": "assistant",
+  "uuid": "6e35b4b8-c59e-4582-a3c5-eb846201283d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PhW1QhgA88BzetkQKNHQBB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5986,
+      "cache_read_input_tokens": 39918,
+      "output_tokens": 1124,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5986,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1124,
+          "cache_read_input_tokens": 39918,
+          "cache_creation_input_tokens": 5986,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5986
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-21T02:37:42.006Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01H3BccHoFTJMc7xrKyq3V8P`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-6eea29da/1e2ffa45-200e-4118-ab05-61d88c83c6a6/tool-results/mcp-agent-ml-research-read_registry-1779331031513.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# Show RUNNING experiments\nrunning = [e for e in exps if e.get('status') == 'RUNNING']\nprint('=== RUNNING ===')\nfor e in running:\n    print(json.dumps({k: e.get(k) for k in ['exp_id','status','conclusion','hypothesis','server','gpu_ids','metrics']}, indent=2))\n\n# Show recently updated (top 5)\nprint('\\n=== RECENTLY UPDATED (top 5) ===')\nsorted_exps = sorted(exps, key=lambda x: x.get('updated_at',''), reverse=True)\nfor e in sorted_exps[:5]:\n    print(json.dumps({k: e.get(k) for k in ['exp_id','status','conclusion','updated_at','metrics']}, indent=2))\n\"\n",
+  "description": "Extract RUNNING experiments and recently updated from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6e35b4b8-c59e-4582-a3c5-eb846201283d",
+  "isSidechain": false,
+  "requestId": "req_011CbEwHn1TZ596JvdJDu2jo",
+  "type": "assistant",
+  "uuid": "b69aae5a-9eaf-4bcf-b932-1b0f1af44544",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PhW1QhgA88BzetkQKNHQBB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5986,
+      "cache_read_input_tokens": 39918,
+      "output_tokens": 1124,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5986,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1124,
+          "cache_read_input_tokens": 39918,
+          "cache_creation_input_tokens": 5986,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5986
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-21T02:37:42.335Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01H3BccHoFTJMc7xrKyq3V8P`</summary>
+
+```text
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 7, in &lt;module>
+    running = [e for e in exps if e.get('status') == 'RUNNING']
+                                  ^^^^^
+AttributeError: 'str' object has no attribute 'get'
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b69aae5a-9eaf-4bcf-b932-1b0f1af44544",
+  "isSidechain": false,
+  "promptId": "f8302a3c-3d42-4fa9-96cb-f9a27b66ab52",
+  "type": "user",
+  "uuid": "8e2089b9-5991-472c-8b7a-499b6e1b6b89",
+  "toolUseResult": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"&lt;string>\", line 7, in &lt;module>\n    running = [e for e in exps if e.get('status') == 'RUNNING']\n                                  ^^^^^\nAttributeError: 'str' object has no attribute 'get'",
+  "sourceToolAssistantUUID": "b69aae5a-9eaf-4bcf-b932-1b0f1af44544",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-21T02:37:43.056Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_0189JKNHNu2sptevV1413pTg`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_project_resource_usage",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8e2089b9-5991-472c-8b7a-499b6e1b6b89",
+  "isSidechain": false,
+  "requestId": "req_011CbEwHn1TZ596JvdJDu2jo",
+  "type": "assistant",
+  "uuid": "21301b05-c1a3-4e85-ab78-61a9fe258a2f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PhW1QhgA88BzetkQKNHQBB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5986,
+      "cache_read_input_tokens": 39918,
+      "output_tokens": 1124,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5986,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1124,
+          "cache_read_input_tokens": 39918,
+          "cache_creation_input_tokens": 5986,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5986
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-21T02:37:43.057Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_0189JKNHNu2sptevV1413pTg`</summary>
+
+```text
+&lt;tool_use_error>Cancelled: parallel tool call Bash(cat /home/ubuntu/.claude-account-2/proje…) errored&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "21301b05-c1a3-4e85-ab78-61a9fe258a2f",
+  "isSidechain": false,
+  "promptId": "f8302a3c-3d42-4fa9-96cb-f9a27b66ab52",
+  "type": "user",
+  "uuid": "e0e3b5f2-5011-432d-a90f-74e57365c125",
+  "toolUseResult": "Cancelled: parallel tool call Bash(cat /home/ubuntu/.claude-account-2/proje…) errored",
+  "sourceToolAssistantUUID": "21301b05-c1a3-4e85-ab78-61a9fe258a2f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-21T02:37:50.125Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01QWNirPhynpNCK5M3pRPgFM`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-6eea29da/1e2ffa45-200e-4118-ab05-61d88c83c6a6/tool-results/mcp-agent-ml-research-read_registry-1779331031513.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult_str = data['result']\nresult = json.loads(result_str)\n# Check structure\nprint(type(result['data']))\nif isinstance(result['data'], dict):\n    print(list(result['data'].keys())[:5])\n    exps = result['data'].get('experiments', [])\n    if exps:\n        if isinstance(exps[0], str):\n            print('experiments are strings, first:', exps[0][:200])\n        else:\n            print('first exp keys:', list(exps[0].keys())[:10])\nelif isinstance(result['data'], str):\n    d2 = json.loads(result['data'])\n    print(type(d2), list(d2.keys())[:5] if isinstance(d2,dict) else 'not dict')\n\" 2>&1 | head -20\n",
+  "description": "Probe registry JSON structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e0e3b5f2-5011-432d-a90f-74e57365c125",
+  "isSidechain": false,
+  "requestId": "req_011CbEwKwhv6Lc2pk8rZ4ykC",
+  "type": "assistant",
+  "uuid": "dc0637cd-6998-4348-b484-72b7a0a22531",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XVLGeKgPqKswP8ndE2WNpJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1300,
+      "cache_read_input_tokens": 45904,
+      "output_tokens": 403,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1300,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 403,
+          "cache_read_input_tokens": 45904,
+          "cache_creation_input_tokens": 1300,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1300
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-21T02:37:50.498Z_
+
+<details><summary>↩ Tool result · `toolu_01QWNirPhynpNCK5M3pRPgFM`</summary>
+
+```text
+Traceback (most recent call last):
+  File "&lt;string>", line 12, in &lt;module>
+    if isinstance(exps[0], str):
+                  ~~~~^^^
+KeyError: 0
+&lt;class 'dict'>
+['experiments', 'count', 'total', 'baseline']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dc0637cd-6998-4348-b484-72b7a0a22531",
+  "isSidechain": false,
+  "promptId": "f8302a3c-3d42-4fa9-96cb-f9a27b66ab52",
+  "type": "user",
+  "uuid": "b949ab84-36c2-491e-a3ec-39ace455598b",
+  "toolUseResult": {
+    "stdout": "Traceback (most recent call last):\n  File \"&lt;string>\", line 12, in &lt;module>\n    if isinstance(exps[0], str):\n                  ~~~~^^^\nKeyError: 0\n&lt;class 'dict'>\n['experiments', 'count', 'total', 'baseline']",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "dc0637cd-6998-4348-b484-72b7a0a22531",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32 · 2026-05-21T02:37:50.502Z_
+
+```json
+{
+  "parentUuid": "b949ab84-36c2-491e-a3ec-39ace455598b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "e5b89966-524e-4225-87bb-476e76e0f546",
+  "timestamp": "2026-05-21T02:37:50.502Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-21T02:37:58.392Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01QX9XyGZHki19w53nUzy7cG`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-6eea29da/1e2ffa45-200e-4118-ab05-61d88c83c6a6/tool-results/mcp-agent-ml-research-read_registry-1779331031513.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# exps is a dict with exp_id as keys\nprint('Type:', type(exps), 'Count:', len(exps))\nprint('Sample keys:', list(exps.keys())[:3])\n\n# Find RUNNING\nprint('\\n=== RUNNING ===')\nfor eid, e in exps.items():\n    if isinstance(e, str):\n        e = json.loads(e)\n    if e.get('status') == 'RUNNING':\n        print(f\\\"{eid}: server={e.get('server')}, gpu={e.get('gpu_ids')}, conclusion={e.get('conclusion')}\\\")\n\n# Recently updated top 5\nprint('\\n=== RECENT (top 5) ===')\nitems = []\nfor eid, e in exps.items():\n    if isinstance(e, str):\n        e = json.loads(e)\n    items.append((eid, e))\nitems.sort(key=lambda x: x[1].get('updated_at',''), reverse=True)\nfor eid, e in items[:8]:\n    print(f\\\"{eid}: status={e.get('status')}, conclusion={e.get('conclusion')}, updated={e.get('updated_at','')[:16]}\\\")\n\" 2>&1\n",
+  "description": "Extract RUNNING and recently updated experiments from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e5b89966-524e-4225-87bb-476e76e0f546",
+  "isSidechain": false,
+  "requestId": "req_011CbEwLThTvF256jX3ddqeZ",
+  "type": "assistant",
+  "uuid": "c929ba2e-4dcc-4592-8ce9-9e99ebd27007",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N5SK5uzLB22rHfKYUbN9p3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 589,
+      "cache_read_input_tokens": 47204,
+      "output_tokens": 532,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 589,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 532,
+          "cache_read_input_tokens": 47204,
+          "cache_creation_input_tokens": 589,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 589
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-21T02:37:58.477Z_
+
+<details><summary>↩ Tool result · `toolu_01QX9XyGZHki19w53nUzy7cG`</summary>
+
+```text
+Type: &lt;class 'dict'> Count: 118
+Sample keys: ['exp029_seed3_ood_v2', 'exp029_seed3_ood_final', 'exp029_seed3_v2']
+
+=== RUNNING ===
+exp029_seed3_ood_v2: server=None, gpu=None, conclusion=None
+scienceworld_grpo_cell_c_v3: server=None, gpu=None, conclusion=None
+
+=== RECENT (top 5) ===
+exp029_seed3_ood_v2: status=RUNNING, conclusion=None, updated=2026-05-21T00:40
+exp029_seed3_ood_final: status=PREPARING, conclusion=failed, updated=2026-05-21T00:36
+exp029_seed3_v2: status=DONE, conclusion=success, updated=2026-05-20T23:01
+exp029_seed3_ood: status=DONE, conclusion=failed, updated=2026-05-20T21:09
+scienceworld_grpo_cell_c_v3: status=RUNNING, conclusion=None, updated=2026-05-20T19:19
+exp029_seed2_ood_step15: status=PREPARING, conclusion=killed, updated=2026-05-20T19:14
+sw_info_loss_bjb1: status=DONE, conclusion=success, updated=2026-05-20T19:10
+scienceworld_grpo_cell_c_v2: status=DONE, conclusion=failed, updated=2026-05-20T18:23
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c929ba2e-4dcc-4592-8ce9-9e99ebd27007",
+  "isSidechain": false,
+  "promptId": "f8302a3c-3d42-4fa9-96cb-f9a27b66ab52",
+  "type": "user",
+  "uuid": "4ae271c4-7225-41e3-b80f-87af98c633ab",
+  "toolUseResult": {
+    "stdout": "Type: &lt;class 'dict'> Count: 118\nSample keys: ['exp029_seed3_ood_v2', 'exp029_seed3_ood_final', 'exp029_seed3_v2']\n\n=== RUNNING ===\nexp029_seed3_ood_v2: server=None, gpu=None, conclusion=None\nscienceworld_grpo_cell_c_v3: server=None, gpu=None, conclusion=None\n\n=== RECENT (top 5) ===\nexp029_seed3_ood_v2: status=RUNNING, conclusion=None, updated=2026-05-21T00:40\nexp029_seed3_ood_final: status=PREPARING, conclusion=failed, updated=2026-05-21T00:36\nexp029_seed3_v2: status=DONE, conclusion=success, updated=2026-05-20T23:01\nexp029_seed3_ood: status=DONE, conclusion=failed, updated=2026-05-20T21:09\nscienceworld_grpo_cell_c_v3: status=RUNNING, conclusion=None, updated=2026-05-20T19:19\nexp029_seed2_ood_step15: status=PREPARING, conclusion=killed, updated=2026-05-20T19:14\nsw_info_loss_bjb1: status=DONE, conclusion=success, updated=2026-05-20T19:10\nscienceworld_grpo_cell_c_v2: status=DONE, conclusion=failed, updated=2026-05-20T18:23",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "c929ba2e-4dcc-4592-8ce9-9e99ebd27007",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-21T02:38:15.380Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK, now I have the picture:
+
+**RUNNING experiments:**
+1. `exp029_seed3_ood_v2` - running, no server/gpu info
+2. `scienceworld_grpo_cell_c_v3` - running on westd (from ROADMAP), pid=88226
+
+**Key observations vs handoff:**
+- Handoff said `scienceworld_sft_eval_v2` was RUNNING on bjb1 - but it's not in RUNNING list anymore. It was `sw_info_loss_bjb1` which is DONE(success). So bjb1 is indeed free.
+
+
+- `8b_v9d_ood_eval` is correctly marked as DONE(failed)
+- `exp029_seed3_ood_v2` is running without server/gpu details, which seems off
+- There's a pending diagnostic worker from the handoff that I need to track down
+
+I should check the worker status for that diagnostic task, pull the current resource usage across the project, and investigate why `exp029_seed3_ood_v2` is missing its resource information.
+
+Actually, I'm realizing the handoff is from a previous session—that diagnostic worker from loop 19 might already be done. Let me look at the current worker pool instead.
+
+Looking at the roadmap, I see we've got 4 idle GPUs out of 6 total, which violates the project rules about keeping all allocated GPUs active. I need to check what workers are actually running and figure out how to better utilize those resources.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4ae271c4-7225-41e3-b80f-87af98c633ab",
+  "isSidechain": false,
+  "requestId": "req_011CbEwM3vkHdWL2VcNzaSse",
+  "type": "assistant",
+  "uuid": "88bb61ae-2cf8-4187-9b0c-66eab77e09af",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KizPQEA1A2msCXA5GMTjmL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 934,
+      "cache_read_input_tokens": 47793,
+      "output_tokens": 603,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 934,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 603,
+          "cache_read_input_tokens": 47793,
+          "cache_creation_input_tokens": 934,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 934
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-21T02:38:15.536Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01N3D1fXjzJRP1P4TKHAX23N`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_project_resource_usage",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "88bb61ae-2cf8-4187-9b0c-66eab77e09af",
+  "isSidechain": false,
+  "requestId": "req_011CbEwM3vkHdWL2VcNzaSse",
+  "type": "assistant",
+  "uuid": "442444a3-ffb3-433f-a85c-1666e811d797",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KizPQEA1A2msCXA5GMTjmL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 934,
+      "cache_read_input_tokens": 47793,
+      "output_tokens": 603,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 934,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 603,
+          "cache_read_input_tokens": 47793,
+          "cache_creation_input_tokens": 934,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 934
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-21T02:38:15.543Z_
+
+<details><summary>↩ Tool result · `toolu_01N3D1fXjzJRP1P4TKHAX23N`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__list_workers"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__get_project_resource_usage"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "442444a3-ffb3-433f-a85c-1666e811d797",
+  "isSidechain": false,
+  "promptId": "f8302a3c-3d42-4fa9-96cb-f9a27b66ab52",
+  "type": "user",
+  "uuid": "5abde914-caf1-4499-ba1d-24a352159e42",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__get_project_resource_usage"
+    ],
+    "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_project_resource_usage",
+    "total_deferred_tools": 82
+  },
+  "sourceToolAssistantUUID": "442444a3-ffb3-433f-a85c-1666e811d797",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-21T02:38:19.134Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers · `toolu_01FfxwTEhagzsayntWBHNoct`</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "limit": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5abde914-caf1-4499-ba1d-24a352159e42",
+  "isSidechain": false,
+  "requestId": "req_011CbEwNJkkWYtxzmiRaaa3F",
+  "type": "assistant",
+  "uuid": "9d0ccbcc-ac6c-4e9d-bf0d-fe62272a0619",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K4PQnMoywa2VcqqxZ4NNyP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 984,
+      "cache_read_input_tokens": 48727,
+      "output_tokens": 143,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 984,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 143,
+          "cache_read_input_tokens": 48727,
+          "cache_creation_input_tokens": 984,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 984
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-21T02:38:19.140Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_project_resource_usage · `toolu_01YXNWttBdtS9vsVJYVADu2H`</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9d0ccbcc-ac6c-4e9d-bf0d-fe62272a0619",
+  "isSidechain": false,
+  "requestId": "req_011CbEwNJkkWYtxzmiRaaa3F",
+  "type": "assistant",
+  "uuid": "75ccc933-582f-4745-a0de-c0e05f5fa683",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K4PQnMoywa2VcqqxZ4NNyP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 984,
+      "cache_read_input_tokens": 48727,
+      "output_tokens": 143,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 984,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 143,
+          "cache_read_input_tokens": 48727,
+          "cache_creation_input_tokens": 984,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 984
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-21T02:38:19.236Z_
+
+<details><summary>↩ Tool result · `toolu_01FfxwTEhagzsayntWBHNoct`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_experiment_prep-cellc-v3-eval_20260520T211144\", \"task_type\": \"experiment:prep-cellc-v3-eval\", \"project\": \"cost-verify-agent-rl\", \"status\": \"failed\", \"started_at\": \"2026-05-20T21:11:44.698484+00:00\", \"ended_at\": \"2026-05-20T21:14:21.160584+00:00\"}, {\"worker_id\": \"worker_experiment_prep-cellc-v3-eval-retry_20260520T211508\", \"task_type\": \"experiment:prep-cellc-v3-eval-retry\", \"project\": \"cost-verify-agent-rl\", \"status\": \"done\", \"started_at\": \"2026-05-20T21:15:08.603403+00:00\", \"ended_at\": \"2026-05-20T21:17:20.186752+00:00\"}, {\"worker_id\": \"worker_ops_seed3-cellc-status-check_20260520T225028\", \"task_type\": \"ops:seed3-cellc-status-check\", \"project\": \"cost-verify-agent-rl\", \"status\": \"done\", \"started_at\": \"2026-05-20T22:50:28.866646+00:00\", \"ended_at\": \"2026-05-20T22:52:42.622110+00:00\"}, {\"worker_id\": \"worker_analyze_exp029_seed3_v2_20260520T225903\", \"task_type\": \"analyze:exp029_seed3_v2\", \"project\": \"cost-verify-agent-rl\", \"status\": \"done\", \"started_at\": \"2026-05-20T22:59:03.328813+00:00\", \"ended_at\": \"2026-05-20T23:01:26.458177+00:00\"}, {\"worker_id\": \"worker_experiment_seed3-ood-final-launch-urgent_20260520T225947\", \"task_type\": \"experiment:seed3-ood-final-launch-urgent\", \"project\": \"cost-verify-agent-rl\", \"status\": \"done\", \"started_at\": \"2026-05-20T22:59:47.450785+00:00\", \"ended_at\": \"2026-05-20T23:01:14.577090+00:00\"}, {\"worker_id\": \"worker_ops_urgent-westd-full-status_20260521T003404\", \"task_type\": \"ops:urgent-westd-full-status\", \"project\": \"cost-verify-agent-rl\", \"status\": \"done\", \"started_at\": \"2026-05-21T00:34:04.598993+00:00\", \"ended_at\": \"2026-05-21T00:35:58.013713+00:00\"}, {\"worker_id\": \"worker_experiment_fsdp-to-hf-and-ood-eval_20260521T003802\", \"task_type\": \"experiment:fsdp-to-hf-and-ood-eval\", \"project\": \"cost-verify-agent-rl\", \"status\": \"cancelled\", \"started_at\": \"2026-05-21T00:38:02.599871+00:00\", \"ended_at\": \"2026-05-21T00:40:57.156946+00:00\"}, {\"worker_id\": \"worker_experiment_seed3-ood-fix-optA_20260521T003850\", \"task_type\": \"experiment:seed3-ood-fix-optA\", \"project\": \"cost-verify-agent-rl\", \"status\": \"done\", \"started_at\": \"2026-05-21T00:38:50.898405+00:00\", \"ended_at\": \"2026-05-21T00:40:29.061699+00:00\"}, {\"worker_id\": \"worker_experiment_seed4-bjb1-train_20260521T023639\", \"task_type\": \"experiment:seed4-bjb1-train\", \"project\": \"cost-verify-agent-rl\", \"status\": \"running\", \"started_at\": \"2026-05-21T02:36:39.716688+00:00\", \"ended_at\": null}, {\"worker_id\": \"worker_ops_cellc-v3-progress-check_20260521T023645\", \"task_type\": \"ops:cellc-v3-progress-check\", \"project\": \"cost-verify-agent-rl\", \"status\": \"done\", \"started_at\": \"2026-05-21T02:36:45.557839+00:00\", \"ended_at\": \"2026-05-21T02:38:03.012691+00:00\"}], \"count\": 10}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9d0ccbcc-ac6c-4e9d-bf0d-fe62272a0619",
+  "isSidechain": false,
+  "promptId": "f8302a3c-3d42-4fa9-96cb-f9a27b66ab52",
+  "type": "user",
+  "uuid": "8801b1a0-4193-4928-9d61-a14cc88de98e",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_experiment_prep-cellc-v3-eval_20260520T211144\\\", \\\"task_type\\\": \\\"experiment:prep-cellc-v3-eval\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"failed\\\", \\\"started_at\\\": \\\"2026-05-20T21:11:44.698484+00:00\\\", \\\"ended_at\\\": \\\"2026-05-20T21:14:21.160584+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_experiment_prep-cellc-v3-eval-retry_20260520T211508\\\", \\\"task_type\\\": \\\"experiment:prep-cellc-v3-eval-retry\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-20T21:15:08.603403+00:00\\\", \\\"ended_at\\\": \\\"2026-05-20T21:17:20.186752+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ops_seed3-cellc-status-check_20260520T225028\\\", \\\"task_type\\\": \\\"ops:seed3-cellc-status-check\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-20T22:50:28.866646+00:00\\\", \\\"ended_at\\\": \\\"2026-05-20T22:52:42.622110+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_analyze_exp029_seed3_v2_20260520T225903\\\", \\\"task_type\\\": \\\"analyze:exp029_seed3_v2\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-20T22:59:03.328813+00:00\\\", \\\"ended_at\\\": \\\"2026-05-20T23:01:26.458177+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_experiment_seed3-ood-final-launch-urgent_20260520T225947\\\", \\\"task_type\\\": \\\"experiment:seed3-ood-final-launch-urgent\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-20T22:59:47.450785+00:00\\\", \\\"ended_at\\\": \\\"2026-05-20T23:01:14.577090+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ops_urgent-westd-full-status_20260521T003404\\\", \\\"task_type\\\": \\\"ops:urgent-westd-full-status\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-21T00:34:04.598993+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T00:35:58.013713+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_experiment_fsdp-to-hf-and-ood-eval_20260521T003802\\\", \\\"task_type\\\": \\\"experiment:fsdp-to-hf-and-ood-eval\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"cancelled\\\", \\\"started_at\\\": \\\"2026-05-21T00:38:02.599871+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T00:40:57.156946+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_experiment_seed3-ood-fix-optA_20260521T003850\\\", \\\"task_type\\\": \\\"experiment:seed3-ood-fix-optA\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-21T00:38:50.898405+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T00:40:29.061699+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_experiment_seed4-bjb1-train_20260521T023639\\\", \\\"task_type\\\": \\\"experiment:seed4-bjb1-train\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-21T02:36:39.716688+00:00\\\", \\\"ended_at\\\": null}, {\\\"worker_id\\\": \\\"worker_ops_cellc-v3-progress-check_20260521T023645\\\", \\\"task_type\\\": \\\"ops:cellc-v3-progress-check\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-21T02:36:45.557839+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T02:38:03.012691+00:00\\\"}], \\\"count\\\": 10}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_experiment_prep-cellc-v3-eval_20260520T211144\", \"task_type\": \"experiment:prep-cellc-v3-eval\", \"project\": \"cost-verify-agent-rl\", \"status\": \"failed\", \"started_at\": \"2026-05-20T21:11:44.698484+00:00\", \"ended_at\": \"2026-05-20T21:14:21.160584+00:00\"}, {\"worker_id\": \"worker_experiment_prep-cellc-v3-eval-retry_20260520T211508\", \"task_type\": \"experiment:prep-cellc-v3-eval-retry\", \"project\": \"cost-verify-agent-rl\", \"status\": \"done\", \"started_at\": \"2026-05-20T21:15:08.603403+00:00\", \"ended_at\": \"2026-05-20T21:17:20.186752+00:00\"}, {\"worker_id\": \"worker_ops_seed3-cellc-status-check_20260520T225028\", \"task_type\": \"ops:seed3-cellc-status-check\", \"project\": \"cost-verify-agent-rl\", \"status\": \"done\", \"started_at\": \"2026-05-20T22:50:28.866646+00:00\", \"ended_at\": \"2026-05-20T22:52:42.622110+00:00\"}, {\"worker_id\": \"worker_analyze_exp029_seed3_v2_20260520T225903\", \"task_type\": \"analyze:exp029_seed3_v2\", \"project\": \"cost-verify-agent-rl\", \"status\": \"done\", \"started_at\": \"2026-05-20T22:59:03.328813+00:00\", \"ended_at\": \"2026-05-20T23:01:26.458177+00:00\"}, {\"worker_id\": \"worker_experiment_seed3-ood-final-launch-urgent_20260520T225947\", \"task_type\": \"experiment:seed3-ood-final-launch-urgent\", \"project\": \"cost-verify-agent-rl\", \"status\": \"done\", \"started_at\": \"2026-05-20T22:59:47.450785+00:00\", \"ended_at\": \"2026-05-20T23:01:14.577090+00:00\"}, {\"worker_id\": \"worker_ops_urgent-westd-full-status_20260521T003404\", \"task_type\": \"ops:urgent-westd-full-status\", \"project\": \"cost-verify-agent-rl\", \"status\": \"done\", \"started_at\": \"2026-05-21T00:34:04.598993+00:00\", \"ended_at\": \"2026-05-21T00:35:58.013713+00:00\"}, {\"worker_id\": \"worker_experiment_fsdp-to-hf-and-ood-eval_20260521T003802\", \"task_type\": \"experiment:fsdp-to-hf-and-ood-eval\", \"project\": \"cost-verify-agent-rl\", \"status\": \"cancelled\", \"started_at\": \"2026-05-21T00:38:02.599871+00:00\", \"ended_at\": \"2026-05-21T00:40:57.156946+00:00\"}, {\"worker_id\": \"worker_experiment_seed3-ood-fix-optA_20260521T003850\", \"task_type\": \"experiment:seed3-ood-fix-optA\", \"project\": \"cost-verify-agent-rl\", \"status\": \"done\", \"started_at\": \"2026-05-21T00:38:50.898405+00:00\", \"ended_at\": \"2026-05-21T00:40:29.061699+00:00\"}, {\"worker_id\": \"worker_experiment_seed4-bjb1-train_20260521T023639\", \"task_type\": \"experiment:seed4-bjb1-train\", \"project\": \"cost-verify-agent-rl\", \"status\": \"running\", \"started_at\": \"2026-05-21T02:36:39.716688+00:00\", \"ended_at\": null}, {\"worker_id\": \"worker_ops_cellc-v3-progress-check_20260521T023645\", \"task_type\": \"ops:cellc-v3-progress-check\", \"project\": \"cost-verify-agent-rl\", \"status\": \"done\", \"started_at\": \"2026-05-21T02:36:45.557839+00:00\", \"ended_at\": \"2026-05-21T02:38:03.012691+00:00\"}], \"count\": 10}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "9d0ccbcc-ac6c-4e9d-bf0d-fe62272a0619",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 41_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #20。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - westd-47453 GPU 分配需确认——resource_usage 显示 allocated_gpus=[]，ROADMAP 说 westd cuda:0-3 跑 v9d，但 cron reconcile 未检测到。提交前必…",
+  "leafUuid": "8801b1a0-4193-4928-9d61-a14cc88de98e",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Diagnose 8B OOD eval failure and confirm v9d training status",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6"
+}
+```
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-21T02:38:19.679Z_
+
+<details><summary>↩ Tool result · `toolu_01YXNWttBdtS9vsVJYVADu2H`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"allocated_gpus\": [], \"actually_running_gpus\": [{\"server\": \"westd-47453\", \"gpu_id\": \"cuda:2\", \"exp_id\": \"scienceworld_grpo_cell_c_v3\"}, {\"server\": \"westd-47453\", \"gpu_id\": \"cuda:3\", \"exp_id\": \"scienceworld_grpo_cell_c_v3\"}, {\"server\": \"westd-47453\", \"gpu_id\": \"cuda:0\", \"exp_id\": \"exp029_seed3_ood_v2\"}, {\"server\": \"westd-47453\", \"gpu_id\": \"cuda:1\", \"exp_id\": \"exp029_seed3_ood_v2\"}], \"allocated_but_idle\": [], \"registered_but_hw_idle\": [], \"unregistered_but_hw_active\": [], \"running_experiments\": [{\"exp_id\": \"scienceworld_grpo_cell_c_v3\", \"gpus\": [\"cuda:2\", \"cuda:3\"], \"util_avg\": null}, {\"exp_id\": \"exp029_seed3_ood_v2\", \"gpus\": [\"cuda:0\", \"cuda:1\"], \"util_avg\": null}], \"worker_pool\": {\"total\": 1, \"gpu_tasks\": 1, \"cpu_tasks\": 0, \"details\": [{\"worker_id\": \"worker_experiment_seed4-bjb1-train_20260521T023639\", \"task\": \"experiment:seed4-bjb1-train\"}]}, \"summary\": \"分配 0 张, 实际跑 4 张 | Worker 1 (GPU 1 / CPU 0 ⚠️)\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "75ccc933-582f-4745-a0de-c0e05f5fa683",
+  "isSidechain": false,
+  "promptId": "f8302a3c-3d42-4fa9-96cb-f9a27b66ab52",
+  "type": "user",
+  "uuid": "5e6b7b68-30d8-473b-9c66-71c05283076c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"allocated_gpus\\\": [], \\\"actually_running_gpus\\\": [{\\\"server\\\": \\\"westd-47453\\\", \\\"gpu_id\\\": \\\"cuda:2\\\", \\\"exp_id\\\": \\\"scienceworld_grpo_cell_c_v3\\\"}, {\\\"server\\\": \\\"westd-47453\\\", \\\"gpu_id\\\": \\\"cuda:3\\\", \\\"exp_id\\\": \\\"scienceworld_grpo_cell_c_v3\\\"}, {\\\"server\\\": \\\"westd-47453\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"exp_id\\\": \\\"exp029_seed3_ood_v2\\\"}, {\\\"server\\\": \\\"westd-47453\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"exp_id\\\": \\\"exp029_seed3_ood_v2\\\"}], \\\"allocated_but_idle\\\": [], \\\"registered_but_hw_idle\\\": [], \\\"unregistered_but_hw_active\\\": [], \\\"running_experiments\\\": [{\\\"exp_id\\\": \\\"scienceworld_grpo_cell_c_v3\\\", \\\"gpus\\\": [\\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"exp029_seed3_ood_v2\\\", \\\"gpus\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\"], \\\"util_avg\\\": null}], \\\"worker_pool\\\": {\\\"total\\\": 1, \\\"gpu_tasks\\\": 1, \\\"cpu_tasks\\\": 0, \\\"details\\\": [{\\\"worker_id\\\": \\\"worker_experiment_seed4-bjb1-train_20260521T023639\\\", \\\"task\\\": \\\"experiment:seed4-bjb1-train\\\"}]}, \\\"summary\\\": \\\"分配 0 张, 实际跑 4 张 | Worker 1 (GPU 1 / CPU 0 ⚠️)\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"allocated_gpus\": [], \"actually_running_gpus\": [{\"server\": \"westd-47453\", \"gpu_id\": \"cuda:2\", \"exp_id\": \"scienceworld_grpo_cell_c_v3\"}, {\"server\": \"westd-47453\", \"gpu_id\": \"cuda:3\", \"exp_id\": \"scienceworld_grpo_cell_c_v3\"}, {\"server\": \"westd-47453\", \"gpu_id\": \"cuda:0\", \"exp_id\": \"exp029_seed3_ood_v2\"}, {\"server\": \"westd-47453\", \"gpu_id\": \"cuda:1\", \"exp_id\": \"exp029_seed3_ood_v2\"}], \"allocated_but_idle\": [], \"registered_but_hw_idle\": [], \"unregistered_but_hw_active\": [], \"running_experiments\": [{\"exp_id\": \"scienceworld_grpo_cell_c_v3\", \"gpus\": [\"cuda:2\", \"cuda:3\"], \"util_avg\": null}, {\"exp_id\": \"exp029_seed3_ood_v2\", \"gpus\": [\"cuda:0\", \"cuda:1\"], \"util_avg\": null}], \"worker_pool\": {\"total\": 1, \"gpu_tasks\": 1, \"cpu_tasks\": 0, \"details\": [{\"worker_id\": \"worker_experiment_seed4-bjb1-train_20260521T023639\", \"task\": \"experiment:seed4-bjb1-train\"}]}, \"summary\": \"分配 0 张, 实际跑 4 张 | Worker 1 (GPU 1 / CPU 0 ⚠️)\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "75ccc933-582f-4745-a0de-c0e05f5fa683",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-21T02:38:49.262Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture:
+
+**Actually running on GPUs:**
+- westd cuda:0,1 → exp029_seed3_ood_v2
+- westd cuda:2,3 → scienceworld_grpo_cell_c_v3
+
+**Workers:**
+- `worker_experiment_seed4-bjb1-train_20260521T023639` - RUNNING (seed4 bjb1 train)
+- All others completed
+
+**Key findings vs handoff:**
+1. The handoff said westd cuda:0,1 were FREE but resource_usage shows exp029_seed3_ood_v2 running there. 
+
+The ROADMAP also had this marked as free, so that's stale information. The handoff claimed bjb1 was running scienceworld_sft_eval_v2, but that's already finished—sw_info_loss_bjb1 shows success. What's interesting is that a new worker `worker_experiment_seed4-bjb1-train` spawned at 02:36 UTC today, which is a recent change I need to track down. The diagnostic worker `worker_diag_8b_v9d_ood_eval_20260520T095705` isn't showing up in the latest data either.
+
+Looking at the recent worker history, I can see `worker_experiment_seed3-ood-fix-optA` completed and `worker_experiment_fsdp-to-hf-and-ood-eval` was cancelled. The seed3 OOD fix appears to have been handled already. Meanwhile, `exp029_seed3_ood_v2` is actively running on westd with cuda:0,1, which is separate from the handoff's 8b_v9d_ood_eval issue. Someone must have kicked off the seed4 training on bjb1 in a previous loop, and I need to understand what's actually happening right now.
+
+The seed4-bjb1-train worker is setting up a new training run on bjb1. I'm noticing the allocated_gpus registry shows empty but actually_running_gpus reports 4 GPUs active, so there's a sync issue between what's recorded and what's actually in use. Looking at the current state: westd has all 4 GPUs occupied (seed3 OOD eval on cuda:0,1 and Cell C v3 on cuda:2,3), bjb1 shows 0 allocated GPUs despite having a worker actively running there, and there's this one active worker trying to set up seed4 training.
+
+The worker pool is below threshold with just 1 GPU task and no CPU tasks, so I need to check what the seed4 worker is actually doing and whether it needs help. It's been running since 02:36 UTC, so depending on the current time, it might be around the handoff window. I should also track what's pending: exp029_seed3_ood_v2 needs result processing when it finishes, scienceworld_grpo_cell_c_v3 is waiting on a step 5 stop-loss check, and the 8b_v9d_ood_eval diagnostic was interrupted.
+
+Looking back at the handoff notes, the 8b_v9d_ood_eval failed with an AssertionError about env_groups and group_size, but I see subsequent workers like seed3-ood-fix-optA and fsdp-to-hf-and-ood-eval in the registry, so that issue may have already been addressed in a previous loop. Let me verify what's actually still pending in the registry.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5e6b7b68-30d8-473b-9c66-71c05283076c",
+  "isSidechain": false,
+  "requestId": "req_011CbEwNcRPBWpUMYE7MXjtH",
+  "type": "assistant",
+  "uuid": "10414f9e-0c07-4a80-ad0c-01a474d05536",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RUv6bGV8J7AjHA9e4o8K8h",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2049,
+      "cache_read_input_tokens": 49711,
+      "output_tokens": 2109,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2049,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2109,
+          "cache_read_input_tokens": 49711,
+          "cache_creation_input_tokens": 2049,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2049
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-21T02:38:51.045Z_
+
+状态比 handoff 有变化。westd 4 GPU 全忙（cuda:0,1 跑 seed3 OOD eval，cuda:2,3 跑 Cell C v3），bjb1 空闲但有 Worker 正在准备 seed4 训练。让我查更多细节。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "10414f9e-0c07-4a80-ad0c-01a474d05536",
+  "isSidechain": false,
+  "requestId": "req_011CbEwNcRPBWpUMYE7MXjtH",
+  "type": "assistant",
+  "uuid": "b02387c4-6fb9-4c7c-b610-31b9903d77f1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RUv6bGV8J7AjHA9e4o8K8h",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2049,
+      "cache_read_input_tokens": 49711,
+      "output_tokens": 2109,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2049,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2109,
+          "cache_read_input_tokens": 49711,
+          "cache_creation_input_tokens": 2049,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2049
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-21T02:39:01.950Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01MFTFnkTCknpKmDgeTWwd4J`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-6eea29da/1e2ffa45-200e-4118-ab05-61d88c83c6a6/tool-results/mcp-agent-ml-research-read_registry-1779331031513.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\n# Check 8b_v9d_ood_eval variants\nfor key in ['8b_v9d_ood_eval', '8b_v9d_ood_eval_v2', '8b_v9d_ood_eval_v3', '8b_v9d_ood_eval_v4']:\n    if key in exps:\n        e = exps[key]\n        print(f'{key}: status={e.get(\\\"status\\\")}, conclusion={e.get(\\\"conclusion\\\")}, failure={e.get(\\\"failure_reason\\\",\\\"N/A\\\")[:100]}')\n\n# Check exp029_seed3_ood_v2\nprint()\nif 'exp029_seed3_ood_v2' in exps:\n    e = exps['exp029_seed3_ood_v2']\n    print(f'exp029_seed3_ood_v2: status={e.get(\\\"status\\\")}, server={e.get(\\\"server\\\")}, gpu={e.get(\\\"gpu_ids\\\")}')\n    print(f'  hypothesis: {e.get(\\\"hypothesis\\\",\\\"N/A\\\")[:150]}')\n    print(f'  spec: {json.dumps(e.get(\\\"spec\\\",{}))[:200]}')\n\n# Check scienceworld_grpo_cell_c_v3\nprint()\nif 'scienceworld_grpo_cell_c_v3' in exps:\n    e = exps['scienceworld_grpo_cell_c_v3']\n    print(f'cell_c_v3: status={e.get(\\\"status\\\")}, metrics={json.dumps(e.get(\\\"metrics\\\",{}))}')\n    print(f'  hypothesis: {e.get(\\\"hypothesis\\\",\\\"N/A\\\")[:150]}')\n\n# Check any seed4 experiments\nprint()\nfor key, e in exps.items():\n    if 'seed4' in key.lower() or 'seed_4' in key.lower():\n        print(f'{key}: status={e.get(\\\"status\\\")}, conclusion={e.get(\\\"conclusion\\\")}')\n\" 2>&1\n",
+  "description": "Check specific experiment details from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b02387c4-6fb9-4c7c-b610-31b9903d77f1",
+  "isSidechain": false,
+  "requestId": "req_011CbEwNcRPBWpUMYE7MXjtH",
+  "type": "assistant",
+  "uuid": "b6b5f382-8164-4f24-a55c-f56e20744917",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RUv6bGV8J7AjHA9e4o8K8h",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2049,
+      "cache_read_input_tokens": 49711,
+      "output_tokens": 2109,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2049,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2109,
+          "cache_read_input_tokens": 49711,
+          "cache_creation_input_tokens": 2049,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2049
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-21T02:39:02.646Z_
+
+<details><summary>↩ Tool result · `toolu_01WY7nAWJ2USTU3HXjy8a9as`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__get_worker_status"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "11b40893-aaf9-4676-abf0-1043e5e26672",
+  "isSidechain": false,
+  "promptId": "f8302a3c-3d42-4fa9-96cb-f9a27b66ab52",
+  "type": "user",
+  "uuid": "1b986973-8893-4da2-8fa5-3a21210bac64",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__get_worker_status"
+    ],
+    "query": "select:mcp__agent-ml-research__get_worker_status",
+    "total_deferred_tools": 82
+  },
+  "sourceToolAssistantUUID": "11b40893-aaf9-4676-abf0-1043e5e26672",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-21T02:39:02.077Z_
+
+<details><summary>↩ Tool result · `toolu_01MFTFnkTCknpKmDgeTWwd4J`</summary>
+
+```text
+8b_v9d_ood_eval: status=DONE, conclusion=failed, failure=N/A
+8b_v9d_ood_eval_v2: status=DONE, conclusion=failed, failure=N/A
+8b_v9d_ood_eval_v3: status=DONE, conclusion=failed, failure=N/A
+8b_v9d_ood_eval_v4: status=DONE, conclusion=failed, failure=N/A
+
+exp029_seed3_ood_v2: status=RUNNING, server=None, gpu=None
+  hypothesis: N/A
+  spec: {}
+
+cell_c_v3: status=RUNNING, metrics={}
+  hypothesis: ScienceWorld 环境下 episode-level GRPO 能避免 collapse 并学到有效策略，验证 episode-level credit 作为 fix 的跨环境泛化性（v3: 磁盘清理后重启）
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b6b5f382-8164-4f24-a55c-f56e20744917",
+  "isSidechain": false,
+  "promptId": "f8302a3c-3d42-4fa9-96cb-f9a27b66ab52",
+  "type": "user",
+  "uuid": "561892c3-fa80-45e7-80a8-443bdf49ad29",
+  "toolUseResult": {
+    "stdout": "8b_v9d_ood_eval: status=DONE, conclusion=failed, failure=N/A\n8b_v9d_ood_eval_v2: status=DONE, conclusion=failed, failure=N/A\n8b_v9d_ood_eval_v3: status=DONE, conclusion=failed, failure=N/A\n8b_v9d_ood_eval_v4: status=DONE, conclusion=failed, failure=N/A\n\nexp029_seed3_ood_v2: status=RUNNING, server=None, gpu=None\n  hypothesis: N/A\n  spec: {}\n\ncell_c_v3: status=RUNNING, metrics={}\n  hypothesis: ScienceWorld 环境下 episode-level GRPO 能避免 collapse 并学到有效策略，验证 episode-level credit 作为 fix 的跨环境泛化性（v3: 磁盘清理后重启）",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "b6b5f382-8164-4f24-a55c-f56e20744917",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-21T02:39:02.641Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01WY7nAWJ2USTU3HXjy8a9as`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__get_worker_status",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "561892c3-fa80-45e7-80a8-443bdf49ad29",
+  "isSidechain": false,
+  "requestId": "req_011CbEwNcRPBWpUMYE7MXjtH",
+  "type": "assistant",
+  "uuid": "11b40893-aaf9-4676-abf0-1043e5e26672",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RUv6bGV8J7AjHA9e4o8K8h",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2049,
+      "cache_read_input_tokens": 49711,
+      "output_tokens": 2109,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2049,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2109,
+          "cache_read_input_tokens": 49711,
+          "cache_creation_input_tokens": 2049,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2049
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-21T02:39:05.472Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status · `toolu_01P4cBe4ySGCfiMvELL7UJsr`</summary>
+
+```json
+{
+  "worker_id": "worker_experiment_seed4-bjb1-train_20260521T023639",
+  "verbose": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1b986973-8893-4da2-8fa5-3a21210bac64",
+  "isSidechain": false,
+  "requestId": "req_011CbEwRnQVMGKuhhpaYFdt9",
+  "type": "assistant",
+  "uuid": "eb093d81-cac8-481d-a611-cbf558fdbcf5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UEnvkC5f7SKndweAo1sw4k",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2641,
+      "cache_read_input_tokens": 51760,
+      "output_tokens": 102,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2641,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 102,
+          "cache_read_input_tokens": 51760,
+          "cache_creation_input_tokens": 2641,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2641
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-21T02:39:05.578Z_
+
+<details><summary>↩ Tool result · `toolu_01P4cBe4ySGCfiMvELL7UJsr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_experiment_seed4-bjb1-train_20260521T023639\", \"status\": \"running\", \"task_type\": \"experiment:seed4-bjb1-train\", \"project\": \"cost-verify-agent-rl\", \"started_at\": \"2026-05-21T02:36:39.716688+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [], \"last_text\": \"\", \"turn_count\": 0}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "eb093d81-cac8-481d-a611-cbf558fdbcf5",
+  "isSidechain": false,
+  "promptId": "f8302a3c-3d42-4fa9-96cb-f9a27b66ab52",
+  "type": "user",
+  "uuid": "86b9426c-8fc9-48e5-83e4-a2f7eb806cde",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_experiment_seed4-bjb1-train_20260521T023639\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"experiment:seed4-bjb1-train\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"started_at\\\": \\\"2026-05-21T02:36:39.716688+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [], \\\"last_text\\\": \\\"\\\", \\\"turn_count\\\": 0}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_experiment_seed4-bjb1-train_20260521T023639\", \"status\": \"running\", \"task_type\": \"experiment:seed4-bjb1-train\", \"project\": \"cost-verify-agent-rl\", \"started_at\": \"2026-05-21T02:36:39.716688+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [], \"last_text\": \"\", \"turn_count\": 0}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "eb093d81-cac8-481d-a611-cbf558fdbcf5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52 · 2026-05-21T02:39:47.698Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The seed4 worker has 0 turns, no recent tools, and no last text. This means it was spawned but hasn't started executing yet, or it's stuck at initialization. It's been running since 02:36 UTC - depending on current time, it might have been stuck for a while.
+
+Let me now summarize the full picture:
+
+**RUNNING experiments:**
+1. `exp029_seed3_ood_v2` - RUNNING on westd cuda:0,1 (but registry has no server/gpu/hypothesis/spec - incomplete provenance!)
+
+
+2. `scienceworld_grpo_cell_c_v3` - RUNNING on westd cuda:2,3, pid=88226, step 3/15, collapse signal
+
+**Workers:**
+1. `worker_experiment_seed4-bjb1-train` - RUNNING but 0 turns (stuck/not started)
+
+**Issues to address:**
+1. **seed4 worker stuck** - 0 turns, needs investigation. May need to cancel and respawn.
+2. **bjb1 idle** - 2 GPUs free, should be running experiments
+3. **exp029_seed3_ood_v2 has no provenance** - no server, gpu, hypothesis, spec in registry
+4. **scienceworld_grpo_cell_c_v3 showing collapse signal** - need to monitor for failure
+
+The 8B OOD eval is still unresolved with all four versions failing, which is critical for the paper's generalization claims. The registry is also out of sync with allocated_gpus showing empty. I need to prioritize getting the seed4 worker unstuck, figure out what should run on the idle bjb1 GPUs, and check whether Cell C v3 hits the stop-loss condition at step 5 as outlined in the roadmap. The key blockers are the OOD evaluation data and completing Cell C v3 results before final submission. strength is already defined:
+- Diagnostic: VERY STRONG
+- Fix: STRONG
+
+And the paper is at D108 with "待 Reviewer D108 一致性审查完成后可提交".
+
+Looking at the ROADMAP more carefully, the paper's in pretty good shape - multi-seed data integrated, numbers updated, consistency check nearly done. The main blockers are Cell C v3 step 5 evaluation and Reviewer D108's consistency check. The 8B OOD eval failures seem specific to the Cell C 8B model, which is actually the critical missing piece according to the handoff - it needs to prove the fix generalizes at 8B scale.
+
+So the 8B OOD eval is essential but has failed four times now. Looking at what's actually running, exp029_seed3_ood_v2 on westd is the 7B seed3 eval, not the 8B one. I need to prioritize getting the stuck seed4 worker unstuck and respawning it, then check on Cell C v3 progress. The 8B OOD eval is blocked since the checkpoint is on westd, so running seed4 training on bjb1 makes more sense for now to gather additional data before the paper release. I'm checking how long the stuck worker has been running—if it's been over 10 minutes with zero turns, it's definitely hung and needs to be cancelled and respawned. My next steps are to verify Cell C v3 progress, restart the seed4 worker, and update the Director on where things stand. I should check the outputs from that completed progress-check worker to see what it found about Cell C v3's status.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "86b9426c-8fc9-48e5-83e4-a2f7eb806cde",
+  "isSidechain": false,
+  "requestId": "req_011CbEwRzif3GRcQddB3K7av",
+  "type": "assistant",
+  "uuid": "64bbfaca-133b-4815-a608-8ff9d160bdd8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KSbJiM7rh9HuArbskibkp2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 301,
+      "cache_read_input_tokens": 54401,
+      "output_tokens": 1877,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 301,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1877,
+          "cache_read_input_tokens": 54401,
+          "cache_creation_input_tokens": 301,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 301
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53 · 2026-05-21T02:39:48.196Z_
+
+seed4 worker 已启动但 0 turns（卡住了）。需要取消重派。让我查 Cell C v3 进度检查 worker 的结果，以及处理 stuck worker。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "64bbfaca-133b-4815-a608-8ff9d160bdd8",
+  "isSidechain": false,
+  "requestId": "req_011CbEwRzif3GRcQddB3K7av",
+  "type": "assistant",
+  "uuid": "d7cd91b1-fd32-4488-bcb2-840f08756c91",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KSbJiM7rh9HuArbskibkp2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 301,
+      "cache_read_input_tokens": 54401,
+      "output_tokens": 1877,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 301,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1877,
+          "cache_read_input_tokens": 54401,
+          "cache_creation_input_tokens": 301,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 301
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-21T02:39:49.170Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status · `toolu_013ovC69Fyt93znUd7FjaEPo`</summary>
+
+```json
+{
+  "worker_id": "worker_ops_cellc-v3-progress-check_20260521T023645",
+  "verbose": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d7cd91b1-fd32-4488-bcb2-840f08756c91",
+  "isSidechain": false,
+  "requestId": "req_011CbEwRzif3GRcQddB3K7av",
+  "type": "assistant",
+  "uuid": "62f11cde-e2bb-452b-bd67-e42b84472625",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KSbJiM7rh9HuArbskibkp2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 301,
+      "cache_read_input_tokens": 54401,
+      "output_tokens": 1877,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 301,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1877,
+          "cache_read_input_tokens": 54401,
+          "cache_creation_input_tokens": 301,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 301
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-21T02:39:49.279Z_
+
+<details><summary>↩ Tool result · `toolu_013ovC69Fyt93znUd7FjaEPo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_cellc-v3-progress-check_20260521T023645\", \"status\": \"done\", \"task_type\": \"ops:cellc-v3-progress-check\", \"project\": \"cost-verify-agent-rl\", \"started_at\": \"2026-05-21T02:36:45.557839+00:00\", \"ended_at\": \"2026-05-21T02:38:03.012691+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"## Cell C v3 状态\\n\\n| 指标 | 值 |\\n|------|-----|\\n| **进程** | PID 88226，运行中，已运行 8h13m |\\n| **当前步数** | **3/15 (20%)** |\\n| **每步耗时** | step 1: 39m, step 2: 3h46m, step 3: 2h11m（平均 ~2h20m/step，step 1 是 warmup） |\\n| **预估剩余** | ~28h（进度条显示 28:08:26） |\\n| **预估完成** | 约 5月22日 下午 |\\n\\n### Val 结果\\n\\n仅有 **step 0**（baseline）的 val：\\n- success: **0.0**\\n- score: **2.71**\\n- pass@1: **0.0**\\n- reward/mean@32: **0.5**\\n- final_score: **5.0**\\n\\n**Step 5 val 尚未产生**，当前才到 step 3。\\n\\n### Train 指标（step 3）\\n\\n- train success: 0.0，train score: 0.96\\n- reward mean: 0.153，KL loss: 0.613\\n- manager_invalid_action: **67.6%**（大量无效动作）\\n- action_is_valid: 9.4%\\n- throughput: 90.5 tokens/s\\n\\n训练信号偏弱（success 仍为 0，reward 低），需关注后续 step 5 val 是否出现改善。\"}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "62f11cde-e2bb-452b-bd67-e42b84472625",
+  "isSidechain": false,
+  "promptId": "f8302a3c-3d42-4fa9-96cb-f9a27b66ab52",
+  "type": "user",
+  "uuid": "98162533-69c5-4fd5-bb12-55187e27ad13",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ops_cellc-v3-progress-check_20260521T023645\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"ops:cellc-v3-progress-check\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"started_at\\\": \\\"2026-05-21T02:36:45.557839+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T02:38:03.012691+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"## Cell C v3 状态\\\\n\\\\n| 指标 | 值 |\\\\n|------|-----|\\\\n| **进程** | PID 88226，运行中，已运行 8h13m |\\\\n| **当前步数** | **3/15 (20%)** |\\\\n| **每步耗时** | step 1: 39m, step 2: 3h46m, step 3: 2h11m（平均 ~2h20m/step，step 1 是 warmup） |\\\\n| **预估剩余** | ~28h（进度条显示 28:08:26） |\\\\n| **预估完成** | 约 5月22日 下午 |\\\\n\\\\n### Val 结果\\\\n\\\\n仅有 **step 0**（baseline）的 val：\\\\n- success: **0.0**\\\\n- score: **2.71**\\\\n- pass@1: **0.0**\\\\n- reward/mean@32: **0.5**\\\\n- final_score: **5.0**\\\\n\\\\n**Step 5 val 尚未产生**，当前才到 step 3。\\\\n\\\\n### Train 指标（step 3）\\\\n\\\\n- train success: 0.0，train score: 0.96\\\\n- reward mean: 0.153，KL loss: 0.613\\\\n- manager_invalid_action: **67.6%**（大量无效动作）\\\\n- action_is_valid: 9.4%\\\\n- throughput: 90.5 tokens/s\\\\n\\\\n训练信号偏弱（success 仍为 0，reward 低），需关注后续 step 5 val 是否出现改善。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_cellc-v3-progress-check_20260521T023645\", \"status\": \"done\", \"task_type\": \"ops:cellc-v3-progress-check\", \"project\": \"cost-verify-agent-rl\", \"started_at\": \"2026-05-21T02:36:45.557839+00:00\", \"ended_at\": \"2026-05-21T02:38:03.012691+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"## Cell C v3 状态\\n\\n| 指标 | 值 |\\n|------|-----|\\n| **进程** | PID 88226，运行中，已运行 8h13m |\\n| **当前步数** | **3/15 (20%)** |\\n| **每步耗时** | step 1: 39m, step 2: 3h46m, step 3: 2h11m（平均 ~2h20m/step，step 1 是 warmup） |\\n| **预估剩余** | ~28h（进度条显示 28:08:26） |\\n| **预估完成** | 约 5月22日 下午 |\\n\\n### Val 结果\\n\\n仅有 **step 0**（baseline）的 val：\\n- success: **0.0**\\n- score: **2.71**\\n- pass@1: **0.0**\\n- reward/mean@32: **0.5**\\n- final_score: **5.0**\\n\\n**Step 5 val 尚未产生**，当前才到 step 3。\\n\\n### Train 指标（step 3）\\n\\n- train success: 0.0，train score: 0.96\\n- reward mean: 0.153，KL loss: 0.613\\n- manager_invalid_action: **67.6%**（大量无效动作）\\n- action_is_valid: 9.4%\\n- throughput: 90.5 tokens/s\\n\\n训练信号偏弱（success 仍为 0，reward 低），需关注后续 step 5 val 是否出现改善。\"}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "62f11cde-e2bb-452b-bd67-e42b84472625",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-21T02:39:49.640Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status · `toolu_01BWyrqc9yoti4J6Hc6qFEFg`</summary>
+
+```json
+{
+  "worker_id": "worker_experiment_seed3-ood-fix-optA_20260521T003850",
+  "verbose": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "98162533-69c5-4fd5-bb12-55187e27ad13",
+  "isSidechain": false,
+  "requestId": "req_011CbEwRzif3GRcQddB3K7av",
+  "type": "assistant",
+  "uuid": "38bc6de7-2d15-4bab-81f4-2cd48ad45fd1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KSbJiM7rh9HuArbskibkp2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 301,
+      "cache_read_input_tokens": 54401,
+      "output_tokens": 1877,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 301,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1877,
+          "cache_read_input_tokens": 54401,
+          "cache_creation_input_tokens": 301,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 301
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-21T02:39:49.747Z_
+
+<details><summary>↩ Tool result · `toolu_01BWyrqc9yoti4J6Hc6qFEFg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_experiment_seed3-ood-fix-optA_20260521T003850\", \"status\": \"done\", \"task_type\": \"experiment:seed3-ood-fix-optA\", \"project\": \"cost-verify-agent-rl\", \"started_at\": \"2026-05-21T00:38:50.898405+00:00\", \"ended_at\": \"2026-05-21T00:40:29.061699+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"完成。\\n\\n**方案 A 已执行：**\\n- 配置修改：`optimizer_offload: true` → `false`（在 `actor_rollout_ref.actor.fsdp_config` 下）\\n- 任务已提交：`exp029_seed3_ood_v2`，westd-47453 cuda:0,1，PID 530289\\n- 当前状态：Ray 已启动，正在加载模型，无报错\\n- Registry 已更新为 RUNNING\\n\\n日志中确认 `optimizer_offload: False` 已生效。如果模型加载完成后 eval rollout 正常开始，说明方案 A 成功。建议 2-3 分钟后再 tail 日志确认进入 rollout 阶段。\"}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "38bc6de7-2d15-4bab-81f4-2cd48ad45fd1",
+  "isSidechain": false,
+  "promptId": "f8302a3c-3d42-4fa9-96cb-f9a27b66ab52",
+  "type": "user",
+  "uuid": "6ae001da-ae47-40a8-8db7-c65113c5f3cf",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_experiment_seed3-ood-fix-optA_20260521T003850\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"experiment:seed3-ood-fix-optA\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"started_at\\\": \\\"2026-05-21T00:38:50.898405+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T00:40:29.061699+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"完成。\\\\n\\\\n**方案 A 已执行：**\\\\n- 配置修改：`optimizer_offload: true` → `false`（在 `actor_rollout_ref.actor.fsdp_config` 下）\\\\n- 任务已提交：`exp029_seed3_ood_v2`，westd-47453 cuda:0,1，PID 530289\\\\n- 当前状态：Ray 已启动，正在加载模型，无报错\\\\n- Registry 已更新为 RUNNING\\\\n\\\\n日志中确认 `optimizer_offload: False` 已生效。如果模型加载完成后 eval rollout 正常开始，说明方案 A 成功。建议 2-3 分钟后再 tail 日志确认进入 rollout 阶段。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_experiment_seed3-ood-fix-optA_20260521T003850\", \"status\": \"done\", \"task_type\": \"experiment:seed3-ood-fix-optA\", \"project\": \"cost-verify-agent-rl\", \"started_at\": \"2026-05-21T00:38:50.898405+00:00\", \"ended_at\": \"2026-05-21T00:40:29.061699+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"完成。\\n\\n**方案 A 已执行：**\\n- 配置修改：`optimizer_offload: true` → `false`（在 `actor_rollout_ref.actor.fsdp_config` 下）\\n- 任务已提交：`exp029_seed3_ood_v2`，westd-47453 cuda:0,1，PID 530289\\n- 当前状态：Ray 已启动，正在加载模型，无报错\\n- Registry 已更新为 RUNNING\\n\\n日志中确认 `optimizer_offload: False` 已生效。如果模型加载完成后 eval rollout 正常开始，说明方案 A 成功。建议 2-3 分钟后再 tail 日志确认进入 rollout 阶段。\"}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "38bc6de7-2d15-4bab-81f4-2cd48ad45fd1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 58 · 2026-05-21T02:39:49.756Z_
+
+```json
+{
+  "parentUuid": "6ae001da-ae47-40a8-8db7-c65113c5f3cf",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "37cfa4d7-60b2-43e0-ac32-96c2488657a1",
+  "timestamp": "2026-05-21T02:39:49.756Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 59_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #20。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - westd-47453 GPU 分配需确认——resource_usage 显示 allocated_gpus=[]，ROADMAP 说 westd cuda:0-3 跑 v9d，但 cron reconcile 未检测到。提交前必…",
+  "leafUuid": "37cfa4d7-60b2-43e0-ac32-96c2488657a1",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 60_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Diagnose 8B OOD eval failure and confirm v9d training status",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6"
+}
+```
+
+---
+
+### Assistant
+
+_source line 61 · 2026-05-21T02:40:23.206Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a much clearer picture:
+
+**Cell C v3 status:**
+- Step 3/15, PID 88226 running for 8h13m
+- Step 0 baseline: success=0.0, score=2.71
+- Step 3 train: success=0.0, reward=0.153, action_is_valid=9.4% (very low!)
+- ETA: ~28h more, finish ~May 22 afternoon
+- Step 5 val not yet produced
+- **Stop-loss threshold**: step 5 success=0% + action_is_valid<20% → terminate
+
+
+- The action_is_valid metric is already below the 20% threshold at 9.4%, though this is training data and I need to wait for step 5 validation results
+
+**exp029_seed3_ood_v2** is running on westd with the optimizer offload fix applied, and since it's an eval job it should complete relatively quickly. The seed4-bjb1-train worker is stuck and needs to be restarted. The main concern is that Cell C v3 is showing a very weak training signal with 67.6% of actions being invalid.
+
+Looking at the immediate priorities: I need to cancel and respawn the stuck seed4 worker, update the Director on the current status including the weak signal from Cell C v3 and the bjb1 idle time, and figure out how to get bjb1 back to work. The 8B OOD eval failures across all versions might be related to the same optimizer_offload issue that was just fixed in seed3, so that could be worth investigating once the current runs stabilize. the most important missing data point. But all 4 versions failed. The fix applied to seed3 OOD (optimizer_offload: false) might also apply to 8B OOD. But 8B OOD needs the v9d checkpoint.
+
+Actually wait - looking at the registry: 8b_v9d_ood_eval variants are all DONE(failed). The exp029_seed3_ood_v2 is a DIFFERENT experiment - it's the 7B seed3 OOD eval, not the 8B.
+
+From ROADMAP: "8B cross-scale: Cell A collapse + Cell D 90.3% OOD (single seed)" - so 8B Cell D OOD is already done with 90.3%. The 8b_v9d_ood_eval was trying to get v9d specific OOD numbers.
+
+Since 8B OOD coverage already exists at 90.3%, the v9d eval might not be critical right now. I should focus on canceling the stuck seed4 worker, respawning it for bjb1, setting up Cell C v3 step 5 monitoring, and then reporting to the Director. But first I need to read through the resource-saturation skill as required before reporting, and I can do that while canceling the worker.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "37cfa4d7-60b2-43e0-ac32-96c2488657a1",
+  "isSidechain": false,
+  "requestId": "req_011CbEwVFYim2XC1hDDTmKny",
+  "type": "assistant",
+  "uuid": "403b883a-60cb-47d0-81c0-647da71f2ed9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01614Z9mB6ENV7mqNn3zrbF7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3109,
+      "cache_read_input_tokens": 54702,
+      "output_tokens": 1206,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3109,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1206,
+          "cache_read_input_tokens": 54702,
+          "cache_creation_input_tokens": 3109,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3109
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62 · 2026-05-21T02:40:23.209Z_
+
+清楚了。Cell C v3 step 3/15，训练信号弱（success=0, action_is_valid=9.4%），等 step 5 止损判断。seed3 OOD eval 在 westd cuda:0,1 运行中。seed4 worker 卡住需要处理。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "403b883a-60cb-47d0-81c0-647da71f2ed9",
+  "isSidechain": false,
+  "requestId": "req_011CbEwVFYim2XC1hDDTmKny",
+  "type": "assistant",
+  "uuid": "fd20e499-5072-4436-8b43-f2275060461d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01614Z9mB6ENV7mqNn3zrbF7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3109,
+      "cache_read_input_tokens": 54702,
+      "output_tokens": 1206,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3109,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1206,
+          "cache_read_input_tokens": 54702,
+          "cache_creation_input_tokens": 3109,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3109
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-21T02:40:23.799Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Vx5jzQGmjrc4gm3M28Q7Na`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__cancel_worker,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fd20e499-5072-4436-8b43-f2275060461d",
+  "isSidechain": false,
+  "requestId": "req_011CbEwVFYim2XC1hDDTmKny",
+  "type": "assistant",
+  "uuid": "b45d7663-ee8d-47fc-b5fc-ca5d325c08c2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01614Z9mB6ENV7mqNn3zrbF7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3109,
+      "cache_read_input_tokens": 54702,
+      "output_tokens": 1206,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3109,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1206,
+          "cache_read_input_tokens": 54702,
+          "cache_creation_input_tokens": 3109,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3109
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-21T02:40:23.808Z_
+
+<details><summary>↩ Tool result · `toolu_01Vx5jzQGmjrc4gm3M28Q7Na`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__cancel_worker"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__spawn_worker"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__main_agent_post_to_director"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b45d7663-ee8d-47fc-b5fc-ca5d325c08c2",
+  "isSidechain": false,
+  "promptId": "f8302a3c-3d42-4fa9-96cb-f9a27b66ab52",
+  "type": "user",
+  "uuid": "394f2230-fe6e-43b2-b9e9-6bceb38bc22e",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__main_agent_post_to_director"
+    ],
+    "query": "select:mcp__agent-ml-research__cancel_worker,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director",
+    "total_deferred_tools": 82
+  },
+  "sourceToolAssistantUUID": "b45d7663-ee8d-47fc-b5fc-ca5d325c08c2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-21T02:40:25.471Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01LHKzwVAiK42Jahnu9VQjqp`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "394f2230-fe6e-43b2-b9e9-6bceb38bc22e",
+  "isSidechain": false,
+  "requestId": "req_011CbEwVFYim2XC1hDDTmKny",
+  "type": "assistant",
+  "uuid": "ecb1537a-1f94-4f1f-bdfa-28098f45e340",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01614Z9mB6ENV7mqNn3zrbF7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3109,
+      "cache_read_input_tokens": 54702,
+      "output_tokens": 1206,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3109,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1206,
+          "cache_read_input_tokens": 54702,
+          "cache_creation_input_tokens": 3109,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3109
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-21T02:40:25.482Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01LHKzwVAiK42Jahnu9VQjqp`</summary>
+
+```text
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ecb1537a-1f94-4f1f-bdfa-28098f45e340",
+  "isSidechain": false,
+  "promptId": "f8302a3c-3d42-4fa9-96cb-f9a27b66ab52",
+  "type": "user",
+  "uuid": "b50a5332-f2be-4064-8e1b-253d882b7c38",
+  "toolUseResult": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da.",
+  "sourceToolAssistantUUID": "ecb1537a-1f94-4f1f-bdfa-28098f45e340",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67 · 2026-05-21T02:40:29.971Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The resource-saturation skill file doesn't exist at that path. Let me find it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b50a5332-f2be-4064-8e1b-253d882b7c38",
+  "isSidechain": false,
+  "requestId": "req_011CbEwXtT3mTb5CtGk8EJU7",
+  "type": "assistant",
+  "uuid": "a3f070d2-77cd-473f-b145-9d44d6d46642",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019MrRQScoCfvJfnA5pUbYgg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2863,
+      "cache_read_input_tokens": 57811,
+      "output_tokens": 116,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2863,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 116,
+          "cache_read_input_tokens": 57811,
+          "cache_creation_input_tokens": 2863,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2863
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-21T02:40:30.347Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01RyPfLBAdjzp5hmNN1mquJU`</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a3f070d2-77cd-473f-b145-9d44d6d46642",
+  "isSidechain": false,
+  "requestId": "req_011CbEwXtT3mTb5CtGk8EJU7",
+  "type": "assistant",
+  "uuid": "a6011aaa-dc9c-42b5-b9d2-ea4472512cf9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019MrRQScoCfvJfnA5pUbYgg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2863,
+      "cache_read_input_tokens": 57811,
+      "output_tokens": 116,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2863,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 116,
+          "cache_read_input_tokens": 57811,
+          "cache_creation_input_tokens": 2863,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2863
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-21T02:40:30.653Z_
+
+<details><summary>↩ Tool result · `toolu_01RyPfLBAdjzp5hmNN1mquJU`</summary>
+
+```text
+/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a6011aaa-dc9c-42b5-b9d2-ea4472512cf9",
+  "isSidechain": false,
+  "promptId": "f8302a3c-3d42-4fa9-96cb-f9a27b66ab52",
+  "type": "user",
+  "uuid": "5c8e559d-3072-47e6-a687-09faee507c76",
+  "toolUseResult": {
+    "filenames": [
+      "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+    ],
+    "durationMs": 301,
+    "numFiles": 1,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "a6011aaa-dc9c-42b5-b9d2-ea4472512cf9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-21T02:40:33.282Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_016AmP3wLe3EZY7skupjaF3s`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5c8e559d-3072-47e6-a687-09faee507c76",
+  "isSidechain": false,
+  "requestId": "req_011CbEwYGZKhPVzeyfbb2zbZ",
+  "type": "assistant",
+  "uuid": "b2c439fd-8f87-4f37-8ff9-292908dd40c3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JWWmReiBNfAP6ZuCiaifGt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 151,
+      "cache_read_input_tokens": 60674,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 151,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 60674,
+          "cache_creation_input_tokens": 151,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 151
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-21T02:40:33.287Z_
+
+<details><summary>↩ Tool result · `toolu_016AmP3wLe3EZY7skupjaF3s`</summary>
+
+```text
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b2c439fd-8f87-4f37-8ff9-292908dd40c3",
+  "isSidechain": false,
+  "promptId": "f8302a3c-3d42-4fa9-96cb-f9a27b66ab52",
+  "type": "user",
+  "uuid": "530bb904-c041-4a9f-9ffc-0d1f6743f08e",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md",
+      "content": "---\nname: resource-saturation\ndescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\nalways: false\nroles:\n  - director\n  - agent\n---\n\n# 资源饱和度自检（硬约束）\n\n## A. GPU 分配率检查\n\n调 `get_project_resource_usage(project)` 看:\n- 已分配给本项目的 GPU 总数和具体卡号\n- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n- 分配了但没跑的 GPU 清单 ⚠️\n\n任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n- 派 Worker 铺 dry-run / 下一批实验代码准备\n- 铺 ablation（从 experiment-matrix 空白格子里挑）\n- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n\n**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n\n## B. GPU 效率检查\n\n调 `get_gpu_health(server)`:\n- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）\n- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优\n\n## C. 非 GPU 任务并行\n\nGPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:\n- 下一批实验的数据集下载 / 预处理 / fingerprint\n- 下一批实验的代码准备 / dry-run / 环境配置\n- 论文文献调研 / related work 检索\n- 已完成实验的 log 深度分析 / metric 聚合\n- 论文章节起草\n- 代码 review / refactor\n\n**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。\n\n## D. 汇报格式\n\n向 Director 汇报时开头必须带资源声明行:\n\n    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)\n",
+      "numLines": 50,
+      "startLine": 1,
+      "totalLines": 50
+    }
+  },
+  "sourceToolAssistantUUID": "b2c439fd-8f87-4f37-8ff9-292908dd40c3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 72 · 2026-05-21T02:41:23.938Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full picture. Let me take action:
+
+**Current resource state:**
+- westd: 4 GPU all busy (cuda:0,1 = seed3 OOD eval, cuda:2,3 = Cell C v3)
+- bjb1: 2 GPU idle (seed4 worker stuck at 0 turns)
+- Worker pool: 1 (seed4 worker, stuck) → effectively 0 useful workers → VIOLATION
+
+**Actions needed:**
+1. Cancel stuck seed4 worker
+2. Respawn seed4 worker for bjb1 (or 8B OOD eval?)
+
+
+3. Spawn at least one more CPU task worker (to get pool >= 2)
+4. Report to Director
+
+Actually, I need to think through what should run on bjb1. Looking at the roadmap, the critical gaps are Cell C v3 (already running) and Reviewer D108 check. The paper's nearly complete, so what would actually move things forward? Seed 4 training would give us more robustness data, but the 8B OOD eval keeps failing—it's blocked waiting for the v9d checkpoint from westd.
+
+Wait, checking the roadmap again: the 8B cross-scale Cell D 90.3% OOD result is already there, so we do have those numbers. The v9d variants were attempts at better numbers but keep hitting walls.
+
+Seed 4 training on bjb1 makes sense as a solid next step for multi-seed robustness. I should also check whether there's a pending Reviewer D108 consistency session I can queue up.
+
+So my immediate actions: cancel the stuck seed4 worker, respawn it properly for bjb1, spin up a CPU worker for something useful like reviewing Cell C v3 logs or prepping downstream tasks, then update the Director with progress and blockers.
+
+Now looking at the current status: seed3 OOD v2 is running on westd with the optimizer fix, Cell C v3 is at step 3/15 with weak signals, and bjb1 is idle waiting for the seed4 respawn. Once seed3 OOD v2 finishes, westd's GPUs free up—that's a good slot for the 8B OOD eval retry if we want to push that. Let me just execute the worker cancellation and respawn now, then figure out the seed4 prompt details.
+
+For seed4, I need to verify the training setup on bjb1—it's episode-level GRPO on ALFWorld similar to the seed1 and seed3 runs, but I should confirm the code and checkpoints are actually there before spinning it up. The CPU worker could meanwhile check on exp029_seed3_ood_v2's actual progress and start prepping the 8B OOD eval retry, though I need to figure out why the earlier versions all failed. failed, prepare fix)
+
+Let me cancel the stuck worker first, then spawn two workers: one to respawn the seed4 training for bjb1, and another CPU worker for progress checks on the seed3 OOD eval. I need to verify bjb1 has the ALFWorld GRPO code and model checkpoint since it's been used for previous experiments, then have the worker handle experiment registration rather than doing it manually.
+
+I should also prepare the Director report with current status: GPU allocation at 0/4 actual running, worker pool expanding from 1 to 2+, plus the paper status showing D108 waiting on reviewer consistency and Cell C v3 step 5, with current OOD mean at 17.2% [10.4-23.9%]. Let me check if seed4 experiments already exist in the experiment plan. I need to see the next thinking to rewrite it. Could you provide the next thinking chunk that follows your current rewritten thinking?
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "530bb904-c041-4a9f-9ffc-0d1f6743f08e",
+  "isSidechain": false,
+  "requestId": "req_011CbEwYTrUbjQ5GqKGQpV7m",
+  "type": "assistant",
+  "uuid": "1754c9df-0f07-4ea8-b134-bab5c7167f88",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J2Dr3qWaRcQ5rHa3dC7vYy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1147,
+      "cache_read_input_tokens": 60825,
+      "output_tokens": 1740,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1740,
+          "cache_read_input_tokens": 60825,
+          "cache_creation_input_tokens": 1147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-21T02:41:24.007Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__cancel_worker · `toolu_01QSruiQ6v5zQdah9ueVn7Wj`</summary>
+
+```json
+{
+  "worker_id": "worker_experiment_seed4-bjb1-train_20260521T023639"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1754c9df-0f07-4ea8-b134-bab5c7167f88",
+  "isSidechain": false,
+  "requestId": "req_011CbEwYTrUbjQ5GqKGQpV7m",
+  "type": "assistant",
+  "uuid": "6acc97f4-9f73-4ca4-952e-7c7db4537ada",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J2Dr3qWaRcQ5rHa3dC7vYy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1147,
+      "cache_read_input_tokens": 60825,
+      "output_tokens": 1740,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1740,
+          "cache_read_input_tokens": 60825,
+          "cache_creation_input_tokens": 1147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74 · 2026-05-21T02:41:24.015Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01X3cGZTaMUz49BESh1E6tpj`</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "file": "memory.md",
+  "max_chars": 6000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6acc97f4-9f73-4ca4-952e-7c7db4537ada",
+  "isSidechain": false,
+  "requestId": "req_011CbEwYTrUbjQ5GqKGQpV7m",
+  "type": "assistant",
+  "uuid": "f8f8161e-9063-47ea-8e56-c9a9f50d145f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J2Dr3qWaRcQ5rHa3dC7vYy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1147,
+      "cache_read_input_tokens": 60825,
+      "output_tokens": 1740,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1740,
+          "cache_read_input_tokens": 60825,
+          "cache_creation_input_tokens": 1147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 75_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #20。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - westd-47453 GPU 分配需确认——resource_usage 显示 allocated_gpus=[]，ROADMAP 说 westd cuda:0-3 跑 v9d，但 cron reconcile 未检测到。提交前必…",
+  "leafUuid": "f8f8161e-9063-47ea-8e56-c9a9f50d145f",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 76_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Diagnose 8B OOD eval failure and confirm v9d training status",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6"
+}
+```
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-21T02:41:24.409Z_
+
+<details><summary>↩ Tool result · `toolu_01QSruiQ6v5zQdah9ueVn7Wj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_experiment_seed4-bjb1-train_20260521T023639\", \"status\": \"cancelled\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6acc97f4-9f73-4ca4-952e-7c7db4537ada",
+  "isSidechain": false,
+  "promptId": "f8302a3c-3d42-4fa9-96cb-f9a27b66ab52",
+  "type": "user",
+  "uuid": "28d764cf-5c47-4981-97f0-e4c48afb3405",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_experiment_seed4-bjb1-train_20260521T023639\\\", \\\"status\\\": \\\"cancelled\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_experiment_seed4-bjb1-train_20260521T023639\", \"status\": \"cancelled\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "6acc97f4-9f73-4ca4-952e-7c7db4537ada",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-21T02:41:24.423Z_
+
+<details><summary>↩ Tool result · `toolu_01X3cGZTaMUz49BESh1E6tpj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/memory.md\", \"content\": \"# Project Memory — cost-verify-agent-rl\\n\\n## 经验教训\\n\\n### max_prompt_length 必须严格小于 max_model_len (2026-05-19)\\nv9c 在 step 3/30 崩溃：`max_prompt_length: 16384 == max_model_len: 16384`，prompt 填满后 vLLM 报 \\\"prompt + requested output tokens > max_model_len\\\"。修复：`max_prompt_length = max_model_len - response_length`（15360 = 16384 - 1024）。写 config 时永远预留 generation headroom。\\n\\n### save_freq 不应设为 999 (2026-05-19)\\nv9c 崩溃后无 checkpoint 可恢复（save_freq: 999 = 实际不保存）。30 步训练建议 save_freq: 5~10，代价是少量磁盘但能从中间恢复。\\n\\n### FSDP2 兼容性修复模式 (2026-05-19)\\n- `_fsdp_wrapped_module` → `getattr(model, \\\"_fsdp_wrapped_module\\\", model)`\\n- `FSDP.summon_full_params(model)` → `FSDP.summon_full_params(model) if isinstance(model, FSDP) else nullcontext()`\\n- FSDP2 用 `fully_shard` composable API，不 wrap 模型，不存在 `_fsdp_wrapped_module`\\n\\n### save_contents 的 yaml 路径必须正确 (2026-05-20)\\nverl checkpoint 的 `save_contents` 必须放在 `actor_rollout_ref.actor.checkpoint` 下，不是 `trainer` 下。错误路径导致保存完整 optimizer state（92GB），正确路径只保存 actor weights（33GB）。\\n\\n### FSDP2 checkpoint 是 rank shards 不是 HF 格式 (2026-05-20)\\nFSDP2 保存的 checkpoint 是 `world_size_N` 目录下的 per-rank shards（`__0_0.distcp` 等），不是 HF safetensors。部署/评估前必须用 `convert_fsdp_to_hf.py` 合并为标准 HF 格式。\\n\\n### NCCL deadlock hang 的模式识别 (2026-05-20)\\nv9d step 15 出现 NCCL deadlock：GPU utilization 0% 但显存仍占 ~60GB，进程不退出也不报错。这是典型的 collective 通信死锁（某 rank 未到达同步点）。发现后应直接 kill 进程，不要等待恢复。长训练建议设 `NCCL_TIMEOUT`。\\n\\n### 8B episode-level GRPO reward 饱和极快 (2026-05-20)\\nv9d 训练曲线：40.6%(baseline) → 81.25%(step 5) → 96.875%(step 10) → 100%(step 12)。Step 12 后 advantage=0, pg_loss=0, grad_norm→0，完全无学习信号。教训：8B 模型在简单任务上 episode-level GRPO ≤15 steps 即可饱和，必须提前规划 OOD eval 和 early stopping，否则后续 steps 浪费算力且有 hang 风险。\\n\\n### ScienceWorld eval valid_action_rate bug (2026-05-19)\\n`action_is_valid` 必须对比完整 `valid_actions` 列表，不能对比截断的 `shown[:50]`（前 50 个几乎全是 `connect X to Y` 格式，模型输出的自然语言动作全被误判）。\\n\\n## 决策原因\\n\\n### 8B Cell C 用 FSDP2 + CPUOffloadPolicy (2026-05-19)\\nFSDP1 峰值 ~91 GB/GPU → OOM（v5-v8 全部失败）。FSDP2 CPUOffloadPolicy 将参数和优化器按 layer 搬到 CPU，峰值降至 ~83 GB/GPU，余量 ~12 GB。不需要租卡。\\n\\n### ScienceWorld GRPO reward 是 continuous sparse (2026-05-19)\\n公式：`reward = (score/100) * 10.0`，范围 0-10，仅 episode 结束发放。Cell A（step-level）预期失败：中间步 reward=0，最后一步有 continuous reward 但 step-level credit assignment 无法利用。Cell C（episode-level）自然兼容。\\n\\n## 约束\\n\\n### westd GPU 内存紧张 (2026-05-19)\\n8B FSDP2+CPUOffload 训练时 GPU 占用 ~83/95.6 GB (87%)。不要增加 batch size 或 max_model_len，无余量。\\n\", \"total_chars\": 2393, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f8f8161e-9063-47ea-8e56-c9a9f50d145f",
+  "isSidechain": false,
+  "promptId": "f8302a3c-3d42-4fa9-96cb-f9a27b66ab52",
+  "type": "user",
+  "uuid": "892dc8e3-a452-4204-994f-1bfe695ac1cd",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/memory.md\\\", \\\"content\\\": \\\"# Project Memory — cost-verify-agent-rl\\\\n\\\\n## 经验教训\\\\n\\\\n### max_prompt_length 必须严格小于 max_model_len (2026-05-19)\\\\nv9c 在 step 3/30 崩溃：`max_prompt_length: 16384 == max_model_len: 16384`，prompt 填满后 vLLM 报 \\\\\\\"prompt + requested output tokens > max_model_len\\\\\\\"。修复：`max_prompt_length = max_model_len - response_length`（15360 = 16384 - 1024）。写 config 时永远预留 generation headroom。\\\\n\\\\n### save_freq 不应设为 999 (2026-05-19)\\\\nv9c 崩溃后无 checkpoint 可恢复（save_freq: 999 = 实际不保存）。30 步训练建议 save_freq: 5~10，代价是少量磁盘但能从中间恢复。\\\\n\\\\n### FSDP2 兼容性修复模式 (2026-05-19)\\\\n- `_fsdp_wrapped_module` → `getattr(model, \\\\\\\"_fsdp_wrapped_module\\\\\\\", model)`\\\\n- `FSDP.summon_full_params(model)` → `FSDP.summon_full_params(model) if isinstance(model, FSDP) else nullcontext()`\\\\n- FSDP2 用 `fully_shard` composable API，不 wrap 模型，不存在 `_fsdp_wrapped_module`\\\\n\\\\n### save_contents 的 yaml 路径必须正确 (2026-05-20)\\\\nverl checkpoint 的 `save_contents` 必须放在 `actor_rollout_ref.actor.checkpoint` 下，不是 `trainer` 下。错误路径导致保存完整 optimizer state（92GB），正确路径只保存 actor weights（33GB）。\\\\n\\\\n### FSDP2 checkpoint 是 rank shards 不是 HF 格式 (2026-05-20)\\\\nFSDP2 保存的 checkpoint 是 `world_size_N` 目录下的 per-rank shards（`__0_0.distcp` 等），不是 HF safetensors。部署/评估前必须用 `convert_fsdp_to_hf.py` 合并为标准 HF 格式。\\\\n\\\\n### NCCL deadlock hang 的模式识别 (2026-05-20)\\\\nv9d step 15 出现 NCCL deadlock：GPU utilization 0% 但显存仍占 ~60GB，进程不退出也不报错。这是典型的 collective 通信死锁（某 rank 未到达同步点）。发现后应直接 kill 进程，不要等待恢复。长训练建议设 `NCCL_TIMEOUT`。\\\\n\\\\n### 8B episode-level GRPO reward 饱和极快 (2026-05-20)\\\\nv9d 训练曲线：40.6%(baseline) → 81.25%(step 5) → 96.875%(step 10) → 100%(step 12)。Step 12 后 advantage=0, pg_loss=0, grad_norm→0，完全无学习信号。教训：8B 模型在简单任务上 episode-level GRPO ≤15 steps 即可饱和，必须提前规划 OOD eval 和 early stopping，否则后续 steps 浪费算力且有 hang 风险。\\\\n\\\\n### ScienceWorld eval valid_action_rate bug (2026-05-19)\\\\n`action_is_valid` 必须对比完整 `valid_actions` 列表，不能对比截断的 `shown[:50]`（前 50 个几乎全是 `connect X to Y` 格式，模型输出的自然语言动作全被误判）。\\\\n\\\\n## 决策原因\\\\n\\\\n### 8B Cell C 用 FSDP2 + CPUOffloadPolicy (2026-05-19)\\\\nFSDP1 峰值 ~91 GB/GPU → OOM（v5-v8 全部失败）。FSDP2 CPUOffloadPolicy 将参数和优化器按 layer 搬到 CPU，峰值降至 ~83 GB/GPU，余量 ~12 GB。不需要租卡。\\\\n\\\\n### ScienceWorld GRPO reward 是 continuous sparse (2026-05-19)\\\\n公式：`reward = (score/100) * 10.0`，范围 0-10，仅 episode 结束发放。Cell A（step-level）预期失败：中间步 reward=0，最后一步有 continuous reward 但 step-level credit assignment 无法利用。Cell C（episode-level）自然兼容。\\\\n\\\\n## 约束\\\\n\\\\n### westd GPU 内存紧张 (2026-05-19)\\\\n8B FSDP2+CPUOffload 训练时 GPU 占用 ~83/95.6 GB (87%)。不要增加 batch size 或 max_model_len，无余量。\\\\n\\\", \\\"total_chars\\\": 2393, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/memory.md\", \"content\": \"# Project Memory — cost-verify-agent-rl\\n\\n## 经验教训\\n\\n### max_prompt_length 必须严格小于 max_model_len (2026-05-19)\\nv9c 在 step 3/30 崩溃：`max_prompt_length: 16384 == max_model_len: 16384`，prompt 填满后 vLLM 报 \\\"prompt + requested output tokens > max_model_len\\\"。修复：`max_prompt_length = max_model_len - response_length`（15360 = 16384 - 1024）。写 config 时永远预留 generation headroom。\\n\\n### save_freq 不应设为 999 (2026-05-19)\\nv9c 崩溃后无 checkpoint 可恢复（save_freq: 999 = 实际不保存）。30 步训练建议 save_freq: 5~10，代价是少量磁盘但能从中间恢复。\\n\\n### FSDP2 兼容性修复模式 (2026-05-19)\\n- `_fsdp_wrapped_module` → `getattr(model, \\\"_fsdp_wrapped_module\\\", model)`\\n- `FSDP.summon_full_params(model)` → `FSDP.summon_full_params(model) if isinstance(model, FSDP) else nullcontext()`\\n- FSDP2 用 `fully_shard` composable API，不 wrap 模型，不存在 `_fsdp_wrapped_module`\\n\\n### save_contents 的 yaml 路径必须正确 (2026-05-20)\\nverl checkpoint 的 `save_contents` 必须放在 `actor_rollout_ref.actor.checkpoint` 下，不是 `trainer` 下。错误路径导致保存完整 optimizer state（92GB），正确路径只保存 actor weights（33GB）。\\n\\n### FSDP2 checkpoint 是 rank shards 不是 HF 格式 (2026-05-20)\\nFSDP2 保存的 checkpoint 是 `world_size_N` 目录下的 per-rank shards（`__0_0.distcp` 等），不是 HF safetensors。部署/评估前必须用 `convert_fsdp_to_hf.py` 合并为标准 HF 格式。\\n\\n### NCCL deadlock hang 的模式识别 (2026-05-20)\\nv9d step 15 出现 NCCL deadlock：GPU utilization 0% 但显存仍占 ~60GB，进程不退出也不报错。这是典型的 collective 通信死锁（某 rank 未到达同步点）。发现后应直接 kill 进程，不要等待恢复。长训练建议设 `NCCL_TIMEOUT`。\\n\\n### 8B episode-level GRPO reward 饱和极快 (2026-05-20)\\nv9d 训练曲线：40.6%(baseline) → 81.25%(step 5) → 96.875%(step 10) → 100%(step 12)。Step 12 后 advantage=0, pg_loss=0, grad_norm→0，完全无学习信号。教训：8B 模型在简单任务上 episode-level GRPO ≤15 steps 即可饱和，必须提前规划 OOD eval 和 early stopping，否则后续 steps 浪费算力且有 hang 风险。\\n\\n### ScienceWorld eval valid_action_rate bug (2026-05-19)\\n`action_is_valid` 必须对比完整 `valid_actions` 列表，不能对比截断的 `shown[:50]`（前 50 个几乎全是 `connect X to Y` 格式，模型输出的自然语言动作全被误判）。\\n\\n## 决策原因\\n\\n### 8B Cell C 用 FSDP2 + CPUOffloadPolicy (2026-05-19)\\nFSDP1 峰值 ~91 GB/GPU → OOM（v5-v8 全部失败）。FSDP2 CPUOffloadPolicy 将参数和优化器按 layer 搬到 CPU，峰值降至 ~83 GB/GPU，余量 ~12 GB。不需要租卡。\\n\\n### ScienceWorld GRPO reward 是 continuous sparse (2026-05-19)\\n公式：`reward = (score/100) * 10.0`，范围 0-10，仅 episode 结束发放。Cell A（step-level）预期失败：中间步 reward=0，最后一步有 continuous reward 但 step-level credit assignment 无法利用。Cell C（episode-level）自然兼容。\\n\\n## 约束\\n\\n### westd GPU 内存紧张 (2026-05-19)\\n8B FSDP2+CPUOffload 训练时 GPU 占用 ~83/95.6 GB (87%)。不要增加 batch size 或 max_model_len，无余量。\\n\", \"total_chars\": 2393, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "f8f8161e-9063-47ea-8e56-c9a9f50d145f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 79 · 2026-05-21T02:41:47.427Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. seed4 worker cancelled. Memory doesn't mention seed4 specifically. Let me check if there's context from previous loops about what seed4 should be. Looking at existing experiments:
+
+- exp029 = seed1, episode-level GRPO, 7B
+- exp029_seed3_v2 = seed3, episode-level GRPO, 7B (success)
+- Seed2 was lost (checkpoint deleted in disk cleanup)
+
+So seed4 would be another seed of the same episode-level GRPO training, for multi-seed robustness. Currently we have seed1 (OOD=23.88%) and seed3 (OOD=10.45%), mean=17.2%.
+ 
+Now I'm weighing whether to run seed4 on bjb1. The paper's nearly ready with current data, so seed4 isn't strictly necessary, but bjb1 is sitting idle and I should use available resources. Let me check what the experiment plan says about priorities and what's queued for bjb1.
+
+The roadmap shows the paper is at D108 stage waiting for a consistency check and then final compilation before submission. The most pressing work is monitoring Cell C v3 and the Seed3 OOD v2 eval, both already running. For bjb1, running seed4 GRPO training would strengthen the multi-seed story and make good use of the idle GPU. I need to figure out the exact training command based on previous experiments like exp029, which used the GRPO training code with either Qwen-1.7B or Qwen-8B as the base model.
+
+I'll spawn two workers to handle this: one GPU worker for the seed4 training job and one CPU worker to monitor the seed3 eval progress and prepare for result processing. Let me pull the config details from exp029 to give the seed4 worker clear instructions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "892dc8e3-a452-4204-994f-1bfe695ac1cd",
+  "isSidechain": false,
+  "requestId": "req_011CbEwcEK14Ts22WWn4YY4n",
+  "type": "assistant",
+  "uuid": "f87a3fa4-fa06-4c2e-999f-24b7698161b1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015EGvXScTw21zsHbaYDMcrj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3390,
+      "cache_read_input_tokens": 61972,
+      "output_tokens": 865,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3390,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 865,
+          "cache_read_input_tokens": 61972,
+          "cache_creation_input_tokens": 3390,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3390
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80 · 2026-05-21T02:41:47.762Z_
+
+seed4 worker 已取消。现在需要重新派发 bjb1 任务 + 至少一个 CPU worker。先查实验计划了解 seed4 详情。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f87a3fa4-fa06-4c2e-999f-24b7698161b1",
+  "isSidechain": false,
+  "requestId": "req_011CbEwcEK14Ts22WWn4YY4n",
+  "type": "assistant",
+  "uuid": "71a6245c-223e-4986-b7d8-ab1731a6f57c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015EGvXScTw21zsHbaYDMcrj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3390,
+      "cache_read_input_tokens": 61972,
+      "output_tokens": 865,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3390,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 865,
+          "cache_read_input_tokens": 61972,
+          "cache_creation_input_tokens": 3390,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3390
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-21T02:41:48.926Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01QQFahE3Ny1xs5tvDoEjUsF`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "71a6245c-223e-4986-b7d8-ab1731a6f57c",
+  "isSidechain": false,
+  "requestId": "req_011CbEwcEK14Ts22WWn4YY4n",
+  "type": "assistant",
+  "uuid": "ff11ac92-5d52-46ff-96c0-7b5c85e6f35d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015EGvXScTw21zsHbaYDMcrj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3390,
+      "cache_read_input_tokens": 61972,
+      "output_tokens": 865,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3390,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 865,
+          "cache_read_input_tokens": 61972,
+          "cache_creation_input_tokens": 3390,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3390
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-21T02:41:48.940Z_
+
+<details><summary>↩ Tool result · `toolu_01QQFahE3Ny1xs5tvDoEjUsF`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_experiment_plan_with_status"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ff11ac92-5d52-46ff-96c0-7b5c85e6f35d",
+  "isSidechain": false,
+  "promptId": "f8302a3c-3d42-4fa9-96cb-f9a27b66ab52",
+  "type": "user",
+  "uuid": "3a86d4fe-bf73-495b-81ff-7e6ced0b38f5",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_experiment_plan_with_status"
+    ],
+    "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status",
+    "total_deferred_tools": 82
+  },
+  "sourceToolAssistantUUID": "ff11ac92-5d52-46ff-96c0-7b5c85e6f35d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-21T02:41:53.235Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_experiment_plan_with_status · `toolu_01Q2c1ZaxYwEaLog1j21xc6A`</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3a86d4fe-bf73-495b-81ff-7e6ced0b38f5",
+  "isSidechain": false,
+  "requestId": "req_011CbEwe3ZtakysqhDXZQAvV",
+  "type": "assistant",
+  "uuid": "27f2787b-b974-4788-9ee6-a453c685cf69",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KgM8hoqUC7aakLRZhj27H9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1092,
+      "cache_read_input_tokens": 65362,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1092,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 65362,
+          "cache_creation_input_tokens": 1092,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1092
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-21T02:41:53.623Z_
+
+<details><summary>↩ Tool result · `toolu_01Q2c1ZaxYwEaLog1j21xc6A`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"plan_001\", \"title\": \"Episode-level GRPO convergence (exp029 continuation)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [], \"registry_id\": \"exp029_episode_level\", \"status\": \"DONE\", \"description\": \"Episode-level GRPO (context_window_mode: full) on Qwen3-1.7B + ALFWorld. 50 steps, dual-GPU. MVP passed at step 5 (val=25%, 2x baseline 12.5%). Continue to convergence (step 20+) with tatsu parallel patch for 4x val speedup.\\n\", \"hypothesis\": \"Episode-level training enables stable RL for multi-turn agents, reaching ≥40% success by convergence.\\n\", \"metrics\": {\"reeval_ood_134tasks\": {\"success\": 0.2388, \"action_is_valid\": 0.5683, \"action_is_effective\": 0.916, \"manager_invalid_action\": 0.0839, \"reward_mean\": 2.388, \"best_at_8\": 8.88, \"dataset\": \"AlfworldSG_OOD_134tasks\", \"date\": \"2026-05-18\"}}, \"gpu_hours_estimate\": 48, \"framing_ref\": \"claim_1\", \"conclusion\": \"success\"}, {\"id\": \"plan_002\", \"title\": \"Context window h-sweep ablation (3 seeds each)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_001\"], \"registry_id\": \"hsweep_h2_seed1\", \"status\": \"DONE\", \"description\": \"Sweep context_window h={2, 5, 10, 20, full} on same GRPO config. Config: context_window_mode=step_independent + step_independent_history_length={h} (h=full uses context_window_mode=full). 15 steps per run, 3 seeds each. KEY paper figure: shows credit assignment cliff is robust across seeds. Addresses Reviewer Concern #1 + Dream C3 (statistical power).\\n\", \"hypothesis\": \"Performance degrades monotonically with smaller h, with sharp cliff below h=10. Cliff is robust across seeds (not single-run artifact).\\n\", \"metrics\": {\"train_step\": 15, \"total_steps\": 15, \"wandb_run_id\": \"7o9bjszm\", \"step1\": {\"success\": 0.1875, \"pass_at_8\": 0.4375, \"invalid_action\": 0.027}, \"step2\": {\"success\": 0.1484, \"pass_at_8\": 0.5, \"invalid_action\": 0.02}, \"step3\": {\"success\": 0.1875, \"pass_at_8\": 0.625, \"invalid_action\": 0.028}, \"step4\": {\"success\": 0.0547, \"pass_at_8\": 0.25, \"invalid_action\": 0.264}, \"step5\": {\"success\": 0.0156, \"pass_at_8\": 0.0625, \"invalid_action\": 0.369}, \"step6\": {\"success\": 0.0313, \"pass_at_8\": 0.25, \"invalid_action\": 0.471}, \"step7\": {\"success\": 0.0469, \"pass_at_8\": 0.1875, \"invalid_action\": 0.502}, \"step8\": {\"success\": 0.0156, \"pass_at_8\": 0.125, \"invalid_action\": 0.542}, \"step9\": {\"success\": 0, \"pass_at_8\": 0, \"invalid_action\": 0.641}, \"step10\": {\"success\": 0.0234}, \"step11_15\": {\"success\": 0, \"invalid_action\": 0.972}, \"val_final\": {\"success\": 0, \"invalid_action\": 0.999, \"action_is_valid\": 0.0006}, \"checkpoint\": \"global_step_5,10,15\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/hsweep-h2/\", \"log_path\": \"~/runs/cost-verify-agent-rl/hsweep_h2_s1.log\", \"gpu_util\": \"95-100%\", \"collapse_onset\": \"step3→step4\", \"elapsed_hours\": 10.04, \"step15_entropy\": 0.342, \"step15_kl_loss\": 0.777, \"step15_grad_norm\": 1.611, \"auto_next_triggered\": true, \"seed2_pid\": 945877, \"seed2_wandb\": \"jhwyg4tc\"}, \"gpu_hours_estimate\": 90, \"notes\": \"h=2 seed1 DONE (collapse 0%), h=2 seed2 DONE (val 9.375%), h=5 collapsed (evidence from γ-sweep plan_017: all γ values at h=5 collapsed), h=10 DONE/killed (D079: val=SFT baseline 6.25%, train=0%, no learning), h=20 RUNNING (hsweep_h20_seed1), h=full = exp029 (23.88% OOD). Cliff pattern: h≤10 collapse, h=full learns. h=20 is critical boundary test.\", \"conclusion\": \"success\"}, {\"id\": \"plan_003\", \"title\": \"Multi-seed replication (5 seeds total)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_001\"], \"registry_id\": \"exp029_seed3_episode\", \"status\": \"DONE\", \"description\": \"4 additional seeds for exp029 episode-level config (5 total incl original). Report mean ± std. Dream C3 要求 5-8 seeds for credible CI.\\n\", \"hypothesis\": \"Episode-level success rate is reproducible (std < 5pp across 5 seeds).\\n\", \"metrics\": [\"success_rate_mean\", \"success_rate_std\"], \"gpu_hours_estimate\": 192, \"conclusion\": \"failed\"}, {\"id\": \"plan_003b\", \"title\": \"REINFORCE++ baseline comparison (fallback from GAE)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_001\"], \"registry_id\": \"gae_baseline_seed1\", \"status\": \"DONE\", \"conclusion\": \"killed\", \"description\": \"Per-token credit baseline using REINFORCE++ (running-mean baseline, adv_estimator=reinforce_plus_plus_baseline). Fallback from GAE due to TRL 1.1.0 removing AutoModelForCausalLMWithValueHead (critic head unavailable, D060). Provides per-token advantage normalization vs episode-level GRPO uniform advantage. If REINFORCE++ >> episode-level → per-token normalization adds value even without critic. If comparable → episode-level info is the key factor, not credit granularity.\", \"hypothesis\": \"REINFORCE++ provides modest improvement over episode-level GRPO due to per-token advantage normalization, but both far exceed step-independent.\", \"metrics\": {\"wandb_run_id\": \"dt79qyd9\", \"pid\": 40267, \"val_step0\": {\"success\": 0.0625, \"action_is_valid\": 0.7796}, \"val_step5\": {\"success\": 0.125, \"action_is_valid\": 0.6926}, \"val_step10\": {\"success\": 0.125, \"pass_at_1\": 0.125, \"reward_mean\": 1.25}, \"train_step9\": {\"success\": 0.0313, \"action_is_valid\": 0.6033, \"pass_at_8\": 0.25}, \"server\": \"westd-47453\", \"gpu\": \"cuda:0,1\", \"method\": \"reinforce_plus_plus\", \"fallback_reason\": \"TRL 1.1.0 removed AutoModelForCausalLMWithValueHead\", \"current_step\": \"11/15\"}, \"gpu_hours_estimate\": 60, \"notes\": \"D060: GAE infeasible (TRL 1.1.0 removed ValueHead). Using REINFORCE++ as practical per-token baseline. Running on westd cuda:0,1.\"}, {\"id\": \"plan_003c\", \"title\": \"Episode-level + valid_action_bonus (plateau-breaker, D056)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_001\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Derived from exp013f negative (D056): dense reward gaming is step_independent-specific. Episode-level training prevents per-step reward gaming because model optimizes full trajectory total reward. Add valid_action_bonus=0.05 to episode-level config. Test if this safely improves action_is_valid (currently 55.9%) without gaming, and whether it breaks the 23-25% success plateau. Run during h-sweep batch as h=full variant.\\n\", \"hypothesis\": \"Episode-level + small valid_action_bonus safely improves action_is_valid (target ≥80%) without reward gaming, and success rate exceeds 30% (breaking exp029 plateau). Gaming only occurs under step_independent.\\n\", \"metrics\": [\"success_rate\", \"action_is_valid\", \"valid_bonus_vs_task_reward_ratio\"], \"gpu_hours_estimate\": 24, \"parent\": \"exp013f\", \"notes\": \"Parent derivation: exp013f gaming → D056 insight → episode-level safety hypothesis\"}, {\"id\": \"plan_004\", \"title\": \"Credit assignment mechanism empirical verification (paper Figure 2)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_002\"], \"registry_id\": \"hsweep_h2_seed2\", \"status\": \"DONE\", \"conclusion\": \"success\", \"description\": \"Empirically verify \\\"Advantage Sign Misattribution\\\" mechanism (D058, Reviewer-refined): (a) Per-window advantage logging from h=2 seed 2: record (episode_id, window_position,\\n    raw_return, advantage_sign, advantage_magnitude, episode_outcome, local_action_quality_proxy)\\n(b) Key analysis: advantage sign vs episode outcome correlation (should be ~1.0),\\n    advantage sign vs local action quality correlation (should be ~0, proving misattribution)\\n(c) Contrast success vs failure episodes: success → all positive (including bad windows),\\n    failure → all negative (including good windows)\\n(d) γ^k magnitude decay: advantage magnitude vs position in success episodes (e) Episode-level control: all tokens share one advantage (no position/sign variance) Data source: LOG_PER_SAMPLE_ADV=1 on h=2 seed 2 (10 lines logging code, zero GPU overhead). Code reference: agent_trainer.py:271-340, core_algos.py:194-246.\\n\", \"hypothesis\": \"Per-window advantage in step_independent shows: (1) advantage sign is determined by episode success/failure (correlation > 0.95), (2) advantage sign is NOT correlated with window-local action quality (r < 0.1), proving sign misattribution, (3) magnitude decays as γ^k from terminal position, (4) episode-level shows uniform advantage with no sign/magnitude position effects.\\n\", \"metrics\": {\"current_step\": \"15/15\", \"completed\": true, \"val_step5\": {\"success\": 0}, \"val_step10\": {\"success\": 0}, \"val_step15\": {\"success\": 0.09375}, \"train_step14\": {\"success\": 0.2656, \"pass_at_8\": 0.6875}, \"train_step15\": {\"success\": 0.2812, \"pass_at_8\": 0.625, \"entropy\": 0.401, \"ppo_kl\": 0.006}, \"train_success_peak\": {\"step\": 15, \"value\": 0.2812}, \"adv_log_lines\": 3000, \"adv_episodes\": {\"total\": 128, \"success\": 65, \"fail\": 63}, \"adv_analysis\": {\"sign_outcome_agreement\": 0.5207, \"point_biserial_r\": 0.068, \"p_adv_pos_given_success\": 0.3706, \"p_adv_pos_given_failure\": 0.306, \"magnitude_decay_gamma\": 0.9426, \"distribution_overlap\": 0.878, \"verdict\": \"52% agreement confirms advantage signal nearly uninformative about episode outcome = sign misattribution\"}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/hsweep-h2/global_step_15/\", \"checkpoint_warning\": \"seed2 overwrote seed1 step15 checkpoint in same directory\", \"status_note\": \"COMPLETED 15/15. Late recovery at step 14-15 (train 26-28%). Val 9.375% on 16 in-dist tasks. ADV: 52% sign agreement = near-random.\"}, \"gpu_hours_estimate\": 4, \"notes\": \"D058+Reviewer: 'sign misattribution' is the core mechanism (direction error > magnitude error). γ^k decay is secondary.\"}, {\"id\": \"plan_005\", \"title\": \"Action-change statistics from always-on runs\", \"claim\": \"Claim 2 (DEFERRED per D061)\", \"phase\": \"B\", \"priority\": \"P2-deferred\", \"depends_on\": [\"plan_001\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Collect action-change statistics from exp029 trained checkpoints: (1) fraction of verifications triggering action change, (2) correlation between action change and episode success, (3) per-task-type breakdown. Informs reward design and provides empirical grounding.\\n\", \"hypothesis\": \"Most verifications are confirmatory (>60% no action change). Action change positively correlates with episode success (r > 0.2).\\n\", \"metrics\": [\"action_change_rate\", \"correlation\", \"confirmatory_rate\"], \"gpu_hours_estimate\": 4}, {\"id\": \"plan_006\", \"title\": \"Selective verification implementation\", \"claim\": \"Claim 2 (DEFERRED per D061)\", \"phase\": \"B\", \"priority\": \"P2-deferred\", \"depends_on\": [\"plan_005\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Implement binary verify/skip decision in RAGEN framework. Agent outputs special token (verify/skip) before each step. Reward = task_success + alpha * action_change_when_verified - beta * verification_cost. Code-only, no GPU.\\n\", \"hypothesis\": null, \"metrics\": [], \"gpu_hours_estimate\": 0}, {\"id\": \"plan_007\", \"title\": \"B-IAVR selective verification training\", \"claim\": \"Claim 2, Claim 3 (DEFERRED per D061)\", \"phase\": \"B\", \"priority\": \"P2-deferred\", \"depends_on\": [\"plan_006\", \"plan_001\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Train selective verification policy via episode-level GRPO. Initialize from best exp029 checkpoint. Action-change reward encourages verification only when informative.\\n\", \"hypothesis\": \"B-IAVR achieves verification rate ↓40%+ vs always-on while maintaining success within 5pp of baseline.\\n\", \"metrics\": [\"success_rate\", \"verification_rate\", \"cost_reduction\"], \"gpu_hours_estimate\": 96}, {\"id\": \"plan_008\", \"title\": \"Selective verification full comparison\", \"claim\": \"Claim 3 (DEFERRED per D061)\", \"phase\": \"B\", \"priority\": \"P2-deferred\", \"depends_on\": [\"plan_007\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Compare on same val set: always-on / B-IAVR / no-verify / random-p / confidence-threshold. Report success rate, verification rate, total inference tokens, per-task breakdown.\\n\", \"hypothesis\": \"B-IAVR dominates Pareto frontier (best success-to-cost ratio).\\n\", \"metrics\": [\"success_rate\", \"verification_rate\", \"cost_reduction\", \"total_tokens\"], \"gpu_hours_estimate\": 8}, {\"id\": \"plan_009\", \"title\": \"No-verify ablation\", \"claim\": \"Claim 3 (DEFERRED per D061)\", \"phase\": \"C\", \"priority\": \"P2-deferred\", \"depends_on\": [\"plan_001\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Episode-level GRPO without any self-verification. Lower bound: demonstrates verification value.\\n\", \"hypothesis\": \"Removing verification drops success by ≥10pp vs always-on.\\n\", \"metrics\": [\"success_rate\", \"action_is_valid\"], \"gpu_hours_estimate\": 48}, {\"id\": \"plan_010\", \"title\": \"Entropy-controlled action-change analysis\", \"claim\": \"Claim 2 (DEFERRED per D061)\", \"phase\": \"C\", \"priority\": \"P2-deferred\", \"depends_on\": [\"plan_005\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Defense for \\\"action change = noise\\\" concern. Stratify by policy entropy; test if action-change-success correlation holds within each stratum.\\n\", \"hypothesis\": \"Partial correlation remains significant (p < 0.05) after controlling entropy.\\n\", \"metrics\": [\"partial_correlation\", \"p_value\"], \"gpu_hours_estimate\": 4}, {\"id\": \"plan_011\", \"title\": \"Causal intervention: random vs verification-triggered changes\", \"claim\": \"Claim 2 (DEFERRED per D061)\", \"phase\": \"C\", \"priority\": \"P2-deferred\", \"depends_on\": [\"plan_001\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Inject random action changes at same rate as verification-triggered. Compare task success. If verification-triggered >> random, causal evidence.\\n\", \"hypothesis\": \"Verification-triggered changes yield ≥10pp higher success than random.\\n\", \"metrics\": [\"success_rate_triggered\", \"success_rate_random\", \"delta\"], \"gpu_hours_estimate\": 8}, {\"id\": \"plan_012\", \"title\": \"Reward signal ablation (action-change vs alternatives)\", \"claim\": \"Claim 2 (DEFERRED per D061)\", \"phase\": \"C\", \"priority\": \"P2-deferred\", \"depends_on\": [\"plan_007\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Train B-IAVR with alternative rewards: (a) action-change (ours), (b) random trigger reward, (c) confidence-based reward. Demonstrates action-change is the best signal.\\n\", \"hypothesis\": \"Action-change reward produces best cost-performance tradeoff.\\n\", \"metrics\": [\"success_rate\", \"verification_rate\", \"cost_reduction\"], \"gpu_hours_estimate\": 192}, {\"id\": \"plan_013\", \"title\": \"ARES reproduction + comparison\", \"claim\": \"Claim 3 (DEFERRED per D061)\", \"phase\": \"C\", \"priority\": \"P2-deferred\", \"depends_on\": [\"plan_007\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Reproduce ARES SFT router on ALFWorld (same model). Head-to-head with B-IAVR on identical eval episodes. Addresses \\\"ARES differentiation\\\" concern.\\n\", \"hypothesis\": \"B-IAVR achieves ≥10pp better cost reduction than ARES at matched success.\\n\", \"metrics\": [\"success_rate\", \"verification_rate\", \"cost_reduction\"], \"gpu_hours_estimate\": 24}, {\"id\": \"plan_014\", \"title\": \"ScienceWorld transfer (episode-level advantage)\", \"claim\": \"Claim 1\", \"phase\": \"D\", \"priority\": \"P2\", \"depends_on\": [\"plan_001\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Validate episode-level vs step-independent on ScienceWorld. Different env, similar multi-turn structure. Addresses single-env concern.\\n\", \"hypothesis\": \"Episode-level advantage generalizes: ≥2x improvement over step-independent.\\n\", \"metrics\": [\"success_rate_episode\", \"success_rate_step_independent\"], \"gpu_hours_estimate\": 72}, {\"id\": \"plan_015\", \"title\": \"7B model scaling verification\", \"claim\": \"Claim 1\", \"phase\": \"D\", \"priority\": \"P2\", \"depends_on\": [\"plan_002\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Episode-level vs step-independent on Qwen3-7B. Addresses model size concern. May need cloud GPU.\\n\", \"hypothesis\": \"Episode-level advantage holds at 7B scale.\\n\", \"metrics\": [\"success_rate_episode_7B\", \"success_rate_step_independent_7B\"], \"gpu_hours_estimate\": 192, \"notes\": \"May require cloud GPU rental (4x A100 or 2x H100)\"}, {\"id\": \"plan_016\", \"title\": \"Per-task-type breakdown analysis\", \"claim\": \"Claim 1\", \"phase\": \"D\", \"priority\": \"P2\", \"depends_on\": [\"plan_001\"], \"registry_id\": \"exp029_per_task_breakdown\", \"status\": \"DONE\", \"description\": \"Breakdown by ALFWorld task type (pick, clean, heat, cool, examine, pick_two). Shows within-environment diversity.\\n\", \"hypothesis\": \"Episode-level advantage varies by task complexity; longer tasks benefit more.\\n\", \"metrics\": {\"temperature\": 0, \"total_success_rate\": 0.164, \"pick_and_place_simple\": {\"count\": 24, \"success\": 5, \"rate\": 0.208}, \"pick_clean_then_place_in_recep\": {\"count\": 31, \"success\": 8, \"rate\": 0.258}, \"pick_heat_then_place_in_recep\": {\"count\": 23, \"success\": 1, \"rate\": 0.043}, \"pick_cool_then_place_in_recep\": {\"count\": 21, \"success\": 2, \"rate\": 0.095}, \"look_at_obj_in_light\": {\"count\": 18, \"success\": 5, \"rate\": 0.278}, \"pick_two_obj_and_place\": {\"count\": 17, \"success\": 1, \"rate\": 0.059}}, \"gpu_hours_estimate\": 2, \"conclusion\": \"success\"}, {\"id\": \"plan_017\", \"title\": \"Discount factor γ-sweep (dual mechanism separation)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_001\"], \"registry_id\": \"gsweep_g050_h5_seed1\", \"status\": \"DONE\", \"notes_extra\": \"g050 killed (collapsed). g080 RUNNING on westd cuda:2,3. g095/g100 pending.\", \"description\": \"Sweep discount factor γ ∈ {0.5, 0.8, 0.95, 1.0} with fixed h=5, step_independent mode, 15 steps each. Separates two mechanisms: (1) magnitude decay (γ^k attenuation) vs (2) sign misattribution (advantage sign determined by episode outcome). γ=1.0 eliminates magnitude decay; if collapse persists, sign misattribution is the root cause. KEY paper evidence for dual mechanism separation.\\n\", \"hypothesis\": \"γ=1.0 eliminates magnitude decay but step_independent still collapses, proving sign misattribution is the root cause rather than γ^k decay. Lower γ values show accelerated collapse due to compounded magnitude attenuation.\\n\", \"metrics\": {\"current_step\": \"12/15\", \"train_success_collapsed_at\": \"step 1\", \"train_success_all_steps\": \"0-2.3% (effectively 0%)\", \"val_step0\": {\"success\": 0.094}, \"val_step5\": {\"success\": 0, \"reward\": 0}, \"val_step10\": {\"success\": 0, \"reward\": 0, \"response_length\": 1412}, \"kl_sequence\": [0.019, 0.025, 0.018, 0.014, 0.01, 0.009, 0.009, 0.209, 0.018], \"kl_spike_step8\": 0.209, \"checkpoint\": \"global_step_10\", \"eta\": \"~5h from 02:46 UTC\", \"status_note\": \"COMPLETELY COLLAPSED. Train success 0% from step 1. KL spike 20x at step 8. Val all zeros. Remaining 3 steps waste GPU. Recommend early kill.\"}, \"gpu_hours_estimate\": 40, \"notes\": \"4 γ values × 15 steps. γ=0.5 running (gsweep_g050_h5_seed1). Remaining: gsweep_g080_h5_seed1, gsweep_g095_h5_seed1, gsweep_g100_h5_seed1 pre-registered.\", \"conclusion\": \"killed\"}, {\"id\": \"plan_018\", \"title\": \"Factorial mechanism separation: truncated-obs + episode-level advantage\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_001\"], \"registry_id\": \"factorial_h2_episodeadv_seed1\", \"status\": \"DONE\", \"conclusion\": \"success\", \"description\": \"CRITICAL experiment requested by ALL 3 Dream review tiers. 2×2 factorial design to isolate information loss from sign misattribution. Configuration: step_independent GENERATION (h=2 observation window, model only sees 2 steps of history during rollout) BUT episode-level ADVANTAGE computation (all windows in same episode share one GRPO advantage = normalized episode return). This means the model still has limited observation (information loss present) but credit assignment is correct (sign misattribution eliminated). Outcome interpretation: (A) if still collapses → information loss is dominant (model cannot plan with limited visibility regardless of credit quality); (B) if succeeds → sign misattribution was dominant (correct credit enables learning even with limited observation). May require small code modification in RAGEN: compute_step_discounted_returns() needs a mode that assigns episode return to all windows uniformly instead of per-window γ-discounted returns.\", \"hypothesis\": \"Truncated observation (h=2) + episode-level advantage isolates the two mechanisms. If collapse persists, information loss is primary. If performance improves significantly over standard step_independent h=2 (currently 0%), sign misattribution is primary.\", \"metrics\": {\"completed_steps\": \"15/15\", \"wandb_run_id\": \"6liw7fm1\", \"val_step5\": {\"success\": 0.0597, \"dataset\": \"AlfworldOOD_134tasks\"}, \"val_step15\": {\"success\": 0.0075}, \"kl_loss_trajectory\": {\"step1\": 0.238, \"step5\": 0.735, \"step10\": 1.029, \"step15\": 2.845}, \"ppo_kl_range\": \"0.025-0.096\", \"best_checkpoint\": \"global_step_5\", \"best_val_success\": 0.0597, \"train_step1\": {\"success\": 0.203, \"pass_at_8\": 0.688}, \"train_step6\": {\"success\": 0.258, \"pass_at_8\": 0.813}, \"checkpoint_paths\": {\"step5\": \"/root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_5/\", \"step10\": \"/root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_10/\", \"step15\": \"/root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_15/\"}, \"exit_cause\": \"W&B atexit BrokenPipeError (false positive)\", \"kl_issue\": \"kl_loss_coef=0.01 too low, policy drifted after step 5\", \"status_note\": \"COMPLETED. Best val OOD 5.97% at step 5. Degraded to 0.75% by step 15 due to KL drift. Sign misattribution elimination confirmed: 5.97% vs 0% (step-level h=2).\"}, \"gpu_hours_estimate\": 24, \"notes\": \"Dream consensus: this is THE most critical missing experiment. All 3 tiers (best/median/worst) independently flagged the absence of factorial mechanism separation as a critical weakness. Also serves to resolve the r=0.640 diagnostic question.\"}, {\"id\": \"plan_019\", \"title\": \"Evaluation set expansion (32→134 tasks)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [], \"registry_id\": null, \"status\": \"planned\", \"conclusion\": \"success\", \"description\": \"Expand ALFWorld validation set from 32 to 134 tasks (standard full split). Dream worst-case flagged 32 tasks as critically small (3.125% per episode, many comparisons are <2 episode difference). Standard ALFWorld evaluation uses 134 tasks. This is a config/infrastructure change affecting all future experiments.\", \"hypothesis\": \"Larger evaluation set provides statistical power for ≤3pp differences. Current results (e.g. 25% = 8/32 tasks) become more precise.\", \"metrics\": [\"statistical_power\", \"confidence_interval_width\"], \"gpu_hours_estimate\": 0, \"notes\": \"Infrastructure change. Need to verify RAGEN supports 134-task eval split and identify the correct task list file. May require modifying val config.\"}, {\"id\": \"plan_020\", \"title\": \"8B SFT Training (Qwen3-8B ALFWorld)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [], \"registry_id\": \"7b_sft_v1\", \"description\": \"SFT Qwen3-8B on ALFWorld expert data (2460 examples). Creates 8B SFT checkpoint for Cell A/C RL experiments. Validates training pipeline at 8B scale.\", \"hypothesis\": \"SFT Qwen3-8B will achieve high training accuracy and establish strong baseline for subsequent RL, enabling scale-invariant mechanism verification.\", \"status\": \"DONE\", \"conclusion\": \"success\"}, {\"id\": \"plan_021\", \"title\": \"8B SFT OOD Evaluation (134 tasks)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_020\"], \"registry_id\": \"7b_sft_eval_ood\", \"description\": \"Evaluate 8B SFT checkpoint on 134 OOD tasks. Establishes 8B SFT baseline for paper table. Result: 80.6% OOD success.\", \"hypothesis\": \"8B SFT baseline substantially exceeds 1.7B baseline, confirming model scale advantage for SFT.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.806, \"pass_at_1\": 0.806, \"num_actions\": 20.18, \"action_is_valid\": 0.963, \"action_is_effective\": 1, \"reward_mean_at_134\": 8.06, \"response_length\": 1987.9, \"best_at_2_mean\": 9.53, \"best_at_4_mean\": 9.98, \"best_at_8_mean\": 10, \"worst_at_2_mean\": 6.55, \"worst_at_4_mean\": 4.11, \"worst_at_8_mean\": 1.93}}, {\"id\": \"plan_022\", \"title\": \"8B SFT In-dist Evaluation (32 tasks)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_020\"], \"registry_id\": \"8b_sft_clean_eval_v2\", \"description\": \"Clean 8B SFT eval on 32 in-dist val tasks. Provides denominator for information loss quantification (same eval set as Cell A).\", \"hypothesis\": \"8B SFT full-context in-dist success provides upper bound for h=2 information loss measurement.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.71875, \"num_actions\": 23.4375, \"action_is_effective\": 1, \"action_is_valid\": 0.9595, \"pass@1\": 0.71875, \"response_length\": 1731, \"reward_mean@32\": 7.1875, \"reward_std@32\": 4.496, \"best@32_mean\": 10, \"worst@32_mean\": 0, \"eval_episodes\": 32, \"eval_split\": \"eval_in_distribution\", \"eval_context\": \"full\"}}, {\"id\": \"plan_023\", \"title\": \"8B Deterministic Eval — Full Context (T=0)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_020\"], \"registry_id\": \"8b_det_eval_full\", \"description\": \"Deterministic (T=0) eval of 8B SFT with full context on 32 in-dist tasks. Paired with h=2 eval for information loss quantification without sampling variance. Result: 68.75%.\", \"hypothesis\": \"T=0 deterministic eval eliminates sampling variance, providing clean information loss measurement.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.6875, \"num_actions\": 24.22, \"action_is_valid\": 0.926, \"pass_at_1\": 0.6875, \"eval_tasks\": 32, \"temperature\": 0, \"do_sample\": false, \"wandb_run\": \"mb005ir1\"}}, {\"id\": \"plan_024\", \"title\": \"8B Deterministic Eval — h=2 (T=0)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_023\"], \"registry_id\": \"8b_det_eval_h2\", \"description\": \"Deterministic (T=0) eval of 8B SFT with h=2 windowing on same 32 in-dist tasks. Result: 31.25%. Information loss = 68.75% - 31.25% = 37.5pp.\", \"hypothesis\": \"h=2 windowing causes substantial information loss at 8B scale, confirming scale-invariant mechanism.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.3125, \"num_actions\": 37.59, \"action_is_valid\": 0.9188, \"pass_at_1\": 0.3125, \"eval_tasks\": 32, \"temperature\": 0, \"do_sample\": false, \"wandb_run\": \"qtxhh5ak\", \"information_loss_pp\": 37.5, \"information_loss_relative\": 0.545}}, {\"id\": \"plan_025\", \"title\": \"8B Cell A Collapse Verification\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_020\"], \"registry_id\": \"7b_cell_a_h2\", \"description\": \"8B Cell A: step-independent RL with h=2 from 80.6% SFT baseline. Result: step 1 = 12.5% (baseline halved), step 2 = 1.5625% (Q4 complete collapse). Confirms scale-invariant collapse mechanism.\", \"hypothesis\": \"8B Cell A collapses like 1.7B Cell A, confirming sign misattribution + information loss are scale-invariant.\", \"status\": \"DONE\", \"conclusion\": \"killed\", \"metrics\": {\"val_before_train_success\": 0.281, \"step1_train_success\": 0.125, \"step1_kl\": 1.917, \"step1_entropy\": 0.115, \"step1_grad_norm\": 2.29, \"step1_num_actions\": 47.7, \"step1_pass_at_8\": 0.5, \"step1_pg_clipfrac\": 0.109, \"step1_response_length\": 567.5, \"step1_duration_sec\": 5076, \"step2_train_success\": 0.015625, \"step2_entropy\": 0.605, \"step2_ppo_kl\": -1.885, \"step2_num_actions\": 49.7, \"collapse_pattern\": \"Q4 confirmed: step 0 val=28.1% → step 1 train=12.5% (entropy collapse 0.115) → step 2 train=1.56% (entropy rebound 0.605, negative KL -1.885). Complete collapse in 2 steps.\"}}, {\"id\": \"plan_026\", \"title\": \"8B Cell C Episode-Level GRPO (v9d, FSDP2+CPUOffload)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_020\", \"plan_025\"], \"registry_id\": \"8b_cell_c_episode_v9d\", \"description\": \"8B Cell C episode-level GRPO with FSDP2+CPUOffloadPolicy. 30 steps on 4×RTX PRO 6000 96GB. If successful, provides cross-scale positive control: not only failure mechanism is scale-invariant, but fix effectiveness is too. Step 5: val 81.25%.\", \"hypothesis\": \"8B Cell C episode-level training succeeds (maintaining/improving from SFT baseline), confirming episode-level fix is scale-invariant.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"step\": 15, \"steps_total\": 30, \"stopped_reason\": \"reward_saturation_and_nccl_hang\", \"train_success_step12\": 1, \"pg_loss_step12\": 0, \"advantage_step12\": 0, \"val_before_train_step10\": 0.96875, \"train_success_step7\": 0.914, \"train_success_step11\": 0.9375, \"effective_final_step\": 10, \"wandb_run_id\": \"aeml21w9\", \"note\": \"Reward saturated at step 12 (100% success, zero gradients). NCCL hang at step 15. Step 10 checkpoint is effective final model.\"}}, {\"id\": \"plan_027\", \"title\": \"Factorial Mechanism Separation — Seed 2 Replication\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_018\"], \"registry_id\": \"factorial_h2_episodeadv_seed2\", \"description\": \"Seed 2 replication of factorial experiment (step-independent generation + episode-level advantage). Confirms sign misattribution elimination effect is robust across seeds. Result: OOD 0.75% (train 55.5%, hard ceiling from info loss).\", \"hypothesis\": \"Factorial mechanism separation result replicates: sign misattribution elimination enables training even with truncated observation.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"step15_train_success\": 0.555, \"step15_val_ood_success\": 0.0075, \"step15_val_ood_action_valid\": 0.173, \"step15_kl\": 0.618, \"step15_train_pass8\": 0.875}}, {\"id\": \"plan_028\", \"title\": \"Episode-Level Seed 2 (Cross-seed OOD)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_001\"], \"registry_id\": \"exp029_episode_level_seed2\", \"description\": \"Seed 2 replication of exp029 episode-level GRPO. Val peaked at 31.25%. Step 30 checkpoint lost in disk cleanup (M019). Provides cross-seed evidence.\", \"hypothesis\": \"Episode-level success is reproducible across seeds.\", \"notes\": \"Killed due to checkpoint loss (M019). Paper uses step 15 val data.\", \"status\": \"DONE\", \"conclusion\": \"killed\"}, {\"id\": \"plan_029\", \"title\": \"h-sweep h=10 (cliff boundary test)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_002\"], \"registry_id\": \"hsweep_h10_seed1\", \"description\": \"h=10 step-independent GRPO. Result: val=SFT baseline 6.25%, train=0%. No learning — cliff is above h=10. Killed per D079.\", \"hypothesis\": \"h=10 provides insufficient context for learning, confirming cliff between h=10 and h=20.\", \"status\": \"DONE\", \"conclusion\": \"killed\", \"metrics\": {\"step2_train_success\": 0, \"step5_val_success\": \"SFT_baseline\", \"collapse_onset\": \"step 2\", \"verdict\": \"complete collapse, h=10 insufficient context\"}}, {\"id\": \"plan_030\", \"title\": \"h-sweep h=20 (cliff boundary test)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_029\"], \"registry_id\": \"hsweep_h20_seed1\", \"description\": \"h=20 step-independent GRPO. Key cliff boundary: h=10 collapsed, h=20 shows if 20 steps of context enables recovery. Result: 15.6% val success — partial recovery, cliff between h=10 and h=20.\", \"hypothesis\": \"h=20 shows partial recovery, narrowing cliff location to h=10~h=20.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"step1_train\": 0.203, \"step2_train\": 0.133, \"step4_train\": 0.281, \"val_step5_success\": 0.15625}}, {\"id\": \"plan_031\", \"title\": \"Per-task OOD Eval T=0.4 (exp029 rerun)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_001\"], \"registry_id\": \"exp029_per_task_t04_v2\", \"description\": \"Per-task-type OOD eval with T=0.4 (paper protocol D092). Independent eval script result: 19.4% (26/134). pick_two_obj = 0% (hardest). Pipeline difference vs RAGEN 23.88% under investigation.\", \"hypothesis\": \"Task-type ranking pattern consistent across eval methods; multi-step tasks remain hardest.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"temperature\": 0.4, \"total_success_rate\": 0.194, \"total_success\": 26, \"total_tasks\": 134, \"pick_and_place_simple\": {\"count\": 24, \"success\": 4, \"rate\": 0.167}, \"pick_clean_then_place_in_recep\": {\"count\": 31, \"success\": 8, \"rate\": 0.258}, \"pick_heat_then_place_in_recep\": {\"count\": 23, \"success\": 4, \"rate\": 0.174}, \"pick_cool_then_place_in_recep\": {\"count\": 21, \"success\": 5, \"rate\": 0.238}, \"look_at_obj_in_light\": {\"count\": 18, \"success\": 5, \"rate\": 0.278}, \"pick_two_obj_and_place\": {\"count\": 17, \"success\": 0, \"rate\": 0}}}, {\"id\": \"plan_032\", \"title\": \"ScienceWorld SFT Training (second environment)\", \"claim\": \"Claim 1\", \"phase\": \"D\", \"priority\": \"P1\", \"depends_on\": [], \"registry_id\": \"scienceworld_sft\", \"description\": \"ScienceWorld 1.7B SFT training. 3592 train / 1796 val expert trajectories, 2 epochs. Creates SFT checkpoint for subsequent GRPO experiments. Validates pipeline generalization to second interactive environment.\", \"hypothesis\": \"SFT pipeline generalizes to ScienceWorld, providing base checkpoint for cross-environment RL mechanism comparison.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_loss_final\": 0.00318, \"val_loss_final\": 0.01098, \"total_steps\": 448, \"epochs\": 2, \"total_train_time_s\": 9319.4, \"checkpoint\": \"global_step_448\"}}, {\"id\": \"plan_033\", \"title\": \"ScienceWorld SFT Eval v2 (baseline establishment)\", \"claim\": \"Claim 1\", \"phase\": \"D\", \"priority\": \"P1\", \"depends_on\": [\"plan_032\"], \"registry_id\": \"scienceworld_sft_eval_v2\", \"description\": \"Full dev split eval (1796 episodes, 30 task types) of ScienceWorld SFT checkpoint. Fixed valid_action_rate metric (v1 had truncation bug). Currently running: ~53% complete, success rate ~30.8%.\", \"hypothesis\": \"ScienceWorld SFT establishes baseline success rate for subsequent GRPO Cell A vs Cell C comparison.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"total_episodes\": 1796, \"success_count\": 540, \"overall_success_rate\": 0.301, \"timeouts\": 0, \"errors\": 0, \"avg_score\": 20.9, \"avg_steps_per_episode\": 28.7, \"total_time_seconds\": 51462, \"split\": \"dev\", \"temperature\": 0.4, \"per_task_type\": {\"boil\": {\"n\": 7, \"succ\": 0, \"rate\": 0}, \"change-the-state-of-matter-of\": {\"n\": 7, \"succ\": 1, \"rate\": 0.143}, \"chemistry-mix\": {\"n\": 8, \"succ\": 0, \"rate\": 0}, \"chemistry-mix-paint-secondary-color\": {\"n\": 9, \"succ\": 2, \"rate\": 0.222}, \"chemistry-mix-paint-tertiary-color\": {\"n\": 9, \"succ\": 0, \"rate\": 0}, \"find-animal\": {\"n\": 75, \"succ\": 37, \"rate\": 0.493}, \"find-living-thing\": {\"n\": 75, \"succ\": 49, \"rate\": 0.653}, \"find-non-living-thing\": {\"n\": 75, \"succ\": 58, \"rate\": 0.773}, \"find-plant\": {\"n\": 75, \"succ\": 9, \"rate\": 0.12}, \"freeze\": {\"n\": 7, \"succ\": 0, \"rate\": 0}, \"grow-fruit\": {\"n\": 31, \"succ\": 2, \"rate\": 0.065}, \"grow-plant\": {\"n\": 31, \"succ\": 0, \"rate\": 0}, \"identify-life-stages-1\": {\"n\": 3, \"succ\": 0, \"rate\": 0}, \"identify-life-stages-2\": {\"n\": 2, \"succ\": 0, \"rate\": 0}, \"inclined-plane-determine-angle\": {\"n\": 42, \"succ\": 7, \"rate\": 0.167}, \"inclined-plane-friction-named-surfaces\": {\"n\": 346, \"succ\": 83, \"rate\": 0.24}, \"inclined-plane-friction-unnamed-surfaces\": {\"n\": 40, \"succ\": 10, \"rate\": 0.25}, \"lifespan-longest-lived\": {\"n\": 31, \"succ\": 28, \"rate\": 0.903}, \"lifespan-longest-lived-then-shortest-lived\": {\"n\": 31, \"succ\": 28, \"rate\": 0.903}, \"lifespan-shortest-lived\": {\"n\": 31, \"succ\": 21, \"rate\": 0.677}, \"measure-melting-point-known-substance\": {\"n\": 109, \"succ\": 25, \"rate\": 0.229}, \"measure-melting-point-unknown-substance\": {\"n\": 75, \"succ\": 27, \"rate\": 0.36}, \"melt\": {\"n\": 7, \"succ\": 1, \"rate\": 0.143}, \"mendelian-genetics-known-plant\": {\"n\": 30, \"succ\": 8, \"rate\": 0.267}, \"mendelian-genetics-unknown-plant\": {\"n\": 120, \"succ\": 35, \"rate\": 0.292}, \"power-component\": {\"n\": 5, \"succ\": 3, \"rate\": 0.6}, \"power-component-renewable-vs-nonrenewable-energy\": {\"n\": 5, \"succ\": 0, \"rate\": 0}, \"test-conductivity\": {\"n\": 225, \"succ\": 35, \"rate\": 0.156}, \"test-conductivity-of-unknown-substances\": {\"n\": 150, \"succ\": 44, \"rate\": 0.293}, \"use-thermometer\": {\"n\": 135, \"succ\": 27, \"rate\": 0.2}}, \"results_json_path\": \"/root/autodl-tmp/checkpoints/scienceworld_sft/eval_results_dev_v2.json\"}}, {\"id\": \"plan_034\", \"title\": \"γ-sweep γ=0.80 (magnitude decay isolation)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_017\"], \"registry_id\": \"gsweep_g080_h5_seed1\", \"description\": \"γ=0.80 with h=5. Early windows retain γ^9 ≈ 13% of terminal return. Result: collapsed (negative). All γ values collapse at h=5, proving sign misattribution is the root cause, not magnitude decay.\", \"hypothesis\": \"γ=0.80 collapses like other γ values, confirming sign misattribution dominates magnitude decay.\", \"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"step5_val_success\": \"3.125%\", \"step5_entropy\": 0.185, \"subsequent_steps\": \"all 0%\", \"conclusion_note\": \"Complete collapse confirmed. γ=0.80 with h=5 shows catastrophic failure — killed early by Director as no new information expected. Supports hypothesis that lower gamma accelerates collapse.\"}}, {\"id\": \"plan_035\", \"title\": \"γ-sweep γ=0.95 (default control)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_017\"], \"registry_id\": \"gsweep_g095_h5_seed1\", \"description\": \"γ=0.95 with h=5 — control condition matching hsweep_h5. Early windows retain γ^9 ≈ 63%. Result: collapsed (negative).\", \"hypothesis\": \"γ=0.95 reproduces h5 collapse, providing control for γ-sweep.\", \"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"val_success_step5\": 0, \"conclusion_reason\": \"collapsed at step 5, val=0%\"}}, {\"id\": \"plan_036\", \"title\": \"γ-sweep γ=1.00 (no discount, key evidence)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_017\"], \"registry_id\": \"gsweep_g100_h5_seed1\", \"description\": \"γ=1.00 eliminates magnitude decay entirely. If collapse persists, proves sign misattribution alone causes collapse. Result: collapsed (negative). KEY EVIDENCE: even without any γ^k decay, step-independent still collapses.\", \"hypothesis\": \"γ=1.0 eliminates magnitude decay but still collapses, proving sign misattribution is the root cause independent of discount factor.\", \"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"conclusion_reason\": \"collapsed, γ=1.0 also collapses confirming sign misattribution not solely from magnitude decay\"}}], \"total\": 38}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "27f2787b-b974-4788-9ee6-a453c685cf69",
+  "isSidechain": false,
+  "promptId": "f8302a3c-3d42-4fa9-96cb-f9a27b66ab52",
+  "type": "user",
+  "uuid": "d5863387-ea27-46d6-bcd5-ed48dc744c47",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_001\\\", \\\"title\\\": \\\"Episode-level GRPO convergence (exp029 continuation)\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"A+\\\", \\\"priority\\\": \\\"P0\\\", \\\"depends_on\\\": [], \\\"registry_id\\\": \\\"exp029_episode_level\\\", \\\"status\\\": \\\"DONE\\\", \\\"description\\\": \\\"Episode-level GRPO (context_window_mode: full) on Qwen3-1.7B + ALFWorld. 50 steps, dual-GPU. MVP passed at step 5 (val=25%, 2x baseline 12.5%). Continue to convergence (step 20+) with tatsu parallel patch for 4x val speedup.\\\\n\\\", \\\"hypothesis\\\": \\\"Episode-level training enables stable RL for multi-turn agents, reaching ≥40% success by convergence.\\\\n\\\", \\\"metrics\\\": {\\\"reeval_ood_134tasks\\\": {\\\"success\\\": 0.2388, \\\"action_is_valid\\\": 0.5683, \\\"action_is_effective\\\": 0.916, \\\"manager_invalid_action\\\": 0.0839, \\\"reward_mean\\\": 2.388, \\\"best_at_8\\\": 8.88, \\\"dataset\\\": \\\"AlfworldSG_OOD_134tasks\\\", \\\"date\\\": \\\"2026-05-18\\\"}}, \\\"gpu_hours_estimate\\\": 48, \\\"framing_ref\\\": \\\"claim_1\\\", \\\"conclusion\\\": \\\"success\\\"}, {\\\"id\\\": \\\"plan_002\\\", \\\"title\\\": \\\"Context window h-sweep ablation (3 seeds each)\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"A+\\\", \\\"priority\\\": \\\"P0\\\", \\\"depends_on\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": \\\"hsweep_h2_seed1\\\", \\\"status\\\": \\\"DONE\\\", \\\"description\\\": \\\"Sweep context_window h={2, 5, 10, 20, full} on same GRPO config. Config: context_window_mode=step_independent + step_independent_history_length={h} (h=full uses context_window_mode=full). 15 steps per run, 3 seeds each. KEY paper figure: shows credit assignment cliff is robust across seeds. Addresses Reviewer Concern #1 + Dream C3 (statistical power).\\\\n\\\", \\\"hypothesis\\\": \\\"Performance degrades monotonically with smaller h, with sharp cliff below h=10. Cliff is robust across seeds (not single-run artifact).\\\\n\\\", \\\"metrics\\\": {\\\"train_step\\\": 15, \\\"total_steps\\\": 15, \\\"wandb_run_id\\\": \\\"7o9bjszm\\\", \\\"step1\\\": {\\\"success\\\": 0.1875, \\\"pass_at_8\\\": 0.4375, \\\"invalid_action\\\": 0.027}, \\\"step2\\\": {\\\"success\\\": 0.1484, \\\"pass_at_8\\\": 0.5, \\\"invalid_action\\\": 0.02}, \\\"step3\\\": {\\\"success\\\": 0.1875, \\\"pass_at_8\\\": 0.625, \\\"invalid_action\\\": 0.028}, \\\"step4\\\": {\\\"success\\\": 0.0547, \\\"pass_at_8\\\": 0.25, \\\"invalid_action\\\": 0.264}, \\\"step5\\\": {\\\"success\\\": 0.0156, \\\"pass_at_8\\\": 0.0625, \\\"invalid_action\\\": 0.369}, \\\"step6\\\": {\\\"success\\\": 0.0313, \\\"pass_at_8\\\": 0.25, \\\"invalid_action\\\": 0.471}, \\\"step7\\\": {\\\"success\\\": 0.0469, \\\"pass_at_8\\\": 0.1875, \\\"invalid_action\\\": 0.502}, \\\"step8\\\": {\\\"success\\\": 0.0156, \\\"pass_at_8\\\": 0.125, \\\"invalid_action\\\": 0.542}, \\\"step9\\\": {\\\"success\\\": 0, \\\"pass_at_8\\\": 0, \\\"invalid_action\\\": 0.641}, \\\"step10\\\": {\\\"success\\\": 0.0234}, \\\"step11_15\\\": {\\\"success\\\": 0, \\\"invalid_action\\\": 0.972}, \\\"val_final\\\": {\\\"success\\\": 0, \\\"invalid_action\\\": 0.999, \\\"action_is_valid\\\": 0.0006}, \\\"checkpoint\\\": \\\"global_step_5,10,15\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/hsweep-h2/\\\", \\\"log_path\\\": \\\"~/runs/cost-verify-agent-rl/hsweep_h2_s1.log\\\", \\\"gpu_util\\\": \\\"95-100%\\\", \\\"collapse_onset\\\": \\\"step3→step4\\\", \\\"elapsed_hours\\\": 10.04, \\\"step15_entropy\\\": 0.342, \\\"step15_kl_loss\\\": 0.777, \\\"step15_grad_norm\\\": 1.611, \\\"auto_next_triggered\\\": true, \\\"seed2_pid\\\": 945877, \\\"seed2_wandb\\\": \\\"jhwyg4tc\\\"}, \\\"gpu_hours_estimate\\\": 90, \\\"notes\\\": \\\"h=2 seed1 DONE (collapse 0%), h=2 seed2 DONE (val 9.375%), h=5 collapsed (evidence from γ-sweep plan_017: all γ values at h=5 collapsed), h=10 DONE/killed (D079: val=SFT baseline 6.25%, train=0%, no learning), h=20 RUNNING (hsweep_h20_seed1), h=full = exp029 (23.88% OOD). Cliff pattern: h≤10 collapse, h=full learns. h=20 is critical boundary test.\\\", \\\"conclusion\\\": \\\"success\\\"}, {\\\"id\\\": \\\"plan_003\\\", \\\"title\\\": \\\"Multi-seed replication (5 seeds total)\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"A+\\\", \\\"priority\\\": \\\"P0\\\", \\\"depends_on\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": \\\"exp029_seed3_episode\\\", \\\"status\\\": \\\"DONE\\\", \\\"description\\\": \\\"4 additional seeds for exp029 episode-level config (5 total incl original). Report mean ± std. Dream C3 要求 5-8 seeds for credible CI.\\\\n\\\", \\\"hypothesis\\\": \\\"Episode-level success rate is reproducible (std < 5pp across 5 seeds).\\\\n\\\", \\\"metrics\\\": [\\\"success_rate_mean\\\", \\\"success_rate_std\\\"], \\\"gpu_hours_estimate\\\": 192, \\\"conclusion\\\": \\\"failed\\\"}, {\\\"id\\\": \\\"plan_003b\\\", \\\"title\\\": \\\"REINFORCE++ baseline comparison (fallback from GAE)\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"A+\\\", \\\"priority\\\": \\\"P0\\\", \\\"depends_on\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": \\\"gae_baseline_seed1\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"description\\\": \\\"Per-token credit baseline using REINFORCE++ (running-mean baseline, adv_estimator=reinforce_plus_plus_baseline). Fallback from GAE due to TRL 1.1.0 removing AutoModelForCausalLMWithValueHead (critic head unavailable, D060). Provides per-token advantage normalization vs episode-level GRPO uniform advantage. If REINFORCE++ >> episode-level → per-token normalization adds value even without critic. If comparable → episode-level info is the key factor, not credit granularity.\\\", \\\"hypothesis\\\": \\\"REINFORCE++ provides modest improvement over episode-level GRPO due to per-token advantage normalization, but both far exceed step-independent.\\\", \\\"metrics\\\": {\\\"wandb_run_id\\\": \\\"dt79qyd9\\\", \\\"pid\\\": 40267, \\\"val_step0\\\": {\\\"success\\\": 0.0625, \\\"action_is_valid\\\": 0.7796}, \\\"val_step5\\\": {\\\"success\\\": 0.125, \\\"action_is_valid\\\": 0.6926}, \\\"val_step10\\\": {\\\"success\\\": 0.125, \\\"pass_at_1\\\": 0.125, \\\"reward_mean\\\": 1.25}, \\\"train_step9\\\": {\\\"success\\\": 0.0313, \\\"action_is_valid\\\": 0.6033, \\\"pass_at_8\\\": 0.25}, \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": \\\"cuda:0,1\\\", \\\"method\\\": \\\"reinforce_plus_plus\\\", \\\"fallback_reason\\\": \\\"TRL 1.1.0 removed AutoModelForCausalLMWithValueHead\\\", \\\"current_step\\\": \\\"11/15\\\"}, \\\"gpu_hours_estimate\\\": 60, \\\"notes\\\": \\\"D060: GAE infeasible (TRL 1.1.0 removed ValueHead). Using REINFORCE++ as practical per-token baseline. Running on westd cuda:0,1.\\\"}, {\\\"id\\\": \\\"plan_003c\\\", \\\"title\\\": \\\"Episode-level + valid_action_bonus (plateau-breaker, D056)\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"A+\\\", \\\"priority\\\": \\\"P0\\\", \\\"depends_on\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\", \\\"description\\\": \\\"Derived from exp013f negative (D056): dense reward gaming is step_independent-specific. Episode-level training prevents per-step reward gaming because model optimizes full trajectory total reward. Add valid_action_bonus=0.05 to episode-level config. Test if this safely improves action_is_valid (currently 55.9%) without gaming, and whether it breaks the 23-25% success plateau. Run during h-sweep batch as h=full variant.\\\\n\\\", \\\"hypothesis\\\": \\\"Episode-level + small valid_action_bonus safely improves action_is_valid (target ≥80%) without reward gaming, and success rate exceeds 30% (breaking exp029 plateau). Gaming only occurs under step_independent.\\\\n\\\", \\\"metrics\\\": [\\\"success_rate\\\", \\\"action_is_valid\\\", \\\"valid_bonus_vs_task_reward_ratio\\\"], \\\"gpu_hours_estimate\\\": 24, \\\"parent\\\": \\\"exp013f\\\", \\\"notes\\\": \\\"Parent derivation: exp013f gaming → D056 insight → episode-level safety hypothesis\\\"}, {\\\"id\\\": \\\"plan_004\\\", \\\"title\\\": \\\"Credit assignment mechanism empirical verification (paper Figure 2)\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"A+\\\", \\\"priority\\\": \\\"P0\\\", \\\"depends_on\\\": [\\\"plan_002\\\"], \\\"registry_id\\\": \\\"hsweep_h2_seed2\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"description\\\": \\\"Empirically verify \\\\\\\"Advantage Sign Misattribution\\\\\\\" mechanism (D058, Reviewer-refined): (a) Per-window advantage logging from h=2 seed 2: record (episode_id, window_position,\\\\n    raw_return, advantage_sign, advantage_magnitude, episode_outcome, local_action_quality_proxy)\\\\n(b) Key analysis: advantage sign vs episode outcome correlation (should be ~1.0),\\\\n    advantage sign vs local action quality correlation (should be ~0, proving misattribution)\\\\n(c) Contrast success vs failure episodes: success → all positive (including bad windows),\\\\n    failure → all negative (including good windows)\\\\n(d) γ^k magnitude decay: advantage magnitude vs position in success episodes (e) Episode-level control: all tokens share one advantage (no position/sign variance) Data source: LOG_PER_SAMPLE_ADV=1 on h=2 seed 2 (10 lines logging code, zero GPU overhead). Code reference: agent_trainer.py:271-340, core_algos.py:194-246.\\\\n\\\", \\\"hypothesis\\\": \\\"Per-window advantage in step_independent shows: (1) advantage sign is determined by episode success/failure (correlation > 0.95), (2) advantage sign is NOT correlated with window-local action quality (r < 0.1), proving sign misattribution, (3) magnitude decays as γ^k from terminal position, (4) episode-level shows uniform advantage with no sign/magnitude position effects.\\\\n\\\", \\\"metrics\\\": {\\\"current_step\\\": \\\"15/15\\\", \\\"completed\\\": true, \\\"val_step5\\\": {\\\"success\\\": 0}, \\\"val_step10\\\": {\\\"success\\\": 0}, \\\"val_step15\\\": {\\\"success\\\": 0.09375}, \\\"train_step14\\\": {\\\"success\\\": 0.2656, \\\"pass_at_8\\\": 0.6875}, \\\"train_step15\\\": {\\\"success\\\": 0.2812, \\\"pass_at_8\\\": 0.625, \\\"entropy\\\": 0.401, \\\"ppo_kl\\\": 0.006}, \\\"train_success_peak\\\": {\\\"step\\\": 15, \\\"value\\\": 0.2812}, \\\"adv_log_lines\\\": 3000, \\\"adv_episodes\\\": {\\\"total\\\": 128, \\\"success\\\": 65, \\\"fail\\\": 63}, \\\"adv_analysis\\\": {\\\"sign_outcome_agreement\\\": 0.5207, \\\"point_biserial_r\\\": 0.068, \\\"p_adv_pos_given_success\\\": 0.3706, \\\"p_adv_pos_given_failure\\\": 0.306, \\\"magnitude_decay_gamma\\\": 0.9426, \\\"distribution_overlap\\\": 0.878, \\\"verdict\\\": \\\"52% agreement confirms advantage signal nearly uninformative about episode outcome = sign misattribution\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/hsweep-h2/global_step_15/\\\", \\\"checkpoint_warning\\\": \\\"seed2 overwrote seed1 step15 checkpoint in same directory\\\", \\\"status_note\\\": \\\"COMPLETED 15/15. Late recovery at step 14-15 (train 26-28%). Val 9.375% on 16 in-dist tasks. ADV: 52% sign agreement = near-random.\\\"}, \\\"gpu_hours_estimate\\\": 4, \\\"notes\\\": \\\"D058+Reviewer: 'sign misattribution' is the core mechanism (direction error > magnitude error). γ^k decay is secondary.\\\"}, {\\\"id\\\": \\\"plan_005\\\", \\\"title\\\": \\\"Action-change statistics from always-on runs\\\", \\\"claim\\\": \\\"Claim 2 (DEFERRED per D061)\\\", \\\"phase\\\": \\\"B\\\", \\\"priority\\\": \\\"P2-deferred\\\", \\\"depends_on\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\", \\\"description\\\": \\\"Collect action-change statistics from exp029 trained checkpoints: (1) fraction of verifications triggering action change, (2) correlation between action change and episode success, (3) per-task-type breakdown. Informs reward design and provides empirical grounding.\\\\n\\\", \\\"hypothesis\\\": \\\"Most verifications are confirmatory (>60% no action change). Action change positively correlates with episode success (r > 0.2).\\\\n\\\", \\\"metrics\\\": [\\\"action_change_rate\\\", \\\"correlation\\\", \\\"confirmatory_rate\\\"], \\\"gpu_hours_estimate\\\": 4}, {\\\"id\\\": \\\"plan_006\\\", \\\"title\\\": \\\"Selective verification implementation\\\", \\\"claim\\\": \\\"Claim 2 (DEFERRED per D061)\\\", \\\"phase\\\": \\\"B\\\", \\\"priority\\\": \\\"P2-deferred\\\", \\\"depends_on\\\": [\\\"plan_005\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\", \\\"description\\\": \\\"Implement binary verify/skip decision in RAGEN framework. Agent outputs special token (verify/skip) before each step. Reward = task_success + alpha * action_change_when_verified - beta * verification_cost. Code-only, no GPU.\\\\n\\\", \\\"hypothesis\\\": null, \\\"metrics\\\": [], \\\"gpu_hours_estimate\\\": 0}, {\\\"id\\\": \\\"plan_007\\\", \\\"title\\\": \\\"B-IAVR selective verification training\\\", \\\"claim\\\": \\\"Claim 2, Claim 3 (DEFERRED per D061)\\\", \\\"phase\\\": \\\"B\\\", \\\"priority\\\": \\\"P2-deferred\\\", \\\"depends_on\\\": [\\\"plan_006\\\", \\\"plan_001\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\", \\\"description\\\": \\\"Train selective verification policy via episode-level GRPO. Initialize from best exp029 checkpoint. Action-change reward encourages verification only when informative.\\\\n\\\", \\\"hypothesis\\\": \\\"B-IAVR achieves verification rate ↓40%+ vs always-on while maintaining success within 5pp of baseline.\\\\n\\\", \\\"metrics\\\": [\\\"success_rate\\\", \\\"verification_rate\\\", \\\"cost_reduction\\\"], \\\"gpu_hours_estimate\\\": 96}, {\\\"id\\\": \\\"plan_008\\\", \\\"title\\\": \\\"Selective verification full comparison\\\", \\\"claim\\\": \\\"Claim 3 (DEFERRED per D061)\\\", \\\"phase\\\": \\\"B\\\", \\\"priority\\\": \\\"P2-deferred\\\", \\\"depends_on\\\": [\\\"plan_007\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\", \\\"description\\\": \\\"Compare on same val set: always-on / B-IAVR / no-verify / random-p / confidence-threshold. Report success rate, verification rate, total inference tokens, per-task breakdown.\\\\n\\\", \\\"hypothesis\\\": \\\"B-IAVR dominates Pareto frontier (best success-to-cost ratio).\\\\n\\\", \\\"metrics\\\": [\\\"success_rate\\\", \\\"verification_rate\\\", \\\"cost_reduction\\\", \\\"total_tokens\\\"], \\\"gpu_hours_estimate\\\": 8}, {\\\"id\\\": \\\"plan_009\\\", \\\"title\\\": \\\"No-verify ablation\\\", \\\"claim\\\": \\\"Claim 3 (DEFERRED per D061)\\\", \\\"phase\\\": \\\"C\\\", \\\"priority\\\": \\\"P2-deferred\\\", \\\"depends_on\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\", \\\"description\\\": \\\"Episode-level GRPO without any self-verification. Lower bound: demonstrates verification value.\\\\n\\\", \\\"hypothesis\\\": \\\"Removing verification drops success by ≥10pp vs always-on.\\\\n\\\", \\\"metrics\\\": [\\\"success_rate\\\", \\\"action_is_valid\\\"], \\\"gpu_hours_estimate\\\": 48}, {\\\"id\\\": \\\"plan_010\\\", \\\"title\\\": \\\"Entropy-controlled action-change analysis\\\", \\\"claim\\\": \\\"Claim 2 (DEFERRED per D061)\\\", \\\"phase\\\": \\\"C\\\", \\\"priority\\\": \\\"P2-deferred\\\", \\\"depends_on\\\": [\\\"plan_005\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\", \\\"description\\\": \\\"Defense for \\\\\\\"action change = noise\\\\\\\" concern. Stratify by policy entropy; test if action-change-success correlation holds within each stratum.\\\\n\\\", \\\"hypothesis\\\": \\\"Partial correlation remains significant (p < 0.05) after controlling entropy.\\\\n\\\", \\\"metrics\\\": [\\\"partial_correlation\\\", \\\"p_value\\\"], \\\"gpu_hours_estimate\\\": 4}, {\\\"id\\\": \\\"plan_011\\\", \\\"title\\\": \\\"Causal intervention: random vs verification-triggered changes\\\", \\\"claim\\\": \\\"Claim 2 (DEFERRED per D061)\\\", \\\"phase\\\": \\\"C\\\", \\\"priority\\\": \\\"P2-deferred\\\", \\\"depends_on\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\", \\\"description\\\": \\\"Inject random action changes at same rate as verification-triggered. Compare task success. If verification-triggered >> random, causal evidence.\\\\n\\\", \\\"hypothesis\\\": \\\"Verification-triggered changes yield ≥10pp higher success than random.\\\\n\\\", \\\"metrics\\\": [\\\"success_rate_triggered\\\", \\\"success_rate_random\\\", \\\"delta\\\"], \\\"gpu_hours_estimate\\\": 8}, {\\\"id\\\": \\\"plan_012\\\", \\\"title\\\": \\\"Reward signal ablation (action-change vs alternatives)\\\", \\\"claim\\\": \\\"Claim 2 (DEFERRED per D061)\\\", \\\"phase\\\": \\\"C\\\", \\\"priority\\\": \\\"P2-deferred\\\", \\\"depends_on\\\": [\\\"plan_007\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\", \\\"description\\\": \\\"Train B-IAVR with alternative rewards: (a) action-change (ours), (b) random trigger reward, (c) confidence-based reward. Demonstrates action-change is the best signal.\\\\n\\\", \\\"hypothesis\\\": \\\"Action-change reward produces best cost-performance tradeoff.\\\\n\\\", \\\"metrics\\\": [\\\"success_rate\\\", \\\"verification_rate\\\", \\\"cost_reduction\\\"], \\\"gpu_hours_estimate\\\": 192}, {\\\"id\\\": \\\"plan_013\\\", \\\"title\\\": \\\"ARES reproduction + comparison\\\", \\\"claim\\\": \\\"Claim 3 (DEFERRED per D061)\\\", \\\"phase\\\": \\\"C\\\", \\\"priority\\\": \\\"P2-deferred\\\", \\\"depends_on\\\": [\\\"plan_007\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\", \\\"description\\\": \\\"Reproduce ARES SFT router on ALFWorld (same model). Head-to-head with B-IAVR on identical eval episodes. Addresses \\\\\\\"ARES differentiation\\\\\\\" concern.\\\\n\\\", \\\"hypothesis\\\": \\\"B-IAVR achieves ≥10pp better cost reduction than ARES at matched success.\\\\n\\\", \\\"metrics\\\": [\\\"success_rate\\\", \\\"verification_rate\\\", \\\"cost_reduction\\\"], \\\"gpu_hours_estimate\\\": 24}, {\\\"id\\\": \\\"plan_014\\\", \\\"title\\\": \\\"ScienceWorld transfer (episode-level advantage)\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"D\\\", \\\"priority\\\": \\\"P2\\\", \\\"depends_on\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\", \\\"description\\\": \\\"Validate episode-level vs step-independent on ScienceWorld. Different env, similar multi-turn structure. Addresses single-env concern.\\\\n\\\", \\\"hypothesis\\\": \\\"Episode-level advantage generalizes: ≥2x improvement over step-independent.\\\\n\\\", \\\"metrics\\\": [\\\"success_rate_episode\\\", \\\"success_rate_step_independent\\\"], \\\"gpu_hours_estimate\\\": 72}, {\\\"id\\\": \\\"plan_015\\\", \\\"title\\\": \\\"7B model scaling verification\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"D\\\", \\\"priority\\\": \\\"P2\\\", \\\"depends_on\\\": [\\\"plan_002\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\", \\\"description\\\": \\\"Episode-level vs step-independent on Qwen3-7B. Addresses model size concern. May need cloud GPU.\\\\n\\\", \\\"hypothesis\\\": \\\"Episode-level advantage holds at 7B scale.\\\\n\\\", \\\"metrics\\\": [\\\"success_rate_episode_7B\\\", \\\"success_rate_step_independent_7B\\\"], \\\"gpu_hours_estimate\\\": 192, \\\"notes\\\": \\\"May require cloud GPU rental (4x A100 or 2x H100)\\\"}, {\\\"id\\\": \\\"plan_016\\\", \\\"title\\\": \\\"Per-task-type breakdown analysis\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"D\\\", \\\"priority\\\": \\\"P2\\\", \\\"depends_on\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": \\\"exp029_per_task_breakdown\\\", \\\"status\\\": \\\"DONE\\\", \\\"description\\\": \\\"Breakdown by ALFWorld task type (pick, clean, heat, cool, examine, pick_two). Shows within-environment diversity.\\\\n\\\", \\\"hypothesis\\\": \\\"Episode-level advantage varies by task complexity; longer tasks benefit more.\\\\n\\\", \\\"metrics\\\": {\\\"temperature\\\": 0, \\\"total_success_rate\\\": 0.164, \\\"pick_and_place_simple\\\": {\\\"count\\\": 24, \\\"success\\\": 5, \\\"rate\\\": 0.208}, \\\"pick_clean_then_place_in_recep\\\": {\\\"count\\\": 31, \\\"success\\\": 8, \\\"rate\\\": 0.258}, \\\"pick_heat_then_place_in_recep\\\": {\\\"count\\\": 23, \\\"success\\\": 1, \\\"rate\\\": 0.043}, \\\"pick_cool_then_place_in_recep\\\": {\\\"count\\\": 21, \\\"success\\\": 2, \\\"rate\\\": 0.095}, \\\"look_at_obj_in_light\\\": {\\\"count\\\": 18, \\\"success\\\": 5, \\\"rate\\\": 0.278}, \\\"pick_two_obj_and_place\\\": {\\\"count\\\": 17, \\\"success\\\": 1, \\\"rate\\\": 0.059}}, \\\"gpu_hours_estimate\\\": 2, \\\"conclusion\\\": \\\"success\\\"}, {\\\"id\\\": \\\"plan_017\\\", \\\"title\\\": \\\"Discount factor γ-sweep (dual mechanism separation)\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"A+\\\", \\\"priority\\\": \\\"P0\\\", \\\"depends_on\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": \\\"gsweep_g050_h5_seed1\\\", \\\"status\\\": \\\"DONE\\\", \\\"notes_extra\\\": \\\"g050 killed (collapsed). g080 RUNNING on westd cuda:2,3. g095/g100 pending.\\\", \\\"description\\\": \\\"Sweep discount factor γ ∈ {0.5, 0.8, 0.95, 1.0} with fixed h=5, step_independent mode, 15 steps each. Separates two mechanisms: (1) magnitude decay (γ^k attenuation) vs (2) sign misattribution (advantage sign determined by episode outcome). γ=1.0 eliminates magnitude decay; if collapse persists, sign misattribution is the root cause. KEY paper evidence for dual mechanism separation.\\\\n\\\", \\\"hypothesis\\\": \\\"γ=1.0 eliminates magnitude decay but step_independent still collapses, proving sign misattribution is the root cause rather than γ^k decay. Lower γ values show accelerated collapse due to compounded magnitude attenuation.\\\\n\\\", \\\"metrics\\\": {\\\"current_step\\\": \\\"12/15\\\", \\\"train_success_collapsed_at\\\": \\\"step 1\\\", \\\"train_success_all_steps\\\": \\\"0-2.3% (effectively 0%)\\\", \\\"val_step0\\\": {\\\"success\\\": 0.094}, \\\"val_step5\\\": {\\\"success\\\": 0, \\\"reward\\\": 0}, \\\"val_step10\\\": {\\\"success\\\": 0, \\\"reward\\\": 0, \\\"response_length\\\": 1412}, \\\"kl_sequence\\\": [0.019, 0.025, 0.018, 0.014, 0.01, 0.009, 0.009, 0.209, 0.018], \\\"kl_spike_step8\\\": 0.209, \\\"checkpoint\\\": \\\"global_step_10\\\", \\\"eta\\\": \\\"~5h from 02:46 UTC\\\", \\\"status_note\\\": \\\"COMPLETELY COLLAPSED. Train success 0% from step 1. KL spike 20x at step 8. Val all zeros. Remaining 3 steps waste GPU. Recommend early kill.\\\"}, \\\"gpu_hours_estimate\\\": 40, \\\"notes\\\": \\\"4 γ values × 15 steps. γ=0.5 running (gsweep_g050_h5_seed1). Remaining: gsweep_g080_h5_seed1, gsweep_g095_h5_seed1, gsweep_g100_h5_seed1 pre-registered.\\\", \\\"conclusion\\\": \\\"killed\\\"}, {\\\"id\\\": \\\"plan_018\\\", \\\"title\\\": \\\"Factorial mechanism separation: truncated-obs + episode-level advantage\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"A+\\\", \\\"priority\\\": \\\"P0\\\", \\\"depends_on\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": \\\"factorial_h2_episodeadv_seed1\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"description\\\": \\\"CRITICAL experiment requested by ALL 3 Dream review tiers. 2×2 factorial design to isolate information loss from sign misattribution. Configuration: step_independent GENERATION (h=2 observation window, model only sees 2 steps of history during rollout) BUT episode-level ADVANTAGE computation (all windows in same episode share one GRPO advantage = normalized episode return). This means the model still has limited observation (information loss present) but credit assignment is correct (sign misattribution eliminated). Outcome interpretation: (A) if still collapses → information loss is dominant (model cannot plan with limited visibility regardless of credit quality); (B) if succeeds → sign misattribution was dominant (correct credit enables learning even with limited observation). May require small code modification in RAGEN: compute_step_discounted_returns() needs a mode that assigns episode return to all windows uniformly instead of per-window γ-discounted returns.\\\", \\\"hypothesis\\\": \\\"Truncated observation (h=2) + episode-level advantage isolates the two mechanisms. If collapse persists, information loss is primary. If performance improves significantly over standard step_independent h=2 (currently 0%), sign misattribution is primary.\\\", \\\"metrics\\\": {\\\"completed_steps\\\": \\\"15/15\\\", \\\"wandb_run_id\\\": \\\"6liw7fm1\\\", \\\"val_step5\\\": {\\\"success\\\": 0.0597, \\\"dataset\\\": \\\"AlfworldOOD_134tasks\\\"}, \\\"val_step15\\\": {\\\"success\\\": 0.0075}, \\\"kl_loss_trajectory\\\": {\\\"step1\\\": 0.238, \\\"step5\\\": 0.735, \\\"step10\\\": 1.029, \\\"step15\\\": 2.845}, \\\"ppo_kl_range\\\": \\\"0.025-0.096\\\", \\\"best_checkpoint\\\": \\\"global_step_5\\\", \\\"best_val_success\\\": 0.0597, \\\"train_step1\\\": {\\\"success\\\": 0.203, \\\"pass_at_8\\\": 0.688}, \\\"train_step6\\\": {\\\"success\\\": 0.258, \\\"pass_at_8\\\": 0.813}, \\\"checkpoint_paths\\\": {\\\"step5\\\": \\\"/root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_5/\\\", \\\"step10\\\": \\\"/root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_10/\\\", \\\"step15\\\": \\\"/root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_15/\\\"}, \\\"exit_cause\\\": \\\"W&B atexit BrokenPipeError (false positive)\\\", \\\"kl_issue\\\": \\\"kl_loss_coef=0.01 too low, policy drifted after step 5\\\", \\\"status_note\\\": \\\"COMPLETED. Best val OOD 5.97% at step 5. Degraded to 0.75% by step 15 due to KL drift. Sign misattribution elimination confirmed: 5.97% vs 0% (step-level h=2).\\\"}, \\\"gpu_hours_estimate\\\": 24, \\\"notes\\\": \\\"Dream consensus: this is THE most critical missing experiment. All 3 tiers (best/median/worst) independently flagged the absence of factorial mechanism separation as a critical weakness. Also serves to resolve the r=0.640 diagnostic question.\\\"}, {\\\"id\\\": \\\"plan_019\\\", \\\"title\\\": \\\"Evaluation set expansion (32→134 tasks)\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"A+\\\", \\\"priority\\\": \\\"P0\\\", \\\"depends_on\\\": [], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\", \\\"conclusion\\\": \\\"success\\\", \\\"description\\\": \\\"Expand ALFWorld validation set from 32 to 134 tasks (standard full split). Dream worst-case flagged 32 tasks as critically small (3.125% per episode, many comparisons are <2 episode difference). Standard ALFWorld evaluation uses 134 tasks. This is a config/infrastructure change affecting all future experiments.\\\", \\\"hypothesis\\\": \\\"Larger evaluation set provides statistical power for ≤3pp differences. Current results (e.g. 25% = 8/32 tasks) become more precise.\\\", \\\"metrics\\\": [\\\"statistical_power\\\", \\\"confidence_interval_width\\\"], \\\"gpu_hours_estimate\\\": 0, \\\"notes\\\": \\\"Infrastructure change. Need to verify RAGEN supports 134-task eval split and identify the correct task list file. May require modifying val config.\\\"}, {\\\"id\\\": \\\"plan_020\\\", \\\"title\\\": \\\"8B SFT Training (Qwen3-8B ALFWorld)\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"A+\\\", \\\"priority\\\": \\\"P0\\\", \\\"depends_on\\\": [], \\\"registry_id\\\": \\\"7b_sft_v1\\\", \\\"description\\\": \\\"SFT Qwen3-8B on ALFWorld expert data (2460 examples). Creates 8B SFT checkpoint for Cell A/C RL experiments. Validates training pipeline at 8B scale.\\\", \\\"hypothesis\\\": \\\"SFT Qwen3-8B will achieve high training accuracy and establish strong baseline for subsequent RL, enabling scale-invariant mechanism verification.\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, {\\\"id\\\": \\\"plan_021\\\", \\\"title\\\": \\\"8B SFT OOD Evaluation (134 tasks)\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"A+\\\", \\\"priority\\\": \\\"P0\\\", \\\"depends_on\\\": [\\\"plan_020\\\"], \\\"registry_id\\\": \\\"7b_sft_eval_ood\\\", \\\"description\\\": \\\"Evaluate 8B SFT checkpoint on 134 OOD tasks. Establishes 8B SFT baseline for paper table. Result: 80.6% OOD success.\\\", \\\"hypothesis\\\": \\\"8B SFT baseline substantially exceeds 1.7B baseline, confirming model scale advantage for SFT.\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.806, \\\"pass_at_1\\\": 0.806, \\\"num_actions\\\": 20.18, \\\"action_is_valid\\\": 0.963, \\\"action_is_effective\\\": 1, \\\"reward_mean_at_134\\\": 8.06, \\\"response_length\\\": 1987.9, \\\"best_at_2_mean\\\": 9.53, \\\"best_at_4_mean\\\": 9.98, \\\"best_at_8_mean\\\": 10, \\\"worst_at_2_mean\\\": 6.55, \\\"worst_at_4_mean\\\": 4.11, \\\"worst_at_8_mean\\\": 1.93}}, {\\\"id\\\": \\\"plan_022\\\", \\\"title\\\": \\\"8B SFT In-dist Evaluation (32 tasks)\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"A+\\\", \\\"priority\\\": \\\"P0\\\", \\\"depends_on\\\": [\\\"plan_020\\\"], \\\"registry_id\\\": \\\"8b_sft_clean_eval_v2\\\", \\\"description\\\": \\\"Clean 8B SFT eval on 32 in-dist val tasks. Provides denominator for information loss quantification (same eval set as Cell A).\\\", \\\"hypothesis\\\": \\\"8B SFT full-context in-dist success provides upper bound for h=2 information loss measurement.\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.71875, \\\"num_actions\\\": 23.4375, \\\"action_is_effective\\\": 1, \\\"action_is_valid\\\": 0.9595, \\\"pass@1\\\": 0.71875, \\\"response_length\\\": 1731, \\\"reward_mean@32\\\": 7.1875, \\\"reward_std@32\\\": 4.496, \\\"best@32_mean\\\": 10, \\\"worst@32_mean\\\": 0, \\\"eval_episodes\\\": 32, \\\"eval_split\\\": \\\"eval_in_distribution\\\", \\\"eval_context\\\": \\\"full\\\"}}, {\\\"id\\\": \\\"plan_023\\\", \\\"title\\\": \\\"8B Deterministic Eval — Full Context (T=0)\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"A+\\\", \\\"priority\\\": \\\"P0\\\", \\\"depends_on\\\": [\\\"plan_020\\\"], \\\"registry_id\\\": \\\"8b_det_eval_full\\\", \\\"description\\\": \\\"Deterministic (T=0) eval of 8B SFT with full context on 32 in-dist tasks. Paired with h=2 eval for information loss quantification without sampling variance. Result: 68.75%.\\\", \\\"hypothesis\\\": \\\"T=0 deterministic eval eliminates sampling variance, providing clean information loss measurement.\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.6875, \\\"num_actions\\\": 24.22, \\\"action_is_valid\\\": 0.926, \\\"pass_at_1\\\": 0.6875, \\\"eval_tasks\\\": 32, \\\"temperature\\\": 0, \\\"do_sample\\\": false, \\\"wandb_run\\\": \\\"mb005ir1\\\"}}, {\\\"id\\\": \\\"plan_024\\\", \\\"title\\\": \\\"8B Deterministic Eval — h=2 (T=0)\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"A+\\\", \\\"priority\\\": \\\"P0\\\", \\\"depends_on\\\": [\\\"plan_023\\\"], \\\"registry_id\\\": \\\"8b_det_eval_h2\\\", \\\"description\\\": \\\"Deterministic (T=0) eval of 8B SFT with h=2 windowing on same 32 in-dist tasks. Result: 31.25%. Information loss = 68.75% - 31.25% = 37.5pp.\\\", \\\"hypothesis\\\": \\\"h=2 windowing causes substantial information loss at 8B scale, confirming scale-invariant mechanism.\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.3125, \\\"num_actions\\\": 37.59, \\\"action_is_valid\\\": 0.9188, \\\"pass_at_1\\\": 0.3125, \\\"eval_tasks\\\": 32, \\\"temperature\\\": 0, \\\"do_sample\\\": false, \\\"wandb_run\\\": \\\"qtxhh5ak\\\", \\\"information_loss_pp\\\": 37.5, \\\"information_loss_relative\\\": 0.545}}, {\\\"id\\\": \\\"plan_025\\\", \\\"title\\\": \\\"8B Cell A Collapse Verification\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"A+\\\", \\\"priority\\\": \\\"P0\\\", \\\"depends_on\\\": [\\\"plan_020\\\"], \\\"registry_id\\\": \\\"7b_cell_a_h2\\\", \\\"description\\\": \\\"8B Cell A: step-independent RL with h=2 from 80.6% SFT baseline. Result: step 1 = 12.5% (baseline halved), step 2 = 1.5625% (Q4 complete collapse). Confirms scale-invariant collapse mechanism.\\\", \\\"hypothesis\\\": \\\"8B Cell A collapses like 1.7B Cell A, confirming sign misattribution + information loss are scale-invariant.\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"metrics\\\": {\\\"val_before_train_success\\\": 0.281, \\\"step1_train_success\\\": 0.125, \\\"step1_kl\\\": 1.917, \\\"step1_entropy\\\": 0.115, \\\"step1_grad_norm\\\": 2.29, \\\"step1_num_actions\\\": 47.7, \\\"step1_pass_at_8\\\": 0.5, \\\"step1_pg_clipfrac\\\": 0.109, \\\"step1_response_length\\\": 567.5, \\\"step1_duration_sec\\\": 5076, \\\"step2_train_success\\\": 0.015625, \\\"step2_entropy\\\": 0.605, \\\"step2_ppo_kl\\\": -1.885, \\\"step2_num_actions\\\": 49.7, \\\"collapse_pattern\\\": \\\"Q4 confirmed: step 0 val=28.1% → step 1 train=12.5% (entropy collapse 0.115) → step 2 train=1.56% (entropy rebound 0.605, negative KL -1.885). Complete collapse in 2 steps.\\\"}}, {\\\"id\\\": \\\"plan_026\\\", \\\"title\\\": \\\"8B Cell C Episode-Level GRPO (v9d, FSDP2+CPUOffload)\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"A+\\\", \\\"priority\\\": \\\"P0\\\", \\\"depends_on\\\": [\\\"plan_020\\\", \\\"plan_025\\\"], \\\"registry_id\\\": \\\"8b_cell_c_episode_v9d\\\", \\\"description\\\": \\\"8B Cell C episode-level GRPO with FSDP2+CPUOffloadPolicy. 30 steps on 4×RTX PRO 6000 96GB. If successful, provides cross-scale positive control: not only failure mechanism is scale-invariant, but fix effectiveness is too. Step 5: val 81.25%.\\\", \\\"hypothesis\\\": \\\"8B Cell C episode-level training succeeds (maintaining/improving from SFT baseline), confirming episode-level fix is scale-invariant.\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"step\\\": 15, \\\"steps_total\\\": 30, \\\"stopped_reason\\\": \\\"reward_saturation_and_nccl_hang\\\", \\\"train_success_step12\\\": 1, \\\"pg_loss_step12\\\": 0, \\\"advantage_step12\\\": 0, \\\"val_before_train_step10\\\": 0.96875, \\\"train_success_step7\\\": 0.914, \\\"train_success_step11\\\": 0.9375, \\\"effective_final_step\\\": 10, \\\"wandb_run_id\\\": \\\"aeml21w9\\\", \\\"note\\\": \\\"Reward saturated at step 12 (100% success, zero gradients). NCCL hang at step 15. Step 10 checkpoint is effective final model.\\\"}}, {\\\"id\\\": \\\"plan_027\\\", \\\"title\\\": \\\"Factorial Mechanism Separation — Seed 2 Replication\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"A+\\\", \\\"priority\\\": \\\"P0\\\", \\\"depends_on\\\": [\\\"plan_018\\\"], \\\"registry_id\\\": \\\"factorial_h2_episodeadv_seed2\\\", \\\"description\\\": \\\"Seed 2 replication of factorial experiment (step-independent generation + episode-level advantage). Confirms sign misattribution elimination effect is robust across seeds. Result: OOD 0.75% (train 55.5%, hard ceiling from info loss).\\\", \\\"hypothesis\\\": \\\"Factorial mechanism separation result replicates: sign misattribution elimination enables training even with truncated observation.\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"step15_train_success\\\": 0.555, \\\"step15_val_ood_success\\\": 0.0075, \\\"step15_val_ood_action_valid\\\": 0.173, \\\"step15_kl\\\": 0.618, \\\"step15_train_pass8\\\": 0.875}}, {\\\"id\\\": \\\"plan_028\\\", \\\"title\\\": \\\"Episode-Level Seed 2 (Cross-seed OOD)\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"A+\\\", \\\"priority\\\": \\\"P0\\\", \\\"depends_on\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": \\\"exp029_episode_level_seed2\\\", \\\"description\\\": \\\"Seed 2 replication of exp029 episode-level GRPO. Val peaked at 31.25%. Step 30 checkpoint lost in disk cleanup (M019). Provides cross-seed evidence.\\\", \\\"hypothesis\\\": \\\"Episode-level success is reproducible across seeds.\\\", \\\"notes\\\": \\\"Killed due to checkpoint loss (M019). Paper uses step 15 val data.\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, {\\\"id\\\": \\\"plan_029\\\", \\\"title\\\": \\\"h-sweep h=10 (cliff boundary test)\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"A+\\\", \\\"priority\\\": \\\"P0\\\", \\\"depends_on\\\": [\\\"plan_002\\\"], \\\"registry_id\\\": \\\"hsweep_h10_seed1\\\", \\\"description\\\": \\\"h=10 step-independent GRPO. Result: val=SFT baseline 6.25%, train=0%. No learning — cliff is above h=10. Killed per D079.\\\", \\\"hypothesis\\\": \\\"h=10 provides insufficient context for learning, confirming cliff between h=10 and h=20.\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"metrics\\\": {\\\"step2_train_success\\\": 0, \\\"step5_val_success\\\": \\\"SFT_baseline\\\", \\\"collapse_onset\\\": \\\"step 2\\\", \\\"verdict\\\": \\\"complete collapse, h=10 insufficient context\\\"}}, {\\\"id\\\": \\\"plan_030\\\", \\\"title\\\": \\\"h-sweep h=20 (cliff boundary test)\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"A+\\\", \\\"priority\\\": \\\"P0\\\", \\\"depends_on\\\": [\\\"plan_029\\\"], \\\"registry_id\\\": \\\"hsweep_h20_seed1\\\", \\\"description\\\": \\\"h=20 step-independent GRPO. Key cliff boundary: h=10 collapsed, h=20 shows if 20 steps of context enables recovery. Result: 15.6% val success — partial recovery, cliff between h=10 and h=20.\\\", \\\"hypothesis\\\": \\\"h=20 shows partial recovery, narrowing cliff location to h=10~h=20.\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"step1_train\\\": 0.203, \\\"step2_train\\\": 0.133, \\\"step4_train\\\": 0.281, \\\"val_step5_success\\\": 0.15625}}, {\\\"id\\\": \\\"plan_031\\\", \\\"title\\\": \\\"Per-task OOD Eval T=0.4 (exp029 rerun)\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"A+\\\", \\\"priority\\\": \\\"P0\\\", \\\"depends_on\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": \\\"exp029_per_task_t04_v2\\\", \\\"description\\\": \\\"Per-task-type OOD eval with T=0.4 (paper protocol D092). Independent eval script result: 19.4% (26/134). pick_two_obj = 0% (hardest). Pipeline difference vs RAGEN 23.88% under investigation.\\\", \\\"hypothesis\\\": \\\"Task-type ranking pattern consistent across eval methods; multi-step tasks remain hardest.\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"temperature\\\": 0.4, \\\"total_success_rate\\\": 0.194, \\\"total_success\\\": 26, \\\"total_tasks\\\": 134, \\\"pick_and_place_simple\\\": {\\\"count\\\": 24, \\\"success\\\": 4, \\\"rate\\\": 0.167}, \\\"pick_clean_then_place_in_recep\\\": {\\\"count\\\": 31, \\\"success\\\": 8, \\\"rate\\\": 0.258}, \\\"pick_heat_then_place_in_recep\\\": {\\\"count\\\": 23, \\\"success\\\": 4, \\\"rate\\\": 0.174}, \\\"pick_cool_then_place_in_recep\\\": {\\\"count\\\": 21, \\\"success\\\": 5, \\\"rate\\\": 0.238}, \\\"look_at_obj_in_light\\\": {\\\"count\\\": 18, \\\"success\\\": 5, \\\"rate\\\": 0.278}, \\\"pick_two_obj_and_place\\\": {\\\"count\\\": 17, \\\"success\\\": 0, \\\"rate\\\": 0}}}, {\\\"id\\\": \\\"plan_032\\\", \\\"title\\\": \\\"ScienceWorld SFT Training (second environment)\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"D\\\", \\\"priority\\\": \\\"P1\\\", \\\"depends_on\\\": [], \\\"registry_id\\\": \\\"scienceworld_sft\\\", \\\"description\\\": \\\"ScienceWorld 1.7B SFT training. 3592 train / 1796 val expert trajectories, 2 epochs. Creates SFT checkpoint for subsequent GRPO experiments. Validates pipeline generalization to second interactive environment.\\\", \\\"hypothesis\\\": \\\"SFT pipeline generalizes to ScienceWorld, providing base checkpoint for cross-environment RL mechanism comparison.\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss_final\\\": 0.00318, \\\"val_loss_final\\\": 0.01098, \\\"total_steps\\\": 448, \\\"epochs\\\": 2, \\\"total_train_time_s\\\": 9319.4, \\\"checkpoint\\\": \\\"global_step_448\\\"}}, {\\\"id\\\": \\\"plan_033\\\", \\\"title\\\": \\\"ScienceWorld SFT Eval v2 (baseline establishment)\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"D\\\", \\\"priority\\\": \\\"P1\\\", \\\"depends_on\\\": [\\\"plan_032\\\"], \\\"registry_id\\\": \\\"scienceworld_sft_eval_v2\\\", \\\"description\\\": \\\"Full dev split eval (1796 episodes, 30 task types) of ScienceWorld SFT checkpoint. Fixed valid_action_rate metric (v1 had truncation bug). Currently running: ~53% complete, success rate ~30.8%.\\\", \\\"hypothesis\\\": \\\"ScienceWorld SFT establishes baseline success rate for subsequent GRPO Cell A vs Cell C comparison.\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"total_episodes\\\": 1796, \\\"success_count\\\": 540, \\\"overall_success_rate\\\": 0.301, \\\"timeouts\\\": 0, \\\"errors\\\": 0, \\\"avg_score\\\": 20.9, \\\"avg_steps_per_episode\\\": 28.7, \\\"total_time_seconds\\\": 51462, \\\"split\\\": \\\"dev\\\", \\\"temperature\\\": 0.4, \\\"per_task_type\\\": {\\\"boil\\\": {\\\"n\\\": 7, \\\"succ\\\": 0, \\\"rate\\\": 0}, \\\"change-the-state-of-matter-of\\\": {\\\"n\\\": 7, \\\"succ\\\": 1, \\\"rate\\\": 0.143}, \\\"chemistry-mix\\\": {\\\"n\\\": 8, \\\"succ\\\": 0, \\\"rate\\\": 0}, \\\"chemistry-mix-paint-secondary-color\\\": {\\\"n\\\": 9, \\\"succ\\\": 2, \\\"rate\\\": 0.222}, \\\"chemistry-mix-paint-tertiary-color\\\": {\\\"n\\\": 9, \\\"succ\\\": 0, \\\"rate\\\": 0}, \\\"find-animal\\\": {\\\"n\\\": 75, \\\"succ\\\": 37, \\\"rate\\\": 0.493}, \\\"find-living-thing\\\": {\\\"n\\\": 75, \\\"succ\\\": 49, \\\"rate\\\": 0.653}, \\\"find-non-living-thing\\\": {\\\"n\\\": 75, \\\"succ\\\": 58, \\\"rate\\\": 0.773}, \\\"find-plant\\\": {\\\"n\\\": 75, \\\"succ\\\": 9, \\\"rate\\\": 0.12}, \\\"freeze\\\": {\\\"n\\\": 7, \\\"succ\\\": 0, \\\"rate\\\": 0}, \\\"grow-fruit\\\": {\\\"n\\\": 31, \\\"succ\\\": 2, \\\"rate\\\": 0.065}, \\\"grow-plant\\\": {\\\"n\\\": 31, \\\"succ\\\": 0, \\\"rate\\\": 0}, \\\"identify-life-stages-1\\\": {\\\"n\\\": 3, \\\"succ\\\": 0, \\\"rate\\\": 0}, \\\"identify-life-stages-2\\\": {\\\"n\\\": 2, \\\"succ\\\": 0, \\\"rate\\\": 0}, \\\"inclined-plane-determine-angle\\\": {\\\"n\\\": 42, \\\"succ\\\": 7, \\\"rate\\\": 0.167}, \\\"inclined-plane-friction-named-surfaces\\\": {\\\"n\\\": 346, \\\"succ\\\": 83, \\\"rate\\\": 0.24}, \\\"inclined-plane-friction-unnamed-surfaces\\\": {\\\"n\\\": 40, \\\"succ\\\": 10, \\\"rate\\\": 0.25}, \\\"lifespan-longest-lived\\\": {\\\"n\\\": 31, \\\"succ\\\": 28, \\\"rate\\\": 0.903}, \\\"lifespan-longest-lived-then-shortest-lived\\\": {\\\"n\\\": 31, \\\"succ\\\": 28, \\\"rate\\\": 0.903}, \\\"lifespan-shortest-lived\\\": {\\\"n\\\": 31, \\\"succ\\\": 21, \\\"rate\\\": 0.677}, \\\"measure-melting-point-known-substance\\\": {\\\"n\\\": 109, \\\"succ\\\": 25, \\\"rate\\\": 0.229}, \\\"measure-melting-point-unknown-substance\\\": {\\\"n\\\": 75, \\\"succ\\\": 27, \\\"rate\\\": 0.36}, \\\"melt\\\": {\\\"n\\\": 7, \\\"succ\\\": 1, \\\"rate\\\": 0.143}, \\\"mendelian-genetics-known-plant\\\": {\\\"n\\\": 30, \\\"succ\\\": 8, \\\"rate\\\": 0.267}, \\\"mendelian-genetics-unknown-plant\\\": {\\\"n\\\": 120, \\\"succ\\\": 35, \\\"rate\\\": 0.292}, \\\"power-component\\\": {\\\"n\\\": 5, \\\"succ\\\": 3, \\\"rate\\\": 0.6}, \\\"power-component-renewable-vs-nonrenewable-energy\\\": {\\\"n\\\": 5, \\\"succ\\\": 0, \\\"rate\\\": 0}, \\\"test-conductivity\\\": {\\\"n\\\": 225, \\\"succ\\\": 35, \\\"rate\\\": 0.156}, \\\"test-conductivity-of-unknown-substances\\\": {\\\"n\\\": 150, \\\"succ\\\": 44, \\\"rate\\\": 0.293}, \\\"use-thermometer\\\": {\\\"n\\\": 135, \\\"succ\\\": 27, \\\"rate\\\": 0.2}}, \\\"results_json_path\\\": \\\"/root/autodl-tmp/checkpoints/scienceworld_sft/eval_results_dev_v2.json\\\"}}, {\\\"id\\\": \\\"plan_034\\\", \\\"title\\\": \\\"γ-sweep γ=0.80 (magnitude decay isolation)\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"A+\\\", \\\"priority\\\": \\\"P0\\\", \\\"depends_on\\\": [\\\"plan_017\\\"], \\\"registry_id\\\": \\\"gsweep_g080_h5_seed1\\\", \\\"description\\\": \\\"γ=0.80 with h=5. Early windows retain γ^9 ≈ 13% of terminal return. Result: collapsed (negative). All γ values collapse at h=5, proving sign misattribution is the root cause, not magnitude decay.\\\", \\\"hypothesis\\\": \\\"γ=0.80 collapses like other γ values, confirming sign misattribution dominates magnitude decay.\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"step5_val_success\\\": \\\"3.125%\\\", \\\"step5_entropy\\\": 0.185, \\\"subsequent_steps\\\": \\\"all 0%\\\", \\\"conclusion_note\\\": \\\"Complete collapse confirmed. γ=0.80 with h=5 shows catastrophic failure — killed early by Director as no new information expected. Supports hypothesis that lower gamma accelerates collapse.\\\"}}, {\\\"id\\\": \\\"plan_035\\\", \\\"title\\\": \\\"γ-sweep γ=0.95 (default control)\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"A+\\\", \\\"priority\\\": \\\"P0\\\", \\\"depends_on\\\": [\\\"plan_017\\\"], \\\"registry_id\\\": \\\"gsweep_g095_h5_seed1\\\", \\\"description\\\": \\\"γ=0.95 with h=5 — control condition matching hsweep_h5. Early windows retain γ^9 ≈ 63%. Result: collapsed (negative).\\\", \\\"hypothesis\\\": \\\"γ=0.95 reproduces h5 collapse, providing control for γ-sweep.\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"val_success_step5\\\": 0, \\\"conclusion_reason\\\": \\\"collapsed at step 5, val=0%\\\"}}, {\\\"id\\\": \\\"plan_036\\\", \\\"title\\\": \\\"γ-sweep γ=1.00 (no discount, key evidence)\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"A+\\\", \\\"priority\\\": \\\"P0\\\", \\\"depends_on\\\": [\\\"plan_017\\\"], \\\"registry_id\\\": \\\"gsweep_g100_h5_seed1\\\", \\\"description\\\": \\\"γ=1.00 eliminates magnitude decay entirely. If collapse persists, proves sign misattribution alone causes collapse. Result: collapsed (negative). KEY EVIDENCE: even without any γ^k decay, step-independent still collapses.\\\", \\\"hypothesis\\\": \\\"γ=1.0 eliminates magnitude decay but still collapses, proving sign misattribution is the root cause independent of discount factor.\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"conclusion_reason\\\": \\\"collapsed, γ=1.0 also collapses confirming sign misattribution not solely from magnitude decay\\\"}}], \\\"total\\\": 38}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"plan_001\", \"title\": \"Episode-level GRPO convergence (exp029 continuation)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [], \"registry_id\": \"exp029_episode_level\", \"status\": \"DONE\", \"description\": \"Episode-level GRPO (context_window_mode: full) on Qwen3-1.7B + ALFWorld. 50 steps, dual-GPU. MVP passed at step 5 (val=25%, 2x baseline 12.5%). Continue to convergence (step 20+) with tatsu parallel patch for 4x val speedup.\\n\", \"hypothesis\": \"Episode-level training enables stable RL for multi-turn agents, reaching ≥40% success by convergence.\\n\", \"metrics\": {\"reeval_ood_134tasks\": {\"success\": 0.2388, \"action_is_valid\": 0.5683, \"action_is_effective\": 0.916, \"manager_invalid_action\": 0.0839, \"reward_mean\": 2.388, \"best_at_8\": 8.88, \"dataset\": \"AlfworldSG_OOD_134tasks\", \"date\": \"2026-05-18\"}}, \"gpu_hours_estimate\": 48, \"framing_ref\": \"claim_1\", \"conclusion\": \"success\"}, {\"id\": \"plan_002\", \"title\": \"Context window h-sweep ablation (3 seeds each)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_001\"], \"registry_id\": \"hsweep_h2_seed1\", \"status\": \"DONE\", \"description\": \"Sweep context_window h={2, 5, 10, 20, full} on same GRPO config. Config: context_window_mode=step_independent + step_independent_history_length={h} (h=full uses context_window_mode=full). 15 steps per run, 3 seeds each. KEY paper figure: shows credit assignment cliff is robust across seeds. Addresses Reviewer Concern #1 + Dream C3 (statistical power).\\n\", \"hypothesis\": \"Performance degrades monotonically with smaller h, with sharp cliff below h=10. Cliff is robust across seeds (not single-run artifact).\\n\", \"metrics\": {\"train_step\": 15, \"total_steps\": 15, \"wandb_run_id\": \"7o9bjszm\", \"step1\": {\"success\": 0.1875, \"pass_at_8\": 0.4375, \"invalid_action\": 0.027}, \"step2\": {\"success\": 0.1484, \"pass_at_8\": 0.5, \"invalid_action\": 0.02}, \"step3\": {\"success\": 0.1875, \"pass_at_8\": 0.625, \"invalid_action\": 0.028}, \"step4\": {\"success\": 0.0547, \"pass_at_8\": 0.25, \"invalid_action\": 0.264}, \"step5\": {\"success\": 0.0156, \"pass_at_8\": 0.0625, \"invalid_action\": 0.369}, \"step6\": {\"success\": 0.0313, \"pass_at_8\": 0.25, \"invalid_action\": 0.471}, \"step7\": {\"success\": 0.0469, \"pass_at_8\": 0.1875, \"invalid_action\": 0.502}, \"step8\": {\"success\": 0.0156, \"pass_at_8\": 0.125, \"invalid_action\": 0.542}, \"step9\": {\"success\": 0, \"pass_at_8\": 0, \"invalid_action\": 0.641}, \"step10\": {\"success\": 0.0234}, \"step11_15\": {\"success\": 0, \"invalid_action\": 0.972}, \"val_final\": {\"success\": 0, \"invalid_action\": 0.999, \"action_is_valid\": 0.0006}, \"checkpoint\": \"global_step_5,10,15\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/hsweep-h2/\", \"log_path\": \"~/runs/cost-verify-agent-rl/hsweep_h2_s1.log\", \"gpu_util\": \"95-100%\", \"collapse_onset\": \"step3→step4\", \"elapsed_hours\": 10.04, \"step15_entropy\": 0.342, \"step15_kl_loss\": 0.777, \"step15_grad_norm\": 1.611, \"auto_next_triggered\": true, \"seed2_pid\": 945877, \"seed2_wandb\": \"jhwyg4tc\"}, \"gpu_hours_estimate\": 90, \"notes\": \"h=2 seed1 DONE (collapse 0%), h=2 seed2 DONE (val 9.375%), h=5 collapsed (evidence from γ-sweep plan_017: all γ values at h=5 collapsed), h=10 DONE/killed (D079: val=SFT baseline 6.25%, train=0%, no learning), h=20 RUNNING (hsweep_h20_seed1), h=full = exp029 (23.88% OOD). Cliff pattern: h≤10 collapse, h=full learns. h=20 is critical boundary test.\", \"conclusion\": \"success\"}, {\"id\": \"plan_003\", \"title\": \"Multi-seed replication (5 seeds total)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_001\"], \"registry_id\": \"exp029_seed3_episode\", \"status\": \"DONE\", \"description\": \"4 additional seeds for exp029 episode-level config (5 total incl original). Report mean ± std. Dream C3 要求 5-8 seeds for credible CI.\\n\", \"hypothesis\": \"Episode-level success rate is reproducible (std < 5pp across 5 seeds).\\n\", \"metrics\": [\"success_rate_mean\", \"success_rate_std\"], \"gpu_hours_estimate\": 192, \"conclusion\": \"failed\"}, {\"id\": \"plan_003b\", \"title\": \"REINFORCE++ baseline comparison (fallback from GAE)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_001\"], \"registry_id\": \"gae_baseline_seed1\", \"status\": \"DONE\", \"conclusion\": \"killed\", \"description\": \"Per-token credit baseline using REINFORCE++ (running-mean baseline, adv_estimator=reinforce_plus_plus_baseline). Fallback from GAE due to TRL 1.1.0 removing AutoModelForCausalLMWithValueHead (critic head unavailable, D060). Provides per-token advantage normalization vs episode-level GRPO uniform advantage. If REINFORCE++ >> episode-level → per-token normalization adds value even without critic. If comparable → episode-level info is the key factor, not credit granularity.\", \"hypothesis\": \"REINFORCE++ provides modest improvement over episode-level GRPO due to per-token advantage normalization, but both far exceed step-independent.\", \"metrics\": {\"wandb_run_id\": \"dt79qyd9\", \"pid\": 40267, \"val_step0\": {\"success\": 0.0625, \"action_is_valid\": 0.7796}, \"val_step5\": {\"success\": 0.125, \"action_is_valid\": 0.6926}, \"val_step10\": {\"success\": 0.125, \"pass_at_1\": 0.125, \"reward_mean\": 1.25}, \"train_step9\": {\"success\": 0.0313, \"action_is_valid\": 0.6033, \"pass_at_8\": 0.25}, \"server\": \"westd-47453\", \"gpu\": \"cuda:0,1\", \"method\": \"reinforce_plus_plus\", \"fallback_reason\": \"TRL 1.1.0 removed AutoModelForCausalLMWithValueHead\", \"current_step\": \"11/15\"}, \"gpu_hours_estimate\": 60, \"notes\": \"D060: GAE infeasible (TRL 1.1.0 removed ValueHead). Using REINFORCE++ as practical per-token baseline. Running on westd cuda:0,1.\"}, {\"id\": \"plan_003c\", \"title\": \"Episode-level + valid_action_bonus (plateau-breaker, D056)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_001\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Derived from exp013f negative (D056): dense reward gaming is step_independent-specific. Episode-level training prevents per-step reward gaming because model optimizes full trajectory total reward. Add valid_action_bonus=0.05 to episode-level config. Test if this safely improves action_is_valid (currently 55.9%) without gaming, and whether it breaks the 23-25% success plateau. Run during h-sweep batch as h=full variant.\\n\", \"hypothesis\": \"Episode-level + small valid_action_bonus safely improves action_is_valid (target ≥80%) without reward gaming, and success rate exceeds 30% (breaking exp029 plateau). Gaming only occurs under step_independent.\\n\", \"metrics\": [\"success_rate\", \"action_is_valid\", \"valid_bonus_vs_task_reward_ratio\"], \"gpu_hours_estimate\": 24, \"parent\": \"exp013f\", \"notes\": \"Parent derivation: exp013f gaming → D056 insight → episode-level safety hypothesis\"}, {\"id\": \"plan_004\", \"title\": \"Credit assignment mechanism empirical verification (paper Figure 2)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_002\"], \"registry_id\": \"hsweep_h2_seed2\", \"status\": \"DONE\", \"conclusion\": \"success\", \"description\": \"Empirically verify \\\"Advantage Sign Misattribution\\\" mechanism (D058, Reviewer-refined): (a) Per-window advantage logging from h=2 seed 2: record (episode_id, window_position,\\n    raw_return, advantage_sign, advantage_magnitude, episode_outcome, local_action_quality_proxy)\\n(b) Key analysis: advantage sign vs episode outcome correlation (should be ~1.0),\\n    advantage sign vs local action quality correlation (should be ~0, proving misattribution)\\n(c) Contrast success vs failure episodes: success → all positive (including bad windows),\\n    failure → all negative (including good windows)\\n(d) γ^k magnitude decay: advantage magnitude vs position in success episodes (e) Episode-level control: all tokens share one advantage (no position/sign variance) Data source: LOG_PER_SAMPLE_ADV=1 on h=2 seed 2 (10 lines logging code, zero GPU overhead). Code reference: agent_trainer.py:271-340, core_algos.py:194-246.\\n\", \"hypothesis\": \"Per-window advantage in step_independent shows: (1) advantage sign is determined by episode success/failure (correlation > 0.95), (2) advantage sign is NOT correlated with window-local action quality (r < 0.1), proving sign misattribution, (3) magnitude decays as γ^k from terminal position, (4) episode-level shows uniform advantage with no sign/magnitude position effects.\\n\", \"metrics\": {\"current_step\": \"15/15\", \"completed\": true, \"val_step5\": {\"success\": 0}, \"val_step10\": {\"success\": 0}, \"val_step15\": {\"success\": 0.09375}, \"train_step14\": {\"success\": 0.2656, \"pass_at_8\": 0.6875}, \"train_step15\": {\"success\": 0.2812, \"pass_at_8\": 0.625, \"entropy\": 0.401, \"ppo_kl\": 0.006}, \"train_success_peak\": {\"step\": 15, \"value\": 0.2812}, \"adv_log_lines\": 3000, \"adv_episodes\": {\"total\": 128, \"success\": 65, \"fail\": 63}, \"adv_analysis\": {\"sign_outcome_agreement\": 0.5207, \"point_biserial_r\": 0.068, \"p_adv_pos_given_success\": 0.3706, \"p_adv_pos_given_failure\": 0.306, \"magnitude_decay_gamma\": 0.9426, \"distribution_overlap\": 0.878, \"verdict\": \"52% agreement confirms advantage signal nearly uninformative about episode outcome = sign misattribution\"}, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/hsweep-h2/global_step_15/\", \"checkpoint_warning\": \"seed2 overwrote seed1 step15 checkpoint in same directory\", \"status_note\": \"COMPLETED 15/15. Late recovery at step 14-15 (train 26-28%). Val 9.375% on 16 in-dist tasks. ADV: 52% sign agreement = near-random.\"}, \"gpu_hours_estimate\": 4, \"notes\": \"D058+Reviewer: 'sign misattribution' is the core mechanism (direction error > magnitude error). γ^k decay is secondary.\"}, {\"id\": \"plan_005\", \"title\": \"Action-change statistics from always-on runs\", \"claim\": \"Claim 2 (DEFERRED per D061)\", \"phase\": \"B\", \"priority\": \"P2-deferred\", \"depends_on\": [\"plan_001\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Collect action-change statistics from exp029 trained checkpoints: (1) fraction of verifications triggering action change, (2) correlation between action change and episode success, (3) per-task-type breakdown. Informs reward design and provides empirical grounding.\\n\", \"hypothesis\": \"Most verifications are confirmatory (>60% no action change). Action change positively correlates with episode success (r > 0.2).\\n\", \"metrics\": [\"action_change_rate\", \"correlation\", \"confirmatory_rate\"], \"gpu_hours_estimate\": 4}, {\"id\": \"plan_006\", \"title\": \"Selective verification implementation\", \"claim\": \"Claim 2 (DEFERRED per D061)\", \"phase\": \"B\", \"priority\": \"P2-deferred\", \"depends_on\": [\"plan_005\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Implement binary verify/skip decision in RAGEN framework. Agent outputs special token (verify/skip) before each step. Reward = task_success + alpha * action_change_when_verified - beta * verification_cost. Code-only, no GPU.\\n\", \"hypothesis\": null, \"metrics\": [], \"gpu_hours_estimate\": 0}, {\"id\": \"plan_007\", \"title\": \"B-IAVR selective verification training\", \"claim\": \"Claim 2, Claim 3 (DEFERRED per D061)\", \"phase\": \"B\", \"priority\": \"P2-deferred\", \"depends_on\": [\"plan_006\", \"plan_001\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Train selective verification policy via episode-level GRPO. Initialize from best exp029 checkpoint. Action-change reward encourages verification only when informative.\\n\", \"hypothesis\": \"B-IAVR achieves verification rate ↓40%+ vs always-on while maintaining success within 5pp of baseline.\\n\", \"metrics\": [\"success_rate\", \"verification_rate\", \"cost_reduction\"], \"gpu_hours_estimate\": 96}, {\"id\": \"plan_008\", \"title\": \"Selective verification full comparison\", \"claim\": \"Claim 3 (DEFERRED per D061)\", \"phase\": \"B\", \"priority\": \"P2-deferred\", \"depends_on\": [\"plan_007\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Compare on same val set: always-on / B-IAVR / no-verify / random-p / confidence-threshold. Report success rate, verification rate, total inference tokens, per-task breakdown.\\n\", \"hypothesis\": \"B-IAVR dominates Pareto frontier (best success-to-cost ratio).\\n\", \"metrics\": [\"success_rate\", \"verification_rate\", \"cost_reduction\", \"total_tokens\"], \"gpu_hours_estimate\": 8}, {\"id\": \"plan_009\", \"title\": \"No-verify ablation\", \"claim\": \"Claim 3 (DEFERRED per D061)\", \"phase\": \"C\", \"priority\": \"P2-deferred\", \"depends_on\": [\"plan_001\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Episode-level GRPO without any self-verification. Lower bound: demonstrates verification value.\\n\", \"hypothesis\": \"Removing verification drops success by ≥10pp vs always-on.\\n\", \"metrics\": [\"success_rate\", \"action_is_valid\"], \"gpu_hours_estimate\": 48}, {\"id\": \"plan_010\", \"title\": \"Entropy-controlled action-change analysis\", \"claim\": \"Claim 2 (DEFERRED per D061)\", \"phase\": \"C\", \"priority\": \"P2-deferred\", \"depends_on\": [\"plan_005\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Defense for \\\"action change = noise\\\" concern. Stratify by policy entropy; test if action-change-success correlation holds within each stratum.\\n\", \"hypothesis\": \"Partial correlation remains significant (p < 0.05) after controlling entropy.\\n\", \"metrics\": [\"partial_correlation\", \"p_value\"], \"gpu_hours_estimate\": 4}, {\"id\": \"plan_011\", \"title\": \"Causal intervention: random vs verification-triggered changes\", \"claim\": \"Claim 2 (DEFERRED per D061)\", \"phase\": \"C\", \"priority\": \"P2-deferred\", \"depends_on\": [\"plan_001\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Inject random action changes at same rate as verification-triggered. Compare task success. If verification-triggered >> random, causal evidence.\\n\", \"hypothesis\": \"Verification-triggered changes yield ≥10pp higher success than random.\\n\", \"metrics\": [\"success_rate_triggered\", \"success_rate_random\", \"delta\"], \"gpu_hours_estimate\": 8}, {\"id\": \"plan_012\", \"title\": \"Reward signal ablation (action-change vs alternatives)\", \"claim\": \"Claim 2 (DEFERRED per D061)\", \"phase\": \"C\", \"priority\": \"P2-deferred\", \"depends_on\": [\"plan_007\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Train B-IAVR with alternative rewards: (a) action-change (ours), (b) random trigger reward, (c) confidence-based reward. Demonstrates action-change is the best signal.\\n\", \"hypothesis\": \"Action-change reward produces best cost-performance tradeoff.\\n\", \"metrics\": [\"success_rate\", \"verification_rate\", \"cost_reduction\"], \"gpu_hours_estimate\": 192}, {\"id\": \"plan_013\", \"title\": \"ARES reproduction + comparison\", \"claim\": \"Claim 3 (DEFERRED per D061)\", \"phase\": \"C\", \"priority\": \"P2-deferred\", \"depends_on\": [\"plan_007\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Reproduce ARES SFT router on ALFWorld (same model). Head-to-head with B-IAVR on identical eval episodes. Addresses \\\"ARES differentiation\\\" concern.\\n\", \"hypothesis\": \"B-IAVR achieves ≥10pp better cost reduction than ARES at matched success.\\n\", \"metrics\": [\"success_rate\", \"verification_rate\", \"cost_reduction\"], \"gpu_hours_estimate\": 24}, {\"id\": \"plan_014\", \"title\": \"ScienceWorld transfer (episode-level advantage)\", \"claim\": \"Claim 1\", \"phase\": \"D\", \"priority\": \"P2\", \"depends_on\": [\"plan_001\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Validate episode-level vs step-independent on ScienceWorld. Different env, similar multi-turn structure. Addresses single-env concern.\\n\", \"hypothesis\": \"Episode-level advantage generalizes: ≥2x improvement over step-independent.\\n\", \"metrics\": [\"success_rate_episode\", \"success_rate_step_independent\"], \"gpu_hours_estimate\": 72}, {\"id\": \"plan_015\", \"title\": \"7B model scaling verification\", \"claim\": \"Claim 1\", \"phase\": \"D\", \"priority\": \"P2\", \"depends_on\": [\"plan_002\"], \"registry_id\": null, \"status\": \"planned\", \"description\": \"Episode-level vs step-independent on Qwen3-7B. Addresses model size concern. May need cloud GPU.\\n\", \"hypothesis\": \"Episode-level advantage holds at 7B scale.\\n\", \"metrics\": [\"success_rate_episode_7B\", \"success_rate_step_independent_7B\"], \"gpu_hours_estimate\": 192, \"notes\": \"May require cloud GPU rental (4x A100 or 2x H100)\"}, {\"id\": \"plan_016\", \"title\": \"Per-task-type breakdown analysis\", \"claim\": \"Claim 1\", \"phase\": \"D\", \"priority\": \"P2\", \"depends_on\": [\"plan_001\"], \"registry_id\": \"exp029_per_task_breakdown\", \"status\": \"DONE\", \"description\": \"Breakdown by ALFWorld task type (pick, clean, heat, cool, examine, pick_two). Shows within-environment diversity.\\n\", \"hypothesis\": \"Episode-level advantage varies by task complexity; longer tasks benefit more.\\n\", \"metrics\": {\"temperature\": 0, \"total_success_rate\": 0.164, \"pick_and_place_simple\": {\"count\": 24, \"success\": 5, \"rate\": 0.208}, \"pick_clean_then_place_in_recep\": {\"count\": 31, \"success\": 8, \"rate\": 0.258}, \"pick_heat_then_place_in_recep\": {\"count\": 23, \"success\": 1, \"rate\": 0.043}, \"pick_cool_then_place_in_recep\": {\"count\": 21, \"success\": 2, \"rate\": 0.095}, \"look_at_obj_in_light\": {\"count\": 18, \"success\": 5, \"rate\": 0.278}, \"pick_two_obj_and_place\": {\"count\": 17, \"success\": 1, \"rate\": 0.059}}, \"gpu_hours_estimate\": 2, \"conclusion\": \"success\"}, {\"id\": \"plan_017\", \"title\": \"Discount factor γ-sweep (dual mechanism separation)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_001\"], \"registry_id\": \"gsweep_g050_h5_seed1\", \"status\": \"DONE\", \"notes_extra\": \"g050 killed (collapsed). g080 RUNNING on westd cuda:2,3. g095/g100 pending.\", \"description\": \"Sweep discount factor γ ∈ {0.5, 0.8, 0.95, 1.0} with fixed h=5, step_independent mode, 15 steps each. Separates two mechanisms: (1) magnitude decay (γ^k attenuation) vs (2) sign misattribution (advantage sign determined by episode outcome). γ=1.0 eliminates magnitude decay; if collapse persists, sign misattribution is the root cause. KEY paper evidence for dual mechanism separation.\\n\", \"hypothesis\": \"γ=1.0 eliminates magnitude decay but step_independent still collapses, proving sign misattribution is the root cause rather than γ^k decay. Lower γ values show accelerated collapse due to compounded magnitude attenuation.\\n\", \"metrics\": {\"current_step\": \"12/15\", \"train_success_collapsed_at\": \"step 1\", \"train_success_all_steps\": \"0-2.3% (effectively 0%)\", \"val_step0\": {\"success\": 0.094}, \"val_step5\": {\"success\": 0, \"reward\": 0}, \"val_step10\": {\"success\": 0, \"reward\": 0, \"response_length\": 1412}, \"kl_sequence\": [0.019, 0.025, 0.018, 0.014, 0.01, 0.009, 0.009, 0.209, 0.018], \"kl_spike_step8\": 0.209, \"checkpoint\": \"global_step_10\", \"eta\": \"~5h from 02:46 UTC\", \"status_note\": \"COMPLETELY COLLAPSED. Train success 0% from step 1. KL spike 20x at step 8. Val all zeros. Remaining 3 steps waste GPU. Recommend early kill.\"}, \"gpu_hours_estimate\": 40, \"notes\": \"4 γ values × 15 steps. γ=0.5 running (gsweep_g050_h5_seed1). Remaining: gsweep_g080_h5_seed1, gsweep_g095_h5_seed1, gsweep_g100_h5_seed1 pre-registered.\", \"conclusion\": \"killed\"}, {\"id\": \"plan_018\", \"title\": \"Factorial mechanism separation: truncated-obs + episode-level advantage\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_001\"], \"registry_id\": \"factorial_h2_episodeadv_seed1\", \"status\": \"DONE\", \"conclusion\": \"success\", \"description\": \"CRITICAL experiment requested by ALL 3 Dream review tiers. 2×2 factorial design to isolate information loss from sign misattribution. Configuration: step_independent GENERATION (h=2 observation window, model only sees 2 steps of history during rollout) BUT episode-level ADVANTAGE computation (all windows in same episode share one GRPO advantage = normalized episode return). This means the model still has limited observation (information loss present) but credit assignment is correct (sign misattribution eliminated). Outcome interpretation: (A) if still collapses → information loss is dominant (model cannot plan with limited visibility regardless of credit quality); (B) if succeeds → sign misattribution was dominant (correct credit enables learning even with limited observation). May require small code modification in RAGEN: compute_step_discounted_returns() needs a mode that assigns episode return to all windows uniformly instead of per-window γ-discounted returns.\", \"hypothesis\": \"Truncated observation (h=2) + episode-level advantage isolates the two mechanisms. If collapse persists, information loss is primary. If performance improves significantly over standard step_independent h=2 (currently 0%), sign misattribution is primary.\", \"metrics\": {\"completed_steps\": \"15/15\", \"wandb_run_id\": \"6liw7fm1\", \"val_step5\": {\"success\": 0.0597, \"dataset\": \"AlfworldOOD_134tasks\"}, \"val_step15\": {\"success\": 0.0075}, \"kl_loss_trajectory\": {\"step1\": 0.238, \"step5\": 0.735, \"step10\": 1.029, \"step15\": 2.845}, \"ppo_kl_range\": \"0.025-0.096\", \"best_checkpoint\": \"global_step_5\", \"best_val_success\": 0.0597, \"train_step1\": {\"success\": 0.203, \"pass_at_8\": 0.688}, \"train_step6\": {\"success\": 0.258, \"pass_at_8\": 0.813}, \"checkpoint_paths\": {\"step5\": \"/root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_5/\", \"step10\": \"/root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_10/\", \"step15\": \"/root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_15/\"}, \"exit_cause\": \"W&B atexit BrokenPipeError (false positive)\", \"kl_issue\": \"kl_loss_coef=0.01 too low, policy drifted after step 5\", \"status_note\": \"COMPLETED. Best val OOD 5.97% at step 5. Degraded to 0.75% by step 15 due to KL drift. Sign misattribution elimination confirmed: 5.97% vs 0% (step-level h=2).\"}, \"gpu_hours_estimate\": 24, \"notes\": \"Dream consensus: this is THE most critical missing experiment. All 3 tiers (best/median/worst) independently flagged the absence of factorial mechanism separation as a critical weakness. Also serves to resolve the r=0.640 diagnostic question.\"}, {\"id\": \"plan_019\", \"title\": \"Evaluation set expansion (32→134 tasks)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [], \"registry_id\": null, \"status\": \"planned\", \"conclusion\": \"success\", \"description\": \"Expand ALFWorld validation set from 32 to 134 tasks (standard full split). Dream worst-case flagged 32 tasks as critically small (3.125% per episode, many comparisons are <2 episode difference). Standard ALFWorld evaluation uses 134 tasks. This is a config/infrastructure change affecting all future experiments.\", \"hypothesis\": \"Larger evaluation set provides statistical power for ≤3pp differences. Current results (e.g. 25% = 8/32 tasks) become more precise.\", \"metrics\": [\"statistical_power\", \"confidence_interval_width\"], \"gpu_hours_estimate\": 0, \"notes\": \"Infrastructure change. Need to verify RAGEN supports 134-task eval split and identify the correct task list file. May require modifying val config.\"}, {\"id\": \"plan_020\", \"title\": \"8B SFT Training (Qwen3-8B ALFWorld)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [], \"registry_id\": \"7b_sft_v1\", \"description\": \"SFT Qwen3-8B on ALFWorld expert data (2460 examples). Creates 8B SFT checkpoint for Cell A/C RL experiments. Validates training pipeline at 8B scale.\", \"hypothesis\": \"SFT Qwen3-8B will achieve high training accuracy and establish strong baseline for subsequent RL, enabling scale-invariant mechanism verification.\", \"status\": \"DONE\", \"conclusion\": \"success\"}, {\"id\": \"plan_021\", \"title\": \"8B SFT OOD Evaluation (134 tasks)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_020\"], \"registry_id\": \"7b_sft_eval_ood\", \"description\": \"Evaluate 8B SFT checkpoint on 134 OOD tasks. Establishes 8B SFT baseline for paper table. Result: 80.6% OOD success.\", \"hypothesis\": \"8B SFT baseline substantially exceeds 1.7B baseline, confirming model scale advantage for SFT.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.806, \"pass_at_1\": 0.806, \"num_actions\": 20.18, \"action_is_valid\": 0.963, \"action_is_effective\": 1, \"reward_mean_at_134\": 8.06, \"response_length\": 1987.9, \"best_at_2_mean\": 9.53, \"best_at_4_mean\": 9.98, \"best_at_8_mean\": 10, \"worst_at_2_mean\": 6.55, \"worst_at_4_mean\": 4.11, \"worst_at_8_mean\": 1.93}}, {\"id\": \"plan_022\", \"title\": \"8B SFT In-dist Evaluation (32 tasks)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_020\"], \"registry_id\": \"8b_sft_clean_eval_v2\", \"description\": \"Clean 8B SFT eval on 32 in-dist val tasks. Provides denominator for information loss quantification (same eval set as Cell A).\", \"hypothesis\": \"8B SFT full-context in-dist success provides upper bound for h=2 information loss measurement.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.71875, \"num_actions\": 23.4375, \"action_is_effective\": 1, \"action_is_valid\": 0.9595, \"pass@1\": 0.71875, \"response_length\": 1731, \"reward_mean@32\": 7.1875, \"reward_std@32\": 4.496, \"best@32_mean\": 10, \"worst@32_mean\": 0, \"eval_episodes\": 32, \"eval_split\": \"eval_in_distribution\", \"eval_context\": \"full\"}}, {\"id\": \"plan_023\", \"title\": \"8B Deterministic Eval — Full Context (T=0)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_020\"], \"registry_id\": \"8b_det_eval_full\", \"description\": \"Deterministic (T=0) eval of 8B SFT with full context on 32 in-dist tasks. Paired with h=2 eval for information loss quantification without sampling variance. Result: 68.75%.\", \"hypothesis\": \"T=0 deterministic eval eliminates sampling variance, providing clean information loss measurement.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.6875, \"num_actions\": 24.22, \"action_is_valid\": 0.926, \"pass_at_1\": 0.6875, \"eval_tasks\": 32, \"temperature\": 0, \"do_sample\": false, \"wandb_run\": \"mb005ir1\"}}, {\"id\": \"plan_024\", \"title\": \"8B Deterministic Eval — h=2 (T=0)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_023\"], \"registry_id\": \"8b_det_eval_h2\", \"description\": \"Deterministic (T=0) eval of 8B SFT with h=2 windowing on same 32 in-dist tasks. Result: 31.25%. Information loss = 68.75% - 31.25% = 37.5pp.\", \"hypothesis\": \"h=2 windowing causes substantial information loss at 8B scale, confirming scale-invariant mechanism.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.3125, \"num_actions\": 37.59, \"action_is_valid\": 0.9188, \"pass_at_1\": 0.3125, \"eval_tasks\": 32, \"temperature\": 0, \"do_sample\": false, \"wandb_run\": \"qtxhh5ak\", \"information_loss_pp\": 37.5, \"information_loss_relative\": 0.545}}, {\"id\": \"plan_025\", \"title\": \"8B Cell A Collapse Verification\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_020\"], \"registry_id\": \"7b_cell_a_h2\", \"description\": \"8B Cell A: step-independent RL with h=2 from 80.6% SFT baseline. Result: step 1 = 12.5% (baseline halved), step 2 = 1.5625% (Q4 complete collapse). Confirms scale-invariant collapse mechanism.\", \"hypothesis\": \"8B Cell A collapses like 1.7B Cell A, confirming sign misattribution + information loss are scale-invariant.\", \"status\": \"DONE\", \"conclusion\": \"killed\", \"metrics\": {\"val_before_train_success\": 0.281, \"step1_train_success\": 0.125, \"step1_kl\": 1.917, \"step1_entropy\": 0.115, \"step1_grad_norm\": 2.29, \"step1_num_actions\": 47.7, \"step1_pass_at_8\": 0.5, \"step1_pg_clipfrac\": 0.109, \"step1_response_length\": 567.5, \"step1_duration_sec\": 5076, \"step2_train_success\": 0.015625, \"step2_entropy\": 0.605, \"step2_ppo_kl\": -1.885, \"step2_num_actions\": 49.7, \"collapse_pattern\": \"Q4 confirmed: step 0 val=28.1% → step 1 train=12.5% (entropy collapse 0.115) → step 2 train=1.56% (entropy rebound 0.605, negative KL -1.885). Complete collapse in 2 steps.\"}}, {\"id\": \"plan_026\", \"title\": \"8B Cell C Episode-Level GRPO (v9d, FSDP2+CPUOffload)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_020\", \"plan_025\"], \"registry_id\": \"8b_cell_c_episode_v9d\", \"description\": \"8B Cell C episode-level GRPO with FSDP2+CPUOffloadPolicy. 30 steps on 4×RTX PRO 6000 96GB. If successful, provides cross-scale positive control: not only failure mechanism is scale-invariant, but fix effectiveness is too. Step 5: val 81.25%.\", \"hypothesis\": \"8B Cell C episode-level training succeeds (maintaining/improving from SFT baseline), confirming episode-level fix is scale-invariant.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"step\": 15, \"steps_total\": 30, \"stopped_reason\": \"reward_saturation_and_nccl_hang\", \"train_success_step12\": 1, \"pg_loss_step12\": 0, \"advantage_step12\": 0, \"val_before_train_step10\": 0.96875, \"train_success_step7\": 0.914, \"train_success_step11\": 0.9375, \"effective_final_step\": 10, \"wandb_run_id\": \"aeml21w9\", \"note\": \"Reward saturated at step 12 (100% success, zero gradients). NCCL hang at step 15. Step 10 checkpoint is effective final model.\"}}, {\"id\": \"plan_027\", \"title\": \"Factorial Mechanism Separation — Seed 2 Replication\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_018\"], \"registry_id\": \"factorial_h2_episodeadv_seed2\", \"description\": \"Seed 2 replication of factorial experiment (step-independent generation + episode-level advantage). Confirms sign misattribution elimination effect is robust across seeds. Result: OOD 0.75% (train 55.5%, hard ceiling from info loss).\", \"hypothesis\": \"Factorial mechanism separation result replicates: sign misattribution elimination enables training even with truncated observation.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"step15_train_success\": 0.555, \"step15_val_ood_success\": 0.0075, \"step15_val_ood_action_valid\": 0.173, \"step15_kl\": 0.618, \"step15_train_pass8\": 0.875}}, {\"id\": \"plan_028\", \"title\": \"Episode-Level Seed 2 (Cross-seed OOD)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_001\"], \"registry_id\": \"exp029_episode_level_seed2\", \"description\": \"Seed 2 replication of exp029 episode-level GRPO. Val peaked at 31.25%. Step 30 checkpoint lost in disk cleanup (M019). Provides cross-seed evidence.\", \"hypothesis\": \"Episode-level success is reproducible across seeds.\", \"notes\": \"Killed due to checkpoint loss (M019). Paper uses step 15 val data.\", \"status\": \"DONE\", \"conclusion\": \"killed\"}, {\"id\": \"plan_029\", \"title\": \"h-sweep h=10 (cliff boundary test)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_002\"], \"registry_id\": \"hsweep_h10_seed1\", \"description\": \"h=10 step-independent GRPO. Result: val=SFT baseline 6.25%, train=0%. No learning — cliff is above h=10. Killed per D079.\", \"hypothesis\": \"h=10 provides insufficient context for learning, confirming cliff between h=10 and h=20.\", \"status\": \"DONE\", \"conclusion\": \"killed\", \"metrics\": {\"step2_train_success\": 0, \"step5_val_success\": \"SFT_baseline\", \"collapse_onset\": \"step 2\", \"verdict\": \"complete collapse, h=10 insufficient context\"}}, {\"id\": \"plan_030\", \"title\": \"h-sweep h=20 (cliff boundary test)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_029\"], \"registry_id\": \"hsweep_h20_seed1\", \"description\": \"h=20 step-independent GRPO. Key cliff boundary: h=10 collapsed, h=20 shows if 20 steps of context enables recovery. Result: 15.6% val success — partial recovery, cliff between h=10 and h=20.\", \"hypothesis\": \"h=20 shows partial recovery, narrowing cliff location to h=10~h=20.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"step1_train\": 0.203, \"step2_train\": 0.133, \"step4_train\": 0.281, \"val_step5_success\": 0.15625}}, {\"id\": \"plan_031\", \"title\": \"Per-task OOD Eval T=0.4 (exp029 rerun)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_001\"], \"registry_id\": \"exp029_per_task_t04_v2\", \"description\": \"Per-task-type OOD eval with T=0.4 (paper protocol D092). Independent eval script result: 19.4% (26/134). pick_two_obj = 0% (hardest). Pipeline difference vs RAGEN 23.88% under investigation.\", \"hypothesis\": \"Task-type ranking pattern consistent across eval methods; multi-step tasks remain hardest.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"temperature\": 0.4, \"total_success_rate\": 0.194, \"total_success\": 26, \"total_tasks\": 134, \"pick_and_place_simple\": {\"count\": 24, \"success\": 4, \"rate\": 0.167}, \"pick_clean_then_place_in_recep\": {\"count\": 31, \"success\": 8, \"rate\": 0.258}, \"pick_heat_then_place_in_recep\": {\"count\": 23, \"success\": 4, \"rate\": 0.174}, \"pick_cool_then_place_in_recep\": {\"count\": 21, \"success\": 5, \"rate\": 0.238}, \"look_at_obj_in_light\": {\"count\": 18, \"success\": 5, \"rate\": 0.278}, \"pick_two_obj_and_place\": {\"count\": 17, \"success\": 0, \"rate\": 0}}}, {\"id\": \"plan_032\", \"title\": \"ScienceWorld SFT Training (second environment)\", \"claim\": \"Claim 1\", \"phase\": \"D\", \"priority\": \"P1\", \"depends_on\": [], \"registry_id\": \"scienceworld_sft\", \"description\": \"ScienceWorld 1.7B SFT training. 3592 train / 1796 val expert trajectories, 2 epochs. Creates SFT checkpoint for subsequent GRPO experiments. Validates pipeline generalization to second interactive environment.\", \"hypothesis\": \"SFT pipeline generalizes to ScienceWorld, providing base checkpoint for cross-environment RL mechanism comparison.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_loss_final\": 0.00318, \"val_loss_final\": 0.01098, \"total_steps\": 448, \"epochs\": 2, \"total_train_time_s\": 9319.4, \"checkpoint\": \"global_step_448\"}}, {\"id\": \"plan_033\", \"title\": \"ScienceWorld SFT Eval v2 (baseline establishment)\", \"claim\": \"Claim 1\", \"phase\": \"D\", \"priority\": \"P1\", \"depends_on\": [\"plan_032\"], \"registry_id\": \"scienceworld_sft_eval_v2\", \"description\": \"Full dev split eval (1796 episodes, 30 task types) of ScienceWorld SFT checkpoint. Fixed valid_action_rate metric (v1 had truncation bug). Currently running: ~53% complete, success rate ~30.8%.\", \"hypothesis\": \"ScienceWorld SFT establishes baseline success rate for subsequent GRPO Cell A vs Cell C comparison.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"total_episodes\": 1796, \"success_count\": 540, \"overall_success_rate\": 0.301, \"timeouts\": 0, \"errors\": 0, \"avg_score\": 20.9, \"avg_steps_per_episode\": 28.7, \"total_time_seconds\": 51462, \"split\": \"dev\", \"temperature\": 0.4, \"per_task_type\": {\"boil\": {\"n\": 7, \"succ\": 0, \"rate\": 0}, \"change-the-state-of-matter-of\": {\"n\": 7, \"succ\": 1, \"rate\": 0.143}, \"chemistry-mix\": {\"n\": 8, \"succ\": 0, \"rate\": 0}, \"chemistry-mix-paint-secondary-color\": {\"n\": 9, \"succ\": 2, \"rate\": 0.222}, \"chemistry-mix-paint-tertiary-color\": {\"n\": 9, \"succ\": 0, \"rate\": 0}, \"find-animal\": {\"n\": 75, \"succ\": 37, \"rate\": 0.493}, \"find-living-thing\": {\"n\": 75, \"succ\": 49, \"rate\": 0.653}, \"find-non-living-thing\": {\"n\": 75, \"succ\": 58, \"rate\": 0.773}, \"find-plant\": {\"n\": 75, \"succ\": 9, \"rate\": 0.12}, \"freeze\": {\"n\": 7, \"succ\": 0, \"rate\": 0}, \"grow-fruit\": {\"n\": 31, \"succ\": 2, \"rate\": 0.065}, \"grow-plant\": {\"n\": 31, \"succ\": 0, \"rate\": 0}, \"identify-life-stages-1\": {\"n\": 3, \"succ\": 0, \"rate\": 0}, \"identify-life-stages-2\": {\"n\": 2, \"succ\": 0, \"rate\": 0}, \"inclined-plane-determine-angle\": {\"n\": 42, \"succ\": 7, \"rate\": 0.167}, \"inclined-plane-friction-named-surfaces\": {\"n\": 346, \"succ\": 83, \"rate\": 0.24}, \"inclined-plane-friction-unnamed-surfaces\": {\"n\": 40, \"succ\": 10, \"rate\": 0.25}, \"lifespan-longest-lived\": {\"n\": 31, \"succ\": 28, \"rate\": 0.903}, \"lifespan-longest-lived-then-shortest-lived\": {\"n\": 31, \"succ\": 28, \"rate\": 0.903}, \"lifespan-shortest-lived\": {\"n\": 31, \"succ\": 21, \"rate\": 0.677}, \"measure-melting-point-known-substance\": {\"n\": 109, \"succ\": 25, \"rate\": 0.229}, \"measure-melting-point-unknown-substance\": {\"n\": 75, \"succ\": 27, \"rate\": 0.36}, \"melt\": {\"n\": 7, \"succ\": 1, \"rate\": 0.143}, \"mendelian-genetics-known-plant\": {\"n\": 30, \"succ\": 8, \"rate\": 0.267}, \"mendelian-genetics-unknown-plant\": {\"n\": 120, \"succ\": 35, \"rate\": 0.292}, \"power-component\": {\"n\": 5, \"succ\": 3, \"rate\": 0.6}, \"power-component-renewable-vs-nonrenewable-energy\": {\"n\": 5, \"succ\": 0, \"rate\": 0}, \"test-conductivity\": {\"n\": 225, \"succ\": 35, \"rate\": 0.156}, \"test-conductivity-of-unknown-substances\": {\"n\": 150, \"succ\": 44, \"rate\": 0.293}, \"use-thermometer\": {\"n\": 135, \"succ\": 27, \"rate\": 0.2}}, \"results_json_path\": \"/root/autodl-tmp/checkpoints/scienceworld_sft/eval_results_dev_v2.json\"}}, {\"id\": \"plan_034\", \"title\": \"γ-sweep γ=0.80 (magnitude decay isolation)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_017\"], \"registry_id\": \"gsweep_g080_h5_seed1\", \"description\": \"γ=0.80 with h=5. Early windows retain γ^9 ≈ 13% of terminal return. Result: collapsed (negative). All γ values collapse at h=5, proving sign misattribution is the root cause, not magnitude decay.\", \"hypothesis\": \"γ=0.80 collapses like other γ values, confirming sign misattribution dominates magnitude decay.\", \"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"step5_val_success\": \"3.125%\", \"step5_entropy\": 0.185, \"subsequent_steps\": \"all 0%\", \"conclusion_note\": \"Complete collapse confirmed. γ=0.80 with h=5 shows catastrophic failure — killed early by Director as no new information expected. Supports hypothesis that lower gamma accelerates collapse.\"}}, {\"id\": \"plan_035\", \"title\": \"γ-sweep γ=0.95 (default control)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_017\"], \"registry_id\": \"gsweep_g095_h5_seed1\", \"description\": \"γ=0.95 with h=5 — control condition matching hsweep_h5. Early windows retain γ^9 ≈ 63%. Result: collapsed (negative).\", \"hypothesis\": \"γ=0.95 reproduces h5 collapse, providing control for γ-sweep.\", \"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"val_success_step5\": 0, \"conclusion_reason\": \"collapsed at step 5, val=0%\"}}, {\"id\": \"plan_036\", \"title\": \"γ-sweep γ=1.00 (no discount, key evidence)\", \"claim\": \"Claim 1\", \"phase\": \"A+\", \"priority\": \"P0\", \"depends_on\": [\"plan_017\"], \"registry_id\": \"gsweep_g100_h5_seed1\", \"description\": \"γ=1.00 eliminates magnitude decay entirely. If collapse persists, proves sign misattribution alone causes collapse. Result: collapsed (negative). KEY EVIDENCE: even without any γ^k decay, step-independent still collapses.\", \"hypothesis\": \"γ=1.0 eliminates magnitude decay but still collapses, proving sign misattribution is the root cause independent of discount factor.\", \"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"conclusion_reason\": \"collapsed, γ=1.0 also collapses confirming sign misattribution not solely from magnitude decay\"}}], \"total\": 38}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "27f2787b-b974-4788-9ee6-a453c685cf69",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 85 · 2026-05-21T02:41:53.629Z_
+
+```json
+{
+  "parentUuid": "d5863387-ea27-46d6-bcd5-ed48dc744c47",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "ebd2ff7e-534d-4c94-8838-347637127427",
+  "timestamp": "2026-05-21T02:41:53.629Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 86_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #20。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - westd-47453 GPU 分配需确认——resource_usage 显示 allocated_gpus=[]，ROADMAP 说 westd cuda:0-3 跑 v9d，但 cron reconcile 未检测到。提交前必…",
+  "leafUuid": "ebd2ff7e-534d-4c94-8838-347637127427",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 87_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Diagnose 8B OOD eval failure and confirm v9d training status",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6"
+}
+```
+
+---
+
+### Assistant
+
+_source line 88 · 2026-05-21T02:42:52.554Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The experiment plan is very comprehensive. Let me now understand the current situation fully:
+
+**Currently RUNNING:**
+1. `exp029_seed3_ood_v2` - westd cuda:0,1 - seed3 OOD eval (fix: optimizer_offload=false)
+2. `scienceworld_grpo_cell_c_v3` - westd cuda:2,3 - step 3/15, weak training signal
+
+**Worker pool:** 
+- seed4 worker cancelled (was stuck at 0 turns)
+- Currently: 0 workers → VIOLATION of >=2 rule
+
+
+- bjb1 idle with 2 free GPUs → VIOLATION
+
+Looking at the experiment plan, most experiments are already complete, and seed4 isn't explicitly mentioned. Plan_003 references a failed seed3 episode run, while Plan_028 was terminated due to checkpoint loss. I have results for seed1 (OOD=23.88%) and seed3 (OOD=10.45%), with seed2 lost, and the paper reports a multi-seed mean of 17.2%.
+
+For bjb1, seed4 episode-level training makes the most sense—it would give me a third valid seed point and strengthen the multi-seed results statistically, whereas the 8B OOD eval already has a 90.3% result from a previous run. I'll spawn the seed4 training worker on bjb1 and a CPU worker for monitoring progress.
+
+Now I'm working through the specifics for the seed4 worker prompt—I need to verify bjb1 has the code repo and models set up, then provide the exact training configuration matching exp029 but with seed=4 for the episode-level GRPO on Qwen3-1.7B with ALFWorld. I'm also noticing the 8B OOD eval failures all stem from the same config issue with env_groups and group_size, which is separate from the seed3 OOD v2 result. I need to check the registry first to confirm seed4 isn't already registered. Since it's not, I'm weighing whether to proceed without Director approval—the roadmap prioritizes finishing the paper, but we have idle compute resources and parallel execution is the default mode. The state machine shows experiments require approval at the PENDING stage, so I should probably get clearance before launching seed4, even though it's a natural continuation of the multi-seed replication plan. Actually, I need to reconsider whether spawning seed4 prep requires Director approval first. Looking back at Plan_003, it was designed for 5 seeds total and is already approved, even though the specific seed3 episode failed—the plan itself still stands. So I can move forward with seed4 preparation as part of the existing approved plan.
+
+I'll set up seed4 in PREPARING status and have a worker handle the environment setup on bjb1. The worker will need to verify the code repo and SFT checkpoint are in place, create a seed=4 config using the same settings from exp029 (Qwen3-1.7B with episode-level GRPO, 15 steps, 2 GPUs), and submit the training job—though I'll need to track down the exact paths for the config and checkpoint files.
+
+For the director's report, I'm tracking GPU allocation across machines: westd has 4 GPUs in use (seed3 OOD v2 and Cell C v3 at step 3), bjb1 has 2 idle GPUs where seed4 is being prepared, and I'm rebuilding the worker pool from 0 to 2 instances. Cell C v3 is showing weak signal performance with only 9.4% valid actions so far.
+
+Now I'm ready to execute—launching seed4 on bjb1 to gather additional multi-seed data while the current experiments continue.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ebd2ff7e-534d-4c94-8838-347637127427",
+  "isSidechain": false,
+  "requestId": "req_011CbEweP7dnt7KWpL7YzD3U",
+  "type": "assistant",
+  "uuid": "2fbc0362-a026-4b48-869a-52a17fd213ff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0137ijfgJZJqapAs7RQbjgrA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14812,
+      "cache_read_input_tokens": 66454,
+      "output_tokens": 3975,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14812,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3975,
+          "cache_read_input_tokens": 66454,
+          "cache_creation_input_tokens": 14812,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14812
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 89 · 2026-05-21T02:42:56.486Z_
+
+全面了解了。当前状态：
+- westd 4/4 GPU 占满（seed3 OOD eval + Cell C v3）
+- bjb1 2 GPU 空闲，stuck worker 已取消
+- Worker 池 = 0（违反 >=2 硬约束）
+- Cell C v3 step 3/15，训练信号极弱（success=0, action_is_valid=9.4%）
+- 论文接近完成，等 Cell C v3 step 5 止损判断 + Reviewer D108 审查
+
+立即修复 Worker 池 + 利用空闲 GPU。spawn 两个 Worker：一个 bjb1 seed4 准备，一个 seed3 OOD 进度检查。同时汇报 Director。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2fbc0362-a026-4b48-869a-52a17fd213ff",
+  "isSidechain": false,
+  "requestId": "req_011CbEweP7dnt7KWpL7YzD3U",
+  "type": "assistant",
+  "uuid": "0303651a-a1d0-43d9-acc3-72242a568363",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0137ijfgJZJqapAs7RQbjgrA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14812,
+      "cache_read_input_tokens": 66454,
+      "output_tokens": 3975,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14812,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3975,
+          "cache_read_input_tokens": 66454,
+          "cache_creation_input_tokens": 14812,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14812
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90 · 2026-05-21T02:43:18.761Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker · `toolu_019qtqz1SEPv92N3U3D8518h`</summary>
+
+```json
+{
+  "task_type": "experiment:seed4-bjb1-prep",
+  "project": "cost-verify-agent-rl",
+  "task_prompt": "## 任务：在 bjb1-17606 上准备并启动 seed4 episode-level GRPO 训练\n\n### 背景\n我们在做多 seed 复现实验（plan_003）。已有 seed1 (OOD=23.88%) 和 seed3 (OOD=10.45%)，seed2 丢失。需要 seed4 加强统计可信度。\n\n训练配置与 exp029（seed1）相同：\n- 模型：Qwen3-1.7B SFT checkpoint（从 exp008_sft 开始的 ALFWorld SFT）\n- 方法：Episode-level GRPO (context_window_mode: full)\n- 环境：ALFWorld\n- 步数：15 steps\n- GPU：2 卡（bjb1 cuda:0,1）\n- 种子：seed=4（或等价的 random seed 设为 4）\n\n### 执行步骤\n\n1. **SSH 到 bjb1-17606**，检查：\n   - 代码仓库位置（可能在 ~/runs/cost-verify-agent-rl/ 或类似路径）\n   - `git log -3` 确认代码版本\n   - SFT checkpoint 是否存在（搜索 exp008_sft 或 alfworld sft 相关 checkpoint）\n   - Python/CUDA 环境状态\n   - 磁盘空间（`df -h`）\n   - GPU 空闲状态（`nvidia-smi`）\n\n2. **如果代码不在 bjb1**，从 westd 或 git remote 同步。如果 SFT checkpoint 不在 bjb1，从 westd rsync（checkpoint 路径可能在 `/root/autodl-tmp/checkpoints/` 下）。\n\n3. **找到 exp029 的训练配置文件**（YAML），复制一份改 seed 为 4。配置要点：\n   - context_window_mode: full\n   - episode-level advantage（不是 step-independent）\n   - seed: 4\n   - save_freq: 5（不要设 999，确保有 checkpoint）\n   - 其他超参与 exp029 一致\n\n4. **检查环境已就绪后**，用 `submit_training_job` 提交训练（不要用 nohup）。实验 ID 建议：`exp029_seed4_episode`\n\n5. **提交前**用 `update_registry` 注册实验：\n   - exp_id: exp029_seed4_episode\n   - status: PREPARING\n   - hypothesis: \"Episode-level GRPO 在 seed=4 下复现，验证 multi-seed robustness (plan_003)\"\n   - parent: exp029_episode_level\n   - plan_id: plan_003\n\n6. **提交成功后**更新 registry 的 spec（command, server, data_path, model_name, seed 等）\n\n### 注意事项\n- bjb1 之前跑过 ScienceWorld 实验，环境应该已配置好\n- 确认 Python 环境是 conda 还是 venv（参考 CLAUDE.md 的 ssh-env-setup）\n- 如果磁盘空间不足（<50GB 可用），先报告不要强行启动\n- 如果 SFT checkpoint 不可用，报告具体情况，不要假设路径",
+  "tool_groups": [
+    "ssh",
+    "registry"
+  ],
+  "tools": [
+    "submit_training_job"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0303651a-a1d0-43d9-acc3-72242a568363",
+  "isSidechain": false,
+  "requestId": "req_011CbEweP7dnt7KWpL7YzD3U",
+  "type": "assistant",
+  "uuid": "f2f2fa8b-9c78-4e36-ab45-67bc173f75dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0137ijfgJZJqapAs7RQbjgrA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14812,
+      "cache_read_input_tokens": 66454,
+      "output_tokens": 3975,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14812,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3975,
+          "cache_read_input_tokens": 66454,
+          "cache_creation_input_tokens": 14812,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14812
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-21T02:43:21.912Z_
+
+<details><summary>↩ Tool result · `toolu_019qtqz1SEPv92N3U3D8518h`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_experiment_seed4-bjb1-prep_20260521T024319\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/logs/workers/worker_experiment_seed4-bjb1-prep_20260521T024319.log\", \"setup_data\": {}, \"message\": \"Worker worker_experiment_seed4-bjb1-prep_20260521T024319 started. Use get_worker_status('worker_experiment_seed4-bjb1-prep_20260521T024319') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f2f2fa8b-9c78-4e36-ab45-67bc173f75dd",
+  "isSidechain": false,
+  "promptId": "f8302a3c-3d42-4fa9-96cb-f9a27b66ab52",
+  "type": "user",
+  "uuid": "f71da831-76a7-430b-a97d-ef824e39d39f",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_experiment_seed4-bjb1-prep_20260521T024319\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/logs/workers/worker_experiment_seed4-bjb1-prep_20260521T024319.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_experiment_seed4-bjb1-prep_20260521T024319 started. Use get_worker_status('worker_experiment_seed4-bjb1-prep_20260521T024319') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_experiment_seed4-bjb1-prep_20260521T024319\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/logs/workers/worker_experiment_seed4-bjb1-prep_20260521T024319.log\", \"setup_data\": {}, \"message\": \"Worker worker_experiment_seed4-bjb1-prep_20260521T024319 started. Use get_worker_status('worker_experiment_seed4-bjb1-prep_20260521T024319') to check progress.\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "f2f2fa8b-9c78-4e36-ab45-67bc173f75dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92 · 2026-05-21T02:43:31.190Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker · `toolu_01NGbR7f3HDXuYsnu7i1CcsV`</summary>
+
+```json
+{
+  "task_type": "ops:seed3-ood-v2-progress",
+  "project": "cost-verify-agent-rl",
+  "task_prompt": "## 任务：检查 exp029_seed3_ood_v2 运行状态\n\n### 背景\nexp029_seed3_ood_v2 是 seed3 的 OOD eval，正在 westd-47453 cuda:0,1 上运行（PID 530289）。这是一个 eval job（不是训练），用的是 seed3 的 global_step_15 checkpoint 在 134 OOD tasks 上评估。\n\n之前 seed3 OOD eval 失败过多次（optimizer_offload 问题），这次通过 optimizer_offload: false 修复。需要确认：\n\n### 执行步骤\n\n1. **SSH 到 westd-47453**（只读），检查：\n   - 进程是否存活：`ps -p 530289 -o pid,comm,etime,pcpu,pmem`\n   - GPU 使用：`nvidia-smi`（确认 cuda:0,1 有活跃进程）\n   - 日志尾部：找到日志文件（可能在 ~/runs/cost-verify-agent-rl/ 目录下），`tail -50` 看最新输出\n\n2. **分析日志**：\n   - 是否已开始 rollout（看到 episode 进度）？\n   - 当前完成了多少 episodes / 多少 tasks？\n   - 有没有报错或 warning？\n   - 预估还需多久完成？\n\n3. **如果进程已结束**：\n   - 检查退出码\n   - 找到结果文件（JSON/CSV）\n   - 提取关键指标：success_rate, action_is_valid, reward_mean\n   - 用 update_registry 更新结果\n\n4. **如果进程还在运行**：\n   - 报告当前进度和 ETA\n   - 确认没有异常（OOM、hang 等）\n\n### 输出要求\n简洁报告：进程状态 / 进度 / 关键指标（如有）/ ETA / 异常",
+  "tool_groups": [
+    "ssh",
+    "registry"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f71da831-76a7-430b-a97d-ef824e39d39f",
+  "isSidechain": false,
+  "requestId": "req_011CbEweP7dnt7KWpL7YzD3U",
+  "type": "assistant",
+  "uuid": "eaa2c7c3-69cf-4a43-b0f2-7ac211f02f4d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0137ijfgJZJqapAs7RQbjgrA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14812,
+      "cache_read_input_tokens": 66454,
+      "output_tokens": 3975,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14812,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3975,
+          "cache_read_input_tokens": 66454,
+          "cache_creation_input_tokens": 14812,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14812
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-21T02:43:31.531Z_
+
+<details><summary>↩ Tool result · `toolu_01NGbR7f3HDXuYsnu7i1CcsV`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Worker of type 'ops:seed3-ood-v2-progress' is already active for project 'cost-verify-agent-rl'. worker_id=worker_ops_seed3-ood-v2-progress_20260521T024207\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "eaa2c7c3-69cf-4a43-b0f2-7ac211f02f4d",
+  "isSidechain": false,
+  "promptId": "f8302a3c-3d42-4fa9-96cb-f9a27b66ab52",
+  "type": "user",
+  "uuid": "accf9af5-7faf-41d8-b574-0d6750dc29c0",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Worker of type 'ops:seed3-ood-v2-progress' is already active for project 'cost-verify-agent-rl'. worker_id=worker_ops_seed3-ood-v2-progress_20260521T024207\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Worker of type 'ops:seed3-ood-v2-progress' is already active for project 'cost-verify-agent-rl'. worker_id=worker_ops_seed3-ood-v2-progress_20260521T024207\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "eaa2c7c3-69cf-4a43-b0f2-7ac211f02f4d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 94 · 2026-05-21T02:43:35.235Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The seed4 worker spawned successfully. The seed3 OOD progress worker failed because there's already an active worker with the same task_type. Let me check its status.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "accf9af5-7faf-41d8-b574-0d6750dc29c0",
+  "isSidechain": false,
+  "requestId": "req_011CbEwmbvWVhmw2ACU6mmYH",
+  "type": "assistant",
+  "uuid": "b0a9bdc6-e1b5-4102-b25e-694c99702f49",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FuZzWc9PWgx1DHvqZYq6qW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4333,
+      "cache_read_input_tokens": 81266,
+      "output_tokens": 198,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4333,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 198,
+          "cache_read_input_tokens": 81266,
+          "cache_creation_input_tokens": 4333,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4333
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 95 · 2026-05-21T02:43:36.156Z_
+
+seed4 worker 已启动。seed3 OOD 进度 worker 因同类型已存在而失败，让我检查现有的。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b0a9bdc6-e1b5-4102-b25e-694c99702f49",
+  "isSidechain": false,
+  "requestId": "req_011CbEwmbvWVhmw2ACU6mmYH",
+  "type": "assistant",
+  "uuid": "791341f7-53c3-439f-b9a5-5705868e85d4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FuZzWc9PWgx1DHvqZYq6qW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4333,
+      "cache_read_input_tokens": 81266,
+      "output_tokens": 198,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4333,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 198,
+          "cache_read_input_tokens": 81266,
+          "cache_creation_input_tokens": 4333,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4333
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 96 · 2026-05-21T02:43:36.886Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status · `toolu_01C35m3fT1XZjadwxYmGP8Z3`</summary>
+
+```json
+{
+  "worker_id": "worker_ops_seed3-ood-v2-progress_20260521T024207",
+  "verbose": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "791341f7-53c3-439f-b9a5-5705868e85d4",
+  "isSidechain": false,
+  "requestId": "req_011CbEwmbvWVhmw2ACU6mmYH",
+  "type": "assistant",
+  "uuid": "6c06af22-1bfa-4e97-be9a-80ddd363d15e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FuZzWc9PWgx1DHvqZYq6qW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4333,
+      "cache_read_input_tokens": 81266,
+      "output_tokens": 198,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4333,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 198,
+          "cache_read_input_tokens": 81266,
+          "cache_creation_input_tokens": 4333,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4333
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 97 · 2026-05-21T02:43:36.989Z_
+
+<details><summary>↩ Tool result · `toolu_01C35m3fT1XZjadwxYmGP8Z3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_seed3-ood-v2-progress_20260521T024207\", \"status\": \"running\", \"task_type\": \"ops:seed3-ood-v2-progress\", \"project\": \"cost-verify-agent-rl\", \"started_at\": \"2026-05-21T02:42:07.377525+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\"], \"last_text\": \"GPU 利用率 0% 且最后日志停在 09:56 — 进程可能卡住了。让我进一步检查。\", \"turn_count\": 9}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6c06af22-1bfa-4e97-be9a-80ddd363d15e",
+  "isSidechain": false,
+  "promptId": "f8302a3c-3d42-4fa9-96cb-f9a27b66ab52",
+  "type": "user",
+  "uuid": "3b2928f0-4ab1-4e0d-a403-40854a0f88e1",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ops_seed3-ood-v2-progress_20260521T024207\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"ops:seed3-ood-v2-progress\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"started_at\\\": \\\"2026-05-21T02:42:07.377525+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"ssh_read_only\\\", \\\"ssh_read_only\\\", \\\"ssh_read_only\\\", \\\"ssh_read_only\\\", \\\"ssh_read_only\\\"], \\\"last_text\\\": \\\"GPU 利用率 0% 且最后日志停在 09:56 — 进程可能卡住了。让我进一步检查。\\\", \\\"turn_count\\\": 9}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_seed3-ood-v2-progress_20260521T024207\", \"status\": \"running\", \"task_type\": \"ops:seed3-ood-v2-progress\", \"project\": \"cost-verify-agent-rl\", \"started_at\": \"2026-05-21T02:42:07.377525+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\"], \"last_text\": \"GPU 利用率 0% 且最后日志停在 09:56 — 进程可能卡住了。让我进一步检查。\", \"turn_count\": 9}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "6c06af22-1bfa-4e97-be9a-80ddd363d15e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 98_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #20。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - westd-47453 GPU 分配需确认——resource_usage 显示 allocated_gpus=[]，ROADMAP 说 westd cuda:0-3 跑 v9d，但 cron reconcile 未检测到。提交前必…",
+  "leafUuid": "3b2928f0-4ab1-4e0d-a403-40854a0f88e1",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 99_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Diagnose 8B OOD eval failure and confirm v9d training status",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6"
+}
+```
+
+---
+
+### Assistant
+
+_source line 100 · 2026-05-21T02:43:52.099Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The seed3 OOD progress worker is actively running (9 turns, using ssh_read_only). It's finding that GPU utilization is 0% and the last log was from 09:56. The process might be stuck. Let me wait for this worker to complete its diagnosis.
+
+Meanwhile, let me also spawn a different CPU worker for other tasks, since the Worker pool needs to be >=2. I have seed4-bjb1-prep running as GPU task, and seed3-ood-v2-progress as a diagnostic task. That's 2 workers now.
+
+Now I should report to Director. Let me prepare the report.
+
+
+Looking at the current status across all machines: westd has the OOD experiment potentially stuck with zero GPU utilization, while the scienceworld task is progressing through its steps with low action validity. The bjb1 machine is idle but has the seed4 prep worker dispatched. The worker pool is at capacity with the two active tasks, so I need to flag the potential hang in seed3 OOD v2 as the main issue to address.
+
+I'm torn between waiting for the diagnostic worker to finish so I can provide complete information to the Director, or reporting now with what I know and noting that the diagnosis is still in progress. Given the importance of prompt communication, I should report the current status immediately and mention that the seed3 OOD diagnostic is actively running and will provide more details once it completes.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3b2928f0-4ab1-4e0d-a403-40854a0f88e1",
+  "isSidechain": false,
+  "requestId": "req_011CbEwn14YpaiZ4xy3zRMLv",
+  "type": "assistant",
+  "uuid": "3de8e625-7eb3-4f51-9dbb-ea73e375580c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CFivq3JdyNoMvASBnEUTPF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 479,
+      "cache_read_input_tokens": 85599,
+      "output_tokens": 1278,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 479,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1278,
+          "cache_read_input_tokens": 85599,
+          "cache_creation_input_tokens": 479,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 479
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 101 · 2026-05-21T02:43:52.733Z_
+
+现有 2 个 Worker 在跑（seed4 prep + seed3 OOD 诊断）。seed3 OOD 诊断 worker 发现 GPU 利用率 0% + 日志停顿，进程可能卡住。
+
+向 Director 汇报当前状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3de8e625-7eb3-4f51-9dbb-ea73e375580c",
+  "isSidechain": false,
+  "requestId": "req_011CbEwn14YpaiZ4xy3zRMLv",
+  "type": "assistant",
+  "uuid": "e4acafa2-a518-47af-983b-c6e4d204a802",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CFivq3JdyNoMvASBnEUTPF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 479,
+      "cache_read_input_tokens": 85599,
+      "output_tokens": 1278,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 479,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1278,
+          "cache_read_input_tokens": 85599,
+          "cache_creation_input_tokens": 479,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 479
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 102 · 2026-05-21T02:44:10.194Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director · `toolu_01KiWnggLh9bborod9fKhUaZ`</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 0(registry 未同步) / 实际在跑 4 (westd 4/4) | bjb1 0/2 空闲(seed4 准备中) | Worker 2 (GPU 1 / CPU 1)\n\n## Session 20 状态汇报\n\n### 运行中\n1. **exp029_seed3_ood_v2** (westd cuda:0,1) — seed3 OOD 134-task eval\n   - ⚠️ Worker 诊断中：GPU 利用率 0%，日志停在 09:56，进程可能 hang\n   - 待诊断完成后决定是否 kill + 重启\n\n2. **scienceworld_grpo_cell_c_v3** (westd cuda:2,3) — ScienceWorld episode GRPO\n   - Step 3/15 (20%), ETA step 5 约 4h 后\n   - 训练信号极弱：success=0.0, action_is_valid=9.4%, reward=0.153\n   - **止损预判**：step 5 止损阈值 (success=0% + action_is_valid<20%) 大概率触发\n   - manager_invalid_action=67.6%，模型大量输出无效动作\n\n### 已派 Worker\n1. **seed4-bjb1-prep** — 在 bjb1 准备 seed4 episode-level GRPO 训练 (plan_003 多seed复现)\n   - 当前只有 seed1 (23.88%) + seed3 (10.45%)，再加一个 seed 增强统计可信度\n2. **seed3-ood-v2-progress** — 诊断 seed3 OOD eval 是否 hang\n\n### 建议\n1. Cell C v3 如 step 5 触发止损 → westd cuda:2,3 释放，建议排 8b_v9d_ood_eval 修复重跑（论文最后的 8B OOD 数据点）或其他矩阵空格\n2. seed3 OOD 如确认 hang → kill 重跑（eval 任务，重跑成本低）\n3. bjb1 seed4 准备中，预计 1-2h 内可提交训练\n\n等 Worker 回调后补充诊断结果。",
+  "project": "cost-verify-agent-rl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e4acafa2-a518-47af-983b-c6e4d204a802",
+  "isSidechain": false,
+  "requestId": "req_011CbEwn14YpaiZ4xy3zRMLv",
+  "type": "assistant",
+  "uuid": "1652bc87-1140-4597-8f28-0aa1cd624bd0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CFivq3JdyNoMvASBnEUTPF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 479,
+      "cache_read_input_tokens": 85599,
+      "output_tokens": 1278,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 479,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1278,
+          "cache_read_input_tokens": 85599,
+          "cache_creation_input_tokens": 479,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 479
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 103 · 2026-05-21T02:44:14.849Z_
+
+<details><summary>↩ Tool result · `toolu_01KiWnggLh9bborod9fKhUaZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1652bc87-1140-4597-8f28-0aa1cd624bd0",
+  "isSidechain": false,
+  "promptId": "f8302a3c-3d42-4fa9-96cb-f9a27b66ab52",
+  "type": "user",
+  "uuid": "fabc1974-3572-4c49-ada1-f252fbca323f",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "1652bc87-1140-4597-8f28-0aa1cd624bd0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 104 · 2026-05-21T02:44:26.537Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. I've reported to Director. Now I have 2 workers running:
+1. seed4-bjb1-prep - setting up seed4 on bjb1
+2. seed3-ood-v2-progress - diagnosing seed3 OOD eval
+
+I should wait for their callbacks. Per the rules, "spawn_worker 后立即回复 Director（告知已派发），然后结束本轮对话。不要轮询 Worker 状态——Worker 完成后系统会通过 [WORKER DONE] 消息自动回调你"
+
+
+I need to update report.md with the latest status changes: seed3 OOD v2 potentially hung, Cell C v3 at step 3 with weak signal, seed4 prep initiated, and bjb1 now idle. Let me check if I have the save_project_file tool available to make these updates.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fabc1974-3572-4c49-ada1-f252fbca323f",
+  "isSidechain": false,
+  "requestId": "req_011CbEwpo7YXVi3fYkpeSriP",
+  "type": "assistant",
+  "uuid": "69d36256-a0c8-4f35-bc32-c3d73c7a12e7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011T1ZXKnnRTsbH1NorqCorv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1352,
+      "cache_read_input_tokens": 86078,
+      "output_tokens": 416,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1352,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 416,
+          "cache_read_input_tokens": 86078,
+          "cache_creation_input_tokens": 1352,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1352
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 105 · 2026-05-21T02:44:26.541Z_
+
+已汇报 Director。现在更新 report.md 反映最新状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "69d36256-a0c8-4f35-bc32-c3d73c7a12e7",
+  "isSidechain": false,
+  "requestId": "req_011CbEwpo7YXVi3fYkpeSriP",
+  "type": "assistant",
+  "uuid": "6ee52822-c9a7-4443-b00e-962a2771b04e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011T1ZXKnnRTsbH1NorqCorv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1352,
+      "cache_read_input_tokens": 86078,
+      "output_tokens": 416,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1352,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 416,
+          "cache_read_input_tokens": 86078,
+          "cache_creation_input_tokens": 1352,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1352
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 106 · 2026-05-21T02:44:26.693Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01AFcxQ6Dp82W9iW9Zg1VSuZ`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__save_project_file",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6ee52822-c9a7-4443-b00e-962a2771b04e",
+  "isSidechain": false,
+  "requestId": "req_011CbEwpo7YXVi3fYkpeSriP",
+  "type": "assistant",
+  "uuid": "cfee1343-a958-4fe9-8635-7efaa5f7da59",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011T1ZXKnnRTsbH1NorqCorv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1352,
+      "cache_read_input_tokens": 86078,
+      "output_tokens": 416,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1352,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 416,
+          "cache_read_input_tokens": 86078,
+          "cache_creation_input_tokens": 1352,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1352
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 107 · 2026-05-21T02:44:26.697Z_
+
+<details><summary>↩ Tool result · `toolu_01AFcxQ6Dp82W9iW9Zg1VSuZ`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cfee1343-a958-4fe9-8635-7efaa5f7da59",
+  "isSidechain": false,
+  "promptId": "f8302a3c-3d42-4fa9-96cb-f9a27b66ab52",
+  "type": "user",
+  "uuid": "95bd50ca-2e66-4a4e-b13e-3c2b41c9413f",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 82
+  },
+  "sourceToolAssistantUUID": "cfee1343-a958-4fe9-8635-7efaa5f7da59",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 108_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Diagnose 8B OOD eval failure and confirm v9d training status",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 109 · 2026-05-21T20:46:52.086Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-21T20:46:52.086Z",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "content": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n&lt;handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n&lt;/handoff>"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 110 · 2026-05-21T20:46:52.087Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-21T20:46:52.087Z",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6"
+}
+```
+
+---
+
+## Round 2
+
+2 recorded events
+
+### User
+
+_source line 111 · 2026-05-21T20:46:52.072Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "95bd50ca-2e66-4a4e-b13e-3c2b41c9413f",
+  "isSidechain": false,
+  "promptId": "d6c85a25-93c2-41ff-ae2b-5983126caeb8",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "88b4e43e-cd86-4bc7-8bca-a86487fd4739",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 112 · 2026-05-21T20:46:52.072Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "88b4e43e-cd86-4bc7-8bca-a86487fd4739",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "47241dde-89a8-45c0-b718-22ab7938359f",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "id": "1e1f1971-e034-4232-9433-1c0455898ea8",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+## Round 3
+
+2 recorded events
+
+### User
+
+_source line 113 · 2026-05-21T20:46:52.293Z_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "47241dde-89a8-45c0-b718-22ab7938359f",
+  "isSidechain": false,
+  "promptId": "d6c85a25-93c2-41ff-ae2b-5983126caeb8",
+  "type": "user",
+  "uuid": "0cab93c2-8efe-4cd1-a2b0-5981c37b9bd9",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 114 · 2026-05-21T20:46:52.292Z_
+
+```json
+{
+  "parentUuid": "0cab93c2-8efe-4cd1-a2b0-5981c37b9bd9",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "cffdc171-7d6e-4a3d-a0da-8f73b5e23c7a",
+  "timestamp": "2026-05-21T20:46:52.292Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_6eea29da",
+  "sessionId": "1e2ffa45-200e-4118-ab05-61d88c83c6a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---

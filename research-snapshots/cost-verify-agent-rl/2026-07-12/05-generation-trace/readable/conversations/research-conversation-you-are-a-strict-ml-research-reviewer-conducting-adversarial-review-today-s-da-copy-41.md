@@ -1,0 +1,8467 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-11 (UTC).** Your job: indep
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 115
+- **Recorded user turns:** 1
+- **Tool calls:** 35
+- **Original source:** `logs/chats/exported-trajectories/account-2/6d8eeb5d-1afb-4a85-8246-d1c6940fc622.jsonl`
+- **Structured JSON:** [`6fcd1e6ede8ae5f49af3.json`](../../sessions/6f/6fcd1e6ede8ae5f49af3.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-11T22:56:13.376Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-11T22:56:13.376Z",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-11 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: LLM Agents.\n\nDirection: LLM Agents — planning algorithms, memory architectures, tool use, multi-agent coordination, agent training (SFT/RL), self-correction in agentic loops, environment feedback exploitation.\n\nContribution type: METHOD ONLY. Must propose a concrete new algorithm, training procedure, or inference-time mechanism. Reject pure benchmark / dataset / analysis ideas. Method + analysis OK if analysis validates the method.\n\nHARD CONSTRAINTS:\n1. Compute: ≤200 H100-hours total (baselines + method + ablations). Show the math.\n2. Time: ≤16 days. Build on existing OSS agent codebases (AutoGen, LangGraph, OpenManus, etc.) — no from-scratch systems.\n3. Eval: existing benchmarks only — AgentBench, WebArena, SWE-bench Verified, GAIA, ToolBench, ALFWorld, Mind2Web, τ-bench.\n\nAvoid: generic ReAct variants, plain tool retrieval, naive memory summarization. Look for: agent training with minimal RL budget, structured planning beyond flat CoT, multi-agent communication protocols, agent self-verification mechanisms.\n\nTag: direction=agent, contribution_type=method. target_venues=[\"EMNLP 2026 Main\", \"EMNLP 2026 Findings\"].**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-11?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 2/10)\n{\n  \"title\": \"Error-Triggered Branching GRPO for Self-Supervised Agent Recovery\",\n  \"core_problem\": \"When agents encounter environment errors (tool failures, API exceptions, constraint violations), they need to adapt their behavior to recover. PALADIN (ICLR 2026) demonstrated that error recovery is learnable via supervised fine-tuning on GPT-5-generated recovery demonstrations, but this requires expensive API-based annotation pipelines. Meanwhile, modern agentic RL methods (ARPO, Tree-GRPO, SIGHT) have shown that branching-augmented reinforcement learning can sharpen agent behavior at critical decision points—yet none specifically target error recovery or evaluate recovery metrics. Can branching-augmented GRPO, triggered specifically at error observation points, train effective recovery behavior without curated demonstrations, and how does this branching trigger compare to alternatives like entropy or random selection?\",\n  \"opportunity\": \"A clear methodological gap exists at the intersection of two active research lines: (1) error recovery training, where PALADIN (ICLR 2026) achieves 89.68% recovery rate but requires GPT-5 API calls across 50K+ trajectories for systematic failure injection and expert demonstration generation; and (2) branching-augmented agentic RL, where ARPO uses entropy-triggered branching, Tree-GRPO uses uniform tree expansion, and SIGHT uses information-gain branching—but none target recovery behavior or measure recovery metrics. Error observation points are naturally occurring, high-precision branching triggers: they are free (emitted by the environment), unambiguous (the agent must change strategy), and directly aligned with the recovery objective. Unlike entropy signals (which may indicate lexical uncertainty without behavioral significance) or PRM scores (which require training a reward model), error signals require zero additional computation to detect. By branching at error points and using downstream task success to compute group-relative advantages (GRPO), we construct self-supervised recovery training data that bridges PALADIN's problem (recovery) with ARPO/Tree-GRPO's methodology (branching RL)—without PALADIN's annotation cost or ARPO's entropy computation overhead.\",\n  \"landscape\": \"PALADIN (ICLR 2026, arXiv:2509.25238) trains recovery via SFT on 50K+ trajectories with GPT-5-generated recovery demonstrations across 55+ failure exemplars in 7 error categories from ToolScan's taxonomy, achieving 89.68% recovery rate—but depends on expensive API-based annotation, not RL-based self-improvement. ARPO (ICLR 2026, arXiv:2507.19849) introduces entropy-triggered adaptive branching at tool-call steps with step-level advantage attribution for general agent training across 13 benchmarks, achieving improved performance with half the tool-use budget—but does not target error recovery or measure recovery metrics. Tree-GRPO (ICLR 2026, arXiv:2509.21240) establishes that intra-tree GRPO is equivalent to step-level DPO, using tree-structured rollouts for sample-efficient agentic RL across 11 datasets—but uses uniform tree expansion without recovery-specific triggers. iStar (ICLR 2026, arXiv:2509.19199) derives implicit step rewards via trajectory-based DPO for process supervision on WebShop, VisualSokoban, and SOTOPIA—occupying the step-level DPO space but without error-specific focus. EPO (EMNLP 2024, arXiv:2408.16090) generates trajectory-level preference pairs from environment feedback via a trained Llama2-7B reward model on ALFRED—differs from our approach by operating at trajectory-level granularity and requiring a separate reward model. SIGHT (arXiv:2602.11551) uses information-gain-driven branching for search agents with GRPO—similar branching philosophy but for search, not recovery. Spark (arXiv:2601.20209) applies policy-aware dynamic branching at critical states for embodied planning—identifies critical states autonomously but not specifically error-triggered. StepPO (arXiv:2604.18401) and RTMC (arXiv:2604.11037) propose step-level credit assignment for agentic RL, further establishing step-level optimization as the emerging paradigm. CSO (arXiv:2602.03412) identifies critical steps via PRM + expert model alternatives. Agent-R (arXiv:2501.11425) uses MCTS for revision steps in erroneous trajectories (+5.59%). BranPO (arXiv:2602.03719) applies contrastive dynamic branch sampling at trajectory tails. CLEANER (arXiv:2601.15141) replaces failed tool calls with self-corrections but discards error context. Co-Evolving Agents (arXiv:2511.22254) trains an auxiliary failure agent for hard negatives. The specific intersection of error-triggered branching with GRPO for self-supervised recovery training—bridging PALADIN's recovery objective with ARPO/Tree-GRPO's branching RL methodology—remains unoccupied.\",\n  \"approach\": \"We propose Error-Triggered Branching GRPO (ETB-GRPO), which bridges the gap between PALADIN's error recovery focus and ARPO/Tree-GRPO's branching RL methodology. The method has three components:\\n\\n(1) Error-Triggered Branching: Given a policy model (Qwen3-8B), we collect trajectories on ToolBench and ALFWorld, automatically detect error observation points where the environment emits failure signals (tool timeout, API exception, constraint violation, format error), and generate K=4 alternative continuations via policy self-rollout from each error state. Error detection is rule-based on environment return codes and error message patterns—zero-cost, unlike entropy monitoring (ARPO) or PRM scoring (CSO).\\n\\n(2) Recovery-Focused GRPO: Within each error point's K-branch rollout group, we compute group-relative advantages using downstream task success as the binary reward signal. This naturally forms the GRPO training objective without requiring explicit preference pair construction (addressing the DPO→GRPO shift in the field, following ARPO and Tree-GRPO). We fine-tune with LoRA-GRPO for 1 iterative round.\\n\\n(3) Systematic Branching Trigger Comparison: As a central empirical contribution, we compare error-triggered branching against (a) entropy-triggered branching (ARPO-style, branching at high-entropy post-tool-call steps), (b) random branching (uniform random step selection), and (c) no branching baseline, all evaluated on recovery-specific metrics: Recovery Rate (RR), Post-Error Task Success Rate (PE-TSR), and Recovery Efficiency (steps to recover). This comparison directly answers the question 'when to branch for recovery' and provides the principled justification for error-triggered branching that would otherwise be missing.\\n\\nThis is distinguished from ARPO (general performance, entropy trigger) by targeting recovery with error triggers; from Tree-GRPO (uniform tree expansion) by selective error-aware branching; from PALADIN (SFT with GPT-5 demonstrations) by self-supervised RL; from EPO (trajectory-level DPO with trained reward model) by step-level GRPO with no reward model; and from SIGHT/Spark (search/embodied planning) by targeting tool-use error recovery. Error-type-stratified analysis across ToolScan's 7 error categories reveals which recovery behaviors benefit most from RL vs. SFT, providing actionable guidance for practitioners choosing between approaches.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~160h H100-80GB (trajectory collection on ToolBench+ALFWorld ~35h, error-triggered branching rollouts K=4 ~40h, GRPO LoRA training ~10h, evaluation ~10h, branching trigger ablations ×3 ~50h, error-type analysis ~5h, debugging buffer ~10h)\",\n      \"gpu_utilization\": \"~55% — GPUs wait while researchers design error detection rules per environment, analyze rollout quality distributions, and iterate on GRPO hyperparameters\",\n      \"timeline\": \"8-12 weeks\",\n      \"team\": \"1-2 researchers\",\n      \"estimated_gpu_cost\": \"$480 (at ~$3.00/hr H100 on cloud providers)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~140h H100-80GB (same breakdown as manual but ~20h saved via automated rollout quality filtering and hyperparameter selection)\",\n      \"gpu_utilization\": \"~70% — agent handles rollout orchestration, pair construction, and training loops; human reviews error detection rules and validates branching trigger comparison methodology\",\n      \"timeline\": \"4-6 weeks\",\n      \"team\": \"1 researcher, ~1hr/day for error taxonomy review and ablation result interpretation\",\n      \"claude_api_cost\": \"$100-150 (~800-1200 turns for pipeline orchestration and analysis)\",\n      \"estimated_gpu_cost\": \"$420 (at ~$3.00/hr H100)\",\n      \"risk_note\": \"Error detection heuristics may need per-environment tuning (ToolBench API error patterns differ from ALFWorld action failures); some error types may produce too few branching opportunities for stable GRPO training\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~200h H100-80GB (adds K={2,8} ablations ~30h, Qwen3-14B scaling experiment ~25h, 2nd iterative GRPO round ~35h, extended error-type analysis ~10h on top of base ~100h)\",\n      \"gpu_utilization\": \"~90% — continuous job submission and monitoring across trajectory collection, rollout generation, GRPO training, and evaluation pipelines\",\n      \"timeline\": \"2-3 weeks with 4 parallel H100 GPUs\",\n      \"team\": \"0 (2-3 hour initial setup for environment deployment and error detection rule configuration)\",\n      \"claude_api_cost\": \"$200-350 (~2000-3500 turns for full pipeline orchestration, ablation management, and paper drafting)\",\n      \"estimated_gpu_cost\": \"$600 (at ~$3.00/hr H100)\",\n      \"speed_bottleneck\": \"ToolBench API rate limits cap concurrent rollouts at ~10 parallel instances; ALFWorld environments are lightweight but serial per trajectory\",\n      \"risk_note\": \"Automated error detection may produce noisy branching triggers without human quality gates; over-exploration of hyperparameter space without principled pruning may exhaust compute budget\"\n    }\n  },\n  \"target_venues\": [\n    \"AAAI 2027 (full paper August 1, 2026 — primary target, 12 weeks available)\",\n    \"ICLR 2027 (expected ~October 2026, deadline TBA — comfortable timeline)\",\n    \"EMNLP 2026 (ARR June/July cycle if AAAI timeline allows parallel submission)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases (ICLR 2026, arXiv:2509.25238)\",\n    \"Agentic Reinforced Policy Optimization / ARPO (ICLR 2026, arXiv:2507.19849)\",\n    \"Tree Search for LLM Agent Reinforcement Learning / Tree-GRPO (ICLR 2026, arXiv:2509.21240)\",\n    \"Agentic Reinforcement Learning with Implicit Step Rewards / iStar (ICLR 2026, arXiv:2509.19199)\",\n    \"EPO: Hierarchical LLM Agents with Environment Preference Optimization (EMNLP 2024, arXiv:2408.16090)\",\n    \"SIGHT: RL with Self-Evidence and Information-Gain Diverse Branching for Search Agent (arXiv:2602.11551)\",\n    \"Spark: Strategic Policy-Aware Exploration via Dynamic Branching (arXiv:2601.20209)\",\n    \"StepPO: Step-Aligned Policy Optimization for Agentic RL (arXiv:2604.18401)\",\n    \"RTMC: Step-Level Credit Assignment via Rollout Trees (arXiv:2604.11037)\",\n    \"Verified Critical Step Optimization for LLM Agents / CSO (arXiv:2602.03412)\",\n    \"Trial and Error: Exploration-Based Trajectory Optimization of LLM Agents (ACL 2024)\",\n    \"Agent-R: Training Language Model Agents to Reflect via Iterative Self-Training (arXiv:2501.11425)\",\n    \"Training Multi-Turn Search Agent via Contrastive Dynamic Branch Sampling / BranPO (arXiv:2602.03719)\",\n    \"CLEANER: Self-Purified Trajectories Boost Agentic RL (arXiv:2601.15141)\",\n    \"Co-Evolving Agents: Learning from Failures as Hard Negatives (arXiv:2511.22254)\",\n    \"AgentHER: Hindsight Experience Replay for LLM Agent Trajectory Relabeling (arXiv:2603.21357)\",\n    \"Where LLM Agents Fail: Error Taxonomy across Modules (arXiv:2509.25370)\"\n  ],\n  \"description\": \"Error-Triggered Branching GRPO (ETB-GRPO) bridges two active research lines that have not been connected: error recovery training (PALADIN, ICLR 2026) and branching-augmented agentic RL (ARPO, Tree-GRPO, ICLR 2026). PALADIN achieves 89.68% recovery rate via SFT on 50K+ GPT-5-annotated recovery trajectories—effective but expensive. ARPO/Tree-GRPO demonstrate that branching at critical steps with GRPO improves general agent performance—but none target recovery or measure recovery metrics. ETB-GRPO fills this gap: at environment error observation points (tool failures, API exceptions, constraint violations), the policy (Qwen3-8B) generates K=4 alternative continuations via self-rollout, and group-relative advantages are computed using downstream task success as reward—forming self-supervised GRPO training data for recovery without any curated demonstrations. Error signals are free (environment-emitted), high-precision (unambiguous critical points), and directly aligned with the recovery objective—contrasting with entropy triggers (ARPO, may indicate lexical not behavioral uncertainty) and PRM triggers (CSO, requires trained reward model). As a central empirical contribution, we systematically compare error-triggered vs. entropy-triggered vs. random branching for recovery on ToolBench and ALFWorld, evaluated on Recovery Rate, Post-Error Task Success Rate, and Recovery Efficiency metrics. Error-type-stratified analysis across ToolScan's 7 categories reveals which recovery behaviors benefit from RL vs. SFT, guiding practitioner decisions. Total compute: ≤200 H100 hours including all ablations. Primary target: AAAI 2027 (August 1, 2026).\",\n  \"project_name\": \"etb_grpo_recovery\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"CRITICAL MISSING WORK — ARPO (ICLR 2026, arXiv:2507.19849): Performs entropy-triggered adaptive branching at tool-call steps with step-level advantage attribution. This is conceptually very close to EP-CDPO's error-triggered branching, but uses a more general trigger (entropy) and is already accepted at a top venue. The generator must cite and differentiate.\", \"CRITICAL MISSING WORK — iStar (ICLR 2026, arXiv:2509.19199): Derives implicit step rewards via multi-turn DPO for agentic RL, then uses them for step-level policy optimization. This directly occupies the 'step-level DPO for agent training' space EP-CDPO targets.\", \"CRITICAL MISSING WORK — Tree-GRPO (ICLR 2026, arXiv:2509.21240): Establishes equivalence between intra-tree GRPO and step-level DPO, achieving step-level preference learning via tree-structured rollouts — directly relevant to EP-CDPO's branching + DPO approach.\", \"MISSING WORK — EPO (EMNLP 2024, arXiv:2408.16090): Environment Preference Optimization already uses environment feedback to generate preference signals for DPO-based agent training. EP-CDPO's use of error signals is a specific case of this general approach.\", \"MISSING WORK — StepPO (arXiv:2604.18401, April 2026), RTMC (arXiv:2604.11037, April 2026): Both propose step-level credit assignment for agentic RL, further crowding the landscape.\", \"MISSING WORK — SIGHT (arXiv:2602.11551): Information-gain-driven branching for search agents with adaptive branching at pivotal states — similar branching philosophy to EP-CDPO.\", \"PALADIN FACTUAL ERRORS: (a) Generator claims '79% recovery rate' but PALADIN achieves ~89.68% recovery rate (+66% relative improvement). (b) Generator claims PALADIN requires 'expensive manual curation' but PALADIN uses GPT-5 API for systematic failure injection and annotation generation — not manual curation. (c) '55+ error types' is actually '55+ failure exemplars' across 7 error categories from ToolScan's taxonomy.\", \"COMPUTE BUDGET VIOLATION: Generator's manual estimate of ~400h A100-80GB converts to ~200-270 H100 hours (H100 provides ~2x speedup for inference, less for environment-interaction-bound trajectory collection), likely exceeding the user's hard constraint of ≤200 H100 hours. The auto-research estimate of ~700h A100 is far beyond budget.\", \"TIMELINE INFEASIBILITY: Setting up WebArena (requires multiple Docker containers), ToolBench (API rate limits), and ALFWorld, collecting trajectories, running 2-3 iterative rounds (each requiring: rollout generation → pair construction → DPO training → evaluation), and writing a paper in 16 days is extremely ambitious even for experienced researchers.\", \"WEAK MOTIVATION: Why is error-only branching better than branching at ALL critical steps (CSO) or ALL high-entropy steps (ARPO)? Error signals are just one subset of critical decision points. A method that branches only at error points will miss non-error critical steps where the agent makes suboptimal (but not error-triggering) choices. The paper needs a principled argument for why this restriction is actually beneficial, not just cheaper.\"]\nFeedback: The core idea of using environment error signals for preference pair construction is reasonable but severely undermined by (1) missing 6+ highly relevant papers that occupy very similar territory, and (2) factual inaccuracies about PALADIN. To make this publishable at EMNLP:\n\n1. **MANDATORY: Address ARPO, iStar, Tree-GRPO** (all ICLR 2026). These are the most threatening competitors. Position EP-CDPO as complementary — e.g., error signals as a cheap, reliable alternative to entropy monitoring (ARPO) or PRM scoring (CSO) that doesn't require training an additional reward model. But you need empirical evidence this works comparably or better.\n\n2. **Fix PALADIN characterization**: Correct the recovery rate (89.68%, not 79%), acknowledge that PALADIN uses automated annotation (GPT-5 API), not manual curation. Reframe the motivation: PALADIN's cost is in API calls for expert demonstrations, not in human annotation.\n\n3. **Reduce scope to fit constraints**: Drop one or two benchmarks (WebArena is the hardest to set up and most environment-unstable). Focus on ToolBench + ALFWorld. Reduce to 1-2 iterative rounds. This might fit within 200 H100 hours.\n\n4. **Strengthen the 'why error-only branching' argument**: Consider a hybrid approach where error points are the PRIMARY trigger but you also branch at high-entropy non-error steps as a comparison. This would make the paper a study of WHEN to branch (error vs. entropy vs. PRM), which is a more interesting research question and differentiates better from ARPO/CSO.\n\n5. **Consider GRPO instead of DPO**: The field has moved toward GRPO/DAPO for agentic RL (ARPO, Tree-GRPO both use GRPO variants). Using DPO may appear outdated. At minimum, include a GRPO ablation.\n\n6. **Show the compute math explicitly**: The user requires ≤200 H100 hours. Provide a detailed breakdown: N trajectories × K rollouts × estimated time per rollout + training time. Currently the estimates don't add up.\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-11T22:56:13.380Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-11T22:56:13.380Z",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622"
+}
+```
+
+---
+
+## Round 1
+
+113 recorded events
+
+### User
+
+_source line 3 · 2026-05-11T22:56:13.413Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-11 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: LLM Agents.
+
+Direction: LLM Agents — planning algorithms, memory architectures, tool use, multi-agent coordination, agent training (SFT/RL), self-correction in agentic loops, environment feedback exploitation.
+
+Contribution type: METHOD ONLY. Must propose a concrete new algorithm, training procedure, or inference-time mechanism. Reject pure benchmark / dataset / analysis ideas. Method + analysis OK if analysis validates the method.
+
+HARD CONSTRAINTS:
+1. Compute: ≤200 H100-hours total (baselines + method + ablations). Show the math.
+2. Time: ≤16 days. Build on existing OSS agent codebases (AutoGen, LangGraph, OpenManus, etc.) — no from-scratch systems.
+3. Eval: existing benchmarks only — AgentBench, WebArena, SWE-bench Verified, GAIA, ToolBench, ALFWorld, Mind2Web, τ-bench.
+
+Avoid: generic ReAct variants, plain tool retrieval, naive memory summarization. Look for: agent training with minimal RL budget, structured planning beyond flat CoT, multi-agent communication protocols, agent self-verification mechanisms.
+
+Tag: direction=agent, contribution_type=method. target_venues=["EMNLP 2026 Main", "EMNLP 2026 Findings"].**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-11?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 2/10)
+{
+  "title": "Error-Triggered Branching GRPO for Self-Supervised Agent Recovery",
+  "core_problem": "When agents encounter environment errors (tool failures, API exceptions, constraint violations), they need to adapt their behavior to recover. PALADIN (ICLR 2026) demonstrated that error recovery is learnable via supervised fine-tuning on GPT-5-generated recovery demonstrations, but this requires expensive API-based annotation pipelines. Meanwhile, modern agentic RL methods (ARPO, Tree-GRPO, SIGHT) have shown that branching-augmented reinforcement learning can sharpen agent behavior at critical decision points—yet none specifically target error recovery or evaluate recovery metrics. Can branching-augmented GRPO, triggered specifically at error observation points, train effective recovery behavior without curated demonstrations, and how does this branching trigger compare to alternatives like entropy or random selection?",
+  "opportunity": "A clear methodological gap exists at the intersection of two active research lines: (1) error recovery training, where PALADIN (ICLR 2026) achieves 89.68% recovery rate but requires GPT-5 API calls across 50K+ trajectories for systematic failure injection and expert demonstration generation; and (2) branching-augmented agentic RL, where ARPO uses entropy-triggered branching, Tree-GRPO uses uniform tree expansion, and SIGHT uses information-gain branching—but none target recovery behavior or measure recovery metrics. Error observation points are naturally occurring, high-precision branching triggers: they are free (emitted by the environment), unambiguous (the agent must change strategy), and directly aligned with the recovery objective. Unlike entropy signals (which may indicate lexical uncertainty without behavioral significance) or PRM scores (which require training a reward model), error signals require zero additional computation to detect. By branching at error points and using downstream task success to compute group-relative advantages (GRPO), we construct self-supervised recovery training data that bridges PALADIN's problem (recovery) with ARPO/Tree-GRPO's methodology (branching RL)—without PALADIN's annotation cost or ARPO's entropy computation overhead.",
+  "landscape": "PALADIN (ICLR 2026, arXiv:2509.25238) trains recovery via SFT on 50K+ trajectories with GPT-5-generated recovery demonstrations across 55+ failure exemplars in 7 error categories from ToolScan's taxonomy, achieving 89.68% recovery rate—but depends on expensive API-based annotation, not RL-based self-improvement. ARPO (ICLR 2026, arXiv:2507.19849) introduces entropy-triggered adaptive branching at tool-call steps with step-level advantage attribution for general agent training across 13 benchmarks, achieving improved performance with half the tool-use budget—but does not target error recovery or measure recovery metrics. Tree-GRPO (ICLR 2026, arXiv:2509.21240) establishes that intra-tree GRPO is equivalent to step-level DPO, using tree-structured rollouts for sample-efficient agentic RL across 11 datasets—but uses uniform tree expansion without recovery-specific triggers. iStar (ICLR 2026, arXiv:2509.19199) derives implicit step rewards via trajectory-based DPO for process supervision on WebShop, VisualSokoban, and SOTOPIA—occupying the step-level DPO space but without error-specific focus. EPO (EMNLP 2024, arXiv:2408.16090) generates trajectory-level preference pairs from environment feedback via a trained Llama2-7B reward model on ALFRED—differs from our approach by operating at trajectory-level granularity and requiring a separate reward model. SIGHT (arXiv:2602.11551) uses information-gain-driven branching for search agents with GRPO—similar branching philosophy but for search, not recovery. Spark (arXiv:2601.20209) applies policy-aware dynamic branching at critical states for embodied planning—identifies critical states autonomously but not specifically error-triggered. StepPO (arXiv:2604.18401) and RTMC (arXiv:2604.11037) propose step-level credit assignment for agentic RL, further establishing step-level optimization as the emerging paradigm. CSO (arXiv:2602.03412) identifies critical steps via PRM + expert model alternatives. Agent-R (arXiv:2501.11425) uses MCTS for revision steps in erroneous trajectories (+5.59%). BranPO (arXiv:2602.03719) applies contrastive dynamic branch sampling at trajectory tails. CLEANER (arXiv:2601.15141) replaces failed tool calls with self-corrections but discards error context. Co-Evolving Agents (arXiv:2511.22254) trains an auxiliary failure agent for hard negatives. The specific intersection of error-triggered branching with GRPO for self-supervised recovery training—bridging PALADIN's recovery objective with ARPO/Tree-GRPO's branching RL methodology—remains unoccupied.",
+  "approach": "We propose Error-Triggered Branching GRPO (ETB-GRPO), which bridges the gap between PALADIN's error recovery focus and ARPO/Tree-GRPO's branching RL methodology. The method has three components:\n\n(1) Error-Triggered Branching: Given a policy model (Qwen3-8B), we collect trajectories on ToolBench and ALFWorld, automatically detect error observation points where the environment emits failure signals (tool timeout, API exception, constraint violation, format error), and generate K=4 alternative continuations via policy self-rollout from each error state. Error detection is rule-based on environment return codes and error message patterns—zero-cost, unlike entropy monitoring (ARPO) or PRM scoring (CSO).\n\n(2) Recovery-Focused GRPO: Within each error point's K-branch rollout group, we compute group-relative advantages using downstream task success as the binary reward signal. This naturally forms the GRPO training objective without requiring explicit preference pair construction (addressing the DPO→GRPO shift in the field, following ARPO and Tree-GRPO). We fine-tune with LoRA-GRPO for 1 iterative round.\n\n(3) Systematic Branching Trigger Comparison: As a central empirical contribution, we compare error-triggered branching against (a) entropy-triggered branching (ARPO-style, branching at high-entropy post-tool-call steps), (b) random branching (uniform random step selection), and (c) no branching baseline, all evaluated on recovery-specific metrics: Recovery Rate (RR), Post-Error Task Success Rate (PE-TSR), and Recovery Efficiency (steps to recover). This comparison directly answers the question 'when to branch for recovery' and provides the principled justification for error-triggered branching that would otherwise be missing.\n\nThis is distinguished from ARPO (general performance, entropy trigger) by targeting recovery with error triggers; from Tree-GRPO (uniform tree expansion) by selective error-aware branching; from PALADIN (SFT with GPT-5 demonstrations) by self-supervised RL; from EPO (trajectory-level DPO with trained reward model) by step-level GRPO with no reward model; and from SIGHT/Spark (search/embodied planning) by targeting tool-use error recovery. Error-type-stratified analysis across ToolScan's 7 error categories reveals which recovery behaviors benefit most from RL vs. SFT, providing actionable guidance for practitioners choosing between approaches.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~160h H100-80GB (trajectory collection on ToolBench+ALFWorld ~35h, error-triggered branching rollouts K=4 ~40h, GRPO LoRA training ~10h, evaluation ~10h, branching trigger ablations ×3 ~50h, error-type analysis ~5h, debugging buffer ~10h)",
+      "gpu_utilization": "~55% — GPUs wait while researchers design error detection rules per environment, analyze rollout quality distributions, and iterate on GRPO hyperparameters",
+      "timeline": "8-12 weeks",
+      "team": "1-2 researchers",
+      "estimated_gpu_cost": "$480 (at ~$3.00/hr H100 on cloud providers)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~140h H100-80GB (same breakdown as manual but ~20h saved via automated rollout quality filtering and hyperparameter selection)",
+      "gpu_utilization": "~70% — agent handles rollout orchestration, pair construction, and training loops; human reviews error detection rules and validates branching trigger comparison methodology",
+      "timeline": "4-6 weeks",
+      "team": "1 researcher, ~1hr/day for error taxonomy review and ablation result interpretation",
+      "claude_api_cost": "$100-150 (~800-1200 turns for pipeline orchestration and analysis)",
+      "estimated_gpu_cost": "$420 (at ~$3.00/hr H100)",
+      "risk_note": "Error detection heuristics may need per-environment tuning (ToolBench API error patterns differ from ALFWorld action failures); some error types may produce too few branching opportunities for stable GRPO training"
+    },
+    "auto_research": {
+      "gpu_hours": "~200h H100-80GB (adds K={2,8} ablations ~30h, Qwen3-14B scaling experiment ~25h, 2nd iterative GRPO round ~35h, extended error-type analysis ~10h on top of base ~100h)",
+      "gpu_utilization": "~90% — continuous job submission and monitoring across trajectory collection, rollout generation, GRPO training, and evaluation pipelines",
+      "timeline": "2-3 weeks with 4 parallel H100 GPUs",
+      "team": "0 (2-3 hour initial setup for environment deployment and error detection rule configuration)",
+      "claude_api_cost": "$200-350 (~2000-3500 turns for full pipeline orchestration, ablation management, and paper drafting)",
+      "estimated_gpu_cost": "$600 (at ~$3.00/hr H100)",
+      "speed_bottleneck": "ToolBench API rate limits cap concurrent rollouts at ~10 parallel instances; ALFWorld environments are lightweight but serial per trajectory",
+      "risk_note": "Automated error detection may produce noisy branching triggers without human quality gates; over-exploration of hyperparameter space without principled pruning may exhaust compute budget"
+    }
+  },
+  "target_venues": [
+    "AAAI 2027 (full paper August 1, 2026 — primary target, 12 weeks available)",
+    "ICLR 2027 (expected ~October 2026, deadline TBA — comfortable timeline)",
+    "EMNLP 2026 (ARR June/July cycle if AAAI timeline allows parallel submission)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases (ICLR 2026, arXiv:2509.25238)",
+    "Agentic Reinforced Policy Optimization / ARPO (ICLR 2026, arXiv:2507.19849)",
+    "Tree Search for LLM Agent Reinforcement Learning / Tree-GRPO (ICLR 2026, arXiv:2509.21240)",
+    "Agentic Reinforcement Learning with Implicit Step Rewards / iStar (ICLR 2026, arXiv:2509.19199)",
+    "EPO: Hierarchical LLM Agents with Environment Preference Optimization (EMNLP 2024, arXiv:2408.16090)",
+    "SIGHT: RL with Self-Evidence and Information-Gain Diverse Branching for Search Agent (arXiv:2602.11551)",
+    "Spark: Strategic Policy-Aware Exploration via Dynamic Branching (arXiv:2601.20209)",
+    "StepPO: Step-Aligned Policy Optimization for Agentic RL (arXiv:2604.18401)",
+    "RTMC: Step-Level Credit Assignment via Rollout Trees (arXiv:2604.11037)",
+    "Verified Critical Step Optimization for LLM Agents / CSO (arXiv:2602.03412)",
+    "Trial and Error: Exploration-Based Trajectory Optimization of LLM Agents (ACL 2024)",
+    "Agent-R: Training Language Model Agents to Reflect via Iterative Self-Training (arXiv:2501.11425)",
+    "Training Multi-Turn Search Agent via Contrastive Dynamic Branch Sampling / BranPO (arXiv:2602.03719)",
+    "CLEANER: Self-Purified Trajectories Boost Agentic RL (arXiv:2601.15141)",
+    "Co-Evolving Agents: Learning from Failures as Hard Negatives (arXiv:2511.22254)",
+    "AgentHER: Hindsight Experience Replay for LLM Agent Trajectory Relabeling (arXiv:2603.21357)",
+    "Where LLM Agents Fail: Error Taxonomy across Modules (arXiv:2509.25370)"
+  ],
+  "description": "Error-Triggered Branching GRPO (ETB-GRPO) bridges two active research lines that have not been connected: error recovery training (PALADIN, ICLR 2026) and branching-augmented agentic RL (ARPO, Tree-GRPO, ICLR 2026). PALADIN achieves 89.68% recovery rate via SFT on 50K+ GPT-5-annotated recovery trajectories—effective but expensive. ARPO/Tree-GRPO demonstrate that branching at critical steps with GRPO improves general agent performance—but none target recovery or measure recovery metrics. ETB-GRPO fills this gap: at environment error observation points (tool failures, API exceptions, constraint violations), the policy (Qwen3-8B) generates K=4 alternative continuations via self-rollout, and group-relative advantages are computed using downstream task success as reward—forming self-supervised GRPO training data for recovery without any curated demonstrations. Error signals are free (environment-emitted), high-precision (unambiguous critical points), and directly aligned with the recovery objective—contrasting with entropy triggers (ARPO, may indicate lexical not behavioral uncertainty) and PRM triggers (CSO, requires trained reward model). As a central empirical contribution, we systematically compare error-triggered vs. entropy-triggered vs. random branching for recovery on ToolBench and ALFWorld, evaluated on Recovery Rate, Post-Error Task Success Rate, and Recovery Efficiency metrics. Error-type-stratified analysis across ToolScan's 7 categories reveals which recovery behaviors benefit from RL vs. SFT, guiding practitioner decisions. Total compute: ≤200 H100 hours including all ablations. Primary target: AAAI 2027 (August 1, 2026).",
+  "project_name": "etb_grpo_recovery",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["CRITICAL MISSING WORK — ARPO (ICLR 2026, arXiv:2507.19849): Performs entropy-triggered adaptive branching at tool-call steps with step-level advantage attribution. This is conceptually very close to EP-CDPO's error-triggered branching, but uses a more general trigger (entropy) and is already accepted at a top venue. The generator must cite and differentiate.", "CRITICAL MISSING WORK — iStar (ICLR 2026, arXiv:2509.19199): Derives implicit step rewards via multi-turn DPO for agentic RL, then uses them for step-level policy optimization. This directly occupies the 'step-level DPO for agent training' space EP-CDPO targets.", "CRITICAL MISSING WORK — Tree-GRPO (ICLR 2026, arXiv:2509.21240): Establishes equivalence between intra-tree GRPO and step-level DPO, achieving step-level preference learning via tree-structured rollouts — directly relevant to EP-CDPO's branching + DPO approach.", "MISSING WORK — EPO (EMNLP 2024, arXiv:2408.16090): Environment Preference Optimization already uses environment feedback to generate preference signals for DPO-based agent training. EP-CDPO's use of error signals is a specific case of this general approach.", "MISSING WORK — StepPO (arXiv:2604.18401, April 2026), RTMC (arXiv:2604.11037, April 2026): Both propose step-level credit assignment for agentic RL, further crowding the landscape.", "MISSING WORK — SIGHT (arXiv:2602.11551): Information-gain-driven branching for search agents with adaptive branching at pivotal states — similar branching philosophy to EP-CDPO.", "PALADIN FACTUAL ERRORS: (a) Generator claims '79% recovery rate' but PALADIN achieves ~89.68% recovery rate (+66% relative improvement). (b) Generator claims PALADIN requires 'expensive manual curation' but PALADIN uses GPT-5 API for systematic failure injection and annotation generation — not manual curation. (c) '55+ error types' is actually '55+ failure exemplars' across 7 error categories from ToolScan's taxonomy.", "COMPUTE BUDGET VIOLATION: Generator's manual estimate of ~400h A100-80GB converts to ~200-270 H100 hours (H100 provides ~2x speedup for inference, less for environment-interaction-bound trajectory collection), likely exceeding the user's hard constraint of ≤200 H100 hours. The auto-research estimate of ~700h A100 is far beyond budget.", "TIMELINE INFEASIBILITY: Setting up WebArena (requires multiple Docker containers), ToolBench (API rate limits), and ALFWorld, collecting trajectories, running 2-3 iterative rounds (each requiring: rollout generation → pair construction → DPO training → evaluation), and writing a paper in 16 days is extremely ambitious even for experienced researchers.", "WEAK MOTIVATION: Why is error-only branching better than branching at ALL critical steps (CSO) or ALL high-entropy steps (ARPO)? Error signals are just one subset of critical decision points. A method that branches only at error points will miss non-error critical steps where the agent makes suboptimal (but not error-triggering) choices. The paper needs a principled argument for why this restriction is actually beneficial, not just cheaper."]
+Feedback: The core idea of using environment error signals for preference pair construction is reasonable but severely undermined by (1) missing 6+ highly relevant papers that occupy very similar territory, and (2) factual inaccuracies about PALADIN. To make this publishable at EMNLP:
+
+1. **MANDATORY: Address ARPO, iStar, Tree-GRPO** (all ICLR 2026). These are the most threatening competitors. Position EP-CDPO as complementary — e.g., error signals as a cheap, reliable alternative to entropy monitoring (ARPO) or PRM scoring (CSO) that doesn't require training an additional reward model. But you need empirical evidence this works comparably or better.
+
+2. **Fix PALADIN characterization**: Correct the recovery rate (89.68%, not 79%), acknowledge that PALADIN uses automated annotation (GPT-5 API), not manual curation. Reframe the motivation: PALADIN's cost is in API calls for expert demonstrations, not in human annotation.
+
+3. **Reduce scope to fit constraints**: Drop one or two benchmarks (WebArena is the hardest to set up and most environment-unstable). Focus on ToolBench + ALFWorld. Reduce to 1-2 iterative rounds. This might fit within 200 H100 hours.
+
+4. **Strengthen the 'why error-only branching' argument**: Consider a hybrid approach where error points are the PRIMARY trigger but you also branch at high-entropy non-error steps as a comparison. This would make the paper a study of WHEN to branch (error vs. entropy vs. PRM), which is a more interesting research question and differentiates better from ARPO/CSO.
+
+5. **Consider GRPO instead of DPO**: The field has moved toward GRPO/DAPO for agentic RL (ARPO, Tree-GRPO both use GRPO variants). Using DPO may appear outdated. At minimum, include a GRPO ablation.
+
+6. **Show the compute math explicitly**: The user requires ≤200 H100 hours. Provide a detailed breakdown: N trajectories × K rollouts × estimated time per rollout + training time. Currently the estimates don't add up.
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "9f503ff4-5335-492c-870b-15a6eb7331fc",
+  "type": "user",
+  "uuid": "dace0045-4cf9-4550-bd16-120689040967",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-11T22:56:13.410Z_
+
+```json
+{
+  "parentUuid": "dace0045-4cf9-4550-bd16-120689040967",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "17b00a93-4866-4aee-87b1-d552d2131372",
+  "timestamp": "2026-05-11T22:56:13.410Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-11T22:56:13.410Z_
+
+```json
+{
+  "parentUuid": "17b00a93-4866-4aee-87b1-d552d2131372",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "7037b1c5-4d4a-494b-8c63-e5c7dae1b8f8",
+  "timestamp": "2026-05-11T22:56:13.410Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "7037b1c5-4d4a-494b-8c63-e5c7dae1b8f8",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify ETB-GRPO novelty and feasibility via independent searches",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-11T22:56:28.537Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully review this idea - "Error-Triggered Branching GRPO for Self-Supervised Agent Recovery" (ETB-GRPO). This is round 2 of review, so I need to check whether the generator addressed the issues from round 1. Let me systematically verify claims and search for competing work.
+
+Let me start by noting what was flagged in round 1:
+1. Missing ARPO, iStar, Tree-GRPO - now addressed
+2. Missing EPO, StepPO, RTMC, SIGHT - now addressed
+3. PALADIN factual errors - need to verify if corrected
+
+
+4. Compute budget violation - need to check if fixed
+5. Timeline infeasibility - need to check
+6. Weak motivation for error-only branching - need to check
+
+The generator has made several improvements: added the missing baseline comparisons to the landscape, switched from DPO to GRPO to address feedback, corrected the PALADIN recovery rate to 89.68%, and added a systematic comparison of different branching triggers. They've also shifted the target venue to AAAI 2027 (August 1) instead of the earlier EMNLP 2026 ARR deadline. But I need to verify whether these changes actually resolve the underlying concerns about feasibility and motivation.
+
+Looking at the venue timeline more carefully, there's a discrepancy - the user specifically requested EMNLP 2026 with an ARR submission deadline of May 25, 2026, yet the current plan lists AAAI 2027 as primary with ICLR 2027 and EMNLP 2026 as alternatives. This doesn't align with what was asked for. I should do a careful check of the actual claims being made to see what's actually been addressed versus what still needs work.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7037b1c5-4d4a-494b-8c63-e5c7dae1b8f8",
+  "isSidechain": false,
+  "requestId": "req_011CawcA364SoYpJh8Y7nEFg",
+  "type": "assistant",
+  "uuid": "2e1a3622-e051-4949-8daa-3b774ba9f847",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014gVxRnYd3PztjgsjgGGJwf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14173,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 595,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14173,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 595,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14173,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14173
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-11T22:56:28.541Z_
+
+I'll conduct a thorough independent review of this revised idea. Let me start by verifying key claims, checking for missing competing work, and assessing feasibility.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2e1a3622-e051-4949-8daa-3b774ba9f847",
+  "isSidechain": false,
+  "requestId": "req_011CawcA364SoYpJh8Y7nEFg",
+  "type": "assistant",
+  "uuid": "cb4fea0b-4cbd-422d-84bd-b2156a32711b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014gVxRnYd3PztjgsjgGGJwf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14173,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 595,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14173,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 595,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14173,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14173
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-11T22:56:28.656Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01HgFL9VnpFBvAfhfQRWvmUV`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cb4fea0b-4cbd-422d-84bd-b2156a32711b",
+  "isSidechain": false,
+  "requestId": "req_011CawcA364SoYpJh8Y7nEFg",
+  "type": "assistant",
+  "uuid": "ca1966a8-e3c6-49d3-b2a6-d376f33b4aaa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014gVxRnYd3PztjgsjgGGJwf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14173,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 595,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14173,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 595,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14173,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14173
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-11T22:56:28.662Z_
+
+<details><summary>↩ Tool result · `toolu_01HgFL9VnpFBvAfhfQRWvmUV`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ca1966a8-e3c6-49d3-b2a6-d376f33b4aaa",
+  "isSidechain": false,
+  "promptId": "9f503ff4-5335-492c-870b-15a6eb7331fc",
+  "type": "user",
+  "uuid": "70c2f9b2-57ca-4fd3-892d-8253e1daa5aa",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "ca1966a8-e3c6-49d3-b2a6-d376f33b4aaa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-11T22:56:34.887Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now conduct my independent verification. I need to check:
+
+1. PALADIN claims (recovery rate, methodology)
+2. ARPO, Tree-GRPO, iStar details
+3. Competing work the generator may have missed
+4. Venue deadline validity
+5. Compute feasibility
+6. Whether the "gap" actually exists
+
+Let me launch multiple searches in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "70c2f9b2-57ca-4fd3-892d-8253e1daa5aa",
+  "isSidechain": false,
+  "requestId": "req_011CawcBAGSdQJ4mLNYbf1uF",
+  "type": "assistant",
+  "uuid": "66dda4ba-e3f1-4611-bf3a-a6e75a8a5e21",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JrWSXnr9wdZJohXDhGdcHH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1614,
+      "cache_read_input_tokens": 26014,
+      "output_tokens": 209,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1614,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 209,
+          "cache_read_input_tokens": 26014,
+          "cache_creation_input_tokens": 1614,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1614
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-11T22:56:35.794Z_
+
+Starting my independent adversarial review. I'll verify key claims, search for missing competing work, and assess feasibility.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "66dda4ba-e3f1-4611-bf3a-a6e75a8a5e21",
+  "isSidechain": false,
+  "requestId": "req_011CawcBAGSdQJ4mLNYbf1uF",
+  "type": "assistant",
+  "uuid": "648a0e94-9c98-43f8-93ae-a07355a26233",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JrWSXnr9wdZJohXDhGdcHH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1614,
+      "cache_read_input_tokens": 26014,
+      "output_tokens": 209,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1614,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 209,
+          "cache_read_input_tokens": 26014,
+          "cache_creation_input_tokens": 1614,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1614
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-11T22:56:37.043Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01ESAxBHRnytREdtU3JJk548`</summary>
+
+```json
+{
+  "query": "PALADIN self-correcting language model agents tool failure ICLR 2026 arXiv:2509.25238"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "648a0e94-9c98-43f8-93ae-a07355a26233",
+  "isSidechain": false,
+  "requestId": "req_011CawcBAGSdQJ4mLNYbf1uF",
+  "type": "assistant",
+  "uuid": "0e1e1902-8c8c-4b99-8df4-19dde51482bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JrWSXnr9wdZJohXDhGdcHH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1614,
+      "cache_read_input_tokens": 26014,
+      "output_tokens": 209,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1614,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 209,
+          "cache_read_input_tokens": 26014,
+          "cache_creation_input_tokens": 1614,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1614
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-11T22:56:45.173Z_
+
+<details><summary>↩ Tool result · `toolu_01ESAxBHRnytREdtU3JJk548`</summary>
+
+```text
+Web search results for query: "PALADIN self-correcting language model agents tool failure ICLR 2026 arXiv:2509.25238"
+
+Links: [{"title":"[2509.25238] PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases","url":"https://arxiv.org/abs/2509.25238"},{"title":"PALADIN: Self-Correcting Language Model Agents to Cure ...","url":"https://arxiv.org/pdf/2509.25238"},{"title":"PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases","url":"https://arxiv.org/html/2509.25238v1"},{"title":"PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases | alphaXiv","url":"https://www.alphaxiv.org/abs/2509.25238"},{"title":"[PDF] PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases | Semantic Scholar","url":"https://www.semanticscholar.org/paper/PALADIN:-Self-Correcting-Language-Model-Agents-to-Vuddanti-Shah/9ae73fb066a4d577bce84c42ec285a05f0b24c46"},{"title":"(PDF) PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases","url":"https://www.researchgate.net/publication/396048240_PALADIN_Self-Correcting_Language_Model_Agents_to_Cure_Tool-Failure_Cases"},{"title":"PALADIN: Self-Correcting Tool-Using LLMs | Framework and dataset for robust, self-recovering tool-using language model agents.","url":"https://33k0.github.io/PALADIN-Framework/"},{"title":"PALADIN: Self-Correcting Language Model Agents to Cure ...","url":"https://www.aimodels.fyi/papers/arxiv/paladin-self-correcting-language-model-agents-cure"},{"title":"PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases","url":"https://openreview.net/pdf?id=NVTtoO297p"},{"title":"AAAI 2026: PALADIN Paper Accepted","url":"https://www.linkedin.com/posts/maheep-chaudhary-07a03617a_aaai2026-llmagents-machinelearning-activity-7401107333134725120-hB-9"}]
+
+Based on the search results, I found comprehensive information about the PALADIN paper (arXiv:2509.25238):
+
+## Overview
+
+PALADIN was published as a conference paper at ICLR 2026 and addresses execution-level robustness—the ability to detect, diagnose, and recover from run-time failures—as a central unsolved challenge for tool-augmented agents.
+
+## The Problem
+
+Tool-augmented language agents frequently fail in real-world deployment due to tool malfunctions—timeouts, API exceptions, or inconsistent outputs—triggering cascading reasoning errors and task abandonment. Existing agent training pipelines optimize only for success trajectories, failing to expose models to the tool failures that dominate real-world usage.
+
+## The PALADIN Solution
+
+PALADIN is a generalizable framework for equipping language agents with robust failure recovery capabilities. 
+
+The approach includes:
+- Training on 50,000+ recovery-annotated trajectories constructed via systematic failure injection and expert demonstrations on an enhanced ToolBench dataset.
+- Using LoRA-based fine-tuning to retain base capabilities while injecting recovery competence.
+- At inference, detecting execution-time errors and retrieving the most similar case from a curated bank of 55+ failure exemplars aligned with ToolScan's taxonomy, then executing the corresponding recovery action.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0e1e1902-8c8c-4b99-8df4-19dde51482bd",
+  "isSidechain": false,
+  "promptId": "9f503ff4-5335-492c-870b-15a6eb7331fc",
+  "type": "user",
+  "uuid": "61766504-48f9-443d-b911-447fb90a883c",
+  "toolUseResult": {
+    "query": "PALADIN self-correcting language model agents tool failure ICLR 2026 arXiv:2509.25238",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014JKjGoRQtD4bDPvqPsFbFH",
+        "content": [
+          {
+            "title": "[2509.25238] PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases",
+            "url": "https://arxiv.org/abs/2509.25238"
+          },
+          {
+            "title": "PALADIN: Self-Correcting Language Model Agents to Cure ...",
+            "url": "https://arxiv.org/pdf/2509.25238"
+          },
+          {
+            "title": "PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases",
+            "url": "https://arxiv.org/html/2509.25238v1"
+          },
+          {
+            "title": "PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases | alphaXiv",
+            "url": "https://www.alphaxiv.org/abs/2509.25238"
+          },
+          {
+            "title": "[PDF] PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/PALADIN:-Self-Correcting-Language-Model-Agents-to-Vuddanti-Shah/9ae73fb066a4d577bce84c42ec285a05f0b24c46"
+          },
+          {
+            "title": "(PDF) PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases",
+            "url": "https://www.researchgate.net/publication/396048240_PALADIN_Self-Correcting_Language_Model_Agents_to_Cure_Tool-Failure_Cases"
+          },
+          {
+            "title": "PALADIN: Self-Correcting Tool-Using LLMs | Framework and dataset for robust, self-recovering tool-using language model agents.",
+            "url": "https://33k0.github.io/PALADIN-Framework/"
+          },
+          {
+            "title": "PALADIN: Self-Correcting Language Model Agents to Cure ...",
+            "url": "https://www.aimodels.fyi/papers/arxiv/paladin-self-correcting-language-model-agents-cure"
+          },
+          {
+            "title": "PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases",
+            "url": "https://openreview.net/pdf?id=NVTtoO297p"
+          },
+          {
+            "title": "AAAI 2026: PALADIN Paper Accepted",
+            "url": "https://www.linkedin.com/posts/maheep-chaudhary-07a03617a_aaai2026-llmagents-machinelearning-activity-7401107333134725120-hB-9"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about the PALADIN paper (arXiv:2509.25238):\n\n## Overview\n\nPALADIN was published as a conference paper at ICLR 2026 and addresses execution-level robustness—the ability to detect, diagnose, and recover from run-time failures—as a central unsolved challenge for tool-augmented agents.\n\n## The Problem\n\nTool-augmented language agents frequently fail in real-world deployment due to tool malfunctions—timeouts, API exceptions, or inconsistent outputs—triggering cascading reasoning errors and task abandonment. Existing agent training pipelines optimize only for success trajectories, failing to expose models to the tool failures that dominate real-world usage.\n\n## The PALADIN Solution\n\nPALADIN is a generalizable framework for equipping language agents with robust failure recovery capabilities. \n\nThe approach includes:\n- Training on 50,000+ recovery-annotated trajectories constructed via systematic failure injection and expert demonstrations on an enhanced ToolBench dataset.\n- Using LoRA-based fine-tuning to retain base capabilities while injecting recovery competence.\n- At inference, detecting execution-time errors and retrieving the most similar case from a curated bank of 55+ failure exemplars aligned with ToolScan's taxonomy, then executing the corresponding recovery action."
+    ],
+    "durationSeconds": 8.125269862000005
+  },
+  "sourceToolAssistantUUID": "0e1e1902-8c8c-4b99-8df4-19dde51482bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-11T22:56:49.460Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01D28kcSxnmTm8P6HotmpdP5`</summary>
+
+```json
+{
+  "query": "ARPO agentic reinforced policy optimization ICLR 2026 arXiv:2507.19849 entropy branching"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "61766504-48f9-443d-b911-447fb90a883c",
+  "isSidechain": false,
+  "requestId": "req_011CawcCVuRL1NqDENddxNRW",
+  "type": "assistant",
+  "uuid": "2423adc6-cfee-49bf-bc0b-143d8a28a984",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JQQdvYrjg9a4hGYu1HJKkP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1168,
+      "cache_read_input_tokens": 27628,
+      "output_tokens": 82,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1168,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 82,
+          "cache_read_input_tokens": 27628,
+          "cache_creation_input_tokens": 1168,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1168
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-11T22:56:56.394Z_
+
+<details><summary>↩ Tool result · `toolu_01D28kcSxnmTm8P6HotmpdP5`</summary>
+
+```text
+Web search results for query: "ARPO agentic reinforced policy optimization ICLR 2026 arXiv:2507.19849 entropy branching"
+
+Links: [{"title":"GitHub - RUC-NLPIR/ARPO: [ICLR 2026] Agentic Reinforced Policy Optimization (ARPO) · GitHub","url":"https://github.com/RUC-NLPIR/ARPO"},{"title":"ICLR Poster Agentic Reinforced Policy Optimization","url":"https://iclr.cc/virtual/2026/poster/10009306"},{"title":"Agentic Reinforced Policy Optimization | OpenReview","url":"https://openreview.net/forum?id=TX4k7BF6aO"},{"title":"AGENTIC REINFORCED POLICY OPTIMIZATION","url":"https://openreview.net/pdf/ea998f163539d9eba4162df23d4a8884ab021e34.pdf"},{"title":"Paper page - Agentic Reinforced Policy Optimization","url":"https://huggingface.co/papers/2507.19849"},{"title":"[2507.19849] Agentic Reinforced Policy Optimization","url":"https://arxiv.org/abs/2507.19849"},{"title":"Guanting Dong - Homepage","url":"https://dongguanting.github.io/"},{"title":"Agentic Reinforced Policy Optimization | Request PDF","url":"https://www.researchgate.net/publication/394081444_Agentic_Reinforced_Policy_Optimization"},{"title":"Agentic Reinforced Policy Optimization","url":"https://arxiv.org/html/2507.19849v1"},{"title":"Agentic Reinforced Policy Optimization | alphaXiv","url":"https://www.alphaxiv.org/audio/2507.19849"}]
+
+I've found comprehensive information about ARPO (Agentic Reinforced Policy Optimization). Here's what I found:
+
+## Overview
+
+ARPO is an agentic RL algorithm tailored for training multi-turn LLM-based agents. The paper was accepted at ICLR 2026.
+
+## Core Mechanism: Entropy-Based Branching
+
+The core principle of ARPO is to encourage the policy model to adaptively branch sampling during high-entropy tool-call rounds, thereby efficiently aligning step-level tool-use behaviors. 
+
+LLMs frequently exhibit increased uncertainty after tool-call steps, as evidenced by higher entropy in the distribution of generated tokens. ARPO incorporates an entropy-based adaptive rollout mechanism, encouraging the policy model to adaptively branch sampling during high-entropy tool-call rounds, thereby promoting step-level exploration of latent tool-use behaviors.
+
+## Advantages
+
+By integrating an advantage attribution estimation, ARPO enables LLMs to internalize advantage differences in stepwise tool-use interactions. ARPO achieves improved performance using only half of the tool-use budget required by existing methods, offering a scalable solution for aligning LLM-based agents with real-time dynamic environments.
+
+## Performance
+
+Experiments across 13 challenging benchmarks demonstrate ARPO's superiority over trajectory-level RL algorithms.
+
+The arXiv paper is available as arXiv:2507.19849, and codes are released at https://github.com/RUC-NLPIR/ARPO.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2423adc6-cfee-49bf-bc0b-143d8a28a984",
+  "isSidechain": false,
+  "promptId": "9f503ff4-5335-492c-870b-15a6eb7331fc",
+  "type": "user",
+  "uuid": "c8860c0d-fa47-4473-b3f6-e80d0cdaa8f0",
+  "toolUseResult": {
+    "query": "ARPO agentic reinforced policy optimization ICLR 2026 arXiv:2507.19849 entropy branching",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JXx2RUHYQ1s4V1fZiwr1wo",
+        "content": [
+          {
+            "title": "GitHub - RUC-NLPIR/ARPO: [ICLR 2026] Agentic Reinforced Policy Optimization (ARPO) · GitHub",
+            "url": "https://github.com/RUC-NLPIR/ARPO"
+          },
+          {
+            "title": "ICLR Poster Agentic Reinforced Policy Optimization",
+            "url": "https://iclr.cc/virtual/2026/poster/10009306"
+          },
+          {
+            "title": "Agentic Reinforced Policy Optimization | OpenReview",
+            "url": "https://openreview.net/forum?id=TX4k7BF6aO"
+          },
+          {
+            "title": "AGENTIC REINFORCED POLICY OPTIMIZATION",
+            "url": "https://openreview.net/pdf/ea998f163539d9eba4162df23d4a8884ab021e34.pdf"
+          },
+          {
+            "title": "Paper page - Agentic Reinforced Policy Optimization",
+            "url": "https://huggingface.co/papers/2507.19849"
+          },
+          {
+            "title": "[2507.19849] Agentic Reinforced Policy Optimization",
+            "url": "https://arxiv.org/abs/2507.19849"
+          },
+          {
+            "title": "Guanting Dong - Homepage",
+            "url": "https://dongguanting.github.io/"
+          },
+          {
+            "title": "Agentic Reinforced Policy Optimization | Request PDF",
+            "url": "https://www.researchgate.net/publication/394081444_Agentic_Reinforced_Policy_Optimization"
+          },
+          {
+            "title": "Agentic Reinforced Policy Optimization",
+            "url": "https://arxiv.org/html/2507.19849v1"
+          },
+          {
+            "title": "Agentic Reinforced Policy Optimization | alphaXiv",
+            "url": "https://www.alphaxiv.org/audio/2507.19849"
+          }
+        ]
+      },
+      "I've found comprehensive information about ARPO (Agentic Reinforced Policy Optimization). Here's what I found:\n\n## Overview\n\nARPO is an agentic RL algorithm tailored for training multi-turn LLM-based agents. The paper was accepted at ICLR 2026.\n\n## Core Mechanism: Entropy-Based Branching\n\nThe core principle of ARPO is to encourage the policy model to adaptively branch sampling during high-entropy tool-call rounds, thereby efficiently aligning step-level tool-use behaviors. \n\nLLMs frequently exhibit increased uncertainty after tool-call steps, as evidenced by higher entropy in the distribution of generated tokens. ARPO incorporates an entropy-based adaptive rollout mechanism, encouraging the policy model to adaptively branch sampling during high-entropy tool-call rounds, thereby promoting step-level exploration of latent tool-use behaviors.\n\n## Advantages\n\nBy integrating an advantage attribution estimation, ARPO enables LLMs to internalize advantage differences in stepwise tool-use interactions. ARPO achieves improved performance using only half of the tool-use budget required by existing methods, offering a scalable solution for aligning LLM-based agents with real-time dynamic environments.\n\n## Performance\n\nExperiments across 13 challenging benchmarks demonstrate ARPO's superiority over trajectory-level RL algorithms.\n\nThe arXiv paper is available as arXiv:2507.19849, and codes are released at https://github.com/RUC-NLPIR/ARPO."
+    ],
+    "durationSeconds": 6.930541269000001
+  },
+  "sourceToolAssistantUUID": "2423adc6-cfee-49bf-bc0b-143d8a28a984",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-11T22:56:58.981Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011B5FzUDQvj7tTPCEWmjSut`</summary>
+
+```json
+{
+  "query": "Tree-GRPO tree search LLM agent reinforcement learning ICLR 2026 arXiv:2509.21240"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c8860c0d-fa47-4473-b3f6-e80d0cdaa8f0",
+  "isSidechain": false,
+  "requestId": "req_011CawcDCh6er72M6AKE9Mtb",
+  "type": "assistant",
+  "uuid": "85bdf8b5-4ffa-4eae-9530-a19b98ebc1c1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LozWnyQ5CB8Stn7oWTyfRn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 922,
+      "cache_read_input_tokens": 28796,
+      "output_tokens": 82,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 922,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 82,
+          "cache_read_input_tokens": 28796,
+          "cache_creation_input_tokens": 922,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 922
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-11T22:57:05.724Z_
+
+<details><summary>↩ Tool result · `toolu_011B5FzUDQvj7tTPCEWmjSut`</summary>
+
+```text
+Web search results for query: "Tree-GRPO tree search LLM agent reinforcement learning ICLR 2026 arXiv:2509.21240"
+
+Links: [{"title":"[2509.21240] Tree Search for LLM Agent Reinforcement Learning","url":"https://arxiv.org/abs/2509.21240"},{"title":"Tree Search for LLM Agent Reinforcement Learning","url":"https://arxiv.org/pdf/2509.21240"},{"title":"GitHub - AMAP-ML/Tree-GRPO: [ICLR 2026] Tree Search for LLM Agent Reinforcement Learning · GitHub","url":"https://github.com/AMAP-ML/Tree-GRPO"},{"title":"Paper page - Tree Search for LLM Agent Reinforcement Learning","url":"https://huggingface.co/papers/2509.21240"},{"title":"Tree Search for LLM Agent Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=ZpQwAFhU13"},{"title":"Tree Search for LLM Agent Reinforcement Learning | alphaXiv","url":"https://www.alphaxiv.org/overview/2509.21240v1"},{"title":"Tree Search for LLM Agent Reinforcement Learning | Papers | HyperAI","url":"https://beta.hyper.ai/en/papers/2509.21240"},{"title":"Tree Search for LLM Agent Reinforcement Learning | Takara TLDR","url":"https://tldr.takara.ai/p/2509.21240"},{"title":"Rohan Paul on X: \"Tree-GRPO trains LLM agents with step-level trees so they learn better plans using less budget. It gets 1.5x more rollouts at the same budget, and can win using 25% of the cost. Most agent training gives 1 score for the whole run, so the model cannot tell which step helped or https://t.co/k2vU9dxZqO\" / X","url":"https://x.com/rohanpaul_ai/status/1971950203864571945"},{"title":"[Literature Review] Tree Search for LLM Agent Reinforcement Learning","url":"https://www.themoonlight.io/en/review/tree-search-for-llm-agent-reinforcement-learning"}]
+
+Based on the search results, here's a comprehensive summary of the Tree-GRPO paper:
+
+## Overview
+
+Tree-based Group Relative Policy Optimization (Tree-GRPO) is a grouped agent RL method based on tree search, where each tree node represents the complete agent interaction step. The paper was submitted on September 25, 2025, with the latest version (v3) on March 18, 2026, and it has been accepted to ICLR 2026.
+
+## Problem Being Addressed
+
+In long-term and multi-turn agent tasks, existing approaches driven solely by outcome rewards often suffer from the problem of sparse supervision.
+
+## Key Innovation
+
+By sharing common prefixes, the tree search sampling increases the number of rollouts achievable within a fixed budget of tokens or tool calls. Additionally, the tree-structured trajectory naturally allows the construction of step-wise process supervised signals even using only the outcome reward.
+
+## Technical Approach
+
+Tree-GRPO estimates the grouped relative advantages both on intra-tree and inter-tree levels. Through theoretical analysis, the objective of intra-tree level group relative policy optimization is equivalent to that of step-level direct preference learning.
+
+## Experimental Results
+
+Experiments across 11 datasets and 3 types of QA tasks demonstrate the superiority of the proposed tree-based RL over the chain-based RL method. Notably, Tree-GRPO achieves superior performance over the chain-based method while using only a quarter of the rollout budget.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "85bdf8b5-4ffa-4eae-9530-a19b98ebc1c1",
+  "isSidechain": false,
+  "promptId": "9f503ff4-5335-492c-870b-15a6eb7331fc",
+  "type": "user",
+  "uuid": "924dbf53-f683-4a49-a633-6828b77971e5",
+  "toolUseResult": {
+    "query": "Tree-GRPO tree search LLM agent reinforcement learning ICLR 2026 arXiv:2509.21240",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01X5WwhW7QWb6PGJo5zje2LR",
+        "content": [
+          {
+            "title": "[2509.21240] Tree Search for LLM Agent Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2509.21240"
+          },
+          {
+            "title": "Tree Search for LLM Agent Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2509.21240"
+          },
+          {
+            "title": "GitHub - AMAP-ML/Tree-GRPO: [ICLR 2026] Tree Search for LLM Agent Reinforcement Learning · GitHub",
+            "url": "https://github.com/AMAP-ML/Tree-GRPO"
+          },
+          {
+            "title": "Paper page - Tree Search for LLM Agent Reinforcement Learning",
+            "url": "https://huggingface.co/papers/2509.21240"
+          },
+          {
+            "title": "Tree Search for LLM Agent Reinforcement Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=ZpQwAFhU13"
+          },
+          {
+            "title": "Tree Search for LLM Agent Reinforcement Learning | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2509.21240v1"
+          },
+          {
+            "title": "Tree Search for LLM Agent Reinforcement Learning | Papers | HyperAI",
+            "url": "https://beta.hyper.ai/en/papers/2509.21240"
+          },
+          {
+            "title": "Tree Search for LLM Agent Reinforcement Learning | Takara TLDR",
+            "url": "https://tldr.takara.ai/p/2509.21240"
+          },
+          {
+            "title": "Rohan Paul on X: \"Tree-GRPO trains LLM agents with step-level trees so they learn better plans using less budget. It gets 1.5x more rollouts at the same budget, and can win using 25% of the cost. Most agent training gives 1 score for the whole run, so the model cannot tell which step helped or https://t.co/k2vU9dxZqO\" / X",
+            "url": "https://x.com/rohanpaul_ai/status/1971950203864571945"
+          },
+          {
+            "title": "[Literature Review] Tree Search for LLM Agent Reinforcement Learning",
+            "url": "https://www.themoonlight.io/en/review/tree-search-for-llm-agent-reinforcement-learning"
+          }
+        ]
+      },
+      "Based on the search results, here's a comprehensive summary of the Tree-GRPO paper:\n\n## Overview\n\nTree-based Group Relative Policy Optimization (Tree-GRPO) is a grouped agent RL method based on tree search, where each tree node represents the complete agent interaction step. The paper was submitted on September 25, 2025, with the latest version (v3) on March 18, 2026, and it has been accepted to ICLR 2026.\n\n## Problem Being Addressed\n\nIn long-term and multi-turn agent tasks, existing approaches driven solely by outcome rewards often suffer from the problem of sparse supervision.\n\n## Key Innovation\n\nBy sharing common prefixes, the tree search sampling increases the number of rollouts achievable within a fixed budget of tokens or tool calls. Additionally, the tree-structured trajectory naturally allows the construction of step-wise process supervised signals even using only the outcome reward.\n\n## Technical Approach\n\nTree-GRPO estimates the grouped relative advantages both on intra-tree and inter-tree levels. Through theoretical analysis, the objective of intra-tree level group relative policy optimization is equivalent to that of step-level direct preference learning.\n\n## Experimental Results\n\nExperiments across 11 datasets and 3 types of QA tasks demonstrate the superiority of the proposed tree-based RL over the chain-based RL method. Notably, Tree-GRPO achieves superior performance over the chain-based method while using only a quarter of the rollout budget."
+    ],
+    "durationSeconds": 6.7389327580000025
+  },
+  "sourceToolAssistantUUID": "85bdf8b5-4ffa-4eae-9530-a19b98ebc1c1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "924dbf53-f683-4a49-a633-6828b77971e5",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify ETB-GRPO novelty and feasibility via independent searches",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622"
+}
+```
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-11T22:57:22.989Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YLAHpgiyrX592XgpgVJvBw`</summary>
+
+```json
+{
+  "query": "error recovery agent reinforcement learning LLM 2025 2026 self-correction tool failure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "924dbf53-f683-4a49-a633-6828b77971e5",
+  "isSidechain": false,
+  "requestId": "req_011CawcDuaEVoDs59nPQu8bo",
+  "type": "assistant",
+  "uuid": "68969858-76ef-4ae7-b06b-9dcc86386c89",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Zb94Cqg7cKXnTF4aujThd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1005,
+      "cache_read_input_tokens": 29718,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1005,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 29718,
+          "cache_creation_input_tokens": 1005,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1005
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-11T22:57:32.031Z_
+
+<details><summary>↩ Tool result · `toolu_01YLAHpgiyrX592XgpgVJvBw`</summary>
+
+```text
+Web search results for query: "error recovery agent reinforcement learning LLM 2025 2026 self-correction tool failure"
+
+Links: [{"title":"Failure makes the agent stronger: Enhancing Accuracy through Structured Reflection for Reliable Tool Interactions","url":"https://arxiv.org/html/2509.18847"},{"title":"GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub","url":"https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"},{"title":"Failure Makes the Agent Stronger: Enhancing Accuracy ...","url":"https://www.arxiv.org/pdf/2509.18847"},{"title":"Best Practices for Multi-Turn RL","url":"https://fireworks.ai/blog/best-practices-for-multi-turn-RL"},{"title":"2024-10-7 Training Language Models to Self-Correct via Reinforcement Learning","url":"https://arxiv.org/pdf/2409.12917"},{"title":"A self-correcting multi-agent LLM framework for language-based physics simulation and explanation | npj Artificial Intelligence","url":"https://www.nature.com/articles/s44387-025-00057-z"},{"title":"Published as a conference paper at ICLR 2025","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/871ac99fdc5282d0301934d23945ebaa-Paper-Conference.pdf"},{"title":"Training Language Models to Self-Correct via Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=CjwERcAU7w"},{"title":"WHERE LLM AGENTS FAIL AND HOW THEY CAN LEARN FROM FAILURES","url":"https://arxiv.org/pdf/2509.25370"},{"title":"GitHub - tmgthb/Autonomous-Agents: Autonomous Agents (LLMs) research papers. Updated Daily. · GitHub","url":"https://github.com/tmgthb/Autonomous-Agents"}]
+
+I found several highly relevant research papers and resources on error recovery, self-correction, and tool failure in LLM agents using reinforcement learning. Here are the key findings:
+
+## Recent Research on Error Recovery and Self-Correction in LLM Agents
+
+**Structured Reflection for Tool Interactions (2025)**
+
+A recent approach designs a process in which LLMs intentionally make mistakes during tool calls, carefully craft reflection content based on errors, and then generate correct calls, aiming at error localization and correction through explicit reflection steps. This training approach is primarily reinforcement learning–based, with a customized reward mechanism tailored for tool-calling scenarios with particular emphasis on multi-turn interactions.
+
+**SCoRe: Self-Correction via Reinforcement Learning (2024-2025)**
+
+A multi-turn online reinforcement learning approach called SCoRe significantly improves an LLM's self-correction ability using entirely self-generated data. SCoRe achieves an absolute 15.6% gain on self-correction for reasoning problems and a 9.1% gain on coding problems.
+
+**Multi-Turn RL for Agent Reliability**
+
+Multi-turn reinforcement learning is essential for building robust LLM agents capable of sequential tool use, where RL beats supervised fine-tuning for error recovery, and agents can reliably plan, call tools, and recover from their own mistakes.
+
+**Error Analysis and Debugging (2025)**
+
+Recent work identifies error propagation as a central bottleneck to building robust LLM agents and introduces AgentErrorTaxonomy and AgentDebug solutions that achieve performance gains by tracing and correcting root-cause failures.
+
+**Training Recipes and Infrastructure**
+
+A comprehensive 2026 survey titled "Training Recipes for Agentic Reinforcement Learning in LLMs" covers various approaches to RL-based agent training, including techniques like learning from failure trajectories and iterative self-improvement.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "68969858-76ef-4ae7-b06b-9dcc86386c89",
+  "isSidechain": false,
+  "promptId": "9f503ff4-5335-492c-870b-15a6eb7331fc",
+  "type": "user",
+  "uuid": "47939712-6e58-4fa7-8058-6fbee2cf98df",
+  "toolUseResult": {
+    "query": "error recovery agent reinforcement learning LLM 2025 2026 self-correction tool failure",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01T3kX5Egwaym5XP5herH2FA",
+        "content": [
+          {
+            "title": "Failure makes the agent stronger: Enhancing Accuracy through Structured Reflection for Reliable Tool Interactions",
+            "url": "https://arxiv.org/html/2509.18847"
+          },
+          {
+            "title": "GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub",
+            "url": "https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"
+          },
+          {
+            "title": "Failure Makes the Agent Stronger: Enhancing Accuracy ...",
+            "url": "https://www.arxiv.org/pdf/2509.18847"
+          },
+          {
+            "title": "Best Practices for Multi-Turn RL",
+            "url": "https://fireworks.ai/blog/best-practices-for-multi-turn-RL"
+          },
+          {
+            "title": "2024-10-7 Training Language Models to Self-Correct via Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2409.12917"
+          },
+          {
+            "title": "A self-correcting multi-agent LLM framework for language-based physics simulation and explanation | npj Artificial Intelligence",
+            "url": "https://www.nature.com/articles/s44387-025-00057-z"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/871ac99fdc5282d0301934d23945ebaa-Paper-Conference.pdf"
+          },
+          {
+            "title": "Training Language Models to Self-Correct via Reinforcement Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=CjwERcAU7w"
+          },
+          {
+            "title": "WHERE LLM AGENTS FAIL AND HOW THEY CAN LEARN FROM FAILURES",
+            "url": "https://arxiv.org/pdf/2509.25370"
+          },
+          {
+            "title": "GitHub - tmgthb/Autonomous-Agents: Autonomous Agents (LLMs) research papers. Updated Daily. · GitHub",
+            "url": "https://github.com/tmgthb/Autonomous-Agents"
+          }
+        ]
+      },
+      "I found several highly relevant research papers and resources on error recovery, self-correction, and tool failure in LLM agents using reinforcement learning. Here are the key findings:\n\n## Recent Research on Error Recovery and Self-Correction in LLM Agents\n\n**Structured Reflection for Tool Interactions (2025)**\n\nA recent approach designs a process in which LLMs intentionally make mistakes during tool calls, carefully craft reflection content based on errors, and then generate correct calls, aiming at error localization and correction through explicit reflection steps. This training approach is primarily reinforcement learning–based, with a customized reward mechanism tailored for tool-calling scenarios with particular emphasis on multi-turn interactions.\n\n**SCoRe: Self-Correction via Reinforcement Learning (2024-2025)**\n\nA multi-turn online reinforcement learning approach called SCoRe significantly improves an LLM's self-correction ability using entirely self-generated data. SCoRe achieves an absolute 15.6% gain on self-correction for reasoning problems and a 9.1% gain on coding problems.\n\n**Multi-Turn RL for Agent Reliability**\n\nMulti-turn reinforcement learning is essential for building robust LLM agents capable of sequential tool use, where RL beats supervised fine-tuning for error recovery, and agents can reliably plan, call tools, and recover from their own mistakes.\n\n**Error Analysis and Debugging (2025)**\n\nRecent work identifies error propagation as a central bottleneck to building robust LLM agents and introduces AgentErrorTaxonomy and AgentDebug solutions that achieve performance gains by tracing and correcting root-cause failures.\n\n**Training Recipes and Infrastructure**\n\nA comprehensive 2026 survey titled \"Training Recipes for Agentic Reinforcement Learning in LLMs\" covers various approaches to RL-based agent training, including techniques like learning from failure trajectories and iterative self-improvement."
+    ],
+    "durationSeconds": 9.036747629999997
+  },
+  "sourceToolAssistantUUID": "68969858-76ef-4ae7-b06b-9dcc86386c89",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-11T22:57:35.352Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CAQoD3QgcDarAG1qrZ7xRU`</summary>
+
+```json
+{
+  "query": "Agent-R MCTS revision erroneous trajectories LLM agent self-training arXiv 2501.11425"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "47939712-6e58-4fa7-8058-6fbee2cf98df",
+  "isSidechain": false,
+  "requestId": "req_011CawcFq5v6iRCvztNX32Es",
+  "type": "assistant",
+  "uuid": "43a8a409-f6f3-4128-b527-16bc155fadca",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LM8YHPVntr6tn4791i35mL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1051,
+      "cache_read_input_tokens": 30723,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1051,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 30723,
+          "cache_creation_input_tokens": 1051,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1051
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-11T22:57:43.133Z_
+
+<details><summary>↩ Tool result · `toolu_01CAQoD3QgcDarAG1qrZ7xRU`</summary>
+
+```text
+Web search results for query: "Agent-R MCTS revision erroneous trajectories LLM agent self-training arXiv 2501.11425"
+
+Links: [{"title":"Agent-R\\xspace: Training Language Model Agents to Reflect via Iterative Self-Training","url":"https://arxiv.org/html/2501.11425"},{"title":"[2501.11425] Agent-R: Training Language Model Agents to Reflect via Iterative Self-Training","url":"https://arxiv.org/abs/2501.11425"},{"title":"Agent-R: Reflective Self-Training for LLM Agents","url":"https://www.emergentmind.com/papers/2501.11425"},{"title":"(PDF) Agent-R: Training Language Model Agents to Reflect via Iterative Self-Training","url":"https://www.researchgate.net/publication/388232063_Agent-R_Training_Language_Model_Agents_to_Reflect_via_Iterative_Self-Training"},{"title":"AgentRM: Enhancing Agent Generalization with Reward Modeling","url":"https://arxiv.org/html/2502.18407v1"},{"title":"[2501.14304] MASTER: A Multi-Agent System with LLM Specialized MCTS","url":"https://arxiv.org/abs/2501.14304"},{"title":"Language Agent Tree Search Unifies Reasoning, Acting, and Planning in","url":"https://arxiv.org/pdf/2310.04406"},{"title":"ExAct: Teaching AI Agents to Explore with Reflective-MCTS and Exploratory Learning","url":"https://arxiv.org/html/2410.02052v3"},{"title":"GitHub - tmgthb/Autonomous-Agents: Autonomous Agents (LLMs) research papers. Updated Daily. · GitHub","url":"https://github.com/tmgthb/Autonomous-Agents"},{"title":"Agent-RLVR: Training Software Engineering Agents via ...","url":"https://arxiv.org/pdf/2506.11425"}]
+
+I found the paper! Here's information about arXiv paper 2501.11425:
+
+## Agent-R: Training Language Model Agents to Reflect via Iterative Self-Training
+
+Agent-R is a novel iterative framework that empowers language agents with self-reflection capabilities in interactive environments.
+
+### Key Innovation
+
+The approach leverages Monte Carlo Tree Search (MCTS) to construct training samples that recover correct trajectories from erroneous ones. This differs from traditional methods, as Agent-R introduces a dynamic self-training framework that revises errors at the step level, unlike previous reward-based approaches which directly penalize or reward actions based solely on outcome correctness.
+
+### Problem Addressed
+
+Existing work mainly focuses on enhancing performance through behavior cloning from stronger experts, yet such approaches often falter in real-world applications, mainly due to the inability to recover from errors. Agent-R enables agents to effectively detect and address errors in real-time, handling long-horizon tasks and avoiding loops with greater self-reflection capabilities.
+
+### Mechanism
+
+The actor model identifies the first error step (within its current capability) in a failed trajectory. Starting from it, the framework splices it with the adjacent correct path, which shares the same parent node in the tree. This strategy enables the model to learn reflection based on its current policy, therefore yielding better learning efficiency.
+
+### Results
+
+Experiments on three interactive environments show that Agent-R effectively equips agents to correct erroneous actions while avoiding loops, achieving superior performance compared to baseline methods (+5.59%).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "43a8a409-f6f3-4128-b527-16bc155fadca",
+  "isSidechain": false,
+  "promptId": "9f503ff4-5335-492c-870b-15a6eb7331fc",
+  "type": "user",
+  "uuid": "2123df86-31a7-44ba-a4c7-ffd993ffbcf3",
+  "toolUseResult": {
+    "query": "Agent-R MCTS revision erroneous trajectories LLM agent self-training arXiv 2501.11425",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012omSxh6Kkebuzx7LESGexZ",
+        "content": [
+          {
+            "title": "Agent-R\\xspace: Training Language Model Agents to Reflect via Iterative Self-Training",
+            "url": "https://arxiv.org/html/2501.11425"
+          },
+          {
+            "title": "[2501.11425] Agent-R: Training Language Model Agents to Reflect via Iterative Self-Training",
+            "url": "https://arxiv.org/abs/2501.11425"
+          },
+          {
+            "title": "Agent-R: Reflective Self-Training for LLM Agents",
+            "url": "https://www.emergentmind.com/papers/2501.11425"
+          },
+          {
+            "title": "(PDF) Agent-R: Training Language Model Agents to Reflect via Iterative Self-Training",
+            "url": "https://www.researchgate.net/publication/388232063_Agent-R_Training_Language_Model_Agents_to_Reflect_via_Iterative_Self-Training"
+          },
+          {
+            "title": "AgentRM: Enhancing Agent Generalization with Reward Modeling",
+            "url": "https://arxiv.org/html/2502.18407v1"
+          },
+          {
+            "title": "[2501.14304] MASTER: A Multi-Agent System with LLM Specialized MCTS",
+            "url": "https://arxiv.org/abs/2501.14304"
+          },
+          {
+            "title": "Language Agent Tree Search Unifies Reasoning, Acting, and Planning in",
+            "url": "https://arxiv.org/pdf/2310.04406"
+          },
+          {
+            "title": "ExAct: Teaching AI Agents to Explore with Reflective-MCTS and Exploratory Learning",
+            "url": "https://arxiv.org/html/2410.02052v3"
+          },
+          {
+            "title": "GitHub - tmgthb/Autonomous-Agents: Autonomous Agents (LLMs) research papers. Updated Daily. · GitHub",
+            "url": "https://github.com/tmgthb/Autonomous-Agents"
+          },
+          {
+            "title": "Agent-RLVR: Training Software Engineering Agents via ...",
+            "url": "https://arxiv.org/pdf/2506.11425"
+          }
+        ]
+      },
+      "I found the paper! Here's information about arXiv paper 2501.11425:\n\n## Agent-R: Training Language Model Agents to Reflect via Iterative Self-Training\n\nAgent-R is a novel iterative framework that empowers language agents with self-reflection capabilities in interactive environments.\n\n### Key Innovation\n\nThe approach leverages Monte Carlo Tree Search (MCTS) to construct training samples that recover correct trajectories from erroneous ones. This differs from traditional methods, as Agent-R introduces a dynamic self-training framework that revises errors at the step level, unlike previous reward-based approaches which directly penalize or reward actions based solely on outcome correctness.\n\n### Problem Addressed\n\nExisting work mainly focuses on enhancing performance through behavior cloning from stronger experts, yet such approaches often falter in real-world applications, mainly due to the inability to recover from errors. Agent-R enables agents to effectively detect and address errors in real-time, handling long-horizon tasks and avoiding loops with greater self-reflection capabilities.\n\n### Mechanism\n\nThe actor model identifies the first error step (within its current capability) in a failed trajectory. Starting from it, the framework splices it with the adjacent correct path, which shares the same parent node in the tree. This strategy enables the model to learn reflection based on its current policy, therefore yielding better learning efficiency.\n\n### Results\n\nExperiments on three interactive environments show that Agent-R effectively equips agents to correct erroneous actions while avoiding loops, achieving superior performance compared to baseline methods (+5.59%)."
+    ],
+    "durationSeconds": 7.778065948000003
+  },
+  "sourceToolAssistantUUID": "43a8a409-f6f3-4128-b527-16bc155fadca",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-11T22:57:49.727Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018fisJe1bdzw7kCSWsvsa3T`</summary>
+
+```json
+{
+  "query": "AAAI 2027 submission deadline call for papers August 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2123df86-31a7-44ba-a4c7-ffd993ffbcf3",
+  "isSidechain": false,
+  "requestId": "req_011CawcGeXCN7SiBidrWNL3K",
+  "type": "assistant",
+  "uuid": "79e1c0f8-c1ee-4307-9577-acf2c669ffd7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016rAKijv2ym532Lcy5Df4aq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 944,
+      "cache_read_input_tokens": 31774,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 944,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 31774,
+          "cache_creation_input_tokens": 944,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 944
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-11T22:57:58.106Z_
+
+<details><summary>↩ Tool result · `toolu_018fisJe1bdzw7kCSWsvsa3T`</summary>
+
+```text
+Web search results for query: "AAAI 2027 submission deadline call for papers August 2026"
+
+Links: [{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf","url":"https://www.underleaf.ai/templates/aaai"},{"title":"AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=3"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"},{"title":"AAAI Conference on Artificial Intelligence - AAAI","url":"https://aaai.org/conference/aaai/"},{"title":"MPC Deadlines Hub","url":"https://mpc-deadlines.github.io/"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"🚨AAAI-26 Call for Papers🚨 AAAI-26 will in Singapore from ...","url":"https://www.facebook.com/AAAIOrg/posts/aaai-26-call-for-papersaaai-26-will-in-singapore-from-january-20-to-january-27-2/751564707547430/"},{"title":"The 40th Annual AAAI Conference on Artificial Intelligence","url":"https://aaai.org/conference/aaai/aaai-26/"}]
+
+Based on the search results, here's what I found regarding AAAI 2027 submission deadlines:
+
+The AAAI 2027 submission deadline is August 1, 2026, with an abstract deadline of July 25, 2026. The conference will be held in Montréal, Québec, Canada from February 16-23, 2027.
+
+Additional timeline information includes:
+- Rebuttal period: October 2-8, 2026
+- Notification deadline: November 3, 2026, with early rejections on September 8
+
+This aligns with historical patterns where AAAI submission deadlines typically fall around July-August of the year before the conference.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "79e1c0f8-c1ee-4307-9577-acf2c669ffd7",
+  "isSidechain": false,
+  "promptId": "9f503ff4-5335-492c-870b-15a6eb7331fc",
+  "type": "user",
+  "uuid": "d87ed69c-8144-4705-b40f-3616758bb596",
+  "toolUseResult": {
+    "query": "AAAI 2027 submission deadline call for papers August 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XTNKxbTWQDwFygnHMGeZUj",
+        "content": [
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf",
+            "url": "https://www.underleaf.ai/templates/aaai"
+          },
+          {
+            "title": "AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=3"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"
+          },
+          {
+            "title": "AAAI Conference on Artificial Intelligence - AAAI",
+            "url": "https://aaai.org/conference/aaai/"
+          },
+          {
+            "title": "MPC Deadlines Hub",
+            "url": "https://mpc-deadlines.github.io/"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "🚨AAAI-26 Call for Papers🚨 AAAI-26 will in Singapore from ...",
+            "url": "https://www.facebook.com/AAAIOrg/posts/aaai-26-call-for-papersaaai-26-will-in-singapore-from-january-20-to-january-27-2/751564707547430/"
+          },
+          {
+            "title": "The 40th Annual AAAI Conference on Artificial Intelligence",
+            "url": "https://aaai.org/conference/aaai/aaai-26/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding AAAI 2027 submission deadlines:\n\nThe AAAI 2027 submission deadline is August 1, 2026, with an abstract deadline of July 25, 2026. The conference will be held in Montréal, Québec, Canada from February 16-23, 2027.\n\nAdditional timeline information includes:\n- Rebuttal period: October 2-8, 2026\n- Notification deadline: November 3, 2026, with early rejections on September 8\n\nThis aligns with historical patterns where AAAI submission deadlines typically fall around July-August of the year before the conference."
+    ],
+    "durationSeconds": 8.373951010000004
+  },
+  "sourceToolAssistantUUID": "79e1c0f8-c1ee-4307-9577-acf2c669ffd7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-11T22:58:06.368Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WUtAggRCZySrrgRLRVi8u2`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 ARR submission deadline May June 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d87ed69c-8144-4705-b40f-3616758bb596",
+  "isSidechain": false,
+  "requestId": "req_011CawcHkZ7j7TXngCwSWWMF",
+  "type": "assistant",
+  "uuid": "12542161-6d66-44e9-947b-d280add99642",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016YiPKfTKieZWMQcpHb2gct",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 742,
+      "cache_read_input_tokens": 32718,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 742,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 32718,
+          "cache_creation_input_tokens": 742,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 742
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-11T22:58:11.850Z_
+
+<details><summary>↩ Tool result · `toolu_01WUtAggRCZySrrgRLRVi8u2`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 ARR submission deadline May June 2026"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"EMNLP 2026 (@emnlpmeeting) / Posts / X","url":"https://x.com/emnlpmeeting?lang=en"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X","url":"https://x.com/emnlpmeeting/status/2047754845919031450"},{"title":"EMNLP 2026 on X: \"The updated ARR schedule has now been posted! As per the call for papers, the submission deadline for EMNLP 2025 will be May 19th https://t.co/kvTZ8LPxam #EMNLP2025\" / X","url":"https://x.com/emnlpmeeting/status/1892259536137785419"},{"title":"Call for workshops: EMNLP & AACL","url":"https://groups.google.com/g/ml-news/c/W-fucfhVto4"}]
+
+Based on my web search results, here is the information about the EMNLP 2026 ARR submission deadline:
+
+The ARR submission deadline for EMNLP 2026 is May 25, 2026. Papers must be submitted, at latest, by the ARR 2026 May cycle.
+
+Additionally, here are some other important related deadlines:
+
+- Reviewer registration deadline for all authors: May 27, 2026
+- Author response and author-reviewer discussion: July 7 - July 13, 2026
+- Meta review released: July 30, 2026
+- EMNLP commitment deadline: August 2, 2026
+
+All deadlines are 11:59PM UTC-12:00 ("anywhere on Earth").
+
+One important note: Since the ARR 2026 May cycle is aligned with both EMNLP and AACL, authors will need to explicitly declare which conference they intend to commit to at submission time, and this choice will be binding for EMNLP 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "12542161-6d66-44e9-947b-d280add99642",
+  "isSidechain": false,
+  "promptId": "9f503ff4-5335-492c-870b-15a6eb7331fc",
+  "type": "user",
+  "uuid": "8f97722d-f071-4573-9dce-47d2c724c026",
+  "toolUseResult": {
+    "query": "EMNLP 2026 ARR submission deadline May June 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HjQoRMGCR37SLdhg85Kjpy",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2029508292637061462"
+          },
+          {
+            "title": "LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)",
+            "url": "https://linguistlist.org/issues/37/972/"
+          },
+          {
+            "title": "EMNLP 2026 (@emnlpmeeting) / Posts / X",
+            "url": "https://x.com/emnlpmeeting?lang=en"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2047754845919031450"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"The updated ARR schedule has now been posted! As per the call for papers, the submission deadline for EMNLP 2025 will be May 19th https://t.co/kvTZ8LPxam #EMNLP2025\" / X",
+            "url": "https://x.com/emnlpmeeting/status/1892259536137785419"
+          },
+          {
+            "title": "Call for workshops: EMNLP & AACL",
+            "url": "https://groups.google.com/g/ml-news/c/W-fucfhVto4"
+          }
+        ]
+      },
+      "Based on my web search results, here is the information about the EMNLP 2026 ARR submission deadline:\n\nThe ARR submission deadline for EMNLP 2026 is May 25, 2026. Papers must be submitted, at latest, by the ARR 2026 May cycle.\n\nAdditionally, here are some other important related deadlines:\n\n- Reviewer registration deadline for all authors: May 27, 2026\n- Author response and author-reviewer discussion: July 7 - July 13, 2026\n- Meta review released: July 30, 2026\n- EMNLP commitment deadline: August 2, 2026\n\nAll deadlines are 11:59PM UTC-12:00 (\"anywhere on Earth\").\n\nOne important note: Since the ARR 2026 May cycle is aligned with both EMNLP and AACL, authors will need to explicitly declare which conference they intend to commit to at submission time, and this choice will be binding for EMNLP 2026."
+    ],
+    "durationSeconds": 5.477366058999992
+  },
+  "sourceToolAssistantUUID": "12542161-6d66-44e9-947b-d280add99642",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-11T22:58:11.855Z_
+
+```json
+{
+  "parentUuid": "8f97722d-f071-4573-9dce-47d2c724c026",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "4fdf2ffb-4916-4241-bfc8-44deb18c9edd",
+  "timestamp": "2026-05-11T22:58:11.855Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-11T22:58:21.477Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Key findings so far:
+1. PALADIN - confirmed at ICLR 2026 (though one LinkedIn post mentions AAAI 2026). Let me check more carefully.
+2. ARPO - confirmed ICLR 2026, entropy-based branching at tool-call rounds
+3. Tree-GRPO - confirmed ICLR 2026, tree-structured rollouts with GRPO
+4. AAAI 2027 deadline - August 1, 2026 confirmed
+
+
+5. EMNLP 2026 ARR deadline - May 25, 2026 confirmed
+
+I'm noticing a critical timing issue: the user wants EMNLP 2026 with that May 25 deadline, but the core idea seems positioned for AAAI 2027 instead. I should also nail down PALADIN's actual venue since there's conflicting information, search for additional competing approaches, and verify the computational requirements.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4fdf2ffb-4916-4241-bfc8-44deb18c9edd",
+  "isSidechain": false,
+  "requestId": "req_011CawcJmJHxooH3Zz8mPuDR",
+  "type": "assistant",
+  "uuid": "cae14496-91f6-47b2-b4c1-d77224fff94f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0159s5tD9C49PAvwkc4zhbim",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1131,
+      "cache_read_input_tokens": 33460,
+      "output_tokens": 347,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1131,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 347,
+          "cache_read_input_tokens": 33460,
+          "cache_creation_input_tokens": 1131,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1131
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-11T22:58:21.485Z_
+
+Now let me search for more competing work and verify specific claims.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cae14496-91f6-47b2-b4c1-d77224fff94f",
+  "isSidechain": false,
+  "requestId": "req_011CawcJmJHxooH3Zz8mPuDR",
+  "type": "assistant",
+  "uuid": "f6075716-e207-461e-943d-96ad408f07f1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0159s5tD9C49PAvwkc4zhbim",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1131,
+      "cache_read_input_tokens": 33460,
+      "output_tokens": 347,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1131,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 347,
+          "cache_read_input_tokens": 33460,
+          "cache_creation_input_tokens": 1131,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1131
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-11T22:58:21.591Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XybFSZ6ijQwB2qcGQLavxW`</summary>
+
+```json
+{
+  "query": "error-triggered branching reinforcement learning LLM agent recovery 2025 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f6075716-e207-461e-943d-96ad408f07f1",
+  "isSidechain": false,
+  "requestId": "req_011CawcJmJHxooH3Zz8mPuDR",
+  "type": "assistant",
+  "uuid": "4eb08c37-fe52-435d-b9ca-dcbd29c3aa07",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0159s5tD9C49PAvwkc4zhbim",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1131,
+      "cache_read_input_tokens": 33460,
+      "output_tokens": 347,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1131,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 347,
+          "cache_read_input_tokens": 33460,
+          "cache_creation_input_tokens": 1131,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1131
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "4eb08c37-fe52-435d-b9ca-dcbd29c3aa07",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify ETB-GRPO novelty and feasibility via independent searches",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622"
+}
+```
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-11T22:58:29.199Z_
+
+<details><summary>↩ Tool result · `toolu_01XybFSZ6ijQwB2qcGQLavxW`</summary>
+
+```text
+Web search results for query: "error-triggered branching reinforcement learning LLM agent recovery 2025 2026 arXiv"
+
+Links: [{"title":"GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub","url":"https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"},{"title":"GitHub - tmgthb/Autonomous-Agents: Autonomous Agents (LLMs) research papers. Updated Daily. · GitHub","url":"https://github.com/tmgthb/Autonomous-Agents"},{"title":"[2509.25370] Where LLM Agents Fail and How They can Learn From Failures","url":"https://arxiv.org/abs/2509.25370"},{"title":"SIGHT: Reinforcement Learning with Self-Evidence and Information-Gain Diverse Branching for Search Agent","url":"https://arxiv.org/html/2602.11551v1"},{"title":"Rethinking Agentic Reinforcement Learning In Large Language Models","url":"https://arxiv.org/html/2604.27859v1"},{"title":"[2509.02547] The Landscape of Agentic Reinforcement Learning for LLMs: A Survey","url":"https://arxiv.org/abs/2509.02547"},{"title":"The Landscape of Agentic Reinforcement Learning for LLMs: A Survey","url":"https://arxiv.org/html/2509.02547v5"},{"title":"Achieving Olympia-Level Geometry Large Language Model Agent via Complexity Boosting Reinforcement Learning","url":"https://arxiv.org/html/2512.10534v1"},{"title":"A Brief Overview: Agentic Reinforcement Learning In Large Language Models","url":"https://arxiv.org/html/2604.27859v2"},{"title":"Agent-R1: Training Powerful LLM Agents with End-to-End Reinforcement Learning","url":"https://arxiv.org/html/2511.14460v1"}]
+
+I've completed the web search for your query about error-triggered branching reinforcement learning, LLM agent recovery, and recent arXiv papers from 2025-2026. Here are the key findings:
+
+## Recent Relevant Research
+
+The search revealed several highly relevant papers and frameworks from 2025-2026 on agentic reinforcement learning in LLMs:
+
+**Error Detection and Agent Learning:**
+The AgentErrorTaxonomy introduces a modular classification of failure modes spanning memory, reflection, planning, action, and system-level operations, with AgentErrorBench providing the first dataset of systematically annotated failure trajectories from ALFWorld, GAIA, and WebShop.
+
+**Branching and Exploration:**
+Tree-based exploration with branching at high-uncertainty steps has been applied for enhanced trajectory-level exploration in reinforcement learning with verifiable rewards. Additionally, statistical credit assignment using rollout branching is being used in modern approaches.
+
+**Hierarchical Agent Recovery:**
+The HiPER framework addresses long-horizon, sparse-reward multi-turn decision-making by factorizing the agent into a high-level planner and a low-level executor, facilitating hierarchical optimization via Hierarchical Advantage Estimation (HAE).
+
+**General Agentic RL Landscape:**
+Agentic RL marks a paradigm shift reframing LLMs from passive sequence generators into autonomous agents, contrasting single-step MDPs with temporally extended, partially observable Markov decision processes (POMDPs), with a comprehensive taxonomy organized around core agentic capabilities including planning, tool use, memory, reasoning, self-improvement, and perception.
+
+The search results show active research in error handling, hierarchical planning, and branching strategies for LLM agent recovery in the 2025-2026 period.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4eb08c37-fe52-435d-b9ca-dcbd29c3aa07",
+  "isSidechain": false,
+  "promptId": "9f503ff4-5335-492c-870b-15a6eb7331fc",
+  "type": "user",
+  "uuid": "56f29039-b654-4bd7-b2c4-461e4a8aa4c2",
+  "toolUseResult": {
+    "query": "error-triggered branching reinforcement learning LLM agent recovery 2025 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Ssz8Ba7tkXyKoCWHW9epww",
+        "content": [
+          {
+            "title": "GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub",
+            "url": "https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"
+          },
+          {
+            "title": "GitHub - tmgthb/Autonomous-Agents: Autonomous Agents (LLMs) research papers. Updated Daily. · GitHub",
+            "url": "https://github.com/tmgthb/Autonomous-Agents"
+          },
+          {
+            "title": "[2509.25370] Where LLM Agents Fail and How They can Learn From Failures",
+            "url": "https://arxiv.org/abs/2509.25370"
+          },
+          {
+            "title": "SIGHT: Reinforcement Learning with Self-Evidence and Information-Gain Diverse Branching for Search Agent",
+            "url": "https://arxiv.org/html/2602.11551v1"
+          },
+          {
+            "title": "Rethinking Agentic Reinforcement Learning In Large Language Models",
+            "url": "https://arxiv.org/html/2604.27859v1"
+          },
+          {
+            "title": "[2509.02547] The Landscape of Agentic Reinforcement Learning for LLMs: A Survey",
+            "url": "https://arxiv.org/abs/2509.02547"
+          },
+          {
+            "title": "The Landscape of Agentic Reinforcement Learning for LLMs: A Survey",
+            "url": "https://arxiv.org/html/2509.02547v5"
+          },
+          {
+            "title": "Achieving Olympia-Level Geometry Large Language Model Agent via Complexity Boosting Reinforcement Learning",
+            "url": "https://arxiv.org/html/2512.10534v1"
+          },
+          {
+            "title": "A Brief Overview: Agentic Reinforcement Learning In Large Language Models",
+            "url": "https://arxiv.org/html/2604.27859v2"
+          },
+          {
+            "title": "Agent-R1: Training Powerful LLM Agents with End-to-End Reinforcement Learning",
+            "url": "https://arxiv.org/html/2511.14460v1"
+          }
+        ]
+      },
+      "I've completed the web search for your query about error-triggered branching reinforcement learning, LLM agent recovery, and recent arXiv papers from 2025-2026. Here are the key findings:\n\n## Recent Relevant Research\n\nThe search revealed several highly relevant papers and frameworks from 2025-2026 on agentic reinforcement learning in LLMs:\n\n**Error Detection and Agent Learning:**\nThe AgentErrorTaxonomy introduces a modular classification of failure modes spanning memory, reflection, planning, action, and system-level operations, with AgentErrorBench providing the first dataset of systematically annotated failure trajectories from ALFWorld, GAIA, and WebShop.\n\n**Branching and Exploration:**\nTree-based exploration with branching at high-uncertainty steps has been applied for enhanced trajectory-level exploration in reinforcement learning with verifiable rewards. Additionally, statistical credit assignment using rollout branching is being used in modern approaches.\n\n**Hierarchical Agent Recovery:**\nThe HiPER framework addresses long-horizon, sparse-reward multi-turn decision-making by factorizing the agent into a high-level planner and a low-level executor, facilitating hierarchical optimization via Hierarchical Advantage Estimation (HAE).\n\n**General Agentic RL Landscape:**\nAgentic RL marks a paradigm shift reframing LLMs from passive sequence generators into autonomous agents, contrasting single-step MDPs with temporally extended, partially observable Markov decision processes (POMDPs), with a comprehensive taxonomy organized around core agentic capabilities including planning, tool use, memory, reasoning, self-improvement, and perception.\n\nThe search results show active research in error handling, hierarchical planning, and branching strategies for LLM agent recovery in the 2025-2026 period."
+    ],
+    "durationSeconds": 7.605232844999992
+  },
+  "sourceToolAssistantUUID": "4eb08c37-fe52-435d-b9ca-dcbd29c3aa07",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-11T22:58:32.038Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0129iuu9MF4mabRzZZhExGQM`</summary>
+
+```json
+{
+  "query": "\"learning from failures\" \"tool use\" LLM agent GRPO branching 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "56f29039-b654-4bd7-b2c4-461e4a8aa4c2",
+  "isSidechain": false,
+  "requestId": "req_011CawcL3TRP2mKbx6GXvoLw",
+  "type": "assistant",
+  "uuid": "5acf6ddf-4d40-4195-8854-788e23a7578d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BeWjznmRpWBoUR9XerQ8BD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1295,
+      "cache_read_input_tokens": 34591,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1295,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 34591,
+          "cache_creation_input_tokens": 1295,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1295
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-11T22:58:40.424Z_
+
+<details><summary>↩ Tool result · `toolu_0129iuu9MF4mabRzZZhExGQM`</summary>
+
+```text
+Web search results for query: ""learning from failures" "tool use" LLM agent GRPO branching 2026 arXiv"
+
+Links: [{"title":"[2509.25370] Where LLM Agents Fail and How They can Learn From Failures","url":"https://arxiv.org/abs/2509.25370"},{"title":"GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub","url":"https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"},{"title":"GitHub - AMAP-ML/Tree-GRPO: [ICLR 2026] Tree Search for LLM Agent Reinforcement Learning · GitHub","url":"https://github.com/AMAP-ML/Tree-GRPO"},{"title":"Scaling Long-Horizon LLM Agent via Context-Folding","url":"https://arxiv.org/pdf/2510.11967"},{"title":"CoEvolve: Training LLM Agents via Agent-Data Mutual Evolution","url":"https://arxiv.org/html/2604.15840v1"},{"title":"One Tool Is Enough: Reinforcement Learning of LLM Agents for Repository-Level Code Navigation","url":"https://arxiv.org/html/2512.20957"},{"title":"Tree Search for LLM Agent Reinforcement Learning","url":"https://arxiv.org/pdf/2509.21240"},{"title":"ICLR 2026: 12 papers on making AI systems reliable, efficient, and secure","url":"https://lambda.ai/blog/iclr-2026-12-papers"},{"title":"Agent-as-Tool: A Study on the Hierarchical Decision Making with Reinforcement Learning","url":"https://arxiv.org/html/2507.01489"},{"title":"Demystifying Reinforcement Learning in Agentic Reasoning","url":"https://arxiv.org/html/2510.11701v1"}]
+
+I found several relevant papers on your search topic. Here are the key results:
+
+## Most Relevant Paper
+
+The primary match is "Where LLM Agents Fail and How They can Learn From Failures," which addresses how Large Language Model agents that integrate planning, memory, reflection, and tool-use modules can be vulnerable to cascading failures where a single root-cause error propagates through subsequent decisions. The paper introduces the AgentErrorTaxonomy, a modular classification of failure modes spanning memory, reflection, planning, action, and system-level operations, along with AgentErrorBench, the first dataset of systematically annotated failure trajectories from ALFWorld, GAIA, and WebShop.
+
+## Related Papers on GRPO and Branching
+
+Several papers discuss GRPO (Group Refined Policy Optimization) and branching strategies for LLM agents:
+
+- "Tree Search for LLM Agent Reinforcement Learning" proposes Tree-GRPO, which adopts a tree-search rollout strategy instead of independent chain-based rollouts, carrying out rollout sampling over a semantically well-defined search tree, offering less rollout budget and tree-based process supervision signals.
+
+- "Scaling Long-Horizon LLM Agent via Context-Folding" introduces FoldGRPO, which augments the standard GRPO by incorporating dynamic folded LLM contexts and dense, token-level process rewards that directly guide context folding behavior.
+
+- "Training Recipes for Agentic Reinforcement Learning in LLMs" discusses statistical credit assignment using rollout branching and mentions multi-turn adaptation of GRPO credit assignment.
+
+All of these papers are recent (2025-2026) and available on arXiv, addressing the intersection of learning from failures, tool use, LLM agents, GRPO, and branching strategies.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5acf6ddf-4d40-4195-8854-788e23a7578d",
+  "isSidechain": false,
+  "promptId": "9f503ff4-5335-492c-870b-15a6eb7331fc",
+  "type": "user",
+  "uuid": "3f5b5d0b-03f1-441c-8959-fe85f8056e11",
+  "toolUseResult": {
+    "query": "\"learning from failures\" \"tool use\" LLM agent GRPO branching 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Rtqg3BbcXABECNiPMPRCZT",
+        "content": [
+          {
+            "title": "[2509.25370] Where LLM Agents Fail and How They can Learn From Failures",
+            "url": "https://arxiv.org/abs/2509.25370"
+          },
+          {
+            "title": "GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub",
+            "url": "https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"
+          },
+          {
+            "title": "GitHub - AMAP-ML/Tree-GRPO: [ICLR 2026] Tree Search for LLM Agent Reinforcement Learning · GitHub",
+            "url": "https://github.com/AMAP-ML/Tree-GRPO"
+          },
+          {
+            "title": "Scaling Long-Horizon LLM Agent via Context-Folding",
+            "url": "https://arxiv.org/pdf/2510.11967"
+          },
+          {
+            "title": "CoEvolve: Training LLM Agents via Agent-Data Mutual Evolution",
+            "url": "https://arxiv.org/html/2604.15840v1"
+          },
+          {
+            "title": "One Tool Is Enough: Reinforcement Learning of LLM Agents for Repository-Level Code Navigation",
+            "url": "https://arxiv.org/html/2512.20957"
+          },
+          {
+            "title": "Tree Search for LLM Agent Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2509.21240"
+          },
+          {
+            "title": "ICLR 2026: 12 papers on making AI systems reliable, efficient, and secure",
+            "url": "https://lambda.ai/blog/iclr-2026-12-papers"
+          },
+          {
+            "title": "Agent-as-Tool: A Study on the Hierarchical Decision Making with Reinforcement Learning",
+            "url": "https://arxiv.org/html/2507.01489"
+          },
+          {
+            "title": "Demystifying Reinforcement Learning in Agentic Reasoning",
+            "url": "https://arxiv.org/html/2510.11701v1"
+          }
+        ]
+      },
+      "I found several relevant papers on your search topic. Here are the key results:\n\n## Most Relevant Paper\n\nThe primary match is \"Where LLM Agents Fail and How They can Learn From Failures,\" which addresses how Large Language Model agents that integrate planning, memory, reflection, and tool-use modules can be vulnerable to cascading failures where a single root-cause error propagates through subsequent decisions. The paper introduces the AgentErrorTaxonomy, a modular classification of failure modes spanning memory, reflection, planning, action, and system-level operations, along with AgentErrorBench, the first dataset of systematically annotated failure trajectories from ALFWorld, GAIA, and WebShop.\n\n## Related Papers on GRPO and Branching\n\nSeveral papers discuss GRPO (Group Refined Policy Optimization) and branching strategies for LLM agents:\n\n- \"Tree Search for LLM Agent Reinforcement Learning\" proposes Tree-GRPO, which adopts a tree-search rollout strategy instead of independent chain-based rollouts, carrying out rollout sampling over a semantically well-defined search tree, offering less rollout budget and tree-based process supervision signals.\n\n- \"Scaling Long-Horizon LLM Agent via Context-Folding\" introduces FoldGRPO, which augments the standard GRPO by incorporating dynamic folded LLM contexts and dense, token-level process rewards that directly guide context folding behavior.\n\n- \"Training Recipes for Agentic Reinforcement Learning in LLMs\" discusses statistical credit assignment using rollout branching and mentions multi-turn adaptation of GRPO credit assignment.\n\nAll of these papers are recent (2025-2026) and available on arXiv, addressing the intersection of learning from failures, tool use, LLM agents, GRPO, and branching strategies."
+    ],
+    "durationSeconds": 8.381398759000003
+  },
+  "sourceToolAssistantUUID": "5acf6ddf-4d40-4195-8854-788e23a7578d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-11T22:58:43.895Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KVic4pbyC95Nx1vgPmd61D`</summary>
+
+```json
+{
+  "query": "CLEANER self-purified trajectories agentic RL arXiv 2601.15141 self-correction tool calls"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3f5b5d0b-03f1-441c-8959-fe85f8056e11",
+  "isSidechain": false,
+  "requestId": "req_011CawcLsUBLFXba3nBd4dy4",
+  "type": "assistant",
+  "uuid": "7b963fb5-40b6-4ab7-970a-c711e04477fb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GBxHEqkhn8Y74LdWd6DT4j",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1011,
+      "cache_read_input_tokens": 35886,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1011,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 35886,
+          "cache_creation_input_tokens": 1011,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1011
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-11T22:58:51.522Z_
+
+<details><summary>↩ Tool result · `toolu_01KVic4pbyC95Nx1vgPmd61D`</summary>
+
+```text
+Web search results for query: "CLEANER self-purified trajectories agentic RL arXiv 2601.15141 self-correction tool calls"
+
+Links: [{"title":"[2601.15141] CLEANER: Self-Purified Trajectories Boost Agentic Reinforcement Learning","url":"https://arxiv.org/abs/2601.15141"},{"title":"CLEANER: Self-Purified Trajectories Boost Agentic Reinforcement Learning","url":"https://arxiv.org/html/2601.15141"},{"title":"[2601.15141v1] CLEANER: Self-Purified Trajectories Boost Agentic Reinforcement Learning","url":"https://arxiv.org/abs/2601.15141v1"},{"title":"Work in progress CLEANER: SELF-PURIFIED TRAJECTORIES BOOST","url":"https://arxiv.org/pdf/2601.15141"},{"title":"(PDF) CLEANER: Self-Purified Trajectories Boost Agentic Reinforcement Learning","url":"https://www.researchgate.net/publication/399962479_CLEANER_Self-Purified_Trajectories_Boost_Agentic_Reinforcement_Learning"},{"title":"Paper page - Reinforcement Learning via Self-Distillation","url":"https://huggingface.co/papers/2601.20802"},{"title":"Computer Science","url":"https://web3.arxiv.org/list/cs/recent"},{"title":"ASTRA: Automated Synthesis of agentic Trajectories and Reinforcement Arenas","url":"https://arxiv.org/html/2601.21558"},{"title":"The Landscape of Agentic Reinforcement Learning for LLMs: A Survey","url":"https://arxiv.org/html/2509.02547v1"},{"title":"AgentV-RL: Scaling Reward Modeling with Agentic Verifier","url":"https://arxiv.org/html/2604.16004v1"}]
+
+Based on the search results, I found comprehensive information about the paper you're looking for:
+
+## CLEANER: Self-Purified Trajectories Boost Agentic Reinforcement Learning
+
+CLEANER is a method for Agentic Reinforcement Learning that has empowered Large Language Models (LLMs) to utilize tools like Python interpreters for complex problem-solving.
+
+### The Problem
+
+For parameter-constrained models (e.g., 4B–7B), the exploration phase is often plagued by frequent execution failures, creating noisy trajectories that hinder policy optimization. Under standard outcome-based reward settings, this noise leads to a critical credit assignment issue, where erroneous actions are inadvertently reinforced alongside successful outcomes.
+
+### The Solution
+
+CLEANER exploits the model's intrinsic self-correction capabilities to eliminate error-contaminated context directly during data collection. At its core, the Similarity-Aware Adaptive Rollback (SAAR) mechanism autonomously constructs clean, purified trajectories by retrospectively replacing failures with successful self-corrections.
+
+Based on semantic similarity, SAAR adaptively regulates replacement granularity from shallow execution repairs to deep reasoning substitutions.
+
+### Results
+
+Empirical results on AIME24/25, GPQA, and LiveCodeBench show average accuracy gains of 6%, 3%, and 5% over baselines. CLEANER matches state-of-the-art performance using only one-third of the training steps, highlighting trajectory purification as a scalable solution for efficient agentic RL.
+
+The paper was submitted to arXiv on January 21, 2026 (arXiv:2601.15141) by Tianshi Xu, Yuteng Chen, and Meng Li.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7b963fb5-40b6-4ab7-970a-c711e04477fb",
+  "isSidechain": false,
+  "promptId": "9f503ff4-5335-492c-870b-15a6eb7331fc",
+  "type": "user",
+  "uuid": "fd0e1fac-2709-44bd-a135-bed1d3629c57",
+  "toolUseResult": {
+    "query": "CLEANER self-purified trajectories agentic RL arXiv 2601.15141 self-correction tool calls",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0136ab3bRwPoToMxTFGLaTZe",
+        "content": [
+          {
+            "title": "[2601.15141] CLEANER: Self-Purified Trajectories Boost Agentic Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2601.15141"
+          },
+          {
+            "title": "CLEANER: Self-Purified Trajectories Boost Agentic Reinforcement Learning",
+            "url": "https://arxiv.org/html/2601.15141"
+          },
+          {
+            "title": "[2601.15141v1] CLEANER: Self-Purified Trajectories Boost Agentic Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2601.15141v1"
+          },
+          {
+            "title": "Work in progress CLEANER: SELF-PURIFIED TRAJECTORIES BOOST",
+            "url": "https://arxiv.org/pdf/2601.15141"
+          },
+          {
+            "title": "(PDF) CLEANER: Self-Purified Trajectories Boost Agentic Reinforcement Learning",
+            "url": "https://www.researchgate.net/publication/399962479_CLEANER_Self-Purified_Trajectories_Boost_Agentic_Reinforcement_Learning"
+          },
+          {
+            "title": "Paper page - Reinforcement Learning via Self-Distillation",
+            "url": "https://huggingface.co/papers/2601.20802"
+          },
+          {
+            "title": "Computer Science",
+            "url": "https://web3.arxiv.org/list/cs/recent"
+          },
+          {
+            "title": "ASTRA: Automated Synthesis of agentic Trajectories and Reinforcement Arenas",
+            "url": "https://arxiv.org/html/2601.21558"
+          },
+          {
+            "title": "The Landscape of Agentic Reinforcement Learning for LLMs: A Survey",
+            "url": "https://arxiv.org/html/2509.02547v1"
+          },
+          {
+            "title": "AgentV-RL: Scaling Reward Modeling with Agentic Verifier",
+            "url": "https://arxiv.org/html/2604.16004v1"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about the paper you're looking for:\n\n## CLEANER: Self-Purified Trajectories Boost Agentic Reinforcement Learning\n\nCLEANER is a method for Agentic Reinforcement Learning that has empowered Large Language Models (LLMs) to utilize tools like Python interpreters for complex problem-solving.\n\n### The Problem\n\nFor parameter-constrained models (e.g., 4B–7B), the exploration phase is often plagued by frequent execution failures, creating noisy trajectories that hinder policy optimization. Under standard outcome-based reward settings, this noise leads to a critical credit assignment issue, where erroneous actions are inadvertently reinforced alongside successful outcomes.\n\n### The Solution\n\nCLEANER exploits the model's intrinsic self-correction capabilities to eliminate error-contaminated context directly during data collection. At its core, the Similarity-Aware Adaptive Rollback (SAAR) mechanism autonomously constructs clean, purified trajectories by retrospectively replacing failures with successful self-corrections.\n\nBased on semantic similarity, SAAR adaptively regulates replacement granularity from shallow execution repairs to deep reasoning substitutions.\n\n### Results\n\nEmpirical results on AIME24/25, GPQA, and LiveCodeBench show average accuracy gains of 6%, 3%, and 5% over baselines. CLEANER matches state-of-the-art performance using only one-third of the training steps, highlighting trajectory purification as a scalable solution for efficient agentic RL.\n\nThe paper was submitted to arXiv on January 21, 2026 (arXiv:2601.15141) by Tianshi Xu, Yuteng Chen, and Meng Li."
+    ],
+    "durationSeconds": 7.623312195000006
+  },
+  "sourceToolAssistantUUID": "7b963fb5-40b6-4ab7-970a-c711e04477fb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-11T22:58:55.256Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01T2iHuRL2rer4McQ1E2bXnU`</summary>
+
+```json
+{
+  "query": "Spark policy-aware dynamic branching critical states embodied planning arXiv 2601.20209"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fd0e1fac-2709-44bd-a135-bed1d3629c57",
+  "isSidechain": false,
+  "requestId": "req_011CawcMguxD9eJyoSZfFH9F",
+  "type": "assistant",
+  "uuid": "71c39975-3833-44dc-b778-4f6d5d6a3112",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LzjFoBhHMqRKavhh1XM4FR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1002,
+      "cache_read_input_tokens": 36897,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1002,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 36897,
+          "cache_creation_input_tokens": 1002,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1002
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-11T22:59:01.767Z_
+
+<details><summary>↩ Tool result · `toolu_01T2iHuRL2rer4McQ1E2bXnU`</summary>
+
+```text
+Web search results for query: "Spark policy-aware dynamic branching critical states embodied planning arXiv 2601.20209"
+
+Links: [{"title":"[2601.20209] Spark: Strategic Policy-Aware Exploration via Dynamic Branching for Long-Horizon Agentic Learning","url":"https://arxiv.org/abs/2601.20209"},{"title":"Spark: Strategic Policy-Aware Exploration via Dynamic Branching for Long-Horizon Agentic Learning","url":"https://arxiv.org/html/2601.20209"},{"title":"IEEE CIRCUITS AND SYSTEMS MAGAZINE 1 Embodied AI: From LLMs to World Models","url":"https://arxiv.org/pdf/2509.20021"},{"title":"[2601.09609] DPWriter: Reinforcement Learning with Diverse Planning Branching for Creative Writing","url":"https://arxiv.org/abs/2601.09609"},{"title":"[2601.21841] Embodied Task Planning via Graph-Informed Action Generation with Large Language Model","url":"https://arxiv.org/abs/2601.21841"},{"title":"SPARK: Synergistic Policy And Reward co-evolving framework","url":"https://arxiv.org/html/2509.22624v1"},{"title":"[2509.22624] SPARK: Synergistic Policy And Reward Co-Evolving Framework","url":"https://arxiv.org/abs/2509.22624"},{"title":"[2601.06272] Crossing the Functional Desert: Cascade-Driven Assembly and Feasibility Transitions in Early Life","url":"https://arxiv.org/abs/2601.06272"},{"title":"[2509.26375] SDA-PLANNER: State-Dependency Aware Adaptive Planner for Embodied Task Planning","url":"https://arxiv.org/abs/2509.26375"},{"title":"Embodied Tree of Thoughts: Deliberate Manipulation Planning with Embodied World Model","url":"https://arxiv.org/html/2512.08188"}]
+
+Based on the search results, I found the paper you're looking for:
+
+**Spark** (**S**trategic **P**olicy-**A**ware explo**R**ation via **K**ey-state dynamic branching) is a novel framework that selectively branches at critical decision states for resource-efficient exploration.
+
+**Key Points:**
+
+The framework addresses the challenge of training large language models as intelligent agents for long-horizon tasks, which is difficult due to scarcity of high-quality trajectories under limited resources. Existing methods waste computational budget on trivial steps while failing to guarantee sample quality.
+
+The key insight is to activate adaptive branching exploration at critical decision points to probe promising trajectories, thereby achieving precise resource allocation that prioritizes sampling quality over blind coverage.
+
+**Results:**
+
+Experiments across diverse tasks (e.g., embodied planning) demonstrate that Spark achieves superior success rates with significantly fewer training samples, exhibiting robust generalization even in unseen scenarios.
+
+The paper evaluates on three challenging long-horizon agentic domains: Embodied Decision Making (ALFWorld), Scientific Reasoning (ScienceWorld), and Web Navigation (WebShop).
+
+The paper was published on January 28, 2026, and is available on arXiv at https://arxiv.org/abs/2601.20209.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "71c39975-3833-44dc-b778-4f6d5d6a3112",
+  "isSidechain": false,
+  "promptId": "9f503ff4-5335-492c-870b-15a6eb7331fc",
+  "type": "user",
+  "uuid": "6509fb52-5af1-4a78-bdb3-5df0f676a818",
+  "toolUseResult": {
+    "query": "Spark policy-aware dynamic branching critical states embodied planning arXiv 2601.20209",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019aabeUaunJHGGzu13xcCdt",
+        "content": [
+          {
+            "title": "[2601.20209] Spark: Strategic Policy-Aware Exploration via Dynamic Branching for Long-Horizon Agentic Learning",
+            "url": "https://arxiv.org/abs/2601.20209"
+          },
+          {
+            "title": "Spark: Strategic Policy-Aware Exploration via Dynamic Branching for Long-Horizon Agentic Learning",
+            "url": "https://arxiv.org/html/2601.20209"
+          },
+          {
+            "title": "IEEE CIRCUITS AND SYSTEMS MAGAZINE 1 Embodied AI: From LLMs to World Models",
+            "url": "https://arxiv.org/pdf/2509.20021"
+          },
+          {
+            "title": "[2601.09609] DPWriter: Reinforcement Learning with Diverse Planning Branching for Creative Writing",
+            "url": "https://arxiv.org/abs/2601.09609"
+          },
+          {
+            "title": "[2601.21841] Embodied Task Planning via Graph-Informed Action Generation with Large Language Model",
+            "url": "https://arxiv.org/abs/2601.21841"
+          },
+          {
+            "title": "SPARK: Synergistic Policy And Reward co-evolving framework",
+            "url": "https://arxiv.org/html/2509.22624v1"
+          },
+          {
+            "title": "[2509.22624] SPARK: Synergistic Policy And Reward Co-Evolving Framework",
+            "url": "https://arxiv.org/abs/2509.22624"
+          },
+          {
+            "title": "[2601.06272] Crossing the Functional Desert: Cascade-Driven Assembly and Feasibility Transitions in Early Life",
+            "url": "https://arxiv.org/abs/2601.06272"
+          },
+          {
+            "title": "[2509.26375] SDA-PLANNER: State-Dependency Aware Adaptive Planner for Embodied Task Planning",
+            "url": "https://arxiv.org/abs/2509.26375"
+          },
+          {
+            "title": "Embodied Tree of Thoughts: Deliberate Manipulation Planning with Embodied World Model",
+            "url": "https://arxiv.org/html/2512.08188"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n**Spark** (**S**trategic **P**olicy-**A**ware explo**R**ation via **K**ey-state dynamic branching) is a novel framework that selectively branches at critical decision states for resource-efficient exploration.\n\n**Key Points:**\n\nThe framework addresses the challenge of training large language models as intelligent agents for long-horizon tasks, which is difficult due to scarcity of high-quality trajectories under limited resources. Existing methods waste computational budget on trivial steps while failing to guarantee sample quality.\n\nThe key insight is to activate adaptive branching exploration at critical decision points to probe promising trajectories, thereby achieving precise resource allocation that prioritizes sampling quality over blind coverage.\n\n**Results:**\n\nExperiments across diverse tasks (e.g., embodied planning) demonstrate that Spark achieves superior success rates with significantly fewer training samples, exhibiting robust generalization even in unseen scenarios.\n\nThe paper evaluates on three challenging long-horizon agentic domains: Embodied Decision Making (ALFWorld), Scientific Reasoning (ScienceWorld), and Web Navigation (WebShop).\n\nThe paper was published on January 28, 2026, and is available on arXiv at https://arxiv.org/abs/2601.20209."
+    ],
+    "durationSeconds": 6.508319067999983
+  },
+  "sourceToolAssistantUUID": "71c39975-3833-44dc-b778-4f6d5d6a3112",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "6509fb52-5af1-4a78-bdb3-5df0f676a818",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify ETB-GRPO novelty and feasibility via independent searches",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622"
+}
+```
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-11T22:59:04.913Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Gw1dwZCdUbCq2Jh6nrtzb6`</summary>
+
+```json
+{
+  "query": "AgentHER hindsight experience replay agent trajectory relabeling arXiv 2603.21357"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6509fb52-5af1-4a78-bdb3-5df0f676a818",
+  "isSidechain": false,
+  "requestId": "req_011CawcNSq9gDUA7L437K3RZ",
+  "type": "assistant",
+  "uuid": "bdd2d586-5d06-4e7c-86a2-4cca7c08ff6b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qo29GHAPjB6WphH9bWXScW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 897,
+      "cache_read_input_tokens": 37899,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 897,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 37899,
+          "cache_creation_input_tokens": 897,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 897
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-11T22:59:12.867Z_
+
+<details><summary>↩ Tool result · `toolu_01Gw1dwZCdUbCq2Jh6nrtzb6`</summary>
+
+```text
+Web search results for query: "AgentHER hindsight experience replay agent trajectory relabeling arXiv 2603.21357"
+
+Links: [{"title":"[2603.21357] AgentHER: Hindsight Experience Replay for LLM Agent Trajectory Relabeling","url":"https://arxiv.org/abs/2603.21357"},{"title":"AgentHER: Hindsight Experience Replay for LLM Agent Trajectory Relabeling","url":"https://arxiv.org/html/2603.21357"},{"title":"Hindsight Experience Replay | Request PDF","url":"https://www.researchgate.net/publication/318224066_Hindsight_Experience_Replay"},{"title":"Improving instruction following with Hindsight Generation ...","url":"https://arxiv.org/pdf/1910.09451"},{"title":"HER — Stable Baselines3 2.9.0a2 documentation","url":"https://stable-baselines3.readthedocs.io/en/master/modules/her.html"},{"title":"[2510.10304] Sample-Efficient Online Learning in LM Agents via Hindsight Trajectory Rewriting","url":"https://arxiv.org/abs/2510.10304"},{"title":"Addressing Sample Complexity in Visual Tasks Using HER and Hallucinatory GANs","url":"https://arxiv.org/pdf/1901.11529"},{"title":"[2306.16061] MRHER: Model-based Relay Hindsight Experience Replay for Sequential Object Manipulation Tasks with Sparse Rewards","url":"https://arxiv.org/abs/2306.16061"},{"title":"Spinning Straw into Gold: Relabeling LLM Agent Trajectories in Hindsight for Successful Demonstrations | OpenReview","url":"https://openreview.net/forum?id=QNfmqMSR7r"},{"title":"[1910.09451] HIGhER : Improving instruction following with Hindsight Generation for Experience Replay","url":"https://arxiv.org/abs/1910.09451"}]
+
+I found detailed information about the paper you're searching for. Here's what the search results reveal:
+
+## AgentHER Overview
+
+AgentHER is a framework that recovers lost training signal by adapting the Hindsight Experience Replay (HER; Andrychowicz et al., 2017) principle to natural-language agent trajectories for offline data augmentation.
+
+## Core Problem and Solution
+
+LLM agents fail on the majority of real-world tasks -- GPT-4o succeeds on fewer than 15% of WebArena navigation tasks and below 55% pass@1 on ToolBench -- yet every failed trajectory is routinely discarded, wasting the dominant source of collected experience.
+
+The key insight is simple: a trajectory that fails goal A is often a correct demonstration for some achievable alternative goal B.
+
+## Pipeline Architecture
+
+AgentHER realises this idea through a four-stage pipeline -- failure classification, outcome extraction, LLM-guided prompt relabeling with confidence gating, and data packaging that converts failed trajectories into training data for supervised fine-tuning (SFT), direct preference optimization (DPO), and ShareGPT formats.
+
+## Empirical Results
+
+On WebArena and ToolBench, AgentHER improves over success-only SFT by +7.1-11.7 pp across four model families (GPT-4o, Qwen2.5-72B/7B, LLaMA-3.1-8B), while achieving 2x data efficiency -- matching baseline performance with only 50% of successful demonstrations.
+
+Human evaluation confirms 97.7% relabeling precision under multi-judge verification.
+
+The paper was published on arXiv on March 22, 2026 by Liang Ding from Alibaba Group.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bdd2d586-5d06-4e7c-86a2-4cca7c08ff6b",
+  "isSidechain": false,
+  "promptId": "9f503ff4-5335-492c-870b-15a6eb7331fc",
+  "type": "user",
+  "uuid": "8473f307-971d-4a7e-8969-224ff282d2ca",
+  "toolUseResult": {
+    "query": "AgentHER hindsight experience replay agent trajectory relabeling arXiv 2603.21357",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01F7WFV5xwbheov7A7vkMn8H",
+        "content": [
+          {
+            "title": "[2603.21357] AgentHER: Hindsight Experience Replay for LLM Agent Trajectory Relabeling",
+            "url": "https://arxiv.org/abs/2603.21357"
+          },
+          {
+            "title": "AgentHER: Hindsight Experience Replay for LLM Agent Trajectory Relabeling",
+            "url": "https://arxiv.org/html/2603.21357"
+          },
+          {
+            "title": "Hindsight Experience Replay | Request PDF",
+            "url": "https://www.researchgate.net/publication/318224066_Hindsight_Experience_Replay"
+          },
+          {
+            "title": "Improving instruction following with Hindsight Generation ...",
+            "url": "https://arxiv.org/pdf/1910.09451"
+          },
+          {
+            "title": "HER — Stable Baselines3 2.9.0a2 documentation",
+            "url": "https://stable-baselines3.readthedocs.io/en/master/modules/her.html"
+          },
+          {
+            "title": "[2510.10304] Sample-Efficient Online Learning in LM Agents via Hindsight Trajectory Rewriting",
+            "url": "https://arxiv.org/abs/2510.10304"
+          },
+          {
+            "title": "Addressing Sample Complexity in Visual Tasks Using HER and Hallucinatory GANs",
+            "url": "https://arxiv.org/pdf/1901.11529"
+          },
+          {
+            "title": "[2306.16061] MRHER: Model-based Relay Hindsight Experience Replay for Sequential Object Manipulation Tasks with Sparse Rewards",
+            "url": "https://arxiv.org/abs/2306.16061"
+          },
+          {
+            "title": "Spinning Straw into Gold: Relabeling LLM Agent Trajectories in Hindsight for Successful Demonstrations | OpenReview",
+            "url": "https://openreview.net/forum?id=QNfmqMSR7r"
+          },
+          {
+            "title": "[1910.09451] HIGhER : Improving instruction following with Hindsight Generation for Experience Replay",
+            "url": "https://arxiv.org/abs/1910.09451"
+          }
+        ]
+      },
+      "I found detailed information about the paper you're searching for. Here's what the search results reveal:\n\n## AgentHER Overview\n\nAgentHER is a framework that recovers lost training signal by adapting the Hindsight Experience Replay (HER; Andrychowicz et al., 2017) principle to natural-language agent trajectories for offline data augmentation.\n\n## Core Problem and Solution\n\nLLM agents fail on the majority of real-world tasks -- GPT-4o succeeds on fewer than 15% of WebArena navigation tasks and below 55% pass@1 on ToolBench -- yet every failed trajectory is routinely discarded, wasting the dominant source of collected experience.\n\nThe key insight is simple: a trajectory that fails goal A is often a correct demonstration for some achievable alternative goal B.\n\n## Pipeline Architecture\n\nAgentHER realises this idea through a four-stage pipeline -- failure classification, outcome extraction, LLM-guided prompt relabeling with confidence gating, and data packaging that converts failed trajectories into training data for supervised fine-tuning (SFT), direct preference optimization (DPO), and ShareGPT formats.\n\n## Empirical Results\n\nOn WebArena and ToolBench, AgentHER improves over success-only SFT by +7.1-11.7 pp across four model families (GPT-4o, Qwen2.5-72B/7B, LLaMA-3.1-8B), while achieving 2x data efficiency -- matching baseline performance with only 50% of successful demonstrations.\n\nHuman evaluation confirms 97.7% relabeling precision under multi-judge verification.\n\nThe paper was published on arXiv on March 22, 2026 by Liang Ding from Alibaba Group."
+    ],
+    "durationSeconds": 7.949999612999993
+  },
+  "sourceToolAssistantUUID": "bdd2d586-5d06-4e7c-86a2-4cca7c08ff6b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-11T22:59:15.596Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Jq5Q9J7gwXo91Xg9qz19m2`</summary>
+
+```json
+{
+  "query": "PALADIN ICLR 2026 recovery rate 89% results ToolBench performance"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8473f307-971d-4a7e-8969-224ff282d2ca",
+  "isSidechain": false,
+  "requestId": "req_011CawcPGAyaFGpsvtB1WD13",
+  "type": "assistant",
+  "uuid": "e8bc2718-32ea-4347-ba96-960a5ea090c2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016DBhsQPnEy1GqnnzwWaVTu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1023,
+      "cache_read_input_tokens": 38796,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1023,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 38796,
+          "cache_creation_input_tokens": 1023,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1023
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-11T22:59:22.344Z_
+
+<details><summary>↩ Tool result · `toolu_01Jq5Q9J7gwXo91Xg9qz19m2`</summary>
+
+```text
+Web search results for query: "PALADIN ICLR 2026 recovery rate 89% results ToolBench performance"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2509.25238"},{"title":"PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases","url":"https://arxiv.org/html/2509.25238"},{"title":"ICLR 2026 Statistics - Paper Copilot","url":"https://papercopilot.com/statistics/iclr-statistics/iclr-2026-statistics/"},{"title":"ICLR 2026 Accepted Paper List - Paper Copilot","url":"https://papercopilot.com/paper-list/iclr-paper-list/iclr-2026-paper-list/"},{"title":"ICLR 2026 Orals","url":"https://iclr.cc/virtual/2026/events/oral"},{"title":"ICLR 2026","url":"https://iclr.cc/"},{"title":"ICLR Statistics - Paper Copilot","url":"https://papercopilot.com/statistics/iclr-statistics/"},{"title":"Function Calling Benchmarks Leaderboard 2026 | Awesome Agents","url":"https://awesomeagents.ai/leaderboards/function-calling-benchmarks-leaderboard/"},{"title":"GitHub - OpenBMB/ToolBench: [ICLR'24 spotlight] An open platform for training, serving, and evaluating large language model for tool learning. · GitHub","url":"https://github.com/openbmb/toolbench"},{"title":"ICLR 2026 Conference | OpenReview","url":"https://openreview.net/group?id=ICLR.cc%2F2026%2FConference"}]
+
+I found relevant information about PALADIN at ICLR 2026. Here are the key results:
+
+## PALADIN Performance Results
+
+PALADIN improves Recovery Rate (RR) from 32.76% to 89.68% (+57% relative) over ToolBench and outperforms the strongest baseline CRITIC (76.34%) by +13.3%. Against vanilla agents, PALADIN achieves 89.86% RR (+66% relative improvement from 23.75%).
+
+## Training and Methodology
+
+PALADIN trains on 50,000+ recovery-annotated trajectories constructed via systematic failure injection and expert demonstrations on an enhanced ToolBench dataset, using LoRA-based fine-tuning to retain base capabilities while injecting recovery competence. At inference, PALADIN detects execution-time errors and retrieves the most similar case from a curated bank of 55+ failure exemplars aligned with ToolScan's taxonomy, then executes the corresponding recovery action.
+
+## Generalization
+
+PALADIN generalizes to novel failures beyond the training distribution, retaining 95.2% recovery performance on unseen tool APIs.
+
+## Ablation Study Results
+
+PALADIN's robustness arises from both training-time exposure to failures and inference-time retrieval, with retrieval contributing up to +20–30 points in robustness metrics.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e8bc2718-32ea-4347-ba96-960a5ea090c2",
+  "isSidechain": false,
+  "promptId": "9f503ff4-5335-492c-870b-15a6eb7331fc",
+  "type": "user",
+  "uuid": "377d720b-ba01-4f44-b92f-cbe0cb4a983d",
+  "toolUseResult": {
+    "query": "PALADIN ICLR 2026 recovery rate 89% results ToolBench performance",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01D9X57BqyLjrUDy6AyFghT4",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2509.25238"
+          },
+          {
+            "title": "PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases",
+            "url": "https://arxiv.org/html/2509.25238"
+          },
+          {
+            "title": "ICLR 2026 Statistics - Paper Copilot",
+            "url": "https://papercopilot.com/statistics/iclr-statistics/iclr-2026-statistics/"
+          },
+          {
+            "title": "ICLR 2026 Accepted Paper List - Paper Copilot",
+            "url": "https://papercopilot.com/paper-list/iclr-paper-list/iclr-2026-paper-list/"
+          },
+          {
+            "title": "ICLR 2026 Orals",
+            "url": "https://iclr.cc/virtual/2026/events/oral"
+          },
+          {
+            "title": "ICLR 2026",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "ICLR Statistics - Paper Copilot",
+            "url": "https://papercopilot.com/statistics/iclr-statistics/"
+          },
+          {
+            "title": "Function Calling Benchmarks Leaderboard 2026 | Awesome Agents",
+            "url": "https://awesomeagents.ai/leaderboards/function-calling-benchmarks-leaderboard/"
+          },
+          {
+            "title": "GitHub - OpenBMB/ToolBench: [ICLR'24 spotlight] An open platform for training, serving, and evaluating large language model for tool learning. · GitHub",
+            "url": "https://github.com/openbmb/toolbench"
+          },
+          {
+            "title": "ICLR 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=ICLR.cc%2F2026%2FConference"
+          }
+        ]
+      },
+      "I found relevant information about PALADIN at ICLR 2026. Here are the key results:\n\n## PALADIN Performance Results\n\nPALADIN improves Recovery Rate (RR) from 32.76% to 89.68% (+57% relative) over ToolBench and outperforms the strongest baseline CRITIC (76.34%) by +13.3%. Against vanilla agents, PALADIN achieves 89.86% RR (+66% relative improvement from 23.75%).\n\n## Training and Methodology\n\nPALADIN trains on 50,000+ recovery-annotated trajectories constructed via systematic failure injection and expert demonstrations on an enhanced ToolBench dataset, using LoRA-based fine-tuning to retain base capabilities while injecting recovery competence. At inference, PALADIN detects execution-time errors and retrieves the most similar case from a curated bank of 55+ failure exemplars aligned with ToolScan's taxonomy, then executes the corresponding recovery action.\n\n## Generalization\n\nPALADIN generalizes to novel failures beyond the training distribution, retaining 95.2% recovery performance on unseen tool APIs.\n\n## Ablation Study Results\n\nPALADIN's robustness arises from both training-time exposure to failures and inference-time retrieval, with retrieval contributing up to +20–30 points in robustness metrics."
+    ],
+    "durationSeconds": 6.744474724
+  },
+  "sourceToolAssistantUUID": "e8bc2718-32ea-4347-ba96-960a5ea090c2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-11T22:59:26.112Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PUxX1tnBW3NhmtghwZzuqG`</summary>
+
+```json
+{
+  "query": "agent self-correction RL error signal branching rollout 2026 GRPO recovery"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "377d720b-ba01-4f44-b92f-cbe0cb4a983d",
+  "isSidechain": false,
+  "requestId": "req_011CawcPxgHk9qMg2XwFpDCK",
+  "type": "assistant",
+  "uuid": "fb34d9e3-8466-48ad-b827-d87ca9426966",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BDZF7fvYuxpPQdJ6LLjVni",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 880,
+      "cache_read_input_tokens": 39819,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 880,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 39819,
+          "cache_creation_input_tokens": 880,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 880
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-11T22:59:33.877Z_
+
+<details><summary>↩ Tool result · `toolu_01PUxX1tnBW3NhmtghwZzuqG`</summary>
+
+```text
+Web search results for query: "agent self-correction RL error signal branching rollout 2026 GRPO recovery"
+
+Links: [{"title":"GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub","url":"https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"},{"title":"GitHub - AMAP-ML/Tree-GRPO: [ICLR 2026] Tree Search for LLM Agent Reinforcement Learning · GitHub","url":"https://github.com/AMAP-ML/Tree-GRPO"},{"title":"Unlocking Agentic RL Training for GPT-OSS: A Practical Retrospective","url":"https://huggingface.co/blog/LinkedIn/gpt-oss-agentic-rl"},{"title":"RL Posttraining for Tool-Using Agents: GRPO, Async RL, and Reward Design in 2026 | Zylos Research","url":"https://zylos.ai/research/2026-04-10-rl-posttraining-tool-using-agents-grpo-async-rl"},{"title":"Best Practices for Multi-Turn RL","url":"https://fireworks.ai/blog/best-practices-for-multi-turn-RL"},{"title":"Tree Search for LLM Agent Reinforcement Learning","url":"https://arxiv.org/pdf/2509.21240"},{"title":"Published as a conference paper at ICLR 2026","url":"https://openreview.net/pdf?id=1FmUKtgSPU"},{"title":"SOAR: Self-Correction for Optimal Alignment and Refinement in Diffusion Models","url":"https://arxiv.org/html/2604.12617"},{"title":"Post-Training in 2026: GRPO, DAPO, RLVR & Beyond","url":"https://llm-stats.com/blog/research/post-training-techniques-2026"},{"title":"Inside the Agentic RL Training Loop • Singularity Notes","url":"https://blog.guanghan.ai/post/260213_agentic_rl/"}]
+
+Based on the search results, I found relevant information about agent self-correction, RL error signals, branching rollouts, GRPO, and related techniques in 2026. Here's what the research shows:
+
+## Key Findings:
+
+**Tree-GRPO and Branching Rollouts:**
+Tree-GRPO was accepted by ICLR 2026 and adopts a tree-search rollout strategy in place of independent chain-based rollouts for LLM agent RL. The rollout is conducted in a tree-search manner, where each node corresponds to a complete thought-action-observation step, and group relative advantages are estimated at both intra-tree and inter-tree levels.
+
+**Error Signal and Recovery:**
+Tree-GRPO constructs step-level process supervision signals through a tree structure with a less rollout budget. Based on the tree structure, step-level process signals can be derived purely from outcome rewards, introducing an implicit step-level preference learning target into online RL.
+
+**GRPO Standards in 2026:**
+GRPO (Group Relative Policy Optimization), introduced in DeepSeekMath and operationalized at scale in DeepSeek-R1, has become the standard RL algorithm for LLM posttraining. It eliminates the value network by computing advantages within response groups — halving memory overhead vs. PPO — but has real failure modes (entropy collapse, advantage collapse, KL drift) that practitioners must actively manage.
+
+**Self-Correction via Rollout Correction:**
+Rollout correction improves training dynamics significantly, with gradient norms remaining stable rather than exploding.
+
+The search results show that 2026 research emphasizes tree-structured rollouts for more efficient error signal generation and credit assignment in agentic RL systems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fb34d9e3-8466-48ad-b827-d87ca9426966",
+  "isSidechain": false,
+  "promptId": "9f503ff4-5335-492c-870b-15a6eb7331fc",
+  "type": "user",
+  "uuid": "599af1e7-bcb3-4f35-b436-9a2d83957152",
+  "toolUseResult": {
+    "query": "agent self-correction RL error signal branching rollout 2026 GRPO recovery",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01K9oPstRS72onZNZH14AMqy",
+        "content": [
+          {
+            "title": "GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub",
+            "url": "https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"
+          },
+          {
+            "title": "GitHub - AMAP-ML/Tree-GRPO: [ICLR 2026] Tree Search for LLM Agent Reinforcement Learning · GitHub",
+            "url": "https://github.com/AMAP-ML/Tree-GRPO"
+          },
+          {
+            "title": "Unlocking Agentic RL Training for GPT-OSS: A Practical Retrospective",
+            "url": "https://huggingface.co/blog/LinkedIn/gpt-oss-agentic-rl"
+          },
+          {
+            "title": "RL Posttraining for Tool-Using Agents: GRPO, Async RL, and Reward Design in 2026 | Zylos Research",
+            "url": "https://zylos.ai/research/2026-04-10-rl-posttraining-tool-using-agents-grpo-async-rl"
+          },
+          {
+            "title": "Best Practices for Multi-Turn RL",
+            "url": "https://fireworks.ai/blog/best-practices-for-multi-turn-RL"
+          },
+          {
+            "title": "Tree Search for LLM Agent Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2509.21240"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://openreview.net/pdf?id=1FmUKtgSPU"
+          },
+          {
+            "title": "SOAR: Self-Correction for Optimal Alignment and Refinement in Diffusion Models",
+            "url": "https://arxiv.org/html/2604.12617"
+          },
+          {
+            "title": "Post-Training in 2026: GRPO, DAPO, RLVR & Beyond",
+            "url": "https://llm-stats.com/blog/research/post-training-techniques-2026"
+          },
+          {
+            "title": "Inside the Agentic RL Training Loop • Singularity Notes",
+            "url": "https://blog.guanghan.ai/post/260213_agentic_rl/"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about agent self-correction, RL error signals, branching rollouts, GRPO, and related techniques in 2026. Here's what the research shows:\n\n## Key Findings:\n\n**Tree-GRPO and Branching Rollouts:**\nTree-GRPO was accepted by ICLR 2026 and adopts a tree-search rollout strategy in place of independent chain-based rollouts for LLM agent RL. The rollout is conducted in a tree-search manner, where each node corresponds to a complete thought-action-observation step, and group relative advantages are estimated at both intra-tree and inter-tree levels.\n\n**Error Signal and Recovery:**\nTree-GRPO constructs step-level process supervision signals through a tree structure with a less rollout budget. Based on the tree structure, step-level process signals can be derived purely from outcome rewards, introducing an implicit step-level preference learning target into online RL.\n\n**GRPO Standards in 2026:**\nGRPO (Group Relative Policy Optimization), introduced in DeepSeekMath and operationalized at scale in DeepSeek-R1, has become the standard RL algorithm for LLM posttraining. It eliminates the value network by computing advantages within response groups — halving memory overhead vs. PPO — but has real failure modes (entropy collapse, advantage collapse, KL drift) that practitioners must actively manage.\n\n**Self-Correction via Rollout Correction:**\nRollout correction improves training dynamics significantly, with gradient norms remaining stable rather than exploding.\n\nThe search results show that 2026 research emphasizes tree-structured rollouts for more efficient error signal generation and credit assignment in agentic RL systems."
+    ],
+    "durationSeconds": 7.759099905999989
+  },
+  "sourceToolAssistantUUID": "fb34d9e3-8466-48ad-b827-d87ca9426966",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-11T22:59:36.677Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BihpxtWpLAZcx33EaTa4rb`</summary>
+
+```json
+{
+  "query": "Co-Evolving agents failure agent hard negatives arXiv 2511.22254"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "599af1e7-bcb3-4f35-b436-9a2d83957152",
+  "isSidechain": false,
+  "requestId": "req_011CawcQp2AhHyp9qRhMwWu6",
+  "type": "assistant",
+  "uuid": "406bfd1f-3124-44b1-9759-1db7d8869088",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TaKvEajs7Lcb5t3j9CLYCB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1050,
+      "cache_read_input_tokens": 40699,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1050,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 40699,
+          "cache_creation_input_tokens": 1050,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1050
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-11T22:59:43.654Z_
+
+<details><summary>↩ Tool result · `toolu_01BihpxtWpLAZcx33EaTa4rb`</summary>
+
+```text
+Web search results for query: "Co-Evolving agents failure agent hard negatives arXiv 2511.22254"
+
+Links: [{"title":"[2511.22254] Co-Evolving Agents: Learning from Failures as Hard Negatives","url":"https://www.arxiv.org/abs/2511.22254"},{"title":"Co-Evolving Agents: Learning from Failures as Hard Negatives","url":"https://arxiv.org/html/2511.22254v4"},{"title":"CO-EVOLVING AGENTS: LEARNING FROM FAILURES AS HARD NEGATIVE Yeonsung Jung1","url":"https://www.arxiv.org/pdf/2511.22254"},{"title":"Co-Evolving Agents: Learning from Failures as Hard Negative","url":"https://arxiv.org/html/2511.22254v1"},{"title":"Co-Evolving Agents: Learning from Failures as Hard Negatives | OpenReview","url":"https://openreview.net/forum?id=usYfUfTG7I"},{"title":"Agent0: Unleashing Self-Evolving Agents from Zero Data via Tool-Integrated Reasoning","url":"https://arxiv.org/html/2511.16043v1"},{"title":"AgentSpawn: Adaptive Multi-Agent Collaboration Through ...","url":"https://www.arxiv.org/pdf/2602.07072"},{"title":"Why Do Multi-Agent LLM Systems Fail?","url":"https://arxiv.org/html/2503.13657v1"},{"title":"[2511.16043] Agent0: Unleashing Self-Evolving Agents from Zero Data via Tool-Integrated Reasoning","url":"https://arxiv.org/abs/2511.16043"},{"title":"Agent0: Unleashing Self-Evolving Agents from Zero Data via Tool-Integrated Reasoning | alphaXiv","url":"https://www.alphaxiv.org/resources/2511.16043v1"}]
+
+I found the arXiv paper you're looking for. Here's what I found:
+
+## Co-Evolving Agents: Learning from Failures as Hard Negatives (arXiv 2511.22254)
+
+**Paper Overview:**
+The paper proposes a co-evolving agents framework in which a target agent improves jointly with an auxiliary failure agent.
+
+**Problem Statement:**
+The rapid progress of large foundation models has accelerated the development of task-specialized agents across diverse domains, however the effectiveness of agents remains tightly coupled with the quality of training data, while curating task-specific datasets remains costly and often infeasible in real-world scenarios. While recent preference optimization methods outperform supervised fine-tuning, their heavy reliance on predicted trajectories under limited ground-truth supervision leaves them prone to overfitting.
+
+**Key Contribution:**
+The failure agent learns from pairs of failure trajectories and produces hard negatives, i.e., high-reward failures that lie close to success, which are then incorporated into the target agent's preference optimization, providing more informative contrastive signals.
+
+**Authors:** Yeonsung Jung, Trilok Padhi, Sina Shaham, Dipika Khullar, Joonhyun Jeong, Ninareh Mehrabi, Eunho Yang
+
+The paper was submitted on November 27, 2025, with the latest version (v2) revised on December 4, 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "406bfd1f-3124-44b1-9759-1db7d8869088",
+  "isSidechain": false,
+  "promptId": "9f503ff4-5335-492c-870b-15a6eb7331fc",
+  "type": "user",
+  "uuid": "aa9cbd09-fe74-44f3-97c3-c69875583a53",
+  "toolUseResult": {
+    "query": "Co-Evolving agents failure agent hard negatives arXiv 2511.22254",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01K78UMb6hSNWRfg4frasQYN",
+        "content": [
+          {
+            "title": "[2511.22254] Co-Evolving Agents: Learning from Failures as Hard Negatives",
+            "url": "https://www.arxiv.org/abs/2511.22254"
+          },
+          {
+            "title": "Co-Evolving Agents: Learning from Failures as Hard Negatives",
+            "url": "https://arxiv.org/html/2511.22254v4"
+          },
+          {
+            "title": "CO-EVOLVING AGENTS: LEARNING FROM FAILURES AS HARD NEGATIVE Yeonsung Jung1",
+            "url": "https://www.arxiv.org/pdf/2511.22254"
+          },
+          {
+            "title": "Co-Evolving Agents: Learning from Failures as Hard Negative",
+            "url": "https://arxiv.org/html/2511.22254v1"
+          },
+          {
+            "title": "Co-Evolving Agents: Learning from Failures as Hard Negatives | OpenReview",
+            "url": "https://openreview.net/forum?id=usYfUfTG7I"
+          },
+          {
+            "title": "Agent0: Unleashing Self-Evolving Agents from Zero Data via Tool-Integrated Reasoning",
+            "url": "https://arxiv.org/html/2511.16043v1"
+          },
+          {
+            "title": "AgentSpawn: Adaptive Multi-Agent Collaboration Through ...",
+            "url": "https://www.arxiv.org/pdf/2602.07072"
+          },
+          {
+            "title": "Why Do Multi-Agent LLM Systems Fail?",
+            "url": "https://arxiv.org/html/2503.13657v1"
+          },
+          {
+            "title": "[2511.16043] Agent0: Unleashing Self-Evolving Agents from Zero Data via Tool-Integrated Reasoning",
+            "url": "https://arxiv.org/abs/2511.16043"
+          },
+          {
+            "title": "Agent0: Unleashing Self-Evolving Agents from Zero Data via Tool-Integrated Reasoning | alphaXiv",
+            "url": "https://www.alphaxiv.org/resources/2511.16043v1"
+          }
+        ]
+      },
+      "I found the arXiv paper you're looking for. Here's what I found:\n\n## Co-Evolving Agents: Learning from Failures as Hard Negatives (arXiv 2511.22254)\n\n**Paper Overview:**\nThe paper proposes a co-evolving agents framework in which a target agent improves jointly with an auxiliary failure agent.\n\n**Problem Statement:**\nThe rapid progress of large foundation models has accelerated the development of task-specialized agents across diverse domains, however the effectiveness of agents remains tightly coupled with the quality of training data, while curating task-specific datasets remains costly and often infeasible in real-world scenarios. While recent preference optimization methods outperform supervised fine-tuning, their heavy reliance on predicted trajectories under limited ground-truth supervision leaves them prone to overfitting.\n\n**Key Contribution:**\nThe failure agent learns from pairs of failure trajectories and produces hard negatives, i.e., high-reward failures that lie close to success, which are then incorporated into the target agent's preference optimization, providing more informative contrastive signals.\n\n**Authors:** Yeonsung Jung, Trilok Padhi, Sina Shaham, Dipika Khullar, Joonhyun Jeong, Ninareh Mehrabi, Eunho Yang\n\nThe paper was submitted on November 27, 2025, with the latest version (v2) revised on December 4, 2025."
+    ],
+    "durationSeconds": 6.973466026999987
+  },
+  "sourceToolAssistantUUID": "406bfd1f-3124-44b1-9759-1db7d8869088",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-11T22:59:47.403Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0131vkzT2wJ7G7cHHqoZeouf`</summary>
+
+```json
+{
+  "query": "Qwen3-8B LoRA GRPO training compute cost GPU hours agentic RL 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aa9cbd09-fe74-44f3-97c3-c69875583a53",
+  "isSidechain": false,
+  "requestId": "req_011CawcRXoP1gjaXqteesgF5",
+  "type": "assistant",
+  "uuid": "94d094f8-c834-4bec-a061-a7a553d48348",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018EPUGgr9RXxTi8sqHGpBuM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 905,
+      "cache_read_input_tokens": 41749,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 905,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 41749,
+          "cache_creation_input_tokens": 905,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 905
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 54_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "94d094f8-c834-4bec-a061-a7a553d48348",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 55_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify ETB-GRPO novelty and feasibility via independent searches",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622"
+}
+```
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-11T22:59:54.260Z_
+
+<details><summary>↩ Tool result · `toolu_0131vkzT2wJ7G7cHHqoZeouf`</summary>
+
+```text
+Web search results for query: "Qwen3-8B LoRA GRPO training compute cost GPU hours agentic RL 2026"
+
+Links: [{"title":"GitHub - QwenLM/Qwen3.6: Qwen3.6 is the large language model series developed by Qwen team, Alibaba Group. · GitHub","url":"https://github.com/QwenLM/Qwen3.6"},{"title":"Qwen3.5 Fine-tuning Guide | Unsloth Documentation","url":"https://unsloth.ai/docs/models/qwen3.5/fine-tune"},{"title":"Qwen3 Best Practices — swift 3.7.3 documentation","url":"https://swift.readthedocs.io/en/v3.7/BestPractices/Qwen3-Best-Practice.html"},{"title":"Qwen3 - How to Run & Fine-tune | Unsloth Documentation","url":"https://unsloth.ai/docs/models/qwen3-how-to-run-and-fine-tune"},{"title":"Qwen3-32B: Specifications and GPU VRAM Requirements","url":"https://apxml.com/models/qwen3-32b"},{"title":"GitHub - OpenPipe/ART: Agent Reinforcement Trainer: train multi-step agents for real-world tasks using GRPO. Give your agents on-the-job training. Reinforcement learning for Qwen3.5, GPT-OSS, Llama, and more! · GitHub","url":"https://github.com/OpenPipe/ART"},{"title":"🚀[Fine-tuning] Qwen3-MoE Megatron Training Implementation and Best Practices👋 · QwenLM/Qwen3 · Discussion #1301","url":"https://github.com/QwenLM/Qwen3/discussions/1301"},{"title":"Qwen3.5 - How to Run Locally | Unsloth Documentation","url":"https://unsloth.ai/docs/models/qwen3.5"},{"title":"Unsloth - Qwen - Read the Docs","url":"https://qwen.readthedocs.io/en/latest/training/unsloth.html"},{"title":"GitHub - PrimeIntellect-ai/prime-rl: Agentic RL Training at Scale · GitHub","url":"https://github.com/PrimeIntellect-ai/prime-rl"}]
+
+Based on the search results, I found relevant information about Qwen3-8B with LoRA, GRPO training, and agentic RL in 2026. Here's what the search revealed:
+
+## Key Findings:
+
+**GRPO Training with LoRA:**
+Training frameworks including UnSloth, Swift, and Llama-Factory are recommended for finetuning Qwen models with SFT, DPO, and GRPO.
+
+**Compute Resources:**
+Best practice references for Qwen3-8B GRPO training use 8xH20 GPUs (70G each). For more efficient training, LoRA training of Qwen3-8B requires approximately 22GB of GPU memory.
+
+**Agentic RL Capabilities:**
+ART is an open-source RL framework that improves agent reliability by allowing LLMs to learn from experience, providing an ergonomic harness for integrating GRPO into any Python application.
+
+**Training Speed Example:**
+Qwen3-4B-Instruct can be trained to perform multi-turn RL via LoRA without SFT warmup and can be trained on a single H100 GPU in just over an hour.
+
+**Framework Support:**
+The ms-swift large model training framework provides support for CPT/SFT/DPO/GRPO training for Qwen3, and GRPO works in Unsloth if you disable fast vLLM inference and use Unsloth inference instead.
+
+The search results show that 2026 has seen significant progress in making GRPO training more accessible through optimized frameworks and reduced memory requirements.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "94d094f8-c834-4bec-a061-a7a553d48348",
+  "isSidechain": false,
+  "promptId": "9f503ff4-5335-492c-870b-15a6eb7331fc",
+  "type": "user",
+  "uuid": "78d67fb9-32a5-456d-b206-fc3e3397cc8d",
+  "toolUseResult": {
+    "query": "Qwen3-8B LoRA GRPO training compute cost GPU hours agentic RL 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014Ep8oev8RKPhDSrTtmpn9z",
+        "content": [
+          {
+            "title": "GitHub - QwenLM/Qwen3.6: Qwen3.6 is the large language model series developed by Qwen team, Alibaba Group. · GitHub",
+            "url": "https://github.com/QwenLM/Qwen3.6"
+          },
+          {
+            "title": "Qwen3.5 Fine-tuning Guide | Unsloth Documentation",
+            "url": "https://unsloth.ai/docs/models/qwen3.5/fine-tune"
+          },
+          {
+            "title": "Qwen3 Best Practices — swift 3.7.3 documentation",
+            "url": "https://swift.readthedocs.io/en/v3.7/BestPractices/Qwen3-Best-Practice.html"
+          },
+          {
+            "title": "Qwen3 - How to Run & Fine-tune | Unsloth Documentation",
+            "url": "https://unsloth.ai/docs/models/qwen3-how-to-run-and-fine-tune"
+          },
+          {
+            "title": "Qwen3-32B: Specifications and GPU VRAM Requirements",
+            "url": "https://apxml.com/models/qwen3-32b"
+          },
+          {
+            "title": "GitHub - OpenPipe/ART: Agent Reinforcement Trainer: train multi-step agents for real-world tasks using GRPO. Give your agents on-the-job training. Reinforcement learning for Qwen3.5, GPT-OSS, Llama, and more! · GitHub",
+            "url": "https://github.com/OpenPipe/ART"
+          },
+          {
+            "title": "🚀[Fine-tuning] Qwen3-MoE Megatron Training Implementation and Best Practices👋 · QwenLM/Qwen3 · Discussion #1301",
+            "url": "https://github.com/QwenLM/Qwen3/discussions/1301"
+          },
+          {
+            "title": "Qwen3.5 - How to Run Locally | Unsloth Documentation",
+            "url": "https://unsloth.ai/docs/models/qwen3.5"
+          },
+          {
+            "title": "Unsloth - Qwen - Read the Docs",
+            "url": "https://qwen.readthedocs.io/en/latest/training/unsloth.html"
+          },
+          {
+            "title": "GitHub - PrimeIntellect-ai/prime-rl: Agentic RL Training at Scale · GitHub",
+            "url": "https://github.com/PrimeIntellect-ai/prime-rl"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about Qwen3-8B with LoRA, GRPO training, and agentic RL in 2026. Here's what the search revealed:\n\n## Key Findings:\n\n**GRPO Training with LoRA:**\nTraining frameworks including UnSloth, Swift, and Llama-Factory are recommended for finetuning Qwen models with SFT, DPO, and GRPO.\n\n**Compute Resources:**\nBest practice references for Qwen3-8B GRPO training use 8xH20 GPUs (70G each). For more efficient training, LoRA training of Qwen3-8B requires approximately 22GB of GPU memory.\n\n**Agentic RL Capabilities:**\nART is an open-source RL framework that improves agent reliability by allowing LLMs to learn from experience, providing an ergonomic harness for integrating GRPO into any Python application.\n\n**Training Speed Example:**\nQwen3-4B-Instruct can be trained to perform multi-turn RL via LoRA without SFT warmup and can be trained on a single H100 GPU in just over an hour.\n\n**Framework Support:**\nThe ms-swift large model training framework provides support for CPT/SFT/DPO/GRPO training for Qwen3, and GRPO works in Unsloth if you disable fast vLLM inference and use Unsloth inference instead.\n\nThe search results show that 2026 has seen significant progress in making GRPO training more accessible through optimized frameworks and reduced memory requirements."
+    ],
+    "durationSeconds": 6.853033789000008
+  },
+  "sourceToolAssistantUUID": "94d094f8-c834-4bec-a061-a7a553d48348",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 57 · 2026-05-11T22:59:54.267Z_
+
+```json
+{
+  "parentUuid": "78d67fb9-32a5-456d-b206-fc3e3397cc8d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "e2c60c92-ad71-4b64-a1d3-d702fd65d5ee",
+  "timestamp": "2026-05-11T22:59:54.267Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-11T22:59:57.945Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YBWzB4FMUGjvvvcSD4dq9K`</summary>
+
+```json
+{
+  "query": "ToolBench API rate limits trajectory collection time cost LLM agent training 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e2c60c92-ad71-4b64-a1d3-d702fd65d5ee",
+  "isSidechain": false,
+  "requestId": "req_011CawcSKAeFtA4wgZFhdoF4",
+  "type": "assistant",
+  "uuid": "cd375d88-d19d-4ee8-9ca3-221b59025a2d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B28ZJTRXaGeVMpfg4fpCf9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1191,
+      "cache_read_input_tokens": 42654,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1191,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 42654,
+          "cache_creation_input_tokens": 1191,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1191
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-11T23:00:06.100Z_
+
+<details><summary>↩ Tool result · `toolu_01YBWzB4FMUGjvvvcSD4dq9K`</summary>
+
+```text
+Web search results for query: "ToolBench API rate limits trajectory collection time cost LLM agent training 2025 2026"
+
+Links: [{"title":"ToolBench: LLM Tool-Use Benchmark","url":"https://www.emergentmind.com/topics/toolbench"},{"title":"GitHub - OpenBMB/ToolBench: [ICLR'24 spotlight] An open platform for training, serving, and evaluating large language model for tool learning. · GitHub","url":"https://github.com/OpenBMB/ToolBench"},{"title":"ToolLLM: Facilitating Large Language Models to Master 16000+ Real-world APIs | OpenReview","url":"https://openreview.net/forum?id=dHng2O0Jjr"},{"title":"GitHub - sambanova/toolbench: ToolBench, an evaluation suite for LLM tool manipulation capabilities. · GitHub","url":"https://github.com/sambanova/toolbench"},{"title":"ToolBench Dataset Overview","url":"https://www.emergentmind.com/topics/toolbench-dataset"},{"title":"ToolBench Evaluation: LLM Tool-Use Insights","url":"https://www.emergentmind.com/topics/toolbench-evaluation"},{"title":"10 AI agent benchmarks","url":"https://www.evidentlyai.com/blog/ai-agent-benchmarks"},{"title":"MCP-Bench: Benchmarking Tool-Using LLM Agents with ...","url":"https://arxiv.org/pdf/2508.20453"},{"title":"TRAJECT-Bench: LLM Tool-Use Benchmark","url":"https://www.emergentmind.com/topics/traject-bench"},{"title":"[2307.16789] ToolLLM: Facilitating Large Language Models to Master 16000+ Real-world APIs","url":"https://arxiv.org/abs/2307.16789"}]
+
+I've completed the web search for your query about ToolBench API rate limits, trajectory collection, time costs, and LLM agent training in 2025-2026. Here are the key findings:
+
+## ToolBench Overview and Recent Developments
+
+ToolBench comprises 16,464 real-world RESTful APIs spanning 49 categories and includes 126,486 multi-turn (instruction, solution-path) pairs covering single-tool, intra-category, and multi-tool scenarios.
+
+## Trajectory Collection and Data Quality
+
+Recent advances incorporate error-driven and reflection-centric learning with explicit Error→Reflection→Correction trajectories to improve robustness and generalization. Multi-Agent Meta-Verification (MAMV) built on GPT-4 independently validates APIs, queries, and reasoning trajectories, with this multi-stage annotation ensuring all data and solution paths are correctly matched and programmatically executable.
+
+## Performance and Cost Optimization
+
+Tool-MVR combining verified and reflection-augmented data achieves superior scores over ToolLLM (+23.9%) and reduces API call volume by 31.4% on StableToolBench. This demonstrates efforts to optimize API usage efficiency.
+
+## Recent Benchmarking Extensions (2025)
+
+TRAJECT-Bench curates 1,228 production-style APIs with systematically controlled parameter complexity across ten domains: Travel, Mapping, Finance, Weather, E-commerce, News/Media, Gaming, Email, Education, and Music.
+
+The search results focus more on dataset quality, trajectory-level evaluation metrics, and training improvements rather than specific API rate limit policies or detailed cost breakdowns. For specific rate limit information, you may need to consult the actual ToolBench or RapidAPI Hub documentation directly.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cd375d88-d19d-4ee8-9ca3-221b59025a2d",
+  "isSidechain": false,
+  "promptId": "9f503ff4-5335-492c-870b-15a6eb7331fc",
+  "type": "user",
+  "uuid": "77a89402-958c-423d-8aa6-33f87c114aee",
+  "toolUseResult": {
+    "query": "ToolBench API rate limits trajectory collection time cost LLM agent training 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01ScM2V3u86jrnc8eA2gTCmL",
+        "content": [
+          {
+            "title": "ToolBench: LLM Tool-Use Benchmark",
+            "url": "https://www.emergentmind.com/topics/toolbench"
+          },
+          {
+            "title": "GitHub - OpenBMB/ToolBench: [ICLR'24 spotlight] An open platform for training, serving, and evaluating large language model for tool learning. · GitHub",
+            "url": "https://github.com/OpenBMB/ToolBench"
+          },
+          {
+            "title": "ToolLLM: Facilitating Large Language Models to Master 16000+ Real-world APIs | OpenReview",
+            "url": "https://openreview.net/forum?id=dHng2O0Jjr"
+          },
+          {
+            "title": "GitHub - sambanova/toolbench: ToolBench, an evaluation suite for LLM tool manipulation capabilities. · GitHub",
+            "url": "https://github.com/sambanova/toolbench"
+          },
+          {
+            "title": "ToolBench Dataset Overview",
+            "url": "https://www.emergentmind.com/topics/toolbench-dataset"
+          },
+          {
+            "title": "ToolBench Evaluation: LLM Tool-Use Insights",
+            "url": "https://www.emergentmind.com/topics/toolbench-evaluation"
+          },
+          {
+            "title": "10 AI agent benchmarks",
+            "url": "https://www.evidentlyai.com/blog/ai-agent-benchmarks"
+          },
+          {
+            "title": "MCP-Bench: Benchmarking Tool-Using LLM Agents with ...",
+            "url": "https://arxiv.org/pdf/2508.20453"
+          },
+          {
+            "title": "TRAJECT-Bench: LLM Tool-Use Benchmark",
+            "url": "https://www.emergentmind.com/topics/traject-bench"
+          },
+          {
+            "title": "[2307.16789] ToolLLM: Facilitating Large Language Models to Master 16000+ Real-world APIs",
+            "url": "https://arxiv.org/abs/2307.16789"
+          }
+        ]
+      },
+      "I've completed the web search for your query about ToolBench API rate limits, trajectory collection, time costs, and LLM agent training in 2025-2026. Here are the key findings:\n\n## ToolBench Overview and Recent Developments\n\nToolBench comprises 16,464 real-world RESTful APIs spanning 49 categories and includes 126,486 multi-turn (instruction, solution-path) pairs covering single-tool, intra-category, and multi-tool scenarios.\n\n## Trajectory Collection and Data Quality\n\nRecent advances incorporate error-driven and reflection-centric learning with explicit Error→Reflection→Correction trajectories to improve robustness and generalization. Multi-Agent Meta-Verification (MAMV) built on GPT-4 independently validates APIs, queries, and reasoning trajectories, with this multi-stage annotation ensuring all data and solution paths are correctly matched and programmatically executable.\n\n## Performance and Cost Optimization\n\nTool-MVR combining verified and reflection-augmented data achieves superior scores over ToolLLM (+23.9%) and reduces API call volume by 31.4% on StableToolBench. This demonstrates efforts to optimize API usage efficiency.\n\n## Recent Benchmarking Extensions (2025)\n\nTRAJECT-Bench curates 1,228 production-style APIs with systematically controlled parameter complexity across ten domains: Travel, Mapping, Finance, Weather, E-commerce, News/Media, Gaming, Email, Education, and Music.\n\nThe search results focus more on dataset quality, trajectory-level evaluation metrics, and training improvements rather than specific API rate limit policies or detailed cost breakdowns. For specific rate limit information, you may need to consult the actual ToolBench or RapidAPI Hub documentation directly."
+    ],
+    "durationSeconds": 8.149403578999976
+  },
+  "sourceToolAssistantUUID": "cd375d88-d19d-4ee8-9ca3-221b59025a2d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-11T23:00:20.393Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QN9H3VvWw8ESbStsGnt7W9`</summary>
+
+```json
+{
+  "query": "StepPO step-aligned policy optimization agentic RL arXiv 2604.18401"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "77a89402-958c-423d-8aa6-33f87c114aee",
+  "isSidechain": false,
+  "requestId": "req_011CawcTBmg4U8Qs2LQZ5GDG",
+  "type": "assistant",
+  "uuid": "d248ea85-8c13-422e-b7a5-d767e9dd99e1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012QjawZnhTyjMQw8wtpaR33",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 967,
+      "cache_read_input_tokens": 43845,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 967,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 43845,
+          "cache_creation_input_tokens": 967,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 967
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-11T23:00:29.174Z_
+
+<details><summary>↩ Tool result · `toolu_01QN9H3VvWw8ESbStsGnt7W9`</summary>
+
+```text
+Web search results for query: "StepPO step-aligned policy optimization agentic RL arXiv 2604.18401"
+
+Links: [{"title":"[2604.18401] StepPO: Step-Aligned Policy Optimization for Agentic Reinforcement Learning","url":"https://arxiv.org/abs/2604.18401"},{"title":"StepPO: Step-Aligned Policy Optimization for Agentic Reinforcement Learning","url":"https://arxiv.org/html/2604.18401v1"},{"title":"Shuo Yu","url":"https://www.catalyzex.com/author/Shuo%20Yu"},{"title":"GitHub - GNEHUY/Awesome-AgenticRAG_DeepResearch: 🎯Awesome-AgenticRAG_DeepResearch: A curated list of resources on Agentic RAG & DeepResearch. 学习参考关于AgenticRAG、DeepResearch的发展相关论文","url":"https://github.com/GNEHUY/Awesome-AgenticRAG"},{"title":"StepPO: Step-Aligned Policy Optimization for Agentic ...","url":"https://chatpaper.com/es/paper/270514"},{"title":"Agentic Reinforced Policy Optimization | OpenReview","url":"https://openreview.net/forum?id=TX4k7BF6aO"},{"title":"StepSearch: Igniting LLMs Search Ability via Step-Wise ...","url":"https://arxiv.org/pdf/2505.15107"},{"title":"GitHub - RUC-NLPIR/ARPO: [ICLR 2026] Agentic Reinforced Policy Optimization (ARPO) · GitHub","url":"https://github.com/RUC-NLPIR/ARPO"},{"title":"Stepwise Alignment for Constrained Language Model Policy Optimization","url":"https://arxiv.org/html/2404.11049"},{"title":"[2602.22817v1] Hierarchy-of-Groups Policy Optimization for Long-Horizon Agentic Tasks","url":"https://arxiv.org/abs/2602.22817v1"}]
+
+Based on the search results, here's what I found about StepPO (arXiv 2604.18401):
+
+## Overview
+
+StepPO presents a position on step-level Agentic RL, an approach to reinforcement learning for large language model (LLM) agents.
+
+## Key Motivation
+
+The token-centric modeling and optimization paradigm inherited from traditional LLM RL is becoming increasingly inadequate for capturing real LLM agent behavior. Unlike single-turn token-level alignment or reasoning enhancement as in RLHF and RLVR, Agentic RL targets multi-turn interactive settings, where the goal is to optimize core agentic capabilities such as decision making and tool use while addressing new challenges including delayed and sparse rewards, as well as long and variable context.
+
+## Core Proposal
+
+The paper argues that the conventional token-level Markov Decision Process (MDP) should be advanced to a step-level MDP formulation, and that the step, rather than the token, should be regarded as the proper action representation for LLM agents.
+
+The paper proposes step-level credit assignment as the natural optimization counterpart of this formulation, thereby aligning policy optimization and reward propagation with the granularity of agent decisions.
+
+## Contributions
+
+The paper discusses key systems designs required to realize step-level Agentic RL in practice and preliminary experiments provide initial evidence for the effectiveness of this perspective.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d248ea85-8c13-422e-b7a5-d767e9dd99e1",
+  "isSidechain": false,
+  "promptId": "9f503ff4-5335-492c-870b-15a6eb7331fc",
+  "type": "user",
+  "uuid": "527c845e-658f-490b-864c-5850de120210",
+  "toolUseResult": {
+    "query": "StepPO step-aligned policy optimization agentic RL arXiv 2604.18401",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01S39JujSzVMfxFXDgMSr6Bk",
+        "content": [
+          {
+            "title": "[2604.18401] StepPO: Step-Aligned Policy Optimization for Agentic Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2604.18401"
+          },
+          {
+            "title": "StepPO: Step-Aligned Policy Optimization for Agentic Reinforcement Learning",
+            "url": "https://arxiv.org/html/2604.18401v1"
+          },
+          {
+            "title": "Shuo Yu",
+            "url": "https://www.catalyzex.com/author/Shuo%20Yu"
+          },
+          {
+            "title": "GitHub - GNEHUY/Awesome-AgenticRAG_DeepResearch: 🎯Awesome-AgenticRAG_DeepResearch: A curated list of resources on Agentic RAG & DeepResearch. 学习参考关于AgenticRAG、DeepResearch的发展相关论文",
+            "url": "https://github.com/GNEHUY/Awesome-AgenticRAG"
+          },
+          {
+            "title": "StepPO: Step-Aligned Policy Optimization for Agentic ...",
+            "url": "https://chatpaper.com/es/paper/270514"
+          },
+          {
+            "title": "Agentic Reinforced Policy Optimization | OpenReview",
+            "url": "https://openreview.net/forum?id=TX4k7BF6aO"
+          },
+          {
+            "title": "StepSearch: Igniting LLMs Search Ability via Step-Wise ...",
+            "url": "https://arxiv.org/pdf/2505.15107"
+          },
+          {
+            "title": "GitHub - RUC-NLPIR/ARPO: [ICLR 2026] Agentic Reinforced Policy Optimization (ARPO) · GitHub",
+            "url": "https://github.com/RUC-NLPIR/ARPO"
+          },
+          {
+            "title": "Stepwise Alignment for Constrained Language Model Policy Optimization",
+            "url": "https://arxiv.org/html/2404.11049"
+          },
+          {
+            "title": "[2602.22817v1] Hierarchy-of-Groups Policy Optimization for Long-Horizon Agentic Tasks",
+            "url": "https://arxiv.org/abs/2602.22817v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about StepPO (arXiv 2604.18401):\n\n## Overview\n\nStepPO presents a position on step-level Agentic RL, an approach to reinforcement learning for large language model (LLM) agents.\n\n## Key Motivation\n\nThe token-centric modeling and optimization paradigm inherited from traditional LLM RL is becoming increasingly inadequate for capturing real LLM agent behavior. Unlike single-turn token-level alignment or reasoning enhancement as in RLHF and RLVR, Agentic RL targets multi-turn interactive settings, where the goal is to optimize core agentic capabilities such as decision making and tool use while addressing new challenges including delayed and sparse rewards, as well as long and variable context.\n\n## Core Proposal\n\nThe paper argues that the conventional token-level Markov Decision Process (MDP) should be advanced to a step-level MDP formulation, and that the step, rather than the token, should be regarded as the proper action representation for LLM agents.\n\nThe paper proposes step-level credit assignment as the natural optimization counterpart of this formulation, thereby aligning policy optimization and reward propagation with the granularity of agent decisions.\n\n## Contributions\n\nThe paper discusses key systems designs required to realize step-level Agentic RL in practice and preliminary experiments provide initial evidence for the effectiveness of this perspective."
+    ],
+    "durationSeconds": 8.777090343999996
+  },
+  "sourceToolAssistantUUID": "d248ea85-8c13-422e-b7a5-d767e9dd99e1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62 · 2026-05-11T23:00:31.814Z_
+
+Now let me search for the most critical potential competing work — papers that might directly combine error signals with branching RL.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "527c845e-658f-490b-864c-5850de120210",
+  "isSidechain": false,
+  "requestId": "req_011CawcUtSw3VTPLbBb6nETJ",
+  "type": "assistant",
+  "uuid": "cbf30397-a8a5-4302-b662-7edb05da4124",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bp47GHS8hZduH8qb1n549G",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 959,
+      "cache_read_input_tokens": 44812,
+      "output_tokens": 101,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 959,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 101,
+          "cache_read_input_tokens": 44812,
+          "cache_creation_input_tokens": 959,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 959
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-11T23:00:32.781Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TJtJicMw656oUtYH1aZtja`</summary>
+
+```json
+{
+  "query": "\"error-aware\" OR \"failure-aware\" branching GRPO agent training reinforcement learning 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cbf30397-a8a5-4302-b662-7edb05da4124",
+  "isSidechain": false,
+  "requestId": "req_011CawcUtSw3VTPLbBb6nETJ",
+  "type": "assistant",
+  "uuid": "b319ad83-232a-48f9-949b-bb2c6434ca7a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bp47GHS8hZduH8qb1n549G",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 959,
+      "cache_read_input_tokens": 44812,
+      "output_tokens": 101,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 959,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 101,
+          "cache_read_input_tokens": 44812,
+          "cache_creation_input_tokens": 959,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 959
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-11T23:00:41.312Z_
+
+<details><summary>↩ Tool result · `toolu_01TJtJicMw656oUtYH1aZtja`</summary>
+
+```text
+Web search results for query: ""error-aware" OR "failure-aware" branching GRPO agent training reinforcement learning 2026"
+
+Links: [{"title":"GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub","url":"https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"},{"title":"GitHub - AMAP-ML/Tree-GRPO: [ICLR 2026] Tree Search for LLM Agent Reinforcement Learning · GitHub","url":"https://github.com/AMAP-ML/Tree-GRPO"},{"title":"hello-agents/docs/chapter11/Chapter11-Agentic-RL.md at main · datawhalechina/hello-agents","url":"https://github.com/datawhalechina/hello-agents/blob/main/docs/chapter11/Chapter11-Agentic-RL.md"},{"title":"Your Multi-Agent Swarm Is Not Learning. Here Is the Architecture That Changes That. | by Neil Dave | Mar, 2026 | Medium","url":"https://theneildave.medium.com/your-multi-agent-swarm-is-not-learning-here-is-the-architecture-that-changes-that-93b422a08b68"},{"title":"Tree Search for LLM Agent Reinforcement Learning","url":"https://arxiv.org/pdf/2509.21240"},{"title":"RL Posttraining for Tool-Using Agents: GRPO, Async RL, and Reward Design in 2026 | Zylos Research","url":"https://zylos.ai/research/2026-04-10-rl-posttraining-tool-using-agents-grpo-async-rl"},{"title":"Published as a conference paper at ICLR 2026","url":"https://openreview.net/pdf?id=1FmUKtgSPU"},{"title":"Unlocking Agentic RL Training for GPT-OSS: A Practical Retrospective","url":"https://huggingface.co/blog/LinkedIn/gpt-oss-agentic-rl"},{"title":"Training Multi-Turn Search Agent via Contrastive Dynamic Branch Sampling","url":"https://arxiv.org/html/2602.03719"},{"title":"Reinforcement Learning environments and how to build them","url":"https://unsloth.ai/blog/rl-environments"}]
+
+I found relevant results about branching and GRPO agent training. Here are the key findings:
+
+## Tree-Search and Branching Approaches for GRPO Agent Training
+
+Tree-GRPO was accepted by ICLR 2026 (January 27, 2026) and the codebase was released in September 2025, proposing a tree-search rollout strategy in place of independent chain-based rollouts for LLM agent RL. Based on ReAct step-level nodes, Tree-GRPO carries out rollout sampling over a semantically well-defined search tree.
+
+Branching Relative Policy Optimization (BranPO) is a training method designed to improve the efficiency of policy optimization through more effective credit assignment by reducing redundant rollouts and focusing supervision on informative decision points. BranPO introduces a difficulty-aware branch sampling mechanism that adaptively allocates sampling budgets based on accuracy.
+
+## Failure/Error-Aware Mechanisms
+
+While the search results don't specifically use the exact terms "error-aware" or "failure-aware," there are related approaches:
+
+BranPO targets critical decision points by recursively truncating and resampling trajectories from the tail, focusing on branches with contrastive outcomes rather than indiscriminately exploring all continuations. The method proposes Redundant Step Masking (RSM), which identifies and masks redundant tail steps during policy updates.
+
+The broader context shows that in multi-turn agent reinforcement learning, even when reward curves remain stable, reasoning text can gradually drift toward task-agnostic templates, and agentic settings are more prone to such templating than single-turn tasks because rewards are often sparse and weakly discriminative.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b319ad83-232a-48f9-949b-bb2c6434ca7a",
+  "isSidechain": false,
+  "promptId": "9f503ff4-5335-492c-870b-15a6eb7331fc",
+  "type": "user",
+  "uuid": "b94ed26c-798b-40fc-8883-2f70945055d1",
+  "toolUseResult": {
+    "query": "\"error-aware\" OR \"failure-aware\" branching GRPO agent training reinforcement learning 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TZ9ajcmtzsU5yuMzmwhZDg",
+        "content": [
+          {
+            "title": "GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub",
+            "url": "https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"
+          },
+          {
+            "title": "GitHub - AMAP-ML/Tree-GRPO: [ICLR 2026] Tree Search for LLM Agent Reinforcement Learning · GitHub",
+            "url": "https://github.com/AMAP-ML/Tree-GRPO"
+          },
+          {
+            "title": "hello-agents/docs/chapter11/Chapter11-Agentic-RL.md at main · datawhalechina/hello-agents",
+            "url": "https://github.com/datawhalechina/hello-agents/blob/main/docs/chapter11/Chapter11-Agentic-RL.md"
+          },
+          {
+            "title": "Your Multi-Agent Swarm Is Not Learning. Here Is the Architecture That Changes That. | by Neil Dave | Mar, 2026 | Medium",
+            "url": "https://theneildave.medium.com/your-multi-agent-swarm-is-not-learning-here-is-the-architecture-that-changes-that-93b422a08b68"
+          },
+          {
+            "title": "Tree Search for LLM Agent Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2509.21240"
+          },
+          {
+            "title": "RL Posttraining for Tool-Using Agents: GRPO, Async RL, and Reward Design in 2026 | Zylos Research",
+            "url": "https://zylos.ai/research/2026-04-10-rl-posttraining-tool-using-agents-grpo-async-rl"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://openreview.net/pdf?id=1FmUKtgSPU"
+          },
+          {
+            "title": "Unlocking Agentic RL Training for GPT-OSS: A Practical Retrospective",
+            "url": "https://huggingface.co/blog/LinkedIn/gpt-oss-agentic-rl"
+          },
+          {
+            "title": "Training Multi-Turn Search Agent via Contrastive Dynamic Branch Sampling",
+            "url": "https://arxiv.org/html/2602.03719"
+          },
+          {
+            "title": "Reinforcement Learning environments and how to build them",
+            "url": "https://unsloth.ai/blog/rl-environments"
+          }
+        ]
+      },
+      "I found relevant results about branching and GRPO agent training. Here are the key findings:\n\n## Tree-Search and Branching Approaches for GRPO Agent Training\n\nTree-GRPO was accepted by ICLR 2026 (January 27, 2026) and the codebase was released in September 2025, proposing a tree-search rollout strategy in place of independent chain-based rollouts for LLM agent RL. Based on ReAct step-level nodes, Tree-GRPO carries out rollout sampling over a semantically well-defined search tree.\n\nBranching Relative Policy Optimization (BranPO) is a training method designed to improve the efficiency of policy optimization through more effective credit assignment by reducing redundant rollouts and focusing supervision on informative decision points. BranPO introduces a difficulty-aware branch sampling mechanism that adaptively allocates sampling budgets based on accuracy.\n\n## Failure/Error-Aware Mechanisms\n\nWhile the search results don't specifically use the exact terms \"error-aware\" or \"failure-aware,\" there are related approaches:\n\nBranPO targets critical decision points by recursively truncating and resampling trajectories from the tail, focusing on branches with contrastive outcomes rather than indiscriminately exploring all continuations. The method proposes Redundant Step Masking (RSM), which identifies and masks redundant tail steps during policy updates.\n\nThe broader context shows that in multi-turn agent reinforcement learning, even when reward curves remain stable, reasoning text can gradually drift toward task-agnostic templates, and agentic settings are more prone to such templating than single-turn tasks because rewards are often sparse and weakly discriminative."
+    ],
+    "durationSeconds": 8.50338412599999
+  },
+  "sourceToolAssistantUUID": "b319ad83-232a-48f9-949b-bb2c6434ca7a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 65_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "b94ed26c-798b-40fc-8883-2f70945055d1",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 66_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify ETB-GRPO novelty and feasibility via independent searches",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622"
+}
+```
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-11T23:00:43.966Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0147RRZVSD4mB4ARHayJLyaq`</summary>
+
+```json
+{
+  "query": "agent recovery training environment feedback error observation reinforcement learning arXiv 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b94ed26c-798b-40fc-8883-2f70945055d1",
+  "isSidechain": false,
+  "requestId": "req_011CawcVnJcrn4DcAajSzGgf",
+  "type": "assistant",
+  "uuid": "ca3eb46a-df48-4b3d-9fc3-c25e029b2d66",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014kNUJdtGHMA3sy1ZsFXww6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1119,
+      "cache_read_input_tokens": 45771,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1119,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 45771,
+          "cache_creation_input_tokens": 1119,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1119
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-11T23:00:53.090Z_
+
+<details><summary>↩ Tool result · `toolu_0147RRZVSD4mB4ARHayJLyaq`</summary>
+
+```text
+Web search results for query: "agent recovery training environment feedback error observation reinforcement learning arXiv 2026"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2512.20745"},{"title":"[2602.04284] Agent-Omit: Training Efficient LLM Agents for Adaptive Thought and Observation Omission via Agentic Reinforcement Learning","url":"https://arxiv.org/abs/2602.04284"},{"title":"Agent-R1: Training Powerful LLM Agents with End-to-End Reinforcement Learning","url":"https://arxiv.org/html/2511.14460v1"},{"title":"Multi-Agent Reinforcement Learning from Human Feedback: Data Coverage and Algorithmic Techniques","url":"https://arxiv.org/html/2409.00717v2"},{"title":"Reinforcement Learning from Human Feedback","url":"https://arxiv.org/html/2504.12501v3"},{"title":"Rethinking Agentic Reinforcement Learning In Large Language Models","url":"https://arxiv.org/html/2604.27859v1"},{"title":"Training Long-Context, Multi-Turn Software Engineering Agents with Reinforcement Learning","url":"https://arxiv.org/html/2508.03501v1"},{"title":"Machine Learning","url":"https://arxiv.org/list/cs.LG/new"},{"title":"A Survey of Reinforcement Learning from Human Feedback","url":"https://arxiv.org/html/2312.14925v2"},{"title":"Rethinking the Design of Reinforcement Learning-Based Deep Research Agents","url":"https://arxiv.org/html/2510.15862"}]
+
+I found several highly relevant papers on arXiv from 2026 related to your search query. Here are the key findings:
+
+## Agent Recovery and Error Handling in Reinforcement Learning
+
+A robust agent needs to recover from erroneous tool feedback, with approaches sampling trajectories excluded during refinement due to execution failures, where for each failed program with error output, a teacher model generates a structured self-correction trace (diagnose the error → repair the code → re-execute → continue reasoning).
+
+## Agent-Omit: Adaptive Thought and Observation Training
+
+Agent-Omit is a unified training framework that empowers LLM agents to adaptively omit redundant thoughts and observations, introducing an omit-aware agentic reinforcement learning approach with a dual sampling mechanism and tailored omission reward to incentivize adaptive omission capability.
+
+## Agent-R1: End-to-End RL for LLM Agents
+
+Research extends the standard Markov Decision Process framework to model agents' multi-turn interactions, adapting core components like State Space, Action Space, State Transition Probability, and Reward Function, while emphasizing the importance of distinguishing agent-generated actions from environmental feedback and incorporating intermediate process rewards to guide learning.
+
+## Error-Tolerant Training Strategies
+
+An error-tolerant test-time rollout strategy improves performance by not terminating episodes upon encountering errors such as invalid tool calls or malformed outputs, but instead allowing the agent to recover and continue its rollout at test time.
+
+## Dynamic Environment Adaptation
+
+A central bottleneck in agent development requires moving beyond treating training environments as static fixtures, instead treating them as dynamic systems subject to active optimization, where automatic environment adaptation is leveraged to refine both reward and policy models through critic feedback.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ca3eb46a-df48-4b3d-9fc3-c25e029b2d66",
+  "isSidechain": false,
+  "promptId": "9f503ff4-5335-492c-870b-15a6eb7331fc",
+  "type": "user",
+  "uuid": "55fbe7f6-b6bb-4a08-a0cd-f56c20792d2b",
+  "toolUseResult": {
+    "query": "agent recovery training environment feedback error observation reinforcement learning arXiv 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Qga3D6RV8XFmKz9czEqT4R",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2512.20745"
+          },
+          {
+            "title": "[2602.04284] Agent-Omit: Training Efficient LLM Agents for Adaptive Thought and Observation Omission via Agentic Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2602.04284"
+          },
+          {
+            "title": "Agent-R1: Training Powerful LLM Agents with End-to-End Reinforcement Learning",
+            "url": "https://arxiv.org/html/2511.14460v1"
+          },
+          {
+            "title": "Multi-Agent Reinforcement Learning from Human Feedback: Data Coverage and Algorithmic Techniques",
+            "url": "https://arxiv.org/html/2409.00717v2"
+          },
+          {
+            "title": "Reinforcement Learning from Human Feedback",
+            "url": "https://arxiv.org/html/2504.12501v3"
+          },
+          {
+            "title": "Rethinking Agentic Reinforcement Learning In Large Language Models",
+            "url": "https://arxiv.org/html/2604.27859v1"
+          },
+          {
+            "title": "Training Long-Context, Multi-Turn Software Engineering Agents with Reinforcement Learning",
+            "url": "https://arxiv.org/html/2508.03501v1"
+          },
+          {
+            "title": "Machine Learning",
+            "url": "https://arxiv.org/list/cs.LG/new"
+          },
+          {
+            "title": "A Survey of Reinforcement Learning from Human Feedback",
+            "url": "https://arxiv.org/html/2312.14925v2"
+          },
+          {
+            "title": "Rethinking the Design of Reinforcement Learning-Based Deep Research Agents",
+            "url": "https://arxiv.org/html/2510.15862"
+          }
+        ]
+      },
+      "I found several highly relevant papers on arXiv from 2026 related to your search query. Here are the key findings:\n\n## Agent Recovery and Error Handling in Reinforcement Learning\n\nA robust agent needs to recover from erroneous tool feedback, with approaches sampling trajectories excluded during refinement due to execution failures, where for each failed program with error output, a teacher model generates a structured self-correction trace (diagnose the error → repair the code → re-execute → continue reasoning).\n\n## Agent-Omit: Adaptive Thought and Observation Training\n\nAgent-Omit is a unified training framework that empowers LLM agents to adaptively omit redundant thoughts and observations, introducing an omit-aware agentic reinforcement learning approach with a dual sampling mechanism and tailored omission reward to incentivize adaptive omission capability.\n\n## Agent-R1: End-to-End RL for LLM Agents\n\nResearch extends the standard Markov Decision Process framework to model agents' multi-turn interactions, adapting core components like State Space, Action Space, State Transition Probability, and Reward Function, while emphasizing the importance of distinguishing agent-generated actions from environmental feedback and incorporating intermediate process rewards to guide learning.\n\n## Error-Tolerant Training Strategies\n\nAn error-tolerant test-time rollout strategy improves performance by not terminating episodes upon encountering errors such as invalid tool calls or malformed outputs, but instead allowing the agent to recover and continue its rollout at test time.\n\n## Dynamic Environment Adaptation\n\nA central bottleneck in agent development requires moving beyond treating training environments as static fixtures, instead treating them as dynamic systems subject to active optimization, where automatic environment adaptation is leveraged to refine both reward and policy models through critic feedback."
+    ],
+    "durationSeconds": 9.119539616000024
+  },
+  "sourceToolAssistantUUID": "ca3eb46a-df48-4b3d-9fc3-c25e029b2d66",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-11T23:00:56.949Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TKMkXAjyWBCuevQg3Z7rSa`</summary>
+
+```json
+{
+  "query": "CSO critical step optimization PRM alternative branching LLM agent arXiv 2602.03412"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "55fbe7f6-b6bb-4a08-a0cd-f56c20792d2b",
+  "isSidechain": false,
+  "requestId": "req_011CawcWef2PWqmPSJhPzz85",
+  "type": "assistant",
+  "uuid": "4e22def7-9aaa-4f31-aaac-3016ffaee19a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cyg8qdhTg1oV3YfqrNw4Jz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 904,
+      "cache_read_input_tokens": 46890,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 904,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 46890,
+          "cache_creation_input_tokens": 904,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 904
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-11T23:01:04.661Z_
+
+<details><summary>↩ Tool result · `toolu_01TKMkXAjyWBCuevQg3Z7rSa`</summary>
+
+```text
+Web search results for query: "CSO critical step optimization PRM alternative branching LLM agent arXiv 2602.03412"
+
+Links: [{"title":"Verified Critical Step Optimization for LLM Agents","url":"https://arxiv.org/html/2602.03412"},{"title":"[2602.03412] Verified Critical Step Optimization for LLM Agents","url":"https://arxiv.org/abs/2602.03412"},{"title":"Verified Critical Step Optimization for LLM Agents Mukai Li†,1,2","url":"https://arxiv.org/pdf/2602.03412"},{"title":"AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress","url":"https://arxiv.org/html/2511.08325v1"},{"title":"[2511.08325] AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress","url":"https://arxiv.org/abs/2511.08325"},{"title":"AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress | Proceedings of the ACM Web Conference 2026","url":"https://dl.acm.org/doi/10.1145/3774904.3792551"},{"title":"GitHub - YoungDubbyDu/Awesome-LLM-Agent-Optimization-Papers: This is the reading list for the survey \"A Survey on the Optimization of LLM-based Agents \". We will keep adding papers and improving the list. Any suggestions and PRs are welcome! · GitHub","url":"https://github.com/YoungDubbyDu/LLM-Agent-Optimization"},{"title":"More Bang for the Buck: Process Reward Modeling with Entropy-Driven Uncertainty","url":"https://arxiv.org/html/2503.22233"},{"title":"A Survey on the Optimization of Large Language Model-based Agents","url":"https://arxiv.org/html/2503.12434v2"},{"title":"AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv251108325X/abstract"}]
+
+I found the paper for arXiv 2602.03412! Here are the key findings about Critical Step Optimization (CSO):
+
+## Paper Overview
+
+Critical Step Optimization (CSO) focuses preference learning on verified critical steps where alternate actions change the task outcome from failure to success.
+
+## Key Methodology
+
+The method uses a process reward model (PRM) to identify candidate critical steps, leverages expert models to propose high-quality alternatives, then continues execution from these alternatives using the policy model itself until task completion.
+
+The approach verifies candidates through branch rollouts: replacing the policy's action with an expert alternative and continuing with the policy itself until completion.
+
+## Core Advantages
+
+Unlike trajectory-level methods that apply coarse rewards uniformly, CSO provides fine-grained, step-specific supervision. Unlike step-level methods relying on estimated rewards, CSO grounds supervision in verified outcomes, eliminating process reward noise.
+
+## Performance Results
+
+CSO achieves 37% and 26% relative gains over SFT baseline on GAIA-Text-103 and XBench-DeepSearch, enabling an 8B model to match GPT-4.1, while requiring supervision at only 16% of trajectory steps and outperforming all baseline methods.
+
+The paper was published on arXiv on February 3, 2026, and represents a significant advancement in agent optimization through selective, outcome-verified supervision.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4e22def7-9aaa-4f31-aaac-3016ffaee19a",
+  "isSidechain": false,
+  "promptId": "9f503ff4-5335-492c-870b-15a6eb7331fc",
+  "type": "user",
+  "uuid": "47ced543-9d2c-408e-aa49-81913de5f7b2",
+  "toolUseResult": {
+    "query": "CSO critical step optimization PRM alternative branching LLM agent arXiv 2602.03412",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CVdSw1xKgTMUGpcfVrWH9r",
+        "content": [
+          {
+            "title": "Verified Critical Step Optimization for LLM Agents",
+            "url": "https://arxiv.org/html/2602.03412"
+          },
+          {
+            "title": "[2602.03412] Verified Critical Step Optimization for LLM Agents",
+            "url": "https://arxiv.org/abs/2602.03412"
+          },
+          {
+            "title": "Verified Critical Step Optimization for LLM Agents Mukai Li†,1,2",
+            "url": "https://arxiv.org/pdf/2602.03412"
+          },
+          {
+            "title": "AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress",
+            "url": "https://arxiv.org/html/2511.08325v1"
+          },
+          {
+            "title": "[2511.08325] AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress",
+            "url": "https://arxiv.org/abs/2511.08325"
+          },
+          {
+            "title": "AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress | Proceedings of the ACM Web Conference 2026",
+            "url": "https://dl.acm.org/doi/10.1145/3774904.3792551"
+          },
+          {
+            "title": "GitHub - YoungDubbyDu/Awesome-LLM-Agent-Optimization-Papers: This is the reading list for the survey \"A Survey on the Optimization of LLM-based Agents \". We will keep adding papers and improving the list. Any suggestions and PRs are welcome! · GitHub",
+            "url": "https://github.com/YoungDubbyDu/LLM-Agent-Optimization"
+          },
+          {
+            "title": "More Bang for the Buck: Process Reward Modeling with Entropy-Driven Uncertainty",
+            "url": "https://arxiv.org/html/2503.22233"
+          },
+          {
+            "title": "A Survey on the Optimization of Large Language Model-based Agents",
+            "url": "https://arxiv.org/html/2503.12434v2"
+          },
+          {
+            "title": "AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv251108325X/abstract"
+          }
+        ]
+      },
+      "I found the paper for arXiv 2602.03412! Here are the key findings about Critical Step Optimization (CSO):\n\n## Paper Overview\n\nCritical Step Optimization (CSO) focuses preference learning on verified critical steps where alternate actions change the task outcome from failure to success.\n\n## Key Methodology\n\nThe method uses a process reward model (PRM) to identify candidate critical steps, leverages expert models to propose high-quality alternatives, then continues execution from these alternatives using the policy model itself until task completion.\n\nThe approach verifies candidates through branch rollouts: replacing the policy's action with an expert alternative and continuing with the policy itself until completion.\n\n## Core Advantages\n\nUnlike trajectory-level methods that apply coarse rewards uniformly, CSO provides fine-grained, step-specific supervision. Unlike step-level methods relying on estimated rewards, CSO grounds supervision in verified outcomes, eliminating process reward noise.\n\n## Performance Results\n\nCSO achieves 37% and 26% relative gains over SFT baseline on GAIA-Text-103 and XBench-DeepSearch, enabling an 8B model to match GPT-4.1, while requiring supervision at only 16% of trajectory steps and outperforming all baseline methods.\n\nThe paper was published on arXiv on February 3, 2026, and represents a significant advancement in agent optimization through selective, outcome-verified supervision."
+    ],
+    "durationSeconds": 7.7081388840000145
+  },
+  "sourceToolAssistantUUID": "4e22def7-9aaa-4f31-aaac-3016ffaee19a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-11T23:01:07.750Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017Fo8rQSkvnYPJYbsdtaD8u`</summary>
+
+```json
+{
+  "query": "Failure makes agent stronger structured reflection tool interactions arXiv 2509.18847"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "47ced543-9d2c-408e-aa49-81913de5f7b2",
+  "isSidechain": false,
+  "requestId": "req_011CawcXWJkxEiv61CSkMNmA",
+  "type": "assistant",
+  "uuid": "5988ae62-6ae8-4d41-ac38-0f7bc0962b58",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EeJNSFcQZGDZL4ZZ2LEGaR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 960,
+      "cache_read_input_tokens": 47794,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 960,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 47794,
+          "cache_creation_input_tokens": 960,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 960
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-11T23:01:13.971Z_
+
+<details><summary>↩ Tool result · `toolu_017Fo8rQSkvnYPJYbsdtaD8u`</summary>
+
+```text
+Web search results for query: "Failure makes agent stronger structured reflection tool interactions arXiv 2509.18847"
+
+Links: [{"title":"[2509.18847] Failure Makes the Agent Stronger: Enhancing Accuracy through Structured Reflection for Reliable Tool Interactions","url":"https://arxiv.org/abs/2509.18847"},{"title":"Failure makes the agent stronger: Enhancing Accuracy through Structured Reflection for Reliable Tool Interactions","url":"https://arxiv.org/html/2509.18847"},{"title":"[2509.18847v1] Failure Makes the Agent Stronger: Enhancing Accuracy through Structured Reflection for Reliable Tool Interactions","url":"https://arxiv.org/abs/2509.18847v1"},{"title":"Failure Makes the Agent Stronger: Enhancing Accuracy ...","url":"https://www.arxiv.org/pdf/2509.18847"},{"title":"(PDF) Failure Makes the Agent Stronger: Enhancing Accuracy through Structured Reflection for Reliable Tool Interactions","url":"https://www.researchgate.net/publication/395770979_Failure_Makes_the_Agent_Stronger_Enhancing_Accuracy_through_Structured_Reflection_for_Reliable_Tool_Interactions"},{"title":"Failure makes the agent stronger: Enhancing Accuracy through Structured Reflection for Reliable Tool Interactions | OpenReview","url":"https://openreview.net/forum?id=agRa60l7rn"},{"title":"Failure Makes the Agent Stronger: Enhancing Accuracy through ...","url":"https://www.arxiv.org/pdf/2509.18847v1"},{"title":"Failure Makes the Agent Stronger: Enhancing Accuracy through Structured Reflection for Reliable Tool Interactions - Paper Detail","url":"https://deeplearn.org/arxiv/639479/failure-makes-the-agent-stronger:-enhancing-accuracy-through-structured-reflection-for-reliable-tool-interactions"},{"title":"Failure Makes the Agent Stronger","url":"https://www.facebook.com/groups/3670562573177653/posts/4324735401093697/"},{"title":"Failure Makes the Agent Stronger","url":"https://chatpaper.com/paper/190971"}]
+
+I found the arXiv paper you're looking for. Here's the information about it:
+
+**Paper Title:** Failure Makes the Agent Stronger: Enhancing Accuracy through Structured Reflection for Reliable Tool Interactions
+
+**Authors:** Junhao Su, Yuanliang Wan, Junwei Yang, Hengyu Shi, Tianyang Han, Junfeng Luo, and Yurui Qiu
+
+**Key Problem:** Current self-reflection practices rely on heuristic prompts or one-way reasoning, and this is fragile in multi-turn interactions; after a failure the model often repeats the same mistake.
+
+**Proposed Solution:** Structured reflection turns the path from error to repair into an explicit, controllable, and trainable action. The agent produces a short yet precise reflection: it diagnoses the failure using evidence from the previous step and then proposes a correct, executable follow-up call.
+
+**Results:** Experiments on BFCL v3 and Tool-Reflection-Bench show large gains in multi-turn tool-call success and error recovery, and a reduction of redundant calls.
+
+The paper was submitted on September 23, 2025, and the most recent version was updated on September 25, 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5988ae62-6ae8-4d41-ac38-0f7bc0962b58",
+  "isSidechain": false,
+  "promptId": "9f503ff4-5335-492c-870b-15a6eb7331fc",
+  "type": "user",
+  "uuid": "07fcc333-b7bf-4230-8dcf-254e6f038917",
+  "toolUseResult": {
+    "query": "Failure makes agent stronger structured reflection tool interactions arXiv 2509.18847",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FBT5aULptm6x5cf29HGKU2",
+        "content": [
+          {
+            "title": "[2509.18847] Failure Makes the Agent Stronger: Enhancing Accuracy through Structured Reflection for Reliable Tool Interactions",
+            "url": "https://arxiv.org/abs/2509.18847"
+          },
+          {
+            "title": "Failure makes the agent stronger: Enhancing Accuracy through Structured Reflection for Reliable Tool Interactions",
+            "url": "https://arxiv.org/html/2509.18847"
+          },
+          {
+            "title": "[2509.18847v1] Failure Makes the Agent Stronger: Enhancing Accuracy through Structured Reflection for Reliable Tool Interactions",
+            "url": "https://arxiv.org/abs/2509.18847v1"
+          },
+          {
+            "title": "Failure Makes the Agent Stronger: Enhancing Accuracy ...",
+            "url": "https://www.arxiv.org/pdf/2509.18847"
+          },
+          {
+            "title": "(PDF) Failure Makes the Agent Stronger: Enhancing Accuracy through Structured Reflection for Reliable Tool Interactions",
+            "url": "https://www.researchgate.net/publication/395770979_Failure_Makes_the_Agent_Stronger_Enhancing_Accuracy_through_Structured_Reflection_for_Reliable_Tool_Interactions"
+          },
+          {
+            "title": "Failure makes the agent stronger: Enhancing Accuracy through Structured Reflection for Reliable Tool Interactions | OpenReview",
+            "url": "https://openreview.net/forum?id=agRa60l7rn"
+          },
+          {
+            "title": "Failure Makes the Agent Stronger: Enhancing Accuracy through ...",
+            "url": "https://www.arxiv.org/pdf/2509.18847v1"
+          },
+          {
+            "title": "Failure Makes the Agent Stronger: Enhancing Accuracy through Structured Reflection for Reliable Tool Interactions - Paper Detail",
+            "url": "https://deeplearn.org/arxiv/639479/failure-makes-the-agent-stronger:-enhancing-accuracy-through-structured-reflection-for-reliable-tool-interactions"
+          },
+          {
+            "title": "Failure Makes the Agent Stronger",
+            "url": "https://www.facebook.com/groups/3670562573177653/posts/4324735401093697/"
+          },
+          {
+            "title": "Failure Makes the Agent Stronger",
+            "url": "https://chatpaper.com/paper/190971"
+          }
+        ]
+      },
+      "I found the arXiv paper you're looking for. Here's the information about it:\n\n**Paper Title:** Failure Makes the Agent Stronger: Enhancing Accuracy through Structured Reflection for Reliable Tool Interactions\n\n**Authors:** Junhao Su, Yuanliang Wan, Junwei Yang, Hengyu Shi, Tianyang Han, Junfeng Luo, and Yurui Qiu\n\n**Key Problem:** Current self-reflection practices rely on heuristic prompts or one-way reasoning, and this is fragile in multi-turn interactions; after a failure the model often repeats the same mistake.\n\n**Proposed Solution:** Structured reflection turns the path from error to repair into an explicit, controllable, and trainable action. The agent produces a short yet precise reflection: it diagnoses the failure using evidence from the previous step and then proposes a correct, executable follow-up call.\n\n**Results:** Experiments on BFCL v3 and Tool-Reflection-Bench show large gains in multi-turn tool-call success and error recovery, and a reduction of redundant calls.\n\nThe paper was submitted on September 23, 2025, and the most recent version was updated on September 25, 2025."
+    ],
+    "durationSeconds": 6.2155984980000065
+  },
+  "sourceToolAssistantUUID": "5988ae62-6ae8-4d41-ac38-0f7bc0962b58",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-11T23:01:17.580Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UKK4NXMNuoUHivihptsBK6`</summary>
+
+```json
+{
+  "query": "Agent-RLVR software engineering agents reinforcement learning verifiable rewards 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "07fcc333-b7bf-4230-8dcf-254e6f038917",
+  "isSidechain": false,
+  "requestId": "req_011CawcYBwyiC56qtMSt7n3d",
+  "type": "assistant",
+  "uuid": "87ca3477-e072-4f46-a49b-9e50c94e6724",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AwvWG9hB2QY4cvqrNMRqjR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 925,
+      "cache_read_input_tokens": 48754,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 925,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 48754,
+          "cache_creation_input_tokens": 925,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 925
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-11T23:01:23.924Z_
+
+<details><summary>↩ Tool result · `toolu_01UKK4NXMNuoUHivihptsBK6`</summary>
+
+```text
+Web search results for query: "Agent-RLVR software engineering agents reinforcement learning verifiable rewards 2026"
+
+Links: [{"title":"[2506.11425] Agent-RLVR: Training Software Engineering Agents via Guidance and Environment Rewards","url":"https://arxiv.org/abs/2506.11425"},{"title":"Agent-RLVR: Training Software Engineering Agents via Guidance and Environment Rewards","url":"https://arxiv.org/html/2506.11425v2"},{"title":"GitHub - opendilab/awesome-RLVR: A curated list of reinforcement learning with verifiable rewards (continually updated) · GitHub","url":"https://github.com/opendilab/awesome-RLVR"},{"title":"How Top AI Labs Are Building RL Agents in 2026","url":"https://blog.dailydoseofds.com/p/how-top-ai-labs-are-building-rl-agents"},{"title":"Agent-RLVR: Training Software Engineering Agents via ...","url":"https://arxiv.org/pdf/2506.11425"},{"title":"Agent-RLVR","url":"https://scale.com/research/agent_rlvr"},{"title":"What is RLVR? Reinforcement Learning from Verifiable Rewards – Reinforcement Learning from Verifiable Rewards","url":"https://rlvrbook.com/"},{"title":"Agent-RLVR - Scale Labs | Scale Labs","url":"https://labs.scale.com/papers/agent_rlvr"},{"title":"Agent-RLVR: Training Software Engineering Agents via Guidance and Environment Rewards | alphaXiv","url":"https://www.alphaxiv.org/overview/2506.11425v2"},{"title":"(PDF) Agent-RLVR: Training Software Engineering Agents via Guidance and Environment Rewards","url":"https://www.researchgate.net/publication/392717328_Agent-RLVR_Training_Software_Engineering_Agents_via_Guidance_and_Environment_Rewards"}]
+
+Based on the search results, here's what I found about Agent-RLVR:
+
+## Overview
+
+Agent-RLVR is a framework that makes RLVR effective in challenging agentic settings, with an initial focus on software engineering tasks.
+
+## The Problem It Addresses
+
+Reinforcement Learning from Verifiable Rewards (RLVR) has been widely adopted as the de facto method for enhancing the reasoning capabilities of large language models and has demonstrated notable success in verifiable domains like math and competitive programming tasks. However, the efficacy of RLVR diminishes significantly when applied to agentic environments, which are characterized by multi-step, complex problem solving that leads to high failure rates even for frontier LLMs, as the reward landscape is too sparse for effective model training via conventional RLVR.
+
+## How Agent-RLVR Works
+
+Inspired by human pedagogy, Agent-RLVR introduces agent guidance, a mechanism that actively steers the agent towards successful trajectories by leveraging diverse informational cues. In the Agent-RLVR training loop, agents first attempt to solve tasks to produce initial trajectories, which are then validated by unit tests and supplemented with agent guidance. Agents then reattempt with guidance, and the agent policy is updated with RLVR based on the rewards of these guided trajectories.
+
+## Results
+
+Agent-RLVR elevates the pass@1 performance of Qwen-2.5-72B-Instruct from 9.4% to 22.4% on SWE-Bench Verified. Additionally, guidance-augmented RLVR data is additionally useful for test-time reward model training, shown by further boosting Pass@1 to 27.8%.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "87ca3477-e072-4f46-a49b-9e50c94e6724",
+  "isSidechain": false,
+  "promptId": "9f503ff4-5335-492c-870b-15a6eb7331fc",
+  "type": "user",
+  "uuid": "6f0878e2-4961-4000-b25c-fadee7b46cda",
+  "toolUseResult": {
+    "query": "Agent-RLVR software engineering agents reinforcement learning verifiable rewards 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XeT9L7yABFbgZo7n7M9FEh",
+        "content": [
+          {
+            "title": "[2506.11425] Agent-RLVR: Training Software Engineering Agents via Guidance and Environment Rewards",
+            "url": "https://arxiv.org/abs/2506.11425"
+          },
+          {
+            "title": "Agent-RLVR: Training Software Engineering Agents via Guidance and Environment Rewards",
+            "url": "https://arxiv.org/html/2506.11425v2"
+          },
+          {
+            "title": "GitHub - opendilab/awesome-RLVR: A curated list of reinforcement learning with verifiable rewards (continually updated) · GitHub",
+            "url": "https://github.com/opendilab/awesome-RLVR"
+          },
+          {
+            "title": "How Top AI Labs Are Building RL Agents in 2026",
+            "url": "https://blog.dailydoseofds.com/p/how-top-ai-labs-are-building-rl-agents"
+          },
+          {
+            "title": "Agent-RLVR: Training Software Engineering Agents via ...",
+            "url": "https://arxiv.org/pdf/2506.11425"
+          },
+          {
+            "title": "Agent-RLVR",
+            "url": "https://scale.com/research/agent_rlvr"
+          },
+          {
+            "title": "What is RLVR? Reinforcement Learning from Verifiable Rewards – Reinforcement Learning from Verifiable Rewards",
+            "url": "https://rlvrbook.com/"
+          },
+          {
+            "title": "Agent-RLVR - Scale Labs | Scale Labs",
+            "url": "https://labs.scale.com/papers/agent_rlvr"
+          },
+          {
+            "title": "Agent-RLVR: Training Software Engineering Agents via Guidance and Environment Rewards | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2506.11425v2"
+          },
+          {
+            "title": "(PDF) Agent-RLVR: Training Software Engineering Agents via Guidance and Environment Rewards",
+            "url": "https://www.researchgate.net/publication/392717328_Agent-RLVR_Training_Software_Engineering_Agents_via_Guidance_and_Environment_Rewards"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Agent-RLVR:\n\n## Overview\n\nAgent-RLVR is a framework that makes RLVR effective in challenging agentic settings, with an initial focus on software engineering tasks.\n\n## The Problem It Addresses\n\nReinforcement Learning from Verifiable Rewards (RLVR) has been widely adopted as the de facto method for enhancing the reasoning capabilities of large language models and has demonstrated notable success in verifiable domains like math and competitive programming tasks. However, the efficacy of RLVR diminishes significantly when applied to agentic environments, which are characterized by multi-step, complex problem solving that leads to high failure rates even for frontier LLMs, as the reward landscape is too sparse for effective model training via conventional RLVR.\n\n## How Agent-RLVR Works\n\nInspired by human pedagogy, Agent-RLVR introduces agent guidance, a mechanism that actively steers the agent towards successful trajectories by leveraging diverse informational cues. In the Agent-RLVR training loop, agents first attempt to solve tasks to produce initial trajectories, which are then validated by unit tests and supplemented with agent guidance. Agents then reattempt with guidance, and the agent policy is updated with RLVR based on the rewards of these guided trajectories.\n\n## Results\n\nAgent-RLVR elevates the pass@1 performance of Qwen-2.5-72B-Instruct from 9.4% to 22.4% on SWE-Bench Verified. Additionally, guidance-augmented RLVR data is additionally useful for test-time reward model training, shown by further boosting Pass@1 to 27.8%."
+    ],
+    "durationSeconds": 6.341321939999994
+  },
+  "sourceToolAssistantUUID": "87ca3477-e072-4f46-a49b-9e50c94e6724",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 75_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "6f0878e2-4961-4000-b25c-fadee7b46cda",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 76_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify ETB-GRPO novelty and feasibility via independent searches",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622"
+}
+```
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-11T23:01:30.124Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KjoHmPyeNoXbHw6KMXFrvx`</summary>
+
+```json
+{
+  "query": "HiPER hierarchical reinforcement learning agent long-horizon sparse reward 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6f0878e2-4961-4000-b25c-fadee7b46cda",
+  "isSidechain": false,
+  "requestId": "req_011CawcYvUamyxRyWqoVHBEV",
+  "type": "assistant",
+  "uuid": "2b848f25-fc33-44c5-898c-493af0b73d9e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HeFhnPfoUJVcvui65UgFG3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1003,
+      "cache_read_input_tokens": 49679,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1003,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 49679,
+          "cache_creation_input_tokens": 1003,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1003
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-11T23:01:36.480Z_
+
+<details><summary>↩ Tool result · `toolu_01KjoHmPyeNoXbHw6KMXFrvx`</summary>
+
+```text
+Web search results for query: "HiPER hierarchical reinforcement learning agent long-horizon sparse reward 2026 arXiv"
+
+Links: [{"title":"[2602.16165] HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents","url":"https://arxiv.org/abs/2602.16165"},{"title":"HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents","url":"https://arxiv.org/html/2602.16165v1"},{"title":"[2602.16165v1] HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents","url":"https://arxiv.org/abs/2602.16165v1"},{"title":"Paper page - Hindsight Credit Assignment for Long-Horizon LLM Agents","url":"https://huggingface.co/papers/2603.08754"},{"title":"Reinforcement Learning with Anticipation: A Hierarchical Approach for Long-Horizon Tasks","url":"https://arxiv.org/html/2509.05545v1"},{"title":"Enhancing Hierarchical Reinforcement Learning through Change Point Detection in Time Series","url":"https://arxiv.org/html/2510.24988v1"},{"title":"Hierarchical Reinforcement Learning with Targeted Causal Interventions | OpenReview","url":"https://openreview.net/forum?id=fWv0aGD1Xu"},{"title":"DHRL: A Graph-Based Approach for Long-Horizon and ...","url":"https://arxiv.org/pdf/2210.05150"},{"title":"LLMs augmented hierarchical reinforcement learning with action primitives for long-horizon manipulation tasks | Scientific Reports","url":"https://www.nature.com/articles/s41598-025-20653-y"},{"title":"Hierarchical Reinforcement Learning With Demonstration for Long-Horizon Robotic Manipulation | Arabian Journal for Science and Engineering | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s13369-025-10499-x"}]
+
+I found the paper you were looking for! Here are the key findings from the search:
+
+## HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment
+
+HiPER is a novel Hierarchical Plan-Execute RL framework that explicitly separates high-level planning from low-level execution, factorizing the policy into a high-level planner that proposes subgoals and a low-level executor that carries them out over multiple action steps.
+
+**Problem it Addresses:**
+Training LLMs as interactive agents for multi-turn decision-making remains challenging, particularly in long-horizon tasks with sparse and delayed rewards, where agents must execute extended sequences of actions before receiving meaningful feedback.
+
+**Key Innovation:**
+The framework introduces hierarchical advantage estimation (HAE), which carefully assigns credit at both the planning and execution levels, providing an unbiased gradient estimator and provably reducing variance compared to flat generalized advantage estimation.
+
+**Empirical Results:**
+HiPER achieves state-of-the-art performance on challenging interactive benchmarks, reaching 97.4% success on ALFWorld and 83.3% on WebShop with Qwen2.5-7B-Instruct, with especially large gains on long-horizon tasks requiring multiple dependent subtasks.
+
+The paper was published on arXiv on February 18, 2026 (arxiv paper 2602.16165).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2b848f25-fc33-44c5-898c-493af0b73d9e",
+  "isSidechain": false,
+  "promptId": "9f503ff4-5335-492c-870b-15a6eb7331fc",
+  "type": "user",
+  "uuid": "5d53afb4-712d-42dd-94d5-e1a97cb7bd08",
+  "toolUseResult": {
+    "query": "HiPER hierarchical reinforcement learning agent long-horizon sparse reward 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VpStq96TF5amckoQEA2KMF",
+        "content": [
+          {
+            "title": "[2602.16165] HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents",
+            "url": "https://arxiv.org/abs/2602.16165"
+          },
+          {
+            "title": "HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents",
+            "url": "https://arxiv.org/html/2602.16165v1"
+          },
+          {
+            "title": "[2602.16165v1] HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents",
+            "url": "https://arxiv.org/abs/2602.16165v1"
+          },
+          {
+            "title": "Paper page - Hindsight Credit Assignment for Long-Horizon LLM Agents",
+            "url": "https://huggingface.co/papers/2603.08754"
+          },
+          {
+            "title": "Reinforcement Learning with Anticipation: A Hierarchical Approach for Long-Horizon Tasks",
+            "url": "https://arxiv.org/html/2509.05545v1"
+          },
+          {
+            "title": "Enhancing Hierarchical Reinforcement Learning through Change Point Detection in Time Series",
+            "url": "https://arxiv.org/html/2510.24988v1"
+          },
+          {
+            "title": "Hierarchical Reinforcement Learning with Targeted Causal Interventions | OpenReview",
+            "url": "https://openreview.net/forum?id=fWv0aGD1Xu"
+          },
+          {
+            "title": "DHRL: A Graph-Based Approach for Long-Horizon and ...",
+            "url": "https://arxiv.org/pdf/2210.05150"
+          },
+          {
+            "title": "LLMs augmented hierarchical reinforcement learning with action primitives for long-horizon manipulation tasks | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-025-20653-y"
+          },
+          {
+            "title": "Hierarchical Reinforcement Learning With Demonstration for Long-Horizon Robotic Manipulation | Arabian Journal for Science and Engineering | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s13369-025-10499-x"
+          }
+        ]
+      },
+      "I found the paper you were looking for! Here are the key findings from the search:\n\n## HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment\n\nHiPER is a novel Hierarchical Plan-Execute RL framework that explicitly separates high-level planning from low-level execution, factorizing the policy into a high-level planner that proposes subgoals and a low-level executor that carries them out over multiple action steps.\n\n**Problem it Addresses:**\nTraining LLMs as interactive agents for multi-turn decision-making remains challenging, particularly in long-horizon tasks with sparse and delayed rewards, where agents must execute extended sequences of actions before receiving meaningful feedback.\n\n**Key Innovation:**\nThe framework introduces hierarchical advantage estimation (HAE), which carefully assigns credit at both the planning and execution levels, providing an unbiased gradient estimator and provably reducing variance compared to flat generalized advantage estimation.\n\n**Empirical Results:**\nHiPER achieves state-of-the-art performance on challenging interactive benchmarks, reaching 97.4% success on ALFWorld and 83.3% on WebShop with Qwen2.5-7B-Instruct, with especially large gains on long-horizon tasks requiring multiple dependent subtasks.\n\nThe paper was published on arXiv on February 18, 2026 (arxiv paper 2602.16165)."
+    ],
+    "durationSeconds": 6.350865082999983
+  },
+  "sourceToolAssistantUUID": "2b848f25-fc33-44c5-898c-493af0b73d9e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 79 · 2026-05-11T23:01:40.329Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is very interesting. HiPER achieves 97.4% on ALFWorld with Qwen2.5-7B. Let me note this as a potential competing work that the generator missed. Let me search for more recent competing work, specifically around error-aware or failure-conditioned RL for agents.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5d53afb4-712d-42dd-94d5-e1a97cb7bd08",
+  "isSidechain": false,
+  "requestId": "req_011CawcZrBtpw7e9xjF3sj8y",
+  "type": "assistant",
+  "uuid": "5b99c778-5dbf-400d-a6ee-3677dccc5e49",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T11moCP67UsMBNnx5dKZ2w",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 930,
+      "cache_read_input_tokens": 50682,
+      "output_tokens": 192,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 930,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 192,
+          "cache_read_input_tokens": 50682,
+          "cache_creation_input_tokens": 930,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 930
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80 · 2026-05-11T23:01:41.354Z_
+
+Let me check a few more critical dimensions — the Agentic RL Training Recipes survey and any very recent concurrent work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b99c778-5dbf-400d-a6ee-3677dccc5e49",
+  "isSidechain": false,
+  "requestId": "req_011CawcZrBtpw7e9xjF3sj8y",
+  "type": "assistant",
+  "uuid": "ca2dc20a-9546-450c-98c4-b689d38f91d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T11moCP67UsMBNnx5dKZ2w",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 930,
+      "cache_read_input_tokens": 50682,
+      "output_tokens": 192,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 930,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 192,
+          "cache_read_input_tokens": 50682,
+          "cache_creation_input_tokens": 930,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 930
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-11T23:01:42.237Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016zmDAc14tVUMr6excnUFps`</summary>
+
+```json
+{
+  "query": "site:arxiv.org \"agentic RL\" \"error\" \"branching\" OR \"rollout\" recovery 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ca2dc20a-9546-450c-98c4-b689d38f91d3",
+  "isSidechain": false,
+  "requestId": "req_011CawcZrBtpw7e9xjF3sj8y",
+  "type": "assistant",
+  "uuid": "cf21b994-6044-4ea6-abb1-d368579bdace",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T11moCP67UsMBNnx5dKZ2w",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 930,
+      "cache_read_input_tokens": 50682,
+      "output_tokens": 192,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 930,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 192,
+          "cache_read_input_tokens": 50682,
+          "cache_creation_input_tokens": 930,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 930
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-11T23:01:51.175Z_
+
+<details><summary>↩ Tool result · `toolu_016zmDAc14tVUMr6excnUFps`</summary>
+
+```text
+Web search results for query: "site:arxiv.org "agentic RL" "error" "branching" OR "rollout" recovery 2026"
+
+Links: [{"title":"RTMC: Step-Level Credit Assignment via Rollout Trees","url":"https://arxiv.org/html/2604.11037"},{"title":"ProRL Agent: Rollout-as-a-Service for RL Training of Multi-Turn LLM Agents","url":"https://arxiv.org/pdf/2603.18815"},{"title":"LiteResearcher: A Scalable Agentic RL Training Framework for Deep Research Agent","url":"https://arxiv.org/html/2604.17931v2"},{"title":"TreePS-RAG: Tree-based Process Supervision for Reinforcement Learning in Agentic RAG","url":"https://arxiv.org/html/2601.06922"},{"title":"Latent Poincaré Shaping for Agentic Reinforcement Learning","url":"https://arxiv.org/html/2602.09375"},{"title":"Agentic Reinforced Policy Optimization","url":"https://arxiv.org/html/2507.19849"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2509.21240"},{"title":"AgentV-RL: Scaling Reward Modeling with Agentic Verifier","url":"https://arxiv.org/html/2604.16004"},{"title":"AT2PO: Agentic Turn-based Policy Optimization via Tree Search","url":"https://arxiv.org/html/2601.04767v1"},{"title":"Aligning Agents via Planning: A Benchmark for Trajectory-Level Reward ModelingCode and data will be released after corporate approval.","url":"https://arxiv.org/html/2604.08178"}]
+
+I've completed the web search for your query. The search returned 10 results from arxiv.org related to agentic RL with focus on error handling, branching, and rollout recovery mechanisms from 2026. Here's a summary of the key findings:
+
+## Key Papers Found:
+
+1. **RTMC: Step-Level Credit Assignment via Rollout Trees** - Methods that use tree or branching structures to estimate per-step values, such as VinePPO which launches branch rollouts from each intermediate state to obtain unbiased MC value estimates.
+
+2. **ProRL Agent: Rollout-as-a-Service for RL Training** - Addresses infrastructure for multi-turn LLM agent RL training, focusing on the different resource characteristics between rollout (I/O-intensive) and training (GPU-intensive), where coupling these workloads causes interference and reduces overall resource efficiency.
+
+3. **AT2PO: Agentic Turn-based Policy Optimization via Tree Search** - A state-of-the-art agentic RL method that introduces entropy-balanced rollout scheduling and entropy-aware clipping to mitigate over-branching and gradient collapse in tree-based rollouts.
+
+4. **TreePS-RAG: Tree-based Process Supervision** - Introduces similarity-based pruning over retrieved evidence to control the branching factor while maintaining diverse paths.
+
+5. **ARPO: Agentic Reinforced Policy Optimization** - Extends the traditional rollout process by performing trajectory-level sampling and branching at high-entropy tool-use steps, striking a balance between global and partial sampling to encourage broader exploration.
+
+6. **Plan-RewardBench** - Includes a "Robust Recovery" category among four representative task families, combining validated reference trajectories with carefully constructed distractors to stress-test preference judgment.
+
+These papers collectively address credit assignment, error recovery, branching strategies, and rollout mechanisms in agentic RL systems from 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cf21b994-6044-4ea6-abb1-d368579bdace",
+  "isSidechain": false,
+  "promptId": "9f503ff4-5335-492c-870b-15a6eb7331fc",
+  "type": "user",
+  "uuid": "29f7879e-98f6-47d3-9c30-ae1d480b640f",
+  "toolUseResult": {
+    "query": "site:arxiv.org \"agentic RL\" \"error\" \"branching\" OR \"rollout\" recovery 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NLZ27vfVJjFBcug8wCNRx5",
+        "content": [
+          {
+            "title": "RTMC: Step-Level Credit Assignment via Rollout Trees",
+            "url": "https://arxiv.org/html/2604.11037"
+          },
+          {
+            "title": "ProRL Agent: Rollout-as-a-Service for RL Training of Multi-Turn LLM Agents",
+            "url": "https://arxiv.org/pdf/2603.18815"
+          },
+          {
+            "title": "LiteResearcher: A Scalable Agentic RL Training Framework for Deep Research Agent",
+            "url": "https://arxiv.org/html/2604.17931v2"
+          },
+          {
+            "title": "TreePS-RAG: Tree-based Process Supervision for Reinforcement Learning in Agentic RAG",
+            "url": "https://arxiv.org/html/2601.06922"
+          },
+          {
+            "title": "Latent Poincaré Shaping for Agentic Reinforcement Learning",
+            "url": "https://arxiv.org/html/2602.09375"
+          },
+          {
+            "title": "Agentic Reinforced Policy Optimization",
+            "url": "https://arxiv.org/html/2507.19849"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2509.21240"
+          },
+          {
+            "title": "AgentV-RL: Scaling Reward Modeling with Agentic Verifier",
+            "url": "https://arxiv.org/html/2604.16004"
+          },
+          {
+            "title": "AT2PO: Agentic Turn-based Policy Optimization via Tree Search",
+            "url": "https://arxiv.org/html/2601.04767v1"
+          },
+          {
+            "title": "Aligning Agents via Planning: A Benchmark for Trajectory-Level Reward ModelingCode and data will be released after corporate approval.",
+            "url": "https://arxiv.org/html/2604.08178"
+          }
+        ]
+      },
+      "I've completed the web search for your query. The search returned 10 results from arxiv.org related to agentic RL with focus on error handling, branching, and rollout recovery mechanisms from 2026. Here's a summary of the key findings:\n\n## Key Papers Found:\n\n1. **RTMC: Step-Level Credit Assignment via Rollout Trees** - Methods that use tree or branching structures to estimate per-step values, such as VinePPO which launches branch rollouts from each intermediate state to obtain unbiased MC value estimates.\n\n2. **ProRL Agent: Rollout-as-a-Service for RL Training** - Addresses infrastructure for multi-turn LLM agent RL training, focusing on the different resource characteristics between rollout (I/O-intensive) and training (GPU-intensive), where coupling these workloads causes interference and reduces overall resource efficiency.\n\n3. **AT2PO: Agentic Turn-based Policy Optimization via Tree Search** - A state-of-the-art agentic RL method that introduces entropy-balanced rollout scheduling and entropy-aware clipping to mitigate over-branching and gradient collapse in tree-based rollouts.\n\n4. **TreePS-RAG: Tree-based Process Supervision** - Introduces similarity-based pruning over retrieved evidence to control the branching factor while maintaining diverse paths.\n\n5. **ARPO: Agentic Reinforced Policy Optimization** - Extends the traditional rollout process by performing trajectory-level sampling and branching at high-entropy tool-use steps, striking a balance between global and partial sampling to encourage broader exploration.\n\n6. **Plan-RewardBench** - Includes a \"Robust Recovery\" category among four representative task families, combining validated reference trajectories with carefully constructed distractors to stress-test preference judgment.\n\nThese papers collectively address credit assignment, error recovery, branching strategies, and rollout mechanisms in agentic RL systems from 2026."
+    ],
+    "durationSeconds": 8.933672869000002
+  },
+  "sourceToolAssistantUUID": "cf21b994-6044-4ea6-abb1-d368579bdace",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 83 · 2026-05-11T23:01:51.178Z_
+
+```json
+{
+  "parentUuid": "29f7879e-98f6-47d3-9c30-ae1d480b640f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "620ae2ff-75cb-484a-a4b2-3e2ba9f869de",
+  "timestamp": "2026-05-11T23:01:51.178Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 84 · 2026-05-11T23:01:54.542Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AuojRtF9buet6x5qURhd1e`</summary>
+
+```json
+{
+  "query": "AT2PO agentic turn-based policy optimization tree search entropy arXiv 2601.04767"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "620ae2ff-75cb-484a-a4b2-3e2ba9f869de",
+  "isSidechain": false,
+  "requestId": "req_011CawcavztmseFzfJkzg4Ma",
+  "type": "assistant",
+  "uuid": "6ab3d86e-5d04-4a33-93f6-34f6a6454c8f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Csri7L88r9BEifst9WRFaV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1225,
+      "cache_read_input_tokens": 51612,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1225,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 51612,
+          "cache_creation_input_tokens": 1225,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1225
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-11T23:02:01.149Z_
+
+<details><summary>↩ Tool result · `toolu_01AuojRtF9buet6x5qURhd1e`</summary>
+
+```text
+Web search results for query: "AT2PO agentic turn-based policy optimization tree search entropy arXiv 2601.04767"
+
+Links: [{"title":"[2601.04767] AT$^2$PO: Agentic Turn-based Policy Optimization via Tree Search","url":"https://arxiv.org/abs/2601.04767"},{"title":"AT2PO: Agentic Turn-based Policy Optimization via Tree Search","url":"https://arxiv.org/html/2601.04767v1"},{"title":"GitHub - zzfoutofspace/ATPO: AT2PO: Agentic Turn-based Policy Optimization via Tree Search · GitHub","url":"https://github.com/zzfoutofspace/ATPO"},{"title":"AT$^2$PO: Agentic Turn-based Policy Optimization via Tree Search - ADS","url":"https://ui.adsabs.harvard.edu/abs/2026arXiv260104767Z/abstract"},{"title":"Paper page - AT^2PO: Agentic Turn-based Policy Optimization via Tree Search","url":"https://huggingface.co/papers/2601.04767"},{"title":"AT$^2$PO: Agentic Turn-based Policy Optimization via Tree Search | alphaXiv","url":"https://www.alphaxiv.org/overview/2601.04767"},{"title":"A2TGPO: Agentic Turn-Group Policy Optimization with Adaptive Turn-level Clipping","url":"https://arxiv.org/html/2605.06200"},{"title":"Agentic Turn-based Policy Optimization via Tree Search","url":"https://arxiv.org/pdf/2601.04767"},{"title":"AT^2PO: Agentic Turn-based Policy Optimization via Tree Search | Takara TLDR","url":"https://tldr.takara.ai/p/2601.04767"},{"title":"Rohan Paul on X: \"AT2PO, short for Agentic Turn based Policy Optimization via Tree Search, trains tool using LLM agents faster and steadier. It grows a tree of possible next moves where the agent seems unsure, then learns from the best paths. Most agent training treats a whole tool using chat as https://t.co/WAk9uyE61B\" / X","url":"https://x.com/rohanpaul_ai/status/2010949681208016963"}]
+
+Based on the search results, here's what I found about arXiv paper 2601.04767:
+
+## AT²PO: Agentic Turn-based Policy Optimization via Tree Search
+
+AT2PO is a unified framework for multi-turn agentic RL that addresses three core challenges: limited exploration diversity, sparse credit assignment, and misaligned policy optimization.
+
+### Key Components
+
+AT2PO introduces a turn-level tree structure that jointly enables Entropy-Guided Tree Expansion for strategic exploration and Turn-wise Credit Assignment for fine-grained reward propagation from sparse outcomes.
+
+The framework consists of three main parts:
+
+1. **Entropy-Guided Tree Expansion**: This adaptively grows the search tree from the most uncertain turns to maximize exploration efficiency.
+
+2. **Turn-wise Credit Assignment**: This mechanism propagates sparse outcome rewards backward through the tree to compute fine-grained, per-turn value and advantage estimates, enabling precise credit allocation without auxiliary supervision.
+
+3. **Agentic Turn-based Policy Optimization (ATPO)**: This is a novel policy learning algorithm that operates its importance sampling and clipping at the turn level, aligning the optimization objective with the structured turn-based decision process and significantly improving training stability and performance.
+
+### Results
+
+Through extensive experiments on search agent benchmarks, AT2PO consistently outperforms prior strong baselines, yielding gains of up to 1.84 percentage points in average over the state-of-the-art baseline across seven benchmarks.
+
+The paper was published on arXiv on January 8, 2026, and the code is available on GitHub.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6ab3d86e-5d04-4a33-93f6-34f6a6454c8f",
+  "isSidechain": false,
+  "promptId": "9f503ff4-5335-492c-870b-15a6eb7331fc",
+  "type": "user",
+  "uuid": "0d36245c-aa43-450b-a510-d6bd7095eaf2",
+  "toolUseResult": {
+    "query": "AT2PO agentic turn-based policy optimization tree search entropy arXiv 2601.04767",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DrfZfvutgJWMgbj8UninYC",
+        "content": [
+          {
+            "title": "[2601.04767] AT$^2$PO: Agentic Turn-based Policy Optimization via Tree Search",
+            "url": "https://arxiv.org/abs/2601.04767"
+          },
+          {
+            "title": "AT2PO: Agentic Turn-based Policy Optimization via Tree Search",
+            "url": "https://arxiv.org/html/2601.04767v1"
+          },
+          {
+            "title": "GitHub - zzfoutofspace/ATPO: AT2PO: Agentic Turn-based Policy Optimization via Tree Search · GitHub",
+            "url": "https://github.com/zzfoutofspace/ATPO"
+          },
+          {
+            "title": "AT$^2$PO: Agentic Turn-based Policy Optimization via Tree Search - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2026arXiv260104767Z/abstract"
+          },
+          {
+            "title": "Paper page - AT^2PO: Agentic Turn-based Policy Optimization via Tree Search",
+            "url": "https://huggingface.co/papers/2601.04767"
+          },
+          {
+            "title": "AT$^2$PO: Agentic Turn-based Policy Optimization via Tree Search | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2601.04767"
+          },
+          {
+            "title": "A2TGPO: Agentic Turn-Group Policy Optimization with Adaptive Turn-level Clipping",
+            "url": "https://arxiv.org/html/2605.06200"
+          },
+          {
+            "title": "Agentic Turn-based Policy Optimization via Tree Search",
+            "url": "https://arxiv.org/pdf/2601.04767"
+          },
+          {
+            "title": "AT^2PO: Agentic Turn-based Policy Optimization via Tree Search | Takara TLDR",
+            "url": "https://tldr.takara.ai/p/2601.04767"
+          },
+          {
+            "title": "Rohan Paul on X: \"AT2PO, short for Agentic Turn based Policy Optimization via Tree Search, trains tool using LLM agents faster and steadier. It grows a tree of possible next moves where the agent seems unsure, then learns from the best paths. Most agent training treats a whole tool using chat as https://t.co/WAk9uyE61B\" / X",
+            "url": "https://x.com/rohanpaul_ai/status/2010949681208016963"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about arXiv paper 2601.04767:\n\n## AT²PO: Agentic Turn-based Policy Optimization via Tree Search\n\nAT2PO is a unified framework for multi-turn agentic RL that addresses three core challenges: limited exploration diversity, sparse credit assignment, and misaligned policy optimization.\n\n### Key Components\n\nAT2PO introduces a turn-level tree structure that jointly enables Entropy-Guided Tree Expansion for strategic exploration and Turn-wise Credit Assignment for fine-grained reward propagation from sparse outcomes.\n\nThe framework consists of three main parts:\n\n1. **Entropy-Guided Tree Expansion**: This adaptively grows the search tree from the most uncertain turns to maximize exploration efficiency.\n\n2. **Turn-wise Credit Assignment**: This mechanism propagates sparse outcome rewards backward through the tree to compute fine-grained, per-turn value and advantage estimates, enabling precise credit allocation without auxiliary supervision.\n\n3. **Agentic Turn-based Policy Optimization (ATPO)**: This is a novel policy learning algorithm that operates its importance sampling and clipping at the turn level, aligning the optimization objective with the structured turn-based decision process and significantly improving training stability and performance.\n\n### Results\n\nThrough extensive experiments on search agent benchmarks, AT2PO consistently outperforms prior strong baselines, yielding gains of up to 1.84 percentage points in average over the state-of-the-art baseline across seven benchmarks.\n\nThe paper was published on arXiv on January 8, 2026, and the code is available on GitHub."
+    ],
+    "durationSeconds": 6.604630207000009
+  },
+  "sourceToolAssistantUUID": "6ab3d86e-5d04-4a33-93f6-34f6a6454c8f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 86 · 2026-05-11T23:02:12.434Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+AT2PO is very relevant — it also uses entropy-guided tree expansion, which is very close to ARPO's entropy-triggered branching. This adds to the crowded landscape. But more importantly, it doesn't specifically target error recovery, so the ETB-GRPO idea's specific focus on error-triggered branching could still differentiate.
+
+Let me now check a few more things:
+1. Is there any work that specifically combines error signals with branching RL?
+2. What are the actual recovery metrics used in the field?
+3. Let me verify the compute estimates
+
+Also important: the user's requirement is EMNLP 2026 with ARR May 25 deadline, but the idea targets AAAI 2027 as primary. 
+
+There's a timing problem here — I need to reconsider whether this approach can realistically be ready for EMNLP 2026 or if AAAI 2027 is more feasible.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0d36245c-aa43-450b-a510-d6bd7095eaf2",
+  "isSidechain": false,
+  "requestId": "req_011CawcbfgRu9KtDPGDmYUwA",
+  "type": "assistant",
+  "uuid": "e9608ce4-926d-4789-a912-42dac053c77d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YRWNRWkkV6odWfr2fEUicX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1048,
+      "cache_read_input_tokens": 52837,
+      "output_tokens": 264,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1048,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 264,
+          "cache_read_input_tokens": 52837,
+          "cache_creation_input_tokens": 1048,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1048
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-11T23:02:12.445Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FjouVBMw1UAdqwSbXDYLna`</summary>
+
+```json
+{
+  "query": "RTMC step-level credit assignment rollout trees Monte Carlo arXiv 2604.11037"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e9608ce4-926d-4789-a912-42dac053c77d",
+  "isSidechain": false,
+  "requestId": "req_011CawcbfgRu9KtDPGDmYUwA",
+  "type": "assistant",
+  "uuid": "aa31c4f7-405d-4f0d-b93d-c602f2048af2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YRWNRWkkV6odWfr2fEUicX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1048,
+      "cache_read_input_tokens": 52837,
+      "output_tokens": 264,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1048,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 264,
+          "cache_read_input_tokens": 52837,
+          "cache_creation_input_tokens": 1048,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1048
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 88_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "aa31c4f7-405d-4f0d-b93d-c602f2048af2",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 89_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify ETB-GRPO novelty and feasibility via independent searches",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622"
+}
+```
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-11T23:02:21.269Z_
+
+<details><summary>↩ Tool result · `toolu_01FjouVBMw1UAdqwSbXDYLna`</summary>
+
+```text
+Web search results for query: "RTMC step-level credit assignment rollout trees Monte Carlo arXiv 2604.11037"
+
+Links: [{"title":"[2604.11037] RTMC: Step-Level Credit Assignment via Rollout Trees","url":"https://arxiv.org/abs/2604.11037"},{"title":"RTMC: Step-Level Credit Assignment via Rollout Trees","url":"https://arxiv.org/html/2604.11037"},{"title":"(PDF) RTMC: Step-Level Credit Assignment via Rollout Trees","url":"https://www.researchgate.net/publication/403791864_RTMC_Step-Level_Credit_Assignment_via_Rollout_Trees"},{"title":"MICA: Multi-granularity Intertemporal Credit Assignment for Long-Horizon Emotional Support Dialogue","url":"https://arxiv.org/html/2603.06194v2"},{"title":"Computer Science Apr 2026","url":"https://arxiv.org/list/cs/2026-04?skip=5800&show=100"},{"title":"Xiaoxiao Xu's research works | Alibaba Group and other places","url":"https://www.researchgate.net/scientific-contributions/Xiaoxiao-Xu-2321074403"},{"title":"[PDF] Exploiting Tree Structure for Credit Assignment in RL ...","url":"https://www.semanticscholar.org/paper/Exploiting-Tree-Structure-for-Credit-Assignment-in-Tran-Yao/2007b767d8aeeb23290b76e2b9eb44e1a272b5a6"},{"title":"From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models","url":"https://arxiv.org/html/2604.09459v1"},{"title":"Automated generation of assembly schedules for precast building projects under uncertainty using reinforcement learning and Monte Carlo sampling | Request PDF","url":"https://www.researchgate.net/publication/401893520_Automated_generation_of_assembly_schedules_for_precast_building_projects_under_uncertainty_using_reinforcement_learning_and_Monte_Carlo_sampling"},{"title":"[1210.0374] Pilot, Rollout and Monte Carlo Tree Search Methods for Job Shop Scheduling","url":"https://arxiv.org/abs/1210.0374"}]
+
+Based on the web search results, I found detailed information about the paper arXiv 2604.11037:
+
+## RTMC: Step-Level Credit Assignment via Rollout Trees
+
+The paper addresses multi-step agentic reinforcement learning, which benefits from fine-grained credit assignment, yet existing approaches offer limited options: critic-free methods like GRPO assign a uniform advantage to every action in a trajectory, while learned value networks introduce notable overhead and can be fragile under sparse rewards.
+
+### Key Insight and Approach
+
+The authors observe that group rollouts targeting the same problem often traverse overlapping intermediate states, implicitly forming a tree whose branches diverge at successive decision points.
+
+Building on this insight, they introduce Rollout-Tree Monte Carlo (RTMC) advantage estimation, which aggregates return statistics across rollouts sharing a common state to produce per-step Q-values and advantages--without any learned critic.
+
+### Technical Components
+
+A state-action signature system compresses raw interaction histories into compact, comparable representations, making cross-rollout state matching tractable. The authors organize these rollouts into a tree via state-action signatures and apply first-visit Monte Carlo estimation to obtain unbiased per-step advantages without any additional model or computation.
+
+### Empirical Results
+
+On SWE-bench Verified, a progressive ablation from the untrained baseline through GRPO, step-level rewards, and the tree-based estimator demonstrates additive gains at each stage, with Rollout-Tree MC achieving 52.2% pass@1—a 3.2 percentage improvement.
+
+The paper was authored by Tao Wang, Suhang Zheng, and Xiaoxiao Xu from Alibaba Group and was published on April 13, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aa31c4f7-405d-4f0d-b93d-c602f2048af2",
+  "isSidechain": false,
+  "promptId": "9f503ff4-5335-492c-870b-15a6eb7331fc",
+  "type": "user",
+  "uuid": "8873a8e2-783f-4526-99c6-5bc6878dc412",
+  "toolUseResult": {
+    "query": "RTMC step-level credit assignment rollout trees Monte Carlo arXiv 2604.11037",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JdfAVuD4NhzMbduPtGtJQy",
+        "content": [
+          {
+            "title": "[2604.11037] RTMC: Step-Level Credit Assignment via Rollout Trees",
+            "url": "https://arxiv.org/abs/2604.11037"
+          },
+          {
+            "title": "RTMC: Step-Level Credit Assignment via Rollout Trees",
+            "url": "https://arxiv.org/html/2604.11037"
+          },
+          {
+            "title": "(PDF) RTMC: Step-Level Credit Assignment via Rollout Trees",
+            "url": "https://www.researchgate.net/publication/403791864_RTMC_Step-Level_Credit_Assignment_via_Rollout_Trees"
+          },
+          {
+            "title": "MICA: Multi-granularity Intertemporal Credit Assignment for Long-Horizon Emotional Support Dialogue",
+            "url": "https://arxiv.org/html/2603.06194v2"
+          },
+          {
+            "title": "Computer Science Apr 2026",
+            "url": "https://arxiv.org/list/cs/2026-04?skip=5800&show=100"
+          },
+          {
+            "title": "Xiaoxiao Xu's research works | Alibaba Group and other places",
+            "url": "https://www.researchgate.net/scientific-contributions/Xiaoxiao-Xu-2321074403"
+          },
+          {
+            "title": "[PDF] Exploiting Tree Structure for Credit Assignment in RL ...",
+            "url": "https://www.semanticscholar.org/paper/Exploiting-Tree-Structure-for-Credit-Assignment-in-Tran-Yao/2007b767d8aeeb23290b76e2b9eb44e1a272b5a6"
+          },
+          {
+            "title": "From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models",
+            "url": "https://arxiv.org/html/2604.09459v1"
+          },
+          {
+            "title": "Automated generation of assembly schedules for precast building projects under uncertainty using reinforcement learning and Monte Carlo sampling | Request PDF",
+            "url": "https://www.researchgate.net/publication/401893520_Automated_generation_of_assembly_schedules_for_precast_building_projects_under_uncertainty_using_reinforcement_learning_and_Monte_Carlo_sampling"
+          },
+          {
+            "title": "[1210.0374] Pilot, Rollout and Monte Carlo Tree Search Methods for Job Shop Scheduling",
+            "url": "https://arxiv.org/abs/1210.0374"
+          }
+        ]
+      },
+      "Based on the web search results, I found detailed information about the paper arXiv 2604.11037:\n\n## RTMC: Step-Level Credit Assignment via Rollout Trees\n\nThe paper addresses multi-step agentic reinforcement learning, which benefits from fine-grained credit assignment, yet existing approaches offer limited options: critic-free methods like GRPO assign a uniform advantage to every action in a trajectory, while learned value networks introduce notable overhead and can be fragile under sparse rewards.\n\n### Key Insight and Approach\n\nThe authors observe that group rollouts targeting the same problem often traverse overlapping intermediate states, implicitly forming a tree whose branches diverge at successive decision points.\n\nBuilding on this insight, they introduce Rollout-Tree Monte Carlo (RTMC) advantage estimation, which aggregates return statistics across rollouts sharing a common state to produce per-step Q-values and advantages--without any learned critic.\n\n### Technical Components\n\nA state-action signature system compresses raw interaction histories into compact, comparable representations, making cross-rollout state matching tractable. The authors organize these rollouts into a tree via state-action signatures and apply first-visit Monte Carlo estimation to obtain unbiased per-step advantages without any additional model or computation.\n\n### Empirical Results\n\nOn SWE-bench Verified, a progressive ablation from the untrained baseline through GRPO, step-level rewards, and the tree-based estimator demonstrates additive gains at each stage, with Rollout-Tree MC achieving 52.2% pass@1—a 3.2 percentage improvement.\n\nThe paper was authored by Tao Wang, Suhang Zheng, and Xiaoxiao Xu from Alibaba Group and was published on April 13, 2026."
+    ],
+    "durationSeconds": 8.818160942000047
+  },
+  "sourceToolAssistantUUID": "aa31c4f7-405d-4f0d-b93d-c602f2048af2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-11T23:02:23.998Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KsrT4PZ2JJNSN4dr4fJ12q`</summary>
+
+```json
+{
+  "query": "ALFWorld SOTA success rate 2026 Qwen reinforcement learning agent benchmark"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8873a8e2-783f-4526-99c6-5bc6878dc412",
+  "isSidechain": false,
+  "requestId": "req_011Cawcd9hSH5gTkq1h646id",
+  "type": "assistant",
+  "uuid": "79d445d6-31eb-4cec-96cb-356abd8cb52d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HPtMqrEtHCmRANMa4WuyEd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1253,
+      "cache_read_input_tokens": 53885,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1253,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 53885,
+          "cache_creation_input_tokens": 1253,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1253
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-11T23:02:30.885Z_
+
+<details><summary>↩ Tool result · `toolu_01KsrT4PZ2JJNSN4dr4fJ12q`</summary>
+
+```text
+Web search results for query: "ALFWorld SOTA success rate 2026 Qwen reinforcement learning agent benchmark"
+
+Links: [{"title":"Agent Era Triggering the Great AI Market Reset?","url":"https://www.superintelligencenewsletter.com/p/agent-era-triggering-the-great-ai"},{"title":"AGENTRL: SCALING AGENTIC REINFORCEMENT ...","url":"https://openreview.net/pdf?id=zq3vAmuUk9"},{"title":"Recent Advances in Reinforcement Learning for Continuous Control | SOTA Early 2026","url":"https://araffin.github.io/slides/advances-rl-sota-2026/"},{"title":"Learning to Simulate from Experience for Better AI Agents","url":"https://arxiv.org/pdf/2510.09577"},{"title":"AgentRL: Scaling Agentic Reinforcement Learning with a ...","url":"https://arxiv.org/pdf/2510.04206"},{"title":"RLVMR: REINFORCEMENT LEARNING WITH VERI","url":"https://openreview.net/pdf/8364c9f79f40d80606efb17471e3486002893280.pdf"},{"title":"Alibaba's Most Powerful Programming Model with 480 Billion Parameters Open-Sourced, Agent Score Crushes Kimi K2, Training Details Unveiled","url":"https://eu.36kr.com/en/p/3390735126136968"},{"title":"Alibaba Qwen Team Releases Qwen3.5 Omni: A Native Multimodal Model for Text, Audio, Video, and Realtime Interaction - MarkTechPost","url":"https://www.marktechpost.com/2026/03/30/alibaba-qwen-team-releases-qwen3-5-omni-a-native-multimodal-model-for-text-audio-video-and-realtime-interaction/"},{"title":"AgentOCR: Reimagining Agent History via Optical Self-Compression","url":"https://arxiv.org/html/2601.04786"},{"title":"SAPO: A Stable and Performant Reinforcement Learning ...","url":"https://qwen.ai/blog?id=sapo"}]
+
+Based on the search results, here's what I found regarding ALFWorld SOTA success rates and Qwen reinforcement learning agents in 2026:
+
+## Key Findings
+
+SkillRL achieved ~89.9% success on ALFWorld through a framework that distills trajectories into hierarchical skills and co-evolves them with policy via recursive RL.
+
+AGENTRL framework achieves state-of-the-art performance across five tasks in AGENTBENCH-FC, establishing a new top average success rate of 70.4%. Experiments show that AGENTRL significantly outperforms GPT-5, Claude-Sonnet-4 and DeepSeek-R1.
+
+On ALFWorld's L2 split (unseen tasks), a 7B model reached an impressive 83.6% success rate, a substantial 16.4 percentage point improvement over the strongest baseline (GiGPO).
+
+For Qwen-specific models in these benchmarks, AGENTRL yields substantial improvements compared to the original Qwen2.5-Instruct models under prompting, highlighting the effectiveness of reinforcement learning training. The results show that Qwen models trained with reinforcement learning techniques are achieving competitive performance on ALFWorld in 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "79d445d6-31eb-4cec-96cb-356abd8cb52d",
+  "isSidechain": false,
+  "promptId": "9f503ff4-5335-492c-870b-15a6eb7331fc",
+  "type": "user",
+  "uuid": "7e097a76-d8e0-4aa9-b523-9d37e2b85b5a",
+  "toolUseResult": {
+    "query": "ALFWorld SOTA success rate 2026 Qwen reinforcement learning agent benchmark",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018afmeadnTjVWh11SD3gTuM",
+        "content": [
+          {
+            "title": "Agent Era Triggering the Great AI Market Reset?",
+            "url": "https://www.superintelligencenewsletter.com/p/agent-era-triggering-the-great-ai"
+          },
+          {
+            "title": "AGENTRL: SCALING AGENTIC REINFORCEMENT ...",
+            "url": "https://openreview.net/pdf?id=zq3vAmuUk9"
+          },
+          {
+            "title": "Recent Advances in Reinforcement Learning for Continuous Control | SOTA Early 2026",
+            "url": "https://araffin.github.io/slides/advances-rl-sota-2026/"
+          },
+          {
+            "title": "Learning to Simulate from Experience for Better AI Agents",
+            "url": "https://arxiv.org/pdf/2510.09577"
+          },
+          {
+            "title": "AgentRL: Scaling Agentic Reinforcement Learning with a ...",
+            "url": "https://arxiv.org/pdf/2510.04206"
+          },
+          {
+            "title": "RLVMR: REINFORCEMENT LEARNING WITH VERI",
+            "url": "https://openreview.net/pdf/8364c9f79f40d80606efb17471e3486002893280.pdf"
+          },
+          {
+            "title": "Alibaba's Most Powerful Programming Model with 480 Billion Parameters Open-Sourced, Agent Score Crushes Kimi K2, Training Details Unveiled",
+            "url": "https://eu.36kr.com/en/p/3390735126136968"
+          },
+          {
+            "title": "Alibaba Qwen Team Releases Qwen3.5 Omni: A Native Multimodal Model for Text, Audio, Video, and Realtime Interaction - MarkTechPost",
+            "url": "https://www.marktechpost.com/2026/03/30/alibaba-qwen-team-releases-qwen3-5-omni-a-native-multimodal-model-for-text-audio-video-and-realtime-interaction/"
+          },
+          {
+            "title": "AgentOCR: Reimagining Agent History via Optical Self-Compression",
+            "url": "https://arxiv.org/html/2601.04786"
+          },
+          {
+            "title": "SAPO: A Stable and Performant Reinforcement Learning ...",
+            "url": "https://qwen.ai/blog?id=sapo"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding ALFWorld SOTA success rates and Qwen reinforcement learning agents in 2026:\n\n## Key Findings\n\nSkillRL achieved ~89.9% success on ALFWorld through a framework that distills trajectories into hierarchical skills and co-evolves them with policy via recursive RL.\n\nAGENTRL framework achieves state-of-the-art performance across five tasks in AGENTBENCH-FC, establishing a new top average success rate of 70.4%. Experiments show that AGENTRL significantly outperforms GPT-5, Claude-Sonnet-4 and DeepSeek-R1.\n\nOn ALFWorld's L2 split (unseen tasks), a 7B model reached an impressive 83.6% success rate, a substantial 16.4 percentage point improvement over the strongest baseline (GiGPO).\n\nFor Qwen-specific models in these benchmarks, AGENTRL yields substantial improvements compared to the original Qwen2.5-Instruct models under prompting, highlighting the effectiveness of reinforcement learning training. The results show that Qwen models trained with reinforcement learning techniques are achieving competitive performance on ALFWorld in 2026."
+    ],
+    "durationSeconds": 6.883719259000034
+  },
+  "sourceToolAssistantUUID": "79d445d6-31eb-4cec-96cb-356abd8cb52d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-11T23:02:33.465Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013rAHsojx1EtveqvbGDQTVn`</summary>
+
+```json
+{
+  "query": "HiPER ALFWorld 97.4% success rate hierarchical reinforcement learning Qwen 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7e097a76-d8e0-4aa9-b523-9d37e2b85b5a",
+  "isSidechain": false,
+  "requestId": "req_011CawcdrpxFUakjdBAWdJUJ",
+  "type": "assistant",
+  "uuid": "2042a7e2-3004-473c-b8ea-0c3e5f902aea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G5SkoWTeG5gBHwMDa8pSEz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 934,
+      "cache_read_input_tokens": 55138,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 934,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 55138,
+          "cache_creation_input_tokens": 934,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 934
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-11T23:02:39.372Z_
+
+<details><summary>↩ Tool result · `toolu_013rAHsojx1EtveqvbGDQTVn`</summary>
+
+```text
+Web search results for query: "HiPER ALFWorld 97.4% success rate hierarchical reinforcement learning Qwen 2026"
+
+Links: [{"title":"HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents","url":"https://arxiv.org/html/2602.16165v1"},{"title":"[2602.16165] HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents","url":"https://arxiv.org/abs/2602.16165"},{"title":"[2602.16165v1] HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents","url":"https://arxiv.org/abs/2602.16165v1"},{"title":"HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents | Request PDF","url":"https://www.researchgate.net/publication/400930124_HiPER_Hierarchical_Reinforcement_Learning_with_Explicit_Credit_Assignment_for_Large_Language_Model_Agents"},{"title":"Retrieval-Augmented Hierarchical in-Context Reinforcement Learning and Hindsight Modular Reflections for Task Planning with LLMs","url":"https://arxiv.org/html/2408.06520v2"},{"title":"Hierarchical in-Context Reinforcement Learning with Hindsight Modular Reflections for Planning","url":"https://arxiv.org/html/2408.06520v1"},{"title":"Hierarchical Reinforcement Learning Based on Planning Operators*","url":"https://arxiv.org/html/2309.14237v2"},{"title":"AgentRL: Scaling Agentic Reinforcement Learning with a ...","url":"https://arxiv.org/pdf/2510.04206"},{"title":"Enhancing Vision-Language Model Training with Reinforcement Learning in Synthetic Worlds for Real-World Success","url":"https://arxiv.org/html/2508.04280v1"},{"title":"AGENTRL: SCALING AGENTIC REINFORCEMENT ...","url":"https://openreview.net/pdf?id=zq3vAmuUk9"}]
+
+Based on the web search results, I found relevant information about HiPER and the 97.4% success rate on ALFWorld:
+
+HiPER achieves state-of-the-art performance on challenging interactive benchmarks, reaching 97.4% success on ALFWorld and 83.3% on WebShop with Qwen2.5-7B-Instruct (+6.6% and +8.3% over the best prior method).
+
+HiPER is a novel Hierarchical Plan-Execute RL framework that explicitly separates high-level planning from low-level execution. HiPER factorizes the policy into a high-level planner that proposes subgoals and a low-level executor that carries them out over multiple action steps.
+
+To align optimization with this structure, the approach introduces hierarchical advantage estimation (HAE), which carefully assigns credit at both the planning and execution levels.
+
+The largest gains on ALFWorld come from the more challenging categories such as Look and Pick2, highlighting the clear advantage of explicitly decomposing complex multi-stage tasks into subgoals and learning with a hierarchical structure.
+
+The research was published in February 2026 on arXiv, demonstrating the effectiveness of hierarchical reinforcement learning approaches for training large language model agents.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2042a7e2-3004-473c-b8ea-0c3e5f902aea",
+  "isSidechain": false,
+  "promptId": "9f503ff4-5335-492c-870b-15a6eb7331fc",
+  "type": "user",
+  "uuid": "6dea83cb-aa29-4639-827d-442842d1318f",
+  "toolUseResult": {
+    "query": "HiPER ALFWorld 97.4% success rate hierarchical reinforcement learning Qwen 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01ASpvT9JHJE9kMzRFcW59sL",
+        "content": [
+          {
+            "title": "HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents",
+            "url": "https://arxiv.org/html/2602.16165v1"
+          },
+          {
+            "title": "[2602.16165] HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents",
+            "url": "https://arxiv.org/abs/2602.16165"
+          },
+          {
+            "title": "[2602.16165v1] HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents",
+            "url": "https://arxiv.org/abs/2602.16165v1"
+          },
+          {
+            "title": "HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents | Request PDF",
+            "url": "https://www.researchgate.net/publication/400930124_HiPER_Hierarchical_Reinforcement_Learning_with_Explicit_Credit_Assignment_for_Large_Language_Model_Agents"
+          },
+          {
+            "title": "Retrieval-Augmented Hierarchical in-Context Reinforcement Learning and Hindsight Modular Reflections for Task Planning with LLMs",
+            "url": "https://arxiv.org/html/2408.06520v2"
+          },
+          {
+            "title": "Hierarchical in-Context Reinforcement Learning with Hindsight Modular Reflections for Planning",
+            "url": "https://arxiv.org/html/2408.06520v1"
+          },
+          {
+            "title": "Hierarchical Reinforcement Learning Based on Planning Operators*",
+            "url": "https://arxiv.org/html/2309.14237v2"
+          },
+          {
+            "title": "AgentRL: Scaling Agentic Reinforcement Learning with a ...",
+            "url": "https://arxiv.org/pdf/2510.04206"
+          },
+          {
+            "title": "Enhancing Vision-Language Model Training with Reinforcement Learning in Synthetic Worlds for Real-World Success",
+            "url": "https://arxiv.org/html/2508.04280v1"
+          },
+          {
+            "title": "AGENTRL: SCALING AGENTIC REINFORCEMENT ...",
+            "url": "https://openreview.net/pdf?id=zq3vAmuUk9"
+          }
+        ]
+      },
+      "Based on the web search results, I found relevant information about HiPER and the 97.4% success rate on ALFWorld:\n\nHiPER achieves state-of-the-art performance on challenging interactive benchmarks, reaching 97.4% success on ALFWorld and 83.3% on WebShop with Qwen2.5-7B-Instruct (+6.6% and +8.3% over the best prior method).\n\nHiPER is a novel Hierarchical Plan-Execute RL framework that explicitly separates high-level planning from low-level execution. HiPER factorizes the policy into a high-level planner that proposes subgoals and a low-level executor that carries them out over multiple action steps.\n\nTo align optimization with this structure, the approach introduces hierarchical advantage estimation (HAE), which carefully assigns credit at both the planning and execution levels.\n\nThe largest gains on ALFWorld come from the more challenging categories such as Look and Pick2, highlighting the clear advantage of explicitly decomposing complex multi-stage tasks into subgoals and learning with a hierarchical structure.\n\nThe research was published in February 2026 on arXiv, demonstrating the effectiveness of hierarchical reinforcement learning approaches for training large language model agents."
+    ],
+    "durationSeconds": 5.901688386000052
+  },
+  "sourceToolAssistantUUID": "2042a7e2-3004-473c-b8ea-0c3e5f902aea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-11T23:02:44.416Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_014SfkBK1njJ3ZaVYpUAdQfY`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2509.25238",
+  "prompt": "Extract the exact recovery rate numbers from the PALADIN paper. What is the recovery rate improvement? What method does PALADIN use for generating training data - is it manual curation or automated (e.g., GPT-5 API)? What are the exact error categories from ToolScan? How many trajectories are used?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6dea83cb-aa29-4639-827d-442842d1318f",
+  "isSidechain": false,
+  "requestId": "req_011CawceV6mqe61EuaUB8u8x",
+  "type": "assistant",
+  "uuid": "51b67196-6d02-4ff7-b286-cbbe401430c1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AQAVZrxDC5tBoK8pqzh9CC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 933,
+      "cache_read_input_tokens": 56072,
+      "output_tokens": 153,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 933,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 153,
+          "cache_read_input_tokens": 56072,
+          "cache_creation_input_tokens": 933,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 933
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-11T23:02:48.963Z_
+
+<details><summary>↩ Tool result · `toolu_014SfkBK1njJ3ZaVYpUAdQfY`</summary>
+
+```text
+# PALADIN Recovery Rate Analysis
+
+## Recovery Rate Numbers
+The paper reports these exact figures:
+- **PALADIN achieves 89.68% RR** compared to ToolBench's 32.76%, representing a **57% relative improvement**
+- Against the CRITIC baseline at 76.34%, PALADIN improves by **+13.3%**
+- Versus vanilla agents at 23.75%, PALADIN achieves **89.86% RR** (+66% relative)
+
+## Training Data Generation Method
+The abstract states PALADIN trains on **"50,000+ recovery-annotated trajectories constructed via systematic failure injection and expert demonstrations"** on an enhanced ToolBench dataset. The page does not specify whether this involved GPT-5 API or manual curation—only that systematic failure injection and expert input were used.
+
+## ToolScan Error Categories
+The provided content does not list the exact error categories from ToolScan's taxonomy. It only mentions that PALADIN retrieves cases **"aligned with ToolScan's taxonomy"** but does not enumerate those specific categories.
+
+## Training Trajectories
+The framework uses **50,000+ recovery-annotated trajectories** for training purposes.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "51b67196-6d02-4ff7-b286-cbbe401430c1",
+  "isSidechain": false,
+  "promptId": "9f503ff4-5335-492c-870b-15a6eb7331fc",
+  "type": "user",
+  "uuid": "0f873ca7-36b6-4e24-a655-e255516ef7ed",
+  "toolUseResult": {
+    "bytes": 48712,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# PALADIN Recovery Rate Analysis\n\n## Recovery Rate Numbers\nThe paper reports these exact figures:\n- **PALADIN achieves 89.68% RR** compared to ToolBench's 32.76%, representing a **57% relative improvement**\n- Against the CRITIC baseline at 76.34%, PALADIN improves by **+13.3%**\n- Versus vanilla agents at 23.75%, PALADIN achieves **89.86% RR** (+66% relative)\n\n## Training Data Generation Method\nThe abstract states PALADIN trains on **\"50,000+ recovery-annotated trajectories constructed via systematic failure injection and expert demonstrations\"** on an enhanced ToolBench dataset. The page does not specify whether this involved GPT-5 API or manual curation—only that systematic failure injection and expert input were used.\n\n## ToolScan Error Categories\nThe provided content does not list the exact error categories from ToolScan's taxonomy. It only mentions that PALADIN retrieves cases **\"aligned with ToolScan's taxonomy\"** but does not enumerate those specific categories.\n\n## Training Trajectories\nThe framework uses **50,000+ recovery-annotated trajectories** for training purposes.",
+    "durationMs": 4542,
+    "url": "https://arxiv.org/abs/2509.25238"
+  },
+  "sourceToolAssistantUUID": "51b67196-6d02-4ff7-b286-cbbe401430c1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-11T23:02:53.210Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01PZEsER2U9QirbQyVsmv9Cb`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2509.25238v1",
+  "prompt": "I need to verify: 1) Does PALADIN use GPT-5 API for generating training data, or manual human annotation? 2) What are the exact 7 error categories from ToolScan? 3) How many failure exemplars are mentioned (55+)? 4) What is the compute cost of PALADIN's training pipeline? Focus on the methodology section."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0f873ca7-36b6-4e24-a655-e255516ef7ed",
+  "isSidechain": false,
+  "requestId": "req_011CawcfC57eg1HeC7PeNhXQ",
+  "type": "assistant",
+  "uuid": "af07c6cf-68c0-4ad6-886e-c3eda909542a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CR1QUjnphEb8t33FrqEqUr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 434,
+      "cache_read_input_tokens": 57005,
+      "output_tokens": 167,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 434,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 167,
+          "cache_read_input_tokens": 57005,
+          "cache_creation_input_tokens": 434,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 434
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-11T23:03:00.177Z_
+
+<details><summary>↩ Tool result · `toolu_01PZEsER2U9QirbQyVsmv9Cb`</summary>
+
+```text
+# PALADIN Methodology Verification
+
+## 1. Training Data Generation Method
+
+**GPT-5 API is used for automated generation**, not manual annotation. The paper states:
+
+> "PALADIN trains on 50,000+ recovery-annotated trajectories constructed via systematic failure injection and expert demonstrations"
+
+More specifically, the methodology explains that a "GPT-5 Teacher" processes truncated traces:
+
+> "pass it to a GPT-5 Teacher (e.g. GPT-5 API prompted to insert proper recovery actions), which applies error-guided rewriting"
+
+The recovery dictionary provides the framework, but generation itself is automated through the API.
+
+## 2. ToolScan's Seven Error Categories
+
+The exact error classes are explicitly listed in Appendix F:
+
+1. Tool Hallucination → tool not found errors
+2. Argument Hallucination → missing or invalid tool input
+3. Invalid Tool Invocation → tool call failed
+4. Partial Execution → incomplete tool outputs requiring continuation
+5. Output Hallucination → tool output not valid
+6. Invalid Intermediate Reasoning → corrected plans and backtracking in multi-turn dialogues
+7. Re-entrant Failures → handled via explicit retry and fallback logic
+
+## 3. Recovery Exemplars Count
+
+The paper consistently mentions **55+ exemplar failures**. This appears throughout:
+
+> "retrieves the most similar case from a curated bank of 55+ failure exemplars aligned with ToolScan's taxonomy"
+
+## 4. Compute Cost
+
+**The paper does not disclose specific compute costs or training expenses.** It only mentions hardware specifications: training ran on h200sxm GPUs with single-epoch SFT, with wall-clock time increasing with model parameter count. No monetary cost, token count cost, or detailed runtime metrics for the full pipeline are provided.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "af07c6cf-68c0-4ad6-886e-c3eda909542a",
+  "isSidechain": false,
+  "promptId": "9f503ff4-5335-492c-870b-15a6eb7331fc",
+  "type": "user",
+  "uuid": "f551a065-c635-4798-8cab-40e9bf61fd21",
+  "toolUseResult": {
+    "bytes": 297168,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# PALADIN Methodology Verification\n\n## 1. Training Data Generation Method\n\n**GPT-5 API is used for automated generation**, not manual annotation. The paper states:\n\n> \"PALADIN trains on 50,000+ recovery-annotated trajectories constructed via systematic failure injection and expert demonstrations\"\n\nMore specifically, the methodology explains that a \"GPT-5 Teacher\" processes truncated traces:\n\n> \"pass it to a GPT-5 Teacher (e.g. GPT-5 API prompted to insert proper recovery actions), which applies error-guided rewriting\"\n\nThe recovery dictionary provides the framework, but generation itself is automated through the API.\n\n## 2. ToolScan's Seven Error Categories\n\nThe exact error classes are explicitly listed in Appendix F:\n\n1. Tool Hallucination → tool not found errors\n2. Argument Hallucination → missing or invalid tool input\n3. Invalid Tool Invocation → tool call failed\n4. Partial Execution → incomplete tool outputs requiring continuation\n5. Output Hallucination → tool output not valid\n6. Invalid Intermediate Reasoning → corrected plans and backtracking in multi-turn dialogues\n7. Re-entrant Failures → handled via explicit retry and fallback logic\n\n## 3. Recovery Exemplars Count\n\nThe paper consistently mentions **55+ exemplar failures**. This appears throughout:\n\n> \"retrieves the most similar case from a curated bank of 55+ failure exemplars aligned with ToolScan's taxonomy\"\n\n## 4. Compute Cost\n\n**The paper does not disclose specific compute costs or training expenses.** It only mentions hardware specifications: training ran on h200sxm GPUs with single-epoch SFT, with wall-clock time increasing with model parameter count. No monetary cost, token count cost, or detailed runtime metrics for the full pipeline are provided.",
+    "durationMs": 6964,
+    "url": "https://arxiv.org/html/2509.25238v1"
+  },
+  "sourceToolAssistantUUID": "af07c6cf-68c0-4ad6-886e-c3eda909542a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 99_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "f551a065-c635-4798-8cab-40e9bf61fd21",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 100_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify ETB-GRPO novelty and feasibility via independent searches",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622"
+}
+```
+
+---
+
+### Assistant
+
+_source line 101 · 2026-05-11T23:04:04.983Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture. Let me also check if PALADIN was accepted at ICLR 2026 or AAAI 2026 (there was one LinkedIn result mentioning AAAI 2026).
+
+Also, I noticed a very important missing paper — HiPER (arXiv:2602.16165), which achieves 97.4% on ALFWorld. The generator's approach targets ALFWorld but doesn't mention HiPER as a baseline, which already achieves near-perfect results. If ALFWorld is close to saturated by HiPER, there may not be much room for improvement there.
+
+
+There's a significant venue mismatch here — the user explicitly requested EMNLP 2026 with an ARR deadline of May 25, 2026, but the generator is targeting AAAI 2027 (August 1) as the primary venue and only treating EMNLP 2026 as a fallback option. This directly contradicts the user's stated requirements. Looking at the state-of-the-art verification, the generator has correctly updated PALADIN's recovery rate to 89.68% and accurately notes that it uses GPT-5 API, but I need to continue checking the other baseline claims.
+
+Now I'm examining which papers are actually cited versus missing from the landscape. The generator covers ARPO, Tree-GRPO, iStar, EPO, SIGHT, Spark, StepPO, RTMC, Agent-R, BranPO, CLEANER, and Co-Evolving Agents, but there are critical gaps — HiPER from February 2026 achieves 97.4% on ALFWorld which is directly relevant since ETB-GRPO targets that benchmark, and AT²PO from January 2026 uses entropy-guided tree expansion with turn-wise credit assignment that's conceptually similar to the error-triggered branching approach. AgentHER is mentioned but never actually discussed in the landscape section, and Agent-RLVR which leverages environment rewards is only partially cited.
+
+The core gap — combining error-triggered branching with GRPO for recovery — remains technically valid since no existing paper does exactly this combination, but the field is saturated with branching plus RL papers, making this feel somewhat incremental as it's essentially swapping entropy-based triggers for error signals in existing frameworks like ARPO or Tree-GRPO. HiPER's 97.4% performance on ALFWorld leaves minimal room for improvement on that specific benchmark.
+
+There's a critical timing issue: the user specified EMNLP 2026 with an ARR submission deadline of May 25, 2026, which is only 16 days away.  The generator shifted focus to AAAI 2027 (August 1, 2026 deadline) to accommodate the 8-12 week manual timeline, which makes practical sense but directly contradicts the user's explicit venue requirement.
+
+The compute requirements are substantial — roughly 160 GPU hours on H100s for manual experiments. ~200h auto. This fits within the 200 H100-hour constraint.
+
+But there's a question about whether the timeline makes sense:
+- Manual: 8-12 weeks → reasonable for AAAI 2027 (August 1, ~12 weeks)
+- Auto: 2-3 weeks → reasonable
+- BUT the user asked for 16 days to EMNLP. The generator ignored this and targeted AAAI instead.
+
+The compute breakdown seems reasonable:
+- Trajectory collection ~35h
+- Branching rollouts K=4 ~40h
+- GRPO LoRA training ~10h
+- Evaluation ~10h
+- Branching trigger ablations ×3 ~50h
+- Error-type analysis ~5h
+- Buffer ~10h
+Total: ~160h manual, ~200h auto
+
+This fits the 200 H100-hour budget.
+
+The novelty has improved with the switch to GRPO and systematic branching trigger comparisons, but the core contribution—using error signals instead of entropy for branching—feels like a relatively incremental variation in a crowded space with ARPO, Tree-GRPO, and many others. The empirical comparison of triggers is solid but not particularly novel methodologically. Even if error-triggered branching outperforms entropy-based approaches, the practical impact is limited since PALADIN already achieves strong recovery rates.
+
+The bigger issue is the timeline mismatch: the user wanted EMNLP 2026 (May 25 deadline), but the generator is targeting AAAI 2027 (August 1). That's a 2.5-month shift that violates the user's explicit requirement.
+
+Looking at the scores, novelty is weak at 3/5 — error-triggered branching with GRPO is technically new but feels incremental in a saturated space. Feasibility also scores 3/5 because while compute fits the budget, the timeline completely breaks the user's 16-day constraint. The generator essentially admitted this can't be done in the requested timeframe by pushing to AAAI 2027. Plus, HiPER's 97.4% on ALFWorld leaves little room for improvement.
+
+The idea itself is clearly articulated with solid positioning against related work, earning a 4/5 on clarity. But impact lands at 3/5 — showing that error signals make good branching triggers is useful but not particularly exciting when PALADIN already hits 89.68% recovery and HiPER dominates at 97.4%.
+
+Averaging these out gives 3.25, which points toward a revise recommendation. The venue mismatch with the user's actual requirements is a critical failure, and there are still gaps in the competing work analysis. The novelty is borderline at best.
+
+Wait, I should reconsider the venue constraint more carefully. The user specified EMNLP 2026, and the generator's response...
+
+Actually, there's a real problem here. The user's hard constraint was the May 25 ARR deadline for EMNLP 2026, but the generator shifted to AAAI 2027 in round 2 after the reviewer flagged timeline infeasibility. That directly contradicts what the user asked for. The generator does mention EMNLP 2026 as a tertiary option with a June/July ARR cycle, but that cycle would miss the May deadline binding to EMNLP 2026 — it's too late. The generator has made several critical errors that warrant a revision verdict. Beyond the venue mismatch—targeting AAAI 2027 when the user explicitly requested EMNLP 2026 with its May ARR deadline—there are significant gaps in related work coverage, including HiPER's 97.4% ALFWorld performance, AT²PO's entropy-guided approach, and "Failure Makes the Agent Stronger." The core idea itself is a narrow variation in an already saturated space, and with HiPER already achieving near-ceiling performance on the benchmark, there's limited room for meaningful improvement.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f551a065-c635-4798-8cab-40e9bf61fd21",
+  "isSidechain": false,
+  "requestId": "req_011Cawcg24PBFpQ7Zbtujyzg",
+  "type": "assistant",
+  "uuid": "19921248-9207-43a9-95a4-dcfe1a26e76b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Do3b9hmv2TEEeY1G7GVmuN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 590,
+      "cache_read_input_tokens": 57439,
+      "output_tokens": 2704,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 590,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2704,
+          "cache_read_input_tokens": 57439,
+          "cache_creation_input_tokens": 590,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 590
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 102 · 2026-05-11T23:04:04.990Z_
+
+Let me do a couple more targeted searches to find any remaining gaps.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "19921248-9207-43a9-95a4-dcfe1a26e76b",
+  "isSidechain": false,
+  "requestId": "req_011Cawcg24PBFpQ7Zbtujyzg",
+  "type": "assistant",
+  "uuid": "ecf940b8-18a0-4235-9c10-414c35e1f30e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Do3b9hmv2TEEeY1G7GVmuN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 590,
+      "cache_read_input_tokens": 57439,
+      "output_tokens": 2704,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 590,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2704,
+          "cache_read_input_tokens": 57439,
+          "cache_creation_input_tokens": 590,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 590
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-11T23:04:05.019Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016nytfgavdryFyp5nyUFfNc`</summary>
+
+```json
+{
+  "query": "\"Failure Makes the Agent Stronger\" ICLR 2026 structured reflection tool interactions accepted"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ecf940b8-18a0-4235-9c10-414c35e1f30e",
+  "isSidechain": false,
+  "requestId": "req_011Cawcg24PBFpQ7Zbtujyzg",
+  "type": "assistant",
+  "uuid": "19476d7a-b886-4007-b0be-70c3c1631ba3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Do3b9hmv2TEEeY1G7GVmuN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 590,
+      "cache_read_input_tokens": 57439,
+      "output_tokens": 2704,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 590,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2704,
+          "cache_read_input_tokens": 57439,
+          "cache_creation_input_tokens": 590,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 590
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-11T23:04:08.867Z_
+
+<details><summary>↩ Tool result · `toolu_016nytfgavdryFyp5nyUFfNc`</summary>
+
+```text
+Web search results for query: ""Failure Makes the Agent Stronger" ICLR 2026 structured reflection tool interactions accepted"
+
+Links: [{"title":"Failure makes the agent stronger: Enhancing Accuracy through Structured Reflection for Reliable Tool Interactions","url":"https://arxiv.org/html/2509.18847"},{"title":"[2509.18847] Failure Makes the Agent Stronger: Enhancing Accuracy through Structured Reflection for Reliable Tool Interactions","url":"https://arxiv.org/abs/2509.18847"},{"title":"[2509.18847v1] Failure Makes the Agent Stronger: Enhancing Accuracy through Structured Reflection for Reliable Tool Interactions","url":"https://arxiv.org/abs/2509.18847v1"}]
+
+I found the paper you're looking for! Here's what I found:
+
+"Failure Makes the Agent Stronger: Enhancing Accuracy through Structured Reflection for Reliable Tool Interactions" is a research paper authored by Junhao Su and 6 other authors.
+
+**Key aspects of the paper:**
+
+The paper proposes structured reflection, which turns the path from error to repair into an explicit, controllable, and trainable action. The agent produces a short yet precise reflection: it diagnoses the failure using evidence from the previous step and then proposes a correct, executable follow-up call.
+
+For training, the authors combine DAPO and GSPO objectives with a reward scheme tailored to tool use, optimizing the stepwise strategy Reflect, then Call, then Final. They introduce Tool-Reflection-Bench, a lightweight benchmark that programmatically checks structural validity, executability, parameter correctness, and result consistency. Tasks are built as mini trajectories of erroneous call, reflection, and corrected call, with disjoint train and test splits.
+
+Experiments on BFCL v3 and Tool-Reflection-Bench show large gains in multi-turn tool-call success and error recovery, and a reduction of redundant calls.
+
+The paper is available on arXiv (arxiv.org/abs/2509.18847) and was submitted in September 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "19476d7a-b886-4007-b0be-70c3c1631ba3",
+  "isSidechain": false,
+  "promptId": "9f503ff4-5335-492c-870b-15a6eb7331fc",
+  "type": "user",
+  "uuid": "43a634bf-6dba-4610-a2b2-a2d6058c36d4",
+  "toolUseResult": {
+    "query": "\"Failure Makes the Agent Stronger\" ICLR 2026 structured reflection tool interactions accepted",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01My2S2jAWZFER9Pvss5W9b8",
+        "content": [
+          {
+            "title": "Failure makes the agent stronger: Enhancing Accuracy through Structured Reflection for Reliable Tool Interactions",
+            "url": "https://arxiv.org/html/2509.18847"
+          },
+          {
+            "title": "[2509.18847] Failure Makes the Agent Stronger: Enhancing Accuracy through Structured Reflection for Reliable Tool Interactions",
+            "url": "https://arxiv.org/abs/2509.18847"
+          },
+          {
+            "title": "[2509.18847v1] Failure Makes the Agent Stronger: Enhancing Accuracy through Structured Reflection for Reliable Tool Interactions",
+            "url": "https://arxiv.org/abs/2509.18847v1"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's what I found:\n\n\"Failure Makes the Agent Stronger: Enhancing Accuracy through Structured Reflection for Reliable Tool Interactions\" is a research paper authored by Junhao Su and 6 other authors.\n\n**Key aspects of the paper:**\n\nThe paper proposes structured reflection, which turns the path from error to repair into an explicit, controllable, and trainable action. The agent produces a short yet precise reflection: it diagnoses the failure using evidence from the previous step and then proposes a correct, executable follow-up call.\n\nFor training, the authors combine DAPO and GSPO objectives with a reward scheme tailored to tool use, optimizing the stepwise strategy Reflect, then Call, then Final. They introduce Tool-Reflection-Bench, a lightweight benchmark that programmatically checks structural validity, executability, parameter correctness, and result consistency. Tasks are built as mini trajectories of erroneous call, reflection, and corrected call, with disjoint train and test splits.\n\nExperiments on BFCL v3 and Tool-Reflection-Bench show large gains in multi-turn tool-call success and error recovery, and a reduction of redundant calls.\n\nThe paper is available on arXiv (arxiv.org/abs/2509.18847) and was submitted in September 2025."
+    ],
+    "durationSeconds": 3.840426431
+  },
+  "sourceToolAssistantUUID": "19476d7a-b886-4007-b0be-70c3c1631ba3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-11T23:04:11.948Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CNqbCbHkYzRsBno7vggMDt`</summary>
+
+```json
+{
+  "query": "ToolBench recovery rate baseline Qwen3-8B ALFWorld success rate 2026 before training"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "43a634bf-6dba-4610-a2b2-a2d6058c36d4",
+  "isSidechain": false,
+  "requestId": "req_011Cawcm5j38pPgoGNvvp18v",
+  "type": "assistant",
+  "uuid": "db0cff26-6e8c-4064-9741-a86c20f3ad5c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YUxizeAsMr2Qq6dL9LargQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3221,
+      "cache_read_input_tokens": 58029,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3221,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 58029,
+          "cache_creation_input_tokens": 3221,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3221
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-11T23:04:26.594Z_
+
+<details><summary>↩ Tool result · `toolu_01CNqbCbHkYzRsBno7vggMDt`</summary>
+
+```text
+Web search results for query: "ToolBench recovery rate baseline Qwen3-8B ALFWorld success rate 2026 before training"
+
+Links: [{"title":"2025-05-15 Qwen3 Technical Report Qwen Team https://huggingface.co/Qwen","url":"https://arxiv.org/pdf/2505.09388"},{"title":"SWE-bench Results Viewer","url":"https://www.swebench.com/viewer.html"},{"title":"Qwen/Qwen3.6-27B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3.6-27B"},{"title":"Qwen/Qwen3.6-35B-A3B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3.6-35B-A3B"},{"title":"SWE-rebench Leaderboard","url":"https://swe-rebench.com/"},{"title":"Qwen3.6 Plus Benchmarks 2026: Scores, Rankings & Performance | BenchLM.ai","url":"https://benchlm.ai/models/qwen3-6-plus"},{"title":"Qwen3.6-Max-Preview: Benchmarks, API & Review (2026)","url":"https://www.buildfastwithai.com/blogs/qwen3-6-max-preview-review-2026"},{"title":"ToolBench: LLM Tool-Use Benchmark","url":"https://www.emergentmind.com/topics/toolbench"},{"title":"ToolBench Evaluation: LLM Tool-Use Insights","url":"https://www.emergentmind.com/topics/toolbench-evaluation"},{"title":"Qwen3-Coder-Next: The Complete 2026 Guide to Running Powerful AI Coding Agents Locally - DEV Community","url":"https://dev.to/sienna/qwen3-coder-next-the-complete-2026-guide-to-running-powerful-ai-coding-agents-locally-1k95"}]
+
+The search results don't contain specific information about ToolBench recovery rate baseline, Qwen3-8B ALFWorld success rate before training, or metrics from 2026 for these benchmarks. While I found references to ToolBench as a benchmark for tool-augmented LLMs and various Qwen3 model evaluations, the search results don't include the detailed baseline metrics you're looking for. Let me try a more specific search.
+
+Links: [{"title":"ToolBench Dataset Overview","url":"https://www.emergentmind.com/topics/toolbench-dataset"},{"title":"ToolBench: LLM Tool-Use Benchmark","url":"https://www.emergentmind.com/topics/toolbench"},{"title":"ToolBench Evaluation: LLM Tool-Use Insights","url":"https://www.emergentmind.com/topics/toolbench-evaluation"},{"title":"ALFWorld Benchmark","url":"https://www.emergentmind.com/topics/alfworld-benchmark"},{"title":"ALFWORLD: ALIGNING TEXT AND EMBODIED ...","url":"https://openreview.net/pdf?id=0IOX0YcCdTn"},{"title":"Benchmarking Agentic Systems (AgentBench, etc.)","url":"https://apxml.com/courses/agentic-llm-memory-architectures/chapter-6-evaluation-optimization-agentic-systems/benchmarking-agentic-systems"},{"title":"alfworld: aligning text and embodied environments for ...","url":"https://arxiv.org/pdf/2010.03768"},{"title":"Tackling AlfWorld with Action Attention and Common Sense from Pretrained LMs","url":"https://openreview.net/pdf?id=AqkPRUZ-YkO"},{"title":"ToolBench | EvalScope - Read the Docs","url":"https://evalscope.readthedocs.io/en/latest/third_party/toolbench.html"},{"title":"HammerBench: Fine-Grained Function-Calling Evaluation in Real Mobile Device Scenarios","url":"https://arxiv.org/html/2412.16516v1"}]
+
+I found some information about ToolBench and ALFWorld, but the search results still don't contain the specific baseline data you're looking for about Qwen3-8B's recovery rate on ToolBench or its success rate on ALFWorld before training in 2026. Let me try one more targeted search.
+
+Links: [{"title":"Speed Benchmark - Qwen","url":"https://qwen.readthedocs.io/en/latest/getting_started/speed_benchmark.html"},{"title":"Fine-Tuning Qwen3-8B for Medical Reasoning on E2E Networks A100 GPU | E2E Networks","url":"https://www.e2enetworks.com/blog/fine-tuning-qwen3-8b-medical-reasoning-qlora-e2e-networks-a100"},{"title":"Qwen 3: Models, Architecture, Benchmarks, Training & More","url":"https://www.gocodeo.com/post/qwen-3-models-architecture-benchmarks-training-more"},{"title":"Qwen3 8B - Intelligence, Performance & Price Analysis","url":"https://artificialanalysis.ai/models/qwen3-8b-instruct"},{"title":"2025-05-15 Qwen3 Technical Report Qwen Team https://huggingface.co/Qwen","url":"https://arxiv.org/pdf/2505.09388"},{"title":"Qwen3 8B: A High-Performance LLM Backbone","url":"https://www.emergentmind.com/topics/qwen3-8b-f68ed6bc-583b-42f6-9ed4-45cf8f7172cb"},{"title":"Qwen3-8B-Base: Open 8B LLM Overview","url":"https://www.emergentmind.com/topics/qwen3-8b-base"},{"title":"Qwen/Qwen3-8B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-8B"},{"title":"Qwen3 Technical Report","url":"https://arxiv.org/html/2505.09388v1"},{"title":"Fine-Tuning Qwen3-VL 8B: A Step-by-Step Guide | DataCamp","url":"https://www.datacamp.com/tutorial/fine-tuning-qwen3-vl-8b"}]
+
+Based on my web search results, I was unable to find the specific baseline metrics you requested for:
+
+- **ToolBench recovery rate baseline for Qwen3-8B**
+- **ALFWorld success rate for Qwen3-8B before training**
+- **2026 specific metrics for these benchmarks**
+
+While I found general information about:
+- ToolBench is a large-scale, richly annotated benchmark that evaluates and improves tool-augmented LLMs across diverse multi-step, multi-tool scenarios
+- Reflection-empowered LLMs (Tool-MVR) set new records for both accuracy (up to +24% over ToolLLM) and error recovery rates (ECR 58.9%)
+- InterAct, integrating role-specialized ChatGPT modules, achieves an average 98% success rate on six representative ALFWorld tasks
+
+The search results do not contain the specific pre-training baseline data for Qwen3-8B on these benchmarks. You may need to consult the official Qwen3 technical report, the specific benchmark papers, or the model's documentation directly for these particular metrics.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "db0cff26-6e8c-4064-9741-a86c20f3ad5c",
+  "isSidechain": false,
+  "promptId": "9f503ff4-5335-492c-870b-15a6eb7331fc",
+  "type": "user",
+  "uuid": "0ef704a5-588e-4b33-b16b-c6e8bd8b2ca1",
+  "toolUseResult": {
+    "query": "ToolBench recovery rate baseline Qwen3-8B ALFWorld success rate 2026 before training",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AzuUSkVQpvuddLM5zhgSRk",
+        "content": [
+          {
+            "title": "2025-05-15 Qwen3 Technical Report Qwen Team https://huggingface.co/Qwen",
+            "url": "https://arxiv.org/pdf/2505.09388"
+          },
+          {
+            "title": "SWE-bench Results Viewer",
+            "url": "https://www.swebench.com/viewer.html"
+          },
+          {
+            "title": "Qwen/Qwen3.6-27B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3.6-27B"
+          },
+          {
+            "title": "Qwen/Qwen3.6-35B-A3B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B"
+          },
+          {
+            "title": "SWE-rebench Leaderboard",
+            "url": "https://swe-rebench.com/"
+          },
+          {
+            "title": "Qwen3.6 Plus Benchmarks 2026: Scores, Rankings & Performance | BenchLM.ai",
+            "url": "https://benchlm.ai/models/qwen3-6-plus"
+          },
+          {
+            "title": "Qwen3.6-Max-Preview: Benchmarks, API & Review (2026)",
+            "url": "https://www.buildfastwithai.com/blogs/qwen3-6-max-preview-review-2026"
+          },
+          {
+            "title": "ToolBench: LLM Tool-Use Benchmark",
+            "url": "https://www.emergentmind.com/topics/toolbench"
+          },
+          {
+            "title": "ToolBench Evaluation: LLM Tool-Use Insights",
+            "url": "https://www.emergentmind.com/topics/toolbench-evaluation"
+          },
+          {
+            "title": "Qwen3-Coder-Next: The Complete 2026 Guide to Running Powerful AI Coding Agents Locally - DEV Community",
+            "url": "https://dev.to/sienna/qwen3-coder-next-the-complete-2026-guide-to-running-powerful-ai-coding-agents-locally-1k95"
+          }
+        ]
+      },
+      "The search results don't contain specific information about ToolBench recovery rate baseline, Qwen3-8B ALFWorld success rate before training, or metrics from 2026 for these benchmarks. While I found references to ToolBench as a benchmark for tool-augmented LLMs and various Qwen3 model evaluations, the search results don't include the detailed baseline metrics you're looking for. Let me try a more specific search.",
+      {
+        "tool_use_id": "srvtoolu_01MfquQXqhgTdWG14D4iXAmu",
+        "content": [
+          {
+            "title": "ToolBench Dataset Overview",
+            "url": "https://www.emergentmind.com/topics/toolbench-dataset"
+          },
+          {
+            "title": "ToolBench: LLM Tool-Use Benchmark",
+            "url": "https://www.emergentmind.com/topics/toolbench"
+          },
+          {
+            "title": "ToolBench Evaluation: LLM Tool-Use Insights",
+            "url": "https://www.emergentmind.com/topics/toolbench-evaluation"
+          },
+          {
+            "title": "ALFWorld Benchmark",
+            "url": "https://www.emergentmind.com/topics/alfworld-benchmark"
+          },
+          {
+            "title": "ALFWORLD: ALIGNING TEXT AND EMBODIED ...",
+            "url": "https://openreview.net/pdf?id=0IOX0YcCdTn"
+          },
+          {
+            "title": "Benchmarking Agentic Systems (AgentBench, etc.)",
+            "url": "https://apxml.com/courses/agentic-llm-memory-architectures/chapter-6-evaluation-optimization-agentic-systems/benchmarking-agentic-systems"
+          },
+          {
+            "title": "alfworld: aligning text and embodied environments for ...",
+            "url": "https://arxiv.org/pdf/2010.03768"
+          },
+          {
+            "title": "Tackling AlfWorld with Action Attention and Common Sense from Pretrained LMs",
+            "url": "https://openreview.net/pdf?id=AqkPRUZ-YkO"
+          },
+          {
+            "title": "ToolBench | EvalScope - Read the Docs",
+            "url": "https://evalscope.readthedocs.io/en/latest/third_party/toolbench.html"
+          },
+          {
+            "title": "HammerBench: Fine-Grained Function-Calling Evaluation in Real Mobile Device Scenarios",
+            "url": "https://arxiv.org/html/2412.16516v1"
+          }
+        ]
+      },
+      "I found some information about ToolBench and ALFWorld, but the search results still don't contain the specific baseline data you're looking for about Qwen3-8B's recovery rate on ToolBench or its success rate on ALFWorld before training in 2026. Let me try one more targeted search.",
+      {
+        "tool_use_id": "srvtoolu_0114aiiddm7vtGTVSYpVkGik",
+        "content": [
+          {
+            "title": "Speed Benchmark - Qwen",
+            "url": "https://qwen.readthedocs.io/en/latest/getting_started/speed_benchmark.html"
+          },
+          {
+            "title": "Fine-Tuning Qwen3-8B for Medical Reasoning on E2E Networks A100 GPU | E2E Networks",
+            "url": "https://www.e2enetworks.com/blog/fine-tuning-qwen3-8b-medical-reasoning-qlora-e2e-networks-a100"
+          },
+          {
+            "title": "Qwen 3: Models, Architecture, Benchmarks, Training & More",
+            "url": "https://www.gocodeo.com/post/qwen-3-models-architecture-benchmarks-training-more"
+          },
+          {
+            "title": "Qwen3 8B - Intelligence, Performance & Price Analysis",
+            "url": "https://artificialanalysis.ai/models/qwen3-8b-instruct"
+          },
+          {
+            "title": "2025-05-15 Qwen3 Technical Report Qwen Team https://huggingface.co/Qwen",
+            "url": "https://arxiv.org/pdf/2505.09388"
+          },
+          {
+            "title": "Qwen3 8B: A High-Performance LLM Backbone",
+            "url": "https://www.emergentmind.com/topics/qwen3-8b-f68ed6bc-583b-42f6-9ed4-45cf8f7172cb"
+          },
+          {
+            "title": "Qwen3-8B-Base: Open 8B LLM Overview",
+            "url": "https://www.emergentmind.com/topics/qwen3-8b-base"
+          },
+          {
+            "title": "Qwen/Qwen3-8B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-8B"
+          },
+          {
+            "title": "Qwen3 Technical Report",
+            "url": "https://arxiv.org/html/2505.09388v1"
+          },
+          {
+            "title": "Fine-Tuning Qwen3-VL 8B: A Step-by-Step Guide | DataCamp",
+            "url": "https://www.datacamp.com/tutorial/fine-tuning-qwen3-vl-8b"
+          }
+        ]
+      },
+      "Based on my web search results, I was unable to find the specific baseline metrics you requested for:\n\n- **ToolBench recovery rate baseline for Qwen3-8B**\n- **ALFWorld success rate for Qwen3-8B before training**\n- **2026 specific metrics for these benchmarks**\n\nWhile I found general information about:\n- ToolBench is a large-scale, richly annotated benchmark that evaluates and improves tool-augmented LLMs across diverse multi-step, multi-tool scenarios\n- Reflection-empowered LLMs (Tool-MVR) set new records for both accuracy (up to +24% over ToolLLM) and error recovery rates (ECR 58.9%)\n- InterAct, integrating role-specialized ChatGPT modules, achieves an average 98% success rate on six representative ALFWorld tasks\n\nThe search results do not contain the specific pre-training baseline data for Qwen3-8B on these benchmarks. You may need to consult the official Qwen3 technical report, the specific benchmark papers, or the model's documentation directly for these particular metrics."
+    ],
+    "durationSeconds": 14.643578770000023
+  },
+  "sourceToolAssistantUUID": "db0cff26-6e8c-4064-9741-a86c20f3ad5c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 107_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "0ef704a5-588e-4b33-b16b-c6e8bd8b2ca1",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 108_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify ETB-GRPO novelty and feasibility via independent searches",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622"
+}
+```
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-11T23:04:31.475Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01228s46Hm9JM9BYsAT4mm45`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 ARR May cycle submission deadline binding conference selection AACL"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0ef704a5-588e-4b33-b16b-c6e8bd8b2ca1",
+  "isSidechain": false,
+  "requestId": "req_011CawcnPVuBjjGYzoW7BnZq",
+  "type": "assistant",
+  "uuid": "eb5e4a54-37b8-4247-8eed-e17975408e1d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015fu2d83h7GveFnrcTfxJAh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1991,
+      "cache_read_input_tokens": 61250,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1991,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 61250,
+          "cache_creation_input_tokens": 1991,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1991
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-11T23:04:36.703Z_
+
+<details><summary>↩ Tool result · `toolu_01228s46Hm9JM9BYsAT4mm45`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 ARR May cycle submission deadline binding conference selection AACL"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X","url":"https://x.com/emnlpmeeting/status/2047754845919031450"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"EMNLP 2026 (@emnlpmeeting) / Posts / X","url":"https://x.com/emnlpmeeting?lang=en"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"CALL FOR PAPERS – ACL Rolling Review","url":"http://aclrollingreview.org/cfp"}]
+
+Based on the search results, here's the key information about EMNLP 2026 ARR May cycle submission deadline and binding conference selection:
+
+## Submission Deadline
+The ARR submission deadline for EMNLP 2026 is May 25, 2026.
+
+## Binding Conference Selection Policy
+Since the ARR 2026 May cycle is aligned with two conferences (EMNLP and AACL), authors will need to explicitly declare which conference they intend to commit to at submission time. This choice will be binding for EMNLP 2026: i.e., ARR 2026 May submissions that do not select EMNLP 2026 during submission will not be able to commit to EMNLP 2026.
+
+Important clarification: This policy does NOT apply to any papers submitted and reviewed in prior ARR cycles that wish to commit to EMNLP. This means the binding selection requirement only applies to new submissions in the May 2026 ARR cycle, not to papers from earlier cycles.
+
+## Related Deadlines
+After submission, all authors must complete the author registration form by May 27, 2026 EoD AoE, and the EMNLP commitment deadline is August 2, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "eb5e4a54-37b8-4247-8eed-e17975408e1d",
+  "isSidechain": false,
+  "promptId": "9f503ff4-5335-492c-870b-15a6eb7331fc",
+  "type": "user",
+  "uuid": "41258bc8-18ed-49ee-8e9b-4d399861f8e3",
+  "toolUseResult": {
+    "query": "EMNLP 2026 ARR May cycle submission deadline binding conference selection AACL",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018rHQCSnqeLCeiKNmw9oNCZ",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2047754845919031450"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)",
+            "url": "https://linguistlist.org/issues/37/972/"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2029508292637061462"
+          },
+          {
+            "title": "EMNLP 2026 (@emnlpmeeting) / Posts / X",
+            "url": "https://x.com/emnlpmeeting?lang=en"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review",
+            "url": "http://aclrollingreview.org/cfp"
+          }
+        ]
+      },
+      "Based on the search results, here's the key information about EMNLP 2026 ARR May cycle submission deadline and binding conference selection:\n\n## Submission Deadline\nThe ARR submission deadline for EMNLP 2026 is May 25, 2026.\n\n## Binding Conference Selection Policy\nSince the ARR 2026 May cycle is aligned with two conferences (EMNLP and AACL), authors will need to explicitly declare which conference they intend to commit to at submission time. This choice will be binding for EMNLP 2026: i.e., ARR 2026 May submissions that do not select EMNLP 2026 during submission will not be able to commit to EMNLP 2026.\n\nImportant clarification: This policy does NOT apply to any papers submitted and reviewed in prior ARR cycles that wish to commit to EMNLP. This means the binding selection requirement only applies to new submissions in the May 2026 ARR cycle, not to papers from earlier cycles.\n\n## Related Deadlines\nAfter submission, all authors must complete the author registration form by May 27, 2026 EoD AoE, and the EMNLP commitment deadline is August 2, 2026."
+    ],
+    "durationSeconds": 5.223313143000007
+  },
+  "sourceToolAssistantUUID": "eb5e4a54-37b8-4247-8eed-e17975408e1d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 111 · 2026-05-11T23:04:36.711Z_
+
+```json
+{
+  "parentUuid": "41258bc8-18ed-49ee-8e9b-4d399861f8e3",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "7a48a3b1-ab9f-4fd3-bbf5-c0f1a34d8e3d",
+  "timestamp": "2026-05-11T23:04:36.711Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 112 · 2026-05-11T23:05:10.072Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need to write my comprehensive review. Let me organize my findings:
+
+### Key Issues Found:
+
+1. **VENUE MISMATCH (CRITICAL)**: The user explicitly required EMNLP 2026, ARR May 25 deadline. The generator targets AAAI 2027 as primary and incorrectly suggests "ARR June/July cycle" for EMNLP 2026. The EMNLP 2026 CFP clearly states that papers must be submitted in the May ARR cycle at latest, and the May cycle requires binding conference selection. A June/July submission would NOT qualify for EMNLP 2026. 
+
+The proposed timeline of 8-12 weeks for manual work plus 2-3 weeks for automation won't meet the May 25 deadline anyway.
+
+2. **MISSING COMPETING WORK**:
+   - **HiPER** (arXiv:2602.16165, Feb 2026): Achieves 97.4% on ALFWorld with Qwen2.5-7B — this is critical because ETB-GRPO targets ALFWorld. If ALFWorld is near-saturated, the improvement headroom is minimal.
+   - **AT²PO** (arXiv:2601.04767, Jan 2026): Entropy-guided tree expansion + turn-wise credit assignment — very similar branching approach to ETB-GRPO
+   - **"Failure Makes the Agent Stronger"** (arXiv:2509.18847): Explicitly targets error recovery via structured reflection with RL (DAPO+GSPO), very close to the problem ETB-GRPO is solving
+   - **Agent-RLVR** (arXiv:2506.11425): Uses environment rewards for RL-based agent training
+
+3. **NOVELTY CONCERN**: The core idea — "use error signals instead of entropy as branching triggers" — is a narrow variation in an extremely crowded space (ARPO, Tree-GRPO, AT²PO, Spark, SIGHT, CSO, BranPO, RTMC, StepPO, HiPER all occupy nearby positions). The systematic comparison of branching triggers is useful but more of an empirical study than a methodological breakthrough.
+
+4. **LIMITED HEADROOM ON ALFWorld**: HiPER already hits 97.4%, leaving minimal room to demonstrate substantial improvements.
+
+5. **PALADIN venue**: The arxiv PDF header and OpenReview confirm this was published at ICLR 2026, not AAAI.
+
+6. **COMPUTE ESTIMATE**: The manual and auto hour estimates work within the ≤200 H100-hour constraint, but the real problem is the EMNLP 2026 May 25 deadline—this approach won't make it.
+
+Looking at the scores, novelty is limited since error-triggered branching is incremental in an already crowded space. Feasibility is the critical issue: ALFWorld is near-saturated and the timeline doesn't align with the user's venue requirement. The work is clearly articulated and would be useful if executed, but it's fundamentally incremental compared to what PALADIN already demonstrates.
+
+The verdict is clear—this needs revision. The venue mismatch is the dealbreaker, and the generator should either find a way to meet the EMNLP deadline or make a compelling case for why AAAI 2027 is worth pursuing instead, even though that conflicts with what the user asked for.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7a48a3b1-ab9f-4fd3-bbf5-c0f1a34d8e3d",
+  "isSidechain": false,
+  "requestId": "req_011Cawco8mADspWGQGuCGiwM",
+  "type": "assistant",
+  "uuid": "d923c03b-e574-4ec7-b64e-ff8efb0c0182",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015vWwUCe4Ewtn72UCrXD81T",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1099,
+      "cache_read_input_tokens": 63241,
+      "output_tokens": 3364,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1099,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3364,
+          "cache_read_input_tokens": 63241,
+          "cache_creation_input_tokens": 1099,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1099
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 113 · 2026-05-11T23:05:58.202Z_
+
+I've completed my thorough independent review. Here are my findings:
+
+**Critical discovery**: The generator changed the target venue to AAAI 2027, violating the user's explicit requirement of EMNLP 2026 (ARR May 25). Also found several important missing competing works, most critically HiPER achieving 97.4% on ALFWorld.
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {"score": 3, "rationale": "The core idea — 'use error signals instead of entropy as branching triggers in GRPO' — is technically novel but represents a narrow variation in an extremely crowded space (ARPO, Tree-GRPO, AT²PO, Spark, SIGHT, CSO, BranPO, RTMC, StepPO, HiPER all occupy adjacent positions). The systematic branching trigger comparison (error vs. entropy vs. random) is a solid empirical contribution but reads more as an ablation study than a methodological breakthrough."},
+    "feasibility": {"score": 2, "rationale": "CRITICAL: The user explicitly required EMNLP 2026 (ARR May 25 deadline, 14 days away), but the generator targets AAAI 2027 (August 1) as primary and incorrectly suggests 'ARR June/July cycle' for EMNLP 2026 — which is WRONG, since EMNLP 2026 requires submission in the May ARR cycle with binding conference selection. The generator's own timeline estimate (8-12 weeks manual, 2-3 weeks auto) confirms the EMNLP May 25 deadline is infeasible. Additionally, HiPER achieves 97.4% on ALFWorld with Qwen2.5-7B, leaving near-zero headroom for improvement on that benchmark."},
+    "clarity": {"score": 4, "rationale": "Significant improvement from round 1. The three-component structure (error-triggered branching, recovery-focused GRPO, systematic trigger comparison) is clearly articulated. Positioning against ARPO, Tree-GRPO, and PALADIN is well-done. The landscape coverage is substantially improved, though still missing several important works."},
+    "impact": {"score": 3, "rationale": "If error-triggered branching outperforms entropy-triggered branching for recovery, that would be a useful finding for the community. However, the practical impact is limited: PALADIN already achieves 89.68% recovery on ToolBench, HiPER achieves 97.4% on ALFWorld, and 'Failure Makes the Agent Stronger' already trains structured reflection for error recovery using RL (DAPO+GSPO). The contribution reduces to showing error signals are better branching triggers — useful but incremental."}
+  },
+  "issues": [
+    "CRITICAL VENUE MISMATCH: User explicitly required 'Target: EMNLP 2026, ARR submission deadline 2026-05-25', but the generator targets AAAI 2027 (August 1) as primary. The generator's mention of 'EMNLP 2026 (ARR June/July cycle)' is factually WRONG — EMNLP 2026 requires submission in the May ARR cycle at latest, with binding conference selection at submission time. A June/July submission cannot commit to EMNLP 2026. The generator's 8-12 week timeline makes the May 25 deadline impossible, violating the user's hard constraint of ≤16 days.",
+    "CRITICAL MISSING WORK — HiPER (arXiv:2602.16165, Feb 2026): Achieves 97.4% success on ALFWorld and 83.3% on WebShop with Qwen2.5-7B-Instruct via hierarchical plan-execute RL with hierarchical advantage estimation. Since ETB-GRPO targets ALFWorld as a primary evaluation benchmark, this near-saturation result severely limits the improvement headroom and must be cited and addressed.",
+    "MISSING WORK — AT²PO (arXiv:2601.04767, Jan 2026): Agentic Turn-based Policy Optimization via Tree Search uses entropy-guided tree expansion + turn-wise credit assignment + entropy-aware clipping. This is conceptually very close to ETB-GRPO's branching approach but with entropy triggers and turn-level optimization. Must be cited and differentiated.",
+    "MISSING WORK — 'Failure Makes the Agent Stronger' (arXiv:2509.18847, Sep 2025): Explicitly targets error recovery via structured reflection for tool interactions, trained with DAPO+GSPO (RL objectives), achieving large gains on multi-turn tool-call success and error recovery. This directly addresses the same problem as ETB-GRPO (error recovery + RL training) and must be cited.",
+    "MISSING WORK — Agent-RLVR (arXiv:2506.11425): Uses environment rewards (test pass/fail signals) for RL training of software engineering agents, achieving 22.4% pass@1 on SWE-Bench Verified. The paradigm of using environment feedback signals for RL is relevant to ETB-GRPO's use of error signals.",
+    "ALFWORLD SATURATION PROBLEM: HiPER achieves 97.4% on ALFWorld. The generator needs to either (a) drop ALFWorld and replace with a benchmark where there is more headroom, or (b) focus exclusively on recovery-specific metrics rather than overall success rate. Simply reporting task success on a near-saturated benchmark will not be impressive.",
+    "NOVELTY CONCERN — INCREMENTAL VARIATION: The core contribution reduces to 'substitute entropy triggers (ARPO) or uniform expansion (Tree-GRPO) with error observation triggers.' This is a valid research question but a narrow design choice, not a fundamentally new algorithm. The systematic comparison of branching triggers strengthens the paper but is essentially an empirical study. For a top venue, the methodological contribution needs to be deeper — e.g., error-type-aware branching budgets, hierarchical recovery planning, or integration with reward shaping.",
+    "COMPUTE BUDGET TIGHTNESS: The auto-research estimate of ~200h H100 exactly equals the user's hard constraint of ≤200 H100-hours, leaving zero margin for debugging, failed runs, or unexpected costs. The trajectory collection estimate (~35h) seems low for generating enough error-containing trajectories on both ToolBench and ALFWorld to produce stable GRPO training signal."
+  ],
+  "feedback": "The revision addressed most round 1 issues well (PALADIN factual correction, GRPO switch, branching trigger comparison, extensive landscape coverage), but introduced a critical venue mismatch and still misses important competing works. To make progress:\n\n1. **FIX VENUE TARGET (MANDATORY)**: The user requires EMNLP 2026 (ARR May 25). Either (a) scope down drastically to fit 14 days — single benchmark (ToolBench only), single ablation dimension, Qwen3-8B only, no scaling experiments — or (b) explicitly acknowledge that this idea cannot be done in 14 days and propose an alternative direction that can. Do NOT suggest 'ARR June/July cycle for EMNLP 2026' — that is factually incorrect per EMNLP 2026's CFP.\n\n2. **ADDRESS ALFWORLD SATURATION**: HiPER (Feb 2026) achieves 97.4% on ALFWorld with Qwen2.5-7B. Either (a) drop ALFWorld and use only ToolBench where recovery metrics are less saturated, or (b) redefine your evaluation around recovery-specific metrics (Recovery Rate, Post-Error TSR, Recovery Efficiency) where absolute ceiling is not yet reached.\n\n3. **CITE AND DIFFERENTIATE FROM AT²PO + 'Failure Makes Agent Stronger'**: AT²PO occupies the same entropy-guided branching + turn-level credit assignment space. 'Failure Makes Agent Stronger' directly addresses error recovery + RL training. Both need explicit comparison.\n\n4. **DEEPEN THE METHODOLOGICAL CONTRIBUTION**: 'Error signal as branching trigger' alone is thin for a top venue. Consider: (a) error-type-conditioned branching budget allocation (more branches for harder error categories), (b) adaptive K selection based on error severity, (c) curriculum over error types during training, or (d) contrastive learning between recovery and non-recovery branches. These would elevate the method beyond a branching trigger ablation.\n\n5. **ADD COMPUTE MARGIN**: The 200h estimate has zero buffer. Cut the Qwen3-14B scaling experiment and reduce K={2,8} ablations to K={2,4,6} to free ~30h of margin.\n\n6. **Consider AgentHER as baseline**: AgentHER (arXiv:2603.21357) converts failed trajectories into training data via hindsight relabeling, achieving +7-12pp over success-only SFT. This is a natural SFT baseline for comparison with ETB-GRPO's RL approach.",
+  "reason": "Critical venue mismatch (generator targets AAAI 2027 instead of user's required EMNLP 2026 May 25 deadline), missing important competing works (HiPER 97.4% on ALFWorld, AT²PO, 'Failure Makes Agent Stronger'), and novelty remains borderline incremental for a top venue."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d923c03b-e574-4ec7-b64e-ff8efb0c0182",
+  "isSidechain": false,
+  "requestId": "req_011Cawco8mADspWGQGuCGiwM",
+  "type": "assistant",
+  "uuid": "b28e6070-d6e4-4f52-8fdd-78f846e4f88b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015vWwUCe4Ewtn72UCrXD81T",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1099,
+      "cache_read_input_tokens": 63241,
+      "output_tokens": 3364,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1099,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3364,
+          "cache_read_input_tokens": 63241,
+          "cache_creation_input_tokens": 1099,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1099
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 114_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "b28e6070-d6e4-4f52-8fdd-78f846e4f88b",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 115_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify ETB-GRPO novelty and feasibility via independent searches",
+  "sessionId": "6d8eeb5d-1afb-4a85-8246-d1c6940fc622"
+}
+```
+
+---
