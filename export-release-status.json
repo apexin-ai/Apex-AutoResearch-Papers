@@ -298,6 +298,17 @@
           "paper_pdf": null,
           "code_count": 5,
           "trace_count": 2435
+        },
+        "trace-verdict-study": {
+          "status": "uploaded",
+          "project": "trace-verdict-study",
+          "collection": "trace-verdict-study--export-20260712",
+          "snapshot": true,
+          "derived_archive_sha256": "06a05be724013abd8947e83cf839dc76dfb15d18505367c0832e31c778f639a7",
+          "indexed_members": 2634,
+          "paper_pdf": null,
+          "code_count": 5,
+          "trace_count": 2629
         }
       },
       "status": "in_progress",

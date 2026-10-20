@@ -1535,6 +1535,19 @@
       }
     },
     {
+      "project": "trace-verdict-study--export-20260712",
+      "title": "Trace Verbosity Degrades SFT Verdict Prediction: A Case Study in Information Density Effects (July export snapshot)",
+      "catalog": "../research-snapshots/trace-verdict-study/2026-07-12/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 2629,
+        "messages": 366694,
+        "user_turns": 17693,
+        "tool_calls": 95463,
+        "unparsed_lines": 21,
+        "conversation": 2629
+      }
+    },
+    {
       "project": "trace_distill_repair",
       "title": "trace distill repair",
       "catalog": "../paper-assets/trace_distill_repair/05-generation-trace/catalog.json",
