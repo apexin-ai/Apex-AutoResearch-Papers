@@ -25,8 +25,9 @@ class FinalizationTests(unittest.TestCase):
                 key='known/workspace.tar.gz';result=rules.collect(archive,remote,key)
                 with patch.object(browser,'ROOT',remote),contextlib.redirect_stdout(io.StringIO()):entry,_=browser.build_project(remote/'paper-assets/known')
                 (remote/'traces/projects.json').write_text(json.dumps({'projects':[entry]}))
-                expected={'workspace_archives':[{'key':key,'bytes':archive.stat().st_size}],'streamed_exports':[],'document_bundles':[],'supplementary_collections':[],'decompressed_mirror_audit':{}}
+                expected={'workspace_archives':[{'key':key,'bytes':archive.stat().st_size}],'streamed_exports':[],'document_bundles':[],'supplementary_collections':[],'decompressed_mirror_audit':{'excluded_cache_candidate_objects':0,'excluded_cache_candidate_bytes':0}}
                 (remote/'release-sources.json').write_text(json.dumps(expected))
+                (remote/'release-source-mirror-supplements.json').write_text('{"objects":[]}')
                 (remote/'batch-release-status.json').write_text(json.dumps({'archives':{key:{'status':'uploaded','source':{'bytes':archive.stat().st_size},'archive_sha256':result['archive_sha256'],'projects':['known']}}}))
                 (remote/'export-release-status.json').write_text('{"exports":{}}')
                 documents=remote/'supplementary/paper-exports-20260712';documents.mkdir(parents=True)
