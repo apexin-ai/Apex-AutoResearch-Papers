@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "2fdc0c62d57b1be7dedb",
+  "project": "gen-depth-fingerprint--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: svs_formal_verification ## 运行环境 - 服务器名: autodl-5090 - SSH 连接命令: ssh autodl-5090 # 必须用此命令，~/.ssh/",
+  "task_key": "42c4e6c1-9fb5-4eb1-a7ce-ba63c13cd751",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/42c4e6c1-9fb5-4eb1-a7ce-ba63c13cd751.jsonl",
+    "occurrence": 1,
+    "bytes": 573018,
+    "sha256": "83ec526e63b5aa5f8ef066ab1dd929262314dd1508bd9f8ac53f021f52752ebe"
+  },
+  "statistics": {
+    "messages": 323,
+    "user_turns": 2,
+    "tool_calls": 85,
+    "roles": {
+      "record": 70,
+      "user": 2,
+      "assistant": 81,
+      "tool_call": 85,
+      "tool_result": 85
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "2fdc0c62d57b1be7dedb-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 317,
+      "chunks": [
+        {
+          "path": "2fdc0c62d57b1be7dedb-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "2fdc0c62d57b1be7dedb-part-0002.json",
+          "message_count": 139
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 4,
+      "chunks": [
+        {
+          "path": "2fdc0c62d57b1be7dedb-part-0002.json",
+          "message_count": 4
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-svs-formal-verification-autodl-5090-ssh-ssh-autodl-5090-ssh-copy-19.md"
+}

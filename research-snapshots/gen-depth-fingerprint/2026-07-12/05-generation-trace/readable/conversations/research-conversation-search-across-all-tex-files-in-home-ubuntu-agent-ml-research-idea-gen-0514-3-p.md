@@ -1,0 +1,2528 @@
+# Research conversation: Search across all .tex files in /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts
+
+**Depth Profiling: Classifying Recursive Generation Depth in Base-Model LLM Text (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 41
+- **Recorded user turns:** 1
+- **Tool calls:** 18
+- **Original source:** `logs/chats/exported-trajectories/account-2/agent-aae5175495b3020c9.jsonl`
+- **Structured JSON:** [`e6c0f61ce35c4db65070.json`](../../sessions/e6/e6c0f61ce35c4db65070.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+41 recorded events
+
+### User
+
+_source line 1 · 2026-05-19T17:25:46.439Z_
+
+Search across all .tex files in /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/ for references to the following experiment concepts. For each, report whether it's cited (with the file and line) or NOT cited:
+
+1. "multi-domain" or "domain" combined with "News" or "Academic" or "Code" (multi-domain experiments)
+2. "cross-temp" or "cross.temperature" or "temperature transfer" or "mismatch" (cross-temperature transfer)
+3. "0.5" combined with temperature context (t=0.5 experiment)
+4. "independent.seed" or "disjoint seed" or "seed demeaning" or "non-overlapping" (independent seed experiment)
+5. "bootstrap" or "overall CI" or "0.783" or "0.793" (overall CI experiment)
+6. "8B" or "Qwen3-8B" or "qwen.*8" (large model scale experiment)
+7. "LLM.*rephras" or "Qwen.*rephras" or "paraphrase robustness" (LLM rephrase robustness)
+8. "length" combined with "confound" or "control" or "normali" (text length confound experiment)
+9. "LOFO" or "leave-one-feature" (feature importance via leave-one-out)
+10. "downstream" or "fine-tun" or "TOST" or "equivalence" (downstream utility)
+11. "cross.*ref" or "reference model" combined with "OLMo" or "Qwen" (cross-reference model)
+12. "prompt.type" or "continuation.*elaboration" or "elaboration.*continuation" (prompt type comparison)
+13. "human edit" or "word replacement" or "edit robustness" (human edit robustness)
+
+Search breadth: very thorough
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "1f34363f-6233-4442-98e7-5b1a4ca44d12",
+  "agentId": "aae5175495b3020c9",
+  "type": "user",
+  "uuid": "967c756d-a8d8-49d4-83f3-895e94b0a250",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 2 · 2026-05-19T17:25:48.112Z_
+
+I'll search across all .tex files in the paper directory for references to these experiment concepts. Let me start with a comprehensive search.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "967c756d-a8d8-49d4-83f3-895e94b0a250",
+  "isSidechain": true,
+  "agentId": "aae5175495b3020c9",
+  "requestId": "req_011CbCKRqBiqSLzpanw5ZbYZ",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "fe026dda-4e28-4a63-87e1-35e0330eb845",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01XKg1LJLjpTmRSjSiLpD2AS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 21416,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 21416,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-19T17:25:48.215Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01VFqZv8uhsWJivWY6i2sd92`</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/ -name \"*.tex\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fe026dda-4e28-4a63-87e1-35e0330eb845",
+  "isSidechain": true,
+  "agentId": "aae5175495b3020c9",
+  "requestId": "req_011CbCKRqBiqSLzpanw5ZbYZ",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "5336e27c-5f85-4771-a8f0-e58945277431",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01XKg1LJLjpTmRSjSiLpD2AS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 21416,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 124,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 21416
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 124,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 21416,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 21416,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-19T17:25:48.349Z_
+
+<details><summary>↩ Tool result · `toolu_01VFqZv8uhsWJivWY6i2sd92`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_generator_subsets.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_finer_depth.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/introduction.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_domain.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_classifier.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/abstract.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_tost.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/ethics.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_error_analysis.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_transfer.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/table4.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_ablation.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_length.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_qualitative_examples.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_seed_control.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/limitations.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_temperature_stability.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_instruct.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_convergence.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_lofo.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/table2.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/conclusion.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/table1.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_downstream.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_confusion_matrix.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/main.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_feature_correlation.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_ddr_validation.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_cross_temp.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_feature_distributions.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_qlora.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_prompt_type.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_dataset_stats.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/related_work.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_cross_model_detail.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5336e27c-5f85-4771-a8f0-e58945277431",
+  "isSidechain": true,
+  "promptId": "1f34363f-6233-4442-98e7-5b1a4ca44d12",
+  "agentId": "aae5175495b3020c9",
+  "type": "user",
+  "uuid": "20398876-d292-474c-a79e-42160285a54f",
+  "sourceToolAssistantUUID": "5336e27c-5f85-4771-a8f0-e58945277431",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5 · 2026-05-19T17:25:50.234Z_
+
+Now let me search for all 13 experiment concepts across these .tex files. I'll do this systematically with multiple grep searches.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "20398876-d292-474c-a79e-42160285a54f",
+  "isSidechain": true,
+  "agentId": "aae5175495b3020c9",
+  "requestId": "req_011CbCKRy8xaBA33gkx3CiSf",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "b5de05b3-f56c-43ab-a684-bb5294ec8a12",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_013WHF4UrXtMowUx7EV4mMT4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 2616,
+      "cache_read_input_tokens": 21416,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2616,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-19T17:25:51.083Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01CYQJHdyaUP53QcFAxWjs9c`</summary>
+
+```json
+{
+  "pattern": "multi-domain|multi domain",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper",
+  "type": "tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b5de05b3-f56c-43ab-a684-bb5294ec8a12",
+  "isSidechain": true,
+  "agentId": "aae5175495b3020c9",
+  "requestId": "req_011CbCKRy8xaBA33gkx3CiSf",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "34ecb42b-de51-49e9-8da3-5d72a6286822",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_013WHF4UrXtMowUx7EV4mMT4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 2616,
+      "cache_read_input_tokens": 21416,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2616,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-19T17:25:51.111Z_
+
+<details><summary>↩ Tool result · `toolu_01CYQJHdyaUP53QcFAxWjs9c`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "34ecb42b-de51-49e9-8da3-5d72a6286822",
+  "isSidechain": true,
+  "promptId": "1f34363f-6233-4442-98e7-5b1a4ca44d12",
+  "agentId": "aae5175495b3020c9",
+  "type": "user",
+  "uuid": "37cde78e-87c9-45d9-a380-1de7e3c2298e",
+  "sourceToolAssistantUUID": "34ecb42b-de51-49e9-8da3-5d72a6286822",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-19T17:25:51.418Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_0151XSBDFJ4Gv6diEgKXixCE`</summary>
+
+```json
+{
+  "pattern": "domain.*(News|Academic|Code)",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper",
+  "type": "tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "37cde78e-87c9-45d9-a380-1de7e3c2298e",
+  "isSidechain": true,
+  "agentId": "aae5175495b3020c9",
+  "requestId": "req_011CbCKRy8xaBA33gkx3CiSf",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "1a939d3b-492e-449c-b726-daa46c508759",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_013WHF4UrXtMowUx7EV4mMT4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 2616,
+      "cache_read_input_tokens": 21416,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2616,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-19T17:25:51.431Z_
+
+<details><summary>↩ Tool result · `toolu_0151XSBDFJ4Gv6diEgKXixCE`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/limitations.tex:26:Cross-domain evaluation (Appendix~\ref{app:domain}) at both $t{=}1.0$ and $t{=}0.7$ shows that depth signal persists across News, Academic, and Code domains (binary F1 0.63--0.75 depending on domain and temperature), though a domain $\times$ temperature interaction exists: at $t{=}0.7$, Academic domain binary F1 drops to 0.628, suggesting that reference model calibration is critical for cross-domain deployment.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_domain.tex:1:We evaluate whether depth signal generalizes beyond Wikipedia by constructing generation chains from three additional domains: News articles, Academic abstracts, and Code documentation.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_domain.tex:27:Supplementary evaluation at $t{=}0.7$ reveals a domain $\times$ temperature interaction: the main Wikipedia experiment favors lower temperature (depth signal degrades monotonically with rising temperature; Appendix~\ref{app:sampling-sensitivity}), while cross-domain evaluation favors higher temperature ($t{=}1.0$ yields +3 to +11\,pp over $t{=}0.7$; News 0.746 vs.\ 0.712, Academic 0.739 vs.\ 0.628, Code 0.754 vs.\ 0.687).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1a939d3b-492e-449c-b726-daa46c508759",
+  "isSidechain": true,
+  "promptId": "1f34363f-6233-4442-98e7-5b1a4ca44d12",
+  "agentId": "aae5175495b3020c9",
+  "type": "user",
+  "uuid": "d7c827eb-f418-48ca-8290-0a49000629ab",
+  "sourceToolAssistantUUID": "1a939d3b-492e-449c-b726-daa46c508759",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-19T17:25:52.162Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01NxvnXbhKsS5JPaPVsyXn3U`</summary>
+
+```json
+{
+  "pattern": "cross.?temp|cross.?temperature|temperature.transfer|temperature.mismatch",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper",
+  "type": "tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d7c827eb-f418-48ca-8290-0a49000629ab",
+  "isSidechain": true,
+  "agentId": "aae5175495b3020c9",
+  "requestId": "req_011CbCKRy8xaBA33gkx3CiSf",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "eb8d6800-0178-486b-a70e-aab8a80e1b93",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_013WHF4UrXtMowUx7EV4mMT4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 2616,
+      "cache_read_input_tokens": 21416,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2616,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T17:25:52.177Z_
+
+<details><summary>↩ Tool result · `toolu_01NxvnXbhKsS5JPaPVsyXn3U`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_cross_temp.tex:1:Figure~\ref{fig:cross-temp} shows cross-temperature transfer results for the 6-generator LOGO pipeline.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_cross_temp.tex:6:\includegraphics[width=\columnwidth]{fig_appendix_cross_temp.pdf}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_cross_temp.tex:7:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_cross_temp.tex:8:\label{fig:cross-temp}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_cross_temp.tex:11:Key observations from the cross-temperature analysis:
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_cross_temp.tex:18:\item \textbf{Generator-specific vulnerability}: Qwen3-1.7B, the only generator with temperature-mismatched test data, drops to F1\,=\,0.418 under cross-temperature conditions while all other generators maintain F1 $>$ 0.76. This confirms that depth features are calibrated to the specific decoding regime.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_cross_temp.tex:20:\item \textbf{Binary transfer for the mismatched generator}: For Qwen3-1.7B (the only generator with actual temperature mismatch), binary F1 drops from 0.948 to 0.713 under 0.7$\rightarrow$1.0 transfer but recovers in the reverse direction (1.0$\rightarrow$0.7: 0.948), consistent with the asymmetric pattern in Item 2. The aggregate binary range (0.900--0.958) is inflated by five generators whose data is identical across conditions.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/main.tex:118:\label{app:cross-temp}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/main.tex:119:\input{appendix_cross_temp}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex:9:Cross-temperature transfer degrades substantially when test-time temperature exceeds training ($t{=}0.7 \rightarrow$ mismatch: F1 from 0.789 to 0.418; Appendix~\ref{app:cross-temp}); depth fingerprinting assumes matched or lower temperature.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:98:Per-feature convergence trajectories confirm this ordering (Appendix~\ref{app:convergence}); the DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\ref{app:ddr-temp-stability}).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "eb8d6800-0178-486b-a70e-aab8a80e1b93",
+  "isSidechain": true,
+  "promptId": "1f34363f-6233-4442-98e7-5b1a4ca44d12",
+  "agentId": "aae5175495b3020c9",
+  "type": "user",
+  "uuid": "795b8559-2de0-4c3e-b5ff-0f5a291b3681",
+  "sourceToolAssistantUUID": "eb8d6800-0178-486b-a70e-aab8a80e1b93",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-19T17:25:52.692Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_0174EXWW7ZPRTg9HU9qNPaXP`</summary>
+
+```json
+{
+  "pattern": "0\\.5.*[Tt]emp|[Tt]emp.*0\\.5",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper",
+  "type": "tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "795b8559-2de0-4c3e-b5ff-0f5a291b3681",
+  "isSidechain": true,
+  "agentId": "aae5175495b3020c9",
+  "requestId": "req_011CbCKRy8xaBA33gkx3CiSf",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "68284da7-e78f-4d5a-aea4-0d0634719b07",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_013WHF4UrXtMowUx7EV4mMT4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 2616,
+      "cache_read_input_tokens": 21416,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2616,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-19T17:25:52.711Z_
+
+<details><summary>↩ Tool result · `toolu_0174EXWW7ZPRTg9HU9qNPaXP`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_temperature_stability.tex:1:To assess whether the DDR three-way partition generalizes beyond the default temperature ($\tau{=}0.7$), we computed per-feature Cohen's $d$ (generation~1 vs.\ generation~2+) at $\tau \in \{0.5, 0.7, 0.9\}$ for all four generators in the temperature ablation (12 conditions total; Table~\ref{tab:ddr-temp-stability}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_temperature_stability.tex:6:\caption{Mean $|d|$ (gen-1 vs.\ gen-2+) across 4 generators at each temperature. Partition labels: \textbf{D}rifting ($|d|>0.5$), \textbf{I}ntermediate ($0.1{<}|d|{<}0.5$), near-\textbf{S}tationary ($|d|{<}0.1$). Boldface marks features that shift from their $\tau{=}0.7$ partition.}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_temperature_stability.tex:26:The two boundary features are more temperature-sensitive: entropy std is drifting at $\tau{=}0.5$ for all generators but falls to intermediate at $\tau{=}0.9$ for three of four, while tail decay fluctuates between near-stationary and intermediate across generators.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_temperature_stability.tex:27:Effect sizes compress monotonically with temperature: for the fixed drifting set (entropy mean, TTR, hapax ratio), mean $|d|$ drops from 1.09 at $\tau{=}0.5$ to 0.90 at $\tau{=}0.7$ to 0.48 at $\tau{=}0.9$, shifting individual features across partition boundaries at high temperature without altering the qualitative hierarchy: lexical diversity features drift fastest, entropy extrema remain stable across all conditions tested.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/limitations.tex:30:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_classifier.tex:36:To assess robustness to decoding temperature, we regenerate continuation chains at $t \in \{0.5, 0.9\}$ with fixed nucleus $p{=}0.9$ (matching the default) for four generators spanning three model families: Pythia-2.8B, OLMo-2-1B, Qwen3-1.7B, and Qwen3-0.6B (Table~\ref{tab:sampling-ablation}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_classifier.tex:68:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_classifier.tex:70:The method operates reliably within $t \in [0.5, 0.7]$ across all tested models. Degradation onset at $t{=}0.9$ defines the practical upper bound, consistent with the hypothesis that elevated temperature injects sufficient randomness to flatten the distributional drift that DDR exploits (\S\ref{sec:discussion}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:96:All four tested generators degrade at $t{=}0.9$ ($-9.3$ to $-26.0$\,pp binary F1); low-temperature improvement is model-family-dependent ($+7$--$9$\,pp for Pythia/OLMo at $t{=}0.5$, negligible for Qwen).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "68284da7-e78f-4d5a-aea4-0d0634719b07",
+  "isSidechain": true,
+  "promptId": "1f34363f-6233-4442-98e7-5b1a4ca44d12",
+  "agentId": "aae5175495b3020c9",
+  "type": "user",
+  "uuid": "dd794f0f-798b-46ec-827a-7e00746cc846",
+  "sourceToolAssistantUUID": "68284da7-e78f-4d5a-aea4-0d0634719b07",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-19T17:25:53.226Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01QRjNiHFB1Pka4Q5fJ6u3vx`</summary>
+
+```json
+{
+  "pattern": "independent.?seed|disjoint.seed|seed.demean|non.overlapping",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper",
+  "type": "tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dd794f0f-798b-46ec-827a-7e00746cc846",
+  "isSidechain": true,
+  "agentId": "aae5175495b3020c9",
+  "requestId": "req_011CbCKRy8xaBA33gkx3CiSf",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "8fe8d6ac-04b6-425d-8991-2c35305722ca",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_013WHF4UrXtMowUx7EV4mMT4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 2616,
+      "cache_read_input_tokens": 21416,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2616,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-19T17:25:53.239Z_
+
+<details><summary>↩ Tool result · `toolu_01QRjNiHFB1Pka4Q5fJ6u3vx`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_seed_control.tex:4:To test for topic-level leakage from shared seeds across generators, we construct an independent-seed evaluation where Pythia-2.8B and OLMo-2-1B use completely disjoint Wikipedia seed pools (500 seeds each, zero overlap).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_seed_control.tex:22:\caption{Independent-seed cross-generator evaluation (binary: gen-1 vs.\ gen-2+). Disjoint seed pools eliminate any possibility of topic-based leakage. The average independent-seed F1 (0.680) is within 1.4\,pp of the shared-seed LOGO baseline (0.694). The classifier thus captures generative degradation patterns rather than seed-specific topic content.}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_seed_control.tex:26:The small gap ($-$1.4\,pp) between independent-seed and shared-seed evaluation falls within bootstrap confidence intervals, and both directions individually exceed 0.66.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:25:Seed-level demeaning (F1\,=\,0.701) and an independent-seed experiment with disjoint seed pools (F1\,=\,0.680; Appendix~\ref{app:seed-control}) both confirm the classifier captures generative degradation, not seed-specific content.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:48:\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\% CIs, $n$\,=\,1000). Binary F1 (gen-1 vs.\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. $^{\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\S\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\,=\,0.680; Appendix~\ref{app:seed-control}).}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8fe8d6ac-04b6-425d-8991-2c35305722ca",
+  "isSidechain": true,
+  "promptId": "1f34363f-6233-4442-98e7-5b1a4ca44d12",
+  "agentId": "aae5175495b3020c9",
+  "type": "user",
+  "uuid": "fdf619f0-d7a9-4dc5-813b-c9ca179ece51",
+  "sourceToolAssistantUUID": "8fe8d6ac-04b6-425d-8991-2c35305722ca",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-19T17:25:53.877Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01GfSqfugtc19PFgTojfBbSW`</summary>
+
+```json
+{
+  "pattern": "bootstrap|overall.CI|0\\.783|0\\.793",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper",
+  "type": "tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fdf619f0-d7a9-4dc5-813b-c9ca179ece51",
+  "isSidechain": true,
+  "agentId": "aae5175495b3020c9",
+  "requestId": "req_011CbCKRy8xaBA33gkx3CiSf",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "877c5537-69c9-45ab-a6bd-f3824dac4ac4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_013WHF4UrXtMowUx7EV4mMT4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 2616,
+      "cache_read_input_tokens": 21416,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2616,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-19T17:25:53.896Z_
+
+<details><summary>↩ Tool result · `toolu_01GfSqfugtc19PFgTojfBbSW`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_lofo.tex:11:entropy\_mean   & 0.783 & $-$0.63\,pp \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex:81:We report 95\% confidence intervals via percentile bootstrap ($n{=}1{,}000$), McNemar tests for pairwise comparisons, and paired bootstrap for baseline comparisons.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_seed_control.tex:26:The small gap ($-$1.4\,pp) between independent-seed and shared-seed evaluation falls within bootstrap confidence intervals, and both directions individually exceed 0.66.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_transfer.tex:35:All 56 off-diagonal transfer pairs yield F1 above chance, with a mean of 0.810 (95\% bootstrap CI [0.796, 0.822]; one-sample $t=46.58$, $p < 10^{-10}$).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_classifier.tex:40:\caption{Depth classification under varying temperature (fixed top-$p$\,=\,0.9). Binary: gen-1 vs.\ gen-2+. LOGO evaluation; 95\% bootstrap CIs.$^{\ast}$$^{\dagger}$}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_classifier.tex:51:OLMo-2-1B & 0.5  & \textbf{0.783} & [.768, .798] & $-0.72$ \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_finer_depth.tex:50:To verify that 5-class degradation reflects feature-level limitations rather than classifier choice, we evaluate four alternatives under the same protocol: HistGradientBoosting (macro F1\,=\,0.501, 95\% bootstrap CI [0.496, 0.506]), random forest (0.476), logistic regression (0.447), and Frank-Hall ordinal reduction (0.451).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:48:\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\% CIs, $n$\,=\,1000). Binary F1 (gen-1 vs.\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. $^{\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\S\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\,=\,0.680; Appendix~\ref{app:seed-control}).}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "877c5537-69c9-45ab-a6bd-f3824dac4ac4",
+  "isSidechain": true,
+  "promptId": "1f34363f-6233-4442-98e7-5b1a4ca44d12",
+  "agentId": "aae5175495b3020c9",
+  "type": "user",
+  "uuid": "5397e586-3ea4-4045-aa1d-742ed77f1510",
+  "sourceToolAssistantUUID": "877c5537-69c9-45ab-a6bd-f3824dac4ac4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-19T17:25:54.565Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_0114kaS2TXkxPpSC9NMwiqXi`</summary>
+
+```json
+{
+  "pattern": "8B|Qwen3.?8B|qwen.*8[Bb]",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper",
+  "type": "tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5397e586-3ea4-4045-aa1d-742ed77f1510",
+  "isSidechain": true,
+  "agentId": "aae5175495b3020c9",
+  "requestId": "req_011CbCKRy8xaBA33gkx3CiSf",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "ae6e5009-ee4f-4fdb-ba60-6edf85bb76b4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_013WHF4UrXtMowUx7EV4mMT4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 2616,
+      "cache_read_input_tokens": 21416,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2616,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-19T17:25:54.583Z_
+
+<details><summary>↩ Tool result · `toolu_0114kaS2TXkxPpSC9NMwiqXi`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_cross_model_detail.tex:15:\caption{Cross-model chain per-class performance (class-balanced 5-fold CV, $N$\,=\,2{,}964, 5 generators: Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B). Macro F1\,=\,0.831 under class balancing; under natural class distribution, macro F1\,=\,0.809 (as reported in \S\ref{sec:results-classification}). Cross-model chains avoid the gen-0 seed sharing issue present in single-generator LOGO.}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_dataset_stats.tex:16:Pythia-2.8B     & Pythia  & 2.8B & 4{,}609 \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_dataset_stats.tex:20:Qwen3-8B       & Qwen    & 8.2B & 4{,}497 \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_prompt_type.tex:1:We evaluate depth profiling under three prompt types using Pythia-2.8B: \emph{continuation} (``Continue the following text''), \emph{elaboration} (``Elaborate on the following text''), and \emph{inspired rewriting} (``Write a new passage inspired by the following text''). Each uses 995 seeds $\times$ 5 depths.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_ddr_validation.tex:55:Entropy max is stable across all three bounds (6/8), with the two failures (Pythia-1B $d{=}0.21$, Pythia-2.8B $d{=}0.25$) reflecting same-family reference affinity with the Pythia-410M reference model.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_ddr_validation.tex:62:Split~A selects \{Pythia-2.8B, Qwen3-1.7B, OLMo, Mistral\} (validation: Pythia-1B, Qwen3-0.6B, Qwen3-8B, Llama);
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_ddr_validation.tex:63:Split~B selects \{Pythia-1B, Qwen3-0.6B, OLMo, Mistral\} (validation: Pythia-2.8B, Qwen3-1.7B, Qwen3-8B, Llama).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/main.tex:41:\noindent\textbf{Note:} Unless otherwise stated, appendix experiments use the original six-generator subset (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-1.7B/0.6B/8B).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_confusion_matrix.tex:1:Table~\ref{tab:confusion} reports the aggregated confusion matrix from the original six-generator subset (Pythia-2.8B, Pythia-1B, OLMo-2-1B, Qwen3-1.7B, Qwen3-0.6B, Qwen3-8B) under leave-one-generator-out (LOGO) evaluation, collapsed to three ordinal classes: gen-0 (human), gen-1 (first-generation), and gen-2+ (depth $\geq$ 2).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/table1.tex:9:Pythia-2.8B   & Pythia  & 2.8B & ---   & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/table1.tex:14:Qwen3-8B     & Qwen    & 8.0B & ---   & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex:16:We construct generation chains using eight generators spanning five model families: \textbf{Pythia} (2.8B, 1B) \cite{pythia}, \textbf{OLMo} (OLMo-2-1B) \cite{olmo}, \textbf{Qwen} (Qwen3-1.7B, Qwen3-0.6B, Qwen3-8B-Base) \cite{qwen3}, \textbf{Llama} (Llama-3.2-3B) \cite{llama3}, and \textbf{Mistral} (Mistral-7B-v0.3) \cite{mistral7b}.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex:17:This selection covers parameter scales from 0.6B to 8B and diverse pretraining corpora, which allows evaluation of cross-generator and cross-scale generalization.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex:69:Our experiments use three overlapping generator subsets reflecting chronological expansion: the original 5-generator set (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-1.7B/0.6B) for cross-model chains, a 6-generator set (adding Qwen3-8B) for appendix analyses, and the full 8-generator set (adding Llama-3.2-3B and Mistral-7B-v0.3) for single-generator LOGO. Each table notes its subset.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex:71:LOGO holds out individual generators but does not isolate family effects (e.g., when Pythia-1B is held out, Pythia-2.8B remains in training).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/limitations.tex:11:Our experiments include generators up to 8.2B parameters (Qwen3-8B).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/limitations.tex:12:Depth signal persists at this scale (Qwen3-8B 3-class F1\,=\,0.714), but cross-scale transfer incurs a moderate gap vs.\ $\leq$2.8B generators (F1\,=\,0.77--0.81).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/limitations.tex:22:Independent-seed validation covers two of eight generators (Pythia-2.8B and Pythia-1B); extending to all generators, particularly Mistral-7B (lowest LOGO F1), would strengthen seed-independence claims.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_seed_control.tex:4:To test for topic-level leakage from shared seeds across generators, we construct an independent-seed evaluation where Pythia-2.8B and OLMo-2-1B use completely disjoint Wikipedia seed pools (500 seeds each, zero overlap).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_seed_control.tex:15:Pythia-2.8B $\rightarrow$ OLMo-2-1B & 0.695 & [0.673, 0.717] \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_seed_control.tex:16:OLMo-2-1B $\rightarrow$ Pythia-2.8B & 0.666 & [0.643, 0.689] \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_qualitative_examples.tex:4:Table~\ref{tab:qualitative-text} presents an example generation chain from seed 120 (Pythia-2.8B, continuation prompt), illustrating how text evolves across recursive generation steps.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_qualitative_examples.tex:9:\caption{Example text chain from seed 120 (Pythia-2.8B, continuation prompt). Gen-0 is the original Wikipedia passage; gen-1 and gen-2 are successive LLM continuations. Text is truncated for space.}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_transfer.tex:12:\textbf{Train $\backslash$ Test} & \textbf{Py-2.8B} & \textbf{Py-1B} & \textbf{Qw-0.6B} & \textbf{Qw-1.7B} & \textbf{Qw-8B} & \textbf{OLMo-1B} & \textbf{Ll-3B} & \textbf{Mi-7B} \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_transfer.tex:14:Py-2.8B  & \underline{0.985} & 0.873 & 0.823 & 0.833 & 0.741 & 0.829 & 0.815 & 0.712 \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_transfer.tex:18:Qw-8B   & 0.811 & 0.836 & 0.853 & 0.855 & \underline{0.984} & 0.848 & 0.839 & 0.790 \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_transfer.tex:36:Transfer is strongest within families (e.g., Py-2.8B$\to$Py-1B: 0.87) and weakest for Py-1B$\to$Mi-7B (0.62), consistent with the scale and reference-affinity effects discussed in \S\ref{sec:results-differential}.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_error_analysis.tex:13:Table~\ref{tab:error-by-gen} shows error rates vary substantially across generators, correlating with model scale: larger models (Mistral-7B, Qwen3-8B) produce text closer to gen-1 characteristics, which makes depth discrimination harder.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_error_analysis.tex:25:Qwen3-8B        & Qwen    & 3{,}502 & 1{,}197 & 34.18\% \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_error_analysis.tex:28:Pythia-2.8B     & Pythia  & 3{,}614 &   866 & 23.96\% \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_tost.tex:10:Entropy min passes equivalence for all eight generators; entropy max passes for six of eight (exceeding $\varepsilon$ only for Pythia-1B and Pythia-2.8B, where $|d| \approx 0.21$--$0.25$); tail decay passes for four of eight.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_tost.tex:27:Pythia-2.8B  & 1.20 & 0.77 & 0.67 & 0.39 & 0.25          & 0.07\,\checkmark & 0.03\,\checkmark \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_tost.tex:32:Qwen3-8B    & 0.86 & 0.71 & 0.66 & 0.37 & 0.04\,\checkmark & 0.15          & 0.01\,\checkmark \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/abstract.tex:3:Recursive LLM generation shifts \emph{where} text sits in distributional space but leaves \emph{how} it is shaped nearly unchanged, and this asymmetry is consistent across five model families spanning 0.6B to 8B parameters.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_classifier.tex:15:Classifier & Avg F1 & OLMo-2 & Py-1B & Py-2.8B & Qw-0.6B & Qw-1.7B & Qw-8B \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_classifier.tex:28:(Pythia-1B easiest, Qwen3-8B hardest),
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_classifier.tex:36:To assess robustness to decoding temperature, we regenerate continuation chains at $t \in \{0.5, 0.9\}$ with fixed nucleus $p{=}0.9$ (matching the default) for four generators spanning three model families: Pythia-2.8B, OLMo-2-1B, Qwen3-1.7B, and Qwen3-0.6B (Table~\ref{tab:sampling-ablation}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_classifier.tex:47:Pythia-2.8B$^{\dagger}$ & 0.5  & \textbf{0.814} & [.798, .828] & $-0.58$ \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_classifier.tex:48:Pythia-2.8B$^{\dagger}$ & 0.7  & 0.740 & [.725, .755] & $-0.60$ \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_classifier.tex:49:Pythia-2.8B$^{\dagger}$ & 0.9  & 0.480 & [.465, .498] & $-0.30$ \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_classifier.tex:66:\noindent{\footnotesize $^{\dagger}$Pythia-2.8B and Qwen3-1.7B temperature experiments predate the 8-generator expansion and use 6-generator LOGO; OLMo-2-1B and Qwen3-0.6B use 8-generator LOGO. Within-model temperature comparisons (the focus of this analysis) are unaffected.}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_classifier.tex:68:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_classifier.tex:75:Pythia models (1B, 2.8B) achieve highest F1, while larger models (Mistral-7B, Qwen3-8B) show degradation.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/introduction.tex:13:The key finding is a \emph{differential depth response} (DDR): when we measure how eight base-model generators from five families (Pythia, OLMo, Qwen, Llama, Mistral; 0.6B--8B parameters) transform text across recursive depths, central-tendency and diversity features (reference-model mean entropy, type-token ratio, hapax ratio) drift monotonically, while shape features (entropy max, tail decay) show an order-of-magnitude smaller effect size.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/introduction.tex:20:    \item We formulate generation depth classification, moving beyond binary detection to ordinal depth estimation (gen-0\,/\,gen-1\,/\,gen-2+), and construct an evaluation suite of 37K texts from eight generators spanning five model families (0.6B--8B parameters).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_finer_depth.tex:13:Pythia-2.8B      & 0.523 & 0.540 & 0.560 \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_finer_depth.tex:16:Qwen3-8B        & 0.434 & 0.455 & 0.493 \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_generator_subsets.tex:13:Main LOGO (Table~\ref{tab:logo-results}) & 8 & All: Py-2.8B/1B, OLMo, Qw-1.7B/0.6B/8B, Llama, Mistral \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_generator_subsets.tex:14:Cross-model chains (Table~\ref{tab:cross-ref}) & 5 & Py-2.8B/1B, OLMo, Qw-1.7B/0.6B \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_generator_subsets.tex:15:QLoRA (Table~\ref{tab:qlora}) & 6 & Py-2.8B/1B, OLMo, Qw-1.7B/0.6B/8B \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_generator_subsets.tex:16:Temperature ablation (Table~\ref{tab:sampling-ablation}) & 4 & Py-2.8B, OLMo, Qw-1.7B/0.6B \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_generator_subsets.tex:17:Prompt-type (Appendix~\ref{app:prompt-type}) & 1 & Py-2.8B only \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_generator_subsets.tex:20:Downstream (Appendix~\ref{app:downstream}) & 5 & Py-2.8B/1B, OLMo, Qw-1.7B/0.6B \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_generator_subsets.tex:25:The 5-generator set was the initial development subset; Qwen3-8B was added for scale evaluation, and Llama-3.2-3B and Mistral-7B-v0.3 were added last for family-diversity testing.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:10:Per-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B), with the primary difficulty being gen-1 vs.\ gen-2+ discrimination (Appendix~\ref{app:confusion}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:35:Pythia-2.8B     & Pythia  & 2.8B & \textbf{0.724} & [.707, .742] & 0.798 \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:40:Qwen3-8B       & Qwen    & 8.2B & 0.692 & [.674, .708] & 0.714 \\
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ae6e5009-ee4f-4fdb-ba60-6edf85bb76b4",
+  "isSidechain": true,
+  "promptId": "1f34363f-6233-4442-98e7-5b1a4ca44d12",
+  "agentId": "aae5175495b3020c9",
+  "type": "user",
+  "uuid": "ec41fcef-89de-4bf1-ae81-fbb51939fcad",
+  "sourceToolAssistantUUID": "ae6e5009-ee4f-4fdb-ba60-6edf85bb76b4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-19T17:25:55.423Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01DfRmqx3CYhBBiZDvkr9RJw`</summary>
+
+```json
+{
+  "pattern": "LLM.*rephras|Qwen.*rephras|paraphrase.robustness",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper",
+  "type": "tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ec41fcef-89de-4bf1-ae81-fbb51939fcad",
+  "isSidechain": true,
+  "agentId": "aae5175495b3020c9",
+  "requestId": "req_011CbCKRy8xaBA33gkx3CiSf",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "f34c0463-4b2f-4be2-bb11-94beba7bff55",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_013WHF4UrXtMowUx7EV4mMT4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 2616,
+      "cache_read_input_tokens": 21416,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2616,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-19T17:25:55.437Z_
+
+<details><summary>↩ Tool result · `toolu_01DfRmqx3CYhBBiZDvkr9RJw`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex:87:The binary degradation ($-$4.5\,pp) is nearly identical to that caused by 5\% random word replacement ($-$4.6\,pp), despite the LLM rephrase altering ${\sim}$50\% of characters.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f34c0463-4b2f-4be2-bb11-94beba7bff55",
+  "isSidechain": true,
+  "promptId": "1f34363f-6233-4442-98e7-5b1a4ca44d12",
+  "agentId": "aae5175495b3020c9",
+  "type": "user",
+  "uuid": "ab17c0bc-504f-4119-a0c9-2bde1e0fb0c0",
+  "sourceToolAssistantUUID": "f34c0463-4b2f-4be2-bb11-94beba7bff55",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-19T17:25:56.058Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01BbHq1r2fEBMSYy8wM9D8T6`</summary>
+
+```json
+{
+  "pattern": "length.*(confound|control|normal)",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper",
+  "type": "tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ab17c0bc-504f-4119-a0c9-2bde1e0fb0c0",
+  "isSidechain": true,
+  "agentId": "aae5175495b3020c9",
+  "requestId": "req_011CbCKRy8xaBA33gkx3CiSf",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "40f16512-eb69-4c29-88b6-37bf52fc6732",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_013WHF4UrXtMowUx7EV4mMT4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 2616,
+      "cache_read_input_tokens": 21416,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2616,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-19T17:25:56.071Z_
+
+<details><summary>↩ Tool result · `toolu_01BbHq1r2fEBMSYy8wM9D8T6`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_length.tex:16:This motivates the length-matched evaluation below: if length mediates some depth--feature association, controlling for length will reduce classification performance.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_length.tex:21:To distinguish this from a sample-size effect, we run a random-subsample control at equal $N$ without length matching: F1\,=\,0.767, which confirms that the 0.046 drop reflects genuine length deconfounding rather than reduced data.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_length.tex:26:Surface features (TTR, hapax\_ratio) partially co-vary with length, but their depth-discriminative contribution persists after length control, consistent with generation-induced vocabulary compression operating independently of text truncation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "40f16512-eb69-4c29-88b6-37bf52fc6732",
+  "isSidechain": true,
+  "promptId": "1f34363f-6233-4442-98e7-5b1a4ca44d12",
+  "agentId": "aae5175495b3020c9",
+  "type": "user",
+  "uuid": "1de9359a-e3f0-4caa-92fb-c42b85da2ab0",
+  "sourceToolAssistantUUID": "40f16512-eb69-4c29-88b6-37bf52fc6732",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-19T17:25:56.511Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01VzsvPf2Ph317c4jBweyRwg`</summary>
+
+```json
+{
+  "pattern": "LOFO|leave.one.feature",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper",
+  "type": "tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1de9359a-e3f0-4caa-92fb-c42b85da2ab0",
+  "isSidechain": true,
+  "agentId": "aae5175495b3020c9",
+  "requestId": "req_011CbCKRy8xaBA33gkx3CiSf",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "25c4cd83-0a17-433a-a401-f0c1eaa66fb1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_013WHF4UrXtMowUx7EV4mMT4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 2616,
+      "cache_read_input_tokens": 21416,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2616,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-19T17:25:56.530Z_
+
+<details><summary>↩ Tool result · `toolu_01VzsvPf2Ph317c4jBweyRwg`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_lofo.tex:1:We complement the permutation importance analysis (\S\ref{sec:results-differential}) with a leave-one-feature-out ablation. Each row drops one of the seven features and re-evaluates the full 6-gen LOGO protocol; $\Delta$ is the change relative to the full 7-feature ensemble (F1\,=\,0.789).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex:36:This two-pronged design is validated through leave-one-feature-out analysis (Appendix~\ref{app:lofo}) and cross-group ablation (\S\ref{sec:results-differential}); both analyses confirm that the two feature groups contribute to depth discrimination.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex:63:TTR and hapax ratio are strongly correlated ($r = 0.97$); both are retained for marginal LOFO gains.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex:72:\textbf{Leave-One-Family-Out (LOFO)} addresses this by holding out entire model families; cross-family generalization holds (average binary F1\,=\,0.686; \S\ref{sec:results-classification}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_tost.tex:6:LOFO analysis independently supports this choice: removing any near-stationary feature changes classification F1 by $\leq$1.5\,pp (Appendix~\ref{app:lofo}), linking the statistical threshold to classification irrelevance.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:16:Leave-one-family-out (LOFO) evaluation yields binary F1\,=\,0.686, consistent with cross-family transfer.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:45:\multicolumn{3}{l}{\textbf{LOFO (family-level)}} & 0.686 & --- & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:88:TTR and hapax ratio ($r = 0.97$) show permutation importance differences (0.35 vs.\ 0.18) due to feature masking \cite{strobl_conditional_2008}; all three are retained for marginal LOFO gains (Appendix~\ref{app:lofo}).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "25c4cd83-0a17-433a-a401-f0c1eaa66fb1",
+  "isSidechain": true,
+  "promptId": "1f34363f-6233-4442-98e7-5b1a4ca44d12",
+  "agentId": "aae5175495b3020c9",
+  "type": "user",
+  "uuid": "a9626af7-3192-487f-b041-2a243a6cfa83",
+  "sourceToolAssistantUUID": "25c4cd83-0a17-433a-a401-f0c1eaa66fb1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-19T17:25:57.153Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01HJUK6z9riuAxqR9hdT85fd`</summary>
+
+```json
+{
+  "pattern": "downstream|fine.?tun|TOST|equivalence",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper",
+  "type": "tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a9626af7-3192-487f-b041-2a243a6cfa83",
+  "isSidechain": true,
+  "agentId": "aae5175495b3020c9",
+  "requestId": "req_011CbCKRy8xaBA33gkx3CiSf",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "8d1251c6-8d34-40c6-8b78-c9947addfba9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_013WHF4UrXtMowUx7EV4mMT4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 2616,
+      "cache_read_input_tokens": 21416,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2616,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-19T17:25:57.173Z_
+
+<details><summary>↩ Tool result · `toolu_01HJUK6z9riuAxqR9hdT85fd`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_qlora.tex:1:To assess whether depth signal extends beyond handcrafted features, we fine-tune a pretrained language model end-to-end as a depth classifier using QLoRA \cite{qlora}.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_qlora.tex:4:We fine-tune Qwen3-0.6B-Base with LoRA rank 16, learning rate $2 \times 10^{-4}$, and 3 epochs, framing depth estimation as 5-class sequence classification (gen-0 through gen-4).\footnote{Evaluated on the original 6-generator subset; XGBoost 3-class F1\,=\,0.789. We expect 8-generator training to further improve given additional diversity; the comparison direction is preserved.}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_qlora.tex:34:End-to-end fine-tuning exploits token-level patterns (e.g., positional regularities, n-gram repetitions) that aggregate features cannot represent.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_ddr_validation.tex:26:\subsection*{TOST Equivalence Bound Sensitivity}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_ddr_validation.tex:29:Table~\ref{tab:tost-sensitivity} shows the fraction of generators for which each feature passes the TOST equivalence test (gen-1 vs.\ gen-2+, $\alpha{=}0.05$) at three equivalence bounds $\varepsilon$.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_ddr_validation.tex:34:\caption{TOST equivalence pass rate across 8 generators at varying $\varepsilon$.}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_ddr_validation.tex:53:The partition is robust to the equivalence bound: drifting features reject equivalence at all $\varepsilon$ for all generators, while entropy min passes even at the stricter bound $\varepsilon{=}0.15$ (7/8 generators).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/main.tex:103:\label{app:downstream}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/main.tex:104:\input{appendix_downstream}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_downstream.tex:1:Can depth-aware data curation improve downstream language model quality?
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_downstream.tex:2:We fine-tune OLMo-2-0425-1B on five data variants (3 seeds each) and evaluate perplexity on a held-out test set (Table~\ref{tab:downstream}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_downstream.tex:18:\caption{Downstream fine-tuning perplexity (OLMo-2-0425-1B, mean $\pm$ std across 3 seeds). At equal sample count, random subsampling (2.367) outperforms depth-aware curation (depth 0--1: 2.387, binary-filtered: 2.389).}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_downstream.tex:19:\label{tab:downstream}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_downstream.tex:30:We apply a two one-sided $t$-test (TOST) with a $\pm$2\% relative margin (equivalence bounds $\pm$0.047 on the ppl scale) to formally assess whether the depth-aware and random subsampling conditions produce practically indistinguishable perplexity.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_downstream.tex:32:TOST confirms equivalence ($p = 1.1 \times 10^{-4}$); the two curation strategies yield practically indistinguishable downstream quality within the $\pm$2\% margin.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_downstream.tex:35:Comparing the full dataset ($n$\,=\,12{,}299, ppl\,=\,2.335) against the depth-filtered subset ($n$\,=\,3{,}951, ppl\,=\,2.387): TOST \emph{rejects} equivalence (minimum equivalence margin\,=\,0.053, exceeding the $\pm$2\% bound), which confirms that data quantity drives perplexity reduction beyond what depth-aware selection can recover.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_downstream.tex:41:To assess the robustness of the equivalence conclusion to margin choice, we repeat the TOST procedure across multiple equivalence margins \cite{lakens_equivalence}, following the recommendation to report sensitivity across plausible bounds rather than relying on a single threshold (Table~\ref{tab:tost-margins}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_downstream.tex:49:\textbf{Comparison} & \textbf{Margin} & \textbf{Equiv?} & \textbf{TOST $p$} \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_downstream.tex:62:\caption{TOST equivalence testing across multiple margins. ``Equiv?'' indicates whether equivalence is established at $\alpha = 0.05$.}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_downstream.tex:66:The full dataset vs.\ random subsample comparison passes equivalence at the $\pm$2\% margin ($p = 10^{-6}$), while the full vs.\ depth 0--1 comparison requires a $\pm$3\% margin.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_downstream.tex:72:The TOST framework with pre-specified relative margins provides a more appropriate assessment than Cohen's $d$ in this low-seed regime.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_downstream.tex:73:However, with only $n{=}3$ seeds per condition, the TOST results have limited generalizability: the test is valid given observed variance but the conclusion generalizes over only three random seeds. We characterize this as a preliminary observation rather than a definitive null result.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/conclusion.tex:5:This differential depth response enables depth classification across five model families (leak-free binary F1\,=\,0.694 under LOGO evaluation, 0.764 on cross-model chains) with no downstream quality degradation (TOST $\pm$2\%, $p < 0.001$).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_tost.tex:4:To confirm that the near-stationary classification is not a pooling artifact, we apply two one-sided $t$-tests (TOST) \cite{lakens_equivalence} for each feature within each generator separately (gen-1 vs.\ gen-2+, equivalence bound $|d| < 0.20$).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_tost.tex:8:Table~\ref{tab:tost-per-gen} reports observed $|d|$; \checkmark{} marks features for which the TOST null hypothesis (non-equivalence) is rejected at $\alpha = 0.05$.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_tost.tex:10:Entropy min passes equivalence for all eight generators; entropy max passes for six of eight (exceeding $\varepsilon$ only for Pythia-1B and Pythia-2.8B, where $|d| \approx 0.21$--$0.25$); tail decay passes for four of eight.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_tost.tex:11:All drifting and intermediate features fail equivalence uniformly, with $|d|$ ranging from 0.23 (entropy std, Mistral) to 1.40 (entropy mean, Pythia-1B).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_tost.tex:18:\caption{Per-generator TOST equivalence ($\varepsilon{=}|d|{<}0.20$, gen-1 vs.\ gen-2+). Observed $|d|$; \checkmark{} = equivalent ($p_{\mathrm{TOST}} < 0.05$). Features grouped by DDR partition.}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_tost.tex:44:\caption{DDR partition in pooled ($|\rho|$, Cohen's $d$) space. Drifting features (green) cluster at high $|\rho|$ and $d$; near-stationary features (orange) cluster near the origin; entropy std (purple) occupies a sole intermediate position. Dashed lines: TOST equivalence bound ($d{=}0.20$) and $|\rho|{=}0.30$. Diamond marker: entropy min (pooled $|\rho|{=}0.40$ reflects the gen-0/gen-1 boundary; gen-1 vs.\ gen-2+ $d{=}0.03$).}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/abstract.tex:6:Despite measurable distributional drift, equivalence testing (TOST $\pm$2\%, $p < 0.001$) confirms no downstream training quality degradation.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/introduction.tex:22:    \item Comprehensive evaluation reveals that DDR is robust within $t \in [0.5, 0.7]$ but degrades at $t{=}0.9$ ($-9.3$ to $-26.0$\,pp), is prompt-type modulated (continuation $>$ elaboration), and is absent in instruction-tuned models; equivalence testing (TOST $\pm$2\%, $p < 0.001$) confirms no downstream quality degradation (Appendix~\ref{app:downstream}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/references.bib:542:@article{lakens_equivalence,
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_generator_subsets.tex:20:Downstream (Appendix~\ref{app:downstream}) & 5 & Py-2.8B/1B, OLMo, Qw-1.7B/0.6B \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:80:Per-generator TOST equivalence testing confirms the partition is not a pooling artifact; holdout generator validation confirms stability across two 4/4 splits (Appendix~\ref{app:tost}).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8d1251c6-8d34-40c6-8b78-c9947addfba9",
+  "isSidechain": true,
+  "promptId": "1f34363f-6233-4442-98e7-5b1a4ca44d12",
+  "agentId": "aae5175495b3020c9",
+  "type": "user",
+  "uuid": "5cedea37-e0ec-488d-9f96-1f97849dee82",
+  "sourceToolAssistantUUID": "8d1251c6-8d34-40c6-8b78-c9947addfba9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-19T17:25:58.552Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01XkGdrt4d5nSLGBSixDteNr`</summary>
+
+```json
+{
+  "pattern": "cross.*ref|reference.model.*(OLMo|Qwen)",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper",
+  "type": "tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5cedea37-e0ec-488d-9f96-1f97849dee82",
+  "isSidechain": true,
+  "agentId": "aae5175495b3020c9",
+  "requestId": "req_011CbCKRy8xaBA33gkx3CiSf",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "1c71de8e-7cb6-4cb4-818c-2c1496eaa55c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_013WHF4UrXtMowUx7EV4mMT4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 2616,
+      "cache_read_input_tokens": 21416,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2616,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-19T17:25:58.575Z_
+
+<details><summary>↩ Tool result · `toolu_01XkGdrt4d5nSLGBSixDteNr`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/related_work.tex:15:Even when detection scores correlate with depth, they exhibit high cross-generator variance as ordinal predictors (binary F1 from 0.52 to 0.71; Table~\ref{tab:baselines}), because each captures a single distributional property that generalizes inconsistently \cite{paraphrase_evades,detection_possibilities}.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_ddr_validation.tex:55:Entropy max is stable across all three bounds (6/8), with the two failures (Pythia-1B $d{=}0.21$, Pythia-2.8B $d{=}0.25$) reflecting same-family reference affinity with the Pythia-410M reference model.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_ddr_validation.tex:91:However, entropy min's binary (gen-1 vs.\ gen-2+) $d$ values are uniformly below 0.06 across all four split${\times}$subset combinations, consistent with near-stationarity on the task-relevant metric; its pooled $|\rho|$ reflects change concentrated at the gen-0/gen-1 boundary rather than sustained drift.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/main.tex:138:\label{app:cross-ref}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_downstream.tex:41:To assess the robustness of the equivalence conclusion to margin choice, we repeat the TOST procedure across multiple equivalence margins \cite{lakens_equivalence}, following the recommendation to report sensitivity across plausible bounds rather than relying on a single threshold (Table~\ref{tab:tost-margins}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex:34:The crossover confirms that degradation in the full feature set reflects genuine signal disruption rather than a lexical-feature artifact.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex:10:These patterns hold across reference model families (F1 within 0.013\,pp; Table~\ref{tab:cross-ref}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex:36:This two-pronged design is validated through leave-one-feature-out analysis (Appendix~\ref{app:lofo}) and cross-group ablation (\S\ref{sec:results-differential}); both analyses confirm that the two feature groups contribute to depth discrimination.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex:43:Although Pythia-410M shares the GPT-NeoX architecture with two of the eight generators, cross-family reference model experiments (\S\ref{sec:results-differential}) confirm that depth features are not reference-specific (LOGO F1 varies by $\leq$0.013 across Pythia, OLMo, and Qwen references).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex:72:\textbf{Leave-One-Family-Out (LOFO)} addresses this by holding out entire model families; cross-family generalization holds (average binary F1\,=\,0.686; \S\ref{sec:results-classification}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex:75:We use XGBoost \cite{xgboost} throughout ($n\_\text{estimators}{=}200$, $\max\_\text{depth}{=}6$, learning rate $0.1$; standard defaults), with identical hyperparameters across all methods in Table~\ref{tab:baselines}.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex:76:LOGO F1 is stable across random seeds (std\,$<$\,0.001 over 5 seeds); this near-zero variance reflects the deterministic LOGO splits (each generator held out exactly once) with seeds controlling only XGBoost's internal stochasticity. Bootstrap CIs on held-out folds provide the relevant generalization uncertainty.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex:90:Since TTR and hapax\_ratio are mechanically length-dependent, we verify depth signal is not a length artifact via length-matched subsampling that equalizes length distributions across depth classes (\S\ref{sec:results-classification}; Appendix~\ref{app:length}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_convergence.tex:4:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/limitations.tex:19:Our primary evaluation uses single-generator chains; cross-model chains (\S\ref{sec:results-classification}) confirm depth signal under generator heterogeneity (3-class F1\,=\,0.809, binary F1\,=\,0.764), though the eight generators represent a controlled laboratory setting rather than the full diversity of real-world contamination.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/limitations.tex:24:The reference model is fixed to Pythia-410M throughout, although cross-family reference experiments (\S\ref{sec:results-differential}) confirm the phenomenon is not reference-specific (spread 0.013 across three references).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/limitations.tex:26:Cross-domain evaluation (Appendix~\ref{app:domain}) at both $t{=}1.0$ and $t{=}0.7$ shows that depth signal persists across News, Academic, and Code domains (binary F1 0.63--0.75 depending on domain and temperature), though a domain $\times$ temperature interaction exists: at $t{=}0.7$, Academic domain binary F1 drops to 0.628, suggesting that reference model calibration is critical for cross-domain deployment.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/limitations.tex:30:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/table4.tex:14:\caption{Cross-family reference model validation (5-gen LOGO subset). Drift direction is consistent (negative) across all three references; magnitude varies with capacity. Spread in LOGO F1 is 0.013.}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/table4.tex:15:\label{tab:cross-ref}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_transfer.tex:31:\caption{Heatmap of the cross-generator binary F1 transfer matrix (Table~\ref{tab:transfer}). Same-family pairs (e.g., Pythia$\leftrightarrow$Pythia, Qwen$\leftrightarrow$Qwen) show slightly higher transfer; Mi-7B is the hardest transfer target (column minimum 0.62) yet remains well above chance.}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_classifier.tex:70:The method operates reliably within $t \in [0.5, 0.7]$ across all tested models. Degradation onset at $t{=}0.9$ defines the practical upper bound, consistent with the hypothesis that elevated temperature injects sufficient randomness to flatten the distributional drift that DDR exploits (\S\ref{sec:discussion}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_domain.tex:5:\noindent\textbf{Important caveat:} Cross-domain generation used $t{=}1.0$, top-$p{=}1.0$, which falls outside the method's reliable operating range ($t \leq 0.7$; Appendix~\ref{app:sampling-sensitivity}). Domain and temperature effects are therefore confounded in the results below; the cross-domain signal may partly reflect temperature-induced distributional divergence rather than domain generalization alone.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/introduction.tex:13:The key finding is a \emph{differential depth response} (DDR): when we measure how eight base-model generators from five families (Pythia, OLMo, Qwen, Llama, Mistral; 0.6B--8B parameters) transform text across recursive depths, central-tendency and diversity features (reference-model mean entropy, type-token ratio, hapax ratio) drift monotonically, while shape features (entropy max, tail decay) show an order-of-magnitude smaller effect size.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_generator_subsets.tex:14:Cross-model chains (Table~\ref{tab:cross-ref}) & 5 & Py-2.8B/1B, OLMo, Qw-1.7B/0.6B \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:7:Generation depth proves classifiable across diverse architectures: the 7-feature ensemble achieves 3-class LOGO F1\,=\,0.762 (95\% CI [0.758, 0.766]; $N$\,=\,37{,}058) across eight generators from five families (Table~\ref{tab:logo-results}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:8:Because gen-0 seeds are shared across generators (\S\ref{sec:generation}), gen-0 classification is near-perfect (per-class F1\,$\approx$\,0.94) and the 3-class metric is inflated by this overlap.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:14:The higher cross-model F1 (vs.\ 0.694 single-generator LOGO) may reflect generator heterogeneity amplifying depth-correlated distributional shifts; generator identity information in mixed chains could partially confound the depth signal.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:17:A scale effect emerges: Pythia generators achieve the highest binary F1 (0.718--0.724), while larger models show degradation (Mistral-7B: 0.633), partly reflecting same-family affinity with the Pythia-410M reference model (cross-reference spread $\leq$0.013; \S\ref{sec:results-differential}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:18:Preliminary cross-domain evaluation suggests the signal persists with variation, though a domain$\times$temperature interaction exists (Appendix~\ref{app:domain}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:48:\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\% CIs, $n$\,=\,1000). Binary F1 (gen-1 vs.\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. $^{\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\S\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\,=\,0.680; Appendix~\ref{app:seed-control}).}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:70:The 3/1/3 partition is stable across $d$ thresholds in $[0.56, 0.75]$; data-driven clustering confirms the primary drifting/non-drifting split ($k{=}2$, silhouette\,=\,0.632; Appendix~\ref{app:ddr-validation}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:80:Per-generator TOST equivalence testing confirms the partition is not a pooling artifact; holdout generator validation confirms stability across two 4/4 splits (Appendix~\ref{app:tost}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:91:Alternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable LOGO F1 (spread 0.013; Table~\ref{tab:cross-ref} in Appendix~\ref{app:cross-ref}), with consistently negative entropy drift.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:92:Pythia generators' highest F1 (0.718--0.724) may partly reflect same-family affinity with the Pythia-410M reference model, but the 0.013 cross-reference spread bounds this effect; depth features are robust to reference model choice, though this does not alone establish DDR as a fundamental property of recursive generation.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:98:Per-feature convergence trajectories confirm this ordering (Appendix~\ref{app:convergence}); the DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\ref{app:ddr-temp-stability}).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1c71de8e-7cb6-4cb4-818c-2c1496eaa55c",
+  "isSidechain": true,
+  "promptId": "1f34363f-6233-4442-98e7-5b1a4ca44d12",
+  "agentId": "aae5175495b3020c9",
+  "type": "user",
+  "uuid": "b68b4475-d429-4e83-8cf8-50be68a65c2d",
+  "sourceToolAssistantUUID": "1c71de8e-7cb6-4cb4-818c-2c1496eaa55c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-19T17:25:58.652Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01PMAUTzsku5sYB4p2dATBF9`</summary>
+
+```json
+{
+  "pattern": "prompt.?type|continuation.*elaboration|elaboration.*continuation",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper",
+  "type": "tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b68b4475-d429-4e83-8cf8-50be68a65c2d",
+  "isSidechain": true,
+  "agentId": "aae5175495b3020c9",
+  "requestId": "req_011CbCKRy8xaBA33gkx3CiSf",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "262df950-80b1-4190-9970-a6cc5b733e7b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_013WHF4UrXtMowUx7EV4mMT4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 2616,
+      "cache_read_input_tokens": 21416,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2616,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-19T17:25:58.672Z_
+
+<details><summary>↩ Tool result · `toolu_01PMAUTzsku5sYB4p2dATBF9`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_prompt_type.tex:1:We evaluate depth profiling under three prompt types using Pythia-2.8B: \emph{continuation} (``Continue the following text''), \emph{elaboration} (``Elaborate on the following text''), and \emph{inspired rewriting} (``Write a new passage inspired by the following text''). Each uses 995 seeds $\times$ 5 depths.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_prompt_type.tex:3:\paragraph{Within-prompt-type classification.}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_prompt_type.tex:4:5-fold CV macro-F1: continuation 0.78, rewriting 0.74, elaboration 0.73. All three prompt types exhibit the same differential depth response pattern: drifting features (hapax ratio, TTR, entropy mean) show consistent monotonic trends, while near-stationary features (entropy max, tail decay) change by less than 5\%.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_prompt_type.tex:6:\paragraph{Cross-prompt-type transfer (LOPTO).}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_prompt_type.tex:7:Leave-one-prompt-type-out evaluation yields average F1\,=\,0.753, which confirms that depth signal transfers across prompt types. Feature decay rates differ: continuation shows the strongest drift (16.9\% per depth step), followed by rewriting (6.1\%) and elaboration (1.4\%), consistent with continuation chains applying less semantic constraint on the output.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/main.tex:53:\label{app:prompt-type}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/main.tex:54:\input{appendix_prompt_type}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex:5:This asymmetry is not intrinsic to recursion but parameter-dependent: at $t{=}1.0$, the location signal collapses ($\rho$ from $-0.60$ to $-0.002$; Appendix~\ref{app:sampling-sensitivity}), and semantic-preservation constraints attenuate drift (elaboration F1\,=\,0.730 vs.\ continuation 0.781; Appendix~\ref{app:prompt-type}), consistent with \citet{broken_telephone}; cross-type transfer remains viable (F1\,=\,0.753).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/limitations.tex:15:Differential depth response strength is prompt-type dependent: continuation chains show strongest drift (within-type binary F1\,=\,0.781) compared to elaboration (0.730) and rewriting (0.737), with within-prompt-type paraphrastic chains showing weaker signal (binary F1\,=\,0.671 vs.\ 0.749 for within-prompt-type continuation).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/limitations.tex:17:Cross-prompt-type transfer (LOPTO F1\,=\,0.753) confirms shared signal, yet additional prompt types (e.g., summarization, instruction following) and cross-generator $\times$ cross-prompt interactions remain untested.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/introduction.tex:22:    \item Comprehensive evaluation reveals that DDR is robust within $t \in [0.5, 0.7]$ but degrades at $t{=}0.9$ ($-9.3$ to $-26.0$\,pp), is prompt-type modulated (continuation $>$ elaboration), and is absent in instruction-tuned models; equivalence testing (TOST $\pm$2\%, $p < 0.001$) confirms no downstream quality degradation (Appendix~\ref{app:downstream}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_generator_subsets.tex:17:Prompt-type (Appendix~\ref{app:prompt-type}) & 1 & Py-2.8B only \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:94:\paragraph{Temperature and prompt-type sensitivity.}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:95:The depth signal is modulated by decoding parameters and prompt type (Appendices~\ref{app:sampling-sensitivity},~\ref{app:prompt-type}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:97:Continuation chains show the strongest drift (binary F1\,=\,0.781), with cross-prompt-type transfer confirming shared signal (LOPTO F1\,=\,0.753).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "262df950-80b1-4190-9970-a6cc5b733e7b",
+  "isSidechain": true,
+  "promptId": "1f34363f-6233-4442-98e7-5b1a4ca44d12",
+  "agentId": "aae5175495b3020c9",
+  "type": "user",
+  "uuid": "3d8055ae-da62-4239-9829-108a3df5c8ee",
+  "sourceToolAssistantUUID": "262df950-80b1-4190-9970-a6cc5b733e7b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-19T17:25:59.187Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_018NGUZb1HfE5UUwjTaA5468`</summary>
+
+```json
+{
+  "pattern": "human.edit|word.replacement|edit.robustness",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper",
+  "type": "tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3d8055ae-da62-4239-9829-108a3df5c8ee",
+  "isSidechain": true,
+  "agentId": "aae5175495b3020c9",
+  "requestId": "req_011CbCKRy8xaBA33gkx3CiSf",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "710957ec-7301-4528-a13e-060f1f29adce",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_013WHF4UrXtMowUx7EV4mMT4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 2616,
+      "cache_read_input_tokens": 21416,
+      "output_tokens": 1930,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2616
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 5,
+          "output_tokens": 1930,
+          "cache_read_input_tokens": 21416,
+          "cache_creation_input_tokens": 2616,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2616,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-19T17:25:59.204Z_
+
+<details><summary>↩ Tool result · `toolu_018NGUZb1HfE5UUwjTaA5468`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/main.tex:83:\label{app:human-edit}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/main.tex:84:\input{appendix_human_edit}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex:1:We assess robustness to post-generation text modification by randomly replacing words at varying rates and re-evaluating the 8-generator LOGO pipeline (Table~\ref{tab:human-edit}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex:2:Random word replacement represents a worst-case perturbation: real human editing preserves semantic coherence, so practical degradation is expected to be substantially lower than these estimates.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex:7:\caption{Robustness to random word replacement under 8-gen LOGO evaluation (binary: gen-1 vs.\ gen-2+). Bootstrap 95\% CIs on binary F1 ($n$\,=\,1000).}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex:8:\label{tab:human-edit}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex:25:Three-class classification is more sensitive (0.737$\to$0.367 at 20\%), because distinguishing gen-0 from gen-1 relies heavily on lexical diversity features (TTR, hapax ratio) that are directly disrupted by word replacement.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex:32:Random word replacement drastically alters per-token context and makes entropy features (computed over the full token sequence) extremely sensitive to noise.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex:39:\caption{Feature subset degradation under random word replacement (8-gen LOGO). Entropy-only: 5 reference-model features; 7-feature: full ensemble including lexical features.}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex:60:\caption{Baseline robustness under random word replacement (8-gen LOGO, binary F1). Bold indicates highest F1 at each perturbation rate.}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex:87:The binary degradation ($-$4.5\,pp) is nearly identical to that caused by 5\% random word replacement ($-$4.6\,pp), despite the LLM rephrase altering ${\sim}$50\% of characters.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/limitations.tex:20:Simulated human editing (\S\ref{sec:discussion}) suggests graceful degradation, but the gap between simulated token replacement and real-world post-processing remains untested.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "710957ec-7301-4528-a13e-060f1f29adce",
+  "isSidechain": true,
+  "promptId": "1f34363f-6233-4442-98e7-5b1a4ca44d12",
+  "agentId": "aae5175495b3020c9",
+  "type": "user",
+  "uuid": "fddc9d21-770a-48af-a4ad-fb224a25baaf",
+  "sourceToolAssistantUUID": "710957ec-7301-4528-a13e-060f1f29adce",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-19T17:26:02.758Z_
+
+Now let me conduct a few more targeted searches to ensure comprehensive coverage of all concepts:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fddc9d21-770a-48af-a4ad-fb224a25baaf",
+  "isSidechain": true,
+  "agentId": "aae5175495b3020c9",
+  "requestId": "req_011CbCKSndiM9X2aHADUkpvR",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "b885ec58-4f74-48dc-828a-7b1d36ac77f6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01LAPGaujSY7mUxrdbBXgT3L",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 26811,
+      "cache_read_input_tokens": 20532,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 26811,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-19T17:26:06.840Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01BnvRHwroWRFHKPCGhDNebc`</summary>
+
+```json
+{
+  "pattern": "OLMo.*Qwen|reference.model",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper",
+  "type": "tex",
+  "output_mode": "content",
+  "head_limit": 30
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b885ec58-4f74-48dc-828a-7b1d36ac77f6",
+  "isSidechain": true,
+  "agentId": "aae5175495b3020c9",
+  "requestId": "req_011CbCKSndiM9X2aHADUkpvR",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "fa2185b5-188f-4f81-8c30-60702ed4ec1d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01LAPGaujSY7mUxrdbBXgT3L",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 26811,
+      "cache_read_input_tokens": 20532,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 26811,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-19T17:26:06.861Z_
+
+<details><summary>↩ Tool result · `toolu_01BnvRHwroWRFHKPCGhDNebc`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_cross_model_detail.tex:15:\caption{Cross-model chain per-class performance (class-balanced 5-fold CV, $N$\,=\,2{,}964, 5 generators: Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B). Macro F1\,=\,0.831 under class balancing; under natural class distribution, macro F1\,=\,0.809 (as reported in \S\ref{sec:results-classification}). Cross-model chains avoid the gen-0 seed sharing issue present in single-generator LOGO.}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/related_work.tex:7:Methods for distinguishing human-written from machine-generated text have evolved from statistical tests \cite{gltr,grover,release_strategies} to zero-shot reference-model approaches \cite{detectgpt,fast_detectgpt,binoculars,dna_gpt} learned classifiers that combine handcrafted features with neural architectures \cite{ghostbuster,feat_aug_transformer,abburi_multifaceted,reliable_detection,ld_score}, and query-based approaches that use the LLM itself as a discriminator \cite{zhu_beat_llms}.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_ddr_validation.tex:55:Entropy max is stable across all three bounds (6/8), with the two failures (Pythia-1B $d{=}0.21$, Pythia-2.8B $d{=}0.25$) reflecting same-family reference affinity with the Pythia-410M reference model.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_ddr_validation.tex:62:Split~A selects \{Pythia-2.8B, Qwen3-1.7B, OLMo, Mistral\} (validation: Pythia-1B, Qwen3-0.6B, Qwen3-8B, Llama);
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_ddr_validation.tex:63:Split~B selects \{Pythia-1B, Qwen3-0.6B, OLMo, Mistral\} (validation: Pythia-2.8B, Qwen3-1.7B, Qwen3-8B, Llama).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/main.tex:41:\noindent\textbf{Note:} Unless otherwise stated, appendix experiments use the original six-generator subset (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-1.7B/0.6B/8B).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_confusion_matrix.tex:1:Table~\ref{tab:confusion} reports the aggregated confusion matrix from the original six-generator subset (Pythia-2.8B, Pythia-1B, OLMo-2-1B, Qwen3-1.7B, Qwen3-0.6B, Qwen3-8B) under leave-one-generator-out (LOGO) evaluation, collapsed to three ordinal classes: gen-0 (human), gen-1 (first-generation), and gen-2+ (depth $\geq$ 2).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex:26:The binary metric, which excludes gen-0, is inherently more robust since it depends primarily on reference-model entropy features distributed across many tokens.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex:29:Table~\ref{tab:feature-degrade} compares perturbation robustness of the full 7-feature ensemble against an entropy-only subset (5 reference-model features).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex:30:The higher unperturbed binary F1 of the entropy-only subset (0.833 vs.\ 0.695) reflects the strong discriminability of reference-model features for the coarse binary task (gen-1 vs.\ gen-2+); however, lexical features are essential for the finer-grained ordinal task (3-class F1: 0.737 vs.\ 0.688) and provide greater robustness under perturbation.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex:39:\caption{Feature subset degradation under random word replacement (8-gen LOGO). Entropy-only: 5 reference-model features; 7-feature: full ensemble including lexical features.}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_lofo.tex:26:Entropy\_max causes the largest degradation when removed ($-$1.5\,pp), despite ranking only fourth in permutation importance (split frequency 0.063). This indicates that entropy\_max provides unique signal (capturing the most surprising token under the reference model) that is not redundant with other features.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/ethics.tex:12:All generator models are publicly available under permissive licenses (Apache 2.0 for Pythia, OLMo, and Mistral; Qwen License for Qwen3; Llama Community License for Llama 3.2).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_classifier.tex:36:To assess robustness to decoding temperature, we regenerate continuation chains at $t \in \{0.5, 0.9\}$ with fixed nucleus $p{=}0.9$ (matching the default) for four generators spanning three model families: Pythia-2.8B, OLMo-2-1B, Qwen3-1.7B, and Qwen3-0.6B (Table~\ref{tab:sampling-ablation}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_classifier.tex:66:\noindent{\footnotesize $^{\dagger}$Pythia-2.8B and Qwen3-1.7B temperature experiments predate the 8-generator expansion and use 6-generator LOGO; OLMo-2-1B and Qwen3-0.6B use 8-generator LOGO. Within-model temperature comparisons (the focus of this analysis) are unaffected.}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_classifier.tex:68:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_domain.tex:28:This asymmetry likely reflects reference-model calibration: Pythia-410M, trained predominantly on web text, detects subtle per-step drift in Wikipedia but requires larger distributional divergence (produced by higher temperature) to detect depth signal in out-of-distribution domains.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_domain.tex:29:This finding suggests that reference model selection is a key factor for cross-domain deployment of depth profiling.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_domain.tex:33:This inversion reflects degraded gen-0 vs.\ gen-1 separation: the Pythia-410M reference model is calibrated to Wikipedia text, so its baseline entropy estimates are less discriminative for out-of-domain human text and compresses the feature distance between gen-0 and gen-1.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/introduction.tex:13:The key finding is a \emph{differential depth response} (DDR): when we measure how eight base-model generators from five families (Pythia, OLMo, Qwen, Llama, Mistral; 0.6B--8B parameters) transform text across recursive depths, central-tendency and diversity features (reference-model mean entropy, type-token ratio, hapax ratio) drift monotonically, while shape features (entropy max, tail decay) show an order-of-magnitude smaller effect size.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:13:Cross-model chains (randomly selected generator per step) yield binary F1\,=\,0.764 under 5-fold CV.\footnote{Cross-model chains use the original five-generator subset (Pythia, OLMo, Qwen); Llama and Mistral were added later for single-generator evaluation. Sample-level CV is used because each chain contains multiple generators, making generator-level held-out splits inapplicable. Sample-level splits may introduce within-chain correlation; chain-level (seed-level) validation remains open.}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:17:A scale effect emerges: Pythia generators achieve the highest binary F1 (0.718--0.724), while larger models show degradation (Mistral-7B: 0.633), partly reflecting same-family affinity with the Pythia-410M reference model (cross-reference spread $\leq$0.013; \S\ref{sec:results-differential}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:90:\paragraph{Cross-family reference models.}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:91:Alternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable LOGO F1 (spread 0.013; Table~\ref{tab:cross-ref} in Appendix~\ref{app:cross-ref}), with consistently negative entropy drift.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:92:Pythia generators' highest F1 (0.718--0.724) may partly reflect same-family affinity with the Pythia-410M reference model, but the 0.013 cross-reference spread bounds this effect; depth features are robust to reference model choice, though this does not alone establish DDR as a fundamental property of recursive generation.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:96:All four tested generators degrade at $t{=}0.9$ ($-9.3$ to $-26.0$\,pp binary F1); low-temperature improvement is model-family-dependent ($+7$--$9$\,pp for Pythia/OLMo at $t{=}0.5$, negligible for Qwen).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:123:\caption{Depth classification (8-gen LOGO, pooled evaluation; slightly higher than per-generator macro average in Table~\ref{tab:logo-results}). Identical XGBoost configuration. 7-feature: one 410M model (905\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\,MB). Individual detection scores (N/A) share the reference-model forward pass; per-method timing is not separately profiled.}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_seed_control.tex:5:Each generator produces depth-0 through depth-4 chains on its own seed pool; features are extracted with the same Pythia-410M reference model.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/table4.tex:14:\caption{Cross-family reference model validation (5-gen LOGO subset). Drift direction is consistent (negative) across all three references; magnitude varies with capacity. Spread in LOGO F1 is 0.013.}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/limitations.tex:7:Preliminary instruct experiments confirm that depth signal degrades substantially under instruction tuning: OLMo-2-1B-Instruct drops to 3-class LOGO F1\,=\,0.338 (vs.\ 0.763 base; this is classification F1, distinct from the clustering silhouette of the same value reported in \S\ref{sec:discussion}) and Qwen3-0.6B with chat template to 0.667 (vs.\ 0.816 base); these comparisons use earlier LOGO subsets (5--6 generators) predating the full 8-generator expansion in Table~\ref{tab:logo-results}.
+
+[Showing results with pagination = limit: 30]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fa2185b5-188f-4f81-8c30-60702ed4ec1d",
+  "isSidechain": true,
+  "promptId": "1f34363f-6233-4442-98e7-5b1a4ca44d12",
+  "agentId": "aae5175495b3020c9",
+  "type": "user",
+  "uuid": "0a874478-4905-4dde-8858-99e0b1f04743",
+  "sourceToolAssistantUUID": "fa2185b5-188f-4f81-8c30-60702ed4ec1d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-19T17:26:07.227Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01RsA2y23Mm19r3UoogmXpCz`</summary>
+
+```json
+{
+  "pattern": "paraphrase|LLM.*rephras",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper",
+  "type": "tex",
+  "output_mode": "content",
+  "head_limit": 20
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0a874478-4905-4dde-8858-99e0b1f04743",
+  "isSidechain": true,
+  "agentId": "aae5175495b3020c9",
+  "requestId": "req_011CbCKSndiM9X2aHADUkpvR",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "49ff5d9c-cb24-49a3-8560-24c8b73e0fa1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01LAPGaujSY7mUxrdbBXgT3L",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 26811,
+      "cache_read_input_tokens": 20532,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 26811,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-19T17:26:07.255Z_
+
+<details><summary>↩ Tool result · `toolu_01RsA2y23Mm19r3UoogmXpCz`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/related_work.tex:15:Even when detection scores correlate with depth, they exhibit high cross-generator variance as ordinal predictors (binary F1 from 0.52 to 0.71; Table~\ref{tab:baselines}), because each captures a single distributional property that generalizes inconsistently \cite{paraphrase_evades,detection_possibilities}.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex:87:The binary degradation ($-$4.5\,pp) is nearly identical to that caused by 5\% random word replacement ($-$4.6\,pp), despite the LLM rephrase altering ${\sim}$50\% of characters.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/references.bib:156:@inproceedings{paraphrase_evades,
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "49ff5d9c-cb24-49a3-8560-24c8b73e0fa1",
+  "isSidechain": true,
+  "promptId": "1f34363f-6233-4442-98e7-5b1a4ca44d12",
+  "agentId": "aae5175495b3020c9",
+  "type": "user",
+  "uuid": "8b3107cb-3b69-4745-bbdf-9047ad0ab199",
+  "sourceToolAssistantUUID": "49ff5d9c-cb24-49a3-8560-24c8b73e0fa1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-19T17:26:07.535Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01MaHEkGLFMrEASBHs6pTKoC`</summary>
+
+```json
+{
+  "pattern": "confound|control.*length",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper",
+  "type": "tex",
+  "output_mode": "content",
+  "head_limit": 20
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8b3107cb-3b69-4745-bbdf-9047ad0ab199",
+  "isSidechain": true,
+  "agentId": "aae5175495b3020c9",
+  "requestId": "req_011CbCKSndiM9X2aHADUkpvR",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "ebd49347-7ce8-47b6-be1b-d29369e32164",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01LAPGaujSY7mUxrdbBXgT3L",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 26811,
+      "cache_read_input_tokens": 20532,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 26811,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-19T17:26:07.550Z_
+
+<details><summary>↩ Tool result · `toolu_01MaHEkGLFMrEASBHs6pTKoC`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex:89:\paragraph{Length confound control.}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_instruct.tex:64:\caption{End-to-end QLoRA vs.\ XGBoost on instruction-tuned data (within-model 5-fold CV, Qwen3-0.6B backbone). Base QLoRA rows shown for reference only; instruct sets ($N{\approx}4.4$--$5.0$K) are approximately twice the base sets ($N{\approx}2.3$K), so cross-condition comparison is confounded by training set size.}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_instruct.tex:82:Note that instruct samples are approximately twice the base count used here (Table~\ref{tab:instruct-qlora}), so the instruct-vs-base QLoRA comparison is confounded by training set size; the meaningful comparison is QLoRA-vs-XGBoost on the same instruct data.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/limitations.tex:9:Extending depth profiling to instruct models requires addressing these confounds (length regulation, format constraints, safety-driven distribution shaping) that instruction tuning introduces.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_length.tex:16:This motivates the length-matched evaluation below: if length mediates some depth--feature association, controlling for length will reduce classification performance.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_length.tex:21:To distinguish this from a sample-size effect, we run a random-subsample control at equal $N$ without length matching: F1\,=\,0.767, which confirms that the 0.046 drop reflects genuine length deconfounding rather than reduced data.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_transfer.tex:37:These results confirm that depth signatures generalize across architectures, parameter scales, and model families, providing evidence against generator identity as a primary confound.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_domain.tex:5:\noindent\textbf{Important caveat:} Cross-domain generation used $t{=}1.0$, top-$p{=}1.0$, which falls outside the method's reliable operating range ($t \leq 0.7$; Appendix~\ref{app:sampling-sensitivity}). Domain and temperature effects are therefore confounded in the results below; the cross-domain signal may partly reflect temperature-induced distributional divergence rather than domain generalization alone.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/introduction.tex:11:We restrict to base (pretrained) models as a deliberate design choice: instruction-tuning introduces confounds (length regulation, format constraints, safety-driven shaping) that obscure the distributional dynamics of recursive generation; preliminary experiments confirm substantially degraded depth signal under instruction tuning (\S\ref{sec:discussion}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:14:The higher cross-model F1 (vs.\ 0.694 single-generator LOGO) may reflect generator heterogeneity amplifying depth-correlated distributional shifts; generator identity information in mixed chains could partially confound the depth signal.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:15:A single-generator transfer analysis (Appendix~\ref{app:transfer}) provides evidence against this confound: classifiers trained on one generator transfer to all seven others with mean binary F1\,=\,0.810 (95\% CI [0.796, 0.822]), significantly above chance.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:21:\paragraph{Length confound control.}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:22:Length-matched subsampling yields binary F1\,=\,0.724 (vs.\ 0.770 unmatched); a random-subsample control confirms the drop reflects deconfounding, not sample-size reduction (Appendix~\ref{app:length}).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ebd49347-7ce8-47b6-be1b-d29369e32164",
+  "isSidechain": true,
+  "promptId": "1f34363f-6233-4442-98e7-5b1a4ca44d12",
+  "agentId": "aae5175495b3020c9",
+  "type": "user",
+  "uuid": "94f6762e-8132-497d-af39-fd2747eeb9e7",
+  "sourceToolAssistantUUID": "ebd49347-7ce8-47b6-be1b-d29369e32164",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-19T17:26:28.486Z_
+
+Perfect! Now I have comprehensive information. Let me compile my final report with all 13 experiment concepts and their citation status:
+
+## Citation Status Report for 13 Experiment Concepts
+
+### 1. **Multi-Domain Experiments**
+**CITED** - Multiple files
+- `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_domain.tex:1` - "constructing generation chains from three additional domains: News articles, Academic abstracts, and Code documentation"
+- `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/limitations.tex:26` - "Cross-domain evaluation (Appendix~\ref{app:domain}) at both $t{=}1.0$ and $t{=}0.7$ shows that depth signal persists across News, Academic, and Code domains"
+
+### 2. **Cross-Temperature Transfer**
+**CITED** - Multiple files
+- `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_cross_temp.tex:1` - "Figure~\ref{fig:cross-temp} shows cross-temperature transfer results for the 6-generator LOGO pipeline"
+- `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex:9` - "Cross-temperature transfer degrades substantially when test-time temperature exceeds training"
+
+### 3. **T=0.5 Temperature Experiment**
+**CITED** - Multiple files
+- `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_temperature_stability.tex:1` - "we computed per-feature Cohen's $d$ (generation~1 vs.\ generation~2+) at $\tau \in \{0.5, 0.7, 0.9\}$"
+- `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_classifier.tex:51` - "OLMo-2-1B & 0.5 & \textbf{0.783}"
+
+### 4. **Independent Seed Experiment**
+**CITED** - Multiple files
+- `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_seed_control.tex:4` - "construct an independent-seed evaluation where Pythia-2.8B and OLMo-2-1B use completely disjoint Wikipedia seed pools (500 seeds each, zero overlap)"
+- `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:25` - "Seed-level demeaning (F1\,=\,0.701) and an independent-seed experiment with disjoint seed pools"
+
+### 5. **Overall CI / Bootstrap Experiment**
+**CITED** - Multiple files with specific metrics
+- `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_lofo.tex:11` - "entropy\_mean & 0.783"
+- `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_classifier.tex:51` - "0.783" (exact match for 0.783 metric)
+- `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex:81` - "We report 95\% confidence intervals via percentile bootstrap"
+
+### 6. **Large Model Scale (8B) Experiment**
+**CITED** - Multiple files
+- `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_dataset_stats.tex:20` - "Qwen3-8B & Qwen & 8.2B"
+- `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex:16` - "Qwen3-1.7B, Qwen3-0.6B, Qwen3-8B-Base"
+- `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/limitations.tex:11` - "Our experiments include generators up to 8.2B parameters (Qwen3-8B)"
+
+### 7. **LLM Rephrase Robustness**
+**CITED** - One file with specific finding
+- `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex:87` - "The binary degradation ($-$4.5\,pp) is nearly identical to that caused by 5\% random word replacement ($-$4.6\,pp), despite the LLM rephrase altering ${\sim}$50\% of characters"
+
+### 8. **Text Length Confound Control**
+**CITED** - Multiple files
+- `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex:89` - "Length confound control" heading
+- `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_length.tex:16` - "controlling for length will reduce classification performance"
+- `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:21` - "Length confound control" with results
+
+### 9. **LOFO / Leave-One-Feature-Out**
+**CITED** - Multiple files
+- `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_lofo.tex:1` - "leave-one-feature-out ablation"
+- `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex:36` - "leave-one-feature-out analysis (Appendix~\ref{app:lofo})"
+- `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex:63` - "LOFO gains"
+
+### 10. **Downstream Utility / Fine-Tuning / TOST / Equivalence Testing**
+**CITED** - Multiple files
+- `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_downstream.tex:1` - "Can depth-aware data curation improve downstream language model quality?"
+- `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_downstream.tex:30` - "two one-sided $t$-test (TOST) with a $\pm$2\% relative margin"
+- `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_tost.tex:4` - "two one-sided $t$-tests (TOST)" for equivalence testing
+
+### 11. **Cross-Reference Model (OLMo, Qwen)**
+**CITED** - Multiple files
+- `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:91` - "Alternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable LOGO F1"
+- `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/table4.tex:14` - "Cross-family reference model validation (5-gen LOGO subset)"
+- `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex:43` - "cross-family reference model experiments"
+
+### 12. **Prompt Type Comparison (Continuation vs. Elaboration)**
+**CITED** - Multiple files
+- `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_prompt_type.tex:1` - "continuation (``Continue the following text''), \emph{elaboration} (``Elaborate on the following text'')"
+- `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_prompt_type.tex:4` - "5-fold CV macro-F1: continuation 0.78, rewriting 0.74, elaboration 0.73"
+- `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex:97` - "Continuation chains show the strongest drift (binary F1\,=\,0.781)"
+
+### 13. **Human Edit / Word Replacement / Edit Robustness**
+**CITED** - Multiple files
+- `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex:1` - "robustness to post-generation text modification by randomly replacing words"
+- `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex:7` - "Robustness to random word replacement"
+- `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/limitations.tex:20` - "Simulated human editing suggests graceful degradation"
+
+---
+
+## Summary
+
+**All 13 experiment concepts are cited in the paper.** Each concept appears in multiple files with substantive discussion, results, or validation:
+
+- Concepts 1-4, 6, 8-13: Well-integrated with dedicated sections or extensive discussion
+- Concept 5: Metrics (0.783) appear in results tables and LOFO analysis
+- Concept 7: Specific finding in human edit robustness appendix
+
+The paper demonstrates comprehensive experimental validation across these concepts with extensive supplementary documentation in dedicated appendix files.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "94f6762e-8132-497d-af39-fd2747eeb9e7",
+  "isSidechain": true,
+  "agentId": "aae5175495b3020c9",
+  "requestId": "req_011CbCKTPwjPTPVB15mBFa6s",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "28403c53-3860-48d6-906c-160718b62854",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/reviewer_23f47168",
+  "sessionId": "19c15b90-b364-4631-89f5-af45235fa3ce",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "graceful-bubbling-grove",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01XumKEmvewoYi57REqSdJb2",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 5780,
+      "cache_read_input_tokens": 47343,
+      "output_tokens": 2753,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 5780
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 7,
+          "output_tokens": 2753,
+          "cache_read_input_tokens": 47343,
+          "cache_creation_input_tokens": 5780,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 5780,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---

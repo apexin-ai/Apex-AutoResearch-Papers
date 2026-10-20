@@ -1,0 +1,1089 @@
+{
+  "schema_version": "1.0",
+  "id": "363bbdd9c31d101cb7ee",
+  "project": "gen-depth-fingerprint--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need you to analyze the experiment registry for the gen-depth-fingerprint project. The data is at: /home/ubuntu/.claud",
+  "task_key": "agent-a8fa49f9541eeeeba",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a8fa49f9541eeeeba.jsonl",
+    "occurrence": 1,
+    "bytes": 119123,
+    "sha256": "a86054dc1ce15e353393f7509b2f0cf7190358943e2331c7b3e158d4836c3c5d"
+  },
+  "statistics": {
+    "messages": 20,
+    "user_turns": 1,
+    "tool_calls": 7,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 7,
+      "tool_result": 7
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T12:43:07.930Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need you to analyze the experiment registry for the gen-depth-fingerprint project. The data is at:\n/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-3-projects-gen-depth-fingerprint/8efbc484-bfff-4e42-950b-e677114371ba/tool-results/mcp-agent-ml-research-read_registry-1779021770007.txt\n\nThis is JSON with schema: {result: string} where result is itself a JSON string.\n\nI need you to extract and report the following for EVERY experiment (all ~49):\n\n1. For each experiment, give me:\n   - exp_id\n   - title/name\n   - status (DONE/RUNNING/etc)\n   - The spec field (especially: generator models used, temperature settings, decoding strategy, reference models, prompt types, seed sources, chain depths)\n   - Key metrics/conclusion (brief)\n\n2. Specifically aggregate across ALL experiments:\n   - All unique generator models mentioned (with parameter counts if available)\n   - All temperature settings used\n   - All decoding strategies used\n   - All reference models used\n   - All prompt types used\n   - All seed text sources used\n   - Maximum chain depth tested\n   - Whether any instruction-tuned models were used\n   - Whether any human text baselines exist\n\nUse jq or python to parse the nested JSON. The file is large so be systematic. Report everything in a structured format. Don't summarize too aggressively - I need the details to assess experiment coverage."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "4401d70d-bff1-46e1-857b-65011b5d7861",
+            "agentId": "a8fa49f9541eeeeba",
+            "type": "user",
+            "uuid": "f400977a-006c-4a95-9159-205c295ef951",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "8efbc484-bfff-4e42-950b-e677114371ba",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T12:43:07.933Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "f400977a-006c-4a95-9159-205c295ef951",
+                "isSidechain": true,
+                "agentId": "a8fa49f9541eeeeba",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__update_registry"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__update_registry"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "3253d47b-65ba-4540-9724-686397222503",
+                "timestamp": "2026-05-17T12:43:07.933Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+                "sessionId": "8efbc484-bfff-4e42-950b-e677114371ba",
+                "version": "2.1.126",
+                "gitBranch": "master"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T12:43:12.858Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll start by reading the file and parsing the nested JSON structure."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3253d47b-65ba-4540-9724-686397222503",
+            "isSidechain": true,
+            "agentId": "a8fa49f9541eeeeba",
+            "requestId": "req_011Cb8AFupgnpUC1D1hvA8XX",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "25dfd054-9e06-4914-a167-960cd384465f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "8efbc484-bfff-4e42-950b-e677114371ba",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QkQP4uafQYG9z9pJSB2UvN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 16758,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 16758,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T12:43:13.685Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ReemznQSoaRoDCsqtJ36ss",
+              "name": "Bash",
+              "input": {
+                "command": "wc -c /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-3-projects-gen-depth-fingerprint/8efbc484-bfff-4e42-950b-e677114371ba/tool-results/mcp-agent-ml-research-read_registry-1779021770007.txt",
+                "description": "Check file size"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "25dfd054-9e06-4914-a167-960cd384465f",
+            "isSidechain": true,
+            "agentId": "a8fa49f9541eeeeba",
+            "requestId": "req_011Cb8AFupgnpUC1D1hvA8XX",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f9bb9c58-d510-4aa7-ab29-e76742f8ca1a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "8efbc484-bfff-4e42-950b-e677114371ba",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QkQP4uafQYG9z9pJSB2UvN",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 16758,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 177,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 16758
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 177,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 16758,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 16758,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T12:43:13.832Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ReemznQSoaRoDCsqtJ36ss",
+              "type": "tool_result",
+              "content": "70466 /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-3-projects-gen-depth-fingerprint/8efbc484-bfff-4e42-950b-e677114371ba/tool-results/mcp-agent-ml-research-read_registry-1779021770007.txt",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f9bb9c58-d510-4aa7-ab29-e76742f8ca1a",
+            "isSidechain": true,
+            "promptId": "4401d70d-bff1-46e1-857b-65011b5d7861",
+            "agentId": "a8fa49f9541eeeeba",
+            "type": "user",
+            "uuid": "e7102f99-3595-4e2e-ba50-1f3968a6382e",
+            "sourceToolAssistantUUID": "f9bb9c58-d510-4aa7-ab29-e76742f8ca1a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "8efbc484-bfff-4e42-950b-e677114371ba",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T12:43:21.085Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014u9r5S4SASQKm7dKk1Ajbs",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json, sys\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-3-projects-gen-depth-fingerprint/8efbc484-bfff-4e42-950b-e677114371ba/tool-results/mcp-agent-ml-research-read_registry-1779021770007.txt') as f:\n    raw = json.load(f)\n\n# The outer structure is {result: string}, where result is itself JSON\ninner = json.loads(raw['result'])\nprint(type(inner))\nif isinstance(inner, dict):\n    print('Keys:', list(inner.keys())[:20])\nelif isinstance(inner, list):\n    print('List length:', len(inner))\n    print('First item keys:', list(inner[0].keys()) if inner else 'empty')\n\" 2>&1 | head -20",
+                "description": "Parse outer JSON structure"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e7102f99-3595-4e2e-ba50-1f3968a6382e",
+            "isSidechain": true,
+            "agentId": "a8fa49f9541eeeeba",
+            "requestId": "req_011Cb8AGM2kABRTSMzpa9Bu1",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "825caf82-6498-44d2-8659-4734204671ba",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "8efbc484-bfff-4e42-950b-e677114371ba",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MSAtxNG3voCTAFk42n19nX",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1119,
+                "cache_read_input_tokens": 16758,
+                "output_tokens": 296,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1119
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 296,
+                    "cache_read_input_tokens": 16758,
+                    "cache_creation_input_tokens": 1119,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1119,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T12:43:21.182Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014u9r5S4SASQKm7dKk1Ajbs",
+              "type": "tool_result",
+              "content": "<class 'dict'>\nKeys: ['success', 'data', 'error', 'metadata']",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "825caf82-6498-44d2-8659-4734204671ba",
+            "isSidechain": true,
+            "promptId": "4401d70d-bff1-46e1-857b-65011b5d7861",
+            "agentId": "a8fa49f9541eeeeba",
+            "type": "user",
+            "uuid": "0b3fedc3-9e30-4d95-a7e6-f0661c00a8df",
+            "sourceToolAssistantUUID": "825caf82-6498-44d2-8659-4734204671ba",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "8efbc484-bfff-4e42-950b-e677114371ba",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T12:43:26.943Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FyMDDp1Phfiaw5DgANKg88",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-3-projects-gen-depth-fingerprint/8efbc484-bfff-4e42-950b-e677114371ba/tool-results/mcp-agent-ml-research-read_registry-1779021770007.txt') as f:\n    raw = json.load(f)\n\ninner = json.loads(raw['result'])\ndata = inner['data']\nprint('data type:', type(data))\nif isinstance(data, dict):\n    print('data keys:', list(data.keys())[:20])\n    # check for experiments key\n    for k in data.keys():\n        v = data[k]\n        print(f'  {k}: type={type(v).__name__}, ', end='')\n        if isinstance(v, list):\n            print(f'len={len(v)}')\n        elif isinstance(v, dict):\n            print(f'keys={list(v.keys())[:5]}')\n        elif isinstance(v, str):\n            print(f'len={len(v)}, preview={v[:100]}')\n        else:\n            print(v)\n\" 2>&1",
+                "description": "Explore data structure"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0b3fedc3-9e30-4d95-a7e6-f0661c00a8df",
+            "isSidechain": true,
+            "agentId": "a8fa49f9541eeeeba",
+            "requestId": "req_011Cb8AGtVbMqoh7JJU6Fdt5",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "87c7fd83-a6b0-4a9d-9721-01e85fd2f9dd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "8efbc484-bfff-4e42-950b-e677114371ba",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LxdoMUsLHJtene4dmVHD3h",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 331,
+                "cache_read_input_tokens": 17877,
+                "output_tokens": 377,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 331
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 377,
+                    "cache_read_input_tokens": 17877,
+                    "cache_creation_input_tokens": 331,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 331,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T12:43:27.120Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FyMDDp1Phfiaw5DgANKg88",
+              "type": "tool_result",
+              "content": "data type: <class 'dict'>\ndata keys: ['experiments', 'count', 'total', 'baseline']\n  experiments: type=dict, keys=['exp_047_multi_domain_t07', 'multi_domain_t07', 'multi-domain-seeds', 'plan-008-seed-stratification', 'plan-002-qwen06b-r2-s1']\n  count: type=int, 49\n  total: type=int, 49\n  baseline: type=NoneType, None",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "87c7fd83-a6b0-4a9d-9721-01e85fd2f9dd",
+            "isSidechain": true,
+            "promptId": "4401d70d-bff1-46e1-857b-65011b5d7861",
+            "agentId": "a8fa49f9541eeeeba",
+            "type": "user",
+            "uuid": "48284581-9984-4d7b-842a-a6946b71e0bd",
+            "sourceToolAssistantUUID": "87c7fd83-a6b0-4a9d-9721-01e85fd2f9dd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "8efbc484-bfff-4e42-950b-e677114371ba",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T12:43:33.185Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RzrRyXszgKFD63sY3FoLg8",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-3-projects-gen-depth-fingerprint/8efbc484-bfff-4e42-950b-e677114371ba/tool-results/mcp-agent-ml-research-read_registry-1779021770007.txt') as f:\n    raw = json.load(f)\n\ninner = json.loads(raw['result'])\nexperiments = inner['data']['experiments']\n\n# Print all experiment IDs\nprint('ALL EXPERIMENT IDS:')\nfor i, exp_id in enumerate(sorted(experiments.keys()), 1):\n    print(f'  {i}. {exp_id}')\n\nprint(f'\\nTotal: {len(experiments)}')\n\n# Look at the structure of one experiment\nprint('\\n--- SAMPLE EXPERIMENT STRUCTURE ---')\nsample_key = list(experiments.keys())[0]\nsample = experiments[sample_key]\nprint(f'Key: {sample_key}')\nprint(f'Fields: {list(sample.keys())}')\nprint(json.dumps(sample, indent=2)[:3000])\n\" 2>&1",
+                "description": "List all experiment IDs and examine structure"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "48284581-9984-4d7b-842a-a6946b71e0bd",
+            "isSidechain": true,
+            "agentId": "a8fa49f9541eeeeba",
+            "requestId": "req_011Cb8AHKt4vDrKLWygvLcJm",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "951cacc4-ffbe-4d75-a766-5a8bb082c23a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "8efbc484-bfff-4e42-950b-e677114371ba",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S7HU4BZ32aaMRfM4RYNEJN",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 514,
+                "cache_read_input_tokens": 18208,
+                "output_tokens": 373,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 514
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 373,
+                    "cache_read_input_tokens": 18208,
+                    "cache_creation_input_tokens": 514,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 514,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T12:43:33.273Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RzrRyXszgKFD63sY3FoLg8",
+              "type": "tool_result",
+              "content": "ALL EXPERIMENT IDS:\n  1. exp_047_multi_domain_t07\n  2. multi-domain-seeds\n  3. multi_domain_t07\n  4. mvp-001\n  5. mvp-001-gen-s0\n  6. mvp-001-gen-s1\n  7. mvp-001-gen-s2\n  8. mvp-001-gen-s3\n  9. plan-001\n  10. plan-001-fix\n  11. plan-001-restore\n  12. plan-002\n  13. plan-002-eval\n  14. plan-002-olmo2-s0\n  15. plan-002-olmo2-s1\n  16. plan-002-pythia1b-s0\n  17. plan-002-pythia1b-s1\n  18. plan-002-qwen06b-r2-s0\n  19. plan-002-qwen06b-r2-s1\n  20. plan-002-qwen06b-s0\n  21. plan-002-qwen06b-s1\n  22. plan-002-qwen17b-r2-s0\n  23. plan-002-qwen17b-r2-s1\n  24. plan-002-qwen17b-retry-s0\n  25. plan-002-qwen17b-retry-s1\n  26. plan-002-qwen17b-s0\n  27. plan-002-qwen17b-s1\n  28. plan-002-qwen3-1_7b-s0\n  29. plan-002-qwen3-1_7b-s1\n  30. plan-003\n  31. plan-003-olmo2ref\n  32. plan-003-qwen06bref\n  33. plan-004\n  34. plan-004-prep\n  35. plan-004-v2\n  36. plan-005\n  37. plan-005-cont\n  38. plan-005-elab\n  39. plan-005-rewrite\n  40. plan-008-seed-stratification\n  41. plan-010-llm-rephrase\n  42. plan-010-robustness\n  43. plan-013\n  44. plan-014\n  45. plan-015\n  46. plan-015-v2\n  47. review-exp-a-baseline-ensemble\n  48. review-exp-b-topic-drift\n  49. review-exp-c-overall-ci\n\nTotal: 49\n\n--- SAMPLE EXPERIMENT STRUCTURE ---\nKey: exp_047_multi_domain_t07\nFields: ['status', 'retry_count', 'created_at', 'updated_at', 'hypothesis', 'parent', 'spec', 'metrics', 'conclusion', 'completed_at']\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-17T05:51:25.881Z\",\n  \"updated_at\": \"2026-05-17T07:22:04.483Z\",\n  \"hypothesis\": \"Depth fingerprint generalizes across domains (News, Academic, Code) under standard decoding (t=0.7, top_p=0.9) matching main experiment params, eliminating the temperature confound from t=1.0 results and producing directly comparable domain generalization numbers\",\n  \"parent\": \"exp_043_multi_domain_seeds\",\n  \"spec\": {\n    \"command\": \"python run_multi_domain_t07.py (3 generators x 3 domains parallel in tmux multi_domain_t07)\",\n    \"server\": \"autodl-5090\",\n    \"data_path\": \"/root/gen-depth-fingerprint/experiments/multi_domain/\",\n    \"data_count\": \"200 seeds x 3 domains x 3 generators x 4 depths = 7200 samples\",\n    \"model_name\": \"Pythia-1B, Qwen3-1.7B, Mistral-7B-v0.3 (gen) + Pythia-410M (ref)\",\n    \"seed\": \"default\",\n    \"gpu\": \"cuda:0,1,2\",\n    \"checkpoint_source\": \"N/A (generation + evaluation pipeline, no pretrained checkpoint)\",\n    \"eval_data\": \"News/Academic/Code seeds 200 per domain, generated chains depth 0-3\",\n    \"checkpoint_path\": \"/root/gen-depth-fingerprint/experiments/multi_domain/multi_domain_results_t07.json\",\n    \"log_path\": \"/root/gen-depth-fingerprint/experiments/multi_domain/run_t07.log\"\n  },\n  \"metrics\": {\n    \"news_binary_f1\": 0.7119,\n    \"news_binary_ci\": [\n      0.6898,\n      0.7332\n    ],\n    \"news_3class_f1\": 0.7149,\n    \"academic_binary_f1\": 0.6279,\n    \"academic_binary_ci\": [\n      0.6027,\n      0.6515\n    ],\n    \"academic_3class_f1\": 0.6564,\n    \"code_binary_f1\": 0.6872,\n    \"code_binary_ci\": [\n      0.6641,\n      0.71\n    ],\n    \"code_3class_f1\": 0.6729,\n    \"overall_binary_f1\": 0.6757,\n    \"overall_3class_f1\": 0.6814,\n    \"delta_vs_t10_news\": -0.034,\n    \"delta_vs_t10_academic\": -0.1107,\n    \"delta_vs_t10_code\": -0.0663\n  },\n  \"conclusion\": \"success\",\n  \"completed_at\": \"2026-05-17T07:22:04.483Z\"\n}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "951cacc4-ffbe-4d75-a766-5a8bb082c23a",
+            "isSidechain": true,
+            "promptId": "4401d70d-bff1-46e1-857b-65011b5d7861",
+            "agentId": "a8fa49f9541eeeeba",
+            "type": "user",
+            "uuid": "b0b11236-de77-4172-ae50-822afd8c68cf",
+            "sourceToolAssistantUUID": "951cacc4-ffbe-4d75-a766-5a8bb082c23a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "8efbc484-bfff-4e42-950b-e677114371ba",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T12:43:37.182Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me extract the complete details for all 49 experiments."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b0b11236-de77-4172-ae50-822afd8c68cf",
+            "isSidechain": true,
+            "agentId": "a8fa49f9541eeeeba",
+            "requestId": "req_011Cb8AHn8tCMVjrkFhzcTZM",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b538fcdc-8502-4529-b4f8-5280c5c680f2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "8efbc484-bfff-4e42-950b-e677114371ba",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014JtWVf9quuandMdFRn3oFZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1822,
+                "cache_read_input_tokens": 18722,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1822,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T12:43:43.180Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FXjbFXtMX2P9m2Ni6tmULq",
+              "name": "Bash",
+              "input": {
+                "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-3-projects-gen-depth-fingerprint/8efbc484-bfff-4e42-950b-e677114371ba/tool-results/mcp-agent-ml-research-read_registry-1779021770007.txt') as f:\n    raw = json.load(f)\n\ninner = json.loads(raw['result'])\nexperiments = inner['data']['experiments']\n\n# Print every experiment in full detail\nfor i, (exp_id, exp) in enumerate(sorted(experiments.items()), 1):\n    print(f\"{'='*80}\")\n    print(f\"EXPERIMENT {i}: {exp_id}\")\n    print(f\"{'='*80}\")\n    print(f\"  Status:     {exp.get('status', 'N/A')}\")\n    print(f\"  Created:    {exp.get('created_at', 'N/A')}\")\n    print(f\"  Completed:  {exp.get('completed_at', 'N/A')}\")\n    print(f\"  Conclusion: {exp.get('conclusion', 'N/A')}\")\n    print(f\"  Hypothesis: {exp.get('hypothesis', 'N/A')}\")\n    print(f\"  Parent:     {exp.get('parent', 'N/A')}\")\n    \n    spec = exp.get('spec', {})\n    if spec:\n        print(f\"  SPEC:\")\n        for k, v in spec.items():\n            print(f\"    {k}: {v}\")\n    \n    metrics = exp.get('metrics', {})\n    if metrics:\n        print(f\"  METRICS:\")\n        for k, v in metrics.items():\n            val_str = str(v)\n            if len(val_str) > 200:\n                val_str = val_str[:200] + '...'\n            print(f\"    {k}: {val_str}\")\n    print()\nPYEOF\n",
+                "description": "Print all 49 experiments in full detail",
+                "timeout": 30000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b538fcdc-8502-4529-b4f8-5280c5c680f2",
+            "isSidechain": true,
+            "agentId": "a8fa49f9541eeeeba",
+            "requestId": "req_011Cb8AHn8tCMVjrkFhzcTZM",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e53e81ea-049f-42b6-9acb-163535496124",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "8efbc484-bfff-4e42-950b-e677114371ba",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014JtWVf9quuandMdFRn3oFZ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1822,
+                "cache_read_input_tokens": 18722,
+                "output_tokens": 621,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1822
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 621,
+                    "cache_read_input_tokens": 18722,
+                    "cache_creation_input_tokens": 1822,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1822,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T12:43:43.282Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FXjbFXtMX2P9m2Ni6tmULq",
+              "type": "tool_result",
+              "content": "<persisted-output>\nOutput too large (56.6KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-3-projects-gen-depth-fingerprint/8efbc484-bfff-4e42-950b-e677114371ba/tool-results/bczf3jlq2.txt\n\nPreview (first 2KB):\n================================================================================\nEXPERIMENT 1: exp_047_multi_domain_t07\n================================================================================\n  Status:     DONE\n  Created:    2026-05-17T05:51:25.881Z\n  Completed:  2026-05-17T07:22:04.483Z\n  Conclusion: success\n  Hypothesis: Depth fingerprint generalizes across domains (News, Academic, Code) under standard decoding (t=0.7, top_p=0.9) matching main experiment params, eliminating the temperature confound from t=1.0 results and producing directly comparable domain generalization numbers\n  Parent:     exp_043_multi_domain_seeds\n  SPEC:\n    command: python run_multi_domain_t07.py (3 generators x 3 domains parallel in tmux multi_domain_t07)\n    server: autodl-5090\n    data_path: /root/gen-depth-fingerprint/experiments/multi_domain/\n    data_count: 200 seeds x 3 domains x 3 generators x 4 depths = 7200 samples\n    model_name: Pythia-1B, Qwen3-1.7B, Mistral-7B-v0.3 (gen) + Pythia-410M (ref)\n    seed: default\n    gpu: cuda:0,1,2\n    checkpoint_source: N/A (generation + evaluation pipeline, no pretrained checkpoint)\n    eval_data: News/Academic/Code seeds 200 per domain, generated chains depth 0-3\n    checkpoint_path: /root/gen-depth-fingerprint/experiments/multi_domain/multi_domain_results_t07.json\n    log_path: /root/gen-depth-fingerprint/experiments/multi_domain/run_t07.log\n  METRICS:\n    news_binary_f1: 0.7119\n    news_binary_ci: [0.6898, 0.7332]\n    news_3class_f1: 0.7149\n    academic_binary_f1: 0.6279\n    academic_binary_ci: [0.6027, 0.6515]\n    academic_3class_f1: 0.6564\n    code_binary_f1: 0.6872\n    code_binary_ci: [0.6641, 0.71]\n    code_3class_f1: 0.6729\n    overall_binary_f1: 0.6757\n    overall_3class_f1: 0.6814\n    delta_vs_t10_news: -0.034\n    delta_vs_t10_academic: -0.1107\n    delta_vs_t10_code: -0.0663\n\n================================================================================\nEXPERIMENT 2: multi-domain-seeds\n...\n</persisted-output>",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e53e81ea-049f-42b6-9acb-163535496124",
+            "isSidechain": true,
+            "promptId": "4401d70d-bff1-46e1-857b-65011b5d7861",
+            "agentId": "a8fa49f9541eeeeba",
+            "type": "user",
+            "uuid": "ed96a173-2831-4a6e-98d8-2cddcf4f0b80",
+            "sourceToolAssistantUUID": "e53e81ea-049f-42b6-9acb-163535496124",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "8efbc484-bfff-4e42-950b-e677114371ba",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T12:43:46.144Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012hFcYcTUiBZC2j1KWiMuZH",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-3-projects-gen-depth-fingerprint/8efbc484-bfff-4e42-950b-e677114371ba/tool-results/bczf3jlq2.txt"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ed96a173-2831-4a6e-98d8-2cddcf4f0b80",
+            "isSidechain": true,
+            "agentId": "a8fa49f9541eeeeba",
+            "requestId": "req_011Cb8AJWwMbyo36qPnhzarS",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c587b879-a0f3-4f52-827f-cedab5faeb89",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "8efbc484-bfff-4e42-950b-e677114371ba",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H86bTvtDpxEBQadgBPrxDB",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1414,
+                "cache_read_input_tokens": 20544,
+                "output_tokens": 129,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1414
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 129,
+                    "cache_read_input_tokens": 20544,
+                    "cache_creation_input_tokens": 1414,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1414,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T12:43:46.428Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012hFcYcTUiBZC2j1KWiMuZH",
+              "type": "tool_result",
+              "content": "1\t================================================================================\n2\tEXPERIMENT 1: exp_047_multi_domain_t07\n3\t================================================================================\n4\t  Status:     DONE\n5\t  Created:    2026-05-17T05:51:25.881Z\n6\t  Completed:  2026-05-17T07:22:04.483Z\n7\t  Conclusion: success\n8\t  Hypothesis: Depth fingerprint generalizes across domains (News, Academic, Code) under standard decoding (t=0.7, top_p=0.9) matching main experiment params, eliminating the temperature confound from t=1.0 results and producing directly comparable domain generalization numbers\n9\t  Parent:     exp_043_multi_domain_seeds\n10\t  SPEC:\n11\t    command: python run_multi_domain_t07.py (3 generators x 3 domains parallel in tmux multi_domain_t07)\n12\t    server: autodl-5090\n13\t    data_path: /root/gen-depth-fingerprint/experiments/multi_domain/\n14\t    data_count: 200 seeds x 3 domains x 3 generators x 4 depths = 7200 samples\n15\t    model_name: Pythia-1B, Qwen3-1.7B, Mistral-7B-v0.3 (gen) + Pythia-410M (ref)\n16\t    seed: default\n17\t    gpu: cuda:0,1,2\n18\t    checkpoint_source: N/A (generation + evaluation pipeline, no pretrained checkpoint)\n19\t    eval_data: News/Academic/Code seeds 200 per domain, generated chains depth 0-3\n20\t    checkpoint_path: /root/gen-depth-fingerprint/experiments/multi_domain/multi_domain_results_t07.json\n21\t    log_path: /root/gen-depth-fingerprint/experiments/multi_domain/run_t07.log\n22\t  METRICS:\n23\t    news_binary_f1: 0.7119\n24\t    news_binary_ci: [0.6898, 0.7332]\n25\t    news_3class_f1: 0.7149\n26\t    academic_binary_f1: 0.6279\n27\t    academic_binary_ci: [0.6027, 0.6515]\n28\t    academic_3class_f1: 0.6564\n29\t    code_binary_f1: 0.6872\n30\t    code_binary_ci: [0.6641, 0.71]\n31\t    code_3class_f1: 0.6729\n32\t    overall_binary_f1: 0.6757\n33\t    overall_3class_f1: 0.6814\n34\t    delta_vs_t10_news: -0.034\n35\t    delta_vs_t10_academic: -0.1107\n36\t    delta_vs_t10_code: -0.0663\n37\t\n38\t================================================================================\n39\tEXPERIMENT 2: multi-domain-seeds\n40\t================================================================================\n41\t  Status:     DONE\n42\t  Created:    2026-05-17T03:38:54.349Z\n43\t  Completed:  2026-05-17T05:05:40.584Z\n44\t  Conclusion: success\n45\t  Hypothesis: Domain independence: depth fingerprint 的 differential depth response 不依赖 seed domain——在 News/Academic/Code 三个非 Wikipedia 域上，7-feature ensemble 的 binary F1 与 Wikipedia baseline 差异 <10pp，证明 DDR 是生成过程的固有特性而非特定域文本属性的 artifact\n46\t  Parent:     N/A\n47\t  SPEC:\n48\t    command: python multi_domain_generation.py + eval\n49\t    server: autodl-5090\n50\t    gpu: cuda:0,1,2,3\n51\t    data_path: /root/gen-depth-fingerprint/data/seeds_{news,academic,code}.jsonl\n52\t    data_count: 600\n53\t    model_name: Pythia-1B + Qwen3-1.7B + Mistral-7B-v0.3\n54\t    seed: 42\n55\t  METRICS:\n56\t    news_binary_f1: 0.7459\n57\t    news_binary_ci: [0.726, 0.764]\n58\t    news_multiclass_f1: 0.6516\n59\t    academic_binary_f1: 0.7386\n60\t    academic_binary_ci: [0.72, 0.757]\n61\t    academic_multiclass_f1: 0.6223\n62\t    code_binary_f1: 0.7535\n63\t    code_binary_ci: [0.737, 0.77]\n64\t    code_multiclass_f1: 0.6344\n65\t    wikipedia_baseline_binary_f1: 0.8148\n66\t    wikipedia_baseline_multiclass_f1: 0.8632\n67\t    max_gap_vs_wiki_pp: 7.62\n68\t    worst_domain: academic\n69\t    best_domain: code\n70\t    conclusion_label: domain_independent\n71\t\n72\t================================================================================\n73\tEXPERIMENT 3: multi_domain_t07\n74\t================================================================================\n75\t  Status:     PREPARING\n76\t  Created:    2026-05-17T05:54:55.365Z\n77\t  Completed:  N/A\n78\t  Conclusion: N/A\n79\t  Hypothesis: N/A\n80\t  Parent:     N/A\n81\t  SPEC:\n82\t    command: bash -c \"source /root/miniconda3/bin/activate && python /root/gen-depth-fingerprint/experiments/multi_domain/run_experiment_t07.py 2>&1 | tee /root/gen-depth-fingerprint/experiments/multi_domain/run_t07.log\"\n83\t    server: autodl-5090\n84\t    gpu: ['cuda:0', 'cuda:1', 'cuda:2']\n85\t    pid: 383695\n86\t    log_path: ~/runs/gen-depth-fingerprint/multi_domain_t07.log\n87\t    submitted_at: 2026-05-17T05:54:55.259Z\n88\t    submitted_via: submit_training_job\n89\t    backend: tmux\n90\t    account: root\n91\t\n92\t================================================================================\n93\tEXPERIMENT 4: mvp-001\n94\t================================================================================\n95\t  Status:     DONE\n96\t  Created:    2026-05-14T16:17:16.218Z\n97\t  Completed:  2026-05-14T18:08:20.940Z\n98\t  Conclusion: success\n99\t  Hypothesis: Pythia-410M 参考模型的分布特征（entropy stats, tail-decay, TTR, hapax）能区分 Pythia-2.8B continuation 链的 gen-0/gen-1/gen-2+，3-class macro-F1 ≥ 0.45\n100\t  Parent:     N/A\n101\t  SPEC:\n102\t    command: python generate_chain.py --input data/wiki_seed_1000.jsonl --shard-id {0-3} --num-shards 4 --device cuda:0 (4 shards parallel)\n103\t    server: autodl-5090\n104\t    data_path: /root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl\n105\t    data_count: 1000\n106\t    model_name: EleutherAI/pythia-2.8b (FP16)\n107\t    seed: 42\n108\t    temperature: 0.7\n109\t    top_p: 0.9\n110\t    max_new_tokens: 256\n111\t    reference_model: EleutherAI/pythia-410m\n112\t    script_path: /root/gen-depth-fingerprint/generate_chain.py\n113\t    generation_type: continuation\n114\t    depths: gen-0 to gen-4\n115\t    checkpoint_path: /root/gen-depth-fingerprint/results/mvp_results.json\n116\t    log_path: /root/gen-depth-fingerprint/data/features.csv\n117\t  METRICS:\n118\t    macro_f1: 0.8408\n119\t    binary_f1_gen0_vs_gen2plus: 0.8653\n120\t    cv_macro_f1: 0.806\n121\t    cv_std: 0.013\n122\t    gen0_f1: 0.9517\n123\t    gen1_f1: 0.7759\n124\t    gen2plus_f1: 0.7947\n125\t    total_records: 4609\n126\t    seeds_used: 995\n127\t    skipped: 173\n128\t\n129\t================================================================================\n130\tEXPERIMENT 5: mvp-001-gen-s0\n131\t================================================================================\n132\t  Status:     PREPARING\n133\t  Created:    2026-05-14T17:23:13.139Z\n134\t  Completed:  N/A\n135\t  Conclusion: N/A\n136\t  Hypothesis: N/A\n137\t  Parent:     N/A\n138\t  SPEC:\n139\t    command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-fingerprint && python generate_chain.py --input data/wiki_seed_1000.jsonl --shard-id 0 --num-shards 4 --device cuda:0\"\n140\t    server: autodl-5090\n141\t    gpu: ['cuda:0']\n142\t    pid: 92168\n143\t    log_path: ~/runs/gen-depth-fingerprint/mvp-001-gen-s0.log\n144\t    submitted_at: 2026-05-14T17:23:13.138Z\n145\t    submitted_via: submit_training_job\n146\t    backend: tmux\n147\t    account: root\n148\t\n149\t================================================================================\n150\tEXPERIMENT 6: mvp-001-gen-s1\n151\t================================================================================\n152\t  Status:     PREPARING\n153\t  Created:    2026-05-14T17:23:14.464Z\n154\t  Completed:  N/A\n155\t  Conclusion: failed\n156\t  Hypothesis: N/A\n157\t  Parent:     N/A\n158\t  SPEC:\n159\t    command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-fingerprint && python generate_chain.py --input data/wiki_seed_1000.jsonl --shard-id 1 --num-shards 4 --device cuda:0\"\n160\t    server: autodl-5090\n161\t    gpu: ['cuda:1']\n162\t    pid: 93039\n163\t    log_path: ~/runs/gen-depth-fingerprint/mvp-001-gen-s1.log\n164\t    submitted_at: 2026-05-14T17:25:16.359Z\n165\t    submitted_via: submit_training_job\n166\t    backend: tmux\n167\t    account: root\n168\t\n169\t================================================================================\n170\tEXPERIMENT 7: mvp-001-gen-s2\n171\t================================================================================\n172\t  Status:     PREPARING\n173\t  Created:    2026-05-14T17:23:15.855Z\n174\t  Completed:  N/A\n175\t  Conclusion: failed\n176\t  Hypothesis: N/A\n177\t  Parent:     N/A\n178\t  SPEC:\n179\t    command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-fingerprint && python generate_chain.py --input data/wiki_seed_1000.jsonl --shard-id 2 --num-shards 4 --device cuda:0\"\n180\t    server: autodl-5090\n181\t    gpu: ['cuda:2']\n182\t    pid: 93116\n183\t    log_path: ~/runs/gen-depth-fingerprint/mvp-001-gen-s2.log\n184\t    submitted_at: 2026-05-14T17:25:17.741Z\n185\t    submitted_via: submit_training_job\n186\t    backend: tmux\n187\t    account: root\n188\t\n189\t================================================================================\n190\tEXPERIMENT 8: mvp-001-gen-s3\n191\t================================================================================\n192\t  Status:     PREPARING\n193\t  Created:    2026-05-14T17:23:17.526Z\n194\t  Completed:  N/A\n195\t  Conclusion: failed\n196\t  Hypothesis: N/A\n197\t  Parent:     N/A\n198\t  SPEC:\n199\t    command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-fingerprint && python generate_chain.py --input data/wiki_seed_1000.jsonl --shard-id 3 --num-shards 4 --device cuda:0\"\n200\t    server: autodl-5090\n201\t    gpu: ['cuda:3']\n202\t    pid: 93256\n203\t    log_path: ~/runs/gen-depth-fingerprint/mvp-001-gen-s3.log\n204\t    submitted_at: 2026-05-14T17:25:18.991Z\n205\t    submitted_via: submit_training_job\n206\t    backend: tmux\n207\t    account: root\n208\t\n209\t================================================================================\n210\tEXPERIMENT 9: plan-001\n211\t================================================================================\n212\t  Status:     DONE\n213\t  Created:    2026-05-14T18:25:29.824Z\n214\t  Completed:  2026-05-14T18:54:01.340Z\n215\t  Conclusion: success\n216\t  Hypothesis: Feature ablation: 模型级特征（entropy系列+tail_decay）独立于表面特征仍能区分生成深度；H1/H2趋势分析确认特征随depth的变化模式；perplexity随depth显著变化\n217\t  Parent:     N/A\n218\t  SPEC:\n219\t    command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-fingerprint && python ablation_analysis.py --parts A B C --device cuda:0\"\n220\t    server: autodl-5090\n221\t    gpu: ['cuda:0']\n222\t    pid: 98324\n223\t    log_path: /tmp/plan-001-fix.log\n224\t    submitted_at: 2026-05-14T18:25:56.326Z\n225\t    submitted_via: submit_training_job\n226\t    backend: tmux\n227\t    account: root\n228\t    checkpoint_path: /root/gen-depth-fingerprint/results/ablation_results.json\n229\t    wall_clock_seconds: 1685.0\n230\t    gpu_hours: 0.47\n231\t  METRICS:\n232\t    note: initial_run_partial_issues_fixed_in_plan-001-fix\n233\t    ablation_full_macro_f1: 0.82\n234\t    ablation_surface_only_f1: 0.76\n235\t    ablation_reference_only_f1: 0.72\n236\t\n237\t================================================================================\n238\tEXPERIMENT 10: plan-001-fix\n239\t================================================================================\n240\t  Status:     DONE\n241\t  Created:    2026-05-14T18:50:14.620Z\n242\t  Completed:  2026-05-14T19:34:25.973Z\n243\t  Conclusion: success\n244\t  Hypothesis: Feature ablation 修复验证：reference-only features (entropy系列+tail_decay) 独立于 surface features 仍能区分 depth，且两组特征的 bootstrap CI 不重叠，证明 differential response 和 lexical drift 是互补的独立信号源\n245\t  Parent:     plan-001\n246\t  SPEC:\n247\t    command: python ablation_analysis.py --parts A B C --device cuda:0\n248\t    server: autodl-5090\n249\t    data_path: data/features.csv + data/generations.jsonl\n250\t    data_count: 4609\n251\t    model_name: pythia-410m\n252\t    seed: 42\n253\t    pid: 101585\n254\t    log_path: /tmp/plan-001-fix.log\n255\t    checkpoint_path: /root/gen-depth-fingerprint/results/ablation_results.json\n256\t  METRICS:\n257\t    full_macro_f1: 0.8204\n258\t    reference_only_f1: 0.7187\n259\t    surface_only_f1: 0.7628\n260\t    ref_vs_surf_bootstrap_ci: [0.706,0.733] vs [0.747,0.774]\n261\t    h2_features: entropy_mean, ttr, hapax_ratio\n262\t    h1_features: tail_decay, entropy_std, entropy_max, entropy_min\n263\t    median_ppl_by_depth: 13.50, 4.96, 3.00, 2.07, 1.72\n264\t\n265\t================================================================================\n266\tEXPERIMENT 11: plan-001-restore\n267\t================================================================================\n268\t  Status:     PREPARING\n269\t  Created:    2026-05-14T19:14:00.170Z\n270\t  Completed:  N/A\n271\t  Conclusion: N/A\n272\t  Hypothesis: N/A\n273\t  Parent:     N/A\n274\t  SPEC:\n275\t    command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-fingerprint && python ablation_analysis.py --parts A B C --device cuda:0\"\n276\t    server: autodl-5090\n277\t    gpu: ['cuda:0']\n278\t    pid: 105217\n279\t    log_path: ~/runs/gen-depth-fingerprint/plan-001-restore.log\n280\t    submitted_at: 2026-05-14T19:14:00.157Z\n281\t    submitted_via: submit_training_job\n282\t    backend: tmux\n283\t    account: root\n284\t\n285\t================================================================================\n286\tEXPERIMENT 12: plan-002\n287\t================================================================================\n288\t  Status:     DONE\n289\t  Created:    2026-05-14T20:08:55.258Z\n290\t  Completed:  2026-05-14T23:19:36.270Z\n291\t  Conclusion: success\n292\t  Hypothesis: 跨模型泛化：Pythia-410M 参考模型下的深度特征能否区分不同架构/规模生成器（Pythia-1B, OLMo-2-1B, Qwen3-1.7B, Qwen3-0.6B）的 continuation 链\n293\t  Parent:     N/A\n294\t  SPEC:\n295\t    command: generate_chain.py --model-name {X} --model-path {path} --shard-id {0,1} --num-shards 2 --device cuda:0\n296\t    server: autodl-5090\n297\t    data_path: /root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl\n298\t    data_count: 1000\n299\t    model_name: pythia-1b, olmo-2-1b, qwen3-1.7b, qwen3-0.6b (+ pythia-2.8b from MVP)\n300\t    seed: 42\n301\t    temperature: 0.7\n302\t    top_p: 0.9\n303\t    max_new_tokens: 256\n304\t    reference_model: EleutherAI/pythia-410m\n305\t    round1: pythia-1b (cuda:0,1) + olmo-2-1b (cuda:2,3)\n306\t    round2: qwen3-1.7b (cuda:0,1) + qwen3-0.6b (cuda:2,3)\n307\t    checkpoint_path: /root/gen-depth-fingerprint/data/\n308\t    log_path: /root/gen-depth-fingerprint/data/\n309\t  METRICS:\n310\t    total_records: 18423\n311\t    models: 4\n312\t    pythia_1b: {'records': 4555, 'seeds': 995, 'file': 'data/pythia-1b/generations.jsonl'}\n313\t    olmo_2_1b: {'records': 4713, 'seeds': 995, 'file': 'data/olmo-2-1b/generations.jsonl'}\n314\t    qwen3_0_6b: {'records': 4538, 'seeds': 996, 'depth_dist': {'gen0': 996, 'gen1': 986, 'gen2': 938, 'gen3': 840, 'gen4': 778}, 'file': 'data/qwen3-0.6b/generations.jsonl'}\n315\t    qwen3_1_7b: {'records': 4617, 'seeds': 996, 'depth_dist': {'gen0': 996, 'gen1': 983, 'gen2': 941, 'gen3': 875, 'gen4': 822}, 'file': 'data/qwen3-1.7b/generations.jsonl'}\n316\t\n317\t================================================================================\n318\tEXPERIMENT 13: plan-002-eval\n319\t================================================================================\n320\t  Status:     DONE\n321\t  Created:    2026-05-14T23:33:25.348Z\n322\t  Completed:  2026-05-14T23:40:47.236Z\n323\t  Conclusion: success\n324\t  Hypothesis: 跨生成器泛化评估：Pythia-410M 深度特征在 leave-one-generator-out 设置下能否泛化到未见过的生成器\n325\t  Parent:     plan-002\n326\t  SPEC:\n327\t    command: python cross_generator_eval.py\n328\t    server: autodl-5090\n329\t    data_path: /root/gen-depth-fingerprint/data/features_all_models.csv\n330\t    data_count: 23032\n331\t    model_name: XGBoost classifier\n332\t    seed: 42\n333\t    checkpoint_path: /root/gen-depth-fingerprint/data/cross_generator_results.json\n334\t    log_path: /root/gen-depth-fingerprint/data/cross_generator_report.md\n335\t  METRICS:\n336\t    leave_one_out_avg_macro_f1: 0.8037\n337\t    best_held_out: {'model': 'pythia-1b', 'macro_f1': 0.8507}\n338\t    worst_held_out: {'model': 'olmo-2-1b', 'macro_f1': 0.7519}\n339\t    family_out_delta: 0.0107\n340\t    ablation_full_f1: 0.8037\n341\t    ablation_reference_only_f1: 0.7543\n342\t    ablation_surface_only_f1: 0.7471\n343\t    mcnemar_p: 0\n344\t    top_features: ['hapax_ratio_0.289', 'ttr_0.168', 'entropy_mean_0.160']\n345\t    entropy_std_drop: 0.0049\n346\t    entropy_std_drift: 0.12\n347\t    entropy_mean_drift: 1.5\n348\t\n349\t================================================================================\n350\tEXPERIMENT 14: plan-002-olmo2-s0\n351\t================================================================================\n352\t  Status:     DONE\n353\t  Created:    2026-05-14T20:09:45.173Z\n354\t  Completed:  2026-05-14T21:20:28.747Z\n355\t  Conclusion: success\n356\t  Hypothesis: 跨家族泛化数据生成（OLMo-2-1B shard0）：非 Pythia 架构(OLMo)的 continuation 链中 depth signal 是否存在，验证 depth dynamics 跨训练数据和架构的普遍性\n357\t  Parent:     plan-002\n358\t  SPEC:\n359\t    command: python generate_chain.py --model-name olmo-2-1b --shard-id 0 --num-shards 2\n360\t    server: autodl-5090\n361\t    gpu: ['cuda:2']\n362\t    pid: 108242\n363\t    log_path: ~/runs/gen-depth-fingerprint/plan-002-olmo2-s0.log\n364\t    submitted_at: 2026-05-14T20:09:45.156Z\n365\t    submitted_via: submit_training_job\n366\t    backend: tmux\n367\t    account: root\n368\t    data_path: /root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl\n369\t    data_count: 1000\n370\t    model_name: allenai/OLMo-2-0425-1B\n371\t    seed: 42\n372\t    wall_clock_seconds: 4243.6\n373\t    gpu_hours: 1.18\n374\t  METRICS:\n375\t    records: 2379\n376\t    seeds: 497\n377\t    skipped: 47\n378\t    wall_time_s: 3885.2\n379\t    depth_dist: {'gen0': 497, 'gen1': 494, 'gen2': 477, 'gen3': 461, 'gen4': 450}\n380\t    file: generations_shard0.jsonl\n381\t    file_size_mb: 2.68\n382\t\n383\t================================================================================\n384\tEXPERIMENT 15: plan-002-olmo2-s1\n385\t================================================================================\n386\t  Status:     DONE\n387\t  Created:    2026-05-14T20:09:46.880Z\n388\t  Completed:  2026-05-14T21:20:29.344Z\n389\t  Conclusion: success\n390\t  Hypothesis: 跨家族泛化数据生成（OLMo-2-1B shard1）：OLMo-2-1B continuation 链第二分片，补全 ~995 seeds 覆盖\n391\t  Parent:     plan-002\n392\t  SPEC:\n393\t    command: python generate_chain.py --model-name olmo-2-1b --shard-id 1 --num-shards 2\n394\t    server: autodl-5090\n395\t    gpu: ['cuda:3']\n396\t    pid: 108452\n397\t    log_path: ~/runs/gen-depth-fingerprint/plan-002-olmo2-s1.log\n398\t    submitted_at: 2026-05-14T20:09:46.862Z\n399\t    submitted_via: submit_training_job\n400\t    backend: tmux\n401\t    account: root\n402\t    data_path: /root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl\n403\t    data_count: 1000\n404\t    model_name: allenai/OLMo-2-0425-1B\n405\t    seed: 42\n406\t    wall_clock_seconds: 4242.5\n407\t    gpu_hours: 1.18\n408\t  METRICS:\n409\t    records: 2334\n410\t    seeds: 498\n411\t    skipped: 70\n412\t    wall_time_s: 4081.2\n413\t    depth_dist: {'gen0': 498, 'gen1': 494, 'gen2': 470, 'gen3': 444, 'gen4': 428}\n414\t    file: generations_shard1.jsonl\n415\t    file_size_mb: 2.57\n416\t\n417\t================================================================================\n418\tEXPERIMENT 16: plan-002-pythia1b-s0\n419\t================================================================================\n420\t  Status:     DONE\n421\t  Created:    2026-05-14T20:09:40.947Z\n422\t  Completed:  2026-05-14T20:57:23.757Z\n423\t  Conclusion: success\n424\t  Hypothesis: 跨模型泛化数据生成（Pythia-1B shard0）：同家族更大模型 Pythia-1B 的 continuation 链是否展现与 Pythia-2.8B 相似的 depth dynamics，验证 depth signal 非特定参数量产物\n425\t  Parent:     plan-002\n426\t  SPEC:\n427\t    command: python generate_chain.py --model-name pythia-1b --shard-id 0 --num-shards 2\n428\t    server: autodl-5090\n429\t    gpu: ['cuda:0']\n430\t    pid: 108021\n431\t    log_path: ~/runs/gen-depth-fingerprint/plan-002-pythia1b-s0.log\n432\t    submitted_at: 2026-05-14T20:09:40.932Z\n433\t    submitted_via: submit_training_job\n434\t    backend: tmux\n435\t    account: root\n436\t    data_path: /root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl\n437\t    data_count: 1000\n438\t    model_name: EleutherAI/pythia-1b\n439\t    seed: 42\n440\t    checkpoint_path: /root/gen-depth-fingerprint/data/pythia-1b/generations_shard0.jsonl\n441\t    wall_clock_seconds: 2862.8\n442\t    gpu_hours: 0.8\n443\t  METRICS:\n444\t    records: 2286\n445\t    seeds: 497\n446\t    skipped: 91\n447\t    wall_time_s: 2296.7\n448\t    depth_dist: {'gen0': 497, 'gen1': 497, 'gen2': 457, 'gen3': 429, 'gen4': 406}\n449\t    file: data/pythia-1b/generations_shard0.jsonl\n450\t    file_size_mb: 2.5\n451\t\n452\t================================================================================\n453\tEXPERIMENT 17: plan-002-pythia1b-s1\n454\t================================================================================\n455\t  Status:     DONE\n456\t  Created:    2026-05-14T20:09:42.815Z\n457\t  Completed:  2026-05-14T20:57:25.200Z\n458\t  Conclusion: success\n459\t  Hypothesis: 跨模型泛化数据生成（Pythia-1B shard1）：Pythia-1B continuation 链第二分片，与 shard0 合并后提供完整 ~995 seeds 的 depth 数据\n460\t  Parent:     plan-002\n461\t  SPEC:\n462\t    command: python generate_chain.py --model-name pythia-1b --shard-id 1 --num-shards 2\n463\t    server: autodl-5090\n464\t    gpu: ['cuda:1']\n465\t    pid: 108098\n466\t    log_path: ~/runs/gen-depth-fingerprint/plan-002-pythia1b-s1.log\n467\t    submitted_at: 2026-05-14T20:09:42.799Z\n468\t    submitted_via: submit_training_job\n469\t    backend: tmux\n470\t    account: root\n471\t    data_path: /root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl\n472\t    data_count: 1000\n473\t    model_name: EleutherAI/pythia-1b\n474\t    seed: 42\n475\t    checkpoint_path: /root/gen-depth-fingerprint/data/pythia-1b/generations_shard1.jsonl\n476\t    wall_clock_seconds: 2862.4\n477\t    gpu_hours: 0.8\n478\t  METRICS:\n479\t    records: 2269\n480\t    seeds: 498\n481\t    skipped: 100\n482\t    wall_time_s: 2247.6\n483\t    depth_dist: {'gen0': 498, 'gen1': 496, 'gen2': 455, 'gen3': 422, 'gen4': 398}\n484\t    file: data/pythia-1b/generations_shard1.jsonl\n485\t    file_size_mb: 2.44\n486\t\n487\t================================================================================\n488\tEXPERIMENT 18: plan-002-qwen06b-r2-s0\n489\t================================================================================\n490\t  Status:     DONE\n491\t  Created:    2026-05-14T22:35:10.950Z\n492\t  Completed:  2026-05-14T23:00:55.097Z\n493\t  Conclusion: success\n494\t  Hypothesis: 跨家族泛化数据生成（Qwen3-0.6B shard0）：最小参数量(0.6B) Qwen 模型的 continuation 链，验证 depth signal 在极小模型中是否仍存在（小模型可能因容量不足而无法维持深层生成的分布稳定性）\n495\t  Parent:     plan-002\n496\t  SPEC:\n497\t    command: python generate_chain.py --model-name qwen3-0.6b --model-path /root/autodl-tmp/models/Qwen/Qwen3-0___6B-Base --input data/wiki_seed_1000.jsonl --shard-id 0 --num-shards 2 --device cuda:0\n498\t    server: autodl-5090\n499\t    data_path: /root/gen-depth-fingerprint/data/qwen3-0.6b/generations_shard0.jsonl\n500\t    data_count: 2500\n501\t    model_name: Qwen3-0.6B\n502\t    seed: 0-499\n503\t    pid: 117855\n504\t    gpu: ['cuda:2']\n505\t  METRICS:\n506\t    records: 2270\n507\t    seeds: 498\n508\t    depth_dist: {'0': 498, '1': 493, '2': 468, '3': 423, '4': 388}\n509\t    file: generations_shard0.jsonl\n510\t\n511\t================================================================================\n512\tEXPERIMENT 19: plan-002-qwen06b-r2-s1\n513\t================================================================================\n514\t  Status:     DONE\n515\t  Created:    2026-05-14T22:35:11.142Z\n516\t  Completed:  2026-05-14T23:01:44.209Z\n517\t  Conclusion: success\n518\t  Hypothesis: 跨家族泛化数据生成（Qwen3-0.6B shard1）：Qwen3-0.6B continuation 链第二分片，补全 ~995 seeds 覆盖\n519\t  Parent:     plan-002\n520\t  SPEC:\n521\t    command: python generate_chain.py --model-name qwen3-0.6b --model-path /root/autodl-tmp/models/Qwen/Qwen3-0___6B-Base --input data/wiki_seed_1000.jsonl --shard-id 1 --num-shards 2 --device cuda:0\n522\t    server: autodl-5090\n523\t    data_path: /root/gen-depth-fingerprint/data/qwen3-0.6b/generations_shard1.jsonl\n524\t    data_count: 2500\n525\t    model_name: Qwen3-0.6B\n526\t    seed: 500-999\n527\t    pid: 118126\n528\t    gpu: ['cuda:3']\n529\t  METRICS:\n530\t    records: 2268\n531\t    seeds: 498\n532\t    depth_dist: {'0': 498, '1': 493, '2': 470, '3': 417, '4': 390}\n533\t    file: generations_shard1.jsonl\n534\t\n535\t================================================================================\n536\tEXPERIMENT 20: plan-002-qwen06b-s0\n537\t================================================================================\n538\t  Status:     DONE\n539\t  Created:    2026-05-14T21:25:21.697Z\n540\t  Completed:  2026-05-14T22:04:42.688Z\n541\t  Conclusion: failed\n542\t  Hypothesis: N/A\n543\t  Parent:     N/A\n544\t  SPEC:\n545\t    data_path: /root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl\n546\t    data_count: 1000\n547\t    model_name: Qwen/Qwen3-0.6B-Base\n548\t    seed: 42\n549\t    command: python generate_chain.py --model-name qwen3-0.6b --shard-id 0 --num-shards 2 --device cuda:0\n550\t    server: autodl-5090\n551\t    gpu: ['cuda:2']\n552\t\n553\t================================================================================\n554\tEXPERIMENT 21: plan-002-qwen06b-s1\n555\t================================================================================\n556\t  Status:     DONE\n557\t  Created:    2026-05-14T21:25:23.092Z\n558\t  Completed:  2026-05-14T22:05:00.872Z\n559\t  Conclusion: failed\n560\t  Hypothesis: N/A\n561\t  Parent:     N/A\n562\t  SPEC:\n563\t    data_path: /root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl\n564\t    data_count: 1000\n565\t    model_name: Qwen/Qwen3-0.6B-Base\n566\t    seed: 42\n567\t    command: python generate_chain.py --model-name qwen3-0.6b --shard-id 1 --num-shards 2 --device cuda:0\n568\t    server: autodl-5090\n569\t    gpu: ['cuda:3']\n570\t\n571\t================================================================================\n572\tEXPERIMENT 22: plan-002-qwen17b-r2-s0\n573\t================================================================================\n574\t  Status:     DONE\n575\t  Created:    2026-05-14T21:58:12.310Z\n576\t  Completed:  2026-05-15T00:05:49.186Z\n577\t  Conclusion: success\n578\t  Hypothesis: 跨家族泛化数据生成（Qwen3-1.7B shard0）：Qwen 家族 1.7B 模型的 continuation 链 depth dynamics，验证中等规模非 Pythia 模型也产生可检测的 depth signal\n579\t  Parent:     plan-002\n580\t  SPEC:\n581\t    command: python generate_chain.py --model-name qwen3-1.7b --model-path /root/autodl-tmp/models/Qwen/Qwen3-1___7B-Base --input data/wiki_seed_1000.jsonl --shard-id 0 --num-shards 2 --device cuda:0\n582\t    server: autodl-5090\n583\t    gpu: ['cuda:0']\n584\t    pid: 120617\n585\t    log_path: ~/runs/gen-depth-fingerprint/plan-002-qwen17b-r2-s0.log\n586\t    submitted_at: 2026-05-14T21:58:12.274Z\n587\t    submitted_via: submit_training_job\n588\t    backend: tmux\n589\t    account: root\n590\t    data_path: /root/gen-depth-fingerprint/data/qwen3-1.7b/generations_shard0.jsonl\n591\t    data_count: 2500\n592\t    model_name: Qwen3-1.7B\n593\t    seed: 0-499\n594\t    wall_clock_seconds: 7656.9\n595\t    gpu_hours: 2.13\n596\t  METRICS:\n597\t    records: 2291\n598\t    seeds: 498\n599\t    depth_dist: {'0': 498, '1': 492, '2': 468, '3': 435, '4': 398}\n600\t    skipped: 199\n601\t    duration_s: 4548.2\n602\t    file_size_mb: 2.5\n603\t    file: generations_shard0.jsonl\n604\t\n605\t================================================================================\n606\tEXPERIMENT 23: plan-002-qwen17b-r2-s1\n607\t================================================================================\n608\t  Status:     DONE\n609\t  Created:    2026-05-14T21:58:14.195Z\n610\t  Completed:  2026-05-14T23:12:09.724Z\n611\t  Conclusion: success\n612\t  Hypothesis: 跨家族泛化数据生成（Qwen3-1.7B shard1）：Qwen3-1.7B continuation 链第二分片，补全 ~995 seeds 覆盖\n613\t  Parent:     plan-002\n614\t  SPEC:\n615\t    command: python generate_chain.py --model-name qwen3-1.7b --model-path /root/autodl-tmp/models/Qwen/Qwen3-1___7B-Base --input data/wiki_seed_1000.jsonl --shard-id 1 --num-shards 2 --device cuda:0\n616\t    server: autodl-5090\n617\t    gpu: ['cuda:1']\n618\t    pid: 120694\n619\t    log_path: ~/runs/gen-depth-fingerprint/plan-002-qwen17b-r2-s1.log\n620\t    submitted_at: 2026-05-14T21:58:14.157Z\n621\t    submitted_via: submit_training_job\n622\t    backend: tmux\n623\t    account: root\n624\t    data_path: /root/gen-depth-fingerprint/data/qwen3-1.7b/generations_shard1.jsonl\n625\t    data_count: 2500\n626\t    model_name: Qwen3-1.7B\n627\t    seed: 500-999\n628\t    wall_clock_seconds: 4435.6\n629\t    gpu_hours: 1.23\n630\t  METRICS:\n631\t    records: 2326\n632\t    seeds: 498\n633\t    depth_dist: {'0': 498, '1': 491, '2': 473, '3': 440, '4': 424}\n634\t    skipped: 53\n635\t    duration_s: 4228\n636\t    file: generations_shard1.jsonl\n637\t\n638\t================================================================================\n639\tEXPERIMENT 24: plan-002-qwen17b-retry-s0\n640\t================================================================================\n641\t  Status:     DONE\n642\t  Created:    2026-05-14T21:25:18.048Z\n643\t  Completed:  2026-05-14T21:59:28.716Z\n644\t  Conclusion: failed\n645\t  Hypothesis: N/A\n646\t  Parent:     N/A\n647\t  SPEC:\n648\t    data_path: /root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl\n649\t    data_count: 1000\n650\t    model_name: Qwen/Qwen3-1.7B-Base\n651\t    seed: 42\n652\t    command: python generate_chain.py --model-name qwen3-1.7b --shard-id 0 --num-shards 2 --device cuda:0\n653\t    server: autodl-5090\n654\t    gpu: ['cuda:0']\n655\t\n656\t================================================================================\n657\tEXPERIMENT 25: plan-002-qwen17b-retry-s1\n658\t================================================================================\n659\t  Status:     DONE\n660\t  Created:    2026-05-14T21:25:19.756Z\n661\t  Completed:  2026-05-14T21:59:33.017Z\n662\t  Conclusion: failed\n663\t  Hypothesis: N/A\n664\t  Parent:     N/A\n665\t  SPEC:\n666\t    data_path: /root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl\n667\t    data_count: 1000\n668\t    model_name: Qwen/Qwen3-1.7B-Base\n669\t    seed: 42\n670\t    command: python generate_chain.py --model-name qwen3-1.7b --shard-id 1 --num-shards 2 --device cuda:0\n671\t    server: autodl-5090\n672\t    gpu: ['cuda:1']\n673\t\n674\t================================================================================\n675\tEXPERIMENT 26: plan-002-qwen17b-s0\n676\t================================================================================\n677\t  Status:     DONE\n678\t  Created:    2026-05-14T20:53:19.356Z\n679\t  Completed:  2026-05-14T20:58:51.386Z\n680\t  Conclusion: failed\n681\t  Hypothesis: N/A\n682\t  Parent:     N/A\n683\t  SPEC:\n684\t    command: python generate_chain.py --model-name qwen3-1.7b --shard-id 0 --num-shards 2\n685\t    server: autodl-5090\n686\t    gpu: ['cuda:0']\n687\t    pid: 112179\n688\t    log_path: ~/runs/gen-depth-fingerprint/plan-002-qwen17b-s0.log\n689\t    submitted_at: 2026-05-14T20:53:19.334Z\n690\t    submitted_via: submit_training_job\n691\t    backend: tmux\n692\t    account: root\n693\t    data_path: /root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl\n694\t    data_count: 1000\n695\t    model_name: Qwen/Qwen3-1.7B-Base\n696\t    seed: 42\n697\t    wall_clock_seconds: 332.1\n698\t    gpu_hours: 0.09\n699\t    checkpoint_path: N/A - killed duplicate\n700\t\n701\t================================================================================\n702\tEXPERIMENT 27: plan-002-qwen17b-s1\n703\t================================================================================\n704\t  Status:     DONE\n705\t  Created:    2026-05-14T20:53:21.708Z\n706\t  Completed:  2026-05-14T20:58:53.722Z\n707\t  Conclusion: failed\n708\t  Hypothesis: N/A\n709\t  Parent:     N/A\n710\t  SPEC:\n711\t    command: python generate_chain.py --model-name qwen3-1.7b --shard-id 1 --num-shards 2\n712\t    server: autodl-5090\n713\t    gpu: ['cuda:1']\n714\t    pid: 112264\n715\t    log_path: ~/runs/gen-depth-fingerprint/plan-002-qwen17b-s1.log\n716\t    submitted_at: 2026-05-14T20:53:21.683Z\n717\t    submitted_via: submit_training_job\n718\t    backend: tmux\n719\t    account: root\n720\t    data_path: /root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl\n721\t    data_count: 1000\n722\t    model_name: Qwen/Qwen3-1.7B-Base\n723\t    seed: 42\n724\t    wall_clock_seconds: 332.0\n725\t    gpu_hours: 0.09\n726\t    checkpoint_path: N/A - killed duplicate\n727\t\n728\t================================================================================\n729\tEXPERIMENT 28: plan-002-qwen3-1_7b-s0\n730\t================================================================================\n731\t  Status:     DONE\n732\t  Created:    2026-05-14T20:52:58.460Z\n733\t  Completed:  2026-05-14T21:14:14.533Z\n734\t  Conclusion: failed\n735\t  Hypothesis: N/A\n736\t  Parent:     N/A\n737\t  SPEC:\n738\t    command: python generate_chain.py --model-name qwen3-1.7b --shard-id 0 --num-shards 2\n739\t    server: autodl-5090\n740\t    gpu: ['cuda:0']\n741\t    pid: 111533\n742\t    log_path: ~/runs/gen-depth-fingerprint/plan-002-qwen3-1_7b-s0.log\n743\t    submitted_at: 2026-05-14T20:52:58.411Z\n744\t    submitted_via: submit_training_job\n745\t    backend: tmux\n746\t    account: root\n747\t    data_path: /root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl\n748\t    data_count: 1000\n749\t    model_name: Qwen/Qwen3-1.7B-Base\n750\t    seed: 42\n751\t    wall_clock_seconds: 1276.1\n752\t    gpu_hours: 0.35\n753\t    checkpoint_path: N/A - killed\n754\t\n755\t================================================================================\n756\tEXPERIMENT 29: plan-002-qwen3-1_7b-s1\n757\t================================================================================\n758\t  Status:     DONE\n759\t  Created:    2026-05-14T20:53:00.298Z\n760\t  Completed:  2026-05-14T21:14:17.437Z\n761\t  Conclusion: killed\n762\t  Hypothesis: N/A\n763\t  Parent:     N/A\n764\t  SPEC:\n765\t    command: python generate_chain.py --model-name qwen3-1.7b --shard-id 1 --num-shards 2\n766\t    server: autodl-5090\n767\t    gpu: ['cuda:1']\n768\t    pid: 111646\n769\t    log_path: ~/runs/gen-depth-fingerprint/plan-002-qwen3-1_7b-s1.log\n770\t    submitted_at: 2026-05-14T20:53:00.276Z\n771\t    submitted_via: submit_training_job\n772\t    backend: tmux\n773\t    account: root\n774\t    data_path: /root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl\n775\t    data_count: 1000\n776\t    model_name: Qwen/Qwen3-1.7B-Base\n777\t    seed: 42\n778\t    wall_clock_seconds: 1277.2\n779\t    gpu_hours: 0.35\n780\t\n781\t================================================================================\n782\tEXPERIMENT 30: plan-003\n783\t================================================================================\n784\t  Status:     DONE\n785\t  Created:    2026-05-14T23:58:40.949Z\n786\t  Completed:  2026-05-15T00:09:28.999Z\n787\t  Conclusion: success\n788\t  Hypothesis: 跨家族参考模型伪证化：用 OLMo-2-1B 和 Qwen3-0.6B 作参考模型提取特征，验证 differential depth response 非 Pythia 特异\n789\t  Parent:     N/A\n790\t  SPEC:\n791\t    command: python extract_features_crossref.py + cross_ref_analysis.py\n792\t    server: autodl-5090\n793\t    data_path: /root/gen-depth-fingerprint/data/features_all_models.csv\n794\t    data_count: 23032\n795\t    model_name: OLMo-2-1B + Qwen3-0.6B as reference\n796\t    seed: 42\n797\t    checkpoint_path: /root/gen-depth-fingerprint/data/cross_ref_results.json\n798\t    log_path: /root/gen-depth-fingerprint/data/\n799\t  METRICS:\n800\t    logo_f1_pythia_ref: 0.8034\n801\t    logo_f1_olmo_ref: 0.8072\n802\t    logo_f1_qwen_ref: 0.8158\n803\t    entropy_drift_all_refs_negative: True\n804\t    olmo_ref_drift_range: [-0.608, -0.9089]\n805\t    qwen_ref_drift_range: [-0.9557, -1.3458]\n806\t    pythia_ref_drift_range: [-1.1872, -1.4017]\n807\t    dual_dynamics_is_pythia_artifact: False\n808\t\n809\t================================================================================\n810\tEXPERIMENT 31: plan-003-olmo2ref\n811\t================================================================================\n812\t  Status:     DONE\n813\t  Created:    2026-05-15T00:09:31.145Z\n814\t  Completed:  2026-05-15T00:10:00.971Z\n815\t  Conclusion: success\n816\t  Hypothesis: 跨家族参考模型验证（OLMo-2-1B）：用 OLMo-2-1B 作为参考模型提取 differential entropy 特征，验证 depth signal 的参考模型无关性——不同训练数据和架构的模型仍能检测相同的 depth dynamics\n817\t  Parent:     plan-003\n818\t  SPEC:\n819\t    command: python extract_features_crossref.py --reference-model /root/autodl-tmp/models/olmo-2-1b-hf/allenai/OLMo-2-0425-1B --output data/features_ref_olmo.csv --device cuda:0\n820\t    server: autodl-5090\n821\t    data_path: /root/gen-depth-fingerprint/data/\n822\t    data_count: 23032\n823\t    model_name: OLMo-2-1B (reference)\n824\t    seed: 42\n825\t\n826\t================================================================================\n827\tEXPERIMENT 32: plan-003-qwen06bref\n828\t================================================================================\n829\t  Status:     DONE\n830\t  Created:    2026-05-15T00:09:31.649Z\n831\t  Completed:  2026-05-15T00:10:01.383Z\n832\t  Conclusion: success\n833\t  Hypothesis: 跨家族参考模型验证（Qwen3-0.6B）：用非 Pythia 家族的 Qwen3-0.6B 作为参考模型提取 differential entropy 特征，验证 depth signal 不依赖于参考模型与生成器的家族匹配\n834\t  Parent:     plan-003\n835\t  SPEC:\n836\t    command: python extract_features_crossref.py --reference-model /root/autodl-tmp/models/Qwen/Qwen3-0___6B-Base --output data/features_ref_qwen.csv --device cuda:0\n837\t    server: autodl-5090\n838\t    data_path: /root/gen-depth-fingerprint/data/\n839\t    data_count: 23032\n840\t    model_name: Qwen3-0.6B (reference)\n841\t    seed: 42\n842\t\n843\t================================================================================\n844\tEXPERIMENT 33: plan-004\n845\t================================================================================\n846\t  Status:     DONE\n847\t  Created:    2026-05-15T00:22:57.901Z\n848\t  Completed:  2026-05-15T00:44:49.276Z\n849\t  Conclusion: failed\n850\t  Hypothesis: Downstream utility: depth-stratified 数据对 OLMo-2-0425-1B CLM fine-tuning 的影响——depth0_only vs depth01 vs all vs size_matched vs binary_filtered，5 variants × 3 seeds\n851\t  Parent:     N/A\n852\t  SPEC:\n853\t    command: run_gpu{1,2,3}.sh (3 GPU parallel)\n854\t    server: autodl-5090\n855\t    gpu: cuda:1,cuda:2,cuda:3\n856\t    pid: GPU1:144272, GPU2:145189(waiting for 142680), GPU3:145799\n857\t    data_path: /root/gen-depth-fingerprint/data/downstream/\n858\t    data_count: depth0_only:797, depth01:3951, all:12299, size_matched:3951, binary_filtered:3951\n859\t    model_name: OLMo-2-0425-1B\n860\t    seed: 42,123,456\n861\t    log_path: /tmp/plan004_gpu1.log, /tmp/plan004_gpu2.log, /tmp/plan004_gpu3.log\n862\t    checkpoint_path: /root/autodl-tmp/gen-depth-fingerprint/experiments/downstream/\n863\t\n864\t================================================================================\n865\tEXPERIMENT 34: plan-004-prep\n866\t================================================================================\n867\t  Status:     PREPARING\n868\t  Created:    2026-05-14T23:58:42.465Z\n869\t  Completed:  N/A\n870\t  Conclusion: success\n871\t  Hypothesis: Downstream utility 准备：depth-stratified 数据集 + OLMo-1B fine-tuning 脚本（不开跑，等 Director 确认）\n872\t  Parent:     N/A\n873\t  METRICS:\n874\t    model: OLMo-2-0425-1B (1485M)\n875\t    datasets: {'depth0_only': {'train': 797, 'test': 3138}, 'depth01': {'train': 3951, 'test': 3138}, 'all': {'train': 12299, 'test': 3138}, 'size_matched': {'train': 3951, 'test': 3138}, 'binary_filtered': {'train...\n876\t    dry_run_loss: 2.18\n877\t    script: finetune_downstream.py\n878\t\n879\t================================================================================\n880\tEXPERIMENT 35: plan-004-v2\n881\t================================================================================\n882\t  Status:     DONE\n883\t  Created:    2026-05-15T00:45:17.861Z\n884\t  Completed:  2026-05-15T03:09:20.593Z\n885\t  Conclusion: negative\n886\t  Hypothesis: Downstream utility (retry): depth-stratified 数据对 OLMo-2-0425-1B CLM fine-tuning 的影响——5 variants × 3 seeds，输出到数据盘\n887\t  Parent:     plan-004\n888\t  SPEC:\n889\t    command: run_downstream.sh (3 GPUs parallel, save_strategy=no)\n890\t    server: autodl-5090\n891\t    gpu: cuda:1,cuda:2,cuda:3\n892\t    pid: 143757(cuda:1),145189(cuda:2),145799(cuda:3)\n893\t    data_path: /root/autodl-tmp/gen-depth-fingerprint/experiments/downstream/\n894\t    data_count: depth0_only:797, depth01:3951, all:12299, size_matched:3951, binary_filtered:3951\n895\t    model_name: OLMo-2-0425-1B\n896\t    seed: 42,123,456\n897\t    log_path: /tmp/plan004_gpu1.log, /tmp/plan004_gpu2.log, /tmp/plan004_gpu3.log\n898\t    checkpoint_path: none (save_strategy=no)\n899\t    notes: size_matched_seed42 done (eval_loss=0.8618, ppl=2.367). GPU2 98% VRAM - close to limit.\n900\t  METRICS:\n901\t    total_runs: 15\n902\t    completed: 15\n903\t    variants: {'all': {'eval_loss_mean': 0.848, 'perplexity_mean': 2.335, 'seeds': {'42': {'eval_loss': 0.848, 'ppl': 2.335}, '123': {'eval_loss': 0.848, 'ppl': 2.335}, '456': {'eval_loss': 0.8482, 'ppl': 2.3354}}}...\n904\t    ranking_by_ppl: all(2.335) < size_matched(2.367) < depth01(2.387) ≈ binary_filtered(2.389) << depth0_only(2.681)\n905\t    seed_variance: 极小（同 variant 跨 seed ppl 差 <0.002）\n906\t\n907\t================================================================================\n908\tEXPERIMENT 36: plan-005\n909\t================================================================================\n910\t  Status:     DONE\n911\t  Created:    2026-05-15T03:24:02.435Z\n912\t  Completed:  2026-05-15T05:30:39.849Z\n913\t  Conclusion: success\n914\t  Hypothesis: Prompt type comparison: continuation vs elaboration vs inspired_rewriting 链的 depth signal 强度差异。Pythia-2.8B, 1000 seeds, 3 prompt types × 5 depths = 15K texts\n915\t  Parent:     N/A\n916\t  SPEC:\n917\t    command: python scripts/analyze_prompt_types.py\n918\t    server: autodl-5090\n919\t    gpu: cuda:1,cuda:2,cuda:3\n920\t    data_path: data/pythia-2.8b-*/features.jsonl\n921\t    data_count: 14393\n922\t    model_name: pythia-2.8b\n923\t    seed: 42\n924\t    log_path: tmux: plan-005-cont, plan-005-elab, plan-005-rewrite\n925\t  METRICS:\n926\t    cv_f1: {'continuation': 0.7806, 'inspired_rewriting': 0.7368, 'elaboration': 0.73}\n927\t    lopto_f1: {'held_out_cont': 0.762, 'held_out_elab': 0.7622, 'held_out_rewrite': 0.7334, 'avg': 0.7525}\n928\t    depth_retention_d4_d0: {'continuation': 0.831, 'inspired_rewriting': 0.939, 'elaboration': 0.986}\n929\t    drift_hapax_ratio: {'continuation': -0.74, 'elaboration': -0.828, 'rewriting': -0.8}\n930\t    drift_ttr: {'continuation': -0.607, 'elaboration': -0.641, 'rewriting': -0.618}\n931\t    drift_entropy_mean: {'continuation': -0.557, 'elaboration': -0.471, 'rewriting': -0.477}\n932\t    spearman_ttr: {'continuation': -0.629, 'elaboration': -0.666, 'rewriting': -0.659}\n933\t    spearman_hapax: {'continuation': -0.651, 'elaboration': -0.674, 'rewriting': -0.67}\n934\t    spearman_entropy_mean: {'continuation': -0.665, 'elaboration': -0.583, 'rewriting': -0.564}\n935\t\n936\t================================================================================\n937\tEXPERIMENT 37: plan-005-cont\n938\t================================================================================\n939\t  Status:     DONE\n940\t  Created:    2026-05-15T03:28:43.383Z\n941\t  Completed:  2026-05-15T05:42:53.944Z\n942\t  Conclusion: success\n943\t  Hypothesis: Continuation 链数据生成：Pythia-2.8B 在 continuation prompt 下生成 depth 0-4 链，验证递归续写中 entropy/lexical 特征的单调漂移模式是否在 1000 seeds 规模下稳定复现\n944\t  Parent:     plan-005\n945\t  SPEC:\n946\t    command: python generate_chain_prompt.py --model-name pythia-2.8b --prompt-type continuation\n947\t    server: autodl-5090\n948\t    gpu: cuda:1\n949\t    pid: 164658\n950\t    log_path: /root/runs/gen-depth-fingerprint/plan-005-cont.log\n951\t    submitted_at: 2026-05-15T03:28:43.303Z\n952\t    submitted_via: submit_training_job\n953\t    backend: tmux\n954\t    account: root\n955\t    data_path: /root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl\n956\t    data_count: 995\n957\t    model_name: pythia-2.8b\n958\t    seed: 0\n959\t    prompt_type: continuation\n960\t    checkpoint_path: /root/gen-depth-fingerprint/data/pythia-2.8b-continuation/generations_shard0.jsonl\n961\t    wall_clock_seconds: 8050.6\n962\t    gpu_hours: 2.24\n963\t  METRICS:\n964\t    total_records: 4620\n965\t    unique_seeds: 995\n966\t    skipped: 168\n967\t    depth_distribution: {'0': 995, '1': 992, '2': 932, '3': 874, '4': 827}\n968\t    output_file: /root/gen-depth-fingerprint/data/pythia-2.8b-continuation/generations_shard0.jsonl\n969\t    file_size_mb: 4.93\n970\t    runtime_seconds: 7760\n971\t    speed_seeds_per_sec: 0.13\n972\t\n973\t================================================================================\n974\tEXPERIMENT 38: plan-005-elab\n975\t================================================================================\n976\t  Status:     DONE\n977\t  Created:    2026-05-15T03:28:45.680Z\n978\t  Completed:  2026-05-15T08:49:52.315Z\n979\t  Conclusion: success\n980\t  Hypothesis: Elaboration 链数据生成：elaboration prompt 要求模型展开而非续写，预期 depth signal 因语义锚定更强而衰减更慢（retention > continuation 的 83%）\n981\t  Parent:     plan-005\n982\t  SPEC:\n983\t    command: python generate_chain_prompt.py --model-name pythia-2.8b --prompt-type elaboration --input data/wiki_seed_1000.jsonl --shard-id 0 --num-shards 1 --device cuda:0\n984\t    server: autodl-5090\n985\t    gpu: cuda:2\n986\t    pid: 164737\n987\t    log_path: /root/gen-depth-fingerprint/logs/plan-005-elab\n988\t    submitted_at: 2026-05-15T03:28:45.601Z\n989\t    submitted_via: submit_training_job\n990\t    backend: tmux\n991\t    account: root\n992\t    data_path: data/wiki_seed_1000.jsonl\n993\t    data_count: 1000\n994\t    model_name: pythia-2.8b\n995\t    seed: all\n996\t    prompt_type: elaboration\n997\t    checkpoint_path: /root/gen-depth-fingerprint/data/pythia-2.8b-elaboration/generations_shard0.jsonl\n998\t    wall_clock_seconds: 19266.7\n999\t    gpu_hours: 5.35\n1000\t  METRICS:\n1001\t    total_records: 4946\n1002\t    unique_seeds: 995\n1003\t    skipped: 14\n1004\t    depth_distribution: {'0': 995, '1': 995, '2': 989, '3': 986, '4': 981}\n1005\t    output_file: /root/gen-depth-fingerprint/data/pythia-2.8b-elaboration/generations_shard0.jsonl\n1006\t    file_size_mb: 5.53\n1007\t    runtime_seconds: 8960.2\n1008\t    depth_retention_d4_d0: 0.986\n1009\t    logo_cv_f1: {'mean': 0.73, 'std': 0.011}\n1010\t    lopto_f1: 0.7622\n1011\t    feature_drift_entropy_mean: -0.4705\n1012\t    feature_drift_ttr: -0.6413\n1013\t    feature_drift_hapax: -0.8284\n1014\t    vs_continuation: retention 98.6% vs 83.1%; CV F1 0.730 vs 0.781 — elaboration chains more stable but depth signal weaker within-type\n1015\t    vs_rewriting: retention 98.6% vs 93.9%; CV F1 0.730 vs 0.737 — similar discriminability, elaboration slightly lower\n1016\t\n1017\t================================================================================\n1018\tEXPERIMENT 39: plan-005-rewrite\n1019\t================================================================================\n1020\t  Status:     DONE\n1021\t  Created:    2026-05-15T03:28:47.421Z\n1022\t  Completed:  2026-05-15T06:00:25.058Z\n1023\t  Conclusion: success\n1024\t  Hypothesis: Inspired rewriting 链数据生成：rewriting prompt 要求模型受启发重写而非逐字续写，预期 depth retention 介于 continuation 和 elaboration 之间，因为重写保留主题但改变表达\n1025\t  Parent:     plan-005\n1026\t  SPEC:\n1027\t    command: python generate_chain_prompt.py --model-name pythia-2.8b --prompt-type inspired_rewriting --input data/wiki_seed_1000.jsonl --shard-id 0 --num-shards 1 --device cuda:0\n1028\t    server: autodl-5090\n1029\t    gpu: cuda:3\n1030\t    pid: 164881\n1031\t    log_path: ~/runs/gen-depth-fingerprint/plan-005-rewrite.log\n1032\t    submitted_at: 2026-05-15T03:28:47.322Z\n1033\t    submitted_via: submit_training_job\n1034\t    backend: tmux\n1035\t    account: root\n1036\t    data_path: data/wiki_seed_1000.jsonl\n1037\t    data_count: 1000\n1038\t    model_name: pythia-2.8b\n1039\t    seed: all\n1040\t    prompt_type: inspired_rewriting\n1041\t    checkpoint_path: /root/gen-depth-fingerprint/data/pythia-2.8b-inspired_rewriting/generations_shard0.jsonl\n1042\t    wall_clock_seconds: 8584\n1043\t    gpu_hours: 2.38\n1044\t  METRICS:\n1045\t    total_records: 4827\n1046\t    unique_seeds: 995\n1047\t    skipped: 61\n1048\t    depth_distribution: {'0': 995, '1': 995, '2': 959, '3': 944, '4': 934}\n1049\t    output_file: /root/gen-depth-fingerprint/data/pythia-2.8b-inspired_rewriting/generations_shard0.jsonl\n1050\t    file_size_mb: 5.41\n1051\t    runtime_seconds: 8584\n1052\t    speed_seeds_per_sec: 0.12\n1053\t    depth_retention_d4_d0: 0.939\n1054\t    vs_continuation: retention 93.9% vs 83.1%, rewriting produces significantly more stable depth chains\n1055\t\n1056\t================================================================================\n1057\tEXPERIMENT 40: plan-008-seed-stratification\n1058\t================================================================================\n1059\t  Status:     DONE\n1060\t  Created:    2026-05-17T00:21:12.380Z\n1061\t  Completed:  2026-05-17T00:21:48.235Z\n1062\t  Conclusion: success\n1063\t  Hypothesis: Seed complexity independence: depth fingerprint 的判别能力不依赖 seed 文本的词汇复杂度（按 gen-0 TTR terciles 分层验证）\n1064\t  Parent:     plan-010-robustness\n1065\t  SPEC:\n1066\t    command: python seed_stratification.py\n1067\t    server: autodl-5090\n1068\t    data_path: /root/gen-depth-fingerprint/data/\n1069\t    data_count: 37058\n1070\t    model_name: XGBoost 200/6\n1071\t    seed: 42\n1072\t  METRICS:\n1073\t    low_complexity_binary: 0.685\n1074\t    medium_binary: 0.695\n1075\t    high_complexity_binary: 0.695\n1076\t    low_complexity_multi: 0.772\n1077\t    medium_multi: 0.778\n1078\t    high_complexity_multi: 0.779\n1079\t    max_diff_binary_pp: 1.06\n1080\t    max_diff_multiclass_pp: 0.68\n1081\t    conclusion_label: seed_independent\n1082\t\n1083\t================================================================================\n1084\tEXPERIMENT 41: plan-010-llm-rephrase\n1085\t================================================================================\n1086\t  Status:     DONE\n1087\t  Created:    2026-05-16T22:26:58.107Z\n1088\t  Completed:  2026-05-17T01:04:28.657Z\n1089\t  Conclusion: success\n1090\t  Hypothesis: LLM-simulated editing robustness: Qwen3-0.6B rephrasing (1-3 sentences) 比 random word replacement 更接近真实人类编辑，预期 depth fingerprint 退化更小\n1091\t  Parent:     plan-010-robustness\n1092\t  SPEC:\n1093\t    command: python llm_rephrase_robustness.py\n1094\t    server: autodl-5090\n1095\t    gpu: cuda:0\n1096\t    data_path: /root/gen-depth-fingerprint/experiments/human_edit_robustness/\n1097\t    data_count: 5000\n1098\t    model_name: Qwen3-0.6B-Base + Pythia-410M\n1099\t    seed: 42\n1100\t  METRICS:\n1101\t    original_binary_f1: 0.6918\n1102\t    original_binary_ci: [0.6749, 0.7067]\n1103\t    original_multiclass_f1: 0.7385\n1104\t    original_multiclass_ci: [0.7269, 0.7496]\n1105\t    rephrased_binary_f1: 0.6471\n1106\t    rephrased_binary_ci: [0.6308, 0.6619]\n1107\t    rephrased_multiclass_f1: 0.6672\n1108\t    rephrased_multiclass_ci: [0.6548, 0.6796]\n1109\t    binary_drop: -0.0447\n1110\t    multiclass_drop: -0.0713\n1111\t    edit_distance_ratio: 0.5071\n1112\t    avg_sentences_replaced: 1.69\n1113\t    method: 7feature LOGO-CV, binary=gen1-vs-gen2+, 3class=gen0/gen1/gen2+\n1114\t    bugs_fixed: ['binary_task_gen1_vs_gen2+', '3class_mapping', 'tail_decay_rank100-1000']\n1115\t\n1116\t================================================================================\n1117\tEXPERIMENT 42: plan-010-robustness\n1118\t================================================================================\n1119\t  Status:     DONE\n1120\t  Created:    2026-05-16T22:09:57.049Z\n1121\t  Completed:  2026-05-16T22:11:48.657Z\n1122\t  Conclusion: success\n1123\t  Hypothesis: Human edit robustness: depth fingerprint 在 5-20% random word replacement 下的 F1 退化测试，验证实际编辑场景（通常 < 5%）不影响检测\n1124\t  Parent:     N/A\n1125\t  SPEC:\n1126\t    command: python human_edit_robustness.py\n1127\t    server: autodl-5090\n1128\t    gpu: cuda:0\n1129\t    data_path: /root/gen-depth-fingerprint/data/detector_scores_8gen.csv\n1130\t    data_count: 5000\n1131\t    model_name: Pythia-410M (reference)\n1132\t    seed: 42\n1133\t    perturbation_rates: [0.05, 0.1, 0.2]\n1134\t  METRICS:\n1135\t    baseline_binary_f1: 0.695\n1136\t    5pct_binary_f1: 0.65\n1137\t    10pct_binary_f1: 0.614\n1138\t    20pct_binary_f1: 0.591\n1139\t    5pct_drop: -0.046\n1140\t    10pct_drop: -0.081\n1141\t    20pct_drop: -0.104\n1142\t\n1143\t================================================================================\n1144\tEXPERIMENT 43: plan-013\n1145\t================================================================================\n1146\t  Status:     DONE\n1147\t  Created:    2026-05-14T23:33:25.590Z\n1148\t  Completed:  2026-05-14T23:53:38.902Z\n1149\t  Conclusion: success\n1150\t  Hypothesis: 文本长度混淆控制：深度特征的区分力是否独立于文本长度变化（长度归一化后趋势是否保持）\n1151\t  Parent:     N/A\n1152\t  SPEC:\n1153\t    command: python text_length_analysis.py\n1154\t    server: autodl-5090\n1155\t    data_path: /root/gen-depth-fingerprint/data/features_all_models.csv\n1156\t    data_count: 23032\n1157\t    model_name: text length analysis\n1158\t    seed: 42\n1159\t    checkpoint_path: /root/gen-depth-fingerprint/data/text_length_analysis.json\n1160\t    log_path: /root/gen-depth-fingerprint/data/text_length_boxplot.png\n1161\t  METRICS:\n1162\t    spearman_rho_range: [-0.066, +0.134]\n1163\t    length_depth_correlation: weak (|ρ|<0.14)\n1164\t    normalized_ttr_trend_preserved: True\n1165\t    normalized_hapax_trend_preserved: True\n1166\t    normalized_rho_stronger: True\n1167\t    length_matched_f1_delta: +0.041\n1168\t    length_is_confound: False\n1169\t    dropout_short_text_bias: True\n1170\t\n1171\t================================================================================\n1172\tEXPERIMENT 44: plan-014\n1173\t================================================================================\n1174\t  Status:     DONE\n1175\t  Created:    2026-05-15T00:12:01.909Z\n1176\t  Completed:  2026-05-15T03:47:24.272Z\n1177\t  Conclusion: success\n1178\t  Hypothesis: 大模型规模泛化：Qwen3-8B (7B+参数) 的 continuation 链是否展现同样的 entropy 收敛和 lexical drift，验证 depth dynamics 不因模型容量增大而消失（更大模型可能有更强的分布记忆导致 depth signal 衰减）\n1179\t  Parent:     plan-002\n1180\t  SPEC:\n1181\t    command: nohup /root/miniconda3/bin/python generate_chain.py --model-name qwen3-8b --model-path /root/autodl-tmp/models/Qwen/Qwen3-8B-Base/Qwen/Qwen3-8B-Base/ --input data/openwebtext_seeds.jsonl --shard-id 0 --num-shards 1 --device cuda:0 > /tmp/gen_large_model.log 2>&1 &\n1182\t    server: autodl-5090\n1183\t    gpu: cuda:0\n1184\t    pid: 134817\n1185\t    data_path: data/wiki_seed_1000.jsonl\n1186\t    data_count: 996\n1187\t    model_name: Qwen3-8B-Base\n1188\t    seed: all\n1189\t    log_path: /tmp/gen_large_model.log\n1190\t    checkpoint_path: /root/gen-depth-fingerprint/data/qwen3-8b/generations_shard0.jsonl\n1191\t    output_path: data/qwen3-8b/generations_shard0.jsonl\n1192\t    estimated_duration_h: 4\n1193\t    model_params: 8.2B\n1194\t    fp16_vram_gb: 16.1\n1195\t  METRICS:\n1196\t    total_records: 4497\n1197\t    unique_seeds: 995\n1198\t    depth_dist: {'0': 995, '1': 979, '2': 937, '3': 831, '4': 755}\n1199\t    logo_6gen_avg_f1: 0.7893\n1200\t    logo_per_generator: {'olmo-2-1b': 0.7635, 'pythia-1b': 0.8562, 'pythia-2.8b': 0.8041, 'qwen3-0.6b': 0.8243, 'qwen3-1.7b': 0.8046, 'qwen3-8b': 0.6832}\n1201\t    logo_qwen3_8b_held_out_f1: 0.6832\n1202\t    logo_5gen_baseline_f1: 0.8\n1203\t    spearman: {'hapax_ratio': -0.5578, 'ttr': -0.5419, 'entropy_mean': -0.4754, 'entropy_min': -0.3029, 'entropy_max': 0.0946, 'tail_decay': -0.0894, 'entropy_std': -0.0755}\n1204\t    feature_importance: {'hapax_ratio': 0.269, 'entropy_mean': 0.1637, 'ttr': 0.159, 'entropy_max': 0.0634, 'entropy_std': 0.0463, 'entropy_min': 0.0153, 'tail_decay': 0.0123}\n1205\t    revalidation_v2_vs_snapshot: LOGO +0.0007 (0.7886→0.7893), qwen8b -0.0054 (0.6886→0.6832)\n1206\t    revalidation_v2_conclusion: complete_data_validates_snapshot_robustness\n1207\t\n1208\t================================================================================\n1209\tEXPERIMENT 45: plan-015\n1210\t================================================================================\n1211\t  Status:     DONE\n1212\t  Created:    2026-05-14T23:58:41.890Z\n1213\t  Completed:  2026-05-15T00:26:12.709Z\n1214\t  Conclusion: success\n1215\t  Hypothesis: 现有检测器 ordinal baseline：FastDetectGPT/LD-Score 等检测器的连续分数是否已提供 ordinal depth signal\n1216\t  Parent:     N/A\n1217\t  SPEC:\n1218\t    command: python detector_baseline.py (log_likelihood + fast_detect_gpt + entropy_mean)\n1219\t    server: autodl-5090\n1220\t    data_path: /root/gen-depth-fingerprint/data/features_all_models.csv\n1221\t    data_count: 23032\n1222\t    model_name: Pythia-410M (log_likelihood, FastDetectGPT, entropy_mean baselines)\n1223\t    seed: 42\n1224\t    checkpoint_path: /root/gen-depth-fingerprint/data/detector_baseline_results.json\n1225\t    log_path: /root/gen-depth-fingerprint/data/\n1226\t  METRICS:\n1227\t    seven_feature_logo_f1: 0.798\n1228\t    seven_feature_ci: [0.786, 0.799]\n1229\t    avg_logprob_logo_f1: 0.7653\n1230\t    avg_logprob_ci: [0.616, 0.82]\n1231\t    avg_logprob_spearman: 0.7876\n1232\t    ld_score_logo_f1: 0.7212\n1233\t    ld_score_ci: [0.588, 0.77]\n1234\t    ld_score_spearman: 0.7943\n1235\t    ld_score_pre_fix: 0.6854\n1236\t    fast_detect_gpt_logo_f1: 0.6269\n1237\t    fast_detect_gpt_ci: [0.511, 0.762]\n1238\t    fast_detect_gpt_spearman: 0.4325\n1239\t    binoculars_logo_f1: 0.579\n1240\t    binoculars_ci: [0.405, 0.664]\n1241\t    binoculars_spearman: 0.1989\n1242\t    binoculars_bug_confirmed: True\n1243\t    binoculars_bug_fix: denominator changed from CE(performer, obs_argmax) to CE(performer, shifted_ids)\n1244\t    bootstrap_n: 1000\n1245\t    bootstrap_delta_7feat_vs_avglogprob: {'delta': 0.039, 'p': 0, 'significant': True}\n1246\t    bootstrap_delta_7feat_vs_fdgpt: {'delta': 0.067, 'p': 0, 'significant': True}\n1247\t    best_single_detector: Avg-LogProb (0.7653)\n1248\t    seven_feature_advantage_pp: 3.3\n1249\t\n1250\t================================================================================\n1251\tEXPERIMENT 46: plan-015-v2\n1252\t================================================================================\n1253\t  Status:     DONE\n1254\t  Created:    2026-05-15T00:56:20.612Z\n1255\t  Completed:  2026-05-15T01:26:40.380Z\n1256\t  Conclusion: success\n1257\t  Hypothesis: Ordinal baseline bugfix + bootstrap CI: 修复 Binoculars denominator bug，验证 7-feature ensemble 显著优于所有单一检测器\n1258\t  Parent:     plan-015\n1259\t  SPEC:\n1260\t    command: PYTHONUNBUFFERED=1 HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=2 python scripts/ordinal_baseline.py --device cuda:0\n1261\t    server: autodl-5090\n1262\t    data_path: /root/gen-depth-fingerprint/data/\n1263\t    data_count: 0\n1264\t    model_name: pythia-410m+pythia-160m\n1265\t    seed: 42\n1266\t    checkpoint_path: N/A (analysis task)\n1267\t    log_path: /tmp/ordinal_baseline_v2.log\n1268\t  METRICS:\n1269\t    seven_feature_logo_f1: 0.798\n1270\t    seven_feature_ci95: [0.786, 0.799]\n1271\t    avg_logprob_logo_f1: 0.7653\n1272\t    avg_logprob_ci95: [0.616, 0.82]\n1273\t    ld_score_logo_f1: 0.7212\n1274\t    ld_score_ci95: [0.588, 0.77]\n1275\t    fastdetectgpt_logo_f1: 0.6269\n1276\t    fastdetectgpt_ci95: [0.511, 0.762]\n1277\t    binoculars_logo_f1: 0.579\n1278\t    binoculars_ci95: [0.405, 0.664]\n1279\t    binoculars_bug_fixed: True\n1280\t    ld_score_corrected_cv_f1: 0.7925\n1281\t    bootstrap_7feat_vs_avglogprob: {'delta': 0.039, 'p': 0, 'significant': True}\n1282\t    bootstrap_7feat_vs_fastdetectgpt: {'delta': 0.067, 'p': 0, 'significant': True}\n1283\t\n1284\t================================================================================\n1285\tEXPERIMENT 47: review-exp-a-baseline-ensemble\n1286\t================================================================================\n1287\t  Status:     PREPARING\n1288\t  Created:    2026-05-15T12:22:30.747Z\n1289\t  Completed:  N/A\n1290\t  Conclusion: N/A\n1291\t  Hypothesis: 审稿回应实验A：4-baseline ensemble + 统一超参对比，验证 7-feature vs 4-baseline vs 6-feature 在公平条件下的性能差异\n1292\t  Parent:     N/A\n1293\t\n1294\t================================================================================\n1295\tEXPERIMENT 48: review-exp-b-topic-drift\n1296\t================================================================================\n1297\t  Status:     DONE\n1298\t  Created:    2026-05-15T12:22:34.096Z\n1299\t  Completed:  2026-05-15T12:28:11.624Z\n1300\t  Conclusion: success\n1301\t  Hypothesis: Depth fingerprint 不仅仅捕捉 topic shift：语义漂移(embedding cosine similarity)与 depth 相关性弱(|ρ|<0.3)，而 entropy/lexical features 与 depth 的相关性强(|ρ|>0.5)，证明 depth signal 来自生成过程的统计特性而非内容偏移\n1302\t  Parent:     N/A\n1303\t  SPEC:\n1304\t    command: python scripts/review_topic_drift.py\n1305\t    server: autodl-5090\n1306\t    data_path: /root/gen-depth-fingerprint/data/\n1307\t    data_count: 27529\n1308\t    model_name: all-MiniLM-L6-v2\n1309\t    seed: 0\n1310\t  METRICS:\n1311\t    semantic_similarity_by_transition: {'0_to_1': {'mean': 0.622, 'std': 0.1647}, '1_to_2': {'mean': 0.6829, 'std': 0.1837}, '2_to_3': {'mean': 0.801, 'std': 0.2012}, '3_to_4': {'mean': 0.8587, 'std': 0.1895}}\n1312\t    prompt_type_avg_sim: {'continuation': 0.7168, 'elaboration': 0.8093, 'inspired_rewriting': 0.808}\n1313\t    shape_feature_correlations: {'entropy_std_rho': -0.1639, 'tail_decay_rho': 0.0675}\n1314\t    drifting_feature_correlations: {'hapax_ratio_rho': -0.1242, 'ttr_rho': -0.1784, 'entropy_mean_rho': -0.2859}\n1315\t\n1316\t================================================================================\n1317\tEXPERIMENT 49: review-exp-c-overall-ci\n1318\t================================================================================\n1319\t  Status:     DONE\n1320\t  Created:    2026-05-15T12:22:37.037Z\n1321\t  Completed:  2026-05-15T12:27:02.426Z\n1322\t  Conclusion: success\n1323\t  Hypothesis: 6-generator LOGO 的 overall bootstrap CI 窄且不跨越 chance level，entropy_max/entropy_min 的个体 Spearman ρ 验证其对 depth 的单调贡献方向（max 正相关因高 depth 分布更尖，min 负相关因低概率 tail 被压缩）\n1324\t  Parent:     N/A\n1325\t  SPEC:\n1326\t    command: python scripts/review_overall_ci.py\n1327\t    server: autodl-5090\n1328\t    data_path: data/features_all_models.csv\n1329\t    data_count: 27529\n1330\t    model_name: xgboost\n1331\t    seed: 42\n1332\t    checkpoint_path: n/a\n1333\t    log_path: results/review_overall_ci_results.json\n1334\t  METRICS:\n1335\t    overall_logo_f1: 0.7879\n1336\t    overall_ci95: [0.783, 0.7929]\n1337\t    spearman_entropy_max: 0.0503\n1338\t    spearman_entropy_min: -0.4061\n1339\t    spearman_hapax: -0.6467\n1340\t    spearman_ttr: -0.6302\n1341\t    spearman_entropy_mean: -0.6098\n1342\t    spearman_entropy_std: -0.1996\n1343\t    spearman_tail_decay: -0.0403\n1344\t\n1345\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c587b879-a0f3-4f52-827f-cedab5faeb89",
+            "isSidechain": true,
+            "promptId": "4401d70d-bff1-46e1-857b-65011b5d7861",
+            "agentId": "a8fa49f9541eeeeba",
+            "type": "user",
+            "uuid": "7c88379e-6e57-47e8-80d5-58b8e7b1ade0",
+            "sourceToolAssistantUUID": "c587b879-a0f3-4f52-827f-cedab5faeb89",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "8efbc484-bfff-4e42-950b-e677114371ba",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T12:43:49.802Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me run the aggregation across all experiments."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7c88379e-6e57-47e8-80d5-58b8e7b1ade0",
+            "isSidechain": true,
+            "agentId": "a8fa49f9541eeeeba",
+            "requestId": "req_011Cb8AJkSU46otEHbtZBDvF",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "40711b37-4715-448b-bbe8-7142781a2060",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "8efbc484-bfff-4e42-950b-e677114371ba",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QukQeKWMbSMZ6APfkRYp6a",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 24373,
+                "cache_read_input_tokens": 21958,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 24373,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-17T12:44:23.015Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UUnZVba7RF7hBhYubHjEiU",
+              "name": "Bash",
+              "input": {
+                "command": "python3 << 'PYEOF'\nimport json\nfrom collections import defaultdict\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-3-projects-gen-depth-fingerprint/8efbc484-bfff-4e42-950b-e677114371ba/tool-results/mcp-agent-ml-research-read_registry-1779021770007.txt') as f:\n    raw = json.load(f)\n\ninner = json.loads(raw['result'])\nexperiments = inner['data']['experiments']\n\n# Count statuses\nstatuses = defaultdict(int)\nfor exp in experiments.values():\n    statuses[exp.get('status', 'UNKNOWN')] += 1\nprint(\"=== STATUS COUNTS ===\")\nfor s, c in sorted(statuses.items()):\n    print(f\"  {s}: {c}\")\n\n# Aggregate all model names mentioned\nall_model_names = set()\ngenerator_models = set()\nreference_models = set()\ntemperatures = set()\nprompt_types = set()\nseed_sources = set()\nmax_depth = 0\ndecoding_strategies = set()\n\nfor exp_id, exp in experiments.items():\n    spec = exp.get('spec', {})\n    metrics = exp.get('metrics', {})\n    hyp = exp.get('hypothesis', '') or ''\n    \n    model_name = spec.get('model_name', '')\n    if model_name:\n        all_model_names.add(model_name)\n    \n    # Temperature\n    temp = spec.get('temperature')\n    if temp is not None:\n        temperatures.add(str(temp))\n    \n    # top_p\n    top_p = spec.get('top_p')\n    if top_p is not None:\n        decoding_strategies.add(f\"top_p={top_p}\")\n    \n    # Prompt type\n    pt = spec.get('prompt_type')\n    if pt:\n        prompt_types.add(pt)\n    \n    # Reference model\n    ref = spec.get('reference_model')\n    if ref:\n        reference_models.add(ref)\n    \n    # Perturbation rates\n    pr = spec.get('perturbation_rates')\n    if pr:\n        pass  # not decoding\n\n    # Depths from metrics\n    for k in ['depth_dist', 'depth_distribution']:\n        dd = metrics.get(k, {})\n        if isinstance(dd, dict):\n            for d_key in dd.keys():\n                try:\n                    d_val = int(d_key.replace('gen', ''))\n                    max_depth = max(max_depth, d_val)\n                except:\n                    pass\n\n    # Depths from spec\n    depths_spec = spec.get('depths', '')\n    if 'gen-4' in str(depths_spec) or 'gen4' in str(depths_spec):\n        max_depth = max(max_depth, 4)\n\n    # Seed text sources from data paths & hypothesis\n    dp = spec.get('data_path', '')\n    if 'wiki_seed' in dp or 'wiki' in dp.lower():\n        seed_sources.add('Wikipedia (wiki_seed_1000.jsonl)')\n    if 'openwebtext' in dp:\n        seed_sources.add('OpenWebText')\n    if 'news' in dp.lower() or 'academic' in dp.lower() or 'code' in dp.lower():\n        seed_sources.add('Multi-domain (News/Academic/Code)')\n    if 'seeds_' in dp:\n        for domain in ['news', 'academic', 'code']:\n            if domain in dp:\n                seed_sources.add(f'{domain.capitalize()} seeds')\n\n    # Check hypothesis for domains\n    if 'News' in hyp and 'Academic' in hyp and 'Code' in hyp:\n        seed_sources.add('Multi-domain (News/Academic/Code)')\n    if 'Wikipedia' in hyp or 'wiki' in hyp.lower():\n        seed_sources.add('Wikipedia')\n\n# Infer temperature from hypothesis text\nfor exp_id, exp in experiments.items():\n    hyp = exp.get('hypothesis', '') or ''\n    if 't=0.7' in hyp:\n        temperatures.add('0.7')\n    if 't=1.0' in hyp:\n        temperatures.add('1.0')\n    spec = exp.get('spec', {})\n    cmd = spec.get('command', '')\n    if 'temperature' in str(spec):\n        pass  # already captured\n\n# Categorize models\ngen_models_explicit = [\n    'EleutherAI/pythia-2.8b',\n    'EleutherAI/pythia-1b', \n    'Pythia-1B',\n    'allenai/OLMo-2-0425-1B',\n    'Qwen3-0.6B', 'Qwen/Qwen3-0.6B-Base',\n    'Qwen3-1.7B', 'Qwen/Qwen3-1.7B-Base',\n    'Qwen3-8B-Base',\n    'Mistral-7B-v0.3',\n    'pythia-2.8b',\n    'pythia-1b',\n]\n\nref_models_explicit = [\n    'EleutherAI/pythia-410m',\n    'Pythia-410M',\n    'OLMo-2-1B',\n    'Qwen3-0.6B',\n    'pythia-410m',\n    'pythia-160m',\n]\n\nprint(\"\\n=== ALL model_name VALUES IN SPEC ===\")\nfor m in sorted(all_model_names):\n    print(f\"  {m}\")\n\nprint(f\"\\n=== TEMPERATURES ===\")\nfor t in sorted(temperatures):\n    print(f\"  {t}\")\n\nprint(f\"\\n=== DECODING STRATEGIES ===\")\nfor d in sorted(decoding_strategies):\n    print(f\"  {d}\")\n\nprint(f\"\\n=== PROMPT TYPES ===\")\nfor p in sorted(prompt_types):\n    print(f\"  {p}\")\n\nprint(f\"\\n=== SEED TEXT SOURCES ===\")\nfor s in sorted(seed_sources):\n    print(f\"  {s}\")\n\nprint(f\"\\n=== MAX CHAIN DEPTH TESTED === {max_depth}\")\n\n# Check for instruction-tuned models\nprint(\"\\n=== INSTRUCTION-TUNED MODELS ===\")\ninstruct_found = False\nfor exp_id, exp in experiments.items():\n    spec = exp.get('spec', {})\n    mn = str(spec.get('model_name', '')).lower()\n    cmd = str(spec.get('command', '')).lower()\n    hyp = str(exp.get('hypothesis', '')).lower()\n    for kw in ['instruct', 'chat', 'sft', 'rlhf', 'dpo']:\n        if kw in mn or kw in cmd or kw in hyp:\n            print(f\"  Found '{kw}' in {exp_id}\")\n            instruct_found = True\nif not instruct_found:\n    print(\"  NONE - all models appear to be base/pretrained models\")\n\n# Check for human text baselines\nprint(\"\\n=== HUMAN TEXT BASELINES ===\")\nhuman_found = False\nfor exp_id, exp in experiments.items():\n    hyp = str(exp.get('hypothesis', '')).lower()\n    spec = exp.get('spec', {})\n    metrics = exp.get('metrics', {})\n    for kw in ['human', 'depth-0', 'gen-0', 'gen0', 'depth0']:\n        if kw in str(metrics).lower() or kw in hyp:\n            if 'human' in kw:\n                print(f\"  Human-related mention in {exp_id}\")\n                human_found = True\n                break\n    # gen-0 / depth-0 IS the human seed text\n    if 'gen0' in str(metrics) or 'gen-0' in str(metrics) or 'depth0' in str(spec):\n        pass  # gen-0 is the original human seed\n\nprint(\"  gen-0 / depth-0 in generation chains = original human seed text (Wikipedia/News/Academic/Code)\")\nprint(\"  plan-010-robustness and plan-010-llm-rephrase test robustness to human editing\")\nprint(\"  plan-004-v2 downstream includes depth0_only variant (human seeds only)\")\n\nPYEOF\n",
+                "description": "Aggregate unique models, temperatures, strategies, prompts, seeds across all experiments"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "40711b37-4715-448b-bbe8-7142781a2060",
+            "isSidechain": true,
+            "agentId": "a8fa49f9541eeeeba",
+            "requestId": "req_011Cb8AJkSU46otEHbtZBDvF",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "794ce3e6-8bcd-4fe6-bbcc-789d963c129e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "8efbc484-bfff-4e42-950b-e677114371ba",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QukQeKWMbSMZ6APfkRYp6a",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 24373,
+                "cache_read_input_tokens": 21958,
+                "output_tokens": 2232,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 24373
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2232,
+                    "cache_read_input_tokens": 21958,
+                    "cache_creation_input_tokens": 24373,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 24373,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T12:44:23.124Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UUnZVba7RF7hBhYubHjEiU",
+              "type": "tool_result",
+              "content": "=== STATUS COUNTS ===\n  DONE: 41\n  PREPARING: 8\n\n=== ALL model_name VALUES IN SPEC ===\n  EleutherAI/pythia-1b\n  EleutherAI/pythia-2.8b (FP16)\n  OLMo-2-0425-1B\n  OLMo-2-1B (reference)\n  OLMo-2-1B + Qwen3-0.6B as reference\n  Pythia-1B + Qwen3-1.7B + Mistral-7B-v0.3\n  Pythia-1B, Qwen3-1.7B, Mistral-7B-v0.3 (gen) + Pythia-410M (ref)\n  Pythia-410M (log_likelihood, FastDetectGPT, entropy_mean baselines)\n  Pythia-410M (reference)\n  Qwen/Qwen3-0.6B-Base\n  Qwen/Qwen3-1.7B-Base\n  Qwen3-0.6B\n  Qwen3-0.6B (reference)\n  Qwen3-0.6B-Base + Pythia-410M\n  Qwen3-1.7B\n  Qwen3-8B-Base\n  XGBoost 200/6\n  XGBoost classifier\n  all-MiniLM-L6-v2\n  allenai/OLMo-2-0425-1B\n  pythia-1b, olmo-2-1b, qwen3-1.7b, qwen3-0.6b (+ pythia-2.8b from MVP)\n  pythia-2.8b\n  pythia-410m\n  pythia-410m+pythia-160m\n  text length analysis\n  xgboost\n\n=== TEMPERATURES ===\n  0.7\n  1.0\n\n=== DECODING STRATEGIES ===\n  top_p=0.9\n\n=== PROMPT TYPES ===\n  continuation\n  elaboration\n  inspired_rewriting\n\n=== SEED TEXT SOURCES ===\n  Academic seeds\n  Code seeds\n  Multi-domain (News/Academic/Code)\n  News seeds\n  Wikipedia\n  Wikipedia (wiki_seed_1000.jsonl)\n\n=== MAX CHAIN DEPTH TESTED === 4\n\n=== INSTRUCTION-TUNED MODELS ===\n  NONE - all models appear to be base/pretrained models\n\n=== HUMAN TEXT BASELINES ===\n  Human-related mention in plan-010-robustness\n  gen-0 / depth-0 in generation chains = original human seed text (Wikipedia/News/Academic/Code)\n  plan-010-robustness and plan-010-llm-rephrase test robustness to human editing\n  plan-004-v2 downstream includes depth0_only variant (human seeds only)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "794ce3e6-8bcd-4fe6-bbcc-789d963c129e",
+            "isSidechain": true,
+            "promptId": "4401d70d-bff1-46e1-857b-65011b5d7861",
+            "agentId": "a8fa49f9541eeeeba",
+            "type": "user",
+            "uuid": "b5723a95-272e-4ed9-8ddb-7ccda3477995",
+            "sourceToolAssistantUUID": "794ce3e6-8bcd-4fe6-bbcc-789d963c129e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "8efbc484-bfff-4e42-950b-e677114371ba",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-17T12:45:48.698Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here is the complete analysis.\n\n---\n\n## EXPERIMENT REGISTRY: gen-depth-fingerprint (49 experiments)\n\n### STATUS SUMMARY\n- **DONE**: 41\n- **PREPARING**: 8 (mostly infrastructure/shard jobs that were superseded or never finalized)\n\n---\n\n### PER-EXPERIMENT DETAILS\n\n#### 1. exp_047_multi_domain_t07 — DONE (success)\n- **Spec**: Pythia-1B, Qwen3-1.7B, Mistral-7B-v0.3 (generators) + Pythia-410M (ref). t=0.7, top_p=0.9. 200 seeds x 3 domains (News/Academic/Code) x 3 generators x 4 depths = 7200 samples.\n- **Key metrics**: Overall binary F1 0.676, 3-class F1 0.681. News best (0.712), Academic worst (0.628). Delta vs t=1.0: -3.4pp (News), -11.1pp (Academic), -6.6pp (Code).\n\n#### 2. multi-domain-seeds — DONE (success)\n- **Spec**: Pythia-1B + Qwen3-1.7B + Mistral-7B-v0.3. 600 seeds across News/Academic/Code. seed=42.\n- **Key metrics**: News binary F1 0.746, Academic 0.739, Code 0.754. Wikipedia baseline 0.815. Max gap vs wiki: 7.62pp. Conclusion: domain_independent.\n\n#### 3. multi_domain_t07 — PREPARING (superseded by exp_047)\n- Infrastructure-only entry (tmux submission record).\n\n#### 4. mvp-001 — DONE (success)\n- **Spec**: Pythia-2.8B (FP16) generator, Pythia-410M reference. t=0.7, top_p=0.9, 256 tokens. 1000 Wikipedia seeds, depths gen-0 to gen-4. Continuation prompting.\n- **Key metrics**: Macro F1 0.841, binary F1 (gen0 vs gen2+) 0.865. CV macro F1 0.806 (std 0.013). 4609 records from 995 seeds.\n\n#### 5-8. mvp-001-gen-s{0,1,2,3} — PREPARING (s0) / PREPARING+failed (s1,s2,s3)\n- Shard-level generation jobs for mvp-001. Infrastructure records, superseded by the consolidated mvp-001 result.\n\n#### 9. plan-001 — DONE (success)\n- **Spec**: Feature ablation (parts A/B/C) on Pythia-410M reference features. 4609 records.\n- **Key metrics**: Full F1 0.82, surface-only 0.76, reference-only 0.72.\n\n#### 10. plan-001-fix — DONE (success)\n- **Spec**: Ablation fix/verification. Pythia-410M, 4609 records, seed=42.\n- **Key metrics**: Full F1 0.820, reference-only 0.719, surface-only 0.763. Bootstrap CIs non-overlapping. Median perplexity by depth: 13.50, 4.96, 3.00, 2.07, 1.72.\n\n#### 11. plan-001-restore — PREPARING\n- Infrastructure record for re-run.\n\n#### 12. plan-002 — DONE (success)\n- **Spec**: Cross-model generalization. 4 new generators: Pythia-1B, OLMo-2-1B, Qwen3-1.7B, Qwen3-0.6B (+ Pythia-2.8B from MVP). t=0.7, top_p=0.9, 256 tokens, 1000 Wikipedia seeds. Pythia-410M reference.\n- **Key metrics**: 18,423 total records across 4 models.\n\n#### 13. plan-002-eval — DONE (success)\n- **Spec**: Cross-generator evaluation using leave-one-generator-out (LOGO). XGBoost classifier. 23,032 records.\n- **Key metrics**: LOGO avg F1 0.804. Best held-out: Pythia-1B (0.851). Worst: OLMo-2-1B (0.752). Top features: hapax_ratio (0.289), ttr (0.168), entropy_mean (0.160).\n\n#### 14-15. plan-002-olmo2-s{0,1} — DONE (success)\n- OLMo-2-0425-1B generation shards. ~497-498 seeds each, depths 0-4. Total ~4713 records.\n\n#### 16-17. plan-002-pythia1b-s{0,1} — DONE (success)\n- Pythia-1B generation shards. ~497-498 seeds each, depths 0-4. Total ~4555 records.\n\n#### 18-19. plan-002-qwen06b-r2-s{0,1} — DONE (success)\n- Qwen3-0.6B generation (round 2, after fixing model path). ~498 seeds each.\n\n#### 20-21. plan-002-qwen06b-s{0,1} — DONE (failed)\n- Failed first attempts for Qwen3-0.6B (model path issues).\n\n#### 22-23. plan-002-qwen17b-r2-s{0,1} — DONE (success)\n- Qwen3-1.7B generation (round 2). ~498 seeds each, depths 0-4.\n\n#### 24-25. plan-002-qwen17b-retry-s{0,1} — DONE (failed)\n- Failed retry attempts for Qwen3-1.7B.\n\n#### 26-27. plan-002-qwen17b-s{0,1} — DONE (failed)\n- Killed duplicates for Qwen3-1.7B.\n\n#### 28-29. plan-002-qwen3-1_7b-s{0,1} — DONE (failed/killed)\n- Earlier killed attempts for Qwen3-1.7B.\n\n#### 30. plan-003 — DONE (success)\n- **Spec**: Cross-reference-model falsification. OLMo-2-1B + Qwen3-0.6B as alternative reference models. 23,032 records.\n- **Key metrics**: LOGO F1 with Pythia ref: 0.803, OLMo ref: 0.807, Qwen ref: 0.816. All refs show negative entropy drift. Depth signal is NOT a Pythia artifact.\n\n#### 31. plan-003-olmo2ref — DONE (success)\n- Feature extraction with OLMo-2-1B as reference model. 23,032 records.\n\n#### 32. plan-003-qwen06bref — DONE (success)\n- Feature extraction with Qwen3-0.6B as reference model. 23,032 records.\n\n#### 33. plan-004 — DONE (failed)\n- Downstream utility attempt (disk space issue). OLMo-2-0425-1B CLM fine-tuning on depth-stratified data.\n\n#### 34. plan-004-prep — PREPARING (success)\n- Preparation for downstream: 5 data variants (depth0_only: 797, depth01: 3951, all: 12299, size_matched: 3951, binary_filtered: 3951).\n\n#### 35. plan-004-v2 — DONE (negative)\n- **Spec**: Downstream CLM fine-tuning retry. OLMo-2-0425-1B, 5 variants x 3 seeds (42,123,456).\n- **Key metrics**: Ranking by perplexity: all(2.335) < size_matched(2.367) < depth01(2.387) ~ binary_filtered(2.389) << depth0_only(2.681). Seed variance tiny (<0.002). **Conclusion: negative** (more data always better; depth stratification adds no signal beyond data volume).\n\n#### 36. plan-005 — DONE (success)\n- **Spec**: Prompt type comparison. Pythia-2.8B, 1000 seeds, 3 prompt types (continuation/elaboration/inspired_rewriting) x 5 depths = 14,393 texts.\n- **Key metrics**: CV F1: continuation 0.781 > rewriting 0.737 > elaboration 0.730. Depth retention (d4/d0): elaboration 0.986 > rewriting 0.939 > continuation 0.831. LOPTO avg F1: 0.753.\n\n#### 37. plan-005-cont — DONE (success)\n- Continuation chain generation. 4620 records, 995 seeds, depths 0-4.\n\n#### 38. plan-005-elab — DONE (success)\n- Elaboration chain generation. 4946 records, 995 seeds. Depth retention 98.6%.\n\n#### 39. plan-005-rewrite — DONE (success)\n- Inspired rewriting chain generation. 4827 records, 995 seeds. Depth retention 93.9%.\n\n#### 40. plan-008-seed-stratification — DONE (success)\n- **Spec**: Seed complexity independence. 37,058 records, XGBoost 200/6.\n- **Key metrics**: Low/medium/high complexity binary F1: 0.685/0.695/0.695. Max diff: 1.06pp. Conclusion: seed_independent.\n\n#### 41. plan-010-llm-rephrase — DONE (success)\n- **Spec**: LLM-simulated editing robustness. Qwen3-0.6B-Base rephrase + Pythia-410M ref. 5000 records.\n- **Key metrics**: Original binary F1 0.692, rephrased 0.647 (drop -4.5pp). Edit distance ratio 0.507, avg 1.69 sentences replaced.\n\n#### 42. plan-010-robustness — DONE (success)\n- **Spec**: Random word replacement robustness at 5%/10%/20% perturbation. Pythia-410M ref. 5000 records.\n- **Key metrics**: Baseline 0.695, 5% -> 0.650 (-4.6pp), 10% -> 0.614 (-8.1pp), 20% -> 0.591 (-10.4pp).\n\n#### 43. plan-013 — DONE (success)\n- **Spec**: Text length confound analysis. 23,032 records.\n- **Key metrics**: Spearman rho range [-0.066, +0.134] (weak length-depth correlation). Length-matched F1 delta +0.041. Length is NOT a confound.\n\n#### 44. plan-014 — DONE (success)\n- **Spec**: Large-model scaling. Qwen3-8B-Base (8.2B params, 16.1GB VRAM). 996 Wikipedia seeds.\n- **Key metrics**: 4497 records. LOGO 6-gen avg F1 0.789. Qwen3-8B held-out F1 0.683. Per-generator LOGO: Pythia-1B best (0.856), Qwen3-8B worst (0.683).\n\n#### 45. plan-015 — DONE (success)\n- **Spec**: Ordinal baseline comparison. Pythia-410M + Pythia-160M. 23,032 records. Detectors: log-likelihood, FastDetectGPT, LD-Score, Binoculars.\n- **Key metrics**: 7-feature F1 0.798 > Avg-LogProb 0.765 > LD-Score 0.721 > FastDetectGPT 0.627 > Binoculars 0.579. 7-feature advantage +3.3pp over best single detector (significant, p=0).\n\n#### 46. plan-015-v2 — DONE (success)\n- **Spec**: Ordinal baseline with Binoculars bug fix + bootstrap CI.\n- **Key metrics**: Confirms plan-015 results. LD-Score corrected CV F1 0.793.\n\n#### 47. review-exp-a-baseline-ensemble — PREPARING\n- **Spec**: Planned 4-baseline ensemble + unified hyperparameter comparison. Not yet executed.\n\n#### 48. review-exp-b-topic-drift — DONE (success)\n- **Spec**: Topic drift analysis using all-MiniLM-L6-v2 embeddings. 27,529 records.\n- **Key metrics**: Semantic similarity increases with depth transitions (0->1: 0.622, 3->4: 0.859). Entropy/lexical features correlate with depth much more strongly than semantic drift. Depth signal is NOT just topic shift.\n\n#### 49. review-exp-c-overall-ci — DONE (success)\n- **Spec**: Overall LOGO bootstrap CI. XGBoost, 27,529 records.\n- **Key metrics**: Overall LOGO F1 0.788 [0.783, 0.793]. Spearman: hapax_ratio -0.647, ttr -0.630, entropy_mean -0.610.\n\n---\n\n### CROSS-EXPERIMENT AGGREGATION\n\n#### All Unique Generator Models (with parameter counts)\n| Model | Params | Family |\n|---|---|---|\n| EleutherAI/pythia-2.8b | 2.8B | Pythia |\n| EleutherAI/pythia-1b | 1B | Pythia |\n| allenai/OLMo-2-0425-1B | 1B | OLMo |\n| Qwen3-0.6B-Base | 0.6B | Qwen |\n| Qwen3-1.7B-Base | 1.7B | Qwen |\n| Qwen3-8B-Base | 8.2B | Qwen |\n| Mistral-7B-v0.3 | 7B | Mistral |\n\nTotal: **7 generator models** spanning 4 model families, 0.6B to 8.2B parameters.\n\n#### All Reference Models\n| Model | Params | Role |\n|---|---|---|\n| EleutherAI/pythia-410m | 410M | Primary reference (all main experiments) |\n| EleutherAI/pythia-160m | 160M | Used in Binoculars baseline |\n| OLMo-2-0425-1B | 1B | Cross-ref falsification (plan-003) |\n| Qwen3-0.6B-Base | 0.6B | Cross-ref falsification (plan-003) |\n\n#### All Temperature Settings\n- **0.7** (standard, used in most experiments)\n- **1.0** (used in multi-domain-seeds initial run; exp_047 specifically tests t=0.7 to eliminate the t=1.0 confound)\n\n#### All Decoding Strategies\n- **top_p=0.9** (nucleus sampling, only strategy explicitly recorded)\n- Temperature sampling (via the temperature settings above)\n- No beam search, greedy, or top-k experiments recorded\n\n#### All Prompt Types\n- **continuation** (standard prefix continuation)\n- **elaboration** (expand/elaborate on the seed)\n- **inspired_rewriting** (write inspired by the seed, not verbatim)\n\n#### All Seed Text Sources\n- **Wikipedia** (wiki_seed_1000.jsonl, 1000 seeds, primary dataset)\n- **News** domain seeds (200 seeds)\n- **Academic** domain seeds (200 seeds)\n- **Code** domain seeds (200 seeds)\n- (OpenWebText referenced in one command but the actual data used was wiki_seed_1000.jsonl)\n\n#### Maximum Chain Depth Tested\n- **Depth 4** (gen-0 through gen-4, i.e., 5 levels: original human + 4 generations)\n\n#### Instruction-Tuned Models\n- **NONE**. All 7 generator models are base/pretrained models. No chat, instruct, SFT, RLHF, or DPO models were tested.\n\n#### Human Text Baselines\n- **gen-0 / depth-0** in every chain IS the original human seed text (from Wikipedia, News, Academic, or Code sources)\n- **plan-004-v2** includes a `depth0_only` training variant (797 human-only samples) for downstream fine-tuning comparison\n- **plan-010-robustness** and **plan-010-llm-rephrase** test robustness to simulated human editing (random word replacement at 5-20% and LLM sentence rephrasing)\n\n---\n\n### COVERAGE GAPS WORTH NOTING\n\n1. **No instruction-tuned models** tested at all (only base models)\n2. **Only one decoding strategy** (nucleus sampling with top_p=0.9); no beam search, greedy, top-k, or min-p\n3. **Only two temperature values** (0.7 and 1.0)\n4. **Maximum depth is 4** (no experiments go to depth 5+)\n5. **review-exp-a-baseline-ensemble** is still PREPARING (not yet executed)\n6. **8 experiments** remain in PREPARING status (mostly superseded infrastructure records, but review-exp-a is a substantive gap)\n7. **One negative result**: plan-004-v2 downstream fine-tuning showed depth stratification has no benefit beyond data volume"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b5723a95-272e-4ed9-8ddb-7ccda3477995",
+            "isSidechain": true,
+            "agentId": "a8fa49f9541eeeeba",
+            "requestId": "req_011Cb8AMTL9j3FmGgk83VvFk",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "39d314c8-a9d3-46b8-a6b3-a31cd50db28b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "8efbc484-bfff-4e42-950b-e677114371ba",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LwFin7TcQm1czapZbxx6Ay",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3061,
+                "cache_read_input_tokens": 46331,
+                "output_tokens": 4367,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3061
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 4367,
+                    "cache_read_input_tokens": 46331,
+                    "cache_creation_input_tokens": 3061,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3061,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        }
+      ],
+      "message_count": 20
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-you-to-analyze-the-experiment-registry-for-the-gen-depth-fingerprint-pr.md"
+}

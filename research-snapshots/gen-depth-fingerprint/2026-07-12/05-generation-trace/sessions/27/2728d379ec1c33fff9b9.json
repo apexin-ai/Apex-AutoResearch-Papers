@@ -1,0 +1,179 @@
+{
+  "schema_version": "1.0",
+  "id": "2728d379ec1c33fff9b9",
+  "project": "gen-depth-fingerprint--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [系统通知 — worker_done:worker_check_mvp_003_progress_v2_20260514T105350]: Worker worker_check_mvp_003_progress_v2_20260514T",
+  "task_key": "659023cd-7c09-4a07-a257-c6a5f46ae792",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/659023cd-7c09-4a07-a257-c6a5f46ae792.jsonl",
+    "occurrence": 1,
+    "bytes": 597652,
+    "sha256": "02b6077b8aab5b34d91f9ac9a15a6707e6699c54d1d1be1357246756d53af365"
+  },
+  "statistics": {
+    "messages": 247,
+    "user_turns": 12,
+    "tool_calls": 65,
+    "roles": {
+      "record": 59,
+      "user": 12,
+      "assistant": 46,
+      "tool_call": 65,
+      "tool_result": 65
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "2728d379ec1c33fff9b9-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 120,
+      "chunks": [
+        {
+          "path": "2728d379ec1c33fff9b9-part-0001.json",
+          "message_count": 120
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "2728d379ec1c33fff9b9-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 17,
+      "chunks": [
+        {
+          "path": "2728d379ec1c33fff9b9-part-0001.json",
+          "message_count": 17
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "2728d379ec1c33fff9b9-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 19,
+      "chunks": [
+        {
+          "path": "2728d379ec1c33fff9b9-part-0001.json",
+          "message_count": 19
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "2728d379ec1c33fff9b9-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "2728d379ec1c33fff9b9-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 32,
+      "chunks": [
+        {
+          "path": "2728d379ec1c33fff9b9-part-0001.json",
+          "message_count": 11
+        },
+        {
+          "path": "2728d379ec1c33fff9b9-part-0002.json",
+          "message_count": 21
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "2728d379ec1c33fff9b9-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 25,
+      "chunks": [
+        {
+          "path": "2728d379ec1c33fff9b9-part-0002.json",
+          "message_count": 25
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "2728d379ec1c33fff9b9-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "boundary": "recorded_user_message",
+      "message_count": 17,
+      "chunks": [
+        {
+          "path": "2728d379ec1c33fff9b9-part-0002.json",
+          "message_count": 17
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-worker-done-worker-check-mvp-003-progress-v2-20260514t105350-worker-worker-che.md"
+}

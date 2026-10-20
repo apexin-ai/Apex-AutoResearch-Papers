@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "06ffed66f549201931d0",
+  "project": "gen-depth-fingerprint--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [HANDOFF] 你是 Main Agent，这是 Loop #4。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单: **cuda:0, cuda:1, cuda:2, cuda:",
+  "task_key": "fea4a329-3295-4b96-a2e4-111a31a39863",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/fea4a329-3295-4b96-a2e4-111a31a39863.jsonl",
+    "occurrence": 1,
+    "bytes": 597624,
+    "sha256": "55801c728ae25c6c122bc49df279180c1846f2c02a63ae6350004c13a55b6bbd"
+  },
+  "statistics": {
+    "messages": 167,
+    "user_turns": 1,
+    "tool_calls": 50,
+    "roles": {
+      "record": 31,
+      "user": 1,
+      "assistant": 36,
+      "tool_call": 50,
+      "tool_result": 49
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "06ffed66f549201931d0-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 165,
+      "chunks": [
+        {
+          "path": "06ffed66f549201931d0-part-0001.json",
+          "message_count": 153
+        },
+        {
+          "path": "06ffed66f549201931d0-part-0002.json",
+          "message_count": 12
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-handoff-main-agent-loop-4-task-context-1-gpu-cuda-0-cuda-1-cuda-2-cuda.md"
+}

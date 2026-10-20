@@ -1,0 +1,1670 @@
+{
+  "schema_version": "1.0",
+  "id": "3c88fd33d96cb195147d",
+  "project": "gen-depth-fingerprint--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to verify that 8 specific writing changes were actually made to LaTeX files in /home/ubuntu/.agent-ml-research-id",
+  "task_key": "agent-aa3c1c273df9a530c",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-aa3c1c273df9a530c.jsonl",
+    "occurrence": 1,
+    "bytes": 71852,
+    "sha256": "c0e9c86e58b4d66aaedb627346ee56331b5630806e0b911b7fcb154809098eb4"
+  },
+  "statistics": {
+    "messages": 35,
+    "user_turns": 1,
+    "tool_calls": 15,
+    "roles": {
+      "user": 1,
+      "assistant": 4,
+      "tool_call": 15,
+      "tool_result": 15
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T00:11:05.916Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to verify that 8 specific writing changes were actually made to LaTeX files in /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/. Check each one by grepping for key phrases:\n\n1. **method.tex**: \"selected a priori from two complementary theoretical perspectives\" \n2. **method.tex**: \"confidence floor\" (entropy_min rationale)\n3. **method.tex**: \"r=0.97\" or \"effective dim\" (TTR/hapax redundancy)\n4. **discussion.tex**: \"location/shape decomposition\" or \"softmax output distribution's shape\"\n5. **discussion.tex**: \"empirical descriptive framework\" \n6. **discussion.tex**: \"diagnostic rather than prescriptive role\"\n7. **abstract.tex**: \"[.688, .700]\" (CI added to F1=0.694)\n8. **results.tex**: \"QLoRA\" mention\n\nFor each, report whether the phrase exists in the expected file. Also check results.tex for the temperature paragraph containing \"asymmetric and model-dependent\" and \"tracks model family rather than scale\"."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "6666d1a7-0d5f-4720-8b04-aee72982d6d4",
+            "agentId": "aa3c1c273df9a530c",
+            "type": "user",
+            "uuid": "14f0c250-9b5b-4770-a206-0e84f6f42b77",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ee8153a1-2d10-446d-8fa5-c74306b35416",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "typed-enchanting-muffin"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T00:11:08.414Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll verify each of these writing changes by searching for the key phrases in the specified LaTeX files."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "14f0c250-9b5b-4770-a206-0e84f6f42b77",
+            "isSidechain": true,
+            "agentId": "aa3c1c273df9a530c",
+            "requestId": "req_011CbAxXcoosC1cL2GmzMoNN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "14733feb-e20e-4f4e-98f5-19301758c80a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ee8153a1-2d10-446d-8fa5-c74306b35416",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "typed-enchanting-muffin",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016gL5EvGrYqdJVhxkxRZhVs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 38200,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 38200,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T00:11:08.956Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019ngdwMstD8pKCAnwjbvTZy",
+              "name": "Grep",
+              "input": {
+                "pattern": "selected a priori from two complementary theoretical perspectives",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper",
+                "type": "tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "14733feb-e20e-4f4e-98f5-19301758c80a",
+            "isSidechain": true,
+            "agentId": "aa3c1c273df9a530c",
+            "requestId": "req_011CbAxXcoosC1cL2GmzMoNN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e9431bc1-25d2-4471-8dff-30a47c3d9d27",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ee8153a1-2d10-446d-8fa5-c74306b35416",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "typed-enchanting-muffin",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016gL5EvGrYqdJVhxkxRZhVs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 38200,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 38200,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T00:11:08.979Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019ngdwMstD8pKCAnwjbvTZy",
+              "type": "tool_result",
+              "content": "Found 1 file\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e9431bc1-25d2-4471-8dff-30a47c3d9d27",
+            "isSidechain": true,
+            "promptId": "6666d1a7-0d5f-4720-8b04-aee72982d6d4",
+            "agentId": "aa3c1c273df9a530c",
+            "type": "user",
+            "uuid": "d00c3cfb-ba0f-4fe4-a21e-0f1cea1ba412",
+            "sourceToolAssistantUUID": "e9431bc1-25d2-4471-8dff-30a47c3d9d27",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ee8153a1-2d10-446d-8fa5-c74306b35416",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "typed-enchanting-muffin"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T00:11:09.264Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VRgHJj36AQ4AXKWzm1B54i",
+              "name": "Grep",
+              "input": {
+                "pattern": "confidence floor",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper",
+                "type": "tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d00c3cfb-ba0f-4fe4-a21e-0f1cea1ba412",
+            "isSidechain": true,
+            "agentId": "aa3c1c273df9a530c",
+            "requestId": "req_011CbAxXcoosC1cL2GmzMoNN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ad8dee3b-a1d8-4d22-af66-b1f78576cdfc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ee8153a1-2d10-446d-8fa5-c74306b35416",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "typed-enchanting-muffin",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016gL5EvGrYqdJVhxkxRZhVs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 38200,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 38200,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T00:11:09.281Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VRgHJj36AQ4AXKWzm1B54i",
+              "type": "tool_result",
+              "content": "Found 1 file\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ad8dee3b-a1d8-4d22-af66-b1f78576cdfc",
+            "isSidechain": true,
+            "promptId": "6666d1a7-0d5f-4720-8b04-aee72982d6d4",
+            "agentId": "aa3c1c273df9a530c",
+            "type": "user",
+            "uuid": "650dd84c-c60a-4221-94c0-255d943be575",
+            "sourceToolAssistantUUID": "ad8dee3b-a1d8-4d22-af66-b1f78576cdfc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ee8153a1-2d10-446d-8fa5-c74306b35416",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "typed-enchanting-muffin"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T00:11:09.686Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CdxtsJmqAAZ64tKQ4X7GcL",
+              "name": "Grep",
+              "input": {
+                "pattern": "r=0\\.97|effective dim",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper",
+                "type": "tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "650dd84c-c60a-4221-94c0-255d943be575",
+            "isSidechain": true,
+            "agentId": "aa3c1c273df9a530c",
+            "requestId": "req_011CbAxXcoosC1cL2GmzMoNN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7f16d746-1495-45eb-9577-92fc9a76c460",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ee8153a1-2d10-446d-8fa5-c74306b35416",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "typed-enchanting-muffin",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016gL5EvGrYqdJVhxkxRZhVs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 38200,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 38200,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T00:11:09.707Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CdxtsJmqAAZ64tKQ4X7GcL",
+              "type": "tool_result",
+              "content": "Found 2 files\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_feature_correlation.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7f16d746-1495-45eb-9577-92fc9a76c460",
+            "isSidechain": true,
+            "promptId": "6666d1a7-0d5f-4720-8b04-aee72982d6d4",
+            "agentId": "aa3c1c273df9a530c",
+            "type": "user",
+            "uuid": "db67c94b-d14f-41d5-9098-6f97f9227c3d",
+            "sourceToolAssistantUUID": "7f16d746-1495-45eb-9577-92fc9a76c460",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ee8153a1-2d10-446d-8fa5-c74306b35416",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "typed-enchanting-muffin"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T00:11:10.095Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SUk1qJZNAahE3aQMV3hiM5",
+              "name": "Grep",
+              "input": {
+                "pattern": "location/shape decomposition|softmax output distribution's shape",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper",
+                "type": "tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "db67c94b-d14f-41d5-9098-6f97f9227c3d",
+            "isSidechain": true,
+            "agentId": "aa3c1c273df9a530c",
+            "requestId": "req_011CbAxXcoosC1cL2GmzMoNN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "cb250bf9-60bb-46a4-9a6c-5b997cbdd238",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ee8153a1-2d10-446d-8fa5-c74306b35416",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "typed-enchanting-muffin",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016gL5EvGrYqdJVhxkxRZhVs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 38200,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 38200,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T00:11:10.148Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SUk1qJZNAahE3aQMV3hiM5",
+              "type": "tool_result",
+              "content": "Found 2 files\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cb250bf9-60bb-46a4-9a6c-5b997cbdd238",
+            "isSidechain": true,
+            "promptId": "6666d1a7-0d5f-4720-8b04-aee72982d6d4",
+            "agentId": "aa3c1c273df9a530c",
+            "type": "user",
+            "uuid": "8cbc2eda-2ca9-49c6-8c0d-ca7a8f79bc59",
+            "sourceToolAssistantUUID": "cb250bf9-60bb-46a4-9a6c-5b997cbdd238",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ee8153a1-2d10-446d-8fa5-c74306b35416",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "typed-enchanting-muffin"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T00:11:10.323Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MUfj45qKjRTL3oJqhsGrDD",
+              "name": "Grep",
+              "input": {
+                "pattern": "empirical descriptive framework",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper",
+                "type": "tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8cbc2eda-2ca9-49c6-8c0d-ca7a8f79bc59",
+            "isSidechain": true,
+            "agentId": "aa3c1c273df9a530c",
+            "requestId": "req_011CbAxXcoosC1cL2GmzMoNN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "cd564da9-e064-406e-bca2-2b4056d219a8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ee8153a1-2d10-446d-8fa5-c74306b35416",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "typed-enchanting-muffin",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016gL5EvGrYqdJVhxkxRZhVs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 38200,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 38200,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T00:11:10.339Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MUfj45qKjRTL3oJqhsGrDD",
+              "type": "tool_result",
+              "content": "Found 1 file\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cd564da9-e064-406e-bca2-2b4056d219a8",
+            "isSidechain": true,
+            "promptId": "6666d1a7-0d5f-4720-8b04-aee72982d6d4",
+            "agentId": "aa3c1c273df9a530c",
+            "type": "user",
+            "uuid": "d687a939-5bcd-4e6a-8d5b-53faca016070",
+            "sourceToolAssistantUUID": "cd564da9-e064-406e-bca2-2b4056d219a8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ee8153a1-2d10-446d-8fa5-c74306b35416",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "typed-enchanting-muffin"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T00:11:10.750Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Hobad7TRnu6CQcXMiRGqDJ",
+              "name": "Grep",
+              "input": {
+                "pattern": "diagnostic rather than prescriptive role",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper",
+                "type": "tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d687a939-5bcd-4e6a-8d5b-53faca016070",
+            "isSidechain": true,
+            "agentId": "aa3c1c273df9a530c",
+            "requestId": "req_011CbAxXcoosC1cL2GmzMoNN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8b0e06f6-af25-419d-a38e-563125f28398",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ee8153a1-2d10-446d-8fa5-c74306b35416",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "typed-enchanting-muffin",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016gL5EvGrYqdJVhxkxRZhVs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 38200,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 38200,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T00:11:10.767Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Hobad7TRnu6CQcXMiRGqDJ",
+              "type": "tool_result",
+              "content": "Found 1 file\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8b0e06f6-af25-419d-a38e-563125f28398",
+            "isSidechain": true,
+            "promptId": "6666d1a7-0d5f-4720-8b04-aee72982d6d4",
+            "agentId": "aa3c1c273df9a530c",
+            "type": "user",
+            "uuid": "b0c1c644-efe0-478f-9221-6b32983f94e4",
+            "sourceToolAssistantUUID": "8b0e06f6-af25-419d-a38e-563125f28398",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ee8153a1-2d10-446d-8fa5-c74306b35416",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "typed-enchanting-muffin"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T00:11:11.169Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015CbxX5Fp3Y9Koic675hdfA",
+              "name": "Grep",
+              "input": {
+                "pattern": "\\[\\.688, \\.700\\]",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper",
+                "type": "tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b0c1c644-efe0-478f-9221-6b32983f94e4",
+            "isSidechain": true,
+            "agentId": "aa3c1c273df9a530c",
+            "requestId": "req_011CbAxXcoosC1cL2GmzMoNN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7054c7b7-c8d4-47c8-9867-6755aa341a70",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ee8153a1-2d10-446d-8fa5-c74306b35416",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "typed-enchanting-muffin",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016gL5EvGrYqdJVhxkxRZhVs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 38200,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 38200,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T00:11:11.186Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015CbxX5Fp3Y9Koic675hdfA",
+              "type": "tool_result",
+              "content": "Found 2 files\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/abstract.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7054c7b7-c8d4-47c8-9867-6755aa341a70",
+            "isSidechain": true,
+            "promptId": "6666d1a7-0d5f-4720-8b04-aee72982d6d4",
+            "agentId": "aa3c1c273df9a530c",
+            "type": "user",
+            "uuid": "9af9b4e0-4352-422f-b071-1e8eed6c9542",
+            "sourceToolAssistantUUID": "7054c7b7-c8d4-47c8-9867-6755aa341a70",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ee8153a1-2d10-446d-8fa5-c74306b35416",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "typed-enchanting-muffin"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T00:11:11.402Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01J78dzazrWMs6ErqZP5CbrZ",
+              "name": "Grep",
+              "input": {
+                "pattern": "QLoRA",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper",
+                "type": "tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9af9b4e0-4352-422f-b071-1e8eed6c9542",
+            "isSidechain": true,
+            "agentId": "aa3c1c273df9a530c",
+            "requestId": "req_011CbAxXcoosC1cL2GmzMoNN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "bfd5458e-0783-4172-a85b-7e7ed2f18210",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ee8153a1-2d10-446d-8fa5-c74306b35416",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "typed-enchanting-muffin",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016gL5EvGrYqdJVhxkxRZhVs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 38200,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 38200,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T00:11:11.420Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01J78dzazrWMs6ErqZP5CbrZ",
+              "type": "tool_result",
+              "content": "Found 4 files\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/references.bib\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_qlora.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bfd5458e-0783-4172-a85b-7e7ed2f18210",
+            "isSidechain": true,
+            "promptId": "6666d1a7-0d5f-4720-8b04-aee72982d6d4",
+            "agentId": "aa3c1c273df9a530c",
+            "type": "user",
+            "uuid": "b99db831-9cbc-4842-a471-06c541378c7b",
+            "sourceToolAssistantUUID": "bfd5458e-0783-4172-a85b-7e7ed2f18210",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ee8153a1-2d10-446d-8fa5-c74306b35416",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "typed-enchanting-muffin"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T00:11:12.108Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QAUW8UgRiDAtv4zCn8v7Ka",
+              "name": "Grep",
+              "input": {
+                "pattern": "asymmetric and model-dependent.*tracks model family rather than scale",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+                "type": "tex",
+                "multiline": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b99db831-9cbc-4842-a471-06c541378c7b",
+            "isSidechain": true,
+            "agentId": "aa3c1c273df9a530c",
+            "requestId": "req_011CbAxXcoosC1cL2GmzMoNN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9ff1f740-5edf-45d5-8d49-10f35867c8fc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ee8153a1-2d10-446d-8fa5-c74306b35416",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "typed-enchanting-muffin",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016gL5EvGrYqdJVhxkxRZhVs",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 38200,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 1041,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 38200
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 1041,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 38200,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 38200,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T00:11:12.126Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QAUW8UgRiDAtv4zCn8v7Ka",
+              "type": "tool_result",
+              "content": "Found 1 file\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9ff1f740-5edf-45d5-8d49-10f35867c8fc",
+            "isSidechain": true,
+            "promptId": "6666d1a7-0d5f-4720-8b04-aee72982d6d4",
+            "agentId": "aa3c1c273df9a530c",
+            "type": "user",
+            "uuid": "01444a86-fcac-4cb1-83e7-7fa737a27ce1",
+            "sourceToolAssistantUUID": "9ff1f740-5edf-45d5-8d49-10f35867c8fc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ee8153a1-2d10-446d-8fa5-c74306b35416",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "typed-enchanting-muffin"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T00:11:14.258Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good! The searches found matches. Now let me get more detailed context for each match to confirm they're in the correct files and show the actual content:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "01444a86-fcac-4cb1-83e7-7fa737a27ce1",
+            "isSidechain": true,
+            "agentId": "aa3c1c273df9a530c",
+            "requestId": "req_011CbAxY4mkuc5cUX1GUicRf",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ea5900cb-b662-411e-9196-4ad1462f4d32",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ee8153a1-2d10-446d-8fa5-c74306b35416",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "typed-enchanting-muffin",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0152kWkj29bTAPLzAK6rbBGH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2848,
+                "cache_read_input_tokens": 38200,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2848,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T00:11:14.694Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017YLdTNDEQCmAXKP7wuAmgE",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex",
+                "limit": 5000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ea5900cb-b662-411e-9196-4ad1462f4d32",
+            "isSidechain": true,
+            "agentId": "aa3c1c273df9a530c",
+            "requestId": "req_011CbAxY4mkuc5cUX1GUicRf",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1a577d1a-ce8e-4f51-a3b0-f4f34b1a5c99",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ee8153a1-2d10-446d-8fa5-c74306b35416",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "typed-enchanting-muffin",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0152kWkj29bTAPLzAK6rbBGH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2848,
+                "cache_read_input_tokens": 38200,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2848,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T00:11:14.710Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017YLdTNDEQCmAXKP7wuAmgE",
+              "type": "tool_result",
+              "content": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\t\\subsection{Task Formulation}\n5\t\\label{sec:task}\n6\t\n7\tGiven a text $x$, the goal is to predict its \\emph{generation depth} $d \\in \\{0, 1, 2{+}\\}$, where $d{=}0$ denotes human-written text, $d{=}1$ denotes first-generation LLM output conditioned on human text, and $d{=}2{+}$ denotes text produced by recursively conditioning an LLM on its own prior output at least twice.\n8\tFormally, let $\\mathcal{C}_0$ be a reference corpus of human-written text.\n9\tA generation chain of depth $k$ is defined recursively: $x^{(0)} \\sim \\mathcal{C}_0$, and $x^{(k)} = G(x^{(k-1)})$ for $k \\geq 1$, where $G$ denotes stochastic LLM generation conditioned on its input.\n10\tWe frame depth estimation as an ordinal classification task over three classes rather than binary real-vs-synthetic detection, enabling finer-grained provenance characterization.\n11\tDepths beyond 2 are merged into a single $2{+}$ class, consistent with monotonic feature convergence that compresses inter-class margins beyond depth 2 (\\S\\ref{sec:results-differential}).\n12\t\n13\t\\subsection{Generation Chain Construction}\n14\t\\label{sec:generation}\n15\t\n16\tWe construct generation chains using eight generators spanning five model families: \\textbf{Pythia} (2.8B, 1B) \\cite{pythia}, \\textbf{OLMo} (OLMo-2-1B) \\cite{olmo}, \\textbf{Qwen} (Qwen3-1.7B, Qwen3-0.6B, Qwen3-8B-Base) \\cite{qwen3}, \\textbf{Llama} (Llama-3.2-3B) \\cite{llama3}, and \\textbf{Mistral} (Mistral-7B-v0.3) \\cite{mistral7b}.\n17\tThis selection covers parameter scales from 0.6B to 8B and diverse pretraining corpora, enabling evaluation of cross-generator and cross-scale generalization.\n18\t\n19\tFor each generator, we sample approximately 1{,}000 seed passages from English Wikipedia as $\\mathcal{C}_0$.\n20\tThe same pool of seed passages serves as gen-0 for all generators.\n21\tWe use shared seeds across generators so that cross-generator comparisons control for input content and isolate the effect of the generation model from source text variation.\n22\tIn LOGO evaluation, gen-0 samples from the held-out generator's chains also appear (with the same text) in the training generators' chains, creating a potential train--test overlap for the gen-0 class.\n23\tWe address this with a supplementary binary evaluation excluding gen-0 entirely (\\S\\ref{sec:results-baselines}).\n24\tEach seed is iteratively fed through the generator to produce a chain of depth 4 (i.e., gen-0 through gen-4), using the prompt ``\\texttt{Continue the following text: \\{text\\}}''.\n25\tAll generation uses temperature $\\tau{=}0.7$, nucleus sampling with $p{=}0.9$, and maximum length of 256 new tokens.\n26\tThe theoretical yield is $8 \\times {\\sim}1{,}000 \\times 5 = 39{,}815$ texts; after removing 2{,}746 chain breaks (empty or degenerate outputs at intermediate depths that prevented deeper generation) and 11 passages too short for feature extraction, 37{,}058 texts remain (Appendix~\\ref{app:dataset-stats}).\n27\tFor classification, depths 2--4 are collapsed into the $2{+}$ class.\n28\t\n29\t\\subsection{Feature Extraction}\n30\t\\label{sec:features}\n31\t\n32\tThe seven features are motivated by two complementary views of distributional drift.\n33\tReference-model features capture how the text's token-level surprise distribution shifts relative to a fixed model; surface features capture how lexical diversity contracts under recursive generation.\n34\tTogether, they span both the generative mechanism (what the model produces) and the surface manifestation (how the vocabulary changes).\n35\tWe use interpretable distributional statistics rather than learned representations so that the DDR tri-partition (our primary contribution) remains transparent; neural features would yield a black-box classifier.\n36\tThis two-pronged design is validated through leave-one-feature-out analysis (Appendix~\\ref{app:lofo}) and cross-group ablation (\\S\\ref{sec:results-differential}); both analyses confirm that the two feature groups contribute to depth discrimination.\n37\t\n38\tWe extract seven distributional features per text, organized into two groups based on what they measure rather than how they are computed.\n39\t\n40\t\\paragraph{Reference-model features.}\n41\tA held-out reference model (Pythia-410M, chosen to be smaller than all generators) computes per-token negative log-likelihood (NLL) for each text.\n42\tWe use ``entropy'' as shorthand for token-level NLL throughout, following convention in prior detection work; these are point-wise NLL values, not Shannon entropy of the full distribution.\n43\tAlthough Pythia-410M shares the GPT-NeoX architecture with two of the eight generators, cross-family reference model experiments (\\S\\ref{sec:results-differential}) confirm that depth features are not reference-specific (LOGO F1 varies by $\\leq$0.013 across Pythia, OLMo, and Qwen references).\n44\tFrom the resulting NLL sequence, we extract five statistics:\n45\t\\begin{itemize}[nosep,leftmargin=*]\n46\t    \\item \\textbf{entropy\\_mean}: mean token-level NLL, which captures the average predictability of the text under the reference model;\n47\t    \\item \\textbf{entropy\\_std}: standard deviation of token-level NLL, which measures the spread of per-token surprise;\n48\t    \\item \\textbf{entropy\\_max}: maximum token-level NLL, which captures the most surprising token;\n49\t    \\item \\textbf{entropy\\_min}: minimum token-level NLL, which captures the most predictable token. As generation depth increases, the floor of token-level surprise drops; this reflects the model's increasing confidence on its own outputs.\n50\t    Retained because removing it does not improve performance (LOFO $\\Delta$F1\\,=\\,+0.01\\,pp, within bootstrap noise) and the minimum token-level NLL provides a natural distributional anchor for the reference model's confidence floor;\n51\t    \\item \\textbf{tail\\_decay}: slope of the vocabulary-level averaged log-probability distribution in the mid-rank region (ranks 100--1000).\n52\t    For each text, we compute the mean log-probability of each vocabulary token across all positions under the reference model, sort tokens in descending order of mean log-probability, and fit a linear regression to ranks 100--1000.\n53\t    The slope captures how steeply the reference model's probability mass decays beyond high-probability tokens and characterizes the shape of the distribution tail.\n54\t    We select ranks 100--1000 because high-frequency tokens (ranks $<$ 100) exhibit minimal discriminative variance across depths, while ranks beyond 1000 are sparsely populated and noisy.\n55\t\\end{itemize}\n56\t\n57\t\\paragraph{Surface features.}\n58\tTwo features capture lexical diversity without requiring a reference model:\n59\t\\begin{itemize}[nosep,leftmargin=*]\n60\t    \\item \\textbf{TTR}: type-token ratio (number of unique word types divided by total tokens);\n61\t    \\item \\textbf{hapax\\_ratio}: proportion of words appearing exactly once (\\emph{hapax legomena}).\n62\t\\end{itemize}\n63\t\n64\t\\paragraph{Feature complementarity.}\n65\tThe seven features were selected a priori from two complementary theoretical perspectives (reference-model NLL distribution and surface lexical diversity); no larger candidate set was explored.\n66\tThe grouping reflects an empirical pattern we term \\emph{differential depth response} (DDR), a three-way partition: \\emph{drifting} features (entropy\\_mean, TTR, hapax\\_ratio) shift monotonically with depth ($|\\rho| = 0.60$--$0.64$, $d > 0.75$); entropy\\_std is the sole \\emph{intermediate} feature, with a substantial level shift ($d{=}0.55$) but low monotonicity ($|\\rho| = 0.16$); and \\emph{near-stationary} features (entropy\\_max, tail\\_decay, entropy\\_min) show negligible depth effects ($|\\rho| < 0.10$, $d < 0.10$; entropy\\_min's pooled $|\\rho| = 0.40$ reflects change at the gen-0/gen-1 boundary only, with $d{=}0.03$ for gen-1 vs.\\ gen-2+).\n67\tThis tri-partition, consistent with recursive generation shifting the NLL location while shape remains stable (\\S\\ref{sec:results-differential}), motivates combining all three feature groups (pairwise correlations in Appendix~\\ref{sec:appendix-feature-correlation}).\n68\tAs shown in \\S\\ref{sec:results}, the full 7-feature set significantly outperforms either group alone.\n69\tTTR and hapax ratio are strongly correlated ($r = 0.97$), reducing effective feature dimensionality to approximately five. Both are retained because LOFO confirms marginal positive contribution from each, and the DDR tri-partition is defined by depth-sensitivity properties ($\\rho$, $d$), not by feature independence.\n70\t\n71\t\\subsection{Evaluation Protocol}\n72\t\\label{sec:evaluation}\n73\t\n74\t\\paragraph{Cross-validation.}\n75\tOur experiments use three overlapping generator subsets reflecting chronological expansion: the original 5-generator set (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-1.7B/0.6B) for cross-model chains, a 6-generator set (adding Qwen3-8B) for appendix analyses, and the full 8-generator set (adding Llama-3.2-3B and Mistral-7B-v0.3) for single-generator LOGO. Each table notes its subset.\n76\tTo evaluate generalization to unseen generators, we use \\textbf{Leave-One-Generator-Out (LOGO)} cross-validation over all eight generators.\n77\tLOGO holds out individual generators but does not isolate family effects (e.g., when Pythia-1B is held out, Pythia-2.8B remains in training).\n78\t\\textbf{Leave-One-Family-Out (LOFO)} addresses this by holding out entire model families, confirming cross-family generalization (average binary F1\\,=\\,0.686; \\S\\ref{sec:results-classification}).\n79\t\n80\t\\paragraph{Classifier.}\n81\tWe use XGBoost \\cite{xgboost} throughout ($n\\_\\text{estimators}{=}200$, $\\max\\_\\text{depth}{=}6$, learning rate $0.1$; standard defaults), with identical hyperparameters across all methods in Table~\\ref{tab:baselines}.\n82\tLOGO F1 is stable across random seeds (std\\,$<$\\,0.001 over 5 seeds).\n83\tAlternative classifiers and ordinal-specific methods (CORAL \\cite{coral_ordinal}, CORN \\cite{corn_ordinal}, Frank-Hall \\cite{frank_hall_ordinal}) yield comparable performance (Appendix~\\ref{app:classifier}); discriminative power therefore resides in the features, not the classifier.\n84\t\n85\t\\paragraph{Metrics and statistical testing.}\n86\tThe primary metric is \\textbf{macro-averaged F1} over the three depth classes.\n87\tWe report 95\\% confidence intervals via percentile bootstrap ($n{=}1{,}000$), McNemar tests for pairwise comparisons, and paired bootstrap for baseline comparisons.\n88\tAll $p$-values are two-sided; Bonferroni correction is applied within each family of simultaneous tests: the 21 distributional comparisons (7 features $\\times$ 3 depth-group pairs, \\S\\ref{sec:results-differential}) and the 4 pairwise baseline comparisons (\\S\\ref{sec:results-baselines}).\n89\tFeature--depth correlations (\\S\\ref{sec:results-differential}) use class-balanced subsamples to control for depth-class imbalance.\n90\t\n91\t\\paragraph{Baselines.}\n92\tWe compare the 7-feature ensemble against four single-score detection methods repurposed as depth predictors: Avg-LogProb, FastDetectGPT \\cite{fast_detectgpt}, Binoculars \\cite{binoculars}, and LD-Score \\cite{ld_score}.\n93\tEach baseline score is used as a univariate feature in the same XGBoost framework under LOGO cross-validation to ensure a controlled comparison.\n94\t\n95\t\\paragraph{Length confound control.}\n96\tSince TTR and hapax\\_ratio are mechanically length-dependent, we verify depth signal is not a length artifact via length-matched subsampling that equalizes length distributions across depth classes (\\S\\ref{sec:results-classification}; Appendix~\\ref{app:length}).\n97\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1a577d1a-ce8e-4f51-a3b0-f4f34b1a5c99",
+            "isSidechain": true,
+            "promptId": "6666d1a7-0d5f-4720-8b04-aee72982d6d4",
+            "agentId": "aa3c1c273df9a530c",
+            "type": "user",
+            "uuid": "0ac1fa43-846d-41ec-b992-a83219c60489",
+            "sourceToolAssistantUUID": "1a577d1a-ce8e-4f51-a3b0-f4f34b1a5c99",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ee8153a1-2d10-446d-8fa5-c74306b35416",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "typed-enchanting-muffin"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T00:11:15.108Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019s63AKC168D9G3rmrkkGZr",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex",
+                "limit": 5000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0ac1fa43-846d-41ec-b992-a83219c60489",
+            "isSidechain": true,
+            "agentId": "aa3c1c273df9a530c",
+            "requestId": "req_011CbAxY4mkuc5cUX1GUicRf",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9a26419c-35dd-4380-8506-84c4e1de6a6e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ee8153a1-2d10-446d-8fa5-c74306b35416",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "typed-enchanting-muffin",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0152kWkj29bTAPLzAK6rbBGH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2848,
+                "cache_read_input_tokens": 38200,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2848,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T00:11:15.114Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019s63AKC168D9G3rmrkkGZr",
+              "type": "tool_result",
+              "content": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\tThe DDR tri-partition (3 drifting / 1 intermediate / 3 near-stationary) reflects a location/shape decomposition: under fixed temperature $\\tau$ and nucleus $p$, the softmax output distribution's shape (variance, tail behavior) is constrained by the decoding configuration, while iterative conditioning shifts the input distribution's location as text becomes increasingly predictable to the reference model.\n5\tDDR is an empirical descriptive framework capturing this dichotomy, not a claimed universal law of recursive generation.\n6\tDDR as characterized here is a parameter-dependent phenomenon (modulated by temperature and prompt type), not an intrinsic property of recursive generation independent of decoding conditions.\n7\tTemperature and prompt-type ablations (\\S\\ref{sec:results-differential}) support this as a tendency rather than a guarantee: all four tested generators degrade at $t{=}0.9$ ($-9.3$ to $-26.0$\\,pp), and the signal varies across prompt types.\n8\t\n9\tInstruction tuning substantially weakens the signal across all three tested families (OLMo, Qwen, Llama).\n10\tWithin-model 3-class F1 drops 3.7--19.9\\,pp (OLMo: 0.575 vs.\\ 0.754; Qwen: 0.732 vs.\\ 0.769; Llama: 0.544 vs.\\ 0.742), while binary F1 changes remain small ($\\Delta \\leq 3.2$\\,pp), indicating that instruction tuning primarily disrupts the gen-0/gen-1 boundary.\n11\tUnder cross-generator evaluation, the degradation is larger (OLMo-Instruct LOGO F1\\,=\\,0.338 vs.\\ 0.763 base).\n12\tEntropy-mean $\\rho$ reverses sign consistently ($+0.48$ for OLMo and Qwen, $+0.23$ for Llama; all base models ${\\approx}{-}0.6$), and 6 of 7 features reverse direction for OLMo and Qwen, 3 of 7 for Llama, consistent with instruction tuning shifting the generation attractor rather than destroying the iterative dynamics.\n13\tThis restricts current applicability to base models; at the document level, gen-1 per-class F1\\,=\\,0.63 suffices for corpus-level flagging but not automated filtering (Appendix~\\ref{app:error-analysis}).\n14\tCross-temperature transfer degrades substantially at $t{=}1.0$ (Appendix~\\ref{app:cross-temp}).\n15\tDepth composition does not determine training utility at fixed sample count (Appendix~\\ref{app:downstream}), consistent with depth profiling serving a diagnostic rather than prescriptive role: the practical value lies in corpus-level depth auditing rather than sample-level filtering.\n16\t\n17\tThree classes represent the practical ceiling (5-class F1 ${\\approx}$0.50; Appendix~\\ref{app:finer-depth}), with the gen-1/gen-2+ boundary as the bottleneck.\n18\tDDR is distinct from model collapse \\cite{curse_of_recursion,strong_model_collapse}: inference-chain drift is fully reversible under fixed parameters and leaves distributional shape near-stationary ($d < 0.10$; variance ratios 0.98--1.12).\n19\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9a26419c-35dd-4380-8506-84c4e1de6a6e",
+            "isSidechain": true,
+            "promptId": "6666d1a7-0d5f-4720-8b04-aee72982d6d4",
+            "agentId": "aa3c1c273df9a530c",
+            "type": "user",
+            "uuid": "e9f186c0-4f1a-46ef-b0af-89693f09a457",
+            "sourceToolAssistantUUID": "9a26419c-35dd-4380-8506-84c4e1de6a6e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ee8153a1-2d10-446d-8fa5-c74306b35416",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "typed-enchanting-muffin"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T00:11:15.327Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NvFHYe7CwhprHMLUCJx1xu",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/abstract.tex",
+                "limit": 2000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e9f186c0-4f1a-46ef-b0af-89693f09a457",
+            "isSidechain": true,
+            "agentId": "aa3c1c273df9a530c",
+            "requestId": "req_011CbAxY4mkuc5cUX1GUicRf",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f3bf4a2f-c3be-4fc6-8650-8fa3bf1ac9a9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ee8153a1-2d10-446d-8fa5-c74306b35416",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "typed-enchanting-muffin",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0152kWkj29bTAPLzAK6rbBGH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2848,
+                "cache_read_input_tokens": 38200,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2848,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T00:11:15.332Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NvFHYe7CwhprHMLUCJx1xu",
+              "type": "tool_result",
+              "content": "1\t% Abstract — Depth Profiling of Recursive LLM Generation Chains\n2\t\\begin{abstract}\n3\tLLM-generated text increasingly re-enters the web and seeds subsequent generation, and the resulting recursive chains progressively diverge from human-written text.\n4\tWe ask whether this drift is structured enough to classify how many generation steps a text has undergone, framing this as \\emph{generation depth classification} (gen-0\\,/\\,gen-1\\,/\\,gen-2+ rather than binary real-vs-synthetic).\n5\tStudying eight base (pretrained) models from five families (0.6B--8B parameters), we identify a \\emph{differential depth response} (DDR): features partition into drifting (Cohen's $d > 0.75$), intermediate, and near-stationary ($d < 0.10$) groups under standard decoding ($t \\leq 0.7$), consistent with recursive generation shifting the NLL location while distributional shape remains stable.\n6\tA 7-feature ensemble achieves leak-free binary F1\\,=\\,0.694 (95\\% CI [.688, .700]) under leave-one-generator-out evaluation, generalizing across model families.\n7\tThe depth signal degrades substantially under instruction tuning, which restricts current applicability to base models.\n8\t\\end{abstract}\n9\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f3bf4a2f-c3be-4fc6-8650-8fa3bf1ac9a9",
+            "isSidechain": true,
+            "promptId": "6666d1a7-0d5f-4720-8b04-aee72982d6d4",
+            "agentId": "aa3c1c273df9a530c",
+            "type": "user",
+            "uuid": "be051a6d-d31a-4b90-bda9-0b6b08d519dd",
+            "sourceToolAssistantUUID": "f3bf4a2f-c3be-4fc6-8650-8fa3bf1ac9a9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ee8153a1-2d10-446d-8fa5-c74306b35416",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "typed-enchanting-muffin"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T00:11:15.579Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GRj4BhJcfcyEjkjGgMFrqb",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+                "limit": 5000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "be051a6d-d31a-4b90-bda9-0b6b08d519dd",
+            "isSidechain": true,
+            "agentId": "aa3c1c273df9a530c",
+            "requestId": "req_011CbAxY4mkuc5cUX1GUicRf",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ff6c69d1-6e1a-40d5-91c1-2851e7bd69e6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ee8153a1-2d10-446d-8fa5-c74306b35416",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "typed-enchanting-muffin",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0152kWkj29bTAPLzAK6rbBGH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2848,
+                "cache_read_input_tokens": 38200,
+                "output_tokens": 413,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2848
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 413,
+                    "cache_read_input_tokens": 38200,
+                    "cache_creation_input_tokens": 2848,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2848,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T00:11:15.584Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GRj4BhJcfcyEjkjGgMFrqb",
+              "type": "tool_result",
+              "content": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\t\\subsection{Depth Classification Performance}\n5\t\\label{sec:results-classification}\n6\t\n7\tThe 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.762 (95\\% CI [0.758, 0.766]; $N$\\,=\\,37{,}058) across eight generators from five families (Table~\\ref{tab:logo-results}).\n8\tBecause gen-0 seeds are shared across generators (\\S\\ref{sec:generation}), gen-0 classification is near-perfect (per-class F1\\,$\\approx$\\,0.94) and the 3-class metric is inflated by this overlap.\n9\tWe therefore adopt leak-free binary F1 (gen-1 vs.\\ gen-2+)\\,=\\,0.694, CI [0.688, 0.700], as the primary metric throughout; it excludes gen-0 entirely and is unaffected by seed sharing.\n10\tPer-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B), with the primary difficulty being gen-1 vs.\\ gen-2+ discrimination (Appendix~\\ref{app:confusion}).\n11\t\n12\t\\paragraph{Cross-model generalization.}\n13\tCross-model chains (randomly selected generator per step) yield 3-class F1\\,=\\,0.809 and binary F1\\,=\\,0.764 under 5-fold CV.\\footnote{Cross-model chains use the original five-generator subset (Pythia, OLMo, Qwen); Llama and Mistral were added later for single-generator evaluation.}\n14\tThis protocol differs from LOGO (all generators appear in training), so the difference from single-generator LOGO (binary 0.694) reflects both protocol and generator-subset effects; the 5-generator LOGO average is 0.734 for reference.\n15\tUnder class balancing, macro F1 reaches 0.831 (per-class breakdown in Appendix~\\ref{app:cross-model-detail}).\n16\t\n17\tLeave-one-family-out (LOFO) evaluation yields average binary F1\\,=\\,0.686, which confirms transfer across architectural families.\n18\tA scale effect emerges: Pythia generators achieve the highest binary F1 (0.718--0.724), while larger models show degradation (Mistral-7B: 0.633). This may partly reflect same-family affinity with the Pythia-410M reference model rather than scale alone, though cross-reference experiments show the effect is small (LOGO F1 spread $\\leq$0.013; \\S\\ref{sec:results-differential}).\n19\tPreliminary cross-domain evaluation within formal English text (News, Academic, Code) suggests the signal persists with variation (Appendix~\\ref{app:domain}).\n20\tAn end-to-end QLoRA classifier (6-generator subset) achieves 3-class F1\\,=\\,0.905 ($+$11.6\\,pp over the feature ensemble; Appendix~\\ref{app:qlora}), confirming that richer representations capture additional depth signal beyond the 7-feature set.\n21\t\n22\t\\paragraph{Length confound control.}\n23\tLength-matched subsampling yields binary F1\\,=\\,0.724 (vs.\\ 0.770 unmatched); a random-subsample control confirms the drop reflects deconfounding, not sample-size reduction (Appendix~\\ref{app:length}).\n24\t\n25\t\\paragraph{Seed-sharing control.}\n26\tSeed-level demeaning yields binary F1\\,=\\,0.701, indistinguishable from the undemeaned baseline (0.694).\n27\tAn independent-seed experiment with disjoint seed pools yields F1\\,=\\,0.680 (Pythia${\\rightarrow}$OLMo: 0.695, CI [.673, .717]; OLMo${\\rightarrow}$Pythia: 0.666, CI [.643, .689]; Appendix~\\ref{app:seed-control}). Both controls confirm the classifier captures generative degradation, not seed-specific topic content.\n28\t\n29\t\\begin{table}[t]\n30\t\\centering\n31\t\\footnotesize\n32\t\\resizebox{\\columnwidth}{!}{%\n33\t\\begin{tabular}{llcccc}\n34\t\\toprule\n35\t\\textbf{Model} & \\textbf{Family} & \\textbf{Params} & \\textbf{3-cl F1}$^{\\dagger}$ & \\textbf{Bin F1} & \\textbf{95\\% CI} \\\\\n36\t\\midrule\n37\tPythia-2.8B     & Pythia  & 2.8B & 0.798 & \\textbf{0.724} & [.707, .742] \\\\\n38\tPythia-1B       & Pythia  & 1.0B & \\textbf{0.806} & 0.718 & [.700, .735] \\\\\n39\tQwen3-1.7B     & Qwen    & 1.7B & 0.772 & 0.709 & [.693, .726] \\\\\n40\tLlama-3.2-3B   & Llama   & 3.2B & 0.775 & 0.697 & [.680, .713] \\\\\n41\tOLMo-2-1B      & OLMo    & 1.5B & 0.781 & 0.695 & [.679, .711] \\\\\n42\tQwen3-8B       & Qwen    & 8.2B & 0.714 & 0.692 & [.674, .708] \\\\\n43\tQwen3-0.6B     & Qwen    & 0.6B & 0.780 & 0.691 & [.673, .709] \\\\\n44\tMistral-7B     & Mistral & 7.0B & 0.682 & 0.633 & [.617, .648] \\\\\n45\t\\midrule\n46\t\\multicolumn{3}{l}{\\textbf{Average (8-gen LOGO)}} & \\textbf{0.762} & \\textbf{0.694} & [.688, .700] \\\\\n47\t\\bottomrule\n48\t\\end{tabular}}\n49\t\\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric. $^{\\dagger}$3-class F1 may carry upward bias from gen-0 seed sharing across generators; binary F1 is leak-free. Cross-model chains (Table~\\ref{tab:cross-ref}) use sample-level CV without this issue.}\n50\t\\label{tab:logo-results}\n51\t\\end{table}\n52\t\n53\t\\subsection{Differential Depth Response}\n54\t\\label{sec:results-differential}\n55\t\n56\tFeatures exhibit \\emph{differential depth response} (DDR) with a three-way partition: \\emph{drifting} features (entropy mean, TTR, hapax ratio) shift monotonically with depth; entropy std occupies a sole \\emph{intermediate} position (large level shift, low monotonicity); and \\emph{near-stationary} features (entropy max, tail decay, entropy min) show negligible depth effects (Cohen's $d < 0.10$ vs.\\ $d > 0.75$ for drifting features; CV shift $<$3\\% vs.\\ $>$15\\%).\n57\t\n58\t\\begin{figure}[t]\n59\t\\centering\n60\t\\includegraphics[width=\\columnwidth]{fig1_differential_response.pdf}\n61\t\\caption{Differential depth response: Spearman correlations between individual features and generation depth. Drifting features (hapax ratio, TTR, entropy mean) show $|\\rho| > 0.60$; entropy std ($|\\rho|{=}0.16$, $d{=}0.55$) is the sole intermediate feature; near-stationary features (entropy max, tail decay, entropy min) show $d < 0.10$ for gen-1 vs.\\ gen-2+ (entropy min's elevated pooled $|\\rho|$ reflects the gen-0/gen-1 boundary; \\S\\ref{sec:results-differential}).}\n62\t\\label{fig:feature-drift}\n63\t\\end{figure}\n64\t\n65\tPooled class-balanced Spearman correlations with depth confirm the split (Figure~\\ref{fig:feature-drift}):\n66\tdrifting features show substantial monotonic trends (hapax ratio $\\rho = -0.64$, TTR $\\rho = -0.63$, entropy mean $\\rho = -0.60$),\n67\twhile shape features remain near-stationary (tail decay $|\\rho| = 0.04$).\n68\tThe six-fold magnitude gap between drifting ($|\\rho| > 0.60$) and near-stationary features ($|\\rho| < 0.10$) defines the DDR partition, with entropy std ($|\\rho| = 0.16$, $d{=}0.55$) as the sole intermediate member; shifting thresholds by $\\pm 0.10$ does not alter grouping.\n69\t\n70\t\\paragraph{Distributional shift quantification.}\n71\tTwo-sample KS tests confirm the split: drifting-feature statistics (0.516--0.537) are ${\\sim}10\\times$ larger than shape-feature statistics (0.043--0.052; all $p \\approx 0$ after Bonferroni correction).\n72\tCohen's $d$ \\cite{cohen1988statistical} (pooled, class-balanced) converges with $\\rho$: drifting features show large effects (entropy mean $d{=}1.17$, TTR $d{=}0.88$, hapax ratio $d{=}0.76$), while shape features are near zero (entropy max $d{=}0.08$, tail decay $d{=}0.08$); Levene tests reject strict equal-variance ($p < 10^{-10}$), but shape-feature CV shift ($<$3\\% vs.\\ $>$15\\% for drifting features) supports ``near-stationary'' as a practical characterization.\n73\tFive features fall cleanly into the drifting or near-stationary groups under both $\\rho$ and $d$; the remaining two require qualification: entropy min's pooled $|\\rho|$ (0.40) reflects change concentrated at the gen-0/gen-1 boundary, but for gen-1 vs.\\ gen-2+ it is near-stationary ($d{=}0.03$), placing it in the near-stationary group; entropy std shows a substantial level shift ($d{=}0.55$) despite low monotonicity ($|\\rho|{=}0.16$), making it the sole intermediate feature.\n74\tThe location/shape decomposition rests on the convergence of $\\rho$, Levene, CV shift, and $d$, not the omnibus KS statistic alone.\n75\tPer-generator TOST equivalence testing confirms the partition is not a pooling artifact: entropy min passes equivalence ($|d| < 0.20$) for all eight generators, entropy max for six of eight, while all drifting features exceed the bound uniformly (Appendix~\\ref{app:tost}).\n76\t\n77\t\\paragraph{Feature complementarity.}\n78\tThe full 7-feature set (F1\\,=\\,0.773) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).\n79\tPermutation importance: hapax ratio (0.35), entropy mean (0.23), TTR (0.18).\n80\tTTR and hapax ratio are strongly correlated ($r = 0.97$), reducing effective dimensionality to ${\\approx}$5; both are retained for marginal LOFO gains (Appendix~\\ref{app:lofo}).\n81\t\n82\t\\paragraph{Cross-family reference models.}\n83\tAlternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable LOGO F1 (spread 0.013; Table~\\ref{tab:cross-ref} in Appendix~\\ref{app:cross-ref}), with consistently negative entropy drift; this confirms the depth features are robust to reference model choice, though it does not alone establish DDR as a fundamental property of recursive generation.\n84\t\n85\t\\paragraph{Temperature sensitivity.}\n86\tTemperature sensitivity is asymmetric and model-dependent (Appendix~\\ref{app:sampling-sensitivity}). High-temperature degradation is universal: all four tested generators lose $9.3$--$26.0$\\,pp in binary F1 at $t{=}0.9$, with entropy mean's $|\\rho|$ weakening to $0.26$--$0.37$. Low-temperature improvement is model-dependent: Pythia-2.8B ($+$7.4\\,pp) and OLMo-2-1B ($+$8.8\\,pp) benefit at $t{=}0.5$, while both Qwen models show negligible change ($0$--$2.0$\\,pp). This split tracks model family rather than scale: Qwen3-1.7B and OLMo-2-1B have similar parameter counts (${\\sim}$1.5B) yet show opposite patterns ($+$0.0/$-$18.5\\,pp vs.\\ $+$8.8/$-$24.2\\,pp), consistent with model-family differences in sensitivity to sampling noise rather than a capacity effect.\n87\t\n88\t\\paragraph{Prompt-type sensitivity.}\n89\tThe depth signal is prompt-type dependent: continuation chains show the strongest drift (within-type binary F1 = 0.781), followed by elaboration (0.730) and rewriting (0.737), while near-paraphrastic settings approach the method's detection floor. Cross-prompt-type transfer (LOPTO F1 = 0.753) confirms shared signal across prompt types (Appendix~\\ref{app:prompt-type}).\n90\t\n91\t\n92\t\\subsection{Comparison with Detection Baselines}\n93\t\\label{sec:results-baselines}\n94\t\n95\tTo contextualize depth discrimination ability rather than claim competitive advantage over detection-optimized methods, we repurpose four detection scores as ordinal depth predictors using the same XGBoost framework and LOGO splits (Table~\\ref{tab:baselines}, Figure~\\ref{fig:baseline-ci}).\n96\t\n97\t\\begin{figure}[t]\n98\t\\centering\n99\t\\includegraphics[width=\\columnwidth]{fig3_baseline_comparison.pdf}\n100\t\\caption{LOGO binary F1 (gen-1 vs.\\ gen-2+, 8-gen pooled) with inference cost. Ensembles achieve marginally higher F1 at 2.4$\\times$ inference time and 3.2$\\times$ GPU memory; individual detectors vary widely when repurposed for depth.}\n101\t\\label{fig:baseline-ci}\n102\t\\end{figure}\n103\t\n104\t\\begin{table}[t]\n105\t\\centering\n106\t\\footnotesize\n107\t\\begin{tabular}{lcccc}\n108\t\\toprule\n109\t\\textbf{Method} & \\textbf{Feat.} & \\textbf{3-cl F1} & \\textbf{Bin F1} & \\textbf{ms/text} \\\\\n110\t\\midrule\n111\t4-det.\\ + surface     & 6 & \\textbf{0.795} & \\textbf{0.708} & 22.8 \\\\\n112\t4-detector ens.\\      & 4 & 0.785 & 0.700 & 22.8 \\\\\n113\t7-feature (ours)      & 7 & 0.774 & 0.705 & \\textbf{9.7} \\\\\n114\tAvg-LogProb           & 1 & 0.707 & 0.673 & N/A \\\\\n115\tFastDetectGPT         & 1 & 0.660 & 0.569 & N/A \\\\\n116\tLD-Score              & 1 & 0.630 & 0.675 & N/A \\\\\n117\tBinoculars            & 1 & 0.411 & 0.539 & N/A \\\\\n118\t\\bottomrule\n119\t\\end{tabular}\n120\t\\caption{Depth classification (8-gen LOGO, pooled evaluation; slightly higher than per-generator macro average in Table~\\ref{tab:logo-results}). Identical XGBoost configuration. 7-feature: one 410M model (905\\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\\,MB).}\n121\t\\label{tab:baselines}\n122\t\\end{table}\n123\t\n124\tThe 7-feature ensemble exceeds all individual baselines in 3-class F1 ($\\Delta$\\,=\\,6.7--36.3\\,pp).\n125\tMulti-detector ensembles achieve higher 3-class F1 (0.795 vs.\\ 0.774) and marginally higher binary F1 (0.708 vs.\\ 0.705) at 2.4$\\times$ inference cost and 3.2$\\times$ GPU memory; our contribution is the DDR analysis and task formulation, not classifier performance.\n126\tPreliminary downstream evaluation finds that depth composition does not determine training utility at fixed sample count (Appendix~\\ref{app:downstream}).\n127\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ff6c69d1-6e1a-40d5-91c1-2851e7bd69e6",
+            "isSidechain": true,
+            "promptId": "6666d1a7-0d5f-4720-8b04-aee72982d6d4",
+            "agentId": "aa3c1c273df9a530c",
+            "type": "user",
+            "uuid": "b924a34c-96b6-4316-b401-4265c5b386c1",
+            "sourceToolAssistantUUID": "ff6c69d1-6e1a-40d5-91c1-2851e7bd69e6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ee8153a1-2d10-446d-8fa5-c74306b35416",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "typed-enchanting-muffin"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T00:11:17.515Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me verify the temperature paragraph more carefully by searching for the specific phrases:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b924a34c-96b6-4316-b401-4265c5b386c1",
+            "isSidechain": true,
+            "agentId": "aa3c1c273df9a530c",
+            "requestId": "req_011CbAxYKWHHEV1PqSGceTpo",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0c04d1c2-04cc-448d-b57c-fbd50927ec61",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ee8153a1-2d10-446d-8fa5-c74306b35416",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "typed-enchanting-muffin",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01BnUXbptPxcs9YN7M7Ubds7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 9565,
+                "cache_read_input_tokens": 41048,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 9565,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T00:11:18.589Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WwPhiV2HM7VqGdrWaM1ndf",
+              "name": "Grep",
+              "input": {
+                "pattern": "asymmetric and model-dependent",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0c04d1c2-04cc-448d-b57c-fbd50927ec61",
+            "isSidechain": true,
+            "agentId": "aa3c1c273df9a530c",
+            "requestId": "req_011CbAxYKWHHEV1PqSGceTpo",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f987fc5f-61d6-4676-8156-c0a4bfa08c4f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ee8153a1-2d10-446d-8fa5-c74306b35416",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "typed-enchanting-muffin",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01BnUXbptPxcs9YN7M7Ubds7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 9565,
+                "cache_read_input_tokens": 41048,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 9565,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T00:11:18.604Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WwPhiV2HM7VqGdrWaM1ndf",
+              "type": "tool_result",
+              "content": "86:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f987fc5f-61d6-4676-8156-c0a4bfa08c4f",
+            "isSidechain": true,
+            "promptId": "6666d1a7-0d5f-4720-8b04-aee72982d6d4",
+            "agentId": "aa3c1c273df9a530c",
+            "type": "user",
+            "uuid": "6f813e97-b9f9-45f6-a667-7ed7c373c253",
+            "sourceToolAssistantUUID": "f987fc5f-61d6-4676-8156-c0a4bfa08c4f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ee8153a1-2d10-446d-8fa5-c74306b35416",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "typed-enchanting-muffin"
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T00:11:18.998Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016m8ojWcgVku3i9uyDMkxuS",
+              "name": "Grep",
+              "input": {
+                "pattern": "tracks model family rather than scale",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6f813e97-b9f9-45f6-a667-7ed7c373c253",
+            "isSidechain": true,
+            "agentId": "aa3c1c273df9a530c",
+            "requestId": "req_011CbAxYKWHHEV1PqSGceTpo",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f192ef9e-0673-4345-bcf5-cf61613b3292",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ee8153a1-2d10-446d-8fa5-c74306b35416",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "typed-enchanting-muffin",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01BnUXbptPxcs9YN7M7Ubds7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 9565,
+                "cache_read_input_tokens": 41048,
+                "output_tokens": 263,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 9565
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 263,
+                    "cache_read_input_tokens": 41048,
+                    "cache_creation_input_tokens": 9565,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 9565,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-19T00:11:19.012Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016m8ojWcgVku3i9uyDMkxuS",
+              "type": "tool_result",
+              "content": "86:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f192ef9e-0673-4345-bcf5-cf61613b3292",
+            "isSidechain": true,
+            "promptId": "6666d1a7-0d5f-4720-8b04-aee72982d6d4",
+            "agentId": "aa3c1c273df9a530c",
+            "type": "user",
+            "uuid": "abd06c6f-8eb1-4138-956c-02a872fa7ab0",
+            "sourceToolAssistantUUID": "f192ef9e-0673-4345-bcf5-cf61613b3292",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ee8153a1-2d10-446d-8fa5-c74306b35416",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "typed-enchanting-muffin"
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-19T00:11:28.772Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! Both phrases are present. Let me create a comprehensive summary of my findings:\n\n## Verification Results\n\nAll 8 writing changes have been successfully verified in the LaTeX files. Here's the detailed breakdown:\n\n**1. method.tex - \"selected a priori from two complementary theoretical perspectives\"**\n- **Status: VERIFIED** ✓\n- Found in line 65: \"The seven features were selected a priori from two complementary theoretical perspectives (reference-model NLL distribution and surface lexical diversity)...\"\n\n**2. method.tex - \"confidence floor\" (entropy_min rationale)**\n- **Status: VERIFIED** ✓\n- Found in line 49-50: \"entropy_min: minimum token-level NLL, which captures the most predictable token. As generation depth increases, the floor of token-level surprise drops; this reflects the model's increasing confidence on its own outputs.\"\n\n**3. method.tex - \"r=0.97\" or \"effective dim\" (TTR/hapax redundancy)**\n- **Status: VERIFIED** ✓\n- Found in line 69: \"TTR and hapax ratio are strongly correlated ($r = 0.97$), reducing effective feature dimensionality to approximately five.\"\n\n**4. discussion.tex - \"location/shape decomposition\" or \"softmax output distribution's shape\"**\n- **Status: VERIFIED** ✓\n- Found in line 4: \"DDR tri-partition (3 drifting / 1 intermediate / 3 near-stationary) reflects a location/shape decomposition: under fixed temperature τ and nucleus p, the softmax output distribution's shape (variance, tail behavior) is constrained by the decoding configuration...\"\n\n**5. discussion.tex - \"empirical descriptive framework\"**\n- **Status: VERIFIED** ✓\n- Found in line 5: \"DDR is an empirical descriptive framework capturing this dichotomy, not a claimed universal law of recursive generation.\"\n\n**6. discussion.tex - \"diagnostic rather than prescriptive role\"**\n- **Status: VERIFIED** ✓\n- Found in line 15: \"...consistent with depth profiling serving a diagnostic rather than prescriptive role: the practical value lies in corpus-level depth auditing rather than sample-level filtering.\"\n\n**7. abstract.tex - \"[.688, .700]\" (CI added to F1=0.694)**\n- **Status: VERIFIED** ✓\n- Found in line 6: \"A 7-feature ensemble achieves leak-free binary F1=0.694 (95% CI [.688, .700]) under leave-one-generator-out evaluation...\"\n\n**8. results.tex - \"QLoRA\" mention**\n- **Status: VERIFIED** ✓\n- Found in line 20: \"An end-to-end QLoRA classifier (6-generator subset) achieves 3-class F1=0.905...\"\n\n**Bonus verification - Temperature paragraph in results.tex:**\n- **Status: VERIFIED** ✓\n- Both phrases confirmed present in line 86:\n  - \"Temperature sensitivity is asymmetric and model-dependent\"\n  - \"This split tracks model family rather than scale\"\n\nAll writing changes have been successfully integrated into the paper files. The changes maintain consistency across sections and properly support the narrative around feature selection, methodological choices, and result interpretation."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "abd06c6f-8eb1-4138-956c-02a872fa7ab0",
+            "isSidechain": true,
+            "agentId": "aa3c1c273df9a530c",
+            "requestId": "req_011CbAxYa6rx9jEHTb5B8x4E",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "cdd5109b-6cd0-482d-a386-f0d5e23b4293",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f",
+            "sessionId": "ee8153a1-2d10-446d-8fa5-c74306b35416",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "typed-enchanting-muffin",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01LvzydHPUTrWpLjRWv4MyL3",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 342,
+                "cache_read_input_tokens": 50613,
+                "output_tokens": 773,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 342
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 773,
+                    "cache_read_input_tokens": 50613,
+                    "cache_creation_input_tokens": 342,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 342,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000035"
+        }
+      ],
+      "message_count": 35
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-verify-that-8-specific-writing-changes-were-actually-made-to-latex-f.md"
+}

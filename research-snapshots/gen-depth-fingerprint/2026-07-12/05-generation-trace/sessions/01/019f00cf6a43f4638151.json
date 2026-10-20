@@ -1,0 +1,256 @@
+{
+  "schema_version": "1.0",
+  "id": "019f00cf6a43f4638151",
+  "project": "gen-depth-fingerprint--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [Main Agent 执行出错]: Claude 调用失败: claude exited 143:",
+  "task_key": "3246a349-92e8-4bb1-ac59-83e57e437c8f",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/3246a349-92e8-4bb1-ac59-83e57e437c8f.jsonl",
+    "occurrence": 1,
+    "bytes": 684143,
+    "sha256": "8aa17adbec58830b0ea02c66c852b2f3cb4e172f941cc19c50795b917b425f57"
+  },
+  "statistics": {
+    "messages": 160,
+    "user_turns": 19,
+    "tool_calls": 28,
+    "roles": {
+      "record": 49,
+      "user": 19,
+      "assistant": 36,
+      "tool_call": 28,
+      "tool_result": 28
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "019f00cf6a43f4638151-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 28,
+      "chunks": [
+        {
+          "path": "019f00cf6a43f4638151-part-0001.json",
+          "message_count": 28
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "019f00cf6a43f4638151-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 28,
+      "chunks": [
+        {
+          "path": "019f00cf6a43f4638151-part-0001.json",
+          "message_count": 28
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "019f00cf6a43f4638151-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 9,
+      "chunks": [
+        {
+          "path": "019f00cf6a43f4638151-part-0001.json",
+          "message_count": 9
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "019f00cf6a43f4638151-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 18,
+      "chunks": [
+        {
+          "path": "019f00cf6a43f4638151-part-0001.json",
+          "message_count": 18
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "019f00cf6a43f4638151-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 15,
+      "chunks": [
+        {
+          "path": "019f00cf6a43f4638151-part-0001.json",
+          "message_count": 9
+        },
+        {
+          "path": "019f00cf6a43f4638151-part-0002.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "019f00cf6a43f4638151-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "boundary": "recorded_user_message",
+      "message_count": 10,
+      "chunks": [
+        {
+          "path": "019f00cf6a43f4638151-part-0002.json",
+          "message_count": 10
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "019f00cf6a43f4638151-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "boundary": "recorded_user_message",
+      "message_count": 8,
+      "chunks": [
+        {
+          "path": "019f00cf6a43f4638151-part-0002.json",
+          "message_count": 8
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "019f00cf6a43f4638151-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "019f00cf6a43f4638151-part-0002.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "019f00cf6a43f4638151-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "boundary": "recorded_user_message",
+      "message_count": 10,
+      "chunks": [
+        {
+          "path": "019f00cf6a43f4638151-part-0002.json",
+          "message_count": 10
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "019f00cf6a43f4638151-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "boundary": "recorded_user_message",
+      "message_count": 9,
+      "chunks": [
+        {
+          "path": "019f00cf6a43f4638151-part-0002.json",
+          "message_count": 9
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-main-agent-claude-claude-exited-143.md"
+}

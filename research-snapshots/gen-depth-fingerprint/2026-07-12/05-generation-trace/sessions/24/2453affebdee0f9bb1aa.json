@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "2453affebdee0f9bb1aa",
+  "project": "gen-depth-fingerprint--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 服务器 autodl-5090 使用 conda 环境（/root/miniconda3/bin/），不是 venv。已有 DeepSeek-R1-Distill-Qwen-14B 在 cuda:0+1 上跑",
+  "task_key": "10aeb215-9e9b-43fb-af57-07cff9b5e977",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/10aeb215-9e9b-43fb-af57-07cff9b5e977.jsonl",
+    "occurrence": 1,
+    "bytes": 633653,
+    "sha256": "950e66d2dd3f4c57c0c92274e2e0b3ee847801058cefe7d4afed49486babe775"
+  },
+  "statistics": {
+    "messages": 250,
+    "user_turns": 1,
+    "tool_calls": 66,
+    "roles": {
+      "record": 47,
+      "user": 1,
+      "assistant": 70,
+      "tool_call": 66,
+      "tool_result": 66
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "2453affebdee0f9bb1aa-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 248,
+      "chunks": [
+        {
+          "path": "2453affebdee0f9bb1aa-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "2453affebdee0f9bb1aa-part-0002.json",
+          "message_count": 70
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-autodl-5090-conda-root-miniconda3-bin-venv-deepseek-r1-distill-q.md"
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "14984473b75af6f7bedf",
+  "project": "gen-depth-fingerprint--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: gen-depth-fingerprint ## 运行环境 - 服务器名: autodl-5090 - SSH 账户: root（调用 ssh_execute / submit_trainin",
+  "task_key": "604f9978-5aff-41c2-82e1-4903c3be048c",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/604f9978-5aff-41c2-82e1-4903c3be048c.jsonl",
+    "occurrence": 1,
+    "bytes": 644428,
+    "sha256": "7c4ff41d6f5c0f84c163e54d72dc1887ad9cf562ad490e711f8d7eb8ae71b890"
+  },
+  "statistics": {
+    "messages": 199,
+    "user_turns": 1,
+    "tool_calls": 70,
+    "roles": {
+      "record": 37,
+      "user": 1,
+      "assistant": 21,
+      "tool_call": 70,
+      "tool_result": 70
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "14984473b75af6f7bedf-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 197,
+      "chunks": [
+        {
+          "path": "14984473b75af6f7bedf-part-0001.json",
+          "message_count": 167
+        },
+        {
+          "path": "14984473b75af6f7bedf-part-0002.json",
+          "message_count": 30
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-gen-depth-fingerprint-autodl-5090-ssh-root-ssh-execute-submit-copy-326.md"
+}

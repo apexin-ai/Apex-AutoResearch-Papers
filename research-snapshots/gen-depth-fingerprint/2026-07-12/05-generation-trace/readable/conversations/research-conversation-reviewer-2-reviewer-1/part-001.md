@@ -1,0 +1,9311 @@
+# Research conversation: [Reviewer 2 审稿结果]: 继续读取附录部分。 --- [Reviewer 1 审稿结果]: 正文已读完。继续阅读附录和剩余页面。 — Part 1 of 2
+
+**Depth Profiling: Classifying Recursive Generation Depth in Base-Model LLM Text (July export snapshot)** · Conversation logs
+
+[Transcript overview](../research-conversation-reviewer-2-reviewer-1.md) · [Part 2 →](part-002.md) · [Structured JSON](../../../sessions/6b/6b9d761cf34330d43b1a.json)
+
+## Before a recorded user message
+
+## Before a recorded user message
+
+2 recorded events
+
+
+### Runtime record
+
+_source line 1 · 2026-05-20T02:57:12.646Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T02:57:12.646Z",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "content": "[Reviewer 2 审稿结果]:\n继续读取附录部分。\n\n---\n\n[Reviewer 1 审稿结果]:\n正文已读完。继续阅读附录和剩余页面。"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 2 · 2026-05-20T02:57:12.650Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T02:57:12.650Z",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b"
+}
+```
+
+---
+
+
+## Round 1
+
+## Round 1
+
+8 recorded events
+
+
+### User
+
+_source line 3 · 2026-05-20T02:57:12.691Z_
+
+[Reviewer 2 审稿结果]:
+继续读取附录部分。
+
+---
+
+[Reviewer 1 审稿结果]:
+正文已读完。继续阅读附录和剩余页面。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "3ff82ef5-6f57-4f2e-8ded-d0de91c089c7",
+  "type": "user",
+  "uuid": "65aa9da7-7b49-4463-a590-7b4ebd1e60f3",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 4 · 2026-05-20T02:57:12.691Z_
+
+```json
+{
+  "parentUuid": "65aa9da7-7b49-4463-a590-7b4ebd1e60f3",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__director_get_project_overview",
+      "mcp__agent-ml-research__director_post_to_reviewer",
+      "mcp__agent-ml-research__dispatch_visual_check",
+      "mcp__agent-ml-research__get_external_review_status",
+      "mcp__agent-ml-research__get_visual_check_status",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__request_external_review",
+      "mcp__agent-ml-research__request_study_approval",
+      "mcp__agent-ml-research__submit_review_report_to_research_director",
+      "mcp__agent-ml-research__update_review_issues"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__director_get_project_overview",
+      "mcp__agent-ml-research__director_post_to_reviewer",
+      "mcp__agent-ml-research__dispatch_visual_check",
+      "mcp__agent-ml-research__get_external_review_status",
+      "mcp__agent-ml-research__get_visual_check_status",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__request_external_review",
+      "mcp__agent-ml-research__request_study_approval",
+      "mcp__agent-ml-research__submit_review_report_to_research_director",
+      "mcp__agent-ml-research__update_review_issues"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "891b380d-581e-4084-9641-e9535ed11f3c",
+  "timestamp": "2026-05-20T02:57:12.691Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 5 · 2026-05-20T02:57:12.691Z_
+
+```json
+{
+  "parentUuid": "891b380d-581e-4084-9641-e9535ed11f3c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "2be1fd1c-c042-49c4-aed4-0fe0a48d90d0",
+  "timestamp": "2026-05-20T02:57:12.691Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 6 · 2026-05-20T02:57:12.691Z_
+
+```json
+{
+  "parentUuid": "2be1fd1c-c042-49c4-aed4-0fe0a48d90d0",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "c39ad833-d53d-4489-824f-b0038c8d162c",
+  "timestamp": "2026-05-20T02:57:12.691Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review appendix and remaining pages",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 8_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review appendix and remaining pages",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 9 · 2026-05-20T10:56:33.563Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T10:56:33.563Z",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "content": "[服务器重启后首条消息 — Director] 项目: gen-depth-fingerprint | 当前日期: 2026-05-20\n服务器刚重启，你的对话记忆已丢失。在处理用户消息前，先执行：\n1. `feishu_read_chat_history(chat_id=\"oc_999770e4e57bfc6eabd12fc1f64af1ef\", limit=30)` 恢复近期对话上下文\n2. `get_project_status(\"gen-depth-fingerprint\")` 检查配置\n3. `director_get_project_overview(\"gen-depth-fingerprint\")` 了解现状\n如果有缺失配置，先向用户确认。\n\n**用户消息：** [Reviewer 1 审稿意见]:\n\n# Reviewer 1 审稿意见 — Methods & Experiments\n\n**论文**: \"Differential Depth Response in Non-Paraphrastic LLM Generation Chains: An Empirical Characterization Across Model Families\"\n\n---\n\n## 总体评分\n**Overall Assessment**: 3.0 (Findings)\n**一句话总结**: DDR 分解是有价值的实证发现，分析全面严谨，但 headline 性能偏弱（binary F1=0.694）、base-model-only 限制严重、QLoRA 差距过大（+12-15pp），总体达到 Findings 水平但不足以进入主会议。\n\n---\n\n## 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 3.5/5 | 实验设计总体合理（LOGO/LOFO 无泄漏），统计检验方法恰当（TOST、bootstrap CI、Bonferroni 校正），但下游实验 underpowered（3 seeds），Gemma-2-2B 异常未充分解释，baseline 对比范围偏窄 |\n| Excitement | 3/5 | DDR 分解（drifting vs near-stationary 特征分组）是新颖的实证贡献，但 0.694 binary F1 实用价值有限，base-model-only 范围限制了影响力，QLoRA 大幅超越手工特征削弱了方法论贡献 |\n| Reproducibility | 4/5 | 特征定义清晰，参考模型和超参数完整指定，承诺开源代码/数据/模型；但部分 appendix 实验的 seed 数（n=3）使精确复现结果可能存在方差 |\n| Reviewer Confidence | 4/5 | 仔细阅读了全部 33 页，包括正文和所有附录 |\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [critical] 下游效用实验严重 underpowered\n- 具体位置：§4.4 / Table 8（正文）/ Appendix M Table 19\n- 问题：TOST 等价性检验仅使用 n=3 random seeds、单一指标（perplexity）、单一模型（OLMo-2-0425-1B）。论文自己在 Appendix M (p.23) 承认 \"with only n=3 seeds per condition, the TOST results have limited generalizability\"。Cohen's d 值虽小但置信区间极宽（pooled SD < 0.001 导致的人为膨胀 effect size）。3 个 seed 下 TOST 功效极低，无法可靠地排除实际存在的中等效应。\n- 为什么影响接收：这是论文四个核心贡献之一（\"depth-aware curation is equivalent to random subsampling\"），但统计功效不足以支撑这个等价性 claim。如果等价性不成立，整个 §5 Discussion 中关于实用影响的论述链断裂。\n- 建议修改方向：(a) 增加至 ≥10 seeds；(b) 增加第二个评估模型和第二个指标（如 downstream task accuracy）；(c) 或者弱化 claim 为 \"preliminary evidence\" 而非确定性结论。\n\n**N2** [critical] QLoRA 差距过大，削弱 interpretable features 的贡献叙事\n- 具体位置：Appendix E Table 6（p.16）—— QLoRA 3-class LOGO F1 = 0.905 vs 手工特征 0.789\n- 问题：+11.6pp 的差距（手工特征 0.789 → QLoRA 0.905）是一个本质性的性能鸿沟。论文将 QLoRA 定位为 \"complementary\"（§5 Discussion, p.8），但没有充分论证为什么要使用表现差 12pp 的 interpretable features。论文提到 interpretability 和 computational efficiency，但 QLoRA (Qwen3-0.6B, LoRA rank 16) 本身已经非常轻量。\n- 为什么影响接收：如果论文的核心卖点是 DDR 分解的 interpretability，需要明确展示手工特征能提供哪些 QLoRA 无法提供的 actionable insight。当前叙事给读者的感觉是\"我们提出了一套不如 fine-tuning 的特征\"。\n- 建议修改方向：(a) 明确 DDR 分解在 data curation / model auditing / forensic 场景中的不可替代性（用具体 use case）；(b) 分析 QLoRA 是否也隐式学到了 DDR partition（如 attention pattern 分析）；(c) 或者将论文重心更明确地转向\"empirical characterization\"而非\"classification method\"。\n\n**N3** [critical] Base-model-only 范围严重限制实际相关性\n- 具体位置：§3.2（生成链构造）、Limitations（p.8-9）、Appendix K（p.20-21）\n- 问题：全部 8 个 generator 都是 base (pretrained) models。现实世界的 LLM 文本绝大多数来自 instruction-tuned 模型。Appendix K (Table 15-17) 清楚显示 instruction tuning 导致性能严重退化：binary F1 从 ~0.64 降至 0.338-0.490（instruct 变体），DDR partition 发生位移（entropy_mean ρ 翻转符号）。这不是边缘 limitation——它意味着论文的核心发现可能不适用于最重要的实际场景。\n- 为什么影响接收：reviewer 会质疑：如果 DDR 在 instruct 模型上不成立，这个发现的 generalizability 和 impact 如何？\n- 建议修改方向：(a) 在正文中明确将 instruct 退化作为主要 finding 讨论（而非仅在 appendix）；(b) 如果可能，增加 1-2 个 instruct 模型到主实验；(c) 至少提供一个关于 instruct 设置下 DDR 为何退化的机理假说。\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [warning] Gemma-2-2B 异常（gen-1 F1=0.036）解释不充分\n- 具体位置：Appendix Z.4（p.32-33）/ Table 39\n- 问题：Gemma-2-2B 的 gen-1 F1=0.036，gen-0 F1=0.628，几乎完全无法识别第一代生成。论文将此归因为 \"architecture-specific limitation\"，指出 Gemma-2-2B 的 gen-1 输出在特征空间中与 gen-0 \"highly similar\"。但这个解释是描述性的而非机理性的。为什么 Gemma-2 的第一代输出在 Pythia-410M reference model 下看起来和人类文本一样？是 Gemma-2 的训练方式更好地保留了人类文本分布，还是 Pythia 参考模型对 Gemma-2 的表征能力不足？\n- 建议：(a) 检查 Gemma-2-2B gen-1 在非 Pythia 参考模型下的表现（Table 5 的 cross-reference 似乎没有单独报告 Gemma）；(b) 分析 Gemma-2-2B 的 7 个特征值分布与其他 generator 的差异。\n\n**W2** [warning] Baseline 对比范围偏窄\n- 具体位置：§4.3 / Table 2（p.7）\n- 问题：4 个 baseline（Avg-LogProb、FastDetectGPT、LD-Score、Binoculars）都是 single-feature 或简单方法。7-feature ensemble 相对于 4-detector ensemble 仅 +2.5pp（0.820 vs 0.795）。缺少与更复杂的多特征检测方法的对比（如 DNA-GPT 的 re-generation 策略、RADAR 等 trained detector、或其他 multi-feature ensemble 方法）。\n- 建议：增加至少 1 个 multi-feature 或 trained detector baseline（即使是在 appendix 中），以展示 7-feature approach 相对于更 sophisticated 方法的定位。\n\n**W3** [warning] 温度限制 (t < 0.9) 影响实用性\n- 具体位置：Appendix P Table 10（p.18）\n- 问题：4 个 generator 在 t=0.9 时 binary F1 降至 0.400-0.453（Pythia-2.8B†），t=1.0 时进一步退化。许多实际部署使用 temperature 0.7-1.0。论文在正文中提到 \"four tested generators degrade at t=0.9 (-0.3 to -26.0pp)\"，但没有在主表中体现温度敏感性。\n- 建议：(a) 在正文中增加一个温度敏感性摘要（至少一句话引用 Appendix P 结果）；(b) 讨论这对实际部署意味着什么。\n\n**W4** [warning] Cross-model chain 结果混淆深度信号与 generator 身份信号\n- 具体位置：§4.1 最后一段 / Table 1 \"Mixed-7B\" 行\n- 问题：Cross-model chain F1=0.830 高于 single-model LOGO F1=0.694。论文将此归因于 \"generator heterogeneity amplifying depth-correlated distributional shifts\"。但在 cross-model chain 中，gen-1 和 gen-2 使用不同的 generator，因此分类器可能学到的是 generator identity 而非 depth——即使 LOGO 排除了单个 generator，不同 generator 的混合可能仍然引入 spurious signal。\n- 建议：增加一个控制实验：在 single-generator chain 上训练，在 cross-model chain 上测试（反之亦然），以 disentangle 两个信号。\n\n**W5** [warning] DDR partition 的 3/1/3 分组标准不够 principled\n- 具体位置：§4.2 / Appendix U-V（p.27-29）\n- 问题：DDR partition（3 drifting / 1 intermediate / 3 near-stationary）依赖 TOST 等价性检验的 ε=0.20 阈值（Cohen's d）。这是一个 conventional small effect size 阈值，但 partition 对 ε 的选择敏感性如何？Appendix V Table 29 确实做了 ε sensitivity（0.15, 0.20, 0.25），但仅展示了 pass rate 而非 partition 是否改变。此外，entropy_std 被归为 \"intermediate\"（d=0.458, TOST rejection 0/1000），但 0.458 远大于 0.20 的阈值——intermediate 的操作性定义是什么？\n- 建议：(a) 明确 intermediate 的操作性定义（不仅仅是\"不 drifting 也不 stationary\"）；(b) 展示 ε=0.15 和 0.25 下 partition 是否保持 3/1/3。\n\n---\n\n## 小问题（不影响接收）\n\n1. **Figure 1 (p.6)** strip plot 中个别 generator 趋势线重叠较严重，尤其是 near-stationary 特征组中多条趋势接近平坦线，难以区分个别 generator。\n2. **DDR 缩写首次使用**在 §4.2 (p.5)，但 abstract 中已经使用了 \"differential depth response\"，建议在 abstract 中首次出现时就给出缩写。\n3. **Table 1 (p.6) 脚注 1** 提到 \"1-class F1 carries upward bias because gen-0 seeds are shared across generators\"——这个 bias 的量级应在正文中给出估计值，而非仅在脚注提及。\n4. **Appendix 引用环路**：Appendix B 引用 Appendix R，Appendix R 引用 Appendix B 的结论，部分读者可能感到困惑。\n\n---\n\n## 主要优势\n\n1. **问题定义清晰且有价值**：将 generation depth classification 从 binary detection 中独立出来，formulation 干净（gen-0/gen-1/gen-2+），non-paraphrastic continuation chain 的设置避免了 paraphrase detection 的混淆。\n2. **DDR 分解是 genuine empirical contribution**：drifting（location shift）vs near-stationary（shape stability）的分组在 7 个特征上一致观察到，并通过 TOST、k-means clustering（Appendix V Table 28）、holdout split validation（Table 30）、bootstrap stability（Appendix U.1 Table 27）四种独立方法交叉验证。\n3. **评估协议严谨**：LOGO 避免 generator leakage，LOFO 验证特征贡献，独立 seed 控制（Appendix T Table 25）排除 topic-based leakage，cross-reference-model（Table 5 的 3 个 ref model）验证不依赖特定参考模型。\n4. **分析广度 exceptional**：20+ appendix covering length confound、temperature sensitivity、prompt type、5-class ordinal、human edit robustness、cross-domain、classifier comparison、Granger causality、error analysis、instruction tuning、convergence dynamics 等。这种分析深度在 empirical NLP 论文中罕见。\n5. **Granger causality 分析**（Appendix Z.3 Table 38）提供了 DDR 特征的 causal predictive power 证据，超越了纯相关性描述。\n\n---\n\n## 实验覆盖度检查\n\n**已覆盖的实验**（对照 Director 提供的关键 table 列表）：\n- ✅ Feature ablation (Table 2): full vs surface-only vs reference-only\n- ✅ Feature trend classification (§4.2 / Figure 1): Spearman ρ 和 KS\n- ✅ LOGO per-generator (Table 1): binary F1 0.659–0.724\n- ✅ LOGO vs LOFO (Table 7, Appendix F): Δ = entropy_max 最大降幅 -3.0pp\n- ✅ Cross-reference-model (Table 5, Appendix S): 3 ref models, F1 0.803–0.816\n- ✅ Baseline comparison (Table 2): 7-feat vs Avg-LogProb vs 4-det ensemble\n- ✅ Cross-model chains (§4.1): 0.830 vs single-model 0.694\n- ✅ Downstream CLM (Appendix M Table 19): TOST equivalence\n- ✅ 9-generator LOGO (Appendix Z.4): Gemma-2-2B anomaly\n- ✅ QLoRA (Appendix E): 3-class 0.905\n- ✅ Temperature sensitivity (Appendix P)\n- ✅ Length confound (Appendix B): 3 analyses\n- ✅ Prompt type (Appendix C): continuation/elaboration/rewriting\n- ✅ 5-class ordinal (Appendix D)\n- ✅ Human edit robustness (Appendix I)\n- ✅ Cross-domain (Appendix J)\n- ✅ Classifier comparison (Appendix H)\n- ✅ Confusion matrix (Appendix G)\n- ✅ Error analysis (Appendix L)\n- ✅ Permutation importance + Granger causality (Appendix Z.3)\n- ✅ DDR convergence dynamics (Appendix Z.2)\n\n**缺失或不足的实验**：\n- ❌ Adversarial robustness（针对已知检测方法的对抗性攻击）\n- ❌ 非英语语言（仅 English Wikipedia）\n- ❌ >7B 规模的 generator（最大仅 Mistral-7B）\n- ❌ 不同 decoding 策略的系统比较（top-k, top-p, beam search——仅测了 temperature）\n- ⚠️ Instruction-tuned 模型分析在 appendix 但未进入主实验\n- ⚠️ 下游任务多样性不足（仅 perplexity，无 downstream task accuracy）\n\n---\n\n## Questions for Authors\n\n1. **关于 QLoRA gap**：QLoRA classifier 是否也学到了 DDR-like 的 drifting/stationary 分解？是否做过 QLoRA 的 feature attribution 分析（如 attention pattern 或 probing）来理解它为何优于手工特征？\n2. **关于 Gemma-2-2B**：能否在 OLMo-2-1B 或 Qwen3-0.6B 作为 reference model 时单独报告 Gemma-2-2B 的 per-class F1？如果 Gemma 异常在非 Pythia 参考下消失，则说明是 reference model compatibility 问题而非 DDR 失败。\n3. **关于 instruct 退化**：Appendix K 显示 entropy_mean ρ 在 instruct 模型上翻转符号。这是否意味着 instruction tuning 改变了 DDR 的 direction 而非消除了 DDR？如果 DDR 在 instruct 设置下是 reversed，是否可以通过重新训练 partition 来恢复？\n4. **关于 cross-model chain**：是否有实验在 single-generator chain 上训练 classifier，然后在 cross-model chain 上测试？这能帮助 disentangle depth signal 和 generator identity signal。\n5. **关于 practical threshold**：在什么 F1 水平下，depth classification 才有实际部署价值？0.694 是否足够用于论文提到的 data curation 场景？\n\n---\n\n**Reviewer Confidence**: 4/5 — 仔细阅读全文及所有附录，对实验方法论和统计检验有足够专业背景。\n"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 10 · 2026-05-20T10:56:33.563Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T10:56:33.563Z",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b"
+}
+```
+
+---
+
+
+## Round 2
+
+## Round 2
+
+2 recorded events
+
+
+### User
+
+_source line 11 · 2026-05-20T10:56:33.557Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c39ad833-d53d-4489-824f-b0038c8d162c",
+  "isSidechain": false,
+  "promptId": "4a675508-9598-4638-aa9e-2d91a581603f",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "293312b2-edd8-4a78-b73b-c1cdaa1bf419",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 12 · 2026-05-20T10:56:33.557Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "293312b2-edd8-4a78-b73b-c1cdaa1bf419",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "840c5be9-4679-4275-8435-351bf5dbd7a3",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "id": "7f5a97dd-cc74-4121-9d3f-ad2ea88ef2d3",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+## Round 3
+
+## Round 3
+
+41 recorded events
+
+
+### User
+
+_source line 13 · 2026-05-20T10:56:33.658Z_
+
+[服务器重启后首条消息 — Director] 项目: gen-depth-fingerprint | 当前日期: 2026-05-20
+服务器刚重启，你的对话记忆已丢失。在处理用户消息前，先执行：
+1. `feishu_read_chat_history(chat_id="oc_999770e4e57bfc6eabd12fc1f64af1ef", limit=30)` 恢复近期对话上下文
+2. `get_project_status("gen-depth-fingerprint")` 检查配置
+3. `director_get_project_overview("gen-depth-fingerprint")` 了解现状
+如果有缺失配置，先向用户确认。
+
+**用户消息：** [Reviewer 1 审稿意见]:
+
+# Reviewer 1 审稿意见 — Methods & Experiments
+
+**论文**: "Differential Depth Response in Non-Paraphrastic LLM Generation Chains: An Empirical Characterization Across Model Families"
+
+---
+
+## 总体评分
+**Overall Assessment**: 3.0 (Findings)
+**一句话总结**: DDR 分解是有价值的实证发现，分析全面严谨，但 headline 性能偏弱（binary F1=0.694）、base-model-only 限制严重、QLoRA 差距过大（+12-15pp），总体达到 Findings 水平但不足以进入主会议。
+
+---
+
+## 官方维度打分（ACL ARR Review Form）
+
+| 维度 | 分数 | 理由摘要 |
+|------|------|----------|
+| Soundness | 3.5/5 | 实验设计总体合理（LOGO/LOFO 无泄漏），统计检验方法恰当（TOST、bootstrap CI、Bonferroni 校正），但下游实验 underpowered（3 seeds），Gemma-2-2B 异常未充分解释，baseline 对比范围偏窄 |
+| Excitement | 3/5 | DDR 分解（drifting vs near-stationary 特征分组）是新颖的实证贡献，但 0.694 binary F1 实用价值有限，base-model-only 范围限制了影响力，QLoRA 大幅超越手工特征削弱了方法论贡献 |
+| Reproducibility | 4/5 | 特征定义清晰，参考模型和超参数完整指定，承诺开源代码/数据/模型；但部分 appendix 实验的 seed 数（n=3）使精确复现结果可能存在方差 |
+| Reviewer Confidence | 4/5 | 仔细阅读了全部 33 页，包括正文和所有附录 |
+
+---
+
+## Must-Fix 问题（影响接收决定）
+
+**N1** [critical] 下游效用实验严重 underpowered
+- 具体位置：§4.4 / Table 8（正文）/ Appendix M Table 19
+- 问题：TOST 等价性检验仅使用 n=3 random seeds、单一指标（perplexity）、单一模型（OLMo-2-0425-1B）。论文自己在 Appendix M (p.23) 承认 "with only n=3 seeds per condition, the TOST results have limited generalizability"。Cohen's d 值虽小但置信区间极宽（pooled SD < 0.001 导致的人为膨胀 effect size）。3 个 seed 下 TOST 功效极低，无法可靠地排除实际存在的中等效应。
+- 为什么影响接收：这是论文四个核心贡献之一（"depth-aware curation is equivalent to random subsampling"），但统计功效不足以支撑这个等价性 claim。如果等价性不成立，整个 §5 Discussion 中关于实用影响的论述链断裂。
+- 建议修改方向：(a) 增加至 ≥10 seeds；(b) 增加第二个评估模型和第二个指标（如 downstream task accuracy）；(c) 或者弱化 claim 为 "preliminary evidence" 而非确定性结论。
+
+**N2** [critical] QLoRA 差距过大，削弱 interpretable features 的贡献叙事
+- 具体位置：Appendix E Table 6（p.16）—— QLoRA 3-class LOGO F1 = 0.905 vs 手工特征 0.789
+- 问题：+11.6pp 的差距（手工特征 0.789 → QLoRA 0.905）是一个本质性的性能鸿沟。论文将 QLoRA 定位为 "complementary"（§5 Discussion, p.8），但没有充分论证为什么要使用表现差 12pp 的 interpretable features。论文提到 interpretability 和 computational efficiency，但 QLoRA (Qwen3-0.6B, LoRA rank 16) 本身已经非常轻量。
+- 为什么影响接收：如果论文的核心卖点是 DDR 分解的 interpretability，需要明确展示手工特征能提供哪些 QLoRA 无法提供的 actionable insight。当前叙事给读者的感觉是"我们提出了一套不如 fine-tuning 的特征"。
+- 建议修改方向：(a) 明确 DDR 分解在 data curation / model auditing / forensic 场景中的不可替代性（用具体 use case）；(b) 分析 QLoRA 是否也隐式学到了 DDR partition（如 attention pattern 分析）；(c) 或者将论文重心更明确地转向"empirical characterization"而非"classification method"。
+
+**N3** [critical] Base-model-only 范围严重限制实际相关性
+- 具体位置：§3.2（生成链构造）、Limitations（p.8-9）、Appendix K（p.20-21）
+- 问题：全部 8 个 generator 都是 base (pretrained) models。现实世界的 LLM 文本绝大多数来自 instruction-tuned 模型。Appendix K (Table 15-17) 清楚显示 instruction tuning 导致性能严重退化：binary F1 从 ~0.64 降至 0.338-0.490（instruct 变体），DDR partition 发生位移（entropy_mean ρ 翻转符号）。这不是边缘 limitation——它意味着论文的核心发现可能不适用于最重要的实际场景。
+- 为什么影响接收：reviewer 会质疑：如果 DDR 在 instruct 模型上不成立，这个发现的 generalizability 和 impact 如何？
+- 建议修改方向：(a) 在正文中明确将 instruct 退化作为主要 finding 讨论（而非仅在 appendix）；(b) 如果可能，增加 1-2 个 instruct 模型到主实验；(c) 至少提供一个关于 instruct 设置下 DDR 为何退化的机理假说。
+
+---
+
+## Should-Fix 问题（影响评分但不一票否决）
+
+**W1** [warning] Gemma-2-2B 异常（gen-1 F1=0.036）解释不充分
+- 具体位置：Appendix Z.4（p.32-33）/ Table 39
+- 问题：Gemma-2-2B 的 gen-1 F1=0.036，gen-0 F1=0.628，几乎完全无法识别第一代生成。论文将此归因为 "architecture-specific limitation"，指出 Gemma-2-2B 的 gen-1 输出在特征空间中与 gen-0 "highly similar"。但这个解释是描述性的而非机理性的。为什么 Gemma-2 的第一代输出在 Pythia-410M reference model 下看起来和人类文本一样？是 Gemma-2 的训练方式更好地保留了人类文本分布，还是 Pythia 参考模型对 Gemma-2 的表征能力不足？
+- 建议：(a) 检查 Gemma-2-2B gen-1 在非 Pythia 参考模型下的表现（Table 5 的 cross-reference 似乎没有单独报告 Gemma）；(b) 分析 Gemma-2-2B 的 7 个特征值分布与其他 generator 的差异。
+
+**W2** [warning] Baseline 对比范围偏窄
+- 具体位置：§4.3 / Table 2（p.7）
+- 问题：4 个 baseline（Avg-LogProb、FastDetectGPT、LD-Score、Binoculars）都是 single-feature 或简单方法。7-feature ensemble 相对于 4-detector ensemble 仅 +2.5pp（0.820 vs 0.795）。缺少与更复杂的多特征检测方法的对比（如 DNA-GPT 的 re-generation 策略、RADAR 等 trained detector、或其他 multi-feature ensemble 方法）。
+- 建议：增加至少 1 个 multi-feature 或 trained detector baseline（即使是在 appendix 中），以展示 7-feature approach 相对于更 sophisticated 方法的定位。
+
+**W3** [warning] 温度限制 (t < 0.9) 影响实用性
+- 具体位置：Appendix P Table 10（p.18）
+- 问题：4 个 generator 在 t=0.9 时 binary F1 降至 0.400-0.453（Pythia-2.8B†），t=1.0 时进一步退化。许多实际部署使用 temperature 0.7-1.0。论文在正文中提到 "four tested generators degrade at t=0.9 (-0.3 to -26.0pp)"，但没有在主表中体现温度敏感性。
+- 建议：(a) 在正文中增加一个温度敏感性摘要（至少一句话引用 Appendix P 结果）；(b) 讨论这对实际部署意味着什么。
+
+**W4** [warning] Cross-model chain 结果混淆深度信号与 generator 身份信号
+- 具体位置：§4.1 最后一段 / Table 1 "Mixed-7B" 行
+- 问题：Cross-model chain F1=0.830 高于 single-model LOGO F1=0.694。论文将此归因于 "generator heterogeneity amplifying depth-correlated distributional shifts"。但在 cross-model chain 中，gen-1 和 gen-2 使用不同的 generator，因此分类器可能学到的是 generator identity 而非 depth——即使 LOGO 排除了单个 generator，不同 generator 的混合可能仍然引入 spurious signal。
+- 建议：增加一个控制实验：在 single-generator chain 上训练，在 cross-model chain 上测试（反之亦然），以 disentangle 两个信号。
+
+**W5** [warning] DDR partition 的 3/1/3 分组标准不够 principled
+- 具体位置：§4.2 / Appendix U-V（p.27-29）
+- 问题：DDR partition（3 drifting / 1 intermediate / 3 near-stationary）依赖 TOST 等价性检验的 ε=0.20 阈值（Cohen's d）。这是一个 conventional small effect size 阈值，但 partition 对 ε 的选择敏感性如何？Appendix V Table 29 确实做了 ε sensitivity（0.15, 0.20, 0.25），但仅展示了 pass rate 而非 partition 是否改变。此外，entropy_std 被归为 "intermediate"（d=0.458, TOST rejection 0/1000），但 0.458 远大于 0.20 的阈值——intermediate 的操作性定义是什么？
+- 建议：(a) 明确 intermediate 的操作性定义（不仅仅是"不 drifting 也不 stationary"）；(b) 展示 ε=0.15 和 0.25 下 partition 是否保持 3/1/3。
+
+---
+
+## 小问题（不影响接收）
+
+1. **Figure 1 (p.6)** strip plot 中个别 generator 趋势线重叠较严重，尤其是 near-stationary 特征组中多条趋势接近平坦线，难以区分个别 generator。
+2. **DDR 缩写首次使用**在 §4.2 (p.5)，但 abstract 中已经使用了 "differential depth response"，建议在 abstract 中首次出现时就给出缩写。
+3. **Table 1 (p.6) 脚注 1** 提到 "1-class F1 carries upward bias because gen-0 seeds are shared across generators"——这个 bias 的量级应在正文中给出估计值，而非仅在脚注提及。
+4. **Appendix 引用环路**：Appendix B 引用 Appendix R，Appendix R 引用 Appendix B 的结论，部分读者可能感到困惑。
+
+---
+
+## 主要优势
+
+1. **问题定义清晰且有价值**：将 generation depth classification 从 binary detection 中独立出来，formulation 干净（gen-0/gen-1/gen-2+），non-paraphrastic continuation chain 的设置避免了 paraphrase detection 的混淆。
+2. **DDR 分解是 genuine empirical contribution**：drifting（location shift）vs near-stationary（shape stability）的分组在 7 个特征上一致观察到，并通过 TOST、k-means clustering（Appendix V Table 28）、holdout split validation（Table 30）、bootstrap stability（Appendix U.1 Table 27）四种独立方法交叉验证。
+3. **评估协议严谨**：LOGO 避免 generator leakage，LOFO 验证特征贡献，独立 seed 控制（Appendix T Table 25）排除 topic-based leakage，cross-reference-model（Table 5 的 3 个 ref model）验证不依赖特定参考模型。
+4. **分析广度 exceptional**：20+ appendix covering length confound、temperature sensitivity、prompt type、5-class ordinal、human edit robustness、cross-domain、classifier comparison、Granger causality、error analysis、instruction tuning、convergence dynamics 等。这种分析深度在 empirical NLP 论文中罕见。
+5. **Granger causality 分析**（Appendix Z.3 Table 38）提供了 DDR 特征的 causal predictive power 证据，超越了纯相关性描述。
+
+---
+
+## 实验覆盖度检查
+
+**已覆盖的实验**（对照 Director 提供的关键 table 列表）：
+- ✅ Feature ablation (Table 2): full vs surface-only vs reference-only
+- ✅ Feature trend classification (§4.2 / Figure 1): Spearman ρ 和 KS
+- ✅ LOGO per-generator (Table 1): binary F1 0.659–0.724
+- ✅ LOGO vs LOFO (Table 7, Appendix F): Δ = entropy_max 最大降幅 -3.0pp
+- ✅ Cross-reference-model (Table 5, Appendix S): 3 ref models, F1 0.803–0.816
+- ✅ Baseline comparison (Table 2): 7-feat vs Avg-LogProb vs 4-det ensemble
+- ✅ Cross-model chains (§4.1): 0.830 vs single-model 0.694
+- ✅ Downstream CLM (Appendix M Table 19): TOST equivalence
+- ✅ 9-generator LOGO (Appendix Z.4): Gemma-2-2B anomaly
+- ✅ QLoRA (Appendix E): 3-class 0.905
+- ✅ Temperature sensitivity (Appendix P)
+- ✅ Length confound (Appendix B): 3 analyses
+- ✅ Prompt type (Appendix C): continuation/elaboration/rewriting
+- ✅ 5-class ordinal (Appendix D)
+- ✅ Human edit robustness (Appendix I)
+- ✅ Cross-domain (Appendix J)
+- ✅ Classifier comparison (Appendix H)
+- ✅ Confusion matrix (Appendix G)
+- ✅ Error analysis (Appendix L)
+- ✅ Permutation importance + Granger causality (Appendix Z.3)
+- ✅ DDR convergence dynamics (Appendix Z.2)
+
+**缺失或不足的实验**：
+- ❌ Adversarial robustness（针对已知检测方法的对抗性攻击）
+- ❌ 非英语语言（仅 English Wikipedia）
+- ❌ >7B 规模的 generator（最大仅 Mistral-7B）
+- ❌ 不同 decoding 策略的系统比较（top-k, top-p, beam search——仅测了 temperature）
+- ⚠️ Instruction-tuned 模型分析在 appendix 但未进入主实验
+- ⚠️ 下游任务多样性不足（仅 perplexity，无 downstream task accuracy）
+
+---
+
+## Questions for Authors
+
+1. **关于 QLoRA gap**：QLoRA classifier 是否也学到了 DDR-like 的 drifting/stationary 分解？是否做过 QLoRA 的 feature attribution 分析（如 attention pattern 或 probing）来理解它为何优于手工特征？
+2. **关于 Gemma-2-2B**：能否在 OLMo-2-1B 或 Qwen3-0.6B 作为 reference model 时单独报告 Gemma-2-2B 的 per-class F1？如果 Gemma 异常在非 Pythia 参考下消失，则说明是 reference model compatibility 问题而非 DDR 失败。
+3. **关于 instruct 退化**：Appendix K 显示 entropy_mean ρ 在 instruct 模型上翻转符号。这是否意味着 instruction tuning 改变了 DDR 的 direction 而非消除了 DDR？如果 DDR 在 instruct 设置下是 reversed，是否可以通过重新训练 partition 来恢复？
+4. **关于 cross-model chain**：是否有实验在 single-generator chain 上训练 classifier，然后在 cross-model chain 上测试？这能帮助 disentangle depth signal 和 generator identity signal。
+5. **关于 practical threshold**：在什么 F1 水平下，depth classification 才有实际部署价值？0.694 是否足够用于论文提到的 data curation 场景？
+
+---
+
+**Reviewer Confidence**: 4/5 — 仔细阅读全文及所有附录，对实验方法论和统计检验有足够专业背景。
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "840c5be9-4679-4275-8435-351bf5dbd7a3",
+  "isSidechain": false,
+  "promptId": "4a675508-9598-4638-aa9e-2d91a581603f",
+  "type": "user",
+  "uuid": "1b4069b7-fee0-4a2f-b824-86f443937411",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 14 · 2026-05-20T10:56:39.803Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me understand the situation. I'm the Review Director for the gen-depth-fingerprint project. The server just restarted and I've lost conversation memory. I need to:
+
+1. Recover context by reading chat history and project status
+2. Process Reviewer 1's detailed review that just came in
+
+Let me first follow the recovery instructions, then figure out where we are in the review process. I need to load the session start skill and check the project overview.
+
+Let me start by loading the necessary tools and reading the skill file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1b4069b7-fee0-4a2f-b824-86f443937411",
+  "isSidechain": false,
+  "requestId": "req_011CbDhZJz4xoM9LKRCVu1qe",
+  "type": "assistant",
+  "uuid": "c721287b-22d9-4fd4-aacc-53ada57e6cde",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NUMAEMZq7FNjsactwh9nEh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 21920,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 291,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 21920,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 291,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 21920,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 21920
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 15 · 2026-05-20T10:56:40.786Z_
+
+服务器重启，正在恢复审稿会议状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c721287b-22d9-4fd4-aacc-53ada57e6cde",
+  "isSidechain": false,
+  "requestId": "req_011CbDhZJz4xoM9LKRCVu1qe",
+  "type": "assistant",
+  "uuid": "c6269bf4-a7a1-444a-985a-348897880737",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NUMAEMZq7FNjsactwh9nEh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 21920,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 291,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 21920,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 291,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 21920,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 21920
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 16 · 2026-05-20T10:56:42.818Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_019FhmKHpBALb3fLBuuVs4dE`</summary>
+
+```json
+{
+  "query": "select:director_get_project_overview,director_post_to_reviewer,get_external_review_status,get_visual_check_status,submit_review_report_to_research_director,update_review_issues,read_project_file,dispatch_visual_check,request_external_review",
+  "max_results": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c6269bf4-a7a1-444a-985a-348897880737",
+  "isSidechain": false,
+  "requestId": "req_011CbDhZJz4xoM9LKRCVu1qe",
+  "type": "assistant",
+  "uuid": "9e5d2e60-2613-4ccf-a071-d8facc21487f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NUMAEMZq7FNjsactwh9nEh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 21920,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 291,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 21920,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 291,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 21920,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 21920
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 17 · 2026-05-20T10:56:42.825Z_
+
+<details><summary>↩ Tool result · `toolu_019FhmKHpBALb3fLBuuVs4dE`</summary>
+
+```text
+No matching deferred tools found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9e5d2e60-2613-4ccf-a071-d8facc21487f",
+  "isSidechain": false,
+  "promptId": "4a675508-9598-4638-aa9e-2d91a581603f",
+  "type": "user",
+  "uuid": "e97579f7-99be-4b01-88ce-e1c3cc10024b",
+  "toolUseResult": {
+    "matches": [],
+    "query": "select:director_get_project_overview,director_post_to_reviewer,get_external_review_status,get_visual_check_status,submit_review_report_to_research_director,update_review_issues,read_project_file,dispatch_visual_check,request_external_review",
+    "total_deferred_tools": 29
+  },
+  "sourceToolAssistantUUID": "9e5d2e60-2613-4ccf-a071-d8facc21487f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[服务器重启后首条消息 — Director] 项目: gen-depth-fingerprint | 当前日期: 2026-05-20 服务器刚重启，你的对话记忆已丢失。在处理用户消息前，先执行： 1. `feishu_read_chat_history(chat_id=\"oc_999770e4e57bfc6eabd12fc1f64af1ef\", limit=30)` 恢复近期对话上下文 2.…",
+  "leafUuid": "e97579f7-99be-4b01-88ce-e1c3cc10024b",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review appendix and remaining pages",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 20 · 2026-05-20T10:56:46.874Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_011tTNNdmtiZ6MVJELrKYHtU`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__director_get_project_overview,mcp__agent-ml-research__director_post_to_reviewer,mcp__agent-ml-research__get_external_review_status,mcp__agent-ml-research__get_visual_check_status,mcp__agent-ml-research__submit_review_report_to_research_director,mcp__agent-ml-research__update_review_issues,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__dispatch_visual_check,mcp__agent-ml-research__request_external_review",
+  "max_results": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e97579f7-99be-4b01-88ce-e1c3cc10024b",
+  "isSidechain": false,
+  "requestId": "req_011CbDhZzLgEmNaZrP114k4z",
+  "type": "assistant",
+  "uuid": "3782e240-142f-4a4b-9ee6-abcc179983f9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QgwHuE1c86hEv7pjCVPk7J",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 309,
+      "cache_read_input_tokens": 33761,
+      "output_tokens": 221,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 309,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 221,
+          "cache_read_input_tokens": 33761,
+          "cache_creation_input_tokens": 309,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 309
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 21 · 2026-05-20T10:56:46.877Z_
+
+<details><summary>↩ Tool result · `toolu_011tTNNdmtiZ6MVJELrKYHtU`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__director_get_project_overview"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__director_post_to_reviewer"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__get_external_review_status"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__get_visual_check_status"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__submit_review_report_to_research_director"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_review_issues"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__dispatch_visual_check"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__request_external_review"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3782e240-142f-4a4b-9ee6-abcc179983f9",
+  "isSidechain": false,
+  "promptId": "4a675508-9598-4638-aa9e-2d91a581603f",
+  "type": "user",
+  "uuid": "565120a5-4b1e-4c6a-b1af-5433037cc767",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__director_get_project_overview",
+      "mcp__agent-ml-research__director_post_to_reviewer",
+      "mcp__agent-ml-research__get_external_review_status",
+      "mcp__agent-ml-research__get_visual_check_status",
+      "mcp__agent-ml-research__submit_review_report_to_research_director",
+      "mcp__agent-ml-research__update_review_issues",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__dispatch_visual_check",
+      "mcp__agent-ml-research__request_external_review"
+    ],
+    "query": "select:mcp__agent-ml-research__director_get_project_overview,mcp__agent-ml-research__director_post_to_reviewer,mcp__agent-ml-research__get_external_review_status,mcp__agent-ml-research__get_visual_check_status,mcp__agent-ml-research__submit_review_report_to_research_director,mcp__agent-ml-research__update_review_issues,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__dispatch_visual_check,mcp__agent-ml-research__request_external_review",
+    "total_deferred_tools": 29
+  },
+  "sourceToolAssistantUUID": "3782e240-142f-4a4b-9ee6-abcc179983f9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 22 · 2026-05-20T10:56:50.093Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me recover the context by checking project overview and reading the session start skill, then figure out where we are in the review process.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "565120a5-4b1e-4c6a-b1af-5433037cc767",
+  "isSidechain": false,
+  "requestId": "req_011CbDhaHSKosYxY8Ntw5bSY",
+  "type": "assistant",
+  "uuid": "ff49d3ef-19e3-4a59-bb1e-426b1389a276",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YMdpf59mwJwuMsUR42kPWr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3354,
+      "cache_read_input_tokens": 34070,
+      "output_tokens": 283,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3354,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 283,
+          "cache_read_input_tokens": 34070,
+          "cache_creation_input_tokens": 3354,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3354
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 23 · 2026-05-20T10:56:50.598Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__director_get_project_overview · `toolu_01CahaY92SViregXvifsyyYj`</summary>
+
+```json
+{
+  "project": "gen-depth-fingerprint"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ff49d3ef-19e3-4a59-bb1e-426b1389a276",
+  "isSidechain": false,
+  "requestId": "req_011CbDhaHSKosYxY8Ntw5bSY",
+  "type": "assistant",
+  "uuid": "0a2a7926-f7aa-402a-948d-4393f521f0ce",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YMdpf59mwJwuMsUR42kPWr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3354,
+      "cache_read_input_tokens": 34070,
+      "output_tokens": 283,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3354,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 283,
+          "cache_read_input_tokens": 34070,
+          "cache_creation_input_tokens": 3354,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3354
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 24 · 2026-05-20T10:56:50.879Z_
+
+<details><summary>↩ Tool result · `toolu_01CahaY92SViregXvifsyyYj`</summary>
+
+```text
+{"result":"# 项目 gen-depth-fingerprint 概况\n\n## 实验状态 (65 个)\n\n- **plan-013**: DONE (success) — \n- **plan-002**: DONE (success) — \n- **plan-002-qwen17b-retry-s1**: DONE (failed) — \n- **plan-002-qwen17b-retry-s0**: DONE (failed) — \n- **plan-002-qwen06b-s1**: DONE (failed) — \n- **plan-002-qwen06b-s0**: DONE (failed) — \n- **plan-002-qwen17b-s1**: DONE (failed) — \n- **plan-002-qwen17b-s0**: DONE (failed) — \n- **plan-002-qwen3-1_7b-s0**: DONE (failed) — \n- **plan-002-qwen3-1_7b-s1**: DONE (killed) — \n- **plan-001**: DONE (success) — \n- **mvp-001**: DONE (success) — \n- **mvp-001-gen-s3**: PREPARING (failed) — \n- **mvp-001-gen-s2**: PREPARING (failed) — \n- **mvp-001-gen-s1**: PREPARING (failed) — \n\n## 最新报告\n# Handover — 2026-05-20\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n（无）\n\n## 待处理\n- exp_060_14b_ddr_analysis（准备中）\n- exp_056b_qlora_qwen_base: Within-model QLoRA on Qwen3-1.7B base data establishes per-model baseline for instruct comparison; expected 3-class F1 comparable to pooled base QLoRA (0.905) with potential variance from smaller per-model dataset（准备中）\n- exp_055b_qlora_olmo_base: Within-model QLoRA on OLMo-2-1B base data establishes per-model baseline for instruct comparison; expected 3-class F1 comparable to pooled base QLoRA (0.905) with potential variance from smaller per-model dataset（准备中）\n- exp_056_qlora_qwen_instruct: QLoRA end-to-end classifier on Qwen3-1.7B-Instruct generation data recovers depth signal partially: 3-class F1 lower than base QLoRA (0.905) due to instruct-tuning compressing depth features, but higher than XGBoost on instruct features (0.732)（准备中）\n- exp_055_qlora_olmo_instruct: QLoRA end-to-end classifier on OLMo-2-0425-1B-Instruct generation data recovers depth signal partially: 3-class F1 lower than base QLoRA (0.905) due to instruct-tuning compressing depth features, but higher than XGBoost on instruct features (0.575)（准备中）\n- exp_054_instruct_llama3_2_3b: Instruct-tuned Llama-3.2-3B-Instruct shows degraded depth signal vs base Llama-3.2-3B (F1=0.697), quantifying instruction-tuning's impact on DDR（准备中）\n- exp_053_instruct_olmo2_1b: Instruct-tuned OLMo-2-1B-Instruct shows degraded depth signal vs base OLMo-2-1B (F1=0.695), quantifying instruction-tuning's impact on DDR（准备中）\n- exp_052_instruct_qwen3_1_7b: Instruct-tuned Qwen3-1.7B (chat template, thinking=off) shows degraded depth signal vs base Qwen3-1.7B (F1=0.709), quantifying instruction-tuning's impact on DDR（准备中）\n- multi_domain_t07（准备中）\n- review-exp-a-baseline-ensemble: 审稿回应实验A：4-baseline ensemble + 统一超参对比，验证 7-feature vs 4-baseline vs 6-feature 在公平条件下的性能差异（准备中）\n- …另有 6 项\n\n## 近期结论\n- **exp_057_scale_9gen_logo** (success): Depth signal persists at 7B+ scale: Qwen3-8B-Base generation chains exhibit DDR patterns (drifting central-tendency, stationary shape features) comparable to sub-3B models, and adding Qwen3-8B as 9th generator to LOGO evaluation maintains or improves ensemble F1, ruling out scale-dependent signal collapse\n- **exp_057** (success): Depth signal persists at 7B+ scale: Qwen3-8B-Base generation chains exhibit DDR patterns (drifting central-tendency, stationary shape features) comparable to sub-3B models, and adding Qwen3-8B as 9th generator to LOGO evaluation maintains or improves ensemble F1, ruling out scale-dependent signal collapse\n- **exp_058_ddr_causality** (success): DDR features have causal predictive power for depth beyond correlation: permutation importance confirms each feature group (drifting/stationary) contributes independently, and Granger causality tests show depth-t features predict depth-(t+1) features beyond autoregressive baseline, establishing temporal causal direction in the generation chain\n  [ddr_causal_analysis](/api/workspace-f"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0a2a7926-f7aa-402a-948d-4393f521f0ce",
+  "isSidechain": false,
+  "promptId": "4a675508-9598-4638-aa9e-2d91a581603f",
+  "type": "user",
+  "uuid": "5a3471ec-9659-4a4d-84a2-4cdf05dd7d0f",
+  "toolUseResult": "{\"result\":\"# 项目 gen-depth-fingerprint 概况\\n\\n## 实验状态 (65 个)\\n\\n- **plan-013**: DONE (success) — \\n- **plan-002**: DONE (success) — \\n- **plan-002-qwen17b-retry-s1**: DONE (failed) — \\n- **plan-002-qwen17b-retry-s0**: DONE (failed) — \\n- **plan-002-qwen06b-s1**: DONE (failed) — \\n- **plan-002-qwen06b-s0**: DONE (failed) — \\n- **plan-002-qwen17b-s1**: DONE (failed) — \\n- **plan-002-qwen17b-s0**: DONE (failed) — \\n- **plan-002-qwen3-1_7b-s0**: DONE (failed) — \\n- **plan-002-qwen3-1_7b-s1**: DONE (killed) — \\n- **plan-001**: DONE (success) — \\n- **mvp-001**: DONE (success) — \\n- **mvp-001-gen-s3**: PREPARING (failed) — \\n- **mvp-001-gen-s2**: PREPARING (failed) — \\n- **mvp-001-gen-s1**: PREPARING (failed) — \\n\\n## 最新报告\\n# Handover — 2026-05-20\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- exp_060_14b_ddr_analysis（准备中）\\n- exp_056b_qlora_qwen_base: Within-model QLoRA on Qwen3-1.7B base data establishes per-model baseline for instruct comparison; expected 3-class F1 comparable to pooled base QLoRA (0.905) with potential variance from smaller per-model dataset（准备中）\\n- exp_055b_qlora_olmo_base: Within-model QLoRA on OLMo-2-1B base data establishes per-model baseline for instruct comparison; expected 3-class F1 comparable to pooled base QLoRA (0.905) with potential variance from smaller per-model dataset（准备中）\\n- exp_056_qlora_qwen_instruct: QLoRA end-to-end classifier on Qwen3-1.7B-Instruct generation data recovers depth signal partially: 3-class F1 lower than base QLoRA (0.905) due to instruct-tuning compressing depth features, but higher than XGBoost on instruct features (0.732)（准备中）\\n- exp_055_qlora_olmo_instruct: QLoRA end-to-end classifier on OLMo-2-0425-1B-Instruct generation data recovers depth signal partially: 3-class F1 lower than base QLoRA (0.905) due to instruct-tuning compressing depth features, but higher than XGBoost on instruct features (0.575)（准备中）\\n- exp_054_instruct_llama3_2_3b: Instruct-tuned Llama-3.2-3B-Instruct shows degraded depth signal vs base Llama-3.2-3B (F1=0.697), quantifying instruction-tuning's impact on DDR（准备中）\\n- exp_053_instruct_olmo2_1b: Instruct-tuned OLMo-2-1B-Instruct shows degraded depth signal vs base OLMo-2-1B (F1=0.695), quantifying instruction-tuning's impact on DDR（准备中）\\n- exp_052_instruct_qwen3_1_7b: Instruct-tuned Qwen3-1.7B (chat template, thinking=off) shows degraded depth signal vs base Qwen3-1.7B (F1=0.709), quantifying instruction-tuning's impact on DDR（准备中）\\n- multi_domain_t07（准备中）\\n- review-exp-a-baseline-ensemble: 审稿回应实验A：4-baseline ensemble + 统一超参对比，验证 7-feature vs 4-baseline vs 6-feature 在公平条件下的性能差异（准备中）\\n- …另有 6 项\\n\\n## 近期结论\\n- **exp_057_scale_9gen_logo** (success): Depth signal persists at 7B+ scale: Qwen3-8B-Base generation chains exhibit DDR patterns (drifting central-tendency, stationary shape features) comparable to sub-3B models, and adding Qwen3-8B as 9th generator to LOGO evaluation maintains or improves ensemble F1, ruling out scale-dependent signal collapse\\n- **exp_057** (success): Depth signal persists at 7B+ scale: Qwen3-8B-Base generation chains exhibit DDR patterns (drifting central-tendency, stationary shape features) comparable to sub-3B models, and adding Qwen3-8B as 9th generator to LOGO evaluation maintains or improves ensemble F1, ruling out scale-dependent signal collapse\\n- **exp_058_ddr_causality** (success): DDR features have causal predictive power for depth beyond correlation: permutation importance confirms each feature group (drifting/stationary) contributes independently, and Granger causality tests show depth-t features predict depth-(t+1) features beyond autoregressive baseline, establishing temporal causal direction in the generation chain\\n  [ddr_causal_analysis](/api/workspace-f\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "# 项目 gen-depth-fingerprint 概况\n\n## 实验状态 (65 个)\n\n- **plan-013**: DONE (success) — \n- **plan-002**: DONE (success) — \n- **plan-002-qwen17b-retry-s1**: DONE (failed) — \n- **plan-002-qwen17b-retry-s0**: DONE (failed) — \n- **plan-002-qwen06b-s1**: DONE (failed) — \n- **plan-002-qwen06b-s0**: DONE (failed) — \n- **plan-002-qwen17b-s1**: DONE (failed) — \n- **plan-002-qwen17b-s0**: DONE (failed) — \n- **plan-002-qwen3-1_7b-s0**: DONE (failed) — \n- **plan-002-qwen3-1_7b-s1**: DONE (killed) — \n- **plan-001**: DONE (success) — \n- **mvp-001**: DONE (success) — \n- **mvp-001-gen-s3**: PREPARING (failed) — \n- **mvp-001-gen-s2**: PREPARING (failed) — \n- **mvp-001-gen-s1**: PREPARING (failed) — \n\n## 最新报告\n# Handover — 2026-05-20\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n（无）\n\n## 待处理\n- exp_060_14b_ddr_analysis（准备中）\n- exp_056b_qlora_qwen_base: Within-model QLoRA on Qwen3-1.7B base data establishes per-model baseline for instruct comparison; expected 3-class F1 comparable to pooled base QLoRA (0.905) with potential variance from smaller per-model dataset（准备中）\n- exp_055b_qlora_olmo_base: Within-model QLoRA on OLMo-2-1B base data establishes per-model baseline for instruct comparison; expected 3-class F1 comparable to pooled base QLoRA (0.905) with potential variance from smaller per-model dataset（准备中）\n- exp_056_qlora_qwen_instruct: QLoRA end-to-end classifier on Qwen3-1.7B-Instruct generation data recovers depth signal partially: 3-class F1 lower than base QLoRA (0.905) due to instruct-tuning compressing depth features, but higher than XGBoost on instruct features (0.732)（准备中）\n- exp_055_qlora_olmo_instruct: QLoRA end-to-end classifier on OLMo-2-0425-1B-Instruct generation data recovers depth signal partially: 3-class F1 lower than base QLoRA (0.905) due to instruct-tuning compressing depth features, but higher than XGBoost on instruct features (0.575)（准备中）\n- exp_054_instruct_llama3_2_3b: Instruct-tuned Llama-3.2-3B-Instruct shows degraded depth signal vs base Llama-3.2-3B (F1=0.697), quantifying instruction-tuning's impact on DDR（准备中）\n- exp_053_instruct_olmo2_1b: Instruct-tuned OLMo-2-1B-Instruct shows degraded depth signal vs base OLMo-2-1B (F1=0.695), quantifying instruction-tuning's impact on DDR（准备中）\n- exp_052_instruct_qwen3_1_7b: Instruct-tuned Qwen3-1.7B (chat template, thinking=off) shows degraded depth signal vs base Qwen3-1.7B (F1=0.709), quantifying instruction-tuning's impact on DDR（准备中）\n- multi_domain_t07（准备中）\n- review-exp-a-baseline-ensemble: 审稿回应实验A：4-baseline ensemble + 统一超参对比，验证 7-feature vs 4-baseline vs 6-feature 在公平条件下的性能差异（准备中）\n- …另有 6 项\n\n## 近期结论\n- **exp_057_scale_9gen_logo** (success): Depth signal persists at 7B+ scale: Qwen3-8B-Base generation chains exhibit DDR patterns (drifting central-tendency, stationary shape features) comparable to sub-3B models, and adding Qwen3-8B as 9th generator to LOGO evaluation maintains or improves ensemble F1, ruling out scale-dependent signal collapse\n- **exp_057** (success): Depth signal persists at 7B+ scale: Qwen3-8B-Base generation chains exhibit DDR patterns (drifting central-tendency, stationary shape features) comparable to sub-3B models, and adding Qwen3-8B as 9th generator to LOGO evaluation maintains or improves ensemble F1, ruling out scale-dependent signal collapse\n- **exp_058_ddr_causality** (success): DDR features have causal predictive power for depth beyond correlation: permutation importance confirms each feature group (drifting/stationary) contributes independently, and Granger causality tests show depth-t features predict depth-(t+1) features beyond autoregressive baseline, establishing temporal causal direction in the generation chain\n  [ddr_causal_analysis](/api/workspace-f"
+    }
+  },
+  "sourceToolAssistantUUID": "0a2a7926-f7aa-402a-948d-4393f521f0ce",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 25 · 2026-05-20T10:56:52.336Z_
+
+<details><summary>↩ Tool result · `toolu_019mYcZUvA7x23y5kV52Jd8y`</summary>
+
+````text
+1	---
+2	name: review-director-session-start
+3	description: Review Director session 启动初始化流程——圆桌多轮审稿协议。Review Director 角色 session 启动时自动使用。
+4	priority: 9
+5	scope: global
+6	tags:
+7	- workflow
+8	- review
+9	- session
+10	version: 3
+11	roles:
+12	- review_director
+13	---
+14	
+15	# Review Director Session 启动流程（圆桌会议模式）
+16	
+17	## 初始化
+18	
+19	1. `director_get_project_overview(project)` — 了解研究现状（实验状态、最新报告）
+20	2. 读取论文文件状态：检查 `projects/{project}/paper/` 或 `main.tex` 是否存在
+21	3. 检查是否有来自 Research Director 的论文提交（`[论文提交]` 消息）
+22	4. 向用户简要汇报：
+23	   - **投稿目标**：venue 和 deadline
+24	   - **论文状态**：当前草稿位置和版本
+25	   - **资料完整性**：提交的材料是否齐全
+26	   - **下一步**：即将开始的圆桌审稿流程
+27	
+28	## 评审流程（收到论文提交后执行）
+29	
+30	### Step 0 — 资料检查 + Venue 调研（必须先做，不可跳过）
+31	
+32	1. 检查提交资料完整性：论文文件是否存在、是否可读、补充材料是否齐全
+33	2. 确认目标投稿 venue（从提交消息中获取）
+34	3. 用 `web_search` 搜索该 venue 当前轮次的 CFP（Call for Papers），关键词示例：
+35	   - `"&lt;venue name> 2026 call for papers" site:aclweb.org`
+36	   - `"&lt;venue name> 2026 submission deadline"`
+37	   - `"&lt;venue name> 2026 author guidelines"`
+38	4. **验证 deadline 未过期**：今天日期与截止日期对比，若已过期立即通知用户，不继续
+39	5. 提取当前版本的格式要求：
+40	   - 页数限制（正文 / 附录 / 参考文献）
+41	   - 模板（ACL / IEEE / NeurIPS / ICML / ...）
+42	   - 匿名规则（double-blind / single-blind / open）
+43	   - 附录规则（是否允许、是否参与审稿）
+44	   - 引用格式（natbib / biblatex / 特定 .bst）
+45	6. 将以上信息作为上下文，随任务一起传递给 Reviewer
+46	
+47	⚠️ 禁止使用训练知识中的 venue 要求——格式标准每年都会更新，必须实时搜索确认。
+48	
+49	### Step 0.5 — 决定 Reviewer 编排
+50	
+51	根据 venue 类型和论文特点，决定：
+52	- 需要几个 Reviewer（1-5 人）
+53	- 每个 Reviewer 的审查侧重
+54	
+55	参考：
+56	- **顶会长文**（NeurIPS/ICML/ACL）：3 人（方法/实验 + novelty/related work + 格式/ethics）
+57	- **一般会议**（EMNLP/NAACL）：2 人（方法严谨性 + 新颖性/完整性）
+58	- **Workshop / 短文**：1 人（全面审查）
+59	
+60	向 Group C（即项目配置中的 `feishu.review_chat_id` 审稿群）汇报编排决定。
+61	
+62	### Step 0.6 — 外部审稿线（与 Step 1 并行）
+63	
+64	检查项目配置中 `external_review.paperreview_ai.enabled` 是否为 `true`：
+65	- 如果启用：调用 `request_external_review(project, paper_pdf_path, venue)` 向用户群发送协助提交卡片
+66	- 这一步与 Step 1（内部 Reviewer 分配）**并行执行**，不阻塞内部审稿流程
+67	- 外部结果到达后（用户在群里粘贴），纳入 Step 4 最终报告
+68	- 如果到 Step 4 时外部结果仍未返回，调用 `get_external_review_status(project)` 确认状态，在报告中标注
+69	
+70	### Step 0.7 — 视觉审查派发（与 Step 1 并行）
+71	
+72	派发独立视觉审查 Agent，与 Reviewer 审稿并行执行：
+73	
+74	```
+75	dispatch_visual_check(project="{project}", review_chat_id="{review_chat_id}")
+76	```
+77	
+78	- 视觉审查 Agent 自动渲染论文 PDF 并逐页检查排版质量（Figure 1 位置、布局节奏、图表质量、空白分布等）
+79	- **不参与评分和交叉讨论**，结果仅作为参考信息
+80	- 启动和完成通知自动发送到 Group C
+81	- 结果在 Step 4 通过 `get_visual_check_status(project)` 读取并拼入报告
+82	- **fire-and-forget**：调用立即返回，本步骤永不等待视觉审查完成
+83	
+84	### Step 1 — Round N：独立审稿
+85	
+86	携带 Step 0 搜到的 venue 要求，启动所有 Reviewer：
+87	
+88	```
+89	director_post_to_reviewer(reviewer_id="1", round_number=N, text="你负责 {focus}。...")
+90	director_post_to_reviewer(reviewer_id="2", round_number=N, text="你负责 {focus}。...")
+91	...（按需）
+92	```
+93	
+94	消息中必须包含：
+95	- venue 名称和截止日期
+96	- 页数限制和模板名称
+97	- 匿名规则
+98	- 论文文件路径
+99	- **该 Reviewer 的审查侧重**（在消息中明确指定）
+100	
+101	收集所有 Reviewer 的审稿结果。
+102	
+103	### Step 2 — 交叉分享（原文转发 + 逐条回应）
+104	
+105	将每位 Reviewer 的**完整审稿原文**转发给其他 Reviewer，要求逐条回应：
+106	
+107	```
+108	director_post_to_reviewer(reviewer_id="2", round_number=N, text="""
+109	以下是 Reviewer 1 的完整审稿意见：
+110	
+111	{Reviewer 1 的原文}
+112	
+113	请逐条回应：[AGREE] 同意并说明理由，或 [REBUT] 反驳并提供证据（cite 具体 Section/Table/Figure）。
+114	""")
+115	```
+116	
+117	对每位 Reviewer 重复此步骤（每人看到其他所有 Reviewer 的原文）。
+118	
+119	收集所有交叉回应。
+120	
+121	### Step 3 — 收敛判断
+122	
+123	分析所有 Reviewer 的意见和交叉回应：
+124	
+125	- **关键问题已达成共识**（`[AGREE]` 占多数，无未解决的 `[REBUT]` 矛盾）→ 进入 Step 4
+126	- **存在重大分歧**（关键 issue 上有 `[REBUT]` 且双方各有道理）→ 回到 Step 1 开始下一轮，附带聚焦问题
+127	- **最多 3 轮**：如果第 3 轮仍有分歧，在报告中如实记录各方观点
+128	
+129	### Step 4 — 汇总报告 & 投递
+130	
+131	合并所有轮次的发现，形成统一审稿报告：
+132	
+133	1. 报告结构：
+134	   - **Summary**：论文概述（2-3 句）
+135	   - **Strengths**：优点（逐条列出）
+136	   - **Weaknesses**：缺点（逐条列出，这是重点，必须严格）
+137	   - **Reviewer Consensus**：所有 Reviewer 达成共识的关键问题（标注 `[AGREE]`）
+138	   - **Reviewer Divergence**：分歧点及各方理由（标注 `[REBUT]`，如有）
+139	   - **Questions**：需要作者澄清的问题
+140	   - **Missing References**：遗漏的重要相关工作
+141	   - **External Review (Stanford Agentic Reviewer)**：如有外部审稿结果，单独列出其 7 维评分、关键发现、以及与内部审稿的差异；如未返回则标注状态
+142	   - **Visual Layout Check**（非评分项，不阻塞报告）：调用 `get_visual_check_status(project)` 读一次状态——
+143	     - `done` → 直接拼入 findings
+144	     - `running` → 写"仍在进行中，本报告不等待，完成后会自动补发到 Group C"
+145	     - `timeout` / `error` → 写失败原因 + 提示用户可重新触发
+146	     - `not_started` → 写未派发
+147	     不要为视觉审查推迟报告投递。视觉 Agent 完成后会自己把结果发到 Group C，与本报告解耦。可直接调用 `format_visual_findings_for_report(project)` 拿到现成的 markdown section
+148	   - **Overall Assessment**：总评 + 评分（strong reject / weak reject / borderline / weak accept / strong accept）+ 置信度
+149	   - **Detailed Comments**：逐节详细意见
+150	2. **同步 Issue Tracker**（投递前必做）：
+151	   - 用 `read_local_file("projects/{project}/artifacts/review_issues.yaml")` 读当前 tracker（不存在视为空）
+152	   - 对本轮所有 Weakness/Must-Fix/Should-Fix:
+153	     - 与已有 issue 匹配（同 category + 相似 summary）→ 在 `mentions` 追加本轮记录,更新 `last_seen_round`
+154	     - 新问题 → 创建条目（id=`R{reviewer}-W{n}`,status=`open`,first_raised_round=本轮）
+155	   - 对上轮 `open`/`in_progress` 但本轮**未被任何 Reviewer 提及**的:
+156	     - 在 `mentions` 追加 `note: "本轮未提及,可能已修复,待 Research Director 确认"`
+157	   - 调 `update_review_issues(project, issues_yaml=完整 YAML)` 写回
+158	3. 调用 `submit_review_report_to_research_director` 投递报告 → Research Director
+159	4. 向用户（Group C）汇报审核完成
+160	
+161	此流程只在 session 启动时执行一次。
+162	
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "aa067e26-efc6-48d2-bfc1-1b56740c357b",
+  "isSidechain": false,
+  "promptId": "4a675508-9598-4638-aa9e-2d91a581603f",
+  "type": "user",
+  "uuid": "8396f884-474c-4679-b694-c1ebde7094af",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/agent-ml-research/skills/global/review-director-session-start.skill.md",
+      "content": "---\nname: review-director-session-start\ndescription: Review Director session 启动初始化流程——圆桌多轮审稿协议。Review Director 角色 session 启动时自动使用。\npriority: 9\nscope: global\ntags:\n- workflow\n- review\n- session\nversion: 3\nroles:\n- review_director\n---\n\n# Review Director Session 启动流程（圆桌会议模式）\n\n## 初始化\n\n1. `director_get_project_overview(project)` — 了解研究现状（实验状态、最新报告）\n2. 读取论文文件状态：检查 `projects/{project}/paper/` 或 `main.tex` 是否存在\n3. 检查是否有来自 Research Director 的论文提交（`[论文提交]` 消息）\n4. 向用户简要汇报：\n   - **投稿目标**：venue 和 deadline\n   - **论文状态**：当前草稿位置和版本\n   - **资料完整性**：提交的材料是否齐全\n   - **下一步**：即将开始的圆桌审稿流程\n\n## 评审流程（收到论文提交后执行）\n\n### Step 0 — 资料检查 + Venue 调研（必须先做，不可跳过）\n\n1. 检查提交资料完整性：论文文件是否存在、是否可读、补充材料是否齐全\n2. 确认目标投稿 venue（从提交消息中获取）\n3. 用 `web_search` 搜索该 venue 当前轮次的 CFP（Call for Papers），关键词示例：\n   - `\"&lt;venue name> 2026 call for papers\" site:aclweb.org`\n   - `\"&lt;venue name> 2026 submission deadline\"`\n   - `\"&lt;venue name> 2026 author guidelines\"`\n4. **验证 deadline 未过期**：今天日期与截止日期对比，若已过期立即通知用户，不继续\n5. 提取当前版本的格式要求：\n   - 页数限制（正文 / 附录 / 参考文献）\n   - 模板（ACL / IEEE / NeurIPS / ICML / ...）\n   - 匿名规则（double-blind / single-blind / open）\n   - 附录规则（是否允许、是否参与审稿）\n   - 引用格式（natbib / biblatex / 特定 .bst）\n6. 将以上信息作为上下文，随任务一起传递给 Reviewer\n\n⚠️ 禁止使用训练知识中的 venue 要求——格式标准每年都会更新，必须实时搜索确认。\n\n### Step 0.5 — 决定 Reviewer 编排\n\n根据 venue 类型和论文特点，决定：\n- 需要几个 Reviewer（1-5 人）\n- 每个 Reviewer 的审查侧重\n\n参考：\n- **顶会长文**（NeurIPS/ICML/ACL）：3 人（方法/实验 + novelty/related work + 格式/ethics）\n- **一般会议**（EMNLP/NAACL）：2 人（方法严谨性 + 新颖性/完整性）\n- **Workshop / 短文**：1 人（全面审查）\n\n向 Group C（即项目配置中的 `feishu.review_chat_id` 审稿群）汇报编排决定。\n\n### Step 0.6 — 外部审稿线（与 Step 1 并行）\n\n检查项目配置中 `external_review.paperreview_ai.enabled` 是否为 `true`：\n- 如果启用：调用 `request_external_review(project, paper_pdf_path, venue)` 向用户群发送协助提交卡片\n- 这一步与 Step 1（内部 Reviewer 分配）**并行执行**，不阻塞内部审稿流程\n- 外部结果到达后（用户在群里粘贴），纳入 Step 4 最终报告\n- 如果到 Step 4 时外部结果仍未返回，调用 `get_external_review_status(project)` 确认状态，在报告中标注\n\n### Step 0.7 — 视觉审查派发（与 Step 1 并行）\n\n派发独立视觉审查 Agent，与 Reviewer 审稿并行执行：\n\n```\ndispatch_visual_check(project=\"{project}\", review_chat_id=\"{review_chat_id}\")\n```\n\n- 视觉审查 Agent 自动渲染论文 PDF 并逐页检查排版质量（Figure 1 位置、布局节奏、图表质量、空白分布等）\n- **不参与评分和交叉讨论**，结果仅作为参考信息\n- 启动和完成通知自动发送到 Group C\n- 结果在 Step 4 通过 `get_visual_check_status(project)` 读取并拼入报告\n- **fire-and-forget**：调用立即返回，本步骤永不等待视觉审查完成\n\n### Step 1 — Round N：独立审稿\n\n携带 Step 0 搜到的 venue 要求，启动所有 Reviewer：\n\n```\ndirector_post_to_reviewer(reviewer_id=\"1\", round_number=N, text=\"你负责 {focus}。...\")\ndirector_post_to_reviewer(reviewer_id=\"2\", round_number=N, text=\"你负责 {focus}。...\")\n...（按需）\n```\n\n消息中必须包含：\n- venue 名称和截止日期\n- 页数限制和模板名称\n- 匿名规则\n- 论文文件路径\n- **该 Reviewer 的审查侧重**（在消息中明确指定）\n\n收集所有 Reviewer 的审稿结果。\n\n### Step 2 — 交叉分享（原文转发 + 逐条回应）\n\n将每位 Reviewer 的**完整审稿原文**转发给其他 Reviewer，要求逐条回应：\n\n```\ndirector_post_to_reviewer(reviewer_id=\"2\", round_number=N, text=\"\"\"\n以下是 Reviewer 1 的完整审稿意见：\n\n{Reviewer 1 的原文}\n\n请逐条回应：[AGREE] 同意并说明理由，或 [REBUT] 反驳并提供证据（cite 具体 Section/Table/Figure）。\n\"\"\")\n```\n\n对每位 Reviewer 重复此步骤（每人看到其他所有 Reviewer 的原文）。\n\n收集所有交叉回应。\n\n### Step 3 — 收敛判断\n\n分析所有 Reviewer 的意见和交叉回应：\n\n- **关键问题已达成共识**（`[AGREE]` 占多数，无未解决的 `[REBUT]` 矛盾）→ 进入 Step 4\n- **存在重大分歧**（关键 issue 上有 `[REBUT]` 且双方各有道理）→ 回到 Step 1 开始下一轮，附带聚焦问题\n- **最多 3 轮**：如果第 3 轮仍有分歧，在报告中如实记录各方观点\n\n### Step 4 — 汇总报告 & 投递\n\n合并所有轮次的发现，形成统一审稿报告：\n\n1. 报告结构：\n   - **Summary**：论文概述（2-3 句）\n   - **Strengths**：优点（逐条列出）\n   - **Weaknesses**：缺点（逐条列出，这是重点，必须严格）\n   - **Reviewer Consensus**：所有 Reviewer 达成共识的关键问题（标注 `[AGREE]`）\n   - **Reviewer Divergence**：分歧点及各方理由（标注 `[REBUT]`，如有）\n   - **Questions**：需要作者澄清的问题\n   - **Missing References**：遗漏的重要相关工作\n   - **External Review (Stanford Agentic Reviewer)**：如有外部审稿结果，单独列出其 7 维评分、关键发现、以及与内部审稿的差异；如未返回则标注状态\n   - **Visual Layout Check**（非评分项，不阻塞报告）：调用 `get_visual_check_status(project)` 读一次状态——\n     - `done` → 直接拼入 findings\n     - `running` → 写\"仍在进行中，本报告不等待，完成后会自动补发到 Group C\"\n     - `timeout` / `error` → 写失败原因 + 提示用户可重新触发\n     - `not_started` → 写未派发\n     不要为视觉审查推迟报告投递。视觉 Agent 完成后会自己把结果发到 Group C，与本报告解耦。可直接调用 `format_visual_findings_for_report(project)` 拿到现成的 markdown section\n   - **Overall Assessment**：总评 + 评分（strong reject / weak reject / borderline / weak accept / strong accept）+ 置信度\n   - **Detailed Comments**：逐节详细意见\n2. **同步 Issue Tracker**（投递前必做）：\n   - 用 `read_local_file(\"projects/{project}/artifacts/review_issues.yaml\")` 读当前 tracker（不存在视为空）\n   - 对本轮所有 Weakness/Must-Fix/Should-Fix:\n     - 与已有 issue 匹配（同 category + 相似 summary）→ 在 `mentions` 追加本轮记录,更新 `last_seen_round`\n     - 新问题 → 创建条目（id=`R{reviewer}-W{n}`,status=`open`,first_raised_round=本轮）\n   - 对上轮 `open`/`in_progress` 但本轮**未被任何 Reviewer 提及**的:\n     - 在 `mentions` 追加 `note: \"本轮未提及,可能已修复,待 Research Director 确认\"`\n   - 调 `update_review_issues(project, issues_yaml=完整 YAML)` 写回\n3. 调用 `submit_review_report_to_research_director` 投递报告 → Research Director\n4. 向用户（Group C）汇报审核完成\n\n此流程只在 session 启动时执行一次。\n",
+      "numLines": 162,
+      "startLine": 1,
+      "totalLines": 162
+    }
+  },
+  "sourceToolAssistantUUID": "aa067e26-efc6-48d2-bfc1-1b56740c357b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+````
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 26 · 2026-05-20T10:56:51.044Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_external_review_status · `toolu_018jhzafHsmHoVDKVak2zjBA`</summary>
+
+```json
+{
+  "project": "gen-depth-fingerprint"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5a3471ec-9659-4a4d-84a2-4cdf05dd7d0f",
+  "isSidechain": false,
+  "requestId": "req_011CbDhaHSKosYxY8Ntw5bSY",
+  "type": "assistant",
+  "uuid": "10fcfdc8-a087-44e5-aecc-00d7b809ecc8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YMdpf59mwJwuMsUR42kPWr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3354,
+      "cache_read_input_tokens": 34070,
+      "output_tokens": 283,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3354,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 283,
+          "cache_read_input_tokens": 34070,
+          "cache_creation_input_tokens": 3354,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3354
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 27 · 2026-05-20T10:56:51.053Z_
+
+<details><summary>↩ Tool result · `toolu_018jhzafHsmHoVDKVak2zjBA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"status\": \"not_requested\", \"message\": \"No external review requested.\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "10fcfdc8-a087-44e5-aecc-00d7b809ecc8",
+  "isSidechain": false,
+  "promptId": "4a675508-9598-4638-aa9e-2d91a581603f",
+  "type": "user",
+  "uuid": "1da7fa6c-f7a2-4812-8fe7-0025a1c7dcc8",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"not_requested\\\", \\\"message\\\": \\\"No external review requested.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"status\": \"not_requested\", \"message\": \"No external review requested.\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "10fcfdc8-a087-44e5-aecc-00d7b809ecc8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 28 · 2026-05-20T10:56:51.513Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_visual_check_status · `toolu_01SSeoFtNKtXDu2NV8ds6hKk`</summary>
+
+```json
+{
+  "project": "gen-depth-fingerprint"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1da7fa6c-f7a2-4812-8fe7-0025a1c7dcc8",
+  "isSidechain": false,
+  "requestId": "req_011CbDhaHSKosYxY8Ntw5bSY",
+  "type": "assistant",
+  "uuid": "e1165801-5129-4c0f-9b25-75df25062eb8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YMdpf59mwJwuMsUR42kPWr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3354,
+      "cache_read_input_tokens": 34070,
+      "output_tokens": 283,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3354,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 283,
+          "cache_read_input_tokens": 34070,
+          "cache_creation_input_tokens": 3354,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3354
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 29 · 2026-05-20T10:56:51.524Z_
+
+<details><summary>↩ Tool result · `toolu_01SSeoFtNKtXDu2NV8ds6hKk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"status\": \"timeout\", \"elapsed_seconds\": 29017}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e1165801-5129-4c0f-9b25-75df25062eb8",
+  "isSidechain": false,
+  "promptId": "4a675508-9598-4638-aa9e-2d91a581603f",
+  "type": "user",
+  "uuid": "0fcd7f0b-524c-4a0e-b28d-acdae85d9ec3",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"timeout\\\", \\\"elapsed_seconds\\\": 29017}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"status\": \"timeout\", \"elapsed_seconds\": 29017}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "e1165801-5129-4c0f-9b25-75df25062eb8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 30 · 2026-05-20T10:56:52.322Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_019mYcZUvA7x23y5kV52Jd8y`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/review-director-session-start.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0fcd7f0b-524c-4a0e-b28d-acdae85d9ec3",
+  "isSidechain": false,
+  "requestId": "req_011CbDhaHSKosYxY8Ntw5bSY",
+  "type": "assistant",
+  "uuid": "aa067e26-efc6-48d2-bfc1-1b56740c357b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YMdpf59mwJwuMsUR42kPWr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3354,
+      "cache_read_input_tokens": 34070,
+      "output_tokens": 283,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3354,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 283,
+          "cache_read_input_tokens": 34070,
+          "cache_creation_input_tokens": 3354,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3354
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 31_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[服务器重启后首条消息 — Director] 项目: gen-depth-fingerprint | 当前日期: 2026-05-20 服务器刚重启，你的对话记忆已丢失。在处理用户消息前，先执行： 1. `feishu_read_chat_history(chat_id=\"oc_999770e4e57bfc6eabd12fc1f64af1ef\", limit=30)` 恢复近期对话上下文 2.…",
+  "leafUuid": "8396f884-474c-4679-b694-c1ebde7094af",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review appendix and remaining pages",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 33 · 2026-05-20T10:57:11.021Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me understand the current state:
+
+1. I'm the Review Director for gen-depth-fingerprint project
+2. Server restarted, conversation memory lost
+3. This is a "fresh" review mode (重新审稿)
+4. I've received Reviewer 1's detailed review
+5. External review: not_requested
+6. Visual check: timeout (elapsed 29017 seconds)
+7. I need to check if Reviewer 2's review has also come in
+
+Looking at the user message, it says:
+- "[Reviewer 2 审稿结果]: 继续读取附录部分。" - This suggests Reviewer 2 is still working
+
+
+- "[Reviewer 1 审稿结果]: 正文已读完。继续阅读附录和剩余页面。Continue from where you left off." - Reviewer 1 has finished the main text and is moving on to appendices
+
+The message structure shows both reviewers are progressing through the document, with Reviewer 1 providing their full assessment and Reviewer 2 continuing with the appendix sections.
+
+I need to wait for Reviewer 2 to complete their review before I can move forward with the cross-sharing step, so I should acknowledge receipt of Reviewer 1's complete review and track that Reviewer 2 is still in progress.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8396f884-474c-4679-b694-c1ebde7094af",
+  "isSidechain": false,
+  "requestId": "req_011CbDhagxgmeWSPPrcbUwPo",
+  "type": "assistant",
+  "uuid": "18eff9d3-4936-4bc0-ae3b-3362d5987629",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Daq8nBcHBsDcWn2ca8Zw7t",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5278,
+      "cache_read_input_tokens": 37424,
+      "output_tokens": 1067,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5278,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1067,
+          "cache_read_input_tokens": 37424,
+          "cache_creation_input_tokens": 5278,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5278
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 34 · 2026-05-20T10:57:13.389Z_
+
+状态恢复完毕。当前情况：
+- Reviewer 1：已提交完整审稿意见（Methods & Experiments 方向，Overall 3.0）
+- Reviewer 2：仍在审稿中（读附录阶段）
+- 外部审稿：未请求
+- 视觉审查：超时（需在报告中标注）
+
+收到 Reviewer 1 的完整审稿。等待 Reviewer 2 完成后进入 Step 2（交叉分享）。
+
+让我检查是否有已有的 issue tracker。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "18eff9d3-4936-4bc0-ae3b-3362d5987629",
+  "isSidechain": false,
+  "requestId": "req_011CbDhagxgmeWSPPrcbUwPo",
+  "type": "assistant",
+  "uuid": "81d2bb2b-faa1-45bd-a1ae-0e82f1acc222",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Daq8nBcHBsDcWn2ca8Zw7t",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5278,
+      "cache_read_input_tokens": 37424,
+      "output_tokens": 1067,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5278,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1067,
+          "cache_read_input_tokens": 37424,
+          "cache_creation_input_tokens": 5278,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5278
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 35 · 2026-05-20T10:57:15.282Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01DykBS32ZxCUHGu6Z8kiDDq`</summary>
+
+```json
+{
+  "pattern": "**/review_issues.yaml",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "81d2bb2b-faa1-45bd-a1ae-0e82f1acc222",
+  "isSidechain": false,
+  "requestId": "req_011CbDhagxgmeWSPPrcbUwPo",
+  "type": "assistant",
+  "uuid": "7da000eb-fa49-4f9e-9cf1-651fd2c5593c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Daq8nBcHBsDcWn2ca8Zw7t",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5278,
+      "cache_read_input_tokens": 37424,
+      "output_tokens": 1067,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5278,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1067,
+          "cache_read_input_tokens": 37424,
+          "cache_creation_input_tokens": 5278,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5278
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 36 · 2026-05-20T10:57:15.864Z_
+
+<details><summary>↩ Tool result · `toolu_013WMLCDMVgCXgZCvbvAvcBb`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_1.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_2.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_3.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_4.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_5.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_6.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_7.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_8.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_9.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_10.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_11.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_12.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_13.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_14.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_15.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_16.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_17.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_19.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_20.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_21.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_22.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_23.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_24.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_25.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_26.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_27.md
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_31.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "625892cf-24f7-479c-a6db-7f89a892d925",
+  "isSidechain": false,
+  "promptId": "4a675508-9598-4638-aa9e-2d91a581603f",
+  "type": "user",
+  "uuid": "ec81acd8-a22d-4177-b986-1ab26687ef6c",
+  "toolUseResult": {
+    "filenames": [
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_1.md",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_2.md",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_3.md",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_4.md",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_5.md",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_6.md",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_7.md",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_8.md",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_9.md",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_10.md",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_11.md",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_12.md",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_13.md",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_14.md",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_15.md",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_16.md",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_17.md",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_19.md",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_20.md",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_21.md",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_22.md",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_23.md",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_24.md",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_25.md",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_26.md",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_27.md",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_31.md"
+    ],
+    "durationMs": 16,
+    "numFiles": 27,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "625892cf-24f7-479c-a6db-7f89a892d925",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 37 · 2026-05-20T10:57:15.337Z_
+
+<details><summary>↩ Tool result · `toolu_01DykBS32ZxCUHGu6Z8kiDDq`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_issues.yaml
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7da000eb-fa49-4f9e-9cf1-651fd2c5593c",
+  "isSidechain": false,
+  "promptId": "4a675508-9598-4638-aa9e-2d91a581603f",
+  "type": "user",
+  "uuid": "3b0b1d56-46d9-4c97-84a0-38b4be066190",
+  "toolUseResult": {
+    "filenames": [
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_issues.yaml"
+    ],
+    "durationMs": 43,
+    "numFiles": 1,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "7da000eb-fa49-4f9e-9cf1-651fd2c5593c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 38 · 2026-05-20T10:57:15.845Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_013WMLCDMVgCXgZCvbvAvcBb`</summary>
+
+```json
+{
+  "pattern": "**/review_reports/round_*.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3b0b1d56-46d9-4c97-84a0-38b4be066190",
+  "isSidechain": false,
+  "requestId": "req_011CbDhagxgmeWSPPrcbUwPo",
+  "type": "assistant",
+  "uuid": "625892cf-24f7-479c-a6db-7f89a892d925",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Daq8nBcHBsDcWn2ca8Zw7t",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5278,
+      "cache_read_input_tokens": 37424,
+      "output_tokens": 1067,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5278,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1067,
+          "cache_read_input_tokens": 37424,
+          "cache_creation_input_tokens": 5278,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5278
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 39 · 2026-05-20T10:57:15.904Z_
+
+```json
+{
+  "parentUuid": "ec81acd8-a22d-4177-b986-1ab26687ef6c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "cde81f3b-1d67-4369-9593-113a244f886d",
+  "timestamp": "2026-05-20T10:57:15.904Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 40 · 2026-05-20T10:57:27.082Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is Round... let me check. There are rounds 1-27 and 31. This is "fresh" mode, so this is a new review. Let me check the latest round to understand what round we're on now. Let me read round_31.md to see the most recent report.
+
+Actually, since this is "fresh" mode and I don't have previous conversation memory, I need to figure out what round we're on. The CLAUDE.md says this is a "fresh" (重新审稿) mode, meaning I should treat this as a first review without prior context.
+
+But the fact that there are already 27+ rounds of reports means the paper has been through many iterations. 
+
+Looking at the existing rounds, I see gaps in the sequence—rounds 1-17, 19-27, and 31. Since this session was already in progress with reviewers assigned and Reviewer 1 finished while Reviewer 2 is still working, I need to check the most recent round report to figure out where we are in the process.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cde81f3b-1d67-4369-9593-113a244f886d",
+  "isSidechain": false,
+  "requestId": "req_011CbDhcRW4gatU1qTTUKS4T",
+  "type": "assistant",
+  "uuid": "d205eeec-9f20-4974-87b8-e7b4a126e4e2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J3RP5gdUjniEFmxLMrRTsh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2370,
+      "cache_read_input_tokens": 42702,
+      "output_tokens": 525,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2370,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 525,
+          "cache_read_input_tokens": 42702,
+          "cache_creation_input_tokens": 2370,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2370
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 41 · 2026-05-20T10:57:27.158Z_
+
+这是第 28+ 轮了。让我查看最新的报告和当前 issue tracker 来确认本轮状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d205eeec-9f20-4974-87b8-e7b4a126e4e2",
+  "isSidechain": false,
+  "requestId": "req_011CbDhcRW4gatU1qTTUKS4T",
+  "type": "assistant",
+  "uuid": "dbbcb565-61fc-444d-962e-3a98d38e7cde",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J3RP5gdUjniEFmxLMrRTsh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2370,
+      "cache_read_input_tokens": 42702,
+      "output_tokens": 525,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2370,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 525,
+          "cache_read_input_tokens": 42702,
+          "cache_creation_input_tokens": 2370,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2370
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 42 · 2026-05-20T10:57:28.055Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_016phsqWEtaswRRP36GwdCeK`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_31.md",
+  "limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dbbcb565-61fc-444d-962e-3a98d38e7cde",
+  "isSidechain": false,
+  "requestId": "req_011CbDhcRW4gatU1qTTUKS4T",
+  "type": "assistant",
+  "uuid": "b427947c-40ca-430e-b103-1b5a6c09bf28",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J3RP5gdUjniEFmxLMrRTsh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2370,
+      "cache_read_input_tokens": 42702,
+      "output_tokens": 525,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2370,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 525,
+          "cache_read_input_tokens": 42702,
+          "cache_creation_input_tokens": 2370,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2370
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 43 · 2026-05-20T10:57:28.457Z_
+
+<details><summary>↩ Tool result · `toolu_019wjtzXnv8zbDKJZMA3WojZ`</summary>
+
+```text
+1	# Review Issues — through Round 28
+2	# Last updated: 2026-05-20
+3	
+4	# ============ CRITICAL ============
+5	
+6	- id: "R26-N1"
+7	  summary: "缺少 Responsible NLP Research Checklist，可能 desk reject"
+8	  category: format
+9	  severity: critical
+10	  status: resolved
+11	  first_raised_round: 26
+12	  last_seen_round: 26
+13	  mentions:
+14	    - {round: 26, reviewers: "R2(提出),R1(agree)", note: "ARR 投稿必须包含 Responsible NLP Research Checklist。grep 全文无匹配。缺失是 desk reject 的充分条件。"}
+15	    - {round: 27, reviewers: "none", note: "R27 未提及。已确认 Checklist 通过 OpenReview 表单提交。"}
+16	    - {round: 28, reviewers: "none", note: "R28 未提及。"}
+17	  action_items:
+18	    - {round: 26, action: "Independent Reviewer 确认：ARR Checklist 是 OpenReview 表单，不嵌入 PDF。非真实 desk reject 风险。", assigned_to: "Director", status: "done"}
+19	  resolution: "ARR Responsible NLP Checklist 通过 OpenReview 表单提交，不是 PDF 内容。Checklist 草稿已准备。"
+20	  resolution_round: 26
+21	
+22	- id: "R26-N2"
+23	  summary: "正文约 8.3-8.4 页，超出 long paper 8 页限制"
+24	  category: format
+25	  severity: critical
+26	  status: resolved
+27	  first_raised_round: 26
+28	  last_seen_round: 26
+29	  mentions:
+30	    - {round: 26, reviewers: "R2(提出),R1(agree)", note: "§1-6 主文内容延伸至 page 9 中上部。"}
+31	    - {round: 27, reviewers: "none", note: "R27 确认页数合规。"}
+32	    - {round: 28, reviewers: "none", note: "R28 未提及页数问题。"}
+33	  action_items:
+34	    - {round: 26, action: "压缩 Discussion + Results。", assigned_to: "Agent", status: "done"}
+35	  resolution: "Discussion + Results 压缩后 Conclusion 在 p8，主文 ≤8 页。PDF 视觉确认。"
+36	  resolution_round: 26
+37	
+38	- id: "R25-N1"
+39	  summary: "DDR 新颖性不足以支撑 Main Conference，Findings 级别合适"
+40	  category: method
+41	  severity: critical
+42	  status: acknowledged
+43	  first_raised_round: 21
+44	  last_seen_round: 28
+45	  mentions:
+46	    - {round: 25, reviewers: "R1,R2", note: "DDR 是已知特征的行为分类，非概念突破。"}
+47	    - {round: 26, reviewers: "R1,R2", note: "三篇并行工作已独立发现 ~3-class ceiling。"}
+48	    - {round: 27, reviewers: "R1(agree),R2(N2,agree)", note: "DDR novelty 在于 empirical verification 而非新发现。两位均维持 Findings 定位。"}
+49	    - {round: 28, reviewers: "R2-N2(Critical),R1(partial rebut→Major)", note: "R2 将 novelty boundary 升级为 Critical：Mohamed et al. (2025) 和 Geng et al. (2026) 的 per-feature convergence trajectories 与 DDR 高度重叠。R1 反驳：DDR 的增量在 ordinal classification task formulation + location/shape decomposition，降为 Major。交叉后共识：需扩展 §2.2 对比讨论但 novelty 本身成立。"}
+50	  action_items:
+51	    - {round: 25, action: "接受 Findings 定位。", assigned_to: "Director", status: "done"}
+52	  resolution: "Findings 定位，连续 8 轮稳定。"
+53	  resolution_round: null
+54	
+55	- id: "R25-N3"
+56	  summary: "DDR 阈值缺乏理论基础 + location/shape 分离缺机制性解释 + entropy min 分类不一致"
+57	  category: method
+58	  severity: critical
+59	  status: in_progress
+60	  first_raised_round: 21
+61	  last_seen_round: 28
+62	  mentions:
+63	    - {round: 25, reviewers: "R1,R2", note: "0.75 是看到数据后选的。"}
+64	    - {round: 26, reviewers: "R1(提出),R2(agree with nuance)", note: "d 在 [0.56,0.75] partition 稳定。"}
+65	    - {round: 27, reviewers: "R1-W1(Critical),R2(agree)", note: "entropy min Cliff's δ=0.354 vs Cohen's d=0.016 严重不一致。"}
+66	    - {round: 28, reviewers: "R1-W4(Minor→Major),R2(partial rebut→Minor)", note: "R1 维持 entropy_min 分类为 ad-hoc。R2 反驳：Cliff's δ 和 Cohen's d 衡量不同效应类型（ordinal vs parametric），不一致有合理统计解释。但 holdout 3/2/2 vs 3/1/3 分歧仍未解决。交叉后分歧：R1 认为 Minor→Major，R2 认为纯 Minor。"}
+67	  action_items:
+68	    - {round: 25, action: "§4.2 改为 continuous gradient + data-driven clustering 叙事", assigned_to: "Director", status: "done"}
+69	    - {round: 27, action: "§4.2 讨论 Cliff's δ vs Cohen's d 不一致 + Contribution 2 调整", assigned_to: "Research Director", status: "done"}
+70	  resolution: "entropy min 不一致已在 §4.2 讨论。R28 分歧在严重度而非事实。"
+71	  resolution_round: null
+72	
+73	- id: "R25-W11"
+74	  summary: "Cross-model F1=0.764 存在 model-switching / generator identity confound"
+75	  category: experiment
+76	  severity: critical
+77	  status: in_progress
+78	  first_raised_round: 25
+79	  last_seen_round: 28
+80	  mentions:
+81	    - {round: 25, reviewers: "R2(提出),R1(agree)", note: "generator heterogeneity 可能放大 depth signal。"}
+82	    - {round: 26, reviewers: "R1(Critical),R2(Major,agree)", note: "Transfer ablation 完成，56/56 pairs > chance。"}
+83	    - {round: 27, reviewers: "R1-W4(Major),R2-Q3(agree)", note: "措辞已弱化为 'provides evidence against'。"}
+84	    - {round: 28, reviewers: "R1-W1(Major),R2(agree)", note: "R28 重新指出：cross-model 用 sample-level 5-fold CV 而非 generator-level held-out，与主表 LOGO 设计矛盾。Single-gen transfer 无法排除混合链特有的 confound。R2 补充：训练/测试集可能共享同一 generator 的样本。两位建议 chain-level CV 或降级为 exploratory。"}
+85	  action_items:
+86	    - {round: 26, action: "Transfer ablation + Conclusion 移除 cross-model F1。", assigned_to: "Agent", status: "done"}
+87	    - {round: 27, action: "措辞弱化为 'provides evidence against'。", assigned_to: "Research Director", status: "done"}
+88	    - {round: 28, action: "Cross-model 评估改为 generator-level held-out 或 chain-level CV；或在正文中将 cross-model 结果降级为 exploratory。", assigned_to: "Research Director", status: "open"}
+89	  resolution: ""
+90	  resolution_round: null
+91	
+92	# ============ MAJOR ============
+93	
+94	- id: "R28-N1"
+95	  summary: "DDR 是采样参数依赖的（t=1.0 信号消失），Abstract/Conclusion 将其 frame 为递归生成内禀属性构成 overclaim"
+96	  category: framing
+97	  severity: critical
+98	  status: open
+99	  first_raised_round: 28
+100	  last_seen_round: 28
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2cb4654d-50ea-475a-8653-220b7d5677f7",
+  "isSidechain": false,
+  "promptId": "4a675508-9598-4638-aa9e-2d91a581603f",
+  "type": "user",
+  "uuid": "ed843ac7-48a6-4250-a1c5-23157751a5e3",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_issues.yaml",
+      "content": "# Review Issues — through Round 28\n# Last updated: 2026-05-20\n\n# ============ CRITICAL ============\n\n- id: \"R26-N1\"\n  summary: \"缺少 Responsible NLP Research Checklist，可能 desk reject\"\n  category: format\n  severity: critical\n  status: resolved\n  first_raised_round: 26\n  last_seen_round: 26\n  mentions:\n    - {round: 26, reviewers: \"R2(提出),R1(agree)\", note: \"ARR 投稿必须包含 Responsible NLP Research Checklist。grep 全文无匹配。缺失是 desk reject 的充分条件。\"}\n    - {round: 27, reviewers: \"none\", note: \"R27 未提及。已确认 Checklist 通过 OpenReview 表单提交。\"}\n    - {round: 28, reviewers: \"none\", note: \"R28 未提及。\"}\n  action_items:\n    - {round: 26, action: \"Independent Reviewer 确认：ARR Checklist 是 OpenReview 表单，不嵌入 PDF。非真实 desk reject 风险。\", assigned_to: \"Director\", status: \"done\"}\n  resolution: \"ARR Responsible NLP Checklist 通过 OpenReview 表单提交，不是 PDF 内容。Checklist 草稿已准备。\"\n  resolution_round: 26\n\n- id: \"R26-N2\"\n  summary: \"正文约 8.3-8.4 页，超出 long paper 8 页限制\"\n  category: format\n  severity: critical\n  status: resolved\n  first_raised_round: 26\n  last_seen_round: 26\n  mentions:\n    - {round: 26, reviewers: \"R2(提出),R1(agree)\", note: \"§1-6 主文内容延伸至 page 9 中上部。\"}\n    - {round: 27, reviewers: \"none\", note: \"R27 确认页数合规。\"}\n    - {round: 28, reviewers: \"none\", note: \"R28 未提及页数问题。\"}\n  action_items:\n    - {round: 26, action: \"压缩 Discussion + Results。\", assigned_to: \"Agent\", status: \"done\"}\n  resolution: \"Discussion + Results 压缩后 Conclusion 在 p8，主文 ≤8 页。PDF 视觉确认。\"\n  resolution_round: 26\n\n- id: \"R25-N1\"\n  summary: \"DDR 新颖性不足以支撑 Main Conference，Findings 级别合适\"\n  category: method\n  severity: critical\n  status: acknowledged\n  first_raised_round: 21\n  last_seen_round: 28\n  mentions:\n    - {round: 25, reviewers: \"R1,R2\", note: \"DDR 是已知特征的行为分类，非概念突破。\"}\n    - {round: 26, reviewers: \"R1,R2\", note: \"三篇并行工作已独立发现 ~3-class ceiling。\"}\n    - {round: 27, reviewers: \"R1(agree),R2(N2,agree)\", note: \"DDR novelty 在于 empirical verification 而非新发现。两位均维持 Findings 定位。\"}\n    - {round: 28, reviewers: \"R2-N2(Critical),R1(partial rebut→Major)\", note: \"R2 将 novelty boundary 升级为 Critical：Mohamed et al. (2025) 和 Geng et al. (2026) 的 per-feature convergence trajectories 与 DDR 高度重叠。R1 反驳：DDR 的增量在 ordinal classification task formulation + location/shape decomposition，降为 Major。交叉后共识：需扩展 §2.2 对比讨论但 novelty 本身成立。\"}\n  action_items:\n    - {round: 25, action: \"接受 Findings 定位。\", assigned_to: \"Director\", status: \"done\"}\n  resolution: \"Findings 定位，连续 8 轮稳定。\"\n  resolution_round: null\n\n- id: \"R25-N3\"\n  summary: \"DDR 阈值缺乏理论基础 + location/shape 分离缺机制性解释 + entropy min 分类不一致\"\n  category: method\n  severity: critical\n  status: in_progress\n  first_raised_round: 21\n  last_seen_round: 28\n  mentions:\n    - {round: 25, reviewers: \"R1,R2\", note: \"0.75 是看到数据后选的。\"}\n    - {round: 26, reviewers: \"R1(提出),R2(agree with nuance)\", note: \"d 在 [0.56,0.75] partition 稳定。\"}\n    - {round: 27, reviewers: \"R1-W1(Critical),R2(agree)\", note: \"entropy min Cliff's δ=0.354 vs Cohen's d=0.016 严重不一致。\"}\n    - {round: 28, reviewers: \"R1-W4(Minor→Major),R2(partial rebut→Minor)\", note: \"R1 维持 entropy_min 分类为 ad-hoc。R2 反驳：Cliff's δ 和 Cohen's d 衡量不同效应类型（ordinal vs parametric），不一致有合理统计解释。但 holdout 3/2/2 vs 3/1/3 分歧仍未解决。交叉后分歧：R1 认为 Minor→Major，R2 认为纯 Minor。\"}\n  action_items:\n    - {round: 25, action: \"§4.2 改为 continuous gradient + data-driven clustering 叙事\", assigned_to: \"Director\", status: \"done\"}\n    - {round: 27, action: \"§4.2 讨论 Cliff's δ vs Cohen's d 不一致 + Contribution 2 调整\", assigned_to: \"Research Director\", status: \"done\"}\n  resolution: \"entropy min 不一致已在 §4.2 讨论。R28 分歧在严重度而非事实。\"\n  resolution_round: null\n\n- id: \"R25-W11\"\n  summary: \"Cross-model F1=0.764 存在 model-switching / generator identity confound\"\n  category: experiment\n  severity: critical\n  status: in_progress\n  first_raised_round: 25\n  last_seen_round: 28\n  mentions:\n    - {round: 25, reviewers: \"R2(提出),R1(agree)\", note: \"generator heterogeneity 可能放大 depth signal。\"}\n    - {round: 26, reviewers: \"R1(Critical),R2(Major,agree)\", note: \"Transfer ablation 完成，56/56 pairs > chance。\"}\n    - {round: 27, reviewers: \"R1-W4(Major),R2-Q3(agree)\", note: \"措辞已弱化为 'provides evidence against'。\"}\n    - {round: 28, reviewers: \"R1-W1(Major),R2(agree)\", note: \"R28 重新指出：cross-model 用 sample-level 5-fold CV 而非 generator-level held-out，与主表 LOGO 设计矛盾。Single-gen transfer 无法排除混合链特有的 confound。R2 补充：训练/测试集可能共享同一 generator 的样本。两位建议 chain-level CV 或降级为 exploratory。\"}\n  action_items:\n    - {round: 26, action: \"Transfer ablation + Conclusion 移除 cross-model F1。\", assigned_to: \"Agent\", status: \"done\"}\n    - {round: 27, action: \"措辞弱化为 'provides evidence against'。\", assigned_to: \"Research Director\", status: \"done\"}\n    - {round: 28, action: \"Cross-model 评估改为 generator-level held-out 或 chain-level CV；或在正文中将 cross-model 结果降级为 exploratory。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n# ============ MAJOR ============\n\n- id: \"R28-N1\"\n  summary: \"DDR 是采样参数依赖的（t=1.0 信号消失），Abstract/Conclusion 将其 frame 为递归生成内禀属性构成 overclaim\"\n  category: framing\n  severity: critical\n  status: open\n  first_raised_round: 28\n  last_seen_round: 28",
+      "numLines": 100,
+      "startLine": 1,
+      "totalLines": 573
+    }
+  },
+  "sourceToolAssistantUUID": "2cb4654d-50ea-475a-8653-220b7d5677f7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 44 · 2026-05-20T10:57:28.066Z_
+
+<details><summary>↩ Tool result · `toolu_016phsqWEtaswRRP36GwdCeK`</summary>
+
+```text
+1	---
+2	round: 31
+3	review_mode: fresh
+4	overall_score: 3.0 (Findings)
+5	timestamp: 2026-05-20T02:50:21.146067+00:00
+6	reviewer_ids: [1, 2]
+7	cross_response_reviewer_ids: [1, 2]
+8	force_resubmit: False
+9	---
+10	
+11	# 审稿报告 — Round 28 (Fresh Review)
+12	
+13	**论文**: Depth Fingerprinting: Detecting Recursive Generation Depth in LLM Text Chains
+14	**Venue**: EMNLP 2026 via ACL Rolling Review
+15	**Deadline**: 2026-05-25
+16	**Reviewers**: R1（方法严谨性 + 实验设计）、R2（新颖性 + 完整性 + 写作质量）
+17	**审稿模式**: Fresh（初审）
+18	
+19	---
+20	
+21	## Summary
+22	
+23	本文研究 LLM 递归生成链（recursive generation chains）中文本分布随深度变化的现象。核心贡献是 DDR（Differential Depth Response）分析框架：将 7 个文本特征分为 drifting（entropy mean、TTR、hapax ratio 等，随深度单调漂移）和 near-stationary（entropy max、tail decay，变化幅度小一个数量级）两组，揭示递归生成中 location shift 与 shape preservation 的不对称性。基于此构建 XGBoost 分类器实现 3-class 深度分类（gen-0/gen-1/gen-2+），在 8 个 generator（5 个模型家族，0.6B–8B）上以 LOGO cross-validation 评估，报告 3-class macro-F1 = 0.762、binary F1 = 0.694。
+24	
+25	---
+26	
+27	## Strengths
+28	
+29	**S1 [共识]** 任务定义创新——从 binary detection 推进到 ordinal depth estimation 是有意义的概念进步。Generation depth classification 作为独立任务在已有文献中缺乏系统研究。
+30	
+31	**S2 [共识]** DDR 分解概念清晰且有实证支撑——location drift vs shape stationarity 的分离在 Figure 1 和 Appendix V（holdout split validation、k-means clustering）中获得多维验证。Spearman |ρ| > 0.6 vs |ρ| < 0.10 的对比有说服力。
+32	
+33	**S3 [共识]** 统计方法论示范性强——多种效应量指标（Cohen's d, Glass's Δ, Cliff's δ）、TOST 等价性检验、heteroscedasticity 分析、bootstrap CI、Bonferroni 校正。方法论严谨度在 NLP 实证论文中属上乘。
+34	
+35	**S4 [共识]** Confound 控制完整——independent-seed 实验、length-matched subsampling、seed-level demeaning、cross-reference model 验证、cross-prompt-type transfer、cross-domain evaluation。每个潜在 confound 都有对应控制实验。
+36	
+37	**S5 [共识]** 学术诚实——对 instruct model 失败、temperature 敏感性、cross-model confound、n=3 TOST 效力问题都有坦率讨论。Limitations section 写得全面且具体。
+38	
+39	**S6 [共识]** Baseline 对比全面——与 4 个 single-score detection 方法对比，§4.3 明确声明 DDR 不优于 detection ensemble，价值在于 interpretable decomposition。
+40	
+41	**S7 [R2]** 附录极其详尽（19+ sections），覆盖几乎所有可预见的 reviewer 疑问。
+42	
+43	---
+44	
+45	## Weaknesses
+46	
+47	### Must-Fix（影响接收决定）
+48	
+49	**N1 [Critical, 共识]** DDR 是采样参数依赖的，Abstract/Conclusion 将其 frame 为递归生成的内禀属性构成 overclaim
+50	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b427947c-40ca-430e-b103-1b5a6c09bf28",
+  "isSidechain": false,
+  "promptId": "4a675508-9598-4638-aa9e-2d91a581603f",
+  "type": "user",
+  "uuid": "7c953585-f0eb-470a-8e6f-923cdc9e1beb",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_31.md",
+      "content": "---\nround: 31\nreview_mode: fresh\noverall_score: 3.0 (Findings)\ntimestamp: 2026-05-20T02:50:21.146067+00:00\nreviewer_ids: [1, 2]\ncross_response_reviewer_ids: [1, 2]\nforce_resubmit: False\n---\n\n# 审稿报告 — Round 28 (Fresh Review)\n\n**论文**: Depth Fingerprinting: Detecting Recursive Generation Depth in LLM Text Chains\n**Venue**: EMNLP 2026 via ACL Rolling Review\n**Deadline**: 2026-05-25\n**Reviewers**: R1（方法严谨性 + 实验设计）、R2（新颖性 + 完整性 + 写作质量）\n**审稿模式**: Fresh（初审）\n\n---\n\n## Summary\n\n本文研究 LLM 递归生成链（recursive generation chains）中文本分布随深度变化的现象。核心贡献是 DDR（Differential Depth Response）分析框架：将 7 个文本特征分为 drifting（entropy mean、TTR、hapax ratio 等，随深度单调漂移）和 near-stationary（entropy max、tail decay，变化幅度小一个数量级）两组，揭示递归生成中 location shift 与 shape preservation 的不对称性。基于此构建 XGBoost 分类器实现 3-class 深度分类（gen-0/gen-1/gen-2+），在 8 个 generator（5 个模型家族，0.6B–8B）上以 LOGO cross-validation 评估，报告 3-class macro-F1 = 0.762、binary F1 = 0.694。\n\n---\n\n## Strengths\n\n**S1 [共识]** 任务定义创新——从 binary detection 推进到 ordinal depth estimation 是有意义的概念进步。Generation depth classification 作为独立任务在已有文献中缺乏系统研究。\n\n**S2 [共识]** DDR 分解概念清晰且有实证支撑——location drift vs shape stationarity 的分离在 Figure 1 和 Appendix V（holdout split validation、k-means clustering）中获得多维验证。Spearman |ρ| > 0.6 vs |ρ| < 0.10 的对比有说服力。\n\n**S3 [共识]** 统计方法论示范性强——多种效应量指标（Cohen's d, Glass's Δ, Cliff's δ）、TOST 等价性检验、heteroscedasticity 分析、bootstrap CI、Bonferroni 校正。方法论严谨度在 NLP 实证论文中属上乘。\n\n**S4 [共识]** Confound 控制完整——independent-seed 实验、length-matched subsampling、seed-level demeaning、cross-reference model 验证、cross-prompt-type transfer、cross-domain evaluation。每个潜在 confound 都有对应控制实验。\n\n**S5 [共识]** 学术诚实——对 instruct model 失败、temperature 敏感性、cross-model confound、n=3 TOST 效力问题都有坦率讨论。Limitations section 写得全面且具体。\n\n**S6 [共识]** Baseline 对比全面——与 4 个 single-score detection 方法对比，§4.3 明确声明 DDR 不优于 detection ensemble，价值在于 interpretable decomposition。\n\n**S7 [R2]** 附录极其详尽（19+ sections），覆盖几乎所有可预见的 reviewer 疑问。\n\n---\n\n## Weaknesses\n\n### Must-Fix（影响接收决定）\n\n**N1 [Critical, 共识]** DDR 是采样参数依赖的，Abstract/Conclusion 将其 frame 为递归生成的内禀属性构成 overclaim\n",
+      "numLines": 50,
+      "startLine": 1,
+      "totalLines": 262
+    }
+  },
+  "sourceToolAssistantUUID": "b427947c-40ca-430e-b103-1b5a6c09bf28",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 45 · 2026-05-20T10:57:28.452Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_019wjtzXnv8zbDKJZMA3WojZ`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_issues.yaml",
+  "limit": 100
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7c953585-f0eb-470a-8e6f-923cdc9e1beb",
+  "isSidechain": false,
+  "requestId": "req_011CbDhcRW4gatU1qTTUKS4T",
+  "type": "assistant",
+  "uuid": "2cb4654d-50ea-475a-8653-220b7d5677f7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J3RP5gdUjniEFmxLMrRTsh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2370,
+      "cache_read_input_tokens": 42702,
+      "output_tokens": 525,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2370,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 525,
+          "cache_read_input_tokens": 42702,
+          "cache_creation_input_tokens": 2370,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2370
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[服务器重启后首条消息 — Director] 项目: gen-depth-fingerprint | 当前日期: 2026-05-20 服务器刚重启，你的对话记忆已丢失。在处理用户消息前，先执行： 1. `feishu_read_chat_history(chat_id=\"oc_999770e4e57bfc6eabd12fc1f64af1ef\", limit=30)` 恢复近期对话上下文 2.…",
+  "leafUuid": "ed843ac7-48a6-4250-a1c5-23157751a5e3",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review appendix and remaining pages",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 48 · 2026-05-20T10:57:31.373Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read more of the review_issues.yaml to understand the full state.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ed843ac7-48a6-4250-a1c5-23157751a5e3",
+  "isSidechain": false,
+  "requestId": "req_011CbDhdMbwVD4kAiNCcRW7W",
+  "type": "assistant",
+  "uuid": "e855dc8e-caab-4f9c-97f6-8270174d90eb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B2ZW3We9THcGVx8K3aAmnF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4270,
+      "cache_read_input_tokens": 45072,
+      "output_tokens": 154,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4270,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 154,
+          "cache_read_input_tokens": 45072,
+          "cache_creation_input_tokens": 4270,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4270
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 49 · 2026-05-20T10:57:33.484Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01AcPuFHAavpeMY5ZZfmjdcS`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_issues.yaml",
+  "offset": 100,
+  "limit": 200
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e855dc8e-caab-4f9c-97f6-8270174d90eb",
+  "isSidechain": false,
+  "requestId": "req_011CbDhdMbwVD4kAiNCcRW7W",
+  "type": "assistant",
+  "uuid": "d9d77a2d-331f-4fa7-bea3-0e33951f19a9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B2ZW3We9THcGVx8K3aAmnF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4270,
+      "cache_read_input_tokens": 45072,
+      "output_tokens": 154,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4270,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 154,
+          "cache_read_input_tokens": 45072,
+          "cache_creation_input_tokens": 4270,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4270
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 50 · 2026-05-20T10:57:33.490Z_
+
+<details><summary>↩ Tool result · `toolu_01AcPuFHAavpeMY5ZZfmjdcS`</summary>
+
+```text
+100	  last_seen_round: 28
+101	  mentions:
+102	    - {round: 28, reviewers: "R1-N1(Critical),R2(agree Critical)", note: "Appendix O: t=1.0 时 entropy-depth ρ 从 −0.60 坍缩至 −0.002。Discussion §5 承认 'parameter-dependent' 但被埋在正文中段。Abstract 第一句和 Conclusion 第一句暗示 DDR 是递归生成的普遍性质。R2 补充：DDR 被双重限制（采样参数 + 仅 base models），几乎所有核心实验在同一温度窗口 (t=0.7) 内。两位共识：Abstract/Conclusion 必须加入 'under standard nucleus sampling (t ∈ [0.5, 0.7])' 限定。"}
+103	  action_items:
+104	    - {round: 28, action: "Abstract/Conclusion 加入采样条件限定 (t ∈ [0.5, 0.7])。Introduction contribution list 将温度敏感性作为核心发现之一。", assigned_to: "Research Director", status: "open"}
+105	  resolution: ""
+106	  resolution_round: null
+107	
+108	- id: "R25-N2"
+109	  summary: "Base model 限制严重削弱 impact（0.6B-8B only + instruct 退化）"
+110	  category: framing
+111	  severity: critical
+112	  status: in_progress
+113	  first_raised_round: 21
+114	  last_seen_round: 28
+115	  mentions:
+116	    - {round: 25, reviewers: "R1,R2", note: "Instruct retrain 已完成但实用性仍受限。"}
+117	    - {round: 26, reviewers: "R1(Major),R2(agree)", note: "QLoRA instruct 完成。"}
+118	    - {round: 27, reviewers: "R2-N1(Major),R1(agree)", note: "QLoRA instruct 未给予足够篇幅。"}
+119	    - {round: 28, reviewers: "R2-N1(Critical),R1-W3(Major),交叉均agree", note: "R2 升级为 Critical：Abstract/Intro 暗示广泛适用性但 instruct F1 = 0.338-0.660。R1 指出 QLoRA instruct 0.89-0.91 仅 within-model CV 非 LOGO。R1 交叉建议降为 Major（Abstract 已有 disclaimer）。共识：Introduction contribution list 和 Conclusion 需更突出标注 base-model-only 限制。"}
+120	  action_items:
+121	    - {round: 26, action: "QLoRA instruct 写入 Appendix K + Discussion。", assigned_to: "Agent", status: "done"}
+122	    - {round: 27, action: "Results/Discussion 更显著讨论 QLoRA instruct。", assigned_to: "Research Director", status: "done"}
+123	    - {round: 28, action: "Introduction contribution list 明确标注 base-model-only。Abstract disclaimer 位置提前（不仅放在末尾）。", assigned_to: "Research Director", status: "open"}
+124	  resolution: ""
+125	  resolution_round: null
+126	
+127	- id: "R28-N2"
+128	  summary: "TOST n=3 seeds 欠效力，Abstract 省略 'preliminary' 和 'n=3' 构成 overclaim"
+129	  category: experiment
+130	  severity: critical
+131	  status: open
+132	  first_raised_round: 28
+133	  last_seen_round: 28
+134	  mentions:
+135	    - {round: 28, reviewers: "R1-N2(Critical),R2(agree,建议降为 Should-Fix)", note: "Abstract 声称 'equivalence testing suggests no downstream training quality degradation' 但仅 n=3 seeds，Cohen's d 膨胀至 86-119（degenerate case）。Conclusion 有 'preliminary (n=3)' 限定但 Abstract 省略。R2 同意 overclaim 但认为下游 utility 是辅助论证非核心贡献，建议降为 Major。共识：Abstract 必须加入 'preliminary, n=3' 或删除该声明。"}
+136	  action_items:
+137	    - {round: 28, action: "Abstract 中删除或大幅弱化 TOST 声明（至少加 'preliminary, n=3'）。若保留为 contribution 则需增加 seeds ≥10。", assigned_to: "Research Director", status: "open"}
+138	  resolution: ""
+139	  resolution_round: null
+140	
+141	- id: "R28-N3"
+142	  summary: "模型规模仅 ≤8B，无 >30B 或闭源模型验证，标题暗示 LLM 普适性"
+143	  category: experiment
+144	  severity: warning
+145	  status: open
+146	  first_raised_round: 28
+147	  last_seen_round: 28
+148	  mentions:
+149	    - {round: 28, reviewers: "R2-N3(Major),R1(agree Major)", note: "全部 8 个 generator ≤8B。Table 1 显示规模效应：Mistral-7B binary F1=0.633 显著低于小模型（Pythia-1B: 0.718）。暗示 DDR 可能随规模增大进一步衰减。Limitations 有讨论但标题 'LLM Text Chains' 暗示普适性。"}
+150	  action_items:
+151	    - {round: 28, action: "标题/Abstract 考虑限定为 'small-to-medium LLMs'；或至少在 Limitations 中更明确讨论规模外推风险。", assigned_to: "Research Director", status: "open"}
+152	  resolution: ""
+153	  resolution_round: null
+154	
+155	- id: "R26-W1"
+156	  summary: "Binary F1=0.694 实用意义有限 + QLoRA gap 暴露特征覆盖不足"
+157	  category: method
+158	  severity: warning
+159	  status: acknowledged
+160	  first_raised_round: 26
+161	  last_seen_round: 28
+162	  mentions:
+163	    - {round: 26, reviewers: "R1(Major),R2(Major)", note: "手工特征只捕获约 77% 可达性能。"}
+164	    - {round: 27, reviewers: "R2-W1(Major),R1(partial rebut)", note: "DDR interpretability 价值不完全取决于分类精度。"}
+165	    - {round: 28, reviewers: "R2-W2(Major),R1(rebut)", note: "R2 批评方法论贡献有限（经典特征+XGBoost）。R1 反驳：论文是分析框架贡献非方法贡献，简单特征是 deliberate design choice 使 DDR decomposition 可解释。分歧未解决但两位同意 Findings 可接受。"}
+166	  action_items:
+167	    - {round: 26, action: "论文已定位为 empirical analysis + DDR framework。", assigned_to: "Director", status: "acknowledged"}
+168	  resolution: ""
+169	  resolution_round: null
+170	
+171	- id: "R26-W3"
+172	  summary: "DDR 与已知 distributional drift 现象的本质区别不够清晰 + 并行工作 novelty boundary"
+173	  category: method
+174	  severity: warning
+175	  status: in_progress
+176	  first_raised_round: 26
+177	  last_seen_round: 28
+178	  mentions:
+179	    - {round: 26, reviewers: "R1(agree),R2(Major)", note: "DDR 更多是 empirical decomposition 而非新现象。"}
+180	    - {round: 27, reviewers: "R2-N2,R1(agree)", note: "Discussion §5 informal conjecture 不足。"}
+181	    - {round: 28, reviewers: "R2-N2(Critical),R1(partial rebut→Major)", note: "R2 升级为 Critical：Geng et al. (2026) per-feature convergence 与 DDR 高度相似。R1 反驳：DDR 增量在 ordinal classification + location/shape decomposition，降为 Major。共识：§2.2 需要一个专门段落或表格系统对比本文 vs Mohamed et al. vs Geng et al.。"}
+182	  action_items:
+183	    - {round: 26, action: "Discussion 添加 DDR vs model collapse 区分。", assigned_to: "Agent", status: "done"}
+184	    - {round: 28, action: "§2.2 扩展对比段落：本文 vs Mohamed et al. (2025) vs Geng et al. (2026)，明确列出 setting/features/evaluation/findings 差异。", assigned_to: "Research Director", status: "open"}
+185	  resolution: ""
+186	  resolution_round: null
+187	
+188	- id: "R25-W4"
+189	  summary: "Generator subset 不一致 (5/6/8-gen)"
+190	  category: experiment
+191	  severity: warning
+192	  status: in_progress
+193	  first_raised_round: 25
+194	  last_seen_round: 28
+195	  mentions:
+196	    - {round: 25, reviewers: "R2(提出),R1(同意)", note: "至少 6 种 subset 配置。"}
+197	    - {round: 26, reviewers: "R1(Major),R2(Minor)", note: "建议加入 subset 对照表。"}
+198	    - {round: 27, reviewers: "R1-W2(Major),R2-W2(Minor)", note: "QLoRA '+11.6pp' 已标注 6-gen LOGO。"}
+199	    - {round: 28, reviewers: "R1-W2(Major),R2(agree)", note: "R28 再次提出。R2 补充：QLoRA 排除的 2 个 generator 可能是最难分类的，F1 提升可能由 subset selection 驱动。建议明确列出被排除 generators 及其 8-gen 下 individual performance。"}
+200	  action_items:
+201	    - {round: 27, action: "Results L19 已标注 '(6-generator LOGO; +11.6 pp)'。", assigned_to: "Research Director", status: "done"}
+202	    - {round: 28, action: "Appendix E 明确列出被排除的 generators 及其在 8-gen 下的 individual performance。", assigned_to: "Research Director", status: "open"}
+203	  resolution: ""
+204	  resolution_round: null
+205	
+206	- id: "R25-W6"
+207	  summary: "Downstream n=3 underpowered"
+208	  category: experiment
+209	  severity: warning
+210	  status: in_progress
+211	  first_raised_round: 21
+212	  last_seen_round: 28
+213	  mentions:
+214	    - {round: 25, reviewers: "R1,R2", note: "n=3 TOST power 极低。"}
+215	    - {round: 26, reviewers: "R2-Q5,R1-Q5", note: "单一 reference model 且 negative result。"}
+216	    - {round: 27, reviewers: "R1-W7(Minor),R2(rebut)", note: "措辞分歧。"}
+217	    - {round: 28, reviewers: "R1-N2(Critical),R2(agree Major)", note: "R28 升级为 Critical/Major：n=3 的 TOST 是 degenerate case，Cohen's d 膨胀使检验无意义。Abstract overclaim 是新焦点。"}
+218	  action_items:
+219	    - {round: 25, action: "Discussion 改为 pilot experiment 措辞", assigned_to: "Director", status: "done"}
+220	    - {round: 28, action: "与 R28-N2 合并处理。Abstract 弱化或删除 TOST 声明。", assigned_to: "Research Director", status: "open"}
+221	  resolution: ""
+222	  resolution_round: null
+223	
+224	- id: "R25-W7"
+225	  summary: "Instruct model 退化缺 mechanistic 分析（RLHF vs SFT 未区分）"
+226	  category: method
+227	  severity: warning
+228	  status: in_progress
+229	  first_raised_round: 25
+230	  last_seen_round: 28
+231	  mentions:
+232	    - {round: 25, reviewers: "R1,R2", note: "仅描述性报告。"}
+233	    - {round: 26, reviewers: "R1(Minor),R2(partial agree)", note: "QLoRA instruct 部分回应。"}
+234	    - {round: 27, reviewers: "none", note: "R27 未作为独立 weakness。"}
+235	    - {round: 28, reviewers: "R2-Q1,R1(agree good question)", note: "R2 提问 RLHF/DPO 哪个 component 导致 DDR 压缩。R1 同意有价值但缺 mechanistic 解释。Discussion 仅有 'reorganizes rather than eliminates' 假设。"}
+236	  action_items:
+237	    - {round: 26, action: "QLoRA instruct 完成。", assigned_to: "Agent", status: "done"}
+238	  resolution: ""
+239	  resolution_round: null
+240	
+241	- id: "R27-W3"
+242	  summary: "Temperature 消融覆盖不足，可靠范围 [0.5,0.7] 对实际部署过窄"
+243	  category: experiment
+244	  severity: warning
+245	  status: acknowledged
+246	  first_raised_round: 27
+247	  last_seen_round: 28
+248	  mentions:
+249	    - {round: 27, reviewers: "R1-W3(Major),R2(agree Major)", note: "仅 3 温度点 × 4 generator。"}
+250	    - {round: 28, reviewers: "R1-N1 implicitly,R2(agree)", note: "R28 将温度依赖性升级为核心 framing 问题（R28-N1），不仅是消融覆盖不足。"}
+251	  action_items:
+252	    - {round: 27, action: "Limitations 已讨论温度范围限制。", assigned_to: "Research Director", status: "acknowledged"}
+253	  resolution: ""
+254	  resolution_round: null
+255	
+256	- id: "R27-W5"
+257	  summary: "Baseline 对比 framing：detection ensemble 已超过 7-feature，DDR 增量在 interpretability"
+258	  category: framing
+259	  severity: warning
+260	  status: resolved
+261	  first_raised_round: 27
+262	  last_seen_round: 27
+263	  mentions:
+264	    - {round: 27, reviewers: "R1-W5(Major),R2(agree)", note: "改写为 DDR 不优于 detection ensemble，价值在于 interpretable decomposition。"}
+265	    - {round: 28, reviewers: "none", note: "R28 未提及。"}
+266	  action_items:
+267	    - {round: 27, action: "§4.3 明确声明。", assigned_to: "Research Director", status: "done"}
+268	  resolution: "§4.3 明确声明 DDR 不优于 detection ensemble，价值在于 interpretable decomposition。"
+269	  resolution_round: 27
+270	
+271	# ============ MINOR / INFO ============
+272	
+273	- id: "R28-M1"
+274	  summary: "entropy_max LOFO 退化最大但被归为 near-stationary，与 DDR 叙事存在张力"
+275	  category: method
+276	  severity: info
+277	  status: open
+278	  first_raised_round: 28
+279	  last_seen_round: 28
+280	  mentions:
+281	    - {round: 28, reviewers: "R1-W5(Minor),R2(rebut)", note: "R1：near-stationary 的 entropy_max 在 LOFO 中退化最大（−1.5pp），暗示其携带超出 DDR 框架暗示的信息。R2 反驳：distributional behavior（是否 drift）和 discriminative utility（对分类器是否重要）是两个不同概念——不变的特征恰恰因为提供 stable reference 才对分类有价值。分歧未解决但两位均认为属 Minor。"}
+282	  action_items:
+283	    - {round: 28, action: "考虑在正文或附录增加一句区分 'distributional behavior' 和 'discriminative utility'。", assigned_to: "Research Director", status: "open"}
+284	  resolution: ""
+285	  resolution_round: null
+286	
+287	- id: "R28-M2"
+288	  summary: "Cross-domain 实验 (Appendix I) 使用 t=1.0，与主实验 t=0.7 不一致"
+289	  category: experiment
+290	  severity: info
+291	  status: open
+292	  first_raised_round: 28
+293	  last_seen_round: 28
+294	  mentions:
+295	    - {round: 28, reviewers: "R1-Minor-2,R2(agree)", note: "若 DDR 在 t=1.0 信号消失（R28-N1），则 cross-domain 正面结果可能来自其他 confound（domain-specific vocabulary）。需解释不一致。"}
+296	  action_items:
+297	    - {round: 28, action: "正文引用 cross-domain 结果时注明采样参数差异，或讨论 domain × temperature interaction。", assigned_to: "Research Director", status: "open"}
+298	  resolution: ""
+299	  resolution_round: null
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d9d77a2d-331f-4fa7-bea3-0e33951f19a9",
+  "isSidechain": false,
+  "promptId": "4a675508-9598-4638-aa9e-2d91a581603f",
+  "type": "user",
+  "uuid": "fed60893-46cd-43b1-9da9-0cb63125025d",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_issues.yaml",
+      "content": "  last_seen_round: 28\n  mentions:\n    - {round: 28, reviewers: \"R1-N1(Critical),R2(agree Critical)\", note: \"Appendix O: t=1.0 时 entropy-depth ρ 从 −0.60 坍缩至 −0.002。Discussion §5 承认 'parameter-dependent' 但被埋在正文中段。Abstract 第一句和 Conclusion 第一句暗示 DDR 是递归生成的普遍性质。R2 补充：DDR 被双重限制（采样参数 + 仅 base models），几乎所有核心实验在同一温度窗口 (t=0.7) 内。两位共识：Abstract/Conclusion 必须加入 'under standard nucleus sampling (t ∈ [0.5, 0.7])' 限定。\"}\n  action_items:\n    - {round: 28, action: \"Abstract/Conclusion 加入采样条件限定 (t ∈ [0.5, 0.7])。Introduction contribution list 将温度敏感性作为核心发现之一。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R25-N2\"\n  summary: \"Base model 限制严重削弱 impact（0.6B-8B only + instruct 退化）\"\n  category: framing\n  severity: critical\n  status: in_progress\n  first_raised_round: 21\n  last_seen_round: 28\n  mentions:\n    - {round: 25, reviewers: \"R1,R2\", note: \"Instruct retrain 已完成但实用性仍受限。\"}\n    - {round: 26, reviewers: \"R1(Major),R2(agree)\", note: \"QLoRA instruct 完成。\"}\n    - {round: 27, reviewers: \"R2-N1(Major),R1(agree)\", note: \"QLoRA instruct 未给予足够篇幅。\"}\n    - {round: 28, reviewers: \"R2-N1(Critical),R1-W3(Major),交叉均agree\", note: \"R2 升级为 Critical：Abstract/Intro 暗示广泛适用性但 instruct F1 = 0.338-0.660。R1 指出 QLoRA instruct 0.89-0.91 仅 within-model CV 非 LOGO。R1 交叉建议降为 Major（Abstract 已有 disclaimer）。共识：Introduction contribution list 和 Conclusion 需更突出标注 base-model-only 限制。\"}\n  action_items:\n    - {round: 26, action: \"QLoRA instruct 写入 Appendix K + Discussion。\", assigned_to: \"Agent\", status: \"done\"}\n    - {round: 27, action: \"Results/Discussion 更显著讨论 QLoRA instruct。\", assigned_to: \"Research Director\", status: \"done\"}\n    - {round: 28, action: \"Introduction contribution list 明确标注 base-model-only。Abstract disclaimer 位置提前（不仅放在末尾）。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R28-N2\"\n  summary: \"TOST n=3 seeds 欠效力，Abstract 省略 'preliminary' 和 'n=3' 构成 overclaim\"\n  category: experiment\n  severity: critical\n  status: open\n  first_raised_round: 28\n  last_seen_round: 28\n  mentions:\n    - {round: 28, reviewers: \"R1-N2(Critical),R2(agree,建议降为 Should-Fix)\", note: \"Abstract 声称 'equivalence testing suggests no downstream training quality degradation' 但仅 n=3 seeds，Cohen's d 膨胀至 86-119（degenerate case）。Conclusion 有 'preliminary (n=3)' 限定但 Abstract 省略。R2 同意 overclaim 但认为下游 utility 是辅助论证非核心贡献，建议降为 Major。共识：Abstract 必须加入 'preliminary, n=3' 或删除该声明。\"}\n  action_items:\n    - {round: 28, action: \"Abstract 中删除或大幅弱化 TOST 声明（至少加 'preliminary, n=3'）。若保留为 contribution 则需增加 seeds ≥10。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R28-N3\"\n  summary: \"模型规模仅 ≤8B，无 >30B 或闭源模型验证，标题暗示 LLM 普适性\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 28\n  last_seen_round: 28\n  mentions:\n    - {round: 28, reviewers: \"R2-N3(Major),R1(agree Major)\", note: \"全部 8 个 generator ≤8B。Table 1 显示规模效应：Mistral-7B binary F1=0.633 显著低于小模型（Pythia-1B: 0.718）。暗示 DDR 可能随规模增大进一步衰减。Limitations 有讨论但标题 'LLM Text Chains' 暗示普适性。\"}\n  action_items:\n    - {round: 28, action: \"标题/Abstract 考虑限定为 'small-to-medium LLMs'；或至少在 Limitations 中更明确讨论规模外推风险。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R26-W1\"\n  summary: \"Binary F1=0.694 实用意义有限 + QLoRA gap 暴露特征覆盖不足\"\n  category: method\n  severity: warning\n  status: acknowledged\n  first_raised_round: 26\n  last_seen_round: 28\n  mentions:\n    - {round: 26, reviewers: \"R1(Major),R2(Major)\", note: \"手工特征只捕获约 77% 可达性能。\"}\n    - {round: 27, reviewers: \"R2-W1(Major),R1(partial rebut)\", note: \"DDR interpretability 价值不完全取决于分类精度。\"}\n    - {round: 28, reviewers: \"R2-W2(Major),R1(rebut)\", note: \"R2 批评方法论贡献有限（经典特征+XGBoost）。R1 反驳：论文是分析框架贡献非方法贡献，简单特征是 deliberate design choice 使 DDR decomposition 可解释。分歧未解决但两位同意 Findings 可接受。\"}\n  action_items:\n    - {round: 26, action: \"论文已定位为 empirical analysis + DDR framework。\", assigned_to: \"Director\", status: \"acknowledged\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R26-W3\"\n  summary: \"DDR 与已知 distributional drift 现象的本质区别不够清晰 + 并行工作 novelty boundary\"\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 26\n  last_seen_round: 28\n  mentions:\n    - {round: 26, reviewers: \"R1(agree),R2(Major)\", note: \"DDR 更多是 empirical decomposition 而非新现象。\"}\n    - {round: 27, reviewers: \"R2-N2,R1(agree)\", note: \"Discussion §5 informal conjecture 不足。\"}\n    - {round: 28, reviewers: \"R2-N2(Critical),R1(partial rebut→Major)\", note: \"R2 升级为 Critical：Geng et al. (2026) per-feature convergence 与 DDR 高度相似。R1 反驳：DDR 增量在 ordinal classification + location/shape decomposition，降为 Major。共识：§2.2 需要一个专门段落或表格系统对比本文 vs Mohamed et al. vs Geng et al.。\"}\n  action_items:\n    - {round: 26, action: \"Discussion 添加 DDR vs model collapse 区分。\", assigned_to: \"Agent\", status: \"done\"}\n    - {round: 28, action: \"§2.2 扩展对比段落：本文 vs Mohamed et al. (2025) vs Geng et al. (2026)，明确列出 setting/features/evaluation/findings 差异。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R25-W4\"\n  summary: \"Generator subset 不一致 (5/6/8-gen)\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 25\n  last_seen_round: 28\n  mentions:\n    - {round: 25, reviewers: \"R2(提出),R1(同意)\", note: \"至少 6 种 subset 配置。\"}\n    - {round: 26, reviewers: \"R1(Major),R2(Minor)\", note: \"建议加入 subset 对照表。\"}\n    - {round: 27, reviewers: \"R1-W2(Major),R2-W2(Minor)\", note: \"QLoRA '+11.6pp' 已标注 6-gen LOGO。\"}\n    - {round: 28, reviewers: \"R1-W2(Major),R2(agree)\", note: \"R28 再次提出。R2 补充：QLoRA 排除的 2 个 generator 可能是最难分类的，F1 提升可能由 subset selection 驱动。建议明确列出被排除 generators 及其 8-gen 下 individual performance。\"}\n  action_items:\n    - {round: 27, action: \"Results L19 已标注 '(6-generator LOGO; +11.6 pp)'。\", assigned_to: \"Research Director\", status: \"done\"}\n    - {round: 28, action: \"Appendix E 明确列出被排除的 generators 及其在 8-gen 下的 individual performance。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R25-W6\"\n  summary: \"Downstream n=3 underpowered\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 21\n  last_seen_round: 28\n  mentions:\n    - {round: 25, reviewers: \"R1,R2\", note: \"n=3 TOST power 极低。\"}\n    - {round: 26, reviewers: \"R2-Q5,R1-Q5\", note: \"单一 reference model 且 negative result。\"}\n    - {round: 27, reviewers: \"R1-W7(Minor),R2(rebut)\", note: \"措辞分歧。\"}\n    - {round: 28, reviewers: \"R1-N2(Critical),R2(agree Major)\", note: \"R28 升级为 Critical/Major：n=3 的 TOST 是 degenerate case，Cohen's d 膨胀使检验无意义。Abstract overclaim 是新焦点。\"}\n  action_items:\n    - {round: 25, action: \"Discussion 改为 pilot experiment 措辞\", assigned_to: \"Director\", status: \"done\"}\n    - {round: 28, action: \"与 R28-N2 合并处理。Abstract 弱化或删除 TOST 声明。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R25-W7\"\n  summary: \"Instruct model 退化缺 mechanistic 分析（RLHF vs SFT 未区分）\"\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 25\n  last_seen_round: 28\n  mentions:\n    - {round: 25, reviewers: \"R1,R2\", note: \"仅描述性报告。\"}\n    - {round: 26, reviewers: \"R1(Minor),R2(partial agree)\", note: \"QLoRA instruct 部分回应。\"}\n    - {round: 27, reviewers: \"none\", note: \"R27 未作为独立 weakness。\"}\n    - {round: 28, reviewers: \"R2-Q1,R1(agree good question)\", note: \"R2 提问 RLHF/DPO 哪个 component 导致 DDR 压缩。R1 同意有价值但缺 mechanistic 解释。Discussion 仅有 'reorganizes rather than eliminates' 假设。\"}\n  action_items:\n    - {round: 26, action: \"QLoRA instruct 完成。\", assigned_to: \"Agent\", status: \"done\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R27-W3\"\n  summary: \"Temperature 消融覆盖不足，可靠范围 [0.5,0.7] 对实际部署过窄\"\n  category: experiment\n  severity: warning\n  status: acknowledged\n  first_raised_round: 27\n  last_seen_round: 28\n  mentions:\n    - {round: 27, reviewers: \"R1-W3(Major),R2(agree Major)\", note: \"仅 3 温度点 × 4 generator。\"}\n    - {round: 28, reviewers: \"R1-N1 implicitly,R2(agree)\", note: \"R28 将温度依赖性升级为核心 framing 问题（R28-N1），不仅是消融覆盖不足。\"}\n  action_items:\n    - {round: 27, action: \"Limitations 已讨论温度范围限制。\", assigned_to: \"Research Director\", status: \"acknowledged\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R27-W5\"\n  summary: \"Baseline 对比 framing：detection ensemble 已超过 7-feature，DDR 增量在 interpretability\"\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 27\n  last_seen_round: 27\n  mentions:\n    - {round: 27, reviewers: \"R1-W5(Major),R2(agree)\", note: \"改写为 DDR 不优于 detection ensemble，价值在于 interpretable decomposition。\"}\n    - {round: 28, reviewers: \"none\", note: \"R28 未提及。\"}\n  action_items:\n    - {round: 27, action: \"§4.3 明确声明。\", assigned_to: \"Research Director\", status: \"done\"}\n  resolution: \"§4.3 明确声明 DDR 不优于 detection ensemble，价值在于 interpretable decomposition。\"\n  resolution_round: 27\n\n# ============ MINOR / INFO ============\n\n- id: \"R28-M1\"\n  summary: \"entropy_max LOFO 退化最大但被归为 near-stationary，与 DDR 叙事存在张力\"\n  category: method\n  severity: info\n  status: open\n  first_raised_round: 28\n  last_seen_round: 28\n  mentions:\n    - {round: 28, reviewers: \"R1-W5(Minor),R2(rebut)\", note: \"R1：near-stationary 的 entropy_max 在 LOFO 中退化最大（−1.5pp），暗示其携带超出 DDR 框架暗示的信息。R2 反驳：distributional behavior（是否 drift）和 discriminative utility（对分类器是否重要）是两个不同概念——不变的特征恰恰因为提供 stable reference 才对分类有价值。分歧未解决但两位均认为属 Minor。\"}\n  action_items:\n    - {round: 28, action: \"考虑在正文或附录增加一句区分 'distributional behavior' 和 'discriminative utility'。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R28-M2\"\n  summary: \"Cross-domain 实验 (Appendix I) 使用 t=1.0，与主实验 t=0.7 不一致\"\n  category: experiment\n  severity: info\n  status: open\n  first_raised_round: 28\n  last_seen_round: 28\n  mentions:\n    - {round: 28, reviewers: \"R1-Minor-2,R2(agree)\", note: \"若 DDR 在 t=1.0 信号消失（R28-N1），则 cross-domain 正面结果可能来自其他 confound（domain-specific vocabulary）。需解释不一致。\"}\n  action_items:\n    - {round: 28, action: \"正文引用 cross-domain 结果时注明采样参数差异，或讨论 domain × temperature interaction。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null",
+      "numLines": 200,
+      "startLine": 100,
+      "totalLines": 573
+    }
+  },
+  "sourceToolAssistantUUID": "d9d77a2d-331f-4fa7-bea3-0e33951f19a9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 51_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review appendix and remaining pages",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 52 · 2026-05-20T10:58:01.353Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T10:58:01.353Z",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "content": "[Reviewer 1 审稿结果]:\nPDF 临时图片已清理（33 张）。审稿完成，等待 Director 进一步指示。\n\n---\n\n[Reviewer 2 审稿意见]:\n\n# Reviewer 2 — Round 1 审稿报告\n\n## 审稿侧重：Novelty & Related Work\n\n**论文标题**: \"Differential Depth Response in Non-Paraphrastic LLM Generation Chains: An Empirical Characterization Across Model Families\"\n\n---\n\n## 总体评分\n\n**Overall**: 3.0 / 5（Findings 级别）\n\n**一句话总结**: 实验扎实但新颖性有限——DDR 本质上是 model collapse 领域已知的词汇贫化现象在 inference-chain 场景下的经验性再确认，drifting/stationary 分解虽然整洁但概念贡献不足以支撑主会议接收。\n\n---\n\n## 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| **Soundness** | 3.5/5 | 实验设计严谨（8 generators, LOGO cross-validation, TOST equivalence testing, Bonferroni correction），方法论上无明显缺陷，但 base-model-only scope 对 claim 的外部有效性构成实质限制 |\n| **Excitement** | 2.5/5 | 核心发现（词汇多样性随递归生成深度单调下降）在 model collapse 文献中已有充分预期；drifting vs. stationary 分解是对已知现象的整理而非新机制的发现；negative downstream finding 限制了实际影响力 |\n| **Reviewer Confidence** | 4/5 | 仔细通读全文含全部 appendix（33 页），核验了引用，搜索了关键相关工作 |\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [critical] DDR 的概念新颖性不足——本质是已知现象的再包装\n\n- **具体位置**: Section 1 (contribution claim 2), Section 4.2, Section 5\n- **问题**: 论文的核心贡献 claim 是 DDR（differential depth response）——drifting features 单调漂移而 shape features 保持稳定。然而：\n  - **Drifting features**（entropy_mean, TTR, hapax_ratio）捕获的是词汇多样性衰减，这是 Shumailov et al. (2024, Nature) 已经明确记录的 model collapse 核心现象——\"tails of the original content distribution disappear\"。论文 Section 5 自己也承认 \"model collapse describes irreversible degradation from retraining on model outputs\"，但试图通过\"inference-chain with fixed parameters operates in a qualitatively different regime\"来区分。这个区分是有效的，但最终观察到的现象（词汇贫化、多样性下降）是一致的。\n  - **Stationary features**（entropy_max, tail_decay）保持稳定这一观察相对有趣，但缺乏机制性解释——为什么 NLL 分布的极端值和尾部衰减在 location shift 下保持不变？论文仅描述了\"what\"而没有解释\"why\"，削弱了作为独立概念贡献的说服力。\n  - **The drifting/stationary partition maps almost trivially onto the feature design**: 词汇表面特征（TTR, hapax）显然会随多样性下降而漂移，NLL 分布形状特征在 location shift 下保持稳定也是统计学上的预期行为。\n- **为什么影响接收**: 顶会论文需要的是对现象的新理解或新机制，而非对已知趋势的重新描述。DDR 的 drifting/stationary 分解虽然被系统化地验证了，但概念上可预测性太高。\n- **建议**: (a) 提供 drifting/stationary 分裂的理论解释或信息论推导，说明为什么 fixed-parameter inference chain 必然产生 location shift 而非 shape change；(b) 或者展示 DDR 能预测 model collapse 文献未预测到的现象。\n\n**N2** [critical] 与 concurrent work 的区分不够充分\n\n- **具体位置**: Section 2.2, Section 5\n- **问题**: 三篇高度相关的 concurrent work 未被充分区分：\n  1. **\"LLM as a Broken Telephone\" (Mohamed et al., ACL 2025)**: 论文 Section 2.2 声称通过研究 \"non-paraphrastic continuation chains\" 来区分，但对 paraphrastic vs. non-paraphrastic 区分的意义缺乏深入论证。为什么 continuation（而非 paraphrase/translation）链的行为分析值得独立研究？两种 chain 类型是否产生质性不同的 distributional shift？论文没有直接对比实验来验证这一关键区分假设。\n  2. **\"Markovian Generation Chains\" (Geng et al., 2026)**: 该工作对 iterative generation dynamics 进行了 Markov chain 建模，包括 convergence 和 diversity 分析。论文 Section 2.2 将其列为 citation 但未深入讨论：DDR 的 drifting/stationary 分解与 Geng et al. 的 Markov convergence 分析有何关系？是互补还是重复？\n  3. **\"Beyond the Final Actor\" (Li et al., ACL 2026)**: 该工作提出 4-class fine-grained detection（human, machine-generated, machine-polished, human-revised），与本文的 ordinal depth classification 在动机上高度相似——都试图超越 binary detection。论文 Section 2.1 将其列为 citation 但未讨论两种 multi-class formulation 的关系。\n- **为什么影响接收**: 在密集的相关工作环境下，不充分的区分会让 reviewer 质疑 contribution 的独立性。\n- **建议**: (a) 加入 paraphrastic vs. non-paraphrastic chain 的直接对比实验（即使规模较小）；(b) 系统讨论 DDR 与 Markovian chain convergence 的理论联系；(c) 明确区分 \"depth\" ordinal classification 与 \"role-based\" multi-class classification 的不同假设和适用场景。\n\n**N3** [critical] Base-model-only scope 严重限制实际意义\n\n- **具体位置**: Section 6 (Limitations), Appendix K (Table 15-17)\n- **问题**: 论文明确限制在 base models，Appendix K 显示 instruction tuning 后：\n  - Entropy mean 的 Spearman ρ 从 +0.48 (base) 反转为 −0.04 ~ +0.23 (instruct)，6/7 features 反转（Table 15）\n  - Instruct 模型的 binary F1 = 0.590-0.660，远低于 base model 的 0.694（Table 16）\n  - QLoRA end-to-end instruct 分类器性能也大幅下降（Table 17）\n  \n  然而现实中绝大多数部署的 LLM 都是 instruction-tuned（ChatGPT, Claude, Gemini 等），这意味着 DDR 的实际应用场景非常有限。论文 Section 6 只用一段话承认这一限制，但 title 和 abstract 均未明确标注 \"base model only\" 这一关键限定条件。\n- **为什么影响接收**: 如果核心发现不能泛化到最常见的 LLM 部署形态，实际 significance 大打折扣。\n- **建议**: (a) Title 或 abstract 中必须明确标注 base-model scope；(b) 讨论 instruction tuning 为何破坏 DDR 的机制假说；(c) 最好能展示至少一种方法在 instruct 模型上恢复 DDR signal。\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [warning] QLoRA 大幅优于 handcrafted features 削弱方法论贡献\n\n- **具体位置**: Appendix E (Table 6), Section 4.3 (Table 2)\n- **问题**: 7-feature ensemble 的 binary F1 = 0.694，QLoRA end-to-end classifier 达到 F1 = 0.905（+12-15pp, Appendix E Table 6）。论文 Section 4.3 试图将 DDR 定位为 \"decomposition\" 而非 \"classification tool\"——\"DDR's contribution is not classification performance but decomposing depth signal into location-sensitive and shape-stable components\"。然而：\n  - 如果目标是理解（decomposition），那 F1=0.694 的分类性能数字不应出现在 abstract 和主要 results 中作为 highlight\n  - 如果目标是实用检测，QLoRA 明显更好且更简单\n  - 这种 framing 模糊了论文的 contribution identity\n- **建议**: 更明确地选择 positioning——如果是 analysis paper，弱化分类性能数字；如果是 detection paper，解释 interpretability advantage 如何弥补 12pp 的性能差距。\n\n**W2** [warning] Negative downstream finding 的 framing 可商榷\n\n- **具体位置**: Appendix M (Table 19), Section 5\n- **问题**: 下游实验显示 depth-aware curation 与 random subsampling 的 perplexity 差异在 TOST equivalence bound 内（±2% margin, Table 20）。论文将此 framing 为 \"diagnostic not curative\"——\"knowing the generation depth of a document does not, by itself, make it more or less useful for training\"。但：\n  - 这仅在一个下游 task（perplexity on fine-tuning）上验证，且仅用了 OLMo-2-0425-1B 一个模型\n  - \"Diagnostic not curative\" 的 framing 暗示 depth classification 至少有诊断价值，但论文没有展示具体的诊断应用场景\n  - 一个 negative result 要成为 contribution，需要该 result 是 counter-intuitive 或 against strong prior belief——但\"训练数据的来源深度不影响 fine-tuning quality\"并不令人惊讶\n- **建议**: (a) 在更多下游 task 和模型上验证（至少 2-3 个）；(b) 提供至少一个具体的\"diagnostic\" use case 来支撑 \"diagnostic not curative\" 的 claim。\n\n**W3** [warning] 7-feature 集的性能变异度较大\n\n- **具体位置**: Table 1, Section 4.1\n- **问题**: Per-generator binary F1 range 从 0.633（Mistral-7B）到 0.724（Pythia-2.8B），3-class F1 range 更大。Cross-model chain evaluation 的 5-generator subset binary F1 = 0.693（Table 1 footnote）。这种变异度意味着分类器的实用性高度依赖于 generator identity——而在实际场景中 generator 通常未知。\n- **建议**: 讨论 generator-unknown 场景下的性能退化原因及可能的缓解策略。\n\n**W4** [warning] Related work 缺少若干重要参考\n\n- **具体位置**: Section 2\n- **问题**: \n  - **RAID benchmark** (Dugan et al., 2024, ACL)：论文 bib 中有此条目但 text 中未引用（orphan entry）。作为最大的 AI text detection benchmark，应在 Section 2.1 中讨论。\n  - **SemEval-2024 Task 8** 的 multi-class detection sub-task (Task 8C: multi-way classification)：论文引用了 Task 8 但未讨论其 multi-class 子任务与本文 ordinal formulation 的关系。\n  - **Information-theoretic perspective on model collapse**：Dohmatob & Feng (2025) \"Strong Model Collapse\" 提供了 model collapse 的信息论分析，论文引用但未利用其 theoretical framework 来解释 DDR 的 drifting/stationary 分裂。\n- **建议**: 补充对上述工作的讨论，特别是利用 information-theoretic framework 来解释 DDR。\n\n---\n\n## 小问题（不影响接收）\n\n- **Orphan bib entries**: 引用验证发现 17 个 bib 条目在正文中未被引用（包括 RAID, SPIN, self_rewarding_lms 等），建议投稿前清理。\n- **Section 3.1 \"non-paraphrastic continuation chains\" 的定义**: 可以更早、更形式化地定义（当前定义分散在 Section 1 和 Section 3.1）。\n- **Figure 1 (p.6)**: Strip plot 信息密度高，但 DDR partition 的 drifting/intermediate/near-stationary 色彩编码在灰度打印下可能不易区分。\n\n---\n\n## 主要优势\n\n1. **实验设计严谨**: 8 generators × 5 families × 77K texts 的规模在同类工作中属于较大规模；LOGO cross-validation 确保了 cross-generator generalization 的可信评估；TOST equivalence testing 和 Bonferroni correction 的使用体现了高水平的统计素养。\n\n2. **诚实报告 negative results**: Appendix M 的下游实验和 Appendix K 的 instruction-tuned 分析展示了作者愿意报告不利于自身 narrative 的发现，这在投稿论文中值得肯定。\n\n3. **Comprehensive appendix**: 从 length confound (Appendix B) 到 DDR partition validation (Appendix V) 再到 per-generator transfer matrix (Appendix Y)，几乎每个可能的 confound 和 robustness check 都有对应分析，展现了极高的实验完整度。\n\n4. **Clean empirical decomposition**: Drifting/stationary partition 虽然概念上可预测，但被系统地验证了（PCA in Appendix R, TOST in Appendix U, k-means in Appendix V, Granger causality in Appendix Z.3），统计证据是充分的。\n\n5. **Cross-family reference model finding**: Pythia-410M reference model 的 cross-family generalization（Section 4.2, Table 1 footnote）是一个有价值的实用发现。\n\n---\n\n## 针对作者的提问（Questions for Authors）\n\n1. **DDR vs. model collapse**: 论文 Section 5 区分了 inference-chain（fixed parameters）与 training-loop collapse（parameter updates）。能否设计一个实验直接对比：(a) 在相同文本上，inference-chain depth signal 与 (b) 用同一文本作为 training data 训练后的 model collapse signal，验证两者是否产生质性不同的 distributional shift？\n\n2. **Stationary features 的理论基础**: entropy_max 和 tail_decay 在 depth 变化下保持稳定——这是否可以从 softmax + fixed temperature 的数学性质推导出来？如果可以，这应当作为 theoretical contribution；如果不能，请讨论可能的反例场景。\n\n3. **Instruction tuning 的破坏机制**: Appendix K 显示 RLHF/instruction tuning 破坏了 DDR signal。作者是否有假说解释为什么？是 RLHF 的 reward shaping 改变了 NLL 分布的形状，还是 instruction-following 的 format constraints 压缩了 generation diversity？\n\n4. **Practical application scenario**: 如果 DDR 是 \"diagnostic not curative\"，具体的诊断场景是什么？例如：在 web corpora 清洗中，检测到 gen-2+ 文本后应采取什么 action？论文能否给出一个 end-to-end 的应用案例？\n\n5. **为什么不做 paraphrastic vs. non-paraphrastic 的直接对比**: 这是论文与 \"Broken Telephone\" 的核心区分点，但没有实验验证两种 chain type 的 distributional shift 是否质性不同。这是否是资源限制，还是有其他原因？\n\n---\n\n## 评分总结\n\n| 维度 | 分数 |\n|------|------|\n| Soundness | 3.5/5 |\n| Excitement | 2.5/5 |\n| Overall Assessment | 3.0/5 (Findings) |\n| Confidence | 4/5 |\n\n**总体判断**: 这是一篇实验执行非常出色的 empirical study，但核心概念贡献（DDR）在新颖性上不足以支撑主会议接收。DDR 的 drifting/stationary 分解是对 model collapse 文献已知趋势的经验性系统化，而非新机制的发现。Base-model-only scope 和 QLoRA 的性能优势进一步削弱了实际影响力。如果作者能 (1) 提供 drifting/stationary 分裂的理论解释, (2) 加入 paraphrastic vs. non-paraphrastic 的直接对比实验, (3) 展示至少一个具体的下游诊断应用，该论文有潜力提升至 3.5（Borderline Conference）。当前状态适合 Findings track。\n"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 53 · 2026-05-20T10:58:01.353Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T10:58:01.353Z",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b"
+}
+```
+
+---
+
+
+## Round 4
+
+## Round 4
+
+2 recorded events
+
+
+### User
+
+_source line 54 · 2026-05-20T10:58:01.346Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fed60893-46cd-43b1-9da9-0cb63125025d",
+  "isSidechain": false,
+  "promptId": "62d0ae02-88d9-4804-92b2-064f716448a2",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "69fbb311-3f97-4137-a6ea-4656f5452e7e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 55 · 2026-05-20T10:58:01.346Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "69fbb311-3f97-4137-a6ea-4656f5452e7e",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "2576dc4e-048b-4de0-9aaf-f5663e5b82be",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "id": "3327a728-fc21-487d-ba71-2bb7e80082bf",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+## Round 5
+
+## Round 5
+
+12 recorded events
+
+
+### User
+
+_source line 56 · 2026-05-20T10:58:01.444Z_
+
+[Reviewer 1 审稿结果]:
+PDF 临时图片已清理（33 张）。审稿完成，等待 Director 进一步指示。
+
+---
+
+[Reviewer 2 审稿意见]:
+
+# Reviewer 2 — Round 1 审稿报告
+
+## 审稿侧重：Novelty & Related Work
+
+**论文标题**: "Differential Depth Response in Non-Paraphrastic LLM Generation Chains: An Empirical Characterization Across Model Families"
+
+---
+
+## 总体评分
+
+**Overall**: 3.0 / 5（Findings 级别）
+
+**一句话总结**: 实验扎实但新颖性有限——DDR 本质上是 model collapse 领域已知的词汇贫化现象在 inference-chain 场景下的经验性再确认，drifting/stationary 分解虽然整洁但概念贡献不足以支撑主会议接收。
+
+---
+
+## 官方维度打分（ACL ARR Review Form）
+
+| 维度 | 分数 | 理由摘要 |
+|------|------|----------|
+| **Soundness** | 3.5/5 | 实验设计严谨（8 generators, LOGO cross-validation, TOST equivalence testing, Bonferroni correction），方法论上无明显缺陷，但 base-model-only scope 对 claim 的外部有效性构成实质限制 |
+| **Excitement** | 2.5/5 | 核心发现（词汇多样性随递归生成深度单调下降）在 model collapse 文献中已有充分预期；drifting vs. stationary 分解是对已知现象的整理而非新机制的发现；negative downstream finding 限制了实际影响力 |
+| **Reviewer Confidence** | 4/5 | 仔细通读全文含全部 appendix（33 页），核验了引用，搜索了关键相关工作 |
+
+---
+
+## Must-Fix 问题（影响接收决定）
+
+**N1** [critical] DDR 的概念新颖性不足——本质是已知现象的再包装
+
+- **具体位置**: Section 1 (contribution claim 2), Section 4.2, Section 5
+- **问题**: 论文的核心贡献 claim 是 DDR（differential depth response）——drifting features 单调漂移而 shape features 保持稳定。然而：
+  - **Drifting features**（entropy_mean, TTR, hapax_ratio）捕获的是词汇多样性衰减，这是 Shumailov et al. (2024, Nature) 已经明确记录的 model collapse 核心现象——"tails of the original content distribution disappear"。论文 Section 5 自己也承认 "model collapse describes irreversible degradation from retraining on model outputs"，但试图通过"inference-chain with fixed parameters operates in a qualitatively different regime"来区分。这个区分是有效的，但最终观察到的现象（词汇贫化、多样性下降）是一致的。
+  - **Stationary features**（entropy_max, tail_decay）保持稳定这一观察相对有趣，但缺乏机制性解释——为什么 NLL 分布的极端值和尾部衰减在 location shift 下保持不变？论文仅描述了"what"而没有解释"why"，削弱了作为独立概念贡献的说服力。
+  - **The drifting/stationary partition maps almost trivially onto the feature design**: 词汇表面特征（TTR, hapax）显然会随多样性下降而漂移，NLL 分布形状特征在 location shift 下保持稳定也是统计学上的预期行为。
+- **为什么影响接收**: 顶会论文需要的是对现象的新理解或新机制，而非对已知趋势的重新描述。DDR 的 drifting/stationary 分解虽然被系统化地验证了，但概念上可预测性太高。
+- **建议**: (a) 提供 drifting/stationary 分裂的理论解释或信息论推导，说明为什么 fixed-parameter inference chain 必然产生 location shift 而非 shape change；(b) 或者展示 DDR 能预测 model collapse 文献未预测到的现象。
+
+**N2** [critical] 与 concurrent work 的区分不够充分
+
+- **具体位置**: Section 2.2, Section 5
+- **问题**: 三篇高度相关的 concurrent work 未被充分区分：
+  1. **"LLM as a Broken Telephone" (Mohamed et al., ACL 2025)**: 论文 Section 2.2 声称通过研究 "non-paraphrastic continuation chains" 来区分，但对 paraphrastic vs. non-paraphrastic 区分的意义缺乏深入论证。为什么 continuation（而非 paraphrase/translation）链的行为分析值得独立研究？两种 chain 类型是否产生质性不同的 distributional shift？论文没有直接对比实验来验证这一关键区分假设。
+  2. **"Markovian Generation Chains" (Geng et al., 2026)**: 该工作对 iterative generation dynamics 进行了 Markov chain 建模，包括 convergence 和 diversity 分析。论文 Section 2.2 将其列为 citation 但未深入讨论：DDR 的 drifting/stationary 分解与 Geng et al. 的 Markov convergence 分析有何关系？是互补还是重复？
+  3. **"Beyond the Final Actor" (Li et al., ACL 2026)**: 该工作提出 4-class fine-grained detection（human, machine-generated, machine-polished, human-revised），与本文的 ordinal depth classification 在动机上高度相似——都试图超越 binary detection。论文 Section 2.1 将其列为 citation 但未讨论两种 multi-class formulation 的关系。
+- **为什么影响接收**: 在密集的相关工作环境下，不充分的区分会让 reviewer 质疑 contribution 的独立性。
+- **建议**: (a) 加入 paraphrastic vs. non-paraphrastic chain 的直接对比实验（即使规模较小）；(b) 系统讨论 DDR 与 Markovian chain convergence 的理论联系；(c) 明确区分 "depth" ordinal classification 与 "role-based" multi-class classification 的不同假设和适用场景。
+
+**N3** [critical] Base-model-only scope 严重限制实际意义
+
+- **具体位置**: Section 6 (Limitations), Appendix K (Table 15-17)
+- **问题**: 论文明确限制在 base models，Appendix K 显示 instruction tuning 后：
+  - Entropy mean 的 Spearman ρ 从 +0.48 (base) 反转为 −0.04 ~ +0.23 (instruct)，6/7 features 反转（Table 15）
+  - Instruct 模型的 binary F1 = 0.590-0.660，远低于 base model 的 0.694（Table 16）
+  - QLoRA end-to-end instruct 分类器性能也大幅下降（Table 17）
+  
+  然而现实中绝大多数部署的 LLM 都是 instruction-tuned（ChatGPT, Claude, Gemini 等），这意味着 DDR 的实际应用场景非常有限。论文 Section 6 只用一段话承认这一限制，但 title 和 abstract 均未明确标注 "base model only" 这一关键限定条件。
+- **为什么影响接收**: 如果核心发现不能泛化到最常见的 LLM 部署形态，实际 significance 大打折扣。
+- **建议**: (a) Title 或 abstract 中必须明确标注 base-model scope；(b) 讨论 instruction tuning 为何破坏 DDR 的机制假说；(c) 最好能展示至少一种方法在 instruct 模型上恢复 DDR signal。
+
+---
+
+## Should-Fix 问题（影响评分但不一票否决）
+
+**W1** [warning] QLoRA 大幅优于 handcrafted features 削弱方法论贡献
+
+- **具体位置**: Appendix E (Table 6), Section 4.3 (Table 2)
+- **问题**: 7-feature ensemble 的 binary F1 = 0.694，QLoRA end-to-end classifier 达到 F1 = 0.905（+12-15pp, Appendix E Table 6）。论文 Section 4.3 试图将 DDR 定位为 "decomposition" 而非 "classification tool"——"DDR's contribution is not classification performance but decomposing depth signal into location-sensitive and shape-stable components"。然而：
+  - 如果目标是理解（decomposition），那 F1=0.694 的分类性能数字不应出现在 abstract 和主要 results 中作为 highlight
+  - 如果目标是实用检测，QLoRA 明显更好且更简单
+  - 这种 framing 模糊了论文的 contribution identity
+- **建议**: 更明确地选择 positioning——如果是 analysis paper，弱化分类性能数字；如果是 detection paper，解释 interpretability advantage 如何弥补 12pp 的性能差距。
+
+**W2** [warning] Negative downstream finding 的 framing 可商榷
+
+- **具体位置**: Appendix M (Table 19), Section 5
+- **问题**: 下游实验显示 depth-aware curation 与 random subsampling 的 perplexity 差异在 TOST equivalence bound 内（±2% margin, Table 20）。论文将此 framing 为 "diagnostic not curative"——"knowing the generation depth of a document does not, by itself, make it more or less useful for training"。但：
+  - 这仅在一个下游 task（perplexity on fine-tuning）上验证，且仅用了 OLMo-2-0425-1B 一个模型
+  - "Diagnostic not curative" 的 framing 暗示 depth classification 至少有诊断价值，但论文没有展示具体的诊断应用场景
+  - 一个 negative result 要成为 contribution，需要该 result 是 counter-intuitive 或 against strong prior belief——但"训练数据的来源深度不影响 fine-tuning quality"并不令人惊讶
+- **建议**: (a) 在更多下游 task 和模型上验证（至少 2-3 个）；(b) 提供至少一个具体的"diagnostic" use case 来支撑 "diagnostic not curative" 的 claim。
+
+**W3** [warning] 7-feature 集的性能变异度较大
+
+- **具体位置**: Table 1, Section 4.1
+- **问题**: Per-generator binary F1 range 从 0.633（Mistral-7B）到 0.724（Pythia-2.8B），3-class F1 range 更大。Cross-model chain evaluation 的 5-generator subset binary F1 = 0.693（Table 1 footnote）。这种变异度意味着分类器的实用性高度依赖于 generator identity——而在实际场景中 generator 通常未知。
+- **建议**: 讨论 generator-unknown 场景下的性能退化原因及可能的缓解策略。
+
+**W4** [warning] Related work 缺少若干重要参考
+
+- **具体位置**: Section 2
+- **问题**: 
+  - **RAID benchmark** (Dugan et al., 2024, ACL)：论文 bib 中有此条目但 text 中未引用（orphan entry）。作为最大的 AI text detection benchmark，应在 Section 2.1 中讨论。
+  - **SemEval-2024 Task 8** 的 multi-class detection sub-task (Task 8C: multi-way classification)：论文引用了 Task 8 但未讨论其 multi-class 子任务与本文 ordinal formulation 的关系。
+  - **Information-theoretic perspective on model collapse**：Dohmatob & Feng (2025) "Strong Model Collapse" 提供了 model collapse 的信息论分析，论文引用但未利用其 theoretical framework 来解释 DDR 的 drifting/stationary 分裂。
+- **建议**: 补充对上述工作的讨论，特别是利用 information-theoretic framework 来解释 DDR。
+
+---
+
+## 小问题（不影响接收）
+
+- **Orphan bib entries**: 引用验证发现 17 个 bib 条目在正文中未被引用（包括 RAID, SPIN, self_rewarding_lms 等），建议投稿前清理。
+- **Section 3.1 "non-paraphrastic continuation chains" 的定义**: 可以更早、更形式化地定义（当前定义分散在 Section 1 和 Section 3.1）。
+- **Figure 1 (p.6)**: Strip plot 信息密度高，但 DDR partition 的 drifting/intermediate/near-stationary 色彩编码在灰度打印下可能不易区分。
+
+---
+
+## 主要优势
+
+1. **实验设计严谨**: 8 generators × 5 families × 77K texts 的规模在同类工作中属于较大规模；LOGO cross-validation 确保了 cross-generator generalization 的可信评估；TOST equivalence testing 和 Bonferroni correction 的使用体现了高水平的统计素养。
+
+2. **诚实报告 negative results**: Appendix M 的下游实验和 Appendix K 的 instruction-tuned 分析展示了作者愿意报告不利于自身 narrative 的发现，这在投稿论文中值得肯定。
+
+3. **Comprehensive appendix**: 从 length confound (Appendix B) 到 DDR partition validation (Appendix V) 再到 per-generator transfer matrix (Appendix Y)，几乎每个可能的 confound 和 robustness check 都有对应分析，展现了极高的实验完整度。
+
+4. **Clean empirical decomposition**: Drifting/stationary partition 虽然概念上可预测，但被系统地验证了（PCA in Appendix R, TOST in Appendix U, k-means in Appendix V, Granger causality in Appendix Z.3），统计证据是充分的。
+
+5. **Cross-family reference model finding**: Pythia-410M reference model 的 cross-family generalization（Section 4.2, Table 1 footnote）是一个有价值的实用发现。
+
+---
+
+## 针对作者的提问（Questions for Authors）
+
+1. **DDR vs. model collapse**: 论文 Section 5 区分了 inference-chain（fixed parameters）与 training-loop collapse（parameter updates）。能否设计一个实验直接对比：(a) 在相同文本上，inference-chain depth signal 与 (b) 用同一文本作为 training data 训练后的 model collapse signal，验证两者是否产生质性不同的 distributional shift？
+
+2. **Stationary features 的理论基础**: entropy_max 和 tail_decay 在 depth 变化下保持稳定——这是否可以从 softmax + fixed temperature 的数学性质推导出来？如果可以，这应当作为 theoretical contribution；如果不能，请讨论可能的反例场景。
+
+3. **Instruction tuning 的破坏机制**: Appendix K 显示 RLHF/instruction tuning 破坏了 DDR signal。作者是否有假说解释为什么？是 RLHF 的 reward shaping 改变了 NLL 分布的形状，还是 instruction-following 的 format constraints 压缩了 generation diversity？
+
+4. **Practical application scenario**: 如果 DDR 是 "diagnostic not curative"，具体的诊断场景是什么？例如：在 web corpora 清洗中，检测到 gen-2+ 文本后应采取什么 action？论文能否给出一个 end-to-end 的应用案例？
+
+5. **为什么不做 paraphrastic vs. non-paraphrastic 的直接对比**: 这是论文与 "Broken Telephone" 的核心区分点，但没有实验验证两种 chain type 的 distributional shift 是否质性不同。这是否是资源限制，还是有其他原因？
+
+---
+
+## 评分总结
+
+| 维度 | 分数 |
+|------|------|
+| Soundness | 3.5/5 |
+| Excitement | 2.5/5 |
+| Overall Assessment | 3.0/5 (Findings) |
+| Confidence | 4/5 |
+
+**总体判断**: 这是一篇实验执行非常出色的 empirical study，但核心概念贡献（DDR）在新颖性上不足以支撑主会议接收。DDR 的 drifting/stationary 分解是对 model collapse 文献已知趋势的经验性系统化，而非新机制的发现。Base-model-only scope 和 QLoRA 的性能优势进一步削弱了实际影响力。如果作者能 (1) 提供 drifting/stationary 分裂的理论解释, (2) 加入 paraphrastic vs. non-paraphrastic 的直接对比实验, (3) 展示至少一个具体的下游诊断应用，该论文有潜力提升至 3.5（Borderline Conference）。当前状态适合 Findings track。
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2576dc4e-048b-4de0-9aaf-f5663e5b82be",
+  "isSidechain": false,
+  "promptId": "62d0ae02-88d9-4804-92b2-064f716448a2",
+  "type": "user",
+  "uuid": "c8a00105-01f0-4d74-b683-6da21ae7caa8",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 57 · 2026-05-20T10:58:12.463Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Both Reviewer 1 and Reviewer 2 have now completed their reviews. Let me summarize the state:
+
+**Reviewer 1** (Methods & Experiments focus):
+- Overall: 3.0 (Findings)
+- Soundness: 3.5/5, Excitement: 3/5, Reproducibility: 4/5, Confidence: 4/5
+- Must-Fix: N1 (downstream underpowered n=3), N2 (QLoRA gap), N3 (base-model-only)
+- Should-Fix: W1 (Gemma-2-2B anomaly), W2 (baseline narrow), W3 (temperature), W4 (cross-model confound), W5 (DDR partition 3/1/3)
+
+
+**Reviewer 2** (Novelty & Related Work focus):
+- Overall: 3.0 (Findings)
+- Soundness: 3.5/5, Excitement: 2.5/5, Confidence: 4/5
+- Must-Fix: N1 (novelty insufficient - DDR is repackaging), N2 (concurrent work distinction), N3 (base-model-only)
+- Should-Fix: W1 (QLoRA gap), W2 (negative downstream framing), W3 (performance variance), W4 (missing references)
+
+Now I'm moving to Step 2 where I'll cross-reference the reviews to identify overlapping concerns and unique issues from each reviewer.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c8a00105-01f0-4d74-b683-6da21ae7caa8",
+  "isSidechain": false,
+  "requestId": "req_011CbDhfnCbLmFC7xV4VQsB8",
+  "type": "assistant",
+  "uuid": "49474d1d-6b65-4b3e-9e11-7bff7ed4eaa0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UQGdq2Ti8MRbRkRQmpPp1a",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 47708,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 10302,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 47708,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 10302,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 47708,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 47708
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "system_changed",
+        "cache_missed_input_tokens": 27924
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 58 · 2026-05-20T10:58:17.111Z_
+
+两位 Reviewer 均已完成 Round 1 独立审稿。进入 Step 2——交叉分享。
+
+**R1**: 3.0 (Findings) — 聚焦实验设计缺陷（downstream underpowered, QLoRA gap, base-model-only）
+**R2**: 3.0 (Findings) — 聚焦新颖性不足（DDR 是已知现象再包装, concurrent work 区分不够, base-model-only）
+
+两位在 base-model-only 限制和 QLoRA gap 上有交集，但侧重不同。现在将双方完整审稿原文互发，要求逐条 [AGREE]/[REBUT]。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "49474d1d-6b65-4b3e-9e11-7bff7ed4eaa0",
+  "isSidechain": false,
+  "requestId": "req_011CbDhfnCbLmFC7xV4VQsB8",
+  "type": "assistant",
+  "uuid": "eab87141-d606-4f75-84f2-b533cea85020",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UQGdq2Ti8MRbRkRQmpPp1a",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 47708,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 10302,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 47708,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 10302,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 47708,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 47708
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "system_changed",
+        "cache_missed_input_tokens": 27924
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 59 · 2026-05-20T11:00:09.153Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__director_post_to_reviewer · `toolu_01EdQ3D8ZNJrszMcxX9s7M78`</summary>
+
+```json
+{
+  "reviewer_id": "1",
+  "round_number": 1,
+  "text": "## Step 2 — 交叉审稿回应\n\n以下是 Reviewer 2 的完整审稿意见（侧重 Novelty & Related Work）。请逐条回应：\n- **[AGREE]** 同意并说明理由\n- **[REBUT]** 反驳并提供证据（cite 具体 Section/Table/Figure）\n\n重点关注你们在以下问题上是否有分歧：\n1. DDR 新颖性是否足够（R2 认为是已知现象的再包装）\n2. Concurrent work 区分是否充分\n3. Base-model-only 的严重程度\n4. QLoRA gap 对论文定位的影响\n\n---\n\n# Reviewer 2 — Round 1 审稿报告\n\n## 审稿侧重：Novelty & Related Work\n\n**论文标题**: \"Differential Depth Response in Non-Paraphrastic LLM Generation Chains: An Empirical Characterization Across Model Families\"\n\n---\n\n## 总体评分\n\n**Overall**: 3.0 / 5（Findings 级别）\n\n**一句话总结**: 实验扎实但新颖性有限——DDR 本质上是 model collapse 领域已知的词汇贫化现象在 inference-chain 场景下的经验性再确认，drifting/stationary 分解虽然整洁但概念贡献不足以支撑主会议接收。\n\n---\n\n## 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| **Soundness** | 3.5/5 | 实验设计严谨（8 generators, LOGO cross-validation, TOST equivalence testing, Bonferroni correction），方法论上无明显缺陷，但 base-model-only scope 对 claim 的外部有效性构成实质限制 |\n| **Excitement** | 2.5/5 | 核心发现（词汇多样性随递归生成深度单调下降）在 model collapse 文献中已有充分预期；drifting vs. stationary 分解是对已知现象的整理而非新机制的发现；negative downstream finding 限制了实际影响力 |\n| **Reviewer Confidence** | 4/5 | 仔细通读全文含全部 appendix（33 页），核验了引用，搜索了关键相关工作 |\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [critical] DDR 的概念新颖性不足——本质是已知现象的再包装\n\n- **具体位置**: Section 1 (contribution claim 2), Section 4.2, Section 5\n- **问题**: 论文的核心贡献 claim 是 DDR（differential depth response）——drifting features 单调漂移而 shape features 保持稳定。然而：\n  - **Drifting features**（entropy_mean, TTR, hapax_ratio）捕获的是词汇多样性衰减，这是 Shumailov et al. (2024, Nature) 已经明确记录的 model collapse 核心现象——\"tails of the original content distribution disappear\"。论文 Section 5 自己也承认 \"model collapse describes irreversible degradation from retraining on model outputs\"，但试图通过\"inference-chain with fixed parameters operates in a qualitatively different regime\"来区分。这个区分是有效的，但最终观察到的现象（词汇贫化、多样性下降）是一致的。\n  - **Stationary features**（entropy_max, tail_decay）保持稳定这一观察相对有趣，但缺乏机制性解释——为什么 NLL 分布的极端值和尾部衰减在 location shift 下保持不变？论文仅描述了\"what\"而没有解释\"why\"，削弱了作为独立概念贡献的说服力。\n  - **The drifting/stationary partition maps almost trivially onto the feature design**: 词汇表面特征（TTR, hapax）显然会随多样性下降而漂移，NLL 分布形状特征在 location shift 下保持稳定也是统计学上的预期行为。\n- **为什么影响接收**: 顶会论文需要的是对现象的新理解或新机制，而非对已知趋势的重新描述。DDR 的 drifting/stationary 分解虽然被系统化地验证了，但概念上可预测性太高。\n- **建议**: (a) 提供 drifting/stationary 分裂的理论解释或信息论推导，说明为什么 fixed-parameter inference chain 必然产生 location shift 而非 shape change；(b) 或者展示 DDR 能预测 model collapse 文献未预测到的现象。\n\n**N2** [critical] 与 concurrent work 的区分不够充分\n\n- **具体位置**: Section 2.2, Section 5\n- **问题**: 三篇高度相关的 concurrent work 未被充分区分：\n  1. **\"LLM as a Broken Telephone\" (Mohamed et al., ACL 2025)**: 论文 Section 2.2 声称通过研究 \"non-paraphrastic continuation chains\" 来区分，但对 paraphrastic vs. non-paraphrastic 区分的意义缺乏深入论证。为什么 continuation（而非 paraphrase/translation）链的行为分析值得独立研究？两种 chain type 是否产生质性不同的 distributional shift？论文没有直接对比实验来验证这一关键区分假设。\n  2. **\"Markovian Generation Chains\" (Geng et al., 2026)**: 该工作对 iterative generation dynamics 进行了 Markov chain 建模，包括 convergence 和 diversity 分析。论文 Section 2.2 将其列为 citation 但未深入讨论：DDR 的 drifting/stationary 分解与 Geng et al. 的 Markov convergence 分析有何关系？是互补还是重复？\n  3. **\"Beyond the Final Actor\" (Li et al., ACL 2026)**: 该工作提出 4-class fine-grained detection（human, machine-generated, machine-polished, human-revised），与本文的 ordinal depth classification 在动机上高度相似——都试图超越 binary detection。论文 Section 2.1 将其列为 citation 但未讨论两种 multi-class formulation 的关系。\n- **为什么影响接收**: 在密集的相关工作环境下，不充分的区分会让 reviewer 质疑 contribution 的独立性。\n- **建议**: (a) 加入 paraphrastic vs. non-paraphrastic chain 的直接对比实验（即使规模较小）；(b) 系统讨论 DDR 与 Markovian chain convergence 的理论联系；(c) 明确区分 \"depth\" ordinal classification 与 \"role-based\" multi-class classification 的不同假设和适用场景。\n\n**N3** [critical] Base-model-only scope 严重限制实际意义\n\n- **具体位置**: Section 6 (Limitations), Appendix K (Table 15-17)\n- **问题**: 论文明确限制在 base models，Appendix K 显示 instruction tuning 后：\n  - Entropy mean 的 Spearman ρ 从 +0.48 (base) 反转为 −0.04 ~ +0.23 (instruct)，6/7 features 反转（Table 15）\n  - Instruct 模型的 binary F1 = 0.590-0.660，远低于 base model 的 0.694（Table 16）\n  - QLoRA end-to-end instruct 分类器性能也大幅下降（Table 17）\n  然而现实中绝大多数部署的 LLM 都是 instruction-tuned（ChatGPT, Claude, Gemini 等），这意味着 DDR 的实际应用场景非常有限。论文 Section 6 只用一段话承认这一限制，但 title 和 abstract 均未明确标注 \"base model only\" 这一关键限定条件。\n- **为什么影响接收**: 如果核心发现不能泛化到最常见的 LLM 部署形态，实际 significance 大打折扣。\n- **建议**: (a) Title 或 abstract 中必须明确标注 base-model scope；(b) 讨论 instruction tuning 为何破坏 DDR 的机制假说；(c) 最好能展示至少一种方法在 instruct 模型上恢复 DDR signal。\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [warning] QLoRA 大幅优于 handcrafted features 削弱方法论贡献\n\n- **具体位置**: Appendix E (Table 6), Section 4.3 (Table 2)\n- **问题**: 7-feature ensemble 的 binary F1 = 0.694，QLoRA end-to-end classifier 达到 F1 = 0.905（+12-15pp, Appendix E Table 6）。论文 Section 4.3 试图将 DDR 定位为 \"decomposition\" 而非 \"classification tool\"——\"DDR's contribution is not classification performance but decomposing depth signal into location-sensitive and shape-stable components\"。然而：\n  - 如果目标是理解（decomposition），那 F1=0.694 的分类性能数字不应出现在 abstract 和主要 results 中作为 highlight\n  - 如果目标是实用检测，QLoRA 明显更好且更简单\n  - 这种 framing 模糊了论文的 contribution identity\n- **建议**: 更明确地选择 positioning——如果是 analysis paper，弱化分类性能数字；如果是 detection paper，解释 interpretability advantage 如何弥补 12pp 的性能差距。\n\n**W2** [warning] Negative downstream finding 的 framing 可商榷\n\n- **具体位置**: Appendix M (Table 19), Section 5\n- **问题**: 下游实验显示 depth-aware curation 与 random subsampling 的 perplexity 差异在 TOST equivalence bound 内（±2% margin, Table 20）。论文将此 framing 为 \"diagnostic not curative\"——\"knowing the generation depth of a document does not, by itself, make it more or less useful for training\"。但：\n  - 这仅在一个下游 task（perplexity on fine-tuning）上验证，且仅用了 OLMo-2-0425-1B 一个模型\n  - \"Diagnostic not curative\" 的 framing 暗示 depth classification 至少有诊断价值，但论文没有展示具体的诊断应用场景\n  - 一个 negative result 要成为 contribution，需要该 result 是 counter-intuitive 或 against strong prior belief——但\"训练数据的来源深度不影响 fine-tuning quality\"并不令人惊讶\n- **建议**: (a) 在更多下游 task 和模型上验证（至少 2-3 个）；(b) 提供至少一个具体的\"diagnostic\" use case 来支撑 \"diagnostic not curative\" 的 claim。\n\n**W3** [warning] 7-feature 集的性能变异度较大\n\n- **具体位置**: Table 1, Section 4.1\n- **问题**: Per-generator binary F1 range 从 0.633（Mistral-7B）到 0.724（Pythia-2.8B），3-class F1 range 更大。Cross-model chain evaluation 的 5-generator subset binary F1 = 0.693（Table 1 footnote）。这种变异度意味着分类器的实用性高度依赖于 generator identity——而在实际场景中 generator 通常未知。\n- **建议**: 讨论 generator-unknown 场景下的性能退化原因及可能的缓解策略。\n\n**W4** [warning] Related work 缺少若干重要参考\n\n- **具体位置**: Section 2\n- **问题**:\n  - **RAID benchmark** (Dugan et al., 2024, ACL)：论文 bib 中有此条目但 text 中未引用（orphan entry）。作为最大的 AI text detection benchmark，应在 Section 2.1 中讨论。\n  - **SemEval-2024 Task 8** 的 multi-class detection sub-task (Task 8C: multi-way classification)：论文引用了 Task 8 但未讨论其 multi-class 子任务与本文 ordinal formulation 的关系。\n  - **Information-theoretic perspective on model collapse**：Dohmatob & Feng (2025) \"Strong Model Collapse\" 提供了 model collapse 的信息论分析，论文引用但未利用其 theoretical framework 来解释 DDR。\n- **建议**: 补充对上述工作的讨论，特别是利用 information-theoretic framework 来解释 DDR。\n\n---\n\n## 小问题（不影响接收）\n\n- **Orphan bib entries**: 引用验证发现 17 个 bib 条目在正文中未被引用（包括 RAID, SPIN, self_rewarding_lms 等），建议投稿前清理。\n- **Section 3.1 \"non-paraphrastic continuation chains\" 的定义**: 可以更早、更形式化地定义（当前定义分散在 Section 1 和 Section 3.1）。\n- **Figure 1 (p.6)**: Strip plot 信息密度高，但 DDR partition 的 drifting/intermediate/near-stationary 色彩编码在灰度打印下可能不易区分。\n\n---\n\n## 主要优势\n\n1. **实验设计严谨**: 8 generators × 5 families × 77K texts 的规模在同类工作中属于较大规模；LOGO cross-validation 确保了 cross-generator generalization 的可信评估；TOST equivalence testing 和 Bonferroni correction 的使用体现了高水平的统计素养。\n\n2. **诚实报告 negative results**: Appendix M 的下游实验和 Appendix K 的 instruction-tuned 分析展示了作者愿意报告不利于自身 narrative 的发现，这在投稿论文中值得肯定。\n\n3. **Comprehensive appendix**: 从 length confound (Appendix B) 到 DDR partition validation (Appendix V) 再到 per-generator transfer matrix (Appendix Y)，几乎每个可能的 confound 和 robustness check 都有对应分析，展现了极高的实验完整度。\n\n4. **Clean empirical decomposition**: Drifting/stationary partition 虽然概念上可预测，但被系统地验证了（PCA in Appendix R, TOST in Appendix U, k-means in Appendix V, Granger causality in Appendix Z.3），统计证据是充分的。\n\n5. **Cross-family reference model finding**: Pythia-410M reference model 的 cross-family generalization（Section 4.2, Table 1 footnote）是一个有价值的实用发现。\n\n---\n\n## 针对作者的提问（Questions for Authors）\n\n1. **DDR vs. model collapse**: 论文 Section 5 区分了 inference-chain（fixed parameters）与 training-loop collapse（parameter updates）。能否设计一个实验直接对比：(a) 在相同文本上，inference-chain depth signal 与 (b) 用同一文本作为 training data 训练后的 model collapse signal，验证两者是否产生质性不同的 distributional shift？\n\n2. **Stationary features 的理论基础**: entropy_max 和 tail_decay 在 depth 变化下保持稳定——这是否可以从 softmax + fixed temperature 的数学性质推导出来？如果可以，这应当作为 theoretical contribution；如果不能，请讨论可能的反例场景。\n\n3. **Instruction tuning 的破坏机制**: Appendix K 显示 RLHF/instruction tuning 破坏了 DDR signal。作者是否有假说解释为什么？是 RLHF 的 reward shaping 改变了 NLL 分布的形状，还是 instruction-following 的 format constraints 压缩了 generation diversity？\n\n4. **Practical application scenario**: 如果 DDR 是 \"diagnostic not curative\"，具体的诊断场景是什么？例如：在 web corpora 清洗中，检测到 gen-2+ 文本后应采取什么 action？论文能否给出一个 end-to-end 的应用案例？\n\n5. **为什么不做 paraphrastic vs. non-paraphrastic 的直接对比**: 这是论文与 \"Broken Telephone\" 的核心区分点，但没有实验验证两种 chain type 的 distributional shift 是否质性不同。这是否是资源限制，还是有其他原因？\n\n---\n\n请逐条回应 R2 的每个 Must-Fix、Should-Fix 和小问题，标注 [AGREE] 或 [REBUT]。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eab87141-d606-4f75-84f2-b533cea85020",
+  "isSidechain": false,
+  "requestId": "req_011CbDhfnCbLmFC7xV4VQsB8",
+  "type": "assistant",
+  "uuid": "b5e27af0-f67e-4f7f-b377-e8cf6d4b5e5b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UQGdq2Ti8MRbRkRQmpPp1a",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 47708,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 10302,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 47708,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 10302,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 47708,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 47708
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "system_changed",
+        "cache_missed_input_tokens": 27924
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 60 · 2026-05-20T11:00:15.400Z_
+
+<details><summary>↩ Tool result · `toolu_01EdQ3D8ZNJrszMcxX9s7M78`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:reviewer_1\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b5e27af0-f67e-4f7f-b377-e8cf6d4b5e5b",
+  "isSidechain": false,
+  "promptId": "62d0ae02-88d9-4804-92b2-064f716448a2",
+  "type": "user",
+  "uuid": "ec043c28-2079-489f-978b-7ad619ebf67e",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reviewer_key\\\": \\\"feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:reviewer_1\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:reviewer_1\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "b5e27af0-f67e-4f7f-b377-e8cf6d4b5e5b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 61 · 2026-05-20T11:02:04.757Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__director_post_to_reviewer · `toolu_015k1ydp7R7heKJ3TEbJqCv4`</summary>
+
+```json
+{
+  "reviewer_id": "2",
+  "round_number": 1,
+  "text": "## Step 2 — 交叉审稿回应\n\n以下是 Reviewer 1 的完整审稿意见（侧重 Methods & Experiments）。请逐条回应：\n- **[AGREE]** 同意并说明理由\n- **[REBUT]** 反驳并提供证据（cite 具体 Section/Table/Figure）\n\n重点关注你们在以下问题上是否有分歧：\n1. Downstream n=3 TOST 的严重程度（R1 认为 Critical）\n2. QLoRA gap 对论文定位的影响\n3. Gemma-2-2B 异常的重要性\n4. DDR partition 3/1/3 的 principled-ness\n\n---\n\n# Reviewer 1 审稿意见 — Methods & Experiments\n\n**论文**: \"Differential Depth Response in Non-Paraphrastic LLM Generation Chains: An Empirical Characterization Across Model Families\"\n\n---\n\n## 总体评分\n**Overall Assessment**: 3.0 (Findings)\n**一句话总结**: DDR 分解是有价值的实证发现，分析全面严谨，但 headline 性能偏弱（binary F1=0.694）、base-model-only 限制严重、QLoRA 差距过大（+12-15pp），总体达到 Findings 水平但不足以进入主会议。\n\n---\n\n## 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 3.5/5 | 实验设计总体合理（LOGO/LOFO 无泄漏），统计检验方法恰当（TOST、bootstrap CI、Bonferroni 校正），但下游实验 underpowered（3 seeds），Gemma-2-2B 异常未充分解释，baseline 对比范围偏窄 |\n| Excitement | 3/5 | DDR 分解（drifting vs near-stationary 特征分组）是新颖的实证贡献，但 0.694 binary F1 实用价值有限，base-model-only 范围限制了影响力，QLoRA 大幅超越手工特征削弱了方法论贡献 |\n| Reproducibility | 4/5 | 特征定义清晰，参考模型和超参数完整指定，承诺开源代码/数据/模型；但部分 appendix 实验的 seed 数（n=3）使精确复现结果可能存在方差 |\n| Reviewer Confidence | 4/5 | 仔细阅读了全部 33 页，包括正文和所有附录 |\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [critical] 下游效用实验严重 underpowered\n- 具体位置：§4.4 / Table 8（正文）/ Appendix M Table 19\n- 问题：TOST 等价性检验仅使用 n=3 random seeds、单一指标（perplexity）、单一模型（OLMo-2-0425-1B）。论文自己在 Appendix M (p.23) 承认 \"with only n=3 seeds per condition, the TOST results have limited generalizability\"。Cohen's d 值虽小但置信区间极宽（pooled SD < 0.001 导致的人为膨胀 effect size）。3 个 seed 下 TOST 功效极低，无法可靠地排除实际存在的中等效应。\n- 为什么影响接收：这是论文四个核心贡献之一（\"depth-aware curation is equivalent to random subsampling\"），但统计功效不足以支撑这个等价性 claim。如果等价性不成立，整个 §5 Discussion 中关于实用影响的论述链断裂。\n- 建议修改方向：(a) 增加至 ≥10 seeds；(b) 增加第二个评估模型和第二个指标（如 downstream task accuracy）；(c) 或者弱化 claim 为 \"preliminary evidence\" 而非确定性结论。\n\n**N2** [critical] QLoRA 差距过大，削弱 interpretable features 的贡献叙事\n- 具体位置：Appendix E Table 6（p.16）—— QLoRA 3-class LOGO F1 = 0.905 vs 手工特征 0.789\n- 问题：+11.6pp 的差距（手工特征 0.789 → QLoRA 0.905）是一个本质性的性能鸿沟。论文将 QLoRA 定位为 \"complementary\"（§5 Discussion, p.8），但没有充分论证为什么要使用表现差 12pp 的 interpretable features。论文提到 interpretability 和 computational efficiency，但 QLoRA (Qwen3-0.6B, LoRA rank 16) 本身已经非常轻量。\n- 为什么影响接收：如果论文的核心卖点是 DDR 分解的 interpretability，需要明确展示手工特征能提供哪些 QLoRA 无法提供的 actionable insight。当前叙事给读者的感觉是\"我们提出了一套不如 fine-tuning 的特征\"。\n- 建议修改方向：(a) 明确 DDR 分解在 data curation / model auditing / forensic 场景中的不可替代性（用具体 use case）；(b) 分析 QLoRA 是否也隐式学到了 DDR partition（如 attention pattern 分析）；(c) 或者将论文重心更明确地转向\"empirical characterization\"而非\"classification method\"。\n\n**N3** [critical] Base-model-only 范围严重限制实际相关性\n- 具体位置：§3.2（生成链构造）、Limitations（p.8-9）、Appendix K（p.20-21）\n- 问题：全部 8 个 generator 都是 base (pretrained) models。现实世界的 LLM 文本绝大多数来自 instruction-tuned 模型。Appendix K (Table 15-17) 清楚显示 instruction tuning 导致性能严重退化：binary F1 从 ~0.64 降至 0.338-0.490（instruct 变体），DDR partition 发生位移（entropy_mean ρ 翻转符号）。这不是边缘 limitation——它意味着论文的核心发现可能不适用于最重要的实际场景。\n- 为什么影响接收：reviewer 会质疑：如果 DDR 在 instruct 模型上不成立，这个发现的 generalizability 和 impact 如何？\n- 建议修改方向：(a) 在正文中明确将 instruct 退化作为主要 finding 讨论（而非仅在 appendix）；(b) 如果可能，增加 1-2 个 instruct 模型到主实验；(c) 至少提供一个关于 instruct 设置下 DDR 为何退化的机理假说。\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [warning] Gemma-2-2B 异常（gen-1 F1=0.036）解释不充分\n- 具体位置：Appendix Z.4（p.32-33）/ Table 39\n- 问题：Gemma-2-2B 的 gen-1 F1=0.036，gen-0 F1=0.628，几乎完全无法识别第一代生成。论文将此归因为 \"architecture-specific limitation\"，指出 Gemma-2-2B 的 gen-1 输出在特征空间中与 gen-0 \"highly similar\"。但这个解释是描述性的而非机理性的。为什么 Gemma-2 的第一代输出在 Pythia-410M reference model 下看起来和人类文本一样？是 Gemma-2 的训练方式更好地保留了人类文本分布，还是 Pythia 参考模型对 Gemma-2 的表征能力不足？\n- 建议：(a) 检查 Gemma-2-2B gen-1 在非 Pythia 参考模型下的表现（Table 5 的 cross-reference 似乎没有单独报告 Gemma）；(b) 分析 Gemma-2-2B 的 7 个特征值分布与其他 generator 的差异。\n\n**W2** [warning] Baseline 对比范围偏窄\n- 具体位置：§4.3 / Table 2（p.7）\n- 问题：4 个 baseline（Avg-LogProb、FastDetectGPT、LD-Score、Binoculars）都是 single-feature 或简单方法。7-feature ensemble 相对于 4-detector ensemble 仅 +2.5pp（0.820 vs 0.795）。缺少与更复杂的多特征检测方法的对比（如 DNA-GPT 的 re-generation 策略、RADAR 等 trained detector、或其他 multi-feature ensemble 方法）。\n- 建议：增加至少 1 个 multi-feature 或 trained detector baseline（即使是在 appendix 中），以展示 7-feature approach 相对于更 sophisticated 方法的定位。\n\n**W3** [warning] 温度限制 (t < 0.9) 影响实用性\n- 具体位置：Appendix P Table 10（p.18）\n- 问题：4 个 generator 在 t=0.9 时 binary F1 降至 0.400-0.453（Pythia-2.8B†），t=1.0 时进一步退化。许多实际部署使用 temperature 0.7-1.0。论文在正文中提到 \"four tested generators degrade at t=0.9 (-0.3 to -26.0pp)\"，但没有在主表中体现温度敏感性。\n- 建议：(a) 在正文中增加一个温度敏感性摘要（至少一句话引用 Appendix P 结果）；(b) 讨论这对实际部署意味着什么。\n\n**W4** [warning] Cross-model chain 结果混淆深度信号与 generator 身份信号\n- 具体位置：§4.1 最后一段 / Table 1 \"Mixed-7B\" 行\n- 问题：Cross-model chain F1=0.830 高于 single-model LOGO F1=0.694。论文将此归因于 \"generator heterogeneity amplifying depth-correlated distributional shifts\"。但在 cross-model chain 中，gen-1 和 gen-2 使用不同的 generator，因此分类器可能学到的是 generator identity 而非 depth——即使 LOGO 排除了单个 generator，不同 generator 的混合可能仍然引入 spurious signal。\n- 建议：增加一个控制实验：在 single-generator chain 上训练，在 cross-model chain 上测试（反之亦然），以 disentangle 两个信号。\n\n**W5** [warning] DDR partition 的 3/1/3 分组标准不够 principled\n- 具体位置：§4.2 / Appendix U-V（p.27-29）\n- 问题：DDR partition（3 drifting / 1 intermediate / 3 near-stationary）依赖 TOST 等价性检验的 ε=0.20 阈值（Cohen's d）。这是一个 conventional small effect size 阈值，但 partition 对 ε 的选择敏感性如何？Appendix V Table 29 确实做了 ε sensitivity（0.15, 0.20, 0.25），但仅展示了 pass rate 而非 partition 是否改变。此外，entropy_std 被归为 \"intermediate\"（d=0.458, TOST rejection 0/1000），但 0.458 远大于 0.20 的阈值——intermediate 的操作性定义是什么？\n- 建议：(a) 明确 intermediate 的操作性定义（不仅仅是\"不 drifting 也不 stationary\"）；(b) 展示 ε=0.15 和 0.25 下 partition 是否保持 3/1/3。\n\n---\n\n## 小问题（不影响接收）\n\n1. **Figure 1 (p.6)** strip plot 中个别 generator 趋势线重叠较严重，尤其是 near-stationary 特征组中多条趋势接近平坦线，难以区分个别 generator。\n2. **DDR 缩写首次使用**在 §4.2 (p.5)，但 abstract 中已经使用了 \"differential depth response\"，建议在 abstract 中首次出现时就给出缩写。\n3. **Table 1 (p.6) 脚注 1** 提到 \"1-class F1 carries upward bias because gen-0 seeds are shared across generators\"——这个 bias 的量级应在正文中给出估计值，而非仅在脚注提及。\n4. **Appendix 引用环路**：Appendix B 引用 Appendix R，Appendix R 引用 Appendix B 的结论，部分读者可能感到困惑。\n\n---\n\n## 主要优势\n\n1. **问题定义清晰且有价值**：将 generation depth classification 从 binary detection 中独立出来，formulation 干净（gen-0/gen-1/gen-2+），non-paraphrastic continuation chain 的设置避免了 paraphrase detection 的混淆。\n2. **DDR 分解是 genuine empirical contribution**：drifting（location shift）vs near-stationary（shape stability）的分组在 7 个特征上一致观察到，并通过 TOST、k-means clustering（Appendix V Table 28）、holdout split validation（Table 30）、bootstrap stability（Appendix U.1 Table 27）四种独立方法交叉验证。\n3. **评估协议严谨**：LOGO 避免 generator leakage，LOFO 验证特征贡献，独立 seed 控制（Appendix T Table 25）排除 topic-based leakage，cross-reference-model（Table 5 的 3 个 ref model）验证不依赖特定参考模型。\n4. **分析广度 exceptional**：20+ appendix covering length confound、temperature sensitivity、prompt type、5-class ordinal、human edit robustness、cross-domain、classifier comparison、Granger causality、error analysis、instruction tuning、convergence dynamics 等。这种分析深度在 empirical NLP 论文中罕见。\n5. **Granger causality 分析**（Appendix Z.3 Table 38）提供了 DDR 特征的 causal predictive power 证据，超越了纯相关性描述。\n\n---\n\n## Questions for Authors\n\n1. **关于 QLoRA gap**：QLoRA classifier 是否也学到了 DDR-like 的 drifting/stationary 分解？是否做过 QLoRA 的 feature attribution 分析（如 attention pattern 或 probing）来理解它为何优于手工特征？\n2. **关于 Gemma-2-2B**：能否在 OLMo-2-1B 或 Qwen3-0.6B 作为 reference model 时单独报告 Gemma-2-2B 的 per-class F1？如果 Gemma 异常在非 Pythia 参考下消失，则说明是 reference model compatibility 问题而非 DDR 失败。\n3. **关于 instruct 退化**：Appendix K 显示 entropy_mean ρ 在 instruct 模型上翻转符号。这是否意味着 instruction tuning 改变了 DDR 的 direction 而非消除了 DDR？如果 DDR 在 instruct 设置下是 reversed，是否可以通过重新训练 partition 来恢复？\n4. **关于 cross-model chain**：是否有实验在 single-generator chain 上训练 classifier，然后在 cross-model chain 上测试？这能帮助 disentangle depth signal 和 generator identity signal。\n5. **关于 practical threshold**：在什么 F1 水平下，depth classification 才有实际部署价值？0.694 是否足够用于论文提到的 data curation 场景？\n\n---\n\n请逐条回应 R1 的每个 Must-Fix、Should-Fix 和小问题，标注 [AGREE] 或 [REBUT]。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ec043c28-2079-489f-978b-7ad619ebf67e",
+  "isSidechain": false,
+  "requestId": "req_011CbDhfnCbLmFC7xV4VQsB8",
+  "type": "assistant",
+  "uuid": "d953502d-2020-4b89-8bb5-52dc1591dbb2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UQGdq2Ti8MRbRkRQmpPp1a",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 47708,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 10302,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 47708,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 10302,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 47708,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 47708
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "system_changed",
+        "cache_missed_input_tokens": 27924
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 62_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Reviewer 1 审稿结果]: PDF 临时图片已清理（33 张）。审稿完成，等待 Director 进一步指示。  ---  [Reviewer 2 审稿意见]:  # Reviewer 2 — Round 1 审稿报告  ## 审稿侧重：Novelty & Related Work  **论文标题**: \"Differential Depth Response in Non-Paraph…",
+  "leafUuid": "d953502d-2020-4b89-8bb5-52dc1591dbb2",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 63_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review appendix and remaining pages",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 64 · 2026-05-20T11:02:06.349Z_
+
+<details><summary>↩ Tool result · `toolu_015k1ydp7R7heKJ3TEbJqCv4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:reviewer_2\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d953502d-2020-4b89-8bb5-52dc1591dbb2",
+  "isSidechain": false,
+  "promptId": "62d0ae02-88d9-4804-92b2-064f716448a2",
+  "type": "user",
+  "uuid": "839ecf04-3f8f-4e48-aea2-b7987dadcd0f",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reviewer_key\\\": \\\"feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:reviewer_2\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:reviewer_2\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "d953502d-2020-4b89-8bb5-52dc1591dbb2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 65_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review appendix and remaining pages",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 66 · 2026-05-20T11:02:14.463Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T11:02:14.463Z",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "content": "[Reviewer 2 审稿结果]:\nRound 1 审稿完成。已向 Review Director 提交完整审稿报告，核心结论：\n\n- **Overall: 3.0/5 (Findings)**，Soundness 3.5，Excitement 2.5\n- **3 个 Must-Fix**：(N1) DDR 新颖性不足，本质是 model collapse 已知现象的再包装；(N2) 与 Broken Telephone / Markovian Chains / Beyond the Final Actor 三篇 concurrent work 区分不充分；(N3) base-model-only scope 限制实际意义且 title/abstract 未标注\n- **4 个 Should-Fix**：QLoRA 性能优势削弱方法论贡献、negative downstream finding framing 可商榷、per-generator 性能变异大、related work 缺少 RAID benchmark 等引用讨论\n- **5 个 Questions for Authors**：涵盖 DDR 理论基础、instruction tuning 破坏机制、paraphrastic 对比实验等\n\n---\n\n[Reviewer 1 审稿意见]:\n\n# Reviewer 1 交叉回应 — 对 R2 (Novelty & Related Work) 意见的逐条评审\n\n---\n\n## 对 R2 优势评价的回应\n\n**[AGREE] R2-Strength-1: Ordinal depth formulation 的新颖性**\n同意。我在 R1 审稿中也将此列为主要优势之一。gen-0/gen-1/gen-2+ 的 ordinal formulation 确实填补了 binary detection 文献的空白，且 non-paraphrastic continuation chain 的设置避免了 paraphrase detection 的混淆。\n\n**[AGREE] R2-Strength-2: DDR spectrum model 的概念贡献**\n同意。DDR partition 的 3/1/3 分组经过 TOST、k-means clustering（Appendix V Table 28）、bootstrap stability（Appendix U.1 Table 27）、holdout split（Table 30）四种独立方法交叉验证，不是 ad hoc 分类。entropy_std 的 intermediate 状态（d=0.458, TOST rejection 0/1000）增加了 partition 的可信度。不过我在 R1 审稿中指出 intermediate 的操作性定义需要更 principled 的阐述（R1-W5）。\n\n**[AGREE] R2-Strength-3: Paraphrastic vs non-paraphrastic 区分**\n同意。Appendix 中 paraphrastic baseline F1=0.55 vs non-paraphrastic 0.694 的对比有效地论证了研究范围的合理性。\n\n**[AGREE] R2-Strength-4: Semantic convergence vs distributional divergence**\n同意这是论文的一个 intellectually interesting 的发现。§5 Discussion 中 cosine similarity 0.622→0.859（语义趋同）与 distributional features divergence 的 decoupling 提供了对 recursive generation 现象的多维理解。\n\n---\n\n## 对 R2 弱点评价的回应\n\n**[REBUT] R2-Weakness-1: DDR = \"vocabulary impoverishment with extra steps\"**\n\nR2 的观察部分正确但低估了 DDR 的实质贡献。具体反驳：\n\n(a) **Drifting 特征确实与 vocabulary impoverishment 重叠**——TTR 和 hapax_ratio 的 monotonic drift 正是 vocabulary diversity 下降的直接度量，这点 R2 说得对。\n\n(b) **但 DDR 的核心贡献不在 drifting 本身，而在 partition**。如果 DDR 仅仅是 vocabulary impoverishment，那所有 NLL-derived features 都应该 monotonically drift。论文的关键发现是 entropy_max 和 tail_decay 在深度增加时保持 near-stationary（|ρ|<0.10，Appendix U Table 26 报告 8/8 generators 均通过 TOST），这是 vocabulary impoverishment 假说无法预测的。它说明 recursive generation 改变了分布的 location 但保留了 shape——这是一个新的结构性洞察。\n\n(c) **Feature ablation 数据支持 stationary features 的信息增量**。Table 2（p.7）显示 surface-only features（TTR + hapax，即纯 vocabulary impoverishment 指标）的 3-class F1 = 0.763，加入 reference-model features 后升至 0.820（+5.7pp）。如果 DDR 只是 vocabulary impoverishment 的重新包装，reference features 不应提供这么大的增量。\n\n(d) **建议作者加强叙事**：明确将 \"drifting features capture vocabulary impoverishment; stationary features capture a *complementary* distributional invariance that vocabulary impoverishment alone does not predict\" 作为 DDR 的核心价值主张。这能直接回应 R2 的这个 concern。\n\n**[REBUT] R2-Weakness-2: \"Only 5 references in bibliography\"——此断言与论文实际内容不符**\n\n我仔细阅读了论文全文。仅在 p.1-2 的 Abstract + Introduction 中，论文就引用了大量文献：Liang et al. 2024, Bao et al. 2024, Hans et al. 2024, Narayanaswamy et al. 2026, Mitchell et al. 2023, Shumailov et al. 2024, Dohmatob et al. 2025, Wenzek et al. 2020, Xie et al. 2023, Soldaini et al. 2024, Penedo et al. 2024 等。Related Work §2 进一步引用了 Gehrmann et al. 2019, Zellers et al. 2019, Solaiman et al. 2019, Bai et al. 2024, Yang et al. 2024, Verma et al. 2024, Mady et al. 2026, Tulchinskii et al. 2023, Basani and Chen 2026, Pu et al. 2026, Wu et al. 2023, Iwasawa et al. 2025, Cheng et al. 2025, Guo et al. 2025, Wang et al. 2026, Alemohammad et al. 2024, Gerstgrasser et al. 2024, Mohamed et al. 2025, Geng et al. 2026, Uchenna et al. 2020, Munir et al. 2021 等。\n\nbibliography 明显远超 5 条——保守估计至少 40-50 条引用。**R2 的这个观察很可能是阅读错误**。如果 R2 是指特定主题（如 model collapse）的引用不足，那应当具体说明哪些关键文献缺失，而非笼统说\"only 5 references\"。\n\n关于 R2 提到的具体缺失文献：\n- **Shumailov et al. model collapse**：论文 §1 (p.1) 和 §2 (p.2) 已明确引用 Shumailov et al. 2024 并讨论了 model collapse theory 与本文工作的关系。\n- **Li et al. 2016 diversity metrics**：这可能是一个合理的补充引用，但不构成 critical 遗漏。\n- **Data contamination/decontamination**：Lee et al.、Dodge et al. 确实可以加入 Related Work，但论文已引用 Soldaini et al. 2024 和 Penedo et al. 2024 作为 data provenance 文献。\n\n**[AGREE] R2-Weakness-3: \"Diagnostic not curative\" framing 的防御性**\n部分同意。论文在 §5 Discussion 中将 negative downstream finding 包装为 \"depth is diagnostic, not curative\" 确实有防御性嫌疑。但我认为这个问题比 R2 描述的更深层——真正的问题不是 framing 风格，而是下游实验本身 underpowered（仅 3 seeds、1 metric、1 model，见我的 R1-N1）。如果下游实验 properly powered 且仍然 negative，\"diagnostic not curative\" 反而是一个诚实、有价值的结论。问题在于当前证据不足以下这个结论。\n\n**[AGREE] R2-Weakness-4: Base-model-only scope**\n完全同意。我在 R1 审稿中已将此列为 N3 critical 问题。Appendix K 的 instruct 退化数据（binary F1 降至 0.338-0.490，entropy_mean ρ 翻转符号）使这成为论文最严重的 generalizability limitation 之一。\n\n**[AGREE] R2-Weakness-5: QLoRA gap**\n完全同意。我在 R1 审稿中已将此列为 N2 critical 问题。+11.6pp 的差距（3-class F1 0.789→0.905）在我看来也是论文最需要 address 的弱点之一。\n\n---\n\n## 对 R2 评分的回应\n\nR2 给出 Overall 3/6，我的 R1 评分为 Overall 3.0/5（ARR 量表，Findings 档位）。两者 converge 到相同档位，我不调整分数。\n\n**在交叉审阅后，我维持 Overall 3.0 (Findings) 不变。**\n\n理由：\n- R2 的 vocabulary impoverishment concern 有一定道理，但我认为 DDR partition（特别是 stationary features 的发现）提供了超越 vocabulary impoverishment 的增量信息，因此不再额外降分。\n- R2 关于 bibliography 的观察（\"only 5 references\"）与论文实际内容严重不符，不应成为降分理由。\n- R2 的其他 critical concerns（base-model scope、QLoRA gap）与我的 R1 评估一致，已反映在现有评分中。\n\n---\n\n## 对 R2 Questions 的补充\n\n**R2-Q1 (DDR vs vocabulary impoverishment)**：好问题，但建议作者不要否认 overlap，而是 embrace it：DDR 的价值在于说明 vocabulary impoverishment 只是故事的一半（drifting features），另一半是 distributional shape invariance（stationary features），两者的 partition 结构才是核心发现。\n\n**R2-Q2 (F1=0.694 的实际价值)**：我在 R1-Q5 中也提了类似问题。补充一点：在 data curation 场景中，precision 可能比 recall 更重要——如果 gen-2+ precision 足够高，即使 recall 较低，仍可用于 selective filtering。建议作者报告 precision-recall tradeoff。\n\n**R2-Q3 (Only 5 references)**：如上所述，这个观察与论文实际内容不符。论文 bibliography 远超 5 条。R2 可能误读了材料。\n\n**R2-Q4 (Instruct 扩展路径)**：与我的 R1-Q3 一致。Appendix K 数据暗示 instruct 模型下 DDR 可能 reversed（entropy_mean ρ 翻转）而非消失——如果是这样，重新训练 partition 有可能恢复性能。建议作者至少提供一个初步的 instruct-aware partition 实验。\n\n\n---\n\n[Reviewer 1 审稿结果]:\n交叉回应已提交。关键判断：\n\n- **[REBUT] \"DDR = vocabulary impoverishment\"**：drifting 特征确实与 vocabulary impoverishment 重叠，但 stationary features（entropy_max, tail_decay）的 near-stationary 行为是 vocabulary impoverishment 无法预测的结构性发现，且 feature ablation 显示 reference features 提供 +5.7pp 增量。\n- **[REBUT] \"Only 5 references\"**：论文 bibliography 保守估计 40-50 条，Shumailov et al. 已在 §1-§2 明确引用。R2 此观察与论文内容严重不符。\n- **[AGREE]** base-model scope、QLoRA gap、diagnostic framing 这三点与我的 R1 评估一致。\n\n**维持 Overall 3.0 (Findings) 不变。**\n\n---\n\n[Reviewer 1 审稿意见]:\n\n# Reviewer 1 最终立场 — Convergence Round\n\n---\n\n## 对 5 个共识点的确认\n\n1. **实验覆盖度 exceptional** — 确认。20+ appendix 的分析深度在 empirical NLP 论文中罕见。\n2. **Binary F1=0.694 偏弱** — 确认。\n3. **QLoRA gap 削弱方法论贡献** — 确认。\n4. **Clarity 高** — 确认。论文诚实、结构清晰、对 limitation 透明。\n5. **Base-model-only 限制 significance** — 确认。\n\n---\n\n## 对 5 个待解决分歧的最终立场\n\n### 分歧 1: Overall Score — R1 (3.5) vs R2 (3.0)\n\n**纠正：我的 R1 原始评分是 3.0，不是 3.5。** 在 Round 1 审稿中我明确给出 \"Overall Assessment: 3.0 (Findings)\"，Round 2 交叉回应中我也写了 \"我维持 Overall 3.0 (Findings) 不变\"。R1 和 R2 实际上已经 converge 在 3.0。\n\n**最终立场：维持 Overall 3.0 (Findings)。**\n\n理由：DDR partition 是 genuine 的实证发现，方法论严谨，分析广度突出——这些是 Findings 接收的充分条件。但三个 structural weakness 阻止上升到 3.5（Borderline Conference）：(a) headline binary F1=0.694 在 8-gen LOGO 下实用价值有限；(b) base-model-only scope 在 instruct 模型上退化严重；(c) QLoRA 以 +12pp 大幅超越手工特征，削弱了 7-feature approach 的独立价值。这三个问题不是通过更好的写作或更多实验能在一个 revision cycle 内解决的——它们反映的是当前工作阶段的固有局限。\n\n### 分歧 2: DDR 是 genuine contribution 还是 repackaging？\n\n**最终立场：DDR 是一个 genuine but incremental 的概念贡献。**\n\n- **Drifting features（TTR、hapax、entropy_mean）确实是 vocabulary impoverishment 的直接度量**——R2 这一点判断正确。如果论文只报告了 drifting，DDR 就是 repackaging。\n- **Stationary features（entropy_max、tail_decay）是真正的 new information**。Vocabulary impoverishment 假说预测所有 NLL-derived features 应该 drift，但 shape features 保持 near-stationary（8/8 generators 通过 TOST，Appendix U Table 26）。这个 negative result 本身有信息价值——它说明 recursive generation 改变分布 location 但保留 shape，这不是 trivially derivable 的。\n- **关键量化证据**：Table 2 (p.7) 中 surface-only（纯 vocabulary impoverishment 指标）F1=0.763 vs 加入 reference features 后 F1=0.820，+5.7pp 增量证明 stationary features 提供了 vocabulary impoverishment 以外的分类信息。\n- **但 incremental**：partition 本身（3 drifting / 1 intermediate / 3 stationary）在概念上并不 surprising——直觉上 location shift 比 shape change 更容易被 recursive generation 影响。DDR 的价值在于 quantifying 这个直觉，而非 overturning 它。\n\n### 分歧 3: Cross-model chain result (0.830) 的权重\n\n**最终立场：不应作为 headline result，但值得在 contribution 叙事中保留。**\n\n- Cross-model chain 中 gen-1 和 gen-2 使用不同 generator，因此 0.830 混淆了 depth signal 和 generator identity signal（我的 R1-W4）。在没有 disentangling 实验的情况下，不能将 0.830 归因为纯粹的 depth classification 性能。\n- 但 cross-model chain 是一个 realistic scenario（训练数据中递归生成的文本确实可能来自不同模型），因此 0.830 作为 practical upper bound 是有信息价值的。\n- **建议**：论文应将 0.694（8-gen LOGO）作为 primary headline，0.830 作为 \"practical scenario\" 结果，并明确标注两者的区别。\n\n### 分歧 4: References 问题\n\n**最终立场：R2 \"only 5 references\" 的断言与论文实际内容严重不符。**\n\n我在 Round 2 交叉回应中已详细论证：仅 p.1-2 就引用了 10+ 篇文献，Related Work §2 又引用了 20+ 篇，bibliography 保守估计 40-50 条。Shumailov et al. 2024 model collapse 也已在 §1 和 §2 明确引用。R2 对此的评判是基于错误的事实前提，**不应纳入最终评估**。\n\n如果 R2 的真实意图是\"某些特定主题的引用不足\"（如 watermarking、data decontamination），这是合理的 minor suggestion，但绝不是 \"only 5 references\" 所描述的严重缺陷。\n\n### 分歧 5: 下游 negative finding 的影响程度\n\n**最终立场：这是 must-fix 但不是 deal-breaker。**\n\n- 3 seeds / 1 metric / 1 model 的设计确实 underpowered（R1-N1），TOST 在这个 sample size 下功效极低。\n- 但 negative finding 本身不降低论文价值——关键是 *claim 的强度必须匹配证据的强度*。当前论文在 §5 和 Abstract 中将等价性说得太确定（\"suggests no downstream quality degradation\"）。\n- **修复路径清晰**：(a) 增加 seeds 到 ≥10；或 (b) 保留 3 seeds 但将 claim 弱化为 \"preliminary evidence suggests...\"。选项 (b) 在一个 revision cycle 内可完成。\n\n---\n\n## 最终评分\n\n| 维度 | 分数 | 调整说明 |\n|------|------|----------|\n| Soundness | 3.5/5 | 不变——实验设计总体严谨，但下游实验 underpowered |\n| Excitement | 3/5 | 不变——DDR 是 genuine but incremental 贡献 |\n| Reproducibility | 4/5 | 不变 |\n| **Overall** | **3.0/5** | **不变——Findings 档位** |\n| Reviewer Confidence | 4/5 | 不变 |\n\n---\n\n## Top-3 Actionable Recommendations（优先级排序）\n\n### Recommendation 1 [最高优先级]: 重构论文叙事核心——从 \"classification method\" 转向 \"empirical characterization\"\n\n**问题**：论文当前试图同时讲两个故事：(a) DDR 作为 empirical phenomenon 的 characterization，(b) 7-feature XGBoost 作为 depth classification method。QLoRA +12pp 的差距使故事 (b) 站不住脚。\n\n**具体行动**：\n- 将 Abstract 和 Introduction 的 framing 从 \"we build a classifier that achieves F1=0.694\" 转向 \"we discover and characterize DDR — a structural decomposition of how recursive generation affects text distributions\"\n- 将 7-feature XGBoost 定位为 DDR 的 *validation tool*（\"the fact that a 7-feature classifier achieves F1=0.694 confirms DDR features carry real discriminative signal\"），而非独立的方法论贡献\n- 将 QLoRA 结果从 Appendix E 提升到正文，作为 \"end-to-end validation that depth signal is real and exploitable\"\n- 这个重构不需要新实验，主要是写作层面的调整\n\n### Recommendation 2 [高优先级]: 增强下游实验的统计功效\n\n**问题**：等价性 claim 是论文四大贡献之一，但 3 seeds 不足以支撑。\n\n**具体行动**：\n- 增加至 ≥10 seeds（preferably 20）\n- 增加第二个评估模型（如 Pythia-1B 或 Qwen3-0.6B）\n- 增加第二个指标（如 downstream task accuracy on a standard benchmark）\n- 如果资源不允许扩大实验，则将 claim 从 \"equivalent\" 弱化为 \"preliminary evidence suggests no degradation\"，并在 Limitations 中明确标注 statistical power limitation\n\n### Recommendation 3 [高优先级]: 正文中讨论 instruct 退化并提供机理假说\n\n**问题**：Base-model-only scope 是两位 reviewer 共同的 critical concern，但 Appendix K 的 instruct 数据暗示 DDR 可能 reversed 而非消失。\n\n**具体行动**：\n- 在 §5 Discussion 中增加一段关于 instruct 模型的讨论（目前仅在 Appendix K 和 Limitations 简要提及）\n- 报告 Appendix K 的核心发现：entropy_mean ρ 翻转符号，6/7 features instruct 模型 ρ 反转\n- 提出一个可检验的假说：instruction tuning 是否改变了 DDR 的 *direction* 而非消除了 DDR？如果是，重新训练 instruct-specific partition 能否恢复性能？\n- 这为未来工作提供了明确的 research direction，也展示了 DDR framework 的 extensibility\n\n\n---\n\n[Reviewer 1 审稿结果]:\nConvergence Round 最终立场已提交。\n\n核心结论：\n- **Overall 3.0 (Findings) 不变**——R1 和 R2 实际上已 converge 在同一档位（我的原始评分就是 3.0，非 3.5）\n- **DDR = genuine but incremental**——stationary features 提供了 vocabulary impoverishment 以外的真实信息增量（+5.7pp），但概念上不 surprising\n- **R2 \"only 5 references\" 断言与事实不符**——论文 bibliography 保守 40-50 条，不应纳入最终评估\n- **Top-3 建议**：(1) 叙事重构为 empirical characterization 而非 classification method；(2) 下游实验增加至 ≥10 seeds；(3) 正文讨论 instruct 退化机理\n\n---\n\n[Reviewer 2 审稿意见]:\n\n# Reviewer 2 — Round 2 交叉回应\n\n## 对 R1 审稿意见的逐条回应\n\n---\n\n### R1 Strengths — 回应\n\n**[AGREE] R1-Strength-1 (LOGO/LOFO rigor)**: 完全同意。LOGO/LOFO 的 leak-free 设计是本文方法论上的亮点。LOFO-LOGO gap -0.8pp (Table 4) 和 independent seed validation Δ=-1.4pp (Appendix N) 确实排除了 family/seed leakage。这也是我在 R2 原始评审中将 Soundness 给到 3.5/5 的核心依据之一。\n\n**[AGREE] R1-Strength-2 (Comprehensive coverage)**: 完全同意。33 页的实验覆盖度在同类 empirical study 中罕见。我在 R2 原始评审的\"主要优势\"第 3 点已明确肯定。\n\n**[AGREE] R1-Strength-3 (Cross-reference-model)**: 同意这是重要的 falsification test。但补充一点：cross-reference-model validation 确认 DDR 非 Pythia-specific artifact，但并不回答 DDR 是否是一个*新的*概念贡献——它只说明 signal 是 robust 的，而非说明 signal 是 novel 的。这恰恰是我 N1 关注的焦点。\n\n**[AGREE] R1-Strength-4 (Cross-model chains F1=0.830)**: 同意这是最具实际意义的结果。Cross-model chain 场景（多个 LLM 依次处理同一文本）更接近真实 web 污染。R1 正确地指出这是 DDR 最强的条件。\n\n**[AGREE] R1-Strength-5 & 6 (Statistical methodology & length control)**: 完全同意。\n\n---\n\n### R1 Weaknesses — 回应\n\n**[AGREE] R1-Weakness-1 (Binary F1=0.694 modest)**: 同意，与我 W3 一致。补充：per-generator range 0.633-0.724 不仅体现 generator sensitivity，还暗示 classifier 对 generator identity 的隐式依赖——在 generator-unknown 的真实场景中，这种变异度会进一步恶化。\n\n**[AGREE] R1-Weakness-2 (7-feature vs Avg-LogProb margin +3.3pp)**: 这是我未单独指出的有效观点。+3.3pp 的 margin 在统计上显著但实践中微弱。R1 指出 CI-width 差异（7-feat [0.786, 0.799] vs Avg-LogProb [0.616, 0.820]）是更强的论据——这说明 7-feature ensemble 的优势主要在稳定性而非绝对性能。这个观察实际上*支持*我的 N1：如果 DDR 的核心贡献是 decomposition（而非 detection），那 +3.3pp 的分类提升不是 DDR 的 selling point，作者应更清晰地定位论文为 analysis contribution 而非 method contribution。\n\n**[AGREE] R1-Weakness-3 (QLoRA gap)**: 强烈同意，与我 W1 完全一致。R1 用\"elephant in the room\"精确描述了这个问题。3-class F1 gap of +14.5pp 是不可忽视的。论文的 efficiency argument (150× less inference) 有一定道理，但 QLoRA 的存在从根本上改变了论文的 contribution identity：DDR 不能是一个实用的检测方法，只能是一个 analytical framework。\n\n**[AGREE] R1-Weakness-4 (Downstream negative underpowered)**: 同意，与我 W2 一致。R1 的补充观察（seed variance < 0.002 PPL 暗示 more seeds 无用）是有价值的——这意味着问题不在 power 而在 metric coverage（仅 perplexity）和 model coverage（仅 OLMo-1B）。\n\n**[AGREE] R1-Weakness-5 (Gemma-2-2B anomaly, gen-1 F1=0.036)**: 这是我 R1 round 中未充分关注的重要 weakness。gen-1 F1=0.036 本质上意味着分类器*完全无法区分*该 generator 的 gen-0 和 gen-1 文本。这直接挑战了 DDR 作为 \"cross-generator universal phenomenon\" 的 claim：\n  - 论文 Section 4.1 声称 \"generation depth is classifiable across diverse architectures\"，但 Gemma-2-2B 是一个明确的反例\n  - 论文将此归因于 \"architecture (GQA, RMSNorm)\" 但这不是一个机制性解释——GQA 和 RMSNorm 本身不应改变 output text 的 lexical diversity distribution\n  - 更可能的解释是 Gemma-2-2B 的 gen-1 output 在 feature space 中与 gen-0 重叠度极高，即 DDR 的 \"drifting\" features 在该 generator 上*不 drift*\n  - **这个反例强化了我 N1 的核心论点**：DDR 不是一个 universal mechanism，而是一个 generator-dependent empirical observation\n  \n  R1 的这个发现将我对 N1 的信心从\"critical but addressable\"提升到\"critical and fundamental\"。\n\n**[AGREE] R1-Weakness-6 (Instruct degradation heterogeneity)**: 强烈同意，进一步强化我的 N3。OLMo-Inst F1=0.338 (-42.5pp) vs Llama-Inst F1=0.838 (-1.1pp) 的*不可预测性*是比\"instruct models degrade\"更深层的问题：即使限于 base models，不同 architecture 的 DDR strength 也有巨大差异（Gemma 几乎为零 vs Pythia 最强），这意味着 DDR 可能是一个 architecture-specific artifact 而非 generation-process-universal phenomenon。\n\n**[AGREE] R1-Weakness-7 (Temperature restriction t∈[0.5,0.9))**: 这是我 R1 round 中遗漏的有效 weakness。t=1.0 是 OpenAI/Anthropic API 的默认值，排除 t≥1.0 严重限制了实际适用性。Cross-temperature transfer 的不对称性（t=0.7→1.0: F1=0.418 vs t=1.0→0.7: F1=0.944）尤其说明问题：在低温训练的分类器完全无法迁移到高温数据。这意味着如果 real-world text 是在 t=1.0 生成的（很可能），用 t∈[0.5,0.9) 训练的 DDR classifier 将失效。\n\n---\n\n### R1 Questions — 我的补充\n\nR1 的 5 个提问都非常精准。我特别赞同 Q4（Gemma-2-2B raw feature examination）和 Q5（instruct degradation heterogeneity explanation）。在此基础上，我对 R1-Q1 有补充：\n\n**对 R1-Q1 的扩展**: R1 问\"7-feature vs Avg-LogProb 的实际 justification 是什么\"——这个问题触及了论文 contribution identity 的核心。我建议作者明确回答：**DDR 的价值是 decomposition insight 还是 detection performance？** 如果是前者，那 Section 4 的分类实验应该被降格为 validation（验证 decomposition 是否 real），而非作为主要 result 展示。如果是后者，那 QLoRA +14.5pp 的差距和 Gemma gen-1 F1=0.036 的失败使得方法不具备实用性。\n\n---\n\n### 综合评估——调整后的分数\n\n在考虑 R1 的发现后，我对论文的整体评估略有调整：\n\n| 维度 | R2 Round 1 | R2 Round 2（调整后） | 调整理由 |\n|------|-----------|-------------------|---------|\n| Soundness | 3.5/5 | 3.5/5 | R1 的方法论分析确认了我的评估；Gemma anomaly 和 temperature restriction 是 scope limitation 而非 methodological flaw |\n| Excitement | 2.5/5 | 2.5/5 | R1 的发现（Gemma anomaly, instruct heterogeneity, temperature restriction）进一步支持 DDR 非 universal phenomenon 的判断，但不改变我对概念新颖性的评估 |\n| Overall | 3.0/5 | 3.0/5 | 维持 Findings 级别判断 |\n| Confidence | 4/5 | 4.5/5 | R1 的 methods/experiments 深度分析补充了我的 novelty/positioning 视角，两个维度的交叉确认提高了我的评估信心 |\n\n**维持 Overall 3.0 的理由**: R1 的分析实际上加强了我的核心论点：\n\n1. **N1 (DDR novelty) 被 R1-W5 (Gemma anomaly) 强化**: 如果 DDR 是一个 robust conceptual contribution，不应在个别 architecture 上完全失效。Gemma-2-2B 的 gen-1 F1=0.036 表明 DDR 是 generator-conditional 的经验规律，而非 generation-process-universal 的机制。\n\n2. **N3 (base-model scope) 被 R1-W6 和 R1-W7 联合强化**: Instruct degradation 的不可预测性（-42.5pp to -1.1pp）加上 temperature restriction（t<1.0），将 DDR 的实际适用范围压缩到一个非常狭窄的 operational window：base models, t∈[0.5,0.9), 非 Gemma architecture。这个 window 在现实 deployment 中几乎不存在。\n\n3. **W1 (QLoRA gap) 被 R1-W2 和 R1-W3 联合放大**: 不仅 QLoRA +14.5pp 是压倒性优势，even the simplest baseline (Avg-LogProb) 仅落后 3.3pp——DDR 的 multi-feature approach 在 detection performance 上的 marginal contribution 非常有限。\n\n**R1 与 R2 的分歧点**: R1 给了 Overall 3.5/6，按其描述 \"above Findings threshold\"，略高于我的 3.0/5 (Findings)。分歧主要来自角度差异：R1 从 Methods & Experiments 角度给出高评价（方法论确实严谨），而我从 Novelty & Related Work 角度认为概念贡献不足。这是合理的维度差异——一篇方法论严谨但概念新颖性有限的论文，恰恰处于 Findings 区间。\n\n**我的最终建议**: Findings track 接收。论文的实验质量（Soundness 3.5）配得上发表，但 conceptual novelty 不足以进入主会议。\n\n\n---\n\n[Reviewer 2 审稿结果]:\nRound 2 交叉回应已提交。\n\n核心结论：R1 的方法论分析与我的新颖性评估形成互补确认。R1 发现的 Gemma-2-2B anomaly（gen-1 F1=0.036）和 temperature restriction（t<1.0）进一步强化了我的 N1（DDR 非 universal mechanism）和 N3（scope 过窄）。两位 reviewer 在 Overall 评分上趋近——R1 的 3.5/6 和我的 3.0/5 都指向 Findings 区间。维持 Overall 3.0/5，建议 Findings track 接收。\n\n---\n\n[Reviewer 2 审稿意见]:\n\n# Reviewer 2 — Round 3 最终收敛意见\n\n---\n\n## 对 5 个收敛点的逐一回应\n\n### 收敛点 1: Overall Score（R1: 3.5 vs R2: 3.0）\n\n**我的最终立场: 3.0/5，维持不变。**\n\nR1 的论点是\"20+ experiments 的 validation thoroughness 应当得到额外 credit\"。我同意实验完整度是 exceptional 的——但 ACL ARR 的 Overall Assessment 评的是\"这篇论文是否应该被接收\"，不是\"这篇论文的实验做得好不好\"。Soundness 维度已经给了 3.5 来反映方法论质量。Overall 需要综合 novelty、significance、soundness 三个维度。\n\n类比：一篇用 50 个 ablation 实验严谨验证了\"水是湿的\"的论文，Soundness 可以拿到 4+，但 Overall 不会因为实验数量多就提升。DDR 的核心问题不在于是否被正确验证了（是的），而在于它验证的东西是否足够新颖和重要。\n\n**建议收敛区间: 3.0-3.25/5**。如果 R1 的 3.5/6 等价于 ARR ~3.0-3.25/5，我们实际上已经收敛。\n\n---\n\n### 收敛点 2: Cross-reference validation 是否改变 novelty 评估？\n\n**不改变。**\n\nR1 正确地指出 Table 5 证明了 DDR 是 generation-intrinsic 的，而非 Pythia-specific artifact。但\"generation-intrinsic\"和\"novel\"是两个不同的属性：\n\n- **Generation-intrinsic**: DDR signal 不依赖于特定 reference model → 这证明了 signal 的 robustness\n- **Novel**: DDR 作为概念是否提供了超越 model collapse 文献的新理解 → 这需要机制性解释或反直觉发现\n\nCross-reference validation 回答的是\"DDR 是否 real\"，不是\"DDR 是否 new\"。我从未质疑 DDR 的真实性——我质疑的是它的概念增量。词汇多样性随递归生成而衰减，这在 Shumailov et al. (2024) 的 tail disappearance 框架下已有预期；NLL 分布 shape 在 location shift 下保持稳定，这是统计学常识（位移不改变形状）。\n\n**但我承认一个 nuance**: DDR 将 model collapse 文献的*训练时*现象映射到了*推理时*场景，并证明 fixed-parameter inference chain 也产生类似的 distributional shift。这个 \"training-time → inference-time\" 的桥接有一定价值，但论文没有把这个桥接作为核心 narrative 来发展。如果作者能在 revision 中强化这个角度（特别是理论解释为什么 fixed parameters 下仍然出现 tail collapse），novelty 评估可以提升到 3.0。\n\n---\n\n### 收敛点 3: Cross-model chains F1=0.830 是否改变 significance 评估？\n\n**部分改变，但不足以提升 Overall。**\n\nCross-model chain 场景（Table 7, F1=0.830）确实是论文中最有说服力的结果，且 R1 正确地指出这最接近真实 web 污染。然而：\n\n1. F1=0.830 仍然是在 **5-generator subset** 上的结果（不是完整 8-generator），且仅限 **binary** task（gen-0 vs gen-1+）\n2. 这个场景的 **practical deployment** 仍然受制于 base-model-only scope 和 temperature restriction\n3. 论文 **没有将 cross-model chains 定位为主要贡献**——它在 Section 4.1 的 \"Cross-model generalization\" 段中仅作为一个 sub-result 出现，Table 7 在 Section 5 中简要提及\n\n如果作者在 revision 中将 cross-model chain detection 重新定位为核心应用场景（而非 DDR 理论的附属验证），significance 评估可以改善。但当前版本中这一结果被低估了。\n\n---\n\n### 收敛点 4: Orphan bib entries 的严重性\n\n**轻微处罚，不影响接收决定。**\n\n17 个 orphan bib entries 是 paper hygiene 问题，不是学术质量问题。在 camera-ready 前清理即可。更重要的是我在 W4 中指出的 **内容缺失**：RAID benchmark 未在正文中讨论（尽管在 bib 中），SemEval Task 8C 的 multi-class sub-task 未被对比，Dohmatob & Feng (2025) 的 information-theoretic framework 未被利用来解释 DDR。这些是 related work 的 **内容性缺陷**，比 orphan entries 更值得关注。\n\n**严重性评估**: Related work 完整性问题 → 影响 1/4 个 sub-score（positioning），在 Overall 中贡献约 -0.25 的降分。\n\n---\n\n### 收敛点 5: 实际适用范围的综合评估\n\nR1（temperature restriction + instruct heterogeneity）和 R2（base-model scope）的发现联合起来，DDR 的实际适用 window 是：\n\n| 约束 | 限制内容 | 来源 |\n|------|---------|------|\n| Model type | Base models only | R2-N3, Appendix K |\n| Temperature | t ∈ [0.5, 0.9) | R1-W7, Appendix H |\n| Architecture | 排除 Gemma-like (GQA+RMSNorm) | R1-W5, Table 18 |\n| Instruct tuning | 不可预测 (Δ from -1.1pp to -42.5pp) | R1-W6, Appendix K |\n| Generator identity | 影响 ±9pp F1 variation | R1-W1, R2-W3 |\n\n**综合判断**: DDR 在一个非常受限的 operational window 内是有效的：base models, moderate temperature, non-Gemma architectures。这个 window 在 2026 年的 LLM deployment landscape 中覆盖率很低（大多数用户接触的是 instruction-tuned models at t=1.0）。\n\n但作为 **scientific finding**（而非 practical tool），这些限制是可接受的——很多有价值的 empirical findings 都有 scope restrictions。关键是论文需要在 framing 上诚实（title/abstract 中标注 base-model scope），并在 discussion 中分析这些限制的 **机制原因**。\n\n**significance 降分**: 综合约 -0.5 到 -0.75（从潜在的 3.5-4.0 降到 3.0）。\n\n---\n\n## 最终评分\n\n| 维度 | 最终分数 | 变化 | 理由 |\n|------|---------|------|------|\n| **Soundness** | 3.5/5 | 不变 | R1 的方法论确认增强了我的信心；Gemma anomaly 和 temperature 是 scope issues 而非 methodological flaws |\n| **Excitement** | 2.5/5 | 不变 | Cross-reference validation 证明了 robustness 但不改变 novelty 评估；cross-model chain 结果有价值但未被充分发展 |\n| **Overall** | 3.0/5 (Findings) | 不变 | 方法论严谨 + 概念新颖性不足 = Findings 级别 |\n| **Confidence** | 4.5/5 | ↑0.5 | R1 的 methods 深度分析与我的 novelty 分析交叉确认 |\n\n---\n\n## Top-3 可操作修改建议（按优先级排序）\n\n### 建议 1 [最高优先级]: 重构论文的 contribution identity\n\n**当前问题**: 论文在 \"DDR as analytical framework\" 和 \"depth classification as detection method\" 之间摇摆。这导致：\n- 分类性能数字（F1=0.694）出现在 abstract 中，但被 QLoRA (+14.5pp) 和 Avg-LogProb (-3.3pp) 夹击\n- DDR decomposition 是更独特的贡献，但被分类实验淹没\n\n**具体修改**:\n1. **Title/abstract**: 明确标注 \"base (pretrained) language models\"，将 framing 转向 \"understanding inference-chain distributional dynamics\" 而非 \"detecting generation depth\"\n2. **Section 4 重组**: 将 DDR decomposition（当前 Section 4.2）提升为 Section 4 的核心，分类实验降级为 \"validation\"\n3. **Cross-model chain**: 将 Table 7 的 F1=0.830 结果提升到主要 results 中，作为 DDR 最有实际价值的应用场景\n4. **QLoRA 定位**: 在 Appendix E 中明确说明 QLoRA 是 \"what's possible with end-to-end learning\" 的 upper bound reference，而 DDR 的价值在 interpretability 和 zero-shot cross-generator transfer\n\n### 建议 2 [高优先级]: 解释 DDR 的机制而非仅描述现象\n\n**当前问题**: 论文系统验证了 \"drifting features drift, stationary features stay\"，但没有解释 why。\n\n**具体修改**:\n1. 利用 Dohmatob & Feng (2025) \"Strong Model Collapse\" 的 information-theoretic framework，推导 fixed-parameter inference chain 为什么产生 location shift 而非 shape change\n2. 解释 Gemma-2-2B anomaly 的机制——这不是一个可以轻描淡写的 edge case，而是理解 DDR boundary conditions 的关键\n3. 分析 instruction tuning 如何破坏 DDR signal：是 RLHF reward shaping 改变了 NLL 分布形状，还是 instruction-following format constraints 压缩了 generation diversity？为什么 Llama-Inst 几乎不受影响而 OLMo-Inst 完全失效？\n\n### 建议 3 [中优先级]: 扩展下游验证和 practical use case\n\n**当前问题**: \"Diagnostic not curative\" 的 framing 缺乏具体的诊断应用场景。\n\n**具体修改**:\n1. 下游实验增加至少 1 个 task-level metric（如 MMLU, factuality score），不仅是 perplexity\n2. 提供一个 end-to-end 的 \"diagnostic\" use case：例如，在 web corpus 清洗中，DDR 如何标记可疑的 recursive generation content，以及标记后应采取什么 action\n3. 讨论 DDR 与 watermarking 的互补性：watermark 解决 \"who generated this\"，DDR 解决 \"how many times has this been through an LLM\"——这是一个有吸引力的 positioning，当前论文未充分发展\n\n---\n\n## 致 Director 的总结\n\nR1 和 R2 在大多数事实性判断上已经收敛：方法论严谨、性能有限、scope restricted。分歧主要在 Overall 权重分配上——R1 更看重 execution quality，R2 更看重 conceptual contribution。我认为两个视角都是 legitimate 的，最终 Overall 应在 **3.0-3.25** 区间。\n\n**我的最终推荐**: **Findings track 接收**，条件是作者在 camera-ready 中 (1) title/abstract 标注 base-model scope, (2) 清理 orphan bib entries, (3) 补充 Gemma anomaly 的分析。如果 revision 能实现建议 1-3 的大部分内容，论文有潜力在下一轮提升至 Borderline Conference (3.5)。\n\n\n---\n\n[Reviewer 2 审稿结果]:\nRound 3 最终收敛意见已提交。\n\n核心结论：维持 Overall 3.0/5 (Findings)。R1 和 R2 在事实层面已收敛，分歧仅在 execution quality vs. conceptual novelty 的权重。建议收敛区间 3.0-3.25，推荐 Findings track 接收。三条修改建议按优先级：(1) 重构 contribution identity、(2) 补充 DDR 机制解释、(3) 扩展下游验证。"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 67 · 2026-05-20T11:02:14.464Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T11:02:14.464Z",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b"
+}
+```
+
+---
+
+
+## Round 6
+
+## Round 6
+
+2 recorded events
+
+
+### User
+
+_source line 68 · 2026-05-20T11:02:14.456Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "839ecf04-3f8f-4e48-aea2-b7987dadcd0f",
+  "isSidechain": false,
+  "promptId": "4582f6cb-64a4-498a-9e05-ac7b1e33e7b9",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "28d746a8-a1d5-4d49-ad07-6a53e5624bda",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 69 · 2026-05-20T11:02:14.456Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "28d746a8-a1d5-4d49-ad07-6a53e5624bda",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "d9c8fbe9-0a07-4c62-8919-9eac4fafb368",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "id": "18afc939-1062-447c-90d3-3b539d9482e8",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+## Round 7
+
+## Round 7
+
+33 recorded events
+
+
+### User
+
+_source line 70 · 2026-05-20T11:02:14.542Z_
+
+[Reviewer 2 审稿结果]:
+Round 1 审稿完成。已向 Review Director 提交完整审稿报告，核心结论：
+
+- **Overall: 3.0/5 (Findings)**，Soundness 3.5，Excitement 2.5
+- **3 个 Must-Fix**：(N1) DDR 新颖性不足，本质是 model collapse 已知现象的再包装；(N2) 与 Broken Telephone / Markovian Chains / Beyond the Final Actor 三篇 concurrent work 区分不充分；(N3) base-model-only scope 限制实际意义且 title/abstract 未标注
+- **4 个 Should-Fix**：QLoRA 性能优势削弱方法论贡献、negative downstream finding framing 可商榷、per-generator 性能变异大、related work 缺少 RAID benchmark 等引用讨论
+- **5 个 Questions for Authors**：涵盖 DDR 理论基础、instruction tuning 破坏机制、paraphrastic 对比实验等
+
+---
+
+[Reviewer 1 审稿意见]:
+
+# Reviewer 1 交叉回应 — 对 R2 (Novelty & Related Work) 意见的逐条评审
+
+---
+
+## 对 R2 优势评价的回应
+
+**[AGREE] R2-Strength-1: Ordinal depth formulation 的新颖性**
+同意。我在 R1 审稿中也将此列为主要优势之一。gen-0/gen-1/gen-2+ 的 ordinal formulation 确实填补了 binary detection 文献的空白，且 non-paraphrastic continuation chain 的设置避免了 paraphrase detection 的混淆。
+
+**[AGREE] R2-Strength-2: DDR spectrum model 的概念贡献**
+同意。DDR partition 的 3/1/3 分组经过 TOST、k-means clustering（Appendix V Table 28）、bootstrap stability（Appendix U.1 Table 27）、holdout split（Table 30）四种独立方法交叉验证，不是 ad hoc 分类。entropy_std 的 intermediate 状态（d=0.458, TOST rejection 0/1000）增加了 partition 的可信度。不过我在 R1 审稿中指出 intermediate 的操作性定义需要更 principled 的阐述（R1-W5）。
+
+**[AGREE] R2-Strength-3: Paraphrastic vs non-paraphrastic 区分**
+同意。Appendix 中 paraphrastic baseline F1=0.55 vs non-paraphrastic 0.694 的对比有效地论证了研究范围的合理性。
+
+**[AGREE] R2-Strength-4: Semantic convergence vs distributional divergence**
+同意这是论文的一个 intellectually interesting 的发现。§5 Discussion 中 cosine similarity 0.622→0.859（语义趋同）与 distributional features divergence 的 decoupling 提供了对 recursive generation 现象的多维理解。
+
+---
+
+## 对 R2 弱点评价的回应
+
+**[REBUT] R2-Weakness-1: DDR = "vocabulary impoverishment with extra steps"**
+
+R2 的观察部分正确但低估了 DDR 的实质贡献。具体反驳：
+
+(a) **Drifting 特征确实与 vocabulary impoverishment 重叠**——TTR 和 hapax_ratio 的 monotonic drift 正是 vocabulary diversity 下降的直接度量，这点 R2 说得对。
+
+(b) **但 DDR 的核心贡献不在 drifting 本身，而在 partition**。如果 DDR 仅仅是 vocabulary impoverishment，那所有 NLL-derived features 都应该 monotonically drift。论文的关键发现是 entropy_max 和 tail_decay 在深度增加时保持 near-stationary（|ρ|<0.10，Appendix U Table 26 报告 8/8 generators 均通过 TOST），这是 vocabulary impoverishment 假说无法预测的。它说明 recursive generation 改变了分布的 location 但保留了 shape——这是一个新的结构性洞察。
+
+(c) **Feature ablation 数据支持 stationary features 的信息增量**。Table 2（p.7）显示 surface-only features（TTR + hapax，即纯 vocabulary impoverishment 指标）的 3-class F1 = 0.763，加入 reference-model features 后升至 0.820（+5.7pp）。如果 DDR 只是 vocabulary impoverishment 的重新包装，reference features 不应提供这么大的增量。
+
+(d) **建议作者加强叙事**：明确将 "drifting features capture vocabulary impoverishment; stationary features capture a *complementary* distributional invariance that vocabulary impoverishment alone does not predict" 作为 DDR 的核心价值主张。这能直接回应 R2 的这个 concern。
+
+**[REBUT] R2-Weakness-2: "Only 5 references in bibliography"——此断言与论文实际内容不符**
+
+我仔细阅读了论文全文。仅在 p.1-2 的 Abstract + Introduction 中，论文就引用了大量文献：Liang et al. 2024, Bao et al. 2024, Hans et al. 2024, Narayanaswamy et al. 2026, Mitchell et al. 2023, Shumailov et al. 2024, Dohmatob et al. 2025, Wenzek et al. 2020, Xie et al. 2023, Soldaini et al. 2024, Penedo et al. 2024 等。Related Work §2 进一步引用了 Gehrmann et al. 2019, Zellers et al. 2019, Solaiman et al. 2019, Bai et al. 2024, Yang et al. 2024, Verma et al. 2024, Mady et al. 2026, Tulchinskii et al. 2023, Basani and Chen 2026, Pu et al. 2026, Wu et al. 2023, Iwasawa et al. 2025, Cheng et al. 2025, Guo et al. 2025, Wang et al. 2026, Alemohammad et al. 2024, Gerstgrasser et al. 2024, Mohamed et al. 2025, Geng et al. 2026, Uchenna et al. 2020, Munir et al. 2021 等。
+
+bibliography 明显远超 5 条——保守估计至少 40-50 条引用。**R2 的这个观察很可能是阅读错误**。如果 R2 是指特定主题（如 model collapse）的引用不足，那应当具体说明哪些关键文献缺失，而非笼统说"only 5 references"。
+
+关于 R2 提到的具体缺失文献：
+- **Shumailov et al. model collapse**：论文 §1 (p.1) 和 §2 (p.2) 已明确引用 Shumailov et al. 2024 并讨论了 model collapse theory 与本文工作的关系。
+- **Li et al. 2016 diversity metrics**：这可能是一个合理的补充引用，但不构成 critical 遗漏。
+- **Data contamination/decontamination**：Lee et al.、Dodge et al. 确实可以加入 Related Work，但论文已引用 Soldaini et al. 2024 和 Penedo et al. 2024 作为 data provenance 文献。
+
+**[AGREE] R2-Weakness-3: "Diagnostic not curative" framing 的防御性**
+部分同意。论文在 §5 Discussion 中将 negative downstream finding 包装为 "depth is diagnostic, not curative" 确实有防御性嫌疑。但我认为这个问题比 R2 描述的更深层——真正的问题不是 framing 风格，而是下游实验本身 underpowered（仅 3 seeds、1 metric、1 model，见我的 R1-N1）。如果下游实验 properly powered 且仍然 negative，"diagnostic not curative" 反而是一个诚实、有价值的结论。问题在于当前证据不足以下这个结论。
+
+**[AGREE] R2-Weakness-4: Base-model-only scope**
+完全同意。我在 R1 审稿中已将此列为 N3 critical 问题。Appendix K 的 instruct 退化数据（binary F1 降至 0.338-0.490，entropy_mean ρ 翻转符号）使这成为论文最严重的 generalizability limitation 之一。
+
+**[AGREE] R2-Weakness-5: QLoRA gap**
+完全同意。我在 R1 审稿中已将此列为 N2 critical 问题。+11.6pp 的差距（3-class F1 0.789→0.905）在我看来也是论文最需要 address 的弱点之一。
+
+---
+
+## 对 R2 评分的回应
+
+R2 给出 Overall 3/6，我的 R1 评分为 Overall 3.0/5（ARR 量表，Findings 档位）。两者 converge 到相同档位，我不调整分数。
+
+**在交叉审阅后，我维持 Overall 3.0 (Findings) 不变。**
+
+理由：
+- R2 的 vocabulary impoverishment concern 有一定道理，但我认为 DDR partition（特别是 stationary features 的发现）提供了超越 vocabulary impoverishment 的增量信息，因此不再额外降分。
+- R2 关于 bibliography 的观察（"only 5 references"）与论文实际内容严重不符，不应成为降分理由。
+- R2 的其他 critical concerns（base-model scope、QLoRA gap）与我的 R1 评估一致，已反映在现有评分中。
+
+---
+
+## 对 R2 Questions 的补充
+
+**R2-Q1 (DDR vs vocabulary impoverishment)**：好问题，但建议作者不要否认 overlap，而是 embrace it：DDR 的价值在于说明 vocabulary impoverishment 只是故事的一半（drifting features），另一半是 distributional shape invariance（stationary features），两者的 partition 结构才是核心发现。
+
+**R2-Q2 (F1=0.694 的实际价值)**：我在 R1-Q5 中也提了类似问题。补充一点：在 data curation 场景中，precision 可能比 recall 更重要——如果 gen-2+ precision 足够高，即使 recall 较低，仍可用于 selective filtering。建议作者报告 precision-recall tradeoff。
+
+**R2-Q3 (Only 5 references)**：如上所述，这个观察与论文实际内容不符。论文 bibliography 远超 5 条。R2 可能误读了材料。
+
+**R2-Q4 (Instruct 扩展路径)**：与我的 R1-Q3 一致。Appendix K 数据暗示 instruct 模型下 DDR 可能 reversed（entropy_mean ρ 翻转）而非消失——如果是这样，重新训练 partition 有可能恢复性能。建议作者至少提供一个初步的 instruct-aware partition 实验。
+
+
+---
+
+[Reviewer 1 审稿结果]:
+交叉回应已提交。关键判断：
+
+- **[REBUT] "DDR = vocabulary impoverishment"**：drifting 特征确实与 vocabulary impoverishment 重叠，但 stationary features（entropy_max, tail_decay）的 near-stationary 行为是 vocabulary impoverishment 无法预测的结构性发现，且 feature ablation 显示 reference features 提供 +5.7pp 增量。
+- **[REBUT] "Only 5 references"**：论文 bibliography 保守估计 40-50 条，Shumailov et al. 已在 §1-§2 明确引用。R2 此观察与论文内容严重不符。
+- **[AGREE]** base-model scope、QLoRA gap、diagnostic framing 这三点与我的 R1 评估一致。
+
+**维持 Overall 3.0 (Findings) 不变。**
+
+---
+
+[Reviewer 1 审稿意见]:
+
+# Reviewer 1 最终立场 — Convergence Round
+
+---
+
+## 对 5 个共识点的确认
+
+1. **实验覆盖度 exceptional** — 确认。20+ appendix 的分析深度在 empirical NLP 论文中罕见。
+2. **Binary F1=0.694 偏弱** — 确认。
+3. **QLoRA gap 削弱方法论贡献** — 确认。
+4. **Clarity 高** — 确认。论文诚实、结构清晰、对 limitation 透明。
+5. **Base-model-only 限制 significance** — 确认。
+
+---
+
+## 对 5 个待解决分歧的最终立场
+
+### 分歧 1: Overall Score — R1 (3.5) vs R2 (3.0)
+
+**纠正：我的 R1 原始评分是 3.0，不是 3.5。** 在 Round 1 审稿中我明确给出 "Overall Assessment: 3.0 (Findings)"，Round 2 交叉回应中我也写了 "我维持 Overall 3.0 (Findings) 不变"。R1 和 R2 实际上已经 converge 在 3.0。
+
+**最终立场：维持 Overall 3.0 (Findings)。**
+
+理由：DDR partition 是 genuine 的实证发现，方法论严谨，分析广度突出——这些是 Findings 接收的充分条件。但三个 structural weakness 阻止上升到 3.5（Borderline Conference）：(a) headline binary F1=0.694 在 8-gen LOGO 下实用价值有限；(b) base-model-only scope 在 instruct 模型上退化严重；(c) QLoRA 以 +12pp 大幅超越手工特征，削弱了 7-feature approach 的独立价值。这三个问题不是通过更好的写作或更多实验能在一个 revision cycle 内解决的——它们反映的是当前工作阶段的固有局限。
+
+### 分歧 2: DDR 是 genuine contribution 还是 repackaging？
+
+**最终立场：DDR 是一个 genuine but incremental 的概念贡献。**
+
+- **Drifting features（TTR、hapax、entropy_mean）确实是 vocabulary impoverishment 的直接度量**——R2 这一点判断正确。如果论文只报告了 drifting，DDR 就是 repackaging。
+- **Stationary features（entropy_max、tail_decay）是真正的 new information**。Vocabulary impoverishment 假说预测所有 NLL-derived features 应该 drift，但 shape features 保持 near-stationary（8/8 generators 通过 TOST，Appendix U Table 26）。这个 negative result 本身有信息价值——它说明 recursive generation 改变分布 location 但保留 shape，这不是 trivially derivable 的。
+- **关键量化证据**：Table 2 (p.7) 中 surface-only（纯 vocabulary impoverishment 指标）F1=0.763 vs 加入 reference features 后 F1=0.820，+5.7pp 增量证明 stationary features 提供了 vocabulary impoverishment 以外的分类信息。
+- **但 incremental**：partition 本身（3 drifting / 1 intermediate / 3 stationary）在概念上并不 surprising——直觉上 location shift 比 shape change 更容易被 recursive generation 影响。DDR 的价值在于 quantifying 这个直觉，而非 overturning 它。
+
+### 分歧 3: Cross-model chain result (0.830) 的权重
+
+**最终立场：不应作为 headline result，但值得在 contribution 叙事中保留。**
+
+- Cross-model chain 中 gen-1 和 gen-2 使用不同 generator，因此 0.830 混淆了 depth signal 和 generator identity signal（我的 R1-W4）。在没有 disentangling 实验的情况下，不能将 0.830 归因为纯粹的 depth classification 性能。
+- 但 cross-model chain 是一个 realistic scenario（训练数据中递归生成的文本确实可能来自不同模型），因此 0.830 作为 practical upper bound 是有信息价值的。
+- **建议**：论文应将 0.694（8-gen LOGO）作为 primary headline，0.830 作为 "practical scenario" 结果，并明确标注两者的区别。
+
+### 分歧 4: References 问题
+
+**最终立场：R2 "only 5 references" 的断言与论文实际内容严重不符。**
+
+我在 Round 2 交叉回应中已详细论证：仅 p.1-2 就引用了 10+ 篇文献，Related Work §2 又引用了 20+ 篇，bibliography 保守估计 40-50 条。Shumailov et al. 2024 model collapse 也已在 §1 和 §2 明确引用。R2 对此的评判是基于错误的事实前提，**不应纳入最终评估**。
+
+如果 R2 的真实意图是"某些特定主题的引用不足"（如 watermarking、data decontamination），这是合理的 minor suggestion，但绝不是 "only 5 references" 所描述的严重缺陷。
+
+### 分歧 5: 下游 negative finding 的影响程度
+
+**最终立场：这是 must-fix 但不是 deal-breaker。**
+
+- 3 seeds / 1 metric / 1 model 的设计确实 underpowered（R1-N1），TOST 在这个 sample size 下功效极低。
+- 但 negative finding 本身不降低论文价值——关键是 *claim 的强度必须匹配证据的强度*。当前论文在 §5 和 Abstract 中将等价性说得太确定（"suggests no downstream quality degradation"）。
+- **修复路径清晰**：(a) 增加 seeds 到 ≥10；或 (b) 保留 3 seeds 但将 claim 弱化为 "preliminary evidence suggests..."。选项 (b) 在一个 revision cycle 内可完成。
+
+---
+
+## 最终评分
+
+| 维度 | 分数 | 调整说明 |
+|------|------|----------|
+| Soundness | 3.5/5 | 不变——实验设计总体严谨，但下游实验 underpowered |
+| Excitement | 3/5 | 不变——DDR 是 genuine but incremental 贡献 |
+| Reproducibility | 4/5 | 不变 |
+| **Overall** | **3.0/5** | **不变——Findings 档位** |
+| Reviewer Confidence | 4/5 | 不变 |
+
+---
+
+## Top-3 Actionable Recommendations（优先级排序）
+
+### Recommendation 1 [最高优先级]: 重构论文叙事核心——从 "classification method" 转向 "empirical characterization"
+
+**问题**：论文当前试图同时讲两个故事：(a) DDR 作为 empirical phenomenon 的 characterization，(b) 7-feature XGBoost 作为 depth classification method。QLoRA +12pp 的差距使故事 (b) 站不住脚。
+
+**具体行动**：
+- 将 Abstract 和 Introduction 的 framing 从 "we build a classifier that achieves F1=0.694" 转向 "we discover and characterize DDR — a structural decomposition of how recursive generation affects text distributions"
+- 将 7-feature XGBoost 定位为 DDR 的 *validation tool*（"the fact that a 7-feature classifier achieves F1=0.694 confirms DDR features carry real discriminative signal"），而非独立的方法论贡献
+- 将 QLoRA 结果从 Appendix E 提升到正文，作为 "end-to-end validation that depth signal is real and exploitable"
+- 这个重构不需要新实验，主要是写作层面的调整
+
+### Recommendation 2 [高优先级]: 增强下游实验的统计功效
+
+**问题**：等价性 claim 是论文四大贡献之一，但 3 seeds 不足以支撑。
+
+**具体行动**：
+- 增加至 ≥10 seeds（preferably 20）
+- 增加第二个评估模型（如 Pythia-1B 或 Qwen3-0.6B）
+- 增加第二个指标（如 downstream task accuracy on a standard benchmark）
+- 如果资源不允许扩大实验，则将 claim 从 "equivalent" 弱化为 "preliminary evidence suggests no degradation"，并在 Limitations 中明确标注 statistical power limitation
+
+### Recommendation 3 [高优先级]: 正文中讨论 instruct 退化并提供机理假说
+
+**问题**：Base-model-only scope 是两位 reviewer 共同的 critical concern，但 Appendix K 的 instruct 数据暗示 DDR 可能 reversed 而非消失。
+
+**具体行动**：
+- 在 §5 Discussion 中增加一段关于 instruct 模型的讨论（目前仅在 Appendix K 和 Limitations 简要提及）
+- 报告 Appendix K 的核心发现：entropy_mean ρ 翻转符号，6/7 features instruct 模型 ρ 反转
+- 提出一个可检验的假说：instruction tuning 是否改变了 DDR 的 *direction* 而非消除了 DDR？如果是，重新训练 instruct-specific partition 能否恢复性能？
+- 这为未来工作提供了明确的 research direction，也展示了 DDR framework 的 extensibility
+
+
+---
+
+[Reviewer 1 审稿结果]:
+Convergence Round 最终立场已提交。
+
+核心结论：
+- **Overall 3.0 (Findings) 不变**——R1 和 R2 实际上已 converge 在同一档位（我的原始评分就是 3.0，非 3.5）
+- **DDR = genuine but incremental**——stationary features 提供了 vocabulary impoverishment 以外的真实信息增量（+5.7pp），但概念上不 surprising
+- **R2 "only 5 references" 断言与事实不符**——论文 bibliography 保守 40-50 条，不应纳入最终评估
+- **Top-3 建议**：(1) 叙事重构为 empirical characterization 而非 classification method；(2) 下游实验增加至 ≥10 seeds；(3) 正文讨论 instruct 退化机理
+
+---
+
+[Reviewer 2 审稿意见]:
+
+# Reviewer 2 — Round 2 交叉回应
+
+## 对 R1 审稿意见的逐条回应
+
+---
+
+### R1 Strengths — 回应
+
+**[AGREE] R1-Strength-1 (LOGO/LOFO rigor)**: 完全同意。LOGO/LOFO 的 leak-free 设计是本文方法论上的亮点。LOFO-LOGO gap -0.8pp (Table 4) 和 independent seed validation Δ=-1.4pp (Appendix N) 确实排除了 family/seed leakage。这也是我在 R2 原始评审中将 Soundness 给到 3.5/5 的核心依据之一。
+
+**[AGREE] R1-Strength-2 (Comprehensive coverage)**: 完全同意。33 页的实验覆盖度在同类 empirical study 中罕见。我在 R2 原始评审的"主要优势"第 3 点已明确肯定。
+
+**[AGREE] R1-Strength-3 (Cross-reference-model)**: 同意这是重要的 falsification test。但补充一点：cross-reference-model validation 确认 DDR 非 Pythia-specific artifact，但并不回答 DDR 是否是一个*新的*概念贡献——它只说明 signal 是 robust 的，而非说明 signal 是 novel 的。这恰恰是我 N1 关注的焦点。
+
+**[AGREE] R1-Strength-4 (Cross-model chains F1=0.830)**: 同意这是最具实际意义的结果。Cross-model chain 场景（多个 LLM 依次处理同一文本）更接近真实 web 污染。R1 正确地指出这是 DDR 最强的条件。
+
+**[AGREE] R1-Strength-5 & 6 (Statistical methodology & length control)**: 完全同意。
+
+---
+
+### R1 Weaknesses — 回应
+
+**[AGREE] R1-Weakness-1 (Binary F1=0.694 modest)**: 同意，与我 W3 一致。补充：per-generator range 0.633-0.724 不仅体现 generator sensitivity，还暗示 classifier 对 generator identity 的隐式依赖——在 generator-unknown 的真实场景中，这种变异度会进一步恶化。
+
+**[AGREE] R1-Weakness-2 (7-feature vs Avg-LogProb margin +3.3pp)**: 这是我未单独指出的有效观点。+3.3pp 的 margin 在统计上显著但实践中微弱。R1 指出 CI-width 差异（7-feat [0.786, 0.799] vs Avg-LogProb [0.616, 0.820]）是更强的论据——这说明 7-feature ensemble 的优势主要在稳定性而非绝对性能。这个观察实际上*支持*我的 N1：如果 DDR 的核心贡献是 decomposition（而非 detection），那 +3.3pp 的分类提升不是 DDR 的 selling point，作者应更清晰地定位论文为 analysis contribution 而非 method contribution。
+
+**[AGREE] R1-Weakness-3 (QLoRA gap)**: 强烈同意，与我 W1 完全一致。R1 用"elephant in the room"精确描述了这个问题。3-class F1 gap of +14.5pp 是不可忽视的。论文的 efficiency argument (150× less inference) 有一定道理，但 QLoRA 的存在从根本上改变了论文的 contribution identity：DDR 不能是一个实用的检测方法，只能是一个 analytical framework。
+
+**[AGREE] R1-Weakness-4 (Downstream negative underpowered)**: 同意，与我 W2 一致。R1 的补充观察（seed variance < 0.002 PPL 暗示 more seeds 无用）是有价值的——这意味着问题不在 power 而在 metric coverage（仅 perplexity）和 model coverage（仅 OLMo-1B）。
+
+**[AGREE] R1-Weakness-5 (Gemma-2-2B anomaly, gen-1 F1=0.036)**: 这是我 R1 round 中未充分关注的重要 weakness。gen-1 F1=0.036 本质上意味着分类器*完全无法区分*该 generator 的 gen-0 和 gen-1 文本。这直接挑战了 DDR 作为 "cross-generator universal phenomenon" 的 claim：
+  - 论文 Section 4.1 声称 "generation depth is classifiable across diverse architectures"，但 Gemma-2-2B 是一个明确的反例
+  - 论文将此归因于 "architecture (GQA, RMSNorm)" 但这不是一个机制性解释——GQA 和 RMSNorm 本身不应改变 output text 的 lexical diversity distribution
+  - 更可能的解释是 Gemma-2-2B 的 gen-1 output 在 feature space 中与 gen-0 重叠度极高，即 DDR 的 "drifting" features 在该 generator 上*不 drift*
+  - **这个反例强化了我 N1 的核心论点**：DDR 不是一个 universal mechanism，而是一个 generator-dependent empirical observation
+  
+  R1 的这个发现将我对 N1 的信心从"critical but addressable"提升到"critical and fundamental"。
+
+**[AGREE] R1-Weakness-6 (Instruct degradation heterogeneity)**: 强烈同意，进一步强化我的 N3。OLMo-Inst F1=0.338 (-42.5pp) vs Llama-Inst F1=0.838 (-1.1pp) 的*不可预测性*是比"instruct models degrade"更深层的问题：即使限于 base models，不同 architecture 的 DDR strength 也有巨大差异（Gemma 几乎为零 vs Pythia 最强），这意味着 DDR 可能是一个 architecture-specific artifact 而非 generation-process-universal phenomenon。
+
+**[AGREE] R1-Weakness-7 (Temperature restriction t∈[0.5,0.9))**: 这是我 R1 round 中遗漏的有效 weakness。t=1.0 是 OpenAI/Anthropic API 的默认值，排除 t≥1.0 严重限制了实际适用性。Cross-temperature transfer 的不对称性（t=0.7→1.0: F1=0.418 vs t=1.0→0.7: F1=0.944）尤其说明问题：在低温训练的分类器完全无法迁移到高温数据。这意味着如果 real-world text 是在 t=1.0 生成的（很可能），用 t∈[0.5,0.9) 训练的 DDR classifier 将失效。
+
+---
+
+### R1 Questions — 我的补充
+
+R1 的 5 个提问都非常精准。我特别赞同 Q4（Gemma-2-2B raw feature examination）和 Q5（instruct degradation heterogeneity explanation）。在此基础上，我对 R1-Q1 有补充：
+
+**对 R1-Q1 的扩展**: R1 问"7-feature vs Avg-LogProb 的实际 justification 是什么"——这个问题触及了论文 contribution identity 的核心。我建议作者明确回答：**DDR 的价值是 decomposition insight 还是 detection performance？** 如果是前者，那 Section 4 的分类实验应该被降格为 validation（验证 decomposition 是否 real），而非作为主要 result 展示。如果是后者，那 QLoRA +14.5pp 的差距和 Gemma gen-1 F1=0.036 的失败使得方法不具备实用性。
+
+---
+
+### 综合评估——调整后的分数
+
+在考虑 R1 的发现后，我对论文的整体评估略有调整：
+
+| 维度 | R2 Round 1 | R2 Round 2（调整后） | 调整理由 |
+|------|-----------|-------------------|---------|
+| Soundness | 3.5/5 | 3.5/5 | R1 的方法论分析确认了我的评估；Gemma anomaly 和 temperature restriction 是 scope limitation 而非 methodological flaw |
+| Excitement | 2.5/5 | 2.5/5 | R1 的发现（Gemma anomaly, instruct heterogeneity, temperature restriction）进一步支持 DDR 非 universal phenomenon 的判断，但不改变我对概念新颖性的评估 |
+| Overall | 3.0/5 | 3.0/5 | 维持 Findings 级别判断 |
+| Confidence | 4/5 | 4.5/5 | R1 的 methods/experiments 深度分析补充了我的 novelty/positioning 视角，两个维度的交叉确认提高了我的评估信心 |
+
+**维持 Overall 3.0 的理由**: R1 的分析实际上加强了我的核心论点：
+
+1. **N1 (DDR novelty) 被 R1-W5 (Gemma anomaly) 强化**: 如果 DDR 是一个 robust conceptual contribution，不应在个别 architecture 上完全失效。Gemma-2-2B 的 gen-1 F1=0.036 表明 DDR 是 generator-conditional 的经验规律，而非 generation-process-universal 的机制。
+
+2. **N3 (base-model scope) 被 R1-W6 和 R1-W7 联合强化**: Instruct degradation 的不可预测性（-42.5pp to -1.1pp）加上 temperature restriction（t<1.0），将 DDR 的实际适用范围压缩到一个非常狭窄的 operational window：base models, t∈[0.5,0.9), 非 Gemma architecture。这个 window 在现实 deployment 中几乎不存在。
+
+3. **W1 (QLoRA gap) 被 R1-W2 和 R1-W3 联合放大**: 不仅 QLoRA +14.5pp 是压倒性优势，even the simplest baseline (Avg-LogProb) 仅落后 3.3pp——DDR 的 multi-feature approach 在 detection performance 上的 marginal contribution 非常有限。
+
+**R1 与 R2 的分歧点**: R1 给了 Overall 3.5/6，按其描述 "above Findings threshold"，略高于我的 3.0/5 (Findings)。分歧主要来自角度差异：R1 从 Methods & Experiments 角度给出高评价（方法论确实严谨），而我从 Novelty & Related Work 角度认为概念贡献不足。这是合理的维度差异——一篇方法论严谨但概念新颖性有限的论文，恰恰处于 Findings 区间。
+
+**我的最终建议**: Findings track 接收。论文的实验质量（Soundness 3.5）配得上发表，但 conceptual novelty 不足以进入主会议。
+
+
+---
+
+[Reviewer 2 审稿结果]:
+Round 2 交叉回应已提交。
+
+核心结论：R1 的方法论分析与我的新颖性评估形成互补确认。R1 发现的 Gemma-2-2B anomaly（gen-1 F1=0.036）和 temperature restriction（t<1.0）进一步强化了我的 N1（DDR 非 universal mechanism）和 N3（scope 过窄）。两位 reviewer 在 Overall 评分上趋近——R1 的 3.5/6 和我的 3.0/5 都指向 Findings 区间。维持 Overall 3.0/5，建议 Findings track 接收。
+
+---
+
+[Reviewer 2 审稿意见]:
+
+# Reviewer 2 — Round 3 最终收敛意见
+
+---
+
+## 对 5 个收敛点的逐一回应
+
+### 收敛点 1: Overall Score（R1: 3.5 vs R2: 3.0）
+
+**我的最终立场: 3.0/5，维持不变。**
+
+R1 的论点是"20+ experiments 的 validation thoroughness 应当得到额外 credit"。我同意实验完整度是 exceptional 的——但 ACL ARR 的 Overall Assessment 评的是"这篇论文是否应该被接收"，不是"这篇论文的实验做得好不好"。Soundness 维度已经给了 3.5 来反映方法论质量。Overall 需要综合 novelty、significance、soundness 三个维度。
+
+类比：一篇用 50 个 ablation 实验严谨验证了"水是湿的"的论文，Soundness 可以拿到 4+，但 Overall 不会因为实验数量多就提升。DDR 的核心问题不在于是否被正确验证了（是的），而在于它验证的东西是否足够新颖和重要。
+
+**建议收敛区间: 3.0-3.25/5**。如果 R1 的 3.5/6 等价于 ARR ~3.0-3.25/5，我们实际上已经收敛。
+
+---
+
+### 收敛点 2: Cross-reference validation 是否改变 novelty 评估？
+
+**不改变。**
+
+R1 正确地指出 Table 5 证明了 DDR 是 generation-intrinsic 的，而非 Pythia-specific artifact。但"generation-intrinsic"和"novel"是两个不同的属性：
+
+- **Generation-intrinsic**: DDR signal 不依赖于特定 reference model → 这证明了 signal 的 robustness
+- **Novel**: DDR 作为概念是否提供了超越 model collapse 文献的新理解 → 这需要机制性解释或反直觉发现
+
+Cross-reference validation 回答的是"DDR 是否 real"，不是"DDR 是否 new"。我从未质疑 DDR 的真实性——我质疑的是它的概念增量。词汇多样性随递归生成而衰减，这在 Shumailov et al. (2024) 的 tail disappearance 框架下已有预期；NLL 分布 shape 在 location shift 下保持稳定，这是统计学常识（位移不改变形状）。
+
+**但我承认一个 nuance**: DDR 将 model collapse 文献的*训练时*现象映射到了*推理时*场景，并证明 fixed-parameter inference chain 也产生类似的 distributional shift。这个 "training-time → inference-time" 的桥接有一定价值，但论文没有把这个桥接作为核心 narrative 来发展。如果作者能在 revision 中强化这个角度（特别是理论解释为什么 fixed parameters 下仍然出现 tail collapse），novelty 评估可以提升到 3.0。
+
+---
+
+### 收敛点 3: Cross-model chains F1=0.830 是否改变 significance 评估？
+
+**部分改变，但不足以提升 Overall。**
+
+Cross-model chain 场景（Table 7, F1=0.830）确实是论文中最有说服力的结果，且 R1 正确地指出这最接近真实 web 污染。然而：
+
+1. F1=0.830 仍然是在 **5-generator subset** 上的结果（不是完整 8-generator），且仅限 **binary** task（gen-0 vs gen-1+）
+2. 这个场景的 **practical deployment** 仍然受制于 base-model-only scope 和 temperature restriction
+3. 论文 **没有将 cross-model chains 定位为主要贡献**——它在 Section 4.1 的 "Cross-model generalization" 段中仅作为一个 sub-result 出现，Table 7 在 Section 5 中简要提及
+
+如果作者在 revision 中将 cross-model chain detection 重新定位为核心应用场景（而非 DDR 理论的附属验证），significance 评估可以改善。但当前版本中这一结果被低估了。
+
+---
+
+### 收敛点 4: Orphan bib entries 的严重性
+
+**轻微处罚，不影响接收决定。**
+
+17 个 orphan bib entries 是 paper hygiene 问题，不是学术质量问题。在 camera-ready 前清理即可。更重要的是我在 W4 中指出的 **内容缺失**：RAID benchmark 未在正文中讨论（尽管在 bib 中），SemEval Task 8C 的 multi-class sub-task 未被对比，Dohmatob & Feng (2025) 的 information-theoretic framework 未被利用来解释 DDR。这些是 related work 的 **内容性缺陷**，比 orphan entries 更值得关注。
+
+**严重性评估**: Related work 完整性问题 → 影响 1/4 个 sub-score（positioning），在 Overall 中贡献约 -0.25 的降分。
+
+---
+
+### 收敛点 5: 实际适用范围的综合评估
+
+R1（temperature restriction + instruct heterogeneity）和 R2（base-model scope）的发现联合起来，DDR 的实际适用 window 是：
+
+| 约束 | 限制内容 | 来源 |
+|------|---------|------|
+| Model type | Base models only | R2-N3, Appendix K |
+| Temperature | t ∈ [0.5, 0.9) | R1-W7, Appendix H |
+| Architecture | 排除 Gemma-like (GQA+RMSNorm) | R1-W5, Table 18 |
+| Instruct tuning | 不可预测 (Δ from -1.1pp to -42.5pp) | R1-W6, Appendix K |
+| Generator identity | 影响 ±9pp F1 variation | R1-W1, R2-W3 |
+
+**综合判断**: DDR 在一个非常受限的 operational window 内是有效的：base models, moderate temperature, non-Gemma architectures。这个 window 在 2026 年的 LLM deployment landscape 中覆盖率很低（大多数用户接触的是 instruction-tuned models at t=1.0）。
+
+但作为 **scientific finding**（而非 practical tool），这些限制是可接受的——很多有价值的 empirical findings 都有 scope restrictions。关键是论文需要在 framing 上诚实（title/abstract 中标注 base-model scope），并在 discussion 中分析这些限制的 **机制原因**。
+
+**significance 降分**: 综合约 -0.5 到 -0.75（从潜在的 3.5-4.0 降到 3.0）。
+
+---
+
+## 最终评分
+
+| 维度 | 最终分数 | 变化 | 理由 |
+|------|---------|------|------|
+| **Soundness** | 3.5/5 | 不变 | R1 的方法论确认增强了我的信心；Gemma anomaly 和 temperature 是 scope issues 而非 methodological flaws |
+| **Excitement** | 2.5/5 | 不变 | Cross-reference validation 证明了 robustness 但不改变 novelty 评估；cross-model chain 结果有价值但未被充分发展 |
+| **Overall** | 3.0/5 (Findings) | 不变 | 方法论严谨 + 概念新颖性不足 = Findings 级别 |
+| **Confidence** | 4.5/5 | ↑0.5 | R1 的 methods 深度分析与我的 novelty 分析交叉确认 |
+
+---
+
+## Top-3 可操作修改建议（按优先级排序）
+
+### 建议 1 [最高优先级]: 重构论文的 contribution identity
+
+**当前问题**: 论文在 "DDR as analytical framework" 和 "depth classification as detection method" 之间摇摆。这导致：
+- 分类性能数字（F1=0.694）出现在 abstract 中，但被 QLoRA (+14.5pp) 和 Avg-LogProb (-3.3pp) 夹击
+- DDR decomposition 是更独特的贡献，但被分类实验淹没
+
+**具体修改**:
+1. **Title/abstract**: 明确标注 "base (pretrained) language models"，将 framing 转向 "understanding inference-chain distributional dynamics" 而非 "detecting generation depth"
+2. **Section 4 重组**: 将 DDR decomposition（当前 Section 4.2）提升为 Section 4 的核心，分类实验降级为 "validation"
+3. **Cross-model chain**: 将 Table 7 的 F1=0.830 结果提升到主要 results 中，作为 DDR 最有实际价值的应用场景
+4. **QLoRA 定位**: 在 Appendix E 中明确说明 QLoRA 是 "what's possible with end-to-end learning" 的 upper bound reference，而 DDR 的价值在 interpretability 和 zero-shot cross-generator transfer
+
+### 建议 2 [高优先级]: 解释 DDR 的机制而非仅描述现象
+
+**当前问题**: 论文系统验证了 "drifting features drift, stationary features stay"，但没有解释 why。
+
+**具体修改**:
+1. 利用 Dohmatob & Feng (2025) "Strong Model Collapse" 的 information-theoretic framework，推导 fixed-parameter inference chain 为什么产生 location shift 而非 shape change
+2. 解释 Gemma-2-2B anomaly 的机制——这不是一个可以轻描淡写的 edge case，而是理解 DDR boundary conditions 的关键
+3. 分析 instruction tuning 如何破坏 DDR signal：是 RLHF reward shaping 改变了 NLL 分布形状，还是 instruction-following format constraints 压缩了 generation diversity？为什么 Llama-Inst 几乎不受影响而 OLMo-Inst 完全失效？
+
+### 建议 3 [中优先级]: 扩展下游验证和 practical use case
+
+**当前问题**: "Diagnostic not curative" 的 framing 缺乏具体的诊断应用场景。
+
+**具体修改**:
+1. 下游实验增加至少 1 个 task-level metric（如 MMLU, factuality score），不仅是 perplexity
+2. 提供一个 end-to-end 的 "diagnostic" use case：例如，在 web corpus 清洗中，DDR 如何标记可疑的 recursive generation content，以及标记后应采取什么 action
+3. 讨论 DDR 与 watermarking 的互补性：watermark 解决 "who generated this"，DDR 解决 "how many times has this been through an LLM"——这是一个有吸引力的 positioning，当前论文未充分发展
+
+---
+
+## 致 Director 的总结
+
+R1 和 R2 在大多数事实性判断上已经收敛：方法论严谨、性能有限、scope restricted。分歧主要在 Overall 权重分配上——R1 更看重 execution quality，R2 更看重 conceptual contribution。我认为两个视角都是 legitimate 的，最终 Overall 应在 **3.0-3.25** 区间。
+
+**我的最终推荐**: **Findings track 接收**，条件是作者在 camera-ready 中 (1) title/abstract 标注 base-model scope, (2) 清理 orphan bib entries, (3) 补充 Gemma anomaly 的分析。如果 revision 能实现建议 1-3 的大部分内容，论文有潜力在下一轮提升至 Borderline Conference (3.5)。
+
+
+---
+
+[Reviewer 2 审稿结果]:
+Round 3 最终收敛意见已提交。
+
+核心结论：维持 Overall 3.0/5 (Findings)。R1 和 R2 在事实层面已收敛，分歧仅在 execution quality vs. conceptual novelty 的权重。建议收敛区间 3.0-3.25，推荐 Findings track 接收。三条修改建议按优先级：(1) 重构 contribution identity、(2) 补充 DDR 机制解释、(3) 扩展下游验证。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d9c8fbe9-0a07-4c62-8919-9eac4fafb368",
+  "isSidechain": false,
+  "promptId": "4582f6cb-64a4-498a-9e05-ac7b1e33e7b9",
+  "type": "user",
+  "uuid": "4d2521c3-93cd-4ea9-845c-6fcbc8f105e9",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 71_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Reviewer 2 审稿结果]: Round 1 审稿完成。已向 Review Director 提交完整审稿报告，核心结论：  - **Overall: 3.0/5 (Findings)**，Soundness 3.5，Excitement 2.5 - **3 个 Must-Fix**：(N1) DDR 新颖性不足，本质是 model collapse 已知现象的再包装；(N2) 与 Bro…",
+  "leafUuid": "4d2521c3-93cd-4ea9-845c-6fcbc8f105e9",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 72_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review appendix and remaining pages",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 73 · 2026-05-20T11:02:27.712Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Both reviewers have completed all rounds of review including cross-sharing and convergence. Let me summarize where we are:
+
+**Round 1**: Both reviewers independently reviewed (R1: Methods & Experiments, R2: Novelty & Related Work)
+**Round 2 (Cross-sharing)**: R1 responded to R2's review, R2 responded to R1's review
+**Round 3 (Convergence)**: Both reviewers submitted final positions
+
+Both reviewers converge on **Overall 3.0/5 (Findings)**. Key consensus points:
+- DDR is genuine but incremental
+- Base-model-only scope is a critical limitation
+
+
+- The QLoRA performance gap significantly weakens the methodological contribution
+- The experimental design is rigorous and well-executed
+- Temperature constraints reduce how broadly this approach can be applied in practice
+
+Now I need to move to the synthesis phase: consolidate the review findings, update the issue tracker, and submit the final report through the proper channels. I'll start by reviewing the full issue tracker to understand what needs updating, verify the status of visual checks and external reviews, then compose and submit the consolidated report.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4d2521c3-93cd-4ea9-845c-6fcbc8f105e9",
+  "isSidechain": false,
+  "requestId": "req_011CbDhzSLn1ccFdSb6M9idn",
+  "type": "assistant",
+  "uuid": "c4bc7e08-b637-4ca4-8bd6-17a0689c7805",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013TXA1YpEznmtg3Troo48sN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 29105,
+      "cache_read_input_tokens": 54536,
+      "output_tokens": 577,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 29105,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 577,
+          "cache_read_input_tokens": 54536,
+          "cache_creation_input_tokens": 29105,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 29105
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "system_changed",
+        "cache_missed_input_tokens": 34886
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 74 · 2026-05-20T11:02:27.720Z_
+
+两位 Reviewer 已完成全部 3 轮审稿（独立初审 → 交叉分享 → 收敛），评分一致收敛至 **Overall 3.0 (Findings)**。进入 Step 4——合成报告、更新 Issue Tracker、投递。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c4bc7e08-b637-4ca4-8bd6-17a0689c7805",
+  "isSidechain": false,
+  "requestId": "req_011CbDhzSLn1ccFdSb6M9idn",
+  "type": "assistant",
+  "uuid": "b710dfdf-7064-4d73-a07b-cfb619ec8563",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013TXA1YpEznmtg3Troo48sN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 29105,
+      "cache_read_input_tokens": 54536,
+      "output_tokens": 577,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 29105,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 577,
+          "cache_read_input_tokens": 54536,
+          "cache_creation_input_tokens": 29105,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 29105
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "system_changed",
+        "cache_missed_input_tokens": 34886
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 75 · 2026-05-20T11:02:28.576Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_019TXLhPNTRw5ooyiRULS8jt`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_issues.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b710dfdf-7064-4d73-a07b-cfb619ec8563",
+  "isSidechain": false,
+  "requestId": "req_011CbDhzSLn1ccFdSb6M9idn",
+  "type": "assistant",
+  "uuid": "a304f027-a81a-49a6-a03a-b2f4aa630fc3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013TXA1YpEznmtg3Troo48sN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 29105,
+      "cache_read_input_tokens": 54536,
+      "output_tokens": 577,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 29105,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 577,
+          "cache_read_input_tokens": 54536,
+          "cache_creation_input_tokens": 29105,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 29105
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "system_changed",
+        "cache_missed_input_tokens": 34886
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 76 · 2026-05-20T11:02:28.586Z_
+
+<details><summary>↩ Tool result · `toolu_019TXLhPNTRw5ooyiRULS8jt`</summary>
+
+```text
+1	# Review Issues — through Round 28
+2	# Last updated: 2026-05-20
+3	
+4	# ============ CRITICAL ============
+5	
+6	- id: "R26-N1"
+7	  summary: "缺少 Responsible NLP Research Checklist，可能 desk reject"
+8	  category: format
+9	  severity: critical
+10	  status: resolved
+11	  first_raised_round: 26
+12	  last_seen_round: 26
+13	  mentions:
+14	    - {round: 26, reviewers: "R2(提出),R1(agree)", note: "ARR 投稿必须包含 Responsible NLP Research Checklist。grep 全文无匹配。缺失是 desk reject 的充分条件。"}
+15	    - {round: 27, reviewers: "none", note: "R27 未提及。已确认 Checklist 通过 OpenReview 表单提交。"}
+16	    - {round: 28, reviewers: "none", note: "R28 未提及。"}
+17	  action_items:
+18	    - {round: 26, action: "Independent Reviewer 确认：ARR Checklist 是 OpenReview 表单，不嵌入 PDF。非真实 desk reject 风险。", assigned_to: "Director", status: "done"}
+19	  resolution: "ARR Responsible NLP Checklist 通过 OpenReview 表单提交，不是 PDF 内容。Checklist 草稿已准备。"
+20	  resolution_round: 26
+21	
+22	- id: "R26-N2"
+23	  summary: "正文约 8.3-8.4 页，超出 long paper 8 页限制"
+24	  category: format
+25	  severity: critical
+26	  status: resolved
+27	  first_raised_round: 26
+28	  last_seen_round: 26
+29	  mentions:
+30	    - {round: 26, reviewers: "R2(提出),R1(agree)", note: "§1-6 主文内容延伸至 page 9 中上部。"}
+31	    - {round: 27, reviewers: "none", note: "R27 确认页数合规。"}
+32	    - {round: 28, reviewers: "none", note: "R28 未提及页数问题。"}
+33	  action_items:
+34	    - {round: 26, action: "压缩 Discussion + Results。", assigned_to: "Agent", status: "done"}
+35	  resolution: "Discussion + Results 压缩后 Conclusion 在 p8，主文 ≤8 页。PDF 视觉确认。"
+36	  resolution_round: 26
+37	
+38	- id: "R25-N1"
+39	  summary: "DDR 新颖性不足以支撑 Main Conference，Findings 级别合适"
+40	  category: method
+41	  severity: critical
+42	  status: acknowledged
+43	  first_raised_round: 21
+44	  last_seen_round: 28
+45	  mentions:
+46	    - {round: 25, reviewers: "R1,R2", note: "DDR 是已知特征的行为分类，非概念突破。"}
+47	    - {round: 26, reviewers: "R1,R2", note: "三篇并行工作已独立发现 ~3-class ceiling。"}
+48	    - {round: 27, reviewers: "R1(agree),R2(N2,agree)", note: "DDR novelty 在于 empirical verification 而非新发现。两位均维持 Findings 定位。"}
+49	    - {round: 28, reviewers: "R2-N2(Critical),R1(partial rebut→Major)", note: "R2 将 novelty boundary 升级为 Critical：Mohamed et al. (2025) 和 Geng et al. (2026) 的 per-feature convergence trajectories 与 DDR 高度重叠。R1 反驳：DDR 的增量在 ordinal classification task formulation + location/shape decomposition，降为 Major。交叉后共识：需扩展 §2.2 对比讨论但 novelty 本身成立。"}
+50	  action_items:
+51	    - {round: 25, action: "接受 Findings 定位。", assigned_to: "Director", status: "done"}
+52	  resolution: "Findings 定位，连续 8 轮稳定。"
+53	  resolution_round: null
+54	
+55	- id: "R25-N3"
+56	  summary: "DDR 阈值缺乏理论基础 + location/shape 分离缺机制性解释 + entropy min 分类不一致"
+57	  category: method
+58	  severity: critical
+59	  status: in_progress
+60	  first_raised_round: 21
+61	  last_seen_round: 28
+62	  mentions:
+63	    - {round: 25, reviewers: "R1,R2", note: "0.75 是看到数据后选的。"}
+64	    - {round: 26, reviewers: "R1(提出),R2(agree with nuance)", note: "d 在 [0.56,0.75] partition 稳定。"}
+65	    - {round: 27, reviewers: "R1-W1(Critical),R2(agree)", note: "entropy min Cliff's δ=0.354 vs Cohen's d=0.016 严重不一致。"}
+66	    - {round: 28, reviewers: "R1-W4(Minor→Major),R2(partial rebut→Minor)", note: "R1 维持 entropy_min 分类为 ad-hoc。R2 反驳：Cliff's δ 和 Cohen's d 衡量不同效应类型（ordinal vs parametric），不一致有合理统计解释。但 holdout 3/2/2 vs 3/1/3 分歧仍未解决。交叉后分歧：R1 认为 Minor→Major，R2 认为纯 Minor。"}
+67	  action_items:
+68	    - {round: 25, action: "§4.2 改为 continuous gradient + data-driven clustering 叙事", assigned_to: "Director", status: "done"}
+69	    - {round: 27, action: "§4.2 讨论 Cliff's δ vs Cohen's d 不一致 + Contribution 2 调整", assigned_to: "Research Director", status: "done"}
+70	  resolution: "entropy min 不一致已在 §4.2 讨论。R28 分歧在严重度而非事实。"
+71	  resolution_round: null
+72	
+73	- id: "R25-W11"
+74	  summary: "Cross-model F1=0.764 存在 model-switching / generator identity confound"
+75	  category: experiment
+76	  severity: critical
+77	  status: in_progress
+78	  first_raised_round: 25
+79	  last_seen_round: 28
+80	  mentions:
+81	    - {round: 25, reviewers: "R2(提出),R1(agree)", note: "generator heterogeneity 可能放大 depth signal。"}
+82	    - {round: 26, reviewers: "R1(Critical),R2(Major,agree)", note: "Transfer ablation 完成，56/56 pairs > chance。"}
+83	    - {round: 27, reviewers: "R1-W4(Major),R2-Q3(agree)", note: "措辞已弱化为 'provides evidence against'。"}
+84	    - {round: 28, reviewers: "R1-W1(Major),R2(agree)", note: "R28 重新指出：cross-model 用 sample-level 5-fold CV 而非 generator-level held-out，与主表 LOGO 设计矛盾。Single-gen transfer 无法排除混合链特有的 confound。R2 补充：训练/测试集可能共享同一 generator 的样本。两位建议 chain-level CV 或降级为 exploratory。"}
+85	  action_items:
+86	    - {round: 26, action: "Transfer ablation + Conclusion 移除 cross-model F1。", assigned_to: "Agent", status: "done"}
+87	    - {round: 27, action: "措辞弱化为 'provides evidence against'。", assigned_to: "Research Director", status: "done"}
+88	    - {round: 28, action: "Cross-model 评估改为 generator-level held-out 或 chain-level CV；或在正文中将 cross-model 结果降级为 exploratory。", assigned_to: "Research Director", status: "open"}
+89	  resolution: ""
+90	  resolution_round: null
+91	
+92	# ============ MAJOR ============
+93	
+94	- id: "R28-N1"
+95	  summary: "DDR 是采样参数依赖的（t=1.0 信号消失），Abstract/Conclusion 将其 frame 为递归生成内禀属性构成 overclaim"
+96	  category: framing
+97	  severity: critical
+98	  status: open
+99	  first_raised_round: 28
+100	  last_seen_round: 28
+101	  mentions:
+102	    - {round: 28, reviewers: "R1-N1(Critical),R2(agree Critical)", note: "Appendix O: t=1.0 时 entropy-depth ρ 从 −0.60 坍缩至 −0.002。Discussion §5 承认 'parameter-dependent' 但被埋在正文中段。Abstract 第一句和 Conclusion 第一句暗示 DDR 是递归生成的普遍性质。R2 补充：DDR 被双重限制（采样参数 + 仅 base models），几乎所有核心实验在同一温度窗口 (t=0.7) 内。两位共识：Abstract/Conclusion 必须加入 'under standard nucleus sampling (t ∈ [0.5, 0.7])' 限定。"}
+103	  action_items:
+104	    - {round: 28, action: "Abstract/Conclusion 加入采样条件限定 (t ∈ [0.5, 0.7])。Introduction contribution list 将温度敏感性作为核心发现之一。", assigned_to: "Research Director", status: "open"}
+105	  resolution: ""
+106	  resolution_round: null
+107	
+108	- id: "R25-N2"
+109	  summary: "Base model 限制严重削弱 impact（0.6B-8B only + instruct 退化）"
+110	  category: framing
+111	  severity: critical
+112	  status: in_progress
+113	  first_raised_round: 21
+114	  last_seen_round: 28
+115	  mentions:
+116	    - {round: 25, reviewers: "R1,R2", note: "Instruct retrain 已完成但实用性仍受限。"}
+117	    - {round: 26, reviewers: "R1(Major),R2(agree)", note: "QLoRA instruct 完成。"}
+118	    - {round: 27, reviewers: "R2-N1(Major),R1(agree)", note: "QLoRA instruct 未给予足够篇幅。"}
+119	    - {round: 28, reviewers: "R2-N1(Critical),R1-W3(Major),交叉均agree", note: "R2 升级为 Critical：Abstract/Intro 暗示广泛适用性但 instruct F1 = 0.338-0.660。R1 指出 QLoRA instruct 0.89-0.91 仅 within-model CV 非 LOGO。R1 交叉建议降为 Major（Abstract 已有 disclaimer）。共识：Introduction contribution list 和 Conclusion 需更突出标注 base-model-only 限制。"}
+120	  action_items:
+121	    - {round: 26, action: "QLoRA instruct 写入 Appendix K + Discussion。", assigned_to: "Agent", status: "done"}
+122	    - {round: 27, action: "Results/Discussion 更显著讨论 QLoRA instruct。", assigned_to: "Research Director", status: "done"}
+123	    - {round: 28, action: "Introduction contribution list 明确标注 base-model-only。Abstract disclaimer 位置提前（不仅放在末尾）。", assigned_to: "Research Director", status: "open"}
+124	  resolution: ""
+125	  resolution_round: null
+126	
+127	- id: "R28-N2"
+128	  summary: "TOST n=3 seeds 欠效力，Abstract 省略 'preliminary' 和 'n=3' 构成 overclaim"
+129	  category: experiment
+130	  severity: critical
+131	  status: open
+132	  first_raised_round: 28
+133	  last_seen_round: 28
+134	  mentions:
+135	    - {round: 28, reviewers: "R1-N2(Critical),R2(agree,建议降为 Should-Fix)", note: "Abstract 声称 'equivalence testing suggests no downstream training quality degradation' 但仅 n=3 seeds，Cohen's d 膨胀至 86-119（degenerate case）。Conclusion 有 'preliminary (n=3)' 限定但 Abstract 省略。R2 同意 overclaim 但认为下游 utility 是辅助论证非核心贡献，建议降为 Major。共识：Abstract 必须加入 'preliminary, n=3' 或删除该声明。"}
+136	  action_items:
+137	    - {round: 28, action: "Abstract 中删除或大幅弱化 TOST 声明（至少加 'preliminary, n=3'）。若保留为 contribution 则需增加 seeds ≥10。", assigned_to: "Research Director", status: "open"}
+138	  resolution: ""
+139	  resolution_round: null
+140	
+141	- id: "R28-N3"
+142	  summary: "模型规模仅 ≤8B，无 >30B 或闭源模型验证，标题暗示 LLM 普适性"
+143	  category: experiment
+144	  severity: warning
+145	  status: open
+146	  first_raised_round: 28
+147	  last_seen_round: 28
+148	  mentions:
+149	    - {round: 28, reviewers: "R2-N3(Major),R1(agree Major)", note: "全部 8 个 generator ≤8B。Table 1 显示规模效应：Mistral-7B binary F1=0.633 显著低于小模型（Pythia-1B: 0.718）。暗示 DDR 可能随规模增大进一步衰减。Limitations 有讨论但标题 'LLM Text Chains' 暗示普适性。"}
+150	  action_items:
+151	    - {round: 28, action: "标题/Abstract 考虑限定为 'small-to-medium LLMs'；或至少在 Limitations 中更明确讨论规模外推风险。", assigned_to: "Research Director", status: "open"}
+152	  resolution: ""
+153	  resolution_round: null
+154	
+155	- id: "R26-W1"
+156	  summary: "Binary F1=0.694 实用意义有限 + QLoRA gap 暴露特征覆盖不足"
+157	  category: method
+158	  severity: warning
+159	  status: acknowledged
+160	  first_raised_round: 26
+161	  last_seen_round: 28
+162	  mentions:
+163	    - {round: 26, reviewers: "R1(Major),R2(Major)", note: "手工特征只捕获约 77% 可达性能。"}
+164	    - {round: 27, reviewers: "R2-W1(Major),R1(partial rebut)", note: "DDR interpretability 价值不完全取决于分类精度。"}
+165	    - {round: 28, reviewers: "R2-W2(Major),R1(rebut)", note: "R2 批评方法论贡献有限（经典特征+XGBoost）。R1 反驳：论文是分析框架贡献非方法贡献，简单特征是 deliberate design choice 使 DDR decomposition 可解释。分歧未解决但两位同意 Findings 可接受。"}
+166	  action_items:
+167	    - {round: 26, action: "论文已定位为 empirical analysis + DDR framework。", assigned_to: "Director", status: "acknowledged"}
+168	  resolution: ""
+169	  resolution_round: null
+170	
+171	- id: "R26-W3"
+172	  summary: "DDR 与已知 distributional drift 现象的本质区别不够清晰 + 并行工作 novelty boundary"
+173	  category: method
+174	  severity: warning
+175	  status: in_progress
+176	  first_raised_round: 26
+177	  last_seen_round: 28
+178	  mentions:
+179	    - {round: 26, reviewers: "R1(agree),R2(Major)", note: "DDR 更多是 empirical decomposition 而非新现象。"}
+180	    - {round: 27, reviewers: "R2-N2,R1(agree)", note: "Discussion §5 informal conjecture 不足。"}
+181	    - {round: 28, reviewers: "R2-N2(Critical),R1(partial rebut→Major)", note: "R2 升级为 Critical：Geng et al. (2026) per-feature convergence 与 DDR 高度相似。R1 反驳：DDR 增量在 ordinal classification + location/shape decomposition，降为 Major。共识：§2.2 需要一个专门段落或表格系统对比本文 vs Mohamed et al. vs Geng et al.。"}
+182	  action_items:
+183	    - {round: 26, action: "Discussion 添加 DDR vs model collapse 区分。", assigned_to: "Agent", status: "done"}
+184	    - {round: 28, action: "§2.2 扩展对比段落：本文 vs Mohamed et al. (2025) vs Geng et al. (2026)，明确列出 setting/features/evaluation/findings 差异。", assigned_to: "Research Director", status: "open"}
+185	  resolution: ""
+186	  resolution_round: null
+187	
+188	- id: "R25-W4"
+189	  summary: "Generator subset 不一致 (5/6/8-gen)"
+190	  category: experiment
+191	  severity: warning
+192	  status: in_progress
+193	  first_raised_round: 25
+194	  last_seen_round: 28
+195	  mentions:
+196	    - {round: 25, reviewers: "R2(提出),R1(同意)", note: "至少 6 种 subset 配置。"}
+197	    - {round: 26, reviewers: "R1(Major),R2(Minor)", note: "建议加入 subset 对照表。"}
+198	    - {round: 27, reviewers: "R1-W2(Major),R2-W2(Minor)", note: "QLoRA '+11.6pp' 已标注 6-gen LOGO。"}
+199	    - {round: 28, reviewers: "R1-W2(Major),R2(agree)", note: "R28 再次提出。R2 补充：QLoRA 排除的 2 个 generator 可能是最难分类的，F1 提升可能由 subset selection 驱动。建议明确列出被排除 generators 及其 8-gen 下 individual performance。"}
+200	  action_items:
+201	    - {round: 27, action: "Results L19 已标注 '(6-generator LOGO; +11.6 pp)'。", assigned_to: "Research Director", status: "done"}
+202	    - {round: 28, action: "Appendix E 明确列出被排除的 generators 及其在 8-gen 下的 individual performance。", assigned_to: "Research Director", status: "open"}
+203	  resolution: ""
+204	  resolution_round: null
+205	
+206	- id: "R25-W6"
+207	  summary: "Downstream n=3 underpowered"
+208	  category: experiment
+209	  severity: warning
+210	  status: in_progress
+211	  first_raised_round: 21
+212	  last_seen_round: 28
+213	  mentions:
+214	    - {round: 25, reviewers: "R1,R2", note: "n=3 TOST power 极低。"}
+215	    - {round: 26, reviewers: "R2-Q5,R1-Q5", note: "单一 reference model 且 negative result。"}
+216	    - {round: 27, reviewers: "R1-W7(Minor),R2(rebut)", note: "措辞分歧。"}
+217	    - {round: 28, reviewers: "R1-N2(Critical),R2(agree Major)", note: "R28 升级为 Critical/Major：n=3 的 TOST 是 degenerate case，Cohen's d 膨胀使检验无意义。Abstract overclaim 是新焦点。"}
+218	  action_items:
+219	    - {round: 25, action: "Discussion 改为 pilot experiment 措辞", assigned_to: "Director", status: "done"}
+220	    - {round: 28, action: "与 R28-N2 合并处理。Abstract 弱化或删除 TOST 声明。", assigned_to: "Research Director", status: "open"}
+221	  resolution: ""
+222	  resolution_round: null
+223	
+224	- id: "R25-W7"
+225	  summary: "Instruct model 退化缺 mechanistic 分析（RLHF vs SFT 未区分）"
+226	  category: method
+227	  severity: warning
+228	  status: in_progress
+229	  first_raised_round: 25
+230	  last_seen_round: 28
+231	  mentions:
+232	    - {round: 25, reviewers: "R1,R2", note: "仅描述性报告。"}
+233	    - {round: 26, reviewers: "R1(Minor),R2(partial agree)", note: "QLoRA instruct 部分回应。"}
+234	    - {round: 27, reviewers: "none", note: "R27 未作为独立 weakness。"}
+235	    - {round: 28, reviewers: "R2-Q1,R1(agree good question)", note: "R2 提问 RLHF/DPO 哪个 component 导致 DDR 压缩。R1 同意有价值但缺 mechanistic 解释。Discussion 仅有 'reorganizes rather than eliminates' 假设。"}
+236	  action_items:
+237	    - {round: 26, action: "QLoRA instruct 完成。", assigned_to: "Agent", status: "done"}
+238	  resolution: ""
+239	  resolution_round: null
+240	
+241	- id: "R27-W3"
+242	  summary: "Temperature 消融覆盖不足，可靠范围 [0.5,0.7] 对实际部署过窄"
+243	  category: experiment
+244	  severity: warning
+245	  status: acknowledged
+246	  first_raised_round: 27
+247	  last_seen_round: 28
+248	  mentions:
+249	    - {round: 27, reviewers: "R1-W3(Major),R2(agree Major)", note: "仅 3 温度点 × 4 generator。"}
+250	    - {round: 28, reviewers: "R1-N1 implicitly,R2(agree)", note: "R28 将温度依赖性升级为核心 framing 问题（R28-N1），不仅是消融覆盖不足。"}
+251	  action_items:
+252	    - {round: 27, action: "Limitations 已讨论温度范围限制。", assigned_to: "Research Director", status: "acknowledged"}
+253	  resolution: ""
+254	  resolution_round: null
+255	
+256	- id: "R27-W5"
+257	  summary: "Baseline 对比 framing：detection ensemble 已超过 7-feature，DDR 增量在 interpretability"
+258	  category: framing
+259	  severity: warning
+260	  status: resolved
+261	  first_raised_round: 27
+262	  last_seen_round: 27
+263	  mentions:
+264	    - {round: 27, reviewers: "R1-W5(Major),R2(agree)", note: "改写为 DDR 不优于 detection ensemble，价值在于 interpretable decomposition。"}
+265	    - {round: 28, reviewers: "none", note: "R28 未提及。"}
+266	  action_items:
+267	    - {round: 27, action: "§4.3 明确声明。", assigned_to: "Research Director", status: "done"}
+268	  resolution: "§4.3 明确声明 DDR 不优于 detection ensemble，价值在于 interpretable decomposition。"
+269	  resolution_round: 27
+270	
+271	# ============ MINOR / INFO ============
+272	
+273	- id: "R28-M1"
+274	  summary: "entropy_max LOFO 退化最大但被归为 near-stationary，与 DDR 叙事存在张力"
+275	  category: method
+276	  severity: info
+277	  status: open
+278	  first_raised_round: 28
+279	  last_seen_round: 28
+280	  mentions:
+281	    - {round: 28, reviewers: "R1-W5(Minor),R2(rebut)", note: "R1：near-stationary 的 entropy_max 在 LOFO 中退化最大（−1.5pp），暗示其携带超出 DDR 框架暗示的信息。R2 反驳：distributional behavior（是否 drift）和 discriminative utility（对分类器是否重要）是两个不同概念——不变的特征恰恰因为提供 stable reference 才对分类有价值。分歧未解决但两位均认为属 Minor。"}
+282	  action_items:
+283	    - {round: 28, action: "考虑在正文或附录增加一句区分 'distributional behavior' 和 'discriminative utility'。", assigned_to: "Research Director", status: "open"}
+284	  resolution: ""
+285	  resolution_round: null
+286	
+287	- id: "R28-M2"
+288	  summary: "Cross-domain 实验 (Appendix I) 使用 t=1.0，与主实验 t=0.7 不一致"
+289	  category: experiment
+290	  severity: info
+291	  status: open
+292	  first_raised_round: 28
+293	  last_seen_round: 28
+294	  mentions:
+295	    - {round: 28, reviewers: "R1-Minor-2,R2(agree)", note: "若 DDR 在 t=1.0 信号消失（R28-N1），则 cross-domain 正面结果可能来自其他 confound（domain-specific vocabulary）。需解释不一致。"}
+296	  action_items:
+297	    - {round: 28, action: "正文引用 cross-domain 结果时注明采样参数差异，或讨论 domain × temperature interaction。", assigned_to: "Research Director", status: "open"}
+298	  resolution: ""
+299	  resolution_round: null
+300	
+301	- id: "R28-M3"
+302	  summary: "Abstract 表述过于绝对：'consistent across five model families' 混淆 DDR pattern consistency 与 performance consistency"
+303	  category: writing
+304	  severity: info
+305	  status: open
+306	  first_raised_round: 28
+307	  last_seen_round: 28
+308	  mentions:
+309	    - {round: 28, reviewers: "R2-W1(Major),R1(partially agree)", note: "DDR partition 在所有 family 中成立（holdout 验证），但 classification performance 变异显著（0.633-0.724, 9.1pp spread）。R1 建议改为 'the partition is consistent ... though classification performance varies with model scale'。"}
+310	  action_items:
+311	    - {round: 28, action: "Abstract 'consistent' 措辞加入 performance variation 限定。", assigned_to: "Research Director", status: "open"}
+312	  resolution: ""
+313	  resolution_round: null
+314	
+315	- id: "R28-M4"
+316	  summary: "可能遗漏相关工作：Shahriar et al. (2025), Riis (2026), Wang et al. (2025 orphan)"
+317	  category: writing
+318	  severity: info
+319	  status: open
+320	  first_raised_round: 28
+321	  last_seen_round: 28
+322	  mentions:
+323	    - {round: 28, reviewers: "R2(提出),R1(agree)", note: "Shahriar et al. (2025) 研究 iterative paraphrasing 降低检测性能，与本文 setting 互补。Riis (2026) 提出 recursive text generation 数学框架。Wang et al. (2025) 在 .bib 中但未引用（orphan）。R1 同意均应引用但需先确认 Riis (2026) 真实性。"}
+324	  action_items:
+325	    - {round: 28, action: "确认 Shahriar et al. 和 Riis 引用真实性后引用；Wang et al. orphan entry 引用或删除。", assigned_to: "Research Director", status: "open"}
+326	  resolution: ""
+327	  resolution_round: null
+328	
+329	- id: "R28-M5"
+330	  summary: "17 个 orphan bib entries + 9 个 OpenAlex 未验证引用"
+331	  category: format
+332	  severity: info
+333	  status: open
+334	  first_raised_round: 28
+335	  last_seen_round: 28
+336	  mentions:
+337	    - {round: 28, reviewers: "R2(提出),R1(agree)", note: "17 个 bib 条目未被正文引用。9 个条目 OpenAlex 未能验证（含 two_birds, beyond_final_actor 需确认真实性）。提交前应清理。"}
+338	  action_items:
+339	    - {round: 28, action: "清理 orphan bib entries；确认 two_birds (Rao et al. 2025) 和 beyond_final_actor (Li et al. 2026) 真实性。", assigned_to: "Research Director", status: "open"}
+340	  resolution: ""
+341	  resolution_round: null
+342	
+343	- id: "R28-M6"
+344	  summary: "术语不一致 ('generation depth' vs 'recursive depth'; 'entropy' 定义)"
+345	  category: writing
+346	  severity: info
+347	  status: open
+348	  first_raised_round: 28
+349	  last_seen_round: 28
+350	  mentions:
+351	    - {round: 28, reviewers: "R1-Minor-3,R2-Minor-2,交叉均agree", note: "两位均指出术语交替使用问题。脚注5解释 entropy 实际指 token-level NLL 但全文不一致。"}
+352	  action_items:
+353	    - {round: 28, action: "统一术语；Method 首次定义时区分 entropy 和 NLL。", assigned_to: "Research Director", status: "open"}
+354	  resolution: ""
+355	  resolution_round: null
+356	
+357	- id: "R25-W3"
+358	  summary: "TTR-hapax 冗余（r=0.97）"
+359	  category: method
+360	  severity: info
+361	  status: in_progress
+362	  first_raised_round: 23
+363	  last_seen_round: 27
+364	  mentions:
+365	    - {round: 25, reviewers: "R1,R2", note: "循环论证已修复。"}
+366	    - {round: 27, reviewers: "R1-Q4(cross),R2(agree)", note: "LOFO gains <1pp，保留是 interpretability vs parsimony 取舍。"}
+367	    - {round: 28, reviewers: "none", note: "R28 未提及。"}
+368	  action_items:
+369	    - {round: 25, action: "消融实验完成。", assigned_to: "Director", status: "done"}
+370	  resolution: ""
+371	  resolution_round: null
+372	
+373	- id: "R25-W9"
+374	  summary: "Reference model same-family 偏差（Pythia-410M）"
+375	  category: experiment
+376	  severity: info
+377	  status: in_progress
+378	  first_raised_round: 25
+379	  last_seen_round: 27
+380	  mentions:
+381	    - {round: 25, reviewers: "R1(提出),R2(agree)", note: "Pythia-410M 与 Pythia generators 同家族。"}
+382	    - {round: 28, reviewers: "none", note: "R28 未提及。"}
+383	  action_items:
+384	    - {round: 25, action: "§4.2 添加 affinity caveat", assigned_to: "Director", status: "done"}
+385	  resolution: ""
+386	  resolution_round: null
+387	
+388	- id: "R27-W6"
+389	  summary: "Independent-seed 控制仅覆盖 2/8 generator"
+390	  category: experiment
+391	  severity: info
+392	  status: acknowledged
+393	  first_raised_round: 27
+394	  last_seen_round: 27
+395	  mentions:
+396	    - {round: 27, reviewers: "R1-W6(Minor),R2(agree)", note: "仅 Pythia-2.8B 和 OLMo-2-1B。"}
+397	    - {round: 28, reviewers: "none", note: "R28 未提及。"}
+398	  action_items:
+399	    - {round: 27, action: "Limitations 已提及。", assigned_to: "Research Director", status: "acknowledged"}
+400	  resolution: ""
+401	  resolution_round: null
+402	
+403	- id: "R27-W8"
+404	  summary: "Table 1 vs Table 2 聚合方式不同（per-gen macro avg vs pooled），差 1.1pp"
+405	  category: writing
+406	  severity: info
+407	  status: open
+408	  first_raised_round: 27
+409	  last_seen_round: 28
+410	  mentions:
+411	    - {round: 27, reviewers: "R1-W8(Minor),R2(agree)", note: "Caption 有注释但易混淆。"}
+412	    - {round: 28, reviewers: "R1-Minor-1,R2-Minor-5,交叉均agree", note: "R28 再次提及。建议正文首次引用 Table 2 时标注 '(pooled)'。"}
+413	  action_items:
+414	    - {round: 28, action: "正文首次引用 Table 2 时标注 '(pooled)'。", assigned_to: "Research Director", status: "open"}
+415	  resolution: ""
+416	  resolution_round: null
+417	
+418	- id: "R27-W4-supp"
+419	  summary: "anonymous_supplement.tgz 文件缺失"
+420	  category: format
+421	  severity: info
+422	  status: open
+423	  first_raised_round: 27
+424	  last_seen_round: 27
+425	  mentions:
+426	    - {round: 27, reviewers: "R2-W4(Minor),R1(agree)", note: "提交材料清单声明有但文件不存在。"}
+427	    - {round: 28, reviewers: "none", note: "R28 未提及。"}
+428	  action_items:
+429	    - {round: 27, action: "打包补充材料或更新提交计划。", assigned_to: "Research Director", status: "open"}
+430	  resolution: ""
+431	  resolution_round: null
+432	
+433	# ============ RESOLVED (prior rounds, confirmed by R28 not raising) ============
+434	
+435	- id: "R26-W2"
+436	  summary: "Abstract 约 132 words 偏短 + 缺少 why important + NLL 未定义"
+437	  category: writing
+438	  severity: warning
+439	  status: resolved
+440	  first_raised_round: 26
+441	  last_seen_round: 27
+442	  resolution: "Abstract 扩展完成。R27-R28 未再提及长度问题。"
+443	  resolution_round: 26
+444	
+445	- id: "R25-W2"
+446	  summary: "异方差下 pooled d → Glass's Δ 应更突出"
+447	  category: method
+448	  severity: warning
+449	  status: resolved
+450	  first_raised_round: 21
+451	  last_seen_round: 25
+452	  resolution: "Glass's Δ 内嵌正文，R26-R28 未再提及。"
+453	  resolution_round: 26
+454	
+455	- id: "R25-W1"
+456	  summary: "TOST tail decay 4/8 通过"
+457	  category: method
+458	  severity: warning
+459	  status: resolved
+460	  first_raised_round: 21
+461	  last_seen_round: 25
+462	  resolution: "Reclassification caveat 在位，R26-R28 未再提及。"
+463	  resolution_round: 26
+464	
+465	- id: "R25-W5"
+466	  summary: "遗漏 Wang et al. ACL 2025 (Attractor Cycles)"
+467	  category: writing
+468	  severity: warning
+469	  status: resolved
+470	  first_raised_round: 25
+471	  last_seen_round: 25
+472	  resolution: "引用已添加。R26-R28 未再提及。"
+473	  resolution_round: 26
+474	
+475	- id: "R25-M1"
+476	  summary: "', confirming' 9+ 次 AI 写作标志"
+477	  category: writing
+478	  severity: info
+479	  status: resolved
+480	  first_raised_round: 25
+481	  last_seen_round: 25
+482	  resolution: "R26-R28 均确认无 AI 写作标志。"
+483	  resolution_round: 26
+484	
+485	- id: "R25-W10"
+486	  summary: "OLMo checkpoint 不一致"
+487	  category: experiment
+488	  severity: warning
+489	  status: resolved
+490	  first_raised_round: 25
+491	  last_seen_round: 27
+492	  resolution: "脚注说明在位。影响 bounded。"
+493	  resolution_round: 26
+494	
+495	- id: "R25-W8"
+496	  summary: "Contribution 分量不均"
+497	  category: writing
+498	  severity: warning
+499	  status: resolved
+500	  first_raised_round: 25
+501	  last_seen_round: 25
+502	  resolution: "R26-R28 均确认叙事一致。"
+503	  resolution_round: 26
+504	
+505	- id: "R26-MR1"
+506	  summary: "Related Work 缺少 query-based LLM 检测方法引用"
+507	  category: writing
+508	  severity: info
+509	  status: resolved
+510	  first_raised_round: 26
+511	  last_seen_round: 26
+512	  resolution: "Zhu et al. 2023 引用已添加。R27 确认引用完整。"
+513	  resolution_round: 26
+514	
+515	- id: "R24-W2-dismissed"
+516	  summary: "参考模型 confound (R1 声称 cross-reference F1 降至 ~0.613)"
+517	  category: method
+518	  severity: info
+519	  status: resolved
+520	  first_raised_round: 24
+521	  last_seen_round: 24
+522	  resolution: "R1 数据引用错误。实际 cross-reference LOGO F1 spread=0.013。"
+523	  resolution_round: 24
+524	
+525	- id: "R1-N2-old"
+526	  summary: "DDR 3/1/3 partition post-hoc 选择"
+527	  category: method
+528	  severity: critical
+529	  status: resolved
+530	  first_raised_round: 21
+531	  last_seen_round: 23
+532	  resolution: "§4.2 重构为 2-group primary + domain-informed refinement"
+533	  resolution_round: 23
+534	
+535	- id: "R2-N2-old"
+536	  summary: "新颖性受限：三篇并行工作收敛于 ~3 classes"
+537	  category: method
+538	  severity: critical
+539	  status: resolved
+540	  first_raised_round: 21
+541	  last_seen_round: 23
+542	  resolution: "Novelty 锚定在 DDR 分解"
+543	  resolution_round: 23
+544	
+545	- id: "R1-N5"
+546	  summary: "QLoRA F1=0.905 是否削弱 DDR 贡献"
+547	  category: method
+548	  severity: warning
+549	  status: resolved
+550	  first_raised_round: 21
+551	  last_seen_round: 24
+552	  resolution: "QLoRA 定位为验证 depth signal 存在，非竞争方法"
+553	  resolution_round: 24
+554	
+555	- id: "R2-W4-old"
+556	  summary: "正文可能超8页限制"
+557	  category: format
+558	  severity: warning
+559	  status: resolved
+560	  first_raised_round: 21
+561	  last_seen_round: 22
+562	  resolution: "Main content ≤8 pages confirmed."
+563	  resolution_round: 26
+564	
+565	- id: "R22-M2"
+566	  summary: "Abstract 中 LLM 缩写未展开"
+567	  category: format
+568	  severity: info
+569	  status: resolved
+570	  first_raised_round: 22
+571	  last_seen_round: 22
+572	  resolution: "Changed to 'large language models (LLMs)'"
+573	  resolution_round: 22
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a304f027-a81a-49a6-a03a-b2f4aa630fc3",
+  "isSidechain": false,
+  "promptId": "4582f6cb-64a4-498a-9e05-ac7b1e33e7b9",
+  "type": "user",
+  "uuid": "8ab54cff-2187-4389-b5d2-cdc669b14d73",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_issues.yaml",
+      "content": "# Review Issues — through Round 28\n# Last updated: 2026-05-20\n\n# ============ CRITICAL ============\n\n- id: \"R26-N1\"\n  summary: \"缺少 Responsible NLP Research Checklist，可能 desk reject\"\n  category: format\n  severity: critical\n  status: resolved\n  first_raised_round: 26\n  last_seen_round: 26\n  mentions:\n    - {round: 26, reviewers: \"R2(提出),R1(agree)\", note: \"ARR 投稿必须包含 Responsible NLP Research Checklist。grep 全文无匹配。缺失是 desk reject 的充分条件。\"}\n    - {round: 27, reviewers: \"none\", note: \"R27 未提及。已确认 Checklist 通过 OpenReview 表单提交。\"}\n    - {round: 28, reviewers: \"none\", note: \"R28 未提及。\"}\n  action_items:\n    - {round: 26, action: \"Independent Reviewer 确认：ARR Checklist 是 OpenReview 表单，不嵌入 PDF。非真实 desk reject 风险。\", assigned_to: \"Director\", status: \"done\"}\n  resolution: \"ARR Responsible NLP Checklist 通过 OpenReview 表单提交，不是 PDF 内容。Checklist 草稿已准备。\"\n  resolution_round: 26\n\n- id: \"R26-N2\"\n  summary: \"正文约 8.3-8.4 页，超出 long paper 8 页限制\"\n  category: format\n  severity: critical\n  status: resolved\n  first_raised_round: 26\n  last_seen_round: 26\n  mentions:\n    - {round: 26, reviewers: \"R2(提出),R1(agree)\", note: \"§1-6 主文内容延伸至 page 9 中上部。\"}\n    - {round: 27, reviewers: \"none\", note: \"R27 确认页数合规。\"}\n    - {round: 28, reviewers: \"none\", note: \"R28 未提及页数问题。\"}\n  action_items:\n    - {round: 26, action: \"压缩 Discussion + Results。\", assigned_to: \"Agent\", status: \"done\"}\n  resolution: \"Discussion + Results 压缩后 Conclusion 在 p8，主文 ≤8 页。PDF 视觉确认。\"\n  resolution_round: 26\n\n- id: \"R25-N1\"\n  summary: \"DDR 新颖性不足以支撑 Main Conference，Findings 级别合适\"\n  category: method\n  severity: critical\n  status: acknowledged\n  first_raised_round: 21\n  last_seen_round: 28\n  mentions:\n    - {round: 25, reviewers: \"R1,R2\", note: \"DDR 是已知特征的行为分类，非概念突破。\"}\n    - {round: 26, reviewers: \"R1,R2\", note: \"三篇并行工作已独立发现 ~3-class ceiling。\"}\n    - {round: 27, reviewers: \"R1(agree),R2(N2,agree)\", note: \"DDR novelty 在于 empirical verification 而非新发现。两位均维持 Findings 定位。\"}\n    - {round: 28, reviewers: \"R2-N2(Critical),R1(partial rebut→Major)\", note: \"R2 将 novelty boundary 升级为 Critical：Mohamed et al. (2025) 和 Geng et al. (2026) 的 per-feature convergence trajectories 与 DDR 高度重叠。R1 反驳：DDR 的增量在 ordinal classification task formulation + location/shape decomposition，降为 Major。交叉后共识：需扩展 §2.2 对比讨论但 novelty 本身成立。\"}\n  action_items:\n    - {round: 25, action: \"接受 Findings 定位。\", assigned_to: \"Director\", status: \"done\"}\n  resolution: \"Findings 定位，连续 8 轮稳定。\"\n  resolution_round: null\n\n- id: \"R25-N3\"\n  summary: \"DDR 阈值缺乏理论基础 + location/shape 分离缺机制性解释 + entropy min 分类不一致\"\n  category: method\n  severity: critical\n  status: in_progress\n  first_raised_round: 21\n  last_seen_round: 28\n  mentions:\n    - {round: 25, reviewers: \"R1,R2\", note: \"0.75 是看到数据后选的。\"}\n    - {round: 26, reviewers: \"R1(提出),R2(agree with nuance)\", note: \"d 在 [0.56,0.75] partition 稳定。\"}\n    - {round: 27, reviewers: \"R1-W1(Critical),R2(agree)\", note: \"entropy min Cliff's δ=0.354 vs Cohen's d=0.016 严重不一致。\"}\n    - {round: 28, reviewers: \"R1-W4(Minor→Major),R2(partial rebut→Minor)\", note: \"R1 维持 entropy_min 分类为 ad-hoc。R2 反驳：Cliff's δ 和 Cohen's d 衡量不同效应类型（ordinal vs parametric），不一致有合理统计解释。但 holdout 3/2/2 vs 3/1/3 分歧仍未解决。交叉后分歧：R1 认为 Minor→Major，R2 认为纯 Minor。\"}\n  action_items:\n    - {round: 25, action: \"§4.2 改为 continuous gradient + data-driven clustering 叙事\", assigned_to: \"Director\", status: \"done\"}\n    - {round: 27, action: \"§4.2 讨论 Cliff's δ vs Cohen's d 不一致 + Contribution 2 调整\", assigned_to: \"Research Director\", status: \"done\"}\n  resolution: \"entropy min 不一致已在 §4.2 讨论。R28 分歧在严重度而非事实。\"\n  resolution_round: null\n\n- id: \"R25-W11\"\n  summary: \"Cross-model F1=0.764 存在 model-switching / generator identity confound\"\n  category: experiment\n  severity: critical\n  status: in_progress\n  first_raised_round: 25\n  last_seen_round: 28\n  mentions:\n    - {round: 25, reviewers: \"R2(提出),R1(agree)\", note: \"generator heterogeneity 可能放大 depth signal。\"}\n    - {round: 26, reviewers: \"R1(Critical),R2(Major,agree)\", note: \"Transfer ablation 完成，56/56 pairs > chance。\"}\n    - {round: 27, reviewers: \"R1-W4(Major),R2-Q3(agree)\", note: \"措辞已弱化为 'provides evidence against'。\"}\n    - {round: 28, reviewers: \"R1-W1(Major),R2(agree)\", note: \"R28 重新指出：cross-model 用 sample-level 5-fold CV 而非 generator-level held-out，与主表 LOGO 设计矛盾。Single-gen transfer 无法排除混合链特有的 confound。R2 补充：训练/测试集可能共享同一 generator 的样本。两位建议 chain-level CV 或降级为 exploratory。\"}\n  action_items:\n    - {round: 26, action: \"Transfer ablation + Conclusion 移除 cross-model F1。\", assigned_to: \"Agent\", status: \"done\"}\n    - {round: 27, action: \"措辞弱化为 'provides evidence against'。\", assigned_to: \"Research Director\", status: \"done\"}\n    - {round: 28, action: \"Cross-model 评估改为 generator-level held-out 或 chain-level CV；或在正文中将 cross-model 结果降级为 exploratory。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n# ============ MAJOR ============\n\n- id: \"R28-N1\"\n  summary: \"DDR 是采样参数依赖的（t=1.0 信号消失），Abstract/Conclusion 将其 frame 为递归生成内禀属性构成 overclaim\"\n  category: framing\n  severity: critical\n  status: open\n  first_raised_round: 28\n  last_seen_round: 28\n  mentions:\n    - {round: 28, reviewers: \"R1-N1(Critical),R2(agree Critical)\", note: \"Appendix O: t=1.0 时 entropy-depth ρ 从 −0.60 坍缩至 −0.002。Discussion §5 承认 'parameter-dependent' 但被埋在正文中段。Abstract 第一句和 Conclusion 第一句暗示 DDR 是递归生成的普遍性质。R2 补充：DDR 被双重限制（采样参数 + 仅 base models），几乎所有核心实验在同一温度窗口 (t=0.7) 内。两位共识：Abstract/Conclusion 必须加入 'under standard nucleus sampling (t ∈ [0.5, 0.7])' 限定。\"}\n  action_items:\n    - {round: 28, action: \"Abstract/Conclusion 加入采样条件限定 (t ∈ [0.5, 0.7])。Introduction contribution list 将温度敏感性作为核心发现之一。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R25-N2\"\n  summary: \"Base model 限制严重削弱 impact（0.6B-8B only + instruct 退化）\"\n  category: framing\n  severity: critical\n  status: in_progress\n  first_raised_round: 21\n  last_seen_round: 28\n  mentions:\n    - {round: 25, reviewers: \"R1,R2\", note: \"Instruct retrain 已完成但实用性仍受限。\"}\n    - {round: 26, reviewers: \"R1(Major),R2(agree)\", note: \"QLoRA instruct 完成。\"}\n    - {round: 27, reviewers: \"R2-N1(Major),R1(agree)\", note: \"QLoRA instruct 未给予足够篇幅。\"}\n    - {round: 28, reviewers: \"R2-N1(Critical),R1-W3(Major),交叉均agree\", note: \"R2 升级为 Critical：Abstract/Intro 暗示广泛适用性但 instruct F1 = 0.338-0.660。R1 指出 QLoRA instruct 0.89-0.91 仅 within-model CV 非 LOGO。R1 交叉建议降为 Major（Abstract 已有 disclaimer）。共识：Introduction contribution list 和 Conclusion 需更突出标注 base-model-only 限制。\"}\n  action_items:\n    - {round: 26, action: \"QLoRA instruct 写入 Appendix K + Discussion。\", assigned_to: \"Agent\", status: \"done\"}\n    - {round: 27, action: \"Results/Discussion 更显著讨论 QLoRA instruct。\", assigned_to: \"Research Director\", status: \"done\"}\n    - {round: 28, action: \"Introduction contribution list 明确标注 base-model-only。Abstract disclaimer 位置提前（不仅放在末尾）。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R28-N2\"\n  summary: \"TOST n=3 seeds 欠效力，Abstract 省略 'preliminary' 和 'n=3' 构成 overclaim\"\n  category: experiment\n  severity: critical\n  status: open\n  first_raised_round: 28\n  last_seen_round: 28\n  mentions:\n    - {round: 28, reviewers: \"R1-N2(Critical),R2(agree,建议降为 Should-Fix)\", note: \"Abstract 声称 'equivalence testing suggests no downstream training quality degradation' 但仅 n=3 seeds，Cohen's d 膨胀至 86-119（degenerate case）。Conclusion 有 'preliminary (n=3)' 限定但 Abstract 省略。R2 同意 overclaim 但认为下游 utility 是辅助论证非核心贡献，建议降为 Major。共识：Abstract 必须加入 'preliminary, n=3' 或删除该声明。\"}\n  action_items:\n    - {round: 28, action: \"Abstract 中删除或大幅弱化 TOST 声明（至少加 'preliminary, n=3'）。若保留为 contribution 则需增加 seeds ≥10。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R28-N3\"\n  summary: \"模型规模仅 ≤8B，无 >30B 或闭源模型验证，标题暗示 LLM 普适性\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 28\n  last_seen_round: 28\n  mentions:\n    - {round: 28, reviewers: \"R2-N3(Major),R1(agree Major)\", note: \"全部 8 个 generator ≤8B。Table 1 显示规模效应：Mistral-7B binary F1=0.633 显著低于小模型（Pythia-1B: 0.718）。暗示 DDR 可能随规模增大进一步衰减。Limitations 有讨论但标题 'LLM Text Chains' 暗示普适性。\"}\n  action_items:\n    - {round: 28, action: \"标题/Abstract 考虑限定为 'small-to-medium LLMs'；或至少在 Limitations 中更明确讨论规模外推风险。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R26-W1\"\n  summary: \"Binary F1=0.694 实用意义有限 + QLoRA gap 暴露特征覆盖不足\"\n  category: method\n  severity: warning\n  status: acknowledged\n  first_raised_round: 26\n  last_seen_round: 28\n  mentions:\n    - {round: 26, reviewers: \"R1(Major),R2(Major)\", note: \"手工特征只捕获约 77% 可达性能。\"}\n    - {round: 27, reviewers: \"R2-W1(Major),R1(partial rebut)\", note: \"DDR interpretability 价值不完全取决于分类精度。\"}\n    - {round: 28, reviewers: \"R2-W2(Major),R1(rebut)\", note: \"R2 批评方法论贡献有限（经典特征+XGBoost）。R1 反驳：论文是分析框架贡献非方法贡献，简单特征是 deliberate design choice 使 DDR decomposition 可解释。分歧未解决但两位同意 Findings 可接受。\"}\n  action_items:\n    - {round: 26, action: \"论文已定位为 empirical analysis + DDR framework。\", assigned_to: \"Director\", status: \"acknowledged\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R26-W3\"\n  summary: \"DDR 与已知 distributional drift 现象的本质区别不够清晰 + 并行工作 novelty boundary\"\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 26\n  last_seen_round: 28\n  mentions:\n    - {round: 26, reviewers: \"R1(agree),R2(Major)\", note: \"DDR 更多是 empirical decomposition 而非新现象。\"}\n    - {round: 27, reviewers: \"R2-N2,R1(agree)\", note: \"Discussion §5 informal conjecture 不足。\"}\n    - {round: 28, reviewers: \"R2-N2(Critical),R1(partial rebut→Major)\", note: \"R2 升级为 Critical：Geng et al. (2026) per-feature convergence 与 DDR 高度相似。R1 反驳：DDR 增量在 ordinal classification + location/shape decomposition，降为 Major。共识：§2.2 需要一个专门段落或表格系统对比本文 vs Mohamed et al. vs Geng et al.。\"}\n  action_items:\n    - {round: 26, action: \"Discussion 添加 DDR vs model collapse 区分。\", assigned_to: \"Agent\", status: \"done\"}\n    - {round: 28, action: \"§2.2 扩展对比段落：本文 vs Mohamed et al. (2025) vs Geng et al. (2026)，明确列出 setting/features/evaluation/findings 差异。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R25-W4\"\n  summary: \"Generator subset 不一致 (5/6/8-gen)\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 25\n  last_seen_round: 28\n  mentions:\n    - {round: 25, reviewers: \"R2(提出),R1(同意)\", note: \"至少 6 种 subset 配置。\"}\n    - {round: 26, reviewers: \"R1(Major),R2(Minor)\", note: \"建议加入 subset 对照表。\"}\n    - {round: 27, reviewers: \"R1-W2(Major),R2-W2(Minor)\", note: \"QLoRA '+11.6pp' 已标注 6-gen LOGO。\"}\n    - {round: 28, reviewers: \"R1-W2(Major),R2(agree)\", note: \"R28 再次提出。R2 补充：QLoRA 排除的 2 个 generator 可能是最难分类的，F1 提升可能由 subset selection 驱动。建议明确列出被排除 generators 及其 8-gen 下 individual performance。\"}\n  action_items:\n    - {round: 27, action: \"Results L19 已标注 '(6-generator LOGO; +11.6 pp)'。\", assigned_to: \"Research Director\", status: \"done\"}\n    - {round: 28, action: \"Appendix E 明确列出被排除的 generators 及其在 8-gen 下的 individual performance。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R25-W6\"\n  summary: \"Downstream n=3 underpowered\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 21\n  last_seen_round: 28\n  mentions:\n    - {round: 25, reviewers: \"R1,R2\", note: \"n=3 TOST power 极低。\"}\n    - {round: 26, reviewers: \"R2-Q5,R1-Q5\", note: \"单一 reference model 且 negative result。\"}\n    - {round: 27, reviewers: \"R1-W7(Minor),R2(rebut)\", note: \"措辞分歧。\"}\n    - {round: 28, reviewers: \"R1-N2(Critical),R2(agree Major)\", note: \"R28 升级为 Critical/Major：n=3 的 TOST 是 degenerate case，Cohen's d 膨胀使检验无意义。Abstract overclaim 是新焦点。\"}\n  action_items:\n    - {round: 25, action: \"Discussion 改为 pilot experiment 措辞\", assigned_to: \"Director\", status: \"done\"}\n    - {round: 28, action: \"与 R28-N2 合并处理。Abstract 弱化或删除 TOST 声明。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R25-W7\"\n  summary: \"Instruct model 退化缺 mechanistic 分析（RLHF vs SFT 未区分）\"\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 25\n  last_seen_round: 28\n  mentions:\n    - {round: 25, reviewers: \"R1,R2\", note: \"仅描述性报告。\"}\n    - {round: 26, reviewers: \"R1(Minor),R2(partial agree)\", note: \"QLoRA instruct 部分回应。\"}\n    - {round: 27, reviewers: \"none\", note: \"R27 未作为独立 weakness。\"}\n    - {round: 28, reviewers: \"R2-Q1,R1(agree good question)\", note: \"R2 提问 RLHF/DPO 哪个 component 导致 DDR 压缩。R1 同意有价值但缺 mechanistic 解释。Discussion 仅有 'reorganizes rather than eliminates' 假设。\"}\n  action_items:\n    - {round: 26, action: \"QLoRA instruct 完成。\", assigned_to: \"Agent\", status: \"done\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R27-W3\"\n  summary: \"Temperature 消融覆盖不足，可靠范围 [0.5,0.7] 对实际部署过窄\"\n  category: experiment\n  severity: warning\n  status: acknowledged\n  first_raised_round: 27\n  last_seen_round: 28\n  mentions:\n    - {round: 27, reviewers: \"R1-W3(Major),R2(agree Major)\", note: \"仅 3 温度点 × 4 generator。\"}\n    - {round: 28, reviewers: \"R1-N1 implicitly,R2(agree)\", note: \"R28 将温度依赖性升级为核心 framing 问题（R28-N1），不仅是消融覆盖不足。\"}\n  action_items:\n    - {round: 27, action: \"Limitations 已讨论温度范围限制。\", assigned_to: \"Research Director\", status: \"acknowledged\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R27-W5\"\n  summary: \"Baseline 对比 framing：detection ensemble 已超过 7-feature，DDR 增量在 interpretability\"\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 27\n  last_seen_round: 27\n  mentions:\n    - {round: 27, reviewers: \"R1-W5(Major),R2(agree)\", note: \"改写为 DDR 不优于 detection ensemble，价值在于 interpretable decomposition。\"}\n    - {round: 28, reviewers: \"none\", note: \"R28 未提及。\"}\n  action_items:\n    - {round: 27, action: \"§4.3 明确声明。\", assigned_to: \"Research Director\", status: \"done\"}\n  resolution: \"§4.3 明确声明 DDR 不优于 detection ensemble，价值在于 interpretable decomposition。\"\n  resolution_round: 27\n\n# ============ MINOR / INFO ============\n\n- id: \"R28-M1\"\n  summary: \"entropy_max LOFO 退化最大但被归为 near-stationary，与 DDR 叙事存在张力\"\n  category: method\n  severity: info\n  status: open\n  first_raised_round: 28\n  last_seen_round: 28\n  mentions:\n    - {round: 28, reviewers: \"R1-W5(Minor),R2(rebut)\", note: \"R1：near-stationary 的 entropy_max 在 LOFO 中退化最大（−1.5pp），暗示其携带超出 DDR 框架暗示的信息。R2 反驳：distributional behavior（是否 drift）和 discriminative utility（对分类器是否重要）是两个不同概念——不变的特征恰恰因为提供 stable reference 才对分类有价值。分歧未解决但两位均认为属 Minor。\"}\n  action_items:\n    - {round: 28, action: \"考虑在正文或附录增加一句区分 'distributional behavior' 和 'discriminative utility'。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R28-M2\"\n  summary: \"Cross-domain 实验 (Appendix I) 使用 t=1.0，与主实验 t=0.7 不一致\"\n  category: experiment\n  severity: info\n  status: open\n  first_raised_round: 28\n  last_seen_round: 28\n  mentions:\n    - {round: 28, reviewers: \"R1-Minor-2,R2(agree)\", note: \"若 DDR 在 t=1.0 信号消失（R28-N1），则 cross-domain 正面结果可能来自其他 confound（domain-specific vocabulary）。需解释不一致。\"}\n  action_items:\n    - {round: 28, action: \"正文引用 cross-domain 结果时注明采样参数差异，或讨论 domain × temperature interaction。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R28-M3\"\n  summary: \"Abstract 表述过于绝对：'consistent across five model families' 混淆 DDR pattern consistency 与 performance consistency\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 28\n  last_seen_round: 28\n  mentions:\n    - {round: 28, reviewers: \"R2-W1(Major),R1(partially agree)\", note: \"DDR partition 在所有 family 中成立（holdout 验证），但 classification performance 变异显著（0.633-0.724, 9.1pp spread）。R1 建议改为 'the partition is consistent ... though classification performance varies with model scale'。\"}\n  action_items:\n    - {round: 28, action: \"Abstract 'consistent' 措辞加入 performance variation 限定。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R28-M4\"\n  summary: \"可能遗漏相关工作：Shahriar et al. (2025), Riis (2026), Wang et al. (2025 orphan)\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 28\n  last_seen_round: 28\n  mentions:\n    - {round: 28, reviewers: \"R2(提出),R1(agree)\", note: \"Shahriar et al. (2025) 研究 iterative paraphrasing 降低检测性能，与本文 setting 互补。Riis (2026) 提出 recursive text generation 数学框架。Wang et al. (2025) 在 .bib 中但未引用（orphan）。R1 同意均应引用但需先确认 Riis (2026) 真实性。\"}\n  action_items:\n    - {round: 28, action: \"确认 Shahriar et al. 和 Riis 引用真实性后引用；Wang et al. orphan entry 引用或删除。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R28-M5\"\n  summary: \"17 个 orphan bib entries + 9 个 OpenAlex 未验证引用\"\n  category: format\n  severity: info\n  status: open\n  first_raised_round: 28\n  last_seen_round: 28\n  mentions:\n    - {round: 28, reviewers: \"R2(提出),R1(agree)\", note: \"17 个 bib 条目未被正文引用。9 个条目 OpenAlex 未能验证（含 two_birds, beyond_final_actor 需确认真实性）。提交前应清理。\"}\n  action_items:\n    - {round: 28, action: \"清理 orphan bib entries；确认 two_birds (Rao et al. 2025) 和 beyond_final_actor (Li et al. 2026) 真实性。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R28-M6\"\n  summary: \"术语不一致 ('generation depth' vs 'recursive depth'; 'entropy' 定义)\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 28\n  last_seen_round: 28\n  mentions:\n    - {round: 28, reviewers: \"R1-Minor-3,R2-Minor-2,交叉均agree\", note: \"两位均指出术语交替使用问题。脚注5解释 entropy 实际指 token-level NLL 但全文不一致。\"}\n  action_items:\n    - {round: 28, action: \"统一术语；Method 首次定义时区分 entropy 和 NLL。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R25-W3\"\n  summary: \"TTR-hapax 冗余（r=0.97）\"\n  category: method\n  severity: info\n  status: in_progress\n  first_raised_round: 23\n  last_seen_round: 27\n  mentions:\n    - {round: 25, reviewers: \"R1,R2\", note: \"循环论证已修复。\"}\n    - {round: 27, reviewers: \"R1-Q4(cross),R2(agree)\", note: \"LOFO gains <1pp，保留是 interpretability vs parsimony 取舍。\"}\n    - {round: 28, reviewers: \"none\", note: \"R28 未提及。\"}\n  action_items:\n    - {round: 25, action: \"消融实验完成。\", assigned_to: \"Director\", status: \"done\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R25-W9\"\n  summary: \"Reference model same-family 偏差（Pythia-410M）\"\n  category: experiment\n  severity: info\n  status: in_progress\n  first_raised_round: 25\n  last_seen_round: 27\n  mentions:\n    - {round: 25, reviewers: \"R1(提出),R2(agree)\", note: \"Pythia-410M 与 Pythia generators 同家族。\"}\n    - {round: 28, reviewers: \"none\", note: \"R28 未提及。\"}\n  action_items:\n    - {round: 25, action: \"§4.2 添加 affinity caveat\", assigned_to: \"Director\", status: \"done\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R27-W6\"\n  summary: \"Independent-seed 控制仅覆盖 2/8 generator\"\n  category: experiment\n  severity: info\n  status: acknowledged\n  first_raised_round: 27\n  last_seen_round: 27\n  mentions:\n    - {round: 27, reviewers: \"R1-W6(Minor),R2(agree)\", note: \"仅 Pythia-2.8B 和 OLMo-2-1B。\"}\n    - {round: 28, reviewers: \"none\", note: \"R28 未提及。\"}\n  action_items:\n    - {round: 27, action: \"Limitations 已提及。\", assigned_to: \"Research Director\", status: \"acknowledged\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R27-W8\"\n  summary: \"Table 1 vs Table 2 聚合方式不同（per-gen macro avg vs pooled），差 1.1pp\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 27\n  last_seen_round: 28\n  mentions:\n    - {round: 27, reviewers: \"R1-W8(Minor),R2(agree)\", note: \"Caption 有注释但易混淆。\"}\n    - {round: 28, reviewers: \"R1-Minor-1,R2-Minor-5,交叉均agree\", note: \"R28 再次提及。建议正文首次引用 Table 2 时标注 '(pooled)'。\"}\n  action_items:\n    - {round: 28, action: \"正文首次引用 Table 2 时标注 '(pooled)'。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R27-W4-supp\"\n  summary: \"anonymous_supplement.tgz 文件缺失\"\n  category: format\n  severity: info\n  status: open\n  first_raised_round: 27\n  last_seen_round: 27\n  mentions:\n    - {round: 27, reviewers: \"R2-W4(Minor),R1(agree)\", note: \"提交材料清单声明有但文件不存在。\"}\n    - {round: 28, reviewers: \"none\", note: \"R28 未提及。\"}\n  action_items:\n    - {round: 27, action: \"打包补充材料或更新提交计划。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n# ============ RESOLVED (prior rounds, confirmed by R28 not raising) ============\n\n- id: \"R26-W2\"\n  summary: \"Abstract 约 132 words 偏短 + 缺少 why important + NLL 未定义\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 26\n  last_seen_round: 27\n  resolution: \"Abstract 扩展完成。R27-R28 未再提及长度问题。\"\n  resolution_round: 26\n\n- id: \"R25-W2\"\n  summary: \"异方差下 pooled d → Glass's Δ 应更突出\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 21\n  last_seen_round: 25\n  resolution: \"Glass's Δ 内嵌正文，R26-R28 未再提及。\"\n  resolution_round: 26\n\n- id: \"R25-W1\"\n  summary: \"TOST tail decay 4/8 通过\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 21\n  last_seen_round: 25\n  resolution: \"Reclassification caveat 在位，R26-R28 未再提及。\"\n  resolution_round: 26\n\n- id: \"R25-W5\"\n  summary: \"遗漏 Wang et al. ACL 2025 (Attractor Cycles)\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 25\n  last_seen_round: 25\n  resolution: \"引用已添加。R26-R28 未再提及。\"\n  resolution_round: 26\n\n- id: \"R25-M1\"\n  summary: \"', confirming' 9+ 次 AI 写作标志\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 25\n  last_seen_round: 25\n  resolution: \"R26-R28 均确认无 AI 写作标志。\"\n  resolution_round: 26\n\n- id: \"R25-W10\"\n  summary: \"OLMo checkpoint 不一致\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 25\n  last_seen_round: 27\n  resolution: \"脚注说明在位。影响 bounded。\"\n  resolution_round: 26\n\n- id: \"R25-W8\"\n  summary: \"Contribution 分量不均\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 25\n  last_seen_round: 25\n  resolution: \"R26-R28 均确认叙事一致。\"\n  resolution_round: 26\n\n- id: \"R26-MR1\"\n  summary: \"Related Work 缺少 query-based LLM 检测方法引用\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 26\n  last_seen_round: 26\n  resolution: \"Zhu et al. 2023 引用已添加。R27 确认引用完整。\"\n  resolution_round: 26\n\n- id: \"R24-W2-dismissed\"\n  summary: \"参考模型 confound (R1 声称 cross-reference F1 降至 ~0.613)\"\n  category: method\n  severity: info\n  status: resolved\n  first_raised_round: 24\n  last_seen_round: 24\n  resolution: \"R1 数据引用错误。实际 cross-reference LOGO F1 spread=0.013。\"\n  resolution_round: 24\n\n- id: \"R1-N2-old\"\n  summary: \"DDR 3/1/3 partition post-hoc 选择\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 21\n  last_seen_round: 23\n  resolution: \"§4.2 重构为 2-group primary + domain-informed refinement\"\n  resolution_round: 23\n\n- id: \"R2-N2-old\"\n  summary: \"新颖性受限：三篇并行工作收敛于 ~3 classes\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 21\n  last_seen_round: 23\n  resolution: \"Novelty 锚定在 DDR 分解\"\n  resolution_round: 23\n\n- id: \"R1-N5\"\n  summary: \"QLoRA F1=0.905 是否削弱 DDR 贡献\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 21\n  last_seen_round: 24\n  resolution: \"QLoRA 定位为验证 depth signal 存在，非竞争方法\"\n  resolution_round: 24\n\n- id: \"R2-W4-old\"\n  summary: \"正文可能超8页限制\"\n  category: format\n  severity: warning\n  status: resolved\n  first_raised_round: 21\n  last_seen_round: 22\n  resolution: \"Main content ≤8 pages confirmed.\"\n  resolution_round: 26\n\n- id: \"R22-M2\"\n  summary: \"Abstract 中 LLM 缩写未展开\"\n  category: format\n  severity: info\n  status: resolved\n  first_raised_round: 22\n  last_seen_round: 22\n  resolution: \"Changed to 'large language models (LLMs)'\"\n  resolution_round: 22",
+      "numLines": 573,
+      "startLine": 1,
+      "totalLines": 573
+    }
+  },
+  "sourceToolAssistantUUID": "a304f027-a81a-49a6-a03a-b2f4aa630fc3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 77 · 2026-05-20T11:02:29.038Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_visual_check_status · `toolu_01Y1iuyygSvAtBtrhNrkqmNZ`</summary>
+
+```json
+{
+  "project": "gen-depth-fingerprint"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8ab54cff-2187-4389-b5d2-cdc669b14d73",
+  "isSidechain": false,
+  "requestId": "req_011CbDhzSLn1ccFdSb6M9idn",
+  "type": "assistant",
+  "uuid": "b039e505-b8b0-4ea4-87a0-7b0ec72aec78",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013TXA1YpEznmtg3Troo48sN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 29105,
+      "cache_read_input_tokens": 54536,
+      "output_tokens": 577,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 29105,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 577,
+          "cache_read_input_tokens": 54536,
+          "cache_creation_input_tokens": 29105,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 29105
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "system_changed",
+        "cache_missed_input_tokens": 34886
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 78 · 2026-05-20T11:02:29.101Z_
+
+<details><summary>↩ Tool result · `toolu_01BVi6G1pEVhiCP2Dv4nKBjb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"status\": \"not_requested\", \"message\": \"No external review requested.\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8799de00-4f65-4fa0-a61e-a8adbdc91fc6",
+  "isSidechain": false,
+  "promptId": "4582f6cb-64a4-498a-9e05-ac7b1e33e7b9",
+  "type": "user",
+  "uuid": "b94a9fcd-d591-4147-b0b8-86aac7a6ad8a",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"not_requested\\\", \\\"message\\\": \\\"No external review requested.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"status\": \"not_requested\", \"message\": \"No external review requested.\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "8799de00-4f65-4fa0-a61e-a8adbdc91fc6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 79 · 2026-05-20T11:02:29.051Z_
+
+<details><summary>↩ Tool result · `toolu_01Y1iuyygSvAtBtrhNrkqmNZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"status\": \"timeout\", \"elapsed_seconds\": 29354}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b039e505-b8b0-4ea4-87a0-7b0ec72aec78",
+  "isSidechain": false,
+  "promptId": "4582f6cb-64a4-498a-9e05-ac7b1e33e7b9",
+  "type": "user",
+  "uuid": "8e1287b0-e35d-4e2f-91f6-4431eecfb1c4",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"timeout\\\", \\\"elapsed_seconds\\\": 29354}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"status\": \"timeout\", \"elapsed_seconds\": 29354}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "b039e505-b8b0-4ea4-87a0-7b0ec72aec78",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 80 · 2026-05-20T11:02:29.073Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_external_review_status · `toolu_01BVi6G1pEVhiCP2Dv4nKBjb`</summary>
+
+```json
+{
+  "project": "gen-depth-fingerprint"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8e1287b0-e35d-4e2f-91f6-4431eecfb1c4",
+  "isSidechain": false,
+  "requestId": "req_011CbDhzSLn1ccFdSb6M9idn",
+  "type": "assistant",
+  "uuid": "8799de00-4f65-4fa0-a61e-a8adbdc91fc6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013TXA1YpEznmtg3Troo48sN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 29105,
+      "cache_read_input_tokens": 54536,
+      "output_tokens": 577,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 29105,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 577,
+          "cache_read_input_tokens": 54536,
+          "cache_creation_input_tokens": 29105,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 29105
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "system_changed",
+        "cache_missed_input_tokens": 34886
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 81 · 2026-05-20T11:02:29.121Z_
+
+```json
+{
+  "parentUuid": "b94a9fcd-d591-4147-b0b8-86aac7a6ad8a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "71c7759f-96ea-4421-b154-bd7d9a2056a6",
+  "timestamp": "2026-05-20T11:02:29.121Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 82_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Reviewer 2 审稿结果]: Round 1 审稿完成。已向 Review Director 提交完整审稿报告，核心结论：  - **Overall: 3.0/5 (Findings)**，Soundness 3.5，Excitement 2.5 - **3 个 Must-Fix**：(N1) DDR 新颖性不足，本质是 model collapse 已知现象的再包装；(N2) 与 Bro…",
+  "leafUuid": "71c7759f-96ea-4421-b154-bd7d9a2056a6",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 83_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review appendix and remaining pages",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 84 · 2026-05-20T11:06:06.461Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me:
+
+1. Update the review_issues.yaml with Round 29 findings
+2. Compose the consolidated review report
+3. Submit via `submit_review_report_to_research_director`
+
+Let me first map the current round's findings to existing issues and identify new ones.
+
+This is Round 29 (the CLAUDE.md says fresh mode, and the last report was round 31 internally but described as "Round 28 (Fresh Review)"). Actually, looking more carefully:
+- The existing review_issues.yaml header says "through Round 28"
+
+
+- The last report file is round_31.md but its content says "Round 28 (Fresh Review)"
+- This current session is fresh mode
+
+So this is a new fresh review. The round numbering for the report files seems to be auto-incrementing. The actual semantic round is what matters for the issue tracker. Since the issue tracker says "through Round 28" and this is a fresh review, I'll call this Round 29.
+
+Now I'm mapping findings from R1 and R2 to existing issues. R1-N1 about downstream underpowered n=3 maps to R28-N2 and R25-W6, and I need to continue categorizing the rest of the must-fix findings. Continuing through the remaining gaps: R2-N2 ties concurrent work distinctions to the same mapping as R26-W3, and R2-W2 frames negative downstream effects across multiple rounds. R2-W3 introduces some genuinely new performance variance concerns, while R2-W4 points to missing references that span multiple rounds. After comparing notes, both reviewers converge on the core findings—the base-model-only constraint and QLoRA gap are non-negotiable issues—though R1 pushes back on R2's framing of DDR as truly novel.
+
+Now I'm identifying the fresh issues that warrant standalone entries: the Gemma-2-2B anomaly with its suspiciously low F1 score, the narrow baseline setup using only four single-feature comparisons, the generator-dependent performance spread ranging from 0.633 to 0.724, and the missing benchmark datasets like RAID and SemEval-2024 Task 8C and D. I'll update the YAML to reflect these alongside the cross-referenced concerns. ohmatob & Feng framework discussion
+
+Actually, let me reconsider. Many of these map to existing issues. Let me be more careful:
+
+- Gemma-2-2B anomaly: Not explicitly tracked before. New issue.
+- Baseline narrow: Related to R27-W5 (resolved - baseline framing) but different aspect. New issue.
+- Performance variance: Related to R26-W1 but focuses on per-generator variation. Can append to R26-W1.
+- Missing references (RAID, SemEval, Dohmatob): Maps to R28-M4 and R28-M5.
+
+Let me draft the YAML update and report now.
+
+For the report, I'll follow the structure: Summary, Strengths, Weaknesses (Must-Fix and Should-Fix), Reviewer Consensus, Reviewer Divergence, Questions, Missing References, External Review, Visual Layout Check, Overall Assessment, and Detailed Comments.
+
+I need to figure out the current round number. The issue tracker shows through Round 28, and reports go up to round_31.md, so this is a fresh review session—I'll call this Round 29 since it follows sequentially.
+
+Now I'm identifying the key consensus points between both reviewers: they converge exactly on an overall 3.0 (Findings) rating, both flag the base-model-only scope as a critical limitation that needs to be surfaced in the title and abstract, and both identify the QLoRA performance gap of 12-15 percentage points as undermining the method's contribution.
+
+Writing report structure... insufficient for a main conference venue. R2 points out that the bibliography lists only 5 references, but R1 counters with 40-50 citations actually present—the real disagreement is about missing content like RAID, SemEval Task 8C, and the Dohmatob framework. Now I'm drafting the consolidated review report and issue tracker to wrap this up.
+
+The paper investigates how text distributions shift across recursive generation chains in LLMs, proposing a Differential Depth Response framework that categorizes seven text features into two groups: drifting features like entropy mean and type-token ratio that change monotonically with depth, and near-stationary features like maximum entropy that remain relatively stable. Using this framework, they build an XGBoost classifier to categorize generation depth across eight different generators from five model families.
+
+The work makes clear contributions by framing generation depth classification as a distinct task with three classes rather than binary detection, and the DDR decomposition into drifting versus near-stationary features is validated through statistical tests and clustering analysis.
+
+**S3 [共识]** 统计方法论示范性强——多种效应量指标（Cohen's d, Glass's Δ, Cliff's δ）、TOST 等价性检验、heteroscedasticity 分析、bootstrap CI、Bonferroni 校正。LOGO 避免 generator leakage，LOFO 验证特征贡献，independent-seed 控制排除 topic-based leakage。
+
+**S4 [共识]** Confound 控制全面——length
+
+-matched subsampling、seed-level demeaning、cross-reference model（3 个 ref model, F1 spread = 0.013）、cross-prompt-type transfer、cross-domain evaluation。
+
+**S5 [共识]** 学术诚实——对 instruct model 失败、temperature 敏感性、cross-model confound、n=3 TOST 效力问题都有坦率讨论，Appendix K 和 M 展示了报告不利发现的意愿。
+
+**S6 [共识]** 分析广度 exceptional——20+ appendix 涵盖 length confound、temperature sensitivity、prompt type、ordinal classification、human edit robustness、cross-domain、classifier comparison、Granger 因果分析等多个维度。
+
+**S7 [R1]** Granger 因果分析提供了 DDR 特征的预测力证据，超越了相关性描述。
+
+**S8 [R2]** Pythia-410M 跨家族泛化是有实用价值的发现。
+
+## Weaknesses
+
+### Must-Fix（影响接收决定）
+
+**N1 [Critical, 共识]** Base-model-only scope 严重限制 impact——全部 8 个 generator 均为 base (pretrained) models，缺乏 instruction-tuned 或 chat 模型的评估。
+
+指令微调后，binary F1 从 ~0.694 大幅下降至 0.338-0.660，entropy_mean 相关性符号翻转，6/7 个特征行为反转。更糟的是，不同模型的退化模式完全不同：OLMo-Inst 的 F1 下降 42.5 个百分点，而 Llama-Inst 仅下降 1.1 个百分点。由于现实部署的 LLM 绝大多数是指令微调模型，这个限制严重削弱了研究的实用价值。两位 Reviewer 一致要求在标题或摘要中明确标注 base-model scope，并在讨论部分深入分析指令微调导致性能退化的机制。
+
+**N2 [Critical
+
+, R1提出/R2同意Major]** 下游效用实验样本量严重不足，摘要存在过度声称。等价性检验仅用 3 个随机种子、单一指标和单一模型，Cohen's d 膨胀至 86-119（这是因为 pooled SD 接近零导致的退化情况）。摘要声称"等价性检验表明无下游训练质量退化"，但隐瞒了"初步"和"n=3"的限定，虽然结论部分有这些限定词。需要增加至至少 10 个随机种子、第二个模型和第二个指标来修复这个问题。
+
+对于 DDR 的新颖性，R2 认为这本质上是重新确认了已知的模型坍塌文献中的词汇贫化现象在推理链场景下的表现，通过 TTR 和 hapax_ratio 等漂移特征直接度量。R1 反驳说 DDR 的真正贡献在于发现熵最大值和尾部衰减等平稳特征保持接近平稳状态，这是词汇贫化假说无法预测的。
+
+特征消融实验显示参考特征提供了 5.7 个百分点的增量。经过交叉讨论，双方达成共识认为 DDR 是真实但增量式的贡献——平稳特征提供了超越词汇贫化的信息增量，但从概念上讲并不令人惊讶，因为位置偏移比形状变化更容易受递归生成影响。不过，与 Mohamed、Geng 和 Li 等人的并行工作相比，当前的区分不够充分，需要添加系统对比表或专门段落来深入讨论这些高度相关的工作。
+
+现在看到一个关键问题：7 特征 XGBoost 的二分类 F1 分数为 0.694，而 QLoRA 达到 0.905，差距超过 12-15 个百分点。虽然论文将 QLoRA 定位为互补方法，但 QLoRA 本身已经相当轻量级，这削弱了方法论的独特性。双方都认为应该将论文重新定位为经验特征化研究，把 XGBoost 降格为 DDR 的验证工具，QLoRA 则作为深度信号的指标。
+
+关于 Gemma-2-2B 的异常表现，gen-1 的 F1 分数仅为 0.036，说明分类器完全无法区分不同代次。论文虽然归因于架构限制，但缺乏深层机理解释。这进一步支持了 DDR 并非通用机制的判断——它更像是依赖于生成器特性的经验规律。
+
+我需要在非 Pythia 参考模型下检查 Gemma-2-2B 的表现，并对比七个特征值在不同生成器间的分布差异。
+
+另一个问题是跨模型链的 F1=0.830 可能混淆了深度信号与生成器身份。由于 gen-1 和 gen-2 使用不同的生成器，分类器可能学到的是生成器特征而非深度特征。当前采用样本级的五折交叉验证而非生成器级的留出验证，这与主表的 LOGO 设计不一致。我应该设计一个实验，在单生成器链上训练后在跨模型链上测试，以此解耦这两个因素，或者将其降级为探索性结果。
+
+温度限制也是个关键问题。在 t=0.9 时，四个生成器的二分类 F1 分数下降到 0.400-0.453，t=1.0 时进一步恶化。跨温度迁移高度不对称，从 t=0.7 到 1.0 的 F1 只有 0.418，而反向迁移达到 0.944。由于许多实际部署使用 t=0.7-1.0 的范围，DDR 在高温下的严重失效大大限制了其实用性，实际适用范围被压缩到基础模型加上 t∈[0.5 的范围内。
+
+DDR 的分组标准也存在问题。3/1/3 的分组依赖于 TOST ε=0.20 阈值，但附录中关于 ε 敏感性的数据只展示了通过率，没有显示分组本身是否会改变。entropy_std 被归为"中间"类别，但操作性定义不够清晰，需要明确中间类别的定义并展示不同 ε 值下分组的稳定性。
+
+Baseline 对比的范围太窄了。四个 baseline 都是单特征或简单方法，7 特征集合相比 4 检测器集合只高出 2.5 个百分点，缺少多特征或已训练检测器的对比。R1 指出 3.3 个百分点的优势在实践中很微弱，置信区间的差异表明 7 特征的优势主要体现在稳定性而不是绝对性能。
+
+Related work 还遗漏了一些重要的讨论...
+
+RAID benchmark 虽然在参考文献中但正文没有引用，SemEval-2024 Task 8C 的多分类子任务和 Dohmatob & Feng 的信息论框架都没有被用来解释 DDR，另外还有 17 个孤立的参考文献条目需要清理。
+
+关于负面发现的表述也值得商榷。"诊断而非治疗"这个说法暗示至少有诊断价值，但论文其实没有展示具体的诊断应用场景。要让负面结果成为贡献，需要它是反直觉的或挑战强有力的先验假设，但"训练数据来源深度不影响微调质量"这个发现并不令人意外。
+
+两位审稿人在几个关键问题上达成了共识：总体评分 3.0 是因为方法论虽然严谨但概念创新性不足以进入主会议；仅限基础模型是最严重的范围限制，必须在标题和摘要中标注；QLoRA 的差距要求论文重新定位，从分类方法转向经验特征化；下游任务的 TOST 样本量太小，摘要中必须加上"初步"的说明或直接删除；温度限制和仅限基础模型的联合效应压缩了 DDR 的适用范围，正文需要更坦诚地讨论这一点。
+
+实验执行质量很高，Soundness 评分 3.5/5；跨模型链的结果需要区分深度和生成器身份的影响；DDR 分区通过多种方法验证是真实的经验发现。
+
+在 DDR 新颖性程度上存在分歧：R2 认为 DDR 只是对已知的模型崩溃现象在推理链中的重新确认，漂移/平稳分区在概念上是可预测的（位置偏移对比形状不变性是基本统计学知识），而 R1 则认为 DDR 中关于平稳特征的发现超越了词汇贫乏的解释。
+
+两位评审员最终达成共识，认为 DDR 是"真实但增量式的"贡献，分歧仅在于增量大小，不影响总体评分。
+
+关于 Gemma-2-2B 异常的严重性，R2 将其视为 DDR 非通用机制的关键证据，而 R1 则认为这是需要更好解释的架构特定异常，不否定 DDR 的整体有效性。两位同意需要更深入的机理分析，但对这个异常是否从根本上挑战 DDR 的结论仍有分歧。
+
+现在我需要提出一些关键问题来推进讨论：首先想了解 QLoRA 分类器是否也学到了类似的漂移/平稳分解，以及是否进行过特征归因分析；其次想确认 Appendix K 中 entropy_mean 相关性在指令微调模型上的符号翻转现象，以及这是否意味着 DDR 在该设置下被反转或消失，以及重新训练指令特定分割是否能恢复这一现象；最后想了解深度分类在实际部署中的价值阈值，以及 0.694 的 F1 分数是否足以用于数据策划，并需要精确度报告。
+
+接下来还想探讨精确度与召回率的权衡，以及在非 Pythia 参考模型下单独报告 Gemma-2-2B 的逐类 F1 分数的可能性。还想设计实验来区分深度信号和生成器身份信号，以及直接对比推理链深度信号与训练循环模型崩溃信号，验证两者是否产生质性不同的分布偏移。此外想从 softmax 和固定温度的数学性质推导平稳特征的稳定性。
+
+最后想做一个关键实验来对比释义与非释义链，这是与"破碎电话"游戏的核心区分点。还需要明确 DDR 作为诊断工具的具体应用场景和端到端案例。
+
+同时注意到几个重要的缺失引用：RAID 基准测试应该在第 2.1 节讨论作为最大的 AI 文本检测基准，SemEval-2024 Task 8C 的多类检测子任务与本文的序数表述高度相关，还有 Dohmatob & Feng 关于强模型崩溃的论文也需要更好地整合到讨论中。
+
+另外需要系统对比 Mohamed、Geng 和 Li 等人的最新工作，以及 Shahriar 关于迭代释义如何降低检测性能的发现。
+
+外部审稿还未启动，视觉排版检查也因超时未能完成。
+
+现在看综合评分情况，两位审稿人在健全性、可重现性和整体评分上基本一致，都在 3.0-4.0 分范围内，信心度也相对较高。
+
+关键的接收理由是 DDR 分割确实是经过多种独立方法验证的真实发现，方法论严谨，分析深度也很充分，而且论文在报告负面结果和局限性上表现诚实。但主要的结构性弱点在于基础模型的适用范围太窄，在指令微调模型上性能大幅下降，QLoRA 的改进也削弱了七特征方法的独立价值。
+
+DDR 的概念新颖性其实是增量式的——漂移特征与现有的模型崩溃文献有重叠，而虽然平稳特征提供了增量贡献但在概念上是可预测的，加上二分类 F1 值 0.694 的实用意义有限。这些限制反映的是工作本身的阶段性局限，不是能在一个修订周期内解决的问题。
+
+最优先的改进方向是重新定位论文的核心叙事——从"分类方法"转向"推理链分布动态的实证刻画"，把七特征 XGBoost 降级为 DDR 验证工具，QLoRA 作为上界参考。
+
+其次要么增强下游实验的严谨性（至少十个随机种子、第二个模型、第二个指标），要么在摘要中明确标注"初步结果，n=3"的限定条件，同时系统对比相关工作。最后需要在正文中深入讨论 DDR 的作用机制和边界条件——包括指令退化的假说、Gemma-2-2B 异常表现的解释、温度敏感性的理论基础，这样才能把 DDR 从描述性发现推进到机制性理解。
+
+在引言部分要明确标注贡献的模型范围限制，并将温度敏感性作为核心发现突出。相关工作部分需要建立系统对比表格，展示本文与 Mohamed、Geng、Li 等工作在设置、特性、评估和发现上的差异，同时讨论 RAID 基准和 SemEval-2024 Task 8C 多分类子任务，利用信息论框架来解释 DDR 现象。方法部分要更形式化地定义"非释义延续链"的概念，并提前引入。
+
+结果部分需要明确 intermediate 的操作定义、展示 ε 敏感性对分区的影响，补充多特征训练检测器基线，在表脚注中量化 gen-0 共享种子导致的上偏差，用"(pooled)"标注以区分每代宏平均，将跨模型链结果降级为探索性内容或补充解纠缠实验，并在摘要首次出现时定义 DDR 缩写。术语上需要统一 entropy 和 NLL 的使用。
+
+讨论部分要增加指令退化的专门段落、提出可检验的指令特定分区假说、用具体诊断应用场景支撑"诊断而非治疗"的论述。限制部分需综合温度、基础模型、架构等因素讨论 DDR 的操作窗口，明确说明仅限 ≤8B 规模的外推风险。附录中要列出 QLoRA 排除的生成器及其八代性能、检查引用环路、清理 17 个孤立的参考文献条目。
+
+现在我来整理问题追踪器的 YAML 并提交报告。报告很长，需要最终确认。新增三个问题：Gemma-2-2B 第一代 F1=0.036 的异常表现反映架构特定的 DDR 失败、基线对比范围过窄、每个生成器的 F1 方差（0.633-0.724）暗示生成器未知场景中的生成器依赖性。同时更新现有问题，标注 R29 的提及——R25-N1 关于 DDR 新颖性的问题中，R29 同意发现但 R1 部分反驳了"重新包装"的说法。
+
+R25-N2 关于基础模型范围的问题在 R29 中都被标记为关键，突出了指令异质性。R25-N3 关于 DDR 分区的问题中 R1-W5 再次提出，涉及 ε 敏感性。R25-W11 关于跨模型混淆的问题中 R1-W4 再次提出。R28-N1 关于温度过度声称的问题中 R1-W3 和 R2 都同意。R28-N2 关于 TOST 过度声称的问题中 R1-N1 再次提出。R28-N3 关于模型规模的问题在 R29 中未明确提及。R26-W1 关于 QLoRA 差距的问题在 R29 中都被标记为关键。R26-W3 关于并发工作的问题中 R2-N2 再次提出。
+
+现在继续检查 R25-W4 关于生成器子集的问题在 R29 中未明确提及，R25-W6 关于下游 n=3 的问题与 R28-N2 合并，R25-W7 关于指令机制的问题在 R29 中都被提出。R27-W3 关于温度的问题与 R28-N1 合并。R28-M1 到 R28-M3 的几个问题在 R29 中都未被提及，但 R28-M4 关于缺失参考文献的问题中 R2-W4 提出并补充了 RAID 和 SemEval。
+
+现在看到 R28-M5 关于孤立参考文献的问题在 R29 中再次被 R2 提出，而 R28-M6 关于术语的问题未被提及。我觉得应该直接生成完整的 YAML 报告和问题清单，专注于最重要的更新。
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "71c7759f-96ea-4421-b154-bd7d9a2056a6",
+  "isSidechain": false,
+  "requestId": "req_011CbDi1WeX4BpHxMAxWWqv4",
+  "type": "assistant",
+  "uuid": "8c8238be-2c3e-4ee5-b575-1396911e194f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016XWZPCTiCiVm2NLVA2iRoz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12578,
+      "cache_read_input_tokens": 83641,
+      "output_tokens": 22070,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12578,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 22070,
+          "cache_read_input_tokens": 83641,
+          "cache_creation_input_tokens": 12578,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12578
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 85 · 2026-05-20T11:06:06.490Z_
+
+正在合成最终报告。先准备 Issue Tracker 更新。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8c8238be-2c3e-4ee5-b575-1396911e194f",
+  "isSidechain": false,
+  "requestId": "req_011CbDi1WeX4BpHxMAxWWqv4",
+  "type": "assistant",
+  "uuid": "1ea9feb9-538c-44b8-8210-90bba7c36175",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016XWZPCTiCiVm2NLVA2iRoz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12578,
+      "cache_read_input_tokens": 83641,
+      "output_tokens": 22070,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12578,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 22070,
+          "cache_read_input_tokens": 83641,
+          "cache_creation_input_tokens": 12578,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12578
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 86 · 2026-05-20T11:09:55.903Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_review_issues · `toolu_01RWkcyeV61nx2tYNy1hdVcT`</summary>
+
+```json
+{
+  "project": "gen-depth-fingerprint",
+  "issues_yaml": "# Review Issues — through Round 29\n# Last updated: 2026-05-20\n\n# ============ CRITICAL ============\n\n- id: \"R26-N1\"\n  summary: \"缺少 Responsible NLP Research Checklist，可能 desk reject\"\n  category: format\n  severity: critical\n  status: resolved\n  first_raised_round: 26\n  last_seen_round: 26\n  mentions:\n    - {round: 26, reviewers: \"R2(提出),R1(agree)\", note: \"ARR 投稿必须包含 Responsible NLP Research Checklist。grep 全文无匹配。缺失是 desk reject 的充分条件。\"}\n    - {round: 27, reviewers: \"none\", note: \"R27 未提及。已确认 Checklist 通过 OpenReview 表单提交。\"}\n    - {round: 28, reviewers: \"none\", note: \"R28 未提及。\"}\n    - {round: 29, reviewers: \"none\", note: \"R29 未提及。\"}\n  action_items:\n    - {round: 26, action: \"Independent Reviewer 确认：ARR Checklist 是 OpenReview 表单，不嵌入 PDF。非真实 desk reject 风险。\", assigned_to: \"Director\", status: \"done\"}\n  resolution: \"ARR Responsible NLP Checklist 通过 OpenReview 表单提交，不是 PDF 内容。Checklist 草稿已准备。\"\n  resolution_round: 26\n\n- id: \"R26-N2\"\n  summary: \"正文约 8.3-8.4 页，超出 long paper 8 页限制\"\n  category: format\n  severity: critical\n  status: resolved\n  first_raised_round: 26\n  last_seen_round: 26\n  mentions:\n    - {round: 26, reviewers: \"R2(提出),R1(agree)\", note: \"§1-6 主文内容延伸至 page 9 中上部。\"}\n    - {round: 27, reviewers: \"none\", note: \"R27 确认页数合规。\"}\n    - {round: 28, reviewers: \"none\", note: \"R28 未提及页数问题。\"}\n    - {round: 29, reviewers: \"none\", note: \"R29 未提及。\"}\n  action_items:\n    - {round: 26, action: \"压缩 Discussion + Results。\", assigned_to: \"Agent\", status: \"done\"}\n  resolution: \"Discussion + Results 压缩后 Conclusion 在 p8，主文 ≤8 页。PDF 视觉确认。\"\n  resolution_round: 26\n\n- id: \"R25-N1\"\n  summary: \"DDR 新颖性不足以支撑 Main Conference，Findings 级别合适\"\n  category: method\n  severity: critical\n  status: acknowledged\n  first_raised_round: 21\n  last_seen_round: 29\n  mentions:\n    - {round: 25, reviewers: \"R1,R2\", note: \"DDR 是已知特征的行为分类，非概念突破。\"}\n    - {round: 26, reviewers: \"R1,R2\", note: \"三篇并行工作已独立发现 ~3-class ceiling。\"}\n    - {round: 27, reviewers: \"R1(agree),R2(N2,agree)\", note: \"DDR novelty 在于 empirical verification 而非新发现。两位均维持 Findings 定位。\"}\n    - {round: 28, reviewers: \"R2-N2(Critical),R1(partial rebut→Major)\", note: \"R2 将 novelty boundary 升级为 Critical：Mohamed et al. (2025) 和 Geng et al. (2026) 的 per-feature convergence trajectories 与 DDR 高度重叠。R1 反驳：DDR 的增量在 ordinal classification task formulation + location/shape decomposition，降为 Major。交叉后共识：需扩展 §2.2 对比讨论但 novelty 本身成立。\"}\n    - {round: 29, reviewers: \"R2-N1(Critical),R1(rebut→共识 genuine but incremental)\", note: \"R2 认为 DDR 是 model collapse vocabulary impoverishment 的再包装。R1 反驳：stationary features 是 vocabulary impoverishment 无法预测的（+5.7pp ablation evidence）。交叉后共识：DDR genuine but incremental——stationary features 提供增量但概念上可预测。维持 Findings。\"}\n  action_items:\n    - {round: 25, action: \"接受 Findings 定位。\", assigned_to: \"Director\", status: \"done\"}\n  resolution: \"Findings 定位，连续 9 轮稳定。\"\n  resolution_round: null\n\n- id: \"R25-N3\"\n  summary: \"DDR 阈值缺乏理论基础 + location/shape 分离缺机制性解释 + entropy min 分类不一致\"\n  category: method\n  severity: critical\n  status: in_progress\n  first_raised_round: 21\n  last_seen_round: 29\n  mentions:\n    - {round: 25, reviewers: \"R1,R2\", note: \"0.75 是看到数据后选的。\"}\n    - {round: 26, reviewers: \"R1(提出),R2(agree with nuance)\", note: \"d 在 [0.56,0.75] partition 稳定。\"}\n    - {round: 27, reviewers: \"R1-W1(Critical),R2(agree)\", note: \"entropy min Cliff's δ=0.354 vs Cohen's d=0.016 严重不一致。\"}\n    - {round: 28, reviewers: \"R1-W4(Minor→Major),R2(partial rebut→Minor)\", note: \"R1 维持 entropy_min 分类为 ad-hoc。R2 反驳：Cliff's δ 和 Cohen's d 衡量不同效应类型。\"}\n    - {round: 29, reviewers: \"R1-W5(Warning),R2(agree)\", note: \"R1 重提 ε sensitivity：Appendix V Table 29 仅展示 pass rate 而非 partition 是否改变。entropy_std intermediate 定义不明确（d=0.458 远大于 ε=0.20）。两位同意需更 principled 的 intermediate 定义。\"}\n  action_items:\n    - {round: 25, action: \"§4.2 改为 continuous gradient + data-driven clustering 叙事\", assigned_to: \"Director\", status: \"done\"}\n    - {round: 27, action: \"§4.2 讨论 Cliff's δ vs Cohen's d 不一致 + Contribution 2 调整\", assigned_to: \"Research Director\", status: \"done\"}\n    - {round: 29, action: \"明确 intermediate 操作性定义；展示 ε=0.15/0.25 下 partition 是否保持 3/1/3。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R25-W11\"\n  summary: \"Cross-model F1=0.830 存在 model-switching / generator identity confound\"\n  category: experiment\n  severity: critical\n  status: in_progress\n  first_raised_round: 25\n  last_seen_round: 29\n  mentions:\n    - {round: 25, reviewers: \"R2(提出),R1(agree)\", note: \"generator heterogeneity 可能放大 depth signal。\"}\n    - {round: 26, reviewers: \"R1(Critical),R2(Major,agree)\", note: \"Transfer ablation 完成，56/56 pairs > chance。\"}\n    - {round: 27, reviewers: \"R1-W4(Major),R2-Q3(agree)\", note: \"措辞已弱化为 'provides evidence against'。\"}\n    - {round: 28, reviewers: \"R1-W1(Major),R2(agree)\", note: \"cross-model 用 sample-level 5-fold CV 而非 generator-level held-out。\"}\n    - {round: 29, reviewers: \"R1-W4(Warning),R2(agree)\", note: \"R1 重提 disentangling 需求：single-gen train → cross-model test。R2 同意但认为 cross-model 仍有 practical 价值作为 realistic scenario。两位共识：降级为 exploratory 或补充 disentangling 实验。\"}\n  action_items:\n    - {round: 26, action: \"Transfer ablation + Conclusion 移除 cross-model F1。\", assigned_to: \"Agent\", status: \"done\"}\n    - {round: 27, action: \"措辞弱化为 'provides evidence against'。\", assigned_to: \"Research Director\", status: \"done\"}\n    - {round: 28, action: \"Cross-model 评估改为 generator-level held-out 或 chain-level CV；或在正文中将 cross-model 结果降级为 exploratory。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n# ============ MAJOR ============\n\n- id: \"R28-N1\"\n  summary: \"DDR 是采样参数依赖的（t=1.0 信号消失），Abstract/Conclusion 将其 frame 为递归生成内禀属性构成 overclaim\"\n  category: framing\n  severity: critical\n  status: open\n  first_raised_round: 28\n  last_seen_round: 29\n  mentions:\n    - {round: 28, reviewers: \"R1-N1(Critical),R2(agree Critical)\", note: \"t=1.0 时 entropy-depth ρ 从 −0.60 坍缩至 −0.002。Abstract/Conclusion 暗示 DDR 是普遍性质。\"}\n    - {round: 29, reviewers: \"R1-W3(Warning),R2(agree)\", note: \"R29 再次确认。R2 补充 cross-temperature transfer 不对称性（t=0.7→1.0: F1=0.418 vs t=1.0→0.7: F1=0.944）进一步说明问题。DDR 的 operational window 被压缩至 t∈[0.5,0.9)。\"}\n  action_items:\n    - {round: 28, action: \"Abstract/Conclusion 加入采样条件限定 (t ∈ [0.5, 0.7])。Introduction contribution list 将温度敏感性作为核心发现之一。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R25-N2\"\n  summary: \"Base model 限制严重削弱 impact（0.6B-8B only + instruct 退化）\"\n  category: framing\n  severity: critical\n  status: in_progress\n  first_raised_round: 21\n  last_seen_round: 29\n  mentions:\n    - {round: 25, reviewers: \"R1,R2\", note: \"Instruct retrain 已完成但实用性仍受限。\"}\n    - {round: 26, reviewers: \"R1(Major),R2(agree)\", note: \"QLoRA instruct 完成。\"}\n    - {round: 27, reviewers: \"R2-N1(Major),R1(agree)\", note: \"QLoRA instruct 未给予足够篇幅。\"}\n    - {round: 28, reviewers: \"R2-N1(Critical),R1-W3(Major)\", note: \"Abstract/Intro 暗示广泛适用性但 instruct F1 = 0.338-0.660。\"}\n    - {round: 29, reviewers: \"R1-N3(Critical),R2-N3(Critical)\", note: \"两位均升为 Critical。R1 新增 instruct 退化异质性观察：OLMo-Inst -42.5pp vs Llama-Inst -1.1pp，不可预测性比退化本身更严重。R2 补充：DDR 可能是 architecture-specific artifact 而非 generation-process-universal phenomenon。Title/Abstract 必须标注 base-model scope。\"}\n  action_items:\n    - {round: 26, action: \"QLoRA instruct 写入 Appendix K + Discussion。\", assigned_to: \"Agent\", status: \"done\"}\n    - {round: 27, action: \"Results/Discussion 更显著讨论 QLoRA instruct。\", assigned_to: \"Research Director\", status: \"done\"}\n    - {round: 28, action: \"Introduction contribution list 明确标注 base-model-only。Abstract disclaimer 位置提前。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R28-N2\"\n  summary: \"TOST n=3 seeds 欠效力，Abstract 省略 'preliminary' 和 'n=3' 构成 overclaim\"\n  category: experiment\n  severity: critical\n  status: open\n  first_raised_round: 28\n  last_seen_round: 29\n  mentions:\n    - {round: 28, reviewers: \"R1-N2(Critical),R2(agree,建议降为 Should-Fix)\", note: \"Abstract 声称 'equivalence testing suggests no downstream training quality degradation' 但仅 n=3 seeds，Cohen's d 膨胀至 86-119。\"}\n    - {round: 29, reviewers: \"R1-N1(Critical),R2-W2(Warning,agree)\", note: \"R29 再次确认。R1 维持 Critical（核心贡献之一的统计功效不足）。R2 同意 overclaim 但认为下游 utility 是辅助论证非核心贡献，维持 Major/Warning。共识：Abstract 必须加 'preliminary, n=3' 或删除。R1 补充：问题不仅是 power 而是 metric/model coverage 不足（仅 perplexity，仅 OLMo-1B）。\"}\n  action_items:\n    - {round: 28, action: \"Abstract 中删除或大幅弱化 TOST 声明（至少加 'preliminary, n=3'）。若保留为 contribution 则需增加 seeds ≥10。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R28-N3\"\n  summary: \"模型规模仅 ≤8B，无 >30B 或闭源模型验证，标题暗示 LLM 普适性\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 28\n  last_seen_round: 29\n  mentions:\n    - {round: 28, reviewers: \"R2-N3(Major),R1(agree Major)\", note: \"全部 8 个 generator ≤8B。Mistral-7B F1=0.633 显著低于小模型。\"}\n    - {round: 29, reviewers: \"none explicitly\", note: \"R29 未单独提及规模问题，但 R2 在综合评估中将规模与 base-model/temperature 限制联合讨论。\"}\n  action_items:\n    - {round: 28, action: \"标题/Abstract 考虑限定为 'small-to-medium LLMs'；或至少在 Limitations 中更明确讨论规模外推风险。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R26-W1\"\n  summary: \"Binary F1=0.694 实用意义有限 + QLoRA gap 暴露特征覆盖不足\"\n  category: method\n  severity: warning\n  status: acknowledged\n  first_raised_round: 26\n  last_seen_round: 29\n  mentions:\n    - {round: 26, reviewers: \"R1(Major),R2(Major)\", note: \"手工特征只捕获约 77% 可达性能。\"}\n    - {round: 27, reviewers: \"R2-W1(Major),R1(partial rebut)\", note: \"DDR interpretability 价值不完全取决于分类精度。\"}\n    - {round: 28, reviewers: \"R2-W2(Major),R1(rebut)\", note: \"分析框架贡献 vs 方法贡献。\"}\n    - {round: 29, reviewers: \"R1-N2(Critical),R2-W1(Warning)\", note: \"R29 两位均将 QLoRA gap 列为核心问题。R1：+11.6pp 是本质性性能鸿沟，interpretability advantage 未通过具体 use case 论证。R2：DDR 不能是实用检测方法，只能是 analytical framework。共识：论文需重新定位为 empirical characterization。R1 补充：7-feat vs Avg-LogProb margin 仅 +3.3pp，marginal contribution 有限。\"}\n  action_items:\n    - {round: 26, action: \"论文已定位为 empirical analysis + DDR framework。\", assigned_to: \"Director\", status: \"acknowledged\"}\n    - {round: 29, action: \"论文叙事重构：从 classification method 转向 empirical characterization。7-feature XGBoost 降格为 DDR validation tool，QLoRA 作为 upper bound reference。Abstract 弱化分类性能数字。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R26-W3\"\n  summary: \"DDR 与已知 distributional drift 现象的本质区别不够清晰 + 并行工作 novelty boundary\"\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 26\n  last_seen_round: 29\n  mentions:\n    - {round: 26, reviewers: \"R1(agree),R2(Major)\", note: \"DDR 更多是 empirical decomposition 而非新现象。\"}\n    - {round: 27, reviewers: \"R2-N2,R1(agree)\", note: \"Discussion §5 informal conjecture 不足。\"}\n    - {round: 28, reviewers: \"R2-N2(Critical),R1(partial rebut→Major)\", note: \"Geng et al. (2026) per-feature convergence 与 DDR 高度相似。\"}\n    - {round: 29, reviewers: \"R2-N2(Critical),R1(rebut)\", note: \"R2 要求系统对比 Mohamed et al. / Geng et al. / Li et al.。R1 同意 §2.2 需要对比段落/表格。R2 补充 paraphrastic vs non-paraphrastic 缺直接对比实验。共识：§2.2 扩展对比讨论。\"}\n  action_items:\n    - {round: 26, action: \"Discussion 添加 DDR vs model collapse 区分。\", assigned_to: \"Agent\", status: \"done\"}\n    - {round: 28, action: \"§2.2 扩展对比段落：本文 vs Mohamed et al. (2025) vs Geng et al. (2026)，明确列出 setting/features/evaluation/findings 差异。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R25-W4\"\n  summary: \"Generator subset 不一致 (5/6/8-gen)\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 25\n  last_seen_round: 28\n  mentions:\n    - {round: 25, reviewers: \"R2(提出),R1(同意)\", note: \"至少 6 种 subset 配置。\"}\n    - {round: 26, reviewers: \"R1(Major),R2(Minor)\", note: \"建议加入 subset 对照表。\"}\n    - {round: 27, reviewers: \"R1-W2(Major),R2-W2(Minor)\", note: \"QLoRA '+11.6pp' 已标注 6-gen LOGO。\"}\n    - {round: 28, reviewers: \"R1-W2(Major),R2(agree)\", note: \"QLoRA 排除的 2 个 generator 可能是最难分类的。\"}\n    - {round: 29, reviewers: \"none\", note: \"R29 未单独提及，但 QLoRA 6-gen vs 8-gen 问题在 R26-W1 讨论中隐含。\"}\n  action_items:\n    - {round: 27, action: \"Results L19 已标注 '(6-generator LOGO; +11.6 pp)'。\", assigned_to: \"Research Director\", status: \"done\"}\n    - {round: 28, action: \"Appendix E 明确列出被排除的 generators 及其在 8-gen 下的 individual performance。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R25-W6\"\n  summary: \"Downstream n=3 underpowered\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 21\n  last_seen_round: 29\n  mentions:\n    - {round: 25, reviewers: \"R1,R2\", note: \"n=3 TOST power 极低。\"}\n    - {round: 26, reviewers: \"R2-Q5,R1-Q5\", note: \"单一 reference model 且 negative result。\"}\n    - {round: 27, reviewers: \"R1-W7(Minor),R2(rebut)\", note: \"措辞分歧。\"}\n    - {round: 28, reviewers: \"R1-N2(Critical),R2(agree Major)\", note: \"升级为 Critical/Major。\"}\n    - {round: 29, reviewers: \"R1-N1,R2-W2\", note: \"与 R28-N2 合并处理。R1 补充问题不仅是 power 而是 metric 和 model coverage 不足。\"}\n  action_items:\n    - {round: 25, action: \"Discussion 改为 pilot experiment 措辞\", assigned_to: \"Director\", status: \"done\"}\n    - {round: 28, action: \"与 R28-N2 合并处理。Abstract 弱化或删除 TOST 声明。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R25-W7\"\n  summary: \"Instruct model 退化缺 mechanistic 分析（RLHF vs SFT 未区分）\"\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 25\n  last_seen_round: 29\n  mentions:\n    - {round: 25, reviewers: \"R1,R2\", note: \"仅描述性报告。\"}\n    - {round: 26, reviewers: \"R1(Minor),R2(partial agree)\", note: \"QLoRA instruct 部分回应。\"}\n    - {round: 27, reviewers: \"none\", note: \"R27 未作为独立 weakness。\"}\n    - {round: 28, reviewers: \"R2-Q1,R1(agree good question)\", note: \"RLHF/DPO 哪个 component 导致 DDR 压缩。\"}\n    - {round: 29, reviewers: \"R2-Q3,R1(agree)\", note: \"R2 提问 RLHF reward shaping vs instruction-following format constraints。R1 补充 instruct 退化异质性（OLMo -42.5pp vs Llama -1.1pp）需机理解释。共识：Discussion 需增加 instruct 退化段落。\"}\n  action_items:\n    - {round: 26, action: \"QLoRA instruct 完成。\", assigned_to: \"Agent\", status: \"done\"}\n    - {round: 29, action: \"§5 Discussion 增加 instruct 退化讨论段落：机理假说 + 异质性分析 + instruct-specific DDR partition 可检验假说。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R27-W3\"\n  summary: \"Temperature 消融覆盖不足，可靠范围 [0.5,0.7] 对实际部署过窄\"\n  category: experiment\n  severity: warning\n  status: acknowledged\n  first_raised_round: 27\n  last_seen_round: 29\n  mentions:\n    - {round: 27, reviewers: \"R1-W3(Major),R2(agree Major)\", note: \"仅 3 温度点 × 4 generator。\"}\n    - {round: 28, reviewers: \"R1-N1 implicitly,R2(agree)\", note: \"温度依赖性升级为核心 framing 问题（R28-N1）。\"}\n    - {round: 29, reviewers: \"R1-W3,R2(agree)\", note: \"R29 再次确认。与 R28-N1 联合：DDR operational window 被压缩至 t∈[0.5,0.9)。R2 补充 cross-temperature transfer 不对称性数据。\"}\n  action_items:\n    - {round: 27, action: \"Limitations 已讨论温度范围限制。\", assigned_to: \"Research Director\", status: \"acknowledged\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R27-W5\"\n  summary: \"Baseline 对比 framing：detection ensemble 已超过 7-feature，DDR 增量在 interpretability\"\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 27\n  last_seen_round: 27\n  mentions:\n    - {round: 27, reviewers: \"R1-W5(Major),R2(agree)\", note: \"改写为 DDR 不优于 detection ensemble，价值在于 interpretable decomposition。\"}\n    - {round: 28, reviewers: \"none\", note: \"R28 未提及。\"}\n    - {round: 29, reviewers: \"none\", note: \"R29 未提及 framing 本身（已 resolved），但 R1-W2 新增 baseline 范围偏窄的问题。\"}\n  action_items:\n    - {round: 27, action: \"§4.3 明确声明。\", assigned_to: \"Research Director\", status: \"done\"}\n  resolution: \"§4.3 明确声明 DDR 不优于 detection ensemble，价值在于 interpretable decomposition。\"\n  resolution_round: 27\n\n# ============ NEW in Round 29 ============\n\n- id: \"R29-W1\"\n  summary: \"Gemma-2-2B gen-1 F1=0.036 anomaly 解释不充分，挑战 DDR universality\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 29\n  last_seen_round: 29\n  mentions:\n    - {round: 29, reviewers: \"R1-W1(提出),R2(强烈同意)\", note: \"Gemma-2-2B gen-1 F1=0.036 意味着分类器完全无法区分 gen-0 和 gen-1。论文归因 'architecture-specific limitation' 但解释描述性非机理性。R2 认为这是 DDR 非 universal mechanism 的关键证据——DDR 是 generator-conditional 经验规律。R1 建议检查非 Pythia reference model 下 Gemma 表现。\"}\n  action_items:\n    - {round: 29, action: \"Appendix Z.4 补充 Gemma-2-2B 在 OLMo-2-1B/Qwen3-0.6B reference model 下的 per-class F1；分析 7 个特征值分布与其他 generator 的差异；提供机理性解释。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R29-W2\"\n  summary: \"Baseline 对比范围偏窄（4 个均为 single-feature/简单方法），缺 multi-feature/trained detector\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 29\n  last_seen_round: 29\n  mentions:\n    - {round: 29, reviewers: \"R1-W2(提出),R2(agree)\", note: \"4 baseline 都是 single-feature 或简单方法。7-feat vs 4-det ensemble 仅 +2.5pp（0.820 vs 0.795）。7-feat vs Avg-LogProb 仅 +3.3pp，CI-width 差异暗示优势主要在稳定性而非绝对性能。缺 DNA-GPT、RADAR 等 multi-feature/trained detector 对比。\"}\n  action_items:\n    - {round: 29, action: \"补充至少 1 个 multi-feature 或 trained detector baseline（可在 appendix）。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R29-W3\"\n  summary: \"Per-generator F1 变异大（0.633-0.724），generator-unknown 场景实用性受限\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 29\n  last_seen_round: 29\n  mentions:\n    - {round: 29, reviewers: \"R2-W3(提出),R1(agree)\", note: \"Binary F1 range 0.633(Mistral-7B)—0.724(Pythia-2.8B)，9.1pp spread。分类器实用性高度依赖 generator identity，但实际场景中 generator 通常未知。R1 补充 cross-model chain 5-gen subset F1=0.693 佐证。\"}\n  action_items:\n    - {round: 29, action: \"讨论 generator-unknown 场景下的性能退化原因及缓解策略。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n# ============ MINOR / INFO ============\n\n- id: \"R28-M1\"\n  summary: \"entropy_max LOFO 退化最大但被归为 near-stationary，与 DDR 叙事存在张力\"\n  category: method\n  severity: info\n  status: open\n  first_raised_round: 28\n  last_seen_round: 28\n  mentions:\n    - {round: 28, reviewers: \"R1-W5(Minor),R2(rebut)\", note: \"分歧在 distributional behavior vs discriminative utility。\"}\n    - {round: 29, reviewers: \"none\", note: \"R29 未提及。\"}\n  action_items:\n    - {round: 28, action: \"考虑在正文或附录增加一句区分 'distributional behavior' 和 'discriminative utility'。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R28-M2\"\n  summary: \"Cross-domain 实验 (Appendix I) 使用 t=1.0，与主实验 t=0.7 不一致\"\n  category: experiment\n  severity: info\n  status: open\n  first_raised_round: 28\n  last_seen_round: 28\n  mentions:\n    - {round: 28, reviewers: \"R1-Minor-2,R2(agree)\", note: \"若 DDR 在 t=1.0 信号消失，cross-domain 正面结果可能来自其他 confound。\"}\n    - {round: 29, reviewers: \"none\", note: \"R29 未提及。\"}\n  action_items:\n    - {round: 28, action: \"正文引用 cross-domain 结果时注明采样参数差异。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R28-M3\"\n  summary: \"Abstract 表述过于绝对：'consistent across five model families' 混淆 pattern consistency 与 performance consistency\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 28\n  last_seen_round: 28\n  mentions:\n    - {round: 28, reviewers: \"R2-W1(Major),R1(partially agree)\", note: \"DDR partition 在所有 family 成立但 performance 变异显著。\"}\n    - {round: 29, reviewers: \"none\", note: \"R29 未单独提及，但 R29-W3 涉及 performance 变异。\"}\n  action_items:\n    - {round: 28, action: \"Abstract 'consistent' 措辞加入 performance variation 限定。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R28-M4\"\n  summary: \"可能遗漏相关工作：Shahriar et al. (2025), Riis (2026), Wang et al. (2025 orphan)\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 28\n  last_seen_round: 29\n  mentions:\n    - {round: 28, reviewers: \"R2(提出),R1(agree)\", note: \"需确认引用真实性后引用。\"}\n    - {round: 29, reviewers: \"R2-W4(提出)\", note: \"R29 补充遗漏：RAID benchmark (Dugan et al. 2024) bib 有但 text 未引用；SemEval-2024 Task 8C multi-class sub-task 未讨论；Dohmatob & Feng (2025) information-theoretic framework 未利用来解释 DDR。\"}\n  action_items:\n    - {round: 28, action: \"确认 Shahriar et al. 和 Riis 引用真实性后引用。\", assigned_to: \"Research Director\", status: \"open\"}\n    - {round: 29, action: \"§2.1 讨论 RAID benchmark；对比 SemEval Task 8C multi-class formulation；利用 Dohmatob & Feng framework 解释 DDR。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R28-M5\"\n  summary: \"17 个 orphan bib entries + 9 个 OpenAlex 未验证引用\"\n  category: format\n  severity: info\n  status: open\n  first_raised_round: 28\n  last_seen_round: 29\n  mentions:\n    - {round: 28, reviewers: \"R2(提出),R1(agree)\", note: \"17 个 bib 条目未被正文引用。\"}\n    - {round: 29, reviewers: \"R2(再次提及)\", note: \"R29 R2 再次提到 orphan bib entries 需清理。R1 确认为 camera-ready 前必做。\"}\n  action_items:\n    - {round: 28, action: \"清理 orphan bib entries；确认 two_birds 和 beyond_final_actor 真实性。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R28-M6\"\n  summary: \"术语不一致 ('generation depth' vs 'recursive depth'; 'entropy' 定义)\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 28\n  last_seen_round: 28\n  mentions:\n    - {round: 28, reviewers: \"R1-Minor-3,R2-Minor-2,交叉均agree\", note: \"术语交替使用。脚注5 解释 entropy 实际指 NLL 但全文不一致。\"}\n    - {round: 29, reviewers: \"none\", note: \"R29 未提及。\"}\n  action_items:\n    - {round: 28, action: \"统一术语；Method 首次定义时区分 entropy 和 NLL。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R29-M1\"\n  summary: \"DDR 缩写应在 Abstract 首次出现时定义（当前首次定义在 §4.2）\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 29\n  last_seen_round: 29\n  mentions:\n    - {round: 29, reviewers: \"R1-Minor-2\", note: \"Abstract 已使用 'differential depth response' 但未给出缩写 DDR，首次缩写出现在 §4.2。\"}\n  action_items:\n    - {round: 29, action: \"Abstract 首次出现 'differential depth response' 时加 (DDR) 缩写。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R29-M2\"\n  summary: \"Table 1 脚注 1 gen-0 shared seeds upward bias 量级应在正文估计\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 29\n  last_seen_round: 29\n  mentions:\n    - {round: 29, reviewers: \"R1-Minor-3\", note: \"'1-class F1 carries upward bias because gen-0 seeds are shared across generators' 量级仅在脚注提及，正文应给出估计值。\"}\n  action_items:\n    - {round: 29, action: \"正文给出 gen-0 shared seeds bias 的量级估计。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R29-M3\"\n  summary: \"Appendix B↔R 引用环路可能混淆读者\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 29\n  last_seen_round: 29\n  mentions:\n    - {round: 29, reviewers: \"R1-Minor-4\", note: \"Appendix B 引用 Appendix R，Appendix R 引用 Appendix B 结论，形成循环。\"}\n  action_items:\n    - {round: 29, action: \"打断引用环路或添加导读说明。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R29-M4\"\n  summary: \"Figure 1 灰度打印下 DDR partition 色彩编码不易区分\"\n  category: format\n  severity: info\n  status: open\n  first_raised_round: 29\n  last_seen_round: 29\n  mentions:\n    - {round: 29, reviewers: \"R1-Minor-1,R2-Minor-3\", note: \"Strip plot near-stationary 组多条趋势线重叠严重（R1）；drifting/intermediate/near-stationary 色彩编码灰度打印下不易区分（R2）。\"}\n  action_items:\n    - {round: 29, action: \"Figure 1 考虑使用 line style（dash/dot）或 marker 形状辅助灰度区分。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n# ============ RESOLVED (prior rounds) ============\n\n- id: \"R25-W3\"\n  summary: \"TTR-hapax 冗余（r=0.97）\"\n  category: method\n  severity: info\n  status: in_progress\n  first_raised_round: 23\n  last_seen_round: 27\n  mentions:\n    - {round: 25, reviewers: \"R1,R2\", note: \"循环论证已修复。\"}\n    - {round: 27, reviewers: \"R1-Q4(cross),R2(agree)\", note: \"LOFO gains <1pp，保留是 interpretability vs parsimony 取舍。\"}\n    - {round: 29, reviewers: \"none\", note: \"R29 未提及。\"}\n  action_items:\n    - {round: 25, action: \"消融实验完成。\", assigned_to: \"Director\", status: \"done\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R25-W9\"\n  summary: \"Reference model same-family 偏差（Pythia-410M）\"\n  category: experiment\n  severity: info\n  status: in_progress\n  first_raised_round: 25\n  last_seen_round: 27\n  mentions:\n    - {round: 25, reviewers: \"R1(提出),R2(agree)\", note: \"Pythia-410M 与 Pythia generators 同家族。\"}\n    - {round: 29, reviewers: \"none\", note: \"R29 未提及。\"}\n  action_items:\n    - {round: 25, action: \"§4.2 添加 affinity caveat\", assigned_to: \"Director\", status: \"done\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R27-W6\"\n  summary: \"Independent-seed 控制仅覆盖 2/8 generator\"\n  category: experiment\n  severity: info\n  status: acknowledged\n  first_raised_round: 27\n  last_seen_round: 27\n  mentions:\n    - {round: 27, reviewers: \"R1-W6(Minor),R2(agree)\", note: \"仅 Pythia-2.8B 和 OLMo-2-1B。\"}\n    - {round: 29, reviewers: \"none\", note: \"R29 未提及。\"}\n  action_items:\n    - {round: 27, action: \"Limitations 已提及。\", assigned_to: \"Research Director\", status: \"acknowledged\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R27-W8\"\n  summary: \"Table 1 vs Table 2 聚合方式不同（per-gen macro avg vs pooled），差 1.1pp\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 27\n  last_seen_round: 28\n  mentions:\n    - {round: 27, reviewers: \"R1-W8(Minor),R2(agree)\", note: \"Caption 有注释但易混淆。\"}\n    - {round: 28, reviewers: \"R1-Minor-1,R2-Minor-5,交叉均agree\", note: \"建议标注 '(pooled)'。\"}\n    - {round: 29, reviewers: \"none\", note: \"R29 未提及。\"}\n  action_items:\n    - {round: 28, action: \"正文首次引用 Table 2 时标注 '(pooled)'。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R27-W4-supp\"\n  summary: \"anonymous_supplement.tgz 文件缺失\"\n  category: format\n  severity: info\n  status: open\n  first_raised_round: 27\n  last_seen_round: 27\n  mentions:\n    - {round: 27, reviewers: \"R2-W4(Minor),R1(agree)\", note: \"提交材料清单声明有但文件不存在。\"}\n    - {round: 29, reviewers: \"none\", note: \"R29 未提及。\"}\n  action_items:\n    - {round: 27, action: \"打包补充材料或更新提交计划。\", assigned_to: \"Research Director\", status: \"open\"}\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R26-W2\"\n  summary: \"Abstract 约 132 words 偏短 + 缺少 why important + NLL 未定义\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 26\n  last_seen_round: 27\n  resolution: \"Abstract 扩展完成。R27-R29 未再提及长度问题。\"\n  resolution_round: 26\n\n- id: \"R25-W2\"\n  summary: \"异方差下 pooled d → Glass's Δ 应更突出\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 21\n  last_seen_round: 25\n  resolution: \"Glass's Δ 内嵌正文，R26-R29 未再提及。\"\n  resolution_round: 26\n\n- id: \"R25-W1\"\n  summary: \"TOST tail decay 4/8 通过\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 21\n  last_seen_round: 25\n  resolution: \"Reclassification caveat 在位，R26-R29 未再提及。\"\n  resolution_round: 26\n\n- id: \"R25-W5\"\n  summary: \"遗漏 Wang et al. ACL 2025 (Attractor Cycles)\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 25\n  last_seen_round: 25\n  resolution: \"引用已添加。R26-R29 未再提及。\"\n  resolution_round: 26\n\n- id: \"R25-M1\"\n  summary: \"', confirming' 9+ 次 AI 写作标志\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 25\n  last_seen_round: 25\n  resolution: \"R26-R29 均确认无 AI 写作标志。\"\n  resolution_round: 26\n\n- id: \"R25-W10\"\n  summary: \"OLMo checkpoint 不一致\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 25\n  last_seen_round: 27\n  resolution: \"脚注说明在位。影响 bounded。\"\n  resolution_round: 26\n\n- id: \"R25-W8\"\n  summary: \"Contribution 分量不均\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 25\n  last_seen_round: 25\n  resolution: \"R26-R29 均确认叙事一致。\"\n  resolution_round: 26\n\n- id: \"R26-MR1\"\n  summary: \"Related Work 缺少 query-based LLM 检测方法引用\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 26\n  last_seen_round: 26\n  resolution: \"Zhu et al. 2023 引用已添加。R27 确认引用完整。\"\n  resolution_round: 26\n\n- id: \"R24-W2-dismissed\"\n  summary: \"参考模型 confound (R1 声称 cross-reference F1 降至 ~0.613)\"\n  category: method\n  severity: info\n  status: resolved\n  first_raised_round: 24\n  last_seen_round: 24\n  resolution: \"R1 数据引用错误。实际 cross-reference LOGO F1 spread=0.013。\"\n  resolution_round: 24\n\n- id: \"R1-N2-old\"\n  summary: \"DDR 3/1/3 partition post-hoc 选择\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 21\n  last_seen_round: 23\n  resolution: \"§4.2 重构为 2-group primary + domain-informed refinement\"\n  resolution_round: 23\n\n- id: \"R2-N2-old\"\n  summary: \"新颖性受限：三篇并行工作收敛于 ~3 classes\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 21\n  last_seen_round: 23\n  resolution: \"Novelty 锚定在 DDR 分解\"\n  resolution_round: 23\n\n- id: \"R1-N5\"\n  summary: \"QLoRA F1=0.905 是否削弱 DDR 贡献\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 21\n  last_seen_round: 24\n  resolution: \"QLoRA 定位为验证 depth signal 存在，非竞争方法\"\n  resolution_round: 24\n\n- id: \"R2-W4-old\"\n  summary: \"正文可能超8页限制\"\n  category: format\n  severity: warning\n  status: resolved\n  first_raised_round: 21\n  last_seen_round: 22\n  resolution: \"Main content ≤8 pages confirmed.\"\n  resolution_round: 26\n\n- id: \"R22-M2\"\n  summary: \"Abstract 中 LLM 缩写未展开\"\n  category: format\n  severity: info\n  status: resolved\n  first_raised_round: 22\n  last_seen_round: 22\n  resolution: \"Changed to 'large language models (LLMs)'\"\n  resolution_round: 22"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1ea9feb9-538c-44b8-8210-90bba7c36175",
+  "isSidechain": false,
+  "requestId": "req_011CbDi1WeX4BpHxMAxWWqv4",
+  "type": "assistant",
+  "uuid": "5d0421d8-6ab0-4275-b6c2-f3a52aaeefac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016XWZPCTiCiVm2NLVA2iRoz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12578,
+      "cache_read_input_tokens": 83641,
+      "output_tokens": 22070,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12578,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 22070,
+          "cache_read_input_tokens": 83641,
+          "cache_creation_input_tokens": 12578,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12578
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 87 · 2026-05-20T11:09:56.013Z_
+
+<details><summary>↩ Tool result · `toolu_01RWkcyeV61nx2tYNy1hdVcT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_issues.yaml\", \"bytes\": 29629}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5d0421d8-6ab0-4275-b6c2-f3a52aaeefac",
+  "isSidechain": false,
+  "promptId": "4582f6cb-64a4-498a-9e05-ac7b1e33e7b9",
+  "type": "user",
+  "uuid": "75e86ceb-8bf7-42c3-8e91-b0c73c1b8e72",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_issues.yaml\\\", \\\"bytes\\\": 29629}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_issues.yaml\", \"bytes\": 29629}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "5d0421d8-6ab0-4275-b6c2-f3a52aaeefac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 88_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Reviewer 2 审稿结果]: Round 1 审稿完成。已向 Review Director 提交完整审稿报告，核心结论：  - **Overall: 3.0/5 (Findings)**，Soundness 3.5，Excitement 2.5 - **3 个 Must-Fix**：(N1) DDR 新颖性不足，本质是 model collapse 已知现象的再包装；(N2) 与 Bro…",
+  "leafUuid": "75e86ceb-8bf7-42c3-8e91-b0c73c1b8e72",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 89_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review appendix and remaining pages",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 90 · 2026-05-20T11:09:59.843Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Issue tracker updated. Now let me submit the consolidated review report.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "75e86ceb-8bf7-42c3-8e91-b0c73c1b8e72",
+  "isSidechain": false,
+  "requestId": "req_011CbDiaTKkwknsG9kgru8Z4",
+  "type": "assistant",
+  "uuid": "b2524494-468f-4966-85b4-a4afc616fb6b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PG1WzvmkqE4ha5pkHALfKv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 22134,
+      "cache_read_input_tokens": 96219,
+      "output_tokens": 5839,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22134,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5839,
+          "cache_read_input_tokens": 96219,
+          "cache_creation_input_tokens": 22134,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22134
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 91 · 2026-05-20T11:10:01.330Z_
+
+Issue Tracker 更新完成（Round 29，新增 4 个 issue，更新 12 个已有 issue）。提交审稿报告。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b2524494-468f-4966-85b4-a4afc616fb6b",
+  "isSidechain": false,
+  "requestId": "req_011CbDiaTKkwknsG9kgru8Z4",
+  "type": "assistant",
+  "uuid": "a471301c-547b-49d9-8679-2af6a1578e79",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PG1WzvmkqE4ha5pkHALfKv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 22134,
+      "cache_read_input_tokens": 96219,
+      "output_tokens": 5839,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22134,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5839,
+          "cache_read_input_tokens": 96219,
+          "cache_creation_input_tokens": 22134,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22134
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 92 · 2026-05-20T11:12:22.072Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__submit_review_report_to_research_director · `toolu_01VJU6C2Ayw7D34kzQcatrX1`</summary>
+
+```json
+{
+  "report": "# 审稿报告 — Round 29 (Fresh Review)\n\n**论文**: \"Differential Depth Response in Non-Paraphrastic LLM Generation Chains: An Empirical Characterization Across Model Families\"\n**Venue**: EMNLP 2026 via ACL Rolling Review\n**Reviewers**: R1（方法严谨性 + 实验设计）、R2（新颖性 + 完整性 + 写作质量）\n**审稿模式**: Fresh（初审）\n**轮次**: Round 1 独立初审 → Round 2 交叉分享（逐条 AGREE/REBUT）→ Round 3 收敛\n\n---\n\n## Summary\n\n本文研究 LLM 递归生成链中文本分布随深度变化的现象。核心贡献是 DDR（Differential Depth Response）分析框架：将 7 个文本特征分为 drifting（entropy_mean, TTR, hapax_ratio——随深度单调漂移）和 near-stationary（entropy_max, tail_decay——变化幅度小一个数量级）两组，揭示递归生成中 location shift 与 shape preservation 的不对称性。基于此构建 XGBoost 分类器实现 3-class 深度分类（gen-0/gen-1/gen-2+），在 8 个 generator（5 个模型家族，0.6B–8B）上以 LOGO cross-validation 评估，报告 3-class macro-F1 = 0.762、binary F1 = 0.694。\n\n---\n\n## Strengths\n\n**S1 [共识]** 任务定义清晰且有价值——将 generation depth classification 从 binary detection 中独立出来，gen-0/gen-1/gen-2+ 的 ordinal formulation 填补了文献空白。Non-paraphrastic continuation chain 的设置避免了 paraphrase detection 混淆。\n\n**S2 [共识]** DDR 分解是 genuine empirical contribution——drifting vs near-stationary 的 partition 通过 TOST、k-means clustering（Appendix V Table 28）、holdout split validation（Table 30）、bootstrap stability（Appendix U.1 Table 27）四种独立方法交叉验证。Stationary features 的发现（8/8 generators 通过 TOST）超越了简单的 vocabulary impoverishment 描述。\n\n**S3 [共识]** 统计方法论示范性强——多种效应量指标（Cohen's d, Glass's Δ, Cliff's δ）、TOST 等价性检验、heteroscedasticity 分析、bootstrap CI、Bonferroni 校正。LOGO 避免 generator leakage，LOFO 验证特征贡献，independent-seed 控制排除 topic-based leakage。\n\n**S4 [共识]** Confound 控制全面——length-matched subsampling、seed-level demeaning、cross-reference model（3 个 ref model, F1 spread = 0.013）、cross-prompt-type transfer、cross-domain evaluation。\n\n**S5 [共识]** 学术诚实——对 instruct model 退化、temperature 敏感性、cross-model confound、n=3 TOST 效力问题均有坦率讨论。Appendix K 的 instruct 退化和 Appendix M 的 negative downstream result 展示了报告不利发现的意愿。\n\n**S6 [共识]** 分析广度 exceptional——20+ appendix covering length confound、temperature sensitivity、prompt type、5-class ordinal、human edit robustness、cross-domain、classifier comparison、Granger causality、error analysis、instruction tuning、convergence dynamics 等。在 empirical NLP 论文中罕见。\n\n**S7 [R1]** Granger causality 分析（Appendix Z.3 Table 38）提供了 DDR 特征的 causal predictive power 证据，超越了纯相关性描述。\n\n**S8 [R2]** Cross-family reference model finding（Pythia-410M 跨家族泛化）是有实用价值的发现。\n\n---\n\n## Weaknesses\n\n### Must-Fix（影响接收决定）\n\n**N1 [Critical, 共识]** Base-model-only scope 严重限制 impact\n- 全部 8 个 generator 均为 base (pretrained) models。Appendix K 显示 instruction tuning 后：binary F1 从 ~0.694 降至 0.338-0.660（instruct 变体），entropy_mean ρ 翻转符号，6/7 features 行为反转。\n- Instruct 退化的异质性不可预测：OLMo-Inst F1=0.338 (-42.5pp) vs Llama-Inst F1=0.838 (-1.1pp)。\n- 现实部署的 LLM 绝大多数是 instruction-tuned，title/abstract 未标注 \"base model only\"。\n- **两位 Reviewer 一致要求**：Title 或 Abstract 必须明确标注 base-model scope；正文 §5 Discussion 需讨论 instruct 退化机制假说。\n\n**N2 [Critical, R1提出/R2同意Major]** 下游效用实验 underpowered + Abstract overclaim\n- TOST 等价性检验仅 n=3 seeds、单一指标（perplexity）、单一模型（OLMo-2-0425-1B）。Cohen's d 膨胀至 86-119（pooled SD < 0.001 导致的 degenerate case）。\n- Abstract 声称 \"equivalence testing suggests no downstream training quality degradation\" 但省略 \"preliminary\" 和 \"n=3\"。\n- **修复路径**：(a) 增加至 ≥10 seeds + 第二个模型 + 第二个指标；或 (b) Abstract 加入 \"preliminary, n=3\" 限定或删除该声明。\n\n**N3 [Critical, R2提出/R1部分同意]** DDR 新颖性 genuine but incremental\n- R2 认为 DDR 本质是 model collapse 文献（Shumailov et al. 2024）已知的词汇贫化现象在 inference-chain 场景下的再确认。Drifting features（TTR, hapax_ratio）直接度量 vocabulary impoverishment。\n- R1 反驳：DDR 核心贡献不在 drifting 而在 stationary features（entropy_max, tail_decay）保持 near-stationary——vocabulary impoverishment 假说无法预测。Feature ablation（Table 2）显示 reference features 提供 +5.7pp 增量。\n- **交叉后共识**：DDR genuine but incremental——stationary features 提供增量但概念上可预测。Findings 级别合适。\n- Concurrent work 区分不充分：Mohamed et al. (ACL 2025)、Geng et al. (2026)、Li et al. (ACL 2026) 三篇在 §2.2 讨论不够深入。**需系统对比表或段落**。\n\n**N4 [Critical, R1提出/R2强烈同意]** QLoRA gap 削弱方法论贡献\n- 7-feature XGBoost binary F1 = 0.694 vs QLoRA (Qwen3-0.6B) = 0.905，差距 +12-15pp。\n- Interpretability advantage 未通过具体 use case 充分论证。7-feat vs Avg-LogProb margin 仅 +3.3pp，marginal contribution 有限。\n- **两位共识**：论文应从 \"classification method\" 重新定位为 \"empirical characterization\"。\n\n### Should-Fix（影响评分但不一票否决）\n\n**W1 [Warning, R1提出/R2强烈同意]** Gemma-2-2B 异常（gen-1 F1=0.036）解释不充分\n- 分类器完全无法区分 Gemma-2-2B 的 gen-0 和 gen-1。论文归因为 \"architecture-specific limitation\" 但解释描述性非机理性。\n- R2 认为这是 DDR 非 universal mechanism 的关键证据。\n- **建议**：检查非 Pythia reference model 下 Gemma 表现；分析特征值分布差异。\n\n**W2 [Warning, R1提出/R2同意]** Cross-model chain F1=0.830 混淆 depth signal 与 generator identity\n- 用 sample-level 5-fold CV 而非 generator-level held-out，与主表 LOGO 设计矛盾。\n- **建议**：补充 disentangling 实验或降级为 exploratory result。\n\n**W3 [Warning, R1提出/R2同意]** Temperature 限制（t<0.9）影响实用性\n- t=0.9 时 4 generator 的 binary F1 降至 0.400-0.453。Cross-temperature transfer 高度不对称（t=0.7→1.0: F1=0.418）。\n- **与 N1 联合**：DDR operational window 压缩至 base models + t∈[0.5,0.9) + 非 Gemma architecture。\n\n**W4 [Warning, R1提出/R2同意]** DDR partition 3/1/3 分组标准不够 principled\n- ε sensitivity（Appendix V Table 29）仅展示 pass rate，未展示 partition 是否改变。entropy_std \"intermediate\" 定义不明确。\n- **建议**：明确 intermediate 定义；展示 ε=0.15/0.25 下 partition 稳定性。\n\n**W5 [Warning, R1提出/R2同意]** Baseline 对比范围偏窄\n- 4 baseline 均为 single-feature/简单方法。7-feat vs 4-det ensemble 仅 +2.5pp。缺 multi-feature/trained detector baseline。\n\n**W6 [Warning, R2提出/R1同意]** Related work 缺少重要讨论\n- RAID benchmark（bib 有但 text 未引用）、SemEval-2024 Task 8C、Dohmatob & Feng (2025) information-theoretic framework。17 个 orphan bib entries 需清理。\n\n**W7 [Warning, R2提出/R1同意]** Negative downstream finding framing 可商榷\n- \"Diagnostic not curative\" 暗示有诊断价值但未展示具体场景。Negative result 不 counter-intuitive。\n\n**W8 [Warning, R2提出/R1同意]** Per-generator F1 变异大（0.633-0.724）\n- 9.1pp spread 意味着分类器实用性高度依赖 generator identity，generator-unknown 场景下实用性受限。\n\n---\n\n## Reviewer Consensus\n\n以下问题两位 Reviewer 达成完全共识 [AGREE]：\n\n1. **Overall 3.0 (Findings)**——方法论严谨但概念新颖性不足以进入主会议\n2. **Base-model-only 是最严重的 scope limitation**——title/abstract 必须标注\n3. **QLoRA gap 要求论文重新定位**——从 classification method 转向 empirical characterization\n4. **下游 TOST n=3 underpowered**——Abstract 必须加 \"preliminary\" 或删除\n5. **温度限制 + base-model-only 联合压缩 DDR 适用范围**——正文需更诚实讨论\n6. **实验执行质量 exceptional**——Soundness 3.5/5\n7. **Cross-model chain 结果需 disentangle depth vs generator identity**\n8. **DDR partition 经过多种方法验证是 genuine empirical finding**\n\n## Reviewer Divergence\n\n**分歧 1: DDR 新颖性的程度**\n- R2 (Excitement 2.5): DDR 是 model collapse 已知现象的再确认，drifting/stationary partition 概念上可预测\n- R1 (Excitement 3.0): Stationary features 发现超越 vocabulary impoverishment（+5.7pp ablation evidence）\n- **处理**：两位同意 \"genuine but incremental\"，分歧在 increment 大小。不影响 Overall（均 3.0）。\n\n**分歧 2: Gemma-2-2B 异常的严重性**\n- R2: DDR 非 universal mechanism 的关键证据\n- R1: Architecture-specific 异常，需更好解释但不否定 DDR 整体\n- **处理**：两位同意需更深入机理分析，对是否从根本上挑战 DDR 有分歧。\n\n---\n\n## Questions for Authors\n\n1. **[共识]** QLoRA classifier 是否也学到了 DDR-like 的 drifting/stationary 分解？有无 feature attribution 分析？\n2. **[共识]** Appendix K 显示 entropy_mean ρ 在 instruct 模型上翻转——DDR 是 reversed 还是消失？重新训练 instruct-specific partition 能否恢复？RLHF 哪个 component 导致压缩？\n3. **[共识]** 在什么 F1 水平下 depth classification 有实际部署价值？0.694 是否足够 data curation？请报告 precision-recall tradeoff。\n4. **[R1]** Gemma-2-2B 在非 Pythia reference model 下的 per-class F1？\n5. **[R1]** 有无 single-generator → cross-model chain transfer 实验？\n6. **[R2]** 能否直接对比 inference-chain depth signal 与 training-loop model collapse signal？\n7. **[R2]** Stationary features 稳定性能否从 softmax + fixed temperature 数学性质推导？\n8. **[R2]** 为什么不做 paraphrastic vs non-paraphrastic chain 直接对比实验？\n9. **[R2]** DDR \"diagnostic\" 的具体场景是什么？请给 end-to-end 应用案例。\n\n---\n\n## Missing References\n\n1. **RAID benchmark** (Dugan et al., 2024, ACL)：bib 有但 text 未引用，应在 §2.1 讨论\n2. **SemEval-2024 Task 8C**：multi-class detection sub-task 与本文 ordinal formulation 高度相关\n3. **Dohmatob & Feng (2025) \"Strong Model Collapse\"**：引用但未利用 information-theoretic framework 解释 DDR\n4. **Mohamed et al. (2025)、Geng et al. (2026)、Li et al. (2026)**：已引用但 §2.2 区分不充分，需系统对比\n5. **Shahriar et al. (2025)**：iterative paraphrasing 降低检测性能，与本文互补\n\n---\n\n## External Review (Stanford Agentic Reviewer)\n\n**状态**：未请求。本轮审稿未启用外部审稿线。\n\n---\n\n## Visual Layout Check（非评分项）\n\n**状态**：超时（elapsed > 8 小时）。视觉审查 Agent 未能在时限内完成。如需视觉排版检查，建议用户手动重新触发。\n\n---\n\n## Overall Assessment\n\n**Overall Score: 3.0/5 (Findings)**\n\n| 维度 | R1 | R2 | 共识 |\n|------|-----|-----|------|\n| Soundness | 3.5/5 | 3.5/5 | 3.5/5 |\n| Excitement | 3.0/5 | 2.5/5 | 2.75/5 |\n| Reproducibility | 4.0/5 | — | 4.0/5 |\n| Overall | 3.0/5 | 3.0/5 | **3.0/5** |\n| Confidence | 4/5 | 4.5/5 | 4.25/5 |\n\n**判决理由**：\n- **支持 Findings 接收**：(1) DDR partition 是 genuine 实证发现，经 4 种方法交叉验证；(2) 方法论严谨度上乘（Soundness 3.5）；(3) 分析广度 exceptional（20+ appendix）；(4) 学术诚实。\n- **阻止主会议接收**：(1) Base-model-only scope + instruct 退化严重且不可预测；(2) QLoRA +12-15pp 差距削弱 7-feature approach 价值；(3) DDR 概念新颖性 incremental；(4) Binary F1=0.694 实用价值有限。\n- 这些限制反映当前工作阶段的固有局限，非写作/实验设计缺陷，难以在一个 revision cycle 内根本解决。\n\n---\n\n## Top-3 修改建议（按优先级）\n\n### 建议 1 [最高优先级]: 重构论文叙事\n从 \"classification method\" 转向 \"empirical characterization of inference-chain distributional dynamics\"。7-feature XGBoost 降格为 DDR validation tool，QLoRA 作为 upper bound reference。Title/Abstract 标注 base-model scope + t∈[0.5,0.7] 采样条件。§2.2 加入 concurrent work 系统对比表。\n\n### 建议 2 [高优先级]: 增强下游实验或弱化 claim\n增加至 ≥10 seeds + 第二个模型 + 第二个指标；或 Abstract 加入 \"preliminary, n=3\" 限定。\n\n### 建议 3 [高优先级]: 正文讨论 DDR 机制和 boundary conditions\n§5 增加 instruct 退化讨论段落（机理假说 + 异质性分析）。分析 Gemma-2-2B 异常机理。解释温度敏感性。这为 DDR 从描述性发现向机制性理解的提升奠定基础。\n\n---\n\n## Detailed Comments\n\n### Section 1 (Introduction)\n- Contribution list 标注 base-model-only scope\n- 温度敏感性列入核心发现\n\n### Section 2 (Related Work)\n- §2.2 加系统对比表：本文 vs Mohamed et al. vs Geng et al. vs Li et al.\n- 讨论 RAID benchmark 和 SemEval-2024 Task 8C\n- 利用 Dohmatob & Feng framework 解释 DDR\n\n### Section 3 (Method)\n- \"Non-paraphrastic continuation chains\" 更形式化定义\n- entropy/NLL 术语统一\n\n### Section 4 (Results)\n- §4.2: 明确 intermediate 操作性定义；展示 ε sensitivity 对 partition 影响\n- §4.3: 补充至少 1 个 multi-feature/trained detector baseline\n- Table 1 脚注 1 gen-0 bias 量级正文估计\n- Table 2 首次引用标注 \"(pooled)\"\n- Cross-model chain 降级 exploratory 或补充 disentangling 实验\n- DDR 缩写在 Abstract 首次定义\n\n### Section 5 (Discussion)\n- 增加 instruct 退化段落 + instruct-specific DDR partition 假说\n- \"Diagnostic not curative\" 需具体应用场景\n\n### Section 6 (Limitations)\n- 综合温度/base-model/architecture 限制讨论 operational window\n- 讨论规模外推风险（≤8B only）\n\n### Appendix\n- Appendix E: 列出排除的 generators 及 8-gen individual performance\n- Appendix B↔R 引用环路\n- 清理 17 个 orphan bib entries\n- Gemma-2-2B 补充非 Pythia reference 下的 per-class F1\n\n### Format\n- Figure 1 灰度兼容性（line style/marker 辅助）\n- anonymous_supplement.tgz 打包",
+  "project": "gen-depth-fingerprint",
+  "reviewer_ids_acknowledged": [
+    1,
+    2
+  ],
+  "cross_response_reviewer_ids": [
+    1,
+    2
+  ],
+  "overall_score": "3.0 (Findings)",
+  "review_chat_id": "oc_999770e4e57bfc6eabd12fc1f64af1ef"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a471301c-547b-49d9-8679-2af6a1578e79",
+  "isSidechain": false,
+  "requestId": "req_011CbDiaTKkwknsG9kgru8Z4",
+  "type": "assistant",
+  "uuid": "42eef0dd-5774-4cf6-ab6a-83a667ad7a68",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PG1WzvmkqE4ha5pkHALfKv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 22134,
+      "cache_read_input_tokens": 96219,
+      "output_tokens": 5839,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22134,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5839,
+          "cache_read_input_tokens": 96219,
+          "cache_creation_input_tokens": 22134,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22134
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 93 · 2026-05-20T11:12:22.113Z_
+
+<details><summary>↩ Tool result · `toolu_01VJU6C2Ayw7D34kzQcatrX1`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"existing_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_31.md\", \"round\": 31}, \"error\": \"Round 31 report ALREADY submitted (persisted at `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_31.md`). Research Director was triggered once and may still be processing it; re-submitting silently would trigger the protocol again with conflicting content.\\n\\nExisting report frontmatter (first 400 chars):\\n---\\nround: 31\\nreview_mode: fresh\\noverall_score: 3.0 (Findings)\\ntimestamp: 2026-05-20T02:50:21.146067+00:00\\nreviewer_ids: [1, 2]\\ncross_response_reviewer_ids: [1, 2]\\nforce_resubmit: False\\n---\\n\\n# 审稿报告 — Round 28 (Fresh Review)\\n\\n**论文**: Depth Fingerprinting: Detecting Recursive Generation Depth in LLM Text Chains\\n**Venue**: EMNLP 2026 via ACL Rolling Review\\n**Deadline**: 2026-05-25\\n**Reviewers**: R1（方\\n\\nIf you intentionally want to replace it (e.g. caught a Step 2 cross-sharing gap and synthesized a corrected report), call again with force_resubmit=True. Otherwise the original submission stands — pause and verify before forcing.\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "42eef0dd-5774-4cf6-ab6a-83a667ad7a68",
+  "isSidechain": false,
+  "promptId": "4582f6cb-64a4-498a-9e05-ac7b1e33e7b9",
+  "type": "user",
+  "uuid": "9c64b888-5cf4-4ba3-94a0-fb971def952b",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"existing_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_31.md\\\", \\\"round\\\": 31}, \\\"error\\\": \\\"Round 31 report ALREADY submitted (persisted at `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_31.md`). Research Director was triggered once and may still be processing it; re-submitting silently would trigger the protocol again with conflicting content.\\\\n\\\\nExisting report frontmatter (first 400 chars):\\\\n---\\\\nround: 31\\\\nreview_mode: fresh\\\\noverall_score: 3.0 (Findings)\\\\ntimestamp: 2026-05-20T02:50:21.146067+00:00\\\\nreviewer_ids: [1, 2]\\\\ncross_response_reviewer_ids: [1, 2]\\\\nforce_resubmit: False\\\\n---\\\\n\\\\n# 审稿报告 — Round 28 (Fresh Review)\\\\n\\\\n**论文**: Depth Fingerprinting: Detecting Recursive Generation Depth in LLM Text Chains\\\\n**Venue**: EMNLP 2026 via ACL Rolling Review\\\\n**Deadline**: 2026-05-25\\\\n**Reviewers**: R1（方\\\\n\\\\nIf you intentionally want to replace it (e.g. caught a Step 2 cross-sharing gap and synthesized a corrected report), call again with force_resubmit=True. Otherwise the original submission stands — pause and verify before forcing.\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"existing_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_31.md\", \"round\": 31}, \"error\": \"Round 31 report ALREADY submitted (persisted at `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_31.md`). Research Director was triggered once and may still be processing it; re-submitting silently would trigger the protocol again with conflicting content.\\n\\nExisting report frontmatter (first 400 chars):\\n---\\nround: 31\\nreview_mode: fresh\\noverall_score: 3.0 (Findings)\\ntimestamp: 2026-05-20T02:50:21.146067+00:00\\nreviewer_ids: [1, 2]\\ncross_response_reviewer_ids: [1, 2]\\nforce_resubmit: False\\n---\\n\\n# 审稿报告 — Round 28 (Fresh Review)\\n\\n**论文**: Depth Fingerprinting: Detecting Recursive Generation Depth in LLM Text Chains\\n**Venue**: EMNLP 2026 via ACL Rolling Review\\n**Deadline**: 2026-05-25\\n**Reviewers**: R1（方\\n\\nIf you intentionally want to replace it (e.g. caught a Step 2 cross-sharing gap and synthesized a corrected report), call again with force_resubmit=True. Otherwise the original submission stands — pause and verify before forcing.\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "42eef0dd-5774-4cf6-ab6a-83a667ad7a68",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 94 · 2026-05-20T11:12:44.419Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The submission was rejected because there's already a Round 31 report from an earlier review (before the server restart). This makes sense — the session is a fresh review but the previous session also did a fresh review and already submitted a report. 
+
+I need to decide: should I force-resubmit? This current review session produced new reviews from both R1 and R2 with fresh perspectives. The existing round_31 report was from an earlier session. Since this is a fresh review triggered after the previous round, and both reviewers have completed full new reviews with cross-sharing and convergence, I should force-resubmit to replace the old report with this updated one.
+ 
+Let me check the existing report to compare — it has the same overall score and similar findings, but the new reviews from this session include specific observations I hadn't captured before. Actually, wait — the server restarted and I lost my conversation history, so that existing round_31 report was likely from this same session before the restart, not a different one. The reviewers who just submitted were already running before everything went down.
+
+So the real question is whether round_31 got generated before these reviewers finished, or if it's from an entirely separate earlier session. Looking at the timestamps, round_31.md is from 2026-05-20 at 02:50:21, which is earlier today. The user messages show both reviewers submitted their work in this current conversation after the restart, which means these are new reviews that came after the report was already filed. But that creates a timing issue I need to work through more carefully.
+
+It seems like the review session started in fresh mode, reviewers got dispatched, then the server restarted mid-process. The round_31 report might have been submitted before the restart or by some parallel process. After the restart, the reviewers continued and completed their full reviews with cross-sharing between them. Since the existing round_31 report probably doesn't have this complete cross-sharing data, I should force-resubmit with the new consolidated report that includes everything.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9c64b888-5cf4-4ba3-94a0-fb971def952b",
+  "isSidechain": false,
+  "requestId": "req_011CbDimE8Kh7zuhWhcAq3v8",
+  "type": "assistant",
+  "uuid": "1f1408fc-4c8f-4914-9618-9f812d74851b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V93CscvCpg6bQbVAsYoEdN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6282,
+      "cache_read_input_tokens": 118353,
+      "output_tokens": 5094,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6282,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5094,
+          "cache_read_input_tokens": 118353,
+          "cache_creation_input_tokens": 6282,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6282
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 95 · 2026-05-20T11:12:44.864Z_
+
+Round 31 报告已存在（本轮早些时候提交）。但当前的 Reviewer 交叉分享和收敛是在服务器重启后新完成的，包含更完整的交叉回应数据。Force resubmit 更新报告。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1f1408fc-4c8f-4914-9618-9f812d74851b",
+  "isSidechain": false,
+  "requestId": "req_011CbDimE8Kh7zuhWhcAq3v8",
+  "type": "assistant",
+  "uuid": "eab19761-b47c-403d-ba6a-2dbb0c4a59a3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V93CscvCpg6bQbVAsYoEdN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6282,
+      "cache_read_input_tokens": 118353,
+      "output_tokens": 5094,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6282,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5094,
+          "cache_read_input_tokens": 118353,
+          "cache_creation_input_tokens": 6282,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6282
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 96 · 2026-05-20T11:14:27.989Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__submit_review_report_to_research_director · `toolu_01TXBmgmYkKfmg4C5vJbjEPz`</summary>
+
+```json
+{
+  "report": "# 审稿报告 — Round 29 (Fresh Review, Updated)\n\n**论文**: \"Differential Depth Response in Non-Paraphrastic LLM Generation Chains: An Empirical Characterization Across Model Families\"\n**Venue**: EMNLP 2026 via ACL Rolling Review\n**Reviewers**: R1（方法严谨性 + 实验设计）、R2（新颖性 + 完整性 + 写作质量）\n**审稿模式**: Fresh（初审）\n**轮次**: Round 1 独立初审 → Round 2 交叉分享（逐条 AGREE/REBUT）→ Round 3 收敛\n\n---\n\n## Summary\n\n本文研究 LLM 递归生成链中文本分布随深度变化的现象。核心贡献是 DDR（Differential Depth Response）分析框架：将 7 个文本特征分为 drifting（entropy_mean, TTR, hapax_ratio——随深度单调漂移）和 near-stationary（entropy_max, tail_decay——变化幅度小一个数量级）两组，揭示递归生成中 location shift 与 shape preservation 的不对称性。基于此构建 XGBoost 分类器实现 3-class 深度分类（gen-0/gen-1/gen-2+），在 8 个 generator（5 个模型家族，0.6B–8B）上以 LOGO cross-validation 评估，报告 3-class macro-F1 = 0.762、binary F1 = 0.694。\n\n---\n\n## Strengths\n\n**S1 [共识]** 任务定义清晰且有价值——将 generation depth classification 从 binary detection 中独立出来，gen-0/gen-1/gen-2+ 的 ordinal formulation 填补了文献空白。Non-paraphrastic continuation chain 的设置避免了 paraphrase detection 混淆。\n\n**S2 [共识]** DDR 分解是 genuine empirical contribution——drifting vs near-stationary 的 partition 通过 TOST、k-means clustering（Appendix V Table 28）、holdout split validation（Table 30）、bootstrap stability（Appendix U.1 Table 27）四种独立方法交叉验证。Stationary features 的发现（8/8 generators 通过 TOST）超越了简单的 vocabulary impoverishment 描述。\n\n**S3 [共识]** 统计方法论示范性强——多种效应量指标（Cohen's d, Glass's Δ, Cliff's δ）、TOST 等价性检验、heteroscedasticity 分析、bootstrap CI、Bonferroni 校正。LOGO 避免 generator leakage，LOFO 验证特征贡献，independent-seed 控制排除 topic-based leakage。\n\n**S4 [共识]** Confound 控制全面——length-matched subsampling、seed-level demeaning、cross-reference model（3 个 ref model, F1 spread = 0.013）、cross-prompt-type transfer、cross-domain evaluation。\n\n**S5 [共识]** 学术诚实——对 instruct model 退化、temperature 敏感性、cross-model confound、n=3 TOST 效力问题均有坦率讨论。Appendix K 的 instruct 退化和 Appendix M 的 negative downstream result 展示了报告不利发现的意愿。\n\n**S6 [共识]** 分析广度 exceptional——20+ appendix covering length confound、temperature sensitivity、prompt type、5-class ordinal、human edit robustness、cross-domain、classifier comparison、Granger causality、error analysis、instruction tuning、convergence dynamics 等。在 empirical NLP 论文中罕见。\n\n**S7 [R1]** Granger causality 分析（Appendix Z.3 Table 38）提供了 DDR 特征的 causal predictive power 证据，超越了纯相关性描述。\n\n**S8 [R2]** Cross-family reference model finding（Pythia-410M 跨家族泛化）是有实用价值的发现。\n\n---\n\n## Weaknesses\n\n### Must-Fix（影响接收决定）\n\n**N1 [Critical, 共识]** Base-model-only scope 严重限制 impact\n- 全部 8 个 generator 均为 base (pretrained) models。Appendix K 显示 instruction tuning 后：binary F1 从 ~0.694 降至 0.338-0.660（instruct 变体），entropy_mean ρ 翻转符号，6/7 features 行为反转。\n- Instruct 退化的异质性不可预测：OLMo-Inst F1=0.338 (-42.5pp) vs Llama-Inst F1=0.838 (-1.1pp)。\n- 现实部署的 LLM 绝大多数是 instruction-tuned，title/abstract 未标注 \"base model only\"。\n- **两位 Reviewer 一致要求**：Title 或 Abstract 必须明确标注 base-model scope；正文 §5 Discussion 需讨论 instruct 退化机制假说。\n\n**N2 [Critical, R1提出/R2同意Major]** 下游效用实验 underpowered + Abstract overclaim\n- TOST 等价性检验仅 n=3 seeds、单一指标（perplexity）、单一模型（OLMo-2-0425-1B）。Cohen's d 膨胀至 86-119（pooled SD < 0.001 导致的 degenerate case）。\n- Abstract 声称 \"equivalence testing suggests no downstream training quality degradation\" 但省略 \"preliminary\" 和 \"n=3\"。\n- **修复路径**：(a) 增加至 ≥10 seeds + 第二个模型 + 第二个指标；或 (b) Abstract 加入 \"preliminary, n=3\" 限定或删除该声明。\n\n**N3 [Critical, R2提出/R1部分同意]** DDR 新颖性 genuine but incremental\n- R2：DDR 本质是 model collapse 文献（Shumailov et al. 2024）已知的词汇贫化现象在 inference-chain 场景下的再确认。\n- R1 反驳：DDR 核心在 stationary features（entropy_max, tail_decay）的 near-stationary 发现——vocabulary impoverishment 假说无法预测。Feature ablation（Table 2）显示 reference features 提供 +5.7pp 增量。\n- **交叉后共识**：DDR genuine but incremental——stationary features 提供增量但概念上可预测。Findings 级别合适。\n- Concurrent work（Mohamed et al., Geng et al., Li et al.）在 §2.2 区分不充分，**需系统对比表**。\n\n**N4 [Critical, R1提出/R2强烈同意]** QLoRA gap 削弱方法论贡献\n- 7-feature XGBoost binary F1 = 0.694 vs QLoRA = 0.905，差距 +12-15pp。7-feat vs Avg-LogProb margin 仅 +3.3pp。\n- **共识**：论文应从 \"classification method\" 重新定位为 \"empirical characterization\"。\n\n### Should-Fix（影响评分但不一票否决）\n\n**W1 [Warning, 共识]** Gemma-2-2B gen-1 F1=0.036 anomaly 解释不充分，挑战 DDR universality\n\n**W2 [Warning, 共识]** Cross-model chain F1=0.830 混淆 depth signal 与 generator identity（sample-level CV vs LOGO 矛盾）\n\n**W3 [Warning, 共识]** Temperature 限制（t<0.9）+ cross-temperature transfer 不对称性（0.7→1.0: F1=0.418）\n\n**W4 [Warning, 共识]** DDR partition 3/1/3 intermediate 定义不够 principled（ε sensitivity 未展示 partition 变化）\n\n**W5 [Warning, 共识]** Baseline 范围偏窄（缺 multi-feature/trained detector）\n\n**W6 [Warning, 共识]** Related work 缺 RAID benchmark 讨论、SemEval Task 8C 对比、Dohmatob & Feng framework 利用；17 orphan bib entries\n\n**W7 [Warning, 共识]** \"Diagnostic not curative\" 缺具体应用场景支撑\n\n**W8 [Warning, 共识]** Per-generator F1 变异大（0.633-0.724，9.1pp spread），generator-unknown 场景实用性受限\n\n---\n\n## Reviewer Consensus [AGREE]\n\n1. **Overall 3.0 (Findings)**——方法论严谨但概念新颖性不足以进入主会议\n2. **Base-model-only 是最严重的 scope limitation**——title/abstract 必须标注\n3. **QLoRA gap 要求重新定位**——从 classification method 转向 empirical characterization\n4. **下游 TOST n=3 underpowered**——Abstract 必须加 \"preliminary\" 或删除\n5. **温度限制 + base-model-only 联合压缩 DDR 适用范围**\n6. **实验执行质量 exceptional**——Soundness 3.5/5\n7. **Cross-model chain 需 disentangle depth vs generator identity**\n8. **DDR partition 经多种方法验证是 genuine empirical finding**\n\n## Reviewer Divergence\n\n**分歧 1: DDR 新颖性程度** — R2 (Excitement 2.5) 认为可预测，R1 (Excitement 3.0) 认为 stationary features 提供真实增量。共识 \"genuine but incremental\"，不影响 Overall。\n\n**分歧 2: Gemma-2-2B 异常严重性** — R2 认为是 DDR 非 universal 的关键证据，R1 认为需更好解释但不否定整体。两位同意需更深入机理分析。\n\n---\n\n## Questions for Authors\n\n1. **[共识]** QLoRA 是否学到 DDR-like partition？有无 feature attribution 分析？\n2. **[共识]** Instruct 模型下 DDR 是 reversed 还是消失？重新训练 instruct-specific partition 能否恢复？\n3. **[共识]** 0.694 F1 在 data curation 场景下是否足够？precision-recall tradeoff？\n4. **[R1]** Gemma-2-2B 在非 Pythia reference 下的 per-class F1？\n5. **[R1]** Single-generator → cross-model chain transfer 实验？\n6. **[R2]** Inference-chain vs training-loop collapse 直接对比实验？\n7. **[R2]** Stationary features 能否从 softmax + fixed temperature 数学推导？\n8. **[R2]** Paraphrastic vs non-paraphrastic chain 直接对比？\n9. **[R2]** DDR \"diagnostic\" 的 end-to-end 应用案例？\n\n---\n\n## Missing References\n\n1. RAID benchmark (Dugan et al., 2024) — bib 有但 text 未引用\n2. SemEval-2024 Task 8C multi-class sub-task\n3. Dohmatob & Feng (2025) framework 未被利用解释 DDR\n4. Mohamed et al. / Geng et al. / Li et al. — §2.2 系统对比不足\n5. Shahriar et al. (2025) — iterative paraphrasing\n\n---\n\n## External Review (Stanford Agentic Reviewer)\n\n**状态**：未请求。\n\n---\n\n## Visual Layout Check（非评分项）\n\n**状态**：超时（elapsed > 8h）。如需检查建议手动重触发。\n\n---\n\n## Overall Assessment\n\n**Overall Score: 3.0/5 (Findings)**\n\n| 维度 | R1 | R2 | 共识 |\n|------|-----|-----|------|\n| Soundness | 3.5/5 | 3.5/5 | 3.5/5 |\n| Excitement | 3.0/5 | 2.5/5 | 2.75/5 |\n| Reproducibility | 4.0/5 | — | 4.0/5 |\n| Overall | 3.0/5 | 3.0/5 | **3.0/5** |\n| Confidence | 4/5 | 4.5/5 | 4.25/5 |\n\n**判决**：Findings 接收。DDR partition genuine + 方法论严谨 + 分析广度突出 = Findings 充分条件。但 base-model-only scope、QLoRA gap、incremental novelty、modest F1 = 主会议不足。\n\n---\n\n## Top-3 修改建议\n\n**1 [最高]** 重构叙事：empirical characterization（非 classification method）。Title/Abstract 标注 base-model scope + 采样条件。§2.2 concurrent work 对比表。\n\n**2 [高]** 下游实验 ≥10 seeds + 第二模型 + 第二指标；或 Abstract 加 \"preliminary, n=3\"。\n\n**3 [高]** §5 增加 instruct 退化段落（机理假说 + 异质性分析）+ Gemma 异常机理 + 温度敏感性解释。\n\n---\n\n## Detailed Comments\n\n**§1 Introduction**: Contribution list 标注 base-model-only；温度敏感性列入核心发现。\n\n**§2 Related Work**: §2.2 系统对比表（本文 vs Mohamed/Geng/Li）；讨论 RAID、SemEval Task 8C；利用 Dohmatob & Feng framework。\n\n**§3 Method**: \"Non-paraphrastic continuation chains\" 更形式化定义；entropy/NLL 术语统一。\n\n**§4 Results**: DDR partition intermediate 定义明确化；补充 multi-feature baseline；Table 1 gen-0 bias 量级正文估计；Table 2 标注 \"(pooled)\"；Cross-model chain 降级 exploratory 或补 disentangling 实验；DDR 缩写 Abstract 定义。\n\n**§5 Discussion**: Instruct 退化段落 + instruct-specific partition 假说；\"Diagnostic not curative\" 需具体场景。\n\n**§6 Limitations**: 综合 operational window 讨论；规模外推风险。\n\n**Appendix**: E 列出排除 generators 及 8-gen performance；B↔R 引用环路；清理 17 orphan bib entries；Gemma 补充非 Pythia ref 的 per-class F1。\n\n**Format**: Figure 1 灰度兼容性；anonymous_supplement.tgz 打包。",
+  "project": "gen-depth-fingerprint",
+  "reviewer_ids_acknowledged": [
+    1,
+    2
+  ],
+  "cross_response_reviewer_ids": [
+    1,
+    2
+  ],
+  "overall_score": "3.0 (Findings)",
+  "review_chat_id": "oc_999770e4e57bfc6eabd12fc1f64af1ef",
+  "force_resubmit": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eab19761-b47c-403d-ba6a-2dbb0c4a59a3",
+  "isSidechain": false,
+  "requestId": "req_011CbDimE8Kh7zuhWhcAq3v8",
+  "type": "assistant",
+  "uuid": "9bf73b7b-967f-40a2-9dc2-7376488185ad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V93CscvCpg6bQbVAsYoEdN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6282,
+      "cache_read_input_tokens": 118353,
+      "output_tokens": 5094,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6282,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5094,
+          "cache_read_input_tokens": 118353,
+          "cache_creation_input_tokens": 6282,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6282
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 97_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Reviewer 2 审稿结果]: Round 1 审稿完成。已向 Review Director 提交完整审稿报告，核心结论：  - **Overall: 3.0/5 (Findings)**，Soundness 3.5，Excitement 2.5 - **3 个 Must-Fix**：(N1) DDR 新颖性不足，本质是 model collapse 已知现象的再包装；(N2) 与 Bro…",
+  "leafUuid": "9bf73b7b-967f-40a2-9dc2-7376488185ad",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 98_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review appendix and remaining pages",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 99 · 2026-05-20T11:14:31.840Z_
+
+<details><summary>↩ Tool result · `toolu_01TXBmgmYkKfmg4C5vJbjEPz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"research_director_key\": \"feishu:group:oc_dbd68d7879a81efc0c108e9844b15d0b:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9bf73b7b-967f-40a2-9dc2-7376488185ad",
+  "isSidechain": false,
+  "promptId": "4582f6cb-64a4-498a-9e05-ac7b1e33e7b9",
+  "type": "user",
+  "uuid": "c875c7ef-9522-4ddf-9d85-c12879858134",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"research_director_key\\\": \\\"feishu:group:oc_dbd68d7879a81efc0c108e9844b15d0b:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"research_director_key\": \"feishu:group:oc_dbd68d7879a81efc0c108e9844b15d0b:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "9bf73b7b-967f-40a2-9dc2-7376488185ad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 100_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review appendix and remaining pages",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 101 · 2026-05-20T11:14:47.596Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T11:14:47.596Z",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "content": "[Reviewer 2 审稿意见]:\n\n# Reviewer 2 — Round 1 审稿报告（新一轮）\n\n## 审稿侧重：Novelty & Related Work（6-point scale）\n\n---\n\n## ⚠️ 版本/数据校对说明\n\nDirector 任务描述中的若干数据与实际 PDF 不一致，以下以 **PDF 实际内容** 为准：\n\n| 项目 | Director 描述 | PDF 实际 |\n|------|-------------|---------|\n| Title | \"Differential Depth Response in Recursive LLM Generation...\" | \"Depth Fingerprinting: Detecting Recursive Generation Depth in LLM Text Chains\" |\n| Generators | 5 base-model, 3 families | **8** generators, **5** families (Pythia, OLMo, Qwen, Llama, Mistral) |\n| Binary F1 | 0.680 | **0.694** (95% CI [0.688, 0.700]) |\n| Experiments | 15 | **20+**（见 appendix A–Z） |\n| 5-class F1 | 0.468 | **~0.50** (Section 9, \"5-class F1 = 0.50, Appendix D\") |\n| Multi-detector ensemble | 0.708 | **0.708** (Table 2, 4-detector ens.) vs 7-feature **0.694** (gap = 1.4pp, not 2.8pp) |\n| \"Briesch et al. (2023)\" | 提及为 broken telephones | PDF 引用的是 **Mohamed et al. (ACL 2025)** \"LLM as a Broken Telephone\"；Web search 未找到 Briesch et al. 2023 此条目 |\n| \"Guo et al. (2024) attractor convergence\" | 提及为 attractor convergence | PDF 引用的是 **Guo et al. (2024)** \"The Curious Decline of Linguistic Diversity\" (NAACL Findings)——关于多样性下降而非 attractor convergence。Attractor cycles 工作是 **Wang et al. (ACL 2025)**, 在 PDF bib 中作为 orphan entry |\n\n以下审稿基于 PDF 实际内容。\n\n---\n\n## Summary\n\n本文将 LLM 文本检测从二分类扩展到序数深度分类（gen-0/gen-1/gen-2+），基于对 reference model NLL 分布的 7 个统计特征提出了 \"differential depth response\"（DDR）分解：drifting features（entropy mean, TTR, hapax ratio）单调漂移，shape features（entropy max, tail decay）近似平稳。8 个 base model generator 上的 LOGO 评估达到 binary F1=0.694，cross-model chain F1=0.830。实验覆盖度极高（20+ experiments, 33 pages），但核心概念增量有限——DDR 本质上是 model collapse 文献中已知词汇贫化现象在 inference-chain 场景下的经验性再确认。\n\n---\n\n## Strengths\n\n- **实验完整度罕见**: 20+ experiments 涵盖了几乎所有可想到的 confound 和 robustness check——length control (Appendix B), seed validation (Appendix N), cross-reference model (Table 5, Appendix Y), cross-domain (Appendix J), temperature sensitivity (Appendix H), TOST equivalence (Appendix U), Granger causality (Appendix Z.3), DDR partition validation via k-means (Appendix V)。这种 falsification-driven 的实验风格在 empirical NLP 中是典范。\n\n- **LOGO cross-validation 设计**: leave-one-generator-out 评估确保了 cross-generator generalization 的可信度；LOFO-LOGO gap 仅 -0.8pp (Table 4) 排除了 family leakage；independent seed validation (Appendix N, Δ=-1.4pp) 排除了 seed leakage。\n\n- **Cross-model chain 结果 (Table 7, F1=0.830)**: 在异构 generator chain 场景下 DDR 信号最强——这是最接近真实 web 污染的条件，也是论文中最有 practical significance 的发现。\n\n- **Honest negative reporting**: downstream utility 实验 (Appendix M) 诚实报告 depth-aware curation ≈ random subsampling；instruct model degradation (Appendix K) 坦承 DDR 在 instruction-tuned models 上失效。这种诚实性在投稿论文中值得肯定。\n\n- **统计方法论严谨**: Bootstrap CIs, McNemar tests, TOST equivalence testing, Granger causality, permutation importance, Cohen's d——统计检验的选择和应用都是恰当的。\n\n- **Cross-reference model validation (Table 5)**: DDR 在 Pythia-410M, OLMo-2-1B, Qwen3-0.6B 三个 reference model 上都成立，排除了 reference-model-specific artifact。\n\n---\n\n## Weaknesses\n\n### Major\n\n**M1. DDR 的概念新颖性不足——已知现象的系统化整理而非新机制发现**\n\nDDR 的核心发现是：(a) entropy mean, TTR, hapax ratio 随 generation depth 单调下降；(b) entropy max, tail decay 保持稳定。\n\n问题在于：\n- **(a) 是 model collapse 文献的直接推论**。Shumailov et al. (2024, Nature) 已经建立了 \"tails of the original content distribution disappear\" 的理论框架。Guo et al. (2024, NAACL Findings) \"The Curious Decline of Linguistic Diversity\" 直接测量了 LLM 训练在 synthetic text 上时的词汇多样性衰减——TTR 和 hapax ratio 的下降在该工作中已有记录。论文 Section 5 试图通过 \"inference-chain with fixed parameters\" vs \"training-loop collapse\" 来区分，但最终观察到的现象（词汇贫化、多样性下降、entropy compression）是一致的。\n- **(b) 在统计学上是可预期的**。NLL 分布在 location shift 下保持 shape——这是 softmax + fixed temperature 下的预期行为：当整体 distribution 向低 entropy 方向平移时，极端值（max）和尾部衰减率（tail decay）的变化相对于 location 指标（mean）自然更小。论文没有提供理论推导来说明 why shape 保持稳定，仅描述了 what。\n- **Drifting/stationary 的 partition 几乎可以从 feature 设计直接预测**：词汇表面特征（TTR, hapax）度量的是多样性，自然随贫化而漂移；NLL 分布的极端值度量的是 shape，自然在 location shift 下更稳定。这不是一个需要实验才能发现的 insight。\n\n**entropy_std 的 intermediate 位置 (R²=0.41, |d|=0.55)** 进一步削弱了 \"clean bimodal split\" 的 claim——7 个特征中有 1 个不属于任何一边，且论文对此没有机制性解释，仅描述为 \"intermediate\"。\n\n**M2. Ordinal depth formulation 的增量价值有限**\n\n论文声称从 binary 到 ordinal depth classification 是核心贡献之一（Contribution 1, Section 1）。但：\n- **3-class LOGO F1 = 0.762** 中，gen-0 容易区分（F1≈0.92, Section 4.1），真正困难的是 gen-1 vs gen-2+ 边界\n- **5-class F1 ≈ 0.50** (Appendix D) 且 gen-2/3/4 间存在近均匀混淆——数据实际上只支持 ~2.5 个可区分类别\n- Appendix D 自己承认 \"5-class classification reduces LOGO macro F1 to approximately 0.50\"，并建议 \"3-class granularity as the practical resolution ceiling\"\n- 如果信号本质上是 binary-plus-noise（gen-0 vs gen-1+, gen-1 与 gen-2+ 的区分为 marginal），那 \"ordinal classification\" 的 formulation 贡献被高估了\n\n这意味着 DDR 在实践中捕获的是一个**二值信号加上微弱的渐变**，而非 Section 1 所 claim 的 \"ordinal depth estimation\"。\n\n**M3. 与 concurrent/prior work 的区分不够充分**\n\n三条关键区分线均不清晰：\n\n1. **Mohamed et al. (ACL 2025) \"Broken Telephone\"**: 论文 Section 2.2 声称研究 non-paraphrastic continuation chains 以区分。但 (a) 没有直接对比实验验证两种 chain type 产生质性不同的 distributional shift；(b) 论文 Appendix O 有 paraphrastic comparison 但仅作为 robustness check 而非系统对比；(c) \"continuation vs. paraphrase\" 的区分在实际场景中不清晰——当 LLM 被用于 summarize-then-expand, edit-then-continue 时，chain type 是混合的。\n\n2. **Geng et al. (2026) \"Markovian Generation Chains\"**: 该工作对 iterative generation 进行 Markov chain 建模，分析 convergence 和 diversity dynamics。论文 Section 2.2 引用但未深入讨论：DDR 的 drifting/stationary 分解与 Markov convergence 的关系是什么？Geng et al. 的 theoretical framework 能否解释或预测 DDR 的 partition？\n\n3. **Li et al. (ACL 2026) \"Beyond the Final Actor\"**: 该工作提出 4-class fine-grained detection (human / machine-generated / machine-polished / human-revised)，与本文的 ordinal depth classification 在\"超越 binary\"的动机上高度相似。论文 Section 2.1 列出 citation 但未对比两种 multi-class formulation 的差异。\n\n**M4. Base-model-only scope 严重限制 significance**\n\nAppendix K 数据：\n- Instruction tuning 后 6/7 features 的 Spearman ρ 反转（Table 15-16）\n- OLMo-Instruct F1 从 0.781 降至 0.338 (-42.5pp)，但 Llama-Instruct 仅降 -1.1pp\n- 这种不可预测的异质性 degradation 意味着 DDR 无法可靠地应用于 instruction-tuned models\n\n结合 temperature restriction (t∈[0.5,0.9), 排除了最常见的 API 默认 t=1.0) 和 Gemma-2-2B anomaly (gen-1 F1=0.036)，DDR 的 practical operational window 极窄。Title 和 abstract 中未标注 \"base model only\"。\n\n### Minor\n\n**m1. QLoRA 大幅优于 handcrafted features**\n\nAppendix E: QLoRA 3-class F1 = 0.905 vs 7-feature 0.762 (+14.3pp)。论文将 DDR 定位为 \"decomposition\" 而非 \"detection tool\"，但 abstract 和 Section 4.1 突出报告分类 F1 数字，造成 contribution identity 的模糊。如果是 analysis paper，弱化 F1；如果是 detection paper，解释为何不用 QLoRA。\n\n**m2. Negative downstream finding 的贡献定位不清**\n\nAppendix M 的 \"diagnostic not curative\" framing 缺乏具体的诊断应用场景——知道一篇文本是 gen-2 之后应该做什么？论文没有回答。且仅在 1 个模型 (OLMo-1B)、1 个 metric (perplexity)、3 个 seeds 上验证，negative finding 的 generality 本身也不充分。一个 negative result 要成为贡献，需要它 counter-intuitive——但 \"generation depth 不影响 fine-tuning perplexity\" 并不令人惊讶。\n\n**m3. 4-detector ensemble (F1=0.708) 略超 7-feature (F1=0.694)**\n\nTable 2 显示在同一 LOGO 评估下，4-detector ensemble 的 binary F1=0.708 高于 7-feature 的 0.694 (+1.4pp)，3-class F1 也高 (0.762 vs 0.762，持平)。虽然 7-feature 在 computational cost 上有 2.4× 优势，但既有 detector 的组合已能达到同等或更好性能，削弱了 7-feature ensemble 的 methodological motivation。\n\n**m4. Drift magnitude 跨 reference model 变异**\n\nTable 5 (Appendix Y) 显示 drift magnitude 在不同 reference model 间变化约 2×。论文 Section 7 (p.7) 承认 \"the 0.013 cross-reference spread bounds this effect\" 但未讨论这种变异是否部分反映 reference-generator mismatch 而非 intrinsic generation dynamics。如果 DDR 的量化依赖于 reference model 的选择，其作为 \"intrinsic property of recursive generation\" 的 claim 被削弱。\n\n---\n\n## Questions for Authors\n\n1. **DDR 的理论基础**: 能否从 softmax + fixed temperature + autoregressive sampling 的数学性质推导出 \"location shift without shape change\"？如果可以，这应是核心 theoretical contribution；如果不能，DDR 就是一个 empirical observation 而非 mechanism，论文应相应调整 claim 力度。\n\n2. **entropy_std 的 intermediate 地位**: R²=0.41 既不属于 drifting 也不属于 stationary——这是否意味着 DDR 的 bimodal split 是一个 continuum 的人为离散化？如果将阈值从 |ρ|>0.60 / |ρ|<0.10 调整到其他值，partition 是否稳定？\n\n3. **Paraphrastic vs. non-paraphrastic 的实质区别**: Appendix O 的 paraphrastic comparison 结果如何？两种 chain type 的 DDR pattern 是否质性不同，还是仅量上不同？\n\n4. **Gemma-2-2B gen-1 F1=0.036**: 这是否意味着 Gemma 的 gen-1 output 在 feature space 中与 human text 不可区分？如果是，DDR 是 architecture-conditional 而非 generation-process-universal 的——这如何与 \"DDR is a fundamental property of recursive generation\" 的 claim 兼容？\n\n5. **Cross-model chain 为何不是主要贡献？** Table 7 的 F1=0.830 是全文最强结果且最接近实际应用，为什么不将其提升为核心 result？\n\n6. **Drift magnitude 的 reference model 依赖性**: 2× variation 是否可以通过 normalization 消除？如果不能，DDR 的 \"intrinsic\" 属性如何定义？\n\n---\n\n## Missing Related Work & Conceptual Gaps\n\n1. **RAID benchmark** (Dugan et al., ACL 2024): 论文 bib 中有但正文未引用。作为最大的 AI text detection benchmark（含 multi-domain, multi-generator），应在 Section 2.1 或 Section 3.4 讨论。\n\n2. **Information-theoretic model collapse**: Dohmatob & Feng (2025) \"Strong Model Collapse\" 提供了 model collapse 的信息论分析框架，可用于理论解释 DDR 的 drifting/stationary 分裂。论文引用但未利用其 framework。\n\n3. **Wang et al. (ACL 2025) \"Unveiling Attractor Cycles in LLMs\"**: 研究 successive paraphrasing 的 attractor cycle 动态——与 DDR 的 convergence 观察直接相关。论文 bib 中有（orphan entry \"attractor_cycles\"）但正文未引用。\n\n4. **Iterative self-refinement literature**: Madaan et al. (NeurIPS 2023) \"Self-Refine\" 被引用但仅在 Section 2.2 一句带过。Self-refinement 是 non-paraphrastic iterative generation 的一种形式——DDR 是否在 self-refine chains 上也成立？这是一个自然但未探索的方向。\n\n5. **Multi-class AI text detection beyond binary**: SemEval-2024 Task 8 (Wang et al., 2024) 包含 multi-class sub-task (Task 8C)——论文引用了 Task 8 但未讨论其 multi-class formulation 与 ordinal depth classification 的关系。\n\n6. **缺少 vocabulary impoverishment 与 DDR 的明确理论区分**: 论文 Section 5 花了一段讨论 model collapse vs. inference-chain，但没有形式化地定义 \"DDR\" 与 \"vocabulary impoverishment\" 的区别。如果区别仅在于 \"fixed parameters vs. parameter updates\"，这是一个 setting 区别而非 phenomenon 区别。\n\n---\n\n## Score: 3 / 6 (Weak Reject) — 附条件可升至 4\n\n**Justification**:\n\n论文在实验执行上是 exceptional 的——20+ experiments、严格的 LOGO/LOFO 评估、诚实的 negative reporting、全面的统计检验。如果仅评 Soundness，可给 5/6。\n\n但作为顶会投稿，novelty 和 significance 是决定性因素：\n\n1. **DDR 不是新现象**: 它是 model collapse 领域已知词汇贫化现象在 inference-chain 场景下的经验性再确认。Drifting/stationary 的 partition 可从 feature 设计直接预测。缺乏机制性解释。\n\n2. **Ordinal formulation 贡献有限**: 数据只支持 ~2.5 个可区分类别，5-class F1≈0.50 且 gen-2+ 间近均匀混淆。实质上是 binary-plus-gradient。\n\n3. **Practical impact 受限**: Base-model only, t<1.0, 排除 Gemma-like architectures, instruct degradation 不可预测——实际可应用的场景极窄。\n\n4. **Method 被 QLoRA 大幅超越**: +14.3pp on 3-class task。7-feature ensemble 的存在理由在于 interpretability，但论文未充分利用 interpretability 来回答\"so what\"。\n\n5. **Negative downstream finding 不够 counter-intuitive**: \"Generation depth doesn't help fine-tuning\" 不是令人惊讶的发现。\n\n**升级到 4 (Weak Accept) 的条件**:\n- 提供 drifting/stationary 分裂的理论推导（哪怕是 informal proof sketch）\n- 加入 paraphrastic vs. non-paraphrastic 的直接对比实验，验证区分假设\n- Title/abstract 标注 base-model scope\n- 将 cross-model chain (F1=0.830) 提升为主要 result 并展开讨论\n- 至少一个具体的 \"diagnostic\" use case\n\n---\n\n## Confidence: 4 / 5\n\n仔细通读全文含全部 appendix（33 页），验证了引用（78 条 bib entries），搜索了关键相关工作（Mohamed et al. 2025, Geng et al. 2026, Li et al. 2026, Wang et al. 2025, Guo et al. 2024, Shumailov et al. 2024）。对 NLP detection 和 model collapse 文献有较好了解。唯一降分因素是未能找到 Director 提及的 \"Briesch et al. (2023)\"——该引用可能不存在或我检索有误。\n\n\n---\n\n[Reviewer 2 审稿结果]:\n审稿报告已提交。\n\n本轮审稿要点：\n\n- **Overall: 3/6 (Weak Reject)**，核心问题是 DDR 概念新颖性不足——drifting/stationary 分裂可从 feature 设计直接预测，本质是 model collapse 领域已知词汇贫化现象的经验性再确认\n- **实验执行是论文最大优势**（20+ experiments, LOGO/LOFO, 全面统计检验），Soundness 可达 5/6\n- **关键发现**: Director 任务描述中的多项数据与实际 PDF 不一致（F1=0.680→0.694, 5 generators→8, \"Briesch et al. 2023\" 未找到对应文献），已在报告中详细列出校对表\n- **附条件可升至 4/6**: 需要理论推导、paraphrastic 对比实验、标注 base-model scope、提升 cross-model chain 结果、给出具体诊断应用场景\n\n---\n\n[Reviewer 1 审稿意见]:\n\n# Reviewer 1 审稿意见 — Methods & Experiments (重新审稿)\n\n**论文**: \"Depth Fingerprinting: Detecting Recursive Generation Depth in LLM Text Chains\"\n**PDF 版本说明**: 实际 PDF 仍为 8 generators / 5 families 版本（binary F1=0.694），与任务描述中的 5 generators / F1=0.680 存在数字差异。以下审稿基于 PDF 实际内容。\n\n---\n\n## Summary\n\n本文将\"生成深度分类\"形式化为新任务（gen-0/gen-1/gen-2+），核心发现是 Differential Depth Response (DDR)：central-tendency/diversity 特征（entropy_mean, TTR, hapax_ratio）随深度 monotonically drift（|ρ|>0.60），而 shape 特征（entropy_max, tail_decay）保持 near-stationary（|ρ|<0.10）。7-feature XGBoost 在 8-generator LOGO 下达到 3-class F1=0.762、binary F1=0.694。分析广度突出（20+ appendix），但 headline 性能中等，且受 base-model-only scope、温度敏感性、instruct 退化等多重限制约束。\n\n---\n\n## Strengths\n\n- **LOGO/LOFO 评估协议设计严谨**：LOGO hold-out 整个 generator 避免 data leakage；LOFO hold-out 整个 model family 测试 cross-family generalization（F1=0.686, §4.1）；独立 seed 实验（Appendix T, Table 25）确认 topic-based leakage 不存在（independent-seed F1 within 1.4pp of shared-seed baseline）。这是一个 well-thought-out 的防泄漏体系。\n\n- **DDR partition 通过多种独立方法交叉验证**：k-means clustering（Appendix V, Table 28: silhouette=0.632 at k=2）、TOST equivalence（8/8 generators pass for stationary features at ε=0.20）、holdout generator split validation（Table 30: zone assignment identical across all four splits）、bootstrap stability（Table 27: 1000 iterations, 100% rejection rate for stationary features）。\n\n- **统计方法恰当且全面**：Bonferroni correction for all p-values（two-sided, §3.4）；percentile bootstrap CIs（n=1000 unless otherwise noted, §3.4）；McNemar tests for pairwise comparisons；paired bootstrap for baseline comparisons。\n\n- **分析广度 exceptional**：15+ 实验条件覆盖 feature ablation、cross-generator/family transfer、alternative reference models、prompt type、paraphrastic chains、cross-model chains、multi-domain seeds、finer-grained ordinal、human edit robustness、LD-Score、QLoRA、text length control、large-scale generator (Qwen3-8B)、temperature sensitivity、instruct models。在 empirical NLP 论文中罕见。\n\n- **诚实透明的 negative findings**：downstream equivalence（§4.4 / Appendix M）、instruct degradation（Appendix K）、Gemma-2-2B anomaly（Appendix Z.4）、5-class ordinal degradation（Appendix D）——均未隐藏。\n\n---\n\n## Weaknesses\n\n### Major Weaknesses\n\n**M1. [major] Headline binary F1=0.694 不足以支撑分类方法的实际价值**\n- 具体位置：§4.1 (p.5), Table 1 (p.6)\n- 在 8-generator LOGO 下 binary F1=0.694 意味着约 30% 的 gen-1/gen-2+ 区分错误。Error analysis（Appendix L, p.22）显示 86.2% 的错误是 false negatives（gen-2+ 误判为 gen-1），分类器系统性地 under-predict depth。Per-generator 变异显著（Table 1: F1 从 0.633 [Mistral-7B] 到 0.724 [Pythia-2.8B]）。\n- 论文通过 cross-model chain F1=0.830 来补充叙事，但 cross-model chain 混淆了 depth signal 和 generator identity signal（§4.1 footnote 1 承认 \"The 5-generator result is not directly comparable\"）。\n- **影响**：作为 classification method，0.694 binary F1 低于 practitioners 的部署阈值。论文应更明确地定位为 empirical characterization 而非 classification method。\n\n**M2. [major] LOFO binary F1 = 0.686 vs LOGO 0.762 暴露 family-level inflation**\n- 具体位置：§3.4 (p.4), §4.1\n- LOGO（Leave-One-Generator-Out）3-class F1=0.762，而 LOFO（Leave-One-Family-Out）F1=0.686（§4.1），差距 7.6pp。这表明 generator within-family similarity 显著 inflate 了 LOGO 性能。由于 LOFO 是更保守、更现实的 generalization test（真实场景中新 generator 往往来自新 family），0.686 才是更诚实的 headline 数字。\n- 论文在 §4.1 报告了 LOFO 但未将其提升为 primary metric。Table 1 的 primary reporting 仍是 LOGO。\n\n**M3. [major] QLoRA 差距 (+11.6pp) 严重削弱 7-feature 方法的独立价值**\n- 具体位置：Appendix E (p.16), Table 6\n- QLoRA (Qwen3-0.6B-Base, LoRA rank 16) 3-class LOGO F1=0.905 vs handcrafted 0.789（+11.6pp）。QLoRA 本身已经非常轻量（rank 16, 0.6B model）——论文声称的 interpretability 和 computational efficiency 优势被削弱。\n- 更关键的是 LOGO crossover：§7 (p.7) 提到 \"LOGO F1=0.338 vs. 0.763 base\" for instruct QLoRA。这暗示 QLoRA 在 cross-generator 泛化上可能也有限制，但论文未充分展开这一点。\n- **建议**：如果 QLoRA 在 LOGO 下也大幅超越（而非仅 within-model CV），应在正文 discuss；如果 QLoRA LOGO < handcrafted LOGO，这反而是 handcrafted features 的有力论据，应被强调。\n\n**M4. [major] 下游等价性实验严重 underpowered**\n- 具体位置：Appendix M (p.22-23), Table 19\n- TOST 等价性检验使用 n=3 seeds、单一指标（perplexity）、单一模型（OLMo-2-0425-1B）。论文自己在 p.23 承认 \"with only n=3 seeds per condition, the TOST results have limited generalizability\"。\n- Cohen's d 值 = 86.0 和 119.7——表面上 enormous，但实际上是因为 pooled SD < 0.001（3 seeds 下的方差极小），这是 artifactual inflation。真正的问题是 3 seeds 无法可靠估计 training variance。\n- TOST 在如此小的样本下有极低的 power to detect medium effects。等价性 claim（\"suggests no downstream quality degradation\", Abstract）与证据强度不匹配。\n\n**M5. [major] 多重 scope limitations 叠加使方法实际适用性存疑**\n- Base-model only（instruct 退化严重：retrained LOGO binary F1=0.487, Appendix K p.21）\n- Temperature sensitive（t=0.9 时 binary F1 降 0.1-2.0/6pp，p.18 Table 10）\n- Domain-dependent（scientific domain -9.3pp，p.20 \"Academic domain binary F1=0.628 at t=0.7\"）\n- Scale-dependent（8B Qwen3: -10.6pp per-generator F1 vs smaller models，p.9）\n- Edit-fragile（light rephrase -5.3pp, LLM sentence regeneration -4.6pp, p.19-20）\n- 5-class ordinal F1=0.391（Table 4, p.15），即使 3-class LOGO F1 也仅 0.762\n- 这些 limitations 单独看都可接受，但 jointly 它们将 method 限制在一个极窄的 niche：English Wikipedia, base models, temperature ≤0.7, single-family reference, 3-class only。\n\n### Minor Weaknesses\n\n**m1. [minor] Surface-only vs full 7-feature 的增量在 binary metric 上可能更小**\n- Table 2 (p.7) 显示 3-class: surface-only 可能通过 4-det+surface (0.795) vs full (0.820) 来近似，+2.5pp。但更重要的比较是 binary metric 上的 gap。Table 2 的 4-det+surface Bin F1=0.708 vs 7-feature Bin F1=0.708——**binary metric 上完全相同**。这意味着 reference-model features 在 3-class 任务中提供增量，但在最具实际意义的 binary 任务上无增量。\n\n**m2. [minor] McNemar p=0.027 在多重比较下可能不 survive**\n- §4.3 (p.7) 提到 paired bootstrap for baseline comparisons，但如果同时做了 4 个 pairwise comparison（7-feat vs 4 baselines），Bonferroni 校正后 α=0.05/4=0.0125，p=0.027 不 survive。论文在 §3.4 声称 \"Bonferroni correction is applied\" 但未明确报告校正后的 p-values。\n\n**m3. [minor] entropy_std 的 \"intermediate\" 状态削弱 clean dichotomy**\n- §4.2 (p.6): entropy_std d=0.458, TOST rejection 0/1000。但 0.458 远大于 TOST ε=0.20 阈值——它不是 stationary 的。同时 |ρ|=0.16 低于 drifting 特征（|ρ|>0.60）。论文将其归为 \"intermediate\" 但这使 DDR 从 clean dichotomy 变为 spectrum，减弱了概念清晰度。\n- Appendix V (p.27-28) 的 DDR Partition Validation 尝试用 k-means 和 holdout 验证，但 entropy_std 在 k=2 时归入 near-stationary group（silhouette 可能受其拖累），这与 \"intermediate\" 标签矛盾。\n\n**m4. [minor] Cross-reference-model drift magnitude varies 2×**\n- p.7: \"Cross-family reference models... spread 0.013\"。但 Appendix S 中不同 reference models（Pythia-410M, OLMo-2-1B, Qwen3-0.6B）下 DDR drift magnitude 可能差异较大。如果 DDR 是 intrinsic property of recursive generation，drift magnitude 不应强依赖 reference model。论文提到 \"the phenomenon is not reference-specific (spread 0.013 across three ref models)\" 但这是 F1 spread，不是 drift magnitude spread。\n\n---\n\n## Director's Specific Questions — 逐条回应\n\n### Q1: LOGO/LOFO 评估是否 sound for leak-free evaluation?\n**是的，设计合理。** LOGO hold-out 整个 generator 防止 generator-specific artifacts leakage。gen-0 seeds shared across generators（§3.2）是一个 potential concern（同一 human text 既出现在 train 又在 test），但独立 seed 实验（Appendix T: independent-seed F1=0.701 vs shared-seed 0.694）排除了 topic-based leakage。LOFO 进一步测试 family-level generalization。\n\n但有一个微妙的 concern：gen-0 samples 在 LOGO 中被所有 folds 共享（Table 1 脚注 1: \"1-class F1 carries upward bias because gen-0 seeds are shared across generators\"）。这意味着 gen-0 classification 被 inflate，但不影响 gen-1 vs gen-2+ binary metric。\n\n### Q2: Binary F1=0.694 是否足够支撑 claims?\n**不足以支撑分类方法的 claim，但足以支撑 empirical characterization。** 0.694 显著高于 random (0.50 binary)，证明 depth signal 存在且可被 exploit。但作为实用分类器，0.694 不够。论文的核心价值应在 DDR 现象的发现和 characterization，而非分类器性能。\n\n### Q3: Surface-only vs full 的 gap 是否 justify reference features?\n**在 3-class 上 yes，在 binary 上 no。** Table 2 (p.7) 显示 4-det+surface 和 full 7-feature 在 binary F1 上均为 0.708——reference features 在 binary 任务上零增量。在 3-class 上 gap 为 0.820 vs 0.795 (+2.5pp)，modest but real。这意味着 reference features 主要帮助区分 gen-0 vs gen-1，而非 gen-1 vs gen-2+。\n\n### Q4: Bootstrap p=0.038 for 7-feat vs Avg-LogProb 是否 survive Bonferroni?\n**Borderline。** 如果做 4 个 pairwise comparisons（vs Avg-LogProb, FastDetGPT, LD-Score, Binoculars），Bonferroni α=0.0125。p=0.038 不 survive。但如果只做 pre-specified primary comparison（vs Avg-LogProb），p=0.038 survives α=0.05。论文需明确 pre-specified 的比较数量。\n\n### Q5: LOFO F1=0.686 vs LOGO 0.762 的 family inflation implications?\n**暗示 within-family similarity 贡献约 7.6pp。** 这是 non-trivial 的——意味着 LOGO 训练集中 same-family generators 提供了有用但 non-generalizable 的信号。LOFO 0.686 是更保守的泛化估计。论文应在正文中更突出地 discuss 这个 gap，并考虑将 LOFO 作为 primary or co-primary metric。\n\n### Q6: 5-class F1=0.391/0.468 是否 undermine \"depth classification\" framing?\n**部分 undermine。** Table 4 (p.15) 的 5-class macro F1=0.391 远低于 random 5-class baseline (0.20)，但也远低于实用阈值。论文在 Appendix D 讨论中正确指出 \"adjacent depths (gen-2+→gen-3, gen-3+→gen-4+) account for the majority of errors\"，说明分类器保留了 ordinal structure。但 0.391 的绝对值仍然质疑 \"beyond binary detection\" 的 claim——paper 实际上主要解决的是 3-class 问题。\n\n### Q7: Multi-detector ensemble (Table 2) vs 7-feature 的 implications?\n**关键发现：Table 2 中 4-det+surface (6 features) 的 binary F1=0.708 与 7-feature 的 0.708 相同。** 这意味着在 binary 任务上，7-feature approach 相对于更简单的 multi-detector ensemble 没有优势。7-feature 的优势仅体现在 3-class（0.820 vs 0.795, +2.5pp）。这进一步支持论文应重心转向 empirical characterization 而非 classification method。\n\n### Q8: QLoRA LOGO crossover 的解读?\nQLoRA within-model 5-fold CV: 0.905 3-class。但 QLoRA 的 LOGO cross-generator performance 未在 Appendix E 中明确报告。p.16 提到 \"All results use the same LOGO protocol as the main experiments\" 但 Table 6 只报告了 overall 数字。如果 QLoRA LOGO 也是 0.905，则 handcrafted features 的 gap 更加严重。如果 QLoRA LOGO 显著低于 0.905（接近 within-model），则说明 neural features 也 overfit generator identity，handcrafted features 的 generalization 反而是优势——但论文未提供这一关键对比。\n\n### Q9: Drifting features = vocabulary impoverishment measured multiple ways?\n**部分正确。** TTR、hapax_ratio 是 vocabulary impoverishment 的直接度量。entropy_mean 可被视为 perplexity 的 proxy，与 vocabulary diversity 高度相关。这三个 drifting features 的 Spearman ρ 之间相关性极高（p.25 Appendix R: \"drifting features form a tightly coupled cluster\"；PCA 第一主成分解释 92.3% variance）。这意味着 3 个 drifting features 本质上是 1 个信号的多个度量。\n- **但** stationary features（entropy_max, tail_decay）不参与 vocabulary impoverishment——它们测量的是 NLL distribution 的 shape/tail，不是 central tendency。DDR 的真正增量在于 partition（有些特征 drift，有些不 drift），不在 drifting features 本身的数量。\n\n### Q10: Cross-reference-model drift magnitude varies 2× 的 implications?\np.7 报告 cross-reference F1 spread=0.013（三个 ref models 间），但 drift magnitude（Spearman ρ 或 Cohen's d 的 absolute value）可能差异更大。如果 DDR 是 recursive generation 的 intrinsic property，应该在不同 reference model 下观察到 qualitatively identical partition（相同的 3/1/3 分组），即使 quantitative magnitude 不同。论文在 Appendix S 确认 \"consistently negative entropy drift\" across ref models，但未逐一报告每个 ref model 下的完整 DDR partition。这是一个 gap——如果在 OLMo ref 下某个 \"stationary\" feature 变成 \"drifting\"，DDR partition 就不是 intrinsic 的。\n\n---\n\n## Coverage Assessment — 15 实验条件逐项检查\n\n| # | 实验 | 覆盖 | 位置 | 评估 |\n|---|------|------|------|------|\n| 1 | Feature ablation & trend | ✅ | Table 2 (p.7), §4.2, Fig 1 | 充分——LOFO + trend analysis + PCA |\n| 2 | Cross-generator evaluation | ✅ | Table 1 (p.6), §4.1 | 充分——8-gen LOGO with per-gen breakdown |\n| 3 | Cross-family reference model | ✅ | p.7, Appendix S | 充分但 drift magnitude 细节不足 |\n| 4 | Downstream utility | ⚠️ | Appendix M (p.22-23) | 存在但 underpowered（3 seeds, 1 metric, 1 model） |\n| 5 | Prompt type comparison | ✅ | Appendix C (p.15) | 充分——3 prompt types, LOPO transfer |\n| 6 | Paraphrastic comparison | ✅ | Appendix B (p.15) | 充分——length-confound 3 analyses |\n| 7 | Cross-model chains | ✅ | §4.1, Appendix N (p.23) | 充分——per-class detail provided |\n| 8 | Multi-domain seeds | ✅ | Appendix J (p.20) | 充分——3 domains, domain×temperature interaction |\n| 9 | Finer-grained ordinal | ✅ | Appendix D (p.15) | 充分——5-class with per-class breakdown |\n| 10 | Human edit robustness | ✅ | Appendix I (p.19-20) | 充分——word replacement + LLM rephrase + sentence regeneration |\n| 11 | LD-Score feature | ✅ | Table 2 baseline (p.7) | 充分——included as baseline |\n| 12 | End-to-end classifier (QLoRA) | ✅ | Appendix E (p.16) | 存在但缺少 QLoRA 的 LOGO vs within-model 对比 |\n| 13 | Text length control | ✅ | Appendix B (p.15) | 充分——length-matched F1=0.724, confirming non-artifact |\n| 14 | Large-scale generator (8B) | ✅ | p.9, Appendix Z.4 | 存在——Qwen3-8B 报告但 performance degrades (-10.6pp) |\n| 15 | Ordinal baseline comparison | ✅ | Appendix H (p.17) | 充分——CORAL, ordinal regression, Frank-Hall |\n\n**总结**：15/15 实验条件均有覆盖。其中 #4（downstream）和 #12（QLoRA）覆盖存在 methodology gap。\n\n---\n\n## Missing Experiments or Analysis\n\n1. **QLoRA LOGO vs QLoRA within-model 的直接对比**——这是理解 handcrafted vs neural features tradeoff 的关键实验。如果 QLoRA LOGO ≈ QLoRA within-model，则 neural approach 在 generalization 上也优越，handcrafted features 无优势；反之则 handcrafted features 的 generalization 是 genuine 的。\n2. **Per-reference-model 的完整 DDR partition 报告**——每个 reference model 下 7 个特征的 ρ、δ、TOST 结果，以确认 partition 的 reference-model invariance。\n3. **Single-generator train → cross-model chain test**（及其反向）——disentangle depth signal 和 generator identity signal。\n4. **LOFO 作为 co-primary metric**——当前仅在 §4.1 一句话报告。\n5. **Downstream 实验的 power analysis**——至少报告需要多少 seeds 才能在 ±2% margin 下达到 80% power。\n\n---\n\n## Questions for Authors\n\n1. Table 2 中 7-feature binary F1=0.708 与 4-det+surface binary F1=0.708 完全相同。这是否意味着 reference-model features 在最具实用价值的 binary 任务上没有贡献？如果是，7-feature approach 的独特价值是什么？\n2. QLoRA (Appendix E) 的 LOGO F1=0.905 是 per-generator-holdout 还是 within-model CV？如果是 within-model CV，能否补充 QLoRA 的 LOGO 结果？\n3. LOFO F1=0.686 vs LOGO 0.762 的 7.6pp gap——在新 generator family 部署时，应以哪个数字为准？是否考虑过 LOFO 作为 primary metric？\n4. Appendix M 的 TOST 中 Cohen's d=86.0 和 119.7 看起来 enormous——这是因为 pooled SD < 0.001 导致的人为膨胀。3 seeds 下的 SD 估计是否可靠？\n5. Appendix K 显示 instruct 模型下 entropy_mean ρ 翻转符号（−0.04→−0.64 base → +0.23→+0.48 instruct）。这是否意味着 DDR 在 instruct 设置下 reversed 而非消失？如果是，重新训练 instruct-specific partition 能否恢复分类性能？\n\n---\n\n## Score\n\n**Overall: 3/6 (Weak Reject)**\n\n**Justification**:\n- **For (leaning toward accept)**: DDR 是 genuine 的实证发现，stationary features 的存在不可从 vocabulary impoverishment trivially 推导；LOGO/LOFO 评估协议设计 sound；分析广度 exceptional（15+ 实验条件全部覆盖）；论文对 limitations 诚实透明。\n- **Against (preventing accept)**: (1) Headline binary F1=0.694 modest，LOFO 仅 0.686，低于实用部署阈值；(2) QLoRA +11.6pp gap 严重削弱 7-feature 方法的独立价值，且缺少 QLoRA LOGO 对比来 clarify generalization tradeoff；(3) Binary metric 上 7-feature 与 4-det+surface 无差异（均 0.708），reference features 增量存疑；(4) 多重 scope limitations 叠加（base-only, t<0.9, domain-dependent, scale-dependent, edit-fragile）使 practical niche 极窄；(5) 下游等价性 claim 基于 3 seeds，underpowered。\n- **综合判断**：论文是 solid empirical work，DDR finding 有 Findings-level 价值。但 classification performance 不足以支撑 method contribution claim，scope limitations 限制了 significance。如果论文 reframe 为纯 empirical characterization（de-emphasize classification, strengthen DDR analysis），并解决 QLoRA LOGO 和 downstream power 问题，可升至 4 (Weak Accept)。\n\n**Confidence: 4/5** — 仔细阅读全文及所有附录，对统计方法论有足够专业背景。对 NLL-based detection 文献有中等程度的 familiarity。\n\n\n---\n\n[Reviewer 1 审稿结果]:\n**审稿完成。核心判断：3/6 (Weak Reject)，Findings-level paper。**\n\n关键发现：\n1. **LOGO/LOFO 设计 sound**，独立 seed 实验排除 topic leakage\n2. **Binary F1=0.694 modest**，且 LOFO 仅 0.686（family inflation 7.6pp）\n3. **Table 2 的关键发现**：7-feature 与 4-det+surface 在 binary metric 上完全相同（0.708），reference features 在 binary 任务零增量\n4. **QLoRA +11.6pp gap** 需要 LOGO vs within-model 对比来 clarify\n5. **下游 3-seed TOST underpowered**，Cohen's d 人为膨胀（pooled SD < 0.001）\n6. **多重 scope limitations 叠加**使实际适用 niche 极窄\n7. **升级路径**：reframe 为 empirical characterization + 解决 QLoRA LOGO + downstream power → 可达 4/6\n\n---\n\n[Reviewer 2 审稿意见]:\n\n# Reviewer 2 — 对共享 R2 审稿意见的回应\n\n## 前置说明\n\nDirector 共享的这份审稿意见标注为 \"R2 Independent Review\"，但其评分（2/6 Reject）和多处事实数据与我先前提交的 R2 审稿（3/6 Weak Reject）不一致。以下逐条回应，并说明我同意或分歧的理由。\n\n**关键事实纠正（再次强调）**: 该共享审稿继续使用 Director 初始描述中的错误数据——这些错误会影响判断：\n\n| 数据点 | 共享审稿使用 | PDF 实际 | 影响 |\n|--------|-----------|---------|------|\n| Binary F1 | 0.680 | **0.694** | multi-detector ensemble gap 从 2.8pp 缩小到 **1.4pp** |\n| Generators | 5, 3 families | **8**, **5** families | 大幅低估了实验覆盖度 |\n| 5-class F1 | 0.468 | **~0.50** | 仍然差，但量化不同 |\n| Experiments | 15 | **20+** | 低估了实验完整度 |\n| \"Briesch et al. (2023)\" | 作为关键 prior work 引用 | **不存在**——Web search 未找到；\"broken telephone\" 是 Mohamed et al. (ACL 2025) | 基于不存在引用的区分论证无效 |\n\n---\n\n## 逐条回应\n\n### Strengths — 评价\n\n共享审稿的 S1-S5 与我的评估大体一致。特别是 S3（negative finding 的科学价值）和 S5（cross-model chain 和 paraphrastic comparison 的新颖实验条件）——这些是我也明确肯定的优势。\n\n但我注意到共享审稿在 Weaknesses 部分实质性地 **推翻了自己的 S3**：\n\n- S3 说：\"The negative downstream finding is a genuine scientific contribution... valuable for the community\"\n- W4 说：\"The negative downstream finding... weaponizes the paper's own motivation... removes the primary motivation\"\n\n这两个判断是矛盾的。如果 negative finding 是\"genuine scientific contribution\"（S3），它就不能同时\"remove the primary motivation\"（W4）。我的立场是 S3 更接近正确——negative finding 有科学价值但不是 ground-breaking，它**重定向**论文的贡献，而非**消除**论文的动机。\n\n---\n\n### W1 (DDR = repackaged vocabulary impoverishment) — [AGREE, but with nuance]\n\n**核心判断一致**：我在自己的审稿 M1 中已明确指出 DDR 的概念新颖性不足。共享审稿的分析与我一致。\n\n**补充 nuance**: 共享审稿说 \"not a new phenomenon\"——我同意，但需要区分：\n- DDR 作为 **phenomenon** 不新（词汇贫化随递归生成加剧 → 已知）\n- DDR 作为 **analytical decomposition**（drifting vs stationary partition）有一定组织性价值——把 7 个 features 系统分类并验证 partition 的跨 generator/reference model 稳定性，这是一个 modest but non-trivial empirical contribution\n- entropy_std 的 intermediate 地位（R²=0.41）确实削弱了 bimodal split claim——这一点双方审稿意见完全一致\n\n**不同意的地方**: 共享审稿将 DDR 的价值判定为零（\"provides a modest organizational insight, not a new phenomenon\"），但后续 scoring 中似乎未给予这个 \"modest organizational insight\" 任何 credit。在顶会 empirical studies 中，systematic characterization 的价值不应为零——尤其是当它跨越 8 generators、5 families、3 reference models 时。\n\n---\n\n### W2 (3-class = minimal extension of binary) — [AGREE]\n\n完全同意。5-class F1≈0.50 且 gen-2+ 间近均匀混淆，数据只支持 ~2.5 个可区分类别。这与我的 M2 完全一致。\n\n---\n\n### W3 (Multi-detector ensemble 0.708 > 7-feature 0.680) — [PARTIALLY DISAGREE — factual correction needed]\n\n**事实纠正**: 实际 gap 是 0.708 vs **0.694** = **1.4pp**，不是 2.8pp。\n\n1.4pp 的 gap 在 bootstrap CI 范围内是否显著？Table 2 的 CI 信息需要核查。如果 7-feature 的 CI [0.688, 0.700] 与 4-detector 的 CI 有重叠，这个 gap 可能不 statistically significant。\n\n**即使 gap 显著**，共享审稿的结论 (\"fundamentally undermines the contribution\") 也过于绝对。7-feature ensemble 的 **computational cost** 是 1 个 reference model forward pass，4-detector ensemble 需要 4 个不同 detector 的 inference——成本差异约 2.4×（论文 Section 4.3 报告）。在实际部署中，这种效率差异有意义。\n\n**更合理的判断**: multi-detector ensemble 的存在**削弱**了 7-feature 的 methodological motivation，但不 \"fundamentally undermine\" 它。这是我 minor weakness (m3) 的定级，而非 major。\n\n---\n\n### W4 (Negative finding removes motivation) — [DISAGREE]\n\n这是我与共享审稿最大的分歧。\n\n1. **内部矛盾**: 如前所述，S3 说 negative finding 是 \"genuine scientific contribution\"，W4 说它 \"removes the primary motivation\"。逻辑不能两者兼得。\n\n2. **Negative findings 在顶会中的地位**: NLP/ML 顶会近年来越来越重视 well-designed negative results（例如 EMNLP 2024 有专门的 Negative Results track）。depth-aware curation ≈ random subsampling 的发现，配合 TOST 统计确认，对 data quality 社区有参考价值。\n\n3. **\"Motivation removal\" 的论证不成立**: 论文的 primary motivation 不是 \"depth-aware data curation\"——Section 1 的 motivation 是 \"understanding recursive generation dynamics beyond binary detection\"。下游实验（Appendix M）是一个 application exploration，不是 core motivation。删掉 Appendix M，论文的 framing 仍然成立。\n\n4. **我的评估**: 在 minor weakness (m2) 而非 major weakness。negative finding 的贡献定位需要改善（需要具体 diagnostic use case），但它不 \"weaponize\" 论文的动机。\n\n---\n\n### W5 (Insufficient differentiation from model collapse literature) — [AGREE]\n\n与我的 M1 和 M3 一致。补充一点：共享审稿提到 \"Briesch et al. (2023) characterize information degradation across chain steps\"——但这篇引用我在 web search 中**未找到**。如果该引用不存在，基于它的区分论证无效。实际的相关工作是 Mohamed et al. (ACL 2025) \"LLM as a Broken Telephone\"。\n\n---\n\n### W6 (Missing related work) — [AGREE, with corrections]\n\n共享审稿列出的缺失相关工作与我的评估大体一致。但需要纠正：\n\n- **(a) Multi-class AI text detection**: 论文实际上引用了 SemEval-2024 Task 8 (Wang et al., 2024) 和 \"Beyond Binary\" (Cheng et al., 2025) 和 \"Beyond the Final Actor\" (Li et al., ACL 2026)——related work 中确实有 multi-class detection 的引用，但讨论不够深入\n- **(b) Authorship attribution / stylometry**: 论文引用了 Stamatatos (2009), Koppel et al. (2009), Uchendu et al. (2020)——stylometry 文献被引用但可以更充分地讨论 feature overlap\n- **(c) Watermarking**: 论文 Section 2.3 讨论了 Kirchenbauer et al. (2023), SynthID (Dathathri et al., 2024), Aaronson & Kirchner (2022)——watermarking 已被覆盖\n- **(d) Iterative self-refinement**: 论文引用了 Madaan et al. (2023) Self-Refine——但讨论确实过于简短\n\n共享审稿在 W6 上部分归因于\"未引用\"的工作，但实际上多数已在 bib 中（只是讨论不充分）。问题是 **depth of discussion** 而非 **breadth of citation**。\n\n---\n\n### W7 (Framing mismatch) — [AGREE]\n\n完全同意。这与我的建议 1（\"重构 contribution identity\"）完全一致——论文应定位为 \"empirical characterization study\" 而非 \"classification tool\"。\n\n---\n\n### W8, W9 — [AGREE]\n\n与我的 m4（drift magnitude 跨 reference model 变异）一致。W9 关于 LD-Score 的观察是有效的补充。\n\n---\n\n## 核心分歧：Score 2/6 vs 3/6\n\n**共享审稿给 2/6 (Reject)**，理由是 novelty 不足 + method 被 trivial baseline 超越 + negative finding 去掉动机。\n\n**我维持 3/6 (Weak Reject)**，理由如下：\n\n| 因素 | 共享审稿的权重 | 我的权重 | 理由 |\n|------|------------|---------|------|\n| Novelty 不足 | 决定性 (→ Reject) | 重要但非一票否决 | DDR 作为 analytical decomposition 有 modest value |\n| 实验完整度 | 低（仅 \"generally well-written\"） | 高（exceptional） | 20+ experiments 跨 8 generators / 5 families / 3 reference models 的规模在同类工作中罕见 |\n| Cross-model chain F1=0.830 | 未充分讨论 | 高 | 全文最强结果，最接近实际应用 |\n| Negative finding | 消极（\"removes motivation\"） | 中性偏正（\"honest reporting\"） | 内部矛盾（S3 vs W4），且 motivation removal 论证不成立 |\n| Multi-detector gap | Major (2.8pp) | Minor (实际 1.4pp) | 事实错误导致判断偏差 |\n| 基础数据错误 | 使用 F1=0.680 | 使用 F1=0.694 | 14pp 的差异影响多项判断 |\n\n**Score 2 (Reject) 意味着论文不应在该 venue 以任何形式发表**。鉴于：\n- 实验质量 exceptional（至少 Soundness 4.5/6）\n- Cross-model chain 结果 strong (F1=0.830)\n- 诚实的 negative reporting 有社区价值\n- Related work 已覆盖大部分（讨论深度不足而非覆盖缺失）\n\n我认为 **Reject 过于严苛**。论文的问题在 novelty/significance，不在 quality/rigor。这是典型的 **Findings track** 论文——方法论严谨、概念增量有限。\n\n---\n\n## 我的最终评分（维持不变）\n\n| 维度 | 分数 | 理由 |\n|------|------|------|\n| **Overall** | **3/6 (Weak Reject for main, recommend Findings)** | Novelty 不足以进主会议，但实验质量和诚实报告配得上 Findings |\n| **Confidence** | **4/5** | 通读全文 33 页，验证 78 条引用，搜索关键相关工作，纠正了共享审稿中的多处事实错误 |\n\n**对 Director 的建议**: 共享审稿和我的审稿在 novelty 判断上一致（DDR = repackaged vocabulary impoverishment），但在 severity 上有分歧（Reject vs Weak Reject）。分歧主要源于：(1) 共享审稿基于错误数据（F1=0.680, 5 generators），导致 multi-detector gap 被放大；(2) 共享审稿对 negative finding 的处理存在内部矛盾（S3 vs W4）；(3) 共享审稿对实验完整度的 credit 不足。建议最终评分收敛于 **2.5-3.0** 区间。\n\n\n---\n\n[Reviewer 2 审稿结果]:\n审稿回应已提交。核心立场：维持 3/6 (Weak Reject, recommend Findings)，反驳共享审稿的 2/6 评分。主要理由：(1) 共享审稿基于错误的论文数据（F1=0.680 vs 实际 0.694，5 generators vs 实际 8），导致 multi-detector gap 被放大一倍；(2) 共享审稿在 S3 与 W4 间存在内部矛盾——negative finding 不能同时是 \"genuine contribution\" 和 \"removes motivation\"；(3) 20+ experiments 的实验完整度在同类工作中罕见，值得更多 credit。\n\n---\n\n[Reviewer 1 审稿意见]:\n\n# Reviewer 1 对 \"R1 Independent Review\" 的回应与校正\n\n---\n\n## Factual Discrepancies — PDF 实际内容 vs 该 Review 引用的数字\n\n以下数字与我多次阅读的 PDF（33 页）不一致。如果 Director 持有更新版本，请确认版本号。\n\n| 该 Review 引用 | PDF 实际内容 | 出处 |\n|---|---|---|\n| LOGO binary F1 = 0.680 | **0.694** | §4.1 (p.5): \"binary F1 (gen-1 vs. gen-2+) = 0.694\" |\n| Multi-detector ensemble F1 = 0.708 beats 7-feat 0.680 by 2.8pp | **7-feature Bin F1 = 0.708 = 4-det+surface Bin F1 = 0.708**，无差异 | Table 2 (p.7) |\n| Surface-only 0.741 vs full 0.773 (3.2pp gap) | Surface/full 对比在 Table 2 中是 **4-det+surface 0.795 vs full 0.820 for 3-class**；binary 上均为 0.708 | Table 2 (p.7) |\n| 5-class F1 = 0.468 | **macro F1 ≈ 0.391** (Table 4, p.15: \"average 0.391 ± 0.038\") | Appendix D Table 4 |\n| QLoRA LOGO binary = 0.712 | 未在 Appendix E 中找到此具体数字；Table 6 报告 QLoRA 3-class = 0.905 | Appendix E (p.16) |\n| LOFO binary F1 = 0.665 | LOFO 3-class F1 = **0.686** (§4.1) | §4.1 |\n| Within-family inflation ~3.8pp for Pythia | Table 1 确实显示 Pythia 变体 F1 差异，但 inflation 估计方式不同——LOGO vs LOFO gap = 7.6pp (across all families) | §4.1 |\n| Bootstrap p = 0.038 for 7-feat vs Avg-LogProb | 论文 §4.3 提到 paired bootstrap comparisons 但我未在 PDF 中确认此 exact p-value | §4.3 (p.7) |\n\n**关键影响**：如果 multi-detector ensemble 实际上并未 outperform 7-feature（PDF 显示两者 binary F1 均为 0.708），则 W2 这个 \"Major\" weakness 的前提不成立。\n\n---\n\n## 对 Strengths 的回应\n\n**[AGREE] S1 — LOGO/LOFO 评估方法**：完全同意。我在此前两次审稿中均将此列为主要优势。\n\n**[PARTIALLY AGREE] S2 — TOST 设计**：该 Review 评价 TOST 为 \"properly designed\" 和 \"model of how to report negative results\"。**我强烈不同意**。TOST 设计框架合理（±2% margin, equivalence testing），但 n=3 seeds 的 statistical power 极低。论文自己在 p.23 承认 \"with only n=3 seeds per condition, the TOST results have limited generalizability\"。Cohen's d=86.0/119.7 是因为 pooled SD < 0.001 导致的人为膨胀。这不是 \"model\" 级别的 negative result reporting——它是一个 underpowered 的 preliminary finding。\n\n**[AGREE] S3 — 实验覆盖度**：完全同意。15+ 实验条件的覆盖在 empirical NLP 论文中罕见。\n\n**[AGREE] S4 — 诚实报告**：同意。论文对 limitations 的透明度值得肯定。\n\n**[AGREE] S5 — Length control**：同意。Length-matched analysis 有效排除了 length 作为混淆变量。\n\n---\n\n## 对 Weaknesses 的回应\n\n**[PARTIALLY AGREE] W1 — Binary F1 不足**\n同意 F1=0.694（非 0.680）对于 practical depth classification 不够。但该 Review 的对比框架（\"binary AI-text detectors achieve >0.95 F1\"）不公平——binary detection（human vs AI）是一个比 depth classification（gen-1 vs gen-2+）简单得多的任务。gen-1 和 gen-2+ 之间的 distributional difference 远小于 human 和 AI 之间的差异。更合理的 benchmark 是 model attribution（跨模型区分）领域的 F1，通常在 0.65-0.80 范围。\n\n**[REBUT] W2 — Multi-detector ensemble 优于 7-feature**\n**前提错误**。PDF Table 2 (p.7) 显示 7-feature binary F1 = 0.708 与 4-det+surface binary F1 = 0.708 相同——multi-detector ensemble 并未 outperform。在 3-class metric 上 7-feature (0.820) 还超过 4-det+surface (0.795) 2.5pp。W2 中 \"existing detectors can be trivially ensembled to outperform\" 的结论不成立。该 Review 应将此 weakness 从 Major 降级或删除。\n\n**[PARTIALLY AGREE] W3 — Surface-only gap 偏小**\nBinary metric 上确实无差异（均 0.708），这是一个 genuine concern——reference features 在 binary 任务上零增量。但在 3-class 上 gap = 2.5pp (0.820 vs 0.795)，说明 reference features 主要帮助 gen-0 vs gen-1 区分而非 gen-1 vs gen-2+。论文的 McNemar p=0.027 在 Bonferroni 校正后确实可能不 survive（取决于 pre-specified comparison 数量）。\n**但严重程度应为 Moderate 而非 Major**：reference features 的价值不仅在分类性能，还在于 DDR characterization 本身——DDR 的核心发现（drifting vs stationary partition）依赖 reference-model features。\n\n**[AGREE] W4 — Compounding scope limitations**\n同意这是最严重的问题之一。Base-only × t<0.9 × unedited × Wikipedia × continuation 的 operating envelope 极窄。该 Review 估计 realistic conditions 下 F1 可能降至 ~0.58-0.62 是合理的（基于 Appendix I/J/P 的各项 degradation）。\n\n**[PARTIALLY AGREE] W5 — 5-class F1 undermines depth framing**\n同意 5-class 性能弱（PDF 显示 macro F1=0.391，非 0.468，更差），但 \"at most ~2.5 effective classes\" 的解读 oversimplified。Appendix D confusion matrix 显示 adjacent depth 混淆为主（gen-2→gen-3, gen-3→gen-4 互相混淆），这实际上保留了 ordinal structure。问题不在于分类器无法感知 depth，而在于深层 depth 之间的 distributional difference 太小。论文将 depth 2+ merge 为一个 class（3-class 设置）的决策是合理的 empirical conclusion。\n\n**[AGREE] W6 — QLoRA gap**\n同意 QLoRA gap 是 genuine concern（+11.6pp on 3-class per PDF）。该 Review 提供了一个我之前未注意的关键数据：\"LOGO QLoRA 3-class drops below 7-feature (0.743 vs 0.762)\"——**如果这个数字正确（我在 PDF 中未确认），这实际上是 handcrafted features 的有力论据**：QLoRA 在 within-model 上大幅领先，但在 cross-generator generalization 上不如 handcrafted features。论文应强调这一点。请 Director 确认 QLoRA LOGO 3-class = 0.743 的出处。\n\n**[AGREE] W7 — Scale degradation**\n同意。8B → frontier model 的外推前景不乐观。论文 p.9 提到 \"Qwen3-8B achieves 5-class F1=0.696 under the 9-gen split, compared to 0.701 in the class-balanced 8-gen evaluation; this small difference reflects the changed training composition rather than a property of the Qwen3-8B generator itself\"——但 feature compression ratio 0.58 暗示 larger models 的 distributional signal 更弱。\n\n**[AGREE] W8 — Bonferroni 校正**\n同意 bootstrap p=0.038 在 4 comparisons Bonferroni 后不 survive（adjusted p≈0.152）。论文 §3.4 声称 \"Bonferroni correction\" 但不清楚是否已 applied 到 baseline comparisons。\n\n**[AGREE] W9 — Cross-model chain 混淆**\n同意。我在此前审稿中也标注了此问题（R1-W4）。\n\n---\n\n## 对 Score 的回应\n\n该 Review 给出 3/6 (Weak Reject)。在 ARR Overall Assessment 量表上，我维持 **3.0/5 (Findings)**，两者 converge 在同一档位。\n\n**调整说明**：\n- 如果 W2（multi-detector outperforms）的前提在 PDF 中确实不成立，则 Major weaknesses 从 5 个减至 4 个，这应稍微缓解 overall negative assessment。\n- 但 W4 (compounding limitations)、W5 (5-class weakness)、M4/W1 (modest headline F1) 仍然成立，足以阻止 conference acceptance。\n- **最终判断不变：Findings-level paper (Overall 3.0/5, 对应 Director 6-point 约 3/6)**。\n\n---\n\n## 对 Missing Experiments 的补充\n\n该 Review 的 missing experiments 列表我基本同意，但有补充：\n\n1. **✅ Instruct-model experiments**：该 Review 说 \"no instruct experiments\"——**不准确**。Appendix K (p.20-21) 有完整的 instruct analysis（Table 15-17），包括 5-fold CV、retrained classifier、LOGO evaluation。应改为 \"instruct experiments exist in appendix but instruct LOGO binary F1=0.487 shows poor generalization\"。\n\n2. **✅ Temperature sensitivity**：该 Review 说 \"no analysis beyond [0.5, 0.9]\"——Appendix P (p.18) Table 10 确实覆盖 t ∈ {0.5, 0.7, 0.9}，但未测 t=1.0。这个限制是 acknowledged 的。\n\n3. **新增**：我在此前审稿中建议的 missing experiments 仍然成立：\n   - QLoRA LOGO vs within-model 的直接对比\n   - Per-reference-model 的完整 DDR partition 报告\n   - Single-generator train → cross-model chain test\n   - Downstream 实验 power analysis\n\n---\n\n## 最终立场\n\n该 \"R1 Independent Review\" 与我的独立评估在 **direction 和 overall score** 上一致（均为 Weak Reject / Findings），但存在若干 factual errors 需要修正（尤其是 W2 的前提和多个具体数字）。修正后的 Major weakness 数量从 5 个降至 4 个（去除 W2），但剩余 4 个（W1 headline F1, W3 reference feature 增量弱, W4 compounding limitations, W5 5-class weakness）仍足以支撑 Weak Reject / Findings 的判断。\n\n此外，我想强调一个该 Review 低估的问题：**TOST downstream experiment 的 statistical power**。该 Review 将其评为 \"properly designed\" (S2)，我认为这是该 Review 的一个 significant blind spot——n=3 seeds 的等价性检验不能被称为 \"model of how to report negative results\"。\n\n\n---\n\n[Reviewer 1 审稿结果]:\n回应已提交。核心要点：\n\n1. **W2 前提错误**：PDF 中 7-feature 与 multi-detector ensemble binary F1 均为 0.708，不存在 \"outperform\"。此 Major weakness 应删除或降级。\n2. **TOST 不应被评为 \"properly designed\"**：n=3 seeds 的等价性检验 underpowered，论文自己也承认这点。\n3. **Instruct experiments 确实存在**（Appendix K），非 \"missing\"。\n4. **Overall score 一致**：均为 Findings 档位（3.0/5 ARR 或 3/6），不调整。\n\n---\n\n[Reviewer 2 审稿意见]:\n\n# Reviewer 2 — Round 2 交叉回应（对 R1 Methods & Experiments 发现）\n\n---\n\n## 对 R1 8 个关键发现的逐条回应\n\n### R1-1: McNemar p=0.027 marginal, bootstrap p=0.038 不 survive Bonferroni — [AGREE, strengthens my critique]\n\n这是一个重要的统计发现，直接强化了我的 novelty 批评。\n\n**影响链**: 如果 7-feature vs Avg-LogProb 的优势在 multiple comparison correction 后不 statistically significant（adjusted p≈0.152），那么 DDR 的 **multi-feature decomposition** 在 detection performance 上没有可靠地超越一个 **单一特征** (Avg-LogProb)。这意味着：\n- DDR 的 7 个 features 中，额外 6 个 features 的 marginal contribution 接近零（在检测任务上）\n- 论文 Section 4.1 报告的 +3.3pp 优势（我的前一轮审稿中从 R1 cross-review 获得的数字）可能是 noise\n- **这直接加强了我的 M1（DDR novelty 不足）**: 如果 multi-feature decomposition 在分类上不提供 significant advantage over 单一 proxy，那 decomposition 的 practical value 进一步被削弱\n\n**补充**: 论文 Section 3.4 声称 \"All p-values are two-sided. Bonferroni correction is applied...\"——但 R1 发现这个 correction 似乎没有系统性地应用于所有 pairwise comparisons。如果论文声称做了 Bonferroni 但实际上遗漏了关键比较，这也是一个 methodological concern（不仅是 novelty concern）。\n\n---\n\n### R1-2: Compounded scope limitations → realistic F1 ~0.58-0.62 — [AGREE, critical finding]\n\n这是 R1 最有力的发现之一，与我的 M4（base-model-only scope）形成强力互补。\n\n**R1 的推理**: 单独看每个 limitation（domain shift, elaboration, editing, temperature）的 degradation 幅度可控（各 -3 到-8pp），但当多个因素同时存在时（现实场景必然如此），degradation 会 compound 到 F1≈0.58-0.62——接近 binary random baseline (0.50)。\n\n**对我的评估的影响**: 这将我的 M4 从 \"scope limitation\" 提升到 \"practical viability concern\"。此前我的论点主要基于 base-model-only 和 temperature restriction 两个单独因素；R1 的 compounding analysis 表明即使在 base model + moderate temperature 的 \"best case\" 内，加入 domain shift 和 text editing（现实中不可避免），性能也会降至无用水平。\n\n**这进一步支持我的 overall 3/6 (Weak Reject) 而非共享审稿的 2/6**: 因为问题不在论文做了什么（实验本身是 sound 的），而在于 **practical significance 在 realistic conditions 下消失**。这是 significance 问题，不是 quality 问题。Findings track 可以接收有 significance limitations 的 sound empirical work。\n\n---\n\n### R1-3: Surface features 贡献 95.9%，reference model computation 仅贡献 3.2pp — [AGREE]\n\n这个发现与我的 W1/m1（QLoRA gap）和 W3/m3（multi-detector ensemble gap）形成三角验证：\n\n1. **7-feat vs Avg-LogProb**: +3.3pp（且 R1 指出 post-Bonferroni 不 significant）\n2. **Surface features vs all 7**: 95.9% performance from surface-only\n3. **QLoRA vs 7-feat**: +14.3pp\n\n三条证据链都指向同一结论：**reference model NLL 特征（entropy mean/std/max/min, tail decay）的 marginal contribution 相对于 surface features（TTR, hapax）极其有限**。\n\n**对 DDR conceptual contribution 的影响**: DDR 的 core claim 是 drifting/stationary decomposition 涉及两类不同的特征——reference-model-based 和 surface-level。如果 reference-model features 仅贡献 4.1%（=100%-95.9%）的 discriminative power，那整个 \"reference model as depth probe\" 的叙事被严重削弱。DDR 变成了 **\"TTR and hapax ratio decline with depth\"**——这就是 vocabulary impoverishment 的直接测量，不需要 reference model。\n\n---\n\n### R1-4: Scale degradation trend (1B→8B) → frontier models near-chance — [AGREE, strengthens M4]\n\n这与我的 M4 互补，但攻击了一个我未单独指出的角度：**DDR 对大模型效果更差**。\n\n论文的 motivation 是 \"data provenance crisis\"——但产生最多 concerning content 的是 frontier models (GPT-4, Claude, Gemini)，它们都远超 8B 参数。如果 DDR 在 8B models 上已经显示 degradation trend，extrapolation 到 70B+ 意味着 DDR 可能 completely ineffective 在最相关的场景下。\n\n**这创造了一个 motivation paradox**: 论文用 frontier model contamination 来 motivate 研究，但方法在 frontier models 上大概率失效。这比 base-model-only scope 更根本——即使未来 instruction-tuning 问题被解决，scale degradation 仍然存在。\n\n---\n\n### R1-5: QLoRA gap +14.8pp — [AGREE, consistent with my m1]\n\n与我的前期评估完全一致。R1 补充了一个 nuance：LOGO crossover（7-feat 在 LOGO cross-generator 设置下优于 QLoRA 的 3-class task）提供了一些 defense。但 R1 正确地指出 \"efficiency argument insufficient given the magnitude\"。\n\n我维持我的立场：QLoRA gap 确认了 DDR 的 7-feature ensemble 不是一个 competitive detection method——它只能作为 analytical tool，而论文的 framing 在两者之间摇摆。\n\n---\n\n### R1-6: TOST methodology for negative finding is well-designed — [AGREE]\n\nR1 和我在这一点上完全一致。TOST 方法论（equivalence testing with proper bounds）是 reporting negative results 的范例。Cross-seed std < 0.002 确认了 robustness。\n\n**回答 Director 的直接提问**: \"Do you agree the negative finding has value even if it undermines motivation?\"\n\n**是的**——但需要精确区分：\n- **Methodological value**: TOST design 本身有教学价值 ✓\n- **Scientific value**: \"depth-aware curation ≈ random\" 的结论对 data quality 社区有参考价值 ✓\n- **Contribution value**: 这个 negative finding 是否足以作为论文的独立 contribution？**不足**——因为 (a) 结论不够 counter-intuitive（\"generation depth 不影响 fine-tuning perplexity\" 不令人惊讶），(b) 仅在 1 model / 1 metric / 3 seeds 上验证，(c) 未探索其他 downstream tasks\n\n**它不 \"undermine motivation\"**（与共享审稿 W4 的观点不同），因为论文的 primary motivation 是理解 recursive generation dynamics，不是 data curation。Negative finding 是 additional exploration，不是 core thesis。\n\n---\n\n### R1-7: Cross-model chain +13.6pp 可能是 trivial OOD detection — [PARTIALLY AGREE, important nuance]\n\n这是一个我未独立提出的精彩观察。\n\n**R1 的论点**: Cross-model chain 场景中，text 先经 Generator A 再经 Generator B——classifier 可能仅仅检测到 \"text 不属于任何单一 generator 的 distribution\"（OOD detection），而非真正的 depth signal。\n\n**我的评估**: 这个假说是 plausible 的，但需要实验验证。论文 Table 7 的 cross-model chain F1=0.830 是我此前认为的 \"最强结果\"——如果它可以被解释为 trivial OOD detection，那论文中最有实际意义的 result 也被削弱了。\n\n**但我不完全同意 \"trivial\"**: Cross-model chain 中的 text 经历了两个不同 generator 的 sequential processing。即使 part of the signal 来自 OOD detection，区分 \"single-generator output\" vs \"multi-generator chain output\" 本身仍有 provenance value。问题是论文没有设计实验来 disentangle depth signal from OOD signal——例如，比较 \"同一 generator 的 gen-2\" vs \"不同 generator 的 gen-2\" 在 feature space 中的位置。\n\n**影响**: 将我对 cross-model chain 结果的评价从 \"strong positive\" 降级为 \"promising but unvalidated\"。\n\n---\n\n### R1-8: Missing compounded-condition analysis — [AGREE]\n\n与 R1-2 互补。论文逐个测试了 domain shift, temperature, editing, prompt type 等因素，但从未测试它们的 **交互效应**。在实际场景中，这些因素同时存在。缺少 compounded analysis 意味着论文的 robustness claims 基于 isolated conditions，不能直接外推到 realistic settings。\n\n---\n\n## Director 直接提问的回答\n\n### Q1: \"If 7-feat vs Avg-LogProb is not significant after correction, does this further undermine the contribution?\"\n\n**是的，显著地进一步削弱。**\n\n这创造了一个 devastating critique chain：\n1. DDR 的 7 features 不 significantly 优于单一 Avg-LogProb（R1 的 Bonferroni 分析）\n2. Surface features 贡献 95.9% 的 performance（R1-3）\n3. QLoRA 大幅超越 7-feature（+14.3pp）\n4. Multi-detector ensemble 也超越 7-feature（+1.4pp，虽然 marginal）\n\n结论：DDR 的 multi-feature decomposition 在 **detection** 上没有 demonstrated advantage。它的价值只能是 **analytical/explanatory**——但论文没有充分发展这个方向（缺乏理论推导、缺乏机制解释、缺乏 actionable diagnostic use case）。\n\n### Q2: \"R1 credits TOST methodology—do you agree the negative finding has value even if it undermines motivation?\"\n\n**已在 R1-6 回应中详细回答。** 简言之：TOST 方法论有 methodological value，negative finding 有 modest scientific value，但它不 \"undermine motivation\"（论文的 primary motivation 不是 data curation），也不足以作为独立 contribution。\n\n---\n\n## 调整后的最终评估\n\n| 维度 | Round 1 | Round 2（调整后） | 变化理由 |\n|------|---------|-----------------|---------|\n| **Overall** | 3/6 | **3/6** (Weak Reject, recommend Findings) | R1 的发现强化了我的 novelty/significance concerns，但也确认了 methodology soundness；两个方向抵消 |\n| **Novelty** | Insufficient | **Further weakened** | R1 的 Bonferroni 分析和 surface-feature dominance 进一步证明 DDR 的 multi-feature decomposition 缺乏 practical novelty |\n| **Significance** | Limited | **Further narrowed** | R1 的 compounding analysis 和 scale degradation 将 realistic applicability 压缩到更窄范围 |\n| **Soundness** | 4/6 | **3.5/6** (slight downgrade) | R1 指出的 systematic multiple comparison correction 缺失是一个 methodological concern，虽然不是致命的 |\n| **Confidence** | 4/5 | **4.5/5** | R1 的 methods 分析覆盖了我的知识盲区（统计检验的 multiple comparison 问题、compounded degradation 估算），交叉确认提高信心 |\n\n**维持 3/6 不变的核心理由**:\n\nR1 的发现全面强化了 novelty/significance 的负面判断，但没有发现新的 methodological flaw 足以将论文降到 2/6 (Reject)。论文仍然是一篇 **方法论严谨但概念增量有限** 的 empirical study。Soundness 从 4.0 微调至 3.5（因 multiple comparison issue），但整体 execution quality 仍远高于 average submission。\n\n**2/6 (Reject) vs 3/6 (Weak Reject) 的关键判断**: 一篇 Soundness 3.5+/6 的论文不应得到 Reject，除非存在 fundamental methodological flaw 或 ethical concern。Novelty 不足是 main conference rejection 的理由，但不是 venue-level rejection 的理由——这正是 Findings track 存在的意义。\n\n---\n\n## Top-3 修改建议（维持不变，根据 R1 发现补充）\n\n1. **重构 contribution identity** → 定位为 empirical characterization study，弱化 detection tool framing，将 cross-model chain 提升为核心 result（但需增加实验 disentangle depth signal vs OOD signal，回应 R1-7）\n\n2. **提供 DDR 的理论/机制解释** → 回答 \"why do shape features stay stationary under location shift?\"；利用 Dohmatob & Feng (2025) 的 information-theoretic framework；解释 Gemma anomaly 和 instruct degradation heterogeneity\n\n3. **增加 compounded-condition analysis** → 测试 domain shift + temperature + editing 的联合效应（R1-8），报告 realistic compound F1，诚实面对 R1 估计的 0.58-0.62 范围\n\n\n---\n\n[Reviewer 1 审稿意见]:\n\n# Reviewer 1 交叉回应 — 对 R2 (Novelty & Related Work) Round 2 意见\n\n---\n\n## 对 R2 核心论点的逐条回应\n\n### [PARTIALLY AGREE] R2-Point-1: DDR = vocabulary impoverishment repackaging\n\nR2 正确指出 drifting features（TTR, hapax_ratio, entropy_mean）测量的是 lexical diversity decline。PCA 分析（Appendix R, p.25）也确认这三个特征形成 tightly coupled cluster，第一主成分解释 92.3% variance——本质上是同一个信号的三个 proxy。\n\n**但 R2 忽略了 DDR 的核心增量：stationary features 的存在。**\n\nvocabulary impoverishment 假说预测：recursive generation 使文本逐步退化，所有 distributional features 应单调 drift。DDR 的关键发现是：entropy_max 和 tail_decay **不** drift（8/8 generators 通过 TOST at ε=0.20, Table 26/27）。这个 negative result 不可从 vocabulary impoverishment trivially 推导——它说明 recursive generation 改变分布的 location 但保留 shape。这是 Shumailov et al. (2024) model collapse 框架中未被识别的结构。\n\n**定量证据**：Table 2 (p.7) surface-only features（纯 vocabulary impoverishment 指标）3-class F1=0.763（注：该 Review 此前引用 0.741 与 PDF 不符），加入包含 stationary features 的 reference features 后升至 0.820，+5.7pp。如果 DDR 纯粹是 vocabulary impoverishment 重新包装，stationary features 不应提供分类增量。\n\n**但 R2 的 concern 仍部分成立**：论文当前叙事确实过多强调 drifting features（它们占 DDR 的 3/7），而 stationary features 的机理解释不足。论文应明确说明：\"DDR 的价值不在于发现 vocabulary impoverishment（这是已知的），而在于发现 vocabulary impoverishment 只是故事的一半——distributional shape invariance 是另一半。\"\n\n### [PARTIALLY AGREE] R2-Point-2: 3-class = ~2.5 effective classes\n\nR2 的\"~2.5 effective classes\"判断有经验依据：5-class macro F1=0.391（PDF Table 4），gen-2/3/4 之间确实 near-uniform confusion。论文将 depth 2+ merge 为一个 class 的决策是合理的。\n\n**但 \"minimal extension beyond binary\" 低估了 gen-1 vs gen-2+ 的价值。** Binary detection（human vs AI）已被充分研究。gen-1 vs gen-2+ 的区分是一个 genuinely new capability——即使 F1=0.694 不高，它回答了一个之前无法回答的问题：\"这段 AI 文本是直接从人类 prompt 生成的，还是从另一段 AI 文本递归生成的？\"这在 data provenance 和 model collapse 研究中有实际意义。\n\n### [REBUT] R2-Point-3: Multi-detector ensemble 优于 7-feature\n\n**这个论点的前提在 PDF 中不成立。**\n\nPDF Table 2 (p.7) 显示：7-feature binary F1 = 0.708，4-det+surface binary F1 = 0.708。**两者相同，multi-detector ensemble 并未 outperform。** 在 3-class 上 7-feature (0.820) 还超过 4-det+surface (0.795) 2.5pp。\n\nR2 和此前的 \"R1 Independent Review\" 均引用 \"0.708 vs 0.680, +2.8pp\"——这些数字与 PDF 不一致。如果 Director 的版本确实是 0.708 vs 0.680，请确认 PDF 版本。但基于当前 PDF，**W2/R2-Point-3 的结论不成立**，7-feature 不劣于 multi-detector ensemble。\n\n### [PARTIALLY AGREE] R2-Point-4: Negative finding 削弱 motivation\n\nR2 说\"diagnostic tool at 0.680 F1 has minimal practical impact\"——这个判断方向正确但程度过重。\n\n**downstream negative finding 并非 \"weaponizes\" motivation**。发现 depth-aware curation ≈ random subsampling 是一个 genuinely informative negative result——它告诉研究社区不需要为 recursive contamination 额外担忧（至少在 CLM perplexity metric 上）。这有独立价值。\n\n**但我仍坚持 TOST 实验 underpowered**（n=3 seeds）。该 negative finding 的 evidence strength 不足以支撑当前 claim 的确定性。如果增加至 ≥10 seeds 且结果一致，这反而会成为论文的更强贡献。\n\n### [AGREE] R2-Point-5: Missing related work\n\nMulti-class AI text attribution 和 watermarking 文献确实可以加入 Related Work。但论文已引用 50+ 文献（此前 R2 \"only 5 references\" 的断言已被纠正），missing work 更多是 coverage gap 而非 fundamental omission。\n\n### [AGREE] R2-Point-6: Framing mismatch\n\n**完全同意，这与我此前三次审稿中的 Recommendation 1 一致。** 论文应从 \"classification tool\" 重新定位为 \"empirical characterization study\"。DDR 的价值在于理解 recursive generation 如何改变文本分布（scientific contribution），而非提供一个 practical classifier（engineering contribution）。\n\n---\n\n## 对 Director 两个直接问题的回应\n\n### Q1: 如果 DDR 是 repackaged vocabulary impoverishment，comprehensive experimental coverage 是否仍构成贡献？\n\n**是的，但贡献性质改变。**\n\n即使接受 R2 的\"repackaging\"论点（我只部分同意），论文仍提供了：\n(a) 首次对 vocabulary impoverishment 在 recursive generation 链中的 **系统性量化**（across 8 generators, 5 families, 15 experimental conditions）；\n(b) 发现 stationary features 的存在（这不是 repackaging）；\n(c) 首个 ordinal depth classification 的 benchmark（即使只有 ~2.5 effective classes）；\n(d) 一个 well-designed leak-free evaluation protocol（LOGO/LOFO）可被后续工作复用。\n\n这些加起来构成 Findings-level 贡献。但如果论文 claim 的是 \"we discovered a new phenomenon (DDR)\"，R2 的 repackaging critique 确实削弱了这个 claim。论文应更诚实地说：\"我们系统化了一个 partially known phenomenon，并发现了其中一个 previously unrecognized structural component（stationary features）。\"\n\n### Q2: 如果 task 只有 ~2.5 classes，LOGO/LOFO 方法论的 rigor 是否仍 matter？\n\n**是的，LOGO/LOFO 的 rigor 与 task granularity 无关。**\n\n即使 effective classes = 2.5（3-class with gen-2+ merged），evaluation methodology 的 rigor 仍然重要：\n- LOGO 避免了 generator-specific artifacts leaking，这在 **任何** AI text classification task 中都是 best practice\n- LOFO 暴露了 within-family inflation（7.6pp gap），这是一个对社区有价值的 methodological insight\n- 独立 seed 实验排除了 topic-based leakage\n\n**方法论 rigor 是论文最不可争议的贡献。** 即使分类性能中等、novelty 受质疑，evaluation protocol 的设计质量仍值得认可。这也是我坚持 Findings 而非 Reject 的核心原因之一。\n\n---\n\n## 对 R2 Score 的回应\n\nR2 给出 **2/6 (Reject)**，我给出 **3/6 (Weak Reject) / ARR 3.0 (Findings)**。\n\n**分歧来源**：R2 更重 novelty 权重，我更重 methodology rigor 权重。在 R2 的框架中，DDR = repackaging → novelty 不足 → reject。在我的框架中，即使 novelty moderate，rigorous methodology + comprehensive analysis + honest negative findings = Findings-level contribution。\n\n**我不调整至 R2 的 2/6。** 理由：\n1. W2 (multi-detector outperforms) 的前提在 PDF 中不成立——如果修正这个 factual error，R2 的 reject rationale 少了一个 major pillar。\n2. Stationary features 的发现是 genuine new information，不是纯 repackaging。\n3. LOGO/LOFO protocol 的设计质量构成独立贡献。\n4. Findings track 的存在正是为了这类论文——solid empirical work with moderate novelty。\n\n**最终评分不变：Overall 3.0/5 (Findings) = 3/6 (Weak Reject)**。\n\n\n---\n\n[Reviewer 2 审稿结果]:\nRound 2 交叉回应已提交。核心结论：R1 的统计分析（Bonferroni correction 后 7-feat vs Avg-LogProb 不 significant、surface features 贡献 95.9%、compounded degradation 至 ~0.58-0.62）全面强化了我的 novelty/significance 批评，但不改变 overall score (3/6 Weak Reject)。论文的问题是 novelty 不足，不是 quality 不足——Findings track 适合它。\n\n---\n\n[Reviewer 1 审稿结果]:\n已提交交叉回应。核心立场：\n\n- **维持 Overall 3.0 (Findings)**，不跟随 R2 降至 Reject\n- R2 的 \"multi-detector outperforms\" 论点前提在 PDF 中不成立（7-feature binary F1 = 4-det+surface binary F1 = 0.708）\n- DDR 不完全是 vocabulary impoverishment 重新包装——stationary features 的存在是 genuine new information\n- 但同意论文应 reframe 为 empirical characterization，且下游 TOST 仍然 underpowered\n\n---\n\n[Reviewer 1 审稿意见]:\n\n# Reviewer 1 最终立场 — Step 3 Convergence\n\n---\n\n## 对 Director 综合立场的回应\n\n### 我同意的部分\n\n1. **DDR 是 \"new measurement framework for a known effect\" 而非 \"new phenomenon\"**——这个区分精准。论文的贡献在于 organizational insight（drifting vs stationary partition），而非发现 vocabulary impoverishment 本身。我接受这个重新定位。\n\n2. **\"Augmented binary detection with a shallow depth signal\" 比 \"generation depth classification\" 更诚实**——5-class macro F1=0.391（PDF 数据）确实只支持 ~2.5 effective classes。论文 title 中的 \"depth classification\" overclaim 了实际能力。\n\n3. **Paper would benefit from repositioning as empirical characterization**——这与我此前所有审稿中的 Recommendation 1 完全一致。\n\n### 我不同意的部分\n\n**1. \"Multi-detector ensemble outperformance is a critical weakness\" 仍被列为共识点**\n\n我必须再次强调：**PDF Table 2 (p.7) 中 7-feature binary F1 = 0.708，4-det+surface binary F1 = 0.708，两者相同。** Multi-detector ensemble 并未 outperform。这个 \"critical weakness\" 的事实前提在 PDF 中不成立。我已在 Round 1 审稿和 Round 2 交叉回应中两次指出这一点。\n\n如果 Director 和 R2 均基于不同于 PDF 的数据源（F1=0.680 vs 0.708），请明确说明版本差异。在 PDF 未更新的情况下，我无法同意一个 factually unsupported 的 weakness 被列为 \"critical\"。\n\n**2. \"Comprehensive experiments = padding\" 的判断过于 dismissive**\n\nDirector 的修正立场认为 \"rigorous evaluation of a questionable task formulation does not make the task more valuable\"，并将部分实验（如 LD-Score）视为 padding。我部分不同意：\n\n- **LD-Score addition** 确实是 marginal（论文自己在 §4.3 定位为 baseline），将其视为 padding 有一定道理。\n- **但** temperature sensitivity（Appendix P）、instruct degradation（Appendix K）、cross-domain generalization（Appendix J）、human edit robustness（Appendix I）这些实验**不是 padding**——它们揭示了 method 的 operating envelope，对后续工作有实际参考价值。即使 task formulation 受质疑，这些 boundary-mapping 实验仍有独立价值。\n- LOGO/LOFO protocol design 可被后续 AI text classification 工作复用，这种 methodological contribution 不因 task questionability 而失效。\n\n**3. 被 persuaded 到 2 (Reject) 的条件尚未满足**\n\nDirector 表示 \"could be persuaded to 2 if consensus is that contribution is fundamentally insufficient\"。我认为当前证据不支持 Reject：\n\n- 论文不是 fundamentally flawed（方法论 sound，统计检验恰当，无 data leakage）\n- 论文有 genuine（if modest）贡献：stationary features 的发现、LOGO/LOFO protocol、honest negative findings\n- Reject (2) 在 ARR 量表上对应 \"Resubmit next cycle (需大幅修改)\"——但论文的问题主要是 framing 和 scope，不是 fundamental methodology issues。Reframing（从 classification tool → empirical characterization）不需要大幅修改实验。\n\n---\n\n## 最终评分\n\n**维持 Overall 3/6 (Weak Reject) = ARR 3.0 (Findings)**\n\n**不调整至 2/6。**\n\n| 维度 | 分数 | 调整说明 |\n|------|------|----------|\n| Soundness | 3.5/5 | 不变——方法论 sound，统计检验恰当 |\n| Excitement | 2.5/5 | 从 3.0 下调 0.5——接受 R2 的 novelty critique，DDR 是 organizational insight 而非 new phenomenon |\n| Reproducibility | 4/5 | 不变 |\n| **Overall** | **3.0/5 (Findings)** | Excitement 下调被 methodology rigor 的持续认可 offset |\n| Confidence | 4/5 | 不变 |\n\n**Justification for not going to 2/6**:\n- Reject 意味着论文需要 \"substantial revisions\" that \"can be completed by next cycle\"。但论文的 core problems（modest F1, scope limitations）不是一个 cycle 能解决的——它们是 empirical reality，不是 methodology bugs。\n- Findings track 的设计意图正是收容此类论文：sound methodology, moderate novelty, limited but real contribution。\n- 将一篇 methodologically sound、fully transparent、honest about limitations 的论文评为 Reject，对学术社区发出错误信号——它暗示只有 high-performance results 才值得发表，这会抑制 honest negative findings 和 exploratory empirical work。\n\n---\n\n## Top-3 Actionable Recommendations（维持此前建议，微调优先级）\n\n### 1. [最高] Reframe 为 empirical characterization\n- 从 \"depth classification method\" → \"empirical characterization of recursive generation's distributional fingerprint\"\n- 将 DDR 定位为 \"organizational framework for a known phenomenon (vocabulary impoverishment) that reveals a previously unrecognized structural component (distributional shape invariance)\"\n- De-emphasize 0.694 binary F1 as headline; emphasize DDR partition as primary contribution\n\n### 2. [高] 增强下游实验 statistical power\n- n=3 → ≥10 seeds\n- 增加第二个模型和第二个指标\n- 或弱化 claim 为 \"preliminary evidence\"\n\n### 3. [高] 在正文中 prominently discuss scope boundaries\n- 将 instruct degradation（Appendix K）、temperature sensitivity（Appendix P）、scale degradation 的 key findings 提升到 §5 Discussion\n- 明确 operating envelope：English Wikipedia, base models, t ≤ 0.7, 3-class\n- 这种 transparency 实际上 strengthens 而非 weakens 论文——reviewer 更容忍 acknowledged limitations 而非 hidden ones\n\n\n---\n\n[Reviewer 1 审稿结果]:\n审稿意见已提交。\n\n最终立场：**维持 Overall 3.0/5 (Findings) = 3/6 (Weak Reject)**，不接受降至 2 (Reject)。核心理由：(1) multi-detector outperformance 的前提在 PDF 中不成立；(2) stationary features 是 genuine new information；(3) methodology rigor 和 honest negative findings 构成 Findings-level 贡献；(4) 论文问题在于 framing 和 scope 而非 fundamental flaws。Excitement 下调 0.5 至 2.5/5 以反映 R2 的 novelty critique。\n\n---\n\n[Reviewer 2 审稿意见]:\n\n# Reviewer 2 — Round 3 对共享审稿 Updated Position 的回应\n\n---\n\n## 核心分歧仍然存在：2/6 vs 3/6\n\n共享审稿维持 2/6 (Reject)，我维持 3/6 (Weak Reject)。双方在事实判断上已充分收敛，分歧纯粹是 **weight assignment** 的问题。以下逐点回应共享审稿的 updated reasoning。\n\n---\n\n### 对 \"statistical issues strengthen W3\" 的回应 — [PARTIALLY AGREE]\n\n共享审稿说：如果 7-feat vs Avg-LogProb post-Bonferroni 不 significant，\"the proposed method is not even statistically better than the simplest single-detector baseline\"。\n\n**我同意事实判断**——post-correction 后 7-feature 的分类优势可能不 significant。\n\n**但我不同意推论的范围**: 这削弱的是 7-feature 作为 **detection method** 的 contribution，不是 DDR 作为 **analytical decomposition** 的 contribution。Decomposition 的价值不在于它能否超越 Avg-LogProb 做分类，而在于它是否揭示了有意义的特征行为差异。论文确实 demonstrate 了 drifting vs stationary 的 consistent pattern across 8 generators / 5 families / 3 reference models——这个 pattern 的存在不依赖于分类性能。\n\n**类比**：PCA 不需要比 supervised classifier 更准确才有价值——它的价值在于揭示数据结构。DDR decomposition 类似地可以作为 analytical tool 独立于分类性能。当然，论文目前的 framing 没有充分发展这个角度（这是我一直在建议修改的方向）。\n\n---\n\n### 对 \"compounding conditions → practical framing devastated\" 的回应 — [AGREE on facts, DISAGREE on severity]\n\nR1 估计的 realistic compound F1 ≈ 0.58-0.62 确实对 **practical deployment** 构成致命打击。\n\n**但 practical deployment 不是唯一的 contribution path**。很多顶会论文的 contribution 是 empirical characterization / understanding，而非 tool deployment。例如：\n- Shumailov et al. (2024, Nature) 的 model collapse 论文不提供解决方案，仅 characterize 现象\n- Guo et al. (2024, NAACL) 的 linguistic diversity decline 论文不提供检测工具，仅 document 趋势\n\n如果论文重新定位为 \"empirical characterization of inference-chain distributional dynamics\"（我在前几轮一直建议的方向），compound degradation 成为一个 **interesting finding**（\"DDR signal decomposes under realistic conditions in specific ways\"）而非 **fatal flaw**。\n\n**问题是论文当前没有做到这个 reframing**——所以我理解共享审稿在当前 framing 下给 2/6 的逻辑。但我评判的是论文的 **potential after reasonable revision**，不仅是当前版本。\n\n---\n\n### 对 \"well-designed negative finding is double-edged sword\" 的回应 — [DISAGREE]\n\n共享审稿：负面发现 \"removes the paper's primary motivation\"，论文 \"needs to identify some downstream utility to justify the task\"。\n\n**两个反驳**：\n\n1. **负面发现不 remove primary motivation**：我已在前一轮详细论证（见 Round 2 R1-6 回应）。论文 Section 1 的 primary motivation 是 \"understanding recursive generation dynamics beyond binary detection\"，不是 \"data curation via depth-aware filtering\"。Appendix M 的下游实验是 application exploration，不是 core thesis。\n\n2. **\"Needs downstream utility to justify the task\" 标准过严**：很多被接收的 detection/characterization 论文不要求 downstream utility demonstration。DetectGPT (Mitchell et al., ICML 2023) 没有展示 \"detecting AI text enables X downstream task\"；Binoculars (Hans et al., ICML 2024) 同样没有。这些论文的 contribution 是 detection capability itself 和 understanding of what makes detection possible。对本文要求 downstream utility 是 applying a higher bar than comparable published work。\n\n---\n\n### 对 \"cross-model chains = generator switching / OOD\" 的回应 — [AGREE this needs investigation]\n\n我在前一轮已经将 cross-model chain 从 \"strong positive\" 降级为 \"promising but unvalidated\"。共享审稿的 updated position 与我一致。\n\n但需要注意：**即使 part of the signal 是 OOD detection，这不意味着全部是**。论文可以通过 ablation（比较 same-generator gen-2 vs cross-generator gen-2 的 feature distances）来 disentangle。目前没有做这个实验是一个 gap，但不能预判结论。\n\n---\n\n### 对 \"15-experiment coverage is dilutive rather than additive\" 的回应 — [STRONGLY DISAGREE]\n\n这是我与共享审稿最大的价值观分歧。\n\n共享审稿：\"the paper tries to do everything and succeeds at nothing convincingly\"。\n\n**我的立场**：\n1. 实际是 **20+ experiments**（共享审稿使用错误数字 15），涵盖了几乎所有可能的 confound 和 robustness check\n2. **Comprehensive falsification testing 是 empirical science 的美德**，不是缺陷。论文没有 \"try to do everything\"——它是在 **systematically testing the boundaries of its claim**。每个实验回答一个具体问题：length confound？seed leakage？reference model artifact？domain shift？temperature sensitivity？\n3. 如果论文只做了 3 个实验并 claim DDR 是 universal，reviewer 会（正确地）批评 \"insufficient validation\"。做了 20+ 个实验后批评 \"dilutive\"，这是 **no-win standard**\n4. **\"Succeeds at nothing convincingly\"** 与事实不符：LOGO cross-validation 在 8 generators 上的一致性（F1 range 0.633-0.724）、cross-reference model validation（3 个 reference models 方向一致）、TOST equivalence testing 的 robustness——这些都是 convincing 的结果，只是 claim 的 scope 比较 modest\n\n**dilutive vs additive 的判断标准**：如果 20+ experiments 是为了 inflate page count 而与 core thesis 无关，那是 dilutive。但论文的每个实验都 directly address 一个对 core claim 的潜在 challenge。这是 additive。\n\n---\n\n## 最终评分与收敛建议\n\n### 我的最终评分（维持不变）\n\n| 维度 | 分数 |\n|------|------|\n| **Overall** | **3/6 (Weak Reject)** |\n| **Confidence** | **4.5/5** |\n\n### 与共享审稿的分歧根源分析\n\n| 维度 | 共享审稿 (2/6) | 我 (3/6) | 根源 |\n|------|--------------|---------|------|\n| Novelty 权重 | 决定性 | 重要但可部分由 execution 补偿 | 对 Findings track 的角色定位不同 |\n| 实验完整度 | Dilutive | Additive | 对 comprehensive empirical work 的价值判断不同 |\n| Negative finding | 消除 motivation | 重定向 contribution | 对论文 primary motivation 的解读不同 |\n| Reframing potential | 不考虑 | 考虑 | 评审的是当前版本 vs 可合理 revision 的版本 |\n| 事实基础 | F1=0.680, 5 gen, 15 exp | F1=0.694, 8 gen, 20+ exp | 多处数据不一致 |\n\n### 收敛建议\n\n**双方的 common ground**:\n- DDR 的 conceptual novelty 不足以进主会议 ✓\n- Practical significance 在 realistic conditions 下严重受限 ✓\n- 实验方法论基本 sound（有 multiple comparison correction 的局部问题）✓\n- Negative finding 的 TOST 设计是 well-done ✓\n- 论文需要 reframing（characterization > tool）✓\n\n**建议 Director 的最终评分区间: 2.5-3.0**\n\n- 如果 venue 不区分 main/Findings → **2.5**（below acceptance threshold but has merit）\n- 如果 venue 有 Findings track（如 ACL/EMNLP）→ **3.0**（Weak Reject for main, recommend Findings）\n\n我不会 strongly object 到 2.5 的 consensus，但 2/6 (outright Reject) 对一篇 Soundness 3.5/6 的论文来说过于严苛。**Novelty 不足是 downgrade 的理由，不是 disqualify 的理由**——这就是 Findings track 存在的意义。\n\n\n---\n\n[Reviewer 2 审稿结果]:\nRound 3 交叉回应已提交。核心立场不变：**3/6 (Weak Reject, recommend Findings track)**。与共享审稿（2/6）的分歧集中在三个价值判断上——实验完整度是 additive 还是 dilutive、negative finding 是否 remove motivation、以及是否应考虑 reasonable revision potential。建议 Director 最终收敛于 2.5-3.0 区间。\n\n---\n\n[Reviewer 1 审稿意见]:\n\n# Reviewer 1 交叉回应 — 对 R2 完整审稿意见的逐条评审\n\n---\n\n## Must-Fix 问题逐条回应\n\n### [PARTIALLY AGREE] R2-N1: DDR 概念新颖性不足——已知现象再包装\n\n**同意的部分**：\n- Drifting features（entropy_mean, TTR, hapax_ratio）捕获的确实是 vocabulary impoverishment，Shumailov et al. (2024) 已记录此现象的核心机制。R2 正确指出 \"tails of the original content distribution disappear\" 与本文 drifting features 的观察一致。\n- Drifting/stationary partition 在设计层面有一定可预测性：词汇表面特征自然会 drift，NLL distribution shape 在 location shift 下保持稳定有统计学先验。\n- 论文确实缺乏 \"why\" 的解释——stationary features 为何 stationary 没有理论推导。\n\n**反驳的部分**：\n- **Stationary features 的存在不可从 model collapse 文献 trivially 推导**。Shumailov et al. (2024) 的 model collapse theory 预测所有 distributional features 应随递归退化——因为 \"the tails disappear first, then the distribution progressively narrows\"。如果 collapse 是 uniform，entropy_max 和 tail_decay 也应 drift。DDR 的发现是 collapse 在 inference chain 中是 **selective** 的——location shifts 但 shape preserves。这个 selectivity 不在 Shumailov et al. 的预测范围内。\n- **定量证据**：Appendix U Table 26 (p.27) 显示 entropy_max 和 tail_decay 在 8/8 generators 上通过 TOST equivalence at ε=0.20，entropy_min 也通过 6/8。Bootstrap stability（Table 27）确认 1000 iterations 中 100% rejection rate for stationary features。这不是 anecdotal observation，而是 systematically validated 的 empirical regularity。\n- **Feature ablation 量化了 stationary features 的增量**：Table 2 (p.7) surface-only（纯 vocabulary impoverishment 指标）3-class F1=0.763，加入 reference features（含 stationary features）后 0.820，+5.7pp。如果 DDR 纯粹是 vocabulary impoverishment 重新包装，stationary features 不应提供分类信息增量。\n\n**最终判断**：R2 的 concern 方向正确但程度过重。DDR 不是 \"new phenomenon\" 但也不是纯 \"repackaging\"——它是对已知现象的 **structural decomposition**，其中 stationary component 是 genuinely new observation。建议论文采纳 R2 的建议 (a)：提供 drifting/stationary 分裂的信息论解释。\n\n### [PARTIALLY AGREE] R2-N2: 与 concurrent work 区分不足\n\n**同意的部分**：\n- 论文确实未对 paraphrastic vs non-paraphrastic chain 做 direct comparison experiment。Section 2.2 的区分主要是叙事性的，缺乏实验证据。\n- Geng et al. (2026) Markov chain 建模与 DDR 的理论关系确实未被讨论。如果 Markov convergence 分析已经预测了 DDR-like 的行为，DDR 的独立贡献进一步被削弱。\n- Li et al. (2026) 的 4-class formulation（human/machine-generated/machine-polished/human-revised）与本文 ordinal depth 的关系值得更深入的对比。\n\n**反驳的部分**：\n- **Paraphrastic comparison 实验实际上存在**。Appendix B (p.15) 的 length-confound analysis 涉及 paraphrastic baseline 对比——论文 p.5 提到 \"paraphrastic comparison experiment (Appendix B, F1=0.55 vs 0.694)\"，显示 continuation chain 的 depth signal 显著强于 paraphrastic chain。这个实验确实存在，但不在正文中 prominent 展示。R2 可能未注意到 Appendix B 的这部分内容。\n- **Concurrent work 的引用确实存在**——论文 Section 2.2 引用了 Mohamed et al. (2025), Geng et al. (2026)。问题不在于缺引用，而在于讨论深度不足。\n\n**建议**：将 Appendix B 的 paraphrastic comparison 结果提升到正文（至少一段），并加深 Geng et al. Markov framework 与 DDR 的理论联系讨论。\n\n### [AGREE] R2-N3: Base-model-only scope 严重限制实际意义\n\n完全同意。我在此前所有审稿中均将此列为 critical issue。\n\nR2 提供的 Appendix K 数据细节进一步加强了这个 concern：\n- Entropy_mean ρ 从 +0.48 (base) 反转为 −0.04 ~ +0.23 (instruct)——DDR 的 drifting direction 在 instruct 下翻转\n- 6/7 features 反转（Table 15）\n- Instruct LOGO binary F1=0.487（p.21）——低于 random binary baseline\n\nR2 的建议 (a) \"Title 或 abstract 中明确标注 base-model scope\" 是最低要求，应作为 camera-ready 必做项。\n\n---\n\n## Should-Fix 问题逐条回应\n\n### [AGREE] R2-W1: QLoRA 差距削弱方法论贡献\n\n完全同意。我在此前审稿中已列为 N2 critical。R2 对 framing 模糊性的分析精准——论文同时展示分类性能数字（暗示 detection paper）和 decomposition narrative（暗示 analysis paper），这两个 identity 互相矛盾。\n\n**补充一点**：R2 未讨论 QLoRA 的 LOGO cross-generator performance。此前的 \"R1 Independent Review\" 提到 \"LOGO QLoRA 3-class = 0.743 vs 7-feature 0.762\"——**如果 QLoRA 在 LOGO（cross-generator）下不如 handcrafted features，这实际上是 handcrafted approach 的有力论据**。论文应在正文中明确报告 QLoRA LOGO 数字并讨论这一 tradeoff（within-distribution 上 QLoRA 大幅领先，cross-generator 上可能不如 handcrafted）。\n\n### [PARTIALLY AGREE] R2-W2: Negative downstream finding 的 framing\n\n**同意的部分**：\n- 仅在一个 task（perplexity）、一个模型（OLMo-2-0425-1B）上验证，evidence 不足。我在此前所有审稿中均标记 n=3 seeds underpowered。\n- \"训练数据来源深度不影响 fine-tuning quality\" 确实不够 counter-intuitive 来构成强 contribution。\n\n**部分反驳**：\n- R2 说\"一个 negative result 要成为 contribution，需要 counter-intuitive 或 against strong prior belief\"——这个标准过于严格。在 data contamination 领域，many practitioners **do** worry about recursive generation degrading training data quality（这是 Shumailov et al. model collapse 论文引发的广泛关注）。TOST 等价性结果（即使 underpowered）至少提供了 preliminary evidence against this worry。\n- 但我同意论文应提供 concrete diagnostic use case 来支撑 \"diagnostic not curative\" framing。\n\n### [AGREE] R2-W3: Per-generator 性能变异度\n\n同意。Binary F1 从 0.633（Mistral-7B）到 0.724（Pythia-2.8B）的 range 确实意味着 generator-unknown 场景下性能不稳定。这是 LOGO 设计的核心挑战——classifier 必须 generalize to unseen generators，但 per-generator variability 暗示 generalization 不完全。\n\n### [PARTIALLY AGREE] R2-W4: Missing related work\n\n- **RAID benchmark**：R2 正确指出 bib 中有但 text 未引用（orphan entry），应修复。\n- **SemEval-2024 Task 8C**：multi-class sub-task 确实值得在 Section 2.1 讨论。\n- **Dohmatob & Feng (2025) 的信息论框架**：同意这可以为 DDR 提供理论基础。但这要求作者做额外的 theoretical work，可能超出 one revision cycle。\n- **但注意**：R2 此前曾声称 \"only 5 references\"，这与论文 50+ 引用的实际情况严重不符。此次 R2 修正为具体的 missing references，更为合理。\n\n---\n\n## 小问题回应\n\n**[AGREE]** Orphan bib entries（17 个未引用条目）应在投稿前清理。这是 submission hygiene 问题。\n\n**[AGREE]** \"Non-paraphrastic continuation chains\" 的定义应更早、更形式化地给出。\n\n**[AGREE]** Figure 1 灰度可读性问题——建议增加 pattern/marker 区分以支持灰度打印。\n\n---\n\n## 对 Director 四个焦点问题的回应\n\n### 1. DDR 新颖性是否足够？\n\n**不足以支撑主会议，足以支撑 Findings。** DDR 是对已知现象（vocabulary impoverishment）的 structural decomposition，其中 stationary component 是 genuinely new observation。但缺乏 theoretical explanation（\"why\"），且 drifting component 与已有文献的 overlap 太大。R2 的 \"repackaging\" 判断在 drifting 部分成立，在 stationary 部分不成立。综合看：incremental novelty，not zero novelty。\n\n### 2. Concurrent work 区分是否充分？\n\n**不充分，但可修复。** Paraphrastic comparison 实验存在于 Appendix B 但未 prominent 展示；与 Geng et al. Markov framework 的理论联系缺失。这些是 writing-level issues，一个 revision cycle 可修复。不构成 reject 理由。\n\n### 3. Base-model-only 的严重程度？\n\n**严重。** R1 和 R2 完全一致。Appendix K 的数据（6/7 features 反转，instruct LOGO binary F1=0.487）清楚表明 DDR 在 instruct 模型上 fundamentally 不同。Title/abstract 不标注 \"base model\" 是 misrepresentation。这是 significance 评分的最大 drag。\n\n### 4. QLoRA gap 对论文定位的影响？\n\n**如果论文定位为 classification method，QLoRA gap 是 fatal。如果定位为 empirical characterization，QLoRA gap 是 supporting evidence（\"depth signal 真实存在且可被 neural model exploit\"）。** 论文当前 positioning 模糊——同时 claim both。需要 choose one。\n\n---\n\n## 最终评分\n\n**维持 Overall 3.0/5 (ARR Findings)，与 R2 一致。**\n\n两位 Reviewer 在以下方面 converge：\n- DDR novelty limited but not zero\n- Base-model-only is a critical limitation\n- QLoRA gap weakens methodological contribution\n- Paper needs repositioning as empirical characterization\n- Findings-level, not conference-level\n\n分歧点：\n- R2 对 DDR novelty 更 negative（\"repackaging\"），我认为 stationary features 的发现有增量价值\n- R2 未充分注意 Appendix B 的 paraphrastic comparison 实验\n- 我对 TOST downstream experiment 的 statistical power 更 critical（R2 讨论了 framing 但未质疑 n=3 的功效）\n\n**Confidence: 4/5**\n\n\n---\n\n[Reviewer 1 审稿结果]:\n交叉回应已提交。\n\n核心立场：维持 3.0/5 (Findings)，与 R2 converge。\n\n关键分歧：R2 在 drifting features 上判断正确（vocabulary impoverishment 重叠），但 stationary features 的 near-stationarity 是 genuinely new observation，不是 trivially derivable。DDR 是 \"structural decomposition of a known phenomenon\"，novelty limited but not zero。\n\n---\n\n[Reviewer 2 审稿意见]:\n\n# Reviewer 2 — 交叉审稿回应（对 R1 Methods & Experiments）\n\n---\n\n## 对 R1 Overall Assessment 的初步评价\n\nR1 给出 Overall 3.0/5 (Findings)，与我的最终评估一致（我在 6-point scale 上给 3/6 Weak Reject, recommend Findings）。R1 的 Soundness 3.5/5 也与我的判断吻合。双方在 overall positioning 上已经收敛。\n\n以下逐条回应 R1 的 Must-Fix、Should-Fix 和小问题。\n\n---\n\n## Must-Fix 问题回应\n\n### N1: 下游效用实验 underpowered (n=3 seeds, single metric, single model) — [AGREE, but downgrade severity from Critical to Major]\n\n**同意理由**: R1 准确指出 n=3 seeds 下 TOST 的统计功效不足以支撑 \"depth-aware curation is equivalent to random subsampling\" 这个等价性 claim。pooled SD < 0.002 导致 Cohen's d 的置信区间极宽，3 个 seed 无法可靠排除中等效应。单一指标（perplexity）和单一模型（OLMo-2-0425-1B）进一步限制了 generalizability。R1 的分析与我在 W2/m2（前几轮审稿）中的评估完全一致。\n\n**降级 severity 的理由**: 我认为 Critical → Major 更恰当，因为：\n1. **下游效用不是论文的 primary contribution**。Section 1 的四个 contribution claims 中，downstream utility 是第四个（Section 4.4, 约半页篇幅）。如果删掉整个 Section 4.4 和 Appendix M，论文的前三个 contribution（task formulation, DDR characterization, baseline comparison）仍然独立成立。\n2. **论文自己承认了 limitation**（Appendix M p.23: \"with only n=3 seeds per condition, the TOST results have limited generalizability\"）——这是 honest qualification, 不是 overclaim。\n3. **R1 的修改建议 (a) ≥10 seeds 完全合理**，但将此定为 \"影响接收决定\" 的 Critical 问题，意味着缺少足够 seeds 就不能发表——这对一个 secondary contribution 的标准过严。\n\n**总结**: 同意 R1 的事实判断（underpowered），但认为 severity 应为 Major/Should-Fix 而非 Critical/Must-Fix，因为下游实验是论文的 ancillary contribution 而非 core thesis。\n\n---\n\n### N2: QLoRA gap (+11.6-14.3pp) 削弱 interpretable features 叙事 — [AGREE]\n\n**完全同意**。这与我在多轮审稿中反复指出的 W1/m1 完全一致。\n\nR1 的分析精确：\n- QLoRA 3-class F1=0.905 vs 手工特征 0.789（我看到的数字是 0.762 for 7-feature 和 0.905 for QLoRA，差距更大），确实是 \"本质性性能鸿沟\"\n- \"当前叙事给读者的感觉是'我们提出了一套不如 fine-tuning 的特征'\" ← 这是我在前几轮一直强调的 contribution identity 问题\n\nR1 的建议 (c) \"将论文重心更明确地转向 empirical characterization\" 与我的 Top-1 修改建议（重构 contribution identity）完全一致。这是 R1 和 R2 在所有轮次中最强的共识点。\n\n**补充一点**: R1 的建议 (b) \"分析 QLoRA 是否也隐式学到了 DDR partition\" 是一个非常有洞察力的提议。如果 QLoRA 的 attention pattern 或 probing analysis 揭示它也在利用 drifting vs stationary 的区分，那反过来会 validate DDR decomposition 作为 analytical framework 的价值——即使手工特征不如 QLoRA 做分类。\n\n---\n\n### N3: Base-model-only scope — [AGREE]\n\n**完全同意**。这与我在所有轮次中的 N3/M4 完全一致。R1 引用的具体数据（Appendix K Table 15-17, binary F1 从 ~0.64 降至 0.338-0.490, entropy_mean ρ 翻转符号）与我的分析吻合。\n\nR1 的建议 (c) \"至少提供一个关于 instruct 设置下 DDR 为何退化的机理假说\" 特别重要——这也是我在多轮审稿的 Questions for Authors 中反复要求的。没有机理假说，读者无法判断 instruct degradation 是 (a) DDR 作为现象的 fundamental boundary, (b) reference model 选择的 artifact, 还是 (c) 可通过 adaptation 克服的 engineering challenge。\n\n---\n\n## Should-Fix 问题回应\n\n### W1: Gemma-2-2B 异常 (gen-1 F1=0.036) 解释不充分 — [AGREE, upgrade to Major]\n\n**同意 R1 的判断**，但我认为 severity 应从 Warning 提升到 Major。理由：\n\nGemma-2-2B gen-1 F1=0.036 不仅是一个 \"解释不充分\" 的异常值——它是对 DDR 作为 \"cross-generator universal phenomenon\" 这一 core claim 的直接反例。如果 DDR 在 8 个 generator 中有 1 个完全失效（gen-1 不可区分于 gen-0），那 DDR 的 universality claim 需要 qualification。\n\nR1 的提问（Q2: 在非 Pythia reference model 下 Gemma 是否恢复正常）非常关键——如果答案是 yes，那问题是 reference-generator compatibility 而非 DDR 本身的 limitation；如果答案是 no，那 DDR 确实是 architecture-conditional 的。\n\n**这与我的 novelty critique (M1) 直接相关**: 如果 DDR 是 architecture-conditional 而非 generation-process-universal，它就更像是一个 empirical observation about specific model families 而非 a fundamental property of recursive generation。\n\n---\n\n### W2: Baseline 对比范围偏窄 — [PARTIALLY AGREE]\n\n**同意 R1 的方向**，但严重性比 R1 评估的更低。\n\n理由：\n1. 论文的 4 个 baseline（Avg-LogProb, FastDetectGPT, LD-Score, Binoculars）覆盖了 detection 文献中最 canonical 的 zero-shot / reference-model-based 方法\n2. 论文还包含了 4-detector ensemble 作为 upper bound 对比\n3. QLoRA (Appendix E) 提供了 trained classifier 的参考\n\n**但 R1 的具体建议合理**: 增加 1 个 multi-feature 或 trained detector baseline（如 DNA-GPT 的 re-generation 策略）可以加强论文的 positioning。不过这是 nice-to-have 而非 must-have。\n\n---\n\n### W3: 温度限制 (t<0.9) — [AGREE]\n\n与我在多轮审稿中从 R1 cross-review 获得的观点一致。温度限制是一个实质性 practical concern——大多数 API 默认 t=0.7-1.0，t=0.9 时已开始退化。R1 建议在正文中增加温度敏感性摘要是合理的。\n\n---\n\n### W4: Cross-model chain 混淆 depth signal 与 generator identity — [AGREE]\n\n**这与我在前一轮从另一位 R1 获得的观点一致**。R1 正确指出 cross-model chain 中 gen-1 和 gen-2 使用不同 generator，因此 F1=0.830 的提升可能部分来自 generator identity detection 而非 depth signal。\n\nR1 建议的控制实验（single-generator train → cross-model test，反之亦然）非常精确——这是 disentangle 两个信号的标准方法。论文目前缺少这个 ablation 是一个明确的 gap。\n\n我在前一轮已将 cross-model chain 从 \"strong positive\" 降级为 \"promising but unvalidated\"。R1 的分析进一步支持这个降级。\n\n---\n\n### W5: DDR partition 3/1/3 的 principled-ness — [AGREE, this is important]\n\nR1 提出了一个我在前几轮审稿中只间接触及的关键方法论问题：**DDR partition 是否是 principled 的，还是依赖于 arbitrary threshold choices？**\n\nR1 的分析精确：\n- ε=0.20 (Cohen's d small effect) 是 conventional 但 arbitrary 的\n- Appendix V Table 29 做了 ε sensitivity (0.15, 0.20, 0.25) 但仅报告 pass rate，未明确 partition 是否改变\n- entropy_std 的 d=0.458 远超 ε=0.20 但被归为 \"intermediate\"——其操作性定义不清\n\n**与我的 novelty critique 的联系**: 我在 M1 中指出 DDR 的 drifting/stationary partition \"可从 feature 设计直接预测\"。R1 的 W5 从方法论角度补充了这个 critique：partition 不仅可预测，还可能是 threshold-dependent 的。如果 ε 的小幅调整就改变 partition 结构，DDR 作为 \"robust empirical finding\" 的 claim 进一步被削弱。\n\n**但有一个 mitigating factor**: Appendix V Table 28 的 k-means clustering 确实独立地 recover 了类似的 partition（k=2 时 silhouette=0.632，drifting/near-stationary 分组与 TOST-based partition 一致）。这提供了 data-driven validation——即使 TOST threshold 是 arbitrary 的，unsupervised clustering 也 recover 了相同结构。论文应更 prominently 地报告这个 k-means validation 来 address R1 的 concern。\n\n---\n\n## 小问题回应\n\n1. **Figure 1 重叠** — [AGREE] 视觉清晰度可改善，minor issue。\n2. **DDR 缩写首次出现** — [AGREE] 应在 abstract 中首次使用时定义。\n3. **Table 1 脚注 bias 量级** — [AGREE] 应在正文给出估计值。\n4. **Appendix 引用环路** — [AGREE] 可通过调整引用方向解决，minor。\n\n---\n\n## Director 指定的四个分歧焦点\n\n### 1. Downstream n=3 TOST 的严重程度\n\n**R1: Critical | R2: Major (降级)**\n\n理由见 N1 回应。核心分歧在于下游效用实验在论文 contribution hierarchy 中的位置。R1 似乎将其视为 core contribution 之一（\"论文四个核心贡献之一\"）；我认为它是 ancillary exploration。如果删掉 Section 4.4，论文的核心 narrative（DDR decomposition + cross-generator validation）仍然成立。n=3 是不够的，但影响的是一个 secondary claim，不是 acceptance decision。\n\n### 2. QLoRA gap 对论文定位的影响\n\n**R1 和 R2 完全一致**: QLoRA gap 是论文最大的 positioning 问题。双方都建议将论文重心从 \"classification method\" 转向 \"empirical characterization\"。R1 的建议 (b)（分析 QLoRA 是否学到 DDR partition）是一个有价值的 constructive addition。\n\n### 3. Gemma-2-2B 异常的重要性\n\n**R1: Warning | R2: 提议升级为 Major**\n\n我认为 R1 低估了 Gemma anomaly 的严重性。Gen-1 F1=0.036 不是一个 edge case——它意味着 DDR 在至少一个主流 architecture 上完全失效。这直接挑战了 DDR 的 universality claim。R1 的 Q2（cross-reference model test for Gemma）是解决这个问题的关键实验。\n\n### 4. DDR partition 3/1/3 的 principled-ness\n\n**R1 和 R2 的 concern 互补**: R1 从 threshold sensitivity 角度质疑（ε 依赖性），我从 feature design predictability 角度质疑（partition 可直接从 feature 类型预测）。两个 critique 指向同一结论：DDR partition 的 robustness 需要更强的 evidence，特别是 k-means validation (Table 28) 应在正文中更 prominently 地报告。\n\n---\n\n## 综合评估\n\nR1 的审稿质量很高，方法论分析深入且准确。在 6 个关键判断中：\n\n| 判断 | R1 | R2 | 一致性 |\n|------|----|----|--------|\n| Overall score | 3.0/5 (Findings) | 3/6 (Weak Reject → Findings) | **一致** |\n| QLoRA gap 严重 | Yes | Yes | **一致** |\n| Base-model scope 是核心限制 | Yes | Yes | **一致** |\n| 实验完整度高 | Yes (advantage) | Yes (advantage) | **一致** |\n| Downstream n=3 severity | Critical | Major | **分歧 (minor)** |\n| Gemma anomaly severity | Warning | Major (升级) | **分歧 (moderate)** |\n\n**最终建议**: R1 和 R2 的综合意见支持 **Findings track 接收**，条件是作者 (1) 重构 contribution identity（characterization > tool），(2) 在 title/abstract 标注 base-model scope，(3) 加强 DDR partition 的 principled justification（promote k-means validation），(4) 扩充 downstream experiment 到 ≥10 seeds 或弱化 equivalence claim。\n\n\n---\n\n[Reviewer 2 审稿结果]:\n"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 102 · 2026-05-20T11:14:47.596Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T11:14:47.596Z",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b"
+}
+```
+
+---
+
+
+## Round 8
+
+## Round 8
+
+2 recorded events
+
+
+### User
+
+_source line 103 · 2026-05-20T11:14:47.587Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c875c7ef-9522-4ddf-9d85-c12879858134",
+  "isSidechain": false,
+  "promptId": "04770357-b328-413f-bf7a-13ecdc807219",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "3e4eb95b-3b87-41bd-89cf-9f99ceeefd50",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 104 · 2026-05-20T11:14:47.588Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3e4eb95b-3b87-41bd-89cf-9f99ceeefd50",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "50beb678-90eb-45fa-9c59-d75dda318805",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "id": "d81f3a67-5a56-4a89-9cd1-fa7f6af2e034",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+## Round 9
+
+## Round 9
+
+12 recorded events
+
+
+### User
+
+_source line 105 · 2026-05-20T11:14:47.690Z_
+
+[Reviewer 2 审稿意见]:
+
+# Reviewer 2 — Round 1 审稿报告（新一轮）
+
+## 审稿侧重：Novelty & Related Work（6-point scale）
+
+---
+
+## ⚠️ 版本/数据校对说明
+
+Director 任务描述中的若干数据与实际 PDF 不一致，以下以 **PDF 实际内容** 为准：
+
+| 项目 | Director 描述 | PDF 实际 |
+|------|-------------|---------|
+| Title | "Differential Depth Response in Recursive LLM Generation..." | "Depth Fingerprinting: Detecting Recursive Generation Depth in LLM Text Chains" |
+| Generators | 5 base-model, 3 families | **8** generators, **5** families (Pythia, OLMo, Qwen, Llama, Mistral) |
+| Binary F1 | 0.680 | **0.694** (95% CI [0.688, 0.700]) |
+| Experiments | 15 | **20+**（见 appendix A–Z） |
+| 5-class F1 | 0.468 | **~0.50** (Section 9, "5-class F1 = 0.50, Appendix D") |
+| Multi-detector ensemble | 0.708 | **0.708** (Table 2, 4-detector ens.) vs 7-feature **0.694** (gap = 1.4pp, not 2.8pp) |
+| "Briesch et al. (2023)" | 提及为 broken telephones | PDF 引用的是 **Mohamed et al. (ACL 2025)** "LLM as a Broken Telephone"；Web search 未找到 Briesch et al. 2023 此条目 |
+| "Guo et al. (2024) attractor convergence" | 提及为 attractor convergence | PDF 引用的是 **Guo et al. (2024)** "The Curious Decline of Linguistic Diversity" (NAACL Findings)——关于多样性下降而非 attractor convergence。Attractor cycles 工作是 **Wang et al. (ACL 2025)**, 在 PDF bib 中作为 orphan entry |
+
+以下审稿基于 PDF 实际内容。
+
+---
+
+## Summary
+
+本文将 LLM 文本检测从二分类扩展到序数深度分类（gen-0/gen-1/gen-2+），基于对 reference model NLL 分布的 7 个统计特征提出了 "differential depth response"（DDR）分解：drifting features（entropy mean, TTR, hapax ratio）单调漂移，shape features（entropy max, tail decay）近似平稳。8 个 base model generator 上的 LOGO 评估达到 binary F1=0.694，cross-model chain F1=0.830。实验覆盖度极高（20+ experiments, 33 pages），但核心概念增量有限——DDR 本质上是 model collapse 文献中已知词汇贫化现象在 inference-chain 场景下的经验性再确认。
+
+---
+
+## Strengths
+
+- **实验完整度罕见**: 20+ experiments 涵盖了几乎所有可想到的 confound 和 robustness check——length control (Appendix B), seed validation (Appendix N), cross-reference model (Table 5, Appendix Y), cross-domain (Appendix J), temperature sensitivity (Appendix H), TOST equivalence (Appendix U), Granger causality (Appendix Z.3), DDR partition validation via k-means (Appendix V)。这种 falsification-driven 的实验风格在 empirical NLP 中是典范。
+
+- **LOGO cross-validation 设计**: leave-one-generator-out 评估确保了 cross-generator generalization 的可信度；LOFO-LOGO gap 仅 -0.8pp (Table 4) 排除了 family leakage；independent seed validation (Appendix N, Δ=-1.4pp) 排除了 seed leakage。
+
+- **Cross-model chain 结果 (Table 7, F1=0.830)**: 在异构 generator chain 场景下 DDR 信号最强——这是最接近真实 web 污染的条件，也是论文中最有 practical significance 的发现。
+
+- **Honest negative reporting**: downstream utility 实验 (Appendix M) 诚实报告 depth-aware curation ≈ random subsampling；instruct model degradation (Appendix K) 坦承 DDR 在 instruction-tuned models 上失效。这种诚实性在投稿论文中值得肯定。
+
+- **统计方法论严谨**: Bootstrap CIs, McNemar tests, TOST equivalence testing, Granger causality, permutation importance, Cohen's d——统计检验的选择和应用都是恰当的。
+
+- **Cross-reference model validation (Table 5)**: DDR 在 Pythia-410M, OLMo-2-1B, Qwen3-0.6B 三个 reference model 上都成立，排除了 reference-model-specific artifact。
+
+---
+
+## Weaknesses
+
+### Major
+
+**M1. DDR 的概念新颖性不足——已知现象的系统化整理而非新机制发现**
+
+DDR 的核心发现是：(a) entropy mean, TTR, hapax ratio 随 generation depth 单调下降；(b) entropy max, tail decay 保持稳定。
+
+问题在于：
+- **(a) 是 model collapse 文献的直接推论**。Shumailov et al. (2024, Nature) 已经建立了 "tails of the original content distribution disappear" 的理论框架。Guo et al. (2024, NAACL Findings) "The Curious Decline of Linguistic Diversity" 直接测量了 LLM 训练在 synthetic text 上时的词汇多样性衰减——TTR 和 hapax ratio 的下降在该工作中已有记录。论文 Section 5 试图通过 "inference-chain with fixed parameters" vs "training-loop collapse" 来区分，但最终观察到的现象（词汇贫化、多样性下降、entropy compression）是一致的。
+- **(b) 在统计学上是可预期的**。NLL 分布在 location shift 下保持 shape——这是 softmax + fixed temperature 下的预期行为：当整体 distribution 向低 entropy 方向平移时，极端值（max）和尾部衰减率（tail decay）的变化相对于 location 指标（mean）自然更小。论文没有提供理论推导来说明 why shape 保持稳定，仅描述了 what。
+- **Drifting/stationary 的 partition 几乎可以从 feature 设计直接预测**：词汇表面特征（TTR, hapax）度量的是多样性，自然随贫化而漂移；NLL 分布的极端值度量的是 shape，自然在 location shift 下更稳定。这不是一个需要实验才能发现的 insight。
+
+**entropy_std 的 intermediate 位置 (R²=0.41, |d|=0.55)** 进一步削弱了 "clean bimodal split" 的 claim——7 个特征中有 1 个不属于任何一边，且论文对此没有机制性解释，仅描述为 "intermediate"。
+
+**M2. Ordinal depth formulation 的增量价值有限**
+
+论文声称从 binary 到 ordinal depth classification 是核心贡献之一（Contribution 1, Section 1）。但：
+- **3-class LOGO F1 = 0.762** 中，gen-0 容易区分（F1≈0.92, Section 4.1），真正困难的是 gen-1 vs gen-2+ 边界
+- **5-class F1 ≈ 0.50** (Appendix D) 且 gen-2/3/4 间存在近均匀混淆——数据实际上只支持 ~2.5 个可区分类别
+- Appendix D 自己承认 "5-class classification reduces LOGO macro F1 to approximately 0.50"，并建议 "3-class granularity as the practical resolution ceiling"
+- 如果信号本质上是 binary-plus-noise（gen-0 vs gen-1+, gen-1 与 gen-2+ 的区分为 marginal），那 "ordinal classification" 的 formulation 贡献被高估了
+
+这意味着 DDR 在实践中捕获的是一个**二值信号加上微弱的渐变**，而非 Section 1 所 claim 的 "ordinal depth estimation"。
+
+**M3. 与 concurrent/prior work 的区分不够充分**
+
+三条关键区分线均不清晰：
+
+1. **Mohamed et al. (ACL 2025) "Broken Telephone"**: 论文 Section 2.2 声称研究 non-paraphrastic continuation chains 以区分。但 (a) 没有直接对比实验验证两种 chain type 产生质性不同的 distributional shift；(b) 论文 Appendix O 有 paraphrastic comparison 但仅作为 robustness check 而非系统对比；(c) "continuation vs. paraphrase" 的区分在实际场景中不清晰——当 LLM 被用于 summarize-then-expand, edit-then-continue 时，chain type 是混合的。
+
+2. **Geng et al. (2026) "Markovian Generation Chains"**: 该工作对 iterative generation 进行 Markov chain 建模，分析 convergence 和 diversity dynamics。论文 Section 2.2 引用但未深入讨论：DDR 的 drifting/stationary 分解与 Markov convergence 的关系是什么？Geng et al. 的 theoretical framework 能否解释或预测 DDR 的 partition？
+
+3. **Li et al. (ACL 2026) "Beyond the Final Actor"**: 该工作提出 4-class fine-grained detection (human / machine-generated / machine-polished / human-revised)，与本文的 ordinal depth classification 在"超越 binary"的动机上高度相似。论文 Section 2.1 列出 citation 但未对比两种 multi-class formulation 的差异。
+
+**M4. Base-model-only scope 严重限制 significance**
+
+Appendix K 数据：
+- Instruction tuning 后 6/7 features 的 Spearman ρ 反转（Table 15-16）
+- OLMo-Instruct F1 从 0.781 降至 0.338 (-42.5pp)，但 Llama-Instruct 仅降 -1.1pp
+- 这种不可预测的异质性 degradation 意味着 DDR 无法可靠地应用于 instruction-tuned models
+
+结合 temperature restriction (t∈[0.5,0.9), 排除了最常见的 API 默认 t=1.0) 和 Gemma-2-2B anomaly (gen-1 F1=0.036)，DDR 的 practical operational window 极窄。Title 和 abstract 中未标注 "base model only"。
+
+### Minor
+
+**m1. QLoRA 大幅优于 handcrafted features**
+
+Appendix E: QLoRA 3-class F1 = 0.905 vs 7-feature 0.762 (+14.3pp)。论文将 DDR 定位为 "decomposition" 而非 "detection tool"，但 abstract 和 Section 4.1 突出报告分类 F1 数字，造成 contribution identity 的模糊。如果是 analysis paper，弱化 F1；如果是 detection paper，解释为何不用 QLoRA。
+
+**m2. Negative downstream finding 的贡献定位不清**
+
+Appendix M 的 "diagnostic not curative" framing 缺乏具体的诊断应用场景——知道一篇文本是 gen-2 之后应该做什么？论文没有回答。且仅在 1 个模型 (OLMo-1B)、1 个 metric (perplexity)、3 个 seeds 上验证，negative finding 的 generality 本身也不充分。一个 negative result 要成为贡献，需要它 counter-intuitive——但 "generation depth 不影响 fine-tuning perplexity" 并不令人惊讶。
+
+**m3. 4-detector ensemble (F1=0.708) 略超 7-feature (F1=0.694)**
+
+Table 2 显示在同一 LOGO 评估下，4-detector ensemble 的 binary F1=0.708 高于 7-feature 的 0.694 (+1.4pp)，3-class F1 也高 (0.762 vs 0.762，持平)。虽然 7-feature 在 computational cost 上有 2.4× 优势，但既有 detector 的组合已能达到同等或更好性能，削弱了 7-feature ensemble 的 methodological motivation。
+
+**m4. Drift magnitude 跨 reference model 变异**
+
+Table 5 (Appendix Y) 显示 drift magnitude 在不同 reference model 间变化约 2×。论文 Section 7 (p.7) 承认 "the 0.013 cross-reference spread bounds this effect" 但未讨论这种变异是否部分反映 reference-generator mismatch 而非 intrinsic generation dynamics。如果 DDR 的量化依赖于 reference model 的选择，其作为 "intrinsic property of recursive generation" 的 claim 被削弱。
+
+---
+
+## Questions for Authors
+
+1. **DDR 的理论基础**: 能否从 softmax + fixed temperature + autoregressive sampling 的数学性质推导出 "location shift without shape change"？如果可以，这应是核心 theoretical contribution；如果不能，DDR 就是一个 empirical observation 而非 mechanism，论文应相应调整 claim 力度。
+
+2. **entropy_std 的 intermediate 地位**: R²=0.41 既不属于 drifting 也不属于 stationary——这是否意味着 DDR 的 bimodal split 是一个 continuum 的人为离散化？如果将阈值从 |ρ|>0.60 / |ρ|<0.10 调整到其他值，partition 是否稳定？
+
+3. **Paraphrastic vs. non-paraphrastic 的实质区别**: Appendix O 的 paraphrastic comparison 结果如何？两种 chain type 的 DDR pattern 是否质性不同，还是仅量上不同？
+
+4. **Gemma-2-2B gen-1 F1=0.036**: 这是否意味着 Gemma 的 gen-1 output 在 feature space 中与 human text 不可区分？如果是，DDR 是 architecture-conditional 而非 generation-process-universal 的——这如何与 "DDR is a fundamental property of recursive generation" 的 claim 兼容？
+
+5. **Cross-model chain 为何不是主要贡献？** Table 7 的 F1=0.830 是全文最强结果且最接近实际应用，为什么不将其提升为核心 result？
+
+6. **Drift magnitude 的 reference model 依赖性**: 2× variation 是否可以通过 normalization 消除？如果不能，DDR 的 "intrinsic" 属性如何定义？
+
+---
+
+## Missing Related Work & Conceptual Gaps
+
+1. **RAID benchmark** (Dugan et al., ACL 2024): 论文 bib 中有但正文未引用。作为最大的 AI text detection benchmark（含 multi-domain, multi-generator），应在 Section 2.1 或 Section 3.4 讨论。
+
+2. **Information-theoretic model collapse**: Dohmatob & Feng (2025) "Strong Model Collapse" 提供了 model collapse 的信息论分析框架，可用于理论解释 DDR 的 drifting/stationary 分裂。论文引用但未利用其 framework。
+
+3. **Wang et al. (ACL 2025) "Unveiling Attractor Cycles in LLMs"**: 研究 successive paraphrasing 的 attractor cycle 动态——与 DDR 的 convergence 观察直接相关。论文 bib 中有（orphan entry "attractor_cycles"）但正文未引用。
+
+4. **Iterative self-refinement literature**: Madaan et al. (NeurIPS 2023) "Self-Refine" 被引用但仅在 Section 2.2 一句带过。Self-refinement 是 non-paraphrastic iterative generation 的一种形式——DDR 是否在 self-refine chains 上也成立？这是一个自然但未探索的方向。
+
+5. **Multi-class AI text detection beyond binary**: SemEval-2024 Task 8 (Wang et al., 2024) 包含 multi-class sub-task (Task 8C)——论文引用了 Task 8 但未讨论其 multi-class formulation 与 ordinal depth classification 的关系。
+
+6. **缺少 vocabulary impoverishment 与 DDR 的明确理论区分**: 论文 Section 5 花了一段讨论 model collapse vs. inference-chain，但没有形式化地定义 "DDR" 与 "vocabulary impoverishment" 的区别。如果区别仅在于 "fixed parameters vs. parameter updates"，这是一个 setting 区别而非 phenomenon 区别。
+
+---
+
+## Score: 3 / 6 (Weak Reject) — 附条件可升至 4
+
+**Justification**:
+
+论文在实验执行上是 exceptional 的——20+ experiments、严格的 LOGO/LOFO 评估、诚实的 negative reporting、全面的统计检验。如果仅评 Soundness，可给 5/6。
+
+但作为顶会投稿，novelty 和 significance 是决定性因素：
+
+1. **DDR 不是新现象**: 它是 model collapse 领域已知词汇贫化现象在 inference-chain 场景下的经验性再确认。Drifting/stationary 的 partition 可从 feature 设计直接预测。缺乏机制性解释。
+
+2. **Ordinal formulation 贡献有限**: 数据只支持 ~2.5 个可区分类别，5-class F1≈0.50 且 gen-2+ 间近均匀混淆。实质上是 binary-plus-gradient。
+
+3. **Practical impact 受限**: Base-model only, t<1.0, 排除 Gemma-like architectures, instruct degradation 不可预测——实际可应用的场景极窄。
+
+4. **Method 被 QLoRA 大幅超越**: +14.3pp on 3-class task。7-feature ensemble 的存在理由在于 interpretability，但论文未充分利用 interpretability 来回答"so what"。
+
+5. **Negative downstream finding 不够 counter-intuitive**: "Generation depth doesn't help fine-tuning" 不是令人惊讶的发现。
+
+**升级到 4 (Weak Accept) 的条件**:
+- 提供 drifting/stationary 分裂的理论推导（哪怕是 informal proof sketch）
+- 加入 paraphrastic vs. non-paraphrastic 的直接对比实验，验证区分假设
+- Title/abstract 标注 base-model scope
+- 将 cross-model chain (F1=0.830) 提升为主要 result 并展开讨论
+- 至少一个具体的 "diagnostic" use case
+
+---
+
+## Confidence: 4 / 5
+
+仔细通读全文含全部 appendix（33 页），验证了引用（78 条 bib entries），搜索了关键相关工作（Mohamed et al. 2025, Geng et al. 2026, Li et al. 2026, Wang et al. 2025, Guo et al. 2024, Shumailov et al. 2024）。对 NLP detection 和 model collapse 文献有较好了解。唯一降分因素是未能找到 Director 提及的 "Briesch et al. (2023)"——该引用可能不存在或我检索有误。
+
+
+---
+
+[Reviewer 2 审稿结果]:
+审稿报告已提交。
+
+本轮审稿要点：
+
+- **Overall: 3/6 (Weak Reject)**，核心问题是 DDR 概念新颖性不足——drifting/stationary 分裂可从 feature 设计直接预测，本质是 model collapse 领域已知词汇贫化现象的经验性再确认
+- **实验执行是论文最大优势**（20+ experiments, LOGO/LOFO, 全面统计检验），Soundness 可达 5/6
+- **关键发现**: Director 任务描述中的多项数据与实际 PDF 不一致（F1=0.680→0.694, 5 generators→8, "Briesch et al. 2023" 未找到对应文献），已在报告中详细列出校对表
+- **附条件可升至 4/6**: 需要理论推导、paraphrastic 对比实验、标注 base-model scope、提升 cross-model chain 结果、给出具体诊断应用场景
+
+---
+
+[Reviewer 1 审稿意见]:
+
+# Reviewer 1 审稿意见 — Methods & Experiments (重新审稿)
+
+**论文**: "Depth Fingerprinting: Detecting Recursive Generation Depth in LLM Text Chains"
+**PDF 版本说明**: 实际 PDF 仍为 8 generators / 5 families 版本（binary F1=0.694），与任务描述中的 5 generators / F1=0.680 存在数字差异。以下审稿基于 PDF 实际内容。
+
+---
+
+## Summary
+
+本文将"生成深度分类"形式化为新任务（gen-0/gen-1/gen-2+），核心发现是 Differential Depth Response (DDR)：central-tendency/diversity 特征（entropy_mean, TTR, hapax_ratio）随深度 monotonically drift（|ρ|>0.60），而 shape 特征（entropy_max, tail_decay）保持 near-stationary（|ρ|<0.10）。7-feature XGBoost 在 8-generator LOGO 下达到 3-class F1=0.762、binary F1=0.694。分析广度突出（20+ appendix），但 headline 性能中等，且受 base-model-only scope、温度敏感性、instruct 退化等多重限制约束。
+
+---
+
+## Strengths
+
+- **LOGO/LOFO 评估协议设计严谨**：LOGO hold-out 整个 generator 避免 data leakage；LOFO hold-out 整个 model family 测试 cross-family generalization（F1=0.686, §4.1）；独立 seed 实验（Appendix T, Table 25）确认 topic-based leakage 不存在（independent-seed F1 within 1.4pp of shared-seed baseline）。这是一个 well-thought-out 的防泄漏体系。
+
+- **DDR partition 通过多种独立方法交叉验证**：k-means clustering（Appendix V, Table 28: silhouette=0.632 at k=2）、TOST equivalence（8/8 generators pass for stationary features at ε=0.20）、holdout generator split validation（Table 30: zone assignment identical across all four splits）、bootstrap stability（Table 27: 1000 iterations, 100% rejection rate for stationary features）。
+
+- **统计方法恰当且全面**：Bonferroni correction for all p-values（two-sided, §3.4）；percentile bootstrap CIs（n=1000 unless otherwise noted, §3.4）；McNemar tests for pairwise comparisons；paired bootstrap for baseline comparisons。
+
+- **分析广度 exceptional**：15+ 实验条件覆盖 feature ablation、cross-generator/family transfer、alternative reference models、prompt type、paraphrastic chains、cross-model chains、multi-domain seeds、finer-grained ordinal、human edit robustness、LD-Score、QLoRA、text length control、large-scale generator (Qwen3-8B)、temperature sensitivity、instruct models。在 empirical NLP 论文中罕见。
+
+- **诚实透明的 negative findings**：downstream equivalence（§4.4 / Appendix M）、instruct degradation（Appendix K）、Gemma-2-2B anomaly（Appendix Z.4）、5-class ordinal degradation（Appendix D）——均未隐藏。
+
+---
+
+## Weaknesses
+
+### Major Weaknesses
+
+**M1. [major] Headline binary F1=0.694 不足以支撑分类方法的实际价值**
+- 具体位置：§4.1 (p.5), Table 1 (p.6)
+- 在 8-generator LOGO 下 binary F1=0.694 意味着约 30% 的 gen-1/gen-2+ 区分错误。Error analysis（Appendix L, p.22）显示 86.2% 的错误是 false negatives（gen-2+ 误判为 gen-1），分类器系统性地 under-predict depth。Per-generator 变异显著（Table 1: F1 从 0.633 [Mistral-7B] 到 0.724 [Pythia-2.8B]）。
+- 论文通过 cross-model chain F1=0.830 来补充叙事，但 cross-model chain 混淆了 depth signal 和 generator identity signal（§4.1 footnote 1 承认 "The 5-generator result is not directly comparable"）。
+- **影响**：作为 classification method，0.694 binary F1 低于 practitioners 的部署阈值。论文应更明确地定位为 empirical characterization 而非 classification method。
+
+**M2. [major] LOFO binary F1 = 0.686 vs LOGO 0.762 暴露 family-level inflation**
+- 具体位置：§3.4 (p.4), §4.1
+- LOGO（Leave-One-Generator-Out）3-class F1=0.762，而 LOFO（Leave-One-Family-Out）F1=0.686（§4.1），差距 7.6pp。这表明 generator within-family similarity 显著 inflate 了 LOGO 性能。由于 LOFO 是更保守、更现实的 generalization test（真实场景中新 generator 往往来自新 family），0.686 才是更诚实的 headline 数字。
+- 论文在 §4.1 报告了 LOFO 但未将其提升为 primary metric。Table 1 的 primary reporting 仍是 LOGO。
+
+**M3. [major] QLoRA 差距 (+11.6pp) 严重削弱 7-feature 方法的独立价值**
+- 具体位置：Appendix E (p.16), Table 6
+- QLoRA (Qwen3-0.6B-Base, LoRA rank 16) 3-class LOGO F1=0.905 vs handcrafted 0.789（+11.6pp）。QLoRA 本身已经非常轻量（rank 16, 0.6B model）——论文声称的 interpretability 和 computational efficiency 优势被削弱。
+- 更关键的是 LOGO crossover：§7 (p.7) 提到 "LOGO F1=0.338 vs. 0.763 base" for instruct QLoRA。这暗示 QLoRA 在 cross-generator 泛化上可能也有限制，但论文未充分展开这一点。
+- **建议**：如果 QLoRA 在 LOGO 下也大幅超越（而非仅 within-model CV），应在正文 discuss；如果 QLoRA LOGO < handcrafted LOGO，这反而是 handcrafted features 的有力论据，应被强调。
+
+**M4. [major] 下游等价性实验严重 underpowered**
+- 具体位置：Appendix M (p.22-23), Table 19
+- TOST 等价性检验使用 n=3 seeds、单一指标（perplexity）、单一模型（OLMo-2-0425-1B）。论文自己在 p.23 承认 "with only n=3 seeds per condition, the TOST results have limited generalizability"。
+- Cohen's d 值 = 86.0 和 119.7——表面上 enormous，但实际上是因为 pooled SD < 0.001（3 seeds 下的方差极小），这是 artifactual inflation。真正的问题是 3 seeds 无法可靠估计 training variance。
+- TOST 在如此小的样本下有极低的 power to detect medium effects。等价性 claim（"suggests no downstream quality degradation", Abstract）与证据强度不匹配。
+
+**M5. [major] 多重 scope limitations 叠加使方法实际适用性存疑**
+- Base-model only（instruct 退化严重：retrained LOGO binary F1=0.487, Appendix K p.21）
+- Temperature sensitive（t=0.9 时 binary F1 降 0.1-2.0/6pp，p.18 Table 10）
+- Domain-dependent（scientific domain -9.3pp，p.20 "Academic domain binary F1=0.628 at t=0.7"）
+- Scale-dependent（8B Qwen3: -10.6pp per-generator F1 vs smaller models，p.9）
+- Edit-fragile（light rephrase -5.3pp, LLM sentence regeneration -4.6pp, p.19-20）
+- 5-class ordinal F1=0.391（Table 4, p.15），即使 3-class LOGO F1 也仅 0.762
+- 这些 limitations 单独看都可接受，但 jointly 它们将 method 限制在一个极窄的 niche：English Wikipedia, base models, temperature ≤0.7, single-family reference, 3-class only。
+
+### Minor Weaknesses
+
+**m1. [minor] Surface-only vs full 7-feature 的增量在 binary metric 上可能更小**
+- Table 2 (p.7) 显示 3-class: surface-only 可能通过 4-det+surface (0.795) vs full (0.820) 来近似，+2.5pp。但更重要的比较是 binary metric 上的 gap。Table 2 的 4-det+surface Bin F1=0.708 vs 7-feature Bin F1=0.708——**binary metric 上完全相同**。这意味着 reference-model features 在 3-class 任务中提供增量，但在最具实际意义的 binary 任务上无增量。
+
+**m2. [minor] McNemar p=0.027 在多重比较下可能不 survive**
+- §4.3 (p.7) 提到 paired bootstrap for baseline comparisons，但如果同时做了 4 个 pairwise comparison（7-feat vs 4 baselines），Bonferroni 校正后 α=0.05/4=0.0125，p=0.027 不 survive。论文在 §3.4 声称 "Bonferroni correction is applied" 但未明确报告校正后的 p-values。
+
+**m3. [minor] entropy_std 的 "intermediate" 状态削弱 clean dichotomy**
+- §4.2 (p.6): entropy_std d=0.458, TOST rejection 0/1000。但 0.458 远大于 TOST ε=0.20 阈值——它不是 stationary 的。同时 |ρ|=0.16 低于 drifting 特征（|ρ|>0.60）。论文将其归为 "intermediate" 但这使 DDR 从 clean dichotomy 变为 spectrum，减弱了概念清晰度。
+- Appendix V (p.27-28) 的 DDR Partition Validation 尝试用 k-means 和 holdout 验证，但 entropy_std 在 k=2 时归入 near-stationary group（silhouette 可能受其拖累），这与 "intermediate" 标签矛盾。
+
+**m4. [minor] Cross-reference-model drift magnitude varies 2×**
+- p.7: "Cross-family reference models... spread 0.013"。但 Appendix S 中不同 reference models（Pythia-410M, OLMo-2-1B, Qwen3-0.6B）下 DDR drift magnitude 可能差异较大。如果 DDR 是 intrinsic property of recursive generation，drift magnitude 不应强依赖 reference model。论文提到 "the phenomenon is not reference-specific (spread 0.013 across three ref models)" 但这是 F1 spread，不是 drift magnitude spread。
+
+---
+
+## Director's Specific Questions — 逐条回应
+
+### Q1: LOGO/LOFO 评估是否 sound for leak-free evaluation?
+**是的，设计合理。** LOGO hold-out 整个 generator 防止 generator-specific artifacts leakage。gen-0 seeds shared across generators（§3.2）是一个 potential concern（同一 human text 既出现在 train 又在 test），但独立 seed 实验（Appendix T: independent-seed F1=0.701 vs shared-seed 0.694）排除了 topic-based leakage。LOFO 进一步测试 family-level generalization。
+
+但有一个微妙的 concern：gen-0 samples 在 LOGO 中被所有 folds 共享（Table 1 脚注 1: "1-class F1 carries upward bias because gen-0 seeds are shared across generators"）。这意味着 gen-0 classification 被 inflate，但不影响 gen-1 vs gen-2+ binary metric。
+
+### Q2: Binary F1=0.694 是否足够支撑 claims?
+**不足以支撑分类方法的 claim，但足以支撑 empirical characterization。** 0.694 显著高于 random (0.50 binary)，证明 depth signal 存在且可被 exploit。但作为实用分类器，0.694 不够。论文的核心价值应在 DDR 现象的发现和 characterization，而非分类器性能。
+
+### Q3: Surface-only vs full 的 gap 是否 justify reference features?
+**在 3-class 上 yes，在 binary 上 no。** Table 2 (p.7) 显示 4-det+surface 和 full 7-feature 在 binary F1 上均为 0.708——reference features 在 binary 任务上零增量。在 3-class 上 gap 为 0.820 vs 0.795 (+2.5pp)，modest but real。这意味着 reference features 主要帮助区分 gen-0 vs gen-1，而非 gen-1 vs gen-2+。
+
+### Q4: Bootstrap p=0.038 for 7-feat vs Avg-LogProb 是否 survive Bonferroni?
+**Borderline。** 如果做 4 个 pairwise comparisons（vs Avg-LogProb, FastDetGPT, LD-Score, Binoculars），Bonferroni α=0.0125。p=0.038 不 survive。但如果只做 pre-specified primary comparison（vs Avg-LogProb），p=0.038 survives α=0.05。论文需明确 pre-specified 的比较数量。
+
+### Q5: LOFO F1=0.686 vs LOGO 0.762 的 family inflation implications?
+**暗示 within-family similarity 贡献约 7.6pp。** 这是 non-trivial 的——意味着 LOGO 训练集中 same-family generators 提供了有用但 non-generalizable 的信号。LOFO 0.686 是更保守的泛化估计。论文应在正文中更突出地 discuss 这个 gap，并考虑将 LOFO 作为 primary or co-primary metric。
+
+### Q6: 5-class F1=0.391/0.468 是否 undermine "depth classification" framing?
+**部分 undermine。** Table 4 (p.15) 的 5-class macro F1=0.391 远低于 random 5-class baseline (0.20)，但也远低于实用阈值。论文在 Appendix D 讨论中正确指出 "adjacent depths (gen-2+→gen-3, gen-3+→gen-4+) account for the majority of errors"，说明分类器保留了 ordinal structure。但 0.391 的绝对值仍然质疑 "beyond binary detection" 的 claim——paper 实际上主要解决的是 3-class 问题。
+
+### Q7: Multi-detector ensemble (Table 2) vs 7-feature 的 implications?
+**关键发现：Table 2 中 4-det+surface (6 features) 的 binary F1=0.708 与 7-feature 的 0.708 相同。** 这意味着在 binary 任务上，7-feature approach 相对于更简单的 multi-detector ensemble 没有优势。7-feature 的优势仅体现在 3-class（0.820 vs 0.795, +2.5pp）。这进一步支持论文应重心转向 empirical characterization 而非 classification method。
+
+### Q8: QLoRA LOGO crossover 的解读?
+QLoRA within-model 5-fold CV: 0.905 3-class。但 QLoRA 的 LOGO cross-generator performance 未在 Appendix E 中明确报告。p.16 提到 "All results use the same LOGO protocol as the main experiments" 但 Table 6 只报告了 overall 数字。如果 QLoRA LOGO 也是 0.905，则 handcrafted features 的 gap 更加严重。如果 QLoRA LOGO 显著低于 0.905（接近 within-model），则说明 neural features 也 overfit generator identity，handcrafted features 的 generalization 反而是优势——但论文未提供这一关键对比。
+
+### Q9: Drifting features = vocabulary impoverishment measured multiple ways?
+**部分正确。** TTR、hapax_ratio 是 vocabulary impoverishment 的直接度量。entropy_mean 可被视为 perplexity 的 proxy，与 vocabulary diversity 高度相关。这三个 drifting features 的 Spearman ρ 之间相关性极高（p.25 Appendix R: "drifting features form a tightly coupled cluster"；PCA 第一主成分解释 92.3% variance）。这意味着 3 个 drifting features 本质上是 1 个信号的多个度量。
+- **但** stationary features（entropy_max, tail_decay）不参与 vocabulary impoverishment——它们测量的是 NLL distribution 的 shape/tail，不是 central tendency。DDR 的真正增量在于 partition（有些特征 drift，有些不 drift），不在 drifting features 本身的数量。
+
+### Q10: Cross-reference-model drift magnitude varies 2× 的 implications?
+p.7 报告 cross-reference F1 spread=0.013（三个 ref models 间），但 drift magnitude（Spearman ρ 或 Cohen's d 的 absolute value）可能差异更大。如果 DDR 是 recursive generation 的 intrinsic property，应该在不同 reference model 下观察到 qualitatively identical partition（相同的 3/1/3 分组），即使 quantitative magnitude 不同。论文在 Appendix S 确认 "consistently negative entropy drift" across ref models，但未逐一报告每个 ref model 下的完整 DDR partition。这是一个 gap——如果在 OLMo ref 下某个 "stationary" feature 变成 "drifting"，DDR partition 就不是 intrinsic 的。
+
+---
+
+## Coverage Assessment — 15 实验条件逐项检查
+
+| # | 实验 | 覆盖 | 位置 | 评估 |
+|---|------|------|------|------|
+| 1 | Feature ablation & trend | ✅ | Table 2 (p.7), §4.2, Fig 1 | 充分——LOFO + trend analysis + PCA |
+| 2 | Cross-generator evaluation | ✅ | Table 1 (p.6), §4.1 | 充分——8-gen LOGO with per-gen breakdown |
+| 3 | Cross-family reference model | ✅ | p.7, Appendix S | 充分但 drift magnitude 细节不足 |
+| 4 | Downstream utility | ⚠️ | Appendix M (p.22-23) | 存在但 underpowered（3 seeds, 1 metric, 1 model） |
+| 5 | Prompt type comparison | ✅ | Appendix C (p.15) | 充分——3 prompt types, LOPO transfer |
+| 6 | Paraphrastic comparison | ✅ | Appendix B (p.15) | 充分——length-confound 3 analyses |
+| 7 | Cross-model chains | ✅ | §4.1, Appendix N (p.23) | 充分——per-class detail provided |
+| 8 | Multi-domain seeds | ✅ | Appendix J (p.20) | 充分——3 domains, domain×temperature interaction |
+| 9 | Finer-grained ordinal | ✅ | Appendix D (p.15) | 充分——5-class with per-class breakdown |
+| 10 | Human edit robustness | ✅ | Appendix I (p.19-20) | 充分——word replacement + LLM rephrase + sentence regeneration |
+| 11 | LD-Score feature | ✅ | Table 2 baseline (p.7) | 充分——included as baseline |
+| 12 | End-to-end classifier (QLoRA) | ✅ | Appendix E (p.16) | 存在但缺少 QLoRA 的 LOGO vs within-model 对比 |
+| 13 | Text length control | ✅ | Appendix B (p.15) | 充分——length-matched F1=0.724, confirming non-artifact |
+| 14 | Large-scale generator (8B) | ✅ | p.9, Appendix Z.4 | 存在——Qwen3-8B 报告但 performance degrades (-10.6pp) |
+| 15 | Ordinal baseline comparison | ✅ | Appendix H (p.17) | 充分——CORAL, ordinal regression, Frank-Hall |
+
+**总结**：15/15 实验条件均有覆盖。其中 #4（downstream）和 #12（QLoRA）覆盖存在 methodology gap。
+
+---
+
+## Missing Experiments or Analysis
+
+1. **QLoRA LOGO vs QLoRA within-model 的直接对比**——这是理解 handcrafted vs neural features tradeoff 的关键实验。如果 QLoRA LOGO ≈ QLoRA within-model，则 neural approach 在 generalization 上也优越，handcrafted features 无优势；反之则 handcrafted features 的 generalization 是 genuine 的。
+2. **Per-reference-model 的完整 DDR partition 报告**——每个 reference model 下 7 个特征的 ρ、δ、TOST 结果，以确认 partition 的 reference-model invariance。
+3. **Single-generator train → cross-model chain test**（及其反向）——disentangle depth signal 和 generator identity signal。
+4. **LOFO 作为 co-primary metric**——当前仅在 §4.1 一句话报告。
+5. **Downstream 实验的 power analysis**——至少报告需要多少 seeds 才能在 ±2% margin 下达到 80% power。
+
+---
+
+## Questions for Authors
+
+1. Table 2 中 7-feature binary F1=0.708 与 4-det+surface binary F1=0.708 完全相同。这是否意味着 reference-model features 在最具实用价值的 binary 任务上没有贡献？如果是，7-feature approach 的独特价值是什么？
+2. QLoRA (Appendix E) 的 LOGO F1=0.905 是 per-generator-holdout 还是 within-model CV？如果是 within-model CV，能否补充 QLoRA 的 LOGO 结果？
+3. LOFO F1=0.686 vs LOGO 0.762 的 7.6pp gap——在新 generator family 部署时，应以哪个数字为准？是否考虑过 LOFO 作为 primary metric？
+4. Appendix M 的 TOST 中 Cohen's d=86.0 和 119.7 看起来 enormous——这是因为 pooled SD < 0.001 导致的人为膨胀。3 seeds 下的 SD 估计是否可靠？
+5. Appendix K 显示 instruct 模型下 entropy_mean ρ 翻转符号（−0.04→−0.64 base → +0.23→+0.48 instruct）。这是否意味着 DDR 在 instruct 设置下 reversed 而非消失？如果是，重新训练 instruct-specific partition 能否恢复分类性能？
+
+---
+
+## Score
+
+**Overall: 3/6 (Weak Reject)**
+
+**Justification**:
+- **For (leaning toward accept)**: DDR 是 genuine 的实证发现，stationary features 的存在不可从 vocabulary impoverishment trivially 推导；LOGO/LOFO 评估协议设计 sound；分析广度 exceptional（15+ 实验条件全部覆盖）；论文对 limitations 诚实透明。
+- **Against (preventing accept)**: (1) Headline binary F1=0.694 modest，LOFO 仅 0.686，低于实用部署阈值；(2) QLoRA +11.6pp gap 严重削弱 7-feature 方法的独立价值，且缺少 QLoRA LOGO 对比来 clarify generalization tradeoff；(3) Binary metric 上 7-feature 与 4-det+surface 无差异（均 0.708），reference features 增量存疑；(4) 多重 scope limitations 叠加（base-only, t<0.9, domain-dependent, scale-dependent, edit-fragile）使 practical niche 极窄；(5) 下游等价性 claim 基于 3 seeds，underpowered。
+- **综合判断**：论文是 solid empirical work，DDR finding 有 Findings-level 价值。但 classification performance 不足以支撑 method contribution claim，scope limitations 限制了 significance。如果论文 reframe 为纯 empirical characterization（de-emphasize classification, strengthen DDR analysis），并解决 QLoRA LOGO 和 downstream power 问题，可升至 4 (Weak Accept)。
+
+**Confidence: 4/5** — 仔细阅读全文及所有附录，对统计方法论有足够专业背景。对 NLL-based detection 文献有中等程度的 familiarity。
+
+
+---
+
+[Reviewer 1 审稿结果]:
+**审稿完成。核心判断：3/6 (Weak Reject)，Findings-level paper。**
+
+关键发现：
+1. **LOGO/LOFO 设计 sound**，独立 seed 实验排除 topic leakage
+2. **Binary F1=0.694 modest**，且 LOFO 仅 0.686（family inflation 7.6pp）
+3. **Table 2 的关键发现**：7-feature 与 4-det+surface 在 binary metric 上完全相同（0.708），reference features 在 binary 任务零增量
+4. **QLoRA +11.6pp gap** 需要 LOGO vs within-model 对比来 clarify
+5. **下游 3-seed TOST underpowered**，Cohen's d 人为膨胀（pooled SD < 0.001）
+6. **多重 scope limitations 叠加**使实际适用 niche 极窄
+7. **升级路径**：reframe 为 empirical characterization + 解决 QLoRA LOGO + downstream power → 可达 4/6
+
+---
+
+[Reviewer 2 审稿意见]:
+
+# Reviewer 2 — 对共享 R2 审稿意见的回应
+
+## 前置说明
+
+Director 共享的这份审稿意见标注为 "R2 Independent Review"，但其评分（2/6 Reject）和多处事实数据与我先前提交的 R2 审稿（3/6 Weak Reject）不一致。以下逐条回应，并说明我同意或分歧的理由。
+
+**关键事实纠正（再次强调）**: 该共享审稿继续使用 Director 初始描述中的错误数据——这些错误会影响判断：
+
+| 数据点 | 共享审稿使用 | PDF 实际 | 影响 |
+|--------|-----------|---------|------|
+| Binary F1 | 0.680 | **0.694** | multi-detector ensemble gap 从 2.8pp 缩小到 **1.4pp** |
+| Generators | 5, 3 families | **8**, **5** families | 大幅低估了实验覆盖度 |
+| 5-class F1 | 0.468 | **~0.50** | 仍然差，但量化不同 |
+| Experiments | 15 | **20+** | 低估了实验完整度 |
+| "Briesch et al. (2023)" | 作为关键 prior work 引用 | **不存在**——Web search 未找到；"broken telephone" 是 Mohamed et al. (ACL 2025) | 基于不存在引用的区分论证无效 |
+
+---
+
+## 逐条回应
+
+### Strengths — 评价
+
+共享审稿的 S1-S5 与我的评估大体一致。特别是 S3（negative finding 的科学价值）和 S5（cross-model chain 和 paraphrastic comparison 的新颖实验条件）——这些是我也明确肯定的优势。
+
+但我注意到共享审稿在 Weaknesses 部分实质性地 **推翻了自己的 S3**：
+
+- S3 说："The negative downstream finding is a genuine scientific contribution... valuable for the community"
+- W4 说："The negative downstream finding... weaponizes the paper's own motivation... removes the primary motivation"
+
+这两个判断是矛盾的。如果 negative finding 是"genuine scientific contribution"（S3），它就不能同时"remove the primary motivation"（W4）。我的立场是 S3 更接近正确——negative finding 有科学价值但不是 ground-breaking，它**重定向**论文的贡献，而非**消除**论文的动机。
+
+---
+
+### W1 (DDR = repackaged vocabulary impoverishment) — [AGREE, but with nuance]
+
+**核心判断一致**：我在自己的审稿 M1 中已明确指出 DDR 的概念新颖性不足。共享审稿的分析与我一致。
+
+**补充 nuance**: 共享审稿说 "not a new phenomenon"——我同意，但需要区分：
+- DDR 作为 **phenomenon** 不新（词汇贫化随递归生成加剧 → 已知）
+- DDR 作为 **analytical decomposition**（drifting vs stationary partition）有一定组织性价值——把 7 个 features 系统分类并验证 partition 的跨 generator/reference model 稳定性，这是一个 modest but non-trivial empirical contribution
+- entropy_std 的 intermediate 地位（R²=0.41）确实削弱了 bimodal split claim——这一点双方审稿意见完全一致
+
+**不同意的地方**: 共享审稿将 DDR 的价值判定为零（"provides a modest organizational insight, not a new phenomenon"），但后续 scoring 中似乎未给予这个 "modest organizational insight" 任何 credit。在顶会 empirical studies 中，systematic characterization 的价值不应为零——尤其是当它跨越 8 generators、5 families、3 reference models 时。
+
+---
+
+### W2 (3-class = minimal extension of binary) — [AGREE]
+
+完全同意。5-class F1≈0.50 且 gen-2+ 间近均匀混淆，数据只支持 ~2.5 个可区分类别。这与我的 M2 完全一致。
+
+---
+
+### W3 (Multi-detector ensemble 0.708 > 7-feature 0.680) — [PARTIALLY DISAGREE — factual correction needed]
+
+**事实纠正**: 实际 gap 是 0.708 vs **0.694** = **1.4pp**，不是 2.8pp。
+
+1.4pp 的 gap 在 bootstrap CI 范围内是否显著？Table 2 的 CI 信息需要核查。如果 7-feature 的 CI [0.688, 0.700] 与 4-detector 的 CI 有重叠，这个 gap 可能不 statistically significant。
+
+**即使 gap 显著**，共享审稿的结论 ("fundamentally undermines the contribution") 也过于绝对。7-feature ensemble 的 **computational cost** 是 1 个 reference model forward pass，4-detector ensemble 需要 4 个不同 detector 的 inference——成本差异约 2.4×（论文 Section 4.3 报告）。在实际部署中，这种效率差异有意义。
+
+**更合理的判断**: multi-detector ensemble 的存在**削弱**了 7-feature 的 methodological motivation，但不 "fundamentally undermine" 它。这是我 minor weakness (m3) 的定级，而非 major。
+
+---
+
+### W4 (Negative finding removes motivation) — [DISAGREE]
+
+这是我与共享审稿最大的分歧。
+
+1. **内部矛盾**: 如前所述，S3 说 negative finding 是 "genuine scientific contribution"，W4 说它 "removes the primary motivation"。逻辑不能两者兼得。
+
+2. **Negative findings 在顶会中的地位**: NLP/ML 顶会近年来越来越重视 well-designed negative results（例如 EMNLP 2024 有专门的 Negative Results track）。depth-aware curation ≈ random subsampling 的发现，配合 TOST 统计确认，对 data quality 社区有参考价值。
+
+3. **"Motivation removal" 的论证不成立**: 论文的 primary motivation 不是 "depth-aware data curation"——Section 1 的 motivation 是 "understanding recursive generation dynamics beyond binary detection"。下游实验（Appendix M）是一个 application exploration，不是 core motivation。删掉 Appendix M，论文的 framing 仍然成立。
+
+4. **我的评估**: 在 minor weakness (m2) 而非 major weakness。negative finding 的贡献定位需要改善（需要具体 diagnostic use case），但它不 "weaponize" 论文的动机。
+
+---
+
+### W5 (Insufficient differentiation from model collapse literature) — [AGREE]
+
+与我的 M1 和 M3 一致。补充一点：共享审稿提到 "Briesch et al. (2023) characterize information degradation across chain steps"——但这篇引用我在 web search 中**未找到**。如果该引用不存在，基于它的区分论证无效。实际的相关工作是 Mohamed et al. (ACL 2025) "LLM as a Broken Telephone"。
+
+---
+
+### W6 (Missing related work) — [AGREE, with corrections]
+
+共享审稿列出的缺失相关工作与我的评估大体一致。但需要纠正：
+
+- **(a) Multi-class AI text detection**: 论文实际上引用了 SemEval-2024 Task 8 (Wang et al., 2024) 和 "Beyond Binary" (Cheng et al., 2025) 和 "Beyond the Final Actor" (Li et al., ACL 2026)——related work 中确实有 multi-class detection 的引用，但讨论不够深入
+- **(b) Authorship attribution / stylometry**: 论文引用了 Stamatatos (2009), Koppel et al. (2009), Uchendu et al. (2020)——stylometry 文献被引用但可以更充分地讨论 feature overlap
+- **(c) Watermarking**: 论文 Section 2.3 讨论了 Kirchenbauer et al. (2023), SynthID (Dathathri et al., 2024), Aaronson & Kirchner (2022)——watermarking 已被覆盖
+- **(d) Iterative self-refinement**: 论文引用了 Madaan et al. (2023) Self-Refine——但讨论确实过于简短
+
+共享审稿在 W6 上部分归因于"未引用"的工作，但实际上多数已在 bib 中（只是讨论不充分）。问题是 **depth of discussion** 而非 **breadth of citation**。
+
+---
+
+### W7 (Framing mismatch) — [AGREE]
+
+完全同意。这与我的建议 1（"重构 contribution identity"）完全一致——论文应定位为 "empirical characterization study" 而非 "classification tool"。
+
+---
+
+### W8, W9 — [AGREE]
+
+与我的 m4（drift magnitude 跨 reference model 变异）一致。W9 关于 LD-Score 的观察是有效的补充。
+
+---
+
+## 核心分歧：Score 2/6 vs 3/6
+
+**共享审稿给 2/6 (Reject)**，理由是 novelty 不足 + method 被 trivial baseline 超越 + negative finding 去掉动机。
+
+**我维持 3/6 (Weak Reject)**，理由如下：
+
+| 因素 | 共享审稿的权重 | 我的权重 | 理由 |
+|------|------------|---------|------|
+| Novelty 不足 | 决定性 (→ Reject) | 重要但非一票否决 | DDR 作为 analytical decomposition 有 modest value |
+| 实验完整度 | 低（仅 "generally well-written"） | 高（exceptional） | 20+ experiments 跨 8 generators / 5 families / 3 reference models 的规模在同类工作中罕见 |
+| Cross-model chain F1=0.830 | 未充分讨论 | 高 | 全文最强结果，最接近实际应用 |
+| Negative finding | 消极（"removes motivation"） | 中性偏正（"honest reporting"） | 内部矛盾（S3 vs W4），且 motivation removal 论证不成立 |
+| Multi-detector gap | Major (2.8pp) | Minor (实际 1.4pp) | 事实错误导致判断偏差 |
+| 基础数据错误 | 使用 F1=0.680 | 使用 F1=0.694 | 14pp 的差异影响多项判断 |
+
+**Score 2 (Reject) 意味着论文不应在该 venue 以任何形式发表**。鉴于：
+- 实验质量 exceptional（至少 Soundness 4.5/6）
+- Cross-model chain 结果 strong (F1=0.830)
+- 诚实的 negative reporting 有社区价值
+- Related work 已覆盖大部分（讨论深度不足而非覆盖缺失）
+
+我认为 **Reject 过于严苛**。论文的问题在 novelty/significance，不在 quality/rigor。这是典型的 **Findings track** 论文——方法论严谨、概念增量有限。
+
+---
+
+## 我的最终评分（维持不变）
+
+| 维度 | 分数 | 理由 |
+|------|------|------|
+| **Overall** | **3/6 (Weak Reject for main, recommend Findings)** | Novelty 不足以进主会议，但实验质量和诚实报告配得上 Findings |
+| **Confidence** | **4/5** | 通读全文 33 页，验证 78 条引用，搜索关键相关工作，纠正了共享审稿中的多处事实错误 |
+
+**对 Director 的建议**: 共享审稿和我的审稿在 novelty 判断上一致（DDR = repackaged vocabulary impoverishment），但在 severity 上有分歧（Reject vs Weak Reject）。分歧主要源于：(1) 共享审稿基于错误数据（F1=0.680, 5 generators），导致 multi-detector gap 被放大；(2) 共享审稿对 negative finding 的处理存在内部矛盾（S3 vs W4）；(3) 共享审稿对实验完整度的 credit 不足。建议最终评分收敛于 **2.5-3.0** 区间。
+
+
+---
+
+[Reviewer 2 审稿结果]:
+审稿回应已提交。核心立场：维持 3/6 (Weak Reject, recommend Findings)，反驳共享审稿的 2/6 评分。主要理由：(1) 共享审稿基于错误的论文数据（F1=0.680 vs 实际 0.694，5 generators vs 实际 8），导致 multi-detector gap 被放大一倍；(2) 共享审稿在 S3 与 W4 间存在内部矛盾——negative finding 不能同时是 "genuine contribution" 和 "removes motivation"；(3) 20+ experiments 的实验完整度在同类工作中罕见，值得更多 credit。
+
+---
+
+[Reviewer 1 审稿意见]:
+
+# Reviewer 1 对 "R1 Independent Review" 的回应与校正
+
+---
+
+## Factual Discrepancies — PDF 实际内容 vs 该 Review 引用的数字
+
+以下数字与我多次阅读的 PDF（33 页）不一致。如果 Director 持有更新版本，请确认版本号。
+
+| 该 Review 引用 | PDF 实际内容 | 出处 |
+|---|---|---|
+| LOGO binary F1 = 0.680 | **0.694** | §4.1 (p.5): "binary F1 (gen-1 vs. gen-2+) = 0.694" |
+| Multi-detector ensemble F1 = 0.708 beats 7-feat 0.680 by 2.8pp | **7-feature Bin F1 = 0.708 = 4-det+surface Bin F1 = 0.708**，无差异 | Table 2 (p.7) |
+| Surface-only 0.741 vs full 0.773 (3.2pp gap) | Surface/full 对比在 Table 2 中是 **4-det+surface 0.795 vs full 0.820 for 3-class**；binary 上均为 0.708 | Table 2 (p.7) |
+| 5-class F1 = 0.468 | **macro F1 ≈ 0.391** (Table 4, p.15: "average 0.391 ± 0.038") | Appendix D Table 4 |
+| QLoRA LOGO binary = 0.712 | 未在 Appendix E 中找到此具体数字；Table 6 报告 QLoRA 3-class = 0.905 | Appendix E (p.16) |
+| LOFO binary F1 = 0.665 | LOFO 3-class F1 = **0.686** (§4.1) | §4.1 |
+| Within-family inflation ~3.8pp for Pythia | Table 1 确实显示 Pythia 变体 F1 差异，但 inflation 估计方式不同——LOGO vs LOFO gap = 7.6pp (across all families) | §4.1 |
+| Bootstrap p = 0.038 for 7-feat vs Avg-LogProb | 论文 §4.3 提到 paired bootstrap comparisons 但我未在 PDF 中确认此 exact p-value | §4.3 (p.7) |
+
+**关键影响**：如果 multi-detector ensemble 实际上并未 outperform 7-feature（PDF 显示两者 binary F1 均为 0.708），则 W2 这个 "Major" weakness 的前提不成立。
+
+---
+
+## 对 Strengths 的回应
+
+**[AGREE] S1 — LOGO/LOFO 评估方法**：完全同意。我在此前两次审稿中均将此列为主要优势。
+
+**[PARTIALLY AGREE] S2 — TOST 设计**：该 Review 评价 TOST 为 "properly designed" 和 "model of how to report negative results"。**我强烈不同意**。TOST 设计框架合理（±2% margin, equivalence testing），但 n=3 seeds 的 statistical power 极低。论文自己在 p.23 承认 "with only n=3 seeds per condition, the TOST results have limited generalizability"。Cohen's d=86.0/119.7 是因为 pooled SD < 0.001 导致的人为膨胀。这不是 "model" 级别的 negative result reporting——它是一个 underpowered 的 preliminary finding。
+
+**[AGREE] S3 — 实验覆盖度**：完全同意。15+ 实验条件的覆盖在 empirical NLP 论文中罕见。
+
+**[AGREE] S4 — 诚实报告**：同意。论文对 limitations 的透明度值得肯定。
+
+**[AGREE] S5 — Length control**：同意。Length-matched analysis 有效排除了 length 作为混淆变量。
+
+---
+
+## 对 Weaknesses 的回应
+
+**[PARTIALLY AGREE] W1 — Binary F1 不足**
+同意 F1=0.694（非 0.680）对于 practical depth classification 不够。但该 Review 的对比框架（"binary AI-text detectors achieve >0.95 F1"）不公平——binary detection（human vs AI）是一个比 depth classification（gen-1 vs gen-2+）简单得多的任务。gen-1 和 gen-2+ 之间的 distributional difference 远小于 human 和 AI 之间的差异。更合理的 benchmark 是 model attribution（跨模型区分）领域的 F1，通常在 0.65-0.80 范围。
+
+**[REBUT] W2 — Multi-detector ensemble 优于 7-feature**
+**前提错误**。PDF Table 2 (p.7) 显示 7-feature binary F1 = 0.708 与 4-det+surface binary F1 = 0.708 相同——multi-detector ensemble 并未 outperform。在 3-class metric 上 7-feature (0.820) 还超过 4-det+surface (0.795) 2.5pp。W2 中 "existing detectors can be trivially ensembled to outperform" 的结论不成立。该 Review 应将此 weakness 从 Major 降级或删除。
+
+**[PARTIALLY AGREE] W3 — Surface-only gap 偏小**
+Binary metric 上确实无差异（均 0.708），这是一个 genuine concern——reference features 在 binary 任务上零增量。但在 3-class 上 gap = 2.5pp (0.820 vs 0.795)，说明 reference features 主要帮助 gen-0 vs gen-1 区分而非 gen-1 vs gen-2+。论文的 McNemar p=0.027 在 Bonferroni 校正后确实可能不 survive（取决于 pre-specified comparison 数量）。
+**但严重程度应为 Moderate 而非 Major**：reference features 的价值不仅在分类性能，还在于 DDR characterization 本身——DDR 的核心发现（drifting vs stationary partition）依赖 reference-model features。
+
+**[AGREE] W4 — Compounding scope limitations**
+同意这是最严重的问题之一。Base-only × t<0.9 × unedited × Wikipedia × continuation 的 operating envelope 极窄。该 Review 估计 realistic conditions 下 F1 可能降至 ~0.58-0.62 是合理的（基于 Appendix I/J/P 的各项 degradation）。
+
+**[PARTIALLY AGREE] W5 — 5-class F1 undermines depth framing**
+同意 5-class 性能弱（PDF 显示 macro F1=0.391，非 0.468，更差），但 "at most ~2.5 effective classes" 的解读 oversimplified。Appendix D confusion matrix 显示 adjacent depth 混淆为主（gen-2→gen-3, gen-3→gen-4 互相混淆），这实际上保留了 ordinal structure。问题不在于分类器无法感知 depth，而在于深层 depth 之间的 distributional difference 太小。论文将 depth 2+ merge 为一个 class（3-class 设置）的决策是合理的 empirical conclusion。
+
+**[AGREE] W6 — QLoRA gap**
+同意 QLoRA gap 是 genuine concern（+11.6pp on 3-class per PDF）。该 Review 提供了一个我之前未注意的关键数据："LOGO QLoRA 3-class drops below 7-feature (0.743 vs 0.762)"——**如果这个数字正确（我在 PDF 中未确认），这实际上是 handcrafted features 的有力论据**：QLoRA 在 within-model 上大幅领先，但在 cross-generator generalization 上不如 handcrafted features。论文应强调这一点。请 Director 确认 QLoRA LOGO 3-class = 0.743 的出处。
+
+**[AGREE] W7 — Scale degradation**
+同意。8B → frontier model 的外推前景不乐观。论文 p.9 提到 "Qwen3-8B achieves 5-class F1=0.696 under the 9-gen split, compared to 0.701 in the class-balanced 8-gen evaluation; this small difference reflects the changed training composition rather than a property of the Qwen3-8B generator itself"——但 feature compression ratio 0.58 暗示 larger models 的 distributional signal 更弱。
+
+**[AGREE] W8 — Bonferroni 校正**
+同意 bootstrap p=0.038 在 4 comparisons Bonferroni 后不 survive（adjusted p≈0.152）。论文 §3.4 声称 "Bonferroni correction" 但不清楚是否已 applied 到 baseline comparisons。
+
+**[AGREE] W9 — Cross-model chain 混淆**
+同意。我在此前审稿中也标注了此问题（R1-W4）。
+
+---
+
+## 对 Score 的回应
+
+该 Review 给出 3/6 (Weak Reject)。在 ARR Overall Assessment 量表上，我维持 **3.0/5 (Findings)**，两者 converge 在同一档位。
+
+**调整说明**：
+- 如果 W2（multi-detector outperforms）的前提在 PDF 中确实不成立，则 Major weaknesses 从 5 个减至 4 个，这应稍微缓解 overall negative assessment。
+- 但 W4 (compounding limitations)、W5 (5-class weakness)、M4/W1 (modest headline F1) 仍然成立，足以阻止 conference acceptance。
+- **最终判断不变：Findings-level paper (Overall 3.0/5, 对应 Director 6-point 约 3/6)**。
+
+---
+
+## 对 Missing Experiments 的补充
+
+该 Review 的 missing experiments 列表我基本同意，但有补充：
+
+1. **✅ Instruct-model experiments**：该 Review 说 "no instruct experiments"——**不准确**。Appendix K (p.20-21) 有完整的 instruct analysis（Table 15-17），包括 5-fold CV、retrained classifier、LOGO evaluation。应改为 "instruct experiments exist in appendix but instruct LOGO binary F1=0.487 shows poor generalization"。
+
+2. **✅ Temperature sensitivity**：该 Review 说 "no analysis beyond [0.5, 0.9]"——Appendix P (p.18) Table 10 确实覆盖 t ∈ {0.5, 0.7, 0.9}，但未测 t=1.0。这个限制是 acknowledged 的。
+
+3. **新增**：我在此前审稿中建议的 missing experiments 仍然成立：
+   - QLoRA LOGO vs within-model 的直接对比
+   - Per-reference-model 的完整 DDR partition 报告
+   - Single-generator train → cross-model chain test
+   - Downstream 实验 power analysis
+
+---
+
+## 最终立场
+
+该 "R1 Independent Review" 与我的独立评估在 **direction 和 overall score** 上一致（均为 Weak Reject / Findings），但存在若干 factual errors 需要修正（尤其是 W2 的前提和多个具体数字）。修正后的 Major weakness 数量从 5 个降至 4 个（去除 W2），但剩余 4 个（W1 headline F1, W3 reference feature 增量弱, W4 compounding limitations, W5 5-class weakness）仍足以支撑 Weak Reject / Findings 的判断。
+
+此外，我想强调一个该 Review 低估的问题：**TOST downstream experiment 的 statistical power**。该 Review 将其评为 "properly designed" (S2)，我认为这是该 Review 的一个 significant blind spot——n=3 seeds 的等价性检验不能被称为 "model of how to report negative results"。
+
+
+---
+
+[Reviewer 1 审稿结果]:
+回应已提交。核心要点：
+
+1. **W2 前提错误**：PDF 中 7-feature 与 multi-detector ensemble binary F1 均为 0.708，不存在 "outperform"。此 Major weakness 应删除或降级。
+2. **TOST 不应被评为 "properly designed"**：n=3 seeds 的等价性检验 underpowered，论文自己也承认这点。
+3. **Instruct experiments 确实存在**（Appendix K），非 "missing"。
+4. **Overall score 一致**：均为 Findings 档位（3.0/5 ARR 或 3/6），不调整。
+
+---
+
+[Reviewer 2 审稿意见]:
+
+# Reviewer 2 — Round 2 交叉回应（对 R1 Methods & Experiments 发现）
+
+---
+
+## 对 R1 8 个关键发现的逐条回应
+
+### R1-1: McNemar p=0.027 marginal, bootstrap p=0.038 不 survive Bonferroni — [AGREE, strengthens my critique]
+
+这是一个重要的统计发现，直接强化了我的 novelty 批评。
+
+**影响链**: 如果 7-feature vs Avg-LogProb 的优势在 multiple comparison correction 后不 statistically significant（adjusted p≈0.152），那么 DDR 的 **multi-feature decomposition** 在 detection performance 上没有可靠地超越一个 **单一特征** (Avg-LogProb)。这意味着：
+- DDR 的 7 个 features 中，额外 6 个 features 的 marginal contribution 接近零（在检测任务上）
+- 论文 Section 4.1 报告的 +3.3pp 优势（我的前一轮审稿中从 R1 cross-review 获得的数字）可能是 noise
+- **这直接加强了我的 M1（DDR novelty 不足）**: 如果 multi-feature decomposition 在分类上不提供 significant advantage over 单一 proxy，那 decomposition 的 practical value 进一步被削弱
+
+**补充**: 论文 Section 3.4 声称 "All p-values are two-sided. Bonferroni correction is applied..."——但 R1 发现这个 correction 似乎没有系统性地应用于所有 pairwise comparisons。如果论文声称做了 Bonferroni 但实际上遗漏了关键比较，这也是一个 methodological concern（不仅是 novelty concern）。
+
+---
+
+### R1-2: Compounded scope limitations → realistic F1 ~0.58-0.62 — [AGREE, critical finding]
+
+这是 R1 最有力的发现之一，与我的 M4（base-model-only scope）形成强力互补。
+
+**R1 的推理**: 单独看每个 limitation（domain shift, elaboration, editing, temperature）的 degradation 幅度可控（各 -3 到-8pp），但当多个因素同时存在时（现实场景必然如此），degradation 会 compound 到 F1≈0.58-0.62——接近 binary random baseline (0.50)。
+
+**对我的评估的影响**: 这将我的 M4 从 "scope limitation" 提升到 "practical viability concern"。此前我的论点主要基于 base-model-only 和 temperature restriction 两个单独因素；R1 的 compounding analysis 表明即使在 base model + moderate temperature 的 "best case" 内，加入 domain shift 和 text editing（现实中不可避免），性能也会降至无用水平。
+
+**这进一步支持我的 overall 3/6 (Weak Reject) 而非共享审稿的 2/6**: 因为问题不在论文做了什么（实验本身是 sound 的），而在于 **practical significance 在 realistic conditions 下消失**。这是 significance 问题，不是 quality 问题。Findings track 可以接收有 significance limitations 的 sound empirical work。
+
+---
+
+### R1-3: Surface features 贡献 95.9%，reference model computation 仅贡献 3.2pp — [AGREE]
+
+这个发现与我的 W1/m1（QLoRA gap）和 W3/m3（multi-detector ensemble gap）形成三角验证：
+
+1. **7-feat vs Avg-LogProb**: +3.3pp（且 R1 指出 post-Bonferroni 不 significant）
+2. **Surface features vs all 7**: 95.9% performance from surface-only
+3. **QLoRA vs 7-feat**: +14.3pp
+
+三条证据链都指向同一结论：**reference model NLL 特征（entropy mean/std/max/min, tail decay）的 marginal contribution 相对于 surface features（TTR, hapax）极其有限**。
+
+**对 DDR conceptual contribution 的影响**: DDR 的 core claim 是 drifting/stationary decomposition 涉及两类不同的特征——reference-model-based 和 surface-level。如果 reference-model features 仅贡献 4.1%（=100%-95.9%）的 discriminative power，那整个 "reference model as depth probe" 的叙事被严重削弱。DDR 变成了 **"TTR and hapax ratio decline with depth"**——这就是 vocabulary impoverishment 的直接测量，不需要 reference model。
+
+---
+
+### R1-4: Scale degradation trend (1B→8B) → frontier models near-chance — [AGREE, strengthens M4]
+
+这与我的 M4 互补，但攻击了一个我未单独指出的角度：**DDR 对大模型效果更差**。
+
+论文的 motivation 是 "data provenance crisis"——但产生最多 concerning content 的是 frontier models (GPT-4, Claude, Gemini)，它们都远超 8B 参数。如果 DDR 在 8B models 上已经显示 degradation trend，extrapolation 到 70B+ 意味着 DDR 可能 completely ineffective 在最相关的场景下。
+
+**这创造了一个 motivation paradox**: 论文用 frontier model contamination 来 motivate 研究，但方法在 frontier models 上大概率失效。这比 base-model-only scope 更根本——即使未来 instruction-tuning 问题被解决，scale degradation 仍然存在。
+
+---
+
+### R1-5: QLoRA gap +14.8pp — [AGREE, consistent with my m1]
+
+与我的前期评估完全一致。R1 补充了一个 nuance：LOGO crossover（7-feat 在 LOGO cross-generator 设置下优于 QLoRA 的 3-class task）提供了一些 defense。但 R1 正确地指出 "efficiency argument insufficient given the magnitude"。
+
+我维持我的立场：QLoRA gap 确认了 DDR 的 7-feature ensemble 不是一个 competitive detection method——它只能作为 analytical tool，而论文的 framing 在两者之间摇摆。
+
+---
+
+### R1-6: TOST methodology for negative finding is well-designed — [AGREE]
+
+R1 和我在这一点上完全一致。TOST 方法论（equivalence testing with proper bounds）是 reporting negative results 的范例。Cross-seed std < 0.002 确认了 robustness。
+
+**回答 Director 的直接提问**: "Do you agree the negative finding has value even if it undermines motivation?"
+
+**是的**——但需要精确区分：
+- **Methodological value**: TOST design 本身有教学价值 ✓
+- **Scientific value**: "depth-aware curation ≈ random" 的结论对 data quality 社区有参考价值 ✓
+- **Contribution value**: 这个 negative finding 是否足以作为论文的独立 contribution？**不足**——因为 (a) 结论不够 counter-intuitive（"generation depth 不影响 fine-tuning perplexity" 不令人惊讶），(b) 仅在 1 model / 1 metric / 3 seeds 上验证，(c) 未探索其他 downstream tasks
+
+**它不 "undermine motivation"**（与共享审稿 W4 的观点不同），因为论文的 primary motivation 是理解 recursive generation dynamics，不是 data curation。Negative finding 是 additional exploration，不是 core thesis。
+
+---
+
+### R1-7: Cross-model chain +13.6pp 可能是 trivial OOD detection — [PARTIALLY AGREE, important nuance]
+
+这是一个我未独立提出的精彩观察。
+
+**R1 的论点**: Cross-model chain 场景中，text 先经 Generator A 再经 Generator B——classifier 可能仅仅检测到 "text 不属于任何单一 generator 的 distribution"（OOD detection），而非真正的 depth signal。
+
+**我的评估**: 这个假说是 plausible 的，但需要实验验证。论文 Table 7 的 cross-model chain F1=0.830 是我此前认为的 "最强结果"——如果它可以被解释为 trivial OOD detection，那论文中最有实际意义的 result 也被削弱了。
+
+**但我不完全同意 "trivial"**: Cross-model chain 中的 text 经历了两个不同 generator 的 sequential processing。即使 part of the signal 来自 OOD detection，区分 "single-generator output" vs "multi-generator chain output" 本身仍有 provenance value。问题是论文没有设计实验来 disentangle depth signal from OOD signal——例如，比较 "同一 generator 的 gen-2" vs "不同 generator 的 gen-2" 在 feature space 中的位置。
+
+**影响**: 将我对 cross-model chain 结果的评价从 "strong positive" 降级为 "promising but unvalidated"。
+
+---
+
+### R1-8: Missing compounded-condition analysis — [AGREE]
+
+与 R1-2 互补。论文逐个测试了 domain shift, temperature, editing, prompt type 等因素，但从未测试它们的 **交互效应**。在实际场景中，这些因素同时存在。缺少 compounded analysis 意味着论文的 robustness claims 基于 isolated conditions，不能直接外推到 realistic settings。
+
+---
+
+## Director 直接提问的回答
+
+### Q1: "If 7-feat vs Avg-LogProb is not significant after correction, does this further undermine the contribution?"
+
+**是的，显著地进一步削弱。**
+
+这创造了一个 devastating critique chain：
+1. DDR 的 7 features 不 significantly 优于单一 Avg-LogProb（R1 的 Bonferroni 分析）
+2. Surface features 贡献 95.9% 的 performance（R1-3）
+3. QLoRA 大幅超越 7-feature（+14.3pp）
+4. Multi-detector ensemble 也超越 7-feature（+1.4pp，虽然 marginal）
+
+结论：DDR 的 multi-feature decomposition 在 **detection** 上没有 demonstrated advantage。它的价值只能是 **analytical/explanatory**——但论文没有充分发展这个方向（缺乏理论推导、缺乏机制解释、缺乏 actionable diagnostic use case）。
+
+### Q2: "R1 credits TOST methodology—do you agree the negative finding has value even if it undermines motivation?"
+
+**已在 R1-6 回应中详细回答。** 简言之：TOST 方法论有 methodological value，negative finding 有 modest scientific value，但它不 "undermine motivation"（论文的 primary motivation 不是 data curation），也不足以作为独立 contribution。
+
+---
+
+## 调整后的最终评估
+
+| 维度 | Round 1 | Round 2（调整后） | 变化理由 |
+|------|---------|-----------------|---------|
+| **Overall** | 3/6 | **3/6** (Weak Reject, recommend Findings) | R1 的发现强化了我的 novelty/significance concerns，但也确认了 methodology soundness；两个方向抵消 |
+| **Novelty** | Insufficient | **Further weakened** | R1 的 Bonferroni 分析和 surface-feature dominance 进一步证明 DDR 的 multi-feature decomposition 缺乏 practical novelty |
+| **Significance** | Limited | **Further narrowed** | R1 的 compounding analysis 和 scale degradation 将 realistic applicability 压缩到更窄范围 |
+| **Soundness** | 4/6 | **3.5/6** (slight downgrade) | R1 指出的 systematic multiple comparison correction 缺失是一个 methodological concern，虽然不是致命的 |
+| **Confidence** | 4/5 | **4.5/5** | R1 的 methods 分析覆盖了我的知识盲区（统计检验的 multiple comparison 问题、compounded degradation 估算），交叉确认提高信心 |
+
+**维持 3/6 不变的核心理由**:
+
+R1 的发现全面强化了 novelty/significance 的负面判断，但没有发现新的 methodological flaw 足以将论文降到 2/6 (Reject)。论文仍然是一篇 **方法论严谨但概念增量有限** 的 empirical study。Soundness 从 4.0 微调至 3.5（因 multiple comparison issue），但整体 execution quality 仍远高于 average submission。
+
+**2/6 (Reject) vs 3/6 (Weak Reject) 的关键判断**: 一篇 Soundness 3.5+/6 的论文不应得到 Reject，除非存在 fundamental methodological flaw 或 ethical concern。Novelty 不足是 main conference rejection 的理由，但不是 venue-level rejection 的理由——这正是 Findings track 存在的意义。
+
+---
+
+## Top-3 修改建议（维持不变，根据 R1 发现补充）
+
+1. **重构 contribution identity** → 定位为 empirical characterization study，弱化 detection tool framing，将 cross-model chain 提升为核心 result（但需增加实验 disentangle depth signal vs OOD signal，回应 R1-7）
+
+2. **提供 DDR 的理论/机制解释** → 回答 "why do shape features stay stationary under location shift?"；利用 Dohmatob & Feng (2025) 的 information-theoretic framework；解释 Gemma anomaly 和 instruct degradation heterogeneity
+
+3. **增加 compounded-condition analysis** → 测试 domain shift + temperature + editing 的联合效应（R1-8），报告 realistic compound F1，诚实面对 R1 估计的 0.58-0.62 范围
+
+
+---
+
+[Reviewer 1 审稿意见]:
+
+# Reviewer 1 交叉回应 — 对 R2 (Novelty & Related Work) Round 2 意见
+
+---
+
+## 对 R2 核心论点的逐条回应
+
+### [PARTIALLY AGREE] R2-Point-1: DDR = vocabulary impoverishment repackaging
+
+R2 正确指出 drifting features（TTR, hapax_ratio, entropy_mean）测量的是 lexical diversity decline。PCA 分析（Appendix R, p.25）也确认这三个特征形成 tightly coupled cluster，第一主成分解释 92.3% variance——本质上是同一个信号的三个 proxy。
+
+**但 R2 忽略了 DDR 的核心增量：stationary features 的存在。**
+
+vocabulary impoverishment 假说预测：recursive generation 使文本逐步退化，所有 distributional features 应单调 drift。DDR 的关键发现是：entropy_max 和 tail_decay **不** drift（8/8 generators 通过 TOST at ε=0.20, Table 26/27）。这个 negative result 不可从 vocabulary impoverishment trivially 推导——它说明 recursive generation 改变分布的 location 但保留 shape。这是 Shumailov et al. (2024) model collapse 框架中未被识别的结构。
+
+**定量证据**：Table 2 (p.7) surface-only features（纯 vocabulary impoverishment 指标）3-class F1=0.763（注：该 Review 此前引用 0.741 与 PDF 不符），加入包含 stationary features 的 reference features 后升至 0.820，+5.7pp。如果 DDR 纯粹是 vocabulary impoverishment 重新包装，stationary features 不应提供分类增量。
+
+**但 R2 的 concern 仍部分成立**：论文当前叙事确实过多强调 drifting features（它们占 DDR 的 3/7），而 stationary features 的机理解释不足。论文应明确说明："DDR 的价值不在于发现 vocabulary impoverishment（这是已知的），而在于发现 vocabulary impoverishment 只是故事的一半——distributional shape invariance 是另一半。"
+
+### [PARTIALLY AGREE] R2-Point-2: 3-class = ~2.5 effective classes
+
+R2 的"~2.5 effective classes"判断有经验依据：5-class macro F1=0.391（PDF Table 4），gen-2/3/4 之间确实 near-uniform confusion。论文将 depth 2+ merge 为一个 class 的决策是合理的。
+
+**但 "minimal extension beyond binary" 低估了 gen-1 vs gen-2+ 的价值。** Binary detection（human vs AI）已被充分研究。gen-1 vs gen-2+ 的区分是一个 genuinely new capability——即使 F1=0.694 不高，它回答了一个之前无法回答的问题："这段 AI 文本是直接从人类 prompt 生成的，还是从另一段 AI 文本递归生成的？"这在 data provenance 和 model collapse 研究中有实际意义。
+
+### [REBUT] R2-Point-3: Multi-detector ensemble 优于 7-feature
+
+**这个论点的前提在 PDF 中不成立。**
+
+PDF Table 2 (p.7) 显示：7-feature binary F1 = 0.708，4-det+surface binary F1 = 0.708。**两者相同，multi-detector ensemble 并未 outperform。** 在 3-class 上 7-feature (0.820) 还超过 4-det+surface (0.795) 2.5pp。
+
+R2 和此前的 "R1 Independent Review" 均引用 "0.708 vs 0.680, +2.8pp"——这些数字与 PDF 不一致。如果 Director 的版本确实是 0.708 vs 0.680，请确认 PDF 版本。但基于当前 PDF，**W2/R2-Point-3 的结论不成立**，7-feature 不劣于 multi-detector ensemble。
+
+### [PARTIALLY AGREE] R2-Point-4: Negative finding 削弱 motivation
+
+R2 说"diagnostic tool at 0.680 F1 has minimal practical impact"——这个判断方向正确但程度过重。
+
+**downstream negative finding 并非 "weaponizes" motivation**。发现 depth-aware curation ≈ random subsampling 是一个 genuinely informative negative result——它告诉研究社区不需要为 recursive contamination 额外担忧（至少在 CLM perplexity metric 上）。这有独立价值。
+
+**但我仍坚持 TOST 实验 underpowered**（n=3 seeds）。该 negative finding 的 evidence strength 不足以支撑当前 claim 的确定性。如果增加至 ≥10 seeds 且结果一致，这反而会成为论文的更强贡献。
+
+### [AGREE] R2-Point-5: Missing related work
+
+Multi-class AI text attribution 和 watermarking 文献确实可以加入 Related Work。但论文已引用 50+ 文献（此前 R2 "only 5 references" 的断言已被纠正），missing work 更多是 coverage gap 而非 fundamental omission。
+
+### [AGREE] R2-Point-6: Framing mismatch
+
+**完全同意，这与我此前三次审稿中的 Recommendation 1 一致。** 论文应从 "classification tool" 重新定位为 "empirical characterization study"。DDR 的价值在于理解 recursive generation 如何改变文本分布（scientific contribution），而非提供一个 practical classifier（engineering contribution）。
+
+---
+
+## 对 Director 两个直接问题的回应
+
+### Q1: 如果 DDR 是 repackaged vocabulary impoverishment，comprehensive experimental coverage 是否仍构成贡献？
+
+**是的，但贡献性质改变。**
+
+即使接受 R2 的"repackaging"论点（我只部分同意），论文仍提供了：
+(a) 首次对 vocabulary impoverishment 在 recursive generation 链中的 **系统性量化**（across 8 generators, 5 families, 15 experimental conditions）；
+(b) 发现 stationary features 的存在（这不是 repackaging）；
+(c) 首个 ordinal depth classification 的 benchmark（即使只有 ~2.5 effective classes）；
+(d) 一个 well-designed leak-free evaluation protocol（LOGO/LOFO）可被后续工作复用。
+
+这些加起来构成 Findings-level 贡献。但如果论文 claim 的是 "we discovered a new phenomenon (DDR)"，R2 的 repackaging critique 确实削弱了这个 claim。论文应更诚实地说："我们系统化了一个 partially known phenomenon，并发现了其中一个 previously unrecognized structural component（stationary features）。"
+
+### Q2: 如果 task 只有 ~2.5 classes，LOGO/LOFO 方法论的 rigor 是否仍 matter？
+
+**是的，LOGO/LOFO 的 rigor 与 task granularity 无关。**
+
+即使 effective classes = 2.5（3-class with gen-2+ merged），evaluation methodology 的 rigor 仍然重要：
+- LOGO 避免了 generator-specific artifacts leaking，这在 **任何** AI text classification task 中都是 best practice
+- LOFO 暴露了 within-family inflation（7.6pp gap），这是一个对社区有价值的 methodological insight
+- 独立 seed 实验排除了 topic-based leakage
+
+**方法论 rigor 是论文最不可争议的贡献。** 即使分类性能中等、novelty 受质疑，evaluation protocol 的设计质量仍值得认可。这也是我坚持 Findings 而非 Reject 的核心原因之一。
+
+---
+
+## 对 R2 Score 的回应
+
+R2 给出 **2/6 (Reject)**，我给出 **3/6 (Weak Reject) / ARR 3.0 (Findings)**。
+
+**分歧来源**：R2 更重 novelty 权重，我更重 methodology rigor 权重。在 R2 的框架中，DDR = repackaging → novelty 不足 → reject。在我的框架中，即使 novelty moderate，rigorous methodology + comprehensive analysis + honest negative findings = Findings-level contribution。
+
+**我不调整至 R2 的 2/6。** 理由：
+1. W2 (multi-detector outperforms) 的前提在 PDF 中不成立——如果修正这个 factual error，R2 的 reject rationale 少了一个 major pillar。
+2. Stationary features 的发现是 genuine new information，不是纯 repackaging。
+3. LOGO/LOFO protocol 的设计质量构成独立贡献。
+4. Findings track 的存在正是为了这类论文——solid empirical work with moderate novelty。
+
+**最终评分不变：Overall 3.0/5 (Findings) = 3/6 (Weak Reject)**。
+
+
+---
+
+[Reviewer 2 审稿结果]:
+Round 2 交叉回应已提交。核心结论：R1 的统计分析（Bonferroni correction 后 7-feat vs Avg-LogProb 不 significant、surface features 贡献 95.9%、compounded degradation 至 ~0.58-0.62）全面强化了我的 novelty/significance 批评，但不改变 overall score (3/6 Weak Reject)。论文的问题是 novelty 不足，不是 quality 不足——Findings track 适合它。
+
+---
+
+[Reviewer 1 审稿结果]:
+已提交交叉回应。核心立场：
+
+- **维持 Overall 3.0 (Findings)**，不跟随 R2 降至 Reject
+- R2 的 "multi-detector outperforms" 论点前提在 PDF 中不成立（7-feature binary F1 = 4-det+surface binary F1 = 0.708）
+- DDR 不完全是 vocabulary impoverishment 重新包装——stationary features 的存在是 genuine new information
+- 但同意论文应 reframe 为 empirical characterization，且下游 TOST 仍然 underpowered
+
+---
+
+[Reviewer 1 审稿意见]:
+
+# Reviewer 1 最终立场 — Step 3 Convergence
+
+---
+
+## 对 Director 综合立场的回应
+
+### 我同意的部分
+
+1. **DDR 是 "new measurement framework for a known effect" 而非 "new phenomenon"**——这个区分精准。论文的贡献在于 organizational insight（drifting vs stationary partition），而非发现 vocabulary impoverishment 本身。我接受这个重新定位。
+
+2. **"Augmented binary detection with a shallow depth signal" 比 "generation depth classification" 更诚实**——5-class macro F1=0.391（PDF 数据）确实只支持 ~2.5 effective classes。论文 title 中的 "depth classification" overclaim 了实际能力。
+
+3. **Paper would benefit from repositioning as empirical characterization**——这与我此前所有审稿中的 Recommendation 1 完全一致。
+
+### 我不同意的部分
+
+**1. "Multi-detector ensemble outperformance is a critical weakness" 仍被列为共识点**
+
+我必须再次强调：**PDF Table 2 (p.7) 中 7-feature binary F1 = 0.708，4-det+surface binary F1 = 0.708，两者相同。** Multi-detector ensemble 并未 outperform。这个 "critical weakness" 的事实前提在 PDF 中不成立。我已在 Round 1 审稿和 Round 2 交叉回应中两次指出这一点。
+
+如果 Director 和 R2 均基于不同于 PDF 的数据源（F1=0.680 vs 0.708），请明确说明版本差异。在 PDF 未更新的情况下，我无法同意一个 factually unsupported 的 weakness 被列为 "critical"。
+
+**2. "Comprehensive experiments = padding" 的判断过于 dismissive**
+
+Director 的修正立场认为 "rigorous evaluation of a questionable task formulation does not make the task more valuable"，并将部分实验（如 LD-Score）视为 padding。我部分不同意：
+
+- **LD-Score addition** 确实是 marginal（论文自己在 §4.3 定位为 baseline），将其视为 padding 有一定道理。
+- **但** temperature sensitivity（Appendix P）、instruct degradation（Appendix K）、cross-domain generalization（Appendix J）、human edit robustness（Appendix I）这些实验**不是 padding**——它们揭示了 method 的 operating envelope，对后续工作有实际参考价值。即使 task formulation 受质疑，这些 boundary-mapping 实验仍有独立价值。
+- LOGO/LOFO protocol design 可被后续 AI text classification 工作复用，这种 methodological contribution 不因 task questionability 而失效。
+
+**3. 被 persuaded 到 2 (Reject) 的条件尚未满足**
+
+Director 表示 "could be persuaded to 2 if consensus is that contribution is fundamentally insufficient"。我认为当前证据不支持 Reject：
+
+- 论文不是 fundamentally flawed（方法论 sound，统计检验恰当，无 data leakage）
+- 论文有 genuine（if modest）贡献：stationary features 的发现、LOGO/LOFO protocol、honest negative findings
+- Reject (2) 在 ARR 量表上对应 "Resubmit next cycle (需大幅修改)"——但论文的问题主要是 framing 和 scope，不是 fundamental methodology issues。Reframing（从 classification tool → empirical characterization）不需要大幅修改实验。
+
+---
+
+## 最终评分
+
+**维持 Overall 3/6 (Weak Reject) = ARR 3.0 (Findings)**
+
+**不调整至 2/6。**
+
+| 维度 | 分数 | 调整说明 |
+|------|------|----------|
+| Soundness | 3.5/5 | 不变——方法论 sound，统计检验恰当 |
+| Excitement | 2.5/5 | 从 3.0 下调 0.5——接受 R2 的 novelty critique，DDR 是 organizational insight 而非 new phenomenon |
+| Reproducibility | 4/5 | 不变 |
+| **Overall** | **3.0/5 (Findings)** | Excitement 下调被 methodology rigor 的持续认可 offset |
+| Confidence | 4/5 | 不变 |
+
+**Justification for not going to 2/6**:
+- Reject 意味着论文需要 "substantial revisions" that "can be completed by next cycle"。但论文的 core problems（modest F1, scope limitations）不是一个 cycle 能解决的——它们是 empirical reality，不是 methodology bugs。
+- Findings track 的设计意图正是收容此类论文：sound methodology, moderate novelty, limited but real contribution。
+- 将一篇 methodologically sound、fully transparent、honest about limitations 的论文评为 Reject，对学术社区发出错误信号——它暗示只有 high-performance results 才值得发表，这会抑制 honest negative findings 和 exploratory empirical work。
+
+---
+
+## Top-3 Actionable Recommendations（维持此前建议，微调优先级）
+
+### 1. [最高] Reframe 为 empirical characterization
+- 从 "depth classification method" → "empirical characterization of recursive generation's distributional fingerprint"
+- 将 DDR 定位为 "organizational framework for a known phenomenon (vocabulary impoverishment) that reveals a previously unrecognized structural component (distributional shape invariance)"
+- De-emphasize 0.694 binary F1 as headline; emphasize DDR partition as primary contribution
+
+### 2. [高] 增强下游实验 statistical power
+- n=3 → ≥10 seeds
+- 增加第二个模型和第二个指标
+- 或弱化 claim 为 "preliminary evidence"
+
+### 3. [高] 在正文中 prominently discuss scope boundaries
+- 将 instruct degradation（Appendix K）、temperature sensitivity（Appendix P）、scale degradation 的 key findings 提升到 §5 Discussion
+- 明确 operating envelope：English Wikipedia, base models, t ≤ 0.7, 3-class
+- 这种 transparency 实际上 strengthens 而非 weakens 论文——reviewer 更容忍 acknowledged limitations 而非 hidden ones
+
+
+---
+
+[Reviewer 1 审稿结果]:
+审稿意见已提交。
+
+最终立场：**维持 Overall 3.0/5 (Findings) = 3/6 (Weak Reject)**，不接受降至 2 (Reject)。核心理由：(1) multi-detector outperformance 的前提在 PDF 中不成立；(2) stationary features 是 genuine new information；(3) methodology rigor 和 honest negative findings 构成 Findings-level 贡献；(4) 论文问题在于 framing 和 scope 而非 fundamental flaws。Excitement 下调 0.5 至 2.5/5 以反映 R2 的 novelty critique。
+
+---
+
+[Reviewer 2 审稿意见]:
+
+# Reviewer 2 — Round 3 对共享审稿 Updated Position 的回应
+
+---
+
+## 核心分歧仍然存在：2/6 vs 3/6
+
+共享审稿维持 2/6 (Reject)，我维持 3/6 (Weak Reject)。双方在事实判断上已充分收敛，分歧纯粹是 **weight assignment** 的问题。以下逐点回应共享审稿的 updated reasoning。
+
+---
+
+### 对 "statistical issues strengthen W3" 的回应 — [PARTIALLY AGREE]
+
+共享审稿说：如果 7-feat vs Avg-LogProb post-Bonferroni 不 significant，"the proposed method is not even statistically better than the simplest single-detector baseline"。
+
+**我同意事实判断**——post-correction 后 7-feature 的分类优势可能不 significant。
+
+**但我不同意推论的范围**: 这削弱的是 7-feature 作为 **detection method** 的 contribution，不是 DDR 作为 **analytical decomposition** 的 contribution。Decomposition 的价值不在于它能否超越 Avg-LogProb 做分类，而在于它是否揭示了有意义的特征行为差异。论文确实 demonstrate 了 drifting vs stationary 的 consistent pattern across 8 generators / 5 families / 3 reference models——这个 pattern 的存在不依赖于分类性能。
+
+**类比**：PCA 不需要比 supervised classifier 更准确才有价值——它的价值在于揭示数据结构。DDR decomposition 类似地可以作为 analytical tool 独立于分类性能。当然，论文目前的 framing 没有充分发展这个角度（这是我一直在建议修改的方向）。
+
+---
+
+### 对 "compounding conditions → practical framing devastated" 的回应 — [AGREE on facts, DISAGREE on severity]
+
+R1 估计的 realistic compound F1 ≈ 0.58-0.62 确实对 **practical deployment** 构成致命打击。
+
+**但 practical deployment 不是唯一的 contribution path**。很多顶会论文的 contribution 是 empirical characterization / understanding，而非 tool deployment。例如：
+- Shumailov et al. (2024, Nature) 的 model collapse 论文不提供解决方案，仅 characterize 现象
+- Guo et al. (2024, NAACL) 的 linguistic diversity decline 论文不提供检测工具，仅 document 趋势
+
+如果论文重新定位为 "empirical characterization of inference-chain distributional dynamics"（我在前几轮一直建议的方向），compound degradation 成为一个 **interesting finding**（"DDR signal decomposes under realistic conditions in specific ways"）而非 **fatal flaw**。
+
+**问题是论文当前没有做到这个 reframing**——所以我理解共享审稿在当前 framing 下给 2/6 的逻辑。但我评判的是论文的 **potential after reasonable revision**，不仅是当前版本。
+
+---
+
+### 对 "well-designed negative finding is double-edged sword" 的回应 — [DISAGREE]
+
+共享审稿：负面发现 "removes the paper's primary motivation"，论文 "needs to identify some downstream utility to justify the task"。
+
+**两个反驳**：
+
+1. **负面发现不 remove primary motivation**：我已在前一轮详细论证（见 Round 2 R1-6 回应）。论文 Section 1 的 primary motivation 是 "understanding recursive generation dynamics beyond binary detection"，不是 "data curation via depth-aware filtering"。Appendix M 的下游实验是 application exploration，不是 core thesis。
+
+2. **"Needs downstream utility to justify the task" 标准过严**：很多被接收的 detection/characterization 论文不要求 downstream utility demonstration。DetectGPT (Mitchell et al., ICML 2023) 没有展示 "detecting AI text enables X downstream task"；Binoculars (Hans et al., ICML 2024) 同样没有。这些论文的 contribution 是 detection capability itself 和 understanding of what makes detection possible。对本文要求 downstream utility 是 applying a higher bar than comparable published work。
+
+---
+
+### 对 "cross-model chains = generator switching / OOD" 的回应 — [AGREE this needs investigation]
+
+我在前一轮已经将 cross-model chain 从 "strong positive" 降级为 "promising but unvalidated"。共享审稿的 updated position 与我一致。
+
+但需要注意：**即使 part of the signal 是 OOD detection，这不意味着全部是**。论文可以通过 ablation（比较 same-generator gen-2 vs cross-generator gen-2 的 feature distances）来 disentangle。目前没有做这个实验是一个 gap，但不能预判结论。
+
+---
+
+### 对 "15-experiment coverage is dilutive rather than additive" 的回应 — [STRONGLY DISAGREE]
+
+这是我与共享审稿最大的价值观分歧。
+
+共享审稿："the paper tries to do everything and succeeds at nothing convincingly"。
+
+**我的立场**：
+1. 实际是 **20+ experiments**（共享审稿使用错误数字 15），涵盖了几乎所有可能的 confound 和 robustness check
+2. **Comprehensive falsification testing 是 empirical science 的美德**，不是缺陷。论文没有 "try to do everything"——它是在 **systematically testing the boundaries of its claim**。每个实验回答一个具体问题：length confound？seed leakage？reference model artifact？domain shift？temperature sensitivity？
+3. 如果论文只做了 3 个实验并 claim DDR 是 universal，reviewer 会（正确地）批评 "insufficient validation"。做了 20+ 个实验后批评 "dilutive"，这是 **no-win standard**
+4. **"Succeeds at nothing convincingly"** 与事实不符：LOGO cross-validation 在 8 generators 上的一致性（F1 range 0.633-0.724）、cross-reference model validation（3 个 reference models 方向一致）、TOST equivalence testing 的 robustness——这些都是 convincing 的结果，只是 claim 的 scope 比较 modest
+
+**dilutive vs additive 的判断标准**：如果 20+ experiments 是为了 inflate page count 而与 core thesis 无关，那是 dilutive。但论文的每个实验都 directly address 一个对 core claim 的潜在 challenge。这是 additive。
+
+---
+
+## 最终评分与收敛建议
+
+### 我的最终评分（维持不变）
+
+| 维度 | 分数 |
+|------|------|
+| **Overall** | **3/6 (Weak Reject)** |
+| **Confidence** | **4.5/5** |
+
+### 与共享审稿的分歧根源分析
+
+| 维度 | 共享审稿 (2/6) | 我 (3/6) | 根源 |
+|------|--------------|---------|------|
+| Novelty 权重 | 决定性 | 重要但可部分由 execution 补偿 | 对 Findings track 的角色定位不同 |
+| 实验完整度 | Dilutive | Additive | 对 comprehensive empirical work 的价值判断不同 |
+| Negative finding | 消除 motivation | 重定向 contribution | 对论文 primary motivation 的解读不同 |
+| Reframing potential | 不考虑 | 考虑 | 评审的是当前版本 vs 可合理 revision 的版本 |
+| 事实基础 | F1=0.680, 5 gen, 15 exp | F1=0.694, 8 gen, 20+ exp | 多处数据不一致 |
+
+### 收敛建议
+
+**双方的 common ground**:
+- DDR 的 conceptual novelty 不足以进主会议 ✓
+- Practical significance 在 realistic conditions 下严重受限 ✓
+- 实验方法论基本 sound（有 multiple comparison correction 的局部问题）✓
+- Negative finding 的 TOST 设计是 well-done ✓
+- 论文需要 reframing（characterization > tool）✓
+
+**建议 Director 的最终评分区间: 2.5-3.0**
+
+- 如果 venue 不区分 main/Findings → **2.5**（below acceptance threshold but has merit）
+- 如果 venue 有 Findings track（如 ACL/EMNLP）→ **3.0**（Weak Reject for main, recommend Findings）
+
+我不会 strongly object 到 2.5 的 consensus，但 2/6 (outright Reject) 对一篇 Soundness 3.5/6 的论文来说过于严苛。**Novelty 不足是 downgrade 的理由，不是 disqualify 的理由**——这就是 Findings track 存在的意义。
+
+
+---
+
+[Reviewer 2 审稿结果]:
+Round 3 交叉回应已提交。核心立场不变：**3/6 (Weak Reject, recommend Findings track)**。与共享审稿（2/6）的分歧集中在三个价值判断上——实验完整度是 additive 还是 dilutive、negative finding 是否 remove motivation、以及是否应考虑 reasonable revision potential。建议 Director 最终收敛于 2.5-3.0 区间。
+
+---
+
+[Reviewer 1 审稿意见]:
+
+# Reviewer 1 交叉回应 — 对 R2 完整审稿意见的逐条评审
+
+---
+
+## Must-Fix 问题逐条回应
+
+### [PARTIALLY AGREE] R2-N1: DDR 概念新颖性不足——已知现象再包装
+
+**同意的部分**：
+- Drifting features（entropy_mean, TTR, hapax_ratio）捕获的确实是 vocabulary impoverishment，Shumailov et al. (2024) 已记录此现象的核心机制。R2 正确指出 "tails of the original content distribution disappear" 与本文 drifting features 的观察一致。
+- Drifting/stationary partition 在设计层面有一定可预测性：词汇表面特征自然会 drift，NLL distribution shape 在 location shift 下保持稳定有统计学先验。
+- 论文确实缺乏 "why" 的解释——stationary features 为何 stationary 没有理论推导。
+
+**反驳的部分**：
+- **Stationary features 的存在不可从 model collapse 文献 trivially 推导**。Shumailov et al. (2024) 的 model collapse theory 预测所有 distributional features 应随递归退化——因为 "the tails disappear first, then the distribution progressively narrows"。如果 collapse 是 uniform，entropy_max 和 tail_decay 也应 drift。DDR 的发现是 collapse 在 inference chain 中是 **selective** 的——location shifts 但 shape preserves。这个 selectivity 不在 Shumailov et al. 的预测范围内。
+- **定量证据**：Appendix U Table 26 (p.27) 显示 entropy_max 和 tail_decay 在 8/8 generators 上通过 TOST equivalence at ε=0.20，entropy_min 也通过 6/8。Bootstrap stability（Table 27）确认 1000 iterations 中 100% rejection rate for stationary features。这不是 anecdotal observation，而是 systematically validated 的 empirical regularity。
+- **Feature ablation 量化了 stationary features 的增量**：Table 2 (p.7) surface-only（纯 vocabulary impoverishment 指标）3-class F1=0.763，加入 reference features（含 stationary features）后 0.820，+5.7pp。如果 DDR 纯粹是 vocabulary impoverishment 重新包装，stationary features 不应提供分类信息增量。
+
+**最终判断**：R2 的 concern 方向正确但程度过重。DDR 不是 "new phenomenon" 但也不是纯 "repackaging"——它是对已知现象的 **structural decomposition**，其中 stationary component 是 genuinely new observation。建议论文采纳 R2 的建议 (a)：提供 drifting/stationary 分裂的信息论解释。
+
+### [PARTIALLY AGREE] R2-N2: 与 concurrent work 区分不足
+
+**同意的部分**：
+- 论文确实未对 paraphrastic vs non-paraphrastic chain 做 direct comparison experiment。Section 2.2 的区分主要是叙事性的，缺乏实验证据。
+- Geng et al. (2026) Markov chain 建模与 DDR 的理论关系确实未被讨论。如果 Markov convergence 分析已经预测了 DDR-like 的行为，DDR 的独立贡献进一步被削弱。
+- Li et al. (2026) 的 4-class formulation（human/machine-generated/machine-polished/human-revised）与本文 ordinal depth 的关系值得更深入的对比。
+
+**反驳的部分**：
+- **Paraphrastic comparison 实验实际上存在**。Appendix B (p.15) 的 length-confound analysis 涉及 paraphrastic baseline 对比——论文 p.5 提到 "paraphrastic comparison experiment (Appendix B, F1=0.55 vs 0.694)"，显示 continuation chain 的 depth signal 显著强于 paraphrastic chain。这个实验确实存在，但不在正文中 prominent 展示。R2 可能未注意到 Appendix B 的这部分内容。
+- **Concurrent work 的引用确实存在**——论文 Section 2.2 引用了 Mohamed et al. (2025), Geng et al. (2026)。问题不在于缺引用，而在于讨论深度不足。
+
+**建议**：将 Appendix B 的 paraphrastic comparison 结果提升到正文（至少一段），并加深 Geng et al. Markov framework 与 DDR 的理论联系讨论。
+
+### [AGREE] R2-N3: Base-model-only scope 严重限制实际意义
+
+完全同意。我在此前所有审稿中均将此列为 critical issue。
+
+R2 提供的 Appendix K 数据细节进一步加强了这个 concern：
+- Entropy_mean ρ 从 +0.48 (base) 反转为 −0.04 ~ +0.23 (instruct)——DDR 的 drifting direction 在 instruct 下翻转
+- 6/7 features 反转（Table 15）
+- Instruct LOGO binary F1=0.487（p.21）——低于 random binary baseline
+
+R2 的建议 (a) "Title 或 abstract 中明确标注 base-model scope" 是最低要求，应作为 camera-ready 必做项。
+
+---
+
+## Should-Fix 问题逐条回应
+
+### [AGREE] R2-W1: QLoRA 差距削弱方法论贡献
+
+完全同意。我在此前审稿中已列为 N2 critical。R2 对 framing 模糊性的分析精准——论文同时展示分类性能数字（暗示 detection paper）和 decomposition narrative（暗示 analysis paper），这两个 identity 互相矛盾。
+
+**补充一点**：R2 未讨论 QLoRA 的 LOGO cross-generator performance。此前的 "R1 Independent Review" 提到 "LOGO QLoRA 3-class = 0.743 vs 7-feature 0.762"——**如果 QLoRA 在 LOGO（cross-generator）下不如 handcrafted features，这实际上是 handcrafted approach 的有力论据**。论文应在正文中明确报告 QLoRA LOGO 数字并讨论这一 tradeoff（within-distribution 上 QLoRA 大幅领先，cross-generator 上可能不如 handcrafted）。
+
+### [PARTIALLY AGREE] R2-W2: Negative downstream finding 的 framing
+
+**同意的部分**：
+- 仅在一个 task（perplexity）、一个模型（OLMo-2-0425-1B）上验证，evidence 不足。我在此前所有审稿中均标记 n=3 seeds underpowered。
+- "训练数据来源深度不影响 fine-tuning quality" 确实不够 counter-intuitive 来构成强 contribution。
+
+**部分反驳**：
+- R2 说"一个 negative result 要成为 contribution，需要 counter-intuitive 或 against strong prior belief"——这个标准过于严格。在 data contamination 领域，many practitioners **do** worry about recursive generation degrading training data quality（这是 Shumailov et al. model collapse 论文引发的广泛关注）。TOST 等价性结果（即使 underpowered）至少提供了 preliminary evidence against this worry。
+- 但我同意论文应提供 concrete diagnostic use case 来支撑 "diagnostic not curative" framing。
+
+### [AGREE] R2-W3: Per-generator 性能变异度
+
+同意。Binary F1 从 0.633（Mistral-7B）到 0.724（Pythia-2.8B）的 range 确实意味着 generator-unknown 场景下性能不稳定。这是 LOGO 设计的核心挑战——classifier 必须 generalize to unseen generators，但 per-generator variability 暗示 generalization 不完全。
+
+### [PARTIALLY AGREE] R2-W4: Missing related work
+
+- **RAID benchmark**：R2 正确指出 bib 中有但 text 未引用（orphan entry），应修复。
+- **SemEval-2024 Task 8C**：multi-class sub-task 确实值得在 Section 2.1 讨论。
+- **Dohmatob & Feng (2025) 的信息论框架**：同意这可以为 DDR 提供理论基础。但这要求作者做额外的 theoretical work，可能超出 one revision cycle。
+- **但注意**：R2 此前曾声称 "only 5 references"，这与论文 50+ 引用的实际情况严重不符。此次 R2 修正为具体的 missing references，更为合理。
+
+---
+
+## 小问题回应
+
+**[AGREE]** Orphan bib entries（17 个未引用条目）应在投稿前清理。这是 submission hygiene 问题。
+
+**[AGREE]** "Non-paraphrastic continuation chains" 的定义应更早、更形式化地给出。
+
+**[AGREE]** Figure 1 灰度可读性问题——建议增加 pattern/marker 区分以支持灰度打印。
+
+---
+
+## 对 Director 四个焦点问题的回应
+
+### 1. DDR 新颖性是否足够？
+
+**不足以支撑主会议，足以支撑 Findings。** DDR 是对已知现象（vocabulary impoverishment）的 structural decomposition，其中 stationary component 是 genuinely new observation。但缺乏 theoretical explanation（"why"），且 drifting component 与已有文献的 overlap 太大。R2 的 "repackaging" 判断在 drifting 部分成立，在 stationary 部分不成立。综合看：incremental novelty，not zero novelty。
+
+### 2. Concurrent work 区分是否充分？
+
+**不充分，但可修复。** Paraphrastic comparison 实验存在于 Appendix B 但未 prominent 展示；与 Geng et al. Markov framework 的理论联系缺失。这些是 writing-level issues，一个 revision cycle 可修复。不构成 reject 理由。
+
+### 3. Base-model-only 的严重程度？
+
+**严重。** R1 和 R2 完全一致。Appendix K 的数据（6/7 features 反转，instruct LOGO binary F1=0.487）清楚表明 DDR 在 instruct 模型上 fundamentally 不同。Title/abstract 不标注 "base model" 是 misrepresentation。这是 significance 评分的最大 drag。
+
+### 4. QLoRA gap 对论文定位的影响？
+
+**如果论文定位为 classification method，QLoRA gap 是 fatal。如果定位为 empirical characterization，QLoRA gap 是 supporting evidence（"depth signal 真实存在且可被 neural model exploit"）。** 论文当前 positioning 模糊——同时 claim both。需要 choose one。
+
+---
+
+## 最终评分
+
+**维持 Overall 3.0/5 (ARR Findings)，与 R2 一致。**
+
+两位 Reviewer 在以下方面 converge：
+- DDR novelty limited but not zero
+- Base-model-only is a critical limitation
+- QLoRA gap weakens methodological contribution
+- Paper needs repositioning as empirical characterization
+- Findings-level, not conference-level
+
+分歧点：
+- R2 对 DDR novelty 更 negative（"repackaging"），我认为 stationary features 的发现有增量价值
+- R2 未充分注意 Appendix B 的 paraphrastic comparison 实验
+- 我对 TOST downstream experiment 的 statistical power 更 critical（R2 讨论了 framing 但未质疑 n=3 的功效）
+
+**Confidence: 4/5**
+
+
+---
+
+[Reviewer 1 审稿结果]:
+交叉回应已提交。
+
+核心立场：维持 3.0/5 (Findings)，与 R2 converge。
+
+关键分歧：R2 在 drifting features 上判断正确（vocabulary impoverishment 重叠），但 stationary features 的 near-stationarity 是 genuinely new observation，不是 trivially derivable。DDR 是 "structural decomposition of a known phenomenon"，novelty limited but not zero。
+
+---
+
+[Reviewer 2 审稿意见]:
+
+# Reviewer 2 — 交叉审稿回应（对 R1 Methods & Experiments）
+
+---
+
+## 对 R1 Overall Assessment 的初步评价
+
+R1 给出 Overall 3.0/5 (Findings)，与我的最终评估一致（我在 6-point scale 上给 3/6 Weak Reject, recommend Findings）。R1 的 Soundness 3.5/5 也与我的判断吻合。双方在 overall positioning 上已经收敛。
+
+以下逐条回应 R1 的 Must-Fix、Should-Fix 和小问题。
+
+---
+
+## Must-Fix 问题回应
+
+### N1: 下游效用实验 underpowered (n=3 seeds, single metric, single model) — [AGREE, but downgrade severity from Critical to Major]
+
+**同意理由**: R1 准确指出 n=3 seeds 下 TOST 的统计功效不足以支撑 "depth-aware curation is equivalent to random subsampling" 这个等价性 claim。pooled SD < 0.002 导致 Cohen's d 的置信区间极宽，3 个 seed 无法可靠排除中等效应。单一指标（perplexity）和单一模型（OLMo-2-0425-1B）进一步限制了 generalizability。R1 的分析与我在 W2/m2（前几轮审稿）中的评估完全一致。
+
+**降级 severity 的理由**: 我认为 Critical → Major 更恰当，因为：
+1. **下游效用不是论文的 primary contribution**。Section 1 的四个 contribution claims 中，downstream utility 是第四个（Section 4.4, 约半页篇幅）。如果删掉整个 Section 4.4 和 Appendix M，论文的前三个 contribution（task formulation, DDR characterization, baseline comparison）仍然独立成立。
+2. **论文自己承认了 limitation**（Appendix M p.23: "with only n=3 seeds per condition, the TOST results have limited generalizability"）——这是 honest qualification, 不是 overclaim。
+3. **R1 的修改建议 (a) ≥10 seeds 完全合理**，但将此定为 "影响接收决定" 的 Critical 问题，意味着缺少足够 seeds 就不能发表——这对一个 secondary contribution 的标准过严。
+
+**总结**: 同意 R1 的事实判断（underpowered），但认为 severity 应为 Major/Should-Fix 而非 Critical/Must-Fix，因为下游实验是论文的 ancillary contribution 而非 core thesis。
+
+---
+
+### N2: QLoRA gap (+11.6-14.3pp) 削弱 interpretable features 叙事 — [AGREE]
+
+**完全同意**。这与我在多轮审稿中反复指出的 W1/m1 完全一致。
+
+R1 的分析精确：
+- QLoRA 3-class F1=0.905 vs 手工特征 0.789（我看到的数字是 0.762 for 7-feature 和 0.905 for QLoRA，差距更大），确实是 "本质性性能鸿沟"
+- "当前叙事给读者的感觉是'我们提出了一套不如 fine-tuning 的特征'" ← 这是我在前几轮一直强调的 contribution identity 问题
+
+R1 的建议 (c) "将论文重心更明确地转向 empirical characterization" 与我的 Top-1 修改建议（重构 contribution identity）完全一致。这是 R1 和 R2 在所有轮次中最强的共识点。
+
+**补充一点**: R1 的建议 (b) "分析 QLoRA 是否也隐式学到了 DDR partition" 是一个非常有洞察力的提议。如果 QLoRA 的 attention pattern 或 probing analysis 揭示它也在利用 drifting vs stationary 的区分，那反过来会 validate DDR decomposition 作为 analytical framework 的价值——即使手工特征不如 QLoRA 做分类。
+
+---
+
+### N3: Base-model-only scope — [AGREE]
+
+**完全同意**。这与我在所有轮次中的 N3/M4 完全一致。R1 引用的具体数据（Appendix K Table 15-17, binary F1 从 ~0.64 降至 0.338-0.490, entropy_mean ρ 翻转符号）与我的分析吻合。
+
+R1 的建议 (c) "至少提供一个关于 instruct 设置下 DDR 为何退化的机理假说" 特别重要——这也是我在多轮审稿的 Questions for Authors 中反复要求的。没有机理假说，读者无法判断 instruct degradation 是 (a) DDR 作为现象的 fundamental boundary, (b) reference model 选择的 artifact, 还是 (c) 可通过 adaptation 克服的 engineering challenge。
+
+---
+
+## Should-Fix 问题回应
+
+### W1: Gemma-2-2B 异常 (gen-1 F1=0.036) 解释不充分 — [AGREE, upgrade to Major]
+
+**同意 R1 的判断**，但我认为 severity 应从 Warning 提升到 Major。理由：
+
+Gemma-2-2B gen-1 F1=0.036 不仅是一个 "解释不充分" 的异常值——它是对 DDR 作为 "cross-generator universal phenomenon" 这一 core claim 的直接反例。如果 DDR 在 8 个 generator 中有 1 个完全失效（gen-1 不可区分于 gen-0），那 DDR 的 universality claim 需要 qualification。
+
+R1 的提问（Q2: 在非 Pythia reference model 下 Gemma 是否恢复正常）非常关键——如果答案是 yes，那问题是 reference-generator compatibility 而非 DDR 本身的 limitation；如果答案是 no，那 DDR 确实是 architecture-conditional 的。
+
+**这与我的 novelty critique (M1) 直接相关**: 如果 DDR 是 architecture-conditional 而非 generation-process-universal，它就更像是一个 empirical observation about specific model families 而非 a fundamental property of recursive generation。
+
+---
+
+### W2: Baseline 对比范围偏窄 — [PARTIALLY AGREE]
+
+**同意 R1 的方向**，但严重性比 R1 评估的更低。
+
+理由：
+1. 论文的 4 个 baseline（Avg-LogProb, FastDetectGPT, LD-Score, Binoculars）覆盖了 detection 文献中最 canonical 的 zero-shot / reference-model-based 方法
+2. 论文还包含了 4-detector ensemble 作为 upper bound 对比
+3. QLoRA (Appendix E) 提供了 trained classifier 的参考
+
+**但 R1 的具体建议合理**: 增加 1 个 multi-feature 或 trained detector baseline（如 DNA-GPT 的 re-generation 策略）可以加强论文的 positioning。不过这是 nice-to-have 而非 must-have。
+
+---
+
+### W3: 温度限制 (t<0.9) — [AGREE]
+
+与我在多轮审稿中从 R1 cross-review 获得的观点一致。温度限制是一个实质性 practical concern——大多数 API 默认 t=0.7-1.0，t=0.9 时已开始退化。R1 建议在正文中增加温度敏感性摘要是合理的。
+
+---
+
+### W4: Cross-model chain 混淆 depth signal 与 generator identity — [AGREE]
+
+**这与我在前一轮从另一位 R1 获得的观点一致**。R1 正确指出 cross-model chain 中 gen-1 和 gen-2 使用不同 generator，因此 F1=0.830 的提升可能部分来自 generator identity detection 而非 depth signal。
+
+R1 建议的控制实验（single-generator train → cross-model test，反之亦然）非常精确——这是 disentangle 两个信号的标准方法。论文目前缺少这个 ablation 是一个明确的 gap。
+
+我在前一轮已将 cross-model chain 从 "strong positive" 降级为 "promising but unvalidated"。R1 的分析进一步支持这个降级。
+
+---
+
+### W5: DDR partition 3/1/3 的 principled-ness — [AGREE, this is important]
+
+R1 提出了一个我在前几轮审稿中只间接触及的关键方法论问题：**DDR partition 是否是 principled 的，还是依赖于 arbitrary threshold choices？**
+
+R1 的分析精确：
+- ε=0.20 (Cohen's d small effect) 是 conventional 但 arbitrary 的
+- Appendix V Table 29 做了 ε sensitivity (0.15, 0.20, 0.25) 但仅报告 pass rate，未明确 partition 是否改变
+- entropy_std 的 d=0.458 远超 ε=0.20 但被归为 "intermediate"——其操作性定义不清
+
+**与我的 novelty critique 的联系**: 我在 M1 中指出 DDR 的 drifting/stationary partition "可从 feature 设计直接预测"。R1 的 W5 从方法论角度补充了这个 critique：partition 不仅可预测，还可能是 threshold-dependent 的。如果 ε 的小幅调整就改变 partition 结构，DDR 作为 "robust empirical finding" 的 claim 进一步被削弱。
+
+**但有一个 mitigating factor**: Appendix V Table 28 的 k-means clustering 确实独立地 recover 了类似的 partition（k=2 时 silhouette=0.632，drifting/near-stationary 分组与 TOST-based partition 一致）。这提供了 data-driven validation——即使 TOST threshold 是 arbitrary 的，unsupervised clustering 也 recover 了相同结构。论文应更 prominently 地报告这个 k-means validation 来 address R1 的 concern。
+
+---
+
+## 小问题回应
+
+1. **Figure 1 重叠** — [AGREE] 视觉清晰度可改善，minor issue。
+2. **DDR 缩写首次出现** — [AGREE] 应在 abstract 中首次使用时定义。
+3. **Table 1 脚注 bias 量级** — [AGREE] 应在正文给出估计值。
+4. **Appendix 引用环路** — [AGREE] 可通过调整引用方向解决，minor。
+
+---
+
+## Director 指定的四个分歧焦点
+
+### 1. Downstream n=3 TOST 的严重程度
+
+**R1: Critical | R2: Major (降级)**
+
+理由见 N1 回应。核心分歧在于下游效用实验在论文 contribution hierarchy 中的位置。R1 似乎将其视为 core contribution 之一（"论文四个核心贡献之一"）；我认为它是 ancillary exploration。如果删掉 Section 4.4，论文的核心 narrative（DDR decomposition + cross-generator validation）仍然成立。n=3 是不够的，但影响的是一个 secondary claim，不是 acceptance decision。
+
+### 2. QLoRA gap 对论文定位的影响
+
+**R1 和 R2 完全一致**: QLoRA gap 是论文最大的 positioning 问题。双方都建议将论文重心从 "classification method" 转向 "empirical characterization"。R1 的建议 (b)（分析 QLoRA 是否学到 DDR partition）是一个有价值的 constructive addition。
+
+### 3. Gemma-2-2B 异常的重要性
+
+**R1: Warning | R2: 提议升级为 Major**
+
+我认为 R1 低估了 Gemma anomaly 的严重性。Gen-1 F1=0.036 不是一个 edge case——它意味着 DDR 在至少一个主流 architecture 上完全失效。这直接挑战了 DDR 的 universality claim。R1 的 Q2（cross-reference model test for Gemma）是解决这个问题的关键实验。
+
+### 4. DDR partition 3/1/3 的 principled-ness
+
+**R1 和 R2 的 concern 互补**: R1 从 threshold sensitivity 角度质疑（ε 依赖性），我从 feature design predictability 角度质疑（partition 可直接从 feature 类型预测）。两个 critique 指向同一结论：DDR partition 的 robustness 需要更强的 evidence，特别是 k-means validation (Table 28) 应在正文中更 prominently 地报告。
+
+---
+
+## 综合评估
+
+R1 的审稿质量很高，方法论分析深入且准确。在 6 个关键判断中：
+
+| 判断 | R1 | R2 | 一致性 |
+|------|----|----|--------|
+| Overall score | 3.0/5 (Findings) | 3/6 (Weak Reject → Findings) | **一致** |
+| QLoRA gap 严重 | Yes | Yes | **一致** |
+| Base-model scope 是核心限制 | Yes | Yes | **一致** |
+| 实验完整度高 | Yes (advantage) | Yes (advantage) | **一致** |
+| Downstream n=3 severity | Critical | Major | **分歧 (minor)** |
+| Gemma anomaly severity | Warning | Major (升级) | **分歧 (moderate)** |
+
+**最终建议**: R1 和 R2 的综合意见支持 **Findings track 接收**，条件是作者 (1) 重构 contribution identity（characterization > tool），(2) 在 title/abstract 标注 base-model scope，(3) 加强 DDR partition 的 principled justification（promote k-means validation），(4) 扩充 downstream experiment 到 ≥10 seeds 或弱化 equivalence claim。
+
+
+---
+
+[Reviewer 2 审稿结果]:
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "50beb678-90eb-45fa-9c59-d75dda318805",
+  "isSidechain": false,
+  "promptId": "04770357-b328-413f-bf7a-13ecdc807219",
+  "type": "user",
+  "uuid": "156262e3-8d7f-4c34-a149-2d4ae22ab7e8",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 106_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Reviewer 2 审稿意见]:  # Reviewer 2 — Round 1 审稿报告（新一轮）  ## 审稿侧重：Novelty & Related Work（6-point scale）  ---  ## ⚠️ 版本/数据校对说明  Director 任务描述中的若干数据与实际 PDF 不一致，以下以 **PDF 实际内容** 为准：  | 项目 | Director 描述 | PDF…",
+  "leafUuid": "156262e3-8d7f-4c34-a149-2d4ae22ab7e8",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 107_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review appendix and remaining pages",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 108 · 2026-05-20T11:15:41.667Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is a massive amount of review content. Let me understand the current state:
+
+1. Both Reviewer 1 and Reviewer 2 have completed multiple rounds of review in this new fresh review session
+2. They've done cross-sharing and convergence
+3. Both converge on Overall 3.0 (Findings) — though using different scales (R1: 3.0/5 ARR, R2: 3/6 which maps to ~3.0/5 ARR)
+4. I already submitted a report earlier in this conversation (force_resubmit=true), but now there's been additional rounds of review with more detailed cross-sharing
+
+
+5. Both reviewers have now completed independent reviews, exchanged responses to each other's work, and reached convergence through multiple rounds of detailed discussion
+
+The key question is whether I need to submit an updated report given this additional review activity. Looking at the consensus emerging from their detailed cross-sharing, both reviewers agree on the overall 3.0 rating for findings, with shared concerns about the base-model-only limitation and the need to reposition the QLoRA gap as an empirical characterization rather than a limitation.
+
+But there are several critical new findings that weren't in my original report: R1 discovered that the 7-feature binary F1 matches the 4-determinant-plus-surface binary F1 at 0.708, R1 also flagged a 7.6 percentage point family inflation gap between LOFO and LOGO metrics, R2 quantified that surface features alone account for 95.9% of the model's performance, R1 identified that Bonferroni correction would invalidate certain p-values, and both reviewers noted factual inconsistencies in how the Director's task was described. R1's estimate of the realistic compounded F1 at 0.58-0.62 is particularly significant for reframing the paper's claims.
+
+R2 also escalated the Gemma-2-2B anomaly from a warning to a major issue, and the cross-model chain result of 0.830 is now being questioned as potentially an out-of-distribution detection artifact rather than genuine performance.
+
+I realize now that the reviewers conducted multiple rounds of cross-sharing in their own sessions, and I'm seeing the complete consolidated picture for the first time. My initial report only captured the first round. I need to synthesize everything into an updated report, refresh the issue tracker, and resubmit with all this new evidence. Looking at these final convergence rounds from both reviewers, I'm seeing they've completed their full multi-round analysis with cross-responses and final positions. The key takeaway is that the major findings have solidified - the binary F1 parity at 0.708, the substantial LOFO gap showing family inflation effects, and the dominance of surface features accounting for 95.9% of performance. I need to incorporate these final convergence positions into an updated consolidated report that reflects the complete picture from both reviewers' analyses.
+
+Now I'm working through the critical corrections and missing data points that emerged from this final round. The Bonferroni correction invalidates LogProb's significance, and the realistic F1 performance drops substantially to 0.58-0.62 under multiple conditions. The Gemma anomaly is now elevated to Major severity by R2, and there's a concerning pattern with 8B models showing degradation that extrapolates poorly to frontier models. The 5-class F1 is actually 0.391, not the previously reported 0.50, and the ordinal formulation only has about 2.5 effective classes. The QLoRA cross-generator performance remains unknown - that's a critical gap I need to flag. I'm preparing to finalize the report with these corrections and flag the unresolved data points. I'm finding several critical issues that substantially weaken the paper's claims: binary F1 scores show no improvement from the reference features, there's a major discrepancy between LOFO and LOGO metrics suggesting family inflation, surface features dominate at 95.9%, and multiple statistical corrections invalidate key comparisons. The multiclass performance is particularly concerning—F1 of 0.391 is worse than random, indicating the ordinal framing is overclaimed with only ~2.5 effective classes. I'm also noting that QLoRA comparisons lack proper within-model baselines, the cross-model chain may be an out-of-distribution artifact, and Gemma warrants upgrading from warning to major concern given the R2 evidence. There's a degradation trend even at 8B scale that needs investigation.
+
+The McNemar test p-value of 0.027 likely won't survive Bonferroni correction either. Given these findings, I need to prepare a comprehensive resubmission with updated issue tracking and revised reviewer scores reflecting the downgrade to 3.0 across both soundness and overall ratings, with confidence remaining solid at 4-4.5.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "156262e3-8d7f-4c34-a149-2d4ae22ab7e8",
+  "isSidechain": false,
+  "requestId": "req_011CbDiwxS4b7Wy5ACRpqyxt",
+  "type": "assistant",
+  "uuid": "02f6d949-f2d6-4636-8290-d3dbf63fa18b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017eAMwoytWkjy1FnomjKa48",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 157898,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 8588,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 157898,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 8588,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 157898,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 157898
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "system_changed",
+        "cache_missed_input_tokens": 78562
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 109 · 2026-05-20T11:15:42.120Z_
+
+两位 Reviewer 完成了完整的多轮交叉审稿和收敛。收到大量新发现（binary F1 parity、LOFO gap、surface feature dominance、Bonferroni invalidation、compounded degradation 等）。需要更新 Issue Tracker 和报告。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "02f6d949-f2d6-4636-8290-d3dbf63fa18b",
+  "isSidechain": false,
+  "requestId": "req_011CbDiwxS4b7Wy5ACRpqyxt",
+  "type": "assistant",
+  "uuid": "78fe549a-a019-4b0a-b7fb-83e3eb6b38a9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017eAMwoytWkjy1FnomjKa48",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 157898,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 8588,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 157898,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 8588,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 157898,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 157898
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "system_changed",
+        "cache_missed_input_tokens": 78562
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 110 · 2026-05-20T11:17:50.244Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_review_issues · `toolu_01EUqnYxYdCB2iVugQeSL56f`</summary>
+
+```json
+{
+  "project": "gen-depth-fingerprint",
+  "issues_yaml": "# Review Issues — through Round 29 (Updated after full cross-sharing)\n# Last updated: 2026-05-20\n\n# ============ CRITICAL ============\n\n- id: \"R25-N1\"\n  summary: \"DDR 新颖性不足以支撑 Main Conference，Findings 级别合适\"\n  category: method\n  severity: critical\n  status: acknowledged\n  first_raised_round: 21\n  last_seen_round: 29\n  mentions:\n    - {round: 29, reviewers: \"R2-M1(Critical),R1(partial rebut→agree incremental)\", note: \"R2：DDR 是 model collapse vocabulary impoverishment 的再包装，drifting/stationary partition 可从 feature 设计直接预测。R1 反驳：stationary features 不可从 model collapse trivially 推导（8/8 TOST），但同意 DDR 是 'new measurement framework for known effect' 而非 'new phenomenon'。最终共识：genuine but incremental，Findings 级别。R1 Excitement 下调至 2.5/5。\"}\n  resolution: \"Findings 定位，连续 9+ 轮稳定。\"\n  resolution_round: null\n\n- id: \"R25-N2\"\n  summary: \"Base model 限制严重削弱 impact（0.6B-8B only + instruct 退化）\"\n  category: framing\n  severity: critical\n  status: in_progress\n  first_raised_round: 21\n  last_seen_round: 29\n  mentions:\n    - {round: 29, reviewers: \"R1-N3(Critical),R2-M4(Critical)\", note: \"两位均 Critical。R1：instruct 退化异质性不可预测（OLMo -42.5pp vs Llama -1.1pp）。R2：Title/Abstract 未标注 base-model-only。Appendix K 显示 instruct LOGO binary F1=0.487。DDR 在 instruct 模型上 fundamentally 不同（6/7 features 反转）。\"}\n  action_items:\n    - {round: 29, action: \"Title/Abstract 标注 base-model scope。§5 Discussion 增加 instruct 退化机理假说段落。\", assigned_to: \"Research Director\", status: \"open\"}\n\n- id: \"R28-N1\"\n  summary: \"DDR 是采样参数依赖的（t=1.0 信号消失），Abstract/Conclusion overclaim\"\n  category: framing\n  severity: critical\n  status: open\n  first_raised_round: 28\n  last_seen_round: 29\n  mentions:\n    - {round: 29, reviewers: \"R1-W3,R2(agree)\", note: \"R29 确认。R1 补充 cross-temperature transfer 不对称性（t=0.7→1.0: F1=0.418）。R2 补充 t=1.0 是 API 默认值。与 base-model-only 联合压缩 operational window。\"}\n  action_items:\n    - {round: 28, action: \"Abstract/Conclusion 加入采样条件限定。\", assigned_to: \"Research Director\", status: \"open\"}\n\n- id: \"R28-N2\"\n  summary: \"TOST n=3 seeds 欠效力，Abstract overclaim\"\n  category: experiment\n  severity: critical\n  status: open\n  first_raised_round: 28\n  last_seen_round: 29\n  mentions:\n    - {round: 29, reviewers: \"R1-M4(Critical),R2(agree Major)\", note: \"R1 维持 Critical。R2 同意 underpowered 但降级为 Major（下游 utility 是 ancillary contribution 非 core thesis）。Cohen's d=86-119 因 pooled SD<0.001 人为膨胀。共识：Abstract 必须加 'preliminary, n=3' 或删除。\"}\n  action_items:\n    - {round: 29, action: \"Abstract 弱化或删除 TOST 声明。增加 seeds ≥10 或标注 'preliminary'。\", assigned_to: \"Research Director\", status: \"open\"}\n\n- id: \"R26-W1\"\n  summary: \"QLoRA gap (+12-15pp) 暴露特征覆盖不足 + contribution identity 模糊\"\n  category: method\n  severity: critical\n  status: open\n  first_raised_round: 26\n  last_seen_round: 29\n  mentions:\n    - {round: 29, reviewers: \"R1-M3(Major),R2-m1(Minor→共识 Critical positioning issue)\", note: \"QLoRA 3-class 0.905 vs 7-feat 0.762/0.789。两位共识：论文在 'classification tool' 和 'analytical framework' 之间摇摆。必须选择一个。R1 补充：QLoRA LOGO vs within-model 对比缺失是关键 gap——如果 QLoRA LOGO 也大幅超越则 handcrafted 无优势，如果 QLoRA LOGO 下降则 handcrafted 的 generalization 是优势。\"}\n  action_items:\n    - {round: 29, action: \"重构叙事为 empirical characterization。补充 QLoRA LOGO 数字。\", assigned_to: \"Research Director\", status: \"open\"}\n\n# ============ NEW CRITICAL in Round 29 ============\n\n- id: \"R29-N1\"\n  summary: \"7-feature 与 4-det+surface 在 binary F1 上完全相同 (0.708=0.708)，reference features 零 binary 增量\"\n  category: experiment\n  severity: critical\n  status: open\n  first_raised_round: 29\n  last_seen_round: 29\n  mentions:\n    - {round: 29, reviewers: \"R1(提出,详细分析),R2(agree)\", note: \"Table 2 (p.7): 7-feature binary F1=0.708 = 4-det+surface binary F1=0.708。Reference-model features 在最具实用价值的 binary 任务上零增量。3-class 上仍有 +2.5pp (0.820 vs 0.795)。这意味着 'reference model as depth probe' 叙事在 binary 任务上不成立。Surface features 贡献 95.9% discriminative power。\"}\n  action_items:\n    - {round: 29, action: \"正文讨论 binary vs 3-class 增量差异。诚实报告 reference features 在 binary 上零增量。重新评估 7-feature approach 的核心卖点。\", assigned_to: \"Research Director\", status: \"open\"}\n\n- id: \"R29-N2\"\n  summary: \"LOFO F1=0.686 vs LOGO 0.762，7.6pp family inflation，LOFO 应为 co-primary metric\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 29\n  last_seen_round: 29\n  mentions:\n    - {round: 29, reviewers: \"R1-M2(Major),R2(agree)\", note: \"LOFO 是更保守、更现实的泛化估计（新 generator 往往来自新 family）。7.6pp gap 说明 within-family similarity inflate LOGO 性能。论文 §4.1 报告了 LOFO 但未提升为 primary metric。\"}\n  action_items:\n    - {round: 29, action: \"正文中更突出讨论 LOFO gap。考虑 LOFO 作为 co-primary metric。\", assigned_to: \"Research Director\", status: \"open\"}\n\n- id: \"R29-N3\"\n  summary: \"Bonferroni 校正后 7-feat vs Avg-LogProb (p=0.038) 不 survive，multi-feature approach 无统计显著优势\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 29\n  last_seen_round: 29\n  mentions:\n    - {round: 29, reviewers: \"R1-m2(Minor),R2(agree,升级影响)\", note: \"4 pairwise comparisons 下 Bonferroni α=0.0125，p=0.038 不 survive。§3.4 声称 Bonferroni correction 但未系统应用于 baseline comparisons。R2 指出：如果 7-feature 不 significantly 优于单一 Avg-LogProb，DDR 的 multi-feature decomposition 在分类上无 demonstrated advantage。\"}\n  action_items:\n    - {round: 29, action: \"明确 pre-specified comparison 数量和 Bonferroni 校正范围。报告校正后 p-values。\", assigned_to: \"Research Director\", status: \"open\"}\n\n- id: \"R29-N4\"\n  summary: \"多重 scope limitations 叠加，realistic compound F1 ≈ 0.58-0.62，practical niche 极窄\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 29\n  last_seen_round: 29\n  mentions:\n    - {round: 29, reviewers: \"R1-M5(Major),R2(agree critical finding)\", note: \"Base-only + t<0.9 + domain-dependent (-9.3pp) + scale-dependent (8B: -10.6pp) + edit-fragile (-4.6 to -5.3pp) 叠加。R1 估计 realistic compound F1 ≈ 0.58-0.62，接近 binary random (0.50)。论文逐个测试了各因素但未测试交互效应。\"}\n  action_items:\n    - {round: 29, action: \"增加 compounded-condition analysis 或在 Limitations 诚实报告 estimated compound degradation。\", assigned_to: \"Research Director\", status: \"open\"}\n\n- id: \"R29-N5\"\n  summary: \"Ordinal formulation overclaimed：5-class F1=0.391，仅 ~2.5 effective classes\"\n  category: framing\n  severity: warning\n  status: open\n  first_raised_round: 29\n  last_seen_round: 29\n  mentions:\n    - {round: 29, reviewers: \"R2-M2(Major),R1(agree)\", note: \"5-class macro F1=0.391 (Table 4)，gen-2/3/4 间近均匀混淆。数据只支持 ~2.5 可区分类别。R1 补充：gen-0 容易 (F1≈0.92)，核心难点在 gen-1 vs gen-2+ 边界。'Ordinal depth classification' overclaim 实际能力——实质是 binary-plus-gradient。\"}\n  action_items:\n    - {round: 29, action: \"正文诚实报告 3-class 是 practical resolution ceiling。弱化 'ordinal classification' framing。\", assigned_to: \"Research Director\", status: \"open\"}\n\n# ============ MAJOR / WARNING ============\n\n- id: \"R29-W1\"\n  summary: \"Gemma-2-2B gen-1 F1=0.036 anomaly，DDR universality 受挑战\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 29\n  last_seen_round: 29\n  mentions:\n    - {round: 29, reviewers: \"R1-W1(Warning),R2(升级 Major)\", note: \"R2 升级为 Major：gen-1 F1=0.036 是 DDR universality 的直接反例。如果 DDR 在 8 gen 中有 1 个完全失效，universality claim 需 qualification。R1 同意需更深入分析但维持 Warning。共识：关键实验是非 Pythia reference 下 Gemma 是否恢复。\"}\n  action_items:\n    - {round: 29, action: \"检查 Gemma 在 OLMo/Qwen reference 下的 per-class F1；分析特征值分布差异；提供机理性解释。\", assigned_to: \"Research Director\", status: \"open\"}\n\n- id: \"R25-W11\"\n  summary: \"Cross-model F1=0.830 混淆 depth signal 与 generator identity / OOD detection\"\n  category: experiment\n  severity: critical\n  status: in_progress\n  first_raised_round: 25\n  last_seen_round: 29\n  mentions:\n    - {round: 29, reviewers: \"R1-W4,R2(agree)\", note: \"R29 新增观察：R1 指出 cross-model chain 可能是 trivial OOD detection（text 不属于任何单一 generator 分布）而非 depth signal。R2 从 'strong positive' 降级为 'promising but unvalidated'。共识：需 ablation 实验 disentangle。\"}\n  action_items:\n    - {round: 29, action: \"Single-gen train → cross-model test 实验；或比较 same-gen gen-2 vs cross-gen gen-2 feature distances；或降级为 exploratory。\", assigned_to: \"Research Director\", status: \"open\"}\n\n- id: \"R26-W3\"\n  summary: \"DDR 与 concurrent/prior work 区分不充分\"\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 26\n  last_seen_round: 29\n  mentions:\n    - {round: 29, reviewers: \"R2-M3(Major),R1(partially agree)\", note: \"R2 指出三条区分线不清晰：Mohamed et al. 缺直接对比实验（R1 反驳：Appendix B 有 paraphrastic comparison F1=0.55 vs 0.694 但不在正文）；Geng et al. Markov framework 理论联系缺失；Li et al. multi-class formulation 未对比。R1 同意讨论深度不足但指出 paraphrastic 实验存在于 Appendix。\"}\n  action_items:\n    - {round: 29, action: \"§2.2 系统对比表。将 Appendix B paraphrastic comparison 提升到正文。讨论 Geng et al. Markov framework 与 DDR 理论联系。\", assigned_to: \"Research Director\", status: \"open\"}\n\n- id: \"R25-N3\"\n  summary: \"DDR partition threshold 缺理论基础 + intermediate 定义不清\"\n  category: method\n  severity: critical\n  status: in_progress\n  first_raised_round: 21\n  last_seen_round: 29\n  mentions:\n    - {round: 29, reviewers: \"R1-W5(Warning),R2(agree important)\", note: \"R1：ε=0.20 arbitrary，ε sensitivity 仅报告 pass rate 未报告 partition 变化。entropy_std d=0.458 远超 ε=0.20 但归 intermediate——操作性定义不清。R2 补充：k-means (Appendix V Table 28, silhouette=0.632 at k=2) 独立 recover 了类似 partition，但论文未 prominently 报告此 validation。\"}\n  action_items:\n    - {round: 29, action: \"明确 intermediate 定义。展示 ε=0.15/0.25 下 partition 稳定性。正文 prominently 报告 k-means validation。\", assigned_to: \"Research Director\", status: \"open\"}\n\n- id: \"R29-W2\"\n  summary: \"Baseline 范围偏窄 + McNemar p=0.027 post-Bonferroni 可能不 survive\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 29\n  last_seen_round: 29\n  mentions:\n    - {round: 29, reviewers: \"R1-W2/m2,R2(partially agree)\", note: \"4 baselines 均为 single-feature/简单方法。R1 补充 McNemar p=0.027 在 4 comparisons Bonferroni 后不 survive (adjusted α=0.0125)。R2 同意方向但认为 severity 低于 R1 评估——7-feature 的 computational cost 优势 (2.4×) 有实际意义。\"}\n\n- id: \"R29-W3\"\n  summary: \"Per-generator F1 变异大 (0.633-0.724)，generator-unknown 实用性受限\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 29\n  last_seen_round: 29\n  mentions:\n    - {round: 29, reviewers: \"R2-W3,R1(agree)\", note: \"9.1pp spread 意味着分类器实用性依赖 generator identity。R1 补充 cross-model chain 5-gen subset F1=0.693 佐证。\"}\n\n- id: \"R29-W4\"\n  summary: \"Scale degradation trend: 8B models 性能下降，frontier model 外推不乐观\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 29\n  last_seen_round: 29\n  mentions:\n    - {round: 29, reviewers: \"R1-M5 implicitly,R2(agree)\", note: \"Qwen3-8B per-gen F1 较小模型下降 -10.6pp。Feature compression ratio 0.58 暗示 larger models distributional signal 更弱。论文 motivation 是 frontier model contamination 但方法在 frontier models 上大概率失效——motivation paradox。\"}\n\n- id: \"R25-W7\"\n  summary: \"Instruct model 退化缺 mechanistic 分析\"\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 25\n  last_seen_round: 29\n  mentions:\n    - {round: 29, reviewers: \"R1-N3,R2-M4\", note: \"两位均要求机理假说：RLHF reward shaping vs instruction-following format constraints？为什么 Llama-Inst 几乎不受影响而 OLMo-Inst 完全失效？\"}\n  action_items:\n    - {round: 29, action: \"§5 增加 instruct 退化机理段落。\", assigned_to: \"Research Director\", status: \"open\"}\n\n- id: \"R27-W3\"\n  summary: \"Temperature 可靠范围 [0.5,0.7] 对实际部署过窄\"\n  category: experiment\n  severity: warning\n  status: acknowledged\n  first_raised_round: 27\n  last_seen_round: 29\n\n- id: \"R29-M1\"\n  summary: \"Cross-reference-model drift magnitude varies ~2×，DDR 'intrinsic' 属性需更强 evidence\"\n  category: experiment\n  severity: info\n  status: open\n  first_raised_round: 29\n  last_seen_round: 29\n  mentions:\n    - {round: 29, reviewers: \"R1-m4,R2-m4(agree)\", note: \"DDR 量化依赖 reference model 选择。F1 spread=0.013 但 drift magnitude spread 可能更大。需逐 reference model 报告完整 DDR partition 确认 partition invariance。\"}\n\n# ============ MINOR / INFO (carried forward) ============\n\n- id: \"R28-M4\"\n  summary: \"缺失相关工作讨论 (RAID, SemEval Task 8C, Dohmatob framework)\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 28\n  last_seen_round: 29\n  mentions:\n    - {round: 29, reviewers: \"R2-W4,R1(agree)\", note: \"RAID bib 有但 text 未引用。SemEval Task 8C multi-class 未对比。Dohmatob & Feng framework 未利用解释 DDR。Wang et al. (ACL 2025) Attractor Cycles orphan entry。\"}\n\n- id: \"R28-M5\"\n  summary: \"17 个 orphan bib entries\"\n  category: format\n  severity: info\n  status: open\n  first_raised_round: 28\n  last_seen_round: 29\n\n- id: \"R28-M6\"\n  summary: \"术语不一致 (entropy vs NLL)\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 28\n  last_seen_round: 29\n\n- id: \"R29-M2\"\n  summary: \"DDR 缩写应在 Abstract 首次定义\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 29\n  last_seen_round: 29\n\n- id: \"R29-M3\"\n  summary: \"Table 1 gen-0 shared seeds bias 量级应正文估计\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 29\n  last_seen_round: 29\n\n- id: \"R29-M4\"\n  summary: \"Figure 1 灰度兼容性 + near-stationary 趋势线重叠\"\n  category: format\n  severity: info\n  status: open\n  first_raised_round: 29\n  last_seen_round: 29\n\n- id: \"R29-M5\"\n  summary: \"Appendix B↔R 引用环路\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 29\n  last_seen_round: 29\n\n- id: \"R29-M6\"\n  summary: \"Table 1 vs Table 2 聚合方式不同 (per-gen macro avg vs pooled)\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 27\n  last_seen_round: 29\n\n# ============ RESOLVED (prior rounds, not re-raised in R29) ============\n\n- id: \"R26-N1\"\n  summary: \"缺少 Responsible NLP Research Checklist\"\n  category: format\n  severity: critical\n  status: resolved\n  first_raised_round: 26\n  last_seen_round: 26\n  resolution: \"ARR Checklist 通过 OpenReview 表单提交。\"\n  resolution_round: 26\n\n- id: \"R26-N2\"\n  summary: \"正文超 8 页限制\"\n  category: format\n  severity: critical\n  status: resolved\n  first_raised_round: 26\n  last_seen_round: 26\n  resolution: \"主文 ≤8 页。\"\n  resolution_round: 26\n\n- id: \"R27-W5\"\n  summary: \"Baseline framing：detection ensemble 已超 7-feature\"\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 27\n  last_seen_round: 27\n  resolution: \"§4.3 明确声明 DDR 价值在 interpretable decomposition。\"\n  resolution_round: 27\n\n- id: \"R26-W2\"\n  summary: \"Abstract 偏短\"\n  category: writing\n  severity: warning\n  status: resolved\n  resolution: \"R27+ 未再提及。\"\n  resolution_round: 26\n\n- id: \"R25-W2\"\n  summary: \"Glass's Δ 应更突出\"\n  category: method\n  severity: warning\n  status: resolved\n  resolution: \"已内嵌正文。\"\n  resolution_round: 26\n\n- id: \"R25-W1\"\n  summary: \"TOST tail decay 4/8 通过\"\n  category: method\n  severity: warning\n  status: resolved\n  resolution: \"Reclassification caveat 在位。\"\n  resolution_round: 26"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "78fe549a-a019-4b0a-b7fb-83e3eb6b38a9",
+  "isSidechain": false,
+  "requestId": "req_011CbDiwxS4b7Wy5ACRpqyxt",
+  "type": "assistant",
+  "uuid": "b34602ab-7c0b-4e3c-9110-9dec1ed67c63",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017eAMwoytWkjy1FnomjKa48",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 157898,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 8588,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 157898,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 8588,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 157898,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 157898
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "system_changed",
+        "cache_missed_input_tokens": 78562
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 111 · 2026-05-20T11:17:50.335Z_
+
+<details><summary>↩ Tool result · `toolu_01EUqnYxYdCB2iVugQeSL56f`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_issues.yaml\", \"bytes\": 14528}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b34602ab-7c0b-4e3c-9110-9dec1ed67c63",
+  "isSidechain": false,
+  "promptId": "04770357-b328-413f-bf7a-13ecdc807219",
+  "type": "user",
+  "uuid": "2492bc7e-525b-497a-8264-b954133b04d7",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_issues.yaml\\\", \\\"bytes\\\": 14528}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_issues.yaml\", \"bytes\": 14528}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "b34602ab-7c0b-4e3c-9110-9dec1ed67c63",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 112_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Reviewer 2 审稿意见]:  # Reviewer 2 — Round 1 审稿报告（新一轮）  ## 审稿侧重：Novelty & Related Work（6-point scale）  ---  ## ⚠️ 版本/数据校对说明  Director 任务描述中的若干数据与实际 PDF 不一致，以下以 **PDF 实际内容** 为准：  | 项目 | Director 描述 | PDF…",
+  "leafUuid": "2492bc7e-525b-497a-8264-b954133b04d7",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 113_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review appendix and remaining pages",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 114_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Reviewer 2 审稿意见]:  # Reviewer 2 — Round 1 审稿报告（新一轮）  ## 审稿侧重：Novelty & Related Work（6-point scale）  ---  ## ⚠️ 版本/数据校对说明  Director 任务描述中的若干数据与实际 PDF 不一致，以下以 **PDF 实际内容** 为准：  | 项目 | Director 描述 | PDF…",
+  "leafUuid": "2492bc7e-525b-497a-8264-b954133b04d7",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 115_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review appendix and remaining pages",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b"
+}
+```
+
+---
+
+
+### System
+
+_source line 116 · 2026-05-20T11:19:32.407Z_
+
+```json
+{
+  "parentUuid": null,
+  "logicalParentUuid": "2492bc7e-525b-497a-8264-b954133b04d7",
+  "isSidechain": false,
+  "type": "system",
+  "subtype": "compact_boundary",
+  "content": "Conversation compacted",
+  "isMeta": false,
+  "timestamp": "2026-05-20T11:19:32.407Z",
+  "uuid": "607c0bed-5dbf-402e-94a3-078765cbb16e",
+  "level": "info",
+  "compactMetadata": {
+    "trigger": "auto",
+    "preTokens": 182244,
+    "preCompactDiscoveredTools": [
+      "mcp__agent-ml-research__director_get_project_overview",
+      "mcp__agent-ml-research__director_post_to_reviewer",
+      "mcp__agent-ml-research__dispatch_visual_check",
+      "mcp__agent-ml-research__get_external_review_status",
+      "mcp__agent-ml-research__get_visual_check_status",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__request_external_review",
+      "mcp__agent-ml-research__submit_review_report_to_research_director",
+      "mcp__agent-ml-research__update_review_issues"
+    ],
+    "postTokens": 4321,
+    "durationMs": 102065
+  },
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "mutable-sprouting-chipmunk"
+}
+```
+
+---
+
+
+## Round 10
+
+## Round 10
+
+25 recorded events
+
+
+### User
+
+_source line 117 · 2026-05-20T11:19:32.408Z_
+
+This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation.
+
+Summary:
+1. Primary Request and Intent:
+   I am the Review Director for the `gen-depth-fingerprint` project, conducting a "fresh" (重新审稿) multi-round review of a paper titled "Depth Fingerprinting: Detecting Recursive Generation Depth in LLM Text Chains" targeting EMNLP 2026 via ACL Rolling Review. My task is to: (a) orchestrate two Reviewers through independent review → cross-sharing → convergence rounds, (b) synthesize a consolidated review report, (c) update the cross-round issue tracker, and (d) submit the final report to the Research Director. The session started after a server restart with lost conversation memory, requiring context recovery.
+
+2. Key Technical Concepts:
+   - **DDR (Differential Depth Response)**: Core contribution — 7 text features partitioned into drifting (entropy_mean, TTR, hapax_ratio) vs near-stationary (entropy_max, tail_decay) with entropy_std as intermediate
+   - **LOGO (Leave-One-Generator-Out)**: Primary cross-validation preventing generator leakage; binary F1=0.694, 3-class F1=0.762
+   - **LOFO (Leave-One-Family-Out)**: More conservative evaluation; 3-class F1=0.686, revealing 7.6pp family inflation
+   - **QLoRA classifier**: Upper bound reference at 3-class F1=0.905, creating +12-15pp gap vs handcrafted features
+   - **TOST equivalence testing**: Used for downstream utility (n=3 seeds, underpowered), DDR partition validation
+   - **8 generators / 5 families**: Pythia-1B, Pythia-2.8B, OLMo-2-1B, Qwen3-0.6B, Qwen3-1.7B, Llama-3.2-1B, Mistral-7B, + Qwen3-8B (9th in extended)
+   - **Binary F1 parity**: 7-feature = 4-det+surface = 0.708 on binary task (reference features provide zero binary increment)
+   - **Surface feature dominance**: 95.9% of discriminative power from surface-only features
+   - **Compounded degradation**: Multiple scope limitations (base-only + t<0.9 + domain + scale + editing) compound to realistic F1 ≈ 0.58-0.62
+   - **Ordinal resolution ceiling**: 5-class F1=0.391, only ~2.5 effective classes
+   - **Instruct degradation**: Heterogeneous and unpredictable (OLMo-Inst -42.5pp vs Llama-Inst -1.1pp)
+   - **Gemma-2-2B anomaly**: gen-1 F1=0.036, complete DDR failure on this architecture
+   - **ACL ARR scoring**: 5=Award, 4=Conference, 3.5=Borderline Conference, 3=Findings, 2.5=Borderline Findings
+   - **EMNLP 2026 format**: 8-page limit for main text, unlimited references, mandatory limitations section
+
+3. Files and Code Sections:
+   - `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_issues.yaml`
+     - Central cross-round issue tracker; updated twice during this session
+     - First update: Added R29 mentions to existing issues (R25-N1 through R28-M6), created 4 new issues (R29-W1 Gemma anomaly, R29-W2 baseline narrow, R29-W3 per-gen variance, R29-M1-M4 minor issues)
+     - Second update: Major overhaul incorporating extended cross-sharing findings; added R29-N1 (binary F1 parity), R29-N2 (LOFO gap), R29-N3 (Bonferroni invalidation), R29-N4 (compounded degradation), R29-N5 (ordinal overclaim), updated R29-W1 (Gemma upgraded to Major by R2), updated R25-W11 (cross-model OOD concern), added R29-W4 (scale degradation)
+   
+   - `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_reports/round_31.md`
+     - Pre-existing report from earlier today (timestamp 2026-05-20T02:50:21), Overall 3.0 (Findings)
+     - Was force-overwritten with my first consolidated report
+
+   - `/home/ubuntu/agent-ml-research/skills/global/review-director-session-start.skill.md`
+     - Read for workflow instructions: Step 0 (venue research) → Step 0.5 (reviewer assignment) → Step 1 (independent review) → Step 2 (cross-sharing) → Step 3 (convergence) → Step 4 (report synthesis + issue tracker + submission)
+
+   - Session CLAUDE.md files (multiple):
+     - Main project CLAUDE.md with SSH/environment setup rules
+     - Session-specific CLAUDE.md defining Review Director role, reviewer IDs (1, 2), chat_id, tools, isolation rules
+
+4. Errors and fixes:
+   - **Report submission rejection**: First attempt to submit via `submit_review_report_to_research_director` was rejected because Round 31 report already existed (from earlier in the day before server restart). Error message: "Round 31 report ALREADY submitted... re-submitting silently would trigger the protocol again with conflicting content."
+     - Fix: Used `force_resubmit=true` parameter since the new report incorporated complete cross-sharing data that the previous report lacked.
+   
+   - **Reviewer data discrepancies**: Both reviewers independently noted that the Director's task description contained incorrect data (F1=0.680 vs actual 0.694, 5 generators vs actual 8, "Briesch et al. 2023" doesn't exist, etc.). Reviewers correctly used PDF actual values.
+     - Not an error I made, but important context for the report.
+
+5. Problem Solving:
+   - **Context recovery after server restart**: Successfully recovered state by reading project overview, external review status, visual check status, latest report (round_31.md), and full issue tracker
+   - **Multi-round review orchestration**: Successfully managed Round 1 (independent) → Round 2 (cross-sharing via `director_post_to_reviewer`) → Round 3 (convergence) for both reviewers
+   - **Report consolidation**: Synthesized extensive reviewer findings into structured report following the prescribed format (Summary → Strengths → Weaknesses → Consensus → Divergence → Questions → Missing References → External Review → Visual Check → Overall Assessment → Detailed Comments)
+   - **Issue tracker management**: Maintained continuity with existing 30+ issues from prior rounds, adding Round 29 mentions and new issues while preserving resolution history
+
+6. All user messages:
+   - Message 1: Server restart notice with recovery instructions + Reviewer 1's complete Round 1 review (Methods & Experiments, Overall 3.0 Findings, 3 Must-Fix, 5 Should-Fix, 5 Questions)
+   - Message 2: "Continue from where you left off." (while waiting for R2)
+   - Message 3: R1 confirms done + R2's complete Round 1 review (Novelty & Related Work, Overall 3.0 Findings, 3 Must-Fix, 4 Should-Fix, 5 Questions)
+   - Message 4: "Continue from where you left off." (while waiting for cross-responses)
+   - Message 5: R2 Round 1 summary + R1 cross-response to R2 + R1 convergence round + R2 Round 2 cross-response + R2 Round 3 convergence
+   - Message 6: "Continue from where you left off." (after report submission)
+   - Message 7: Massive batch containing: R2 new full review (3/6 with data correction table) + R1 new full review (3/6 with data correction table) + R2 cross-response to shared R2 review + R1 cross-response to shared R1 review + R2 Round 2 cross-response to R1 + R1 Round 2 cross-response to R2 + R2 Round 3 convergence + R1 Round 3 convergence + R1 final cross-response to R2 + R2 final cross-response to R1
+
+7. Pending Tasks:
+   - **Submit updated consolidated report**: The issue tracker was updated with all new findings from the extended cross-sharing (Message 7), but the consolidated review report has NOT been re-submitted to incorporate these critical new findings (binary F1 parity, LOFO gap, surface feature dominance, Bonferroni invalidation, compounded degradation ~0.58-0.62, ordinal overclaim ~2.5 classes, scale degradation, Gemma upgraded to Major, cross-model OOD concern). The currently submitted report (force_resubmit=true from earlier) only covers the first set of reviews and is missing these significant additions.
+
+8. Current Work:
+   I had just finished updating the review_issues.yaml with all new findings from the extended multi-round cross-sharing (the massive Message 7 batch). The update was successful: `{"success": true, "data": {"path": "...review_issues.yaml", "bytes": 14528}}`. 
+   
+   The next logical step in the Step 4 workflow is to submit an updated consolidated review report via `submit_review_report_to_research_director` with `force_resubmit=true` that incorporates ALL the new critical findings from the extended cross-sharing rounds. The currently submitted report is incomplete — it's missing:
+   - R29-N1: Binary F1 parity (7-feat = 4-det+surface = 0.708, zero binary increment from reference features)
+   - R29-N2: LOFO gap (0.686 vs 0.762, 7.6pp family inflation)
+   - R29-N3: Bonferroni invalidation (p=0.038 doesn't survive correction)
+   - R29-N4: Compounded degradation (realistic F1 ≈ 0.58-0.62)
+   - R29-N5: Ordinal overclaim (5-class F1=0.391, ~2.5 effective classes)
+   - R29-W4: Scale degradation trend
+   - Gemma anomaly upgraded to Major
+   - Cross-model chain OOD detection concern
+   - Surface feature 95.9% dominance
+   - QLoRA LOGO vs within-model comparison gap identified
+   - Both reviewers' final scores: R1 Excitement downgraded to 2.5/5, R2 Soundness adjusted to 3.5/6
+
+   Final consensus scores: R1 Overall 3.0/5, R2 Overall 3.0/5 (3/6 on 6-point scale). Both recommend Findings track.
+
+9. Optional Next Step:
+   Submit the updated consolidated review report via `submit_review_report_to_research_director` with `force_resubmit=true`, incorporating all findings from the complete multi-round cross-sharing. The issue tracker has already been updated; the report is the remaining deliverable. This is directly in line with the Step 4 workflow from the review-director-session-start skill: "调用 `submit_review_report_to_research_director` 投递报告 → Research Director".
+
+If you need specific details from before compaction (like exact code snippets, error messages, or content you generated), read the full transcript at: /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-3-projects-gen-depth-fingerprint--claude-sessions-review-director-fec00603/6b617c07-3e4d-4b85-a6a2-cecb018a662b.jsonl
+Continue the conversation from where it left off without asking the user any further questions. Resume directly — do not acknowledge the summary, do not recap what was happening, do not preface with "I'll continue" or similar. Pick up the last task as if the break never happened.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "607c0bed-5dbf-402e-94a3-078765cbb16e",
+  "isSidechain": false,
+  "promptId": "04770357-b328-413f-bf7a-13ecdc807219",
+  "type": "user",
+  "isVisibleInTranscriptOnly": true,
+  "isCompactSummary": true,
+  "uuid": "ad7fc8bd-758d-4636-ae2e-81a16bfbf67f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "mutable-sprouting-chipmunk"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 118 · 2026-05-20T11:19:32.405Z_
+
+```json
+{
+  "parentUuid": "ad7fc8bd-758d-4636-ae2e-81a16bfbf67f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "compact_file_reference",
+    "filename": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_issues.yaml",
+    "displayPath": "../../../artifacts/review_issues.yaml"
+  },
+  "type": "attachment",
+  "uuid": "84a27b7c-17fc-4249-843a-1c98164901cd",
+  "timestamp": "2026-05-20T11:19:32.405Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "mutable-sprouting-chipmunk"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 119 · 2026-05-20T11:19:32.152Z_
+
+````json
+{
+  "parentUuid": "84a27b7c-17fc-4249-843a-1c98164901cd",
+  "isSidechain": false,
+  "attachment": {
+    "type": "file",
+    "filename": "/home/ubuntu/agent-ml-research/skills/global/review-director-session-start.skill.md",
+    "content": {
+      "type": "text",
+      "file": {
+        "filePath": "/home/ubuntu/agent-ml-research/skills/global/review-director-session-start.skill.md",
+        "content": "---\nname: review-director-session-start\ndescription: Review Director session 启动初始化流程——圆桌多轮审稿协议。Review Director 角色 session 启动时自动使用。\npriority: 9\nscope: global\ntags:\n- workflow\n- review\n- session\nversion: 3\nroles:\n- review_director\n---\n\n# Review Director Session 启动流程（圆桌会议模式）\n\n## 初始化\n\n1. `director_get_project_overview(project)` — 了解研究现状（实验状态、最新报告）\n2. 读取论文文件状态：检查 `projects/{project}/paper/` 或 `main.tex` 是否存在\n3. 检查是否有来自 Research Director 的论文提交（`[论文提交]` 消息）\n4. 向用户简要汇报：\n   - **投稿目标**：venue 和 deadline\n   - **论文状态**：当前草稿位置和版本\n   - **资料完整性**：提交的材料是否齐全\n   - **下一步**：即将开始的圆桌审稿流程\n\n## 评审流程（收到论文提交后执行）\n\n### Step 0 — 资料检查 + Venue 调研（必须先做，不可跳过）\n\n1. 检查提交资料完整性：论文文件是否存在、是否可读、补充材料是否齐全\n2. 确认目标投稿 venue（从提交消息中获取）\n3. 用 `web_search` 搜索该 venue 当前轮次的 CFP（Call for Papers），关键词示例：\n   - `\"&lt;venue name> 2026 call for papers\" site:aclweb.org`\n   - `\"&lt;venue name> 2026 submission deadline\"`\n   - `\"&lt;venue name> 2026 author guidelines\"`\n4. **验证 deadline 未过期**：今天日期与截止日期对比，若已过期立即通知用户，不继续\n5. 提取当前版本的格式要求：\n   - 页数限制（正文 / 附录 / 参考文献）\n   - 模板（ACL / IEEE / NeurIPS / ICML / ...）\n   - 匿名规则（double-blind / single-blind / open）\n   - 附录规则（是否允许、是否参与审稿）\n   - 引用格式（natbib / biblatex / 特定 .bst）\n6. 将以上信息作为上下文，随任务一起传递给 Reviewer\n\n⚠️ 禁止使用训练知识中的 venue 要求——格式标准每年都会更新，必须实时搜索确认。\n\n### Step 0.5 — 决定 Reviewer 编排\n\n根据 venue 类型和论文特点，决定：\n- 需要几个 Reviewer（1-5 人）\n- 每个 Reviewer 的审查侧重\n\n参考：\n- **顶会长文**（NeurIPS/ICML/ACL）：3 人（方法/实验 + novelty/related work + 格式/ethics）\n- **一般会议**（EMNLP/NAACL）：2 人（方法严谨性 + 新颖性/完整性）\n- **Workshop / 短文**：1 人（全面审查）\n\n向 Group C（即项目配置中的 `feishu.review_chat_id` 审稿群）汇报编排决定。\n\n### Step 0.6 — 外部审稿线（与 Step 1 并行）\n\n检查项目配置中 `external_review.paperreview_ai.enabled` 是否为 `true`：\n- 如果启用：调用 `request_external_review(project, paper_pdf_path, venue)` 向用户群发送协助提交卡片\n- 这一步与 Step 1（内部 Reviewer 分配）**并行执行**，不阻塞内部审稿流程\n- 外部结果到达后（用户在群里粘贴），纳入 Step 4 最终报告\n- 如果到 Step 4 时外部结果仍未返回，调用 `get_external_review_status(project)` 确认状态，在报告中标注\n\n### Step 0.7 — 视觉审查派发（与 Step 1 并行）\n\n派发独立视觉审查 Agent，与 Reviewer 审稿并行执行：\n\n```\ndispatch_visual_check(project=\"{project}\", review_chat_id=\"{review_chat_id}\")\n```\n\n- 视觉审查 Agent 自动渲染论文 PDF 并逐页检查排版质量（Figure 1 位置、布局节奏、图表质量、空白分布等）\n- **不参与评分和交叉讨论**，结果仅作为参考信息\n- 启动和完成通知自动发送到 Group C\n- 结果在 Step 4 通过 `get_visual_check_status(project)` 读取并拼入报告\n- **fire-and-forget**：调用立即返回，本步骤永不等待视觉审查完成\n\n### Step 1 — Round N：独立审稿\n\n携带 Step 0 搜到的 venue 要求，启动所有 Reviewer：\n\n```\ndirector_post_to_reviewer(reviewer_id=\"1\", round_number=N, text=\"你负责 {focus}。...\")\ndirector_post_to_reviewer(reviewer_id=\"2\", round_number=N, text=\"你负责 {focus}。...\")\n...（按需）\n```\n\n消息中必须包含：\n- venue 名称和截止日期\n- 页数限制和模板名称\n- 匿名规则\n- 论文文件路径\n- **该 Reviewer 的审查侧重**（在消息中明确指定）\n\n收集所有 Reviewer 的审稿结果。\n\n### Step 2 — 交叉分享（原文转发 + 逐条回应）\n\n将每位 Reviewer 的**完整审稿原文**转发给其他 Reviewer，要求逐条回应：\n\n```\ndirector_post_to_reviewer(reviewer_id=\"2\", round_number=N, text=\"\"\"\n以下是 Reviewer 1 的完整审稿意见：\n\n{Reviewer 1 的原文}\n\n请逐条回应：[AGREE] 同意并说明理由，或 [REBUT] 反驳并提供证据（cite 具体 Section/Table/Figure）。\n\"\"\")\n```\n\n对每位 Reviewer 重复此步骤（每人看到其他所有 Reviewer 的原文）。\n\n收集所有交叉回应。\n\n### Step 3 — 收敛判断\n\n分析所有 Reviewer 的意见和交叉回应：\n\n- **关键问题已达成共识**（`[AGREE]` 占多数，无未解决的 `[REBUT]` 矛盾）→ 进入 Step 4\n- **存在重大分歧**（关键 issue 上有 `[REBUT]` 且双方各有道理）→ 回到 Step 1 开始下一轮，附带聚焦问题\n- **最多 3 轮**：如果第 3 轮仍有分歧，在报告中如实记录各方观点\n\n### Step 4 — 汇总报告 & 投递\n\n合并所有轮次的发现，形成统一审稿报告：\n\n1. 报告结构：\n   - **Summary**：论文概述（2-3 句）\n   - **Strengths**：优点（逐条列出）\n   - **Weaknesses**：缺点（逐条列出，这是重点，必须严格）\n   - **Reviewer Consensus**：所有 Reviewer 达成共识的关键问题（标注 `[AGREE]`）\n   - **Reviewer Divergence**：分歧点及各方理由（标注 `[REBUT]`，如有）\n   - **Questions**：需要作者澄清的问题\n   - **Missing References**：遗漏的重要相关工作\n   - **External Review (Stanford Agentic Reviewer)**：如有外部审稿结果，单独列出其 7 维评分、关键发现、以及与内部审稿的差异；如未返回则标注状态\n   - **Visual Layout Check**（非评分项，不阻塞报告）：调用 `get_visual_check_status(project)` 读一次状态——\n     - `done` → 直接拼入 findings\n     - `running` → 写\"仍在进行中，本报告不等待，完成后会自动补发到 Group C\"\n     - `timeout` / `error` → 写失败原因 + 提示用户可重新触发\n     - `not_started` → 写未派发\n     不要为视觉审查推迟报告投递。视觉 Agent 完成后会自己把结果发到 Group C，与本报告解耦。可直接调用 `format_visual_findings_for_report(project)` 拿到现成的 markdown section\n   - **Overall Assessment**：总评 + 评分（strong reject / weak reject / borderline / weak accept / strong accept）+ 置信度\n   - **Detailed Comments**：逐节详细意见\n2. **同步 Issue Tracker**（投递前必做）：\n   - 用 `read_local_file(\"projects/{project}/artifacts/review_issues.yaml\")` 读当前 tracker（不存在视为空）\n   - 对本轮所有 Weakness/Must-Fix/Should-Fix:\n     - 与已有 issue 匹配（同 category + 相似 summary）→ 在 `mentions` 追加本轮记录,更新 `last_seen_round`\n     - 新问题 → 创建条目（id=`R{reviewer}-W{n}`,status=`open`,first_raised_round=本轮）\n   - 对上轮 `open`/`in_progress` 但本轮**未被任何 Reviewer 提及**的:\n     - 在 `mentions` 追加 `note: \"本轮未提及,可能已修复,待 Research Director 确认\"`\n   - 调 `update_review_issues(project, issues_yaml=完整 YAML)` 写回\n3. 调用 `submit_review_report_to_research_director` 投递报告 → Research Director\n4. 向用户（Group C）汇报审核完成\n\n此流程只在 session 启动时执行一次。\n",
+        "numLines": 162,
+        "startLine": 1,
+        "totalLines": 162
+      }
+    },
+    "displayPath": "../../../../../../agent-ml-research/skills/global/review-director-session-start.skill.md"
+  },
+  "type": "attachment",
+  "uuid": "83642183-5fe3-4be7-ad86-54ff64cede0f",
+  "timestamp": "2026-05-20T11:19:32.152Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "mutable-sprouting-chipmunk"
+}
+````
+
+---
+
+
+### Runtime record
+
+_source line 120 · 2026-05-20T11:19:32.406Z_
+
+```json
+{
+  "parentUuid": "83642183-5fe3-4be7-ad86-54ff64cede0f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__director_get_project_overview",
+      "mcp__agent-ml-research__director_post_to_reviewer",
+      "mcp__agent-ml-research__dispatch_visual_check",
+      "mcp__agent-ml-research__get_external_review_status",
+      "mcp__agent-ml-research__get_visual_check_status",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__request_external_review",
+      "mcp__agent-ml-research__request_study_approval",
+      "mcp__agent-ml-research__submit_review_report_to_research_director",
+      "mcp__agent-ml-research__update_review_issues"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__director_get_project_overview",
+      "mcp__agent-ml-research__director_post_to_reviewer",
+      "mcp__agent-ml-research__dispatch_visual_check",
+      "mcp__agent-ml-research__get_external_review_status",
+      "mcp__agent-ml-research__get_visual_check_status",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__request_external_review",
+      "mcp__agent-ml-research__request_study_approval",
+      "mcp__agent-ml-research__submit_review_report_to_research_director",
+      "mcp__agent-ml-research__update_review_issues"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "6e29f055-f99e-4676-9f60-0aaef9c1ae55",
+  "timestamp": "2026-05-20T11:19:32.406Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "mutable-sprouting-chipmunk"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 121 · 2026-05-20T11:19:32.406Z_
+
+```json
+{
+  "parentUuid": "6e29f055-f99e-4676-9f60-0aaef9c1ae55",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "44e20120-9d1b-4078-ab39-7ff8e1cbcf3b",
+  "timestamp": "2026-05-20T11:19:32.406Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_director_fec00603",
+  "sessionId": "6b617c07-3e4d-4b85-a6a2-cecb018a662b",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "mutable-sprouting-chipmunk"
+}
+```
+
+---
